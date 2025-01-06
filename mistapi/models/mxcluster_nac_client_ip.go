@@ -14,10 +14,7 @@ type MxclusterNacClientIp struct {
     Secret                      *string                       `json:"secret,omitempty"`
     // present only for 3rd party clients
     SiteId                      *uuid.UUID                    `json:"site_id,omitempty"`
-    // convention to be followed is : "<vendor>-<variant>"
-    // <variant> could be an os/platform/model/company
-    // for ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc.
-    // enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
+    // convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc. enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
     Vendor                      *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`
     AdditionalProperties        map[string]interface{}        `json:"_"`
 }

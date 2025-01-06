@@ -26,8 +26,7 @@ type OrgServicePolicy struct {
     ModifiedTime         *float64                    `json:"modified_time,omitempty"`
     Name                 *string                     `json:"name,omitempty"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
-    // by default, we derive all paths available and use them
-    // optionally, you can customize by using `path_preference`
+    // by default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
     PathPreference       *string                     `json:"path_preference,omitempty"`
     // For SRX Only
     Secintel             *OrgServicePoliciesSecintel `json:"secintel,omitempty"`

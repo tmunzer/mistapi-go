@@ -17,8 +17,7 @@ type ServicePolicy struct {
     // access within the same VRF
     LocalRouting         *bool                  `json:"local_routing,omitempty"`
     Name                 *string                `json:"name,omitempty"`
-    // by default, we derive all paths available and use them
-    // optionally, you can customize by using `path_preference`
+    // by default, we derive all paths available and use them. Optionally, you can customize by using `path_preference`
     PathPreference       *string                `json:"path_preference,omitempty"`
     // used to link servicepolicy defined at org level and overwrite some attributes
     ServicepolicyId      *uuid.UUID             `json:"servicepolicy_id,omitempty"`

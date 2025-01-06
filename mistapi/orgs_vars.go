@@ -21,7 +21,7 @@ func NewOrgsVars(baseController baseController) *OrgsVars {
     return &orgsVars
 }
 
-// SearchOrgVars takes context, orgId, siteId, vars, src, limit, page as parameters and
+// SearchOrgVars takes context, orgId, siteId, mVar, src, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSearchVar data and
 // an error if there was an issue with the request or response.
 // Search vars
@@ -30,7 +30,7 @@ func (o *OrgsVars) SearchOrgVars(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *string,
-    vars *string,
+    mVar *string,
     src *models.VarSourceEnum,
     limit *int,
     page *int) (
@@ -59,8 +59,8 @@ func (o *OrgsVars) SearchOrgVars(
     if siteId != nil {
         req.QueryParam("site_id", *siteId)
     }
-    if vars != nil {
-        req.QueryParam("vars", *vars)
+    if mVar != nil {
+        req.QueryParam("var", *mVar)
     }
     if src != nil {
         req.QueryParam("src", *src)

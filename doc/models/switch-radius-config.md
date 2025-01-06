@@ -18,7 +18,7 @@ Junos Radius config
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `AuthServersRetries` | `*int` | Optional | radius auth session retries<br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | radius auth session timeout<br>**Default**: `5` |
-| `Network` | `*string` | Optional | use `network`or `source_ip`<br>which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
+| `Network` | `*string` | Optional | use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | use `network`or `source_ip` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

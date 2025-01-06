@@ -9,7 +9,6 @@ import (
 )
 
 // DeviceSwitch represents a DeviceSwitch struct.
-// Switch Configuration.
 // You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template
 type DeviceSwitch struct {
     AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
@@ -60,6 +59,7 @@ type DeviceSwitch struct {
     Notes                 *string                                `json:"notes,omitempty"`
     // list of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
+    // Switch OOB IP Config:
     // - If HA configuration: key parameter will be nodeX (eg: node1)
     // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
     OobIpConfig           *SwitchOobIpConfig                     `json:"oob_ip_config,omitempty"`
@@ -70,8 +70,7 @@ type DeviceSwitch struct {
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
-    // Property key is the port mirroring instance name
-    // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
+    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`

@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Member` | `*string` | Optional | optional for VC member |
-| `Node` | `*string` | Optional | only for SSR: if node is not present, both nodes are restarted<br>for other devices: node should not be present |
+| `Node` | `*string` | Optional | only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

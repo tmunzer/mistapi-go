@@ -15,7 +15,7 @@ ip configuration of the Mist Edge out-of_band management interface
 |  --- | --- | --- | --- |
 | `Autoconf6` | `*bool` | Optional | **Default**: `true` |
 | `Dhcp6` | `*bool` | Optional | **Default**: `true` |
-| `Dns` | `[]string` | Optional | IPv4 ignored if `type`!=`static`<br>IPv6 ignored if `type6`!=`static` |
+| `Dns` | `[]string` | Optional | IPv4 ignored if `type`!=`static`, IPv6 ignored if `type6`!=`static` |
 | `Gateway` | `*string` | Optional | if `type`=`static` |
 | `Gateway6` | `*string` | Optional | - |
 | `Ip` | `*string` | Optional | if `type`=`static` |

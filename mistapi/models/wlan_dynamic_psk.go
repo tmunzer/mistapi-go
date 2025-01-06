@@ -20,8 +20,7 @@ type WlanDynamicPsk struct {
     DefaultPsk           *string                `json:"default_psk,omitempty"`
     DefaultVlanId        *VlanIdWithVariable    `json:"default_vlan_id,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // when 11r is enabled, we'll try to use the cached PMK, this can be disabled
-    // `false` means auto
+    // when 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto
     ForceLookup          *bool                  `json:"force_lookup,omitempty"`
     // enum: `cloud_psks`, `radius`
     Source               *DynamicPskSourceEnum  `json:"source,omitempty"`

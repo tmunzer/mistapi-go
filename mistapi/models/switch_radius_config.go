@@ -16,8 +16,7 @@ type SwitchRadiusConfig struct {
     AuthServersRetries   *int                   `json:"auth_servers_retries,omitempty"`
     // radius auth session timeout
     AuthServersTimeout   *int                   `json:"auth_servers_timeout,omitempty"`
-    // use `network`or `source_ip`
-    // which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
+    // use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
     Network              *string                `json:"network,omitempty"`
     // use `network`or `source_ip`
     SourceIp             *string                `json:"source_ip,omitempty"`

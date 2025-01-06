@@ -23,7 +23,7 @@ Radio AP settings
 | `Band5` | [`*models.ApRadioBand5`](../../doc/models/ap-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band5On24Radio` | [`*models.ApRadioBand5`](../../doc/models/ap-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band6` | [`*models.ApRadioBand6`](../../doc/models/ap-radio-band-6.md) | Optional | Radio Band AP settings |
-| `IndoorUse` | `*bool` | Optional | to make an outdoor operate indoor.<br>for an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap<br>**Default**: `false` |
+| `IndoorUse` | `*bool` | Optional | to make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap<br>**Default**: `false` |
 | `ScanningEnabled` | `*bool` | Optional | whether scanning radio is enabled |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

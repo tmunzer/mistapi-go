@@ -12,11 +12,9 @@ type Radsec struct {
     CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     IdleTimeout          *int                   `json:"idle_timeout,omitempty"`
-    // To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids.
-    // Org mxedge(s) identified by mxcluster_ids
+    // To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids
     MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
-    // default is site.mxedge.radsec.proxy_hosts which must be a superset of all wlans[*].radsec.proxy_hosts
-    // when radsec.proxy_hosts are not used, tunnel peers (org or site mxedges) are used irrespective of use_site_mxedge
+    // default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge`
     ProxyHosts           []string               `json:"proxy_hosts,omitempty"`
     // name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge.
     ServerName           *string                `json:"server_name,omitempty"`

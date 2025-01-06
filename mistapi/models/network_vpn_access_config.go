@@ -19,11 +19,9 @@ type NetworkVpnAccessConfig struct {
     NoReadvertiseToLanBgp     *bool                                             `json:"no_readvertise_to_lan_bgp,omitempty"`
     // toward LAN-side OSPF peers
     NoReadvertiseToLanOspf    *bool                                             `json:"no_readvertise_to_lan_ospf,omitempty"`
-    // toward overlay
-    // how HUB should deal with routes it received from Spokes
+    // toward overlay, how HUB should deal with routes it received from Spokes
     NoReadvertiseToOverlay    *bool                                             `json:"no_readvertise_to_overlay,omitempty"`
-    // by default, the routes are only readvertised toward the same vrf on spoke
-    // to allow it to be leaked to other vrfs
+    // by default, the routes are only readvertised toward the same vrf on spoke. To allow it to be leaked to other vrfs
     OtherVrfs                 []string                                          `json:"other_vrfs,omitempty"`
     // whether this network is routable
     Routed                    *bool                                             `json:"routed,omitempty"`
@@ -31,8 +29,7 @@ type NetworkVpnAccessConfig struct {
     SourceNat                 *NetworkSourceNat                                 `json:"source_nat,omitempty"`
     // Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}")
     StaticNat                 map[string]NetworkVpnAccessStaticNatProperty      `json:"static_nat,omitempty"`
-    // toward overlay
-    // how HUB should deal with routes it received from Spokes
+    // toward overlay, how HUB should deal with routes it received from Spokes
     SummarizedSubnet          *string                                           `json:"summarized_subnet,omitempty"`
     // toward LAN-side BGP peers
     SummarizedSubnetToLanBgp  *string                                           `json:"summarized_subnet_to_lan_bgp,omitempty"`

@@ -1,8 +1,6 @@
 
 # Wlan
 
-WLAN
-
 **Note**: portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 
 *This model accepts additional fields of type interface{}.*

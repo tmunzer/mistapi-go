@@ -16,20 +16,20 @@
 | `Email` | `*string` | Optional | if admin account is not an Org API Token |
 | `EnableTwoFactor` | `*bool` | Optional | if admin account is not an Org API Token |
 | `ExpireTime` | `*int` | Optional | - |
-| `FirstName` | `*string` | Optional | if admin account is not an Org API Token<br>for an invite, this is the original first name used |
+| `FirstName` | `*string` | Optional | if admin account is not an Org API Token. For an invite, this is the original first name used |
 | `Hours` | `*int` | Optional | if admin account is not an Org API Token, how long the invite should be valid<br>**Default**: `24`<br>**Constraints**: `>= 1`, `<= 168` |
-| `LastName` | `*string` | Optional | if admin account is not an Org API Token<br>for an invite, this is the original last name used |
+| `LastName` | `*string` | Optional | if admin account is not an Org API Token. For an invite, this is the original last name used |
 | `Name` | `*string` | Optional | for Org API Token Only |
 | `NoTracking` | `models.Optional[bool]` | Optional | optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out |
 | `OauthGoogle` | `*bool` | Optional | if admin account is not an Org API Token |
 | `PasswordModifiedTime` | `*float64` | Optional | password last modified time, in epoch |
-| `Phone` | `*string` | Optional | if admin account is not an Org API Token<br>phone number (numbers only, including country code) |
-| `Phone2` | `*string` | Optional | if admin account is not an Org API Token<br>secondary phone number (numbers only, including country code) |
+| `Phone` | `*string` | Optional | if admin account is not an Org API Token. Phone number (numbers only, including country code) |
+| `Phone2` | `*string` | Optional | if admin account is not an Org API Token. Secondary phone number (numbers only, including country code) |
 | `Privileges` | [`[]models.AdminPrivilege`](../../doc/models/admin-privilege.md) | Optional | list of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SessionExpiry` | `*int64` | Optional | **Constraints**: `>= 10`, `<= 20160` |
 | `Tags` | `[]string` | Optional | - |
-| `TwoFactorVerified` | `*bool` | Optional | if admin account is not an Org API Token<br>two factor status |
-| `ViaSso` | `*bool` | Optional | if admin account is not an Org API Token<br>an admin login via_sso is more restircted. (password and email<br>cannot be changed) |
+| `TwoFactorVerified` | `*bool` | Optional | if admin account is not an Org API Token. Two factor status |
+| `ViaSso` | `*bool` | Optional | if admin account is not an Org API Token, an admin login via_sso is more restircted. (password and email cannot be changed) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -1,8 +1,7 @@
 
 # Simple Alert
 
-Set of heuristic rules will be enabled when marvis subscription is not available.
-It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
+Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
 
 *This model accepts additional fields of type interface{}.*
 

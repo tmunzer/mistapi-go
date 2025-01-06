@@ -22,8 +22,8 @@ Gateway port config
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
 | `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
 | `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`dsl`. enum: `adsl`, `vdsl`<br>**Default**: `"vdsl"` |
-| `DslVci` | `*int` | Optional | if `wan_type`==`dsl`<br>16 bit int<br>**Default**: `35` |
-| `DslVpi` | `*int` | Optional | if `wan_type`==`dsl`<br>8 bit int<br>**Default**: `0` |
+| `DslVci` | `*int` | Optional | if `wan_type`==`dsl`, 16 bit int<br>**Default**: `35` |
+| `DslVpi` | `*int` | Optional | if `wan_type`==`dsl`, 8 bit int<br>**Default**: `0` |
 | `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `IpConfig` | [`*models.GatewayPortConfigIpConfig`](../../doc/models/gateway-port-config-ip-config.md) | Optional | Junos IP Config |
 | `LteApn` | `*string` | Optional | if `wan_type`==`lte` |

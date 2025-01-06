@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Adopted` | `*bool` | Optional | only if `type`==`switch` or `type`==`gateway`<br>whether the switch/gateway is adopted |
+| `Adopted` | `*bool` | Optional | only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted |
 | `Connected` | `*bool` | Optional | whether the device is connected |
 | `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[string]` | Optional | deviceprofile id if assigned, null if not assigned |

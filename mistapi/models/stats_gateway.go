@@ -13,8 +13,7 @@ import (
 type StatsGateway struct {
     ApRedundancy         *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats        *ArpTableStats                 `json:"arp_table_stats,omitempty"`
-    // only present when `bgp_peers` in `fields` query parameter
-    // Each port object is same as `GET /api/v1/sites/:site_id/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
+    // only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
     BgpPeers             []OptionalStatsBgp             `json:"bgp_peers,omitempty"`
     CertExpiry           *int64                         `json:"cert_expiry,omitempty"`
     ClusterConfig        *StatsClusterConfig            `json:"cluster_config,omitempty"`
@@ -68,8 +67,7 @@ type StatsGateway struct {
     Name                 *string                        `json:"name,omitempty"`
     NodeName             *string                        `json:"node_name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    // only present when `ports` in `fields` query parameter
-    // Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
+    // only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
     Ports                []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     // device name if configured
@@ -83,15 +81,13 @@ type StatsGateway struct {
     Spu2Stat             []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat              []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status               *string                        `json:"status,omitempty"`
-    // only present when `tunnels` in `fields` query parameter
-    // Each port object is same as `GET /api/v1/sites/:site_id/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
+    // only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
     Tunnels              []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
     // Device Type. enum: `gateway`
     Type                 string                         `json:"type"`
     Uptime               *float64                       `json:"uptime,omitempty"`
     Version              *string                        `json:"version,omitempty"`
-    // only present when `vpn_peers` in `fields` query parameter
-    // Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
+    // only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
     VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
 }

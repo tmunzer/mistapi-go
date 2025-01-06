@@ -9,7 +9,6 @@ import (
 )
 
 // Wlan represents a Wlan struct.
-// WLAN
 // **Note**: portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 type Wlan struct {
     // enable coa-immediate-update and address-change-immediate-update on the access profile.

@@ -1,8 +1,7 @@
 
 # Switch Port Usage Storm Control
 
-Switch storm control
-Only if `mode`!=`dynamic`
+Switch storm control. Only if `mode`!=`dynamic`
 
 *This model accepts additional fields of type interface{}.*
 

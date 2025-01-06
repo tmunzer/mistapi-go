@@ -27,8 +27,7 @@ type ApRadio struct {
     Band5On24Radio       *ApRadioBand5           `json:"band_5_on_24_radio,omitempty"`
     // Radio Band AP settings
     Band6                *ApRadioBand6           `json:"band_6,omitempty"`
-    // to make an outdoor operate indoor.
-    // for an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap
+    // to make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap
     IndoorUse            *bool                   `json:"indoor_use,omitempty"`
     // whether scanning radio is enabled
     ScanningEnabled      *bool                   `json:"scanning_enabled,omitempty"`

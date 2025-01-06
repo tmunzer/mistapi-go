@@ -10,8 +10,7 @@ type ModuleStatItem struct {
     BackupVersion        Optional[string]                 `json:"backup_version"`
     BiosVersion          Optional[string]                 `json:"bios_version"`
     CpldVersion          Optional[string]                 `json:"cpld_version"`
-    // used to report all error states the device node is running into.
-    // An error should always have `type` and `since` fields, and could have some other fields specific to that type.
+    // used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
     Errors               []ModuleStatItemErrorsItems      `json:"errors,omitempty"`
     Fans                 []ModuleStatItemFansItems        `json:"fans,omitempty"`
     FpcIdx               *int                             `json:"fpc_idx,omitempty"`

@@ -12,9 +12,7 @@ import (
 type JunosLocalPortConfig struct {
     // Only if `mode`==`trunk` whether to trunk all network/vlans
     AllNetworks                              *bool                                    `json:"all_networks,omitempty"`
-    // If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.
-    // All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
-    // When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
+    // If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
     AllowDhcpd                               *bool                                    `json:"allow_dhcpd,omitempty"`
     AllowMultipleSupplicants                 *bool                                    `json:"allow_multiple_supplicants,omitempty"`
     // Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down
@@ -35,8 +33,7 @@ type JunosLocalPortConfig struct {
     EnableQos                                *bool                                    `json:"enable_qos,omitempty"`
     // Only if `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
     GuestNetwork                             Optional[string]                         `json:"guest_network"`
-    // inter_switch_link is used together with "isolation" under networks
-    // NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
+    // inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
     InterSwitchLink                          *bool                                    `json:"inter_switch_link,omitempty"`
     // Only if `enable_mac_auth`==`true`
     MacAuthOnly                              *bool                                    `json:"mac_auth_only,omitempty"`

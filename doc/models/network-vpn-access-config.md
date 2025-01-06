@@ -17,12 +17,12 @@
 | `NatPool` | `*string` | Optional | if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub, a subnet is required to create and advertise the route to Hub |
 | `NoReadvertiseToLanBgp` | `*bool` | Optional | toward LAN-side BGP peers<br>**Default**: `false` |
 | `NoReadvertiseToLanOspf` | `*bool` | Optional | toward LAN-side OSPF peers<br>**Default**: `false` |
-| `NoReadvertiseToOverlay` | `*bool` | Optional | toward overlay<br>how HUB should deal with routes it received from Spokes |
-| `OtherVrfs` | `[]string` | Optional | by default, the routes are only readvertised toward the same vrf on spoke<br>to allow it to be leaked to other vrfs |
+| `NoReadvertiseToOverlay` | `*bool` | Optional | toward overlay, how HUB should deal with routes it received from Spokes |
+| `OtherVrfs` | `[]string` | Optional | by default, the routes are only readvertised toward the same vrf on spoke. To allow it to be leaked to other vrfs |
 | `Routed` | `*bool` | Optional | whether this network is routable |
 | `SourceNat` | [`*models.NetworkSourceNat`](../../doc/models/network-source-nat.md) | Optional | if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub |
 | `StaticNat` | [`map[string]models.NetworkVpnAccessStaticNatProperty`](../../doc/models/network-vpn-access-static-nat-property.md) | Optional | Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}") |
-| `SummarizedSubnet` | `*string` | Optional | toward overlay<br>how HUB should deal with routes it received from Spokes |
+| `SummarizedSubnet` | `*string` | Optional | toward overlay, how HUB should deal with routes it received from Spokes |
 | `SummarizedSubnetToLanBgp` | `*string` | Optional | toward LAN-side BGP peers |
 | `SummarizedSubnetToLanOspf` | `*string` | Optional | toward LAN-side OSPF peers |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

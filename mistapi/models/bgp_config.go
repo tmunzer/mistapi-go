@@ -20,8 +20,7 @@ type BgpConfig struct {
     Export                 *string                       `json:"export,omitempty"`
     // default export policies if no per-neighbor policies defined
     ExportPolicy           *string                       `json:"export_policy,omitempty"`
-    // by default, either inet/net6 unicast depending on neighbor IP family (v4 or v6)
-    // for v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
+    // by default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
     ExtendedV4Nexthop      *bool                         `json:"extended_v4_nexthop,omitempty"`
     // `0` means disable
     GracefulRestartTime    *int                          `json:"graceful_restart_time,omitempty"`

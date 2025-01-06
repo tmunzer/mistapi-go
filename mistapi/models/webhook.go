@@ -13,8 +13,7 @@ type Webhook struct {
     // whether webhook is enabled
     Enabled              *bool                       `json:"enabled,omitempty"`
     ForSite              *bool                       `json:"for_site,omitempty"`
-    // if `type`=`http-post`, additional custom HTTP headers to add
-    // the headers name and value must be string, total bytes of headers name and value must be less than 1000
+    // if `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000
     Headers              Optional[map[string]string] `json:"headers"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                  `json:"id,omitempty"`
@@ -43,8 +42,7 @@ type Webhook struct {
     // * X-Mist-Signature: HMAC_SHA1(secret, body)
     Secret               Optional[string]            `json:"secret"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
-    // required if `type`=`splunk`
-    // If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
+    // required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
     SplunkToken          Optional[string]            `json:"splunk_token"`
     // List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
     Topics               []string                    `json:"topics,omitempty"`

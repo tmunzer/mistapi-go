@@ -1,6 +1,8 @@
 
 # Switch Oob Ip Config
 
+Switch OOB IP Config:
+
 - If HA configuration: key parameter will be nodeX (eg: node1)
 - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
 

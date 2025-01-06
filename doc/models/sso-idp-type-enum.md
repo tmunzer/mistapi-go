@@ -1,6 +1,8 @@
 
 # Sso Idp Type Enum
 
+SSO IDP Type:
+
 * For Admin SSO, enum: `saml`
 * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
 

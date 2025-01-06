@@ -18,8 +18,7 @@ type RadiusConfig struct {
     AuthServersTimeout   *int                   `json:"auth_servers_timeout,omitempty"`
     CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
     CoaPort              *int                   `json:"coa_port,omitempty"`
-    // use `network`or `source_ip`
-    // which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
+    // use `network`or `source_ip`, which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
     Network              *string                `json:"network,omitempty"`
     // use `network`or `source_ip`
     SourceIp             *string                `json:"source_ip,omitempty"`

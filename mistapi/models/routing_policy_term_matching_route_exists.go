@@ -8,8 +8,7 @@ import (
 // RoutingPolicyTermMatchingRouteExists represents a RoutingPolicyTermMatchingRouteExists struct.
 type RoutingPolicyTermMatchingRouteExists struct {
     Route                *string                `json:"route,omitempty"`
-    // name of the vrf instance
-    // it can also be the name of the VPN or wan if they
+    // name of the vrf instance, it can also be the name of the VPN or wan if they
     VrfName              *string                `json:"vrf_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

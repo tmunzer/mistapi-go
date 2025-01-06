@@ -6,8 +6,7 @@ import (
 )
 
 // SwitchPortUsageStormControl represents a SwitchPortUsageStormControl struct.
-// Switch storm control
-// Only if `mode`!=`dynamic`
+// Switch storm control. Only if `mode`!=`dynamic`
 type SwitchPortUsageStormControl struct {
     // whether to disable storm control on broadcast traffic
     NoBroadcast           *bool                  `json:"no_broadcast,omitempty"`

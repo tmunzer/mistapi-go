@@ -8,8 +8,7 @@ import (
 
 // Inventory represents a Inventory struct.
 type Inventory struct {
-    // only if `type`==`switch` or `type`==`gateway`
-    // whether the switch/gateway is adopted
+    // only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
     Adopted              *bool                  `json:"adopted,omitempty"`
     // whether the device is connected
     Connected            *bool                  `json:"connected,omitempty"`

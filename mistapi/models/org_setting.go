@@ -60,8 +60,7 @@ type OrgSetting struct {
     Pcap                        *OrgSettingPcap                        `json:"pcap,omitempty"`
     PcapBucketVerified          *bool                                  `json:"pcap_bucket_verified,omitempty"`
     Security                    *OrgSettingSecurity                    `json:"security,omitempty"`
-    // Set of heuristic rules will be enabled when marvis subscription is not available.
-    // It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
+    // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
     SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
     SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
     // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.

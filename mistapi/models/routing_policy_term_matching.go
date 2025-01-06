@@ -19,8 +19,7 @@ type RoutingPolicyTermMatching struct {
     RouteExists          *RoutingPolicyTermMatchingRouteExists `json:"route_exists,omitempty"`
     // overlay-facing criteria (used for bgp_config where via=vpn)
     VpnNeighborMac       []string                              `json:"vpn_neighbor_mac,omitempty"`
-    // overlay-facing criteria (used for bgp_config where via=vpn)
-    // ordered-
+    // overlay-facing criteria (used for bgp_config where via=vpn). ordered-
     VpnPath              []string                              `json:"vpn_path,omitempty"`
     VpnPathSla           *RoutingPolicyTermMatchingVpnPathSla  `json:"vpn_path_sla,omitempty"`
     AdditionalProperties map[string]interface{}                `json:"_"`

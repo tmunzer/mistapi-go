@@ -20,7 +20,7 @@ zero or more criteria/filter can be specified to match the term, all criteria ha
 | `Protocol` | `[]string` | Optional | `direct`, `bgp`, `osp`, ... |
 | `RouteExists` | [`*models.RoutingPolicyTermMatchingRouteExists`](../../doc/models/routing-policy-term-matching-route-exists.md) | Optional | - |
 | `VpnNeighborMac` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn) |
-| `VpnPath` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn)<br>ordered- |
+| `VpnPath` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn). ordered- |
 | `VpnPathSla` | [`*models.RoutingPolicyTermMatchingVpnPathSla`](../../doc/models/routing-policy-term-matching-vpn-path-sla.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

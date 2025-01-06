@@ -57,8 +57,8 @@ type DeviceprofileAp struct {
     Type                 string                  `json:"type"`
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
-    // Note: if native imagotag is enabled, BLE will be disabled automatically
-    // Note: legacy, new config moved to ESL Config.
+    // - Note: if native imagotag is enabled, BLE will be disabled automatically
+    // - Note: legacy, new config moved to ESL Config.
     UsbConfig            *ApUsb                  `json:"usb_config,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string       `json:"vars,omitempty"`

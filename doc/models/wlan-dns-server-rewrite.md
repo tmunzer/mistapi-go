@@ -14,7 +14,7 @@ for radius_group-based DNS server (rewrite DNS request depending on the Group RA
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `RadiusGroups` | `map[string]string` | Optional | map between radius_group and the desired DNS server (IPv4 only)<br>Property key is the RADIUS group, property value is the desired DNS Server |
+| `RadiusGroups` | `map[string]string` | Optional | map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

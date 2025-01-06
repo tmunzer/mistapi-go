@@ -10,8 +10,7 @@ import (
 type MxedgeOobIpConfig struct {
     Autoconf6            *bool                  `json:"autoconf6,omitempty"`
     Dhcp6                *bool                  `json:"dhcp6,omitempty"`
-    // IPv4 ignored if `type`!=`static`
-    // IPv6 ignored if `type6`!=`static`
+    // IPv4 ignored if `type`!=`static`, IPv6 ignored if `type6`!=`static`
     Dns                  []string               `json:"dns,omitempty"`
     // if `type`=`static`
     Gateway              *string                `json:"gateway,omitempty"`

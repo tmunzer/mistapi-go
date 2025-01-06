@@ -24,7 +24,7 @@ func TestOrgsUserMACsTestCreateOrgUserMacs(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"added":["921b638445cd"],"errors":["921b638445ce - mac invalid","921b638445cf - mac already provided"],"updated":["721b638445ef","721b638445ee"]}`
+    expected := `{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"mac address refers to Canon printers","vlan":"30"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

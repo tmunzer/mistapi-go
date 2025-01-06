@@ -2,8 +2,9 @@
 # Ap Usb
 
 USB AP settings
-Note: if native imagotag is enabled, BLE will be disabled automatically
-Note: legacy, new config moved to ESL Config.
+
+- Note: if native imagotag is enabled, BLE will be disabled automatically
+- Note: legacy, new config moved to ESL Config.
 
 *This model accepts additional fields of type interface{}.*
 

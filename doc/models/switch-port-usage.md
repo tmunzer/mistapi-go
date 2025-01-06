@@ -14,7 +14,7 @@ Junos port usages
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllNetworks` | `*bool` | Optional | Only if `mode`==`trunk` whether to trunk all network/vlans<br>**Default**: `false` |
-| `AllowDhcpd` | `*bool` | Optional | Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.<br>All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.<br>When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port. |
+| `AllowDhcpd` | `*bool` | Optional | Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port. |
 | `AllowMultipleSupplicants` | `*bool` | Optional | Only if `mode`!=`dynamic`<br>**Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down<br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnkonwnClient` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
@@ -26,7 +26,7 @@ Junos port usages
 | `EnableMacAuth` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` whether to enable MAC Auth<br>**Default**: `false` |
 | `EnableQos` | `*bool` | Optional | Only if `mode`!=`dynamic`<br>**Default**: `false` |
 | `GuestNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed) |
-| `InterSwitchLink` | `*bool` | Optional | Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks<br>NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together<br>**Default**: `false` |
+| `InterSwitchLink` | `*bool` | Optional | Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together<br>**Default**: `false` |
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"eap-md5"` |
@@ -44,7 +44,7 @@ Junos port usages
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` sets server fail fallback vlan |
 | `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails |
 | `Speed` | [`*models.SwitchPortUsageSpeedEnum`](../../doc/models/switch-port-usage-speed-enum.md) | Optional | Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
-| `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control<br>Only if `mode`!=`dynamic` |
+| `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control. Only if `mode`!=`dynamic` |
 | `StpEdge` | `*bool` | Optional | Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
 | `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
 | `StpP2p` | `*bool` | Optional | **Default**: `false` |

@@ -11,9 +11,7 @@ import (
 type SwitchPortUsage struct {
     // Only if `mode`==`trunk` whether to trunk all network/vlans
     AllNetworks                              *bool                                       `json:"all_networks,omitempty"`
-    // Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with.
-    // All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state.
-    // When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
+    // Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is a access or trunk port.
     AllowDhcpd                               *bool                                       `json:"allow_dhcpd,omitempty"`
     // Only if `mode`!=`dynamic`
     AllowMultipleSupplicants                 *bool                                       `json:"allow_multiple_supplicants,omitempty"`
@@ -37,8 +35,7 @@ type SwitchPortUsage struct {
     EnableQos                                *bool                                       `json:"enable_qos,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
     GuestNetwork                             Optional[string]                            `json:"guest_network"`
-    // Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks
-    // NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
+    // Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
     InterSwitchLink                          *bool                                       `json:"inter_switch_link,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
@@ -74,8 +71,7 @@ type SwitchPortUsage struct {
     ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
     // Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
     Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
-    // Switch storm control
-    // Only if `mode`!=`dynamic`
+    // Switch storm control. Only if `mode`!=`dynamic`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
     // Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`

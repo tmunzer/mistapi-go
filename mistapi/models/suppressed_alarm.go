@@ -7,8 +7,7 @@ import (
 
 // SuppressedAlarm represents a SuppressedAlarm struct.
 type SuppressedAlarm struct {
-    // if `scope`==`site`
-    // Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
+    // if `scope`==`site`. Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
     Applies              *SuppressedAlarmApplies   `json:"applies,omitempty"`
     // duration, in seconds. Maximum duration is 86400 * 180 (180 days). 0 is to un-suppress alarms
     Duration             *float64                  `json:"duration,omitempty"`

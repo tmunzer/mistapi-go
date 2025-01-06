@@ -19,7 +19,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `DisableBfd` | `*bool` | Optional | BFD provides faster path failure detection and is enabled by default<br>**Default**: `false` |
 | `Export` | `*string` | Optional | - |
 | `ExportPolicy` | `*string` | Optional | default export policies if no per-neighbor policies defined |
-| `ExtendedV4Nexthop` | `*bool` | Optional | by default, either inet/net6 unicast depending on neighbor IP family (v4 or v6)<br>for v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this |
+| `ExtendedV4Nexthop` | `*bool` | Optional | by default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this |
 | `GracefulRestartTime` | `*int` | Optional | `0` means disable<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 4095` |
 | `HoldTime` | `*int` | Optional | **Default**: `90`<br>**Constraints**: `>= 0`, `<= 65535` |
 | `Import` | `*string` | Optional | - |

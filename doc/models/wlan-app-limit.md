@@ -15,7 +15,7 @@ bandwidth limiting for apps (applies to up/down)
 |  --- | --- | --- | --- |
 | `Apps` | `map[string]int` | Optional | Map from app key to bandwidth in kbps.<br>Property key is the app key, defined in Get Application List |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `WxtagIds` | `map[string]int` | Optional | Map from wxtag_id of Hostname Wxlan Tags to bandwidth in kbps<br>Property key is the wxtag id |
+| `WxtagIds` | `map[string]int` | Optional | Map from wxtag_id of Hostname Wxlan Tags to bandwidth in kbps. Property key is the `wxtag_id` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

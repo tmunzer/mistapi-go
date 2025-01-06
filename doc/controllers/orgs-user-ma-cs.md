@@ -36,7 +36,7 @@ CreateOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.UserMac) (
-    models.ApiResponse[models.UserMacImport],
+    models.ApiResponse[models.UserMac],
     error)
 ```
 
@@ -49,7 +49,7 @@ CreateOrgUserMacs(
 
 ## Response Type
 
-[`models.UserMacImport`](../../doc/models/user-mac-import.md)
+[`models.UserMac`](../../doc/models/user-mac.md)
 
 ## Example Usage
 
@@ -84,17 +84,14 @@ if err != nil {
 
 ```json
 {
-  "added": [
-    "921b638445cd"
+  "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
+  "labels": [
+    "flor1",
+    "bld4"
   ],
-  "errors": [
-    "921b638445ce - mac invalid",
-    "921b638445cf - mac already provided"
-  ],
-  "updated": [
-    "721b638445ef",
-    "721b638445ee"
-  ]
+  "mac": "921b638445cd",
+  "notes": "mac address refers to Canon printers",
+  "vlan": "30"
 }
 ```
 
@@ -250,7 +247,7 @@ ImportOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
     file models.FileWrapper) (
-    http.Response,
+    models.ApiResponse[models.UserMacImport],
     error)
 ```
 
@@ -263,7 +260,7 @@ ImportOrgUserMacs(
 
 ## Response Type
 
-``
+[`models.UserMacImport`](../../doc/models/user-mac-import.md)
 
 ## Example Usage
 
@@ -274,11 +271,31 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-resp, err := orgsUserMACs.ImportOrgUserMacs(ctx, orgId, file)
+apiResponse, err := orgsUserMACs.ImportOrgUserMacs(ctx, orgId, file)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "added": [
+    "921b638445cd"
+  ],
+  "errors": [
+    "921b638445ce - mac invalid",
+    "921b638445cf - mac already provided"
+  ],
+  "updated": [
+    "721b638445ef",
+    "721b638445ee"
+  ]
 }
 ```
 

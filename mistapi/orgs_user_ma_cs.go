@@ -23,7 +23,7 @@ func NewOrgsUserMACs(baseController baseController) *OrgsUserMACs {
 }
 
 // CreateOrgUserMacs takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.UserMacImport data and
+// returns an models.ApiResponse with models.UserMac data and
 // an error if there was an issue with the request or response.
 // Create Org User MACs
 // ### Usermacs import CSV file format
@@ -37,7 +37,7 @@ func (o *OrgsUserMACs) CreateOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.UserMac) (
-    models.ApiResponse[models.UserMacImport],
+    models.ApiResponse[models.UserMac],
     error) {
     req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/usermacs")
     req.AppendTemplateParams(orgId)
@@ -64,18 +64,18 @@ func (o *OrgsUserMACs) CreateOrgUserMacs(
         req.Json(body)
     }
     
-    var result models.UserMacImport
+    var result models.UserMac
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.UserMacImport](decoder)
+    result, err = utilities.DecodeResults[models.UserMac](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // ImportOrgUserMacs takes context, orgId, file as parameters and
-// returns an *Response and
+// returns an models.ApiResponse with models.UserMacImport data and
 // an error if there was an issue with the request or response.
 // Import Org User MACs
 // ### CSV Import example
@@ -91,7 +91,7 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
     file models.FileWrapper) (
-    *http.Response,
+    models.ApiResponse[models.UserMacImport],
     error) {
     req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/usermacs/import")
     req.AppendTemplateParams(orgId)
@@ -118,11 +118,14 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
     formFields = append(formFields, fileParam)
     req.FormData(formFields)
     
-    httpCtx, err := req.Call()
+    var result models.UserMacImport
+    decoder, resp, err := req.CallAsJson()
     if err != nil {
-        return httpCtx.Response, err
+        return models.NewApiResponse(result, resp), err
     }
-    return httpCtx.Response, err
+    
+    result, err = utilities.DecodeResults[models.UserMacImport](decoder)
+    return models.NewApiResponse(result, resp), err
 }
 
 // SearchOrgUserMacs takes context, orgId, mac, labels, limit, page as parameters and

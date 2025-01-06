@@ -26,11 +26,9 @@ type GatewayPortConfig struct {
     Disabled             *bool                          `json:"disabled,omitempty"`
     // if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
     DslType              *GatewayPortDslTypeEnum        `json:"dsl_type,omitempty"`
-    // if `wan_type`==`dsl`
-    // 16 bit int
+    // if `wan_type`==`dsl`, 16 bit int
     DslVci               *int                           `json:"dsl_vci,omitempty"`
-    // if `wan_type`==`dsl`
-    // 8 bit int
+    // if `wan_type`==`dsl`, 8 bit int
     DslVpi               *int                           `json:"dsl_vpi,omitempty"`
     // enum: `auto`, `full`, `half`
     Duplex               *GatewayPortDuplexEnum         `json:"duplex,omitempty"`

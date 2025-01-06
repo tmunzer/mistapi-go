@@ -89,8 +89,7 @@ type SiteSetting struct {
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
     // whether to store the config on AP
     PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
-    // Property key is the port mirroring instance name
-    // port_mirroring can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
+    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
     PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages                      map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
@@ -109,8 +108,7 @@ type SiteSetting struct {
     Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
     // managed mobility
     Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`
-    // Set of heuristic rules will be enabled when marvis subscription is not available.
-    // It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
+    // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
     SimpleAlert                     *SimpleAlert                           `json:"simple_alert,omitempty"`
     SiteId                          *uuid.UUID                             `json:"site_id,omitempty"`
     Skyatp                          *SiteSettingSkyatp                     `json:"skyatp,omitempty"`

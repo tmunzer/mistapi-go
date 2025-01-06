@@ -1162,8 +1162,7 @@ const (
 )
 
 // IdpUserCertLookupFieldEnum is a string enum.
-// allow customer to choose the EAP-TLS client certificate's field
-// to use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
+// allow customer to choose the EAP-TLS client certificate's field. To use for IDP User Groups lookup. enum: `automatic`, `cn`, `email`, `upn`
 type IdpUserCertLookupFieldEnum string
 
 const (
@@ -1456,10 +1455,7 @@ const (
 )
 
 // MxclusterNacClientVendorEnum is a string enum.
-// convention to be followed is : "<vendor>-<variant>"
-// <variant> could be an os/platform/model/company
-// for ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc.
-// enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
+// convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc. enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
 type MxclusterNacClientVendorEnum string
 
 const (
@@ -3408,6 +3404,7 @@ const (
 )
 
 // SsoIdpTypeEnum is a string enum.
+// SSO IDP Type:
 // * For Admin SSO, enum: `saml`
 // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
 type SsoIdpTypeEnum string

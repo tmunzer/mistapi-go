@@ -11,8 +11,7 @@ import (
 // UtilsDevicesRestartMulti represents a UtilsDevicesRestartMulti struct.
 type UtilsDevicesRestartMulti struct {
     DeviceIds            []uuid.UUID            `json:"device_ids"`
-    // only for SSR: if node is not present, both nodes are restarted
-    // for other devices: node should not be present
+    // only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
     Node                 *string                `json:"node,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

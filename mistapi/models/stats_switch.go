@@ -53,8 +53,7 @@ type StatsSwitch struct {
     // device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    // only present when `ports` in `fields` query parameter
-    // Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
+    // only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
     Ports                []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial               *string                        `json:"serial,omitempty"`

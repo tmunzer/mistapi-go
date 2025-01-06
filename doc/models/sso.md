@@ -22,7 +22,7 @@ SSO
 | `IdpCert` | `*string` | Optional | if `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512` |
 | `IdpSsoUrl` | `*string` | Optional | Required if `idp_type`==`saml`, IDP Single-Sign-On URL |
-| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | * For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
+| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | SSO IDP Type:<br><br>* For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |
 | `Issuer` | `*string` | Optional | if `idp_type`==`saml`. IDP issuer URL |
 | `LdapBaseDn` | `*string` | Optional | Required if `idp_type`==`ldap`, whole domain or a specific organization unit (container) in Search base to specify where users and groups are found in the LDAP tree |
@@ -52,7 +52,7 @@ SSO
 | `OauthTenantId` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_tenant_id |
 | `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `RoleAttrExtraction` | `*string` | Optional | if `idp_type`==`saml`, custom role attribute parsing scheme<br><br>Supported Role Parsing Schemes<br><br><table><tr><th>Name</th><th>Scheme</th></tr><tr><td>cn</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li><li>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</li></ul></td></tr></table><br> |
+| `RoleAttrExtraction` | `*string` | Optional | if `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</td></tr></table> |
 | `RoleAttrFrom` | `*string` | Optional | if `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from<br>**Default**: `"Role"` |
 | `ScimEnabled` | `*bool` | Optional | if `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP<br>**Default**: `false` |
 | `ScimSecretToken` | `*string` | Optional | if `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP |

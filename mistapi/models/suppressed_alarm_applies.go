@@ -7,8 +7,7 @@ import (
 )
 
 // SuppressedAlarmApplies represents a SuppressedAlarmApplies struct.
-// if `scope`==`site`
-// Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
+// if `scope`==`site`. Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
 type SuppressedAlarmApplies struct {
     // UUID of the current org (if provided, the alarms will be suppressed at org level)
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`

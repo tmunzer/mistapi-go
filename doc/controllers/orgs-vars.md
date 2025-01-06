@@ -20,7 +20,7 @@ SearchOrgVars(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *string,
-    vars *string,
+    mVar *string,
     src *models.VarSourceEnum,
     limit *int,
     page *int) (
@@ -34,7 +34,7 @@ SearchOrgVars(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*string` | Query, Optional | - |
-| `vars` | `*string` | Query, Optional | - |
+| `mVar` | `*string` | Query, Optional | - |
 | `src` | [`*models.VarSourceEnum`](../../doc/models/var-source-enum.md) | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
