@@ -322,7 +322,7 @@ SearchOrgUserMacs(
     labels []string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.UserMacsSearch],
+    models.ApiResponse[[]models.UserMac],
     error)
 ```
 
@@ -338,7 +338,7 @@ SearchOrgUserMacs(
 
 ## Response Type
 
-[`models.UserMacsSearch`](../../doc/models/user-macs-search.md)
+[`[]models.UserMac`](../../doc/models/user-mac.md)
 
 ## Example Usage
 
@@ -368,22 +368,18 @@ if err != nil {
 ## Example Response *(as JSON)*
 
 ```json
-{
-  "limit": 100,
-  "page": 1,
-  "results": [
-    {
-      "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
-      "labels": [
-        "flor1",
-        "bld4"
-      ],
-      "mac": "921b638445cd",
-      "notes": "mac address refers to Canon printers",
-      "vlan": "30"
-    }
-  ]
-}
+[
+  {
+    "id": "111cafd2-ba1b-5169-bfcb-9cdf1d473ddb",
+    "labels": [
+      "flor1",
+      "bld4"
+    ],
+    "mac": "921b638445cd",
+    "notes": "mac address refers to Canon printers",
+    "vlan": "30"
+  }
+]
 ```
 
 ## Errors

@@ -48,7 +48,7 @@ func TestOrgsUserMACsTestSearchOrgUserMacs(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"limit":100,"page":1,"results":[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"mac address refers to Canon printers","vlan":"30"}]}`
+    expected := `[{"id":"111cafd2-ba1b-5169-bfcb-9cdf1d473ddb","labels":["flor1","bld4"],"mac":"921b638445cd","notes":"mac address refers to Canon printers","vlan":"30"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
