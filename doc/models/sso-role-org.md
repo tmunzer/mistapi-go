@@ -39,6 +39,7 @@ SSO Role response
       "scope": "site",
       "site_id": "00002366-0000-0000-0000-000000000000",
       "sitegroup_id": "000006ce-0000-0000-0000-000000000000",
+      "views": "super_observer",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
