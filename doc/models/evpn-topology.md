@@ -11,8 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Overwrite` | `*bool` | Optional | - |
@@ -206,6 +208,7 @@
       }
     }
   ],
+  "created_time": 252.34,
   "evpn_options": {
     "auto_loopback_subnet": "auto_loopback_subnet4",
     "auto_loopback_subnet6": "auto_loopback_subnet60",
@@ -217,7 +220,7 @@
       "key2": "val2"
     }
   },
-  "overwrite": false,
+  "modified_time": 82.62,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

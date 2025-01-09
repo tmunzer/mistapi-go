@@ -34,17 +34,11 @@ func TestOrgsCertTestClearOrgCertificates(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsCert.ClearOrgCertificates(ctx, orgId)
+    resp, err := orgsCert.ClearOrgCertificates(ctx, orgId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
-    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-    expectedHeaders:= []testHelper.TestHeader{
-        testHelper.NewTestHeader(true,"Content-Type","application/json"),
-    }
-    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"cert":"-----BEGIN CERTIFICATE-----\nMIIowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----"}`
-    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
 // TestOrgsCertTestTruncateOrgCrlFile tests the behavior of the OrgsCert

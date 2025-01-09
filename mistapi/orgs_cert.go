@@ -63,13 +63,13 @@ func (o *OrgsCert) GetOrgCertificates(
 }
 
 // ClearOrgCertificates takes context, orgId as parameters and
-// returns an models.ApiResponse with models.ResponseCertificate data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear Org Certificates
 func (o *OrgsCert) ClearOrgCertificates(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.ResponseCertificate],
+    *http.Response,
     error) {
     req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/cert/regenerate")
     req.AppendTemplateParams(orgId)
@@ -92,14 +92,11 @@ func (o *OrgsCert) ClearOrgCertificates(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.ResponseCertificate
-    decoder, resp, err := req.CallAsJson()
+    httpCtx, err := req.Call()
     if err != nil {
-        return models.NewApiResponse(result, resp), err
+        return httpCtx.Response, err
     }
-    
-    result, err = utilities.DecodeResults[models.ResponseCertificate](decoder)
-    return models.NewApiResponse(result, resp), err
+    return httpCtx.Response, err
 }
 
 // TruncateOrgCrlFile takes context, orgId, body as parameters and
