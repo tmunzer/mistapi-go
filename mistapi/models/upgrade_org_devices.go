@@ -8,42 +8,46 @@ import (
 
 // UpgradeOrgDevices represents a UpgradeOrgDevices struct.
 type UpgradeOrgDevices struct {
-    // phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase.
+    // For APs only and if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase.
     CanaryPhases            []int                            `json:"canary_phases,omitempty"`
-    // whether to allow local AP-to-AP FW upgrade
+    // for APs only. whether to allow local AP-to-AP FW upgrade
     EnableP2p               *bool                            `json:"enable_p2p,omitempty"`
     // true will force upgrade when requested version is same as running version
     Force                   *bool                            `json:"force,omitempty"`
-    // percentage of failures allowed across the entire upgrade(not applicable for `big_bang`)
+    // for APs only and if `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
     MaxFailurePercentage    *float64                         `json:"max_failure_percentage,omitempty"`
-    // number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
+    // For APs only and if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures             []int                            `json:"max_failures,omitempty"`
+    // models which will be selected for upgrade
     Models                  []string                         `json:"models,omitempty"`
+    // For APs only and if `enable_p2p`==`true`.
     P2pClusterSize          *int                             `json:"p2p_cluster_size,omitempty"`
-    // number of parallel p2p download batches to creat
+    // For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create
     P2pParallelism          *int                             `json:"p2p_parallelism,omitempty"`
-    // Reboot device immediately after upgrade is completed (Available on Junos OS devices)
+    // For Junos devices only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
     Reboot                  *bool                            `json:"reboot,omitempty"`
-    // reboot start time in epoch seconds, default is `start_time`
+    // For Junos devices only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
     RebootAt                *float64                         `json:"reboot_at,omitempty"`
-    // percentage of AP’s that need to be present in the first rrm batch
+    // For APs only and if `strategy`==`rrm`. Percentage of APs that need to be present in the first RRM batch
     RrmFirstBatchPercentage *int                             `json:"rrm_first_batch_percentage,omitempty"`
-    // max percentage of AP’s that need to be present in each rrm batch
+    // For APs only and if `strategy`==`rrm`. Max percentage of APs that need to be present in each RRM batch
     RrmMaxBatchPercentage   *int                             `json:"rrm_max_batch_percentage,omitempty"`
-    // Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
+    // For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
     RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
-    // Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
+    // For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
     RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
-    // true will make rrm batch sizes slowly ramp up
+    // For APs only and if `strategy`==`rrm`. True will make rrm batch sizes slowly ramp up
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
+    // rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule
+    Rules                   []string                         `json:"rules,omitempty"`
     SiteIds                 []uuid.UUID                      `json:"site_ids,omitempty"`
-    // Perform recovery snapshot after device is rebooted (Available on Junos OS devices)
+    // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     // upgrade start time in epoch seconds, default is now
     StartTime               *float64                         `json:"start_time,omitempty"`
-    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
-    // specific version / stable
+    // specific version / stable, default is to use the lastest available version
     Version                 *string                          `json:"version,omitempty"`
     AdditionalProperties    map[string]interface{}           `json:"_"`
 }
@@ -52,8 +56,8 @@ type UpgradeOrgDevices struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UpgradeOrgDevices) String() string {
     return fmt.Sprintf(
-    	"UpgradeOrgDevices[CanaryPhases=%v, EnableP2p=%v, Force=%v, MaxFailurePercentage=%v, MaxFailures=%v, Models=%v, P2pClusterSize=%v, P2pParallelism=%v, Reboot=%v, RebootAt=%v, RrmFirstBatchPercentage=%v, RrmMaxBatchPercentage=%v, RrmMeshUpgrade=%v, RrmNodeOrder=%v, RrmSlowRamp=%v, SiteIds=%v, Snapshot=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
-    	u.CanaryPhases, u.EnableP2p, u.Force, u.MaxFailurePercentage, u.MaxFailures, u.Models, u.P2pClusterSize, u.P2pParallelism, u.Reboot, u.RebootAt, u.RrmFirstBatchPercentage, u.RrmMaxBatchPercentage, u.RrmMeshUpgrade, u.RrmNodeOrder, u.RrmSlowRamp, u.SiteIds, u.Snapshot, u.StartTime, u.Strategy, u.Version, u.AdditionalProperties)
+    	"UpgradeOrgDevices[CanaryPhases=%v, EnableP2p=%v, Force=%v, MaxFailurePercentage=%v, MaxFailures=%v, Models=%v, P2pClusterSize=%v, P2pParallelism=%v, Reboot=%v, RebootAt=%v, RrmFirstBatchPercentage=%v, RrmMaxBatchPercentage=%v, RrmMeshUpgrade=%v, RrmNodeOrder=%v, RrmSlowRamp=%v, Rules=%v, SiteIds=%v, Snapshot=%v, StartTime=%v, Strategy=%v, Version=%v, AdditionalProperties=%v]",
+    	u.CanaryPhases, u.EnableP2p, u.Force, u.MaxFailurePercentage, u.MaxFailures, u.Models, u.P2pClusterSize, u.P2pParallelism, u.Reboot, u.RebootAt, u.RrmFirstBatchPercentage, u.RrmMaxBatchPercentage, u.RrmMeshUpgrade, u.RrmNodeOrder, u.RrmSlowRamp, u.Rules, u.SiteIds, u.Snapshot, u.StartTime, u.Strategy, u.Version, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeOrgDevices.
@@ -62,7 +66,7 @@ func (u UpgradeOrgDevices) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(u.AdditionalProperties,
-        "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "site_ids", "snapshot", "start_time", "strategy", "version"); err != nil {
+        "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_time", "strategy", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(u.toMap())
@@ -117,6 +121,9 @@ func (u UpgradeOrgDevices) toMap() map[string]any {
     if u.RrmSlowRamp != nil {
         structMap["rrm_slow_ramp"] = u.RrmSlowRamp
     }
+    if u.Rules != nil {
+        structMap["rules"] = u.Rules
+    }
     if u.SiteIds != nil {
         structMap["site_ids"] = u.SiteIds
     }
@@ -143,7 +150,7 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "site_ids", "snapshot", "start_time", "strategy", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "canary_phases", "enable_p2p", "force", "max_failure_percentage", "max_failures", "models", "p2p_cluster_size", "p2p_parallelism", "reboot", "reboot_at", "rrm_first_batch_percentage", "rrm_max_batch_percentage", "rrm_mesh_upgrade", "rrm_node_order", "rrm_slow_ramp", "rules", "site_ids", "snapshot", "start_time", "strategy", "version")
     if err != nil {
     	return err
     }
@@ -164,6 +171,7 @@ func (u *UpgradeOrgDevices) UnmarshalJSON(input []byte) error {
     u.RrmMeshUpgrade = temp.RrmMeshUpgrade
     u.RrmNodeOrder = temp.RrmNodeOrder
     u.RrmSlowRamp = temp.RrmSlowRamp
+    u.Rules = temp.Rules
     u.SiteIds = temp.SiteIds
     u.Snapshot = temp.Snapshot
     u.StartTime = temp.StartTime
@@ -189,6 +197,7 @@ type tempUpgradeOrgDevices  struct {
     RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
     RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
+    Rules                   []string                         `json:"rules,omitempty"`
     SiteIds                 []uuid.UUID                      `json:"site_ids,omitempty"`
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     StartTime               *float64                         `json:"start_time,omitempty"`

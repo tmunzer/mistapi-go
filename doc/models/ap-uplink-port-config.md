@@ -1,6 +1,8 @@
 
 # Ap Uplink Port Config
 
+AP Uplink port configuration
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure

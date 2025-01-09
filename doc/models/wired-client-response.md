@@ -40,21 +40,9 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "device_mac": [
-    "device_mac9",
-    "device_mac0"
+    "device_mac1"
   ],
   "device_mac_port": [
-    {
-      "device_mac": "device_mac8",
-      "ip": "ip8",
-      "port_id": "port_id4",
-      "port_parent": "port_parent6",
-      "start": "start8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
     {
       "device_mac": "device_mac8",
       "ip": "ip8",
@@ -79,6 +67,22 @@
     }
   ],
   "dhcp_client_options": [
+    {
+      "code": "code2",
+      "data": "data4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "code": "code2",
+      "data": "data4",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
     {
       "code": "code2",
       "data": "data4",

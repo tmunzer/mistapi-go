@@ -6,15 +6,13 @@ import (
 )
 
 // SiteEngagement represents a SiteEngagement struct.
-// **Note**: if hours does not exist, it’s treated as everyday of the week, 00:00-23:59. Currently we don’t allow multiple ranges for the same day
-// **Note**: default values for `dwell_tags`: passerby (1,300) bounce (301, 14400) engaged (14401, 28800) stationed (28801, 42000)
-// **Note**: default values for `dwell_tag_names`: passerby = “Passerby”, bounce = “Visitor”, engaged = “Associates”, stationed = “Assets”
+// **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
 type SiteEngagement struct {
+    // name associated to each tag
     DwellTagNames        *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`
-    // add tags to visits within the duration (in seconds), available tags (passerby, bounce, engaged, stationed)
+    // add tags to visits within the duration (in seconds)
     DwellTags            *SiteEngagementDwellTags     `json:"dwell_tags,omitempty"`
-    // hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun).
-    // **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
+    // Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
     Hours                *Hours                       `json:"hours,omitempty"`
     // max time, default is 43200(12h), max is 68400 (18h)
     MaxDwell             *int                         `json:"max_dwell,omitempty"`

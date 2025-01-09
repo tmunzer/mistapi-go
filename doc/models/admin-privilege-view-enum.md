@@ -1,16 +1,9 @@
 
 # Admin Privilege View Enum
 
-Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-
-You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-
-Below are the list of supported UI views. Note that this is UI only feature
-Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-
-You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-
-Below are the list of supported UI views. Note that this is UI only feature
+Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.  
+You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.  
+Below are the list of supported UI views. Note that this is UI only feature.
 
 | UI View | Required Role | Description |
 | --- | --- | --- |

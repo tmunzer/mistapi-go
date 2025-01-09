@@ -6,6 +6,7 @@ import (
 )
 
 // SiteEngagementDwellTagNames represents a SiteEngagementDwellTagNames struct.
+// name associated to each tag
 type SiteEngagementDwellTagNames struct {
     Bounce               *string                `json:"bounce,omitempty"`
     Engaged              *string                `json:"engaged,omitempty"`

@@ -23,7 +23,7 @@ func NewOrgsEVPNTopologies(baseController baseController) *OrgsEVPNTopologies {
 }
 
 // ListOrgEvpnTopologies takes context, orgId, limit, page as parameters and
-// returns an models.ApiResponse with []models.EvpnTopology data and
+// returns an models.ApiResponse with []models.EvpnTopologyResponse data and
 // an error if there was an issue with the request or response.
 // Get List of the existing Org EVPN topologies
 func (o *OrgsEVPNTopologies) ListOrgEvpnTopologies(
@@ -31,7 +31,7 @@ func (o *OrgsEVPNTopologies) ListOrgEvpnTopologies(
     orgId uuid.UUID,
     limit *int,
     page *int) (
-    models.ApiResponse[[]models.EvpnTopology],
+    models.ApiResponse[[]models.EvpnTopologyResponse],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/evpn_topologies")
     req.AppendTemplateParams(orgId)
@@ -60,13 +60,13 @@ func (o *OrgsEVPNTopologies) ListOrgEvpnTopologies(
         req.QueryParam("page", *page)
     }
     
-    var result []models.EvpnTopology
+    var result []models.EvpnTopologyResponse
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.EvpnTopology](decoder)
+    result, err = utilities.DecodeResults[[]models.EvpnTopologyResponse](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

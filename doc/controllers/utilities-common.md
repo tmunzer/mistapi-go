@@ -23,6 +23,7 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Release Site Device Dhcp Lease](../../doc/controllers/utilities-common.md#release-site-device-dhcp-lease)
 * [Reprovision Site Octerm Device](../../doc/controllers/utilities-common.md#reprovision-site-octerm-device)
 * [Restart Site Device](../../doc/controllers/utilities-common.md#restart-site-device)
+* [Restart Site Multiple Devices](../../doc/controllers/utilities-common.md#restart-site-multiple-devices)
 * [Show Site Device Arp Table](../../doc/controllers/utilities-common.md#show-site-device-arp-table)
 * [Show Site Device Bgp Summary](../../doc/controllers/utilities-common.md#show-site-device-bgp-summary)
 * [Show Site Device Dhcp Leases](../../doc/controllers/utilities-common.md#show-site-device-dhcp-leases)
@@ -871,6 +872,63 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 resp, err := utilitiesCommon.RestartSiteDevice(ctx, siteId, deviceId, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Restart Site Multiple Devices
+
+Note that only the devices that are connected will be restarted.
+
+```go
+RestartSiteMultipleDevices(
+    ctx context.Context,
+    siteId uuid.UUID,
+    body *models.UtilsDevicesRestartMulti) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsDevicesRestartMulti`](../../doc/models/utils-devices-restart-multi.md) | Body, Optional | Request Body |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsDevicesRestartMulti{
+    DeviceIds:            []uuid.UUID{
+        uuid.MustParse("00000000-0000-0000-1000-5c5b35584a6f"),
+        uuid.MustParse("00000000-0000-0000-1000-5c5b350ea3b3"),
+    },
+}
+
+resp, err := utilitiesCommon.RestartSiteMultipleDevices(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

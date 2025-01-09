@@ -6,15 +6,21 @@ import (
 )
 
 // Hours represents a Hours struct.
-// hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun). 
-// **Note**: If the dow is not defined then it\u2019\ s treated as 00:00-23:59.
+// Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
 type Hours struct {
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Fri                  *string                `json:"fri,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Mon                  *string                `json:"mon,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Sat                  *string                `json:"sat,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Sun                  *string                `json:"sun,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Thu                  *string                `json:"thu,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Tue                  *string                `json:"tue,omitempty"`
+    // Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59.
     Wed                  *string                `json:"wed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

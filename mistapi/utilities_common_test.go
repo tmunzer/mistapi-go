@@ -9,6 +9,25 @@ import (
     "testing"
 )
 
+// TestUtilitiesCommonTestRestartSiteMultipleDevices tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestRestartSiteMultipleDevices(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.UtilsDevicesRestartMulti
+    errBody := json.Unmarshal([]byte(`{"device_ids":["00000000-0000-0000-1000-5c5b35584a6f","00000000-0000-0000-1000-5c5b350ea3b3"]}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    resp, err := utilitiesCommon.RestartSiteMultipleDevices(ctx, siteId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestUtilitiesCommonTestArpFromDevice tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestArpFromDevice(t *testing.T) {
     ctx := context.Background()

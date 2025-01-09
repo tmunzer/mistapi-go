@@ -77,6 +77,7 @@ type DeviceAp struct {
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // Device Type. enum: `ap`
     Type                 string                  `json:"type"`
+    // AP Uplink port configuration
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
     // - Note: if native imagotag is enabled, BLE will be disabled automatically

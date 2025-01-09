@@ -20,7 +20,6 @@ sitesDevices := client.SitesDevices()
 * [Get Site Device](../../doc/controllers/sites-devices.md#get-site-device)
 * [Import Site Devices](../../doc/controllers/sites-devices.md#import-site-devices)
 * [List Site Devices](../../doc/controllers/sites-devices.md#list-site-devices)
-* [Restart Site Multiple Devices](../../doc/controllers/sites-devices.md#restart-site-multiple-devices)
 * [Search Site Device Config History](../../doc/controllers/sites-devices.md#search-site-device-config-history)
 * [Search Site Device Events](../../doc/controllers/sites-devices.md#search-site-device-events)
 * [Search Site Device Last Configs](../../doc/controllers/sites-devices.md#search-site-device-last-configs)
@@ -1008,63 +1007,6 @@ if err != nil {
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Restart Site Multiple Devices
-
-Note that only the devices that are connected will be restarted.
-
-```go
-RestartSiteMultipleDevices(
-    ctx context.Context,
-    siteId uuid.UUID,
-    body *models.UtilsDevicesRestartMulti) (
-    http.Response,
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsDevicesRestartMulti`](../../doc/models/utils-devices-restart-multi.md) | Body, Optional | Request Body |
-
-## Response Type
-
-``
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsDevicesRestartMulti{
-    DeviceIds:            []uuid.UUID{
-        uuid.MustParse("00000000-0000-0000-1000-5c5b35584a6f"),
-        uuid.MustParse("00000000-0000-0000-1000-5c5b350ea3b3"),
-    },
-}
-
-resp, err := sitesDevices.RestartSiteMultipleDevices(ctx, siteId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    fmt.Println(resp.StatusCode)
 }
 ```
 

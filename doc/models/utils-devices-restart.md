@@ -11,16 +11,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Member` | `*string` | Optional | optional for VC member |
-| `Node` | `*string` | Optional | only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present |
+| `Member` | `*int` | Optional | optional for VC member<br>**Constraints**: `>= 0`, `<= 9` |
+| `Node` | [`*models.UtilsDevicesRestartNodeEnum`](../../doc/models/utils-devices-restart-node-enum.md) | Optional | only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "member": "member2",
-  "node": "node4",
+  "member": 184,
+  "node": "node0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

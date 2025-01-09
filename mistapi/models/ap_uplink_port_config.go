@@ -6,6 +6,7 @@ import (
 )
 
 // ApUplinkPortConfig represents a ApUplinkPortConfig struct.
+// AP Uplink port configuration
 type ApUplinkPortConfig struct {
     // Whether to do 802.1x against uplink switch. When enaled, AP cert will be used to do EAP-TLS and the Org's CA Cert has to be provisioned at the switch
     Dot1x                *bool                  `json:"dot1x,omitempty"`

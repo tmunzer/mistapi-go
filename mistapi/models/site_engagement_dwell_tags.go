@@ -6,7 +6,7 @@ import (
 )
 
 // SiteEngagementDwellTags represents a SiteEngagementDwellTags struct.
-// add tags to visits within the duration (in seconds), available tags (passerby, bounce, engaged, stationed)
+// add tags to visits within the duration (in seconds)
 type SiteEngagementDwellTags struct {
     Bounce               Optional[string]       `json:"bounce"`
     Engaged              Optional[string]       `json:"engaged"`

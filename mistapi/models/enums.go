@@ -59,12 +59,9 @@ const (
 )
 
 // AdminPrivilegeViewEnum is a string enum.
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify view along with role when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
-// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
-// You can invite a new user or update existing users in your Org to this custom role. For this, specify `view` along with `role` when assigning privileges.
-// Below are the list of supported UI views. Note that this is UI only feature
+// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.  
+// You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.  
+// Below are the list of supported UI views. Note that this is UI only feature.  
 // | UI View | Required Role | Description |
 // | --- | --- | --- |
 // | `reporting` | `read` | full access to all analytics tools |
@@ -717,7 +714,7 @@ const (
 )
 
 // DeviceUpgradeRrmMeshUpgradeEnum is a string enum.
-// Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
+// For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
 type DeviceUpgradeRrmMeshUpgradeEnum string
 
 const (
@@ -726,7 +723,7 @@ const (
 )
 
 // DeviceUpgradeRrmNodeOrderEnum is a string enum.
-// Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
+// For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
 type DeviceUpgradeRrmNodeOrderEnum string
 
 const (
@@ -749,7 +746,7 @@ const (
 )
 
 // DeviceUpgradeStrategyEnum is a string enum.
-// enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+// For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
 type DeviceUpgradeStrategyEnum string
 
 const (
@@ -4013,15 +4010,6 @@ const (
     UpgradeInfoStatusEnum_SUCCESS    UpgradeInfoStatusEnum = "success"
 )
 
-// UpgradeSiteDevicesRrmNodeOrderEnum is a string enum.
-// Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
-type UpgradeSiteDevicesRrmNodeOrderEnum string
-
-const (
-    UpgradeSiteDevicesRrmNodeOrderEnum_CENTERTOFRINGE UpgradeSiteDevicesRrmNodeOrderEnum = "center_to_fringe"
-    UpgradeSiteDevicesRrmNodeOrderEnum_FRINGETOCENTER UpgradeSiteDevicesRrmNodeOrderEnum = "fringe_to_center"
-)
-
 // UseAutoApValuesForEnum is a string enum.
 // The selector to choose auto placement or auto orientation. enum: `orientation`, `placement`
 type UseAutoApValuesForEnum string
@@ -4040,6 +4028,15 @@ const (
     UtilsClearBgpTypeEnum_IN   UtilsClearBgpTypeEnum = "in"
     UtilsClearBgpTypeEnum_OUT  UtilsClearBgpTypeEnum = "out"
     UtilsClearBgpTypeEnum_SOFT UtilsClearBgpTypeEnum = "soft"
+)
+
+// UtilsDevicesRestartNodeEnum is a string enum.
+// only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
+type UtilsDevicesRestartNodeEnum string
+
+const (
+    UtilsDevicesRestartNodeEnum_NODE0 UtilsDevicesRestartNodeEnum = "node0"
+    UtilsDevicesRestartNodeEnum_NODE1 UtilsDevicesRestartNodeEnum = "node1"
 )
 
 // UtilsSendSupportLogsInfoEnum is a string enum.

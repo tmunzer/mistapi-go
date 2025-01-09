@@ -2,7 +2,6 @@ package mistapi
 
 import (
     "context"
-    "encoding/json"
     "github.com/apimatic/go-core-runtime/testHelper"
     "github.com/google/uuid"
     "github.com/tmunzer/mistapi-go/mistapi/models"
@@ -249,25 +248,6 @@ func TestSitesDevicesTestSearchSiteDeviceLastConfigs(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"end":1531862583,"limit":10,"results":[{"channel_24":11,"channel_5":100,"radio_macs":["5c5b352e000a","5c5b352e000b","5c5b352e000c"],"radios":[{"band":"24","channel":11},{"band":"5","channel":100}],"secpolicy_violated":false,"ssids":["test24","test5"],"ssids_24":["test24"],"ssids_5":["test5"],"timestamp":1531855856.643369,"version":"apfw-0.2.14754-cersei-75c8","wlans":[{"auth":"psk","bands":["24"],"id":"be22bba7-8e22-e1cf-5185-b880816fe2cf","ssid":"test24","vlan_ids":["1"]},{"auth":"psk","bands":["5"],"id":"f8c18724-4118-3487-811a-f98964988604","ssid":"test5","vlan_ids":["1"]}]}],"start":1531776183,"total":1}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestSitesDevicesTestRestartSiteMultipleDevices tests the behavior of the SitesDevices
-func TestSitesDevicesTestRestartSiteMultipleDevices(t *testing.T) {
-    ctx := context.Background()
-    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-    if errUUID != nil {
-        t.Error(errUUID)
-    }
-    var body models.UtilsDevicesRestartMulti
-    errBody := json.Unmarshal([]byte(`{"device_ids":["00000000-0000-0000-1000-5c5b35584a6f","00000000-0000-0000-1000-5c5b350ea3b3"]}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    resp, err := sitesDevices.RestartSiteMultipleDevices(ctx, siteId, &body)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
 // TestSitesDevicesTestSearchSiteDevices tests the behavior of the SitesDevices

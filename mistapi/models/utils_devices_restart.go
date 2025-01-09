@@ -8,10 +8,10 @@ import (
 // UtilsDevicesRestart represents a UtilsDevicesRestart struct.
 type UtilsDevicesRestart struct {
     // optional for VC member
-    Member               *string                `json:"member,omitempty"`
-    // only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
-    Node                 *string                `json:"node,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Member               *int                         `json:"member,omitempty"`
+    // only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
+    Node                 *UtilsDevicesRestartNodeEnum `json:"node,omitempty"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for UtilsDevicesRestart,
@@ -68,6 +68,6 @@ func (u *UtilsDevicesRestart) UnmarshalJSON(input []byte) error {
 
 // tempUtilsDevicesRestart is a temporary struct used for validating the fields of UtilsDevicesRestart.
 type tempUtilsDevicesRestart  struct {
-    Member *string `json:"member,omitempty"`
-    Node   *string `json:"node,omitempty"`
+    Member *int                         `json:"member,omitempty"`
+    Node   *UtilsDevicesRestartNodeEnum `json:"node,omitempty"`
 }

@@ -43,9 +43,7 @@ type SiteSetting struct {
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
-    // **Note**: if hours does not exist, it’s treated as everyday of the week, 00:00-23:59. Currently we don’t allow multiple ranges for the same day
-    // **Note**: default values for `dwell_tags`: passerby (1,300) bounce (301, 14400) engaged (14401, 28800) stationed (28801, 42000)
-    // **Note**: default values for `dwell_tag_names`: passerby = “Passerby”, bounce = “Visitor”, engaged = “Associates”, stationed = “Assets”
+    // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     // EVPN Options
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
@@ -132,6 +130,7 @@ type SiteSetting struct {
     TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
     TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
+    // AP Uplink port configuration
     UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
     // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                            map[string]string                      `json:"vars,omitempty"`

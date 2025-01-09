@@ -74,6 +74,24 @@ func TestUtilitiesUpgradeTestGetOrgDeviceUpgrade(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesUpgradeTestCancelOrgDeviceUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestCancelOrgDeviceUpgrade(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    resp, err := utilitiesUpgrade.CancelOrgDeviceUpgrade(ctx, orgId, upgradeId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions tests the behavior of the UtilitiesUpgrade
 func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions(t *testing.T) {
     ctx := context.Background()

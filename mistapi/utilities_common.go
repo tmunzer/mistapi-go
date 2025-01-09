@@ -22,6 +22,48 @@ func NewUtilitiesCommon(baseController baseController) *UtilitiesCommon {
     return &utilitiesCommon
 }
 
+// RestartSiteMultipleDevices takes context, siteId, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Note that only the devices that are connected will be restarted.
+func (u *UtilitiesCommon) RestartSiteMultipleDevices(
+    ctx context.Context,
+    siteId uuid.UUID,
+    body *models.UtilsDevicesRestartMulti) (
+    *http.Response,
+    error) {
+    req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/restart")
+    req.AppendTemplateParams(siteId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
 // ArpFromDevice takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.

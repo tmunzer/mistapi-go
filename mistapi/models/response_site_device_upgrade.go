@@ -29,7 +29,7 @@ type ResponseSiteDeviceUpgrade struct {
     StartTime            *float64                         `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum         `json:"status,omitempty"`
-    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     // version to upgrade to
     TargetVersion        *string                          `json:"target_version,omitempty"`

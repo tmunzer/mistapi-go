@@ -1,6 +1,8 @@
 
 # Site Engagement Dwell Tag Names
 
+name associated to each tag
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,10 +13,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Bounce` | `*string` | Optional | - |
-| `Engaged` | `*string` | Optional | - |
-| `Passerby` | `*string` | Optional | - |
-| `Stationed` | `*string` | Optional | - |
+| `Bounce` | `*string` | Optional | **Default**: `"Visitor"` |
+| `Engaged` | `*string` | Optional | **Default**: `"Associates"` |
+| `Passerby` | `*string` | Optional | **Default**: `"Passerby"` |
+| `Stationed` | `*string` | Optional | **Default**: `"Assets"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

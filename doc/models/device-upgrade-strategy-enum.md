@@ -1,7 +1,7 @@
 
 # Device Upgrade Strategy Enum
 
-enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
 
 ## Enumeration
 

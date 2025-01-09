@@ -10,6 +10,7 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 
 ## Methods
 
+* [Cancel Org Device Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-org-device-upgrade)
 * [Cancel Org Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-org-ssr-upgrade)
 * [Cancel Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-site-device-upgrade)
 * [Get Org Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-device-upgrade)
@@ -30,6 +31,58 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 * [Upgrade Org Ssrs](../../doc/controllers/utilities-upgrade.md#upgrade-org-ssrs)
 * [Upgrade Site Devices](../../doc/controllers/utilities-upgrade.md#upgrade-site-devices)
 * [Upgrade Ssr](../../doc/controllers/utilities-upgrade.md#upgrade-ssr)
+
+
+# Cancel Org Device Upgrade
+
+Best effort to cancel an upgrade. Devices which are already upgraded wont be touched
+
+```go
+CancelOrgDeviceUpgrade(
+    ctx context.Context,
+    orgId uuid.UUID,
+    upgradeId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+``
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesUpgrade.CancelOrgDeviceUpgrade(ctx, orgId, upgradeId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Cancel Org Ssr Upgrade
@@ -1333,18 +1386,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.UpgradeSiteDevices{
     Force:                   models.ToPointer(false),
     MaxFailurePercentage:    models.ToPointer(float64(5)),
-    MaxFailures:             []int{
-        1,
-        1,
-        5,
-        5,
-    },
     P2pClusterSize:          models.ToPointer(0),
     Reboot:                  models.ToPointer(false),
     RebootAt:                models.ToPointer(float64(1624399840)),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
-    RrmNodeOrder:            models.ToPointer(models.UpgradeSiteDevicesRrmNodeOrderEnum("fringe_to_center")),
+    RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
+    RrmNodeOrder:            models.ToPointer(models.DeviceUpgradeRrmNodeOrderEnum("fringe_to_center")),
     Snapshot:                models.ToPointer(false),
     StartTime:               models.ToPointer(float64(1624399840)),
     Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),

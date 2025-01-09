@@ -14,7 +14,7 @@ type ResponseUpgradeOrgDevices struct {
     Force                *bool                      `json:"force,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                 `json:"id,omitempty"`
-    // enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *DeviceUpgradeStrategyEnum `json:"strategy,omitempty"`
     // version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`

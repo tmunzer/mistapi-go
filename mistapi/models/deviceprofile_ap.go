@@ -55,6 +55,7 @@ type DeviceprofileAp struct {
     SwitchConfig         *ApSwitch               `json:"switch_config,omitempty"`      // Deprecated
     // Device Type. enum: `ap`
     Type                 string                  `json:"type"`
+    // AP Uplink port configuration
     UplinkPortConfig     *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
     // USB AP settings
     // - Note: if native imagotag is enabled, BLE will be disabled automatically

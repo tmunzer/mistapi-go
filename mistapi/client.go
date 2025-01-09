@@ -412,7 +412,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2412.1.16")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2412.1.19")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -1612,6 +1612,11 @@ func getBaseUri(
     if configuration.Environment() == Environment(AWS_STAGING) {
         if server == Server(APIHOST) {
             return "https://api.mistsys.com"
+        }
+    }
+    if configuration.Environment() == Environment(GOV_CLOUD) {
+        if server == Server(APIHOST) {
+            return "https://api.us.mist-federal.com"
         }
     }
     if configuration.Environment() == Environment(MIST_GLOBAL_01) {
