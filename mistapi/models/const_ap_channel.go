@@ -9,13 +9,13 @@ import (
 type ConstApChannel struct {
     Band2440mhzAllowed   *bool                  `json:"band24_40mhz_allowed,omitempty"`
     // Property key is the channel width
-    Band24Channels       map[string]interface{} `json:"band24_channels,omitempty"`
+    Band24Channels       map[string][]int       `json:"band24_channels,omitempty"`
     Band24Enabled        *bool                  `json:"band24_enabled,omitempty"`
     // Property key is the channel width
-    Band5Channels        map[string]interface{} `json:"band5_channels,omitempty"`
+    Band5Channels        map[string][]int       `json:"band5_channels,omitempty"`
     Band5Enabled         *bool                  `json:"band5_enabled,omitempty"`
     // Property key is the channel width
-    Band6Channels        map[string]interface{} `json:"band6_channels,omitempty"`
+    Band6Channels        map[string][]int       `json:"band6_channels,omitempty"`
     Band6Enabled         *bool                  `json:"band6_enabled,omitempty"`
     Certified            *bool                  `json:"certified,omitempty"`
     // country code, ISO 3166-1 numeric
@@ -126,17 +126,17 @@ func (c *ConstApChannel) UnmarshalJSON(input []byte) error {
 
 // tempConstApChannel is a temporary struct used for validating the fields of ConstApChannel.
 type tempConstApChannel  struct {
-    Band2440mhzAllowed *bool                  `json:"band24_40mhz_allowed,omitempty"`
-    Band24Channels     map[string]interface{} `json:"band24_channels,omitempty"`
-    Band24Enabled      *bool                  `json:"band24_enabled,omitempty"`
-    Band5Channels      map[string]interface{} `json:"band5_channels,omitempty"`
-    Band5Enabled       *bool                  `json:"band5_enabled,omitempty"`
-    Band6Channels      map[string]interface{} `json:"band6_channels,omitempty"`
-    Band6Enabled       *bool                  `json:"band6_enabled,omitempty"`
-    Certified          *bool                  `json:"certified,omitempty"`
-    Code               *int                   `json:"code,omitempty"`
-    DfsOk              *bool                  `json:"dfs_ok,omitempty"`
-    Key                *string                `json:"key,omitempty"`
-    Name               *string                `json:"name,omitempty"`
-    Uses               *string                `json:"uses,omitempty"`
+    Band2440mhzAllowed *bool            `json:"band24_40mhz_allowed,omitempty"`
+    Band24Channels     map[string][]int `json:"band24_channels,omitempty"`
+    Band24Enabled      *bool            `json:"band24_enabled,omitempty"`
+    Band5Channels      map[string][]int `json:"band5_channels,omitempty"`
+    Band5Enabled       *bool            `json:"band5_enabled,omitempty"`
+    Band6Channels      map[string][]int `json:"band6_channels,omitempty"`
+    Band6Enabled       *bool            `json:"band6_enabled,omitempty"`
+    Certified          *bool            `json:"certified,omitempty"`
+    Code               *int             `json:"code,omitempty"`
+    DfsOk              *bool            `json:"dfs_ok,omitempty"`
+    Key                *string          `json:"key,omitempty"`
+    Name               *string          `json:"name,omitempty"`
+    Uses               *string          `json:"uses,omitempty"`
 }

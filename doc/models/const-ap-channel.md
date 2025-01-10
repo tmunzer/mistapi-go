@@ -12,11 +12,11 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Band2440mhzAllowed` | `*bool` | Optional | - |
-| `Band24Channels` | `map[string]interface{}` | Optional | Property key is the channel width |
+| `Band24Channels` | `map[string][]int` | Optional | Property key is the channel width |
 | `Band24Enabled` | `*bool` | Optional | - |
-| `Band5Channels` | `map[string]interface{}` | Optional | Property key is the channel width |
+| `Band5Channels` | `map[string][]int` | Optional | Property key is the channel width |
 | `Band5Enabled` | `*bool` | Optional | - |
-| `Band6Channels` | `map[string]interface{}` | Optional | Property key is the channel width |
+| `Band6Channels` | `map[string][]int` | Optional | Property key is the channel width |
 | `Band6Enabled` | `*bool` | Optional | - |
 | `Certified` | `*bool` | Optional | - |
 | `Code` | `*int` | Optional | country code, ISO 3166-1 numeric |

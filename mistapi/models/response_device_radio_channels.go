@@ -11,13 +11,13 @@ import (
 type ResponseDeviceRadioChannels struct {
     Band2440mhzAllowed   bool                   `json:"band24_40mhz_allowed"`
     // Property key is the channel width
-    Band24Channels       map[string]interface{} `json:"band24_channels"`
+    Band24Channels       map[string][]int       `json:"band24_channels"`
     Band24Enabled        bool                   `json:"band24_enabled"`
     // Property key is the channel width
-    Band5Channels        map[string]interface{} `json:"band5_channels"`
+    Band5Channels        map[string][]int       `json:"band5_channels"`
     Band5Enabled         bool                   `json:"band5_enabled"`
     // Property key is the channel width
-    Band6Channels        map[string]interface{} `json:"band6_channels,omitempty"`
+    Band6Channels        map[string][]int       `json:"band6_channels,omitempty"`
     Band6Enabled         *bool                  `json:"band6_enabled,omitempty"`
     Certified            bool                   `json:"certified"`
     Code                 int                    `json:"code"`
@@ -108,19 +108,19 @@ func (r *ResponseDeviceRadioChannels) UnmarshalJSON(input []byte) error {
 
 // tempResponseDeviceRadioChannels is a temporary struct used for validating the fields of ResponseDeviceRadioChannels.
 type tempResponseDeviceRadioChannels  struct {
-    Band2440mhzAllowed *bool                   `json:"band24_40mhz_allowed"`
-    Band24Channels     *map[string]interface{} `json:"band24_channels"`
-    Band24Enabled      *bool                   `json:"band24_enabled"`
-    Band5Channels      *map[string]interface{} `json:"band5_channels"`
-    Band5Enabled       *bool                   `json:"band5_enabled"`
-    Band6Channels      map[string]interface{}  `json:"band6_channels,omitempty"`
-    Band6Enabled       *bool                   `json:"band6_enabled,omitempty"`
-    Certified          *bool                   `json:"certified"`
-    Code               *int                    `json:"code"`
-    DfsOk              *bool                   `json:"dfs_ok"`
-    Key                *string                 `json:"key"`
-    Name               *string                 `json:"name"`
-    Uses               *string                 `json:"uses"`
+    Band2440mhzAllowed *bool             `json:"band24_40mhz_allowed"`
+    Band24Channels     *map[string][]int `json:"band24_channels"`
+    Band24Enabled      *bool             `json:"band24_enabled"`
+    Band5Channels      *map[string][]int `json:"band5_channels"`
+    Band5Enabled       *bool             `json:"band5_enabled"`
+    Band6Channels      map[string][]int  `json:"band6_channels,omitempty"`
+    Band6Enabled       *bool             `json:"band6_enabled,omitempty"`
+    Certified          *bool             `json:"certified"`
+    Code               *int              `json:"code"`
+    DfsOk              *bool             `json:"dfs_ok"`
+    Key                *string           `json:"key"`
+    Name               *string           `json:"name"`
+    Uses               *string           `json:"uses"`
 }
 
 func (r *tempResponseDeviceRadioChannels) validate() error {

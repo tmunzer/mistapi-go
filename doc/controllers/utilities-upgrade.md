@@ -1066,6 +1066,18 @@ body := models.UpgradeOrgDevices{
     RrmMaxBatchPercentage:   models.ToPointer(10),
     RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
     RrmNodeOrder:            models.ToPointer(models.DeviceUpgradeRrmNodeOrderEnum("fringe_to_center")),
+    Rules:                   []map[string]string{
+        []map[string]string{
+            []map[string]string{
+            },
+            []map[string]string{
+            },
+        },
+        []map[string]string{
+            []map[string]string{
+            },
+        },
+    },
     Snapshot:                models.ToPointer(false),
     StartTime:               models.ToPointer(float64(1624399840)),
     Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),
@@ -1393,6 +1405,18 @@ body := models.UpgradeSiteDevices{
     RrmMaxBatchPercentage:   models.ToPointer(10),
     RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
     RrmNodeOrder:            models.ToPointer(models.DeviceUpgradeRrmNodeOrderEnum("fringe_to_center")),
+    Rules:                   []map[string]string{
+        []map[string]string{
+            []map[string]string{
+            },
+            []map[string]string{
+            },
+        },
+        []map[string]string{
+            []map[string]string{
+            },
+        },
+    },
     Snapshot:                models.ToPointer(false),
     StartTime:               models.ToPointer(float64(1624399840)),
     Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),

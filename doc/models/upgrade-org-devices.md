@@ -26,7 +26,7 @@
 | `RrmMeshUpgrade` | [`*models.DeviceUpgradeRrmMeshUpgradeEnum`](../../doc/models/device-upgrade-rrm-mesh-upgrade-enum.md) | Optional | For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`<br>**Default**: `"sequential"` |
 | `RrmNodeOrder` | [`*models.DeviceUpgradeRrmNodeOrderEnum`](../../doc/models/device-upgrade-rrm-node-order-enum.md) | Optional | For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`<br>**Default**: `"fringe_to_center"` |
 | `RrmSlowRamp` | `*bool` | Optional | For APs only and if `strategy`==`rrm`. True will make rrm batch sizes slowly ramp up |
-| `Rules` | `[]string` | Optional | rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule |
+| `Rules` | `[]map[string]string` | Optional | Rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule  <br>Property key defines the type of matching, value is the string to match. e.g:<br><br>* `match_name`: Device name must match the property value<br>* `match_name[0:3]`: Device name must match the first 3 letters of the property value<br>* `match_name[2:6]`: Device name must match the property value from the 2nd to the 6th letter<br>* `match_model`: Device model must match the property value<br>* `match_model[1:3]`: Device model must match the property value from the 1nd to the 3rd letter |
 | `SiteIds` | `[]uuid.UUID` | Optional | - |
 | `Snapshot` | `*bool` | Optional | For Junos devices only. Perform recovery snapshot after device is rebooted<br>**Default**: `false` |
 | `StartTime` | `*float64` | Optional | upgrade start time in epoch seconds, default is now |
@@ -51,6 +51,15 @@
   "rrm_max_batch_percentage": 10,
   "rrm_mesh_upgrade": "sequential",
   "rrm_node_order": "fringe_to_center",
+  "rules": [
+    {
+      "match_model": "AP43",
+      "match_name[2:8]": "access"
+    },
+    {
+      "match_model": "AP45"
+    }
+  ],
   "snapshot": false,
   "start_time": 1624399840,
   "strategy": "big_bang",

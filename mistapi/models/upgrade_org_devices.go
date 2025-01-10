@@ -38,8 +38,14 @@ type UpgradeOrgDevices struct {
     RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     // For APs only and if `strategy`==`rrm`. True will make rrm batch sizes slowly ramp up
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
-    // rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule
-    Rules                   []string                         `json:"rules,omitempty"`
+    // Rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule
+    // Property key defines the type of matching, value is the string to match. e.g:
+    // * `match_name`: Device name must match the property value
+    // * `match_name[0:3]`: Device name must match the first 3 letters of the property value
+    // * `match_name[2:6]`: Device name must match the property value from the 2nd to the 6th letter
+    // * `match_model`: Device model must match the property value
+    // * `match_model[1:3]`: Device model must match the property value from the 1nd to the 3rd letter
+    Rules                   []map[string]string              `json:"rules,omitempty"`
     SiteIds                 []uuid.UUID                      `json:"site_ids,omitempty"`
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot                *bool                            `json:"snapshot,omitempty"`
@@ -197,7 +203,7 @@ type tempUpgradeOrgDevices  struct {
     RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
     RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
-    Rules                   []string                         `json:"rules,omitempty"`
+    Rules                   []map[string]string              `json:"rules,omitempty"`
     SiteIds                 []uuid.UUID                      `json:"site_ids,omitempty"`
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     StartTime               *float64                         `json:"start_time,omitempty"`

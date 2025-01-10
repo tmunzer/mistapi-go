@@ -19,7 +19,7 @@
 | `CeDfsOk` | `*bool` | Optional | - |
 | `CiscoPace` | `*bool` | Optional | - |
 | `Description` | `*string` | Optional | - |
-| `DisallowedChannels` | `map[string]interface{}` | Optional | Property key is a list of country codes (e.g. "GB, DE") |
+| `DisallowedChannels` | `map[string][]int` | Optional | Property key is a list of country codes (e.g. "GB, DE") |
 | `Display` | `*string` | Optional | - |
 | `Extio` | [`map[string]models.ConstDeviceApExtios`](../../doc/models/const-device-ap-extios.md) | Optional | Property key is the GPIO port name (e.g. "D0", "A1") |
 | `FccDfsOk` | `*bool` | Optional | - |
