@@ -86,7 +86,7 @@ type StatsGateway struct {
     // Device Type. enum: `gateway`
     Type                 string                         `json:"type"`
     Uptime               Optional[float64]              `json:"uptime"`
-    Version              *string                        `json:"version,omitempty"`
+    Version              Optional[string]               `json:"version"`
     // only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
     VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
@@ -300,8 +300,12 @@ func (s StatsGateway) toMap() map[string]any {
             structMap["uptime"] = nil
         }
     }
-    if s.Version != nil {
-        structMap["version"] = s.Version
+    if s.Version.IsValueSet() {
+        if s.Version.Value() != nil {
+            structMap["version"] = s.Version.Value()
+        } else {
+            structMap["version"] = nil
+        }
     }
     if s.VpnPeers != nil {
         structMap["vpn_peers"] = s.VpnPeers
@@ -438,7 +442,7 @@ type tempStatsGateway  struct {
     Tunnels           []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
     Type              *string                        `json:"type"`
     Uptime            Optional[float64]              `json:"uptime"`
-    Version           *string                        `json:"version,omitempty"`
+    Version           Optional[string]               `json:"version"`
     VpnPeers          []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
 }
 

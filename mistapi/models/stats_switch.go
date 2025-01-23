@@ -62,7 +62,7 @@ type StatsSwitch struct {
     Status               *string                        `json:"status,omitempty"`
     // Device Type. enum: `switch`
     Type                 string                         `json:"type"`
-    Uptime               *float64                       `json:"uptime,omitempty"`
+    Uptime               Optional[float64]              `json:"uptime"`
     VcMac                Optional[string]               `json:"vc_mac"`
     VcSetupInfo          *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
     Version              Optional[string]               `json:"version"`
@@ -217,8 +217,12 @@ func (s StatsSwitch) toMap() map[string]any {
         structMap["status"] = s.Status
     }
     structMap["type"] = s.Type
-    if s.Uptime != nil {
-        structMap["uptime"] = s.Uptime
+    if s.Uptime.IsValueSet() {
+        if s.Uptime.Value() != nil {
+            structMap["uptime"] = s.Uptime.Value()
+        } else {
+            structMap["uptime"] = nil
+        }
     }
     if s.VcMac.IsValueSet() {
         if s.VcMac.Value() != nil {
@@ -343,7 +347,7 @@ type tempStatsSwitch  struct {
     SiteId              *uuid.UUID                     `json:"site_id,omitempty"`
     Status              *string                        `json:"status,omitempty"`
     Type                *string                        `json:"type"`
-    Uptime              *float64                       `json:"uptime,omitempty"`
+    Uptime              Optional[float64]              `json:"uptime"`
     VcMac               Optional[string]               `json:"vc_mac"`
     VcSetupInfo         *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
     Version             Optional[string]               `json:"version"`
