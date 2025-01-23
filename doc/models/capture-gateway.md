@@ -19,7 +19,7 @@ Initiate a Gateway (SSR) Packet Capture
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `>= 0`, `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `Ports` | [`map[string]models.CaptureGatewayGatewaysPort`](../../doc/models/capture-gateway-gateways-port.md) | Optional | Property key is the port ID |
-| `Type` | `string` | Required, Constant | enum: `gateway`<br>**Default**: `"gateway"` |
+| `Type` | `string` | Required, Constant | enum: `gateway`<br>**Value**: `"gateway"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

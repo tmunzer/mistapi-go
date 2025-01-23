@@ -365,9 +365,9 @@ if err != nil {
 
 For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.
 
-In case that the user would like to choose the dedicated switch as a VC master. Or for EX2300-C-12P and EX2300-C-12T which doesn’t have dedicated VC ports, below are procedures to automate the VC creation:
+In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn’t have dedicated VC ports, below are procedures to automate the VC creation:
 
-1. Power on the switch that is choosen as the VC master first. And the powering on the other member switches.
+1. Power on the switch that is choosen as the VC master first. And then powering on the other member switches.
 2. Claim or adopt all these switches under the same organization’s Inventory
 3. Assign these switches into the same Site
 4. Invoke vc command on the switch choosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
@@ -408,26 +408,28 @@ fpc0Mac := "fpc0_mac6"
 body := models.VirtualChassisConfig{
     Members:              []models.VirtualChassisConfigMember{
         models.VirtualChassisConfigMember{
-            Mac:                  models.ToPointer("aff827549235"),
-            VcPorts:              []string{
-                "xe-0/1/0",
-            },
-            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("master")),
-        },
-        models.VirtualChassisConfigMember{
-            Mac:                  models.ToPointer("8396cd006c8c"),
+            Mac:                  "aff827549235",
             VcPorts:              []string{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("backup")),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("master"),
         },
         models.VirtualChassisConfigMember{
-            Mac:                  models.ToPointer("8396cd00888c"),
+            Mac:                  "8396cd006c8c",
             VcPorts:              []string{
                 "xe-0/1/0",
+                "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisConfigMemberVcRoleEnum("linecard")),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("backup"),
+        },
+        models.VirtualChassisConfigMember{
+            Mac:                  "8396cd00888c",
+            VcPorts:              []string{
+                "xe-0/1/0",
+                "xe-0/1/1",
+            },
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("linecard"),
         },
     },
 }
@@ -446,19 +448,214 @@ if err != nil {
 
 ```json
 {
-  "id": {
-    "members": [
-      {
-        "mac": "string",
-        "member": 0,
-        "vc_ports": [
-          "string"
+  "config_type": "nonprovisioned",
+  "id": "00000000-0000-0000-1000-52d9107af289",
+  "mac": "52d9107af289",
+  "members": [
+    {
+      "_idx": 0,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 69,
+        "interrupt": 1,
+        "load_avg": [
+          0.8,
+          1.09,
+          1.07
         ],
-        "vc_role": "master"
-      }
-    ],
-    "op": "add"
-  }
+        "system": 11,
+        "user": 19
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 0,
+      "mac": "52d9107af289",
+      "memory_stat": {
+        "usage": 42
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 40.4,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW0000000000",
+      "temperatures": [
+        {
+          "celsius": 33,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 1,
+          "neighbor_port_id": "vcp-1/1/0",
+          "port_id": "vcp-0/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "master",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    },
+    {
+      "_idx": 1,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 76,
+        "interrupt": 0,
+        "load_avg": [
+          0.96,
+          0.87,
+          0.76
+        ],
+        "system": 6,
+        "user": 17
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 1,
+      "mac": "d0dd4991652d",
+      "memory_stat": {
+        "usage": 18
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 21.2,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW3619300922",
+      "temperatures": [
+        {
+          "celsius": 32,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 0,
+          "neighbor_port_id": "vcp-0/1/0",
+          "port_id": "vcp-1/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "backup",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    }
+  ],
+  "model": "EX2300-48P",
+  "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
+  "serial": "JW3619300157",
+  "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
+  "status": "connected",
+  "type": "switch",
+  "vc_mac": "52d9107af289"
 }
 ```
 
@@ -704,19 +901,214 @@ if err != nil {
 
 ```json
 {
-  "id": {
-    "members": [
-      {
-        "mac": "string",
-        "member": 0,
-        "vc_ports": [
-          "string"
+  "config_type": "nonprovisioned",
+  "id": "00000000-0000-0000-1000-52d9107af289",
+  "mac": "52d9107af289",
+  "members": [
+    {
+      "_idx": 0,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 69,
+        "interrupt": 1,
+        "load_avg": [
+          0.8,
+          1.09,
+          1.07
         ],
-        "vc_role": "master"
-      }
-    ],
-    "op": "add"
-  }
+        "system": 11,
+        "user": 19
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 0,
+      "mac": "52d9107af289",
+      "memory_stat": {
+        "usage": 42
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 40.4,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW0000000000",
+      "temperatures": [
+        {
+          "celsius": 33,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 1,
+          "neighbor_port_id": "vcp-1/1/0",
+          "port_id": "vcp-0/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "master",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    },
+    {
+      "_idx": 1,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 76,
+        "interrupt": 0,
+        "load_avg": [
+          0.96,
+          0.87,
+          0.76
+        ],
+        "system": 6,
+        "user": 17
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 1,
+      "mac": "d0dd4991652d",
+      "memory_stat": {
+        "usage": 18
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 21.2,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW3619300922",
+      "temperatures": [
+        {
+          "celsius": 32,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 0,
+          "neighbor_port_id": "vcp-0/1/0",
+          "port_id": "vcp-1/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "backup",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    }
+  ],
+  "model": "EX2300-48P",
+  "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
+  "serial": "JW3619300157",
+  "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
+  "status": "connected",
+  "type": "switch",
+  "vc_mac": "52d9107af289"
 }
 ```
 
@@ -1778,7 +2170,7 @@ To remove a member switch from the VC, following the procedures below:
 4. Invoke update_vc with remove to remove this switch from the VC
 5. The Org’s Inventory shows the switch is removed.
 
-Please notice that member ID 0 (fpc0) cannot be removed. When a VC has two switches left, unpluging the cable may result in the situation that fpc0 becomes a line card (LC). When this situation is happened, please re-plug in the cable, wait for both switches becoming present (show virtual-chassis) and then removing the cable again.
+Please notice that member ID 0 (fpc0) cannot be removed. When a VC has two switches left, unplugging the cable may result in the situation that fpc0 becomes a line card (LC). When this situation is happening, please re-plug in the cable, wait for both switches becoming present (show virtual-chassis) and then removing the cable again.
 
 ## Renumber a member switch
 
@@ -1840,16 +2232,19 @@ body := models.VirtualChassisUpdate{
     Members:              []models.VirtualChassisMemberUpdate{
         models.VirtualChassisMemberUpdate{
             Mac:                  models.ToPointer("aff827549235"),
-            Member:               models.ToPointer(0),
+            MemberId:             models.ToPointer(2),
             VcPorts:              []string{
+                "xe-0/1/0",
                 "xe-0/1/1",
             },
             VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
         },
         models.VirtualChassisMemberUpdate{
             Mac:                  models.ToPointer("8396cd00777c"),
+            MemberId:             models.ToPointer(3),
             VcPorts:              []string{
                 "xe-0/1/0",
+                "xe-0/1/1",
             },
             VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
         },
@@ -1871,19 +2266,214 @@ if err != nil {
 
 ```json
 {
-  "id": {
-    "members": [
-      {
-        "mac": "string",
-        "member": 0,
-        "vc_ports": [
-          "string"
+  "config_type": "nonprovisioned",
+  "id": "00000000-0000-0000-1000-52d9107af289",
+  "mac": "52d9107af289",
+  "members": [
+    {
+      "_idx": 0,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 69,
+        "interrupt": 1,
+        "load_avg": [
+          0.8,
+          1.09,
+          1.07
         ],
-        "vc_role": "master"
-      }
-    ],
-    "op": "add"
-  }
+        "system": 11,
+        "user": 19
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 0,
+      "mac": "52d9107af289",
+      "memory_stat": {
+        "usage": 42
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 40.4,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW0000000000",
+      "temperatures": [
+        {
+          "celsius": 33,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 1,
+          "neighbor_port_id": "vcp-1/1/0",
+          "port_id": "vcp-0/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "master",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    },
+    {
+      "_idx": 1,
+      "boot_partition": "junos",
+      "cpld_version": "6",
+      "cpu_stat": {
+        "idle": 76,
+        "interrupt": 0,
+        "load_avg": [
+          0.96,
+          0.87,
+          0.76
+        ],
+        "system": 6,
+        "user": 17
+      },
+      "fans": [
+        {
+          "airflow": "out",
+          "name": "Fan Tray 0 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        },
+        {
+          "airflow": "out",
+          "name": "Fan Tray 1 Fan 0",
+          "rpm": 0,
+          "status": "ok"
+        }
+      ],
+      "fpc_idx": 1,
+      "mac": "d0dd4991652d",
+      "memory_stat": {
+        "usage": 18
+      },
+      "model": "EX2300-48P",
+      "pics": [
+        {
+          "index": 0,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 48,
+              "type": "GE"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "model_number": "EX2300-48P",
+          "port_groups": [
+            {
+              "count": 4,
+              "type": "SFP/SFP+"
+            }
+          ]
+        }
+      ],
+      "poe": {
+        "max_power": 750,
+        "power_draw": 21.2,
+        "status": "AT_MODE"
+      },
+      "poe_version": "2.1.1.19.3 (type1)",
+      "psus": [
+        {
+          "name": "Power Supply 0",
+          "status": "ok"
+        }
+      ],
+      "recovery_version": "21.4R3-S4.18",
+      "serial": "JW3619300922",
+      "temperatures": [
+        {
+          "celsius": 32,
+          "name": "CPU Sensor",
+          "status": "ok"
+        },
+        {
+          "celsius": 29,
+          "name": "PSU Sensor",
+          "status": "ok"
+        }
+      ],
+      "type": "fpc",
+      "uboot_version": "U-Boot 2016.01-rc1 (Nov 11 2016 - 14:26:00 -0800)  1.3.2",
+      "uptime": 27636720,
+      "vc_links": [
+        {
+          "neighbor_module_idx": 0,
+          "neighbor_port_id": "vcp-0/1/0",
+          "port_id": "vcp-1/1/0"
+        }
+      ],
+      "vc_mode": "HiGiG",
+      "vc_role": "backup",
+      "vc_state": "present",
+      "version": "21.4R3-S4.18"
+    }
+  ],
+  "model": "EX2300-48P",
+  "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
+  "serial": "JW3619300157",
+  "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
+  "status": "connected",
+  "type": "switch",
+  "vc_mac": "52d9107af289"
 }
 ```
 

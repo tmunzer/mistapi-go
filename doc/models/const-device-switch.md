@@ -35,7 +35,7 @@
 | `PacketActionDropOnly` | `*bool` | Optional | **Default**: `false` |
 | `Pic` | `map[string]string` | Optional | Object Key is the PIC number |
 | `SubRequired` | `*string` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Default**: `"switch"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

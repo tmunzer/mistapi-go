@@ -10,6 +10,7 @@ type ModuleStatItem struct {
     BackupVersion        Optional[string]                 `json:"backup_version"`
     BiosVersion          Optional[string]                 `json:"bios_version"`
     CpldVersion          Optional[string]                 `json:"cpld_version"`
+    CpuStat              *CpuStat                         `json:"cpu_stat,omitempty"`
     // used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
     Errors               []ModuleStatItemErrorsItems      `json:"errors,omitempty"`
     Fans                 []ModuleStatItemFansItems        `json:"fans,omitempty"`
@@ -30,6 +31,7 @@ type ModuleStatItem struct {
     Status               Optional[string]                 `json:"status"`
     Temperatures         []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
     TmcFpgaVersion       Optional[string]                 `json:"tmc_fpga_version"`
+    Type                 Optional[string]                 `json:"type"`
     UbootVersion         Optional[string]                 `json:"uboot_version"`
     Uptime               Optional[int]                    `json:"uptime"`
     VcLinks              []ModuleStatItemVcLinksItem      `json:"vc_links,omitempty"`
@@ -45,8 +47,8 @@ type ModuleStatItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m ModuleStatItem) String() string {
     return fmt.Sprintf(
-    	"ModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, Errors=%v, Fans=%v, FpcIdx=%v, FpgaVersion=%v, LastSeen=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Pics=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
-    	m.BackupVersion, m.BiosVersion, m.CpldVersion, m.Errors, m.Fans, m.FpcIdx, m.FpgaVersion, m.LastSeen, m.Model, m.OpticsCpldVersion, m.PendingVersion, m.Pics, m.Poe, m.PoeVersion, m.PowerCpldVersion, m.Psus, m.ReFpgaVersion, m.RecoveryVersion, m.Serial, m.Status, m.Temperatures, m.TmcFpgaVersion, m.UbootVersion, m.Uptime, m.VcLinks, m.VcMode, m.VcRole, m.VcState, m.Version, m.AdditionalProperties)
+    	"ModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, CpuStat=%v, Errors=%v, Fans=%v, FpcIdx=%v, FpgaVersion=%v, LastSeen=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Pics=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, Type=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
+    	m.BackupVersion, m.BiosVersion, m.CpldVersion, m.CpuStat, m.Errors, m.Fans, m.FpcIdx, m.FpgaVersion, m.LastSeen, m.Model, m.OpticsCpldVersion, m.PendingVersion, m.Pics, m.Poe, m.PoeVersion, m.PowerCpldVersion, m.Psus, m.ReFpgaVersion, m.RecoveryVersion, m.Serial, m.Status, m.Temperatures, m.TmcFpgaVersion, m.Type, m.UbootVersion, m.Uptime, m.VcLinks, m.VcMode, m.VcRole, m.VcState, m.Version, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItem.
@@ -55,7 +57,7 @@ func (m ModuleStatItem) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "backup_version", "bios_version", "cpld_version", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
+        "backup_version", "bios_version", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -85,6 +87,9 @@ func (m ModuleStatItem) toMap() map[string]any {
         } else {
             structMap["cpld_version"] = nil
         }
+    }
+    if m.CpuStat != nil {
+        structMap["cpu_stat"] = m.CpuStat.toMap()
     }
     if m.Errors != nil {
         structMap["errors"] = m.Errors
@@ -191,6 +196,13 @@ func (m ModuleStatItem) toMap() map[string]any {
             structMap["tmc_fpga_version"] = nil
         }
     }
+    if m.Type.IsValueSet() {
+        if m.Type.Value() != nil {
+            structMap["type"] = m.Type.Value()
+        } else {
+            structMap["type"] = nil
+        }
+    }
     if m.UbootVersion.IsValueSet() {
         if m.UbootVersion.Value() != nil {
             structMap["uboot_version"] = m.UbootVersion.Value()
@@ -247,7 +259,7 @@ func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
     if err != nil {
     	return err
     }
@@ -256,6 +268,7 @@ func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
     m.BackupVersion = temp.BackupVersion
     m.BiosVersion = temp.BiosVersion
     m.CpldVersion = temp.CpldVersion
+    m.CpuStat = temp.CpuStat
     m.Errors = temp.Errors
     m.Fans = temp.Fans
     m.FpcIdx = temp.FpcIdx
@@ -275,6 +288,7 @@ func (m *ModuleStatItem) UnmarshalJSON(input []byte) error {
     m.Status = temp.Status
     m.Temperatures = temp.Temperatures
     m.TmcFpgaVersion = temp.TmcFpgaVersion
+    m.Type = temp.Type
     m.UbootVersion = temp.UbootVersion
     m.Uptime = temp.Uptime
     m.VcLinks = temp.VcLinks
@@ -290,6 +304,7 @@ type tempModuleStatItem  struct {
     BackupVersion     Optional[string]                 `json:"backup_version"`
     BiosVersion       Optional[string]                 `json:"bios_version"`
     CpldVersion       Optional[string]                 `json:"cpld_version"`
+    CpuStat           *CpuStat                         `json:"cpu_stat,omitempty"`
     Errors            []ModuleStatItemErrorsItems      `json:"errors,omitempty"`
     Fans              []ModuleStatItemFansItems        `json:"fans,omitempty"`
     FpcIdx            *int                             `json:"fpc_idx,omitempty"`
@@ -309,6 +324,7 @@ type tempModuleStatItem  struct {
     Status            Optional[string]                 `json:"status"`
     Temperatures      []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
     TmcFpgaVersion    Optional[string]                 `json:"tmc_fpga_version"`
+    Type              Optional[string]                 `json:"type"`
     UbootVersion      Optional[string]                 `json:"uboot_version"`
     Uptime            Optional[int]                    `json:"uptime"`
     VcLinks           []ModuleStatItemVcLinksItem      `json:"vc_links,omitempty"`

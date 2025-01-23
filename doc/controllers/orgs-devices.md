@@ -247,6 +247,7 @@ CountOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
+    mType *models.DeviceTypeEnum,
     start *int,
     end *int,
     duration *string,
@@ -275,6 +276,7 @@ CountOrgDevices(
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -320,6 +322,8 @@ ipAddress := "192.168.1.1"
 
 
 
+mType := models.DeviceTypeEnum("ap")
+
 
 
 
@@ -330,7 +334,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &mType, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

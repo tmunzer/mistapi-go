@@ -50,7 +50,7 @@ Switch statistics
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `*string` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Default**: `"switch"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
 | `Uptime` | `*float64` | Optional | - |
 | `VcMac` | `models.Optional[string]` | Optional | - |
 | `VcSetupInfo` | [`*models.StatsSwitchVcSetupInfo`](../../doc/models/stats-switch-vc-setup-info.md) | Optional | - |

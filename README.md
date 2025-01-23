@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2412.1.20**
+> Version: **2412.1.22**
 > 
-> Date: **January 10, 2024**
+> Date: **January 17, 2024**
 
 ---
 

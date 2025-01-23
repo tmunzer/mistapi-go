@@ -12,7 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Mac` | `*string` | Optional | Required if `op`==`add` or `op`==`preprovision`. |
-| `Member` | `*int` | Optional | Required if `op`==`remove` or `op`==`preprovision`. Optional if `op`==`add` |
+| `Member` | `*int` | Optional | Required if `op`==`remove` |
+| `MemberId` | `*int` | Optional | Required if `op`==`preprovision`. Optional if `op`==`add` |
 | `VcPorts` | `[]string` | Optional | Required if `op`==`add` or `op`==`preprovision` |
 | `VcRole` | [`*models.VirtualChassisMemberUpdateVcRoleEnum`](../../doc/models/virtual-chassis-member-update-vc-role-enum.md) | Optional | Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `master` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -23,6 +24,7 @@
 {
   "mac": "mac2",
   "member": 196,
+  "member_id": 218,
   "vc_ports": [
     "vc_ports2",
     "vc_ports3"

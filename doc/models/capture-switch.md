@@ -20,7 +20,7 @@ Initiate a Switch (Junos) Packet Capture
 | `Ports` | [`map[string]models.CaptureSwitchPortsTcpdumpExpression`](../../doc/models/capture-switch-ports-tcpdump-expression.md) | Optional | Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request |
 | `Switches` | [`map[string]models.CaptureSwitchSwitches`](../../doc/models/capture-switch-switches.md) | Required | Property key is the switch mac |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
-| `Type` | `string` | Required, Constant | enum: `switch`<br>**Default**: `"switch"` |
+| `Type` | `string` | Required, Constant | enum: `switch`<br>**Value**: `"switch"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

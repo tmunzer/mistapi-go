@@ -33,7 +33,7 @@
 | `T128agentVersion` | `*string` | Optional | - |
 | `TimeDrifted` | `*bool` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Default**: `"gateway"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

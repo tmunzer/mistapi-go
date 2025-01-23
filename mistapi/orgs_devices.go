@@ -61,7 +61,7 @@ func (o *OrgsDevices) ListOrgDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, start, end, duration, limit, page as parameters and
+// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mType, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.RepsonseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Devices
@@ -82,6 +82,7 @@ func (o *OrgsDevices) CountOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
+    mType *models.DeviceTypeEnum,
     start *int,
     end *int,
     duration *string,
@@ -150,6 +151,9 @@ func (o *OrgsDevices) CountOrgDevices(
     }
     if lldpMgmtAddr != nil {
         req.QueryParam("lldp_mgmt_addr", *lldpMgmtAddr)
+    }
+    if mType != nil {
+        req.QueryParam("type", *mType)
     }
     if start != nil {
         req.QueryParam("start", *start)

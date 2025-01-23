@@ -20,7 +20,7 @@ Initiate a Wireless Packet Capture
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024` |
 | `Ssid` | `*string` | Optional | - |
-| `Type` | `string` | Required, Constant | enum: `wireless`<br>**Default**: `"wireless"` |
+| `Type` | `string` | Required, Constant | enum: `wireless`<br>**Value**: `"wireless"` |
 | `WlanId` | `*uuid.UUID` | Optional | WLAN ID |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -18,7 +18,7 @@ Initiate a Wireless Packet Capture
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
 | `Mxedges` | [`map[string]models.CaptureMxedgeMxedges`](../../doc/models/capture-mxedge-mxedges.md) | Optional | - |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `<= 10000` |
-| `Type` | `string` | Required, Constant | enum: `mxedge`<br>**Default**: `"mxedge"` |
+| `Type` | `string` | Required, Constant | enum: `mxedge`<br>**Value**: `"mxedge"` |
 | `TzspHost` | `*string` | Optional | Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets. |
 | `TzspPort` | `*int` | Optional | if `format`==`tzsp`. Port on remote host for receiving the captured packets<br>**Default**: `37008`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

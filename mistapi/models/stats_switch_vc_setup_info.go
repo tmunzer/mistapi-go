@@ -8,7 +8,11 @@ import (
 // StatsSwitchVcSetupInfo represents a StatsSwitchVcSetupInfo struct.
 type StatsSwitchVcSetupInfo struct {
     ConfigType           *string                `json:"config_type,omitempty"`
+    CurrentStats         *string                `json:"current_stats,omitempty"`
     ErrMissingDevIdFpc   *bool                  `json:"err_missing_dev_id_fpc,omitempty"`
+    LastUpdate           *float64               `json:"last_update,omitempty"`
+    RequestTime          *float64               `json:"request_time,omitempty"`
+    RequestType          *string                `json:"request_type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -16,8 +20,8 @@ type StatsSwitchVcSetupInfo struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitchVcSetupInfo) String() string {
     return fmt.Sprintf(
-    	"StatsSwitchVcSetupInfo[ConfigType=%v, ErrMissingDevIdFpc=%v, AdditionalProperties=%v]",
-    	s.ConfigType, s.ErrMissingDevIdFpc, s.AdditionalProperties)
+    	"StatsSwitchVcSetupInfo[ConfigType=%v, CurrentStats=%v, ErrMissingDevIdFpc=%v, LastUpdate=%v, RequestTime=%v, RequestType=%v, AdditionalProperties=%v]",
+    	s.ConfigType, s.CurrentStats, s.ErrMissingDevIdFpc, s.LastUpdate, s.RequestTime, s.RequestType, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchVcSetupInfo.
@@ -26,7 +30,7 @@ func (s StatsSwitchVcSetupInfo) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "config_type", "err_missing_dev_id_fpc"); err != nil {
+        "config_type", "current_stats", "err_missing_dev_id_fpc", "last_update", "request_time", "request_type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -39,8 +43,20 @@ func (s StatsSwitchVcSetupInfo) toMap() map[string]any {
     if s.ConfigType != nil {
         structMap["config_type"] = s.ConfigType
     }
+    if s.CurrentStats != nil {
+        structMap["current_stats"] = s.CurrentStats
+    }
     if s.ErrMissingDevIdFpc != nil {
         structMap["err_missing_dev_id_fpc"] = s.ErrMissingDevIdFpc
+    }
+    if s.LastUpdate != nil {
+        structMap["last_update"] = s.LastUpdate
+    }
+    if s.RequestTime != nil {
+        structMap["request_time"] = s.RequestTime
+    }
+    if s.RequestType != nil {
+        structMap["request_type"] = s.RequestType
     }
     return structMap
 }
@@ -53,19 +69,27 @@ func (s *StatsSwitchVcSetupInfo) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "err_missing_dev_id_fpc")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "current_stats", "err_missing_dev_id_fpc", "last_update", "request_time", "request_type")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.ConfigType = temp.ConfigType
+    s.CurrentStats = temp.CurrentStats
     s.ErrMissingDevIdFpc = temp.ErrMissingDevIdFpc
+    s.LastUpdate = temp.LastUpdate
+    s.RequestTime = temp.RequestTime
+    s.RequestType = temp.RequestType
     return nil
 }
 
 // tempStatsSwitchVcSetupInfo is a temporary struct used for validating the fields of StatsSwitchVcSetupInfo.
 type tempStatsSwitchVcSetupInfo  struct {
-    ConfigType         *string `json:"config_type,omitempty"`
-    ErrMissingDevIdFpc *bool   `json:"err_missing_dev_id_fpc,omitempty"`
+    ConfigType         *string  `json:"config_type,omitempty"`
+    CurrentStats       *string  `json:"current_stats,omitempty"`
+    ErrMissingDevIdFpc *bool    `json:"err_missing_dev_id_fpc,omitempty"`
+    LastUpdate         *float64 `json:"last_update,omitempty"`
+    RequestTime        *float64 `json:"request_time,omitempty"`
+    RequestType        *string  `json:"request_type,omitempty"`
 }

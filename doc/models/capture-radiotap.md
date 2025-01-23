@@ -22,7 +22,7 @@ Initiate a Radiotap Packet Capture
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `Ssid` | `*string` | Optional | - |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression specific to radiotap |
-| `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Default**: `"radiotap"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Value**: `"radiotap"` |
 | `WlanId` | `*uuid.UUID` | Optional | wlan id associated with the respective ssid. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

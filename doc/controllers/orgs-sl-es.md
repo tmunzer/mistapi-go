@@ -203,7 +203,7 @@ if err != nil {
       "num_clients": 12,
       "roaming": 0.991735537682683,
       "roaming-exp": 0.991735537682683,
-      "site_id": "978c48e6-6ef6-11e6-8bbf-02e208b2d34f",
+      "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
       "successful-connect": 0.46052632135780236,
       "throughput": 0.6775702123846302,
       "time-to-connect": 0.9349112447196916

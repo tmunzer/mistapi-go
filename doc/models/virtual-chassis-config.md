@@ -28,7 +28,7 @@ Virtual Chassis
     {
       "locating": false,
       "mac": "mac2",
-      "member": 176,
+      "member_id": 58,
       "vc_ports": [
         "vc_ports2",
         "vc_ports3",
@@ -43,7 +43,7 @@ Virtual Chassis
     {
       "locating": false,
       "mac": "mac2",
-      "member": 176,
+      "member_id": 58,
       "vc_ports": [
         "vc_ports2",
         "vc_ports3",

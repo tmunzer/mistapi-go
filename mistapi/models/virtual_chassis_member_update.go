@@ -9,8 +9,10 @@ import (
 type VirtualChassisMemberUpdate struct {
     // Required if `op`==`add` or `op`==`preprovision`.
     Mac                  *string                               `json:"mac,omitempty"`
-    // Required if `op`==`remove` or `op`==`preprovision`. Optional if `op`==`add`
+    // Required if `op`==`remove`
     Member               *int                                  `json:"member,omitempty"`
+    // Required if `op`==`preprovision`. Optional if `op`==`add`
+    MemberId             *int                                  `json:"member_id,omitempty"`
     // Required if `op`==`add` or `op`==`preprovision`
     VcPorts              []string                              `json:"vc_ports,omitempty"`
     // Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `master`
@@ -22,8 +24,8 @@ type VirtualChassisMemberUpdate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v VirtualChassisMemberUpdate) String() string {
     return fmt.Sprintf(
-    	"VirtualChassisMemberUpdate[Mac=%v, Member=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
-    	v.Mac, v.Member, v.VcPorts, v.VcRole, v.AdditionalProperties)
+    	"VirtualChassisMemberUpdate[Mac=%v, Member=%v, MemberId=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
+    	v.Mac, v.Member, v.MemberId, v.VcPorts, v.VcRole, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisMemberUpdate.
@@ -32,7 +34,7 @@ func (v VirtualChassisMemberUpdate) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(v.AdditionalProperties,
-        "mac", "member", "vc_ports", "vc_role"); err != nil {
+        "mac", "member", "member_id", "vc_ports", "vc_role"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(v.toMap())
@@ -47,6 +49,9 @@ func (v VirtualChassisMemberUpdate) toMap() map[string]any {
     }
     if v.Member != nil {
         structMap["member"] = v.Member
+    }
+    if v.MemberId != nil {
+        structMap["member_id"] = v.MemberId
     }
     if v.VcPorts != nil {
         structMap["vc_ports"] = v.VcPorts
@@ -65,7 +70,7 @@ func (v *VirtualChassisMemberUpdate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "member", "vc_ports", "vc_role")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "member", "member_id", "vc_ports", "vc_role")
     if err != nil {
     	return err
     }
@@ -73,6 +78,7 @@ func (v *VirtualChassisMemberUpdate) UnmarshalJSON(input []byte) error {
     
     v.Mac = temp.Mac
     v.Member = temp.Member
+    v.MemberId = temp.MemberId
     v.VcPorts = temp.VcPorts
     v.VcRole = temp.VcRole
     return nil
@@ -80,8 +86,9 @@ func (v *VirtualChassisMemberUpdate) UnmarshalJSON(input []byte) error {
 
 // tempVirtualChassisMemberUpdate is a temporary struct used for validating the fields of VirtualChassisMemberUpdate.
 type tempVirtualChassisMemberUpdate  struct {
-    Mac     *string                               `json:"mac,omitempty"`
-    Member  *int                                  `json:"member,omitempty"`
-    VcPorts []string                              `json:"vc_ports,omitempty"`
-    VcRole  *VirtualChassisMemberUpdateVcRoleEnum `json:"vc_role,omitempty"`
+    Mac      *string                               `json:"mac,omitempty"`
+    Member   *int                                  `json:"member,omitempty"`
+    MemberId *int                                  `json:"member_id,omitempty"`
+    VcPorts  []string                              `json:"vc_ports,omitempty"`
+    VcRole   *VirtualChassisMemberUpdateVcRoleEnum `json:"vc_role,omitempty"`
 }

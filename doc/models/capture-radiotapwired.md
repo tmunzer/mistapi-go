@@ -23,7 +23,7 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 | `RadiotapTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11 + radio headers) |
 | `Ssid` | `models.Optional[string]` | Optional | - |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression common for wired,radiotap |
-| `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br>**Default**: `"radiotap,wired"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br>**Value**: `"radiotap,wired"` |
 | `WiredTcpdumpExpression` | `*string` | Optional | tcpdump expression for wired |
 | `WirelessTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11) |
 | `WlanId` | `models.Optional[string]` | Optional | wlan id associated with the respective ssid. |

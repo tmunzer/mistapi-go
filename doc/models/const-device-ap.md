@@ -44,7 +44,7 @@
 | `Outdoor` | `*bool` | Optional | - |
 | `Radios` | `map[string]string` | Optional | Property key is the radio number (e.g. r0, r1, ...). Property value is the RF band (e.g. "24", "5", ...) |
 | `SharedScanningRadio` | `*bool` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Default**: `"ap"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
 | `Unmanaged` | `*bool` | Optional | - |
 | `Vble` | [`*models.ConstDeviceApVble`](../../doc/models/const-device-ap-vble.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

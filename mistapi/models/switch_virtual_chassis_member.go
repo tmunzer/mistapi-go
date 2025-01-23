@@ -2,17 +2,19 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
+    "strings"
 )
 
 // SwitchVirtualChassisMember represents a SwitchVirtualChassisMember struct.
 type SwitchVirtualChassisMember struct {
     // fpc0, same as the mac of device_id
-    Mac                  *string                               `json:"mac,omitempty"`
-    MemberId             *int                                  `json:"member_id,omitempty"`
+    Mac                  string                               `json:"mac"`
+    MemberId             int                                  `json:"member_id"`
     // Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
-    VcRole               *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`
-    AdditionalProperties map[string]interface{}                `json:"_"`
+    VcRole               SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchVirtualChassisMember,
@@ -39,15 +41,9 @@ func (s SwitchVirtualChassisMember) MarshalJSON() (
 func (s SwitchVirtualChassisMember) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
-    if s.Mac != nil {
-        structMap["mac"] = s.Mac
-    }
-    if s.MemberId != nil {
-        structMap["member_id"] = s.MemberId
-    }
-    if s.VcRole != nil {
-        structMap["vc_role"] = s.VcRole
-    }
+    structMap["mac"] = s.Mac
+    structMap["member_id"] = s.MemberId
+    structMap["vc_role"] = s.VcRole
     return structMap
 }
 
@@ -59,21 +55,42 @@ func (s *SwitchVirtualChassisMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
     additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "member_id", "vc_role")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
-    s.Mac = temp.Mac
-    s.MemberId = temp.MemberId
-    s.VcRole = temp.VcRole
+    s.Mac = *temp.Mac
+    s.MemberId = *temp.MemberId
+    s.VcRole = *temp.VcRole
     return nil
 }
 
 // tempSwitchVirtualChassisMember is a temporary struct used for validating the fields of SwitchVirtualChassisMember.
 type tempSwitchVirtualChassisMember  struct {
-    Mac      *string                               `json:"mac,omitempty"`
-    MemberId *int                                  `json:"member_id,omitempty"`
-    VcRole   *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role,omitempty"`
+    Mac      *string                               `json:"mac"`
+    MemberId *int                                  `json:"member_id"`
+    VcRole   *SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role"`
+}
+
+func (s *tempSwitchVirtualChassisMember) validate() error {
+    var errs []string
+    if s.Mac == nil {
+        errs = append(errs, "required field `mac` is missing for type `switch_virtual_chassis_member`")
+    }
+    if s.MemberId == nil {
+        errs = append(errs, "required field `member_id` is missing for type `switch_virtual_chassis_member`")
+    }
+    if s.VcRole == nil {
+        errs = append(errs, "required field `vc_role` is missing for type `switch_virtual_chassis_member`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

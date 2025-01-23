@@ -20,7 +20,7 @@ Initiate a packet Capture for New Wireless Client Associations
 | `MaxPktLen` | `*int` | Optional | **Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `100` |
 | `Ssid` | `*string` | Optional | optional filter by ssid |
-| `Type` | `string` | Required, Constant | enum: `new_assoc`<br>**Default**: `"new_assoc"` |
+| `Type` | `string` | Required, Constant | enum: `new_assoc`<br>**Value**: `"new_assoc"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

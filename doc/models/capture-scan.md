@@ -24,7 +24,7 @@ Initiate a Scan Radio Packet Capture
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `512`<br>**Constraints**: `>= 0`, `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024` |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
-| `Type` | `string` | Required, Constant | enum: `scan`<br>**Default**: `"scan"` |
+| `Type` | `string` | Required, Constant | enum: `scan`<br>**Value**: `"scan"` |
 | `Width` | `*string` | Optional | specify the bandwidth value with respect to the channel. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

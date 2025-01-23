@@ -19,7 +19,7 @@ Initiate a Wired Packet Capture
 | `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
 | `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024` |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
-| `Type` | `string` | Required, Constant | enum: `wired`<br>**Default**: `"wired"` |
+| `Type` | `string` | Required, Constant | enum: `wired`<br>**Value**: `"wired"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

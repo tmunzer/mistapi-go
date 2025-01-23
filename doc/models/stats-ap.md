@@ -72,7 +72,7 @@ AP statistics
 | `TxBps` | `models.Optional[float64]` | Optional | - |
 | `TxBytes` | `models.Optional[float64]` | Optional | - |
 | `TxPkts` | `models.Optional[float64]` | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Default**: `"ap"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
 | `Uptime` | `models.Optional[float64]` | Optional | how long, in seconds, has the device been up (or rebooted) |
 | `UsbStat` | [`*models.StatsApUsbStat`](../../doc/models/stats-ap-usb-stat.md) | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |

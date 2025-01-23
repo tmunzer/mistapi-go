@@ -49,12 +49,13 @@ func TestOrgsDevicesTestCountOrgDevices(t *testing.T) {
     
     
     
+    mType := models.DeviceTypeEnum("ap")
     
     
     duration := "1d"
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+    apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &mType, nil, nil, &duration, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

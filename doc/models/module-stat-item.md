@@ -14,6 +14,7 @@
 | `BackupVersion` | `models.Optional[string]` | Optional | - |
 | `BiosVersion` | `models.Optional[string]` | Optional | - |
 | `CpldVersion` | `models.Optional[string]` | Optional | - |
+| `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `Errors` | [`[]models.ModuleStatItemErrorsItems`](../../doc/models/module-stat-item-errors-items.md) | Optional | used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type. |
 | `Fans` | [`[]models.ModuleStatItemFansItems`](../../doc/models/module-stat-item-fans-items.md) | Optional | **Constraints**: *Unique Items Required* |
 | `FpcIdx` | `*int` | Optional | - |
@@ -33,6 +34,7 @@
 | `Status` | `models.Optional[string]` | Optional | - |
 | `Temperatures` | [`[]models.ModuleStatItemTemperaturesItem`](../../doc/models/module-stat-item-temperatures-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `TmcFpgaVersion` | `models.Optional[string]` | Optional | - |
+| `Type` | `models.Optional[string]` | Optional | - |
 | `UbootVersion` | `models.Optional[string]` | Optional | - |
 | `Uptime` | `models.Optional[int]` | Optional | - |
 | `VcLinks` | [`[]models.ModuleStatItemVcLinksItem`](../../doc/models/module-stat-item-vc-links-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
@@ -52,6 +54,19 @@
   "backup_version": "backup_version8",
   "bios_version": "bios_version6",
   "cpld_version": "cpld_version4",
+  "cpu_stat": {
+    "idle": 102.08,
+    "interrupt": 215.84,
+    "load_avg": [
+      105.91
+    ],
+    "system": 13.6,
+    "user": 204.52,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
   "errors": [
     {
       "feature": "feature4",
@@ -81,35 +96,6 @@
       "reason": "reason4",
       "since": 174,
       "type": "type0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
-  ],
-  "fans": [
-    {
-      "airflow": "airflow8",
-      "name": "name4",
-      "status": "status4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "airflow": "airflow8",
-      "name": "name4",
-      "status": "status4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "airflow": "airflow8",
-      "name": "name4",
-      "status": "status4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

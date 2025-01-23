@@ -2,28 +2,30 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
+    "strings"
 )
 
 // VirtualChassisConfigMember represents a VirtualChassisConfigMember struct.
 type VirtualChassisConfigMember struct {
-    Locating             *bool                                 `json:"locating,omitempty"`
+    Locating             *bool                                `json:"locating,omitempty"`
     // fpc0, same as the mac of device_id
-    Mac                  *string                               `json:"mac,omitempty"`
+    Mac                  string                               `json:"mac"`
     // to create a preprovisionned virtual chassis
-    Member               *int                                  `json:"member,omitempty"`
-    VcPorts              []string                              `json:"vc_ports,omitempty"`
+    MemberId             *int                                 `json:"member_id,omitempty"`
+    VcPorts              []string                             `json:"vc_ports,omitempty"`
     // enum: `backup`, `linecard`, `master`
-    VcRole               *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role,omitempty"`
-    AdditionalProperties map[string]interface{}                `json:"_"`
+    VcRole               VirtualChassisConfigMemberVcRoleEnum `json:"vc_role"`
+    AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for VirtualChassisConfigMember,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v VirtualChassisConfigMember) String() string {
     return fmt.Sprintf(
-    	"VirtualChassisConfigMember[Locating=%v, Mac=%v, Member=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
-    	v.Locating, v.Mac, v.Member, v.VcPorts, v.VcRole, v.AdditionalProperties)
+    	"VirtualChassisConfigMember[Locating=%v, Mac=%v, MemberId=%v, VcPorts=%v, VcRole=%v, AdditionalProperties=%v]",
+    	v.Locating, v.Mac, v.MemberId, v.VcPorts, v.VcRole, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisConfigMember.
@@ -32,7 +34,7 @@ func (v VirtualChassisConfigMember) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(v.AdditionalProperties,
-        "locating", "mac", "member", "vc_ports", "vc_role"); err != nil {
+        "locating", "mac", "member_id", "vc_ports", "vc_role"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(v.toMap())
@@ -45,18 +47,14 @@ func (v VirtualChassisConfigMember) toMap() map[string]any {
     if v.Locating != nil {
         structMap["locating"] = v.Locating
     }
-    if v.Mac != nil {
-        structMap["mac"] = v.Mac
-    }
-    if v.Member != nil {
-        structMap["member"] = v.Member
+    structMap["mac"] = v.Mac
+    if v.MemberId != nil {
+        structMap["member_id"] = v.MemberId
     }
     if v.VcPorts != nil {
         structMap["vc_ports"] = v.VcPorts
     }
-    if v.VcRole != nil {
-        structMap["vc_role"] = v.VcRole
-    }
+    structMap["vc_role"] = v.VcRole
     return structMap
 }
 
@@ -68,25 +66,43 @@ func (v *VirtualChassisConfigMember) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "locating", "mac", "member", "vc_ports", "vc_role")
+    err = temp.validate()
+    if err != nil {
+    	return err
+    }
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "locating", "mac", "member_id", "vc_ports", "vc_role")
     if err != nil {
     	return err
     }
     v.AdditionalProperties = additionalProperties
     
     v.Locating = temp.Locating
-    v.Mac = temp.Mac
-    v.Member = temp.Member
+    v.Mac = *temp.Mac
+    v.MemberId = temp.MemberId
     v.VcPorts = temp.VcPorts
-    v.VcRole = temp.VcRole
+    v.VcRole = *temp.VcRole
     return nil
 }
 
 // tempVirtualChassisConfigMember is a temporary struct used for validating the fields of VirtualChassisConfigMember.
 type tempVirtualChassisConfigMember  struct {
     Locating *bool                                 `json:"locating,omitempty"`
-    Mac      *string                               `json:"mac,omitempty"`
-    Member   *int                                  `json:"member,omitempty"`
+    Mac      *string                               `json:"mac"`
+    MemberId *int                                  `json:"member_id,omitempty"`
     VcPorts  []string                              `json:"vc_ports,omitempty"`
-    VcRole   *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role,omitempty"`
+    VcRole   *VirtualChassisConfigMemberVcRoleEnum `json:"vc_role"`
+}
+
+func (v *tempVirtualChassisConfigMember) validate() error {
+    var errs []string
+    if v.Mac == nil {
+        errs = append(errs, "required field `mac` is missing for type `virtual_chassis_config_member`")
+    }
+    if v.VcRole == nil {
+        errs = append(errs, "required field `vc_role` is missing for type `virtual_chassis_config_member`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }
