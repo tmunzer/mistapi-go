@@ -15,7 +15,7 @@ AP statistics
 |  --- | --- | --- | --- |
 | `AutoPlacement` | [`*models.StatsApAutoPlacement`](../../doc/models/stats-ap-auto-placement.md) | Optional | - |
 | `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
-| `BleStat` | [`models.StatsApBle`](../../doc/models/stats-ap-ble.md) | Required | - |
+| `BleStat` | [`*models.StatsApBle`](../../doc/models/stats-ap-ble.md) | Optional | - |
 | `CertExpiry` | `models.Optional[float64]` | Optional | - |
 | `ConfigReverted` | `models.Optional[bool]` | Optional | - |
 | `CpuSystem` | `models.Optional[int64]` | Optional | - |
@@ -84,34 +84,6 @@ AP statistics
 
 ```json
 {
-  "ble_stat": {
-    "beacon_rate": 3,
-    "eddystone_uid_enabled": false,
-    "eddystone_uid_freq_msec": 2000,
-    "eddystone_uid_instance": "5c5b35000001",
-    "eddystone_uid_namespace": "2818e3868dec25629ede",
-    "eddystone_url_enabled": true,
-    "eddystone_url_freq_msec": 100,
-    "eddystone_url_url": "https://www.abc.com",
-    "ibeacon_enabled": true,
-    "ibeacon_freq_msec": 2000,
-    "ibeacon_major": 13,
-    "ibeacon_minor": 138,
-    "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
-    "major": 12345,
-    "power": 10,
-    "rx_bytes": 135,
-    "rx_pkts": 135,
-    "tx_bytes": 5231513353,
-    "tx_pkts": 135135135,
-    "tx_resets": 0,
-    "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64",
-    "beacon_enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
   "cert_expiry": 1534534392.0,
   "ext_ip": "73.92.124.103",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
@@ -181,8 +153,18 @@ AP statistics
       "key2": "val2"
     }
   },
+  "ble_stat": {
+    "beacon_enabled": false,
+    "beacon_rate": 78,
+    "eddystone_uid_enabled": false,
+    "eddystone_uid_freq_msec": 132,
+    "eddystone_uid_instance": "eddystone_uid_instance6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
   "config_reverted": false,
-  "cpu_system": 42,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
