@@ -54,7 +54,7 @@ Switch statistics
 | `Uptime` | `*float64` | Optional | - |
 | `VcMac` | `models.Optional[string]` | Optional | - |
 | `VcSetupInfo` | [`*models.StatsSwitchVcSetupInfo`](../../doc/models/stats-switch-vc-setup-info.md) | Optional | - |
-| `Version` | `*string` | Optional | - |
+| `Version` | `models.Optional[string]` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -64,7 +64,7 @@ Gateway statistics
 | `Status` | `*string` | Optional | - |
 | `Tunnels` | [`[]models.OptionalStatWanTunnel`](../../doc/models/optional-stat-wan-tunnel.md) | Optional | only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
-| `Uptime` | `*float64` | Optional | - |
+| `Uptime` | `models.Optional[float64]` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `VpnPeers` | [`[]models.OptionalStatVpnPeer`](../../doc/models/optional-stat-vpn-peer.md) | Optional | only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

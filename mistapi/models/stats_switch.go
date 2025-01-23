@@ -65,7 +65,7 @@ type StatsSwitch struct {
     Uptime               *float64                       `json:"uptime,omitempty"`
     VcMac                Optional[string]               `json:"vc_mac"`
     VcSetupInfo          *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
-    Version              *string                        `json:"version,omitempty"`
+    Version              Optional[string]               `json:"version"`
     AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
@@ -230,8 +230,12 @@ func (s StatsSwitch) toMap() map[string]any {
     if s.VcSetupInfo != nil {
         structMap["vc_setup_info"] = s.VcSetupInfo.toMap()
     }
-    if s.Version != nil {
-        structMap["version"] = s.Version
+    if s.Version.IsValueSet() {
+        if s.Version.Value() != nil {
+            structMap["version"] = s.Version.Value()
+        } else {
+            structMap["version"] = nil
+        }
     }
     return structMap
 }
@@ -342,7 +346,7 @@ type tempStatsSwitch  struct {
     Uptime              *float64                       `json:"uptime,omitempty"`
     VcMac               Optional[string]               `json:"vc_mac"`
     VcSetupInfo         *StatsSwitchVcSetupInfo        `json:"vc_setup_info,omitempty"`
-    Version             *string                        `json:"version,omitempty"`
+    Version             Optional[string]               `json:"version"`
 }
 
 func (s *tempStatsSwitch) validate() error {
