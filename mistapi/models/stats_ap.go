@@ -13,7 +13,7 @@ import (
 type StatsAp struct {
     AutoPlacement        *StatsApAutoPlacement                         `json:"auto_placement,omitempty"`
     AutoUpgradeStat      *StatsApAutoUpgrade                           `json:"auto_upgrade_stat,omitempty"`
-    BleStat              *StatsApBle                                   `json:"ble_stat,omitempty"`
+    BleStat              StatsApBle                                    `json:"ble_stat"`
     CertExpiry           Optional[float64]                             `json:"cert_expiry"`
     ConfigReverted       Optional[bool]                                `json:"config_reverted"`
     CpuSystem            Optional[int64]                               `json:"cpu_system"`
@@ -133,9 +133,7 @@ func (s StatsAp) toMap() map[string]any {
     if s.AutoUpgradeStat != nil {
         structMap["auto_upgrade_stat"] = s.AutoUpgradeStat.toMap()
     }
-    if s.BleStat != nil {
-        structMap["ble_stat"] = s.BleStat.toMap()
-    }
+    structMap["ble_stat"] = s.BleStat.toMap()
     if s.CertExpiry.IsValueSet() {
         if s.CertExpiry.Value() != nil {
             structMap["cert_expiry"] = s.CertExpiry.Value()
@@ -491,7 +489,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
     
     s.AutoPlacement = temp.AutoPlacement
     s.AutoUpgradeStat = temp.AutoUpgradeStat
-    s.BleStat = temp.BleStat
+    s.BleStat = *temp.BleStat
     s.CertExpiry = temp.CertExpiry
     s.ConfigReverted = temp.ConfigReverted
     s.CpuSystem = temp.CpuSystem
@@ -561,7 +559,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 type tempStatsAp  struct {
     AutoPlacement      *StatsApAutoPlacement                         `json:"auto_placement,omitempty"`
     AutoUpgradeStat    *StatsApAutoUpgrade                           `json:"auto_upgrade_stat,omitempty"`
-    BleStat            *StatsApBle                                   `json:"ble_stat,omitempty"`
+    BleStat            *StatsApBle                                   `json:"ble_stat"`
     CertExpiry         Optional[float64]                             `json:"cert_expiry"`
     ConfigReverted     Optional[bool]                                `json:"config_reverted"`
     CpuSystem          Optional[int64]                               `json:"cpu_system"`
@@ -628,6 +626,9 @@ type tempStatsAp  struct {
 
 func (s *tempStatsAp) validate() error {
     var errs []string
+    if s.BleStat == nil {
+        errs = append(errs, "required field `ble_stat` is missing for type `stats_ap`")
+    }
     if s.Type == nil {
         errs = append(errs, "required field `type` is missing for type `stats_ap`")
     }

@@ -19,7 +19,7 @@
 | `MaxFailurePercentage` | `*int` | Optional | percentage of failures allowed |
 | `MaxFailures` | `[]int` | Optional | number of failures allowed within a canary phase or serial rollout |
 | `RebootAt` | `*int` | Optional | reboot start time in epoch |
-| `StartTime` | `*float64` | Optional | firmware download start time in epoch |
+| `StartTime` | `*int` | Optional | firmware download start time in epoch |
 | `Status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
 | `Strategy` | [`*models.DeviceUpgradeStrategyEnum`](../../doc/models/device-upgrade-strategy-enum.md) | Optional | For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `TargetVersion` | `*string` | Optional | version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |

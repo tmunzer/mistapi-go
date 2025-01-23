@@ -16,7 +16,7 @@ type DeviceUpgrade struct {
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot             *bool                  `json:"snapshot,omitempty"`
     // firmware download start time in epoch
-    StartTime            *float64               `json:"start_time,omitempty"`
+    StartTime            *int                   `json:"start_time,omitempty"`
     // specific version / `stable`, default is to use the latest
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
@@ -90,11 +90,11 @@ func (d *DeviceUpgrade) UnmarshalJSON(input []byte) error {
 
 // tempDeviceUpgrade is a temporary struct used for validating the fields of DeviceUpgrade.
 type tempDeviceUpgrade  struct {
-    Reboot    *bool    `json:"reboot,omitempty"`
-    RebootAt  *int     `json:"reboot_at,omitempty"`
-    Snapshot  *bool    `json:"snapshot,omitempty"`
-    StartTime *float64 `json:"start_time,omitempty"`
-    Version   *string  `json:"version"`
+    Reboot    *bool   `json:"reboot,omitempty"`
+    RebootAt  *int    `json:"reboot_at,omitempty"`
+    Snapshot  *bool   `json:"snapshot,omitempty"`
+    StartTime *int    `json:"start_time,omitempty"`
+    Version   *string `json:"version"`
 }
 
 func (d *tempDeviceUpgrade) validate() error {

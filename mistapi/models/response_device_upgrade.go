@@ -26,7 +26,7 @@ type ResponseDeviceUpgrade struct {
     // reboot start time in epoch
     RebootAt             *int                         `json:"reboot_at,omitempty"`
     // firmware download start time in epoch
-    StartTime            *float64                     `json:"start_time,omitempty"`
+    StartTime            *int                         `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum     `json:"status,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
@@ -146,7 +146,7 @@ type tempResponseDeviceUpgrade  struct {
     MaxFailurePercentage *int                         `json:"max_failure_percentage,omitempty"`
     MaxFailures          []int                        `json:"max_failures,omitempty"`
     RebootAt             *int                         `json:"reboot_at,omitempty"`
-    StartTime            *float64                     `json:"start_time,omitempty"`
+    StartTime            *int                         `json:"start_time,omitempty"`
     Status               *DeviceUpgradeStatusEnum     `json:"status,omitempty"`
     Strategy             *DeviceUpgradeStrategyEnum   `json:"strategy,omitempty"`
     TargetVersion        *string                      `json:"target_version,omitempty"`
