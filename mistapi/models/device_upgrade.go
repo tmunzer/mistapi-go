@@ -9,9 +9,9 @@ import (
 
 // DeviceUpgrade represents a DeviceUpgrade struct.
 type DeviceUpgrade struct {
-    // For Junos devices only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
+    // For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
     Reboot               *bool                  `json:"reboot,omitempty"`
-    // For Junos devices only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
+    // For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
     RebootAt             *int                   `json:"reboot_at,omitempty"`
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot             *bool                  `json:"snapshot,omitempty"`

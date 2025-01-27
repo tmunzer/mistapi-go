@@ -10,7 +10,7 @@ import (
 type UpgradeOrgDeviceUpgrade struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID               `json:"id,omitempty"`
-    StartTime            *float64                 `json:"start_time,omitempty"`
+    StartTime            *int                     `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
     Status               *DeviceUpgradeStatusEnum `json:"status,omitempty"`
     Targets              *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
@@ -80,7 +80,7 @@ func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
 // tempUpgradeOrgDeviceUpgrade is a temporary struct used for validating the fields of UpgradeOrgDeviceUpgrade.
 type tempUpgradeOrgDeviceUpgrade  struct {
     Id        *uuid.UUID               `json:"id,omitempty"`
-    StartTime *float64                 `json:"start_time,omitempty"`
+    StartTime *int                     `json:"start_time,omitempty"`
     Status    *DeviceUpgradeStatusEnum `json:"status,omitempty"`
     Targets   *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
 }

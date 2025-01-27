@@ -1058,10 +1058,10 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeOrgDevices{
     Force:                   models.ToPointer(false),
-    MaxFailurePercentage:    models.ToPointer(float64(5)),
+    MaxFailurePercentage:    models.ToPointer(5),
     P2pClusterSize:          models.ToPointer(0),
     Reboot:                  models.ToPointer(false),
-    RebootAt:                models.ToPointer(float64(1624399840)),
+    RebootAt:                models.ToPointer(1624399840),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
     RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
@@ -1079,7 +1079,7 @@ body := models.UpgradeOrgDevices{
         },
     },
     Snapshot:                models.ToPointer(false),
-    StartTime:               models.ToPointer(float64(1624399840)),
+    StartTime:               models.ToPointer(1624399840),
     Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),
     Version:                 models.ToPointer("3.1.5"),
 }
@@ -1250,7 +1250,7 @@ body := models.MxedgeUpgradeMulti{
     MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
-    StartTime:            models.ToPointer(float64(1624399840)),
+    StartTime:            models.ToPointer(1624399840),
     Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum("serial")),
     Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
         Mxagent:              "latest",
@@ -1397,10 +1397,10 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeSiteDevices{
     Force:                   models.ToPointer(false),
-    MaxFailurePercentage:    models.ToPointer(float64(5)),
+    MaxFailurePercentage:    models.ToPointer(5),
     P2pClusterSize:          models.ToPointer(0),
     Reboot:                  models.ToPointer(false),
-    RebootAt:                models.ToPointer(float64(1624399840)),
+    RebootAt:                models.ToPointer(1624399840),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
     RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
@@ -1418,7 +1418,7 @@ body := models.UpgradeSiteDevices{
         },
     },
     Snapshot:                models.ToPointer(false),
-    StartTime:               models.ToPointer(float64(1624399840)),
+    StartTime:               models.ToPointer(1624399840),
     Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),
     Version:                 models.ToPointer("3.1.5"),
 }

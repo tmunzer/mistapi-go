@@ -12,7 +12,7 @@ type ResponseAutoPlacementInfo struct {
     // (Only when inprogress) estimate of the time to completion
     EstTimeLeft          *float64                     `json:"est_time_left,omitempty"`
     // time when autoplacement process was last queued for this map
-    StartTime            *float64                     `json:"start_time,omitempty"`
+    StartTime            *int                         `json:"start_time,omitempty"`
     // the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
     Status               *AutoPlacementInfoStatusEnum `json:"status,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
@@ -82,6 +82,6 @@ func (r *ResponseAutoPlacementInfo) UnmarshalJSON(input []byte) error {
 type tempResponseAutoPlacementInfo  struct {
     EndTime     *float64                     `json:"end_time,omitempty"`
     EstTimeLeft *float64                     `json:"est_time_left,omitempty"`
-    StartTime   *float64                     `json:"start_time,omitempty"`
+    StartTime   *int                         `json:"start_time,omitempty"`
     Status      *AutoPlacementInfoStatusEnum `json:"status,omitempty"`
 }

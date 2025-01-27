@@ -17,7 +17,7 @@ type UpgradeSiteDevices struct {
     // true will force upgrade when requested version is same as running version
     Force                   *bool                            `json:"force,omitempty"`
     // for APs only and if `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
-    MaxFailurePercentage    *float64                         `json:"max_failure_percentage,omitempty"`
+    MaxFailurePercentage    *int                             `json:"max_failure_percentage,omitempty"`
     // For APs only and if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures             []int                            `json:"max_failures,omitempty"`
     // models which will be selected for upgrade
@@ -26,10 +26,10 @@ type UpgradeSiteDevices struct {
     P2pClusterSize          *int                             `json:"p2p_cluster_size,omitempty"`
     // For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create
     P2pParallelism          *int                             `json:"p2p_parallelism,omitempty"`
-    // For Junos devices only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
+    // For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
     Reboot                  *bool                            `json:"reboot,omitempty"`
-    // For Junos devices only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
-    RebootAt                *float64                         `json:"reboot_at,omitempty"`
+    // For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time`
+    RebootAt                *int                             `json:"reboot_at,omitempty"`
     // For APs only and if `strategy`==`rrm`. Percentage of APs that need to be present in the first RRM batch
     RrmFirstBatchPercentage *int                             `json:"rrm_first_batch_percentage,omitempty"`
     // For APs only and if `strategy`==`rrm`. Max percentage of APs that need to be present in each RRM batch
@@ -51,7 +51,7 @@ type UpgradeSiteDevices struct {
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     // upgrade start time in epoch seconds, default is now
-    StartTime               *float64                         `json:"start_time,omitempty"`
+    StartTime               *int                             `json:"start_time,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     // specific version / stable, default is to use the lastest available version
@@ -193,13 +193,13 @@ type tempUpgradeSiteDevices  struct {
     DeviceIds               []uuid.UUID                      `json:"device_ids,omitempty"`
     EnableP2p               *bool                            `json:"enable_p2p,omitempty"`
     Force                   *bool                            `json:"force,omitempty"`
-    MaxFailurePercentage    *float64                         `json:"max_failure_percentage,omitempty"`
+    MaxFailurePercentage    *int                             `json:"max_failure_percentage,omitempty"`
     MaxFailures             []int                            `json:"max_failures,omitempty"`
     Models                  []string                         `json:"models,omitempty"`
     P2pClusterSize          *int                             `json:"p2p_cluster_size,omitempty"`
     P2pParallelism          *int                             `json:"p2p_parallelism,omitempty"`
     Reboot                  *bool                            `json:"reboot,omitempty"`
-    RebootAt                *float64                         `json:"reboot_at,omitempty"`
+    RebootAt                *int                             `json:"reboot_at,omitempty"`
     RrmFirstBatchPercentage *int                             `json:"rrm_first_batch_percentage,omitempty"`
     RrmMaxBatchPercentage   *int                             `json:"rrm_max_batch_percentage,omitempty"`
     RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
@@ -207,7 +207,7 @@ type tempUpgradeSiteDevices  struct {
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
     Rules                   []map[string]string              `json:"rules,omitempty"`
     Snapshot                *bool                            `json:"snapshot,omitempty"`
-    StartTime               *float64                         `json:"start_time,omitempty"`
+    StartTime               *int                             `json:"start_time,omitempty"`
     Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
     Version                 *string                          `json:"version,omitempty"`
 }

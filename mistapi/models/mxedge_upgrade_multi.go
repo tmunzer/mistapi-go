@@ -23,7 +23,7 @@ type MxedgeUpgradeMulti struct {
     // list of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
     MxedgeIds            []uuid.UUID                        `json:"mxedge_ids"`
     // upgrade start time in epoch seconds, default is now
-    StartTime            *float64                           `json:"start_time,omitempty"`
+    StartTime            *int                               `json:"start_time,omitempty"`
     // enum:
     // * `big_bang`: upgrade all at once, no orchestration
     // * `serial`: one at a time'
@@ -124,7 +124,7 @@ type tempMxedgeUpgradeMulti  struct {
     Distro               *string                            `json:"distro,omitempty"`
     MaxFailurePercentage *int                               `json:"max_failure_percentage,omitempty"`
     MxedgeIds            *[]uuid.UUID                       `json:"mxedge_ids"`
-    StartTime            *float64                           `json:"start_time,omitempty"`
+    StartTime            *int                               `json:"start_time,omitempty"`
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`
 }

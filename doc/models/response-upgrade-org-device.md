@@ -22,7 +22,7 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "upgrade": {
     "id": "000016ac-0000-0000-0000-000000000000",
-    "start_time": 2.28,
+    "start_time": 228,
     "status": "downloaded",
     "targets": {
       "download_requested": [

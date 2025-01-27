@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Reboot` | `*bool` | Optional | For Junos devices only (APs are automatically rebooted). Reboot device immediately after upgrade is completed<br>**Default**: `false` |
-| `RebootAt` | `*int` | Optional | For Junos devices only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time` |
+| `Reboot` | `*bool` | Optional | For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed<br>**Default**: `false` |
+| `RebootAt` | `*int` | Optional | For Switches and Gateways only and if `reboot`==`true`. Reboot start time in epoch seconds, default is `start_time` |
 | `Snapshot` | `*bool` | Optional | For Junos devices only. Perform recovery snapshot after device is rebooted<br>**Default**: `false` |
 | `StartTime` | `*int` | Optional | firmware download start time in epoch |
 | `Version` | `string` | Required | specific version / `stable`, default is to use the latest<br>**Default**: `"stable"` |
