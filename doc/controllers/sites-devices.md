@@ -232,7 +232,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteDeviceEventsCountDistinctEnum("model")
+distinct := models.SiteDeviceEventsCountDistinctEnum_MODEL
 
 
 
@@ -328,7 +328,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteDeviceLastConfigCountDistinctEnum("mac")
+distinct := models.SiteDeviceLastConfigCountDistinctEnum_MAC
 
 
 
@@ -442,7 +442,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteDevicesCountDistinctEnum("model")
+distinct := models.SiteDevicesCountDistinctEnum_MODEL
 
 
 
@@ -982,7 +982,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeWithAllEnum("ap")
+mType := models.DeviceTypeWithAllEnum_AP
 
 
 
@@ -1062,7 +1062,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -1324,7 +1324,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -1515,7 +1515,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -1553,7 +1553,7 @@ ipAddress := "192.168.1.1"
 
 
 
-sort := models.SearchSiteDevicesSortEnum("timestamp")
+sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
 
 
 

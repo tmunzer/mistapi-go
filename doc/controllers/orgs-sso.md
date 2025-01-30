@@ -54,12 +54,12 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Sso{
     CustomLogoutUrl:         models.ToPointer("string"),
     IdpCert:                 models.ToPointer("string"),
-    IdpSignAlgo:             models.ToPointer(models.SsoIdpSignAlgoEnum("sha256")),
+    IdpSignAlgo:             models.ToPointer(models.SsoIdpSignAlgoEnum_SHA256),
     IdpSsoUrl:               models.ToPointer("string"),
     IgnoreUnmatchedRoles:    models.ToPointer(true),
     Issuer:                  models.ToPointer("string"),
     Name:                    "string",
-    NameidFormat:            models.ToPointer(models.SsoNameidFormatEnum("email")),
+    NameidFormat:            models.ToPointer(models.SsoNameidFormatEnum_EMAIL),
 }
 
 apiResponse, err := orgsSSO.CreateOrgSso(ctx, orgId, &body)
@@ -582,7 +582,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 ssoId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Sso{
-    IdpType:                 models.ToPointer(models.SsoIdpTypeEnum("saml")),
+    IdpType:                 models.ToPointer(models.SsoIdpTypeEnum_SAML),
     LdapBaseDn:              models.ToPointer("DC=abc,DC=com"),
     LdapBindDn:              models.ToPointer("CN=nas,CN=users,DC=abc,DC=com"),
     LdapBindPassword:        models.ToPointer("secret"),
@@ -599,18 +599,18 @@ body := models.Sso{
         "hostname",
         "63.1.3.5",
     },
-    LdapType:                models.ToPointer(models.SsoLdapTypeEnum("azure")),
+    LdapType:                models.ToPointer(models.SsoLdapTypeEnum_AZURE),
     LdapUserFilter:          models.ToPointer("(mail=%s)"),
     MemberFilter:            models.ToPointer("(CN=%s)"),
     Name:                    "name6",
-    NameidFormat:            models.ToPointer(models.SsoNameidFormatEnum("email")),
+    NameidFormat:            models.ToPointer(models.SsoNameidFormatEnum_EMAIL),
     OauthCcClientId:         models.ToPointer("e60da615-7def-4c5a-8196-43675f45e174"),
     OauthCcClientSecret:     models.ToPointer("akL8Q~5kWFMVFYl4TFZ3fi~7cMdyDONi6cj01cpH"),
-    OauthPingIdentityRegion: models.ToPointer(models.OauthPingIdentityRegionEnum("us")),
+    OauthPingIdentityRegion: models.ToPointer(models.OauthPingIdentityRegionEnum_US),
     OauthRopcClientId:       models.ToPointer("9ce04c97-b5b1-4ec8-af17-f5ed42d2daf7"),
     OauthRopcClientSecret:   models.ToPointer("blM9R~6kWFMVFYl4TFZ3fi~8cMdyDONi6cj01dqI"),
     OauthTenantId:           models.ToPointer("dev-88336535"),
-    OauthType:               models.ToPointer(models.SsoOauthTypeEnum("azure")),
+    OauthType:               models.ToPointer(models.SsoOauthTypeEnum_AZURE),
     RoleAttrFrom:            models.ToPointer("Role"),
     ScimEnabled:             models.ToPointer(false),
     ScimSecretToken:         models.ToPointer("FBitbKPE1aecSloPGBuqqPxDUrFeZyZk"),

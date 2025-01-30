@@ -115,9 +115,9 @@ body := map[string]models.JunosLocalPortConfig{
     "ge-0/0/0-1": models.JunosLocalPortConfig{
         Description:                              models.ToPointer("string"),
         DisableAutoneg:                           models.ToPointer(true),
-        Duplex:                                   models.ToPointer(models.SwitchPortLocalUsageDuplexEnum("auto")),
+        Duplex:                                   models.ToPointer(models.SwitchPortLocalUsageDuplexEnum_AUTO),
         PoeDisabled:                              models.ToPointer(true),
-        Speed:                                    models.ToPointer(models.JunosPortConfigSpeedEnum("auto")),
+        Speed:                                    models.ToPointer(models.JunosPortConfigSpeedEnum_AUTO),
         Usage:                                    "string",
         AdditionalProperties:                     map[string]interface{}{
             "ae_disable_lacp": interface{}("true"),

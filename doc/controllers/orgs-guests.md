@@ -59,7 +59,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgGuestsCountDistinctEnum("auth_method")
+distinct := models.OrgGuestsCountDistinctEnum_AUTHMETHOD
 
 
 

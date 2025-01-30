@@ -4,46 +4,24 @@ import (
     "encoding/json"
     "errors"
     "fmt"
-    "github.com/google/uuid"
     "strings"
 )
 
 // ResponseDeviceUpgrade represents a ResponseDeviceUpgrade struct.
 type ResponseDeviceUpgrade struct {
-    Counts               *ResponseDeviceUpgradeCounts `json:"counts,omitempty"`
-    // current canary or rrm phase in progress
-    CurrentPhase         *int                         `json:"current_phase,omitempty"`
-    // whether to allow local AP-to-AP FW upgrade
-    EnableP2p            *bool                        `json:"enable_p2p,omitempty"`
-    // whether to force upgrade when requested version is same as running version
-    Force                *bool                        `json:"force,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
-    Id                   uuid.UUID                    `json:"id"`
-    // percentage of failures allowed
-    MaxFailurePercentage *int                         `json:"max_failure_percentage,omitempty"`
-    // number of failures allowed within a canary phase or serial rollout
-    MaxFailures          []int                        `json:"max_failures,omitempty"`
-    // reboot start time in epoch
-    RebootAt             *int                         `json:"reboot_at,omitempty"`
-    // firmware download start time in epoch
-    StartTime            *int                         `json:"start_time,omitempty"`
-    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
-    Status               *DeviceUpgradeStatusEnum     `json:"status,omitempty"`
-    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
-    Strategy             *DeviceUpgradeStrategyEnum   `json:"strategy,omitempty"`
-    // version to upgrade to
-    TargetVersion        *string                      `json:"target_version,omitempty"`
-    // a dictionary of rrm phase number to devices part of that phase
-    UpgradePlan          *interface{}                 `json:"upgrade_plan,omitempty"`
-    AdditionalProperties map[string]interface{}       `json:"_"`
+    // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
+    Status               UpgradeInfoStatusEnum  `json:"status"`
+    // timestamp
+    Timestamp            float64                `json:"timestamp"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseDeviceUpgrade,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseDeviceUpgrade) String() string {
     return fmt.Sprintf(
-    	"ResponseDeviceUpgrade[Counts=%v, CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, UpgradePlan=%v, AdditionalProperties=%v]",
-    	r.Counts, r.CurrentPhase, r.EnableP2p, r.Force, r.Id, r.MaxFailurePercentage, r.MaxFailures, r.RebootAt, r.StartTime, r.Status, r.Strategy, r.TargetVersion, r.UpgradePlan, r.AdditionalProperties)
+    	"ResponseDeviceUpgrade[Status=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Status, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceUpgrade.
@@ -52,7 +30,7 @@ func (r ResponseDeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan"); err != nil {
+        "status", "timestamp"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -62,43 +40,8 @@ func (r ResponseDeviceUpgrade) MarshalJSON() (
 func (r ResponseDeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.Counts != nil {
-        structMap["counts"] = r.Counts.toMap()
-    }
-    if r.CurrentPhase != nil {
-        structMap["current_phase"] = r.CurrentPhase
-    }
-    if r.EnableP2p != nil {
-        structMap["enable_p2p"] = r.EnableP2p
-    }
-    if r.Force != nil {
-        structMap["force"] = r.Force
-    }
-    structMap["id"] = r.Id
-    if r.MaxFailurePercentage != nil {
-        structMap["max_failure_percentage"] = r.MaxFailurePercentage
-    }
-    if r.MaxFailures != nil {
-        structMap["max_failures"] = r.MaxFailures
-    }
-    if r.RebootAt != nil {
-        structMap["reboot_at"] = r.RebootAt
-    }
-    if r.StartTime != nil {
-        structMap["start_time"] = r.StartTime
-    }
-    if r.Status != nil {
-        structMap["status"] = r.Status
-    }
-    if r.Strategy != nil {
-        structMap["strategy"] = r.Strategy
-    }
-    if r.TargetVersion != nil {
-        structMap["target_version"] = r.TargetVersion
-    }
-    if r.UpgradePlan != nil {
-        structMap["upgrade_plan"] = r.UpgradePlan
-    }
+    structMap["status"] = r.Status
+    structMap["timestamp"] = r.Timestamp
     return structMap
 }
 
@@ -114,49 +57,30 @@ func (r *ResponseDeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status", "timestamp")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
-    r.Counts = temp.Counts
-    r.CurrentPhase = temp.CurrentPhase
-    r.EnableP2p = temp.EnableP2p
-    r.Force = temp.Force
-    r.Id = *temp.Id
-    r.MaxFailurePercentage = temp.MaxFailurePercentage
-    r.MaxFailures = temp.MaxFailures
-    r.RebootAt = temp.RebootAt
-    r.StartTime = temp.StartTime
-    r.Status = temp.Status
-    r.Strategy = temp.Strategy
-    r.TargetVersion = temp.TargetVersion
-    r.UpgradePlan = temp.UpgradePlan
+    r.Status = *temp.Status
+    r.Timestamp = *temp.Timestamp
     return nil
 }
 
 // tempResponseDeviceUpgrade is a temporary struct used for validating the fields of ResponseDeviceUpgrade.
 type tempResponseDeviceUpgrade  struct {
-    Counts               *ResponseDeviceUpgradeCounts `json:"counts,omitempty"`
-    CurrentPhase         *int                         `json:"current_phase,omitempty"`
-    EnableP2p            *bool                        `json:"enable_p2p,omitempty"`
-    Force                *bool                        `json:"force,omitempty"`
-    Id                   *uuid.UUID                   `json:"id"`
-    MaxFailurePercentage *int                         `json:"max_failure_percentage,omitempty"`
-    MaxFailures          []int                        `json:"max_failures,omitempty"`
-    RebootAt             *int                         `json:"reboot_at,omitempty"`
-    StartTime            *int                         `json:"start_time,omitempty"`
-    Status               *DeviceUpgradeStatusEnum     `json:"status,omitempty"`
-    Strategy             *DeviceUpgradeStrategyEnum   `json:"strategy,omitempty"`
-    TargetVersion        *string                      `json:"target_version,omitempty"`
-    UpgradePlan          *interface{}                 `json:"upgrade_plan,omitempty"`
+    Status    *UpgradeInfoStatusEnum `json:"status"`
+    Timestamp *float64               `json:"timestamp"`
 }
 
 func (r *tempResponseDeviceUpgrade) validate() error {
     var errs []string
-    if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `response_device_upgrade`")
+    if r.Status == nil {
+        errs = append(errs, "required field `status` is missing for type `response_device_upgrade`")
+    }
+    if r.Timestamp == nil {
+        errs = append(errs, "required field `timestamp` is missing for type `response_device_upgrade`")
     }
     if len(errs) == 0 {
         return nil

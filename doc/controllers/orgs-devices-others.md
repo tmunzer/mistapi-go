@@ -61,7 +61,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgOtherdevicesEventsCountDistinctEnum("mac")
+distinct := models.OrgOtherdevicesEventsCountDistinctEnum_MAC
 
 
 
@@ -592,7 +592,7 @@ body := models.OtherDeviceUpdateMulti{
         "5c5b350e0001",
         "5c5b350e0003",
     },
-    Op:                   models.OtherDeviceUpdateOperationEnum("assign"),
+    Op:                   models.OtherDeviceUpdateOperationEnum_ASSIGN,
     SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
     AdditionalProperties: map[string]interface{}{
         "device_mac": interface{}("0adfea67e65b"),

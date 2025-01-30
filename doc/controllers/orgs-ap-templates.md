@@ -68,10 +68,10 @@ body := models.ApTemplate{
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
                         MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
                         MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
                         PortVlanId:           models.ToPointer(1),
                         RadiusConfig:         models.ToPointer(models.RadiusConfig{
                             AcctInterimInterval:  models.ToPointer(0),
@@ -79,7 +79,7 @@ body := models.ApTemplate{
                                 models.RadiusAcctServer{
                                     Host:                 "1.2.3.4",
                                     KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:           models.ToPointer("1122334455"),
                                     KeywrapMack:          models.ToPointer("1122334455"),
                                     Port:                 models.ToPointer(1813),
@@ -90,7 +90,7 @@ body := models.ApTemplate{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:                  models.ToPointer("1122334455"),
                                     KeywrapMack:                 models.ToPointer("1122334455"),
                                     Port:                        models.ToPointer(1812),
@@ -148,10 +148,10 @@ body := models.ApTemplate{
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
                         MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
                         MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
                         PortVlanId:           models.ToPointer(1),
                         RadiusConfig:         models.ToPointer(models.RadiusConfig{
                             AcctInterimInterval:  models.ToPointer(0),
@@ -159,7 +159,7 @@ body := models.ApTemplate{
                                 models.RadiusAcctServer{
                                     Host:                 "1.2.3.4",
                                     KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:           models.ToPointer("1122334455"),
                                     KeywrapMack:          models.ToPointer("1122334455"),
                                     Port:                 models.ToPointer(1813),
@@ -170,7 +170,7 @@ body := models.ApTemplate{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:                  models.ToPointer("1122334455"),
                                     KeywrapMack:                 models.ToPointer("1122334455"),
                                     Port:                        models.ToPointer(1812),
@@ -1078,10 +1078,10 @@ body := models.ApTemplate{
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
                         MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
                         MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
                         PortVlanId:           models.ToPointer(1),
                         RadiusConfig:         models.ToPointer(models.RadiusConfig{
                             AcctInterimInterval:  models.ToPointer(0),
@@ -1089,7 +1089,7 @@ body := models.ApTemplate{
                                 models.RadiusAcctServer{
                                     Host:                 "1.2.3.4",
                                     KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:           models.ToPointer("1122334455"),
                                     KeywrapMack:          models.ToPointer("1122334455"),
                                     Port:                 models.ToPointer(1813),
@@ -1100,7 +1100,7 @@ body := models.ApTemplate{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:                  models.ToPointer("1122334455"),
                                     KeywrapMack:                 models.ToPointer("1122334455"),
                                     Port:                        models.ToPointer(1812),
@@ -1158,10 +1158,10 @@ body := models.ApTemplate{
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum("all")),
+                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
                         MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
                         MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum("none")),
+                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
                         PortVlanId:           models.ToPointer(1),
                         RadiusConfig:         models.ToPointer(models.RadiusConfig{
                             AcctInterimInterval:  models.ToPointer(0),
@@ -1169,7 +1169,7 @@ body := models.ApTemplate{
                                 models.RadiusAcctServer{
                                     Host:                 "1.2.3.4",
                                     KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:           models.ToPointer("1122334455"),
                                     KeywrapMack:          models.ToPointer("1122334455"),
                                     Port:                 models.ToPointer(1813),
@@ -1180,7 +1180,7 @@ body := models.ApTemplate{
                                 models.RadiusAuthServer{
                                     Host:                        "1.2.3.4",
                                     KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
                                     KeywrapKek:                  models.ToPointer("1122334455"),
                                     KeywrapMack:                 models.ToPointer("1122334455"),
                                     Port:                        models.ToPointer(1812),

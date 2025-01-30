@@ -41,7 +41,7 @@ GenerateSecretFor2faVerification(
 ```go
 ctx := context.Background()
 
-by := models.MfaSecretTypeEnum("qrcode")
+by := models.MfaSecretTypeEnum_QRCODE
 
 apiResponse, err := selfMFA.GenerateSecretFor2faVerification(ctx, &by)
 if err != nil {

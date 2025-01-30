@@ -46,7 +46,7 @@ func TestUtilitiesUpgradeTestUpgradeOrgDevices(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"enable_p2p":true,"force":true,"id":"466f6eca-6276-4993-bfeb-53cbbbba6f88","start_time":0,"status":"created","strategy":"big_bang","target_version":"string","upgrades":[{"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","upgrade":{"id":"465f6eca-6276-4993-bfeb-53cbbbba6f98","start_time":0,"status":"created","targets":{"download_requested":["5c5b3550bd2e"],"downloaded":["003e7316ff9e"],"failed":[],"reboot_in_progress":[],"rebooted":[],"skipped":[],"total":1,"upgraded":[".inf"]}}}]}`
+    expected := `{"enable_p2p":true,"force":true,"id":"31223085-405d-4b64-8aea-9c5b98098b4b","strategy":"big_bang","target_version":"0.14.29411","upgrades":[{"site_id":"1bbe6e79-2583-403c-be1a-9881b4691ab6","upgrade":{"id":"473f6eca-6276-4993-bfeb-53cbbbba6f18","start_time":1717658765,"status":"upgrading","targets":{"download_requested":["5c5b3550bd2e"],"downloaded":["003e7316ff9e"],"total":4,"upgraded":["5c5b3550bd2e","003e7316ff9e"]}}}]}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -70,7 +70,7 @@ func TestUtilitiesUpgradeTestGetOrgDeviceUpgrade(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"enable_p2p":true,"force":true,"id":"31223085-405d-4b64-8aea-9c5b98098b4b","strategy":"big_bang","target_version":"0.14.29411","upgrades":[{"site_id":"1bbe6e79-2583-403c-be1a-9881b4691ab6","upgrade":{"id":"473f6eca-6276-4993-bfeb-53cbbbba6f18","start_time":1717658765,"status":"completed","targets":{"total":2,"upgraded":["5c5b3550bd2e","003e7316ff9e"]}}}]}`
+    expected := `{"enable_p2p":true,"force":true,"id":"31223085-405d-4b64-8aea-9c5b98098b4b","strategy":"big_bang","target_version":"0.14.29411","upgrades":[{"site_id":"1bbe6e79-2583-403c-be1a-9881b4691ab6","upgrade":{"id":"473f6eca-6276-4993-bfeb-53cbbbba6f18","start_time":1717658765,"status":"upgrading","targets":{"download_requested":["5c5b3550bd2e"],"downloaded":["003e7316ff9e"],"total":4,"upgraded":["5c5b3550bd2e","003e7316ff9e"]}}}]}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

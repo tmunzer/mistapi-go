@@ -59,7 +59,7 @@ body := models.Wlan{
         models.RadiusAcctServer{
             Host:                 "1.2.3.4",
             KeywrapEnabled:       models.ToPointer(true),
-            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
             KeywrapKek:           models.ToPointer("1122334455"),
             KeywrapMack:          models.ToPointer("1122334455"),
             Port:                 models.ToPointer(1813),
@@ -108,7 +108,7 @@ body := models.Wlan{
             },
         },
     }),
-    ApplyTo:                              models.ToPointer(models.WlanApplyToEnum("site")),
+    ApplyTo:                              models.ToPointer(models.WlanApplyToEnum_SITE),
     ArpFilter:                            models.ToPointer(false),
     Auth:                                 models.ToPointer(models.WlanAuth{
         AnticlogThreshold:    models.ToPointer(16),
@@ -120,19 +120,19 @@ body := models.Wlan{
         },
         MultiPskOnly:         models.ToPointer(false),
         Pairwise:             []models.WlanAuthPairwiseItemEnum{
-            models.WlanAuthPairwiseItemEnum("wpa2-ccmp"),
+            models.WlanAuthPairwiseItemEnum_WPA2CCMP,
         },
         PrivateWlan:          models.ToPointer(true),
         Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
-        Type:                 models.WlanAuthTypeEnum("psk"),
+        Type:                 models.WlanAuthTypeEnum_PSK,
         WepAsSecondaryAuth:   models.ToPointer(true),
     }),
-    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
+    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum_ORDERED),
     AuthServers:                          []models.RadiusAuthServer{
         models.RadiusAuthServer{
             Host:                        "1.2.3.4",
             KeywrapEnabled:              models.ToPointer(true),
-            KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
             KeywrapKek:                  models.ToPointer("1122334455"),
             KeywrapMack:                 models.ToPointer("1122334455"),
             Port:                        models.ToPointer(1812),
@@ -147,8 +147,8 @@ body := models.Wlan{
     BandSteer:                            models.ToPointer(false),
     BandSteerForceBand5:                  models.ToPointer(false),
     Bands:                                []models.Dot11BandEnum{
-        models.Dot11BandEnum("24"),
-        models.Dot11BandEnum("5"),
+        models.Dot11BandEnum_ENUM24,
+        models.Dot11BandEnum_ENUM5,
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
@@ -159,7 +159,7 @@ body := models.Wlan{
                 RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum_SAMEAP),
             },
         },
     }),
@@ -206,7 +206,7 @@ body := models.Wlan{
         DefaultPsk:           models.ToPointer("foryoureyesonly"),
         DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
         Enabled:              models.ToPointer(false),
-        Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
+        Source:               models.ToPointer(models.DynamicPskSourceEnum_CLOUDPSKS),
     })),
     DynamicVlan:                          models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
         DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
@@ -214,7 +214,7 @@ body := models.Wlan{
         LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
         Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",
@@ -235,15 +235,15 @@ body := models.Wlan{
             "string",
         },
         Operators:            []models.WlanHotspot20OperatorsItemEnum{
-            models.WlanHotspot20OperatorsItemEnum("google"),
-            models.WlanHotspot20OperatorsItemEnum("att"),
+            models.WlanHotspot20OperatorsItemEnum_GOOGLE,
+            models.WlanHotspot20OperatorsItemEnum_ATT,
         },
         Rcoi:                 []string{
             "5A03BA0000",
         },
         VenueName:            models.ToPointer("some_name"),
     }),
-    Interface:                            models.ToPointer(models.WlanInterfaceEnum("all")),
+    Interface:                            models.ToPointer(models.WlanInterfaceEnum_ALL),
     Isolation:                            models.ToPointer(false),
     L2Isolation:                          models.ToPointer(false),
     LegacyOverds:                         models.ToPointer(false),
@@ -713,7 +713,7 @@ body := models.Wlan{
         models.RadiusAcctServer{
             Host:                 "1.2.3.4",
             KeywrapEnabled:       models.ToPointer(true),
-            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
             KeywrapKek:           models.ToPointer("1122334455"),
             KeywrapMack:          models.ToPointer("1122334455"),
             Port:                 models.ToPointer(1813),
@@ -762,7 +762,7 @@ body := models.Wlan{
             },
         },
     }),
-    ApplyTo:                              models.ToPointer(models.WlanApplyToEnum("site")),
+    ApplyTo:                              models.ToPointer(models.WlanApplyToEnum_SITE),
     ArpFilter:                            models.ToPointer(false),
     Auth:                                 models.ToPointer(models.WlanAuth{
         AnticlogThreshold:    models.ToPointer(16),
@@ -774,19 +774,19 @@ body := models.Wlan{
         },
         MultiPskOnly:         models.ToPointer(false),
         Pairwise:             []models.WlanAuthPairwiseItemEnum{
-            models.WlanAuthPairwiseItemEnum("wpa2-ccmp"),
+            models.WlanAuthPairwiseItemEnum_WPA2CCMP,
         },
         PrivateWlan:          models.ToPointer(true),
         Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
-        Type:                 models.WlanAuthTypeEnum("psk"),
+        Type:                 models.WlanAuthTypeEnum_PSK,
         WepAsSecondaryAuth:   models.ToPointer(true),
     }),
-    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
+    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum_ORDERED),
     AuthServers:                          []models.RadiusAuthServer{
         models.RadiusAuthServer{
             Host:                        "1.2.3.4",
             KeywrapEnabled:              models.ToPointer(true),
-            KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum("hex")),
+            KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
             KeywrapKek:                  models.ToPointer("1122334455"),
             KeywrapMack:                 models.ToPointer("1122334455"),
             Port:                        models.ToPointer(1812),
@@ -801,8 +801,8 @@ body := models.Wlan{
     BandSteer:                            models.ToPointer(false),
     BandSteerForceBand5:                  models.ToPointer(false),
     Bands:                                []models.Dot11BandEnum{
-        models.Dot11BandEnum("24"),
-        models.Dot11BandEnum("5"),
+        models.Dot11BandEnum_ENUM24,
+        models.Dot11BandEnum_ENUM5,
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
@@ -813,7 +813,7 @@ body := models.Wlan{
                 RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum_SAMEAP),
             },
         },
     }),
@@ -860,7 +860,7 @@ body := models.Wlan{
         DefaultPsk:           models.ToPointer("foryoureyesonly"),
         DefaultVlanId:        models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(999)),
         Enabled:              models.ToPointer(false),
-        Source:               models.ToPointer(models.DynamicPskSourceEnum("cloud_psks")),
+        Source:               models.ToPointer(models.DynamicPskSourceEnum_CLOUDPSKS),
     })),
     DynamicVlan:                          models.NewOptional(models.ToPointer(models.WlanDynamicVlan{
         DefaultVlanId:        models.ToPointer(models.WlanDynamicVlanDefaultVlanIdDeprecatedContainer.FromNumber(999)),
@@ -868,7 +868,7 @@ body := models.Wlan{
         LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
         Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",
@@ -889,15 +889,15 @@ body := models.Wlan{
             "string",
         },
         Operators:            []models.WlanHotspot20OperatorsItemEnum{
-            models.WlanHotspot20OperatorsItemEnum("google"),
-            models.WlanHotspot20OperatorsItemEnum("att"),
+            models.WlanHotspot20OperatorsItemEnum_GOOGLE,
+            models.WlanHotspot20OperatorsItemEnum_ATT,
         },
         Rcoi:                 []string{
             "5A03BA0000",
         },
         VenueName:            models.ToPointer("some_name"),
     }),
-    Interface:                            models.ToPointer(models.WlanInterfaceEnum("all")),
+    Interface:                            models.ToPointer(models.WlanInterfaceEnum_ALL),
     Isolation:                            models.ToPointer(false),
     L2Isolation:                          models.ToPointer(false),
     LegacyOverds:                         models.ToPointer(false),

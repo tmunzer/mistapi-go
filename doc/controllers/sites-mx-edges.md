@@ -66,7 +66,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteMxedgeEventsCountDistinctEnum("mxedge_id")
+distinct := models.SiteMxedgeEventsCountDistinctEnum_MXEDGEID
 
 
 

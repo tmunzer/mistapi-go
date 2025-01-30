@@ -1,26 +1,30 @@
 
-# Response Upgrade Device
+# Response Ssr Upgrade Counts
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseUpgradeDevice`
+`ResponseSsrUpgradeCounts`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Status` | [`models.UpgradeInfoStatusEnum`](../../doc/models/upgrade-info-status-enum.md) | Required | enum: `error`, `inprogress`, `scheduled`, `starting`, `success` |
-| `Timestamp` | `float64` | Required | timestamp |
+| `Failed` | `int` | Required | - |
+| `Queued` | `int` | Required | - |
+| `Success` | `int` | Required | - |
+| `Upgrading` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "success",
-  "timestamp": 248.5,
+  "failed": 200,
+  "queued": 244,
+  "success": 56,
+  "upgrading": 78,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

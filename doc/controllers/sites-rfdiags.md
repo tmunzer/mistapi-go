@@ -342,7 +342,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RfDiag{
     Duration:             models.ToPointer(180),
     Name:                 "name6",
-    Type:                 models.RfClientTypeEnum("client"),
+    Type:                 models.RfClientTypeEnum_CLIENT,
 }
 
 apiResponse, err := sitesRfdiags.StartSiteRecording(ctx, siteId, &body)
@@ -484,7 +484,7 @@ rfdiagId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RfDiag{
     Duration:             models.ToPointer(180),
     Name:                 "name6",
-    Type:                 models.RfClientTypeEnum("client"),
+    Type:                 models.RfClientTypeEnum_CLIENT,
 }
 
 apiResponse, err := sitesRfdiags.UpdateSiteRfdiagRecording(ctx, siteId, rfdiagId, &body)

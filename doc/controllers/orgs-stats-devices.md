@@ -63,9 +63,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeWithAllEnum("ap")
+mType := models.DeviceTypeWithAllEnum_AP
 
-status := models.DeviceStatusEnum("all")
+status := models.DeviceStatusEnum_ALL
 
 
 

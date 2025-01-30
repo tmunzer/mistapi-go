@@ -193,7 +193,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-band := models.Dot11BandEnum("6")
+band := models.Dot11BandEnum_ENUM6
 
 apiResponse, err := sitesRRM.GetSiteCurrentRrmConsiderations(ctx, siteId, deviceId, band)
 if err != nil {
@@ -272,7 +272,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-band := models.Dot11BandEnum("6")
+band := models.Dot11BandEnum_ENUM6
 
 limit := 100
 

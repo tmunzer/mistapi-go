@@ -50,7 +50,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanRule{
-    Action:               models.ToPointer(models.WxlanRuleActionEnum("allow")),
+    Action:               models.ToPointer(models.WxlanRuleActionEnum_ALLOW),
     ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },
@@ -489,7 +489,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxruleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanRule{
-    Action:               models.ToPointer(models.WxlanRuleActionEnum("allow")),
+    Action:               models.ToPointer(models.WxlanRuleActionEnum_ALLOW),
     ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },

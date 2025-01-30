@@ -1,11 +1,11 @@
 
-# Response Site Device Upgrade Counts
+# Upgrade Site Devices Counts
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseSiteDeviceUpgradeCounts`
+`UpgradeSiteDevicesCounts`
 
 ## Fields
 
@@ -26,11 +26,11 @@
 
 ```json
 {
-  "download_requested": 102,
-  "downloaded": 222,
-  "failed": 130,
-  "reboot_in_progress": 52,
-  "rebooted": 112,
+  "download_requested": 212,
+  "downloaded": 112,
+  "failed": 240,
+  "reboot_in_progress": 94,
+  "rebooted": 2,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

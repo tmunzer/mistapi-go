@@ -58,7 +58,7 @@ body := models.Wlan{
     AllowMdns:                            models.ToPointer(false),
     AllowSsdp:                            models.ToPointer(false),
     ArpFilter:                            models.ToPointer(false),
-    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum("ordered")),
+    AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum_ORDERED),
     AuthServersNasId:                     models.NewOptional(models.ToPointer("5c5b350e0101-nas")),
     AuthServersNasIp:                     models.NewOptional(models.ToPointer("15.3.1.5")),
     AuthServersRetries:                   models.ToPointer(5),
@@ -84,7 +84,7 @@ body := models.Wlan{
     FastDot1xTimers:                      models.ToPointer(false),
     HideSsid:                             models.ToPointer(false),
     HostnameIe:                           models.ToPointer(false),
-    Interface:                            models.ToPointer(models.WlanInterfaceEnum("all")),
+    Interface:                            models.ToPointer(models.WlanInterfaceEnum_ALL),
     Isolation:                            models.ToPointer(false),
     L2Isolation:                          models.ToPointer(false),
     LegacyOverds:                         models.ToPointer(false),
@@ -106,7 +106,7 @@ body := models.Wlan{
         "msg.snapchat.com",
     },
     ReconnectClientsWhenRoamingMxcluster: models.ToPointer(false),
-    RoamMode:                             models.ToPointer(models.WlanRoamModeEnum("NONE")),
+    RoamMode:                             models.ToPointer(models.WlanRoamModeEnum_NONE),
     SleExcluded:                          models.ToPointer(false),
     Ssid:                                 "corporate",
     UseEapolV1:                           models.ToPointer(false),
@@ -514,8 +514,8 @@ body := models.Wlan{
     BandSteer:                            models.ToPointer(false),
     BandSteerForceBand5:                  models.ToPointer(false),
     Bands:                                []models.Dot11BandEnum{
-        models.Dot11BandEnum("24"),
-        models.Dot11BandEnum("5"),
+        models.Dot11BandEnum_ENUM24,
+        models.Dot11BandEnum_ENUM5,
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
@@ -526,7 +526,7 @@ body := models.Wlan{
                 RadiusGroups:         []string{
                     "teachers",
                 },
-                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum("same_ap")),
+                Scope:                models.ToPointer(models.WlanBonjourServicePropertiesScopeEnum_SAMEAP),
             },
         },
     }),
@@ -546,7 +546,7 @@ body := models.Wlan{
         LocalVlanIds:         []models.VlanIdWithVariable{
             models.VlanIdWithVariableContainer.FromNumber(1),
         },
-        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum("airespace-interface-name")),
+        Type:                 models.ToPointer(models.WlanDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
         Vlans:                map[string]string{
             "131": "default",
             "322": "fast,video",

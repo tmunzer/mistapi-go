@@ -401,7 +401,7 @@ body := models.Mxtunnel{
     HelloInterval:        models.NewOptional(models.ToPointer(60)),
     HelloRetries:         models.NewOptional(models.ToPointer(7)),
     Mtu:                  models.ToPointer(0),
-    Protocol:             models.ToPointer(models.MxtunnelProtocolEnum("udp")),
+    Protocol:             models.ToPointer(models.MxtunnelProtocolEnum_UDP),
 }
 
 apiResponse, err := orgsMxTunnels.UpdateOrgMxTunnel(ctx, orgId, mxtunnelId, &body)

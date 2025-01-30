@@ -72,7 +72,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteClientEventsCountDistinctEnum("type")
+distinct := models.SiteClientEventsCountDistinctEnum_ENUMTYPE
 
 
 
@@ -192,7 +192,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteClientSessionsCountDistinctEnum("mac")
+distinct := models.SiteClientSessionsCountDistinctEnum_MAC
 
 
 
@@ -316,7 +316,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteClientsCountDistinctEnum("hostname")
+distinct := models.SiteClientsCountDistinctEnum_HOSTNAME
 
 
 

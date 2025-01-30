@@ -52,8 +52,8 @@ body := models.SecintelProfile{
     Name:                 models.ToPointer("secintel-custom"),
     Profiles:             []models.SecintelProfileProfile{
         models.SecintelProfileProfile{
-            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
-            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
+            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum_ENUMDEFAULT),
+            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum_CC),
         },
     },
 }
@@ -318,8 +318,8 @@ body := models.SecintelProfile{
     Name:                 models.ToPointer("secintel-custom"),
     Profiles:             []models.SecintelProfileProfile{
         models.SecintelProfileProfile{
-            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum("default")),
-            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum("CC")),
+            Action:               models.ToPointer(models.SecintelProfileProfileActionEnum_ENUMDEFAULT),
+            Category:             models.ToPointer(models.SecintelProfileProfileCategoryEnum_CC),
         },
     },
 }

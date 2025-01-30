@@ -649,7 +649,7 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MspLicenseAction{
-    Op:                   models.MspLicenseActionOperationEnum("delete"),
+    Op:                   models.MspLicenseActionOperationEnum_DELETE,
     SubscriptionId:       models.ToPointer("SUB-0000144"),
 }
 

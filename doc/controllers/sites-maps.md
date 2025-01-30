@@ -230,8 +230,8 @@ body := models.Map{
             },
         },
     },
-    Type:                 models.ToPointer(models.MapTypeEnum("image")),
-    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    Type:                 models.ToPointer(models.MapTypeEnum_IMAGE),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum_ROADMAP)),
     WallPath:             models.ToPointer(models.MapWallPath{
         Coordinate:           models.ToPointer("string"),
         Nodes:                []models.MapNode{
@@ -511,7 +511,7 @@ json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
     ImportOrientation:    models.ToPointer(true),
-    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
+    VendorName:           models.MapImportJsonVendorNameEnum_EKAHAU,
 }
 
 apiResponse, err := sitesMaps.ImportSiteMaps(ctx, siteId, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -918,8 +918,8 @@ body := models.Map{
             },
         },
     },
-    Type:                 models.ToPointer(models.MapTypeEnum("image")),
-    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    Type:                 models.ToPointer(models.MapTypeEnum_IMAGE),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum_ROADMAP)),
     WallPath:             models.ToPointer(models.MapWallPath{
         Coordinate:           models.ToPointer("string"),
         Nodes:                []models.MapNode{

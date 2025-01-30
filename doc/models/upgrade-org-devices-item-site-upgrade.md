@@ -1,11 +1,11 @@
 
-# Org Device Upgrade Site Upgrade
+# Upgrade Org Devices Item Site Upgrade
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`OrgDeviceUpgradeSiteUpgrade`
+`UpgradeOrgDevicesItemSiteUpgrade`
 
 ## Fields
 

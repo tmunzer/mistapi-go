@@ -56,7 +56,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteOtherDeviceEventsCountDistinctEnum("mac")
+distinct := models.SiteOtherDeviceEventsCountDistinctEnum_MAC
 
 
 

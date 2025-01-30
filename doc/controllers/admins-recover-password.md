@@ -45,7 +45,7 @@ ctx := context.Background()
 body := models.Recover{
     Email:                "test@mistsys.com",
     Recaptcha:            models.ToPointer("string"),
-    RecaptchaFlavor:      models.ToPointer(models.RecaptchaFlavorEnum("hcaptcha")),
+    RecaptchaFlavor:      models.ToPointer(models.RecaptchaFlavorEnum_HCAPTCHA),
 }
 
 resp, err := adminsRecoverPassword.RecoverPassword(ctx, &body)

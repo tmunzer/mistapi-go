@@ -313,10 +313,10 @@ body := models.SynthetictestDevice{
     PingDetails:          models.ToPointer(false),
     PingSize:             models.ToPointer(56),
     PortId:               models.ToPointer("wan0"),
-    Protocol:             models.ToPointer(models.SynthetictestDeviceProtocolEnum("ping+traceroute")),
+    Protocol:             models.ToPointer(models.SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE),
     Tenant:               models.ToPointer("lan_network1"),
     TracerouteUdpPort:    models.ToPointer(33434),
-    Type:                 models.SynthetictestTypeEnum("radius"),
+    Type:                 models.SynthetictestTypeEnum_RADIUS,
     Url:                  models.ToPointer("https://www.example.com"),
     Username:             models.ToPointer("user"),
 }

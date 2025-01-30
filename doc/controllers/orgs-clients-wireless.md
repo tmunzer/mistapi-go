@@ -76,7 +76,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgClientsCountDistinctEnum("device")
+distinct := models.OrgClientsCountDistinctEnum_DEVICE
 
 
 
@@ -202,7 +202,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgClientSessionsCountDistinctEnum("device")
+distinct := models.OrgClientSessionsCountDistinctEnum_DEVICE
 
 
 

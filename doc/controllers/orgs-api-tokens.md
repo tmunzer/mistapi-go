@@ -53,8 +53,8 @@ body := models.OrgApitoken{
     Name:                 "org_token_xyz",
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum("admin"),
-            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
+            Scope:                models.PrivilegeOrgScopeEnum_ORG,
         },
     },
     SrcIps:               []string{
@@ -344,8 +344,8 @@ body := models.OrgApitoken{
     Name:                 "org_token_xyz",
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum("admin"),
-            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
+            Scope:                models.PrivilegeOrgScopeEnum_ORG,
         },
     },
 }

@@ -109,7 +109,7 @@ json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
     ImportOrientation:    models.ToPointer(true),
-    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
+    VendorName:           models.MapImportJsonVendorNameEnum_EKAHAU,
 }
 
 resp, err := installer.AddInstallerDeviceImage(ctx, orgId, imageName, deviceMac, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -298,8 +298,8 @@ body := models.Map{
             },
         },
     },
-    Type:                 models.ToPointer(models.MapTypeEnum("image")),
-    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum("roadmap"))),
+    Type:                 models.ToPointer(models.MapTypeEnum_IMAGE),
+    View:                 models.NewOptional(models.ToPointer(models.MapViewEnum_ROADMAP)),
     WallPath:             models.ToPointer(models.MapWallPath{
         Coordinate:           models.ToPointer("string"),
         Nodes:                []models.MapNode{
@@ -413,7 +413,7 @@ body := models.VirtualChassisConfig{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("master"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_MASTER,
         },
         models.VirtualChassisConfigMember{
             Mac:                  "8396cd006c8c",
@@ -421,7 +421,7 @@ body := models.VirtualChassisConfig{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("backup"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_BACKUP,
         },
         models.VirtualChassisConfigMember{
             Mac:                  "8396cd00888c",
@@ -429,7 +429,7 @@ body := models.VirtualChassisConfig{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("linecard"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_LINECARD,
         },
     },
 }
@@ -1174,7 +1174,7 @@ json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
     ImportOrientation:    models.ToPointer(true),
-    VendorName:           models.MapImportJsonVendorNameEnum("ekahau"),
+    VendorName:           models.MapImportJsonVendorNameEnum_EKAHAU,
 }
 
 apiResponse, err := installer.ImportInstallerMap(ctx, orgId, siteName, &autoDeviceprofileAssignment, nil, nil, &json)
@@ -1321,7 +1321,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 apiResponse, err := installer.ListInstallerDeviceProfiles(ctx, orgId, &mType)
 if err != nil {
@@ -2108,7 +2108,7 @@ body := models.Map{
     OriginX:              models.ToPointer(35),
     OriginY:              models.ToPointer(60),
     Ppm:                  models.ToPointer(float64(40.94)),
-    Type:                 models.ToPointer(models.MapTypeEnum("image")),
+    Type:                 models.ToPointer(models.MapTypeEnum_IMAGE),
     UseAutoOrientation:   models.ToPointer(false),
     UseAutoPlacement:     models.ToPointer(false),
     Width:                models.ToPointer(1250),
@@ -2237,7 +2237,7 @@ body := models.VirtualChassisUpdate{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum_LINECARD),
         },
         models.VirtualChassisMemberUpdate{
             Mac:                  models.ToPointer("8396cd00777c"),
@@ -2246,10 +2246,10 @@ body := models.VirtualChassisUpdate{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum_LINECARD),
         },
     },
-    Op:                   models.ToPointer(models.VirtualChassisUpdateOpEnum("add")),
+    Op:                   models.ToPointer(models.VirtualChassisUpdateOpEnum_ADD),
 }
 
 apiResponse, err := installer.UpdateInstallerVirtualChassisMember(ctx, orgId, fpc0Mac, &body)

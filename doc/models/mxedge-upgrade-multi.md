@@ -26,6 +26,10 @@
 
 ```json
 {
+  "canary_phases": [
+    241,
+    242
+  ],
   "channel": "stable",
   "max_failure_percentage": 5,
   "mxedge_ids": [
@@ -43,10 +47,6 @@
       "key2": "val2"
     }
   },
-  "canary_phases": [
-    241,
-    242
-  ],
   "distro": "distro4",
   "exampleAdditionalProperty": {
     "key1": "val1",

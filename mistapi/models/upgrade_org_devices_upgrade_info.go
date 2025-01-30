@@ -6,28 +6,28 @@ import (
     "github.com/google/uuid"
 )
 
-// UpgradeOrgDeviceUpgrade represents a UpgradeOrgDeviceUpgrade struct.
-type UpgradeOrgDeviceUpgrade struct {
+// UpgradeOrgDevicesUpgradeInfo represents a UpgradeOrgDevicesUpgradeInfo struct.
+type UpgradeOrgDevicesUpgradeInfo struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID               `json:"id,omitempty"`
     StartTime            *int                     `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
-    Status               *DeviceUpgradeStatusEnum `json:"status,omitempty"`
-    Targets              *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
+    Status               *UpgradeDeviceStatusEnum `json:"status,omitempty"`
+    Targets              *UpgradeDevicesTargetIds `json:"targets,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for UpgradeOrgDeviceUpgrade,
+// String implements the fmt.Stringer interface for UpgradeOrgDevicesUpgradeInfo,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (u UpgradeOrgDeviceUpgrade) String() string {
+func (u UpgradeOrgDevicesUpgradeInfo) String() string {
     return fmt.Sprintf(
-    	"UpgradeOrgDeviceUpgrade[Id=%v, StartTime=%v, Status=%v, Targets=%v, AdditionalProperties=%v]",
+    	"UpgradeOrgDevicesUpgradeInfo[Id=%v, StartTime=%v, Status=%v, Targets=%v, AdditionalProperties=%v]",
     	u.Id, u.StartTime, u.Status, u.Targets, u.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for UpgradeOrgDeviceUpgrade.
-// It customizes the JSON marshaling process for UpgradeOrgDeviceUpgrade objects.
-func (u UpgradeOrgDeviceUpgrade) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for UpgradeOrgDevicesUpgradeInfo.
+// It customizes the JSON marshaling process for UpgradeOrgDevicesUpgradeInfo objects.
+func (u UpgradeOrgDevicesUpgradeInfo) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(u.AdditionalProperties,
@@ -37,8 +37,8 @@ func (u UpgradeOrgDeviceUpgrade) MarshalJSON() (
     return json.Marshal(u.toMap())
 }
 
-// toMap converts the UpgradeOrgDeviceUpgrade object to a map representation for JSON marshaling.
-func (u UpgradeOrgDeviceUpgrade) toMap() map[string]any {
+// toMap converts the UpgradeOrgDevicesUpgradeInfo object to a map representation for JSON marshaling.
+func (u UpgradeOrgDevicesUpgradeInfo) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.Id != nil {
@@ -56,10 +56,10 @@ func (u UpgradeOrgDeviceUpgrade) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for UpgradeOrgDeviceUpgrade.
-// It customizes the JSON unmarshaling process for UpgradeOrgDeviceUpgrade objects.
-func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
-    var temp tempUpgradeOrgDeviceUpgrade
+// UnmarshalJSON implements the json.Unmarshaler interface for UpgradeOrgDevicesUpgradeInfo.
+// It customizes the JSON unmarshaling process for UpgradeOrgDevicesUpgradeInfo objects.
+func (u *UpgradeOrgDevicesUpgradeInfo) UnmarshalJSON(input []byte) error {
+    var temp tempUpgradeOrgDevicesUpgradeInfo
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -77,10 +77,10 @@ func (u *UpgradeOrgDeviceUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tempUpgradeOrgDeviceUpgrade is a temporary struct used for validating the fields of UpgradeOrgDeviceUpgrade.
-type tempUpgradeOrgDeviceUpgrade  struct {
+// tempUpgradeOrgDevicesUpgradeInfo is a temporary struct used for validating the fields of UpgradeOrgDevicesUpgradeInfo.
+type tempUpgradeOrgDevicesUpgradeInfo  struct {
     Id        *uuid.UUID               `json:"id,omitempty"`
     StartTime *int                     `json:"start_time,omitempty"`
-    Status    *DeviceUpgradeStatusEnum `json:"status,omitempty"`
-    Targets   *UpgradeOrgDeviceTargets `json:"targets,omitempty"`
+    Status    *UpgradeDeviceStatusEnum `json:"status,omitempty"`
+    Targets   *UpgradeDevicesTargetIds `json:"targets,omitempty"`
 }

@@ -412,7 +412,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2412.1.26")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2412.1.28")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {

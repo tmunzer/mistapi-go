@@ -302,7 +302,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SuppressedAlarmScopeEnum("site")
+scope := models.SuppressedAlarmScopeEnum_SITE
 
 apiResponse, err := orgsAlarmTemplates.ListOrgSuppressedAlarms(ctx, orgId, &scope)
 if err != nil {
@@ -382,7 +382,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.SuppressedAlarm{
     Duration:             models.ToPointer(float64(3600)),
     ScheduledTime:        models.ToPointer(1678232980),
-    Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum("org")),
+    Scope:                models.ToPointer(models.SuppressedAlarmScopeEnum_ORG),
 }
 
 resp, err := orgsAlarmTemplates.SuppressOrgAlarm(ctx, orgId, &body)

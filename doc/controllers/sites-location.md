@@ -175,7 +175,7 @@ mapId := "00000000-0000-0000-0000-000000000000"
 
 duration := "10m"
 
-resolution := models.ResolutionEnum("default")
+resolution := models.ResolutionEnum_ENUMDEFAULT
 
 
 

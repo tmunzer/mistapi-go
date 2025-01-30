@@ -190,7 +190,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsClearBgp{
     Neighbor:             "all",
-    Type:                 models.UtilsClearBgpTypeEnum("in"),
+    Type:                 models.UtilsClearBgpTypeEnum_IN,
     Vrf:                  models.ToPointer("TestVrf"),
 }
 
@@ -529,7 +529,7 @@ body := models.UtilsShowRoute{
     Interval:             models.ToPointer(0),
     Neighbor:             models.ToPointer("192.168.4.1"),
     Prefix:               models.ToPointer("192.168.0.5/30"),
-    Protocol:             models.ToPointer(models.UtilsShowRouteProtocolEnum("bgp")),
+    Protocol:             models.ToPointer(models.UtilsShowRouteProtocolEnum_BGP),
     Route:                models.ToPointer("advertised"),
     Vrf:                  models.ToPointer("default"),
 }
@@ -603,7 +603,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowSession{
-    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
     ServiceName:          models.ToPointer("any"),
 }
 
@@ -1014,7 +1014,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsShowServicePath{
-    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
     ServiceName:          models.ToPointer("any"),
 }
 

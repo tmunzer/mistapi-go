@@ -51,8 +51,8 @@ body := models.SsoRoleMsp{
     Name:                 "name6",
     Privileges:           []models.PrivilegeMsp{
         models.PrivilegeMsp{
-            Role:                 models.PrivilegeMspRoleEnum("admin"),
-            Scope:                models.PrivilegeMspScopeEnum("org"),
+            Role:                 models.PrivilegeMspRoleEnum_ADMIN,
+            Scope:                models.PrivilegeMspScopeEnum_ORG,
         },
     },
 }
@@ -240,8 +240,8 @@ body := models.SsoRoleMsp{
     Name:                 "name6",
     Privileges:           []models.PrivilegeMsp{
         models.PrivilegeMsp{
-            Role:                 models.PrivilegeMspRoleEnum("admin"),
-            Scope:                models.PrivilegeMspScopeEnum("org"),
+            Role:                 models.PrivilegeMspRoleEnum_ADMIN,
+            Scope:                models.PrivilegeMspScopeEnum_ORG,
         },
     },
 }

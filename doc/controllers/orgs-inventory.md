@@ -152,9 +152,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
-distinct := models.InventoryCountDistinctEnum("model")
+distinct := models.InventoryCountDistinctEnum_MODEL
 
 limit := 100
 
@@ -386,7 +386,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -625,7 +625,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -742,7 +742,7 @@ body := models.InventoryUpdate{
     },
     Managed:              models.ToPointer(false),
     NoReassign:           models.ToPointer(false),
-    Op:                   models.InventoryUpdateOperationEnum("assign"),
+    Op:                   models.InventoryUpdateOperationEnum_ASSIGN,
     SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
 }
 

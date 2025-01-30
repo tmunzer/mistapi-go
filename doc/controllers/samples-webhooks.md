@@ -229,7 +229,7 @@ body := models.WebhookClientInfo{
             Timestamp:            models.ToPointer(float64(1703003296)),
         },
     },
-    Topic:                models.ToPointer(models.WebhookClientInfoTopicEnum("client-info")),
+    Topic:                models.ToPointer(models.WebhookClientInfoTopicEnum_CLIENTINFO),
 }
 
 resp, err := samplesWebhooks.ClientInfo(ctx, &body)
@@ -466,8 +466,8 @@ body := models.WebhookDeviceEvents{
             ApName:               models.ToPointer("string"),
             AuditId:              models.ToPointer(uuid.MustParse("78c04fa6-cfb4-46a0-9aa5-3681ba4f3897")),
             DeviceName:           "string",
-            DeviceType:           models.WebhookDeviceEventsEventDeviceTypeEnum("ap"),
-            EvType:               models.WebhookDeviceEventsEventEvTypeEnum("notice"),
+            DeviceType:           models.WebhookDeviceEventsEventDeviceTypeEnum_AP,
+            EvType:               models.WebhookDeviceEventsEventEvTypeEnum_NOTICE,
             Mac:                  "string",
             Reason:               models.ToPointer("string"),
             SiteName:             models.ToPointer("string"),
@@ -1223,7 +1223,7 @@ body := models.WebhookSdkclientScanData{
             ScanData:             []models.WebhookSdkclientScanDataEventScanDataItem{
                 models.WebhookSdkclientScanDataEventScanDataItem{
                     Ap:                   "5c5b352f587e",
-                    Band:                 models.ScanDataItemBandEnum("2.4"),
+                    Band:                 models.ScanDataItemBandEnum_ENUM24,
                     Bssid:                "5c5b352b51b4",
                     Channel:              11,
                     Rssi:                 float64(-87),
@@ -1232,7 +1232,7 @@ body := models.WebhookSdkclientScanData{
                 },
                 models.WebhookSdkclientScanDataEventScanDataItem{
                     Ap:                   "5c5b352f587e",
-                    Band:                 models.ScanDataItemBandEnum("5"),
+                    Band:                 models.ScanDataItemBandEnum_ENUM5,
                     Bssid:                "5c5b352b51b8",
                     Channel:              36,
                     Rssi:                 float64(-75),
@@ -1343,7 +1343,7 @@ body := models.WebhookZone{
             MapId:                uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
             Name:                 models.ToPointer("string"),
             Timestamp:            0,
-            Trigger:              models.WebhookZoneEventTriggerEnum("enter"),
+            Trigger:              models.WebhookZoneEventTriggerEnum_ENTER,
             Type:                 "string",
             ZoneId:               uuid.MustParse("4495020a-236f-46e0-9453-e3f9cc6476f4"),
         },

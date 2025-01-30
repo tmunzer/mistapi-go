@@ -63,7 +63,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgLogsCountDistinctEnum("admin_name")
+distinct := models.OrgLogsCountDistinctEnum_ADMINNAME
 
 
 

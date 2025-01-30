@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
     MimeWhitelist:        []string{
     },
     Name:                 "av-custom",
@@ -324,7 +324,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 avprofilesId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum("permit")),
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
     MimeWhitelist:        []string{
     },
     Name:                 "av-custom",

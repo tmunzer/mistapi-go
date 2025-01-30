@@ -57,7 +57,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteWanClientEventsDistinctEnum("type")
+distinct := models.SiteWanClientEventsDistinctEnum_ENUMTYPE
 
 
 
@@ -149,7 +149,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteWanClientsCountDistinctEnum("mac")
+distinct := models.SiteWanClientsCountDistinctEnum_MAC
 
 
 

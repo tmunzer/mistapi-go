@@ -177,7 +177,7 @@ mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UseAutoApValues{
     Accept:               models.ToPointer(false),
-    For:                  models.ToPointer(models.UseAutoApValuesForEnum("placement")),
+    For:                  models.ToPointer(models.UseAutoApValuesForEnum_PLACEMENT),
     AdditionalProperties: map[string]interface{}{
         "device_macs": interface{}("string"),
     },

@@ -15,10 +15,10 @@ type ResponseUpgradeOrgDevices struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                 `json:"id,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
-    Strategy             *DeviceUpgradeStrategyEnum `json:"strategy,omitempty"`
+    Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     // version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
-    Upgrades             []ResponseUpgradeOrgDevice `json:"upgrades,omitempty"`
+    Upgrades             []UpgradeOrgDevicesUpgrade `json:"upgrades,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
@@ -95,7 +95,7 @@ type tempResponseUpgradeOrgDevices  struct {
     EnableP2p     *bool                      `json:"enable_p2p,omitempty"`
     Force         *bool                      `json:"force,omitempty"`
     Id            *uuid.UUID                 `json:"id,omitempty"`
-    Strategy      *DeviceUpgradeStrategyEnum `json:"strategy,omitempty"`
+    Strategy      *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     TargetVersion *string                    `json:"target_version,omitempty"`
-    Upgrades      []ResponseUpgradeOrgDevice `json:"upgrades,omitempty"`
+    Upgrades      []UpgradeOrgDevicesUpgrade `json:"upgrades,omitempty"`
 }

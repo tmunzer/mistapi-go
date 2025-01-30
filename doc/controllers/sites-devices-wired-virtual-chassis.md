@@ -68,7 +68,7 @@ body := models.VirtualChassisConfig{
             VcPorts:              []string{
                 "xe-0/1/0",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("master"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_MASTER,
         },
         models.VirtualChassisConfigMember{
             Mac:                  "8396cd006c8c",
@@ -76,14 +76,14 @@ body := models.VirtualChassisConfig{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("backup"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_BACKUP,
         },
         models.VirtualChassisConfigMember{
             Mac:                  "8396cd00888c",
             VcPorts:              []string{
                 "xe-0/1/0",
             },
-            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum("linecard"),
+            VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_LINECARD,
         },
     },
 }
@@ -482,7 +482,7 @@ body := models.VirtualChassisPort{
             },
         },
     },
-    Op:                   models.VirtualChassisPortOperationEnum("delete"),
+    Op:                   models.VirtualChassisPortOperationEnum_DELETE,
 }
 
 resp, err := sitesDevicesWiredVirtualChassis.SetSiteVcPort(ctx, siteId, deviceId, &body)
@@ -610,7 +610,7 @@ body := models.VirtualChassisUpdate{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum_LINECARD),
         },
         models.VirtualChassisMemberUpdate{
             Mac:                  models.ToPointer("8396cd00777c"),
@@ -619,10 +619,10 @@ body := models.VirtualChassisUpdate{
                 "xe-0/1/0",
                 "xe-0/1/1",
             },
-            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum("linecard")),
+            VcRole:               models.ToPointer(models.VirtualChassisMemberUpdateVcRoleEnum_LINECARD),
         },
     },
-    Op:                   models.ToPointer(models.VirtualChassisUpdateOpEnum("add")),
+    Op:                   models.ToPointer(models.VirtualChassisUpdateOpEnum_ADD),
 }
 
 resp, err := sitesDevicesWiredVirtualChassis.UpdateSiteVirtualChassisMember(ctx, siteId, deviceId, &body)

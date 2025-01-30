@@ -57,7 +57,7 @@ body := models.Psk{
     Name:                   "string",
     Passphrase:             "stringst",
     Ssid:                   "string",
-    Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
+    Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
     VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(1)),
 }
 
@@ -405,7 +405,7 @@ body := []models.Psk{
         NotifyExpiry:           models.ToPointer(false),
         Passphrase:             "passphrase6",
         Ssid:                   "ssid6",
-        Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
+        Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
     },
 }
 
@@ -490,7 +490,7 @@ body := models.Psk{
     Name:                   "string",
     Passphrase:             "stringst",
     Ssid:                   "string",
-    Usage:                  models.ToPointer(models.PskUsageEnum("multi")),
+    Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
     VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(1)),
 }
 

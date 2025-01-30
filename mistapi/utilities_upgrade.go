@@ -23,13 +23,13 @@ func NewUtilitiesUpgrade(baseController baseController) *UtilitiesUpgrade {
 }
 
 // ListOrgDeviceUpgrades takes context, orgId as parameters and
-// returns an models.ApiResponse with []models.OrgDeviceUpgrade data and
+// returns an models.ApiResponse with []models.UpgradeOrgDevicesItem data and
 // an error if there was an issue with the request or response.
 // Get List of Org multiple devces upgrades
 func (u *UtilitiesUpgrade) ListOrgDeviceUpgrades(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[[]models.OrgDeviceUpgrade],
+    models.ApiResponse[[]models.UpgradeOrgDevicesItem],
     error) {
     req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/upgrade")
     req.AppendTemplateParams(orgId)
@@ -52,13 +52,13 @@ func (u *UtilitiesUpgrade) ListOrgDeviceUpgrades(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.OrgDeviceUpgrade
+    var result []models.UpgradeOrgDevicesItem
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.OrgDeviceUpgrade](decoder)
+    result, err = utilities.DecodeResults[[]models.UpgradeOrgDevicesItem](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -401,13 +401,13 @@ func (u *UtilitiesUpgrade) GetOrgMxEdgeUpgrade(
 }
 
 // ListOrgSsrUpgrades takes context, orgId as parameters and
-// returns an models.ApiResponse with []models.SsrUpgradeResponse data and
+// returns an models.ApiResponse with []models.ResponseSsrUpgrade data and
 // an error if there was an issue with the request or response.
 // Get List of Org SSR Upgrades
 func (u *UtilitiesUpgrade) ListOrgSsrUpgrades(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[[]models.SsrUpgradeResponse],
+    models.ApiResponse[[]models.ResponseSsrUpgrade],
     error) {
     req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssr/upgrade")
     req.AppendTemplateParams(orgId)
@@ -430,25 +430,25 @@ func (u *UtilitiesUpgrade) ListOrgSsrUpgrades(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.SsrUpgradeResponse
+    var result []models.ResponseSsrUpgrade
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.SsrUpgradeResponse](decoder)
+    result, err = utilities.DecodeResults[[]models.ResponseSsrUpgrade](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // UpgradeOrgSsrs takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.SsrUpgradeResponse data and
+// returns an models.ApiResponse with models.ResponseSsrUpgrade data and
 // an error if there was an issue with the request or response.
 // Upgrade Org SSRs
 func (u *UtilitiesUpgrade) UpgradeOrgSsrs(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.SsrUpgradeMulti) (
-    models.ApiResponse[models.SsrUpgradeResponse],
+    models.ApiResponse[models.ResponseSsrUpgrade],
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/ssr/upgrade")
     req.AppendTemplateParams(orgId)
@@ -475,13 +475,13 @@ func (u *UtilitiesUpgrade) UpgradeOrgSsrs(
         req.Json(body)
     }
     
-    var result models.SsrUpgradeResponse
+    var result models.ResponseSsrUpgrade
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.SsrUpgradeResponse](decoder)
+    result, err = utilities.DecodeResults[models.ResponseSsrUpgrade](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -568,14 +568,14 @@ func (u *UtilitiesUpgrade) ListOrgAvailableSsrVersions(
 }
 
 // ListSiteDeviceUpgrades takes context, siteId, status as parameters and
-// returns an models.ApiResponse with []models.ResponseSiteDeviceUpgrade data and
+// returns an models.ApiResponse with []models.ResponseSiteDeviceUpgradesItem data and
 // an error if there was an issue with the request or response.
 // Get all upgrades for site
 func (u *UtilitiesUpgrade) ListSiteDeviceUpgrades(
     ctx context.Context,
     siteId uuid.UUID,
-    status *models.DeviceUpgradeStatusEnum) (
-    models.ApiResponse[[]models.ResponseSiteDeviceUpgrade],
+    status *models.UpgradeDeviceStatusEnum) (
+    models.ApiResponse[[]models.ResponseSiteDeviceUpgradesItem],
     error) {
     req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/upgrade")
     req.AppendTemplateParams(siteId)
@@ -601,13 +601,13 @@ func (u *UtilitiesUpgrade) ListSiteDeviceUpgrades(
         req.QueryParam("status", *status)
     }
     
-    var result []models.ResponseSiteDeviceUpgrade
+    var result []models.ResponseSiteDeviceUpgradesItem
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.ResponseSiteDeviceUpgrade](decoder)
+    result, err = utilities.DecodeResults[[]models.ResponseSiteDeviceUpgradesItem](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -658,14 +658,14 @@ func (u *UtilitiesUpgrade) UpgradeSiteDevices(
 }
 
 // GetSiteDeviceUpgrade takes context, siteId, upgradeId as parameters and
-// returns an models.ApiResponse with models.ResponseDeviceUpgrade data and
+// returns an models.ApiResponse with models.ResponseSiteDeviceUpgrade data and
 // an error if there was an issue with the request or response.
 // Get Site Device Upgrade
 func (u *UtilitiesUpgrade) GetSiteDeviceUpgrade(
     ctx context.Context,
     siteId uuid.UUID,
     upgradeId uuid.UUID) (
-    models.ApiResponse[models.ResponseDeviceUpgrade],
+    models.ApiResponse[models.ResponseSiteDeviceUpgrade],
     error) {
     req := u.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/upgrade/%v")
     req.AppendTemplateParams(siteId, upgradeId)
@@ -688,13 +688,13 @@ func (u *UtilitiesUpgrade) GetSiteDeviceUpgrade(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.ResponseDeviceUpgrade
+    var result models.ResponseSiteDeviceUpgrade
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ResponseDeviceUpgrade](decoder)
+    result, err = utilities.DecodeResults[models.ResponseSiteDeviceUpgrade](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -789,7 +789,7 @@ func (u *UtilitiesUpgrade) ListSiteAvailableDeviceVersions(
 }
 
 // UpgradeDevice takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with models.ResponseUpgradeDevice data and
+// returns an models.ApiResponse with models.ResponseDeviceUpgrade data and
 // an error if there was an issue with the request or response.
 // Device Upgrade
 func (u *UtilitiesUpgrade) UpgradeDevice(
@@ -797,7 +797,7 @@ func (u *UtilitiesUpgrade) UpgradeDevice(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.DeviceUpgrade) (
-    models.ApiResponse[models.ResponseUpgradeDevice],
+    models.ApiResponse[models.ResponseDeviceUpgrade],
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/upgrade")
     req.AppendTemplateParams(siteId, deviceId)
@@ -824,13 +824,13 @@ func (u *UtilitiesUpgrade) UpgradeDevice(
         req.Json(body)
     }
     
-    var result models.ResponseUpgradeDevice
+    var result models.ResponseDeviceUpgrade
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ResponseUpgradeDevice](decoder)
+    result, err = utilities.DecodeResults[models.ResponseDeviceUpgrade](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -876,7 +876,7 @@ func (u *UtilitiesUpgrade) GetSiteSsrUpgrade(
 }
 
 // UpgradeSsr takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with models.SsrUpgradeResponse data and
+// returns an models.ApiResponse with models.ResponseSsrUpgrade data and
 // an error if there was an issue with the request or response.
 // Upgrade Site SSR device
 func (u *UtilitiesUpgrade) UpgradeSsr(
@@ -884,7 +884,7 @@ func (u *UtilitiesUpgrade) UpgradeSsr(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.SsrUpgrade) (
-    models.ApiResponse[models.SsrUpgradeResponse],
+    models.ApiResponse[models.ResponseSsrUpgrade],
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/ssr/%v/upgrade")
     req.AppendTemplateParams(siteId, deviceId)
@@ -911,12 +911,12 @@ func (u *UtilitiesUpgrade) UpgradeSsr(
         req.Json(body)
     }
     
-    var result models.SsrUpgradeResponse
+    var result models.ResponseSsrUpgrade
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.SsrUpgradeResponse](decoder)
+    result, err = utilities.DecodeResults[models.ResponseSsrUpgrade](decoder)
     return models.NewApiResponse(result, resp), err
 }

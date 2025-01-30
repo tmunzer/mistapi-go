@@ -51,9 +51,9 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTag{
-    Match:                models.ToPointer(models.WxlanTagMatchEnum("app")),
+    Match:                models.ToPointer(models.WxlanTagMatchEnum_APP),
     Name:                 "match app",
-    Type:                 models.WxlanTagTypeEnum("match"),
+    Type:                 models.WxlanTagTypeEnum_MATCH,
     Values:               []string{
         "gmail",
         "dropbox",
@@ -521,9 +521,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wxtagId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.WxlanTag{
-    Match:                models.ToPointer(models.WxlanTagMatchEnum("app")),
+    Match:                models.ToPointer(models.WxlanTagMatchEnum_APP),
     Name:                 "match app",
-    Type:                 models.WxlanTagTypeEnum("match"),
+    Type:                 models.WxlanTagTypeEnum_MATCH,
     Values:               []string{
         "gmail",
         "dropbox",

@@ -74,7 +74,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgDevicesEventsCountDistinctEnum("model")
+distinct := models.OrgDevicesEventsCountDistinctEnum_MODEL
 
 
 
@@ -176,7 +176,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -294,7 +294,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgDevicesCountDistinctEnum("model")
+distinct := models.OrgDevicesCountDistinctEnum_MODEL
 
 
 
@@ -322,7 +322,7 @@ ipAddress := "192.168.1.1"
 
 
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -639,7 +639,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-deviceType := models.DeviceTypeWithAllEnum("ap")
+deviceType := models.DeviceTypeWithAllEnum_AP
 
 
 
@@ -747,7 +747,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -1000,7 +1000,7 @@ ipAddress := "192.168.1.1"
 
 
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 limit := 100
 

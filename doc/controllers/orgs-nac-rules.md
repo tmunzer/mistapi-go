@@ -49,18 +49,18 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacRule{
-    Action:               models.NacRuleActionEnum("allow"),
+    Action:               models.NacRuleActionEnum_ALLOW,
     ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5\"",
     },
     Matching:             models.ToPointer(models.NacRuleMatching{
-        AuthType:             models.ToPointer(models.NacRuleMatchingAuthTypeEnum("eap-tls")),
+        AuthType:             models.ToPointer(models.NacRuleMatchingAuthTypeEnum_EAPTLS),
         Nactags:              []string{
             "041d5d36-716c-4cfb-4988-3857c6aa14a2",
             "a809a97f-d599-f812-eb8c-c3f84aabf6ba",
         },
         PortTypes:            []models.NacRuleMatchingPortTypeEnum{
-            models.NacRuleMatchingPortTypeEnum("wired"),
+            models.NacRuleMatchingPortTypeEnum_WIRED,
         },
         SiteIds:              []uuid.UUID{
             uuid.MustParse("bb19fc3e-4124-4b57-80d9-c3f6edce47c4"),
@@ -347,7 +347,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacruleId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacRule{
-    Action:               models.NacRuleActionEnum("allow"),
+    Action:               models.NacRuleActionEnum_ALLOW,
     ApplyTags:            []string{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },

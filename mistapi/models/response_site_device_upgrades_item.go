@@ -8,9 +8,9 @@ import (
     "strings"
 )
 
-// ResponseSiteDeviceUpgrade represents a ResponseSiteDeviceUpgrade struct.
-type ResponseSiteDeviceUpgrade struct {
-    Counts               *UpgradeDevicesTargetIds   `json:"counts,omitempty"`
+// ResponseSiteDeviceUpgradesItem represents a ResponseSiteDeviceUpgradesItem struct.
+type ResponseSiteDeviceUpgradesItem struct {
+    Counts               *UpgradeSiteDevicesCounts  `json:"counts,omitempty"`
     // current canary or rrm phase in progress
     CurrentPhase         *int                       `json:"current_phase,omitempty"`
     // whether to allow local AP-to-AP FW upgrade
@@ -38,17 +38,17 @@ type ResponseSiteDeviceUpgrade struct {
     AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for ResponseSiteDeviceUpgrade,
+// String implements the fmt.Stringer interface for ResponseSiteDeviceUpgradesItem,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseSiteDeviceUpgrade) String() string {
+func (r ResponseSiteDeviceUpgradesItem) String() string {
     return fmt.Sprintf(
-    	"ResponseSiteDeviceUpgrade[Counts=%v, CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, UpgradePlan=%v, AdditionalProperties=%v]",
+    	"ResponseSiteDeviceUpgradesItem[Counts=%v, CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, UpgradePlan=%v, AdditionalProperties=%v]",
     	r.Counts, r.CurrentPhase, r.EnableP2p, r.Force, r.Id, r.MaxFailurePercentage, r.MaxFailures, r.RebootAt, r.StartTime, r.Status, r.Strategy, r.TargetVersion, r.UpgradePlan, r.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgrade.
-// It customizes the JSON marshaling process for ResponseSiteDeviceUpgrade objects.
-func (r ResponseSiteDeviceUpgrade) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgradesItem.
+// It customizes the JSON marshaling process for ResponseSiteDeviceUpgradesItem objects.
+func (r ResponseSiteDeviceUpgradesItem) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
@@ -58,8 +58,8 @@ func (r ResponseSiteDeviceUpgrade) MarshalJSON() (
     return json.Marshal(r.toMap())
 }
 
-// toMap converts the ResponseSiteDeviceUpgrade object to a map representation for JSON marshaling.
-func (r ResponseSiteDeviceUpgrade) toMap() map[string]any {
+// toMap converts the ResponseSiteDeviceUpgradesItem object to a map representation for JSON marshaling.
+func (r ResponseSiteDeviceUpgradesItem) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Counts != nil {
@@ -102,10 +102,10 @@ func (r ResponseSiteDeviceUpgrade) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteDeviceUpgrade.
-// It customizes the JSON unmarshaling process for ResponseSiteDeviceUpgrade objects.
-func (r *ResponseSiteDeviceUpgrade) UnmarshalJSON(input []byte) error {
-    var temp tempResponseSiteDeviceUpgrade
+// UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteDeviceUpgradesItem.
+// It customizes the JSON unmarshaling process for ResponseSiteDeviceUpgradesItem objects.
+func (r *ResponseSiteDeviceUpgradesItem) UnmarshalJSON(input []byte) error {
+    var temp tempResponseSiteDeviceUpgradesItem
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -136,9 +136,9 @@ func (r *ResponseSiteDeviceUpgrade) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tempResponseSiteDeviceUpgrade is a temporary struct used for validating the fields of ResponseSiteDeviceUpgrade.
-type tempResponseSiteDeviceUpgrade  struct {
-    Counts               *UpgradeDevicesTargetIds   `json:"counts,omitempty"`
+// tempResponseSiteDeviceUpgradesItem is a temporary struct used for validating the fields of ResponseSiteDeviceUpgradesItem.
+type tempResponseSiteDeviceUpgradesItem  struct {
+    Counts               *UpgradeSiteDevicesCounts  `json:"counts,omitempty"`
     CurrentPhase         *int                       `json:"current_phase,omitempty"`
     EnableP2p            *bool                      `json:"enable_p2p,omitempty"`
     Force                *bool                      `json:"force,omitempty"`
@@ -153,10 +153,10 @@ type tempResponseSiteDeviceUpgrade  struct {
     UpgradePlan          *interface{}               `json:"upgrade_plan,omitempty"`
 }
 
-func (r *tempResponseSiteDeviceUpgrade) validate() error {
+func (r *tempResponseSiteDeviceUpgradesItem) validate() error {
     var errs []string
     if r.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `response_site_device_upgrade`")
+        errs = append(errs, "required field `id` is missing for type `response_site_device_upgrades_item`")
     }
     if len(errs) == 0 {
         return nil

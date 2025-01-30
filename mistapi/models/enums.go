@@ -713,49 +713,6 @@ const (
     DeviceTypeWithAllEnum_ENUMSWITCH DeviceTypeWithAllEnum = "switch"
 )
 
-// DeviceUpgradeRrmMeshUpgradeEnum is a string enum.
-// For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
-type DeviceUpgradeRrmMeshUpgradeEnum string
-
-const (
-    DeviceUpgradeRrmMeshUpgradeEnum_PARALLEL   DeviceUpgradeRrmMeshUpgradeEnum = "parallel"
-    DeviceUpgradeRrmMeshUpgradeEnum_SEQUENTIAL DeviceUpgradeRrmMeshUpgradeEnum = "sequential"
-)
-
-// DeviceUpgradeRrmNodeOrderEnum is a string enum.
-// For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
-type DeviceUpgradeRrmNodeOrderEnum string
-
-const (
-    DeviceUpgradeRrmNodeOrderEnum_CENTERTOFRINGE DeviceUpgradeRrmNodeOrderEnum = "center_to_fringe"
-    DeviceUpgradeRrmNodeOrderEnum_FRINGETOCENTER DeviceUpgradeRrmNodeOrderEnum = "fringe_to_center"
-)
-
-// DeviceUpgradeStatusEnum is a string enum.
-// status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
-type DeviceUpgradeStatusEnum string
-
-const (
-    DeviceUpgradeStatusEnum_CANCELLED   DeviceUpgradeStatusEnum = "cancelled"
-    DeviceUpgradeStatusEnum_COMPLETED   DeviceUpgradeStatusEnum = "completed"
-    DeviceUpgradeStatusEnum_CREATED     DeviceUpgradeStatusEnum = "created"
-    DeviceUpgradeStatusEnum_DOWNLOADED  DeviceUpgradeStatusEnum = "downloaded"
-    DeviceUpgradeStatusEnum_DOWNLOADING DeviceUpgradeStatusEnum = "downloading"
-    DeviceUpgradeStatusEnum_FAILED      DeviceUpgradeStatusEnum = "failed"
-    DeviceUpgradeStatusEnum_UPGRADING   DeviceUpgradeStatusEnum = "upgrading"
-)
-
-// DeviceUpgradeStrategyEnum is a string enum.
-// For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
-type DeviceUpgradeStrategyEnum string
-
-const (
-    DeviceUpgradeStrategyEnum_BIGBANG DeviceUpgradeStrategyEnum = "big_bang"
-    DeviceUpgradeStrategyEnum_CANARY  DeviceUpgradeStrategyEnum = "canary"
-    DeviceUpgradeStrategyEnum_RRM     DeviceUpgradeStrategyEnum = "rrm"
-    DeviceUpgradeStrategyEnum_SERIAL  DeviceUpgradeStrategyEnum = "serial"
-)
-
 // DhcpdConfigOptionTypeEnum is a string enum.
 // enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
 type DhcpdConfigOptionTypeEnum string
@@ -3996,6 +3953,49 @@ const (
     TunternMonitoringProtocolEnum_ARP  TunternMonitoringProtocolEnum = "arp"
     TunternMonitoringProtocolEnum_PING TunternMonitoringProtocolEnum = "ping"
     TunternMonitoringProtocolEnum_TCP  TunternMonitoringProtocolEnum = "tcp"
+)
+
+// UpgradeDeviceRrmMeshUpgradeEnum is a string enum.
+// For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
+type UpgradeDeviceRrmMeshUpgradeEnum string
+
+const (
+    UpgradeDeviceRrmMeshUpgradeEnum_PARALLEL   UpgradeDeviceRrmMeshUpgradeEnum = "parallel"
+    UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL UpgradeDeviceRrmMeshUpgradeEnum = "sequential"
+)
+
+// UpgradeDeviceRrmNodeOrderEnum is a string enum.
+// For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
+type UpgradeDeviceRrmNodeOrderEnum string
+
+const (
+    UpgradeDeviceRrmNodeOrderEnum_CENTERTOFRINGE UpgradeDeviceRrmNodeOrderEnum = "center_to_fringe"
+    UpgradeDeviceRrmNodeOrderEnum_FRINGETOCENTER UpgradeDeviceRrmNodeOrderEnum = "fringe_to_center"
+)
+
+// UpgradeDeviceStatusEnum is a string enum.
+// status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
+type UpgradeDeviceStatusEnum string
+
+const (
+    UpgradeDeviceStatusEnum_CANCELLED   UpgradeDeviceStatusEnum = "cancelled"
+    UpgradeDeviceStatusEnum_COMPLETED   UpgradeDeviceStatusEnum = "completed"
+    UpgradeDeviceStatusEnum_CREATED     UpgradeDeviceStatusEnum = "created"
+    UpgradeDeviceStatusEnum_DOWNLOADED  UpgradeDeviceStatusEnum = "downloaded"
+    UpgradeDeviceStatusEnum_DOWNLOADING UpgradeDeviceStatusEnum = "downloading"
+    UpgradeDeviceStatusEnum_FAILED      UpgradeDeviceStatusEnum = "failed"
+    UpgradeDeviceStatusEnum_UPGRADING   UpgradeDeviceStatusEnum = "upgrading"
+)
+
+// UpgradeDeviceStrategyEnum is a string enum.
+// For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+type UpgradeDeviceStrategyEnum string
+
+const (
+    UpgradeDeviceStrategyEnum_BIGBANG UpgradeDeviceStrategyEnum = "big_bang"
+    UpgradeDeviceStrategyEnum_CANARY  UpgradeDeviceStrategyEnum = "canary"
+    UpgradeDeviceStrategyEnum_RRM     UpgradeDeviceStrategyEnum = "rrm"
+    UpgradeDeviceStrategyEnum_SERIAL  UpgradeDeviceStrategyEnum = "serial"
 )
 
 // UpgradeInfoStatusEnum is a string enum.

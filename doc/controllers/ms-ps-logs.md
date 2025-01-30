@@ -45,7 +45,7 @@ ctx := context.Background()
 
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.MspLogsCountDistinctEnum("admin_name")
+distinct := models.MspLogsCountDistinctEnum_ADMINNAME
 
 apiResponse, err := mSPsLogs.CountMspAuditLogs(ctx, mspId, &distinct)
 if err != nil {

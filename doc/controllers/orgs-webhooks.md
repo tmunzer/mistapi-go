@@ -83,11 +83,11 @@ webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-status := models.WebhookDeliveryStatusEnum("failure")
+status := models.WebhookDeliveryStatusEnum_FAILURE
 
-topic := models.WebhookDeliveryTopicEnum("audits")
+topic := models.WebhookDeliveryTopicEnum_AUDITS
 
-distinct := models.WebhookDeliveryDistinctEnum("webhook_id")
+distinct := models.WebhookDeliveryDistinctEnum_WEBHOOKID
 
 
 
@@ -175,7 +175,7 @@ body := models.Webhook{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    Type:                 models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
     VerifyCert:           models.ToPointer(true),
 }
 
@@ -548,9 +548,9 @@ webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-status := models.WebhookDeliveryStatusEnum("failure")
+status := models.WebhookDeliveryStatusEnum_FAILURE
 
-topic := models.WebhookDeliveryTopicEnum("audits")
+topic := models.WebhookDeliveryTopicEnum_AUDITS
 
 
 
@@ -651,7 +651,7 @@ body := models.Webhook{
         "x-custom-1": "your_custom_header_value1",
         "x-custom-2": "your_custom_header_value2",
     })),
-    Type:                 models.ToPointer(models.WebhookTypeEnum("http-post")),
+    Type:                 models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
     VerifyCert:           models.ToPointer(true),
 }
 

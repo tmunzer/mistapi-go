@@ -49,11 +49,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.IdpProfile{
-    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
+    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum_STRICT),
     Name:                 models.ToPointer("relaxed"),
     Overwrites:           []models.IdpProfileOverwrite{
         models.IdpProfileOverwrite{
-            Action:               models.ToPointer(models.IdpProfileActionEnum("alert")),
+            Action:               models.ToPointer(models.IdpProfileActionEnum_ALERT),
             Matching:             models.ToPointer(models.IdpProfileMatching{
                 AttackName:           []string{
                     "HTTP:INVALID:HDR-FIELD",
@@ -62,7 +62,7 @@ body := models.IdpProfile{
                     "63.1.2.0/24",
                 },
                 Severity:             []models.IdpProfileMatchingSeverityValueEnum{
-                    models.IdpProfileMatchingSeverityValueEnum("major"),
+                    models.IdpProfileMatchingSeverityValueEnum_MAJOR,
                 },
             }),
         },
@@ -376,11 +376,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 idpprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.IdpProfile{
-    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum("strict")),
+    BaseProfile:          models.ToPointer(models.IdpProfileBaseProfileEnum_STRICT),
     Name:                 models.ToPointer("relaxed"),
     Overwrites:           []models.IdpProfileOverwrite{
         models.IdpProfileOverwrite{
-            Action:               models.ToPointer(models.IdpProfileActionEnum("alert")),
+            Action:               models.ToPointer(models.IdpProfileActionEnum_ALERT),
             Matching:             models.ToPointer(models.IdpProfileMatching{
                 AttackName:           []string{
                     "HTTP:INVALID:HDR-FIELD",
@@ -389,7 +389,7 @@ body := models.IdpProfile{
                     "63.1.2.0/24",
                 },
                 Severity:             []models.IdpProfileMatchingSeverityValueEnum{
-                    models.IdpProfileMatchingSeverityValueEnum("major"),
+                    models.IdpProfileMatchingSeverityValueEnum_MAJOR,
                 },
             }),
         },

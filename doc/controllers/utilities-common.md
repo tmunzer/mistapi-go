@@ -96,7 +96,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.HaClusterNode{
-    Node:                 models.ToPointer(models.HaClusterNodeEnum("node0")),
+    Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
 }
 
 apiResponse, err := utilitiesCommon.ArpFromDevice(ctx, siteId, deviceId, &body)
@@ -1582,7 +1582,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.UtilsTraceroute{
     Host:                 models.ToPointer("string"),
     Port:                 models.ToPointer(33434),
-    Protocol:             models.ToPointer(models.UtilsTracerouteProtocolEnum("udp")),
+    Protocol:             models.ToPointer(models.UtilsTracerouteProtocolEnum_UDP),
 }
 
 apiResponse, err := utilitiesCommon.TracerouteFromDevice(ctx, siteId, deviceId, &body)
@@ -1655,7 +1655,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UtilsSendSupportLogs{
-    Info:                 models.ToPointer(models.UtilsSendSupportLogsInfoEnum("full")),
+    Info:                 models.ToPointer(models.UtilsSendSupportLogsInfoEnum_FULL),
 }
 
 resp, err := utilitiesCommon.UploadSiteDeviceSupportFile(ctx, siteId, deviceId, &body)

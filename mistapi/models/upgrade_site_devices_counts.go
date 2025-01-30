@@ -5,8 +5,8 @@ import (
     "fmt"
 )
 
-// ResponseSiteDeviceUpgradeCounts represents a ResponseSiteDeviceUpgradeCounts struct.
-type ResponseSiteDeviceUpgradeCounts struct {
+// UpgradeSiteDevicesCounts represents a UpgradeSiteDevicesCounts struct.
+type UpgradeSiteDevicesCounts struct {
     // count of devices which cloud has requested to download firmware
     DownloadRequested    *int                   `json:"download_requested,omitempty"`
     // count of ap’s which have the firmware downloaded
@@ -28,64 +28,64 @@ type ResponseSiteDeviceUpgradeCounts struct {
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for ResponseSiteDeviceUpgradeCounts,
+// String implements the fmt.Stringer interface for UpgradeSiteDevicesCounts,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseSiteDeviceUpgradeCounts) String() string {
+func (u UpgradeSiteDevicesCounts) String() string {
     return fmt.Sprintf(
-    	"ResponseSiteDeviceUpgradeCounts[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
-    	r.DownloadRequested, r.Downloaded, r.Failed, r.RebootInProgress, r.Rebooted, r.Scheduled, r.Skipped, r.Total, r.Upgraded, r.AdditionalProperties)
+    	"UpgradeSiteDevicesCounts[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
+    	u.DownloadRequested, u.Downloaded, u.Failed, u.RebootInProgress, u.Rebooted, u.Scheduled, u.Skipped, u.Total, u.Upgraded, u.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgradeCounts.
-// It customizes the JSON marshaling process for ResponseSiteDeviceUpgradeCounts objects.
-func (r ResponseSiteDeviceUpgradeCounts) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for UpgradeSiteDevicesCounts.
+// It customizes the JSON marshaling process for UpgradeSiteDevicesCounts objects.
+func (u UpgradeSiteDevicesCounts) MarshalJSON() (
     []byte,
     error) {
-    if err := DetectConflictingProperties(r.AdditionalProperties,
+    if err := DetectConflictingProperties(u.AdditionalProperties,
         "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded"); err != nil {
         return []byte{}, err
     }
-    return json.Marshal(r.toMap())
+    return json.Marshal(u.toMap())
 }
 
-// toMap converts the ResponseSiteDeviceUpgradeCounts object to a map representation for JSON marshaling.
-func (r ResponseSiteDeviceUpgradeCounts) toMap() map[string]any {
+// toMap converts the UpgradeSiteDevicesCounts object to a map representation for JSON marshaling.
+func (u UpgradeSiteDevicesCounts) toMap() map[string]any {
     structMap := make(map[string]any)
-    MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.DownloadRequested != nil {
-        structMap["download_requested"] = r.DownloadRequested
+    MergeAdditionalProperties(structMap, u.AdditionalProperties)
+    if u.DownloadRequested != nil {
+        structMap["download_requested"] = u.DownloadRequested
     }
-    if r.Downloaded != nil {
-        structMap["downloaded"] = r.Downloaded
+    if u.Downloaded != nil {
+        structMap["downloaded"] = u.Downloaded
     }
-    if r.Failed != nil {
-        structMap["failed"] = r.Failed
+    if u.Failed != nil {
+        structMap["failed"] = u.Failed
     }
-    if r.RebootInProgress != nil {
-        structMap["reboot_in_progress"] = r.RebootInProgress
+    if u.RebootInProgress != nil {
+        structMap["reboot_in_progress"] = u.RebootInProgress
     }
-    if r.Rebooted != nil {
-        structMap["rebooted"] = r.Rebooted
+    if u.Rebooted != nil {
+        structMap["rebooted"] = u.Rebooted
     }
-    if r.Scheduled != nil {
-        structMap["scheduled"] = r.Scheduled
+    if u.Scheduled != nil {
+        structMap["scheduled"] = u.Scheduled
     }
-    if r.Skipped != nil {
-        structMap["skipped"] = r.Skipped
+    if u.Skipped != nil {
+        structMap["skipped"] = u.Skipped
     }
-    if r.Total != nil {
-        structMap["total"] = r.Total
+    if u.Total != nil {
+        structMap["total"] = u.Total
     }
-    if r.Upgraded != nil {
-        structMap["upgraded"] = r.Upgraded
+    if u.Upgraded != nil {
+        structMap["upgraded"] = u.Upgraded
     }
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for ResponseSiteDeviceUpgradeCounts.
-// It customizes the JSON unmarshaling process for ResponseSiteDeviceUpgradeCounts objects.
-func (r *ResponseSiteDeviceUpgradeCounts) UnmarshalJSON(input []byte) error {
-    var temp tempResponseSiteDeviceUpgradeCounts
+// UnmarshalJSON implements the json.Unmarshaler interface for UpgradeSiteDevicesCounts.
+// It customizes the JSON unmarshaling process for UpgradeSiteDevicesCounts objects.
+func (u *UpgradeSiteDevicesCounts) UnmarshalJSON(input []byte) error {
+    var temp tempUpgradeSiteDevicesCounts
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -94,22 +94,22 @@ func (r *ResponseSiteDeviceUpgradeCounts) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    r.AdditionalProperties = additionalProperties
+    u.AdditionalProperties = additionalProperties
     
-    r.DownloadRequested = temp.DownloadRequested
-    r.Downloaded = temp.Downloaded
-    r.Failed = temp.Failed
-    r.RebootInProgress = temp.RebootInProgress
-    r.Rebooted = temp.Rebooted
-    r.Scheduled = temp.Scheduled
-    r.Skipped = temp.Skipped
-    r.Total = temp.Total
-    r.Upgraded = temp.Upgraded
+    u.DownloadRequested = temp.DownloadRequested
+    u.Downloaded = temp.Downloaded
+    u.Failed = temp.Failed
+    u.RebootInProgress = temp.RebootInProgress
+    u.Rebooted = temp.Rebooted
+    u.Scheduled = temp.Scheduled
+    u.Skipped = temp.Skipped
+    u.Total = temp.Total
+    u.Upgraded = temp.Upgraded
     return nil
 }
 
-// tempResponseSiteDeviceUpgradeCounts is a temporary struct used for validating the fields of ResponseSiteDeviceUpgradeCounts.
-type tempResponseSiteDeviceUpgradeCounts  struct {
+// tempUpgradeSiteDevicesCounts is a temporary struct used for validating the fields of UpgradeSiteDevicesCounts.
+type tempUpgradeSiteDevicesCounts  struct {
     DownloadRequested *int `json:"download_requested,omitempty"`
     Downloaded        *int `json:"downloaded,omitempty"`
     Failed            *int `json:"failed,omitempty"`

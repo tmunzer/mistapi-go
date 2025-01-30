@@ -324,9 +324,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-name := models.MxedgeServiceNameEnum("mxnacedge")
+name := models.MxedgeServiceNameEnum_MXNACEDGE
 
-action := models.MxedgeServiceActionEnum("restart")
+action := models.MxedgeServiceActionEnum_RESTART
 
 resp, err := orgsMxEdges.ControlOrgMxEdgeServices(ctx, orgId, mxedgeId, name, action)
 if err != nil {
@@ -404,7 +404,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgMxedgeCountDistinctEnum("model")
+distinct := models.OrgMxedgeCountDistinctEnum_MODEL
 
 
 
@@ -518,7 +518,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgMxedgeEventsCountDistinctEnum("mxedge_id")
+distinct := models.OrgMxedgeEventsCountDistinctEnum_MXEDGEID
 
 
 
@@ -981,7 +981,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-channel := models.GetOrgMxedgeUpgradeInfoChannelEnum("stable")
+channel := models.GetOrgMxedgeUpgradeInfoChannelEnum_STABLE
 
 apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel)
 if err != nil {
@@ -1057,7 +1057,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-forSites := models.MxedgeForSiteEnum("any")
+forSites := models.MxedgeForSiteEnum_ANY
 
 limit := 100
 

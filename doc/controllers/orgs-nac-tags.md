@@ -66,7 +66,7 @@ body := models.NacTag{
         "PaloAlto-Panorama-Admin-Role=administrator",
     },
     SessionTimeout:       models.ToPointer(86000),
-    Type:                 models.NacTagTypeEnum("username_attr"),
+    Type:                 models.NacTagTypeEnum_USERNAMEATTR,
 }
 
 apiResponse, err := orgsNACTags.CreateOrgNacTag(ctx, orgId, &body)
@@ -347,7 +347,7 @@ body := models.NacTag{
         "PaloAlto-Panorama-Admin-Role=administrator",
     },
     SessionTimeout:       models.ToPointer(86000),
-    Type:                 models.NacTagTypeEnum("username_attr"),
+    Type:                 models.NacTagTypeEnum_USERNAMEATTR,
 }
 
 apiResponse, err := orgsNACTags.UpdateOrgNacTag(ctx, orgId, nactagId, &body)

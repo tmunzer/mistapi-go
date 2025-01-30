@@ -44,7 +44,7 @@ ctx := context.Background()
 
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.MspMarvisSuggestionsCountDistinctEnum("org_id")
+distinct := models.MspMarvisSuggestionsCountDistinctEnum_ORGID
 
 limit := 100
 

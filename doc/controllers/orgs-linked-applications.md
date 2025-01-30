@@ -51,7 +51,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("jamf")
+appName := models.OauthAppNameEnum_JAMF
 
 body := models.AccountOauthAddContainer.FromAccountJamfConfig(models.AccountJamfConfig{
     ClientId:             "client_id0",
@@ -147,7 +147,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("jamf")
+appName := models.OauthAppNameEnum_JAMF
 
 accountId := "iojzXIJWEuiD73ZvydOfg"
 
@@ -203,7 +203,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("jamf")
+appName := models.OauthAppNameEnum_JAMF
 
 forward := "forward6"
 
@@ -417,7 +417,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-appName := models.OauthAppNameEnum("jamf")
+appName := models.OauthAppNameEnum_JAMF
 
 body := models.AccountOauthConfig{
     AccountId:            "iojzXIJWEuiD73ZvydOfg",

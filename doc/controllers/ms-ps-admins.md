@@ -149,8 +149,8 @@ body := models.Admin{
             OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:                 models.AdminPrivilegeRoleEnum("admin"),
-            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
+            Scope:                models.AdminPrivilegeScopeEnum_ORG,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
@@ -437,15 +437,15 @@ body := models.Admin{
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
             OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Role:                 models.AdminPrivilegeRoleEnum("admin"),
-            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
+            Scope:                models.AdminPrivilegeScopeEnum_ORG,
             SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
         },
         models.AdminPrivilege{
-            Role:                 models.AdminPrivilegeRoleEnum("admin"),
-            Scope:                models.AdminPrivilegeScopeEnum("site"),
+            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
+            Scope:                models.AdminPrivilegeScopeEnum_SITE,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
@@ -550,8 +550,8 @@ body := models.Admin{
             OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
-            Role:                 models.AdminPrivilegeRoleEnum("admin"),
-            Scope:                models.AdminPrivilegeScopeEnum("org"),
+            Role:                 models.AdminPrivilegeRoleEnum_ADMIN,
+            Scope:                models.AdminPrivilegeScopeEnum_ORG,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             SitegroupIds:         []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),

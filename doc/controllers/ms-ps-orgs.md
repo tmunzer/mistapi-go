@@ -384,7 +384,7 @@ ctx := context.Background()
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.MspOrgChange{
-    Op:                   models.MspOrgChangeOperationEnum("assign"),
+    Op:                   models.MspOrgChangeOperationEnum_ASSIGN,
     OrgIds:               []string{
         "2b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
     },

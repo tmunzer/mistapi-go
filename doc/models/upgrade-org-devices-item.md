@@ -1,18 +1,18 @@
 
-# Org Device Upgrade
+# Upgrade Org Devices Item
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`OrgDeviceUpgrade`
+`UpgradeOrgDevicesItem`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `SiteUpgrades` | [`[]models.OrgDeviceUpgradeSiteUpgrade`](../../doc/models/org-device-upgrade-site-upgrade.md) | Optional | - |
+| `SiteUpgrades` | [`[]models.UpgradeOrgDevicesItemSiteUpgrade`](../../doc/models/upgrade-org-devices-item-site-upgrade.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

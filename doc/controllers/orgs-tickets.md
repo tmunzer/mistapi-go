@@ -141,7 +141,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgTicketsCountDistinctEnum("status")
+distinct := models.OrgTicketsCountDistinctEnum_STATUS
 
 apiResponse, err := orgsTickets.CountOrgTickets(ctx, orgId, &distinct)
 if err != nil {

@@ -1,11 +1,11 @@
 
-# Response Device Upgrade Counts
+# Upgrade Devices Target Ids
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseDeviceUpgradeCounts`
+`UpgradeDevicesTargetIds`
 
 ## Fields
 
@@ -27,26 +27,23 @@
 ```json
 {
   "download_requested": [
-    "download_requested4",
-    "download_requested3",
-    "download_requested2"
+    "download_requested0"
   ],
   "downloaded": [
-    "downloaded8"
+    "downloaded4",
+    "downloaded5",
+    "downloaded6"
   ],
   "failed": [
-    "failed4",
-    "failed3",
-    "failed2"
+    "failed0"
   ],
   "reboot_in_progress": [
-    "reboot_in_progress1",
+    "reboot_in_progress3",
     "reboot_in_progress2",
-    "reboot_in_progress3"
+    "reboot_in_progress1"
   ],
   "rebooted": [
-    "rebooted3",
-    "rebooted4"
+    "rebooted9"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

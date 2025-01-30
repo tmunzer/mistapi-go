@@ -58,7 +58,7 @@ body := models.Beacon{
     Mac:                  models.ToPointer("string"),
     Name:                 models.ToPointer("string"),
     Power:                models.ToPointer(0),
-    Type:                 models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
+    Type:                 models.ToPointer(models.BeaconTypeEnum_EDDYSTONEUID),
     X:                    models.ToPointer(float64(0)),
     Y:                    models.ToPointer(float64(0)),
 }
@@ -370,7 +370,7 @@ body := models.Beacon{
     Mac:                  models.ToPointer("string"),
     Name:                 models.ToPointer("string"),
     Power:                models.ToPointer(0),
-    Type:                 models.ToPointer(models.BeaconTypeEnum("eddystone-uid")),
+    Type:                 models.ToPointer(models.BeaconTypeEnum_EDDYSTONEUID),
     X:                    models.ToPointer(float64(0)),
     Y:                    models.ToPointer(float64(0)),
 }

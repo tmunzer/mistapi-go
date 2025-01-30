@@ -432,7 +432,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CaptureOrgContainer.FromCaptureMxedge(models.CaptureMxedge{
     Duration:             models.ToPointer(600),
-    Format:               models.ToPointer(models.CaptureMxedgeFormatEnum("stream")),
+    Format:               models.ToPointer(models.CaptureMxedgeFormatEnum_STREAM),
     MaxPktLen:            models.ToPointer(1500),
     Mxedges:              map[string]models.CaptureMxedgeMxedges{
         "00000000-0000-0000-1000-001122334455": models.CaptureMxedgeMxedges{

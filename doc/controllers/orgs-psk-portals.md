@@ -64,7 +64,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgPskPortalLogsCountDistinctEnum("pskportal_id")
+distinct := models.OrgPskPortalLogsCountDistinctEnum_PSKPORTALID
 
 
 
@@ -147,7 +147,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
-    Auth:                         models.ToPointer(models.PskPortalAuthEnum("sso")),
+    Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
     MaxUsage:                     models.ToPointer(0),
     Name:                         "string",
     RequiredFields:               []string{
@@ -157,7 +157,7 @@ body := models.PskPortal{
     Ssid:                         "string",
     Sso:                          models.ToPointer(models.PskPortalSso{
         IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum("sha256")),
+        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum_SHA256),
         IdpSsoUrl:            models.ToPointer("string"),
         Issuer:               models.ToPointer("string"),
         NameidFormat:         models.ToPointer("string"),
@@ -167,7 +167,7 @@ body := models.PskPortal{
         },
     }),
     TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
+    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
     VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
     AdditionalProperties:         map[string]interface{}{
         "expire": interface{}("0"),
@@ -664,7 +664,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
-    Auth:                         models.ToPointer(models.PskPortalAuthEnum("sso")),
+    Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
     MaxUsage:                     models.ToPointer(0),
     Name:                         "string",
     RequiredFields:               []string{
@@ -674,7 +674,7 @@ body := models.PskPortal{
     Ssid:                         "string",
     Sso:                          models.ToPointer(models.PskPortalSso{
         IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum("sha256")),
+        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum_SHA256),
         IdpSsoUrl:            models.ToPointer("string"),
         Issuer:               models.ToPointer("string"),
         NameidFormat:         models.ToPointer("email"),
@@ -684,7 +684,7 @@ body := models.PskPortal{
         },
     }),
     TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum("byod")),
+    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
     VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
     AdditionalProperties:         map[string]interface{}{
         "expire": interface{}("0"),
@@ -749,7 +749,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortalTemplate{
-    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
+    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum_CENTER),
     Color:                models.ToPointer("#1074bc"),
     PoweredBy:            models.ToPointer(false),
 }

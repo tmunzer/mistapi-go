@@ -1,17 +1,17 @@
 
-# Response Site Device Upgrade
+# Response Site Device Upgrades Item
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseSiteDeviceUpgrade`
+`ResponseSiteDeviceUpgradesItem`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Counts` | [`*models.UpgradeDevicesTargetIds`](../../doc/models/upgrade-devices-target-ids.md) | Optional | - |
+| `Counts` | [`*models.UpgradeSiteDevicesCounts`](../../doc/models/upgrade-site-devices-counts.md) | Optional | - |
 | `CurrentPhase` | `*int` | Optional | current canary or rrm phase in progress |
 | `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
 | `Force` | `*bool` | Optional | whether to force upgrade when requested version is same as running version |
@@ -33,36 +33,20 @@
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "strategy": "big_bang",
   "counts": {
-    "download_requested": [
-      "download_requested2",
-      "download_requested3",
-      "download_requested4"
-    ],
-    "downloaded": [
-      "downloaded0"
-    ],
-    "failed": [
-      "failed2",
-      "failed3",
-      "failed4"
-    ],
-    "reboot_in_progress": [
-      "reboot_in_progress9",
-      "reboot_in_progress0"
-    ],
-    "rebooted": [
-      "rebooted7",
-      "rebooted8"
-    ],
+    "download_requested": 138,
+    "downloaded": 70,
+    "failed": 166,
+    "reboot_in_progress": 88,
+    "rebooted": 76,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"
     }
   },
-  "current_phase": 156,
+  "current_phase": 230,
   "enable_p2p": false,
   "force": false,
-  "max_failure_percentage": 22,
+  "max_failure_percentage": 148,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

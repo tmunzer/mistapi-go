@@ -72,7 +72,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SleSummaryScopeEnum("gateway")
+scope := models.SleSummaryScopeEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -257,7 +257,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleHistogramScopeParametersEnum("gateway")
+scope := models.SiteSleHistogramScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -437,7 +437,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactSummaryScopeParametersEnum("gateway")
+scope := models.SiteSleImpactSummaryScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -658,7 +658,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleScopeEnum("switch")
+scope := models.SiteSleScopeEnum_ENUMSWITCH
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -761,7 +761,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedApsScopeParametersEnum("site")
+scope := models.SiteSleImpactedApsScopeParametersEnum_SITE
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -870,7 +870,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedChassisScopeParametersEnum("switch")
+scope := models.SiteSleImpactedChassisScopeParametersEnum_ENUMSWITCH
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -974,7 +974,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedGatewaysScopeParametersEnum("site")
+scope := models.SiteSleImpactedGatewaysScopeParametersEnum_SITE
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1078,7 +1078,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedInterfacesScopeParametersEnum("switch")
+scope := models.SiteSleImpactedInterfacesScopeParametersEnum_ENUMSWITCH
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1189,7 +1189,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedSwitchesScopeParametersEnum("site")
+scope := models.SiteSleImpactedSwitchesScopeParametersEnum_SITE
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1297,7 +1297,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedClientsScopeParametersEnum("switch")
+scope := models.SiteSleImpactedClientsScopeParametersEnum_ENUMSWITCH
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1408,7 +1408,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleImpactedUsersScopeParameterEnum("ap")
+scope := models.SiteSleImpactedUsersScopeParameterEnum_AP
 
 scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
@@ -1547,7 +1547,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricClassifiersScopeParametersEnum("gateway")
+scope := models.SiteSleMetricClassifiersScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -1625,7 +1625,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricSummaryScopeParametersEnum("gateway")
+scope := models.SiteSleMetricSummaryScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -2165,7 +2165,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("gateway")
+scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -2239,7 +2239,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleMetricsScopeParametersEnum("gateway")
+scope := models.SiteSleMetricsScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -2345,7 +2345,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("gateway")
+scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
 scopeId := "scope_id0"
 
@@ -2428,7 +2428,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.SiteSleThresholdScopeParameterEnum("gateway")
+scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
 scopeId := "scope_id0"
 

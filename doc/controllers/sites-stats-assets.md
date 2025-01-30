@@ -50,7 +50,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteAssetsCountDistinctEnum("map_id")
+distinct := models.SiteAssetsCountDistinctEnum_MAPID
 
 apiResponse, err := sitesStatsAssets.CountSiteAssets(ctx, siteId, &distinct)
 if err != nil {

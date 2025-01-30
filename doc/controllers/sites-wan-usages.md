@@ -83,7 +83,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-distinct := models.WanUsagesCountDisctinctEnum("policy")
+distinct := models.WanUsagesCountDisctinctEnum_POLICY
 
 
 

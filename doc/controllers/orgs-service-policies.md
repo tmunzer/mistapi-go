@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgServicePolicy{
-    Action:               models.ToPointer(models.AllowDenyEnum("allow")),
+    Action:               models.ToPointer(models.AllowDenyEnum_ALLOW),
     Name:                 models.ToPointer("string"),
     Services:             []string{
         "string",
@@ -301,7 +301,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 servicepolicyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgServicePolicy{
-    Action:               models.ToPointer(models.AllowDenyEnum("allow")),
+    Action:               models.ToPointer(models.AllowDenyEnum_ALLOW),
     Name:                 models.ToPointer("string"),
     Services:             []string{
         "string",

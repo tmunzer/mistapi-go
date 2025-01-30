@@ -1,18 +1,18 @@
 
-# Response Upgrade Org Device
+# Upgrade Org Devices Upgrade
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseUpgradeOrgDevice`
+`UpgradeOrgDevicesUpgrade`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Upgrade` | [`*models.UpgradeOrgDeviceUpgrade`](../../doc/models/upgrade-org-device-upgrade.md) | Optional | - |
+| `Upgrade` | [`*models.UpgradeOrgDevicesUpgradeInfo`](../../doc/models/upgrade-org-devices-upgrade-info.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

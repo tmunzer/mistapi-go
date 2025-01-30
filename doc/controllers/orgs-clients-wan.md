@@ -57,7 +57,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgWanClientsEventsCountDistinctEnum("type")
+distinct := models.OrgWanClientsEventsCountDistinctEnum_ENUMTYPE
 
 
 
@@ -149,7 +149,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgWanClientsCountDistinctEnum("mac")
+distinct := models.OrgWanClientsCountDistinctEnum_MAC
 
 
 

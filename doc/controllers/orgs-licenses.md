@@ -50,7 +50,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ClaimActivation{
     Code:                 "ZHT3K-H36DT-MG85D-M61AC",
-    Type:                 models.ClaimTypeEnum("all"),
+    Type:                 models.ClaimTypeEnum_ALL,
 }
 
 apiResponse, err := orgsLicenses.ClaimOrgLicense(ctx, orgId, &body)
@@ -561,7 +561,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgLicenseAction{
     Notes:                models.ToPointer("customer notes"),
-    Op:                   models.OrgLicenseActionOperationEnum("annotate"),
+    Op:                   models.OrgLicenseActionOperationEnum_ANNOTATE,
     SubscriptionId:       models.ToPointer("SUB-000144"),
 }
 

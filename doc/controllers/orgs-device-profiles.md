@@ -144,7 +144,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
         Enabled:              models.ToPointer(true),
         Host:                 models.ToPointer("1.1.1.1"),
         Port:                 models.ToPointer(0),
-        Type:                 models.ToPointer(models.ApUsbTypeEnum("imagotag")),
+        Type:                 models.ToPointer(models.ApUsbTypeEnum_IMAGOTAG),
         VerifyCert:           models.ToPointer(true),
         VlanId:               models.ToPointer(1),
     }),
@@ -504,7 +504,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 limit := 100
 
@@ -754,7 +754,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
     Mesh:                 models.ToPointer(models.ApMesh{
         Enabled:              models.ToPointer(true),
         Group:                models.NewOptional(models.ToPointer(1)),
-        Role:                 models.ToPointer(models.ApMeshRoleEnum("base")),
+        Role:                 models.ToPointer(models.ApMeshRoleEnum_BASE),
     }),
     Name:                 models.ToPointer("string"),
     PoePassthrough:       models.ToPointer(true),
@@ -763,26 +763,26 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
         AntGain5:             models.ToPointer(0),
         Band24:               models.ToPointer(models.ApRadioBand24{
             AllowRrmDisable:      models.ToPointer(true),
-            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum("default")),
-            Bandwidth:            models.ToPointer(models.Dot11Bandwidth24Enum(20)),
+            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum_ENUMDEFAULT),
+            Bandwidth:            models.ToPointer(models.Dot11Bandwidth24Enum_ENUM20),
             Channel:              models.NewOptional(models.ToPointer(6)),
             Disabled:             models.ToPointer(true),
             Power:                models.NewOptional(models.ToPointer(8)),
-            Preamble:             models.ToPointer(models.RadioBandPreambleEnum("auto")),
+            Preamble:             models.ToPointer(models.RadioBandPreambleEnum_AUTO),
             AdditionalProperties: map[string]interface{}{
                 "usage": interface{}("24"),
             },
         }),
-        Band24Usage:          models.ToPointer(models.RadioBand24UsageEnum("24")),
+        Band24Usage:          models.ToPointer(models.RadioBand24UsageEnum_ENUM24),
         Band5:                models.ToPointer(models.ApRadioBand5{
             AllowRrmDisable:      models.ToPointer(true),
-            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum("default")),
-            Bandwidth:            models.ToPointer(models.Dot11Bandwidth5Enum(20)),
+            AntennaMode:          models.ToPointer(models.RadioBandAntennaModeEnum_ENUMDEFAULT),
+            Bandwidth:            models.ToPointer(models.Dot11Bandwidth5Enum_ENUM20),
             Channel:              models.NewOptional(models.ToPointer(50)),
             Disabled:             models.ToPointer(true),
             PowerMax:             models.NewOptional(models.ToPointer(8)),
             PowerMin:             models.NewOptional(models.ToPointer(15)),
-            Preamble:             models.ToPointer(models.RadioBandPreambleEnum("auto")),
+            Preamble:             models.ToPointer(models.RadioBandPreambleEnum_AUTO),
             AdditionalProperties: map[string]interface{}{
                 "usage": interface{}("24"),
             },

@@ -70,17 +70,17 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-zoneType := models.ZoneTypeEnum("rssizones")
+zoneType := models.ZoneTypeEnum_RSSIZONES
 
-distinct := models.SiteZoneCountDistinctEnum("scope_id")
-
-
+distinct := models.SiteZoneCountDistinctEnum_SCOPEID
 
 
 
 
 
-scope := models.ZoneScopeEnum("site")
+
+
+scope := models.ZoneScopeEnum_SITE
 
 
 
@@ -468,7 +468,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-zoneType := models.ZoneTypeEnum("rssizones")
+zoneType := models.ZoneTypeEnum_RSSIZONES
 
 
 
@@ -476,7 +476,7 @@ zoneType := models.ZoneTypeEnum("rssizones")
 
 
 
-scope := models.VisitsScopeEnum("site")
+scope := models.VisitsScopeEnum_SITE
 
 
 

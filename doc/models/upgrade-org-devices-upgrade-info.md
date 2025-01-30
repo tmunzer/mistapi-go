@@ -1,11 +1,11 @@
 
-# Upgrade Org Device Upgrade
+# Upgrade Org Devices Upgrade Info
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`UpgradeOrgDeviceUpgrade`
+`UpgradeOrgDevicesUpgradeInfo`
 
 ## Fields
 
@@ -13,8 +13,8 @@
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `StartTime` | `*int` | Optional | - |
-| `Status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
-| `Targets` | [`*models.UpgradeOrgDeviceTargets`](../../doc/models/upgrade-org-device-targets.md) | Optional | - |
+| `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
+| `Targets` | [`*models.UpgradeDevicesTargetIds`](../../doc/models/upgrade-devices-target-ids.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -23,7 +23,7 @@
 {
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "start_time": 1717658765,
-  "status": "created",
+  "status": "downloading",
   "targets": {
     "download_requested": [
       "download_requested6"

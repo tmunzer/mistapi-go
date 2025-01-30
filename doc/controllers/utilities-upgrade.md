@@ -247,9 +247,15 @@ if err != nil {
       "upgrade": {
         "id": "473f6eca-6276-4993-bfeb-53cbbbba6f18",
         "start_time": 1717658765,
-        "status": "completed",
+        "status": "upgrading",
         "targets": {
-          "total": 2,
+          "download_requested": [
+            "5c5b3550bd2e"
+          ],
+          "downloaded": [
+            "003e7316ff9e"
+          ],
+          "total": 4,
           "upgraded": [
             "5c5b3550bd2e",
             "003e7316ff9e"
@@ -335,7 +341,7 @@ GetSiteDeviceUpgrade(
     ctx context.Context,
     siteId uuid.UUID,
     upgradeId uuid.UUID) (
-    models.ApiResponse[models.ResponseDeviceUpgrade],
+    models.ApiResponse[models.ResponseSiteDeviceUpgrade],
     error)
 ```
 
@@ -348,7 +354,7 @@ GetSiteDeviceUpgrade(
 
 ## Response Type
 
-[`models.ResponseDeviceUpgrade`](../../doc/models/response-device-upgrade.md)
+[`models.ResponseSiteDeviceUpgrade`](../../doc/models/response-site-device-upgrade.md)
 
 ## Example Usage
 
@@ -510,7 +516,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -624,7 +630,7 @@ Get List of Org multiple devces upgrades
 ListOrgDeviceUpgrades(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[[]models.OrgDeviceUpgrade],
+    models.ApiResponse[[]models.UpgradeOrgDevicesItem],
     error)
 ```
 
@@ -636,7 +642,7 @@ ListOrgDeviceUpgrades(
 
 ## Response Type
 
-[`[]models.OrgDeviceUpgrade`](../../doc/models/org-device-upgrade.md)
+[`[]models.UpgradeOrgDevicesItem`](../../doc/models/upgrade-org-devices-item.md)
 
 ## Example Usage
 
@@ -740,7 +746,7 @@ Get List of Org SSR Upgrades
 ListOrgSsrUpgrades(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[[]models.SsrUpgradeResponse],
+    models.ApiResponse[[]models.ResponseSsrUpgrade],
     error)
 ```
 
@@ -752,7 +758,7 @@ ListOrgSsrUpgrades(
 
 ## Response Type
 
-[`[]models.SsrUpgradeResponse`](../../doc/models/ssr-upgrade-response.md)
+[`[]models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
 
 ## Example Usage
 
@@ -836,7 +842,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum("ap")
+mType := models.DeviceTypeEnum_AP
 
 
 
@@ -885,8 +891,8 @@ Get all upgrades for site
 ListSiteDeviceUpgrades(
     ctx context.Context,
     siteId uuid.UUID,
-    status *models.DeviceUpgradeStatusEnum) (
-    models.ApiResponse[[]models.ResponseSiteDeviceUpgrade],
+    status *models.UpgradeDeviceStatusEnum) (
+    models.ApiResponse[[]models.ResponseSiteDeviceUpgradesItem],
     error)
 ```
 
@@ -895,11 +901,11 @@ ListSiteDeviceUpgrades(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `status` | [`*models.DeviceUpgradeStatusEnum`](../../doc/models/device-upgrade-status-enum.md) | Query, Optional | - |
+| `status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Query, Optional | - |
 
 ## Response Type
 
-[`[]models.ResponseSiteDeviceUpgrade`](../../doc/models/response-site-device-upgrade.md)
+[`[]models.ResponseSiteDeviceUpgradesItem`](../../doc/models/response-site-device-upgrades-item.md)
 
 ## Example Usage
 
@@ -966,7 +972,7 @@ UpgradeDevice(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.DeviceUpgrade) (
-    models.ApiResponse[models.ResponseUpgradeDevice],
+    models.ApiResponse[models.ResponseDeviceUpgrade],
     error)
 ```
 
@@ -980,7 +986,7 @@ UpgradeDevice(
 
 ## Response Type
 
-[`models.ResponseUpgradeDevice`](../../doc/models/response-upgrade-device.md)
+[`models.ResponseDeviceUpgrade`](../../doc/models/response-device-upgrade.md)
 
 ## Example Usage
 
@@ -1064,8 +1070,8 @@ body := models.UpgradeOrgDevices{
     RebootAt:                models.ToPointer(1624399840),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
-    RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
-    RrmNodeOrder:            models.ToPointer(models.DeviceUpgradeRrmNodeOrderEnum("fringe_to_center")),
+    RrmMeshUpgrade:          models.ToPointer(models.UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL),
+    RrmNodeOrder:            models.ToPointer(models.UpgradeDeviceRrmNodeOrderEnum_FRINGETOCENTER),
     Rules:                   []map[string]string{
         []map[string]string{
             []map[string]string{
@@ -1080,7 +1086,7 @@ body := models.UpgradeOrgDevices{
     },
     Snapshot:                models.ToPointer(false),
     StartTime:               models.ToPointer(1624399840),
-    Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),
+    Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
     Version:                 models.ToPointer("3.1.5"),
 }
 
@@ -1100,18 +1106,16 @@ if err != nil {
 {
   "enable_p2p": true,
   "force": true,
-  "id": "466f6eca-6276-4993-bfeb-53cbbbba6f88",
-  "start_time": 0,
-  "status": "created",
+  "id": "31223085-405d-4b64-8aea-9c5b98098b4b",
   "strategy": "big_bang",
-  "target_version": "string",
+  "target_version": "0.14.29411",
   "upgrades": [
     {
-      "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
+      "site_id": "1bbe6e79-2583-403c-be1a-9881b4691ab6",
       "upgrade": {
-        "id": "465f6eca-6276-4993-bfeb-53cbbbba6f98",
-        "start_time": 0,
-        "status": "created",
+        "id": "473f6eca-6276-4993-bfeb-53cbbbba6f18",
+        "start_time": 1717658765,
+        "status": "upgrading",
         "targets": {
           "download_requested": [
             "5c5b3550bd2e"
@@ -1119,13 +1123,10 @@ if err != nil {
           "downloaded": [
             "003e7316ff9e"
           ],
-          "failed": [],
-          "reboot_in_progress": [],
-          "rebooted": [],
-          "skipped": [],
-          "total": 1,
+          "total": 4,
           "upgraded": [
-            ".inf"
+            "5c5b3550bd2e",
+            "003e7316ff9e"
           ]
         }
       }
@@ -1245,13 +1246,13 @@ body := models.MxedgeUpgradeMulti{
         50,
         100,
     },
-    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum("stable")),
+    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum_STABLE),
     MaxFailurePercentage: models.ToPointer(5),
     MxedgeIds:            []uuid.UUID{
         uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
     },
     StartTime:            models.ToPointer(1624399840),
-    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum("serial")),
+    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum_SERIAL),
     Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
         Mxagent:              "latest",
         Radsecproxy:          models.ToPointer("<version>"),
@@ -1290,7 +1291,7 @@ UpgradeOrgSsrs(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.SsrUpgradeMulti) (
-    models.ApiResponse[models.SsrUpgradeResponse],
+    models.ApiResponse[models.ResponseSsrUpgrade],
     error)
 ```
 
@@ -1303,7 +1304,7 @@ UpgradeOrgSsrs(
 
 ## Response Type
 
-[`models.SsrUpgradeResponse`](../../doc/models/ssr-upgrade-response.md)
+[`models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
 
 ## Example Usage
 
@@ -1313,12 +1314,12 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsrUpgradeMulti{
-    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
+    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_STABLE),
     DeviceIds:            []uuid.UUID{
         uuid.MustParse("00000000-0000-0000-1000-5c5b3500001f"),
         uuid.MustParse("00000000-0000-0000-1000-5c5b35000020"),
     },
-    Strategy:             models.ToPointer(models.SsrUpgradeStrategyEnum("big_bang")),
+    Strategy:             models.ToPointer(models.SsrUpgradeStrategyEnum_BIGBANG),
     Version:              models.ToPointer("5.3.0-93"),
 }
 
@@ -1403,8 +1404,8 @@ body := models.UpgradeSiteDevices{
     RebootAt:                models.ToPointer(1624399840),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
-    RrmMeshUpgrade:          models.ToPointer(models.DeviceUpgradeRrmMeshUpgradeEnum("sequential")),
-    RrmNodeOrder:            models.ToPointer(models.DeviceUpgradeRrmNodeOrderEnum("fringe_to_center")),
+    RrmMeshUpgrade:          models.ToPointer(models.UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL),
+    RrmNodeOrder:            models.ToPointer(models.UpgradeDeviceRrmNodeOrderEnum_FRINGETOCENTER),
     Rules:                   []map[string]string{
         []map[string]string{
             []map[string]string{
@@ -1419,7 +1420,7 @@ body := models.UpgradeSiteDevices{
     },
     Snapshot:                models.ToPointer(false),
     StartTime:               models.ToPointer(1624399840),
-    Strategy:                models.ToPointer(models.DeviceUpgradeStrategyEnum("big_bang")),
+    Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
     Version:                 models.ToPointer("3.1.5"),
 }
 
@@ -1462,7 +1463,7 @@ UpgradeSsr(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     body *models.SsrUpgrade) (
-    models.ApiResponse[models.SsrUpgradeResponse],
+    models.ApiResponse[models.ResponseSsrUpgrade],
     error)
 ```
 
@@ -1476,7 +1477,7 @@ UpgradeSsr(
 
 ## Response Type
 
-[`models.SsrUpgradeResponse`](../../doc/models/ssr-upgrade-response.md)
+[`models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
 
 ## Example Usage
 
@@ -1488,7 +1489,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SsrUpgrade{
-    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum("stable")),
+    Channel:              models.ToPointer(models.SsrUpgradeChannelEnum_STABLE),
     Version:              "5.3.1-170-93",
 }
 

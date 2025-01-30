@@ -77,11 +77,11 @@ body := models.EvpnTopology{
     Switches:             []models.EvpnTopologySwitch{
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000003",
-            Role:                 models.EvpnTopologySwitchRoleEnum("collapsed-core"),
+            Role:                 models.EvpnTopologySwitchRoleEnum_COLLAPSEDCORE,
         },
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000004",
-            Role:                 models.EvpnTopologySwitchRoleEnum("collapsed-core"),
+            Role:                 models.EvpnTopologySwitchRoleEnum_COLLAPSEDCORE,
         },
     },
 }
@@ -420,11 +420,11 @@ body := models.EvpnTopology{
     Switches:             []models.EvpnTopologySwitch{
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000003",
-            Role:                 models.EvpnTopologySwitchRoleEnum("collapsed-core"),
+            Role:                 models.EvpnTopologySwitchRoleEnum_COLLAPSEDCORE,
         },
         models.EvpnTopologySwitch{
             Mac:                  "5c5b35000004",
-            Role:                 models.EvpnTopologySwitchRoleEnum("none"),
+            Role:                 models.EvpnTopologySwitchRoleEnum_NONE,
         },
     },
 }

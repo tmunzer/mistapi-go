@@ -47,7 +47,7 @@ GetAdminRegistrationInfo(
 ```go
 ctx := context.Background()
 
-recaptchaFlavor := models.RecaptchaFlavorEnum("hcaptcha")
+recaptchaFlavor := models.RecaptchaFlavorEnum_HCAPTCHA
 
 apiResponse, err := admins.GetAdminRegistrationInfo(ctx, &recaptchaFlavor)
 if err != nil {
@@ -170,7 +170,7 @@ body := models.AdminInvite{
     OrgName:              "Smith LLC",
     Password:             "foryoureyesonly",
     Recaptcha:            "string",
-    RecaptchaFlavor:      models.ToPointer(models.RecaptchaFlavorEnum("hcaptcha")),
+    RecaptchaFlavor:      models.ToPointer(models.RecaptchaFlavorEnum_HCAPTCHA),
     RefererInviteToken:   models.ToPointer("Dm2gtT8dwMeM4Bc2E8FLIaA96VHOjPat"),
     ReturnTo:             models.ToPointer("http://mist.zendesk.com/hc/quickstart.pdf"),
     State:                models.ToPointer("California"),

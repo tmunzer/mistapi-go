@@ -8,7 +8,7 @@ import (
 
 // UpgradeSiteDevices represents a UpgradeSiteDevices struct.
 type UpgradeSiteDevices struct {
-    // For APs only and if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase.
+    // Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
     CanaryPhases            []int                            `json:"canary_phases,omitempty"`
     // id’s of devices which will be selected for upgrade
     DeviceIds               []uuid.UUID                      `json:"device_ids,omitempty"`
@@ -18,7 +18,7 @@ type UpgradeSiteDevices struct {
     Force                   *bool                            `json:"force,omitempty"`
     // for APs only and if `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
     MaxFailurePercentage    *int                             `json:"max_failure_percentage,omitempty"`
-    // For APs only and if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
+    // if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures             []int                            `json:"max_failures,omitempty"`
     // models which will be selected for upgrade
     Models                  []string                         `json:"models,omitempty"`
@@ -35,9 +35,9 @@ type UpgradeSiteDevices struct {
     // For APs only and if `strategy`==`rrm`. Max percentage of APs that need to be present in each RRM batch
     RrmMaxBatchPercentage   *int                             `json:"rrm_max_batch_percentage,omitempty"`
     // For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly or sequentially at the end of the upgrade. enum: `parallel`, `sequential`
-    RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
+    RrmMeshUpgrade          *UpgradeDeviceRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
     // For APs only and if `strategy`==`rrm`. Used in rrm to determine whether to start upgrade from fringe or center AP’s. enum: `center_to_fringe`, `fringe_to_center`
-    RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
+    RrmNodeOrder            *UpgradeDeviceRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     // For APs only and if `strategy`==`rrm`. True will make rrm batch sizes slowly ramp up
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
     // Rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule
@@ -53,7 +53,7 @@ type UpgradeSiteDevices struct {
     // upgrade start time in epoch seconds, default is now
     StartTime               *int                             `json:"start_time,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
-    Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
+    Strategy                *UpgradeDeviceStrategyEnum       `json:"strategy,omitempty"`
     // specific version / stable, default is to use the lastest available version
     Version                 *string                          `json:"version,omitempty"`
     AdditionalProperties    map[string]interface{}           `json:"_"`
@@ -202,12 +202,12 @@ type tempUpgradeSiteDevices  struct {
     RebootAt                *int                             `json:"reboot_at,omitempty"`
     RrmFirstBatchPercentage *int                             `json:"rrm_first_batch_percentage,omitempty"`
     RrmMaxBatchPercentage   *int                             `json:"rrm_max_batch_percentage,omitempty"`
-    RrmMeshUpgrade          *DeviceUpgradeRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
-    RrmNodeOrder            *DeviceUpgradeRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
+    RrmMeshUpgrade          *UpgradeDeviceRrmMeshUpgradeEnum `json:"rrm_mesh_upgrade,omitempty"`
+    RrmNodeOrder            *UpgradeDeviceRrmNodeOrderEnum   `json:"rrm_node_order,omitempty"`
     RrmSlowRamp             *bool                            `json:"rrm_slow_ramp,omitempty"`
     Rules                   []map[string]string              `json:"rules,omitempty"`
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     StartTime               *int                             `json:"start_time,omitempty"`
-    Strategy                *DeviceUpgradeStrategyEnum       `json:"strategy,omitempty"`
+    Strategy                *UpgradeDeviceStrategyEnum       `json:"strategy,omitempty"`
     Version                 *string                          `json:"version,omitempty"`
 }

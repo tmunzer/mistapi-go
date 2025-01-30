@@ -55,9 +55,9 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
-    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum("wireless")),
+    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
     CertExpireTime:         models.ToPointer(365),
-    EapType:                models.ToPointer(models.NacPortalEapTypeEnum("wpa2")),
+    EapType:                models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
     Name:                   models.ToPointer("get-wifi"),
     Ssid:                   models.ToPointer("Corp"),
 }
@@ -648,9 +648,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
-    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum("wireless")),
+    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
     CertExpireTime:         models.ToPointer(365),
-    EapType:                models.ToPointer(models.NacPortalEapTypeEnum("wpa2")),
+    EapType:                models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
     Name:                   models.ToPointer("get-wifi"),
     Ssid:                   models.ToPointer("Corp"),
 }
@@ -740,7 +740,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortalTemplate{
-    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum("center")),
+    Alignment:            models.ToPointer(models.PortalTemplateAlignmentEnum_CENTER),
     Color:                models.ToPointer("#1074bc"),
     PoweredBy:            models.ToPointer(false),
 }

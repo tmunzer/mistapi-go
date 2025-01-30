@@ -52,11 +52,11 @@ body := models.Vpn{
     Name:                 "string",
     Paths:                map[string]models.VpnPath{
         "property1": models.VpnPath{
-            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum_BROADBAND),
             Ip:                   models.ToPointer("string"),
         },
         "property2": models.VpnPath{
-            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("lte")),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum_LTE),
             Ip:                   models.ToPointer("string"),
         },
     },
@@ -350,11 +350,11 @@ body := models.Vpn{
     Name:                 "string",
     Paths:                map[string]models.VpnPath{
         "property1": models.VpnPath{
-            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum_BROADBAND),
             Ip:                   models.ToPointer("string"),
         },
         "property2": models.VpnPath{
-            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum("broadband")),
+            BfdProfile:           models.ToPointer(models.VpnPathBfdProfileEnum_BROADBAND),
             Ip:                   models.ToPointer("string"),
         },
     },

@@ -59,7 +59,7 @@ body := models.Service{
             },
         },
     },
-    Type:                          models.ToPointer(models.ServiceTypeEnum("custom")),
+    Type:                          models.ToPointer(models.ServiceTypeEnum_CUSTOM),
     AdditionalProperties:          map[string]interface{}{
         "app_key": interface{}("string"),
         "network_id": interface{}("d6797cf4-42b9-4cad-8591-9dd91c3f0fc3"),
@@ -410,7 +410,7 @@ body := models.Service{
         "string",
     },
     Dscp:                          models.ToPointer(models.ServiceDscpContainer.FromNumber(0)),
-    FailoverPolicy:                models.ToPointer(models.ServiceFailoverPolicyEnum("revertable")),
+    FailoverPolicy:                models.ToPointer(models.ServiceFailoverPolicyEnum_REVERTABLE),
     Hostnames:                     []string{
         "string",
     },
@@ -425,9 +425,9 @@ body := models.Service{
             Protocol:             models.ToPointer("any"),
         },
     },
-    TrafficClass:                  models.ToPointer(models.ServiceTrafficClassEnum("best_effort")),
+    TrafficClass:                  models.ToPointer(models.ServiceTrafficClassEnum_BESTEFFORT),
     TrafficType:                   models.ToPointer("data_best_effort"),
-    Type:                          models.ToPointer(models.ServiceTypeEnum("custom")),
+    Type:                          models.ToPointer(models.ServiceTypeEnum_CUSTOM),
     AdditionalProperties:          map[string]interface{}{
         "vpn_name": interface{}("addresses"),
     },

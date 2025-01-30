@@ -57,7 +57,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.SiteDiscoveredSwitchesCountDistinctEnum("system_name")
+distinct := models.SiteDiscoveredSwitchesCountDistinctEnum_SYSTEMNAME
 
 
 
@@ -379,7 +379,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-scope := models.DiscoveredSwitchesMetricScopeEnum("site")
+scope := models.DiscoveredSwitchesMetricScopeEnum_SITE
 
 
 

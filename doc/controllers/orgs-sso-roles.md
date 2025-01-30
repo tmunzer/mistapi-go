@@ -52,8 +52,8 @@ body := models.SsoRoleOrg{
     Name:                 "string",
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum("admin"),
-            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
+            Scope:                models.PrivilegeOrgScopeEnum_ORG,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             AdditionalProperties: map[string]interface{}{
                 "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
@@ -333,8 +333,8 @@ body := models.SsoRoleOrg{
     Name:                 "string",
     Privileges:           []models.PrivilegeOrg{
         models.PrivilegeOrg{
-            Role:                 models.PrivilegeOrgRoleEnum("admin"),
-            Scope:                models.PrivilegeOrgScopeEnum("org"),
+            Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
+            Scope:                models.PrivilegeOrgScopeEnum_ORG,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
             AdditionalProperties: map[string]interface{}{
                 "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),

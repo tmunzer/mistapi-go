@@ -47,9 +47,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.OrgTunnelCountDistinctEnum("wxtunnel_id")
+distinct := models.OrgTunnelCountDistinctEnum_WXTUNNELID
 
-mType := models.OrgTunnelTypeCountEnum("wxtunnel")
+mType := models.OrgTunnelTypeCountEnum_WXTUNNEL
 
 apiResponse, err := orgsStatsTunnels.CountOrgTunnelsStats(ctx, orgId, &distinct, &mType)
 if err != nil {
@@ -189,7 +189,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.TunnelTypeEnum("wxtunnel")
+mType := models.TunnelTypeEnum_WXTUNNEL
 
 limit := 100
 
