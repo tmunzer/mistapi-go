@@ -5,8 +5,8 @@ import (
     "fmt"
 )
 
-// UpgradeDevicesTargetIds represents a UpgradeDevicesTargetIds struct.
-type UpgradeDevicesTargetIds struct {
+// UpgradeDevicesTargets represents a UpgradeDevicesTargets struct.
+type UpgradeDevicesTargets struct {
     // List of devices MAC Addresses which cloud has requested to download firmware
     DownloadRequested    []string               `json:"download_requested,omitempty"`
     // List of devices MAC Addresses which have the firmware downloaded
@@ -28,17 +28,17 @@ type UpgradeDevicesTargetIds struct {
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for UpgradeDevicesTargetIds,
+// String implements the fmt.Stringer interface for UpgradeDevicesTargets,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (u UpgradeDevicesTargetIds) String() string {
+func (u UpgradeDevicesTargets) String() string {
     return fmt.Sprintf(
-    	"UpgradeDevicesTargetIds[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
+    	"UpgradeDevicesTargets[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
     	u.DownloadRequested, u.Downloaded, u.Failed, u.RebootInProgress, u.Rebooted, u.Scheduled, u.Skipped, u.Total, u.Upgraded, u.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for UpgradeDevicesTargetIds.
-// It customizes the JSON marshaling process for UpgradeDevicesTargetIds objects.
-func (u UpgradeDevicesTargetIds) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for UpgradeDevicesTargets.
+// It customizes the JSON marshaling process for UpgradeDevicesTargets objects.
+func (u UpgradeDevicesTargets) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(u.AdditionalProperties,
@@ -48,8 +48,8 @@ func (u UpgradeDevicesTargetIds) MarshalJSON() (
     return json.Marshal(u.toMap())
 }
 
-// toMap converts the UpgradeDevicesTargetIds object to a map representation for JSON marshaling.
-func (u UpgradeDevicesTargetIds) toMap() map[string]any {
+// toMap converts the UpgradeDevicesTargets object to a map representation for JSON marshaling.
+func (u UpgradeDevicesTargets) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, u.AdditionalProperties)
     if u.DownloadRequested != nil {
@@ -82,10 +82,10 @@ func (u UpgradeDevicesTargetIds) toMap() map[string]any {
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for UpgradeDevicesTargetIds.
-// It customizes the JSON unmarshaling process for UpgradeDevicesTargetIds objects.
-func (u *UpgradeDevicesTargetIds) UnmarshalJSON(input []byte) error {
-    var temp tempUpgradeDevicesTargetIds
+// UnmarshalJSON implements the json.Unmarshaler interface for UpgradeDevicesTargets.
+// It customizes the JSON unmarshaling process for UpgradeDevicesTargets objects.
+func (u *UpgradeDevicesTargets) UnmarshalJSON(input []byte) error {
+    var temp tempUpgradeDevicesTargets
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -108,8 +108,8 @@ func (u *UpgradeDevicesTargetIds) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tempUpgradeDevicesTargetIds is a temporary struct used for validating the fields of UpgradeDevicesTargetIds.
-type tempUpgradeDevicesTargetIds  struct {
+// tempUpgradeDevicesTargets is a temporary struct used for validating the fields of UpgradeDevicesTargets.
+type tempUpgradeDevicesTargets  struct {
     DownloadRequested []string `json:"download_requested,omitempty"`
     Downloaded        []string `json:"downloaded,omitempty"`
     Failed            []string `json:"failed,omitempty"`

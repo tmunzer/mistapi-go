@@ -10,7 +10,6 @@ import (
 
 // ResponseSiteDeviceUpgrade represents a ResponseSiteDeviceUpgrade struct.
 type ResponseSiteDeviceUpgrade struct {
-    Counts               *UpgradeDevicesTargetIds   `json:"counts,omitempty"`
     // Current canary or rrm phase in progress
     CurrentPhase         *int                       `json:"current_phase,omitempty"`
     // Whether to allow local AP-to-AP FW upgrade
@@ -33,6 +32,7 @@ type ResponseSiteDeviceUpgrade struct {
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     // Version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
+    Targets              *UpgradeDevicesTargets     `json:"targets,omitempty"`
     // If `stragegy`!=`big_bang`, a dictionary of phase number to devices part of that phase
     UpgradePlan          map[string][]string        `json:"upgrade_plan,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
@@ -42,8 +42,8 @@ type ResponseSiteDeviceUpgrade struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSiteDeviceUpgrade) String() string {
     return fmt.Sprintf(
-    	"ResponseSiteDeviceUpgrade[Counts=%v, CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, UpgradePlan=%v, AdditionalProperties=%v]",
-    	r.Counts, r.CurrentPhase, r.EnableP2p, r.Force, r.Id, r.MaxFailurePercentage, r.MaxFailures, r.RebootAt, r.StartTime, r.Status, r.Strategy, r.TargetVersion, r.UpgradePlan, r.AdditionalProperties)
+    	"ResponseSiteDeviceUpgrade[CurrentPhase=%v, EnableP2p=%v, Force=%v, Id=%v, MaxFailurePercentage=%v, MaxFailures=%v, RebootAt=%v, StartTime=%v, Status=%v, Strategy=%v, TargetVersion=%v, Targets=%v, UpgradePlan=%v, AdditionalProperties=%v]",
+    	r.CurrentPhase, r.EnableP2p, r.Force, r.Id, r.MaxFailurePercentage, r.MaxFailures, r.RebootAt, r.StartTime, r.Status, r.Strategy, r.TargetVersion, r.Targets, r.UpgradePlan, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSiteDeviceUpgrade.
@@ -52,7 +52,7 @@ func (r ResponseSiteDeviceUpgrade) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan"); err != nil {
+        "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "targets", "upgrade_plan"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -62,9 +62,6 @@ func (r ResponseSiteDeviceUpgrade) MarshalJSON() (
 func (r ResponseSiteDeviceUpgrade) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.Counts != nil {
-        structMap["counts"] = r.Counts.toMap()
-    }
     if r.CurrentPhase != nil {
         structMap["current_phase"] = r.CurrentPhase
     }
@@ -96,6 +93,9 @@ func (r ResponseSiteDeviceUpgrade) toMap() map[string]any {
     if r.TargetVersion != nil {
         structMap["target_version"] = r.TargetVersion
     }
+    if r.Targets != nil {
+        structMap["targets"] = r.Targets.toMap()
+    }
     if r.UpgradePlan != nil {
         structMap["upgrade_plan"] = r.UpgradePlan
     }
@@ -114,13 +114,12 @@ func (r *ResponseSiteDeviceUpgrade) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "counts", "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "upgrade_plan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "current_phase", "enable_p2p", "force", "id", "max_failure_percentage", "max_failures", "reboot_at", "start_time", "status", "strategy", "target_version", "targets", "upgrade_plan")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
-    r.Counts = temp.Counts
     r.CurrentPhase = temp.CurrentPhase
     r.EnableP2p = temp.EnableP2p
     r.Force = temp.Force
@@ -132,13 +131,13 @@ func (r *ResponseSiteDeviceUpgrade) UnmarshalJSON(input []byte) error {
     r.Status = temp.Status
     r.Strategy = temp.Strategy
     r.TargetVersion = temp.TargetVersion
+    r.Targets = temp.Targets
     r.UpgradePlan = temp.UpgradePlan
     return nil
 }
 
 // tempResponseSiteDeviceUpgrade is a temporary struct used for validating the fields of ResponseSiteDeviceUpgrade.
 type tempResponseSiteDeviceUpgrade  struct {
-    Counts               *UpgradeDevicesTargetIds   `json:"counts,omitempty"`
     CurrentPhase         *int                       `json:"current_phase,omitempty"`
     EnableP2p            *bool                      `json:"enable_p2p,omitempty"`
     Force                *bool                      `json:"force,omitempty"`
@@ -150,6 +149,7 @@ type tempResponseSiteDeviceUpgrade  struct {
     Status               *UpgradeDeviceStatusEnum   `json:"status,omitempty"`
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     TargetVersion        *string                    `json:"target_version,omitempty"`
+    Targets              *UpgradeDevicesTargets     `json:"targets,omitempty"`
     UpgradePlan          map[string][]string        `json:"upgrade_plan,omitempty"`
 }
 

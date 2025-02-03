@@ -13,7 +13,7 @@ type UpgradeOrgDevicesUpgradeInfo struct {
     StartTime            *int                     `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
     Status               *UpgradeDeviceStatusEnum `json:"status,omitempty"`
-    Targets              *UpgradeDevicesTargetIds `json:"targets,omitempty"`
+    Targets              *UpgradeDevicesTargets   `json:"targets,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
@@ -82,5 +82,5 @@ type tempUpgradeOrgDevicesUpgradeInfo  struct {
     Id        *uuid.UUID               `json:"id,omitempty"`
     StartTime *int                     `json:"start_time,omitempty"`
     Status    *UpgradeDeviceStatusEnum `json:"status,omitempty"`
-    Targets   *UpgradeDevicesTargetIds `json:"targets,omitempty"`
+    Targets   *UpgradeDevicesTargets   `json:"targets,omitempty"`
 }

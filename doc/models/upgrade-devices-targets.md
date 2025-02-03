@@ -1,11 +1,11 @@
 
-# Upgrade Devices Target Ids
+# Upgrade Devices Targets
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`UpgradeDevicesTargetIds`
+`UpgradeDevicesTargets`
 
 ## Fields
 
@@ -27,23 +27,24 @@
 ```json
 {
   "download_requested": [
-    "download_requested0"
+    "download_requested6",
+    "download_requested5"
   ],
   "downloaded": [
-    "downloaded4",
-    "downloaded5",
-    "downloaded6"
+    "downloaded0",
+    "downloaded1"
   ],
   "failed": [
-    "failed0"
+    "failed6",
+    "failed5"
   ],
   "reboot_in_progress": [
-    "reboot_in_progress3",
-    "reboot_in_progress2",
-    "reboot_in_progress1"
+    "reboot_in_progress3"
   ],
   "rebooted": [
-    "rebooted9"
+    "rebooted5",
+    "rebooted6",
+    "rebooted7"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",
