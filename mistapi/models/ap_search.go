@@ -10,12 +10,12 @@ import (
 
 // ApSearch represents a ApSearch struct.
 type ApSearch struct {
-    // bandwidth of band_24
+    // Bandwidth of band_24
     Band24Bandwidth      *string                `json:"band_24_bandwidth,omitempty"`
     // Channel of band_24
     Band24Channel        *int                   `json:"band_24_channel,omitempty"`
     Band24Power          *int                   `json:"band_24_power,omitempty"`
-    // bandwidth of band_5
+    // Bandwidth of band_5
     Band5Bandwidth       *string                `json:"band_5_bandwidth,omitempty"`
     // Channel of band_5
     Band5Channel         *int                   `json:"band_5_channel,omitempty"`
@@ -27,10 +27,10 @@ type ApSearch struct {
     // Port speed of eth0
     Eth0PortSpeed        *int                   `json:"eth0_port_speed,omitempty"`
     ExtIp                *string                `json:"ext_ip,omitempty"`
-    // partial / full hostname
+    // Partial / full hostname
     Hostname             []string               `json:"hostname,omitempty"`
     InactiveWiredVlans   []int                  `json:"inactive_wired_vlans,omitempty"`
-    // ip address
+    // IPaddress
     Ip                   *string                `json:"ip,omitempty"`
     LastHostname         *string                `json:"last_hostname,omitempty"`
     // LLDP management ip address
@@ -44,7 +44,7 @@ type ApSearch struct {
     LldpSystemDesc       *string                `json:"lldp_system_desc,omitempty"`
     // LLDP system name
     LldpSystemName       *string                `json:"lldp_system_name,omitempty"`
-    // device model
+    // Device model
     Mac                  *string                `json:"mac,omitempty"`
     Model                *string                `json:"model,omitempty"`
     // Mist Edge id, if AP is connecting to a Mist Edge
@@ -60,7 +60,7 @@ type ApSearch struct {
     Sku                  *string                `json:"sku,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Uptime               *int                   `json:"uptime,omitempty"`
-    // version
+    // Version
     Version              *string                `json:"version,omitempty"`
     Wlans                []ApSearchWlan         `json:"wlans"`
     AdditionalProperties map[string]interface{} `json:"_"`

@@ -9,7 +9,7 @@ import (
 
 // UtilsCableTests represents a UtilsCableTests struct.
 type UtilsCableTests struct {
-    // the port to run the cable test
+    // The port to run the cable test
     Port                 string                 `json:"port"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

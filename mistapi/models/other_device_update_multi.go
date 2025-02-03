@@ -10,7 +10,7 @@ import (
 
 // OtherDeviceUpdateMulti represents a OtherDeviceUpdateMulti struct.
 type OtherDeviceUpdateMulti struct {
-    // The mac address of the peer device.
+    // MAC address of the peer device.
     Macs                 []string                       `json:"macs,omitempty"`
     // The operation being performed. enum: `assign`, `unassign`
     Op                   OtherDeviceUpdateOperationEnum `json:"op"`

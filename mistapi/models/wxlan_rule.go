@@ -14,9 +14,9 @@ type WxlanRule struct {
     // type of action, allow / block. enum: `allow`, `block`
     Action               *WxlanRuleActionEnum   `json:"action,omitempty"`
     ApplyTags            []string               `json:"apply_tags,omitempty"`
-    // blocked apps (always blocking, ignoring action), the key of Get Application List
+    // Blocked apps (always blocking, ignoring action), the key of Get Application List
     BlockedApps          []string               `json:"blocked_apps,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // List of WxTag UUID to indicate these tags are allowed access
     DstAllowWxtags       []string               `json:"dst_allow_wxtags"`
@@ -28,9 +28,9 @@ type WxlanRule struct {
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // the order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
+    // Prder how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
     Order                int                    `json:"order"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

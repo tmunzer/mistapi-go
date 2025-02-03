@@ -10,16 +10,16 @@ import (
 // SwitchNetwork represents a SwitchNetwork struct.
 // A network represents a network segment. It can either represent a VLAN (then usually ties to a L3 subnet), optionally associate it with a subnet which can later be used to create addition routes. Used for ports doing `family ethernet-switching`. It can also be a pure L3-subnet that can then be used against a port that with `family inet`.
 type SwitchNetwork struct {
-    // only required for EVPN-VXLAN networks, IPv4 Virtual Gateway
+    // Only required for EVPN-VXLAN networks, IPv4 Virtual Gateway
     Gateway              *string                `json:"gateway,omitempty"`
-    // only required for EVPN-VXLAN networks, IPv6 Virtual Gateway
+    // Only required for EVPN-VXLAN networks, IPv6 Virtual Gateway
     Gateway6             *string                `json:"gateway6,omitempty"`
     // whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required). NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set
     Isolation            *bool                  `json:"isolation,omitempty"`
     IsolationVlanId      *string                `json:"isolation_vlan_id,omitempty"`
-    // optional for pure switching, required when L3 / routing features are used
+    // Optional for pure switching, required when L3 / routing features are used
     Subnet               *string                `json:"subnet,omitempty"`
-    // optional for pure switching, required when L3 / routing features are used
+    // Optional for pure switching, required when L3 / routing features are used
     Subnet6              *string                `json:"subnet6,omitempty"`
     VlanId               VlanIdWithVariable     `json:"vlan_id"`
     AdditionalProperties map[string]interface{} `json:"_"`

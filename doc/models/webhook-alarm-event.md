@@ -14,7 +14,7 @@
 | `Aps` | `[]string` | Optional | - |
 | `Bssids` | `[]string` | Optional | - |
 | `Count` | `*int` | Optional | If present, represents number of events of given type occurred in current interval, default=1 |
-| `EventId` | `*uuid.UUID` | Optional | event id |
+| `EventId` | `*uuid.UUID` | Optional | Event id |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `LastSeen` | `float64` | Required | - |
@@ -23,7 +23,7 @@
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Ssids` | `[]string` | Optional | - |
 | `Timestamp` | `int` | Required | - |
-| `Type` | `string` | Required | event type |
+| `Type` | `string` | Required | Event type |
 | `Update` | `*bool` | Optional | If presents, represents that this is an update to event with given id sent earlier. default=false |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -9,13 +9,13 @@ import (
 
 // UtilsClearBgp represents a UtilsClearBgp struct.
 type UtilsClearBgp struct {
-    // neighbor ip-address or 'all'
+    // Neighbor ip-address or 'all'
     Neighbor             string                 `json:"neighbor"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // enum: `hard`, `in`, `out`, `soft`
     Type                 UtilsClearBgpTypeEnum  `json:"type"`
-    // vrf name
+    // VRF name
     Vrf                  *string                `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

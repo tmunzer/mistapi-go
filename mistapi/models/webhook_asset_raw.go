@@ -8,11 +8,11 @@ import (
 )
 
 // WebhookAssetRaw represents a WebhookAssetRaw struct.
-// asset raw webhook sample
+// Asset raw webhook sample
 type WebhookAssetRaw struct {
-    // list of events
+    // List of events
     Events               []WebhookAssetRawEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                 `json:"topic"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

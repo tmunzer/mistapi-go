@@ -11,16 +11,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AssetId` | `*uuid.UUID` | Optional | uuid of named asset |
+| `AssetId` | `*uuid.UUID` | Optional | UUID of named asset |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
-| `Mac` | `*string` | Optional | mac address of wifi client or asset |
-| `MapId` | `uuid.UUID` | Required | map id |
-| `Name` | `*string` | Optional | name of the client, may be empty |
+| `Mac` | `*string` | Optional | MAC address of wifi client or asset |
+| `MapId` | `uuid.UUID` | Required | Map id |
+| `Name` | `*string` | Optional | Name of the client, may be empty |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `int` | Required | timestamp of the event, epoch |
+| `Timestamp` | `int` | Required | Timestamp of the event, epoch |
 | `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enum: `enter`, `exit` |
 | `Type` | `string` | Required | - |
-| `ZoneId` | `uuid.UUID` | Required | zone id |
+| `ZoneId` | `uuid.UUID` | Required | Zone id |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -1,7 +1,7 @@
 
 # Webhook Client Sessions
 
-client session webhook sample
+Client session webhook sample
 
 *This model accepts additional fields of type interface{}.*
 

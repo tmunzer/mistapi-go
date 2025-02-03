@@ -8,7 +8,7 @@ import (
 // RadiusConfig represents a RadiusConfig struct.
 // Junos Radius config
 type RadiusConfig struct {
-    // how frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
+    // How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
     AcctInterimInterval  *int                   `json:"acct_interim_interval,omitempty"`
     AcctServers          []RadiusAcctServer     `json:"acct_servers,omitempty"`
     AuthServers          []RadiusAuthServer     `json:"auth_servers,omitempty"`

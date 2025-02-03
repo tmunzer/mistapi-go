@@ -1,7 +1,7 @@
 
 # Wlan Dns Server Rewrite
 
-for radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
+For radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
 
 *This model accepts additional fields of type interface{}.*
 
@@ -14,7 +14,7 @@ for radius_group-based DNS server (rewrite DNS request depending on the Group RA
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `RadiusGroups` | `map[string]string` | Optional | map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server |
+| `RadiusGroups` | `map[string]string` | Optional | Map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

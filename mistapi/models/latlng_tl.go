@@ -6,7 +6,7 @@ import (
 )
 
 // LatlngTl represents a LatlngTl struct.
-// when type=google, latitude / longitude of the top-left corner
+// When type=google, latitude / longitude of the top-left corner
 type LatlngTl struct {
     Lat                  *string                `json:"lat,omitempty"`
     Lng                  *string                `json:"lng,omitempty"`

@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CpuStat` | [`*models.StatsMxedgeCpuStat`](../../doc/models/stats-mxedge-cpu-stat.md) | Optional | CPU/core stats list |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `FipsEnabled` | `*bool` | Optional | alue indicating fips configuration on the device |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `FipsEnabled` | `*bool` | Optional | Indicate fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
@@ -24,17 +24,17 @@
 | `Mac` | `*string` | Optional | - |
 | `MemoryStat` | [`*models.StatsMxedgeMemoryStat`](../../doc/models/stats-mxedge-memory-stat.md) | Optional | Memory usage |
 | `Model` | `*string` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MxagentRegistered` | `*bool` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | The name of the tunnel |
 | `NumTunnels` | `*int` | Optional | - |
-| `OobIpConfig` | [`*models.MxedgeOobIpConfig`](../../doc/models/mxedge-oob-ip-config.md) | Optional | ip configuration of the Mist Edge out-of_band management interface |
+| `OobIpConfig` | [`*models.MxedgeOobIpConfig`](../../doc/models/mxedge-oob-ip-config.md) | Optional | IPconfiguration of the Mist Edge out-of_band management interface |
 | `OobIpStat` | [`*models.StatsMxedgeOobIpStat`](../../doc/models/stats-mxedge-oob-ip-stat.md) | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortStat` | [`map[string]models.StatsMxedgePortStat`](../../doc/models/stats-mxedge-port-stat.md) | Optional | - |
 | `Serial` | `models.Optional[string]` | Optional | - |
-| `ServiceStat` | [`map[string]models.StatsMxedgeServiceStat`](../../doc/models/stats-mxedge-service-stat.md) | Optional | stat for each services |
+| `ServiceStat` | [`map[string]models.StatsMxedgeServiceStat`](../../doc/models/stats-mxedge-service-stat.md) | Optional | Stat for each services |
 | `Services` | `[]string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `*string` | Optional | - |

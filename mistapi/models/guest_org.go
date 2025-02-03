@@ -11,40 +11,40 @@ import (
 // GuestOrg represents a GuestOrg struct.
 // Guest
 type GuestOrg struct {
-    // if `auth_method`==`email`, the email address where the authorization code has been sent to
+    // If `auth_method`==`email`, the email address where the authorization code has been sent to
     AccessCodeEmail        *string                `json:"access_code_email,omitempty"`
-    // based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication
+    // Based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication
     AllowWlanIdRoam        *bool                  `json:"allow_wlan_id_roam,omitempty"`
-    // the MAC Address of the AP the guest was connected to during the registration process
+    // MAC Address of the AP the guest was connected to during the registration process
     ApMac                  *string                `json:"ap_mac,omitempty"`
-    // type of guest authorization
+    // Type of guest authorization
     AuthMethod             *string                `json:"auth_method,omitempty"`
-    // whether the guest is current authorized
+    // Whether the guest is current authorized
     Authorized             *bool                  `json:"authorized,omitempty"`
-    // when the authorization would expire
+    // When the authorization would expire
     AuthorizedExpiringTime *float64               `json:"authorized_expiring_time,omitempty"`
-    // when the guest was authorized
+    // When the guest was authorized
     AuthorizedTime         *float64               `json:"authorized_time,omitempty"`
-    // optional, the info provided by user
+    // Optional, the info provided by user
     Company                *string                `json:"company,omitempty"`
-    // based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication
+    // Based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication
     CrossSite              *bool                  `json:"cross_site,omitempty"`
-    // optional, the info provided by user
+    // Optional, the info provided by user
     Email                  *string                `json:"email,omitempty"`
-    // optional, the info provided by user
+    // Optional, the info provided by user
     Field1                 *string                `json:"field1,omitempty"`
     Field2                 *string                `json:"field2,omitempty"`
     Field3                 *string                `json:"field3,omitempty"`
     Field4                 *string                `json:"field4,omitempty"`
-    // mac
+    // MAC
     Mac                    *string                `json:"mac,omitempty"`
     // Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)
     Minutes                *int                   `json:"minutes,omitempty"`
-    // optional, the info provided by user
+    // Optional, the info provided by user
     Name                   *string                `json:"name,omitempty"`
-    // if the client is using a randomized MAC Address to connect the SSID
+    // If the client is using a randomized MAC Address to connect the SSID
     RandomMac              *bool                  `json:"random_mac,omitempty"`
-    // name of the SSID
+    // Name of the SSID
     Ssid                   *string                `json:"ssid,omitempty"`
     // ID of the WLAN
     WlanId                 uuid.UUID              `json:"wlan_id"`

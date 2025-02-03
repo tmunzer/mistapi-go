@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthTtl` | `*int` | Optional | cache of last auth result; in seconds<br>**Default**: `604800`<br>**Constraints**: `>= 60`, `<= 2592000` |
-| `DefaultDot1xVlan` | `*string` | Optional | default vlan for all dot1x devices, if different from default_vlan |
+| `AuthTtl` | `*int` | Optional | Cache of last auth result; in seconds<br>**Default**: `604800`<br>**Constraints**: `>= 60`, `<= 2592000` |
+| `DefaultDot1xVlan` | `*string` | Optional | Default vlan for all dot1x devices, if different from default_vlan |
 | `DefaultVlan` | `*string` | Optional | Default vlan to assign for devices not in the cache |
 | `Enabled` | `*bool` | Optional | - |
-| `MxedgeHosts` | `[]string` | Optional | list of NAC Edges in this site |
+| `MxedgeHosts` | `[]string` | Optional | List of NAC Edges in this site |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

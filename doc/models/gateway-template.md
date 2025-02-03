@@ -15,7 +15,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `BgpConfig` | [`map[string]models.BgpConfig`](../../doc/models/bgp-config.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DhcpdConfig` | [`*models.DhcpdConfig`](../../doc/models/dhcpd-config.md) | Optional | - |
 | `DnsOverride` | `*bool` | Optional | **Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -26,16 +26,16 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IdpProfiles` | [`map[string]models.IdpProfile`](../../doc/models/idp-profile.md) | Optional | Property key is the profile name |
 | `IpConfigs` | [`map[string]models.GatewayIpConfigProperty`](../../doc/models/gateway-ip-config-property.md) | Optional | Property key is the network name |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `Networks` | [`[]models.Network`](../../doc/models/network.md) | Optional | - |
 | `NtpOverride` | `*bool` | Optional | **Default**: `false` |
-| `NtpServers` | `[]string` | Optional | list of NTP servers specific to this device. By default, those in Site Settings will be used |
-| `OobIpConfig` | [`*models.GatewayOobIpConfig`](../../doc/models/gateway-oob-ip-config.md) | Optional | out-of-band (vme/em0/fxp0) IP config |
+| `NtpServers` | `[]string` | Optional | List of NTP servers specific to this device. By default, those in Site Settings will be used |
+| `OobIpConfig` | [`*models.GatewayOobIpConfig`](../../doc/models/gateway-oob-ip-config.md) | Optional | Out-of-band (vme/em0/fxp0) IP config |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathPreferences` | [`map[string]models.GatewayPathPreferences`](../../doc/models/gateway-path-preferences.md) | Optional | Property key is the path name |
 | `PortConfig` | [`map[string]models.GatewayPortConfig`](../../doc/models/gateway-port-config.md) | Optional | Property key is the Port Name (i.e. "ge-0/0/0"), the Ports Range (i.e. "ge-0/0/0-10"), the List of Ports (i.e. "ge-0/0/0,ge-1/0/0", only allowed for Aggregated or Redundant interfaces) or a Variable (i.e. "{{myvar}}"). |
-| `RouterId` | `*string` | Optional | auto assigned if not set |
+| `RouterId` | `*string` | Optional | Auto assigned if not set |
 | `RoutingPolicies` | [`map[string]models.RoutingPolicy`](../../doc/models/routing-policy.md) | Optional | Property key is the routing policy name |
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `TunnelConfigs` | [`map[string]models.TunnelConfig`](../../doc/models/tunnel-config.md) | Optional | Property key is the tunnel name |

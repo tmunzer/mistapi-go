@@ -7,7 +7,7 @@ import (
 
 // JseDevice represents a JseDevice struct.
 type JseDevice struct {
-    // when available
+    // When available
     ExtIp                *string                `json:"ext_ip,omitempty"`
     LastSeen             *float64               `json:"last_seen,omitempty"`
     Mac                  *string                `json:"mac,omitempty"`

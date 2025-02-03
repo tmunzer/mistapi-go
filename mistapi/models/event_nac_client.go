@@ -9,7 +9,7 @@ import (
 // EventNacClient represents a EventNacClient struct.
 type EventNacClient struct {
     Ap                   *string                `json:"ap,omitempty"`
-    // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
+    // Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
     AuthType             *string                `json:"auth_type,omitempty"`
     Bssid                *string                `json:"bssid,omitempty"`
     DeviceMac            *string                `json:"device_mac,omitempty"`
@@ -37,9 +37,9 @@ type EventNacClient struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Ssid                 *string                `json:"ssid,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // event type, e.g. NAC_CLIENT_PERMIT
+    // Event type, e.g. NAC_CLIENT_PERMIT
     Type                 *string                `json:"type,omitempty"`
-    // labels derived from usermac entry
+    // Labels derived from usermac entry
     UsermacLabel         []string               `json:"usermac_label,omitempty"`
     // Username presented by the client
     Username             *string                `json:"username,omitempty"`

@@ -20,31 +20,31 @@ Switch statistics
 | `ClientsStats` | [`*models.StatsSwitchClientsStats`](../../doc/models/stats-switch-clients-stats.md) | Optional | - |
 | `ConfigStatus` | `*string` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `FwVersionsOutofsync` | `*bool` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
-| `HasPcap` | `*bool` | Optional | whether the switch supports packet capture |
-| `Hostname` | `*string` | Optional | hostname reported by the device |
-| `HwRev` | `*string` | Optional | device hardware revision number |
+| `HasPcap` | `*bool` | Optional | Whether the switch supports packet capture |
+| `Hostname` | `*string` | Optional | Hostname reported by the device |
+| `HwRev` | `*string` | Optional | Device hardware revision number |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `*string` | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
 | `LastSeen` | `*float64` | Optional | - |
-| `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
+| `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | Last trouble code of switch |
 | `Mac` | `*string` | Optional | - |
 | `MacTableStats` | [`*models.MacTableStats`](../../doc/models/mac-table-stats.md) | Optional | - |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
-| `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | memory usage stat (for virtual chassis, memory usage of master RE) |
+| `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Name` | `*string` | Optional | device name if configured |
+| `Name` | `*string` | Optional | Device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
+| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `Serial` | `*string` | Optional | - |
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |

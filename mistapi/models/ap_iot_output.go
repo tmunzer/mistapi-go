@@ -8,15 +8,15 @@ import (
 // ApIotOutput represents a ApIotOutput struct.
 // IoT output AP settings
 type ApIotOutput struct {
-    // whether to enable a pin
+    // Whether to enable a pin
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // optional; descriptive pin name
+    // Optional; descriptive pin name
     Name                 *string                `json:"name,omitempty"`
-    // whether the pin is configured as an output. DO and A1-A4 can be repurposed by changing
+    // Whether the pin is configured as an output. DO and A1-A4 can be repurposed by changing
     Output               *bool                  `json:"output,omitempty"`
     // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
     Pullup               *ApIotPullupEnum       `json:"pullup,omitempty"`
-    // output pin signal level, default 0
+    // Output pin signal level, default 0
     Value                *int                   `json:"value,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

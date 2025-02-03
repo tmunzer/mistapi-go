@@ -7,9 +7,9 @@ import (
 
 // OrgSettingGatewayMgmtOverlayIp represents a OrgSettingGatewayMgmtOverlayIp struct.
 type OrgSettingGatewayMgmtOverlayIp struct {
-    // when it's going overlay, a routable IP to overlay will be required
+    // When it's going overlay, a routable IP to overlay will be required
     Ip                   *string                `json:"ip,omitempty"`
-    // for SSR HA cluster, another IP for node1 will be required, too
+    // For SSR HA cluster, another IP for node1 will be required, too
     Node1Ip              *string                `json:"node1_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

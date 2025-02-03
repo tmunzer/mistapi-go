@@ -8,9 +8,9 @@ import (
 // VrrpGroup represents a VrrpGroup struct.
 // Junos VRRP group
 type VrrpGroup struct {
-    // if `auth_type`==`md5`
+    // If `auth_type`==`md5`
     AuthKey              *string                     `json:"auth_key,omitempty"`
-    // if `auth_type`==`simple`
+    // If `auth_type`==`simple`
     AuthPassword         *string                     `json:"auth_password,omitempty"`
     // enum: `md5`, `simple`
     AuthType             *VrrpGroupAuthTypeEnum      `json:"auth_type,omitempty"`

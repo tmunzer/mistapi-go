@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ForwardUrl` | `*string` | Optional | if configured in SSO as custom_logout_url |
+| `ForwardUrl` | `*string` | Optional | If configured in SSO as custom_logout_url |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

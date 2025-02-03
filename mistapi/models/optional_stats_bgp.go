@@ -6,22 +6,22 @@ import (
 )
 
 // OptionalStatsBgp represents a OptionalStatsBgp struct.
-// only present when `bgp_peers` in `fields` query parameter
+// Only present when `bgp_peers` in `fields` query parameter
 type OptionalStatsBgp struct {
-    // if this is created for evpn overlay
+    // If this is created for evpn overlay
     EvpnOverlay          *bool                  `json:"evpn_overlay,omitempty"`
-    // if this is created for overlay
+    // If this is created for overlay
     ForOverlay           *bool                  `json:"for_overlay,omitempty"`
     // AS
     LocalAs              *int                   `json:"local_as,omitempty"`
     Neighbor             *string                `json:"neighbor,omitempty"`
     NeighborAs           *int                   `json:"neighbor_as,omitempty"`
-    // if it's another device in the same org
+    // If it's another device in the same org
     NeighborMac          *string                `json:"neighbor_mac,omitempty"`
-    // node0/node1
+    // Node0/node1
     Node                 *string                `json:"node,omitempty"`
     RxPkts               *int                   `json:"rx_pkts,omitempty"`
-    // number of received routes
+    // Number of received routes
     RxRoutes             *int                   `json:"rx_routes,omitempty"`
     // enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
     State                *BgpStatsStateEnum     `json:"state,omitempty"`

@@ -7,13 +7,13 @@ import (
 
 // ConstWebhookTopic represents a ConstWebhookTopic struct.
 type ConstWebhookTopic struct {
-    // can be used in org webhooks, optional
+    // Can be used in org webhooks, optional
     ForOrg               *bool                  `json:"for_org,omitempty"`
-    // supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search
+    // Supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search
     HasDeliveryResults   *bool                  `json:"has_delivery_results,omitempty"`
-    // internal topic (not selectable in site/org webhooks)
+    // Internal topic (not selectable in site/org webhooks)
     Internal             *bool                  `json:"internal,omitempty"`
-    // webhook topic name
+    // Webhook topic name
     Key                  *string                `json:"key,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -7,7 +7,7 @@ import (
 )
 
 // ServiceDscp represents a ServiceDscp struct.
-// for SSR only, when `traffic_type`==`custom`. 0-63 or variable
+// For SSR only, when `traffic_type`==`custom`. 0-63 or variable
 type ServiceDscp struct {
     value    any
     isString bool
@@ -73,7 +73,7 @@ func (s *ServiceDscp) AsNumber() (
 }
 
 // internalServiceDscp represents a serviceDscp struct.
-// for SSR only, when `traffic_type`==`custom`. 0-63 or variable
+// For SSR only, when `traffic_type`==`custom`. 0-63 or variable
 type internalServiceDscp struct {}
 
 var ServiceDscpContainer internalServiceDscp

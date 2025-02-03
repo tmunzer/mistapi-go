@@ -18,11 +18,11 @@ Switch OOB IP Config:
 |  --- | --- | --- | --- |
 | `Gateway` | `*string` | Optional | - |
 | `Ip` | `*string` | Optional | - |
-| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
-| `Network` | `*string` | Optional | optional, the network to be used for mgmt |
+| `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks` |
+| `Network` | `*string` | Optional | Optional, the network to be used for mgmt |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
-| `UseMgmtVrf` | `*bool` | Optional | if supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
-| `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
+| `UseMgmtVrf` | `*bool` | Optional | If supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
+| `UseMgmtVrfForHostOut` | `*bool` | Optional | For host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

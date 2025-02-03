@@ -1,7 +1,7 @@
 
 # Wlan Airwatch
 
-airwatch wlan settings
+Airwatch wlan settings
 
 *This model accepts additional fields of type interface{}.*
 
@@ -14,10 +14,10 @@ airwatch wlan settings
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApiKey` | `*string` | Optional | API Key |
-| `ConsoleUrl` | `*string` | Optional | console URL |
+| `ConsoleUrl` | `*string` | Optional | Console URL |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Password` | `*string` | Optional | password |
-| `Username` | `*string` | Optional | username |
+| `Password` | `*string` | Optional | Password |
+| `Username` | `*string` | Optional | Username |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

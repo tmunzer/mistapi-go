@@ -1,7 +1,7 @@
 
 # Alarm
 
-additional information per alarm type
+Additional information per alarm type
 
 *This model accepts additional fields of type interface{}.*
 

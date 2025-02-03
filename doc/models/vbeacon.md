@@ -13,24 +13,24 @@ vBeacon
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `Major` | `*int` | Optional | bluetooth tag major |
-| `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
-| `Message` | `*string` | Optional | a message that can be displayed when the sdkclient gets near the vbeacon |
-| `Minor` | `*int` | Optional | bluetooth tag minor |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `*string` | Optional | name / label of the device |
+| `Major` | `*int` | Optional | Bluetooth tag major |
+| `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
+| `Message` | `*string` | Optional | Message that can be displayed when the sdkclient gets near the vbeacon |
+| `Minor` | `*int` | Optional | Bluetooth tag minor |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `*string` | Optional | Name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Power` | `*int` | Optional | required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.<br>**Default**: `4`<br>**Constraints**: `>= -30`, `<= 100` |
+| `Power` | `*int` | Optional | Required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.<br>**Default**: `4`<br>**Constraints**: `>= -30`, `<= 100` |
 | `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Url` | `*string` | Optional | URL to show, optional |
-| `Uuid` | `*uuid.UUID` | Optional | bluetooth tag UUID |
-| `WayfindingNodename` | `*string` | Optional | the name to be used in wayfinding_path or wayfinding_grid blob |
-| `X` | `*float64` | Optional | x in pixel |
-| `Y` | `*float64` | Optional | y in pixel |
+| `Uuid` | `*uuid.UUID` | Optional | Bluetooth tag UUID |
+| `WayfindingNodename` | `*string` | Optional | Name to be used in wayfinding_path or wayfinding_grid blob |
+| `X` | `*float64` | Optional | X in pixel |
+| `Y` | `*float64` | Optional | Y in pixel |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

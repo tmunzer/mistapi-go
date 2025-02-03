@@ -47,9 +47,9 @@ CountOrgPskPortalLogs(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgPskPortalLogsCountDistinctEnum`](../../doc/models/org-psk-portal-logs-count-distinct-enum.md) | Query, Optional | **Default**: `"pskportal_id"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -304,7 +304,7 @@ if err != nil {
 
 # Get Org Psk Portal
 
-get Org Psk Portal Details
+Get Org Psk Portal Details
 
 ```go
 GetOrgPskPortal(
@@ -378,9 +378,9 @@ ListOrgPskPortalLogs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -536,9 +536,9 @@ SearchOrgPskPortalLogs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 | `pskName` | `*string` | Query, Optional | - |
@@ -547,7 +547,7 @@ SearchOrgPskPortalLogs(
 | `id` | `*uuid.UUID` | Query, Optional | audit_id |
 | `adminName` | `*string` | Query, Optional | - |
 | `adminId` | `*string` | Query, Optional | - |
-| `nameId` | `*uuid.UUID` | Query, Optional | name_id used in SSO |
+| `nameId` | `*uuid.UUID` | Query, Optional | Name_id used in SSO |
 
 ## Response Type
 
@@ -630,7 +630,7 @@ if err != nil {
 
 # Update Org Psk Portal
 
-update Org Psk Portal
+Update Org Psk Portal
 
 ```go
 UpdateOrgPskPortal(

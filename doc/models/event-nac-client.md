@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | - |
-| `AuthType` | `*string` | Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `AuthType` | `*string` | Optional | Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `Bssid` | `*string` | Optional | - |
 | `DeviceMac` | `*string` | Optional | - |
 | `DryrunNacruleId` | `*uuid.UUID` | Optional | NAC Policy Dry Run Rule ID, if present and matched |
@@ -33,8 +33,8 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
-| `Type` | `*string` | Optional | event type, e.g. NAC_CLIENT_PERMIT |
-| `UsermacLabel` | `[]string` | Optional | labels derived from usermac entry |
+| `Type` | `*string` | Optional | Event type, e.g. NAC_CLIENT_PERMIT |
+| `UsermacLabel` | `[]string` | Optional | Labels derived from usermac entry |
 | `Username` | `*string` | Optional | Username presented by the client |
 | `Vlan` | `*string` | Optional | Vlan ID |
 | `VlanSource` | `*string` | Optional | Vlan source, e.g. "nactag", "usermac" |

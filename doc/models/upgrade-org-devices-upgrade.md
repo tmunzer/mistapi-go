@@ -23,7 +23,7 @@
   "upgrade": {
     "id": "000016ac-0000-0000-0000-000000000000",
     "start_time": 228,
-    "status": "downloaded",
+    "status": "cancelled",
     "targets": {
       "download_requested": [
         "download_requested6"

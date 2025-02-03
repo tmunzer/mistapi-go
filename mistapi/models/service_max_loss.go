@@ -7,7 +7,7 @@ import (
 )
 
 // ServiceMaxLoss represents a ServiceMaxLoss struct.
-// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
+// For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
 type ServiceMaxLoss struct {
     value    any
     isString bool
@@ -73,7 +73,7 @@ func (s *ServiceMaxLoss) AsNumber() (
 }
 
 // internalServiceMaxLoss represents a serviceMaxLoss struct.
-// for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
+// For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
 type internalServiceMaxLoss struct {}
 
 var ServiceMaxLossContainer internalServiceMaxLoss

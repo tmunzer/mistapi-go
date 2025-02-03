@@ -118,7 +118,7 @@ func (o *OrgsAntivirusProfiles) CreateOrgAntivirusProfile(
 // DeleteOrgAntivirusProfile takes context, orgId, avprofilesId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// deleteOrgAntivirusProfile
+// DeleteOrgAntivirusProfile
 func (o *OrgsAntivirusProfiles) DeleteOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
@@ -197,7 +197,7 @@ func (o *OrgsAntivirusProfiles) GetOrgAntivirusProfile(
 // UpdateOrgAntivirusProfile takes context, orgId, avprofilesId, body as parameters and
 // returns an models.ApiResponse with models.Avprofile data and
 // an error if there was an issue with the request or response.
-// update Org Antivirus Profile
+// Update Org Antivirus Profile
 func (o *OrgsAntivirusProfiles) UpdateOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,

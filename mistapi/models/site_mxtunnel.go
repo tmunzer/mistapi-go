@@ -10,24 +10,24 @@ import (
 // Site MxTunnel
 type SiteMxtunnel struct {
     AdditionalMxtunnels  map[string]SiteMxtunnelAdditionalMxtunnel `json:"additional_mxtunnels,omitempty"`
-    // list of subnets where we allow AP to establish Mist Tunnels from
+    // List of subnets where we allow AP to establish Mist Tunnels from
     ApSubnets            []string                                  `json:"ap_subnets,omitempty"`
-    // schedule to preempt ap’s which are not connected to preferred peer
+    // Schedule to preempt ap’s which are not connected to preferred peer
     AutoPreemption       *AutoPreemption                           `json:"auto_preemption,omitempty"`
-    // for AP, how to connect to tunterm or radsecproxy
+    // For AP, how to connect to tunterm or radsecproxy
     Clusters             []SiteMxtunnelCluster                     `json:"clusters,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                                  `json:"created_time,omitempty"`
     Enabled              *bool                                     `json:"enabled,omitempty"`
     ForSite              *bool                                     `json:"for_site,omitempty"`
-    // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
+    // In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
     HelloInterval        *int                                      `json:"hello_interval,omitempty"`
     HelloRetries         *int                                      `json:"hello_retries,omitempty"`
-    // hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
+    // Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
     Hosts                []string                                  `json:"hosts,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                                `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                                  `json:"modified_time,omitempty"`
     // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
     Mtu                  *int                                      `json:"mtu,omitempty"`
@@ -36,7 +36,7 @@ type SiteMxtunnel struct {
     Protocol             *MxtunnelProtocolEnum                     `json:"protocol,omitempty"`
     Radsec               *SiteMxtunnelRadsec                       `json:"radsec,omitempty"`
     SiteId               *uuid.UUID                                `json:"site_id,omitempty"`
-    // list of vlan_ids that will be used
+    // List of vlan_ids that will be used
     VlanIds              []int                                     `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{}                    `json:"_"`
 }

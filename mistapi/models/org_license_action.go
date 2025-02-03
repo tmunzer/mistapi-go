@@ -10,17 +10,17 @@ import (
 
 // OrgLicenseAction represents a OrgLicenseAction struct.
 type OrgLicenseAction struct {
-    // if `op`==`unamend`, the ID of the operation to cancel
+    // If `op`==`unamend`, the ID of the operation to cancel
     AmendmentId          *uuid.UUID                    `json:"amendment_id,omitempty"`
-    // if `op`==`amend`, the id of the org where the license is moved
+    // If `op`==`amend`, the id of the org where the license is moved
     DstOrgId             *uuid.UUID                    `json:"dst_org_id,omitempty"`
-    // if `op`==`annotate`
+    // If `op`==`annotate`
     Notes                *string                       `json:"notes,omitempty"`
     // to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend`
     Op                   OrgLicenseActionOperationEnum `json:"op"`
-    // if `op`==`amend`, the number of licenses to move
+    // If `op`==`amend`, the number of licenses to move
     Quantity             *int                          `json:"quantity,omitempty"`
-    // if `op`==`amend` or `op`==`delete`, the ID of the subscription to use
+    // If `op`==`amend` or `op`==`delete`, the ID of the subscription to use
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }

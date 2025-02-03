@@ -6,7 +6,7 @@ import (
 )
 
 // LastTrouble represents a LastTrouble struct.
-// last trouble code of switch
+// Last trouble code of switch
 type LastTrouble struct {
     // Code definitions list at /api/v1/consts/ap_led_status
     Code                 *string                `json:"code,omitempty"`

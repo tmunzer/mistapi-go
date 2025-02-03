@@ -13,16 +13,16 @@ Gateway Site settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AdminSshkeys` | `[]string` | Optional | for SSR only, as direct root access is not allowed |
+| `AdminSshkeys` | `[]string` | Optional | For SSR only, as direct root access is not allowed |
 | `AppProbing` | [`*models.AppProbing`](../../doc/models/app-probing.md) | Optional | - |
-| `AppUsage` | `*bool` | Optional | consumes uplink bandwidth, requires WA license |
+| `AppUsage` | `*bool` | Optional | Consumes uplink bandwidth, requires WA license |
 | `AutoSignatureUpdate` | [`*models.SiteSettingGatewayMgmtAutoSignatureUpdate`](../../doc/models/site-setting-gateway-mgmt-auto-signature-update.md) | Optional | - |
-| `ConfigRevertTimer` | `*int` | Optional | he rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
-| `DisableConsole` | `*bool` | Optional | for both SSR and SRX disable console port<br>**Default**: `false` |
-| `DisableOob` | `*bool` | Optional | for both SSR and SRX disable management interface<br>**Default**: `false` |
+| `ConfigRevertTimer` | `*int` | Optional | Rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
+| `DisableConsole` | `*bool` | Optional | For both SSR and SRX disable console port<br>**Default**: `false` |
+| `DisableOob` | `*bool` | Optional | For both SSR and SRX disable management interface<br>**Default**: `false` |
 | `ProbeHosts` | `[]string` | Optional | - |
-| `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
-| `RootPassword` | `*string` | Optional | for SRX only |
+| `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | Restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
+| `RootPassword` | `*string` | Optional | For SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
 | `SecurityLogSourceInterface` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

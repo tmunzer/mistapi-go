@@ -8,7 +8,7 @@ import (
 // OrgSettingCloudshark represents a OrgSettingCloudshark struct.
 type OrgSettingCloudshark struct {
     Apitoken             *string                `json:"apitoken,omitempty"`
-    // if using CS Enteprise
+    // If using CS Enteprise
     Url                  *string                `json:"url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

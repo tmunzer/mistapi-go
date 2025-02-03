@@ -10,13 +10,13 @@ type EvpnTopologySwitchConfig struct {
     DhcpdConfig          *EvpnTopologySwitchConfigDhcpdConfig `json:"dhcpd_config,omitempty"`
     // Property key is network name
     Networks             map[string]SwitchNetwork             `json:"networks,omitempty"`
-    // additional IP Addresses configured on the switch. Property key is the port network name
+    // Additional IP Addresses configured on the switch. Property key is the port network name
     OtherIpConfigs       map[string]JunosOtherIpConfig        `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig           map[string]JunosPortConfig           `json:"port_config,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages           map[string]SwitchPortUsage           `json:"port_usages,omitempty"`
-    // used for OSPF / BGP / EVPN
+    // Used for OSPF / BGP / EVPN
     RouterId             *string                              `json:"router_id,omitempty"`
     VrfConfig            *EvpnTopologySwitchConfigVrfConfig   `json:"vrf_config,omitempty"`
     AdditionalProperties map[string]interface{}               `json:"_"`

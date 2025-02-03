@@ -26,14 +26,14 @@
 | `SubEngEntitled` | `*int` | Optional | - |
 | `SubEngRequired` | `*int` | Optional | - |
 | `SubEx12Required` | `*int` | Optional | - |
-| `SubInsufficient` | `*bool` | Optional | if this org has sufficient subscription |
+| `SubInsufficient` | `*bool` | Optional | If this org has sufficient subscription |
 | `SubManEntitled` | `*int` | Optional | - |
 | `SubManRequired` | `*int` | Optional | - |
 | `SubMeEntitled` | `*int` | Optional | - |
 | `SubVnaEntitled` | `*int` | Optional | - |
 | `SubVnaRequired` | `*int` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
-| `TrialEnabled` | `*bool` | Optional | if this org is under trial period |
+| `TrialEnabled` | `*bool` | Optional | If this org is under trial period |
 | `UsageTypes` | `[]string` | Optional | a list of types that enabled by usage |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

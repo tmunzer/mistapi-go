@@ -1,7 +1,7 @@
 
 # Template Exceptions
 
-where this template should not be applied to (takes precedence)
+Where this template should not be applied to (takes precedence)
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ where this template should not be applied to (takes precedence)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `SiteIds` | `[]uuid.UUID` | Optional | list of site ids |
-| `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids |
+| `SiteIds` | `[]uuid.UUID` | Optional | List of site ids |
+| `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

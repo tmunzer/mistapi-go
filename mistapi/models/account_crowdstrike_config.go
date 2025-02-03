@@ -10,11 +10,11 @@ import (
 // AccountCrowdstrikeConfig represents a AccountCrowdstrikeConfig struct.
 // OAuth linked CrowdStrike apps account details
 type AccountCrowdstrikeConfig struct {
-    // customer account api client ID
+    // Customer account api client ID
     ClientId             string                 `json:"client_id"`
-    // customer account api client Secret
+    // Customer account api client Secret
     ClientSecret         string                 `json:"client_secret"`
-    // customer id of an admin
+    // Customer id of an admin
     CustomerId           string                 `json:"customer_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

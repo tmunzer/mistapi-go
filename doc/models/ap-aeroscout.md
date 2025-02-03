@@ -13,9 +13,9 @@ Aeroscout AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether to enable aeroscout config<br>**Default**: `false` |
-| `Host` | `models.Optional[string]` | Optional | required if enabled, aeroscout server host |
-| `LocateConnected` | `*bool` | Optional | whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation<br>**Default**: `true` |
+| `Enabled` | `*bool` | Optional | Whether to enable aeroscout config<br>**Default**: `false` |
+| `Host` | `models.Optional[string]` | Optional | Required if enabled, aeroscout server host |
+| `LocateConnected` | `*bool` | Optional | Whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation<br>**Default**: `true` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

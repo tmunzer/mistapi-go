@@ -8,7 +8,7 @@ import (
 // OrgSettingPcap represents a OrgSettingPcap struct.
 type OrgSettingPcap struct {
     Bucket               *string                `json:"bucket,omitempty"`
-    // max_len of non-management packets to capture
+    // Max_len of non-management packets to capture
     MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

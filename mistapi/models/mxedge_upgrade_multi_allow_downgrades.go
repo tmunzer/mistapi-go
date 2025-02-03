@@ -6,7 +6,7 @@ import (
 )
 
 // MxedgeUpgradeMultiAllowDowngrades represents a MxedgeUpgradeMultiAllowDowngrades struct.
-// whether downgrade is allowed when running version is higher than expected version for each service
+// Whether downgrade is allowed when running version is higher than expected version for each service
 type MxedgeUpgradeMultiAllowDowngrades struct {
     Mxagent              *bool                  `json:"mxagent,omitempty"`
     Mxdas                *bool                  `json:"mxdas,omitempty"`

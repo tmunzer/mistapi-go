@@ -27,7 +27,7 @@ ListSiteNetworksDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | whether resolve the site variables<br>**Default**: `false` |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br>**Default**: `false` |
 
 ## Response Type
 

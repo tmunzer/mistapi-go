@@ -10,21 +10,21 @@ import (
 // - Note: if native imagotag is enabled, BLE will be disabled automatically
 // - Note: legacy, new config moved to ESL Config.
 type ApUsb struct {
-    // only if `type`==`imagotag`
+    // Only if `type`==`imagotag`
     Cacert               Optional[string]       `json:"cacert"`
-    // only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only
+    // Only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only
     Channel              *int                   `json:"channel,omitempty"`
-    // whether to enable any usb config
+    // Whether to enable any usb config
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // only if `type`==`imagotag`
+    // Only if `type`==`imagotag`
     Host                 *string                `json:"host,omitempty"`
-    // only if `type`==`imagotag`
+    // Only if `type`==`imagotag`
     Port                 *int                   `json:"port,omitempty"`
     // usb config type. enum: `hanshow`, `imagotag`, `solum`
     Type                 *ApUsbTypeEnum         `json:"type,omitempty"`
-    // only if `type`==`imagotag`, whether to turn on SSL verification
+    // Only if `type`==`imagotag`, whether to turn on SSL verification
     VerifyCert           *bool                  `json:"verify_cert,omitempty"`
-    // only if `type`==`solum` or `type`==`hanshow`
+    // Only if `type`==`solum` or `type`==`hanshow`
     VlanId               *int                   `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

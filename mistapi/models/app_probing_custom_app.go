@@ -7,19 +7,19 @@ import (
 
 // AppProbingCustomApp represents a AppProbingCustomApp struct.
 type AppProbingCustomApp struct {
-    // required if `protocol`==`icmp`
+    // Required if `protocol`==`icmp`
     Address              *string                          `json:"address,omitempty"`
     AppType              *string                          `json:"app_type,omitempty"`
-    // if `protocol`==`http`
+    // If `protocol`==`http`
     Hostnames            []string                         `json:"hostnames,omitempty"`
     Key                  *string                          `json:"key,omitempty"`
     Name                 *string                          `json:"name,omitempty"`
     Network              *string                          `json:"network,omitempty"`
-    // if `protocol`==`icmp`
+    // If `protocol`==`icmp`
     PacketSize           *int                             `json:"packetSize,omitempty"`
     // enum: `http`, `icmp`
     Protocol             *AppProbingCustomAppProtocolEnum `json:"protocol,omitempty"`
-    // if `protocol`==`http`
+    // If `protocol`==`http`
     Url                  *string                          `json:"url,omitempty"`
     Vrf                  *string                          `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`

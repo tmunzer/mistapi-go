@@ -8,7 +8,7 @@ import (
 )
 
 // WebhookPing represents a WebhookPing struct.
-// ping webhook
+// Ping webhook
 type WebhookPing struct {
     Events               []WebhookPingEvent     `json:"events"`
     Topic                string                 `json:"topic"`

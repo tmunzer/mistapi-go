@@ -1,7 +1,7 @@
 
 # Mxedge Upgrade Multi Allow Downgrades
 
-whether downgrade is allowed when running version is higher than expected version for each service
+Whether downgrade is allowed when running version is higher than expected version for each service
 
 *This model accepts additional fields of type interface{}.*
 

@@ -12,7 +12,7 @@ type BgpConfigNeighbors struct {
     ExportPolicy         *string                `json:"export_policy,omitempty"`
     HoldTime             *int                   `json:"hold_time,omitempty"`
     ImportPolicy         *string                `json:"import_policy,omitempty"`
-    // assuming BGP neighbor is directly connected
+    // Assuming BGP neighbor is directly connected
     MultihopTtl          *int                   `json:"multihop_ttl,omitempty"`
     NeighborAs           *int                   `json:"neighbor_as,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

@@ -7,7 +7,7 @@ import (
 
 // EvpnTopologySwitchConfigVrfConfig represents a EvpnTopologySwitchConfigVrfConfig struct.
 type EvpnTopologySwitchConfigVrfConfig struct {
-    // whether to enable VRF (when supported on the device)
+    // Whether to enable VRF (when supported on the device)
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

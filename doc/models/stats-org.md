@@ -15,9 +15,9 @@ Org statistics
 |  --- | --- | --- | --- |
 | `AlarmtemplateId` | `uuid.UUID` | Required | - |
 | `AllowMist` | `bool` | Required | - |
-| `CreatedTime` | `float64` | Required | when the object has been created, in epoch |
+| `CreatedTime` | `float64` | Required | When the object has been created, in epoch |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `float64` | Required | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `float64` | Required | When the object has been modified for the last time, in epoch |
 | `MspId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
 | `NumDevices` | `int` | Required | - |

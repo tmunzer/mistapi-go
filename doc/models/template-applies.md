@@ -1,7 +1,7 @@
 
 # Template Applies
 
-where this template should be applied to, can be org_id, site_ids, sitegroup_ids
+Where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 
 *This model accepts additional fields of type interface{}.*
 
@@ -14,8 +14,8 @@ where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `SiteIds` | `[]uuid.UUID` | Optional | list of site ids |
-| `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids |
+| `SiteIds` | `[]uuid.UUID` | Optional | List of site ids |
+| `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

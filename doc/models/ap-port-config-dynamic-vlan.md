@@ -1,7 +1,7 @@
 
 # Ap Port Config Dynamic Vlan
 
-optional dynamic vlan
+Optional dynamic vlan
 
 *This model accepts additional fields of type interface{}.*
 

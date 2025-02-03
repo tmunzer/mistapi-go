@@ -7,7 +7,7 @@ import (
 
 // WlanPortalTemplate represents a WlanPortalTemplate struct.
 type WlanPortalTemplate struct {
-    // portal template wlan settings
+    // Portal template wlan settings
     PortalTemplate       *WlanPortalTemplateSetting `json:"portal_template,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Webhook Client Join
 
-client join webhook sample
+Client join webhook sample
 
 *This model accepts additional fields of type interface{}.*
 

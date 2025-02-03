@@ -9,11 +9,11 @@ import (
 
 // UtilsRrmOptimize represents a UtilsRrmOptimize struct.
 type UtilsRrmOptimize struct {
-    // list of bands
+    // List of bands
     Bands                []string               `json:"bands"`
-    // targeting AP (neighbor APs may get changed, too), default is empty for ALL APs
+    // Targeting AP (neighbor APs may get changed, too), default is empty for ALL APs
     Macs                 []string               `json:"macs,omitempty"`
-    // only changng TX Power (will not disconnect clients)
+    // Only changing TX Power (will not disconnect clients)
     TxpowerOnly          *bool                  `json:"txpower_only,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -7,7 +7,7 @@ import (
 )
 
 // GatewayPortVlanIdWithVariable represents a GatewayPortVlanIdWithVariable struct.
-// if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
+// If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
 type GatewayPortVlanIdWithVariable struct {
     value    any
     isString bool
@@ -73,7 +73,7 @@ func (g *GatewayPortVlanIdWithVariable) AsNumber() (
 }
 
 // internalGatewayPortVlanIdWithVariable represents a gatewayPortVlanIdWithVariable struct.
-// if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
+// If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
 type internalGatewayPortVlanIdWithVariable struct {}
 
 var GatewayPortVlanIdWithVariableContainer internalGatewayPortVlanIdWithVariable

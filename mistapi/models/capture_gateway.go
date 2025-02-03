@@ -10,15 +10,15 @@ import (
 // CaptureGateway represents a CaptureGateway struct.
 // Initiate a Gateway (SSR) Packet Capture
 type CaptureGateway struct {
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                                  `json:"duration,omitempty"`
     // enum: `stream`
     Format               *CaptureGatewayFormatEnum             `json:"format,omitempty"`
     // List of SSRs. Property key is the SSR MAC
     Gateways             map[string]CaptureGatewayGateways     `json:"gateways"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                                  `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                                  `json:"num_packets,omitempty"`
     // Property key is the port ID
     Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`

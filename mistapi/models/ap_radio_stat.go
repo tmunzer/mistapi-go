@@ -6,40 +6,40 @@ import (
 )
 
 // ApRadioStat represents a ApRadioStat struct.
-// radio stat
+// Radio stat
 type ApRadioStat struct {
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
     Bandwidth              *Dot11BandwidthEnum    `json:"bandwidth,omitempty"`
-    // current channel the radio is running on
+    // Current channel the radio is running on
     Channel                Optional[int]          `json:"channel"`
     // Use dynamic chaining for downlink
     DynamicChainingEnalbed Optional[bool]         `json:"dynamic_chaining_enalbed"`
-    // radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af)
+    // Radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af)
     Mac                    Optional[string]       `json:"mac"`
     NoiseFloor             Optional[int]          `json:"noise_floor"`
     NumClients             Optional[int]          `json:"num_clients"`
-    // how many WLANs are applied to the radio
+    // How many WLANs are applied to the radio
     NumWlans               *int                   `json:"num_wlans,omitempty"`
-    // transmit power (in dBm)
+    // Transmit power (in dBm)
     Power                  Optional[int]          `json:"power"`
     RxBytes                Optional[int]          `json:"rx_bytes"`
     RxPkts                 Optional[int]          `json:"rx_pkts"`
     TxBytes                Optional[int]          `json:"tx_bytes"`
     TxPkts                 Optional[int]          `json:"tx_pkts"`
     Usage                  Optional[string]       `json:"usage"`
-    // all utilization in percentage
+    // All utilization in percentage
     UtilAll                Optional[int]          `json:"util_all"`
-    // reception of “No Packets” utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise
+    // Reception of “No Packets” utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise
     UtilNonWifi            Optional[int]          `json:"util_non_wifi"`
-    // reception of “In BSS” utilization in percentage, only frames that are received from AP/STAs within the BSS
+    // Reception of “In BSS” utilization in percentage, only frames that are received from AP/STAs within the BSS
     UtilRxInBss            Optional[int]          `json:"util_rx_in_bss"`
-    // reception of “Other BSS” utilization in percentage, all frames received from AP/STAs that are outside the BSS
+    // Reception of “Other BSS” utilization in percentage, all frames received from AP/STAs that are outside the BSS
     UtilRxOtherBss         Optional[int]          `json:"util_rx_other_bss"`
-    // transmission utilization in percentage
+    // Transmission utilization in percentage
     UtilTx                 Optional[int]          `json:"util_tx"`
-    // reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio
+    // Reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio
     UtilUndecodableWifi    Optional[int]          `json:"util_undecodable_wifi"`
-    // reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver
+    // Reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver
     UtilUnknownWifi        Optional[int]          `json:"util_unknown_wifi"`
     AdditionalProperties   map[string]interface{} `json:"_"`
 }

@@ -7,7 +7,7 @@ import (
 
 // UtilsDevicesRestart represents a UtilsDevicesRestart struct.
 type UtilsDevicesRestart struct {
-    // optional for VC member
+    // Optional for VC member
     Member               *int                         `json:"member,omitempty"`
     // only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
     Node                 *UtilsDevicesRestartNodeEnum `json:"node,omitempty"`

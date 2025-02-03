@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Apitoken` | `*string` | Optional | - |
-| `Url` | `*string` | Optional | if using CS Enteprise |
+| `Url` | `*string` | Optional | If using CS Enteprise |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

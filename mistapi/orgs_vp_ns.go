@@ -118,7 +118,7 @@ func (o *OrgsVPNs) CreateOrgVpns(
 // DeleteOrgVpn takes context, orgId, vpnId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// delete Org Vpn
+// Delete Org Vpn
 func (o *OrgsVPNs) DeleteOrgVpn(
     ctx context.Context,
     orgId uuid.UUID,
@@ -156,7 +156,7 @@ func (o *OrgsVPNs) DeleteOrgVpn(
 // GetOrgVpn takes context, orgId, vpnId as parameters and
 // returns an models.ApiResponse with models.Vpn data and
 // an error if there was an issue with the request or response.
-// getOrgVpn
+// Get Org Vpn
 func (o *OrgsVPNs) GetOrgVpn(
     ctx context.Context,
     orgId uuid.UUID,
@@ -197,7 +197,7 @@ func (o *OrgsVPNs) GetOrgVpn(
 // UpdateOrgVpn takes context, orgId, vpnId, body as parameters and
 // returns an models.ApiResponse with models.Vpn data and
 // an error if there was an issue with the request or response.
-// update Org Vpn
+// Update Org Vpn
 func (o *OrgsVPNs) UpdateOrgVpn(
     ctx context.Context,
     orgId uuid.UUID,

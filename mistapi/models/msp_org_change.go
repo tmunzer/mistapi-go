@@ -11,7 +11,7 @@ import (
 type MspOrgChange struct {
     // enum: `assign`, `unassign`
     Op                   MspOrgChangeOperationEnum `json:"op"`
-    // list of org_id
+    // List of org_id
     OrgIds               []string                  `json:"org_ids"`
     AdditionalProperties map[string]interface{}    `json:"_"`
 }

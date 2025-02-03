@@ -16,9 +16,9 @@ Switch port statistics
 | `Active` | `*bool` | Optional | Indicates if interface is active/inactive |
 | `AuthState` | [`*models.StatsSwitchPortAuthStateEnum`](../../doc/models/stats-switch-port-auth-state-enum.md) | Optional | if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init` |
 | `ForSite` | `*bool` | Optional | - |
-| `FullDuplex` | `*bool` | Optional | indicates full or half duplex |
+| `FullDuplex` | `*bool` | Optional | Indicates full or half duplex |
 | `Jitter` | `*float64` | Optional | Last sampled jitter of the interface |
-| `LastFlapped` | `*float64` | Optional | indicates when the port was last flapped |
+| `LastFlapped` | `*float64` | Optional | Indicates when the port was last flapped |
 | `Latency` | `*float64` | Optional | Last sampled latency of the interface |
 | `Loss` | `*float64` | Optional | Last sampled loss of the interface |
 | `LteIccid` | `models.Optional[string]` | Optional | LTE ICCID value, Check for null/empty |
@@ -28,35 +28,35 @@ Switch port statistics
 | `MacCount` | `*int` | Optional | Number of mac addresses in the forwarding table |
 | `MacLimit` | `*int` | Optional | Limit on number of dynamically learned macs<br>**Constraints**: `>= 0` |
 | `NeighborMac` | `string` | Required | chassis identifier of the chassis type listed |
-| `NeighborPortDesc` | `*string` | Optional | description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
-| `NeighborSystemName` | `*string` | Optional | name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
+| `NeighborPortDesc` | `*string` | Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
+| `NeighborSystemName` | `*string` | Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
 | `OrgId` | `uuid.UUID` | Required | - |
-| `PoeDisabled` | `*bool` | Optional | is the POE configured not be disabled. |
+| `PoeDisabled` | `*bool` | Optional | Is the POE disabled |
 | `PoeMode` | [`*models.StatsSwitchPortPoeModeEnum`](../../doc/models/stats-switch-port-poe-mode-enum.md) | Optional | enum: `802.3af`, `802.3at`, `802.3bt` |
-| `PoeOn` | `*bool` | Optional | is the device attached to POE |
+| `PoeOn` | `*bool` | Optional | Is the device attached to POE |
 | `PortId` | `string` | Required | - |
-| `PortMac` | `string` | Required | interface mac address |
+| `PortMac` | `string` | Required | Interface MAC address |
 | `PortUsage` | [`*models.StatsSwitchPortPortUsageEnum`](../../doc/models/stats-switch-port-port-usage-enum.md) | Optional | gateway port usage. enum: `lan` |
 | `PowerDraw` | `*float64` | Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `RxBcastPkts` | `*int` | Optional | Broadcast input packets |
 | `RxBps` | `*int` | Optional | Input rate |
-| `RxBytes` | `int64` | Required | rx bytes |
+| `RxBytes` | `int64` | Required | Rx bytes |
 | `RxErrors` | `*int` | Optional | Input errors |
 | `RxMcastPkts` | `*int` | Optional | Multicast input packets |
-| `RxPkts` | `int` | Required | rx packets |
+| `RxPkts` | `int` | Required | Rx packets |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Speed` | `*int` | Optional | port speed |
+| `Speed` | `*int` | Optional | Port speed |
 | `StpRole` | [`*models.StatsSwitchPortStpRoleEnum`](../../doc/models/stats-switch-port-stp-role-enum.md) | Optional | if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented` |
 | `StpState` | [`*models.StatsSwitchPortStpStateEnum`](../../doc/models/stats-switch-port-stp-state-enum.md) | Optional | if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
 | `TxBcastPkts` | `*int` | Optional | Broadcast output packets |
 | `TxBps` | `*int` | Optional | Output rate |
-| `TxBytes` | `int64` | Required | tx bytes |
+| `TxBytes` | `int64` | Required | Tx bytes |
 | `TxErrors` | `*int` | Optional | Output errors |
 | `TxMcastPkts` | `*int` | Optional | Multicast output packets |
-| `TxPkts` | `int` | Required | tx packets |
+| `TxPkts` | `int` | Required | Tx packets |
 | `Type` | [`*models.StatsSwitchPortTypeEnum`](../../doc/models/stats-switch-port-type-enum.md) | Optional | device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch` |
-| `Unconfigured` | `*bool` | Optional | indicates if interface is unconfigured |
-| `Up` | `*bool` | Optional | indicates if interface is up |
+| `Unconfigured` | `*bool` | Optional | Indicates if interface is unconfigured |
+| `Up` | `*bool` | Optional | Indicates if interface is up |
 | `XcvrModel` | `*string` | Optional | Optic Slot ModelName, Check for null/empty |
 | `XcvrPartNumber` | `*string` | Optional | Optic Slot Partnumber, Check for null/empty |
 | `XcvrSerial` | `*string` | Optional | Optic Slot SerialNumber, Check for null/empty |

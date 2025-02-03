@@ -1,7 +1,7 @@
 
 # Network Source Nat
 
-if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
+If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
 
 *This model accepts additional fields of type interface{}.*
 

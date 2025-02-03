@@ -7,7 +7,7 @@ import (
 
 // RoutingPolicyTerm represents a RoutingPolicyTerm struct.
 type RoutingPolicyTerm struct {
-    // when used as import policy
+    // When used as import policy
     Action               *RoutingPolicyTermAction   `json:"action,omitempty"`
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
     Matching             *RoutingPolicyTermMatching `json:"matching,omitempty"`

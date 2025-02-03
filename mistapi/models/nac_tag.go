@@ -10,13 +10,13 @@ import (
 
 // NacTag represents a NacTag struct.
 type NacTag struct {
-    // can be set to true to allow the override by usermac result
+    // Can be set to true to allow the override by usermac result
     AllowUsermacOverride *bool                   `json:"allow_usermac_override,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                `json:"created_time,omitempty"`
-    // if `type`==`egress_vlan_names`, list of egress vlans to return
+    // If `type`==`egress_vlan_names`, list of egress vlans to return
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
-    // if `type`==`gbp_tag`
+    // If `type`==`gbp_tag`
     GbpTag               *int                    `json:"gbp_tag,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID              `json:"id,omitempty"`
@@ -27,29 +27,29 @@ type NacTag struct {
     // * `true`: means all values should be matched (i.e., match-all behavior)
     // Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`
     MatchAll             *bool                   `json:"match_all,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
     Name                 string                  `json:"name"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // if `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".
+    // If `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".
     // It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
     // Note that it is allowed to have more than one radius_attrs in the result of a given rule.
     RadiusAttrs          []string                `json:"radius_attrs,omitempty"`
-    // if `type`==`radius_group`
+    // If `type`==`radius_group`
     RadiusGroup          *string                 `json:"radius_group,omitempty"`
-    // if `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".
+    // If `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".
     // It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.
     // Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule.
     RadiusVendorAttrs    []string                `json:"radius_vendor_attrs,omitempty"`
-    // if `type`==`session_timeout, in seconds
+    // If `type`==`session_timeout, in seconds
     SessionTimeout       *int                    `json:"session_timeout,omitempty"`
     // enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`
     Type                 NacTagTypeEnum          `json:"type"`
     // enum: `automatic`, `cn`, `dns`, `email`, `upn`
     UsernameAttr         *NacTagUsernameAttrEnum `json:"username_attr,omitempty"`
-    // if `type`==`match`
+    // If `type`==`match`
     Values               []string                `json:"values,omitempty"`
-    // if `type`==`vlan`
+    // If `type`==`vlan`
     Vlan                 *string                 `json:"vlan,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

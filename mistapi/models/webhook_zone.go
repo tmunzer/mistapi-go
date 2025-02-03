@@ -8,11 +8,11 @@ import (
 )
 
 // WebhookZone represents a WebhookZone struct.
-// zone webhook sample
+// Zone webhook sample
 type WebhookZone struct {
-    // list of events
+    // List of events
     Events               []WebhookZoneEvent     `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                 `json:"topic"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

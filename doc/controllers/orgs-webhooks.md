@@ -58,12 +58,12 @@ CountOrgWebhooksDeliveries(
 | `webhookId` | `uuid.UUID` | Template, Required | - |
 | `mError` | `*string` | Query, Optional | - |
 | `statusCode` | `*int` | Query, Optional | - |
-| `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | webhook delivery status |
-| `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | webhook topic |
+| `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | Webhook delivery status |
+| `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | Webhook topic |
 | `distinct` | [`*models.WebhookDeliveryDistinctEnum`](../../doc/models/webhook-delivery-distinct-enum.md) | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
@@ -437,7 +437,7 @@ if err != nil {
 
 # Ping Org Webhook
 
-send a Ping event to the webhook
+Send a Ping event to the webhook
 
 ```go
 PingOrgWebhook(
@@ -524,11 +524,11 @@ SearchOrgWebhooksDeliveries(
 | `webhookId` | `uuid.UUID` | Template, Required | - |
 | `mError` | `*string` | Query, Optional | - |
 | `statusCode` | `*int` | Query, Optional | - |
-| `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | webhook delivery status |
-| `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | webhook topic |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | Webhook delivery status |
+| `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | Webhook topic |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type

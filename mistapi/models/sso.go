@@ -11,13 +11,13 @@ import (
 // Sso represents a Sso struct.
 // SSO
 type Sso struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime             *float64                     `json:"created_time,omitempty"`
-    // if `idp_type`==`saml`, a URL we will redirect the user after user logout from Mist (for some IdP which supports a custom logout URL that is different from SP-initiated SLO process)
+    // If `idp_type`==`saml`, a URL we will redirect the user after user logout from Mist (for some IdP which supports a custom logout URL that is different from SP-initiated SLO process)
     CustomLogoutUrl         *string                      `json:"custom_logout_url,omitempty"`
-    // if `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
+    // If `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     DefaultRole             *string                      `json:"default_role,omitempty"`
-    // random string generated during the SSO creation and used to generate the SAML URLs:
+    // Random string generated during the SSO creation and used to generate the SAML URLs:
     // * ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)
     // * Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`)
     Domain                  *string                      `json:"domain,omitempty"`
@@ -25,7 +25,7 @@ type Sso struct {
     GroupFilter             *string                      `json:"group_filter,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                      *uuid.UUID                   `json:"id,omitempty"`
-    // if `idp_type`==`saml`. IDP Cert (used to verify the signed response)
+    // If `idp_type`==`saml`. IDP Cert (used to verify the signed response)
     IdpCert                 *string                      `json:"idp_cert,omitempty"`
     // Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
     IdpSignAlgo             *SsoIdpSignAlgoEnum          `json:"idp_sign_algo,omitempty"`
@@ -35,9 +35,9 @@ type Sso struct {
     // * For Admin SSO, enum: `saml`
     // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
     IdpType                 *SsoIdpTypeEnum              `json:"idp_type,omitempty"`
-    // if `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role
+    // If `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role
     IgnoreUnmatchedRoles    *bool                        `json:"ignore_unmatched_roles,omitempty"`
-    // if `idp_type`==`saml`. IDP issuer URL
+    // If `idp_type`==`saml`. IDP issuer URL
     Issuer                  *string                      `json:"issuer,omitempty"`
     // Required if `idp_type`==`ldap`, whole domain or a specific organization unit (container) in Search base to specify where users and groups are found in the LDAP tree
     LdapBaseDn              *string                      `json:"ldap_base_dn,omitempty"`
@@ -47,17 +47,17 @@ type Sso struct {
     LdapBindPassword        *string                      `json:"ldap_bind_password,omitempty"`
     // Required if `idp_type`==`ldap`, list of CA certificates to validate the LDAP certificate
     LdapCacerts             []string                     `json:"ldap_cacerts,omitempty"`
-    // if `idp_type`==`ldap`, LDAPS Client certificate
+    // If `idp_type`==`ldap`, LDAPS Client certificate
     LdapClientCert          *string                      `json:"ldap_client_cert,omitempty"`
-    // if `idp_type`==`ldap`, Key for the `ldap_client_cert`
+    // If `idp_type`==`ldap`, Key for the `ldap_client_cert`
     LdapClientKey           *string                      `json:"ldap_client_key,omitempty"`
-    // if `ldap_type`==`custom`
+    // If `ldap_type`==`custom`
     LdapGroupAttr           *string                      `json:"ldap_group_attr,omitempty"`
-    // if `ldap_type`==`custom`
+    // If `ldap_type`==`custom`
     LdapGroupDn             *string                      `json:"ldap_group_dn,omitempty"`
-    // if `idp_type`==`ldap`, whether to recursively resolve LDAP groups
+    // If `idp_type`==`ldap`, whether to recursively resolve LDAP groups
     LdapResolveGroups       *bool                        `json:"ldap_resolve_groups,omitempty"`
-    // if `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames
+    // If `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames
     LdapServerHosts         []string                     `json:"ldap_server_hosts,omitempty"`
     // if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`
     LdapType                *SsoLdapTypeEnum             `json:"ldap_type,omitempty"`
@@ -65,12 +65,12 @@ type Sso struct {
     LdapUserFilter          *string                      `json:"ldap_user_filter,omitempty"`
     // Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member
     MemberFilter            *string                      `json:"member_filter,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime            *float64                     `json:"modified_time,omitempty"`
     MspId                   *uuid.UUID                   `json:"msp_id,omitempty"`
-    // if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
+    // If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
     MxedgeProxy             *SsoMxedgeProxy              `json:"mxedge_proxy,omitempty"`
-    // name
+    // Name
     Name                    string                       `json:"name"`
     // if `idp_type`==`saml`. enum: `email`, `unspecified`
     NameidFormat            *SsoNameidFormatEnum         `json:"nameid_format,omitempty"`
@@ -78,26 +78,26 @@ type Sso struct {
     OauthCcClientId         *string                      `json:"oauth_cc_client_id,omitempty"`
     // Required if `idp_type`==`oauth`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...."
     OauthCcClientSecret     *string                      `json:"oauth_cc_client_secret,omitempty"`
-    // if `idp_type`==`oauth`
+    // If `idp_type`==`oauth`
     OauthDiscoveryUrl       *string                      `json:"oauth_discovery_url,omitempty"`
     // enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)
     OauthPingIdentityRegion *OauthPingIdentityRegionEnum `json:"oauth_ping_identity_region,omitempty"`
-    // if `idp_type`==`oauth`, ropc = Resource Owner Password Credentials
+    // If `idp_type`==`oauth`, ropc = Resource Owner Password Credentials
     OauthRopcClientId       *string                      `json:"oauth_ropc_client_id,omitempty"`
-    // if `oauth_type`==`azure` or `oauth_type`==`azure-gov`. oauth_ropc_client_secret can be empty
+    // If `oauth_type`==`azure` or `oauth_type`==`azure-gov`. oauth_ropc_client_secret can be empty
     OauthRopcClientSecret   *string                      `json:"oauth_ropc_client_secret,omitempty"`
     // Required if `idp_type`==`oauth`, oauth_tenant_id
     OauthTenantId           *string                      `json:"oauth_tenant_id,omitempty"`
     // if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
     OauthType               *SsoOauthTypeEnum            `json:"oauth_type,omitempty"`
     OrgId                   *uuid.UUID                   `json:"org_id,omitempty"`
-    // if `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</td></tr></table>
+    // If `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</td></tr></table>
     RoleAttrExtraction      *string                      `json:"role_attr_extraction,omitempty"`
-    // if `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from
+    // If `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from
     RoleAttrFrom            *string                      `json:"role_attr_from,omitempty"`
-    // if `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP
+    // If `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP
     ScimEnabled             *bool                        `json:"scim_enabled,omitempty"`
-    // if `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP
+    // If `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP
     ScimSecretToken         *string                      `json:"scim_secret_token,omitempty"`
     SiteId                  *uuid.UUID                   `json:"site_id,omitempty"`
     AdditionalProperties    map[string]interface{}       `json:"_"`

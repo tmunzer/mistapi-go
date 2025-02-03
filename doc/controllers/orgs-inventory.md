@@ -360,14 +360,14 @@ GetOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `serial` | `*string` | Query, Optional | device serial |
-| `model` | `*string` | Query, Optional | device model |
+| `serial` | `*string` | Query, Optional | Device serial |
+| `model` | `*string` | Query, Optional | Device model |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | MAC address |
-| `siteId` | `*string` | Query, Optional | site id if assigned, null if not assigned |
+| `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
 | `vc` | `*bool` | Query, Optional | To display Virtual Chassis members<br>**Default**: `false` |
-| `unassigned` | `*bool` | Query, Optional | to display Unassigned devices<br>**Default**: `true` |
+| `unassigned` | `*bool` | Query, Optional | To display Unassigned devices<br>**Default**: `true` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -603,14 +603,14 @@ SearchOrgInventory(
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
-| `masterMac` | `*string` | Query, Optional | master device mac for virtual mac cluster |
-| `siteId` | `*string` | Query, Optional | site id if assigned, null if not assigned |
-| `serial` | `*string` | Query, Optional | device serial |
+| `masterMac` | `*string` | Query, Optional | Master device mac for virtual mac cluster |
+| `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
+| `serial` | `*string` | Query, Optional | Device serial |
 | `master` | `*string` | Query, Optional | true / false |
-| `sku` | `*string` | Query, Optional | device sku |
-| `version` | `*string` | Query, Optional | device version |
-| `status` | `*string` | Query, Optional | device status |
-| `text` | `*string` | Query, Optional | wildcards for name, mac, serial |
+| `sku` | `*string` | Query, Optional | Device sku |
+| `version` | `*string` | Query, Optional | Device version |
+| `status` | `*string` | Query, Optional | Device status |
+| `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 

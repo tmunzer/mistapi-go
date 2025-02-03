@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ip` | `*string` | Optional | when it's going overlay, a routable IP to overlay will be required |
-| `Node1Ip` | `*string` | Optional | for SSR HA cluster, another IP for node1 will be required, too |
+| `Ip` | `*string` | Optional | When it's going overlay, a routable IP to overlay will be required |
+| `Node1Ip` | `*string` | Optional | For SSR HA cluster, another IP for node1 will be required, too |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

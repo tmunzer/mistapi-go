@@ -16,25 +16,25 @@ type WebhookDeviceEventsEvent struct {
     ApName               *string                                `json:"ap_name,omitempty"`
     // (optional) audit id
     AuditId              *uuid.UUID                             `json:"audit_id,omitempty"`
-    // device name
+    // Device name
     DeviceName           string                                 `json:"device_name"`
     // enum: `ap`, `gateway`, `switch`
     DeviceType           WebhookDeviceEventsEventDeviceTypeEnum `json:"device_type"`
     // (optional) event advisory. enum: `notice`, `warn`
     EvType               WebhookDeviceEventsEventEvTypeEnum     `json:"ev_type"`
-    // device mac
+    // Device mac
     Mac                  string                                 `json:"mac"`
     OrgId                uuid.UUID                              `json:"org_id"`
     // (optional) event reason
     Reason               *string                                `json:"reason,omitempty"`
     SiteId               *uuid.UUID                             `json:"site_id,omitempty"`
-    // site name
+    // Site name
     SiteName             *string                                `json:"site_name,omitempty"`
     // (optional) event description
     Text                 *string                                `json:"text,omitempty"`
-    // time the event occurred e.g. 1565987313
+    // Time the event occurred e.g. 1565987313
     Timestamp            int                                    `json:"timestamp"`
-    // event type
+    // Event type
     Type                 string                                 `json:"type"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
 }

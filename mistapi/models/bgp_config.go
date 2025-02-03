@@ -9,41 +9,41 @@ import (
 // BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 type BgpConfig struct {
     AuthKey                *string                       `json:"auth_key,omitempty"`
-    // when bfd_multiplier is configured alone. Default:
+    // When bfd_multiplier is configured alone. Default:
     // * 1000 if `type`==`external`
     // * 350 `type`==`internal`
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
-    // when bfd_minimum_interval_is_configured alone
+    // When bfd_minimum_interval_is_configured alone
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`
     // BFD provides faster path failure detection and is enabled by default
     DisableBfd             *bool                         `json:"disable_bfd,omitempty"`
     Export                 *string                       `json:"export,omitempty"`
-    // default export policies if no per-neighbor policies defined
+    // Default export policies if no per-neighbor policies defined
     ExportPolicy           *string                       `json:"export_policy,omitempty"`
-    // by default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
+    // By default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
     ExtendedV4Nexthop      *bool                         `json:"extended_v4_nexthop,omitempty"`
     // `0` means disable
     GracefulRestartTime    *int                          `json:"graceful_restart_time,omitempty"`
     HoldTime               *int                          `json:"hold_time,omitempty"`
     Import                 *string                       `json:"import,omitempty"`
-    // default import policies if no per-neighbor policies defined
+    // Default import policies if no per-neighbor policies defined
     ImportPolicy           *string                       `json:"import_policy,omitempty"`
     LocalAs                *int                          `json:"local_as,omitempty"`
     NeighborAs             *int                          `json:"neighbor_as,omitempty"`
-    // if per-neighbor as is desired. Property key is the neighbor address
+    // If per-neighbor as is desired. Property key is the neighbor address
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
-    // if `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from
+    // If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from
     Networks               []string                      `json:"networks,omitempty"`
-    // by default, we'll re-advertise all learned BGP routers toward overlay
+    // By default, we'll re-advertise all learned BGP routers toward overlay
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
-    // if `type`==`tunnel`
+    // If `type`==`tunnel`
     TunnelName             *string                       `json:"tunnel_name,omitempty"`
     // enum: `external`, `internal`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
     // network name. enum: `lan`, `tunnel`, `vpn`, `wan`
     Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
     VpnName                *string                       `json:"vpn_name,omitempty"`
-    // if `via`==`wan`
+    // If `via`==`wan`
     WanName                *string                       `json:"wan_name,omitempty"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
 }

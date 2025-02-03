@@ -7,7 +7,7 @@ import (
 
 // SnmpUsm represents a SnmpUsm struct.
 type SnmpUsm struct {
-    // required only if `engine_type`==`remote_engine`
+    // Required only if `engine_type`==`remote_engine`
     EngineId             *string                `json:"engine-id,omitempty"`
     // enum: `local_engine`, `remote_engine`
     EngineType           *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`

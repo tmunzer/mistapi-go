@@ -18,10 +18,10 @@ type StatsAp struct {
     ConfigReverted       Optional[bool]                                `json:"config_reverted"`
     CpuSystem            Optional[int64]                               `json:"cpu_system"`
     CpuUtil              Optional[int]                                 `json:"cpu_util"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                                      `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]                           `json:"deviceprofile_id"`
-    // device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
+    // Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
     EnvStat              *StatsApEnvStat                               `json:"env_stat,omitempty"`
     EslStat              Optional[StatsApEslStat]                      `json:"esl_stat"`
     EvpntopoId           Optional[uuid.UUID]                           `json:"evpntopo_id"`
@@ -37,45 +37,45 @@ type StatsAp struct {
     // IP AP settings
     IpConfig             *ApIpConfig                                   `json:"ip_config,omitempty"`
     IpStat               *IpStat                                       `json:"ip_stat,omitempty"`
-    // l2tp tunnel status (key is the wxtunnel_id)
+    // L2TP tunnel status (key is the wxtunnel_id)
     L2tpStat             map[string]StatsApL2tpStat                    `json:"l2tp_stat,omitempty"`
-    // last seen timestamp
+    // Last seen timestamp
     LastSeen             Optional[float64]                             `json:"last_seen"`
-    // last trouble code of switch
+    // Last trouble code of switch
     LastTrouble          *LastTrouble                                  `json:"last_trouble,omitempty"`
     // LED AP settings
     Led                  *ApLed                                        `json:"led,omitempty"`
     // LLDP Stat (neighbor information, power negotiations)
     LldpStat             *StatsApLldpStat                              `json:"lldp_stat,omitempty"`
     Locating             Optional[bool]                                `json:"locating"`
-    // whether this AP is considered locked (placement / orientation has been vetted)
+    // Whether this AP is considered locked (placement / orientation has been vetted)
     Locked               Optional[bool]                                `json:"locked"`
-    // device mac
+    // Device mac
     Mac                  *string                                       `json:"mac"`
     MapId                Optional[uuid.UUID]                           `json:"map_id"`
     MemUsedKb            Optional[int64]                               `json:"mem_used_kb"`
     // Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`)
     MeshDownlinks        map[string]ApStatMeshDownlink                 `json:"mesh_downlinks,omitempty"`
     MeshUplink           *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`
-    // device model
+    // Device model
     Model                *string                                       `json:"model"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                                      `json:"modified_time,omitempty"`
     Mount                Optional[string]                              `json:"mount"`
     Name                 Optional[string]                              `json:"name"`
     Notes                Optional[string]                              `json:"notes"`
-    // how many wireless clients are currently connected
+    // How many wireless clients are currently connected
     NumClients           Optional[int]                                 `json:"num_clients"`
-    // how many WLANs are applied to the device
+    // How many WLANs are applied to the device
     NumWlans             *int                                          `json:"num_wlans,omitempty"`
     OrgId                *uuid.UUID                                    `json:"org_id,omitempty"`
     // Property key is the port name (e.g. `eth0`)
     PortStat             Optional[map[string]StatsApPortStat]          `json:"port_stat"`
-    // in mW, surplus if positive or deficit if negative
+    // In mW, surplus if positive or deficit if negative
     PowerBudget          Optional[int]                                 `json:"power_budget"`
-    // whether insufficient power
+    // Whether insufficient power
     PowerConstrained     Optional[bool]                                `json:"power_constrained"`
-    // constrained mode
+    // Constrained mode
     PowerOpmode          Optional[string]                              `json:"power_opmode"`
     // DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown)
     PowerSrc             Optional[string]                              `json:"power_src"`
@@ -84,7 +84,7 @@ type StatsAp struct {
     RxBps                Optional[float64]                             `json:"rx_bps"`
     RxBytes              Optional[int64]                               `json:"rx_bytes"`
     RxPkts               Optional[int]                                 `json:"rx_pkts"`
-    // serial
+    // Serial Number
     Serial               Optional[string]                              `json:"serial"`
     SiteId               *uuid.UUID                                    `json:"site_id,omitempty"`
     Status               Optional[string]                              `json:"status"`
@@ -94,7 +94,7 @@ type StatsAp struct {
     TxPkts               Optional[float64]                             `json:"tx_pkts"`
     // Device Type. enum: `ap`
     Type                 string                                        `json:"type"`
-    // how long, in seconds, has the device been up (or rebooted)
+    // How long, in seconds, has the device been up (or rebooted)
     Uptime               Optional[float64]                             `json:"uptime"`
     UsbStat              *StatsApUsbStat                               `json:"usb_stat,omitempty"`
     Version              Optional[string]                              `json:"version"`

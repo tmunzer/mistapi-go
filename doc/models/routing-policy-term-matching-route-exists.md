@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Route` | `*string` | Optional | - |
-| `VrfName` | `*string` | Optional | name of the vrf instance, it can also be the name of the VPN or wan if they<br>**Default**: `"default"` |
+| `VrfName` | `*string` | Optional | Name of the vrf instance, it can also be the name of the VPN or wan if they<br>**Default**: `"default"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -10,21 +10,21 @@ type GatewayPathPreferencesPath struct {
     Cost                 *int                   `json:"cost,omitempty"`
     // For SSR Only. `true`, if this specific path is undesired
     Disabled             *bool                  `json:"disabled,omitempty"`
-    // only if `type`==`local`, if a different gateway is desired
+    // Only if `type`==`local`, if a different gateway is desired
     GatewayIp            *string                `json:"gateway_ip,omitempty"`
-    // only if `type`==`vpn`, if this vpn path can be used for internet
+    // Only if `type`==`vpn`, if this vpn path can be used for internet
     InternetAccess       *bool                  `json:"internet_access,omitempty"`
-    // required when
+    // Required when
     // * `type`==`vpn`: the name of the VPN Path to use
     // * `type`==`wan`: the name of the WAN interface to use'
     Name                 *string                `json:"name,omitempty"`
-    // required when `type`==`local`
+    // Required when `type`==`local`
     Networks             []string               `json:"networks,omitempty"`
-    // if `type`==`local`, if destination IP is to be replaced
+    // If `type`==`local`, if destination IP is to be replaced
     TargetIps            []string               `json:"target_ips,omitempty"`
     // enum: `local`, `tunnel`, `vpn`, `wan`
     Type                 *GatewayPathTypeEnum   `json:"type,omitempty"`
-    // optional if `type`==`vpn`
+    // Optional if `type`==`vpn`
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

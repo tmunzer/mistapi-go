@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Bucket` | `*string` | Optional | - |
-| `MaxPktLen` | `*int` | Optional | max_len of non-management packets to capture<br>**Default**: `128`<br>**Constraints**: `<= 128` |
+| `MaxPktLen` | `*int` | Optional | Max_len of non-management packets to capture<br>**Default**: `128`<br>**Constraints**: `<= 128` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

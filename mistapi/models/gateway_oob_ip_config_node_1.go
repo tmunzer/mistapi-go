@@ -6,18 +6,18 @@ import (
 )
 
 // GatewayOobIpConfigNode1 represents a GatewayOobIpConfigNode1 struct.
-// for HA Cluster, node1 can have different IP Config
+// For HA Cluster, node1 can have different IP Config
 type GatewayOobIpConfigNode1 struct {
-    // if `type`==`static`
+    // If `type`==`static`
     Gateway              *string                `json:"gateway,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
-    // used only if `subnet` is not specified in `networks`
+    // Used only if `subnet` is not specified in `networks`
     Netmask              *string                `json:"netmask,omitempty"`
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
-    // if supported on the platform. If enabled, DNS will be using this routing-instance, too
+    // If supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool                  `json:"use_mgmt_vrf,omitempty"`
-    // whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
+    // Whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
     UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
     VlanId               *string                `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Apps` | `[]string` | Optional | app-keys from /api/v1/const/applications |
+| `Apps` | `[]string` | Optional | APp-keys from /api/v1/const/applications |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

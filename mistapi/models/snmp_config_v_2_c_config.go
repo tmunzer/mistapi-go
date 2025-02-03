@@ -8,10 +8,10 @@ import (
 // SnmpConfigV2cConfig represents a SnmpConfigV2cConfig struct.
 type SnmpConfigV2cConfig struct {
     Authorization        *string                `json:"authorization,omitempty"`
-    // client_list_name here should refer to client_list above
+    // Client_list_name here should refer to client_list above
     ClientListName       *string                `json:"client_list_name,omitempty"`
     CommunityName        *string                `json:"community_name,omitempty"`
-    // view name here should be defined in views above
+    // View name here should be defined in views above
     View                 *string                `json:"view,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

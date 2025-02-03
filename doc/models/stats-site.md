@@ -16,12 +16,12 @@ Site statistics
 | `Address` | `string` | Required | - |
 | `AlarmtemplateId` | `*uuid.UUID` | Required | - |
 | `CountryCode` | `string` | Required | - |
-| `CreatedTime` | `float64` | Required | when the object has been created, in epoch |
+| `CreatedTime` | `float64` | Required | When the object has been created, in epoch |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Lat` | `float64` | Required | - |
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
 | `Lng` | `float64` | Required | - |
-| `ModifiedTime` | `float64` | Required | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `float64` | Required | When the object has been modified for the last time, in epoch |
 | `MspId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `*uuid.UUID` | Required | - |

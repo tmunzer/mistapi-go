@@ -7,7 +7,7 @@ import (
 
 // ServiceSpec represents a ServiceSpec struct.
 type ServiceSpec struct {
-    // port number, port range, or variable
+    // Port number, port range, or variable
     PortRange            *string                `json:"port_range,omitempty"`
     // `https`/ `tcp` / `udp` / `icmp` / `gre` / `any` / `:protocol_number`, `protocol_number` is between 1-254
     Protocol             *string                `json:"protocol,omitempty"`

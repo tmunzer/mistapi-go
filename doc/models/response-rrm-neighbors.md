@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `*string` | Optional | the link to query next set of results. value is null if no next page exists. |
+| `Next` | `*string` | Optional | Link to query next set of results. value is null if no next page exists. |
 | `Results` | [`[]models.RrmNeighbors`](../../doc/models/rrm-neighbors.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

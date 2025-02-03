@@ -21,15 +21,15 @@ RF Template
 | `Band5` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band5On24Radio` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band6` | [`*models.RftemplateRadioBand6`](../../doc/models/rftemplate-radio-band-6.md) | Optional | Radio Band AP settings |
-| `CountryCode` | `*string` | Optional | optional, country code to use. If specified, this gets applied to all sites using the RF Template |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CountryCode` | `*string` | Optional | Optional, country code to use. If specified, this gets applied to all sites using the RF Template |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `ModelSpecific` | [`map[string]models.RfTemplateModelSpecificProperty`](../../doc/models/rf-template-model-specific-property.md) | Optional | overwrites for a specific model. If a band is specified, it will shadow the default. Property key is the model name (e.g. "AP63") |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | The name of the RF template |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `ScanningEnabled` | `*bool` | Optional | whether scanning radio is enabled |
+| `ScanningEnabled` | `*bool` | Optional | Whether scanning radio is enabled |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -1,7 +1,7 @@
 
 # Site Setting Rtsa
 
-managed mobility
+Managed mobility
 
 *This model accepts additional fields of type interface{}.*
 
@@ -17,7 +17,7 @@ managed mobility
 | `DisableDeadReckoning` | `*bool` | Optional | - |
 | `DisablePressureSensor` | `*bool` | Optional | **Default**: `false` |
 | `Enabled` | `*bool` | Optional | - |
-| `TrackAsset` | `*bool` | Optional | asset tracking related<br>**Default**: `false` |
+| `TrackAsset` | `*bool` | Optional | Asset tracking related<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

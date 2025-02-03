@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ExtIp` | `*string` | Optional | when available |
+| `ExtIp` | `*string` | Optional | When available |
 | `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |

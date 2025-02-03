@@ -10,11 +10,11 @@ import (
 
 // WebhookAssetRawEvent represents a WebhookAssetRawEvent struct.
 type WebhookAssetRawEvent struct {
-    // asset id
+    // Asset id
     AssetId               uuid.UUID              `json:"asset_id"`
-    // antenna index, from 1-8, clock-wise starting from the LED
+    // Antenna index, from 1-8, clock-wise starting from the LED
     Beam                  int                    `json:"beam"`
-    // device where the asset reading is from
+    // Device where the asset reading is from
     DeviceId              uuid.UUID              `json:"device_id"`
     // iBeacon major
     IbeaconMajor          *int                   `json:"ibeacon_major,omitempty"`
@@ -24,23 +24,23 @@ type WebhookAssetRawEvent struct {
     IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
     // MAC of the beacon
     Mac                   string                 `json:"mac"`
-    // map id
+    // Map id
     MapId                 uuid.UUID              `json:"map_id"`
-    // optional, BLE manufacturing company ID
+    // Optional, BLE manufacturing company ID
     MfgCompanyId          float64                `json:"mfg_company_id"`
-    // optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
+    // Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
     MfgData               string                 `json:"mfg_data"`
-    // signal strength
+    // Signal strength
     Rssi                  float64                `json:"rssi"`
-    // optional, data from service data
+    // Optional, data from service data
     ServiceDataData       *string                `json:"service_data_data,omitempty"`
-    // optional, last data transmit time from service data
+    // Optional, last data transmit time from service data
     ServiceDataLastRxTime *int                   `json:"service_data_last_rx_time,omitempty"`
-    // optional, data transmit count from service data
+    // Optional, data transmit count from service data
     ServiceDataRxCnt      *int                   `json:"service_data_rx_cnt,omitempty"`
-    // optional, UUID from service data
+    // Optional, UUID from service data
     ServiceDataUuid       *uuid.UUID             `json:"service_data_uuid,omitempty"`
-    // list of service data packets heard from the asset/ beacon
+    // List of service data packets heard from the asset/ beacon
     ServicePackets        []ServicePacket        `json:"service_packets,omitempty"`
     SiteId                uuid.UUID              `json:"site_id"`
     Timestamp             float64                `json:"timestamp"`

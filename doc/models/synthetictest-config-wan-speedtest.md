@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `TimeOfDay` | `*string` | Optional | any / HH:MM (24-hour format)<br>**Default**: `"any"` |
+| `TimeOfDay` | `*string` | Optional | `any` / HH:MM (24-hour format)<br>**Default**: `"any"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

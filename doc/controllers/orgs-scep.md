@@ -96,7 +96,7 @@ GetOrgIssuedClientCertificates(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ssoNameId` | `*string` | Query, Optional | sso_name_id obtained from NAC Portal |
-| `serialNumber` | `*string` | Query, Optional | serial number of the certificate |
+| `serialNumber` | `*string` | Query, Optional | Serial Number of the certificate |
 | `deviceId` | `*string` | Query, Optional | Device ID |
 
 ## Response Type

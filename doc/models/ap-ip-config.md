@@ -13,18 +13,18 @@ IP AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | `[]string` | Optional | if `type`==`static` |
-| `DnsSuffix` | `[]string` | Optional | required if `type`==`static` |
-| `Gateway` | `*string` | Optional | required if `type`==`static` |
+| `Dns` | `[]string` | Optional | If `type`==`static` |
+| `DnsSuffix` | `[]string` | Optional | Required if `type`==`static` |
+| `Gateway` | `*string` | Optional | Required if `type`==`static` |
 | `Gateway6` | `*string` | Optional | - |
-| `Ip` | `*string` | Optional | required if `type`==`static` |
+| `Ip` | `*string` | Optional | Required if `type`==`static` |
 | `Ip6` | `*string` | Optional | - |
 | `Mtu` | `*int` | Optional | - |
-| `Netmask` | `*string` | Optional | required if `type`==`static` |
+| `Netmask` | `*string` | Optional | Required if `type`==`static` |
 | `Netmask6` | `*string` | Optional | - |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"disabled"` |
-| `VlanId` | `*int` | Optional | management vlan id, default is 1 (untagged)<br>**Default**: `1` |
+| `VlanId` | `*int` | Optional | Management VLAN id, default is 1 (untagged)<br>**Default**: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

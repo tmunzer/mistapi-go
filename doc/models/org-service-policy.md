@@ -12,20 +12,20 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny` |
-| `Antivirus` | [`*models.OrgServicePolicyAntivirus`](../../doc/models/org-service-policy-antivirus.md) | Optional | for SRX-only |
+| `Antivirus` | [`*models.OrgServicePolicyAntivirus`](../../doc/models/org-service-policy-antivirus.md) | Optional | For SRX-only |
 | `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
 | `LocalRouting` | `*bool` | Optional | access within the same VRF |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PathPreference` | `*string` | Optional | by default, we derive all paths available and use them, optionally, you can customize by using `path_preference` |
+| `PathPreference` | `*string` | Optional | By default, we derive all paths available and use them, optionally, you can customize by using `path_preference` |
 | `Secintel` | [`*models.OrgServicePoliciesSecintel`](../../doc/models/org-service-policies-secintel.md) | Optional | For SRX Only |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `SslProxy` | [`*models.OrgServicePolicySslProxy`](../../doc/models/org-service-policy-ssl-proxy.md) | Optional | for SRX-only |
+| `SslProxy` | [`*models.OrgServicePolicySslProxy`](../../doc/models/org-service-policy-ssl-proxy.md) | Optional | For SRX-only |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

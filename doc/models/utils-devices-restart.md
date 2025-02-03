@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Member` | `*int` | Optional | optional for VC member<br>**Constraints**: `>= 0`, `<= 9` |
+| `Member` | `*int` | Optional | Optional for VC member<br>**Constraints**: `>= 0`, `<= 9` |
 | `Node` | [`*models.UtilsDevicesRestartNodeEnum`](../../doc/models/utils-devices-restart-node-enum.md) | Optional | only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

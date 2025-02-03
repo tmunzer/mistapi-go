@@ -10,9 +10,9 @@ type NacPortalTemplate struct {
     // defines alignment on portal. enum: `center`, `left`, `right`
     Alignment            *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
     Color                *string                      `json:"color,omitempty"`
-    // custom logo custom logo with “data:image/png;base64,” format. default null, uses Juniper Mist Logo.
+    // Custom logo custom logo with “data:image/png;base64,” format. default null, uses Juniper Mist Logo.
     Logo                 *string                      `json:"logo,omitempty"`
-    // whether to hide “Powered by Juniper Mist” and email footers
+    // Whether to hide “Powered by Juniper Mist” and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

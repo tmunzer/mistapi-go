@@ -1,7 +1,7 @@
 
 # Push Policy Push Window
 
-if enabled, new config will only be pushed to device within the specified time window
+If enabled, new config will only be pushed to device within the specified time window
 
 *This model accepts additional fields of type interface{}.*
 

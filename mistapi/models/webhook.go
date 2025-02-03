@@ -8,48 +8,48 @@ import (
 
 // Webhook represents a Webhook struct.
 type Webhook struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                    `json:"created_time,omitempty"`
-    // whether webhook is enabled
+    // Whether webhook is enabled
     Enabled              *bool                       `json:"enabled,omitempty"`
     ForSite              *bool                       `json:"for_site,omitempty"`
-    // if `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000
+    // If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000
     Headers              Optional[map[string]string] `json:"headers"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                  `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                    `json:"modified_time,omitempty"`
-    // name of the webhook
+    // Name of the webhook
     Name                 Optional[string]            `json:"name"`
-    // required when `oauth2_grant_type`==`client_credentials`
+    // Required when `oauth2_grant_type`==`client_credentials`
     Oauth2ClientId       *string                     `json:"oauth2_client_id,omitempty"`
-    // required when `oauth2_grant_type`==`client_credentials`
+    // Required when `oauth2_grant_type`==`client_credentials`
     Oauth2ClientSecret   *string                     `json:"oauth2_client_secret,omitempty"`
     // required when `type`==`oauth2`. enum: `client_credentials`, `password`
     Oauth2GrantType      *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
-    // required when `oauth2_grant_type`==`password`
+    // Required when `oauth2_grant_type`==`password`
     Oauth2Password       *string                     `json:"oauth2_password,omitempty"`
-    // required when `type`==`oauth2`, if provided, will be used in the token request
+    // Required when `type`==`oauth2`, if provided, will be used in the token request
     Oauth2Scopes         []string                    `json:"oauth2_scopes,omitempty"`
-    // required when `type`==`oauth2`
+    // Required when `type`==`oauth2`
     Oauth2TokenUrl       *string                     `json:"oauth2_token_url,omitempty"`
-    // required when `oauth2_grant_type`==`password`
+    // Required when `oauth2_grant_type`==`password`
     Oauth2Username       *string                     `json:"oauth2_username,omitempty"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
-    // only if `type`=`http-post`
+    // Only if `type`=`http-post`
     // when `secret` is provided, two  HTTP headers will be added:
     // * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
     // * X-Mist-Signature: HMAC_SHA1(secret, body)
     Secret               Optional[string]            `json:"secret"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
-    // required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
+    // Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
     SplunkToken          Optional[string]            `json:"splunk_token"`
     // List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
     Topics               []string                    `json:"topics,omitempty"`
     // enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
     Type                 *WebhookTypeEnum            `json:"type,omitempty"`
     Url                  *string                     `json:"url,omitempty"`
-    // when url uses HTTPS, whether to verify the certificate
+    // When url uses HTTPS, whether to verify the certificate
     VerifyCert           *bool                       `json:"verify_cert,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }

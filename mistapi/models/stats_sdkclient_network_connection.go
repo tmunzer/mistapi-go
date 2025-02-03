@@ -8,7 +8,7 @@ import (
 )
 
 // StatsSdkclientNetworkConnection represents a StatsSdkclientNetworkConnection struct.
-// various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+// Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
 type StatsSdkclientNetworkConnection struct {
     Mac                  string                 `json:"mac"`
     Rssi                 float64                `json:"rssi"`

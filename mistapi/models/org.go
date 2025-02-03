@@ -12,16 +12,16 @@ import (
 type Org struct {
     AlarmtemplateId      Optional[uuid.UUID]    `json:"alarmtemplate_id"`
     AllowMist            *bool                  `json:"allow_mist,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     MspId                *uuid.UUID             `json:"msp_id,omitempty"`
     // logo uploaded by the MSP with advanced tier, only present if provided
     MspLogoUrl           *string                `json:"msp_logo_url,omitempty"`
-    // name of the msp the org belongs to
+    // Name of the msp the org belongs to
     MspName              *string                `json:"msp_name,omitempty"`
     Name                 string                 `json:"name"`
     OrggroupIds          []uuid.UUID            `json:"orggroup_ids,omitempty"`

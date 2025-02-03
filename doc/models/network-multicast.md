@@ -1,7 +1,7 @@
 
 # Network Multicast
 
-whether to enable multicast support (only PIM-sparse mode is supported)
+Whether to enable multicast support (only PIM-sparse mode is supported)
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,7 +13,7 @@ whether to enable multicast support (only PIM-sparse mode is supported)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableIgmp` | `*bool` | Optional | if the network will only be the soruce of the multicast traffic, IGMP can be disabled<br>**Default**: `false` |
+| `DisableIgmp` | `*bool` | Optional | If the network will only be the soruce of the multicast traffic, IGMP can be disabled<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Groups` | [`map[string]models.NetworkMulticastGroup`](../../doc/models/network-multicast-group.md) | Optional | Group address to RP (rendezvous point) mapping. Property Key is the CIDR (example "225.1.0.3/32") |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -612,7 +612,7 @@ func (u *UtilitiesUpgrade) ListSiteDeviceUpgrades(
 }
 
 // UpgradeSiteDevices takes context, siteId, body as parameters and
-// returns an models.ApiResponse with models.ResponseUpgradeSiteDevices data and
+// returns an models.ApiResponse with models.ResponseUpgradeId data and
 // an error if there was an issue with the request or response.
 // Upgrade Site Device
 // **Note**: this call doesn’t guarantee the devices to be upgraded right away (they may be offline)
@@ -620,7 +620,7 @@ func (u *UtilitiesUpgrade) UpgradeSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.UpgradeSiteDevices) (
-    models.ApiResponse[models.ResponseUpgradeSiteDevices],
+    models.ApiResponse[models.ResponseUpgradeId],
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/upgrade")
     req.AppendTemplateParams(siteId)
@@ -647,13 +647,13 @@ func (u *UtilitiesUpgrade) UpgradeSiteDevices(
         req.Json(body)
     }
     
-    var result models.ResponseUpgradeSiteDevices
+    var result models.ResponseUpgradeId
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ResponseUpgradeSiteDevices](decoder)
+    result, err = utilities.DecodeResults[models.ResponseUpgradeId](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

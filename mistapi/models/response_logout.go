@@ -7,7 +7,7 @@ import (
 
 // ResponseLogout represents a ResponseLogout struct.
 type ResponseLogout struct {
-    // if configured in SSO as custom_logout_url
+    // If configured in SSO as custom_logout_url
     ForwardUrl           *string                `json:"forward_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

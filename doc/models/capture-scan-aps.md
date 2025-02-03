@@ -14,9 +14,9 @@ Property key is the AP MAC address (e.g. "5c5b35000001"). All optionals, parent 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Band` | [`*models.CaptureScanApsBandEnum`](../../doc/models/capture-scan-aps-band-enum.md) | Optional | Only Single value allowed. enum: `24`, `5`, `6`<br>**Default**: `"24"` |
-| `Channel` | `*string` | Optional | specify the channel value where scan PCAP has to be started |
+| `Channel` | `*string` | Optional | Specify the channel value where scan PCAP has to be started |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
-| `Width` | `*string` | Optional | specify the bandwidth value with respect to the channel. |
+| `Width` | `*string` | Optional | Specify the bandwidth value with respect to the channel. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

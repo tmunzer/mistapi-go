@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ForOrg` | `*bool` | Optional | can be used in org webhooks, optional |
-| `HasDeliveryResults` | `*bool` | Optional | supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search |
-| `Internal` | `*bool` | Optional | internal topic (not selectable in site/org webhooks) |
-| `Key` | `*string` | Optional | webhook topic name |
+| `ForOrg` | `*bool` | Optional | Can be used in org webhooks, optional |
+| `HasDeliveryResults` | `*bool` | Optional | Supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search |
+| `Internal` | `*bool` | Optional | Internal topic (not selectable in site/org webhooks) |
+| `Key` | `*string` | Optional | Webhook topic name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -10,9 +10,9 @@ import (
 // WebhookLocationAsset represents a WebhookLocationAsset struct.
 // Location Asset sample
 type WebhookLocationAsset struct {
-    // list of events
+    // List of events
     Events               []WebhookLocationAssetEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                      `json:"topic"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }

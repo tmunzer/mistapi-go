@@ -14,7 +14,7 @@ type WebhookAlarmEvent struct {
     Bssids               []string               `json:"bssids,omitempty"`
     // If present, represents number of events of given type occurred in current interval, default=1
     Count                *int                   `json:"count,omitempty"`
-    // event id
+    // Event id
     EventId              *uuid.UUID             `json:"event_id,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
@@ -26,7 +26,7 @@ type WebhookAlarmEvent struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Ssids                []string               `json:"ssids,omitempty"`
     Timestamp            int                    `json:"timestamp"`
-    // event type
+    // Event type
     Type                 string                 `json:"type"`
     // If presents, represents that this is an update to event with given id sent earlier. default=false
     Update               *bool                  `json:"update,omitempty"`

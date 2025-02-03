@@ -11,7 +11,7 @@ type UpgradeOrgDevicesUpgradeInfo struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID               `json:"id,omitempty"`
     StartTime            *int                     `json:"start_time,omitempty"`
-    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
+    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
     Status               *UpgradeDeviceStatusEnum `json:"status,omitempty"`
     Targets              *UpgradeDevicesTargetIds `json:"targets,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`

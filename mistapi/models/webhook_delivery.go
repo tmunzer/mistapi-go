@@ -8,7 +8,7 @@ import (
 
 // WebhookDelivery represents a WebhookDelivery struct.
 type WebhookDelivery struct {
-    // error message, if there is one
+    // Error message, if there is one
     Error                *string                    `json:"error,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                 `json:"id,omitempty"`

@@ -10,23 +10,23 @@ import (
 
 // WebhookZoneEvent represents a WebhookZoneEvent struct.
 type WebhookZoneEvent struct {
-    // uuid of named asset
+    // UUID of named asset
     AssetId              *uuid.UUID                  `json:"asset_id,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                   `json:"id"`
-    // mac address of wifi client or asset
+    // MAC address of wifi client or asset
     Mac                  *string                     `json:"mac,omitempty"`
-    // map id
+    // Map id
     MapId                uuid.UUID                   `json:"map_id"`
-    // name of the client, may be empty
+    // Name of the client, may be empty
     Name                 *string                     `json:"name,omitempty"`
     SiteId               uuid.UUID                   `json:"site_id"`
-    // timestamp of the event, epoch
+    // Timestamp of the event, epoch
     Timestamp            int                         `json:"timestamp"`
     // enum: `enter`, `exit`
     Trigger              WebhookZoneEventTriggerEnum `json:"trigger"`
     Type                 string                      `json:"type"`
-    // zone id
+    // Zone id
     ZoneId               uuid.UUID                   `json:"zone_id"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }

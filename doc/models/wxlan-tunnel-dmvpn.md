@@ -13,9 +13,9 @@ Dynamic Multipoint VPN configurations
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether DMVPN is enabled<br>**Default**: `false` |
-| `HoldingTime` | `*int` | Optional | optional; the holding time for NHRP ‘registration requests’  and ‘resolution replies’ sent from the Mist AP (in seconds); default 600 |
-| `HostRoutes` | `[]string` | Optional | optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded |
+| `Enabled` | `*bool` | Optional | Whether DMVPN is enabled<br>**Default**: `false` |
+| `HoldingTime` | `*int` | Optional | Optional; the holding time for NHRP ‘registration requests’  and ‘resolution replies’ sent from the Mist AP (in seconds); default 600 |
+| `HostRoutes` | `[]string` | Optional | Optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

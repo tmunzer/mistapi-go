@@ -7,11 +7,11 @@ import (
 )
 
 // UtilsClearSession represents a UtilsClearSession struct.
-// to use five tuples to lookup the session to be cleared, all must be provided
+// To use five tuples to lookup the session to be cleared, all must be provided
 type UtilsClearSession struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-    // ervice name, only supported in SSR
+    // Service name, only supported in SSR
     ServiceName          *string                `json:"service_name,omitempty"`
     // List of id of the sessions to be cleared
     SessionIds           []uuid.UUID            `json:"session_ids,omitempty"`

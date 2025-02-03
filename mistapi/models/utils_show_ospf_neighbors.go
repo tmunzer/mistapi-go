@@ -11,7 +11,7 @@ type UtilsShowOspfNeighbors struct {
     Neighbor             *string                `json:"neighbor,omitempty"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-    // the network interface
+    // Network interface
     PortId               *string                `json:"port_id,omitempty"`
     // VRF name
     Vrf                  *string                `json:"vrf,omitempty"`

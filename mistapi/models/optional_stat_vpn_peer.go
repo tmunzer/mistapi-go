@@ -14,13 +14,13 @@ type OptionalStatVpnPeer struct {
     Latency              *float64               `json:"latency,omitempty"`
     Mos                  *float64               `json:"mos,omitempty"`
     Mtu                  *int                   `json:"mtu,omitempty"`
-    // peer router mac address
+    // Peer router mac address
     PeerMac              *string                `json:"peer_mac,omitempty"`
-    // peer router device interface
+    // Peer router device interface
     PeerPortId           *string                `json:"peer_port_id,omitempty"`
     PeerRouterName       *string                `json:"peer_router_name,omitempty"`
     PeerSiteId           *uuid.UUID             `json:"peer_site_id,omitempty"`
-    // router device interface
+    // Router device interface
     PortId               *string                `json:"port_id,omitempty"`
     RouterName           *string                `json:"router_name,omitempty"`
     // `ipsec`for SRX, `svr` for 128T

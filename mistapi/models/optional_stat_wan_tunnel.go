@@ -7,23 +7,23 @@ import (
 
 // OptionalStatWanTunnel represents a OptionalStatWanTunnel struct.
 type OptionalStatWanTunnel struct {
-    // authentication algorithm
+    // Authentication algorithm
     AuthAlgo             *string                     `json:"auth_algo,omitempty"`
-    // encryption algorithm
+    // Encryption algorithm
     EncryptAlgo          *string                     `json:"encrypt_algo,omitempty"`
-    // ike version
+    // IKE version
     IkeVersion           *string                     `json:"ike_version,omitempty"`
-    // ip address
+    // IPaddress
     Ip                   *string                     `json:"ip,omitempty"`
-    // reason of why the tunnel is down
+    // Reason of why the tunnel is down
     LastEvent            *string                     `json:"last_event,omitempty"`
-    // indicates when the port was last flapped
+    // Indicates when the port was last flapped
     LastFlapped          *float64                    `json:"last_flapped,omitempty"`
-    // node0/node1
+    // Node0/node1
     Node                 *string                     `json:"node,omitempty"`
-    // peer host
+    // Peer host
     PeerHost             *string                     `json:"peer_host,omitempty"`
-    // peer ip address
+    // Peer ip address
     PeerIp               *string                     `json:"peer_ip,omitempty"`
     // enum: `primary`, `secondary`
     Priority             *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
@@ -36,9 +36,9 @@ type OptionalStatWanTunnel struct {
     TxBytes              *int                        `json:"tx_bytes,omitempty"`
     TxPkts               *int                        `json:"tx_pkts,omitempty"`
     Up                   *bool                       `json:"up,omitempty"`
-    // duration from first (or last) SA was established
+    // Duration from first (or last) SA was established
     Uptime               *int                        `json:"uptime,omitempty"`
-    // wan interface name
+    // WAN interface name
     WanName              *string                     `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }

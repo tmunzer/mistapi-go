@@ -11,16 +11,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `*string` | Optional | ip / hostname of RADIUS server |
-| `InbandStatusCheck` | `*bool` | Optional | whether to enable inband status check<br>**Default**: `false` |
-| `InbandStatusInterval` | `*int` | Optional | inband status interval, in seconds<br>**Default**: `1800`<br>**Constraints**: `>= 0` |
-| `KeywrapEnabled` | `*bool` | Optional | if used for Mist APs, enable keywrap algorithm. Default is false |
+| `Host` | `*string` | Optional | IP / hostname of RADIUS server |
+| `InbandStatusCheck` | `*bool` | Optional | Whether to enable inband status check<br>**Default**: `false` |
+| `InbandStatusInterval` | `*int` | Optional | Inband status interval, in seconds<br>**Default**: `1800`<br>**Constraints**: `>= 0` |
+| `KeywrapEnabled` | `*bool` | Optional | If used for Mist APs, enable keywrap algorithm. Default is false |
 | `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs. enum: `ascii`, `hex`<br>**Default**: `"ascii"` |
-| `KeywrapKek` | `*string` | Optional | if used for Mist APs, encryption key |
-| `KeywrapMack` | `*string` | Optional | if used for Mist APs, Message Authentication Code Key |
+| `KeywrapKek` | `*string` | Optional | If used for Mist APs, encryption key |
+| `KeywrapMack` | `*string` | Optional | If used for Mist APs, Message Authentication Code Key |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812` |
-| `Secret` | `*string` | Optional | secret of RADIUS server |
-| `Ssids` | `[]string` | Optional | list of ssids that will use this server if match_ssid is true and match is found |
+| `Secret` | `*string` | Optional | Secretof RADIUS server |
+| `Ssids` | `[]string` | Optional | List of ssids that will use this server if match_ssid is true and match is found |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

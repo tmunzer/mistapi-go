@@ -9,9 +9,9 @@ import (
 
 // UtilsTuntermBouncePort represents a UtilsTuntermBouncePort struct.
 type UtilsTuntermBouncePort struct {
-    // in milli seconds, hold time between multiple port bounces
+    // In milli seconds, hold time between multiple port bounces
     HoldTime             *int                   `json:"hold_time,omitempty"`
-    // list of ports to bounce
+    // List of ports to bounce
     Ports                []string               `json:"ports"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

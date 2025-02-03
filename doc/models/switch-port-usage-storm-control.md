@@ -13,11 +13,11 @@ Switch storm control. Only if `mode`!=`dynamic`
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NoBroadcast` | `*bool` | Optional | whether to disable storm control on broadcast traffic<br>**Default**: `false` |
-| `NoMulticast` | `*bool` | Optional | whether to disable storm control on multicast traffic<br>**Default**: `false` |
-| `NoRegisteredMulticast` | `*bool` | Optional | whether to disable storm control on registered multicast traffic<br>**Default**: `false` |
-| `NoUnknownUnicast` | `*bool` | Optional | whether to disable storm control on unknown unicast traffic<br>**Default**: `false` |
-| `Percentage` | `*int` | Optional | bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth<br>**Default**: `80`<br>**Constraints**: `>= 0`, `<= 100` |
+| `NoBroadcast` | `*bool` | Optional | Whether to disable storm control on broadcast traffic<br>**Default**: `false` |
+| `NoMulticast` | `*bool` | Optional | Whether to disable storm control on multicast traffic<br>**Default**: `false` |
+| `NoRegisteredMulticast` | `*bool` | Optional | Whether to disable storm control on registered multicast traffic<br>**Default**: `false` |
+| `NoUnknownUnicast` | `*bool` | Optional | Whether to disable storm control on unknown unicast traffic<br>**Default**: `false` |
+| `Percentage` | `*int` | Optional | Bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth<br>**Default**: `80`<br>**Constraints**: `>= 0`, `<= 100` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

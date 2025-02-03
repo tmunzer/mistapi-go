@@ -15,9 +15,9 @@ type DeviceUpgrade struct {
     RebootAt             *int                   `json:"reboot_at,omitempty"`
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot             *bool                  `json:"snapshot,omitempty"`
-    // firmware download start time in epoch
+    // Firmware download start time in epoch
     StartTime            *int                   `json:"start_time,omitempty"`
-    // specific version / `stable`, default is to use the latest
+    // Specific version / `stable`, default is to use the latest
     Version              string                 `json:"version"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

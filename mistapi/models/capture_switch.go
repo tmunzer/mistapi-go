@@ -10,13 +10,13 @@ import (
 // CaptureSwitch represents a CaptureSwitch struct.
 // Initiate a Switch (Junos) Packet Capture
 type CaptureSwitch struct {
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                                           `json:"duration,omitempty"`
     // enum: `stream`
     Format               *CaptureSwitchFormatEnum                       `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                                           `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                                           `json:"num_packets,omitempty"`
     // Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
     Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`

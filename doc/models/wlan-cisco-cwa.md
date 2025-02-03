@@ -13,9 +13,9 @@ Cisco CWA (central web authentication) required RADIUS with COA in order to work
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AllowedHostnames` | `[]string` | Optional | list of hostnames without http(s):// (matched by substring) |
-| `AllowedSubnets` | `[]string` | Optional | list of CIDRs |
-| `BlockedSubnets` | `[]string` | Optional | list of blocked CIDRs |
+| `AllowedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring) |
+| `AllowedSubnets` | `[]string` | Optional | List of CIDRs |
+| `BlockedSubnets` | `[]string` | Optional | List of blocked CIDRs |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

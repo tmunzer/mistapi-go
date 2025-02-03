@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ExcludeRealms` | `[]string` | Optional | when the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org |
+| `ExcludeRealms` | `[]string` | Optional | When the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `UserRealms` | `[]string` | Optional | which realm should trigger this IDP. User Realm is extracted from:<br><br>* Username-AVP (`mist.com` from john@mist.com)<br>* Cert CN |
+| `UserRealms` | `[]string` | Optional | Which realm should trigger this IDP. User Realm is extracted from:<br><br>* Username-AVP (`mist.com` from john@mist.com)<br>* Cert CN |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

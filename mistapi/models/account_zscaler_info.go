@@ -10,7 +10,7 @@ import (
 type AccountZscalerInfo struct {
     CloudName            *string                `json:"cloud_name,omitempty"`
     PartnerKey           *string                `json:"partner_key,omitempty"`
-    // customer account user name
+    // Customer account user name
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

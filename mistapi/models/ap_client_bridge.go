@@ -8,7 +8,7 @@ import (
 // ApClientBridge represents a ApClientBridge struct.
 type ApClientBridge struct {
     Auth                 *ApClientBridgeAuth    `json:"auth,omitempty"`
-    // when acted as client bridge:
+    // When acted as client bridge:
     // * only 5G radio can be used
     // * will not serve as AP on any radios
     Enabled              *bool                  `json:"enabled,omitempty"`

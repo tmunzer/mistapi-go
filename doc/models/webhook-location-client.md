@@ -13,8 +13,8 @@ Location Client sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | list of events |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_client"` |
+| `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | List of events |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"location_client"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

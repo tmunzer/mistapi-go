@@ -1,7 +1,7 @@
 
 # Wlan App Limit
 
-bandwidth limiting for apps (applies to up/down)
+Bandwidth limiting for apps (applies to up/down)
 
 *This model accepts additional fields of type interface{}.*
 

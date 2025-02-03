@@ -14,7 +14,7 @@ type StatsDeviceOther struct {
     Status               *string                         `json:"status,omitempty"`
     Uptime               *int                            `json:"uptime,omitempty"`
     Vendor               *string                         `json:"vendor,omitempty"`
-    // when `vendor`==`cradlepoint`
+    // When `vendor`==`cradlepoint`
     VendorSpecific       *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
     Version              *string                         `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`

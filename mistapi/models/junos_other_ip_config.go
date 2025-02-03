@@ -6,17 +6,17 @@ import (
 )
 
 // JunosOtherIpConfig represents a JunosOtherIpConfig struct.
-// optional, if it's required to have switch's L3 presense on a network/vlan
+// Optional, if it's required to have switch's L3 presense on a network/vlan
 type JunosOtherIpConfig struct {
-    // for EVPN, if anycast is desired
+    // For EVPN, if anycast is desired
     EvpnAnycast          *bool                  `json:"evpn_anycast,omitempty"`
-    // required if `type`==`static`
+    // Required if `type`==`static`
     Ip                   *string                `json:"ip,omitempty"`
-    // required if `type6`==`static`
+    // Required if `type6`==`static`
     Ip6                  *string                `json:"ip6,omitempty"`
-    // optional, `subnet` from `network` definition will be used if defined
+    // Optional, `subnet` from `network` definition will be used if defined
     Netmask              *string                `json:"netmask,omitempty"`
-    // optional, `subnet` from `network` definition will be used if defined
+    // Optional, `subnet` from `network` definition will be used if defined
     Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`

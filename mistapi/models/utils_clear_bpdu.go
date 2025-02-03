@@ -7,7 +7,7 @@ import (
 
 // UtilsClearBpdu represents a UtilsClearBpdu struct.
 type UtilsClearBpdu struct {
-    // the port on which to clear the detected BPDU error, or `all` for all ports
+    // Port on which to clear the detected BPDU error, or `all` for all ports
     Port                 *string                `json:"port,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

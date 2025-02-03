@@ -7,15 +7,15 @@ import (
 
 // WebhookLocationCentrakEvent represents a WebhookLocationCentrakEvent struct.
 type WebhookLocationCentrakEvent struct {
-    // map id
+    // Map id
     MapId                  *string                       `json:"map_id,omitempty"`
-    // optional, BLE manufacturing company ID
+    // Optional, BLE manufacturing company ID
     MfgCompanyId           *int                          `json:"mfg_company_id,omitempty"`
-    // optional, BLE manufacturing data in hex byte-string format (i.e. “112233AABBCC”)
+    // Optional, BLE manufacturing data in hex byte-string format (i.e. “112233AABBCC”)
     MfgData                *string                       `json:"mfg_data,omitempty"`
-    // timestamp of the event, epoch
+    // Timestamp of the event, epoch
     Timestamp              *int                          `json:"timestamp,omitempty"`
-    // optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
+    // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     // x, in meter
     X                      *float64                      `json:"x,omitempty"`

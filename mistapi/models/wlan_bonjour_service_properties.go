@@ -7,9 +7,9 @@ import (
 
 // WlanBonjourServiceProperties represents a WlanBonjourServiceProperties struct.
 type WlanBonjourServiceProperties struct {
-    // whether to prevent wireless clients to discover bonjour devices on the same WLAN
+    // Whether to prevent wireless clients to discover bonjour devices on the same WLAN
     DisableLocal         *bool                                  `json:"disable_local,omitempty"`
-    // optional, if the service is further restricted for certain RADIUS groups
+    // Optional, if the service is further restricted for certain RADIUS groups
     RadiusGroups         []string                               `json:"radius_groups,omitempty"`
     // how bonjour services should be discovered for the same WLAN. enum: `same_ap`, `same_map`, `same_site`
     Scope                *WlanBonjourServicePropertiesScopeEnum `json:"scope,omitempty"`

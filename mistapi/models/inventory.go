@@ -8,40 +8,40 @@ import (
 
 // Inventory represents a Inventory struct.
 type Inventory struct {
-    // only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
+    // Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
     Adopted              *bool                  `json:"adopted,omitempty"`
-    // whether the device is connected
+    // Whether the device is connected
     Connected            *bool                  `json:"connected,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // deviceprofile id if assigned, null if not assigned
+    // Deviceprofile id if assigned, null if not assigned
     DeviceprofileId      Optional[string]       `json:"deviceprofile_id"`
-    // hostname reported by the device
+    // Hostname reported by the device
     Hostname             *string                `json:"hostname,omitempty"`
-    // device hardware revision number
+    // Device hardware revision number
     HwRev                *string                `json:"hw_rev,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Jsi                  *bool                  `json:"jsi,omitempty"`
-    // device MAC address
+    // Device MAC address
     Mac                  *string                `json:"mac,omitempty"`
-    // device claim code
+    // Device claim code
     Magic                *string                `json:"magic,omitempty"`
-    // device model
+    // Device model
     Model                *string                `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // device name if configured
+    // Device name if configured
     Name                 *string                `json:"name,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // device serial
+    // Device serial
     Serial               *string                `json:"serial,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // device stock keeping unit
+    // Device stock keeping unit
     Sku                  *string                `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
     Type                 *DeviceTypeEnum        `json:"type,omitempty"`
-    // if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
+    // If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
     VcMac                *string                `json:"vc_mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

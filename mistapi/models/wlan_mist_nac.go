@@ -7,7 +7,7 @@ import (
 
 // WlanMistNac represents a WlanMistNac struct.
 type WlanMistNac struct {
-    // when enabled:
+    // When enabled:
     // * `auth_servers` is ignored
     // * `acct_servers` is ignored
     // * `auth_servers_*` are ignored

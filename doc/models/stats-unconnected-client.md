@@ -13,14 +13,14 @@ Unconnected clients statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApMac` | `string` | Required | mac address of the AP that heard the client |
-| `LastSeen` | `float64` | Required | last seen timestamp |
-| `Mac` | `string` | Required | mac address of the (unconnected) client |
-| `Manufacture` | `string` | Required | device manufacture, through fingerprinting or OUI |
-| `MapId` | `models.Optional[uuid.UUID]` | Optional | map_id of the client (if known), or null |
-| `Rssi` | `int` | Required | client RSSI observered by the AP that heard the client (in dBm) |
-| `X` | `*float64` | Optional | x (in pixels) of user location on the map (if known) |
-| `Y` | `float64` | Required | y (in pixels) of user location on the map (if known) |
+| `ApMac` | `string` | Required | MAC address of the AP that heard the client |
+| `LastSeen` | `float64` | Required | Last seen timestamp |
+| `Mac` | `string` | Required | MAC address of the (unconnected) client |
+| `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
+| `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the client (if known), or null |
+| `Rssi` | `int` | Required | Client RSSI observered by the AP that heard the client (in dBm) |
+| `X` | `*float64` | Optional | X (in pixels) of user location on the map (if known) |
+| `Y` | `float64` | Required | Y (in pixels) of user location on the map (if known) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

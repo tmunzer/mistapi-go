@@ -6,7 +6,7 @@ import (
 )
 
 // TunnelProviderOptionsJse represents a TunnelProviderOptionsJse struct.
-// for jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
+// For jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
 type TunnelProviderOptionsJse struct {
     NumUsers             *int                   `json:"num_users,omitempty"`
     // JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info]($e/Orgs%20JSE/getOrgJseInfo) API Call

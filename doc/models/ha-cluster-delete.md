@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | node0 mac address |
+| `Mac` | `*string` | Optional | Node0 mac address |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

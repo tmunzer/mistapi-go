@@ -16,11 +16,11 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DhcpdConfig` | [`*models.SwitchDhcpdConfig`](../../doc/models/switch-dhcpd-config.md) | Optional | - |
-| `DisableAutoConfig` | `*bool` | Optional | for a claimed switch, we control the configs by default. This option (disables the behavior)<br>**Default**: `false` |
+| `DisableAutoConfig` | `*bool` | Optional | For a claimed switch, we control the configs by default. This option (disables the behavior)<br>**Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `EvpnConfig` | [`*models.EvpnConfig`](../../doc/models/evpn-config.md) | Optional | EVPN Junos settings |
@@ -32,16 +32,16 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `Image3Url` | `models.Optional[string]` | Optional | - |
 | `IpConfig` | [`*models.JunosIpConfig`](../../doc/models/junos-ip-config.md) | Optional | Junos IP Config |
 | `LocalPortConfig` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Optional | Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10") |
-| `Mac` | `*string` | Optional | device MAC address |
-| `Managed` | `*bool` | Optional | for an adopted switch, we don’t overwrite their existing configs automatically<br>**Default**: `false` |
-| `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
-| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | enable mist_nac to use radsec |
-| `Model` | `*string` | Optional | device Model |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `Mac` | `*string` | Optional | Device MAC address |
+| `Managed` | `*bool` | Optional | For an adopted switch, we don’t overwrite their existing configs automatically<br>**Default**: `false` |
+| `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
+| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use radsec |
+| `Model` | `*string` | Optional | Device Model |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
 | `Notes` | `*string` | Optional | - |
-| `NtpServers` | `[]string` | Optional | list of NTP servers specific to this device. By default, those in Site Settings will be used |
+| `NtpServers` | `[]string` | Optional | List of NTP servers specific to this device. By default, those in Site Settings will be used |
 | `OobIpConfig` | [`*models.SwitchOobIpConfig`](../../doc/models/switch-oob-ip-config.md) | Optional | Switch OOB IP Config:<br><br>- If HA configuration: key parameter will be nodeX (eg: node1)<br>- If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `OspfAreas` | [`map[string]models.OspfArea`](../../doc/models/ospf-area.md) | Optional | Junos OSPF areas |
@@ -52,21 +52,21 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
 | `Role` | `*string` | Optional | - |
-| `RouterId` | `*string` | Optional | used for OSPF / BGP / EVPN |
-| `Serial` | `*string` | Optional | device Serial |
+| `RouterId` | `*string` | Optional | Used for OSPF / BGP / EVPN |
+| `Serial` | `*string` | Optional | Device Serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
 | `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
-| `UseRouterIdAsSourceIp` | `*bool` | Optional | whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
-| `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
-| `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | required for preprovisioned Virtual Chassis |
+| `UseRouterIdAsSourceIp` | `*bool` | Optional | Whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
+| `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | Required for preprovisioned Virtual Chassis |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 | `VrrpConfig` | [`*models.VrrpConfig`](../../doc/models/vrrp-config.md) | Optional | Junos VRRP config |
-| `X` | `*float64` | Optional | x in pixel |
-| `Y` | `*float64` | Optional | y in pixel |
+| `X` | `*float64` | Optional | X in pixel |
+| `Y` | `*float64` | Optional | Y in pixel |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

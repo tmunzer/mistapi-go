@@ -6,11 +6,11 @@ import (
 )
 
 // SiteSettingConfigPushPolicy represents a SiteSettingConfigPushPolicy struct.
-// mist also uses some heuristic rules to prevent destructive configs from being pushed
+// Mist also uses some heuristic rules to prevent destructive configs from being pushed
 type SiteSettingConfigPushPolicy struct {
-    // stop any new config from being pushed to the device
+    // Stop any new config from being pushed to the device
     NoPush               *bool                  `json:"no_push,omitempty"`
-    // if enabled, new config will only be pushed to device within the specified time window
+    // If enabled, new config will only be pushed to device within the specified time window
     PushWindow           *PushPolicyPushWindow  `json:"push_window,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

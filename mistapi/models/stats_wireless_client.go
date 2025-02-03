@@ -10,10 +10,10 @@ import (
 
 // StatsWirelessClient represents a StatsWirelessClient struct.
 type StatsWirelessClient struct {
-    // estimated client location accuracy, in meter
+    // Estimated client location accuracy, in meter
     Accuracy             *int                             `json:"accuracy,omitempty"`
     AirespaceIfname      *string                          `json:"airespace_ifname,omitempty"`
-    // information if airwatch enabled
+    // Information if airwatch enabled
     Airwatch             *StatsWirelessClientAirwatch     `json:"airwatch,omitempty"`
     // AP ID the client is connected to
     ApId                 uuid.UUID                        `json:"ap_id"`
@@ -21,96 +21,96 @@ type StatsWirelessClient struct {
     ApMac                string                           `json:"ap_mac"`
     // enum: `24`, `5`, `6`
     Band                 Dot11BandEnum                    `json:"band"`
-    // current channel
+    // Current channel
     Channel              int                              `json:"channel"`
-    // whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands)
+    // Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands)
     DualBand             bool                             `json:"dual_band"`
-    // device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE …
+    // Device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE …
     Family               string                           `json:"family"`
     // Guest
     Guest                *Guest                           `json:"guest,omitempty"`
-    // hostname that we learned from sniffing DHCP
+    // Hostname that we learned from sniffing DHCP
     Hostname             string                           `json:"hostname"`
-    // how long, in seconds, has the client been idle (since the last RX packet)
+    // How long, in seconds, has the client been idle (since the last RX packet)
     IdleTime             float64                          `json:"idle_time"`
     Ip                   string                           `json:"ip"`
-    // whether this is a guest
+    // Whether this is a guest
     IsGuest              bool                             `json:"is_guest"`
-    // e.g. WPA2-PSK/CCMP
+    // E.g. WPA2-PSK/CCMP
     KeyMgmt              string                           `json:"key_mgmt"`
-    // last seen timestamp
+    // Last seen timestamp
     LastSeen             float64                          `json:"last_seen"`
-    // client mac
+    // Client mac
     Mac                  string                           `json:"mac"`
-    // device manufacture, through fingerprinting or OUI
+    // Device manufacture, through fingerprinting or OUI
     Manufacture          string                           `json:"manufacture"`
-    // estimated client location - map_id
+    // Estimated client location - map_id
     MapId                *uuid.UUID                       `json:"map_id,omitempty"`
-    // device model, may be available if we can identify them
+    // Device model, may be available if we can identify them
     Model                string                           `json:"model"`
-    // number of APs used to locate this client
+    // Number of APs used to locate this client
     NumLocatingAps       *int                             `json:"num_locating_aps,omitempty"`
-    // device os, through fingerprinting
+    // Device os, through fingerprinting
     Os                   string                           `json:"os"`
-    // if it’s currently in power-save mode
+    // If it’s currently in power-save mode
     PowerSaving          bool                             `json:"power_saving"`
     // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
     Proto                Dot11ProtoEnum                   `json:"proto"`
     // PSK id (if multi-psk is used)
     PskId                *uuid.UUID                       `json:"psk_id,omitempty"`
-    // signal strength
+    // Signal strength
     Rssi                 float64                          `json:"rssi"`
-    // list of rssizone_id’s where client is in and since when (if known)
+    // List of rssizone_id’s where client is in and since when (if known)
     Rssizones            []StatsWirelessClientRssiZone    `json:"rssizones,omitempty"`
-    // rate of receiving traffic from the clients, bits/seconds, last known
+    // Rate of receiving traffic from the clients, bits/seconds, last known
     RxBps                float64                          `json:"rx_bps"`
-    // amount of traffic received from client since client connects
+    // Amount of traffic received from client since client connects
     RxBytes              float64                          `json:"rx_bytes"`
-    // amount of traffic received from client since client connects
+    // Amount of traffic received from client since client connects
     RxPackets            float64                          `json:"rx_packets"`
     // RX Rate, Mbps
     RxRate               float64                          `json:"rx_rate"`
-    // amount of rx retries
+    // Amount of rx retries
     RxRetries            float64                          `json:"rx_retries"`
-    // signal over noise
+    // Signal over noise
     Snr                  float64                          `json:"snr"`
     // SSID the client is connected to
     Ssid                 string                           `json:"ssid"`
-    // rate of transmitting traffic to the clients, bits/seconds, last known
+    // Rate of transmitting traffic to the clients, bits/seconds, last known
     TxBps                float64                          `json:"tx_bps"`
-    // amount of traffic sent to client since client connects
+    // Amount of traffic sent to client since client connects
     TxBytes              float64                          `json:"tx_bytes"`
-    // amount of traffic sent to client since client connects
+    // Amount of traffic sent to client since client connects
     TxPackets            float64                          `json:"tx_packets"`
     // TX Rate, Mbps
     TxRate               float64                          `json:"tx_rate"`
-    // amount of tx retries
+    // Amount of tx retries
     TxRetries            float64                          `json:"tx_retries"`
-    // client’s type, regular / vip / resource / blocked (if client object is created)
+    // Client’s type, regular / vip / resource / blocked (if client object is created)
     Type                 *string                          `json:"type,omitempty"`
-    // how long, in seconds, has the client been connected
+    // How long, in seconds, has the client been connected
     Uptime               float64                          `json:"uptime"`
-    // username that we learned from 802.1X exchange or Per_user PSK or User Portal
+    // Username that we learned from 802.1X exchange or Per_user PSK or User Portal
     Username             string                           `json:"username"`
-    // list of beacon_id’s where the client is in and since when (if known)
+    // List of beacon_id’s where the client is in and since when (if known)
     Vbeacons             []StatsWirelessClientVbeacon     `json:"vbeacons,omitempty"`
-    // vlan id, could be empty (from older AP)
+    // VLAN id, could be empty (from older AP)
     VlanId               *int                             `json:"vlan_id,omitempty"`
     // WLAN ID the client is connected to
     WlanId               uuid.UUID                        `json:"wlan_id"`
-    // current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched.
+    // Current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched.
     WxruleId             *uuid.UUID                       `json:"wxrule_id,omitempty"`
-    // current WxlanRule usage per tag_id
+    // Current WxlanRule usage per tag_id
     WxruleUsage          []StatsWirelessClientWxruleUsage `json:"wxrule_usage,omitempty"`
-    // estimated clinet location in pixels
+    // Estimated clinet location in pixels
     X                    *float64                         `json:"x,omitempty"`
-    // estimated client location in meter
+    // Estimated client location in meter
     XM                   *float64                         `json:"x_m,omitempty"`
-    // estimated clinet location in pixels
+    // Estimated clinet location in pixels
     Y                    *float64                         `json:"y,omitempty"`
-    // estimated client location in meter
+    // Estimated client location in meter
     YM                   *float64                         `json:"y_m,omitempty"`
-    // list of zone_id’s where client is in and since when (if known)
+    // List of zone_id’s where client is in and since when (if known)
     Zones                []StatsWirelessClientZone        `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

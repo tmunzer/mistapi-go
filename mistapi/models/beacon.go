@@ -9,7 +9,7 @@ import (
 // Beacon represents a Beacon struct.
 // Beacon
 type Beacon struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Eddystone-UID instance (6 bytes) in hexstring format
     EddystoneInstance    *string                `json:"eddystone_instance,omitempty"`
@@ -18,30 +18,30 @@ type Beacon struct {
     // Eddystone-URL url
     EddystoneUrl         *string                `json:"eddystone_url,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // bluetooth tag major
+    // Bluetooth tag major
     IbeaconMajor         *int                   `json:"ibeacon_major,omitempty"`
-    // bluetooth tag minor
+    // Bluetooth tag minor
     IbeaconMinor         *int                   `json:"ibeacon_minor,omitempty"`
-    // bluetooth tag UUID
+    // Bluetooth tag UUID
     IbeaconUuid          *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // optiona, MAC of the beacon, currently used only to identify battery voltage
+    // Optional, MAC of the beacon, currently used only to identify battery voltage
     Mac                  *string                `json:"mac,omitempty"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // name / label of the device
+    // Name / label of the device
     Name                 *string                `json:"name,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // in dBm
+    // In dBm
     Power                *int                   `json:"power,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // enum: `eddystone-uid`, `eddystone-url`, `ibeacon`
     Type                 *BeaconTypeEnum        `json:"type,omitempty"`
-    // x in pixel
+    // X in pixel
     X                    *float64               `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

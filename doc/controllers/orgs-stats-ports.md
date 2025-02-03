@@ -59,16 +59,16 @@ SearchOrgSwOrGwPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
-| `mac` | `*string` | Query, Optional | device identifier |
+| `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
+| `mac` | `*string` | Query, Optional | Device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
 | `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
 | `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
-| `poeDisabled` | `*bool` | Query, Optional | is the POE configured not be disabled. |
-| `poeMode` | `*string` | Query, Optional | poe mode depending on class E.g. “802.3at” |
-| `poeOn` | `*bool` | Query, Optional | is the device attached to POE |
-| `portId` | `*string` | Query, Optional | interface name |
-| `portMac` | `*string` | Query, Optional | interface mac address |
+| `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
+| `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. “802.3at” |
+| `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
+| `portId` | `*string` | Query, Optional | Interface name |
+| `portMac` | `*string` | Query, Optional | Interface mac address |
 | `powerDraw` | `*float64` | Query, Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `txPkts` | `*int` | Query, Optional | Output packets |
 | `rxPkts` | `*int` | Query, Optional | Input packets |
@@ -81,17 +81,17 @@ SearchOrgSwOrGwPorts(
 | `txBcastPkts` | `*int` | Query, Optional | Broadcast output packets |
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
-| `speed` | `*int` | Query, Optional | port speed |
+| `speed` | `*int` | Query, Optional | Port speed |
 | `macLimit` | `*int` | Query, Optional | Limit on number of dynamically learned macs |
 | `macCount` | `*int` | Query, Optional | Number of mac addresses in the forwarding table |
-| `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `stpState` | [`*models.SearchOrgSwOrGwPortsStpStateEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
-| `stpRole` | [`*models.SearchOrgSwOrGwPortsStpRoleEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
-| `authState` | [`*models.SearchOrgSwOrGwPortsAuthStateEnum`](../../doc/models/search-org-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
+| `up` | `*bool` | Query, Optional | Indicates if interface is up |
+| `stpState` | [`*models.SearchOrgSwOrGwPortsStpStateEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.SearchOrgSwOrGwPortsStpRoleEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `authState` | [`*models.SearchOrgSwOrGwPortsAuthStateEnum`](../../doc/models/search-org-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

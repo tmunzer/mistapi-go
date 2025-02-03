@@ -11,15 +11,15 @@ import (
 // PrivilegeOrg represents a PrivilegeOrg struct.
 // Privilieges settings
 type PrivilegeOrg struct {
-    // if `scope`==`org`
+    // If `scope`==`org`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 PrivilegeOrgRoleEnum    `json:"role"`
     // enum: `org`, `site`, `sitegroup`
     Scope                PrivilegeOrgScopeEnum   `json:"scope"`
-    // if `scope`==`site`
+    // If `scope`==`site`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
-    // if `scope`==`sitegroup`
+    // If `scope`==`sitegroup`
     SitegroupId          *uuid.UUID              `json:"sitegroup_id,omitempty"`
     // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
     // You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.

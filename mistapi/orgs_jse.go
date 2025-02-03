@@ -142,7 +142,7 @@ func (o *OrgsJSE) GetOrgJsecCredential(
 // SetupOrgJsecCredential takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AccountJseInfo data and
 // an error if there was an issue with the request or response.
-// in JSE UI: 
+// In JSE UI: 
 // 1. Create custom role with Read access to service_location and RW access to site and IPSec profile APIs. 
 // 2. Create a user with the above custom role. - email: john@abc.com 
 // 3. Activate the user in the JSE account. 

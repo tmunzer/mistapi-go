@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `HoldTime` | `*int` | Optional | in milli seconds, hold time between multiple port bounces |
-| `Ports` | `[]string` | Required | list of ports to bounce |
+| `HoldTime` | `*int` | Optional | In milli seconds, hold time between multiple port bounces |
+| `Ports` | `[]string` | Required | List of ports to bounce |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

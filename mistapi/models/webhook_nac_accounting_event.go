@@ -8,33 +8,33 @@ import (
 
 // WebhookNacAccountingEvent represents a WebhookNacAccountingEvent struct.
 type WebhookNacAccountingEvent struct {
-    // mac address of the AP the client roamed or disconnected from
+    // MAC address of the AP the client roamed or disconnected from
     Ap                   *string                `json:"ap,omitempty"`
     // radius authentication type
     AuthType             *string                `json:"auth_type,omitempty"`
-    // it’s the MAC physical address of the access point
+    // MAC physical address of the access point
     Bssid                *string                `json:"bssid,omitempty"`
     // IP Address of client
     ClientIp             *string                `json:"client_ip,omitempty"`
-    // client type E.g. “wired”, “wireless”, “vty”
+    // Client type E.g. “wired”, “wireless”, “vty”
     ClientType           *string                `json:"client_type,omitempty"`
-    // the client’s mac
+    // Client's MAC Address
     Mac                  *string                `json:"mac,omitempty"`
     // NAS Device vendor name E.g. “Juniper”, “Cisco”
     NasVendor            *string                `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // number of packets received
+    // Number of packets received
     RxPkts               *int                   `json:"rx_pkts,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // ESSID
     Ssid                 *string                `json:"ssid,omitempty"`
     // sampling time (in epoch)
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // number of packets sent
+    // Number of packets sent
     TxPkts               *int                   `json:"tx_pkts,omitempty"`
-    // type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP”
+    // Type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP”
     Type                 *string                `json:"type,omitempty"`
-    // username authenticated with
+    // Username authenticated with
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

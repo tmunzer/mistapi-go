@@ -11,13 +11,13 @@ import (
 // Initiate a Wired Packet Capture
 type CaptureWired struct {
     ApMac                Optional[string]        `json:"ap_mac"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                    `json:"duration,omitempty"`
     // pcap format. enum: `pcap`, `stream`
     Format               *CaptureWiredFormatEnum `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                    `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                    `json:"num_packets,omitempty"`
     // tcpdump expression
     TcpdumpExpression    Optional[string]        `json:"tcpdump_expression"`

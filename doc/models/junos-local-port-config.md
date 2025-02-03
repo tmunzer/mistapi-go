@@ -20,7 +20,7 @@ Switch port config
 | `BypassAuthWhenServerDownForUnkonwnClient` | `*bool` | Optional | Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
 | `Description` | `*string` | Optional | - |
 | `DisableAutoneg` | `*bool` | Optional | Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation<br>**Default**: `false` |
-| `Disabled` | `*bool` | Optional | whether the port is disabled<br>**Default**: `false` |
+| `Disabled` | `*bool` | Optional | Whether the port is disabled<br>**Default**: `false` |
 | `Duplex` | [`*models.SwitchPortLocalUsageDuplexEnum`](../../doc/models/switch-port-local-usage-duplex-enum.md) | Optional | link connection mode. enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `DynamicVlanNetworks` | `[]string` | Optional | Only if `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return |
 | `EnableMacAuth` | `*bool` | Optional | Only if `port_auth`==`dot1x` whether to enable MAC Auth<br>**Default**: `false` |
@@ -30,26 +30,26 @@ Switch port config
 | `MacAuthOnly` | `*bool` | Optional | Only if `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortLocalUsageMacAuthProtocolEnum`](../../doc/models/switch-port-local-usage-mac-auth-protocol-enum.md) | Optional | Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"eap-md5"` |
-| `MacLimit` | `*int` | Optional | max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform<br>**Default**: `0`<br>**Constraints**: `>= 0` |
+| `MacLimit` | `*int` | Optional | Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform<br>**Default**: `0`<br>**Constraints**: `>= 0` |
 | `Mode` | [`*models.SwitchPortLocalUsageModeEnum`](../../doc/models/switch-port-local-usage-mode-enum.md) | Optional | enum: `access`, `inet`, `trunk` |
-| `Mtu` | `*int` | Optional | media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
+| `Mtu` | `*int` | Optional | Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `Note` | `*string` | Optional | Additional note for the port config override |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |
-| `PoeDisabled` | `*bool` | Optional | whether PoE capabilities are disabled for a port<br>**Default**: `false` |
+| `PoeDisabled` | `*bool` | Optional | Whether PoE capabilities are disabled for a port<br>**Default**: `false` |
 | `PortAuth` | [`models.Optional[models.SwitchPortLocalUsageDot1xEnum]`](../../doc/models/switch-port-local-usage-dot-1-x-enum.md) | Optional | if dot1x is desired, set to dot1x. enum: `dot1x` |
-| `PortNetwork` | `*string` | Optional | native network/vlan for untagged traffic |
+| `PortNetwork` | `*string` | Optional | Native network/vlan for untagged traffic |
 | `ReauthInterval` | `*int` | Optional | Only if `port_auth`=`dot1x` reauthentication interval range<br>**Default**: `3600`<br>**Constraints**: `>= 10`, `<= 65535` |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `port_auth`==`dot1x` sets server fail fallback vlan |
 | `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `port_auth`==`dot1x` when radius server reject / fails |
 | `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
 | `StormControl` | [`*models.SwitchPortLocalUsageStormControl`](../../doc/models/switch-port-local-usage-storm-control.md) | Optional | Switch storm control |
-| `StpEdge` | `*bool` | Optional | when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
+| `StpEdge` | `*bool` | Optional | When enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
 | `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
 | `StpP2p` | `*bool` | Optional | **Default**: `false` |
-| `Usage` | `string` | Required | port usage name. |
-| `UseVstp` | `*bool` | Optional | if this is connected to a vstp network<br>**Default**: `false` |
-| `VoipNetwork` | `*string` | Optional | network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
+| `Usage` | `string` | Required | Port usage name. |
+| `UseVstp` | `*bool` | Optional | If this is connected to a vstp network<br>**Default**: `false` |
+| `VoipNetwork` | `*string` | Optional | Network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

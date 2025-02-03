@@ -9,7 +9,7 @@ import (
 type UpgradeBios struct {
     // Reboot device immediately after upgrade is completed
     Reboot               *bool                  `json:"reboot,omitempty"`
-    // specific bios version
+    // Specific bios version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

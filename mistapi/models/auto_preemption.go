@@ -6,13 +6,13 @@ import (
 )
 
 // AutoPreemption represents a AutoPreemption struct.
-// schedule to preempt ap’s which are not connected to preferred peer
+// Schedule to preempt ap’s which are not connected to preferred peer
 type AutoPreemption struct {
     // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
     DayOfWeek            *DayOfWeekEnum         `json:"day_of_week,omitempty"`
-    // whether auto preemption should happen
+    // Whether auto preemption should happen
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // any / HH:MM (24-hour format)
+    // `any` / HH:MM (24-hour format)
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

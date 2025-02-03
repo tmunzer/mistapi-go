@@ -1,7 +1,7 @@
 
 # Map Wayfinding Path
 
-a JSON blob for wayfinding (using Dijkstra’s algorithm)
+JSON blob for wayfinding (using Dijkstra’s algorithm)
 
 *This model accepts additional fields of type interface{}.*
 

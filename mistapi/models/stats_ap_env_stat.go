@@ -6,7 +6,7 @@ import (
 )
 
 // StatsApEnvStat represents a StatsApEnvStat struct.
-// device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
+// Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
 type StatsApEnvStat struct {
     AccelX               Optional[float64]      `json:"accel_x"`
     AccelY               Optional[float64]      `json:"accel_y"`

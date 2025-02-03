@@ -23,17 +23,17 @@ import (
 // * radius_attr: the values are [ \u201C6=1\u201D, \u201C26=10.2.3.4\u201D ], this support other RADIUS attributes where we know the type
 // * radius_vendor: the values are [ \u201C14179.10=1\u201D, \u201C14178.16=1.2.3.4\u201D ], this matches vendor attributes and will be dynamically evaluated
 type WxlanTag struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     LastIps              []string               `json:"last_ips,omitempty"`
-    // if `type`==`client`, Client MAC Address
+    // If `type`==`client`, Client MAC Address
     Mac                  Optional[string]       `json:"mac"`
     // required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id`
     Match                *WxlanTagMatchEnum     `json:"match,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // The name
     Name                 string                 `json:"name"`
@@ -43,12 +43,12 @@ type WxlanTag struct {
     ResourceMac          Optional[string]       `json:"resource_mac"`
     Services             []string               `json:"services,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // if `type`==`spec`
+    // If `type`==`spec`
     Specs                []WxlanTagSpec         `json:"specs,omitempty"`
     Subnet               *string                `json:"subnet,omitempty"`
     // enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan`
     Type                 WxlanTagTypeEnum       `json:"type"`
-    // required if `type`==`match` and
+    // Required if `type`==`match` and
     // * `match`==`ap_id`: list of AP IDs
     // * `match`==`app`: list of Application Names
     // * `match`==`asset_mac`: list of Asset MAC Addresses
@@ -67,7 +67,7 @@ type WxlanTag struct {
     // **Notes**:
     // Variables are not allowed
     Values               []string               `json:"values,omitempty"`
-    // if `type`==`vlan_id`, VLAN ID or variable
+    // If `type`==`vlan_id`, VLAN ID or variable
     VlanId               *WxlanTagVlanId        `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

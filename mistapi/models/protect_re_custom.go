@@ -6,9 +6,9 @@ import (
 )
 
 // ProtectReCustom represents a ProtectReCustom struct.
-// custom acls
+// Custom acls
 type ProtectReCustom struct {
-    // matched dst port, "0" means any
+    // Matched dst port, "0" means any
     PortRange            *string                      `json:"port_range,omitempty"`
     // enum: `any`, `icmp`, `tcp`, `udp`
     Protocol             *ProtectReCustomProtocolEnum `json:"protocol,omitempty"`

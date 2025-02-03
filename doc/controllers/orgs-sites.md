@@ -40,9 +40,9 @@ CountOrgSites(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgSitesCountDistinctEnum`](../../doc/models/org-sites-count-distinct-enum.md) | Query, Optional | **Default**: `"id"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -341,26 +341,26 @@ SearchOrgSites(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `analyticEnabled` | `*bool` | Query, Optional | if Advanced Analytic feature is enabled |
-| `appWaking` | `*bool` | Query, Optional | if App Waking feature is enabled |
-| `assetEnabled` | `*bool` | Query, Optional | if Asset Tracking is enabled |
-| `autoUpgradeEnabled` | `*bool` | Query, Optional | if Auto Upgrade feature is enabled |
-| `autoUpgradeVersion` | `*string` | Query, Optional | if Auto Upgrade feature is enabled |
-| `countryCode` | `*string` | Query, Optional | site country code |
-| `honeypotEnabled` | `*bool` | Query, Optional | if Honeypot detection is enabled |
-| `id` | `*string` | Query, Optional | site id |
-| `locateUnconnected` | `*bool` | Query, Optional | if unconnected client are located |
-| `meshEnabled` | `*bool` | Query, Optional | if Mesh feature is enabled |
-| `name` | `*string` | Query, Optional | site name |
-| `rogueEnabled` | `*bool` | Query, Optional | if Rogue detection is enabled |
-| `remoteSyslogEnabled` | `*bool` | Query, Optional | if Remote Syslog is enabled |
-| `rtsaEnabled` | `*bool` | Query, Optional | if managed mobility feature is enabled |
-| `vnaEnabled` | `*bool` | Query, Optional | if Virtual Network Assistant is enabled |
-| `wifiEnabled` | `*bool` | Query, Optional | if WIFI feature is enabled |
+| `analyticEnabled` | `*bool` | Query, Optional | If Advanced Analytic feature is enabled |
+| `appWaking` | `*bool` | Query, Optional | If App Waking feature is enabled |
+| `assetEnabled` | `*bool` | Query, Optional | If Asset Tracking is enabled |
+| `autoUpgradeEnabled` | `*bool` | Query, Optional | If Auto Upgrade feature is enabled |
+| `autoUpgradeVersion` | `*string` | Query, Optional | If Auto Upgrade feature is enabled |
+| `countryCode` | `*string` | Query, Optional | Site country code |
+| `honeypotEnabled` | `*bool` | Query, Optional | If Honeypot detection is enabled |
+| `id` | `*string` | Query, Optional | Site id |
+| `locateUnconnected` | `*bool` | Query, Optional | If unconnected client are located |
+| `meshEnabled` | `*bool` | Query, Optional | If Mesh feature is enabled |
+| `name` | `*string` | Query, Optional | Site name |
+| `rogueEnabled` | `*bool` | Query, Optional | If Rogue detection is enabled |
+| `remoteSyslogEnabled` | `*bool` | Query, Optional | If Remote Syslog is enabled |
+| `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled |
+| `vnaEnabled` | `*bool` | Query, Optional | If Virtual Network Assistant is enabled |
+| `wifiEnabled` | `*bool` | Query, Optional | If WIFI feature is enabled |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

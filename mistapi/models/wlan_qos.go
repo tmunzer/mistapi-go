@@ -9,7 +9,7 @@ import (
 type WlanQos struct {
     // enum: `background`, `best_effort`, `video`, `voice`
     Class                *WlanQosClassEnum      `json:"class,omitempty"`
-    // whether to overwrite QoS
+    // Whether to overwrite QoS
     Overwrite            *bool                  `json:"overwrite,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

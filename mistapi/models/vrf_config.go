@@ -7,7 +7,7 @@ import (
 
 // VrfConfig represents a VrfConfig struct.
 type VrfConfig struct {
-    // whether to enable VRF (when supported on the device)
+    // Whether to enable VRF (when supported on the device)
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

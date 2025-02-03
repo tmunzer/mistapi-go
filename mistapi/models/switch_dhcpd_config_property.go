@@ -7,38 +7,38 @@ import (
 
 // SwitchDhcpdConfigProperty represents a SwitchDhcpdConfigProperty struct.
 type SwitchDhcpdConfigProperty struct {
-    // if `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
+    // If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
     DnsServers           []string                           `json:"dns_servers,omitempty"`
-    // if `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
+    // If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
     DnsSuffix            []string                           `json:"dns_suffix,omitempty"`
-    // if `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
+    // If `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
     FixedBindings        map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
-    // if `type`==`server`  - optional, `ip` will be used if not provided
+    // If `type`==`server`  - optional, `ip` will be used if not provided
     Gateway              *string                            `json:"gateway,omitempty"`
-    // if `type`==`server`
+    // If `type`==`server`
     IpEnd                *string                            `json:"ip_end,omitempty"`
-    // if `type6`==`server`
+    // If `type6`==`server`
     IpEnd6               *string                            `json:"ip_end6,omitempty"`
-    // if `type`==`server`
+    // If `type`==`server`
     IpStart              *string                            `json:"ip_start,omitempty"`
-    // if `type6`==`server`
+    // If `type6`==`server`
     IpStart6             *string                            `json:"ip_start6,omitempty"`
-    // in seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]
+    // In seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]
     LeaseTime            *int                               `json:"lease_time,omitempty"`
-    // if `type`==`server` or `type6`==`server`. Property key is the DHCP option number
+    // If `type`==`server` or `type6`==`server`. Property key is the DHCP option number
     Options              map[string]DhcpdConfigOption       `json:"options,omitempty"`
     // `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,
     // should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.
     ServerIdOverride     *bool                              `json:"server_id_override,omitempty"`
-    // if `type`==`relay`
+    // If `type`==`relay`
     Servers              []string                           `json:"servers,omitempty"`
-    // if `type6`==`relay`
+    // If `type6`==`relay`
     Servers6             []string                           `json:"servers6,omitempty"`
     // enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
     Type                 *SwitchDhcpdConfigTypeEnum         `json:"type,omitempty"`
     // enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
     Type6                *SwitchDhcpdConfigTypeEnum         `json:"type6,omitempty"`
-    // if `type`==`server` or `type6`==`server`. Property key is <enterprise number>:<sub option code>, with
+    // If `type`==`server` or `type6`==`server`. Property key is <enterprise number>:<sub option code>, with
     // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
     // * sub option code: 1-255, sub-option code'
     VendorEncapsulated   map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`

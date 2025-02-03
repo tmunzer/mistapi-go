@@ -1,7 +1,7 @@
 
 # Site Setting Auto Placement
 
-if we're able to determine its x/y/orientation, this will be populated
+If we're able to determine its x/y/orientation, this will be populated
 
 *This model accepts additional fields of type interface{}.*
 

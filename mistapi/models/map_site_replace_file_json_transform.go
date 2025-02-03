@@ -8,13 +8,13 @@ import (
 // MapSiteReplaceFileJsonTransform represents a MapSiteReplaceFileJsonTransform struct.
 // If `transform` is provided, all the locations of the objects on the map (AP, Zone, Vbeacon, Beacon) will be transformed as well (relative to the new Map)
 type MapSiteReplaceFileJsonTransform struct {
-    // whether to rotate the replacing image, in degrees
+    // Whether to rotate the replacing image, in degrees
     Rotation             *float64               `json:"rotation,omitempty"`
-    // whether to scale the replacing image
+    // Whether to scale the replacing image
     Scale                *float64               `json:"scale,omitempty"`
-    // where the (0, 0) of the new image is relative to the original map
+    // Where the (0, 0) of the new image is relative to the original map
     X                    *float64               `json:"x,omitempty"`
-    // where the (0, 0) of the new image is relative to the original map
+    // Where the (0, 0) of the new image is relative to the original map
     Y                    *float64               `json:"y,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

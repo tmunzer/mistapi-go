@@ -1,7 +1,7 @@
 
 # Map Wayfinding
 
-properties related to wayfinding
+Properties related to wayfinding
 
 *This model accepts additional fields of type interface{}.*
 

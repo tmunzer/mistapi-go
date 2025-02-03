@@ -6,12 +6,12 @@ import (
 )
 
 // TunnelProviderOptionsZscaler represents a TunnelProviderOptionsZscaler struct.
-// for zscaler-ipsec and zscaler-gre
+// For zscaler-ipsec and zscaler-gre
 type TunnelProviderOptionsZscaler struct {
     AupBlockInternetUntilAccepted       *bool                                     `json:"aup_block_internet_until_accepted,omitempty"`
     // Can only be `true` when `auth_required`==`false`, display Acceptable Use Policy (AUP)
     AupEnabled                          *bool                                     `json:"aup_enabled,omitempty"`
-    // proxy HTTPs traffic, requiring Zscaler cert to be installed in browser
+    // Proxy HTTPs traffic, requiring Zscaler cert to be installed in browser
     AupForceSslInspection               *bool                                     `json:"aup_force_ssl_inspection,omitempty"`
     // Required if `aup_enabled`==`true`. Days before AUP is requested again
     AupTimeoutInDays                    *int                                      `json:"aup_timeout_in_days,omitempty"`
@@ -19,11 +19,11 @@ type TunnelProviderOptionsZscaler struct {
     AuthRequired                        *bool                                     `json:"auth_required,omitempty"`
     // Can only be `true` when `auth_required`==`false`, display caution notification for non-authenticated users
     CautionEnabled                      *bool                                     `json:"caution_enabled,omitempty"`
-    // the download bandwidth cap of the link, in Mbps. Disabled if not set
+    // Download bandwidth cap of the link, in Mbps. Disabled if not set
     DnBandwidth                         Optional[float64]                         `json:"dn_bandwidth"`
     // Required if `surrogate_IP`==`true`, idle Time to Disassociation
     IdleTimeInMinutes                   *int                                      `json:"idle_time_in_minutes,omitempty"`
-    // if `true`, enable the firewall control option
+    // If `true`, enable the firewall control option
     OfwEnabled                          *bool                                     `json:"ofw_enabled,omitempty"`
     // `sub-locations` can be used for specific uses cases to define different configuration based on the user network
     SubLocations                        []TunnelProviderOptionsZscalerSubLocation `json:"sub_locations,omitempty"`
@@ -33,9 +33,9 @@ type TunnelProviderOptionsZscaler struct {
     SurrogateIPEnforcedForKnownBrowsers *bool                                     `json:"surrogate_IP_enforced_for_known_browsers,omitempty"`
     // Required if `surrogate_IP_enforced_for_known_browsers`==`true`, must be lower or equal than `idle_time_in_minutes`, refresh Time for re-validation of Surrogacy
     SurrogateRefreshTimeInMinutes       *int                                      `json:"surrogate_refresh_time_in_minutes,omitempty"`
-    // the download bandwidth cap of the link, in Mbps. Disabled if not set
+    // Download bandwidth cap of the link, in Mbps. Disabled if not set
     UpBandwidth                         Optional[float64]                         `json:"up_bandwidth"`
-    // location uses proxy chaining to forward traffic
+    // Location uses proxy chaining to forward traffic
     XffForwardEnabled                   *bool                                     `json:"xff_forward_enabled,omitempty"`
     AdditionalProperties                map[string]interface{}                    `json:"_"`
 }

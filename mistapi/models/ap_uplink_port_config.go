@@ -10,7 +10,7 @@ import (
 type ApUplinkPortConfig struct {
     // Whether to do 802.1x against uplink switch. When enaled, AP cert will be used to do EAP-TLS and the Org's CA Cert has to be provisioned at the switch
     Dot1x                *bool                  `json:"dot1x,omitempty"`
-    // by default, WLANs are disabled when uplink is down. In some scenario, like SiteSurvey, one would want the AP to keep sending beacons.
+    // By default, WLANs are disabled when uplink is down. In some scenario, like SiteSurvey, one would want the AP to keep sending beacons.
     KeepWlansUpIfDown    *bool                  `json:"keep_wlans_up_if_down,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

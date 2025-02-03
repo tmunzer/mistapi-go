@@ -1,11 +1,11 @@
 
-# Response Upgrade Site Devices
+# Response Upgrade Id
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseUpgradeSiteDevices`
+`ResponseUpgradeId`
 
 ## Fields
 

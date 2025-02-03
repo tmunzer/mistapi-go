@@ -12,20 +12,20 @@ import (
 type NacRule struct {
     // enum: `allow`, `block`
     Action               NacRuleActionEnum      `json:"action"`
-    // all optional, this goes into Access-Accept
+    // All optional, this goes into Access-Accept
     ApplyTags            []string               `json:"apply_tags,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // enabled or not
+    // Enabled or not
     Enabled              *bool                  `json:"enabled,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Matching             *NacRuleMatching       `json:"matching,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     Name                 string                 `json:"name"`
     NotMatching          *NacRuleMatching       `json:"not_matching,omitempty"`
-    // the order of the rule, lower value implies higher priority
+    // Prder of the rule, lower value implies higher priority
     Order                *int                   `json:"order,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

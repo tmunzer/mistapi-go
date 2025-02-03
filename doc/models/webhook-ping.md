@@ -1,7 +1,7 @@
 
 # Webhook Ping
 
-ping webhook
+Ping webhook
 
 *This model accepts additional fields of type interface{}.*
 

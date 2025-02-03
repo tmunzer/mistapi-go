@@ -8,11 +8,11 @@ import (
 // TunnelConfigProbe represents a TunnelConfigProbe struct.
 // Only if `provider`==`custom-ipsec`
 type TunnelConfigProbe struct {
-    // how often to trigger the probe
+    // How often to trigger the probe
     Interval             *int                       `json:"interval,omitempty"`
-    // number of consecutive misses before declaring the tunnel down
+    // Number of consecutive misses before declaring the tunnel down
     Threshold            *int                       `json:"threshold,omitempty"`
-    // time within which to complete the connectivity check
+    // Time within which to complete the connectivity check
     Timeout              *int                       `json:"timeout,omitempty"`
     // enum: `http`, `icmp`
     Type                 *TunnelConfigProbeTypeEnum `json:"type,omitempty"`

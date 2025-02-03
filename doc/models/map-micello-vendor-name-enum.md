@@ -1,7 +1,7 @@
 
 # Map Micello Vendor Name Enum
 
-the vendor ‘micello’. enum: `micello`
+The vendor ‘micello’. enum: `micello`
 
 ## Enumeration
 

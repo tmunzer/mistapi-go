@@ -13,7 +13,7 @@ UI Settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DefaultScopeId` | `*string` | Optional | - |
 | `DefaultScopeType` | `*string` | Optional | - |
 | `DefaultTimeRange` | [`*models.UiSettingsDefaultTimeRange`](../../doc/models/ui-settings-default-time-range.md) | Optional | - |
@@ -23,7 +23,7 @@ UI Settings
 | `IsCustomDataboard` | `*bool` | Optional | - |
 | `IsScopeLinked` | `*bool` | Optional | - |
 | `IsTimeRangeLinked` | `*bool` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Purpose` | `string` | Required | - |

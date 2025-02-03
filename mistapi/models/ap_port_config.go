@@ -9,37 +9,37 @@ import (
 // ApPortConfig represents a ApPortConfig struct.
 type ApPortConfig struct {
     Disabled             *bool                            `json:"disabled,omitempty"`
-    // optional dynamic vlan
+    // Optional dynamic vlan
     DynamicVlan          *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth        *bool                            `json:"enable_mac_auth,omitempty"`
     // enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
     Forwarding           *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
-    // when `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
+    // When `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
     MacAuthPreferred     *bool                            `json:"mac_auth_preferred,omitempty"`
     // if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol      *ApPortConfigMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
     MistNac              *WlanMistNac                     `json:"mist_nac,omitempty"`
-    // if `forwarding`==`mxtunnel`, vlan_ids comes from mxtunnel
+    // If `forwarding`==`mxtunnel`, vlan_ids comes from mxtunnel
     MxTunnelId           *uuid.UUID                       `json:"mx_tunnel_id,omitempty"`
-    // if `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
+    // If `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     MxtunnelName         *string                          `json:"mxtunnel_name,omitempty"`
     // When doing port auth. enum: `dot1x`, `none`
     PortAuth             *ApPortConfigPortAuthEnum        `json:"port_auth,omitempty"`
-    // if `forwrding`==`limited`
+    // If `forwrding`==`limited`
     PortVlanId           *int                             `json:"port_vlan_id,omitempty"`
     // Junos Radius config
     RadiusConfig         *RadiusConfig                    `json:"radius_config,omitempty"`
     // Radsec settings
     Radsec               *Radsec                          `json:"radsec,omitempty"`
-    // optional to specify the vlan id for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.
+    // Optional to specify the vlan id for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.
     // * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
     // * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     VlanId               *int                             `json:"vlan_id,omitempty"`
-    // if `forwrding`==`limited`
+    // If `forwrding`==`limited`
     VlandIds             []int                            `json:"vland_ids,omitempty"`
-    // if `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
+    // If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
     WxtunnelId           *uuid.UUID                       `json:"wxtunnel_id,omitempty"`
-    // if `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
+    // If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
     WxtunnelRemoteId     *string                          `json:"wxtunnel_remote_id,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

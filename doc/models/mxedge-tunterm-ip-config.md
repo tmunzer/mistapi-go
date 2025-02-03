@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Ip Config
 
-ip configuration of the Mist Tunnel interface
+IPconfiguration of the Mist Tunnel interface
 
 *This model accepts additional fields of type interface{}.*
 
@@ -15,7 +15,7 @@ ip configuration of the Mist Tunnel interface
 |  --- | --- | --- | --- |
 | `Gateway` | `string` | Required | - |
 | `Gateway6` | `*string` | Optional | - |
-| `Ip` | `string` | Required | untagged VLAN |
+| `Ip` | `string` | Required | Untagged VLAN |
 | `Ip6` | `*string` | Optional | - |
 | `Netmask` | `string` | Required | - |
 | `Netmask6` | `*string` | Optional | - |

@@ -8,11 +8,11 @@ import (
 // WxlanTunnelDmvpn represents a WxlanTunnelDmvpn struct.
 // Dynamic Multipoint VPN configurations
 type WxlanTunnelDmvpn struct {
-    // whether DMVPN is enabled
+    // Whether DMVPN is enabled
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // optional; the holding time for NHRP ‘registration requests’  and ‘resolution replies’ sent from the Mist AP (in seconds); default 600
+    // Optional; the holding time for NHRP ‘registration requests’  and ‘resolution replies’ sent from the Mist AP (in seconds); default 600
     HoldingTime          *int                   `json:"holding_time,omitempty"`
-    // optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded
+    // Optional; list of IPv4 DMVPN peer host ip-addresses to which traffic is forwarded
     HostRoutes           []string               `json:"host_routes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

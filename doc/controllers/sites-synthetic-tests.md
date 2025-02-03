@@ -110,13 +110,13 @@ SearchSiteSyntheticTest(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
-| `portId` | `*string` | Query, Optional | port_id used to run the test (for SSR only) |
+| `portId` | `*string` | Query, Optional | Port_id used to run the test (for SSR only) |
 | `vlanId` | `*string` | Query, Optional | VLAN ID |
-| `by` | `*string` | Query, Optional | entity who triggers the test |
-| `reason` | `*string` | Query, Optional | test failure reason |
-| `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | synthetic test type |
-| `protocol` | [`*models.SynthetictestProtocolEnum`](../../doc/models/synthetictest-protocol-enum.md) | Query, Optional | connectivity protocol |
-| `tenant` | `*string` | Query, Optional | tenant network in which lan_connectivity test was run |
+| `by` | `*string` | Query, Optional | Entity who triggers the test |
+| `reason` | `*string` | Query, Optional | Test failure reason |
+| `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | Synthetic test type |
+| `protocol` | [`*models.SynthetictestProtocolEnum`](../../doc/models/synthetictest-protocol-enum.md) | Query, Optional | Connectivity protocol |
+| `tenant` | `*string` | Query, Optional | Tenant network in which lan_connectivity test was run |
 
 ## Response Type
 

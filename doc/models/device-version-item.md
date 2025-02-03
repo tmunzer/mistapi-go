@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Model` | `string` | Required | Device model (as seen in the device stats) |
-| `Tag` | `*string` | Optional | annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build |
-| `Version` | `string` | Required | firmware version |
+| `Tag` | `*string` | Optional | Annotation, stable / beta / alpha. Or it can be empty or nothing which is likely a dev build |
+| `Version` | `string` | Required | Firmware version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

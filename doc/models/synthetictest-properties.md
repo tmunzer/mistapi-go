@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CustomTestUrls` | `[]string` | Optional | - |
-| `Disabled` | `*bool` | Optional | for some vlans where we don't want this to run<br>**Default**: `false` |
+| `Disabled` | `*bool` | Optional | For some vlans where we don't want this to run<br>**Default**: `false` |
 | `VlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

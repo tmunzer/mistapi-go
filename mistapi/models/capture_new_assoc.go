@@ -11,15 +11,15 @@ import (
 // Initiate a packet Capture for New Wireless Client Associations
 type CaptureNewAssoc struct {
     ApMac                *string                `json:"ap_mac,omitempty"`
-    // client mac, required if `type`==`client`; optional otherwise
+    // Client mac, required if `type`==`client`; optional otherwise
     ClientMac            *string                `json:"client_mac,omitempty"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                   `json:"duration,omitempty"`
     IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
     MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                   `json:"num_packets,omitempty"`
-    // optional filter by ssid
+    // Optional filter by ssid
     Ssid                 *string                `json:"ssid,omitempty"`
     // enum: `new_assoc`
     Type                 string                 `json:"type"`

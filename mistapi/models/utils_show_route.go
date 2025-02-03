@@ -7,18 +7,18 @@ import (
 
 // UtilsShowRoute represents a UtilsShowRoute struct.
 type UtilsShowRoute struct {
-    // duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+    // Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
     Duration             *int                        `json:"duration,omitempty"`
-    // rate at which output will refresh
+    // Rate at which output will refresh
     Interval             *int                        `json:"interval,omitempty"`
     // IP of the neighbor
     Neighbor             *string                     `json:"neighbor,omitempty"`
     Node                 *HaClusterNode              `json:"node,omitempty"`
-    // route prefix
+    // Route prefix
     Prefix               *string                     `json:"prefix,omitempty"`
     // enum: `any`, `bgp`, `direct`, `evpn`, `ospf`, `static`
     Protocol             *UtilsShowRouteProtocolEnum `json:"protocol,omitempty"`
-    // if specified, dump bot received and advertised, if not specified, both will be shown
+    // If specified, dump bot received and advertised, if not specified, both will be shown
     // * for SSR, show bgp neighbors 10.250.18.202 received-routes/advertised-routes
     // * for SRX and Switches, show route receive_protocol/advertise_protocol bgp 192.168.255.12'
     Route                *string                     `json:"route,omitempty"`

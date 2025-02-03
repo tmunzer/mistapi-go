@@ -1,7 +1,7 @@
 
 # Switch Mist Nac
 
-enable mist_nac to use radsec
+Enable mist_nac to use radsec
 
 *This model accepts additional fields of type interface{}.*
 

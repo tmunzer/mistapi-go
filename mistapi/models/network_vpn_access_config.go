@@ -7,13 +7,13 @@ import (
 
 // NetworkVpnAccessConfig represents a NetworkVpnAccessConfig struct.
 type NetworkVpnAccessConfig struct {
-    // if `routed`==`true`, whether to advertise an aggregated subnet toward HUB this is useful when there are multiple networks on SPOKE's side
+    // If `routed`==`true`, whether to advertise an aggregated subnet toward HUB this is useful when there are multiple networks on SPOKE's side
     AdvertisedSubnet          *string                                           `json:"advertised_subnet,omitempty"`
-    // whether to allow ping from vpn into this routed network
+    // Whether to allow ping from vpn into this routed network
     AllowPing                 *bool                                             `json:"allow_ping,omitempty"`
     // Property key can be an External IP (i.e. "63.16.0.3"), an External IP:Port (i.e. "63.16.0.3:443"), an External Port (i.e. ":443"), an External CIDR (i.e. "63.16.0.0/30"), an External CIDR:Port (i.e. "63.16.0.0/30:443") or a Variable (i.e. "{{myvar}}"). At least one of the `internal_ip` or `port` must be defined
     DestinationNat            map[string]NetworkVpnAccessDestinationNatProperty `json:"destination_nat,omitempty"`
-    // if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub, a subnet is required to create and advertise the route to Hub
+    // If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub, a subnet is required to create and advertise the route to Hub
     NatPool                   *string                                           `json:"nat_pool,omitempty"`
     // toward LAN-side BGP peers
     NoReadvertiseToLanBgp     *bool                                             `json:"no_readvertise_to_lan_bgp,omitempty"`
@@ -21,11 +21,11 @@ type NetworkVpnAccessConfig struct {
     NoReadvertiseToLanOspf    *bool                                             `json:"no_readvertise_to_lan_ospf,omitempty"`
     // toward overlay, how HUB should deal with routes it received from Spokes
     NoReadvertiseToOverlay    *bool                                             `json:"no_readvertise_to_overlay,omitempty"`
-    // by default, the routes are only readvertised toward the same vrf on spoke. To allow it to be leaked to other vrfs
+    // By default, the routes are only readvertised toward the same vrf on spoke. To allow it to be leaked to other vrfs
     OtherVrfs                 []string                                          `json:"other_vrfs,omitempty"`
-    // whether this network is routable
+    // Whether this network is routable
     Routed                    *bool                                             `json:"routed,omitempty"`
-    // if `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
+    // If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
     SourceNat                 *NetworkSourceNat                                 `json:"source_nat,omitempty"`
     // Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}")
     StaticNat                 map[string]NetworkVpnAccessStaticNatProperty      `json:"static_nat,omitempty"`

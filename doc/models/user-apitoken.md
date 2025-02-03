@@ -13,11 +13,11 @@ User API Token
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Key` | `*string` | Optional | - |
 | `LastUsed` | `models.Optional[int]` | Optional | - |
-| `Name` | `*string` | Optional | name of the token |
+| `Name` | `*string` | Optional | Name of the token |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

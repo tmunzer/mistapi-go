@@ -13,11 +13,11 @@ import (
 type RfDiag struct {
     // recording length in seconds, max is 180. Default value is also 180.
     Duration             *int                   `json:"duration,omitempty"`
-    // if `type`==`client` or `asset`, mac of the device
+    // If `type`==`client` or `asset`, mac of the device
     Mac                  *string                `json:"mac,omitempty"`
-    // name of the recording, the name of the sdk client would be a good default choice
+    // Name of the recording, the name of the sdk client would be a good default choice
     Name                 string                 `json:"name"`
-    // if `type`==`sdkclient`, sdkclient_id of this recording
+    // If `type`==`sdkclient`, sdkclient_id of this recording
     SdkclientId          *uuid.UUID             `json:"sdkclient_id,omitempty"`
     // enum: `asset`, `client`, `sdkclient`
     Type                 RfClientTypeEnum       `json:"type"`

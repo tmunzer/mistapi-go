@@ -14,9 +14,9 @@
 | `Address` | `*string` | Optional | - |
 | `AddressMask` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | **Default**: `161` |
-| `TagList` | `*string` | Optional | <refer to notify tag, can be multiple with blank |
+| `TagList` | `*string` | Optional | Refer to notify tag, can be multiple with blank |
 | `TargetAddressName` | `*string` | Optional | - |
-| `TargetParameters` | `*string` | Optional | refer to notify target parameters name |
+| `TargetParameters` | `*string` | Optional | Refer to notify target parameters name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

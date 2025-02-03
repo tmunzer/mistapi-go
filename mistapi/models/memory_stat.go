@@ -8,7 +8,7 @@ import (
 )
 
 // MemoryStat represents a MemoryStat struct.
-// memory usage stat (for virtual chassis, memory usage of master RE)
+// Memory usage stat (for virtual chassis, memory usage of master RE)
 type MemoryStat struct {
     Usage                float64                `json:"usage"`
     AdditionalProperties map[string]interface{} `json:"_"`

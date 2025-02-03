@@ -8,17 +8,17 @@ import (
 // MxclusterRadsec represents a MxclusterRadsec struct.
 // MxEdge Radsec Configuration
 type MxclusterRadsec struct {
-    // list of RADIUS accounting servers, optional, order matters where the first one is treated as primary
+    // List of RADIUS accounting servers, optional, order matters where the first one is treated as primary
     AcctServers          []MxclusterRadsecAcctServer         `json:"acct_servers,omitempty"`
-    // list of RADIUS authentication servers, order matters where the first one is treated as primary
+    // List of RADIUS authentication servers, order matters where the first one is treated as primary
     AuthServers          []MxclusterRadsecAuthServer         `json:"auth_servers,omitempty"`
-    // whether to enable service on Mist Edge i.e. RADIUS proxy over TLS
+    // Whether to enable service on Mist Edge i.e. RADIUS proxy over TLS
     Enabled              *bool                               `json:"enabled,omitempty"`
-    // whether to match ssid in request message to select from a subset of RADIUS servers
+    // Whether to match ssid in request message to select from a subset of RADIUS servers
     MatchSsid            *bool                               `json:"match_ssid,omitempty"`
     // SSpecify NAS-IP-ADDRESS, NAS-IPv6-ADDRESS to use with auth_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
     NasIpSource          *MxclusterRadsecNasIpSourceEnum     `json:"nas_ip_source,omitempty"`
-    // hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts`
+    // Hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts`
     ProxyHosts           []string                            `json:"proxy_hosts,omitempty"`
     // When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
     ServerSelection      *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`

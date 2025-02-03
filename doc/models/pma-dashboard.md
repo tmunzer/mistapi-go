@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Description` | `*string` | Optional | description of the dashboard |
+| `Description` | `*string` | Optional | Description of the dashboard |
 | `Label` | `*string` | Optional | group label name |
-| `Name` | `*string` | Optional | name of the dashboard |
+| `Name` | `*string` | Optional | Name of the dashboard |
 | `Url` | `*string` | Optional | url to access dashboard. Url will redirect the user to the dashboard |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

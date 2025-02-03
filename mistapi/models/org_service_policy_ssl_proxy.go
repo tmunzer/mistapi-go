@@ -6,7 +6,7 @@ import (
 )
 
 // OrgServicePolicySslProxy represents a OrgServicePolicySslProxy struct.
-// for SRX-only
+// For SRX-only
 type OrgServicePolicySslProxy struct {
     // enum: `medium`, `strong`, `weak`
     CiphersCatagory      *SslProxyCiphersCatagoryEnum `json:"ciphers_catagory,omitempty"`

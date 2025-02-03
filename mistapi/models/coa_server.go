@@ -10,7 +10,7 @@ import (
 // CoaServer represents a CoaServer struct.
 // CoA Server
 type CoaServer struct {
-    // whether to disable Event-Timestamp Check
+    // Whether to disable Event-Timestamp Check
     DisableEventTimestampCheck *bool                  `json:"disable_event_timestamp_check,omitempty"`
     Enabled                    *bool                  `json:"enabled,omitempty"`
     Ip                         string                 `json:"ip"`

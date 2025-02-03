@@ -15,7 +15,7 @@ type OptionalStatsPort struct {
     // if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
     AuthState            *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
     ForSite              *bool                         `json:"for_site,omitempty"`
-    // indicates full or half duplex
+    // Indicates full or half duplex
     FullDuplex           *bool                         `json:"full_duplex,omitempty"`
     // Last sampled jitter of the interface
     Jitter               *float64                      `json:"jitter,omitempty"`
@@ -35,18 +35,18 @@ type OptionalStatsPort struct {
     MacLimit             *int                          `json:"mac_limit,omitempty"`
     // chassis identifier of the chassis type listed
     NeighborMac          string                        `json:"neighbor_mac"`
-    // description supplied by the system on the interface E.g. “GigabitEthernet2/0/39”
+    // Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39”
     NeighborPortDesc     *string                       `json:"neighbor_port_desc,omitempty"`
-    // name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local”
+    // Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local”
     NeighborSystemName   *string                       `json:"neighbor_system_name,omitempty"`
-    // is the POE configured not be disabled.
+    // Is the POE configured not be disabled.
     PoeDisabled          *bool                         `json:"poe_disabled,omitempty"`
     // enum: `802.3af`, `802.3at`, `802.3bt`
     PoeMode              *StatsSwitchPortPoeModeEnum   `json:"poe_mode,omitempty"`
-    // is the device attached to POE
+    // Is the device attached to POE
     PoeOn                *bool                         `json:"poe_on,omitempty"`
     PortId               string                        `json:"port_id"`
-    // interface mac address
+    // Interface mac address
     PortMac              string                        `json:"port_mac"`
     // gateway port usage. enum: `lan`
     PortUsage            *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
@@ -56,15 +56,15 @@ type OptionalStatsPort struct {
     RxBcastPkts          *int                          `json:"rx_bcast_pkts,omitempty"`
     // Input rate
     RxBps                *int                          `json:"rx_bps,omitempty"`
-    // rx bytes
+    // Rx bytes
     RxBytes              int64                         `json:"rx_bytes"`
     // Input errors
     RxErrors             *int                          `json:"rx_errors,omitempty"`
     // Multicast input packets
     RxMcastPkts          *int                          `json:"rx_mcast_pkts,omitempty"`
-    // rx packets
+    // Rx packets
     RxPkts               int                           `json:"rx_pkts"`
-    // port speed
+    // Port speed
     Speed                *int                          `json:"speed,omitempty"`
     // if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
     StpRole              *StatsSwitchPortStpRoleEnum   `json:"stp_role,omitempty"`
@@ -74,19 +74,19 @@ type OptionalStatsPort struct {
     TxBcastPkts          *int                          `json:"tx_bcast_pkts,omitempty"`
     // Output rate
     TxBps                *int                          `json:"tx_bps,omitempty"`
-    // tx bytes
+    // Tx bytes
     TxBytes              int64                         `json:"tx_bytes"`
     // Output errors
     TxErrors             *int                          `json:"tx_errors,omitempty"`
     // Multicast output packets
     TxMcastPkts          *int                          `json:"tx_mcast_pkts,omitempty"`
-    // tx packets
+    // Tx packets
     TxPkts               int                           `json:"tx_pkts"`
     // device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
     Type                 *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
-    // indicates if interface is unconfigured
+    // Indicates if interface is unconfigured
     Unconfigured         *bool                         `json:"unconfigured,omitempty"`
-    // indicates if interface is up
+    // Indicates if interface is up
     Up                   *bool                         `json:"up,omitempty"`
     // Optic Slot ModelName, Check for null/empty
     XcvrModel            *string                       `json:"xcvr_model,omitempty"`

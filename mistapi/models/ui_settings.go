@@ -11,7 +11,7 @@ import (
 // UiSettings represents a UiSettings struct.
 // UI Settings
 type UiSettings struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                    `json:"created_time,omitempty"`
     DefaultScopeId       *string                     `json:"defaultScopeId,omitempty"`
     DefaultScopeType     *string                     `json:"defaultScopeType,omitempty"`
@@ -23,7 +23,7 @@ type UiSettings struct {
     IsCustomDataboard    *bool                       `json:"isCustomDataboard,omitempty"`
     IsScopeLinked        *bool                       `json:"isScopeLinked,omitempty"`
     IsTimeRangeLinked    *bool                       `json:"isTimeRangeLinked,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                    `json:"modified_time,omitempty"`
     Name                 *string                     `json:"name,omitempty"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`

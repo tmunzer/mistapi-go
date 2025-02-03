@@ -107,7 +107,7 @@ if err != nil {
 
 # Delete Org Vpn
 
-delete Org Vpn
+Delete Org Vpn
 
 ```go
 DeleteOrgVpn(
@@ -159,7 +159,7 @@ if err != nil {
 
 # Get Org Vpn
 
-getOrgVpn
+Get Org Vpn
 
 ```go
 GetOrgVpn(
@@ -313,7 +313,7 @@ if err != nil {
 
 # Update Org Vpn
 
-update Org Vpn
+Update Org Vpn
 
 ```go
 UpdateOrgVpn(

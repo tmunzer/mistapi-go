@@ -8,7 +8,7 @@ import (
 )
 
 // WebhookClientJoin represents a WebhookClientJoin struct.
-// client join webhook sample
+// Client join webhook sample
 type WebhookClientJoin struct {
     Events               []WebhookClientJoinEvent `json:"events"`
     Topic                string                   `json:"topic"`

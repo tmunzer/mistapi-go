@@ -12,7 +12,7 @@ type MarvisClient struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
-    // in MDM, add `--provision_url <provision_url>` to the instlal command
+    // In MDM, add `--provision_url <provision_url>` to the instlal command
     ProvisionUrl         *string                `json:"provision_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

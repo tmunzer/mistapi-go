@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ports` | `[]string` | Optional | list of ports to bounce |
+| `Ports` | `[]string` | Optional | List of ports to bounce |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -11,21 +11,21 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ap` | `*string` | Optional | mac address of the AP the client roamed or disconnected from |
+| `Ap` | `*string` | Optional | MAC address of the AP the client roamed or disconnected from |
 | `AuthType` | `*string` | Optional | radius authentication type |
-| `Bssid` | `*string` | Optional | it’s the MAC physical address of the access point |
+| `Bssid` | `*string` | Optional | MAC physical address of the access point |
 | `ClientIp` | `*string` | Optional | IP Address of client |
-| `ClientType` | `*string` | Optional | client type E.g. “wired”, “wireless”, “vty” |
-| `Mac` | `*string` | Optional | the client’s mac |
+| `ClientType` | `*string` | Optional | Client type E.g. “wired”, “wireless”, “vty” |
+| `Mac` | `*string` | Optional | Client's MAC Address |
 | `NasVendor` | `*string` | Optional | NAS Device vendor name E.g. “Juniper”, “Cisco” |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `RxPkts` | `*int` | Optional | number of packets received |
+| `RxPkts` | `*int` | Optional | Number of packets received |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | ESSID |
 | `Timestamp` | `*float64` | Optional | sampling time (in epoch) |
-| `TxPkts` | `*int` | Optional | number of packets sent |
-| `Type` | `*string` | Optional | type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP” |
-| `Username` | `*string` | Optional | username authenticated with |
+| `TxPkts` | `*int` | Optional | Number of packets sent |
+| `Type` | `*string` | Optional | Type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP” |
+| `Username` | `*string` | Optional | Username authenticated with |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

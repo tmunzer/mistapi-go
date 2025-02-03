@@ -24,21 +24,21 @@ type RfTemplate struct {
     Band5On24Radio       *RftemplateRadioBand5                      `json:"band_5_on_24_radio,omitempty"`
     // Radio Band AP settings
     Band6                *RftemplateRadioBand6                      `json:"band_6,omitempty"`
-    // optional, country code to use. If specified, this gets applied to all sites using the RF Template
+    // Optional, country code to use. If specified, this gets applied to all sites using the RF Template
     CountryCode          *string                                    `json:"country_code,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                                   `json:"created_time,omitempty"`
     ForSite              *bool                                      `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                                 `json:"id,omitempty"`
     // overwrites for a specific model. If a band is specified, it will shadow the default. Property key is the model name (e.g. "AP63")
     ModelSpecific        map[string]RfTemplateModelSpecificProperty `json:"model_specific,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                                   `json:"modified_time,omitempty"`
     // The name of the RF template
     Name                 string                                     `json:"name"`
     OrgId                *uuid.UUID                                 `json:"org_id,omitempty"`
-    // whether scanning radio is enabled
+    // Whether scanning radio is enabled
     ScanningEnabled      *bool                                      `json:"scanning_enabled,omitempty"`
     AdditionalProperties map[string]interface{}                     `json:"_"`
 }

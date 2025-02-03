@@ -8,34 +8,34 @@ import (
 )
 
 // OrgAutoRules represents a OrgAutoRules struct.
-// auto_rules in org settings
+// Auto_rules in org settings
 type OrgAutoRules struct {
-    // if `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this
+    // If `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this
     CreateNewSiteIfNeeded *bool                            `json:"create_new_site_if_needed,omitempty"`
-    // if `src`==`name`, `src`==`lldp_system_name`,  `src`==`dns_suffix`
+    // If `src`==`name`, `src`==`lldp_system_name`,  `src`==`dns_suffix`
     // "[0:3]"            // "abcdef" -> "abc"
     // "split(.)[1]"      // "a.b.c" -> "b"
     // "split(-)[1][0:3]" // "a1234-b5678-c90" -> "b56"'
     Expression            Optional[string]                 `json:"expression"`
-    // if `src`==`geoip` and `create_new_site_if_needed`==`true`. If a gateway template is desired for this newly created site
+    // If `src`==`geoip` and `create_new_site_if_needed`==`true`. If a gateway template is desired for this newly created site
     GatewaytemplateId     *string                          `json:"gatewaytemplate_id,omitempty"`
-    // if `src`==`geoip`
+    // If `src`==`geoip`
     MatchCountry          *string                          `json:"match_country,omitempty"`
     // optional/additional filter. enum: `ap`, `gateway`, `other`, `switch`
     MatchDeviceType       *OrgAutoRulesMatchDeviceTypeEnum `json:"match_device_type,omitempty"`
-    // optional/additional filter
+    // Optional/additional filter
     MatchModel            *string                          `json:"match_model,omitempty"`
-    // if `src`==`model`
+    // If `src`==`model`
     Model                 *string                          `json:"model,omitempty"`
-    // if `src`==`name`
+    // If `src`==`name`
     Prefix                Optional[string]                 `json:"prefix"`
     // enum: `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
     Src                   OrgAutoRulesSrcEnum              `json:"src"`
-    // if `src`==`subnet`
+    // If `src`==`subnet`
     Subnet                *string                          `json:"subnet,omitempty"`
-    // if `src`==`name`
+    // If `src`==`name`
     Suffix                Optional[string]                 `json:"suffix"`
-    // if
+    // If
     // * `src`==`model`
     // *  `src`==`geoip: site name for the device to be assigned to ("city" / "city+country" / ...)
     Value                 *string                          `json:"value,omitempty"`

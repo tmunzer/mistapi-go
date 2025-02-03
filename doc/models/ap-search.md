@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band24Bandwidth` | `*string` | Optional | bandwidth of band_24 |
+| `Band24Bandwidth` | `*string` | Optional | Bandwidth of band_24 |
 | `Band24Channel` | `*int` | Optional | Channel of band_24 |
 | `Band24Power` | `*int` | Optional | - |
-| `Band5Bandwidth` | `*string` | Optional | bandwidth of band_5 |
+| `Band5Bandwidth` | `*string` | Optional | Bandwidth of band_5 |
 | `Band5Channel` | `*int` | Optional | Channel of band_5 |
 | `Band5Power` | `*int` | Optional | - |
 | `Band6Bandwidth` | `*string` | Optional | - |
@@ -22,9 +22,9 @@
 | `Band6Power` | `*int` | Optional | - |
 | `Eth0PortSpeed` | `*int` | Optional | Port speed of eth0 |
 | `ExtIp` | `*string` | Optional | - |
-| `Hostname` | `[]string` | Optional | partial / full hostname |
+| `Hostname` | `[]string` | Optional | Partial / full hostname |
 | `InactiveWiredVlans` | `[]int` | Optional | - |
-| `Ip` | `*string` | Optional | ip address |
+| `Ip` | `*string` | Optional | IPaddress |
 | `LastHostname` | `*string` | Optional | - |
 | `LldpMgmtAddr` | `*string` | Optional | LLDP management ip address |
 | `LldpPortDesc` | `*string` | Optional | - |
@@ -33,7 +33,7 @@
 | `LldpPowerDraw` | `*int` | Optional | - |
 | `LldpSystemDesc` | `*string` | Optional | LLDP system description |
 | `LldpSystemName` | `*string` | Optional | LLDP system name |
-| `Mac` | `*string` | Optional | device model |
+| `Mac` | `*string` | Optional | Device model |
 | `Model` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | Mist Edge id, if AP is connecting to a Mist Edge |
 | `MxedgeIds` | `*string` | Optional | Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
@@ -45,7 +45,7 @@
 | `Sku` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
-| `Version` | `*string` | Optional | version |
+| `Version` | `*string` | Optional | Version |
 | `Wlans` | [`[]models.ApSearchWlan`](../../doc/models/ap-search-wlan.md) | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -13,8 +13,8 @@
 |  --- | --- | --- | --- |
 | `AdminId` | `uuid.UUID` | Required | ID of the administrator |
 | `AdminName` | `string` | Required | - |
-| `After` | `*interface{}` | Optional | field values after the change |
-| `Before` | `*interface{}` | Optional | field values prior to the change |
+| `After` | `*interface{}` | Optional | Field values after the change |
+| `Before` | `*interface{}` | Optional | Field values prior to the change |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `Message` | `string` | Required | - |

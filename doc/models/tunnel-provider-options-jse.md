@@ -1,7 +1,7 @@
 
 # Tunnel Provider Options Jse
 
-for jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
+For jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
 
 *This model accepts additional fields of type interface{}.*
 

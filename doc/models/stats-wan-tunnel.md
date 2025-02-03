@@ -11,16 +11,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthAlgo` | `*string` | Optional | authentication algorithm |
-| `EncryptAlgo` | `*string` | Optional | encryption algorithm |
-| `IkeVersion` | `*string` | Optional | ike version |
-| `Ip` | `*string` | Optional | ip address |
-| `LastEvent` | `*string` | Optional | reason of why the tunnel is down |
-| `Mac` | `*string` | Optional | router mac address |
-| `Node` | `*string` | Optional | node0/node1 |
+| `AuthAlgo` | `*string` | Optional | Authentication algorithm |
+| `EncryptAlgo` | `*string` | Optional | Encryption algorithm |
+| `IkeVersion` | `*string` | Optional | IKE version |
+| `Ip` | `*string` | Optional | IPaddress |
+| `LastEvent` | `*string` | Optional | Reason of why the tunnel is down |
+| `Mac` | `*string` | Optional | Router mac address |
+| `Node` | `*string` | Optional | Node0/node1 |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PeerHost` | `*string` | Optional | peer host |
-| `PeerIp` | `string` | Required | peer ip address |
+| `PeerHost` | `*string` | Optional | Peer host |
+| `PeerIp` | `string` | Required | Peer ip address |
 | `Priority` | [`*models.StatsWanTunnelPriorityEnum`](../../doc/models/stats-wan-tunnel-priority-enum.md) | Optional | enum: `primary`, `secondary` |
 | `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | enum: `gre`, `ipsec` |
 | `RxBytes` | `*int` | Optional | - |
@@ -30,8 +30,8 @@
 | `TxBytes` | `*int` | Optional | - |
 | `TxPkts` | `*int` | Optional | - |
 | `Up` | `*bool` | Optional | - |
-| `Uptime` | `*int` | Optional | duration from first (or last) SA was established |
-| `WanName` | `*string` | Optional | wan interface name |
+| `Uptime` | `*int` | Optional | Duration from first (or last) SA was established |
+| `WanName` | `*string` | Optional | WAN interface name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -9,7 +9,7 @@ import (
 
 // GatewayCluster represents a GatewayCluster struct.
 type GatewayCluster struct {
-    // when replacing a node, either mac has to remain the same as existing cluster
+    // When replacing a node, either mac has to remain the same as existing cluster
     Nodes                []GatewayClusterNode   `json:"nodes"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

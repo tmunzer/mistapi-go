@@ -10,26 +10,26 @@ import (
 
 // MxedgeUpgradeMulti represents a MxedgeUpgradeMulti struct.
 type MxedgeUpgradeMulti struct {
-    // whether downgrade is allowed when running version is higher than expected version for each service
+    // Whether downgrade is allowed when running version is higher than expected version for each service
     AllowDowngrades      *MxedgeUpgradeMultiAllowDowngrades `json:"allow_downgrades,omitempty"`
     // Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
     CanaryPhases         []int                              `json:"canary_phases,omitempty"`
     // upgrade channel to follow. enum: `alpha`, `beta`, `stable`
     Channel              *MxedgeUpgradeChannelEnum          `json:"channel,omitempty"`
-    // distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions
+    // Distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions
     Distro               *string                            `json:"distro,omitempty"`
     // Failure threshold before we stop the upgrade and mark it as failed
     MaxFailurePercentage *int                               `json:"max_failure_percentage,omitempty"`
-    // list of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
+    // List of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
     MxedgeIds            []uuid.UUID                        `json:"mxedge_ids"`
-    // upgrade start time in epoch seconds, default is now
+    // Upgrade start time in epoch seconds, default is now
     StartTime            *int                               `json:"start_time,omitempty"`
     // enum:
     // * `big_bang`: upgrade all at once, no orchestration
     // * `serial`: one at a time'
     // * `canary`: upgrade in phases
     Strategy             *MxedgeUpgradeStrategyEnum         `json:"strategy,omitempty"`
-    // version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
+    // Version to upgrade for each service, `current` / `latest` / `default` / specific version (e.g. `2.5.100`).\nIgnored if distro upgrade, `tunterm`, `radsecproxy`, `mxagent`, `mxocproxy`, `mxdas` or `mxnacedge`
     Versions             *MxedgeUpgradeVersion              `json:"versions,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
 }

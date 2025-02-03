@@ -13,10 +13,10 @@
 |  --- | --- | --- | --- |
 | `DhcpdConfig` | [`*models.EvpnTopologySwitchConfigDhcpdConfig`](../../doc/models/evpn-topology-switch-config-dhcpd-config.md) | Optional | - |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
-| `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | additional IP Addresses configured on the switch. Property key is the port network name |
+| `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Additional IP Addresses configured on the switch. Property key is the port network name |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
-| `RouterId` | `*string` | Optional | used for OSPF / BGP / EVPN |
+| `RouterId` | `*string` | Optional | Used for OSPF / BGP / EVPN |
 | `VrfConfig` | [`*models.EvpnTopologySwitchConfigVrfConfig`](../../doc/models/evpn-topology-switch-config-vrf-config.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

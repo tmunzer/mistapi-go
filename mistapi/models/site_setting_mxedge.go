@@ -6,9 +6,9 @@ import (
 )
 
 // SiteSettingMxedge represents a SiteSettingMxedge struct.
-// site mist edges form a cluster of radsecproxy servers
+// Site Mist Edges form a cluster of radsecproxy servers
 type SiteSettingMxedge struct {
-    // configure cloud-assisted dynamic authorization service on this cluster of mist edges
+    // Configure cloud-assisted dynamic authorization service on this cluster of mist edges
     MistDas              *MxedgeDas             `json:"mist_das,omitempty"`
     MistNac              *MxclusterNac          `json:"mist_nac,omitempty"`
     MistNacedge          *MistNacedge           `json:"mist_nacedge,omitempty"`

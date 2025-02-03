@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EngineId` | `*string` | Optional | required only if `engine_type`==`remote_engine` |
+| `EngineId` | `*string` | Optional | Required only if `engine_type`==`remote_engine` |
 | `EngineType` | [`*models.SnmpUsmEngineTypeEnum`](../../doc/models/snmp-usm-engine-type-enum.md) | Optional | enum: `local_engine`, `remote_engine` |
 | `Users` | [`[]models.SnmpUsmpUser`](../../doc/models/snmp-usmp-user.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

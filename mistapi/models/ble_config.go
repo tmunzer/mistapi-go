@@ -9,24 +9,24 @@ import (
 // BleConfig represents a BleConfig struct.
 // BLE AP settings
 type BleConfig struct {
-    // whether Mist beacons is enabled
+    // Whether Mist beacons is enabled
     BeaconEnabled           *bool                        `json:"beacon_enabled,omitempty"`
-    // required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second
+    // Required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second
     BeaconRate              *int                         `json:"beacon_rate,omitempty"`
     // enum: `custom`, `default`
     BeaconRateMode          *BleConfigBeaconRateModeEnum `json:"beacon_rate_mode,omitempty"`
-    // list of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam)
+    // List of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam)
     BeamDisabled            []int                        `json:"beam_disabled,omitempty"`
-    // can be enabled if `beacon_enabled`==`true`, whether to send custom packet
+    // Can be enabled if `beacon_enabled`==`true`, whether to send custom packet
     CustomBlePacketEnabled  *bool                        `json:"custom_ble_packet_enabled,omitempty"`
     // The custom frame to be sent out in this beacon. The frame must be a hexstring
     CustomBlePacketFrame    *string                      `json:"custom_ble_packet_frame,omitempty"`
     // Frequency (msec) of data emitted by custom ble beacon
     CustomBlePacketFreqMsec *int                         `json:"custom_ble_packet_freq_msec,omitempty"`
-    // advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
+    // Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
     EddystoneUidAdvPower    *int                         `json:"eddystone_uid_adv_power,omitempty"`
     EddystoneUidBeams       *string                      `json:"eddystone_uid_beams,omitempty"`
-    // only if `beacon_enabled`==`false`, Whether Eddystone-UID beacon is enabled
+    // Only if `beacon_enabled`==`false`, Whether Eddystone-UID beacon is enabled
     EddystoneUidEnabled     *bool                        `json:"eddystone_uid_enabled,omitempty"`
     // Frequency (msec) of data emmit by Eddystone-UID beacon
     EddystoneUidFreqMsec    *int                         `json:"eddystone_uid_freq_msec,omitempty"`
@@ -34,19 +34,19 @@ type BleConfig struct {
     EddystoneUidInstance    *string                      `json:"eddystone_uid_instance,omitempty"`
     // Eddystone-UID namespace
     EddystoneUidNamespace   *string                      `json:"eddystone_uid_namespace,omitempty"`
-    // advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
+    // Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
     EddystoneUrlAdvPower    *int                         `json:"eddystone_url_adv_power,omitempty"`
     EddystoneUrlBeams       *string                      `json:"eddystone_url_beams,omitempty"`
-    // only if `beacon_enabled`==`false`, Whether Eddystone-URL beacon is enabled
+    // Only if `beacon_enabled`==`false`, Whether Eddystone-URL beacon is enabled
     EddystoneUrlEnabled     *bool                        `json:"eddystone_url_enabled,omitempty"`
     // Frequency (msec) of data emit by Eddystone-UID beacon
     EddystoneUrlFreqMsec    *int                         `json:"eddystone_url_freq_msec,omitempty"`
     // URL pointed by Eddystone-URL beacon
     EddystoneUrlUrl         *string                      `json:"eddystone_url_url,omitempty"`
-    // advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
+    // Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
     IbeaconAdvPower         *int                         `json:"ibeacon_adv_power,omitempty"`
     IbeaconBeams            *string                      `json:"ibeacon_beams,omitempty"`
-    // can be enabled if `beacon_enabled`==`true`, whether to send iBeacon
+    // Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon
     IbeaconEnabled          *bool                        `json:"ibeacon_enabled,omitempty"`
     // Frequency (msec) of data emmit for iBeacon
     IbeaconFreqMsec         *int                         `json:"ibeacon_freq_msec,omitempty"`
@@ -54,9 +54,9 @@ type BleConfig struct {
     IbeaconMajor            *int                         `json:"ibeacon_major,omitempty"`
     // Minor number for iBeacon
     IbeaconMinor            *int                         `json:"ibeacon_minor,omitempty"`
-    // optional, if not specified, the same UUID as the beacon will be used
+    // Optional, if not specified, the same UUID as the beacon will be used
     IbeaconUuid             *uuid.UUID                   `json:"ibeacon_uuid,omitempty"`
-    // required if `power_mode`==`custom`; else use `power_mode` as default
+    // Required if `power_mode`==`custom`; else use `power_mode` as default
     Power                   *int                         `json:"power,omitempty"`
     // enum: `custom`, `default`
     PowerMode               *BleConfigPowerModeEnum      `json:"power_mode,omitempty"`

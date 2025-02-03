@@ -7,7 +7,7 @@ import (
 
 // SnmpVacmSecurityToGroupContentItem represents a SnmpVacmSecurityToGroupContentItem struct.
 type SnmpVacmSecurityToGroupContentItem struct {
-    // refer to group_name under access
+    // Refer to group_name under access
     Group                *string                `json:"group,omitempty"`
     SecurityName         *string                `json:"security_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

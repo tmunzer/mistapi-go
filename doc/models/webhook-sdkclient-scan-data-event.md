@@ -11,13 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ConnectionAp` | `string` | Required | mac address of the AP the client is connected to |
+| `ConnectionAp` | `string` | Required | MAC address of the AP the client is connected to |
 | `ConnectionBand` | `string` | Required | 5GHz or 2.4GHz band, of the BSSID the client is connected to |
 | `ConnectionBssid` | `string` | Required | BSSID of the AP the client is connected to |
-| `ConnectionChannel` | `int` | Required | channel of the band the client is connected to |
+| `ConnectionChannel` | `int` | Required | Channel of the band the client is connected to |
 | `ConnectionRssi` | `float64` | Required | RSSI of the client’s connection to the AP/BSSID |
-| `LastSeen` | `float64` | Required | time client last seen with scan data |
-| `Mac` | `string` | Required | the client’s mac |
+| `LastSeen` | `float64` | Required | Time client last seen with scan data |
+| `Mac` | `string` | Required | Client's MAC Address |
 | `ScanData` | [`[]models.WebhookSdkclientScanDataEventScanDataItem`](../../doc/models/webhook-sdkclient-scan-data-event-scan-data-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

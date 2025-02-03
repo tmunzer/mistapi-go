@@ -24,7 +24,7 @@ type ResponseOrgSearchItem struct {
     SubEngEntitled       *int                   `json:"sub_eng_entitled,omitempty"`
     SubEngRequired       *int                   `json:"sub_eng_required,omitempty"`
     SubEx12Required      *int                   `json:"sub_ex12_required,omitempty"`
-    // if this org has sufficient subscription
+    // If this org has sufficient subscription
     SubInsufficient      *bool                  `json:"sub_insufficient,omitempty"`
     SubManEntitled       *int                   `json:"sub_man_entitled,omitempty"`
     SubManRequired       *int                   `json:"sub_man_required,omitempty"`
@@ -32,7 +32,7 @@ type ResponseOrgSearchItem struct {
     SubVnaEntitled       *int                   `json:"sub_vna_entitled,omitempty"`
     SubVnaRequired       *int                   `json:"sub_vna_required,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // if this org is under trial period
+    // If this org is under trial period
     TrialEnabled         *bool                  `json:"trial_enabled,omitempty"`
     // a list of types that enabled by usage
     UsageTypes           []string               `json:"usage_types,omitempty"`

@@ -6,7 +6,7 @@ import (
 )
 
 // ApSwitch represents a ApSwitch struct.
-// for people who want to fully control the vlans (advanced)
+// For people who want to fully control the vlans (advanced)
 type ApSwitch struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     Eth0                 *ApSwitchSetting       `json:"eth0,omitempty"`

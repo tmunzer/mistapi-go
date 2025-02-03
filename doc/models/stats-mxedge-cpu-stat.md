@@ -14,11 +14,11 @@ CPU/core stats list
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Cpus` | [`map[string]models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `Idle` | `*int` | Optional | percentage of Idle, Idle/(Idle + Busy) since last sampling |
-| `Interrupt` | `*int` | Optional | percentage of Interrupt, (Irq + SoftIrq)/(Idle + Busy) since last sampling |
-| `System` | `*int` | Optional | percentage of System, System/(Idle + Busy) since last sampling |
-| `Usage` | `*int` | Optional | percentage of load, Busy/(Idle + Busy) since last sampling |
-| `User` | `*int` | Optional | percentage of User, User/(Idle + Busy) since last sampling |
+| `Idle` | `*int` | Optional | Percentage of Idle, Idle/(Idle + Busy) since last sampling |
+| `Interrupt` | `*int` | Optional | Percentage of Interrupt, (Irq + SoftIrq)/(Idle + Busy) since last sampling |
+| `System` | `*int` | Optional | Percentage of System, System/(Idle + Busy) since last sampling |
+| `Usage` | `*int` | Optional | Percentage of load, Busy/(Idle + Busy) since last sampling |
+| `User` | `*int` | Optional | Percentage of User, User/(Idle + Busy) since last sampling |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BatteryVoltage` | `*float64` | Optional | battery voltage, in mV |
+| `BatteryVoltage` | `*float64` | Optional | Battery voltage, in mV |
 | `EddystoneInstance` | `*string` | Optional | - |
 | `EddystoneNamespace` | `*string` | Optional | - |
 | `LastSeen` | `float64` | Required | - |

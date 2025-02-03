@@ -8,25 +8,25 @@ import (
 // ApIpConfig represents a ApIpConfig struct.
 // IP AP settings
 type ApIpConfig struct {
-    // if `type`==`static`
+    // If `type`==`static`
     Dns                  []string               `json:"dns,omitempty"`
-    // required if `type`==`static`
+    // Required if `type`==`static`
     DnsSuffix            []string               `json:"dns_suffix,omitempty"`
-    // required if `type`==`static`
+    // Required if `type`==`static`
     Gateway              *string                `json:"gateway,omitempty"`
     Gateway6             *string                `json:"gateway6,omitempty"`
-    // required if `type`==`static`
+    // Required if `type`==`static`
     Ip                   *string                `json:"ip,omitempty"`
     Ip6                  *string                `json:"ip6,omitempty"`
     Mtu                  *int                   `json:"mtu,omitempty"`
-    // required if `type`==`static`
+    // Required if `type`==`static`
     Netmask              *string                `json:"netmask,omitempty"`
     Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
     // enum: `autoconf`, `dhcp`, `disabled`, `static`
     Type6                *IpType6Enum           `json:"type6,omitempty"`
-    // management vlan id, default is 1 (untagged)
+    // Management VLAN id, default is 1 (untagged)
     VlanId               *int                   `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,11 +9,11 @@ import (
 
 // AccountVmwareConfig represents a AccountVmwareConfig struct.
 type AccountVmwareConfig struct {
-    // customer account Client ID
+    // Customer account Client ID
     ClientId             string                 `json:"client_id"`
-    // customer account Client Secret
+    // Customer account Client Secret
     ClientSecret         string                 `json:"client_secret"`
-    // customer account VMware instance URL
+    // Customer account VMware instance URL
     InstanceUrl          string                 `json:"instance_url"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

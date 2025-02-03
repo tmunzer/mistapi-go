@@ -1,7 +1,7 @@
 
 # Stats Device Other Vendor Specific
 
-when `vendor`==`cradlepoint`
+When `vendor`==`cradlepoint`
 
 *This model accepts additional fields of type interface{}.*
 

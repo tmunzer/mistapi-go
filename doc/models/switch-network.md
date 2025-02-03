@@ -13,12 +13,12 @@ A network represents a network segment. It can either represent a VLAN (then usu
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Gateway` | `*string` | Optional | only required for EVPN-VXLAN networks, IPv4 Virtual Gateway |
-| `Gateway6` | `*string` | Optional | only required for EVPN-VXLAN networks, IPv6 Virtual Gateway |
+| `Gateway` | `*string` | Optional | Only required for EVPN-VXLAN networks, IPv4 Virtual Gateway |
+| `Gateway6` | `*string` | Optional | Only required for EVPN-VXLAN networks, IPv6 Virtual Gateway |
 | `Isolation` | `*bool` | Optional | whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required). NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set<br>**Default**: `false` |
 | `IsolationVlanId` | `*string` | Optional | - |
-| `Subnet` | `*string` | Optional | optional for pure switching, required when L3 / routing features are used |
-| `Subnet6` | `*string` | Optional | optional for pure switching, required when L3 / routing features are used |
+| `Subnet` | `*string` | Optional | Optional for pure switching, required when L3 / routing features are used |
+| `Subnet6` | `*string` | Optional | Optional for pure switching, required when L3 / routing features are used |
 | `VlanId` | [`models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

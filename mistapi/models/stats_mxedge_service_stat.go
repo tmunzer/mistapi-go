@@ -7,17 +7,17 @@ import (
 
 // StatsMxedgeServiceStat represents a StatsMxedgeServiceStat struct.
 type StatsMxedgeServiceStat struct {
-    // external IP from ep-terminator’s point of view. valid only for service having its own cloud connection
+    // External IP from ep-terminator’s point of view. valid only for service having its own cloud connection
     ExtIp                *string                `json:"ext_ip,omitempty"`
-    // timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services)
+    // Timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services)
     LastSeen             *float64               `json:"last_seen,omitempty"`
-    // package/service installation state.
+    // Package/service installation state.
     PackageState         *string                `json:"package_state,omitempty"`
-    // package/service installation state.
+    // Package/service installation state.
     PackageVersion       *string                `json:"package_version,omitempty"`
-    // service running state.
+    // Service running state.
     RunningState         *string                `json:"running_state,omitempty"`
-    // service uptime.
+    // Service uptime.
     Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

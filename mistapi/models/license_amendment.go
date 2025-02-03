@@ -8,12 +8,12 @@ import (
 
 // LicenseAmendment represents a LicenseAmendment struct.
 type LicenseAmendment struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     EndTime              *int                   `json:"end_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     Quantity             *int                   `json:"quantity,omitempty"`
     StartTime            *int                   `json:"start_time,omitempty"`

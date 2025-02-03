@@ -11,25 +11,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Adopted` | `*bool` | Optional | only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted |
-| `Connected` | `*bool` | Optional | whether the device is connected |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `DeviceprofileId` | `models.Optional[string]` | Optional | deviceprofile id if assigned, null if not assigned |
-| `Hostname` | `*string` | Optional | hostname reported by the device |
-| `HwRev` | `*string` | Optional | device hardware revision number |
+| `Adopted` | `*bool` | Optional | Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted |
+| `Connected` | `*bool` | Optional | Whether the device is connected |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `DeviceprofileId` | `models.Optional[string]` | Optional | Deviceprofile id if assigned, null if not assigned |
+| `Hostname` | `*string` | Optional | Hostname reported by the device |
+| `HwRev` | `*string` | Optional | Device hardware revision number |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Jsi` | `*bool` | Optional | - |
-| `Mac` | `*string` | Optional | device MAC address |
-| `Magic` | `*string` | Optional | device claim code |
-| `Model` | `*string` | Optional | device model |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `*string` | Optional | device name if configured |
+| `Mac` | `*string` | Optional | Device MAC address |
+| `Magic` | `*string` | Optional | Device claim code |
+| `Model` | `*string` | Optional | Device model |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `*string` | Optional | Device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Serial` | `*string` | Optional | device serial |
+| `Serial` | `*string` | Optional | Device serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Sku` | `*string` | Optional | device stock keeping unit |
+| `Sku` | `*string` | Optional | Device stock keeping unit |
 | `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
-| `VcMac` | `*string` | Optional | if `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster |
+| `VcMac` | `*string` | Optional | If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

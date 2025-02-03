@@ -8,7 +8,7 @@ import (
 )
 
 // WebhookOccupancyAlerts represents a WebhookOccupancyAlerts struct.
-// occupancy alert webhook sample
+// Occupancy alert webhook sample
 type WebhookOccupancyAlerts struct {
     Events               []WebhookOccupancyAlertsEvent `json:"events"`
     Topic                string                        `json:"topic"`

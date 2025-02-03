@@ -13,41 +13,41 @@ Gateway port config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AeDisableLacp` | `*bool` | Optional | if `aggregated`==`true`. To disable LCP support for the AE interface<br>**Default**: `false` |
-| `AeIdx` | `models.Optional[string]` | Optional | if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127) |
+| `AeDisableLacp` | `*bool` | Optional | If `aggregated`==`true`. To disable LCP support for the AE interface<br>**Default**: `false` |
+| `AeIdx` | `models.Optional[string]` | Optional | If `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127) |
 | `AeLacpForceUp` | `*bool` | Optional | For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only<br>**Default**: `false` |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
-| `Critical` | `*bool` | Optional | if want to generate port up/down alarm, set it to true<br>**Default**: `false` |
+| `Critical` | `*bool` | Optional | If want to generate port up/down alarm, set it to true<br>**Default**: `false` |
 | `Description` | `*string` | Optional | Interface Description. Can be a variable (i.e. "{{myvar}}") |
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
-| `Disabled` | `*bool` | Optional | port admin up (true) / down (false)<br>**Default**: `false` |
+| `Disabled` | `*bool` | Optional | Port admin up (true) / down (false)<br>**Default**: `false` |
 | `DslType` | [`*models.GatewayPortDslTypeEnum`](../../doc/models/gateway-port-dsl-type-enum.md) | Optional | if `wan_type`==`dsl`. enum: `adsl`, `vdsl`<br>**Default**: `"vdsl"` |
-| `DslVci` | `*int` | Optional | if `wan_type`==`dsl`, 16 bit int<br>**Default**: `35` |
-| `DslVpi` | `*int` | Optional | if `wan_type`==`dsl`, 8 bit int<br>**Default**: `0` |
+| `DslVci` | `*int` | Optional | If `wan_type`==`dsl`, 16 bit int<br>**Default**: `35` |
+| `DslVpi` | `*int` | Optional | If `wan_type`==`dsl`, 8 bit int<br>**Default**: `0` |
 | `Duplex` | [`*models.GatewayPortDuplexEnum`](../../doc/models/gateway-port-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |
 | `IpConfig` | [`*models.GatewayPortConfigIpConfig`](../../doc/models/gateway-port-config-ip-config.md) | Optional | Junos IP Config |
-| `LteApn` | `*string` | Optional | if `wan_type`==`lte` |
+| `LteApn` | `*string` | Optional | If `wan_type`==`lte` |
 | `LteAuth` | [`*models.GatewayPortLteAuthEnum`](../../doc/models/gateway-port-lte-auth-enum.md) | Optional | if `wan_type`==`lte`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
 | `LteBackup` | `*bool` | Optional | - |
-| `LtePassword` | `*string` | Optional | if `wan_type`==`lte` |
-| `LteUsername` | `*string` | Optional | if `wan_type`==`lte` |
+| `LtePassword` | `*string` | Optional | If `wan_type`==`lte` |
+| `LteUsername` | `*string` | Optional | If `wan_type`==`lte` |
 | `Mtu` | `*int` | Optional | - |
-| `Name` | `*string` | Optional | name that we'll use to derive config |
-| `Networks` | `[]string` | Optional | if `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
-| `OuterVlanId` | `*int` | Optional | for Q-in-Q |
+| `Name` | `*string` | Optional | Name that we'll use to derive config |
+| `Networks` | `[]string` | Optional | If `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
+| `OuterVlanId` | `*int` | Optional | For Q-in-Q |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the Untagged VLAN Network |
-| `PreserveDscp` | `*bool` | Optional | whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
-| `Redundant` | `*bool` | Optional | if HA mode |
-| `RethIdx` | `*int` | Optional | if HA mode |
-| `RethNode` | `*string` | Optional | if HA mode |
+| `PreserveDscp` | `*bool` | Optional | Whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
+| `Redundant` | `*bool` | Optional | If HA mode |
+| `RethIdx` | `*int` | Optional | If HA mode |
+| `RethNode` | `*string` | Optional | If HA mode |
 | `RethNodes` | `[]string` | Optional | SSR only - supporting vlan-based redundancy (matching the size of `networks`) |
 | `Speed` | `*string` | Optional | **Default**: `"auto"` |
-| `SsrNoVirtualMac` | `*bool` | Optional | when SSR is running as VM, this is required on certain hosting platforms<br>**Default**: `false` |
-| `SvrPortRange` | `*string` | Optional | for SSR only<br>**Default**: `"none"` |
+| `SsrNoVirtualMac` | `*bool` | Optional | When SSR is running as VM, this is required on certain hosting platforms<br>**Default**: `false` |
+| `SvrPortRange` | `*string` | Optional | For SSR only<br>**Default**: `"none"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
 | `Usage` | [`models.GatewayPortUsageEnum`](../../doc/models/gateway-port-usage-enum.md) | Required | port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan` |
-| `VlanId` | [`*models.GatewayPortVlanIdWithVariable`](../../doc/models/containers/gateway-port-vlan-id-with-variable.md) | Optional | if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
+| `VlanId` | [`*models.GatewayPortVlanIdWithVariable`](../../doc/models/containers/gateway-port-vlan-id-with-variable.md) | Optional | If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | Property key is the VPN name |
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
 | `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |

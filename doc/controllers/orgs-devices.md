@@ -51,17 +51,17 @@ CountOrgDeviceEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `siteId` | `*string` | Query, Optional | site id |
+| `siteId` | `*string` | Query, Optional | Site id |
 | `ap` | `*string` | Query, Optional | AP mac |
 | `apfw` | `*string` | Query, Optional | AP Firmware |
-| `model` | `*string` | Query, Optional | device model |
-| `text` | `*string` | Query, Optional | event message |
-| `timestamp` | `*string` | Query, Optional | event time |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `model` | `*string` | Query, Optional | Device model |
+| `text` | `*string` | Query, Optional | Event message |
+| `timestamp` | `*string` | Query, Optional | Event time |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -161,8 +161,8 @@ CountOrgDeviceLastConfigs(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
@@ -263,12 +263,12 @@ CountOrgDevices(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgDevicesCountDistinctEnum`](../../doc/models/org-devices-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `hostname` | `*string` | Query, Optional | partial / full hostname |
-| `siteId` | `*string` | Query, Optional | site id |
-| `model` | `*string` | Query, Optional | device model |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
+| `siteId` | `*string` | Query, Optional | Site id |
+| `model` | `*string` | Query, Optional | Device model |
 | `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. enum: `true`, `false` |
 | `mac` | `*string` | Query, Optional | AP mac |
-| `version` | `*string` | Query, Optional | version |
+| `version` | `*string` | Query, Optional | Version |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.CountOrgDevicesMxtunnelStatusEnum`](../../doc/models/count-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, enum: `up`, `down` |
 | `mxedgeId` | `*string` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
@@ -277,9 +277,9 @@ CountOrgDevices(
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -394,7 +394,7 @@ GetOrgJuniperDevicesCommand(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | site_id would be used for proxy config check of the site and automatic site assignment |
+| `siteId` | `*string` | Query, Optional | Site_id would be used for proxy config check of the site and automatic site assignment |
 
 ## Response Type
 
@@ -612,17 +612,17 @@ SearchOrgDeviceEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | device mac |
-| `model` | `*string` | Query, Optional | device model |
+| `mac` | `*string` | Query, Optional | Device mac |
+| `model` | `*string` | Query, Optional | Device model |
 | `deviceType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `text` | `*string` | Query, Optional | event message |
-| `timestamp` | `*string` | Query, Optional | event time |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `text` | `*string` | Query, Optional | Event message |
+| `timestamp` | `*string` | Query, Optional | Event time |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -731,10 +731,10 @@ SearchOrgDeviceLastConfigs(
 | `mac` | `*string` | Query, Optional | Device MAC address |
 | `name` | `*string` | Query, Optional | Devices Name |
 | `version` | `*string` | Query, Optional | Device Version |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -902,26 +902,26 @@ SearchOrgDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `hostname` | `*string` | Query, Optional | partial / full hostname |
-| `siteId` | `*string` | Query, Optional | site id |
-| `model` | `*string` | Query, Optional | device model |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
+| `siteId` | `*string` | Query, Optional | Site id |
+| `model` | `*string` | Query, Optional | Device model |
 | `mac` | `*string` | Query, Optional | AP mac |
-| `version` | `*string` | Query, Optional | version |
+| `version` | `*string` | Query, Optional | Version |
 | `extIp` | `*string` | Query, Optional | External IP Address |
-| `powerConstrained` | `*bool` | Query, Optional | power_constrained |
+| `powerConstrained` | `*bool` | Query, Optional | Power_constrained |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
 | `mxedgeId` | `*string` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
-| `mxedgeIds` | `*string` | Query, Optional | comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
+| `mxedgeIds` | `*string` | Query, Optional | Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
 | `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
 | `lldpPowerAllocated` | `*int` | Query, Optional | LLDP Allocated Powe |
 | `lldpPowerDraw` | `*int` | Query, Optional | LLDP Negotiated Power |
-| `band24Bandwidth` | `*int` | Query, Optional | bandwidth of band_24 |
-| `band5Bandwidth` | `*int` | Query, Optional | bandwidth of band_5 |
-| `band6Bandwidth` | `*int` | Query, Optional | bandwidth of band_6 |
+| `band24Bandwidth` | `*int` | Query, Optional | Bandwidth of band_24 |
+| `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
+| `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
 | `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
 | `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
 | `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
@@ -931,9 +931,9 @@ SearchOrgDevices(
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

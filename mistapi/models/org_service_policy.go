@@ -10,11 +10,11 @@ import (
 type OrgServicePolicy struct {
     // enum: `allow`, `deny`
     Action               *AllowDenyEnum              `json:"action,omitempty"`
-    // for SRX-only
+    // For SRX-only
     Antivirus            *OrgServicePolicyAntivirus  `json:"antivirus,omitempty"`
     // For SRX Only
     Appqoe               *ServicePolicyAppqoe        `json:"appqoe,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                    `json:"created_time,omitempty"`
     Ewf                  []ServicePolicyEwfRule      `json:"ewf,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
@@ -22,16 +22,16 @@ type OrgServicePolicy struct {
     Idp                  *IdpConfig                  `json:"idp,omitempty"`
     // access within the same VRF
     LocalRouting         *bool                       `json:"local_routing,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                    `json:"modified_time,omitempty"`
     Name                 *string                     `json:"name,omitempty"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
-    // by default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
+    // By default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
     PathPreference       *string                     `json:"path_preference,omitempty"`
     // For SRX Only
     Secintel             *OrgServicePoliciesSecintel `json:"secintel,omitempty"`
     Services             []string                    `json:"services,omitempty"`
-    // for SRX-only
+    // For SRX-only
     SslProxy             *OrgServicePolicySslProxy   `json:"ssl_proxy,omitempty"`
     Tenants              []string                    `json:"tenants,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`

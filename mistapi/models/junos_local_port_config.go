@@ -22,7 +22,7 @@ type JunosLocalPortConfig struct {
     Description                              *string                                  `json:"description,omitempty"`
     // Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation
     DisableAutoneg                           *bool                                    `json:"disable_autoneg,omitempty"`
-    // whether the port is disabled
+    // Whether the port is disabled
     Disabled                                 *bool                                    `json:"disabled,omitempty"`
     // link connection mode. enum: `auto`, `full`, `half`
     Duplex                                   *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
@@ -41,11 +41,11 @@ type JunosLocalPortConfig struct {
     MacAuthPreferred                         *bool                                    `json:"mac_auth_preferred,omitempty"`
     // Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol                          *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
-    // max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
+    // Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
     MacLimit                                 *int                                     `json:"mac_limit,omitempty"`
     // enum: `access`, `inet`, `trunk`
     Mode                                     *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
-    // media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
+    // Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
     Mtu                                      *int                                     `json:"mtu,omitempty"`
     // Only if `mode`==`trunk`, the list of network/vlans
     Networks                                 []string                                 `json:"networks,omitempty"`
@@ -53,11 +53,11 @@ type JunosLocalPortConfig struct {
     Note                                     *string                                  `json:"note,omitempty"`
     // Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
     PersistMac                               *bool                                    `json:"persist_mac,omitempty"`
-    // whether PoE capabilities are disabled for a port
+    // Whether PoE capabilities are disabled for a port
     PoeDisabled                              *bool                                    `json:"poe_disabled,omitempty"`
     // if dot1x is desired, set to dot1x. enum: `dot1x`
     PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
-    // native network/vlan for untagged traffic
+    // Native network/vlan for untagged traffic
     PortNetwork                              *string                                  `json:"port_network,omitempty"`
     // Only if `port_auth`=`dot1x` reauthentication interval range
     ReauthInterval                           *int                                     `json:"reauth_interval,omitempty"`
@@ -69,15 +69,15 @@ type JunosLocalPortConfig struct {
     Speed                                    *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`
     // Switch storm control
     StormControl                             *SwitchPortLocalUsageStormControl        `json:"storm_control,omitempty"`
-    // when enabled, the port is not expected to receive BPDU frames
+    // When enabled, the port is not expected to receive BPDU frames
     StpEdge                                  *bool                                    `json:"stp_edge,omitempty"`
     StpNoRootPort                            *bool                                    `json:"stp_no_root_port,omitempty"`
     StpP2p                                   *bool                                    `json:"stp_p2p,omitempty"`
-    // port usage name.
+    // Port usage name.
     Usage                                    string                                   `json:"usage"`
-    // if this is connected to a vstp network
+    // If this is connected to a vstp network
     UseVstp                                  *bool                                    `json:"use_vstp,omitempty"`
-    // network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
+    // Network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
     VoipNetwork                              *string                                  `json:"voip_network,omitempty"`
     AdditionalProperties                     map[string]interface{}                   `json:"_"`
 }

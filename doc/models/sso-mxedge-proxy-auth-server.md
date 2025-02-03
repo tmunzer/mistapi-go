@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | **Default**: `1812` |
-| `RequireMessageAuthenticator` | `*bool` | Optional | whether to require Message-Authenticator in requests<br>**Default**: `false` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
 | `Secret` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

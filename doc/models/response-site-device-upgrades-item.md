@@ -12,17 +12,17 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Counts` | [`*models.UpgradeSiteDevicesCounts`](../../doc/models/upgrade-site-devices-counts.md) | Optional | - |
-| `CurrentPhase` | `*int` | Optional | current canary or rrm phase in progress |
-| `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
-| `Force` | `*bool` | Optional | whether to force upgrade when requested version is same as running version |
+| `CurrentPhase` | `*int` | Optional | Current canary or rrm phase in progress |
+| `EnableP2p` | `*bool` | Optional | Whether to allow local AP-to-AP FW upgrade |
+| `Force` | `*bool` | Optional | Whether to force upgrade when requested version is same as running version |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
-| `MaxFailurePercentage` | `*int` | Optional | percentage of failures allowed |
-| `MaxFailures` | `[]int` | Optional | if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
+| `MaxFailurePercentage` | `*int` | Optional | Percentage of failures allowed |
+| `MaxFailures` | `[]int` | Optional | If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
 | `RebootAt` | `*int` | Optional | reboot start time in epoch |
-| `StartTime` | `*int` | Optional | firmware download start time in epoch |
-| `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading` |
+| `StartTime` | `*int` | Optional | Firmware download start time in epoch |
+| `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued` |
 | `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
-| `TargetVersion` | `*string` | Optional | version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |
+| `TargetVersion` | `*string` | Optional | Version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |
 | `UpgradePlan` | `*interface{}` | Optional | a dictionary of rrm phase number to devices part of that phase |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

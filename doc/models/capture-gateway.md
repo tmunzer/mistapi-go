@@ -13,11 +13,11 @@ Initiate a Gateway (SSR) Packet Capture
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 0`, `<= 86400` |
+| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 0`, `<= 86400` |
 | `Format` | [`*models.CaptureGatewayFormatEnum`](../../doc/models/capture-gateway-format-enum.md) | Optional | enum: `stream`<br>**Default**: `"stream"` |
 | `Gateways` | [`map[string]models.CaptureGatewayGateways`](../../doc/models/capture-gateway-gateways.md) | Required | List of SSRs. Property key is the SSR MAC |
-| `MaxPktLen` | `*int` | Optional | max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `>= 0`, `<= 2048` |
-| `NumPackets` | `*int` | Optional | number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
+| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `>= 0`, `<= 2048` |
+| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
 | `Ports` | [`map[string]models.CaptureGatewayGatewaysPort`](../../doc/models/capture-gateway-gateways-port.md) | Optional | Property key is the port ID |
 | `Type` | `string` | Required, Constant | enum: `gateway`<br>**Value**: `"gateway"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

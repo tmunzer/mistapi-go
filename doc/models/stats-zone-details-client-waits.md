@@ -1,7 +1,7 @@
 
 # Stats Zone Details Client Waits
 
-client wait time right now
+Client wait time right now
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,9 +13,9 @@ client wait time right now
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Avg` | `int` | Required | average wait time in seconds |
-| `Max` | `int` | Required | longest wait time in seconds |
-| `Min` | `int` | Required | shortest wait time in seconds |
+| `Avg` | `int` | Required | Average wait time in seconds |
+| `Max` | `int` | Required | Longest wait time in seconds |
+| `Min` | `int` | Required | Shortest wait time in seconds |
 | `P95` | `int` | Required | 95th percentile of all the wait time(s) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -7,13 +7,13 @@ import (
 
 // ExtraRoute6 represents a ExtraRoute6 struct.
 type ExtraRoute6 struct {
-    // this takes precedence
+    // This takes precedence
     Discard              *bool                                         `json:"discard,omitempty"`
     Metric               Optional[int]                                 `json:"metric"`
     NextQualified        map[string]ExtraRoute6NextQualifiedProperties `json:"next_qualified,omitempty"`
     NoResolve            *bool                                         `json:"no_resolve,omitempty"`
     Preference           Optional[int]                                 `json:"preference"`
-    // next-hop IP Address
+    // Next-hop IP Address
     Via                  *string                                       `json:"via,omitempty"`
     AdditionalProperties map[string]interface{}                        `json:"_"`
 }

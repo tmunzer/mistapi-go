@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClientId` | `string` | Required | customer account Client ID |
-| `ClientSecret` | `string` | Required | customer account Client Secret |
-| `InstanceUrl` | `string` | Required | customer account MobiControl instance URL |
-| `Password` | `string` | Required | customer account password instance URL |
-| `Username` | `string` | Required | customer account username |
+| `ClientId` | `string` | Required | Customer account Client ID |
+| `ClientSecret` | `string` | Required | Customer account Client Secret |
+| `InstanceUrl` | `string` | Required | Customer account MobiControl instance URL |
+| `Password` | `string` | Required | Customer account password instance URL |
+| `Username` | `string` | Required | Customer account username |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

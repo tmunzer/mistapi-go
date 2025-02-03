@@ -1,7 +1,7 @@
 
 # Mxedge Oob Ip Config
 
-ip configuration of the Mist Edge out-of_band management interface
+IPconfiguration of the Mist Edge out-of_band management interface
 
 *This model accepts additional fields of type interface{}.*
 
@@ -16,11 +16,11 @@ ip configuration of the Mist Edge out-of_band management interface
 | `Autoconf6` | `*bool` | Optional | **Default**: `true` |
 | `Dhcp6` | `*bool` | Optional | **Default**: `true` |
 | `Dns` | `[]string` | Optional | IPv4 ignored if `type`!=`static`, IPv6 ignored if `type6`!=`static` |
-| `Gateway` | `*string` | Optional | if `type`=`static` |
+| `Gateway` | `*string` | Optional | If `type`=`static` |
 | `Gateway6` | `*string` | Optional | - |
-| `Ip` | `*string` | Optional | if `type`=`static` |
+| `Ip` | `*string` | Optional | If `type`=`static` |
 | `Ip6` | `*string` | Optional | - |
-| `Netmask` | `*string` | Optional | if `type`=`static` |
+| `Netmask` | `*string` | Optional | If `type`=`static` |
 | `Netmask6` | `*string` | Optional | - |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |

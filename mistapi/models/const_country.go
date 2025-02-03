@@ -9,11 +9,11 @@ import (
 
 // ConstCountry represents a ConstCountry struct.
 type ConstCountry struct {
-    // country code, in two-character
+    // Country code, in two-character
     Alpha2               string                 `json:"alpha2"`
     Certified            bool                   `json:"certified"`
     Name                 string                 `json:"name"`
-    // country code, ISO 3166-1 numeric
+    // Country code, ISO 3166-1 numeric
     Numeric              float64                `json:"numeric"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

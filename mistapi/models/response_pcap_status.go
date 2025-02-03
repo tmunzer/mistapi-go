@@ -17,7 +17,7 @@ type ResponsePcapStatus struct {
     Duration                  *int                      `json:"duration,omitempty"`
     // List of APs where configuration attempt failed
     Failed                    []string                  `json:"failed,omitempty"`
-    // pcap format. enum:
+    // PCAP format. enum:
     // * `stream`: to Mist cloud
     // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
     Format                    *CaptureMxedgeFormatEnum  `json:"format,omitempty"`
@@ -26,7 +26,7 @@ type ResponsePcapStatus struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                        uuid.UUID                 `json:"id"`
     IncludesMcast             *bool                     `json:"includes_mcast,omitempty"`
-    // max number of packets configured by user
+    // Max number of packets configured by user
     MaxNumPackets             *int                      `json:"max_num_packets,omitempty"`
     MaxPktLen                 *int                      `json:"max_pkt_len,omitempty"`
     // nformation on mxedges to capture packets on if a mxedge capture type is specified
@@ -36,9 +36,9 @@ type ResponsePcapStatus struct {
     // List of target APs successfully configured to capture packets
     Ok                        []string                  `json:"ok,omitempty"`
     PcapAps                   map[string]ResponsePcapAp `json:"pcap_aps,omitempty"`
-    // when `type`==`radiotap`, radiotap_tcpdump_expression expression provided by the user
+    // When `type`==`radiotap`, radiotap_tcpdump_expression expression provided by the user
     RadiotapTcpdumpExpression *string                   `json:"radiotap_tcpdump_expression,omitempty"`
-    // when `type`==`scan`, scan_tcpdump_expression provided by the user
+    // When `type`==`scan`, scan_tcpdump_expression provided by the user
     ScanTcpdumpExpression     *string                   `json:"scan_tcpdump_expression,omitempty"`
     Ssid                      Optional[string]          `json:"ssid"`
     StartedTime               *int                      `json:"started_time,omitempty"`
@@ -50,11 +50,11 @@ type ResponsePcapStatus struct {
     Type                      PcapTypeEnum              `json:"type"`
     // Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
     TzspHost                  *string                   `json:"tzsp_host,omitempty"`
-    // if `format`==`tzsp`. Port on remote host for receiving the captured packets
+    // If `format`==`tzsp`. Port on remote host for receiving the captured packets
     TzspPort                  *int                      `json:"tzsp_port,omitempty"`
-    // when `type`==`wired`, wired_tcpdump_expression provided by the user
+    // When `type`==`wired`, wired_tcpdump_expression provided by the user
     WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`
-    // when `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user
+    // When `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user
     WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
     AdditionalProperties      map[string]interface{}    `json:"_"`
 }

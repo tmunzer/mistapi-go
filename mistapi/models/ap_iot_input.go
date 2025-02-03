@@ -8,9 +8,9 @@ import (
 // ApIotInput represents a ApIotInput struct.
 // IoT Input AP settings
 type ApIotInput struct {
-    // whether to enable a pin
+    // Whether to enable a pin
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // optional; descriptive pin name
+    // Optional; descriptive pin name
     Name                 *string                `json:"name,omitempty"`
     // the type of pull-up the pin uses. enum: `external`, `internal`, `none`
     Pullup               *ApIotPullupEnum       `json:"pullup,omitempty"`

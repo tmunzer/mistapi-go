@@ -50,7 +50,7 @@ AddSiteDeviceImage(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
 | `imageNumber` | `int` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -117,9 +117,9 @@ CountSiteDeviceConfigHistory(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | `*string` | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -214,12 +214,12 @@ CountSiteDeviceEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDeviceEventsCountDistinctEnum`](../../doc/models/site-device-events-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
 | `model` | `*string` | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `typeCode` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -311,9 +311,9 @@ CountSiteDeviceLastConfig(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDeviceLastConfigCountDistinctEnum`](../../doc/models/site-device-last-config-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -425,9 +425,9 @@ CountSiteDevices(
 | `lldpPortId` | `*string` | Query, Optional | - |
 | `lldpMgmtAddr` | `*string` | Query, Optional | - |
 | `mapId` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -899,7 +899,7 @@ ImportSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | file to updload |
+| `file` | `models.FileWrapper` | Form, Required | File to updload |
 
 ## Response Type
 
@@ -1047,9 +1047,9 @@ SearchSiteDeviceConfigHistory(
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1191,16 +1191,16 @@ SearchSiteDeviceEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | device mac |
-| `model` | `*string` | Query, Optional | device model |
-| `text` | `*string` | Query, Optional | event message |
-| `timestamp` | `*string` | Query, Optional | event time |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mac` | `*string` | Query, Optional | Device mac |
+| `model` | `*string` | Query, Optional | Device model |
+| `text` | `*string` | Query, Optional | Event message |
+| `timestamp` | `*string` | Query, Optional | Event time |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1309,9 +1309,9 @@ SearchSiteDeviceLastConfigs(
 | `version` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1474,11 +1474,11 @@ SearchSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `hostname` | `*string` | Query, Optional | partial / full hostname |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `model` | `*string` | Query, Optional | device model |
-| `mac` | `*string` | Query, Optional | device MAC |
-| `version` | `*string` | Query, Optional | version |
+| `model` | `*string` | Query, Optional | Device model |
+| `mac` | `*string` | Query, Optional | Device MAC |
+| `version` | `*string` | Query, Optional | Version |
 | `powerConstrained` | `*bool` | Query, Optional | power_constrained |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
@@ -1494,13 +1494,13 @@ SearchSiteDevices(
 | `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
 | `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
-| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | sort options<br>**Default**: `"timestamp"` |
-| `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | sort options in reverse order |
-| `stats` | `*bool` | Query, Optional | whether to return device stats<br>**Default**: `false` |
+| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br>**Default**: `"timestamp"` |
+| `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
+| `stats` | `*bool` | Query, Optional | Whether to return device stats<br>**Default**: `false` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `StatusId` | `*string` | Optional | the internal status id |
+| `StatusId` | `*string` | Optional | Internal status id |
 | `Staus` | [`*models.ResponseDeviceSnapshotStatusEnum`](../../doc/models/response-device-snapshot-status-enum.md) | Optional | enum: `error`, `inprogress`, `scheduled`, `starting`, `success` |
 | `Timestamp` | `*float64` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

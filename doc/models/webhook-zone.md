@@ -1,7 +1,7 @@
 
 # Webhook Zone
 
-zone webhook sample
+Zone webhook sample
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ zone webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookZoneEvent`](../../doc/models/webhook-zone-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"zone"` |
+| `Events` | [`[]models.WebhookZoneEvent`](../../doc/models/webhook-zone-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"zone"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

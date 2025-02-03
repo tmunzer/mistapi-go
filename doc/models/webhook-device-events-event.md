@@ -14,17 +14,17 @@
 | `Ap` | `*string` | Optional | (will be deprecated soon; please use mac instead) ap mac |
 | `ApName` | `*string` | Optional | (will be deprecated soon; please use device_name instead) ap name |
 | `AuditId` | `*uuid.UUID` | Optional | (optional) audit id |
-| `DeviceName` | `string` | Required | device name |
+| `DeviceName` | `string` | Required | Device name |
 | `DeviceType` | [`models.WebhookDeviceEventsEventDeviceTypeEnum`](../../doc/models/webhook-device-events-event-device-type-enum.md) | Required | enum: `ap`, `gateway`, `switch` |
 | `EvType` | [`models.WebhookDeviceEventsEventEvTypeEnum`](../../doc/models/webhook-device-events-event-ev-type-enum.md) | Required | (optional) event advisory. enum: `notice`, `warn` |
-| `Mac` | `string` | Required | device mac |
+| `Mac` | `string` | Required | Device mac |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `Reason` | `*string` | Optional | (optional) event reason |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SiteName` | `*string` | Optional | site name |
+| `SiteName` | `*string` | Optional | Site name |
 | `Text` | `*string` | Optional | (optional) event description |
-| `Timestamp` | `int` | Required | time the event occurred e.g. 1565987313 |
-| `Type` | `string` | Required | event type |
+| `Timestamp` | `int` | Required | Time the event occurred e.g. 1565987313 |
+| `Type` | `string` | Required | Event type |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

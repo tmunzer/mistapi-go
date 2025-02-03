@@ -8,13 +8,13 @@ import (
 )
 
 // StatsZoneDetailsClientWaits represents a StatsZoneDetailsClientWaits struct.
-// client wait time right now
+// Client wait time right now
 type StatsZoneDetailsClientWaits struct {
-    // average wait time in seconds
+    // Average wait time in seconds
     Avg                  int                    `json:"avg"`
-    // longest wait time in seconds
+    // Longest wait time in seconds
     Max                  int                    `json:"max"`
-    // shortest wait time in seconds
+    // Shortest wait time in seconds
     Min                  int                    `json:"min"`
     // 95th percentile of all the wait time(s)
     P95                  int                    `json:"p95"`

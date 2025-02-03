@@ -10,9 +10,9 @@ import (
 // WebhookLocationCentrak represents a WebhookLocationCentrak struct.
 // location webhook sample
 type WebhookLocationCentrak struct {
-    // list of events
+    // List of events
     Events               []WebhookLocationCentrakEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                        `json:"topic"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }

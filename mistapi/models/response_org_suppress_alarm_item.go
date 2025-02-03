@@ -8,7 +8,7 @@ import (
 
 // ResponseOrgSuppressAlarmItem represents a ResponseOrgSuppressAlarmItem struct.
 type ResponseOrgSuppressAlarmItem struct {
-    // duration, in seconds. Maximum duration is 86400 * 14 (14 days). 0 is to un-suppress alarms.
+    // Duration, in seconds. Maximum duration is 86400 * 14 (14 days). 0 is to un-suppress alarms.
     Duration             *int                      `json:"duration,omitempty"`
     ExpireTime           *int                      `json:"expire_time,omitempty"`
     ScheduledTime        *int                      `json:"scheduled_time,omitempty"`

@@ -7,15 +7,15 @@ import (
 
 // MxedgeTuntermIgmpSnoopingQuerier represents a MxedgeTuntermIgmpSnoopingQuerier struct.
 type MxedgeTuntermIgmpSnoopingQuerier struct {
-    // querier’s query response interval, in tenths-of-seconds
+    // Querier's query response interval, in tenths-of-seconds
     MaxResponseTime      *int                   `json:"max_response_time,omitempty"`
-    // the MTU we use (needed when forming large IGMPv3 Reports)
+    // The MTU we use (needed when forming large IGMPv3 Reports)
     Mtu                  *int                   `json:"mtu,omitempty"`
-    // querier’s query interval, in seconds
+    // Querier's query interval, in seconds
     QueryInterval        *int                   `json:"query_interval,omitempty"`
-    // querier’s robustness
+    // Querier's robustness
     Robustness           *int                   `json:"robustness,omitempty"`
-    // querier’s maximum protocol version
+    // Querier's maximum protocol version
     Version              *int                   `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

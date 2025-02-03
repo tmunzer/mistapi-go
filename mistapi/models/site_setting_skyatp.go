@@ -8,7 +8,7 @@ import (
 // SiteSettingSkyatp represents a SiteSettingSkyatp struct.
 type SiteSettingSkyatp struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // whether to send IP-MAC mapping to SkyATP
+    // Whether to send IP-MAC mapping to SkyATP
     SendIpMacMapping     *bool                  `json:"send_ip_mac_mapping,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

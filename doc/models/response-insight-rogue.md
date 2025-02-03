@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `*string` | Optional | link to next set of results. If more results aren’t present, next is null. |
+| `Next` | `*string` | Optional | Link to next set of results. If more results aren’t present, next is null. |
 | `Results` | [`[]models.InsightRogueAp`](../../doc/models/insight-rogue-ap.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

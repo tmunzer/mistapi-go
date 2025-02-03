@@ -1,7 +1,7 @@
 
 # Latlng Tl
 
-when type=google, latitude / longitude of the top-left corner
+When type=google, latitude / longitude of the top-left corner
 
 *This model accepts additional fields of type interface{}.*
 

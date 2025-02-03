@@ -42,7 +42,7 @@ type ClientNac struct {
     NasVendor            []string               `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     PortId               []string               `json:"port_id,omitempty"`
-    // whether the client is using randomized MAC Address or not
+    // Whether the client is using randomized MAC Address or not
     RandomMac            *bool                  `json:"random_mac,omitempty"`
     RespAttr             []string               `json:"resp_attr,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

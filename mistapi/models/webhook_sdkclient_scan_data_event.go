@@ -10,19 +10,19 @@ import (
 
 // WebhookSdkclientScanDataEvent represents a WebhookSdkclientScanDataEvent struct.
 type WebhookSdkclientScanDataEvent struct {
-    // mac address of the AP the client is connected to
+    // MAC address of the AP the client is connected to
     ConnectionAp         string                                      `json:"connection_ap"`
     // 5GHz or 2.4GHz band, of the BSSID the client is connected to
     ConnectionBand       string                                      `json:"connection_band"`
     // BSSID of the AP the client is connected to
     ConnectionBssid      string                                      `json:"connection_bssid"`
-    // channel of the band the client is connected to
+    // Channel of the band the client is connected to
     ConnectionChannel    int                                         `json:"connection_channel"`
     // RSSI of the client’s connection to the AP/BSSID
     ConnectionRssi       float64                                     `json:"connection_rssi"`
-    // time client last seen with scan data
+    // Time client last seen with scan data
     LastSeen             float64                                     `json:"last_seen"`
-    // the client’s mac
+    // Client's MAC Address
     Mac                  string                                      `json:"mac"`
     ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
     SiteId               uuid.UUID                                   `json:"site_id"`

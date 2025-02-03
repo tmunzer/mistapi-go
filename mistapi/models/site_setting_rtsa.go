@@ -6,13 +6,13 @@ import (
 )
 
 // SiteSettingRtsa represents a SiteSettingRtsa struct.
-// managed mobility
+// Managed mobility
 type SiteSettingRtsa struct {
     AppWaking             *bool                  `json:"app_waking,omitempty"`
     DisableDeadReckoning  *bool                  `json:"disable_dead_reckoning,omitempty"`
     DisablePressureSensor *bool                  `json:"disable_pressure_sensor,omitempty"`
     Enabled               *bool                  `json:"enabled,omitempty"`
-    // asset tracking related
+    // Asset tracking related
     TrackAsset            *bool                  `json:"track_asset,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
 }

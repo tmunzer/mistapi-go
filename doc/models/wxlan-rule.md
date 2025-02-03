@@ -15,16 +15,16 @@ WXlan
 |  --- | --- | --- | --- |
 | `Action` | [`*models.WxlanRuleActionEnum`](../../doc/models/wxlan-rule-action-enum.md) | Optional | type of action, allow / block. enum: `allow`, `block` |
 | `ApplyTags` | `[]string` | Optional | - |
-| `BlockedApps` | `[]string` | Optional | blocked apps (always blocking, ignoring action), the key of Get Application List |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `BlockedApps` | `[]string` | Optional | Blocked apps (always blocking, ignoring action), the key of Get Application List |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DstAllowWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are allowed access |
 | `DstDenyWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are blocked access |
 | `DstWxtags` | `[]string` | Optional | List of WxTag UUID |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Order` | `int` | Required | the order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= -1` |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Order` | `int` | Required | Prder how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= -1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SrcWxtags` | `[]string` | Required | List of WxTag UUID to determine if this rule would match |

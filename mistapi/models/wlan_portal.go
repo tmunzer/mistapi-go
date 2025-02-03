@@ -6,7 +6,7 @@ import (
 )
 
 // WlanPortal represents a WlanPortal struct.
-// portal wlan settings
+// Portal wlan settings
 type WlanPortal struct {
     // Optional if `amazon_enabled`==`true`. Whether to allow guest to connect to other Guest WLANs (with different `WLAN.ssid`) of same org without reauthentication (disable random_mac for seamless roaming)
     AllowWlanIdRoam             *bool                          `json:"allow_wlan_id_roam,omitempty"`
@@ -16,7 +16,7 @@ type WlanPortal struct {
     AmazonClientSecret          Optional[string]               `json:"amazon_client_secret"`
     // Optional if `amazon_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     AmazonEmailDomains          []string                       `json:"amazon_email_domains,omitempty"`
-    // whether amazon is enabled as a login method
+    // Whether amazon is enabled as a login method
     AmazonEnabled               *bool                          `json:"amazon_enabled,omitempty"`
     // Optional if `amazon_enabled`==`true`. Interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire`
     AmazonExpire                Optional[int]                  `json:"amazon_expire"`
@@ -26,9 +26,9 @@ type WlanPortal struct {
     AzureClientId               Optional[string]               `json:"azure_client_id"`
     // Required if `azure_enabled`==`true`. Azure active directory app client secret
     AzureClientSecret           Optional[string]               `json:"azure_client_secret"`
-    // whether Azure Active Directory is enabled as a login method
+    // Whether Azure Active Directory is enabled as a login method
     AzureEnabled                *bool                          `json:"azure_enabled,omitempty"`
-    // interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire`
+    // Interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire`
     AzureExpire                 Optional[int]                  `json:"azure_expire"`
     // Required if `azure_enabled`==`true`. Azure active directory tenant id.
     AzureTenantId               Optional[string]               `json:"azure_tenant_id"`
@@ -38,17 +38,17 @@ type WlanPortal struct {
     BroadnetSid                 *string                        `json:"broadnet_sid,omitempty"`
     // Required if `sms_provider`==`broadnet`
     BroadnetUserId              *string                        `json:"broadnet_user_id,omitempty"`
-    // whether to bypass the guest portal when cloud not reachable (and apply the default policies)
+    // Whether to bypass the guest portal when cloud not reachable (and apply the default policies)
     BypassWhenCloudDown         *bool                          `json:"bypass_when_cloud_down,omitempty"`
     // Required if `sms_provider`==`clickatell`
     ClickatellApiKey            *string                        `json:"clickatell_api_key,omitempty"`
-    // whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)
+    // Whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)
     CrossSite                   *bool                          `json:"cross_site,omitempty"`
-    // whether email (access code verification) is enabled as a login method
+    // Whether email (access code verification) is enabled as a login method
     EmailEnabled                *bool                          `json:"email_enabled,omitempty"`
-    // whether guest portal is enabled
+    // Whether guest portal is enabled
     Enabled                     *bool                          `json:"enabled,omitempty"`
-    // how long to remain authorized, in minutes
+    // How long to remain authorized, in minutes
     Expire                      *int                           `json:"expire,omitempty"`
     // Required if `wlan_portal_auth`==`external`. External portal URL (e.g. https://host/url) where we can append our query parameters to
     ExternalPortalUrl           *string                        `json:"external_portal_url,omitempty"`
@@ -58,13 +58,13 @@ type WlanPortal struct {
     FacebookClientSecret        Optional[string]               `json:"facebook_client_secret"`
     // Optional if `facebook_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     FacebookEmailDomains        []string                       `json:"facebook_email_domains,omitempty"`
-    // whether facebook is enabled as a login method
+    // Whether facebook is enabled as a login method
     FacebookEnabled             *bool                          `json:"facebook_enabled,omitempty"`
     // Optional if `facebook_enabled`==`true`. Interval for which guest remains authorized using facebook auth (in minutes), if not provided, uses expire`
     FacebookExpire              Optional[int]                  `json:"facebook_expire"`
-    // whether to forward the user to another URL after authorized
+    // Whether to forward the user to another URL after authorized
     Forward                     *bool                          `json:"forward,omitempty"`
-    // the URL to forward the user to
+    // URL to forward the user to
     ForwardUrl                  Optional[string]               `json:"forward_url"`
     // Google OAuth2 app id. This is optional. If not provided, it will use a default one.
     GoogleClientId              Optional[string]               `json:"google_client_id"`
@@ -72,7 +72,7 @@ type WlanPortal struct {
     GoogleClientSecret          Optional[string]               `json:"google_client_secret"`
     // Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     GoogleEmailDomains          []string                       `json:"google_email_domains,omitempty"`
-    // whether google is enabled as login method
+    // Whether google is enabled as login method
     GoogleEnabled               *bool                          `json:"google_enabled,omitempty"`
     // Optional if `google_enabled`==`true`. Interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire`
     GoogleExpire                Optional[int]                  `json:"google_expire"`
@@ -86,7 +86,7 @@ type WlanPortal struct {
     MicrosoftClientSecret       Optional[string]               `json:"microsoft_client_secret"`
     // Optional if `microsoft_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     MicrosoftEmailDomains       []string                       `json:"microsoft_email_domains,omitempty"`
-    // whether microsoft 365 is enabled as a login method
+    // Whether microsoft 365 is enabled as a login method
     MicrosoftEnabled            *bool                          `json:"microsoft_enabled,omitempty"`
     // Optional if `microsoft_enabled`==`true`. Interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire`
     MicrosoftExpire             Optional[int]                  `json:"microsoft_expire"`
@@ -96,9 +96,9 @@ type WlanPortal struct {
     PassphraseExpire            Optional[int]                  `json:"passphrase_expire"`
     // Required if `passphrase_enabled`==`true`.
     Password                    Optional[string]               `json:"password"`
-    // whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
+    // Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
-    // whether to hide sponsor’s email from list of sponsors
+    // Whether to hide sponsor’s email from list of sponsors
     PredefinedSponsorsHideEmail *bool                          `json:"predefined_sponsors_hide_email,omitempty"`
     Privacy                     *bool                          `json:"privacy,omitempty"`
     // Required if `sms_provider`==`puzzel`
@@ -109,7 +109,7 @@ type WlanPortal struct {
     PuzzelUsername              *string                        `json:"puzzel_username,omitempty"`
     // Optional if `sms_enabled`==`true`. SMS Message format
     SmsMessageFormat            *string                        `json:"smsMessageFormat,omitempty"`
-    // whether sms is enabled as a login method
+    // Whether sms is enabled as a login method
     SmsEnabled                  *bool                          `json:"sms_enabled,omitempty"`
     // Optional if `sms_enabled`==`true`. Interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire`
     SmsExpire                   Optional[int]                  `json:"sms_expire"`
@@ -117,9 +117,9 @@ type WlanPortal struct {
     SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
     // Optional if `sponsor_enabled`==`true`. Whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled
     SponsorAutoApprove          *bool                          `json:"sponsor_auto_approve,omitempty"`
-    // list of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty.
+    // List of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty.
     SponsorEmailDomains         []string                       `json:"sponsor_email_domains,omitempty"`
-    // whether sponsor is enabled
+    // Whether sponsor is enabled
     SponsorEnabled              *bool                          `json:"sponsor_enabled,omitempty"`
     // Optional if `sponsor_enabled`==`true`. Interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire`
     SponsorExpire               Optional[int]                  `json:"sponsor_expire"`
@@ -129,7 +129,7 @@ type WlanPortal struct {
     SponsorNotifyAll            *bool                          `json:"sponsor_notify_all,omitempty"`
     // Optional if `sponsor_enabled`==`true`. If enabled, guest will get email about sponsor's action (approve/deny)
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
-    // object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility
+    // Object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility
     Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
     // Optionl if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`

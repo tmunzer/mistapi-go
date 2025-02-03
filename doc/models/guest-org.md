@@ -13,25 +13,25 @@ Guest
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccessCodeEmail` | `*string` | Optional | if `auth_method`==`email`, the email address where the authorization code has been sent to |
-| `AllowWlanIdRoam` | `*bool` | Optional | based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication |
-| `ApMac` | `*string` | Optional | the MAC Address of the AP the guest was connected to during the registration process |
-| `AuthMethod` | `*string` | Optional | type of guest authorization |
-| `Authorized` | `*bool` | Optional | whether the guest is current authorized<br>**Default**: `true` |
-| `AuthorizedExpiringTime` | `*float64` | Optional | when the authorization would expire |
-| `AuthorizedTime` | `*float64` | Optional | when the guest was authorized |
-| `Company` | `*string` | Optional | optional, the info provided by user |
-| `CrossSite` | `*bool` | Optional | based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication |
-| `Email` | `*string` | Optional | optional, the info provided by user |
-| `Field1` | `*string` | Optional | optional, the info provided by user |
+| `AccessCodeEmail` | `*string` | Optional | If `auth_method`==`email`, the email address where the authorization code has been sent to |
+| `AllowWlanIdRoam` | `*bool` | Optional | Based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication |
+| `ApMac` | `*string` | Optional | MAC Address of the AP the guest was connected to during the registration process |
+| `AuthMethod` | `*string` | Optional | Type of guest authorization |
+| `Authorized` | `*bool` | Optional | Whether the guest is current authorized<br>**Default**: `true` |
+| `AuthorizedExpiringTime` | `*float64` | Optional | When the authorization would expire |
+| `AuthorizedTime` | `*float64` | Optional | When the guest was authorized |
+| `Company` | `*string` | Optional | Optional, the info provided by user |
+| `CrossSite` | `*bool` | Optional | Based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication |
+| `Email` | `*string` | Optional | Optional, the info provided by user |
+| `Field1` | `*string` | Optional | Optional, the info provided by user |
 | `Field2` | `*string` | Optional | - |
 | `Field3` | `*string` | Optional | - |
 | `Field4` | `*string` | Optional | - |
-| `Mac` | `*string` | Optional | mac |
+| `Mac` | `*string` | Optional | MAC |
 | `Minutes` | `*int` | Optional | Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)<br>**Default**: `1440`<br>**Constraints**: `>= 0`, `<= 259200` |
-| `Name` | `*string` | Optional | optional, the info provided by user |
-| `RandomMac` | `*bool` | Optional | if the client is using a randomized MAC Address to connect the SSID |
-| `Ssid` | `*string` | Optional | name of the SSID |
+| `Name` | `*string` | Optional | Optional, the info provided by user |
+| `RandomMac` | `*bool` | Optional | If the client is using a randomized MAC Address to connect the SSID |
+| `Ssid` | `*string` | Optional | Name of the SSID |
 | `WlanId` | `uuid.UUID` | Required | ID of the WLAN |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

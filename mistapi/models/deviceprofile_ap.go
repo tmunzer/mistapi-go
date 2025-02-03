@@ -15,15 +15,15 @@ type DeviceprofileAp struct {
     Aeroscout            *ApAeroscout            `json:"aeroscout,omitempty"`
     // BLE AP settings
     BleConfig            *BleConfig              `json:"ble_config,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                `json:"created_time,omitempty"`
-    // whether to disable eth1 port
+    // Whether to disable eth1 port
     DisableEth1          *bool                   `json:"disable_eth1,omitempty"`
-    // whether to disable eth2 port
+    // Whether to disable eth2 port
     DisableEth2          *bool                   `json:"disable_eth2,omitempty"`
-    // whether to disable eth3 port
+    // Whether to disable eth3 port
     DisableEth3          *bool                   `json:"disable_eth3,omitempty"`
-    // whether to disable module port
+    // Whether to disable module port
     DisableModule        *bool                   `json:"disable_module,omitempty"`
     EslConfig            *ApEslConfig            `json:"esl_config,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
@@ -37,21 +37,21 @@ type DeviceprofileAp struct {
     Led                  *ApLed                  `json:"led,omitempty"`
     // Mesh AP settings
     Mesh                 *ApMesh                 `json:"mesh,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
     Name                 *string                 `json:"name"`
     NtpServers           []string                `json:"ntp_servers,omitempty"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
+    // Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough       *bool                   `json:"poe_passthrough,omitempty"`
     // Property key is the interface(s) name (e.g. "eth1,eth2")
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
-    // power related configs
+    // Power related configs
     PwrConfig            *ApPwrConfig            `json:"pwr_config,omitempty"`
     // Radio AP settings
     RadioConfig          *ApRadio                `json:"radio_config,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
-    // for people who want to fully control the vlans (advanced)
+    // For people who want to fully control the vlans (advanced)
     SwitchConfig         *ApSwitch               `json:"switch_config,omitempty"`      // Deprecated
     // Device Type. enum: `ap`
     Type                 string                  `json:"type"`
@@ -61,7 +61,7 @@ type DeviceprofileAp struct {
     // - Note: if native imagotag is enabled, BLE will be disabled automatically
     // - Note: legacy, new config moved to ESL Config.
     UsbConfig            *ApUsb                  `json:"usb_config,omitempty"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string       `json:"vars,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

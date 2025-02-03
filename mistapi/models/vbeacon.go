@@ -9,38 +9,38 @@ import (
 // Vbeacon represents a Vbeacon struct.
 // vBeacon
 type Vbeacon struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                `json:"created_time,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID              `json:"id,omitempty"`
-    // bluetooth tag major
+    // Bluetooth tag major
     Major                *int                    `json:"major,omitempty"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                *uuid.UUID              `json:"map_id,omitempty"`
-    // a message that can be displayed when the sdkclient gets near the vbeacon
+    // Message that can be displayed when the sdkclient gets near the vbeacon
     Message              *string                 `json:"message,omitempty"`
-    // bluetooth tag minor
+    // Bluetooth tag minor
     Minor                *int                    `json:"minor,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
-    // name / label of the device
+    // Name / label of the device
     Name                 *string                 `json:"name,omitempty"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.
+    // Required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.
     Power                *int                    `json:"power,omitempty"`
     // enum: `custom`, `default`
     PowerMode            *BleConfigPowerModeEnum `json:"power_mode,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // URL to show, optional
     Url                  *string                 `json:"url,omitempty"`
-    // bluetooth tag UUID
+    // Bluetooth tag UUID
     Uuid                 *uuid.UUID              `json:"uuid,omitempty"`
-    // the name to be used in wayfinding_path or wayfinding_grid blob
+    // Name to be used in wayfinding_path or wayfinding_grid blob
     WayfindingNodename   *string                 `json:"wayfinding_nodename,omitempty"`
-    // x in pixel
+    // X in pixel
     X                    *float64                `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                    *float64                `json:"y,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

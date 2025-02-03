@@ -13,15 +13,15 @@ Zone details statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Assets` | `[]string` | Optional | list of ble assets currently in the zone and when they entered |
-| `ClientWaits` | [`models.StatsZoneDetailsClientWaits`](../../doc/models/stats-zone-details-client-waits.md) | Required | client wait time right now |
-| `Clients` | `[]string` | Optional | list of clients currently in the zone and when they entered |
+| `Assets` | `[]string` | Optional | List of ble assets currently in the zone and when they entered |
+| `ClientWaits` | [`models.StatsZoneDetailsClientWaits`](../../doc/models/stats-zone-details-client-waits.md) | Required | Client wait time right now |
+| `Clients` | `[]string` | Optional | List of clients currently in the zone and when they entered |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
-| `MapId` | `uuid.UUID` | Required | map_id of the zone |
-| `Name` | `string` | Required | name of the zone |
+| `MapId` | `uuid.UUID` | Required | Map_id of the zone |
+| `Name` | `string` | Required | Name of the zone |
 | `NumClients` | `int` | Required | - |
-| `NumSdkclients` | `int` | Required | sdkclient wait time right now |
-| `Sdkclients` | `[]string` | Optional | list of sdkclients currently in the zone and when they entered |
+| `NumSdkclients` | `int` | Required | SDK client wait time right now |
+| `Sdkclients` | `[]string` | Optional | List of SDK Clients currently in the zone and when they entered |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

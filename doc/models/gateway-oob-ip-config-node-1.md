@@ -1,7 +1,7 @@
 
 # Gateway Oob Ip Config Node 1
 
-for HA Cluster, node1 can have different IP Config
+For HA Cluster, node1 can have different IP Config
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,12 +13,12 @@ for HA Cluster, node1 can have different IP Config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Gateway` | `*string` | Optional | if `type`==`static` |
+| `Gateway` | `*string` | Optional | If `type`==`static` |
 | `Ip` | `*string` | Optional | - |
-| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks` |
+| `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks` |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
-| `UseMgmtVrf` | `*bool` | Optional | if supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
-| `UseMgmtVrfForHostOut` | `*bool` | Optional | whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
+| `UseMgmtVrf` | `*bool` | Optional | If supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
+| `UseMgmtVrfForHostOut` | `*bool` | Optional | Whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
 | `VlanId` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

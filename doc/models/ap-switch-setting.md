@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `EnableVlan` | `*bool` | Optional | - |
-| `PortVlanId` | `*int` | Optional | native VLAN id, optional<br>**Constraints**: `>= 1`, `<= 4094` |
-| `VlanIds` | `[]int` | Optional | list of VLAN ids this |
+| `PortVlanId` | `*int` | Optional | Native VLAN id, optional<br>**Constraints**: `>= 1`, `<= 4094` |
+| `VlanIds` | `[]int` | Optional | List of VLAN ids this |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

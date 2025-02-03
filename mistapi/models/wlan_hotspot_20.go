@@ -6,16 +6,16 @@ import (
 )
 
 // WlanHotspot20 represents a WlanHotspot20 struct.
-// hostspot 2.0 wlan settings
+// Hostspot 2.0 wlan settings
 type WlanHotspot20 struct {
     DomainName           []string                         `json:"domain_name,omitempty"`
-    // whether to enable hotspot 2.0 config
+    // Whether to enable hotspot 2.0 config
     Enabled              *bool                            `json:"enabled,omitempty"`
     NaiRealms            []string                         `json:"nai_realms,omitempty"`
-    // list of operators to support
+    // List of operators to support
     Operators            []WlanHotspot20OperatorsItemEnum `json:"operators,omitempty"`
     Rcoi                 []string                         `json:"rcoi,omitempty"`
-    // venue name, default is site name
+    // Venue name, default is site name
     VenueName            *string                          `json:"venue_name,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

@@ -6,7 +6,7 @@ import (
 )
 
 // GatewayComplianceVersion represents a GatewayComplianceVersion struct.
-// version compliance score, major version for gateway, type
+// Version compliance score, major version for gateway, type
 type GatewayComplianceVersion struct {
     MajorVersion         map[string]GatewayComplianceMajorVersionProperties `json:"major_version,omitempty"`
     Score                *float64                                           `json:"score,omitempty"`

@@ -9,25 +9,25 @@ import (
 
 // InsightRogueAp represents a InsightRogueAp struct.
 type InsightRogueAp struct {
-    // mac of the device that had strongest signal strength for ssid/bssid pair
+    // MAC of the device that had strongest signal strength for ssid/bssid pair
     ApMac                string                 `json:"ap_mac"`
-    // average signal strength of ap_mac for ssid/bssid pair
+    // Average signal strength of ap_mac for ssid/bssid pair
     AvgRssi              float64                `json:"avg_rssi"`
-    // bssid of the network detected as threat
+    // BSSID of the network detected as threat
     Bssid                string                 `json:"bssid"`
-    // channel over which ap_mac heard ssid/bssid pair
+    // Channel over which ap_mac heard ssid/bssid pair
     Channel              string                 `json:"channel"`
     // X position relative to the reporting AP (`ap_mac`)
     DeltaX               *float64               `json:"delta_x,omitempty"`
     // Y position relative to the reporting AP (`ap_mac`)
     DeltaY               *float64               `json:"delta_y,omitempty"`
-    // num of aps that heard the ssid/bssid pair
+    // Num of aps that heard the ssid/bssid pair
     NumAps               int                    `json:"num_aps"`
-    // whether the reporting AP see a wireless client (on LAN) connecting to it
+    // Whether the reporting AP see a wireless client (on LAN) connecting to it
     SeenOnLan            *bool                  `json:"seen_on_lan,omitempty"`
-    // ssid of the network detected as threat
+    // SSID of the network detected as threat
     Ssid                 *string                `json:"ssid,omitempty"`
-    // represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute.
+    // Represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute.
     TimesHeard           *int                   `json:"times_heard,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

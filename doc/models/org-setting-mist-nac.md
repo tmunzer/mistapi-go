@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Cacerts` | `[]string` | Optional | list of PEM-encoded ca certs |
+| `Cacerts` | `[]string` | Optional | List of PEM-encoded ca certs |
 | `DefaultIdpId` | `*string` | Optional | use this IDP when no explicit realm present in the incoming username/CN OR when no IDP is explicitly mapped to the incoming realm. |
 | `DisableRsaeAlgorithms` | `*bool` | Optional | to disable RSAE_PSS_SHA256, RSAE_PSS_SHA384, RSAE_PSS_SHA512 from server side. see https://www.openssl.org/docs/man3.0/man1/openssl-ciphers.html<br>**Default**: `false` |
 | `EapSslSecurityLevel` | `*int` | Optional | eap ssl security level, see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_security_level.html#DEFAULT-CALLBACK-BEHAVIOUR<br>**Default**: `2`<br>**Constraints**: `>= 1`, `<= 4` |

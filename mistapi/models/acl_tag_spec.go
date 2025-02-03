@@ -7,7 +7,7 @@ import (
 
 // AclTagSpec represents a AclTagSpec struct.
 type AclTagSpec struct {
-    // matched dst port, "0" means any
+    // Matched dst port, "0" means any
     PortRange            *string                `json:"port_range,omitempty"`
     // `tcp` / `udp` / `icmp` / `icmp6` / `gre` / `any` / `:protocol_number`, `protocol_number` is between 1-254, default is `any` `protocol_number` is between 1-254
     Protocol             *string                `json:"protocol,omitempty"`

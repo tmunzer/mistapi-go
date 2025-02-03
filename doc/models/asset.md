@@ -13,13 +13,13 @@ Asset
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `Mac` | `string` | Required | bluetooth MAC |
+| `Mac` | `string` | Required | Bluetooth MAC |
 | `MapId` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `string` | Required | name / label of the device |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `string` | Required | Name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TagId` | `*uuid.UUID` | Optional | - |

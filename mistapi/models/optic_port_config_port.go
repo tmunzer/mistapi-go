@@ -7,9 +7,9 @@ import (
 
 // OpticPortConfigPort represents a OpticPortConfigPort struct.
 type OpticPortConfigPort struct {
-    // enable channelization
+    // Enable channelization
     Channelized          *bool                  `json:"channelized,omitempty"`
-    // interface speed (e.g. `25g`, `50g`), use the chassis speed by default
+    // Interface speed (e.g. `25g`, `50g`), use the chassis speed by default
     Speed                *string                `json:"speed,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

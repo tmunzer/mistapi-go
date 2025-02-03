@@ -9,19 +9,19 @@ import (
 
 // WebhookSdkclientScanDataEventScanDataItem represents a WebhookSdkclientScanDataEventScanDataItem struct.
 type WebhookSdkclientScanDataEventScanDataItem struct {
-    // mac address of the AP associated with the BSSID scanned
+    // MAC address of the AP associated with the BSSID scanned
     Ap                   string                 `json:"ap"`
     // 5GHz or 2.4GHz band, associated with the BSSID scanned. enum: `2.4`, `5`
     Band                 ScanDataItemBandEnum   `json:"band"`
     // BSSID found during client’s background scan for wifi
     Bssid                string                 `json:"bssid"`
-    // channel of the band found in the scan
+    // Channel of the band found in the scan
     Channel              int                    `json:"channel"`
-    // client’s RSSI relative to the BSSID scanned
+    // Client's RSSI relative to the BSSID scanned
     Rssi                 float64                `json:"rssi"`
     // ESSID containing the BSSID scanned
     Ssid                 string                 `json:"ssid"`
-    // time the scan of the particular BSSID occurred
+    // Time the scan of the particular BSSID occurred
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

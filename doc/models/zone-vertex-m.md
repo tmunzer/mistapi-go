@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `X` | `float64` | Required | x in pixel |
-| `Y` | `float64` | Required | y in pixel |
+| `X` | `float64` | Required | X in pixel |
+| `Y` | `float64` | Required | Y in pixel |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

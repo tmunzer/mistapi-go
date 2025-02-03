@@ -13,13 +13,13 @@ Template
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Applies` | [`*models.TemplateApplies`](../../doc/models/template-applies.md) | Optional | where this template should be applied to, can be org_id, site_ids, sitegroup_ids |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `DeviceprofileIds` | `[]uuid.UUID` | Optional | list of Device Profile ids |
-| `Exceptions` | [`*models.TemplateExceptions`](../../doc/models/template-exceptions.md) | Optional | where this template should not be applied to (takes precedence) |
-| `FilterByDeviceprofile` | `*bool` | Optional | whether to further filter by Device Profile |
+| `Applies` | [`*models.TemplateApplies`](../../doc/models/template-applies.md) | Optional | Where this template should be applied to, can be org_id, site_ids, sitegroup_ids |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `DeviceprofileIds` | `[]uuid.UUID` | Optional | List of Device Profile ids |
+| `Exceptions` | [`*models.TemplateExceptions`](../../doc/models/template-exceptions.md) | Optional | Where this template should not be applied to (takes precedence) |
+| `FilterByDeviceprofile` | `*bool` | Optional | Whether to further filter by Device Profile |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -6,7 +6,7 @@ import (
 )
 
 // PskPortalSso represents a PskPortalSso struct.
-// if `auth`==`sso`
+// If `auth`==`sso`
 type PskPortalSso struct {
     // // allowed roles for accessing psk portal, if none, any role is permitted
     AllowedRoles         []string                     `json:"allowed_roles,omitempty"`
@@ -18,7 +18,7 @@ type PskPortalSso struct {
     NameidFormat         *string                      `json:"nameid_format,omitempty"`
     // Property key is the role name, property value is the SSO Attribute
     RoleMapping          map[string]string            `json:"role_mapping,omitempty"`
-    // if enabled, the `role` above will be ignored
+    // If enabled, the `role` above will be ignored
     UseSsoRoleForPskRole *bool                        `json:"use_sso_role_for_psk_role,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

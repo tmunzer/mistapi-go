@@ -11,13 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `OrgEntitled` | `map[string]int` | Required | license entitlement for the entire org |
-| `SvnaEnabled` | `bool` | Required | eligibility for the Switch SLE |
+| `OrgEntitled` | `map[string]int` | Required | License entitlement for the entire org |
+| `SvnaEnabled` | `bool` | Required | Eligibility for the Switch SLE |
 | `TrialEnabled` | `bool` | Required | - |
-| `Usages` | `map[string]int` | Required | subscriptions and their quantities |
-| `VnaEligible` | `bool` | Required | eligibility for the AP/Client SLE |
-| `VnaUi` | `bool` | Required | if True, Conversational Assistant and Marvis Action available |
-| `WvnaEligible` | `bool` | Required | eligibility for the WAN SLE |
+| `Usages` | `map[string]int` | Required | Subscriptions and their quantities |
+| `VnaEligible` | `bool` | Required | Eligibility for the AP/Client SLE |
+| `VnaUi` | `bool` | Required | If True, Conversational Assistant and Marvis Action available |
+| `WvnaEligible` | `bool` | Required | Eligibility for the WAN SLE |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

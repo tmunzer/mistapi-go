@@ -11,7 +11,7 @@ import (
 type ResponseInsightRogue struct {
     End                  int                    `json:"end"`
     Limit                int                    `json:"limit"`
-    // link to next set of results. If more results aren’t present, next is null.
+    // Link to next set of results. If more results aren’t present, next is null.
     Next                 *string                `json:"next,omitempty"`
     Results              []InsightRogueAp       `json:"results"`
     Start                int                    `json:"start"`

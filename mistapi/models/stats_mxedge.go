@@ -10,9 +10,9 @@ import (
 type StatsMxedge struct {
     // CPU/core stats list
     CpuStat              *StatsMxedgeCpuStat               `json:"cpu_stat,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                          `json:"created_time,omitempty"`
-    // alue indicating fips configuration on the device
+    // Indicate fips configuration on the device
     FipsEnabled          *bool                             `json:"fips_enabled,omitempty"`
     ForSite              *bool                             `json:"for_site,omitempty"`
     Fwupdate             *FwupdateStat                     `json:"fwupdate,omitempty"`
@@ -29,20 +29,20 @@ type StatsMxedge struct {
     // Memory usage
     MemoryStat           *StatsMxedgeMemoryStat            `json:"memory_stat,omitempty"`
     Model                *string                           `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                          `json:"modified_time,omitempty"`
     MxagentRegistered    *bool                             `json:"mxagent_registered,omitempty"`
     MxclusterId          *uuid.UUID                        `json:"mxcluster_id,omitempty"`
     // The name of the tunnel
     Name                 *string                           `json:"name,omitempty"`
     NumTunnels           *int                              `json:"num_tunnels,omitempty"`
-    // ip configuration of the Mist Edge out-of_band management interface
+    // IPconfiguration of the Mist Edge out-of_band management interface
     OobIpConfig          *MxedgeOobIpConfig                `json:"oob_ip_config,omitempty"`
     OobIpStat            *StatsMxedgeOobIpStat             `json:"oob_ip_stat,omitempty"`
     OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
     PortStat             map[string]StatsMxedgePortStat    `json:"port_stat,omitempty"`
     Serial               Optional[string]                  `json:"serial"`
-    // stat for each services
+    // Stat for each services
     ServiceStat          map[string]StatsMxedgeServiceStat `json:"service_stat,omitempty"`
     Services             []string                          `json:"services,omitempty"`
     SiteId               *uuid.UUID                        `json:"site_id,omitempty"`

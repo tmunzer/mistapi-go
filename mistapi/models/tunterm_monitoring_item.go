@@ -7,13 +7,13 @@ import (
 
 // TuntermMonitoringItem represents a TuntermMonitoringItem struct.
 type TuntermMonitoringItem struct {
-    // can be ip, ipv6, hostname
+    // Can be ip, ipv6, hostname
     Host                 *string                        `json:"host,omitempty"`
-    // when `protocol`==`tcp`
+    // When `protocol`==`tcp`
     Port                 *int                           `json:"port,omitempty"`
     // enum: `arp`, `ping`, `tcp`
     Protocol             *TunternMonitoringProtocolEnum `json:"protocol,omitempty"`
-    // optional source for the monitoring check, vlan_id configured in tunterm_other_ip_configs
+    // Optional source for the monitoring check, vlan_id configured in tunterm_other_ip_configs
     SrcVlanId            *int                           `json:"src_vlan_id,omitempty"`
     Timeout              *int                           `json:"timeout,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`

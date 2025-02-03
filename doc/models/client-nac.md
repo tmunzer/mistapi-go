@@ -44,7 +44,7 @@
 | `NasVendor` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortId` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `RandomMac` | `*bool` | Optional | whether the client is using randomized MAC Address or not |
+| `RandomMac` | `*bool` | Optional | Whether the client is using randomized MAC Address or not |
 | `RespAttr` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

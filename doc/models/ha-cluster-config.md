@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableAutoConfig` | `*bool` | Optional | if the device is claimed |
-| `Managed` | `*bool` | Optional | if the device is adopted |
+| `DisableAutoConfig` | `*bool` | Optional | If the device is claimed |
+| `Managed` | `*bool` | Optional | If the device is adopted |
 | `Nodes` | [`[]models.HaClusterConfigNode`](../../doc/models/ha-cluster-config-node.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

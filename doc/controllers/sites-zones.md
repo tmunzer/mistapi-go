@@ -49,13 +49,13 @@ CountSiteZoneSessions(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `zoneType` | [`models.ZoneTypeEnum`](../../doc/models/zone-type-enum.md) | Template, Required | - |
 | `distinct` | [`*models.SiteZoneCountDistinctEnum`](../../doc/models/site-zone-count-distinct-enum.md) | Query, Optional | **Default**: `"scope_id"` |
-| `userType` | [`*models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Query, Optional | user type |
-| `user` | `*string` | Query, Optional | client MAC / Asset MAC / SDK UUID |
-| `scopeId` | `*string` | Query, Optional | if `scope`==`map`/`zone`/`rssizone`, the scope id |
-| `scope` | [`*models.ZoneScopeEnum`](../../doc/models/zone-scope-enum.md) | Query, Optional | scope<br>**Default**: `"site"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `userType` | [`*models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Query, Optional | User type |
+| `user` | `*string` | Query, Optional | Client MAC / Asset MAC / SDK UUID |
+| `scopeId` | `*string` | Query, Optional | If `scope`==`map`/`zone`/`rssizone`, the scope id |
+| `scope` | [`*models.ZoneScopeEnum`](../../doc/models/zone-scope-enum.md) | Query, Optional | Scope<br>**Default**: `"site"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -447,13 +447,13 @@ SearchSiteZoneSessions(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `zoneType` | [`models.ZoneTypeEnum`](../../doc/models/zone-type-enum.md) | Template, Required | - |
-| `userType` | [`*models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Query, Optional | user type, client (default) / sdkclient / asset |
-| `user` | `*string` | Query, Optional | client MAC / Asset MAC / SDK UUID |
-| `scopeId` | `*string` | Query, Optional | if `scope`==`map`/`zone`/`rssizone`, the scope id |
-| `scope` | [`*models.VisitsScopeEnum`](../../doc/models/visits-scope-enum.md) | Query, Optional | scope<br>**Default**: `"site"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `userType` | [`*models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Query, Optional | User type, client (default) / sdkclient / asset |
+| `user` | `*string` | Query, Optional | Client MAC / Asset MAC / SDK UUID |
+| `scopeId` | `*string` | Query, Optional | If `scope`==`map`/`zone`/`rssizone`, the scope id |
+| `scope` | [`*models.VisitsScopeEnum`](../../doc/models/visits-scope-enum.md) | Query, Optional | Scope<br>**Default**: `"site"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 

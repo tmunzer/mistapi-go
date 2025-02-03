@@ -7,15 +7,15 @@ import (
 )
 
 // Service represents a Service struct.
-// Applications used for the Gateway configurations
+// APplications used for the Gateway configurations
 type Service struct {
-    // if `type`==`custom`, ip subnets (e.g. 10.0.0.0/8)
+    // If `type`==`custom`, ip subnets (e.g. 10.0.0.0/8)
     Addresses                     []string                   `json:"addresses,omitempty"`
-    // when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories
+    // When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories
     AppCategories                 []string                   `json:"app_categories,omitempty"`
-    // when `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories
+    // When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories
     AppSubcategories              []string                   `json:"app_subcategories,omitempty"`
-    // when `type`==`apps`, list of applications are available through:
+    // When `type`==`apps`, list of applications are available through:
     // * /api/v1/const/applications
     // * /api/v1/const/gateway_applications
     // * /insight/top_app_by-bytes?wired=true
@@ -24,24 +24,24 @@ type Service struct {
     ClientLimitDown               *int                       `json:"client_limit_down,omitempty"`
     // 0 means unlimited
     ClientLimitUp                 *int                       `json:"client_limit_up,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`. 0-63 or variable
+    // For SSR only, when `traffic_type`==`custom`. 0-63 or variable
     Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
     // enum: `non_revertable`, `none`, `revertable`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
-    // if `type`==`custom`, web filtering
+    // If `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                            *uuid.UUID                 `json:"id,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
+    // For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
     MaxJitter                     *ServiceMaxJitter          `json:"max_jitter,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
+    // For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
     MaxLatency                    *ServiceMaxLatency         `json:"max_latency,omitempty"`
-    // for SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
+    // For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable
     MaxLoss                       *ServiceMaxLoss            `json:"max_loss,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
@@ -49,9 +49,9 @@ type Service struct {
     ServiceLimitDown              *int                       `json:"service_limit_down,omitempty"`
     // 0 means unlimited
     ServiceLimitUp                *int                       `json:"service_limit_up,omitempty"`
-    // whether to enable measure SLE
+    // Whether to enable measure SLE
     SleEnabled                    *bool                      `json:"sle_enabled,omitempty"`
-    // when `type`==`custom`, optional, if it doesn't exist, http and https is assumed
+    // When `type`==`custom`, optional, if it doesn't exist, http and https is assumed
     Specs                         []ServiceSpec              `json:"specs,omitempty"`
     SsrRelaxedTcpStateEnforcement *bool                      `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
     // when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
@@ -60,7 +60,7 @@ type Service struct {
     TrafficType                   *string                    `json:"traffic_type,omitempty"`
     // enum: `app_categories`, `apps`, `custom`, `urls`
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`
-    // when `type`==`urls`, no need for spec as URL can encode the ports being used
+    // When `type`==`urls`, no need for spec as URL can encode the ports being used
     Urls                          []string                   `json:"urls,omitempty"`
     AdditionalProperties          map[string]interface{}     `json:"_"`
 }

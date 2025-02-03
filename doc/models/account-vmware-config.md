@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClientId` | `string` | Required | customer account Client ID |
-| `ClientSecret` | `string` | Required | customer account Client Secret |
-| `InstanceUrl` | `string` | Required | customer account VMware instance URL |
+| `ClientId` | `string` | Required | Customer account Client ID |
+| `ClientSecret` | `string` | Required | Customer account Client Secret |
+| `InstanceUrl` | `string` | Required | Customer account VMware instance URL |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

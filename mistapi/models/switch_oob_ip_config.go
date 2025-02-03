@@ -12,15 +12,15 @@ import (
 type SwitchOobIpConfig struct {
     Gateway              *string                `json:"gateway,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
-    // used only if `subnet` is not specified in `networks`
+    // Used only if `subnet` is not specified in `networks`
     Netmask              *string                `json:"netmask,omitempty"`
-    // optional, the network to be used for mgmt
+    // Optional, the network to be used for mgmt
     Network              *string                `json:"network,omitempty"`
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`
-    // if supported on the platform. If enabled, DNS will be using this routing-instance, too
+    // If supported on the platform. If enabled, DNS will be using this routing-instance, too
     UseMgmtVrf           *bool                  `json:"use_mgmt_vrf,omitempty"`
-    // for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
+    // For host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
     UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

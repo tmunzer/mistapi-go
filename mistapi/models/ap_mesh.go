@@ -8,9 +8,9 @@ import (
 // ApMesh represents a ApMesh struct.
 // Mesh AP settings
 type ApMesh struct {
-    // whether mesh is enabled on this AP
+    // Whether mesh is enabled on this AP
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional
+    // Mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional
     Group                Optional[int]          `json:"group"`
     // enum: `base`, `remote`
     Role                 *ApMeshRoleEnum        `json:"role,omitempty"`

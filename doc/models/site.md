@@ -16,19 +16,19 @@ Site
 | `Address` | `*string` | Optional | full address of the site |
 | `AlarmtemplateId` | `models.Optional[uuid.UUID]` | Optional | Alarm Template ID, this takes precedence over the Org-level alarmtemplate_id |
 | `AptemplateId` | `models.Optional[uuid.UUID]` | Optional | AP Template ID, used by APs |
-| `CountryCode` | `*string` | Optional | country code for the site (for AP config generation), in two-character |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CountryCode` | `*string` | Optional | Country code for the site (for AP config generation), in two-character |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `GatewaytemplateId` | `models.Optional[uuid.UUID]` | Optional | Gateway Template ID, used by gateways |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Latlng` | [`*models.LatLng`](../../doc/models/lat-lng.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `models.Optional[uuid.UUID]` | Optional | Network Template ID, this takes precedence over Site Settings |
-| `Notes` | `*string` | Optional | optional, any notes about the site |
+| `Notes` | `*string` | Optional | Optional, any notes about the site |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RftemplateId` | `models.Optional[uuid.UUID]` | Optional | RF Template ID, this takes precedence over Site Settings |
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | SecPolicy ID |
-| `SitegroupIds` | `[]uuid.UUID` | Optional | sitegroups this site belongs to |
+| `SitegroupIds` | `[]uuid.UUID` | Optional | Sitegroups this site belongs to |
 | `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | Site Template ID |
 | `Timezone` | `*string` | Optional | Timezone the site is at<br>**Default**: `"UTC"` |
 | `Tzoffset` | `*int` | Optional | - |

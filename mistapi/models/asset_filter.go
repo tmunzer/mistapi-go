@@ -13,14 +13,14 @@ import (
 type AssetFilter struct {
     ApMac                 *string                `json:"ap_mac,omitempty"`
     Beam                  *int                   `json:"beam,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime           *float64               `json:"created_time,omitempty"`
     Disabled              *bool                  `json:"disabled,omitempty"`
-    // whether the asset filter is disabled
+    // Whether the asset filter is disabled
     Disasbled             *bool                  `json:"disasbled,omitempty"`
-    // eddystone uid namespace used to filter assets
+    // Eddystone uid namespace used to filter assets
     EddystoneUidNamespace *string                `json:"eddystone_uid_namespace,omitempty"`
-    // eddystone url used to filter assets
+    // Eddystone url used to filter assets
     EddystoneUrl          *string                `json:"eddystone_url,omitempty"`
     ForSite               *bool                  `json:"for_site,omitempty"`
     // ibeacon major value used to filter assets
@@ -29,13 +29,13 @@ type AssetFilter struct {
     IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                    *uuid.UUID             `json:"id,omitempty"`
-    // ble manufacturing-specific company-id used to filter assets
+    // BLE manufacturing-specific company-id used to filter assets
     MfgCompanyId          *int                   `json:"mfg_company_id,omitempty"`
     ModifiedTime          *float64               `json:"modified_time,omitempty"`
     Name                  string                 `json:"name"`
     OrgId                 *uuid.UUID             `json:"org_id,omitempty"`
     Rssi                  *int                   `json:"rssi,omitempty"`
-    // ble service data uuid used to filter assets
+    // BLE service data uuid used to filter assets
     ServiceUuid           *uuid.UUID             `json:"service_uuid,omitempty"`
     SiteId                *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`

@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Sessions` | [`[]models.StatsApL2tpStatSession`](../../doc/models/stats-ap-l2-tp-stat-session.md) | Optional | list of sessions |
+| `Sessions` | [`[]models.StatsApL2tpStatSession`](../../doc/models/stats-ap-l2-tp-stat-session.md) | Optional | List of sessions |
 | `State` | [`*models.L2tpStateEnum`](../../doc/models/l2-tp-state-enum.md) | Optional | enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
-| `Uptime` | `models.Optional[int]` | Optional | uptime |
+| `Uptime` | `models.Optional[int]` | Optional | Uptime |
 | `WxtunnelId` | `models.Optional[uuid.UUID]` | Optional | WxlanTunnel ID |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -13,35 +13,35 @@ Map
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `Flags` | `map[string]int` | Optional | name/val pair objects for location engine to use |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `Flags` | `map[string]int` | Optional | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
-| `Height` | `*int` | Optional | when type=image, height of the image map |
+| `Height` | `*int` | Optional | When type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | when type=google, latitude / longitude of the bottom-right corner |
-| `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | when type=google, latitude / longitude of the top-left corner |
-| `Locked` | `*bool` | Optional | whether this map is considered locked down<br>**Default**: `false` |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | When type=google, latitude / longitude of the bottom-right corner |
+| `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | When type=google, latitude / longitude of the top-left corner |
+| `Locked` | `*bool` | Optional | Whether this map is considered locked down<br>**Default**: `false` |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the map |
 | `OccupancyLimit` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Orientation` | `*int` | Optional | orientation of the map, 0 means up is north, 90 means up is west<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 359` |
-| `OriginX` | `*int` | Optional | the user-annotated x origin, pixels |
-| `OriginY` | `*int` | Optional | the user-annotated y origin, pixels |
-| `Ppm` | `*float64` | Optional | when type=image, pixels per meter |
+| `Orientation` | `*int` | Optional | Orientation of the map, 0 means up is north, 90 means up is west<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 359` |
+| `OriginX` | `*int` | Optional | User-annotated X origin, pixels |
+| `OriginY` | `*int` | Optional | User-annotated Y origin, pixels |
+| `Ppm` | `*float64` | Optional | When type=image, pixels per meter |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SitesurveyPath` | [`[]models.MapSitesurveyPathItems`](../../doc/models/map-sitesurvey-path-items.md) | Optional | sitesurvey_path<br>**Constraints**: *Minimum Items*: `0` |
-| `ThumbnailUrl` | `*string` | Optional | when type=image, the url for the thumbnail image / preview |
+| `SitesurveyPath` | [`[]models.MapSitesurveyPathItems`](../../doc/models/map-sitesurvey-path-items.md) | Optional | Sitesurvey_path<br>**Constraints**: *Minimum Items*: `0` |
+| `ThumbnailUrl` | `*string` | Optional | When type=image, the url for the thumbnail image / preview |
 | `Type` | [`*models.MapTypeEnum`](../../doc/models/map-type-enum.md) | Optional | enum: `google`, `image`<br>**Default**: `"image"` |
-| `Url` | `*string` | Optional | when type=image, the url |
-| `UseAutoOrientation` | `*bool` | Optional | whether this map uses autooreintation values or ignores them<br>**Default**: `false` |
-| `UseAutoPlacement` | `*bool` | Optional | whether this map uses autoplacement values or ignores them<br>**Default**: `false` |
+| `Url` | `*string` | Optional | When type=image, the url |
+| `UseAutoOrientation` | `*bool` | Optional | Whether this map uses autooreintation values or ignores them<br>**Default**: `false` |
+| `UseAutoPlacement` | `*bool` | Optional | Whether this map uses autoplacement values or ignores them<br>**Default**: `false` |
 | `View` | [`models.Optional[models.MapViewEnum]`](../../doc/models/map-view-enum.md) | Optional | if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain` |
-| `WallPath` | [`*models.MapWallPath`](../../doc/models/map-wall-path.md) | Optional | a JSON blob for wall definition (same format as wayfinding_path) |
-| `Wayfinding` | [`*models.MapWayfinding`](../../doc/models/map-wayfinding.md) | Optional | properties related to wayfinding |
-| `WayfindingPath` | [`*models.MapWayfindingPath`](../../doc/models/map-wayfinding-path.md) | Optional | a JSON blob for wayfinding (using Dijkstra’s algorithm) |
-| `Width` | `*int` | Optional | when type=image, width of the image map |
+| `WallPath` | [`*models.MapWallPath`](../../doc/models/map-wall-path.md) | Optional | JSON blob for wall definition (same format as wayfinding_path) |
+| `Wayfinding` | [`*models.MapWayfinding`](../../doc/models/map-wayfinding.md) | Optional | Properties related to wayfinding |
+| `WayfindingPath` | [`*models.MapWayfindingPath`](../../doc/models/map-wayfinding-path.md) | Optional | JSON blob for wayfinding (using Dijkstra’s algorithm) |
+| `Width` | `*int` | Optional | When type=image, width of the image map |
 | `WidthM` | `*float64` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

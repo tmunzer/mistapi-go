@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApLoc` | `[]float64` | Optional | coordinates (if any) of reporting AP (updated once in 60s per client) |
-| `Beam` | `int` | Required | antenna index, from 1-8, clock-wise starting from the LED |
-| `DeviceId` | `uuid.UUID` | Required | device id of the reporting AP |
+| `Beam` | `int` | Required | Antenna index, from 1-8, clock-wise starting from the LED |
+| `DeviceId` | `uuid.UUID` | Required | Device id of the reporting AP |
 | `IbeaconMajor` | `*int` | Optional | - |
 | `IbeaconMinor` | `*int` | Optional | - |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | - |
@@ -23,8 +23,8 @@
 | `MfgCompanyId` | `*string` | Optional | BLE manufacturing company ID |
 | `MfgData` | `*string` | Optional | BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
 | `OrgId` | `uuid.UUID` | Required | - |
-| `Rssi` | `float64` | Required | signal strength |
-| `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | list of service data packets heard from the asset/ beacon |
+| `Rssi` | `float64` | Required | Signal strength |
+| `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | List of service data packets heard from the asset/ beacon |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Port` | `*string` | Optional | the port on which to clear the detected BPDU error, or `all` for all ports |
+| `Port` | `*string` | Optional | Port on which to clear the detected BPDU error, or `all` for all ports |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

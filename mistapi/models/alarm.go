@@ -9,7 +9,7 @@ import (
 )
 
 // Alarm represents a Alarm struct.
-// additional information per alarm type
+// Additional information per alarm type
 type Alarm struct {
     // UUID of the admin who acked the alarm
     AckAdminId           *uuid.UUID             `json:"ack_admin_id,omitempty"`

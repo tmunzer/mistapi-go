@@ -15,7 +15,7 @@
 | `BiosVersion` | `models.Optional[string]` | Optional | - |
 | `CpldVersion` | `models.Optional[string]` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
-| `Errors` | [`[]models.ModuleStatItemErrorsItems`](../../doc/models/module-stat-item-errors-items.md) | Optional | used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type. |
+| `Errors` | [`[]models.ModuleStatItemErrorsItems`](../../doc/models/module-stat-item-errors-items.md) | Optional | Used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type. |
 | `Fans` | [`[]models.ModuleStatItemFansItems`](../../doc/models/module-stat-item-fans-items.md) | Optional | **Constraints**: *Unique Items Required* |
 | `FpcIdx` | `*int` | Optional | - |
 | `FpgaVersion` | `models.Optional[string]` | Optional | - |
@@ -39,7 +39,7 @@
 | `Uptime` | `models.Optional[int]` | Optional | - |
 | `VcLinks` | [`[]models.ModuleStatItemVcLinksItem`](../../doc/models/module-stat-item-vc-links-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `VcMode` | `models.Optional[string]` | Optional | - |
-| `VcRole` | `models.Optional[string]` | Optional | master / backup / linecard |
+| `VcRole` | `models.Optional[string]` | Optional | enum: `master`, `backup`, `linecard` |
 | `VcState` | `models.Optional[string]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

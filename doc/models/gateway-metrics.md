@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ConfigSuccess` | `*float64` | Optional | config success score |
-| `VersionCompliance` | [`*models.GatewayComplianceVersion`](../../doc/models/gateway-compliance-version.md) | Optional | version compliance score, major version for gateway, type |
+| `ConfigSuccess` | `*float64` | Optional | Config success score |
+| `VersionCompliance` | [`*models.GatewayComplianceVersion`](../../doc/models/gateway-compliance-version.md) | Optional | Version compliance score, major version for gateway, type |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

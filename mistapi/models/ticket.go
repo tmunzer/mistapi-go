@@ -17,7 +17,7 @@ type Ticket struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Requester            *string                `json:"requester,omitempty"`
-    // email of the requester
+    // Email of the requester
     RequesterEmail       *string                `json:"requester_email,omitempty"`
     // Ticket status. enum:
     // * open: ticket is open, Mist is working on it
@@ -26,7 +26,7 @@ type Ticket struct {
     // * closed: ticket is archived and cannot be changed.
     Status               *TicketStatusEnum      `json:"status,omitempty"`
     Subject              string                 `json:"subject"`
-    // question (default) / bug / critical
+    // Question (default) / bug / critical
     Type                 string                 `json:"type"`
     UpdatedAt            *int                   `json:"updated_at,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

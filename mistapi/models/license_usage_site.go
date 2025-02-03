@@ -9,18 +9,18 @@ import (
 
 // LicenseUsageSite represents a LicenseUsageSite struct.
 type LicenseUsageSite struct {
-    // license entitlement for the entire org
+    // License entitlement for the entire org
     OrgEntitled          map[string]int         `json:"org_entitled"`
-    // eligibility for the Switch SLE
+    // Eligibility for the Switch SLE
     SvnaEnabled          bool                   `json:"svna_enabled"`
     TrialEnabled         bool                   `json:"trial_enabled"`
-    // subscriptions and their quantities
+    // Subscriptions and their quantities
     Usages               map[string]int         `json:"usages"`
-    // eligibility for the AP/Client SLE
+    // Eligibility for the AP/Client SLE
     VnaEligible          bool                   `json:"vna_eligible"`
-    // if True, Conversational Assistant and Marvis Action available
+    // If True, Conversational Assistant and Marvis Action available
     VnaUi                bool                   `json:"vna_ui"`
-    // eligibility for the WAN SLE
+    // Eligibility for the WAN SLE
     WvnaEligible         bool                   `json:"wvna_eligible"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

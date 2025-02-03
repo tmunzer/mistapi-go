@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | minutes the leds should keep flashing<br>**Default**: `5`<br>**Constraints**: `>= 1`, `<= 120` |
-| `Mac` | `*string` | Optional | for virtual chassis, the MAC of the member |
+| `Duration` | `*int` | Optional | Minutes the leds should keep flashing<br>**Default**: `5`<br>**Constraints**: `>= 1`, `<= 120` |
+| `Mac` | `*string` | Optional | For virtual chassis, the MAC of the member |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

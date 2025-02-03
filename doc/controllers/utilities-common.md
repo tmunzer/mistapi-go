@@ -240,7 +240,7 @@ ClearSiteDeviceMacTable(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -979,7 +979,7 @@ ShowSiteDeviceArpTable(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowArp`](../../doc/models/utils-show-arp.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowArp`](../../doc/models/utils-show-arp.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -1074,7 +1074,7 @@ ShowSiteDeviceBgpSummary(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowBgpRummary`](../../doc/models/utils-show-bgp-rummary.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowBgpRummary`](../../doc/models/utils-show-bgp-rummary.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -1192,7 +1192,7 @@ ShowSiteDeviceEvpnDatabase(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowEvpnDatabase`](../../doc/models/utils-show-evpn-database.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowEvpnDatabase`](../../doc/models/utils-show-evpn-database.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -1272,7 +1272,7 @@ ShowSiteDeviceForwardingTable(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowForwardingTable`](../../doc/models/utils-show-forwarding-table.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowForwardingTable`](../../doc/models/utils-show-forwarding-table.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -1350,7 +1350,7 @@ ShowSiteDeviceMacTable(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsMacTable`](../../doc/models/utils-mac-table.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 

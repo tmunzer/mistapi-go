@@ -15,7 +15,7 @@
 | `EnableArpSpoofCheck` | `*bool` | Optional | Enable for dynamic ARP inspection check |
 | `EnableIpSourceGuard` | `*bool` | Optional | Enable for check for forging source IP address |
 | `Enabled` | `*bool` | Optional | - |
-| `Networks` | `[]string` | Optional | if `all_networks`==`false`, list of network with DHCP snooping enabled |
+| `Networks` | `[]string` | Optional | If `all_networks`==`false`, list of network with DHCP snooping enabled |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

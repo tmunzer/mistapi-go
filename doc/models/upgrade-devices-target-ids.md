@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DownloadRequested` | `[]string` | Optional | list of devices MAC Addresses which cloud has requested to download firmware |
-| `Downloaded` | `[]string` | Optional | list of devices MAC Addresses which have the firmware downloaded |
-| `Failed` | `[]string` | Optional | list of devices MAC Addresses which have failed to upgrade |
-| `RebootInProgress` | `[]string` | Optional | list of devices MAC Addresses which are rebooting |
-| `Rebooted` | `[]string` | Optional | list of devices MAC Addresses which have rebooted successfully |
-| `Scheduled` | `[]string` | Optional | list of devices MAC Addresses which cloud has scheduled an upgrade for |
-| `Skipped` | `[]string` | Optional | list of devices MAC Addresses which skipped upgrade since requested version was same as running version. Use force to always upgrade |
-| `Total` | `*int` | Optional | count of devices part of this upgrade |
-| `Upgraded` | `[]string` | Optional | count of devices which have upgraded successfully |
+| `DownloadRequested` | `[]string` | Optional | List of devices MAC Addresses which cloud has requested to download firmware |
+| `Downloaded` | `[]string` | Optional | List of devices MAC Addresses which have the firmware downloaded |
+| `Failed` | `[]string` | Optional | List of devices MAC Addresses which have failed to upgrade |
+| `RebootInProgress` | `[]string` | Optional | List of devices MAC Addresses which are rebooting |
+| `Rebooted` | `[]string` | Optional | List of devices MAC Addresses which have rebooted successfully |
+| `Scheduled` | `[]string` | Optional | List of devices MAC Addresses which cloud has scheduled an upgrade for |
+| `Skipped` | `[]string` | Optional | List of devices MAC Addresses which skipped upgrade since requested version was same as running version. Use force to always upgrade |
+| `Total` | `*int` | Optional | Count of devices part of this upgrade |
+| `Upgraded` | `[]string` | Optional | Count of devices which have upgraded successfully |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

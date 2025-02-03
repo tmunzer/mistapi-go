@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccountKey` | `string` | Required | the account key that has access to the map |
-| `DefaultLevelId` | `int` | Required | micello floor/level id |
-| `MapId` | `uuid.UUID` | Required | micello map id |
-| `VendorName` | `string` | Required, Constant | the vendor ‘micello’. enum: `micello`<br>**Value**: `"micello"` |
+| `AccountKey` | `string` | Required | Account key that has access to the map |
+| `DefaultLevelId` | `int` | Required | Micello floor/level id |
+| `MapId` | `uuid.UUID` | Required | Micello map id |
+| `VendorName` | `string` | Required, Constant | The vendor ‘micello’. enum: `micello`<br>**Value**: `"micello"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

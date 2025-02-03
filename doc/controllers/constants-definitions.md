@@ -180,7 +180,7 @@ ListApChannels(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `*string` | Query, Optional | country code, in two-character<br>**Constraints**: *Pattern*: `^[a-zA-Z]{2}$` |
+| `countryCode` | `*string` | Query, Optional | Country code, in two-character<br>**Constraints**: *Pattern*: `^[a-zA-Z]{2}$` |
 
 ## Response Type
 
@@ -900,7 +900,7 @@ ListCountryCodes(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `extend` | `*bool` | Query, Optional | will include more country codes if true<br>**Default**: `false` |
+| `extend` | `*bool` | Query, Optional | Will include more country codes if true<br>**Default**: `false` |
 
 ## Response Type
 
@@ -1036,7 +1036,7 @@ if err != nil {
 ```json
 {
   "bytes": {
-    "description": "aggregated bytes over time",
+    "description": "Aggregated bytes over time",
     "example": [
       185,
       197,
@@ -1075,7 +1075,7 @@ if err != nil {
     "unit": "byte"
   },
   "num_clients": {
-    "description": "number of client over time",
+    "description": "Number of client over time",
     "example": [
       18,
       null,
@@ -1265,7 +1265,7 @@ ListStates(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `string` | Query, Required | country code, in [two-character](../../doc/controllers/constants-definitions.md#list-country-codes) |
+| `countryCode` | `string` | Query, Required | Country code, in [two-character](../../doc/controllers/constants-definitions.md#list-country-codes) |
 
 ## Response Type
 

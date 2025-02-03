@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AlertEvents` | [`[]models.WebhookOccupancyAlertsEventAlertEventsItems`](../../doc/models/webhook-occupancy-alerts-event-alert-events-items.md) | Optional | list of occupancy alerts for non-compliance zones within the site detected around the same time<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AlertEvents` | [`[]models.WebhookOccupancyAlertsEventAlertEventsItems`](../../doc/models/webhook-occupancy-alerts-event-alert-events-items.md) | Optional | List of occupancy alerts for non-compliance zones within the site detected around the same time<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `ForSite` | `*bool` | Optional | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `SiteName` | `string` | Required | - |

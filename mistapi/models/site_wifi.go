@@ -9,27 +9,27 @@ import (
 // Wi-Fi site settings
 type SiteWifi struct {
     CiscoEnabled                      *bool                          `json:"cisco_enabled,omitempty"`
-    // whether to disable 11k
+    // Whether to disable 11k
     Disable11k                        *bool                          `json:"disable_11k,omitempty"`
     DisableRadiosWhenPowerConstrained *bool                          `json:"disable_radios_when_power_constrained,omitempty"`
-    // when proxy_arp is enabled, check for arp spoofing.
+    // When proxy_arp is enabled, check for arp spoofing.
     EnableArpSpoofCheck               *bool                          `json:"enable_arp_spoof_check,omitempty"`
     EnableSharedRadioScanning         *bool                          `json:"enable_shared_radio_scanning,omitempty"`
-    // enable WIFI feature (using SUB-MAN license)
+    // Enable WIFI feature (using SUB-MAN license)
     Enabled                           *bool                          `json:"enabled,omitempty"`
-    // whether to locate connected clients
+    // Whether to locate connected clients
     LocateConnected                   *bool                          `json:"locate_connected,omitempty"`
-    // whether to locate unconnected clients
+    // Whether to locate unconnected clients
     LocateUnconnected                 *bool                          `json:"locate_unconnected,omitempty"`
-    // whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will distrupt the connection. If roaming is desired, keep it disabled.
+    // Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will distrupt the connection. If roaming is desired, keep it disabled.
     MeshAllowDfs                      *bool                          `json:"mesh_allow_dfs,omitempty"`
-    // used to enable/disable CRM
+    // Used to enable/disable CRM
     MeshEnableCrm                     *bool                          `json:"mesh_enable_crm,omitempty"`
-    // whether to enable Mesh feature for the site
+    // Whether to enable Mesh feature for the site
     MeshEnabled                       *bool                          `json:"mesh_enabled,omitempty"`
-    // optional passphrase of mesh networking, default is generated randomly
+    // Optional passphrase of mesh networking, default is generated randomly
     MeshPsk                           Optional[string]               `json:"mesh_psk"`
-    // optional ssid of mesh networking, default is based on site_id
+    // Optional ssid of mesh networking, default is based on site_id
     MeshSsid                          Optional[string]               `json:"mesh_ssid"`
     // enum: `default`, `disabled`, `enabled`
     ProxyArp                          Optional[SiteWifiProxyArpEnum] `json:"proxy_arp"`

@@ -32,7 +32,7 @@
 | `RxPkts` | `models.Optional[int]` | Optional | - |
 | `TxBytes` | `models.Optional[int64]` | Optional | - |
 | `TxPkts` | `models.Optional[int]` | Optional | - |
-| `TxResets` | `models.Optional[int]` | Optional | resets due to tx hung |
+| `TxResets` | `models.Optional[int]` | Optional | Resets due to tx hung |
 | `Uuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -8,17 +8,17 @@ import (
 // SwitchRadiusConfig represents a SwitchRadiusConfig struct.
 // Junos Radius config
 type SwitchRadiusConfig struct {
-    // how frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
+    // How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
     AcctInterimInterval  *int                   `json:"acct_interim_interval,omitempty"`
     AcctServers          []RadiusAcctServer     `json:"acct_servers,omitempty"`
     AuthServers          []RadiusAuthServer     `json:"auth_servers,omitempty"`
-    // radius auth session retries
+    // Radius auth session retries
     AuthServersRetries   *int                   `json:"auth_servers_retries,omitempty"`
-    // radius auth session timeout
+    // Radius auth session timeout
     AuthServersTimeout   *int                   `json:"auth_servers_timeout,omitempty"`
-    // use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
+    // Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
     Network              *string                `json:"network,omitempty"`
-    // use `network`or `source_ip`
+    // Use `network`or `source_ip`
     SourceIp             *string                `json:"source_ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

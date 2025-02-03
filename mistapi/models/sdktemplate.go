@@ -13,17 +13,17 @@ import (
 type Sdktemplate struct {
     BgImage              *string                `json:"bg_image,omitempty"`
     BtnFlrBgcolor        *string                `json:"btn_flr_bgcolor,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // whether this is the default template when there are multiple templates
+    // Whether this is the default template when there are multiple templates
     Default              *bool                  `json:"default,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     HeaderTxt            *string                `json:"header_txt,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // name for identification purpose
+    // Name for identification purpose
     Name                 string                 `json:"name"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SearchTxtcolor       *string                `json:"search_txtcolor,omitempty"`

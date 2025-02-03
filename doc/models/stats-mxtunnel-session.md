@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `LocalSid` | `int` | Required | remote sessions id (dynamically unless Tunnel is said to be static) |
+| `LocalSid` | `int` | Required | Remote sessions id (dynamically unless Tunnel is said to be static) |
 | `RemoteId` | `string` | Required | WxlanTunnel Remote ID |
-| `RemoteSid` | `int` | Required | remote sessions id (dynamically unless Tunnel is said to be static) |
+| `RemoteSid` | `int` | Required | Remote sessions id (dynamically unless Tunnel is said to be static) |
 | `State` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

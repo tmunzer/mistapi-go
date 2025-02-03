@@ -6,7 +6,7 @@ import (
 )
 
 // SiteSettingAutoPlacement represents a SiteSettingAutoPlacement struct.
-// if we're able to determine its x/y/orientation, this will be populated
+// If we're able to determine its x/y/orientation, this will be populated
 type SiteSettingAutoPlacement struct {
     Orientation          *int                   `json:"orientation,omitempty"`
     X                    *float64               `json:"x,omitempty"`

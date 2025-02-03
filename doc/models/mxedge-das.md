@@ -1,7 +1,7 @@
 
 # Mxedge Das
 
-configure cloud-assisted dynamic authorization service on this cluster of mist edges
+Configure cloud-assisted dynamic authorization service on this cluster of mist edges
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,7 +13,7 @@ configure cloud-assisted dynamic authorization service on this cluster of mist e
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CoaServers` | [`[]models.MxedgeDasCoaServer`](../../doc/models/mxedge-das-coa-server.md) | Optional | dynamic authorization clients configured to send CoA\|DM to mist edges on port 3799 |
+| `CoaServers` | [`[]models.MxedgeDasCoaServer`](../../doc/models/mxedge-das-coa-server.md) | Optional | Dynamic authorization clients configured to send CoA\|DM to mist edges on port 3799 |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

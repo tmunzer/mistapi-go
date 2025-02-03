@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | window where a trigger will be detected and action to be taken (in seconds) |
-| `Threshold` | `*int` | Optional | count of events to trigger |
+| `Duration` | `*int` | Optional | Window where a trigger will be detected and action to be taken (in seconds) |
+| `Threshold` | `*int` | Optional | Count of events to trigger |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

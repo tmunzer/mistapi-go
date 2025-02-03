@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EnableP2p` | `*bool` | Optional | whether to allow local AP-to-AP FW upgrade |
-| `Force` | `*bool` | Optional | whether to force upgrade when requested version is same as running version |
+| `EnableP2p` | `*bool` | Optional | Whether to allow local AP-to-AP FW upgrade |
+| `Force` | `*bool` | Optional | Whether to force upgrade when requested version is same as running version |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
-| `TargetVersion` | `*string` | Optional | version to upgrade to |
+| `TargetVersion` | `*string` | Optional | Version to upgrade to |
 | `Upgrades` | [`[]models.UpgradeOrgDevicesUpgrade`](../../doc/models/upgrade-org-devices-upgrade.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

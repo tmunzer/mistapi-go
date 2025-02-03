@@ -1,7 +1,7 @@
 
 # Org Service Policy Antivirus
 
-for SRX-only
+For SRX-only
 
 *This model accepts additional fields of type interface{}.*
 
@@ -15,7 +15,7 @@ for SRX-only
 |  --- | --- | --- | --- |
 | `AvprofileId` | `*uuid.UUID` | Optional | org-level AV Profile can be used, this takes precendence over 'profile' |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Profile` | `*string` | Optional | default / noftp / httponly / or keys from av_profiles |
+| `Profile` | `*string` | Optional | Default / noftp / httponly / or keys from av_profiles |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

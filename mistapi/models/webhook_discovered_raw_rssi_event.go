@@ -12,9 +12,9 @@ import (
 type WebhookDiscoveredRawRssiEvent struct {
     // coordinates (if any) of reporting AP (updated once in 60s per client)
     ApLoc                []float64              `json:"ap_loc,omitempty"`
-    // antenna index, from 1-8, clock-wise starting from the LED
+    // Antenna index, from 1-8, clock-wise starting from the LED
     Beam                 int                    `json:"beam"`
-    // device id of the reporting AP
+    // Device id of the reporting AP
     DeviceId             uuid.UUID              `json:"device_id"`
     IbeaconMajor         *int                   `json:"ibeacon_major,omitempty"`
     IbeaconMinor         *int                   `json:"ibeacon_minor,omitempty"`
@@ -28,9 +28,9 @@ type WebhookDiscoveredRawRssiEvent struct {
     // BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
     MfgData              *string                `json:"mfg_data,omitempty"`
     OrgId                uuid.UUID              `json:"org_id"`
-    // signal strength
+    // Signal strength
     Rssi                 float64                `json:"rssi"`
-    // list of service data packets heard from the asset/ beacon
+    // List of service data packets heard from the asset/ beacon
     ServicePackets       []ServicePacket        `json:"service_packets,omitempty"`
     SiteId               uuid.UUID              `json:"site_id"`
     Timestamp            *int                   `json:"timestamp,omitempty"`

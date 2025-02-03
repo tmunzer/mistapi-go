@@ -7,7 +7,7 @@ import (
 
 // StatsSwitchApRedundancy represents a StatsSwitchApRedundancy struct.
 type StatsSwitchApRedundancy struct {
-    // for a VC / stacked switches.
+    // For a VC / stacked switches.
     Modules                    map[string]StatsSwitchApRedundancyModule `json:"modules,omitempty"`
     NumAps                     *int                                     `json:"num_aps,omitempty"`
     NumApsWithSwitchRedundancy *int                                     `json:"num_aps_with_switch_redundancy,omitempty"`

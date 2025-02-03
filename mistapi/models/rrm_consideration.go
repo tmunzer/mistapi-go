@@ -11,7 +11,7 @@ import (
 type RrmConsideration struct {
     Channel              int                    `json:"channel"`
     Noise                float64                `json:"noise"`
-    // the avg RSSI heard from other APs (that does NOT belongs to the same site)
+    // Avg RSSI heard from other APs (that does NOT belongs to the same site)
     OtherRssi            *float64               `json:"other_rssi,omitempty"`
     // SSID from other AP that we heard from with the max RSSI
     OtherSsid            *string                `json:"other_ssid,omitempty"`

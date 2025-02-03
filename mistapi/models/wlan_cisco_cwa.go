@@ -8,11 +8,11 @@ import (
 // WlanCiscoCwa represents a WlanCiscoCwa struct.
 // Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html
 type WlanCiscoCwa struct {
-    // list of hostnames without http(s):// (matched by substring)
+    // List of hostnames without http(s):// (matched by substring)
     AllowedHostnames     []string               `json:"allowed_hostnames,omitempty"`
-    // list of CIDRs
+    // List of CIDRs
     AllowedSubnets       []string               `json:"allowed_subnets,omitempty"`
-    // list of blocked CIDRs
+    // List of blocked CIDRs
     BlockedSubnets       []string               `json:"blocked_subnets,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

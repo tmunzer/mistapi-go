@@ -9,7 +9,7 @@ import (
 )
 
 // EventsDeviceAp represents a EventsDeviceAp struct.
-// ap events
+// AP events
 type EventsDeviceAp struct {
     Ap                   *string                `json:"ap,omitempty"`
     Apfw                 *string                `json:"apfw,omitempty"`

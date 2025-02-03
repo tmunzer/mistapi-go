@@ -12,10 +12,10 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllowMist` | `*bool` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `LogoUrl` | `*string` | Optional | For advanced tier (uMSPs) only |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `Tier` | [`*models.MspTierEnum`](../../doc/models/msp-tier-enum.md) | Optional | enum: `advanced`, `base`<br>**Default**: `"base"` |
 | `Url` | `*string` | Optional | For advanced tier (uMSPs) only |

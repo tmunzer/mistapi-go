@@ -13,10 +13,10 @@ type UtilsServicePing struct {
     Host                 string                 `json:"host"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-    // ping packet takes the same path as the service
+    // Ping packet takes the same path as the service
     Service              string                 `json:"service"`
     Size                 *int                   `json:"size,omitempty"`
-    // tenant context in which the packet is sent
+    // Tenant context in which the packet is sent
     Tenant               *string                `json:"tenant,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

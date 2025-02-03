@@ -7,9 +7,9 @@ import (
 
 // GatewayMetrics represents a GatewayMetrics struct.
 type GatewayMetrics struct {
-    // config success score
+    // Config success score
     ConfigSuccess        *float64                  `json:"config_success,omitempty"`
-    // version compliance score, major version for gateway, type
+    // Version compliance score, major version for gateway, type
     VersionCompliance    *GatewayComplianceVersion `json:"version_compliance,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
 }

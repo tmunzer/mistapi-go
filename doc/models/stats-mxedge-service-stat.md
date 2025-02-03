@@ -11,12 +11,12 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ExtIp` | `*string` | Optional | external IP from ep-terminator’s point of view. valid only for service having its own cloud connection |
-| `LastSeen` | `*float64` | Optional | timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services) |
-| `PackageState` | `*string` | Optional | package/service installation state. |
-| `PackageVersion` | `*string` | Optional | package/service installation state. |
-| `RunningState` | `*string` | Optional | service running state. |
-| `Uptime` | `*int` | Optional | service uptime. |
+| `ExtIp` | `*string` | Optional | External IP from ep-terminator’s point of view. valid only for service having its own cloud connection |
+| `LastSeen` | `*float64` | Optional | Timestamp when the last stats is seen (cloud unix time, in second). valid only for service having its own stats or whole system (last among last_seen of all services) |
+| `PackageState` | `*string` | Optional | Package/service installation state. |
+| `PackageVersion` | `*string` | Optional | Package/service installation state. |
+| `RunningState` | `*string` | Optional | Service running state. |
+| `Uptime` | `*int` | Optional | Service uptime. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

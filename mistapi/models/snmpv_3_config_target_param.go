@@ -10,13 +10,13 @@ type Snmpv3ConfigTargetParam struct {
     // enum: `v1`, `v2c`, `v3`
     MessageProcessingModel *Snmpv3ConfigTargetParamMessProcessModelEnum `json:"message_processing_model,omitempty"`
     Name                   *string                                      `json:"name,omitempty"`
-    // refer to profile-name in notify_filter
+    // Refer to profile-name in notify_filter
     NotifyFilter           *string                                      `json:"notify_filter,omitempty"`
     // enum: `authentication`, `none`, `privacy`
     SecurityLevel          *Snmpv3ConfigTargetParamSecurityLevelEnum    `json:"security_level,omitempty"`
     // enum: `usm`, `v1`, `v2c`
     SecurityModel          *Snmpv3ConfigTargetParamSecurityModelEnum    `json:"security_model,omitempty"`
-    // refer to security_name in usm
+    // Refer to security_name in usm
     SecurityName           *string                                      `json:"security_name,omitempty"`
     AdditionalProperties   map[string]interface{}                       `json:"_"`
 }

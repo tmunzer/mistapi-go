@@ -9,15 +9,15 @@ import (
 
 // AccountMobicontrolConfig represents a AccountMobicontrolConfig struct.
 type AccountMobicontrolConfig struct {
-    // customer account Client ID
+    // Customer account Client ID
     ClientId             string                 `json:"client_id"`
-    // customer account Client Secret
+    // Customer account Client Secret
     ClientSecret         string                 `json:"client_secret"`
-    // customer account MobiControl instance URL
+    // Customer account MobiControl instance URL
     InstanceUrl          string                 `json:"instance_url"`
-    // customer account password instance URL
+    // Customer account password instance URL
     Password             string                 `json:"password"`
-    // customer account username
+    // Customer account username
     Username             string                 `json:"username"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Switch Configs
 
-if custom vlan settings are desired
+If custom vlan settings are desired
 
 *This model accepts additional fields of type [models.MxedgeTuntermSwitchConfig](../../doc/models/mxedge-tunterm-switch-config.md).*
 

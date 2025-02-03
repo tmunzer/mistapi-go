@@ -7,7 +7,7 @@ import (
 
 // StatsMxedgeLagStat represents a StatsMxedgeLagStat struct.
 type StatsMxedgeLagStat struct {
-    // list of ports active on the LAG defined by the LACP
+    // List of ports active on the LAG defined by the LACP
     ActivePorts          []string               `json:"active_ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

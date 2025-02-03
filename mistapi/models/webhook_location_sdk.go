@@ -10,9 +10,9 @@ import (
 // WebhookLocationSdk represents a WebhookLocationSdk struct.
 // Location SDK sample
 type WebhookLocationSdk struct {
-    // list of events
+    // List of events
     Events               []WebhookLocationSdkEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                    `json:"topic"`
     AdditionalProperties map[string]interface{}    `json:"_"`
 }

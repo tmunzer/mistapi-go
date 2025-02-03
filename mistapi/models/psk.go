@@ -13,7 +13,7 @@ import (
 type Psk struct {
     // sso id for psk created from psk portal
     AdminSsoId             *string                `json:"admin_sso_id,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime            *float64               `json:"created_time,omitempty"`
     // email to send psk expiring notifications to
     Email                  *string                `json:"email,omitempty"`
@@ -23,13 +23,13 @@ type Psk struct {
     ExpiryNotificationTime *int                   `json:"expiry_notification_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                     *uuid.UUID             `json:"id,omitempty"`
-    // if `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding`
+    // If `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding`
     Mac                    *string                `json:"mac,omitempty"`
-    // if `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(11:22:*) or both. This list is capped at 5000
+    // If `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(11:22:*) or both. This list is capped at 5000
     Macs                   []string               `json:"macs,omitempty"`
     // For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)
     MaxUsage               *int                   `json:"max_usage,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime           *float64               `json:"modified_time,omitempty"`
     Name                   string                 `json:"name"`
     Note                   *string                `json:"note,omitempty"`

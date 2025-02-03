@@ -8,15 +8,15 @@ import (
 // OrgSettingPasswordPolicy represents a OrgSettingPasswordPolicy struct.
 // password policy
 type OrgSettingPasswordPolicy struct {
-    // whether the policy is enabled
+    // Whether the policy is enabled
     Enabled               *bool                  `json:"enabled,omitempty"`
     // password expiry in days
     ExpiryInDays          *int                   `json:"expiry_in_days,omitempty"`
-    // required password length
+    // Required password length
     MinLength             *int                   `json:"min_length,omitempty"`
-    // whether to require special character
+    // Whether to require special character
     RequiresSpecialChar   *bool                  `json:"requires_special_char,omitempty"`
-    // whether to require two-factor auth
+    // Whether to require two-factor auth
     RequiresTwoFactorAuth *bool                  `json:"requires_two_factor_auth,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
 }

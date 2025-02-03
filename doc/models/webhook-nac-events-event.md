@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | random mac |
-| `AuthType` | `*string` | Optional | authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `AuthType` | `*string` | Optional | Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `Bssid` | `*string` | Optional | BSSID |
 | `DryrunNacruleId` | `*uuid.UUID` | Optional | NAC Policy Dry Run Rule ID, if present and matched |
 | `DryrunNacruleMatched` | `*bool` | Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |
@@ -21,14 +21,14 @@
 | `Mac` | `*string` | Optional | MAC address |
 | `NacruleId` | `*uuid.UUID` | Optional | NAC Policy Rule ID, if matched |
 | `NacruleMatched` | `*bool` | Optional | NAC Policy Rule Matched |
-| `NasVendor` | `*string` | Optional | vendor of NAS device |
+| `NasVendor` | `*string` | Optional | Vendor of NAS device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RandomMac` | `*bool` | Optional | AP MAC |
 | `RespAttrs` | `[]string` | Optional | Radius attributes returned by NAC to NAS Devive |
-| `SiteId` | `*uuid.UUID` | Optional | site id if assigned, null if not assigned |
+| `SiteId` | `*uuid.UUID` | Optional | Site id if assigned, null if not assigned |
 | `Ssid` | `*string` | Optional | SSID |
-| `Timestamp` | `*float64` | Optional | start time, in epoch |
-| `Type` | `*string` | Optional | event type, e.g. NAC_CLIENT_PERMIT |
+| `Timestamp` | `*float64` | Optional | Start time, in epoch |
+| `Type` | `*string` | Optional | Event type, e.g. NAC_CLIENT_PERMIT |
 | `Username` | `*string` | Optional | Username presented by the client |
 | `Vlan` | `*string` | Optional | Vlan ID |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

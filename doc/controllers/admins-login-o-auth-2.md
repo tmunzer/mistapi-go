@@ -33,7 +33,7 @@ GetOauth2AuthorizationUrlForLogin(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `provider` | `string` | Template, Required | - |
-| `forward` | `*string` | Query, Optional | callback URL |
+| `forward` | `*string` | Query, Optional | Callback URL |
 
 ## Response Type
 

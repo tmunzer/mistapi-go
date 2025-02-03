@@ -13,24 +13,24 @@ type PskPortal struct {
     // enum: `sponsor`, `sso`
     Auth                         *PskPortalAuthEnum        `json:"auth,omitempty"`
     BgImageUrl                   *string                   `json:"bg_image_url,omitempty"`
-    // used to cleanup exited psk when portal delete or ssid changed
+    // Used to cleanup exited psk when portal delete or ssid changed
     CleanupPsk                   *bool                     `json:"cleanup_psk,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime                  *float64                  `json:"created_time,omitempty"`
     // unit min
     ExpireTime                   *int                      `json:"expire_time,omitempty"`
     // Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire
     ExpiryNotificationTime       *int                      `json:"expiry_notification_time,omitempty"`
-    // only if `type`==`admin`
+    // Only if `type`==`admin`
     HidePsksCreatedByOtherAdmins *bool                     `json:"hide_psks_created_by_other_admins,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                           *uuid.UUID                `json:"id,omitempty"`
     // `max_usage`==`0` means unlimited
     MaxUsage                     *int                      `json:"max_usage,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime                 *float64                  `json:"modified_time,omitempty"`
     Name                         string                    `json:"name"`
-    // optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either
+    // Optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either
     NotificationRenewUrl         *string                   `json:"notification_renew_url,omitempty"`
     // If set to true, reminder notification will be sent when psk is about to expire
     NotifyExpiry                 *bool                     `json:"notify_expiry,omitempty"`
@@ -42,7 +42,7 @@ type PskPortal struct {
     Role                         *string                   `json:"role,omitempty"`
     // intended SSID
     Ssid                         string                    `json:"ssid"`
-    // if `auth`==`sso`
+    // If `auth`==`sso`
     Sso                          *PskPortalSso             `json:"sso,omitempty"`
     // UI customization
     TemplateUrl                  *string                   `json:"template_url,omitempty"`

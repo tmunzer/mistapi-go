@@ -14,7 +14,7 @@ type NacPortalSso struct {
     Issuer               *string                      `json:"issuer,omitempty"`
     NameidFormat         *string                      `json:"nameid_format,omitempty"`
     SsoRoleMatching      []NacPortalSsoRoleMatching   `json:"sso_role_matching,omitempty"`
-    // if it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
+    // If it's desired to inject a role into Cert's Subject (so it can be used later on in policy)
     UseSsoRoleForCert    *bool                        `json:"use_sso_role_for_cert,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

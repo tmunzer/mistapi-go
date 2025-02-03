@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ports` | `[]string` | Optional | a list of ports on which to clear mac addresses. must include logical unit number |
+| `Ports` | `[]string` | Optional | List of ports on which to clear mac addresses. must include logical unit number |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -11,7 +11,7 @@ import (
 type SsrUpgrade struct {
     // upgrade channel to follow. enum: `alpha`, `beta`, `stable`
     Channel              *SsrUpgradeChannelEnum `json:"channel,omitempty"`
-    // reboot start time in epoch seconds, default is start_time, -1 disables reboot
+    // Reboot start time in epoch seconds, default is start_time, -1 disables reboot
     RebootAt             *int                   `json:"reboot_at,omitempty"`
     // 128T firmware download start time in epoch seconds, default is now, -1 disables download
     StartTime            *int                   `json:"start_time,omitempty"`

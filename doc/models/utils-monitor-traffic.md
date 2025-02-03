@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Port` | `*string` | Optional | port name, if no port input is provided then all ports will be monitored |
+| `Port` | `*string` | Optional | Port name, if no port input is provided then all ports will be monitored |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

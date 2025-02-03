@@ -15,7 +15,7 @@
 | `ExportPolicy` | `*string` | Optional | - |
 | `HoldTime` | `*int` | Optional | **Default**: `90`<br>**Constraints**: `>= 0`, `<= 65535` |
 | `ImportPolicy` | `*string` | Optional | - |
-| `MultihopTtl` | `*int` | Optional | assuming BGP neighbor is directly connected<br>**Constraints**: `>= 0`, `<= 255` |
+| `MultihopTtl` | `*int` | Optional | Assuming BGP neighbor is directly connected<br>**Constraints**: `>= 0`, `<= 255` |
 | `NeighborAs` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

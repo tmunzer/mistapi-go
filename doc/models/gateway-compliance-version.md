@@ -1,7 +1,7 @@
 
 # Gateway Compliance Version
 
-version compliance score, major version for gateway, type
+Version compliance score, major version for gateway, type
 
 *This model accepts additional fields of type interface{}.*
 

@@ -20,9 +20,9 @@ AP statistics
 | `ConfigReverted` | `models.Optional[bool]` | Optional | - |
 | `CpuSystem` | `models.Optional[int64]` | Optional | - |
 | `CpuUtil` | `models.Optional[int]` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
-| `EnvStat` | [`*models.StatsApEnvStat`](../../doc/models/stats-ap-env-stat.md) | Optional | device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
+| `EnvStat` | [`*models.StatsApEnvStat`](../../doc/models/stats-ap-env-stat.md) | Optional | Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
 | `EslStat` | [`models.Optional[models.StatsApEslStat]`](../../doc/models/stats-ap-esl-stat.md) | Optional | - |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `ExtIp` | `models.Optional[string]` | Optional | - |
@@ -35,37 +35,37 @@ AP statistics
 | `Ip` | `models.Optional[string]` | Optional | - |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `L2tpStat` | [`map[string]models.StatsApL2tpStat`](../../doc/models/stats-ap-l2-tp-stat.md) | Optional | l2tp tunnel status (key is the wxtunnel_id) |
-| `LastSeen` | `models.Optional[float64]` | Optional | last seen timestamp |
-| `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | last trouble code of switch |
+| `L2tpStat` | [`map[string]models.StatsApL2tpStat`](../../doc/models/stats-ap-l2-tp-stat.md) | Optional | L2TP tunnel status (key is the wxtunnel_id) |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
+| `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | Last trouble code of switch |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `LldpStat` | [`*models.StatsApLldpStat`](../../doc/models/stats-ap-lldp-stat.md) | Optional | LLDP Stat (neighbor information, power negotiations) |
 | `Locating` | `models.Optional[bool]` | Optional | - |
-| `Locked` | `models.Optional[bool]` | Optional | whether this AP is considered locked (placement / orientation has been vetted) |
-| `Mac` | `*string` | Required | device mac |
+| `Locked` | `models.Optional[bool]` | Optional | Whether this AP is considered locked (placement / orientation has been vetted) |
+| `Mac` | `*string` | Required | Device mac |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `MemUsedKb` | `models.Optional[int64]` | Optional | - |
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
-| `Model` | `*string` | Required | device model |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `Model` | `*string` | Required | Device model |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Mount` | `models.Optional[string]` | Optional | - |
 | `Name` | `models.Optional[string]` | Optional | - |
 | `Notes` | `models.Optional[string]` | Optional | - |
-| `NumClients` | `models.Optional[int]` | Optional | how many wireless clients are currently connected |
-| `NumWlans` | `*int` | Optional | how many WLANs are applied to the device |
+| `NumClients` | `models.Optional[int]` | Optional | How many wireless clients are currently connected |
+| `NumWlans` | `*int` | Optional | How many WLANs are applied to the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortStat` | [`models.Optional[map[string]models.StatsApPortStat]`](../../doc/models/stats-ap-port-stat.md) | Optional | Property key is the port name (e.g. `eth0`) |
-| `PowerBudget` | `models.Optional[int]` | Optional | in mW, surplus if positive or deficit if negative |
-| `PowerConstrained` | `models.Optional[bool]` | Optional | whether insufficient power |
-| `PowerOpmode` | `models.Optional[string]` | Optional | constrained mode |
+| `PowerBudget` | `models.Optional[int]` | Optional | In mW, surplus if positive or deficit if negative |
+| `PowerConstrained` | `models.Optional[bool]` | Optional | Whether insufficient power |
+| `PowerOpmode` | `models.Optional[string]` | Optional | Constrained mode |
 | `PowerSrc` | `models.Optional[string]` | Optional | DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown) |
 | `RadioConfig` | [`*models.StatsApRadioConfig`](../../doc/models/stats-ap-radio-config.md) | Optional | - |
 | `RadioStat` | [`*models.StatsApRadioStat`](../../doc/models/stats-ap-radio-stat.md) | Optional | - |
 | `RxBps` | `models.Optional[float64]` | Optional | - |
 | `RxBytes` | `models.Optional[int64]` | Optional | - |
 | `RxPkts` | `models.Optional[int]` | Optional | - |
-| `Serial` | `models.Optional[string]` | Optional | serial |
+| `Serial` | `models.Optional[string]` | Optional | Serial Number |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `models.Optional[string]` | Optional | - |
 | `SwitchRedundancy` | [`*models.StatsApSwitchRedundancy`](../../doc/models/stats-ap-switch-redundancy.md) | Optional | - |
@@ -73,7 +73,7 @@ AP statistics
 | `TxBytes` | `models.Optional[float64]` | Optional | - |
 | `TxPkts` | `models.Optional[float64]` | Optional | - |
 | `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
-| `Uptime` | `models.Optional[float64]` | Optional | how long, in seconds, has the device been up (or rebooted) |
+| `Uptime` | `models.Optional[float64]` | Optional | How long, in seconds, has the device been up (or rebooted) |
 | `UsbStat` | [`*models.StatsApUsbStat`](../../doc/models/stats-ap-usb-stat.md) | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
 | `X` | `models.Optional[float64]` | Optional | - |

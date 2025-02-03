@@ -10,31 +10,31 @@ import (
 // CaptureScan represents a CaptureScan struct.
 // Initiate a Scan Radio Packet Capture
 type CaptureScan struct {
-    // filter by ap_mac
+    // Filter by ap_mac
     ApMac                Optional[string]              `json:"ap_mac"`
-    // dictionary key is AP mac and value is a dictionary which contains key “band”, “bandwidth”, “channel” and “tcpdump_expression”. In case keys are missed we will take parent value if parent values are not set we will use default value
+    // Dictionary key is AP mac and value is a dictionary which contains key “band”, “bandwidth”, “channel” and “tcpdump_expression”. In case keys are missed we will take parent value if parent values are not set we will use default value
     Aps                  map[string]CaptureScanAps     `json:"aps,omitempty"`
     // Only Single value allowed, default value gets applied when user provides wrong values. enum: `24`, `5`, `6`
     Band                 Optional[CaptureScanBandEnum] `json:"band"`
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
     Bandwidth            *Dot11BandwidthEnum           `json:"bandwidth,omitempty"`
-    // specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values
+    // Specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values
     Channel              *int                          `json:"channel,omitempty"`
-    // filter by client mac
+    // Filter by client mac
     ClientMac            Optional[string]              `json:"client_mac"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                          `json:"duration,omitempty"`
     // enum: `pcap`, `stream`
     Format               *CaptureScanFormatEnum        `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                          `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                          `json:"num_packets,omitempty"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                       `json:"tcpdump_expression,omitempty"`
     // enum: `scan`
     Type                 string                        `json:"type"`
-    // specify the bandwidth value with respect to the channel.
+    // Specify the bandwidth value with respect to the channel.
     Width                *string                       `json:"width,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }

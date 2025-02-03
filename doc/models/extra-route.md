@@ -11,12 +11,12 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Discard` | `*bool` | Optional | this takes precedence<br>**Default**: `false` |
+| `Discard` | `*bool` | Optional | This takes precedence<br>**Default**: `false` |
 | `Metric` | `models.Optional[int]` | Optional | **Constraints**: `>= 0`, `<= 2147483647` |
 | `NextQualified` | [`map[string]models.ExtraRouteNextQualifiedProperties`](../../doc/models/extra-route-next-qualified-properties.md) | Optional | - |
 | `NoResolve` | `*bool` | Optional | **Default**: `false` |
 | `Preference` | `models.Optional[int]` | Optional | **Constraints**: `>= 0`, `<= 2147483647` |
-| `Via` | `*string` | Optional | next-hop IP Address |
+| `Via` | `*string` | Optional | Next-hop IP Address |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

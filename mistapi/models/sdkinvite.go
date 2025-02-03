@@ -11,20 +11,20 @@ import (
 // Sdkinvite represents a Sdkinvite struct.
 // SDK invite
 type Sdkinvite struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     ExpireTime           *int                   `json:"expire_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // name, will show up in mobile
+    // Name, will show up in mobile
     Name                 string                 `json:"name"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // number of time this invite can be used
+    // Number of time this invite can be used
     Quota                *int                   `json:"quota,omitempty"`
-    // whether quota limiting is enabled
+    // Whether quota limiting is enabled
     QuotaLimited         *bool                  `json:"quota_limited,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

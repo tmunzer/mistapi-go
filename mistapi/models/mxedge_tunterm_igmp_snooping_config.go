@@ -9,7 +9,7 @@ import (
 type MxedgeTuntermIgmpSnoopingConfig struct {
     Enabled              *bool                             `json:"enabled,omitempty"`
     Querier              *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
-    // the list of vlans on which tunterm performs IGMP snooping
+    // List of vlans on which tunterm performs IGMP snooping
     VlanIds              []int                             `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
 }

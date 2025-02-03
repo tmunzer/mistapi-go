@@ -1,7 +1,7 @@
 
 # Last Trouble
 
-last trouble code of switch
+Last trouble code of switch
 
 *This model accepts additional fields of type interface{}.*
 

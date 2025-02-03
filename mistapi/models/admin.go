@@ -12,36 +12,36 @@ type Admin struct {
     AdminId              *uuid.UUID                 `json:"admin_id,omitempty"`
     // trade compliance status. enum: `blocked`, `restricted`
     ComplianceStatus     *AdminComplianceStatusEnum `json:"compliance_status,omitempty"`
-    // if admin account is not an Org API Token
+    // If admin account is not an Org API Token
     Email                *string                    `json:"email,omitempty"`
-    // if admin account is not an Org API Token
+    // If admin account is not an Org API Token
     EnableTwoFactor      *bool                      `json:"enable_two_factor,omitempty"`
     ExpireTime           *int                       `json:"expire_time,omitempty"`
-    // if admin account is not an Org API Token. For an invite, this is the original first name used
+    // If admin account is not an Org API Token. For an invite, this is the original first name used
     FirstName            *string                    `json:"first_name,omitempty"`
-    // if admin account is not an Org API Token, how long the invite should be valid
+    // If admin account is not an Org API Token, how long the invite should be valid
     Hours                *int                       `json:"hours,omitempty"`
-    // if admin account is not an Org API Token. For an invite, this is the original last name used
+    // If admin account is not an Org API Token. For an invite, this is the original last name used
     LastName             *string                    `json:"last_name,omitempty"`
-    // for Org API Token Only
+    // For Org API Token Only
     Name                 *string                    `json:"name,omitempty"`
-    // optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out
+    // Optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out
     NoTracking           Optional[bool]             `json:"no_tracking"`
-    // if admin account is not an Org API Token
+    // If admin account is not an Org API Token
     OauthGoogle          *bool                      `json:"oauth_google,omitempty"`
-    // password last modified time, in epoch
+    // Password last modified time, in epoch
     PasswordModifiedTime *float64                   `json:"password_modified_time,omitempty"`
-    // if admin account is not an Org API Token. Phone number (numbers only, including country code)
+    // If admin account is not an Org API Token. Phone number (numbers only, including country code)
     Phone                *string                    `json:"phone,omitempty"`
-    // if admin account is not an Org API Token. Secondary phone number (numbers only, including country code)
+    // If admin account is not an Org API Token. Secondary phone number (numbers only, including country code)
     Phone2               *string                    `json:"phone2,omitempty"`
-    // list of privileges the admin has
+    // List of privileges the admin has
     Privileges           []AdminPrivilege           `json:"privileges,omitempty"`
     SessionExpiry        *int64                     `json:"session_expiry,omitempty"`
     Tags                 []string                   `json:"tags,omitempty"`
-    // if admin account is not an Org API Token. Two factor status
+    // If admin account is not an Org API Token. Two factor status
     TwoFactorVerified    *bool                      `json:"two_factor_verified,omitempty"`
-    // if admin account is not an Org API Token, an admin login via_sso is more restircted. (password and email cannot be changed)
+    // If admin account is not an Org API Token, an admin login via_sso is more restircted. (password and email cannot be changed)
     ViaSso               *bool                      `json:"via_sso,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

@@ -118,7 +118,7 @@ func (o *OrgsServices) CreateOrgService(
 // DeleteOrgService takes context, orgId, serviceId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// delete Org Service
+// Delete Org Service
 func (o *OrgsServices) DeleteOrgService(
     ctx context.Context,
     orgId uuid.UUID,
@@ -197,7 +197,7 @@ func (o *OrgsServices) GetOrgService(
 // UpdateOrgService takes context, orgId, serviceId, body as parameters and
 // returns an models.ApiResponse with models.Service data and
 // an error if there was an issue with the request or response.
-// update Org Service
+// Update Org Service
 func (o *OrgsServices) UpdateOrgService(
     ctx context.Context,
     orgId uuid.UUID,

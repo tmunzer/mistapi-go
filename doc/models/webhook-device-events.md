@@ -1,7 +1,7 @@
 
 # Webhook Device Events
 
-device event webhook sample
+Device event webhook sample
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ device event webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookDeviceEventsEvent`](../../doc/models/webhook-device-events-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"device_events"` |
+| `Events` | [`[]models.WebhookDeviceEventsEvent`](../../doc/models/webhook-device-events-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"device_events"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

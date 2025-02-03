@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AutoDeviceprofileAssignment` | `*bool` | Optional | whether to auto assign device to deviceprofile by name |
-| `Csv` | `*[]byte` | Optional | csv file for ap name mapping, optional |
-| `File` | `*[]byte` | Optional | ekahau or ibwave file |
+| `AutoDeviceprofileAssignment` | `*bool` | Optional | Whether to auto assign device to deviceprofile by name |
+| `Csv` | `*[]byte` | Optional | CSV file for ap name mapping, optional |
+| `File` | `*[]byte` | Optional | Ekahau or ibwave file |
 | `Json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

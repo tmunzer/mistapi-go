@@ -6,9 +6,9 @@ import (
 )
 
 // MxedgeDas represents a MxedgeDas struct.
-// configure cloud-assisted dynamic authorization service on this cluster of mist edges
+// Configure cloud-assisted dynamic authorization service on this cluster of mist edges
 type MxedgeDas struct {
-    // dynamic authorization clients configured to send CoA|DM to mist edges on port 3799
+    // Dynamic authorization clients configured to send CoA|DM to mist edges on port 3799
     CoaServers           []MxedgeDasCoaServer   `json:"coa_servers,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

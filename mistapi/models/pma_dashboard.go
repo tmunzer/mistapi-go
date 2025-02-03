@@ -7,11 +7,11 @@ import (
 
 // PmaDashboard represents a PmaDashboard struct.
 type PmaDashboard struct {
-    // description of the dashboard
+    // Description of the dashboard
     Description          *string                `json:"description,omitempty"`
     // group label name
     Label                *string                `json:"label,omitempty"`
-    // name of the dashboard
+    // Name of the dashboard
     Name                 *string                `json:"name,omitempty"`
     // url to access dashboard. Url will redirect the user to the dashboard
     Url                  *string                `json:"url,omitempty"`

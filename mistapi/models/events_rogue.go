@@ -8,7 +8,7 @@ import (
 )
 
 // EventsRogue represents a EventsRogue struct.
-// rogue events
+// Rogue events
 type EventsRogue struct {
     Ap                   string                 `json:"ap"`
     Bssid                string                 `json:"bssid"`

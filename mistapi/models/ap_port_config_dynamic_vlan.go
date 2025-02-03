@@ -6,7 +6,7 @@ import (
 )
 
 // ApPortConfigDynamicVlan represents a ApPortConfigDynamicVlan struct.
-// optional dynamic vlan
+// Optional dynamic vlan
 type ApPortConfigDynamicVlan struct {
     DefaultVlanId        *int                   `json:"default_vlan_id,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`

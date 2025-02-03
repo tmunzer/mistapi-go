@@ -9,31 +9,31 @@ import (
 // Mxtunnel represents a Mxtunnel struct.
 // MxTunnel
 type Mxtunnel struct {
-    // list of anchor mxtunnels used for forming edge to edge tunnels
+    // List of anchor mxtunnels used for forming edge to edge tunnels
     AnchorMxtunnelIds    []uuid.UUID            `json:"anchor_mxtunnel_ids,omitempty"`
-    // schedule to preempt ap’s which are not connected to preferred peer
+    // Schedule to preempt ap’s which are not connected to preferred peer
     AutoPreemption       *AutoPreemption        `json:"auto_preemption,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.
+    // In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.
     HelloInterval        Optional[int]          `json:"hello_interval"`
     HelloRetries         Optional[int]          `json:"hello_retries"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Ipsec                *MxtunnelIpsec         `json:"ipsec,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
     Mtu                  *int                   `json:"mtu,omitempty"`
-    // list of mxclusters to deploy this tunnel to
+    // List of mxclusters to deploy this tunnel to
     MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
     Name                 Optional[string]       `json:"name"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // enum: `ip`, `udp`
     Protocol             *MxtunnelProtocolEnum  `json:"protocol,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // list of vlan_ids that will be used
+    // List of vlan_ids that will be used
     VlanIds              []int                  `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

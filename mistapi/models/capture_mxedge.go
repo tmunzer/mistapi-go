@@ -10,22 +10,22 @@ import (
 // CaptureMxedge represents a CaptureMxedge struct.
 // Initiate a Wireless Packet Capture
 type CaptureMxedge struct {
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                            `json:"duration,omitempty"`
-    // pcap format. enum:
+    // PCAP format. enum:
     // * `stream`: to Mist cloud
     // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
     Format               *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                            `json:"max_pkt_len,omitempty"`
     Mxedges              map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                            `json:"num_packets,omitempty"`
     // enum: `mxedge`
     Type                 string                          `json:"type"`
     // Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
     TzspHost             *string                         `json:"tzsp_host,omitempty"`
-    // if `format`==`tzsp`. Port on remote host for receiving the captured packets
+    // If `format`==`tzsp`. Port on remote host for receiving the captured packets
     TzspPort             *int                            `json:"tzsp_port,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
 }

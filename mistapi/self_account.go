@@ -98,7 +98,7 @@ func (s *SelfAccount) GetSelf(ctx context.Context) (
 // UpdateSelf takes context, body as parameters and
 // returns an models.ApiResponse with models.Admin data and
 // an error if there was an issue with the request or response.
-// update Account Information
+// Update Account Information
 func (s *SelfAccount) UpdateSelf(
     ctx context.Context,
     body *models.Admin) (
@@ -165,7 +165,7 @@ func (s *SelfAccount) UpdateSelfEmail(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "invalid email address or new email address already exists", Unmarshaller: errors.NewResponseDetailString},
+        "400": {Message: "Invalid email address or new email address already exists", Unmarshaller: errors.NewResponseDetailString},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},

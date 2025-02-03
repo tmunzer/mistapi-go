@@ -6,19 +6,19 @@ import (
 )
 
 // MxedgeOobIpConfig represents a MxedgeOobIpConfig struct.
-// ip configuration of the Mist Edge out-of_band management interface
+// IPconfiguration of the Mist Edge out-of_band management interface
 type MxedgeOobIpConfig struct {
     Autoconf6            *bool                  `json:"autoconf6,omitempty"`
     Dhcp6                *bool                  `json:"dhcp6,omitempty"`
     // IPv4 ignored if `type`!=`static`, IPv6 ignored if `type6`!=`static`
     Dns                  []string               `json:"dns,omitempty"`
-    // if `type`=`static`
+    // If `type`=`static`
     Gateway              *string                `json:"gateway,omitempty"`
     Gateway6             *string                `json:"gateway6,omitempty"`
-    // if `type`=`static`
+    // If `type`=`static`
     Ip                   *string                `json:"ip,omitempty"`
     Ip6                  *string                `json:"ip6,omitempty"`
-    // if `type`=`static`
+    // If `type`=`static`
     Netmask              *string                `json:"netmask,omitempty"`
     Netmask6             *string                `json:"netmask6,omitempty"`
     // enum: `dhcp`, `static`

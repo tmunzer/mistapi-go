@@ -10,7 +10,7 @@ import (
 
 // Vpn represents a Vpn struct.
 type Vpn struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                    `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                  `json:"id,omitempty"`
@@ -18,7 +18,7 @@ type Vpn struct {
     // The steering behavior is defined at the overlay level.
     // Property Key is the Gateway Port name (e.g. `wan0`, `wan1`, `mpls`, ..)
     Links                map[string]VpnLinksSteering `json:"links,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                    `json:"modified_time,omitempty"`
     Name                 string                      `json:"name"`
     OrgId                *uuid.UUID                  `json:"org_id,omitempty"`

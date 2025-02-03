@@ -14,7 +14,7 @@
 | `Diabled` | `*bool` | Optional | **Default**: `false` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Name` | `*string` | Optional | - |
-| `ProvisionUrl` | `*string` | Optional | in MDM, add `--provision_url <provision_url>` to the instlal command |
+| `ProvisionUrl` | `*string` | Optional | In MDM, add `--provision_url <provision_url>` to the instlal command |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -1,7 +1,7 @@
 
 # Sso Mxedge Proxy
 
-if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
+If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 
 *This model accepts additional fields of type interface{}.*
 
@@ -17,7 +17,7 @@ if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
 | `AuthServers` | [`[]models.SsoMxedgeProxyAuthServer`](../../doc/models/sso-mxedge-proxy-auth-server.md) | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `OperatorName` | `*string` | Optional | Operator name as Radius attribute while proxying |
-| `ProxyHosts` | `[]string` | Optional | public hostname/IPs |
+| `ProxyHosts` | `[]string` | Optional | Public hostname/IPs |
 | `Ssids` | `[]string` | Optional | SSIDs that support eduroam |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

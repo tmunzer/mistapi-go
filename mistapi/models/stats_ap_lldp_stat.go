@@ -9,25 +9,25 @@ import (
 // LLDP Stat (neighbor information, power negotiations)
 type StatsApLldpStat struct {
     ChassisId            Optional[string]       `json:"chassis_id"`
-    // whether it support LLDP-MED
+    // Whether it support LLDP-MED
     LldpMedSupported     Optional[bool]         `json:"lldp_med_supported"`
-    // switch’s management address (if advertised), can be IPv4, IPv6, or MAC
+    // Switch’s management address (if advertised), can be IPv4, IPv6, or MAC
     MgmtAddr             Optional[string]       `json:"mgmt_addr"`
     MgmtAddrs            []string               `json:"mgmt_addrs,omitempty"`
     // ge-0/0/4
     PortDesc             Optional[string]       `json:"port_desc"`
     PortId               Optional[string]       `json:"port_id"`
-    // in mW, provided/allocated by PSE
+    // In mW, provided/allocated by PSE
     PowerAllocated       Optional[float64]      `json:"power_allocated"`
-    // in mW, total power needed by PD
+    // In mW, total power needed by PD
     PowerDraw            Optional[float64]      `json:"power_draw"`
-    // number of negotiations, if it keeps increasing, we don’ t have a stable power
+    // Number of negotiations, if it keeps increasing, we don’ t have a stable power
     PowerRequestCount    Optional[int]          `json:"power_request_count"`
-    // in mW, the current power requested by PD
+    // In mW, the current power requested by PD
     PowerRequested       Optional[float64]      `json:"power_requested"`
-    // description provided by switch
+    // Description provided by switch
     SystemDesc           Optional[string]       `json:"system_desc"`
-    // name of the switch
+    // Name of the switch
     SystemName           Optional[string]       `json:"system_name"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

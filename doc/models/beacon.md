@@ -13,25 +13,25 @@ Beacon
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `EddystoneInstance` | `*string` | Optional | Eddystone-UID instance (6 bytes) in hexstring format |
 | `EddystoneNamespace` | `*string` | Optional | Eddystone-UID namespace (10 bytes) in hexstring format |
 | `EddystoneUrl` | `*string` | Optional | Eddystone-URL url |
 | `ForSite` | `*bool` | Optional | - |
-| `IbeaconMajor` | `*int` | Optional | bluetooth tag major |
-| `IbeaconMinor` | `*int` | Optional | bluetooth tag minor |
-| `IbeaconUuid` | `*uuid.UUID` | Optional | bluetooth tag UUID |
+| `IbeaconMajor` | `*int` | Optional | Bluetooth tag major |
+| `IbeaconMinor` | `*int` | Optional | Bluetooth tag minor |
+| `IbeaconUuid` | `*uuid.UUID` | Optional | Bluetooth tag UUID |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `Mac` | `*string` | Optional | optiona, MAC of the beacon, currently used only to identify battery voltage |
-| `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
+| `Mac` | `*string` | Optional | Optional, MAC of the beacon, currently used only to identify battery voltage |
+| `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `ModifiedTime` | `*float64` | Optional | - |
-| `Name` | `*string` | Optional | name / label of the device |
+| `Name` | `*string` | Optional | Name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Power` | `*int` | Optional | in dBm<br>**Default**: `-12`<br>**Constraints**: `>= -12`, `<= 100` |
+| `Power` | `*int` | Optional | In dBm<br>**Default**: `-12`<br>**Constraints**: `>= -12`, `<= 100` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Type` | [`*models.BeaconTypeEnum`](../../doc/models/beacon-type-enum.md) | Optional | enum: `eddystone-uid`, `eddystone-url`, `ibeacon`<br>**Default**: `"eddystone-uid"` |
-| `X` | `*float64` | Optional | x in pixel |
-| `Y` | `*float64` | Optional | y in pixel |
+| `X` | `*float64` | Optional | X in pixel |
+| `Y` | `*float64` | Optional | Y in pixel |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

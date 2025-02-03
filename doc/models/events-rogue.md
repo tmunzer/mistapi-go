@@ -1,7 +1,7 @@
 
 # Events Rogue
 
-rogue events
+Rogue events
 
 *This model accepts additional fields of type interface{}.*
 

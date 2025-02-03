@@ -10,11 +10,11 @@ import (
 type CaptureScanAps struct {
     // Only Single value allowed. enum: `24`, `5`, `6`
     Band                 *CaptureScanApsBandEnum `json:"band,omitempty"`
-    // specify the channel value where scan PCAP has to be started
+    // Specify the channel value where scan PCAP has to be started
     Channel              *string                 `json:"channel,omitempty"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                 `json:"tcpdump_expression,omitempty"`
-    // specify the bandwidth value with respect to the channel.
+    // Specify the bandwidth value with respect to the channel.
     Width                *string                 `json:"width,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

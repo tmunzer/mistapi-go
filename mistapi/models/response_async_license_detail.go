@@ -8,7 +8,7 @@ import (
 // ResponseAsyncLicenseDetail represents a ResponseAsyncLicenseDetail struct.
 // detail claim status per device
 type ResponseAsyncLicenseDetail struct {
-    // device MAC Address
+    // Device MAC Address
     Mac                  *string                `json:"mac,omitempty"`
     Status               *string                `json:"status,omitempty"`
     Timestamp            *float64               `json:"timestamp,omitempty"`

@@ -334,7 +334,7 @@ const (
 )
 
 // CaptureMxedgeFormatEnum is a string enum.
-// pcap format. enum: 
+// PCAP format. enum: 
 // * `stream`: to Mist cloud
 // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 type CaptureMxedgeFormatEnum string
@@ -1289,7 +1289,7 @@ const (
 )
 
 // MapJibestreamVendorNameEnum is a string enum.
-// the vendor ‘jibestream’. enum: `jibestream`
+// The vendor ‘jibestream’. enum: `jibestream`
 type MapJibestreamVendorNameEnum string
 
 const (
@@ -1297,7 +1297,7 @@ const (
 )
 
 // MapMicelloVendorNameEnum is a string enum.
-// the vendor ‘micello’. enum: `micello`
+// The vendor ‘micello’. enum: `micello`
 type MapMicelloVendorNameEnum string
 
 const (
@@ -3974,7 +3974,7 @@ const (
 )
 
 // UpgradeDeviceStatusEnum is a string enum.
-// status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
+// status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
 type UpgradeDeviceStatusEnum string
 
 const (
@@ -3984,6 +3984,7 @@ const (
     UpgradeDeviceStatusEnum_DOWNLOADED  UpgradeDeviceStatusEnum = "downloaded"
     UpgradeDeviceStatusEnum_DOWNLOADING UpgradeDeviceStatusEnum = "downloading"
     UpgradeDeviceStatusEnum_FAILED      UpgradeDeviceStatusEnum = "failed"
+    UpgradeDeviceStatusEnum_QUEUED      UpgradeDeviceStatusEnum = "queued"
     UpgradeDeviceStatusEnum_UPGRADING   UpgradeDeviceStatusEnum = "upgrading"
 )
 
@@ -4040,7 +4041,7 @@ const (
 )
 
 // UtilsSendSupportLogsInfoEnum is a string enum.
-// optional, enum: 
+// Optional, enum: 
 // * `code-dumps`: Upload all core dump files, if any found
 // * `full`: Upload 1 file with output of `request support information`, 1 file that concatenates all `/var/log/outbound-ssh.log*` files, all core dump files, the 5 most recent `/var/log/messages*` files, and Mist agent logs
 // * `messages`: Upload 1 to 10 `/var/log/messages*` files

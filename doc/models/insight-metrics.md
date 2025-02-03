@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Interval` | `int` | Required | - |
-| `Results` | `[]interface{}` | Required | results depends on the `metric`<br>**Constraints**: *Unique Items Required* |
+| `Results` | `[]interface{}` | Required | Results depends on the `metric`<br>**Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

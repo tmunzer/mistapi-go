@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `FrameCtrl` | `*int` | Optional | frame control field of 802.11 header |
+| `FrameCtrl` | `*int` | Optional | Frame control field of 802.11 header |
 | `Payload` | `*string` | Optional | Extended Info Payload associated with frame |
-| `SeqCtrl` | `*int` | Optional | sequence control field of 802.11 header |
+| `SeqCtrl` | `*int` | Optional | Sequence control field of 802.11 header |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

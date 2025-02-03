@@ -8,7 +8,7 @@ import (
 )
 
 // StatsWirelessClientAirwatch represents a StatsWirelessClientAirwatch struct.
-// information if airwatch enabled
+// Information if airwatch enabled
 type StatsWirelessClientAirwatch struct {
     Authorized           bool                   `json:"authorized"`
     AdditionalProperties map[string]interface{} `json:"_"`

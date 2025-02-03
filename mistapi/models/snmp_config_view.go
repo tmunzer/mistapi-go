@@ -7,7 +7,7 @@ import (
 
 // SnmpConfigView represents a SnmpConfigView struct.
 type SnmpConfigView struct {
-    // if the root oid configured is included
+    // If the root oid configured is included
     Include              *bool                  `json:"include,omitempty"`
     Oid                  *string                `json:"oid,omitempty"`
     ViewName             *string                `json:"view_name,omitempty"`

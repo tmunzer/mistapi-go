@@ -8,17 +8,17 @@ import (
 // SiteRogue represents a SiteRogue struct.
 // Rogue site settings
 type SiteRogue struct {
-    // whether or not rogue detection is enabled
+    // Whether or not rogue detection is enabled
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // whether or not honeypot detection is enabled
+    // Whether or not honeypot detection is enabled
     HoneypotEnabled      *bool                  `json:"honeypot_enabled,omitempty"`
-    // minimum duration for a bssid to be considered rogue
+    // Minimum duration for a bssid to be considered rogue
     MinDuration          *int                   `json:"min_duration,omitempty"`
-    // minimum RSSI for an AP to be considered rogue (ignoring APs that’s far away)
+    // Minimum RSSI for an AP to be considered rogue (ignoring APs that’s far away)
     MinRssi              *int                   `json:"min_rssi,omitempty"`
     // list of BSSIDs to whitelist. Ex: "cc-:8e-:6f-:d4-:bf-:16", "cc-8e-6f-d4-bf-16", "cc-73-*", "cc:82:*"
     WhitelistedBssids    []string               `json:"whitelisted_bssids,omitempty"`
-    // list of SSIDs to whitelist
+    // List of SSIDs to whitelist
     WhitelistedSsids     []string               `json:"whitelisted_ssids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

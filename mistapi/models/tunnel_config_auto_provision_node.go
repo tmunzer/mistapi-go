@@ -8,7 +8,7 @@ import (
 // TunnelConfigAutoProvisionNode represents a TunnelConfigAutoProvisionNode struct.
 type TunnelConfigAutoProvisionNode struct {
     ProbeIps             []string               `json:"probe_ips,omitempty"`
-    // optional, only needed if `vars_only`==`false`
+    // Optional, only needed if `vars_only`==`false`
     WanNames             []string               `json:"wan_names,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

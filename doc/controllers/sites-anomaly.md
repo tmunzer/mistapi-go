@@ -33,7 +33,7 @@ GetSiteAnomalyEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
 
 ## Response Type
 
@@ -89,7 +89,7 @@ GetSiteAnomalyEventsForClient(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
 
 ## Response Type
 
@@ -146,7 +146,7 @@ GetSiteAnomalyEventsforDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | see /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type

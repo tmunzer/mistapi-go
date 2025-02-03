@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
 | `Enable` | `*bool` | Optional | **Default**: `true` |
-| `TimeOfDay` | `*string` | Optional | optional, Mist will decide the timing |
+| `TimeOfDay` | `*string` | Optional | Optional, Mist will decide the timing |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Links` | [`map[string]models.VpnLinksSteering`](../../doc/models/vpn-links-steering.md) | Optional | Gateways participating in mesh overlay by, on its vpn_path under wan port.<br>The steering behavior is defined at the overlay level.<br><br>Property Key is the Gateway Port name (e.g. `wan0`, `wan1`, `mpls`, ..) |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathSelection` | [`*models.VpnPathSelection`](../../doc/models/vpn-path-selection.md) | Optional | Only if `type`==`hub_spoke` |

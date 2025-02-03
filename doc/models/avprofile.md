@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `FallbackAction` | [`*models.AvprofileFallbackActionEnum`](../../doc/models/avprofile-fallback-action-enum.md) | Optional | enum: `block`, `permit` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `MexFilesize` | `*int` | Optional | in KB<br>**Constraints**: `>= 20`, `<= 40000` |
+| `MexFilesize` | `*int` | Optional | In KB<br>**Constraints**: `>= 20`, `<= 40000` |
 | `MimeWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | - |

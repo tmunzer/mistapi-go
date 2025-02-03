@@ -11,58 +11,58 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Accuracy` | `*int` | Optional | estimated client location accuracy, in meter |
+| `Accuracy` | `*int` | Optional | Estimated client location accuracy, in meter |
 | `AirespaceIfname` | `*string` | Optional | - |
-| `Airwatch` | [`*models.StatsWirelessClientAirwatch`](../../doc/models/stats-wireless-client-airwatch.md) | Optional | information if airwatch enabled |
+| `Airwatch` | [`*models.StatsWirelessClientAirwatch`](../../doc/models/stats-wireless-client-airwatch.md) | Optional | Information if airwatch enabled |
 | `ApId` | `uuid.UUID` | Required | AP ID the client is connected to |
 | `ApMac` | `string` | Required | AP the client is connected to |
 | `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
-| `Channel` | `int` | Required | current channel |
-| `DualBand` | `bool` | Required | whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |
-| `Family` | `string` | Required | device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE … |
+| `Channel` | `int` | Required | Current channel |
+| `DualBand` | `bool` | Required | Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |
+| `Family` | `string` | Required | Device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE … |
 | `Guest` | [`*models.Guest`](../../doc/models/guest.md) | Optional | Guest |
-| `Hostname` | `string` | Required | hostname that we learned from sniffing DHCP |
-| `IdleTime` | `float64` | Required | how long, in seconds, has the client been idle (since the last RX packet) |
+| `Hostname` | `string` | Required | Hostname that we learned from sniffing DHCP |
+| `IdleTime` | `float64` | Required | How long, in seconds, has the client been idle (since the last RX packet) |
 | `Ip` | `string` | Required | - |
-| `IsGuest` | `bool` | Required | whether this is a guest<br>**Default**: `false` |
-| `KeyMgmt` | `string` | Required | e.g. WPA2-PSK/CCMP |
-| `LastSeen` | `float64` | Required | last seen timestamp |
-| `Mac` | `string` | Required | client mac |
-| `Manufacture` | `string` | Required | device manufacture, through fingerprinting or OUI |
-| `MapId` | `*uuid.UUID` | Optional | estimated client location - map_id |
-| `Model` | `string` | Required | device model, may be available if we can identify them |
-| `NumLocatingAps` | `*int` | Optional | number of APs used to locate this client |
-| `Os` | `string` | Required | device os, through fingerprinting |
-| `PowerSaving` | `bool` | Required | if it’s currently in power-save mode |
+| `IsGuest` | `bool` | Required | Whether this is a guest<br>**Default**: `false` |
+| `KeyMgmt` | `string` | Required | E.g. WPA2-PSK/CCMP |
+| `LastSeen` | `float64` | Required | Last seen timestamp |
+| `Mac` | `string` | Required | Client mac |
+| `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
+| `MapId` | `*uuid.UUID` | Optional | Estimated client location - map_id |
+| `Model` | `string` | Required | Device model, may be available if we can identify them |
+| `NumLocatingAps` | `*int` | Optional | Number of APs used to locate this client |
+| `Os` | `string` | Required | Device os, through fingerprinting |
+| `PowerSaving` | `bool` | Required | If it’s currently in power-save mode |
 | `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | enum: `a`, `ac`, `ax`, `b`, `g`, `n` |
 | `PskId` | `*uuid.UUID` | Optional | PSK id (if multi-psk is used) |
-| `Rssi` | `float64` | Required | signal strength |
-| `Rssizones` | [`[]models.StatsWirelessClientRssiZone`](../../doc/models/stats-wireless-client-rssi-zone.md) | Optional | list of rssizone_id’s where client is in and since when (if known) |
-| `RxBps` | `float64` | Required | rate of receiving traffic from the clients, bits/seconds, last known |
-| `RxBytes` | `float64` | Required | amount of traffic received from client since client connects |
-| `RxPackets` | `float64` | Required | amount of traffic received from client since client connects |
+| `Rssi` | `float64` | Required | Signal strength |
+| `Rssizones` | [`[]models.StatsWirelessClientRssiZone`](../../doc/models/stats-wireless-client-rssi-zone.md) | Optional | List of rssizone_id’s where client is in and since when (if known) |
+| `RxBps` | `float64` | Required | Rate of receiving traffic from the clients, bits/seconds, last known |
+| `RxBytes` | `float64` | Required | Amount of traffic received from client since client connects |
+| `RxPackets` | `float64` | Required | Amount of traffic received from client since client connects |
 | `RxRate` | `float64` | Required | RX Rate, Mbps |
-| `RxRetries` | `float64` | Required | amount of rx retries |
-| `Snr` | `float64` | Required | signal over noise |
+| `RxRetries` | `float64` | Required | Amount of rx retries |
+| `Snr` | `float64` | Required | Signal over noise |
 | `Ssid` | `string` | Required | SSID the client is connected to |
-| `TxBps` | `float64` | Required | rate of transmitting traffic to the clients, bits/seconds, last known |
-| `TxBytes` | `float64` | Required | amount of traffic sent to client since client connects |
-| `TxPackets` | `float64` | Required | amount of traffic sent to client since client connects |
+| `TxBps` | `float64` | Required | Rate of transmitting traffic to the clients, bits/seconds, last known |
+| `TxBytes` | `float64` | Required | Amount of traffic sent to client since client connects |
+| `TxPackets` | `float64` | Required | Amount of traffic sent to client since client connects |
 | `TxRate` | `float64` | Required | TX Rate, Mbps |
-| `TxRetries` | `float64` | Required | amount of tx retries |
-| `Type` | `*string` | Optional | client’s type, regular / vip / resource / blocked (if client object is created) |
-| `Uptime` | `float64` | Required | how long, in seconds, has the client been connected |
-| `Username` | `string` | Required | username that we learned from 802.1X exchange or Per_user PSK or User Portal |
-| `Vbeacons` | [`[]models.StatsWirelessClientVbeacon`](../../doc/models/stats-wireless-client-vbeacon.md) | Optional | list of beacon_id’s where the client is in and since when (if known) |
-| `VlanId` | `*int` | Optional | vlan id, could be empty (from older AP) |
+| `TxRetries` | `float64` | Required | Amount of tx retries |
+| `Type` | `*string` | Optional | Client’s type, regular / vip / resource / blocked (if client object is created) |
+| `Uptime` | `float64` | Required | How long, in seconds, has the client been connected |
+| `Username` | `string` | Required | Username that we learned from 802.1X exchange or Per_user PSK or User Portal |
+| `Vbeacons` | [`[]models.StatsWirelessClientVbeacon`](../../doc/models/stats-wireless-client-vbeacon.md) | Optional | List of beacon_id’s where the client is in and since when (if known) |
+| `VlanId` | `*int` | Optional | VLAN id, could be empty (from older AP) |
 | `WlanId` | `uuid.UUID` | Required | WLAN ID the client is connected to |
-| `WxruleId` | `*uuid.UUID` | Optional | current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched. |
-| `WxruleUsage` | [`[]models.StatsWirelessClientWxruleUsage`](../../doc/models/stats-wireless-client-wxrule-usage.md) | Optional | current WxlanRule usage per tag_id |
-| `X` | `*float64` | Optional | estimated clinet location in pixels |
-| `XM` | `*float64` | Optional | estimated client location in meter |
-| `Y` | `*float64` | Optional | estimated clinet location in pixels |
-| `YM` | `*float64` | Optional | estimated client location in meter |
-| `Zones` | [`[]models.StatsWirelessClientZone`](../../doc/models/stats-wireless-client-zone.md) | Optional | list of zone_id’s where client is in and since when (if known) |
+| `WxruleId` | `*uuid.UUID` | Optional | Current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched. |
+| `WxruleUsage` | [`[]models.StatsWirelessClientWxruleUsage`](../../doc/models/stats-wireless-client-wxrule-usage.md) | Optional | Current WxlanRule usage per tag_id |
+| `X` | `*float64` | Optional | Estimated clinet location in pixels |
+| `XM` | `*float64` | Optional | Estimated client location in meter |
+| `Y` | `*float64` | Optional | Estimated clinet location in pixels |
+| `YM` | `*float64` | Optional | Estimated client location in meter |
+| `Zones` | [`[]models.StatsWirelessClientZone`](../../doc/models/stats-wireless-client-zone.md) | Optional | List of zone_id’s where client is in and since when (if known) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

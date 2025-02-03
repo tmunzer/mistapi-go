@@ -19,7 +19,7 @@ type InstallerProvisionDevice struct {
     Orientation          *int                   `json:"orientation,omitempty"`
     // Onlif this is to replace an existing device
     ReplacingMac         *string                `json:"replacing_mac,omitempty"`
-    // optional role for switch / gateway
+    // Optional role for switch / gateway
     Role                 *string                `json:"role,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     SiteName             *string                `json:"site_name,omitempty"`

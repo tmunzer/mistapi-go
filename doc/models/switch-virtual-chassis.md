@@ -1,7 +1,7 @@
 
 # Switch Virtual Chassis
 
-required for preprovisioned Virtual Chassis
+Required for preprovisioned Virtual Chassis
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ required for preprovisioned Virtual Chassis
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Members` | [`[]models.SwitchVirtualChassisMember`](../../doc/models/switch-virtual-chassis-member.md) | Optional | list of Virtual Chassis members |
-| `Preprovisioned` | `*bool` | Optional | to configure whether the VC is preprovisioned or nonprovisioned<br>**Default**: `false` |
+| `Members` | [`[]models.SwitchVirtualChassisMember`](../../doc/models/switch-virtual-chassis-member.md) | Optional | List of Virtual Chassis members |
+| `Preprovisioned` | `*bool` | Optional | To configure whether the VC is preprovisioned or nonprovisioned<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

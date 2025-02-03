@@ -14,7 +14,7 @@ type DeviceprofileGateway struct {
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime           *float64                           `json:"created_time,omitempty"`
     DhcpdConfig           *DhcpdConfig                       `json:"dhcpd_config,omitempty"`
     DnsOverride           *bool                              `json:"dnsOverride,omitempty"`
@@ -34,21 +34,21 @@ type DeviceprofileGateway struct {
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`
     // Property key is the network name
     IpConfigs             map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64                           `json:"modified_time,omitempty"`
     Name                  string                             `json:"name"`
     Networks              []Network                          `json:"networks,omitempty"`
     NtpOverride           *bool                              `json:"ntpOverride,omitempty"`
-    // list of NTP servers specific to this device. By default, those in Site Settings will be used
+    // List of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                           `json:"ntp_servers,omitempty"`
-    // out-of-band (vme/em0/fxp0) IP config
+    // Out-of-band (vme/em0/fxp0) IP config
     OobIpConfig           *GatewayOobIpConfig                `json:"oob_ip_config,omitempty"`
     OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
     // Property key is the path name
     PathPreferences       map[string]GatewayPathPreferences  `json:"path_preferences,omitempty"`
     // Property key is the port(s) name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]GatewayPortConfig       `json:"port_config,omitempty"`
-    // auto assigned if not set
+    // Auto assigned if not set
     RouterId              *string                            `json:"router_id,omitempty"`
     // Property key is the routing policy name
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`

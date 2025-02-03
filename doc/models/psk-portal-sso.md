@@ -1,7 +1,7 @@
 
 # Psk Portal Sso
 
-if `auth`==`sso`
+If `auth`==`sso`
 
 *This model accepts additional fields of type interface{}.*
 
@@ -20,7 +20,7 @@ if `auth`==`sso`
 | `Issuer` | `*string` | Optional | - |
 | `NameidFormat` | `*string` | Optional | - |
 | `RoleMapping` | `map[string]string` | Optional | Property key is the role name, property value is the SSO Attribute |
-| `UseSsoRoleForPskRole` | `*bool` | Optional | if enabled, the `role` above will be ignored |
+| `UseSsoRoleForPskRole` | `*bool` | Optional | If enabled, the `role` above will be ignored |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

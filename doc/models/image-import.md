@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `[]byte` | Required | binary file |
+| `File` | `[]byte` | Required | Binary file |
 | `Json` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

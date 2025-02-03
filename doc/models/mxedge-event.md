@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Component` | `*string` | Optional | component like PS1, PS2 |
+| `Component` | `*string` | Optional | Component like PS1, PS2 |
 | `MxclusterId` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

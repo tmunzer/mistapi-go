@@ -8,7 +8,7 @@ import (
 )
 
 // WebhookClientSessions represents a WebhookClientSessions struct.
-// client session webhook sample
+// Client session webhook sample
 type WebhookClientSessions struct {
     Events               []WebhookClientSessionsEvent `json:"events"`
     Topic                string                       `json:"topic"`

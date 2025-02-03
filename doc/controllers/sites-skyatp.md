@@ -42,15 +42,15 @@ CountSiteSkyatpEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteSkyAtpEventsCountDistinctEnum`](../../doc/models/site-sky-atp-events-count-distinct-enum.md) | Query, Optional | **Default**: `"type"` |
-| `mType` | `*string` | Query, Optional | event type, e.g. cc, fs, mw |
-| `mac` | `*string` | Query, Optional | client MAC |
-| `deviceMac` | `*string` | Query, Optional | device MAC |
-| `threatLevel` | `*int` | Query, Optional | threat level |
+| `mType` | `*string` | Query, Optional | Event type, e.g. cc, fs, mw |
+| `mac` | `*string` | Query, Optional | Client MAC |
+| `deviceMac` | `*string` | Query, Optional | Device MAC |
+| `threatLevel` | `*int` | Query, Optional | Threat level |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -148,15 +148,15 @@ SearchSiteSkyatpEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | event type, e.g. cc, fs, mw |
-| `mac` | `*string` | Query, Optional | client MAC |
-| `deviceMac` | `*string` | Query, Optional | device MAC |
-| `threatLevel` | `*int` | Query, Optional | threat level |
+| `mType` | `*string` | Query, Optional | Event type, e.g. cc, fs, mw |
+| `mac` | `*string` | Query, Optional | Client MAC |
+| `deviceMac` | `*string` | Query, Optional | Device MAC |
+| `threatLevel` | `*int` | Query, Optional | Threat level |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

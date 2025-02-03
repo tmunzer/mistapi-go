@@ -14,27 +14,27 @@ type JunosPortConfig struct {
     AeDisableLacp        *bool                      `json:"ae_disable_lacp,omitempty"`
     // Users could force to use the designated AE name
     AeIdx                *int                       `json:"ae_idx,omitempty"`
-    // to use fast timeout
+    // To use fast timeout
     AeLacpSlow           *bool                      `json:"ae_lacp_slow,omitempty"`
     Aggregated           *bool                      `json:"aggregated,omitempty"`
-    // if want to generate port up/down alarm
+    // If want to generate port up/down alarm
     Critical             *bool                      `json:"critical,omitempty"`
     Description          *string                    `json:"description,omitempty"`
-    // if `speed` and `duplex` are specified, whether to disable autonegotiation
+    // If `speed` and `duplex` are specified, whether to disable autonegotiation
     DisableAutoneg       *bool                      `json:"disable_autoneg,omitempty"`
     // enum: `auto`, `full`, `half`
     Duplex               *JunosPortConfigDuplexEnum `json:"duplex,omitempty"`
     // Enable dynamic usage for this port. Set to `dynamic` to enable.
     DynamicUsage         Optional[string]           `json:"dynamic_usage"`
     Esilag               *bool                      `json:"esilag,omitempty"`
-    // media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation
+    // Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation
     Mtu                  *int                       `json:"mtu,omitempty"`
-    // prevent helpdesk to override the port config
+    // Prevent helpdesk to override the port config
     NoLocalOverwrite     *bool                      `json:"no_local_overwrite,omitempty"`
     PoeDisabled          *bool                      `json:"poe_disabled,omitempty"`
     // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
     Speed                *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
-    // port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
+    // Port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                string                     `json:"usage"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

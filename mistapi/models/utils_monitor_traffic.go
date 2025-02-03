@@ -7,7 +7,7 @@ import (
 
 // UtilsMonitorTraffic represents a UtilsMonitorTraffic struct.
 type UtilsMonitorTraffic struct {
-    // port name, if no port input is provided then all ports will be monitored
+    // Port name, if no port input is provided then all ports will be monitored
     Port                 *string                `json:"port,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

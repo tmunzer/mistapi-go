@@ -8,9 +8,9 @@ import (
 // WlanAppQosAppsProperties represents a WlanAppQosAppsProperties struct.
 type WlanAppQosAppsProperties struct {
     Dscp                 *int                   `json:"dscp,omitempty"`
-    // subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
+    // Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
     DstSubnet            *string                `json:"dst_subnet,omitempty"`
-    // subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
+    // Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
     SrcSubnet            *string                `json:"src_subnet,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

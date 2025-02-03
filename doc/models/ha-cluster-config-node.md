@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | node mac, should be unassigned |
+| `Mac` | `*string` | Optional | Node mac, should be unassigned |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

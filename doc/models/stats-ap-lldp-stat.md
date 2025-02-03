@@ -14,17 +14,17 @@ LLDP Stat (neighbor information, power negotiations)
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ChassisId` | `models.Optional[string]` | Optional | - |
-| `LldpMedSupported` | `models.Optional[bool]` | Optional | whether it support LLDP-MED |
-| `MgmtAddr` | `models.Optional[string]` | Optional | switch’s management address (if advertised), can be IPv4, IPv6, or MAC |
+| `LldpMedSupported` | `models.Optional[bool]` | Optional | Whether it support LLDP-MED |
+| `MgmtAddr` | `models.Optional[string]` | Optional | Switch’s management address (if advertised), can be IPv4, IPv6, or MAC |
 | `MgmtAddrs` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `PortDesc` | `models.Optional[string]` | Optional | ge-0/0/4 |
 | `PortId` | `models.Optional[string]` | Optional | - |
-| `PowerAllocated` | `models.Optional[float64]` | Optional | in mW, provided/allocated by PSE |
-| `PowerDraw` | `models.Optional[float64]` | Optional | in mW, total power needed by PD |
-| `PowerRequestCount` | `models.Optional[int]` | Optional | number of negotiations, if it keeps increasing, we don’ t have a stable power |
-| `PowerRequested` | `models.Optional[float64]` | Optional | in mW, the current power requested by PD |
-| `SystemDesc` | `models.Optional[string]` | Optional | description provided by switch |
-| `SystemName` | `models.Optional[string]` | Optional | name of the switch |
+| `PowerAllocated` | `models.Optional[float64]` | Optional | In mW, provided/allocated by PSE |
+| `PowerDraw` | `models.Optional[float64]` | Optional | In mW, total power needed by PD |
+| `PowerRequestCount` | `models.Optional[int]` | Optional | Number of negotiations, if it keeps increasing, we don’ t have a stable power |
+| `PowerRequested` | `models.Optional[float64]` | Optional | In mW, the current power requested by PD |
+| `SystemDesc` | `models.Optional[string]` | Optional | Description provided by switch |
+| `SystemName` | `models.Optional[string]` | Optional | Name of the switch |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

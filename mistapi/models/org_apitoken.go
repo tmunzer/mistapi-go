@@ -16,18 +16,18 @@ import (
 type OrgApitoken struct {
     // email of the token creator / null if creator is deleted
     CreatedBy            Optional[string]       `json:"created_by"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Key                  *string                `json:"key,omitempty"`
     LastUsed             Optional[float64]      `json:"last_used"`
-    // name of the token
+    // Name of the token
     Name                 string                 `json:"name"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // list of privileges the token has on the orgs/sites
+    // List of privileges the token has on the orgs/sites
     Privileges           []PrivilegeOrg         `json:"privileges,omitempty"`
-    // list of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
+    // List of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created.
     SrcIps               []string               `json:"src_ips,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

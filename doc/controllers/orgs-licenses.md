@@ -120,7 +120,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | invalid key (or already used) | `ApiError` |
+| 400 | Invalid key (or already used) | `ApiError` |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -461,7 +461,7 @@ GetOrgLicenseAsyncClaimStatus(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `detail` | `*bool` | Query, Optional | request license details |
+| `detail` | `*bool` | Query, Optional | Request license details |
 
 ## Response Type
 

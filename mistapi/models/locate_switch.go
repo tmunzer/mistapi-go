@@ -7,9 +7,9 @@ import (
 
 // LocateSwitch represents a LocateSwitch struct.
 type LocateSwitch struct {
-    // minutes the leds should keep flashing
+    // Minutes the leds should keep flashing
     Duration             *int                   `json:"duration,omitempty"`
-    // for virtual chassis, the MAC of the member
+    // For virtual chassis, the MAC of the member
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

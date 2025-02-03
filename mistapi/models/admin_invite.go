@@ -9,17 +9,17 @@ import (
 
 // AdminInvite represents a AdminInvite struct.
 type AdminInvite struct {
-    // skip creating initial setup if true
+    // Skip creating initial setup if true
     AccountOnly          *bool                  `json:"account_only,omitempty"`
-    // whether to allow Mist to look at this org
+    // Whether to allow Mist to look at this org
     AllowMist            *bool                  `json:"allow_mist,omitempty"`
-    // city of registering user
+    // City of registering user
     City                 *string                `json:"city,omitempty"`
-    // country/region name or ISO code of registering user
+    // Country/region name or ISO code of registering user
     Country              *string                `json:"country,omitempty"`
     Email                string                 `json:"email"`
     FirstName            string                 `json:"first_name"`
-    // required initially
+    // Required initially
     InviteCode           *string                `json:"invite_code,omitempty"`
     LastName             string                 `json:"last_name"`
     OrgName              string                 `json:"org_name"`
@@ -28,15 +28,15 @@ type AdminInvite struct {
     Recaptcha            string                 `json:"recaptcha"`
     // flavor of the captcha. enum: `google`, `hcaptcha`
     RecaptchaFlavor      *RecaptchaFlavorEnum   `json:"recaptcha_flavor,omitempty"`
-    // the invite token to apply after account creation
+    // Invite token to apply after account creation
     RefererInviteToken   *string                `json:"referer_invite_token,omitempty"`
-    // the url the user should be redirected back to
+    // URL the user should be redirected back to
     ReturnTo             *string                `json:"return_to,omitempty"`
-    // state name or ISO code of registering user, optional (depends on country/region)
+    // State name or ISO code of registering user, optional (depends on country/region)
     State                *string                `json:"state,omitempty"`
-    // street address of registering user
+    // Street address of registering user
     StreetAddress        *string                `json:"street_address,omitempty"`
-    // street address 2 of registering user
+    // Street address 2 of registering user
     StreetAddress2       *string                `json:"street_address 2,omitempty"`
     // zipcode of registering user
     Zipcode              *string                `json:"zipcode,omitempty"`

@@ -8,15 +8,15 @@ import (
 
 // ResponseUpgradeOrgDevices represents a ResponseUpgradeOrgDevices struct.
 type ResponseUpgradeOrgDevices struct {
-    // whether to allow local AP-to-AP FW upgrade
+    // Whether to allow local AP-to-AP FW upgrade
     EnableP2p            *bool                      `json:"enable_p2p,omitempty"`
-    // whether to force upgrade when requested version is same as running version
+    // Whether to force upgrade when requested version is same as running version
     Force                *bool                      `json:"force,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                 `json:"id,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
-    // version to upgrade to
+    // Version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
     Upgrades             []UpgradeOrgDevicesUpgrade `json:"upgrades,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`

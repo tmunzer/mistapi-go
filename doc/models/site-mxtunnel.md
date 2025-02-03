@@ -14,23 +14,23 @@ Site MxTunnel
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdditionalMxtunnels` | [`map[string]models.SiteMxtunnelAdditionalMxtunnel`](../../doc/models/site-mxtunnel-additional-mxtunnel.md) | Optional | - |
-| `ApSubnets` | `[]string` | Optional | list of subnets where we allow AP to establish Mist Tunnels from |
-| `AutoPreemption` | [`*models.AutoPreemption`](../../doc/models/auto-preemption.md) | Optional | schedule to preempt ap’s which are not connected to preferred peer |
-| `Clusters` | [`[]models.SiteMxtunnelCluster`](../../doc/models/site-mxtunnel-cluster.md) | Optional | for AP, how to connect to tunterm or radsecproxy |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `ApSubnets` | `[]string` | Optional | List of subnets where we allow AP to establish Mist Tunnels from |
+| `AutoPreemption` | [`*models.AutoPreemption`](../../doc/models/auto-preemption.md) | Optional | Schedule to preempt ap’s which are not connected to preferred peer |
+| `Clusters` | [`[]models.SiteMxtunnelCluster`](../../doc/models/site-mxtunnel-cluster.md) | Optional | For AP, how to connect to tunterm or radsecproxy |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
-| `HelloInterval` | `*int` | Optional | in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
+| `HelloInterval` | `*int` | Optional | In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
 | `HelloRetries` | `*int` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
-| `Hosts` | `[]string` | Optional | hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
+| `Hosts` | `[]string` | Optional | Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 1500` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
 | `Radsec` | [`*models.SiteMxtunnelRadsec`](../../doc/models/site-mxtunnel-radsec.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `VlanIds` | `[]int` | Optional | list of vlan_ids that will be used |
+| `VlanIds` | `[]int` | Optional | List of vlan_ids that will be used |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

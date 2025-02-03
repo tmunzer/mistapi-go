@@ -254,7 +254,7 @@ if err != nil {
 
 # List Org Idp Profiles
 
-get the list of Org IDP Profiles
+Get the list of Org IDP Profiles
 
 ```go
 ListOrgIdpProfiles(

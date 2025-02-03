@@ -406,7 +406,7 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 // PingOrgWebhook takes context, orgId, webhookId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// send a Ping event to the webhook
+// Send a Ping event to the webhook
 func (o *OrgsWebhooks) PingOrgWebhook(
     ctx context.Context,
     orgId uuid.UUID,

@@ -10,7 +10,7 @@ import (
 // RadiusAuthServer represents a RadiusAuthServer struct.
 // Authentication Server
 type RadiusAuthServer struct {
-    // ip / hostname of RADIUS server
+    // IP/ hostname of RADIUS server
     Host                        string                   `json:"host"`
     KeywrapEnabled              *bool                    `json:"keywrap_enabled,omitempty"`
     // enum: `ascii`, `hex`
@@ -19,9 +19,9 @@ type RadiusAuthServer struct {
     KeywrapMack                 *string                  `json:"keywrap_mack,omitempty"`
     // Auth port of RADIUS server
     Port                        *int                     `json:"port,omitempty"`
-    // whether to require Message-Authenticator in requests
+    // Whether to require Message-Authenticator in requests
     RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
-    // secret of RADIUS server
+    // Secretof RADIUS server
     Secret                      string                   `json:"secret"`
     AdditionalProperties        map[string]interface{}   `json:"_"`
 }

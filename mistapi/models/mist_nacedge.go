@@ -7,14 +7,14 @@ import (
 
 // MistNacedge represents a MistNacedge struct.
 type MistNacedge struct {
-    // cache of last auth result; in seconds
+    // Cache of last auth result; in seconds
     AuthTtl              *int                   `json:"auth_ttl,omitempty"`
-    // default vlan for all dot1x devices, if different from default_vlan
+    // Default vlan for all dot1x devices, if different from default_vlan
     DefaultDot1xVlan     *string                `json:"default_dot1x_vlan,omitempty"`
     // Default vlan to assign for devices not in the cache
     DefaultVlan          *string                `json:"default_vlan,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // list of NAC Edges in this site
+    // List of NAC Edges in this site
     MxedgeHosts          []string               `json:"mxedge_hosts,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

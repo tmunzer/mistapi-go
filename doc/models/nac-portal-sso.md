@@ -17,7 +17,7 @@
 | `Issuer` | `*string` | Optional | - |
 | `NameidFormat` | `*string` | Optional | - |
 | `SsoRoleMatching` | [`[]models.NacPortalSsoRoleMatching`](../../doc/models/nac-portal-sso-role-matching.md) | Optional | - |
-| `UseSsoRoleForCert` | `*bool` | Optional | if it's desired to inject a role into Cert's Subject (so it can be used later on in policy) |
+| `UseSsoRoleForCert` | `*bool` | Optional | If it's desired to inject a role into Cert's Subject (so it can be used later on in policy) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

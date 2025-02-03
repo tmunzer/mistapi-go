@@ -208,7 +208,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | parameter neighbor absent | `ApiError` |
+| 400 | Parameter neighbor absent | `ApiError` |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -509,7 +509,7 @@ ShowSiteSsrAndSrxRoutes(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowRoute`](../../doc/models/utils-show-route.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowRoute`](../../doc/models/utils-show-route.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -672,7 +672,7 @@ ShowSiteSsrOspfDatabase(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfDatabase`](../../doc/models/utils-show-ospf-database.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowOspfDatabase`](../../doc/models/utils-show-ospf-database.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -756,7 +756,7 @@ ShowSiteSsrOspfInterfaces(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfInterfaces`](../../doc/models/utils-show-ospf-interfaces.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowOspfInterfaces`](../../doc/models/utils-show-ospf-interfaces.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -841,7 +841,7 @@ ShowSiteSsrOspfNeighbors(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfNeighbors`](../../doc/models/utils-show-ospf-neighbors.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowOspfNeighbors`](../../doc/models/utils-show-ospf-neighbors.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
@@ -926,7 +926,7 @@ ShowSiteSsrOspfSummary(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfSummary`](../../doc/models/utils-show-ospf-summary.md) | Body, Optional | all attributes are optional |
+| `body` | [`*models.UtilsShowOspfSummary`](../../doc/models/utils-show-ospf-summary.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 

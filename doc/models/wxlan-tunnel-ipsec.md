@@ -13,8 +13,8 @@ IPSec-related configurations; requires DMVPN be enabled
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether ipsec is enabled, requires DMVPN be enabled<br>**Default**: `false` |
-| `Psk` | `string` | Required | ipsec pre-shared key |
+| `Enabled` | `*bool` | Optional | Whether ipsec is enabled, requires DMVPN be enabled<br>**Default**: `false` |
+| `Psk` | `string` | Required | IPSec pre-shared key |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -8,13 +8,13 @@ import (
 // SwitchMgmt represents a SwitchMgmt struct.
 // Switch settings
 type SwitchMgmt struct {
-    // ap_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.
+    // AP_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.
     ApAffinityThreshold  *int                                     `json:"ap_affinity_threshold,omitempty"`
     // Set Banners for switches. Allows markup formatting
     CliBanner            *string                                  `json:"cli_banner,omitempty"`
     // Sets timeout for switches
     CliIdleTimeout       *int                                     `json:"cli_idle_timeout,omitempty"`
-    // the rollback timer for commit confirmed
+    // Rollback timer for commit confirmed
     ConfigRevertTimer    *int                                     `json:"config_revert_timer,omitempty"`
     // Enable to provide the FQDN with DHCP option 81
     DhcpOptionFqdn       *bool                                    `json:"dhcp_option_fqdn,omitempty"`
@@ -23,15 +23,15 @@ type SwitchMgmt struct {
     LocalAccounts        map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost      *string                                  `json:"mxedge_proxy_host,omitempty"`
     MxedgeProxyPort      *int                                     `json:"mxedge_proxy_port,omitempty"`
-    // restrict inbound-traffic to host
+    // Restrict inbound-traffic to host
     // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
     ProtectRe            *ProtectRe                               `json:"protect_re,omitempty"`
-    // by default, `radius_config` will be used. if a different one has to be used set `use_different_radius
+    // By default, `radius_config` will be used. if a different one has to be used set `use_different_radius
     Radius               *SwitchRadius                            `json:"radius,omitempty"`
     RootPassword         *string                                  `json:"root_password,omitempty"`
     Tacacs               *Tacacs                                  `json:"tacacs,omitempty"`
-    // to use mxedge as proxy
+    // To use mxedge as proxy
     UseMxedgeProxy       *bool                                    `json:"use_mxedge_proxy,omitempty"`
     AdditionalProperties map[string]interface{}                   `json:"_"`
 }

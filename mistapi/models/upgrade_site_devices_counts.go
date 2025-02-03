@@ -7,23 +7,23 @@ import (
 
 // UpgradeSiteDevicesCounts represents a UpgradeSiteDevicesCounts struct.
 type UpgradeSiteDevicesCounts struct {
-    // count of devices which cloud has requested to download firmware
+    // Count of devices which cloud has requested to download firmware
     DownloadRequested    *int                   `json:"download_requested,omitempty"`
-    // count of ap’s which have the firmware downloaded
+    // Count of ap's which have the firmware downloaded
     Downloaded           *int                   `json:"downloaded,omitempty"`
-    // count of devices which have failed to upgrade
+    // Count of devices which have failed to upgrade
     Failed               *int                   `json:"failed,omitempty"`
-    // count of devices which are rebooting
+    // Count of devices which are rebooting
     RebootInProgress     *int                   `json:"reboot_in_progress,omitempty"`
-    // count of devices which have rebooted successfully
+    // Count of devices which have rebooted successfully
     Rebooted             *int                   `json:"rebooted,omitempty"`
-    // count of devices which cloud has scheduled an upgrade for
+    // Count of devices which cloud has scheduled an upgrade for
     Scheduled            *int                   `json:"scheduled,omitempty"`
-    // count of devices which skipped upgrade since requested version was same as running version. Use force to always upgrade
+    // Count of devices which skipped upgrade since requested version was same as running version. Use force to always upgrade
     Skipped              *int                   `json:"skipped,omitempty"`
-    // count of devices part of this upgrade
+    // Count of devices part of this upgrade
     Total                *int                   `json:"total,omitempty"`
-    // count of devices which have upgraded successfully
+    // Count of devices which have upgraded successfully
     Upgraded             *int                   `json:"upgraded,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

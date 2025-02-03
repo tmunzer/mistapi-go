@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Id` | `*string` | Optional | Unique ID for the uploaded CRL file, used to reference the file |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | Issuer name for the CRL file |
 | `Url` | `*string` | Optional | URL to download the uploaded CRL file |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

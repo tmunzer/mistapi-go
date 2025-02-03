@@ -20,7 +20,7 @@ Provision Device
 | `Name` | `string` | Required | - |
 | `Orientation` | `*int` | Optional | - |
 | `ReplacingMac` | `*string` | Optional | Onlif this is to replace an existing device |
-| `Role` | `*string` | Optional | optional role for switch / gateway |
+| `Role` | `*string` | Optional | Optional role for switch / gateway |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SiteName` | `*string` | Optional | - |
 | `X` | `*float64` | Optional | - |

@@ -127,26 +127,26 @@ SearchOrgTunnelsStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mxclusterId` | `*string` | Query, Optional | if `type`==`wxtunnel` |
+| `mxclusterId` | `*string` | Query, Optional | If `type`==`wxtunnel` |
 | `siteId` | `*string` | Query, Optional | - |
-| `wxtunnelId` | `*string` | Query, Optional | if `type`==`wxtunnel` |
-| `ap` | `*string` | Query, Optional | if `type`==`wxtunnel` |
-| `mac` | `*string` | Query, Optional | if `type`==`wan` |
-| `node` | `*string` | Query, Optional | if `type`==`wan` |
-| `peerIp` | `*string` | Query, Optional | if `type`==`wan` |
-| `peerHost` | `*string` | Query, Optional | if `type`==`wan` |
-| `ip` | `*string` | Query, Optional | if `type`==`wan` |
-| `tunnelName` | `*string` | Query, Optional | if `type`==`wan` |
-| `protocol` | `*string` | Query, Optional | if `type`==`wan` |
-| `authAlgo` | `*string` | Query, Optional | if `type`==`wan` |
-| `encryptAlgo` | `*string` | Query, Optional | if `type`==`wan` |
-| `ikeVersion` | `*string` | Query, Optional | if `type`==`wan` |
-| `up` | `*string` | Query, Optional | if `type`==`wan` |
+| `wxtunnelId` | `*string` | Query, Optional | If `type`==`wxtunnel` |
+| `ap` | `*string` | Query, Optional | If `type`==`wxtunnel` |
+| `mac` | `*string` | Query, Optional | If `type`==`wan` |
+| `node` | `*string` | Query, Optional | If `type`==`wan` |
+| `peerIp` | `*string` | Query, Optional | If `type`==`wan` |
+| `peerHost` | `*string` | Query, Optional | If `type`==`wan` |
+| `ip` | `*string` | Query, Optional | If `type`==`wan` |
+| `tunnelName` | `*string` | Query, Optional | If `type`==`wan` |
+| `protocol` | `*string` | Query, Optional | If `type`==`wan` |
+| `authAlgo` | `*string` | Query, Optional | If `type`==`wan` |
+| `encryptAlgo` | `*string` | Query, Optional | If `type`==`wan` |
+| `ikeVersion` | `*string` | Query, Optional | If `type`==`wan` |
+| `up` | `*string` | Query, Optional | If `type`==`wan` |
 | `mType` | [`*models.TunnelTypeEnum`](../../doc/models/tunnel-type-enum.md) | Query, Optional | **Default**: `"wxtunnel"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

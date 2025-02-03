@@ -7,17 +7,17 @@ import (
 )
 
 // Mxcluster represents a Mxcluster struct.
-// mxCluster
+// MxCluster
 type Mxcluster struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime               *float64                              `json:"created_time,omitempty"`
     ForSite                   *bool                                 `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                        *uuid.UUID                            `json:"id,omitempty"`
-    // configure cloud-assisted dynamic authorization service on this cluster of mist edges
+    // Configure cloud-assisted dynamic authorization service on this cluster of mist edges
     MistDas                   *MxedgeDas                            `json:"mist_das,omitempty"`
     MistNac                   *MxclusterNac                         `json:"mist_nac,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime              *float64                              `json:"modified_time,omitempty"`
     MxedgeMgmt                *MxedgeMgmt                           `json:"mxedge_mgmt,omitempty"`
     Name                      *string                               `json:"name,omitempty"`
@@ -28,15 +28,15 @@ type Mxcluster struct {
     Radsec                    *MxclusterRadsec                      `json:"radsec,omitempty"`
     RadsecTls                 *MxclusterRadsecTls                   `json:"radsec_tls,omitempty"`
     SiteId                    *uuid.UUID                            `json:"site_id,omitempty"`
-    // list of subnets where we allow AP to establish Mist Tunnels from
+    // List of subnets where we allow AP to establish Mist Tunnels from
     TuntermApSubnets          []string                              `json:"tunterm_ap_subnets,omitempty"`
     // DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN ID
     TuntermDhcpdConfig        *TuntermDhcpdConfig                   `json:"tunterm_dhcpd_config,omitempty"`
-    // extra routes for Mist Tunneled VLANs. Property key is a CIDR
+    // Extra routes for Mist Tunneled VLANs. Property key is a CIDR
     TuntermExtraRoutes        map[string]MxclusterTuntermExtraRoute `json:"tunterm_extra_routes,omitempty"`
-    // hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
+    // Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
     TuntermHosts              []string                              `json:"tunterm_hosts,omitempty"`
-    // list of index of tunterm_hosts
+    // List of index of tunterm_hosts
     TuntermHostsOrder         []int                                 `json:"tunterm_hosts_order,omitempty"`
     // Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
     // * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC

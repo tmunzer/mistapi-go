@@ -8,24 +8,24 @@ import (
 // SiteSettingGatewayMgmt represents a SiteSettingGatewayMgmt struct.
 // Gateway Site settings
 type SiteSettingGatewayMgmt struct {
-    // for SSR only, as direct root access is not allowed
+    // For SSR only, as direct root access is not allowed
     AdminSshkeys               []string                                   `json:"admin_sshkeys,omitempty"`
     AppProbing                 *AppProbing                                `json:"app_probing,omitempty"`
-    // consumes uplink bandwidth, requires WA license
+    // Consumes uplink bandwidth, requires WA license
     AppUsage                   *bool                                      `json:"app_usage,omitempty"`
     AutoSignatureUpdate        *SiteSettingGatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
-    // he rollback timer for commit confirmed
+    // Rollback timer for commit confirmed
     ConfigRevertTimer          *int                                       `json:"config_revert_timer,omitempty"`
-    // for both SSR and SRX disable console port
+    // For both SSR and SRX disable console port
     DisableConsole             *bool                                      `json:"disable_console,omitempty"`
-    // for both SSR and SRX disable management interface
+    // For both SSR and SRX disable management interface
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
-    // restrict inbound-traffic to host
+    // Restrict inbound-traffic to host
     // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
     ProtectRe                  *ProtectRe                                 `json:"protect_re,omitempty"`
-    // for SRX only
+    // For SRX only
     RootPassword               *string                                    `json:"root_password,omitempty"`
     SecurityLogSourceAddress   *string                                    `json:"security_log_source_address,omitempty"`
     SecurityLogSourceInterface *string                                    `json:"security_log_source_interface,omitempty"`

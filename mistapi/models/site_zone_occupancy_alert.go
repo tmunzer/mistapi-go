@@ -8,11 +8,11 @@ import (
 // SiteZoneOccupancyAlert represents a SiteZoneOccupancyAlert struct.
 // Zone Occupancy alert site settings
 type SiteZoneOccupancyAlert struct {
-    // list of email addresses to send email notifications when the alert threshold is reached
+    // List of email addresses to send email notifications when the alert threshold is reached
     EmailNotifiers       []string               `json:"email_notifiers,omitempty"`
-    // indicate whether zone occupancy alert is enabled for the site
+    // Indicate whether zone occupancy alert is enabled for the site
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // sending zone-occupancy-alert webhook message only if a zone stays non-compliant (i.e. actual occupancy > occupancy_limit) for a minimum duration specified in the threshold, in minutes
+    // Sending zone-occupancy-alert webhook message only if a zone stays non-compliant (i.e. actual occupancy > occupancy_limit) for a minimum duration specified in the threshold, in minutes
     Threshold            *int                   `json:"threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

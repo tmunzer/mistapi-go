@@ -13,7 +13,7 @@ Asset statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BatteryVoltage` | `*float64` | Optional | battery voltage, in mV |
+| `BatteryVoltage` | `*float64` | Optional | Battery voltage, in mV |
 | `Beam` | `*int` | Optional | - |
 | `DeviceName` | `*string` | Optional | - |
 | `Duration` | `*int` | Optional | - |
@@ -23,16 +23,16 @@ Asset statistics
 | `IbeaconMajor` | `*int` | Optional | - |
 | `IbeaconMinor` | `*int` | Optional | - |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | - |
-| `LastSeen` | `*float64` | Optional | last seen timestamp |
-| `Mac` | `string` | Required | bluetooth MAC |
-| `MapId` | `*uuid.UUID` | Optional | map where the device belongs to |
-| `Name` | `*string` | Optional | name / label of the device |
+| `LastSeen` | `*float64` | Optional | Last seen timestamp |
+| `Mac` | `string` | Required | Bluetooth MAC |
+| `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
+| `Name` | `*string` | Optional | Name / label of the device |
 | `Rssi` | `*int` | Optional | - |
-| `Rssizones` | [`[]models.AssetRssiZone`](../../doc/models/asset-rssi-zone.md) | Optional | only send this for individual asset stat |
+| `Rssizones` | [`[]models.AssetRssiZone`](../../doc/models/asset-rssi-zone.md) | Optional | Only send this for individual asset stat |
 | `Temperatur` | `*float64` | Optional | - |
-| `X` | `*float64` | Optional | x in pixel |
-| `Y` | `*float64` | Optional | y in pixel |
-| `Zones` | [`[]models.AssetZone`](../../doc/models/asset-zone.md) | Optional | only send this for individual asset stat |
+| `X` | `*float64` | Optional | X in pixel |
+| `Y` | `*float64` | Optional | Y in pixel |
+| `Zones` | [`[]models.AssetZone`](../../doc/models/asset-zone.md) | Optional | Only send this for individual asset stat |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

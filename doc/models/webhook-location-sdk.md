@@ -13,8 +13,8 @@ Location SDK sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationSdkEvent`](../../doc/models/webhook-location-sdk-event.md) | Required | list of events |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_sdk"` |
+| `Events` | [`[]models.WebhookLocationSdkEvent`](../../doc/models/webhook-location-sdk-event.md) | Required | List of events |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"location_sdk"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

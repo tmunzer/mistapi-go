@@ -16,11 +16,11 @@
 | `Latency` | `*float64` | Optional | - |
 | `Mos` | `*float64` | Optional | - |
 | `Mtu` | `*int` | Optional | - |
-| `PeerMac` | `*string` | Optional | peer router mac address<br>**Constraints**: *Minimum Length*: `1` |
-| `PeerPortId` | `*string` | Optional | peer router device interface<br>**Constraints**: *Minimum Length*: `1` |
+| `PeerMac` | `*string` | Optional | Peer router mac address<br>**Constraints**: *Minimum Length*: `1` |
+| `PeerPortId` | `*string` | Optional | Peer router device interface<br>**Constraints**: *Minimum Length*: `1` |
 | `PeerRouterName` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `PeerSiteId` | `*uuid.UUID` | Optional | - |
-| `PortId` | `*string` | Optional | router device interface<br>**Constraints**: *Minimum Length*: `1` |
+| `PortId` | `*string` | Optional | Router device interface<br>**Constraints**: *Minimum Length*: `1` |
 | `RouterName` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Type` | `*string` | Optional | `ipsec`for SRX, `svr` for 128T<br>**Constraints**: *Minimum Length*: `1` |
 | `Up` | `*bool` | Optional | - |

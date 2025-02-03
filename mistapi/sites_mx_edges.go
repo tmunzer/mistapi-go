@@ -263,7 +263,7 @@ func (s *SitesMxEdges) DeleteSiteMxEdge(
 // GetSiteMxEdge takes context, siteId, mxedgeId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// get Site Mist Edge
+// Get Site Mist Edge
 func (s *SitesMxEdges) GetSiteMxEdge(
     ctx context.Context,
     siteId uuid.UUID,

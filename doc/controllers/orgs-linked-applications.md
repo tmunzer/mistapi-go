@@ -322,7 +322,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | account already linked | [`ResponseDetailStringException`](../../doc/models/response-detail-string-exception.md) |
+| 400 | Account already linked | [`ResponseDetailStringException`](../../doc/models/response-detail-string-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |

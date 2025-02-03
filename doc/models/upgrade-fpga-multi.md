@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DeviceIds` | `[]uuid.UUID` | Optional | list of device id to upgrade bios |
-| `Models` | `[]string` | Optional | list of device model to upgrade bios |
+| `DeviceIds` | `[]uuid.UUID` | Optional | List of device id to upgrade bios |
+| `Models` | `[]string` | Optional | List of device model to upgrade bios |
 | `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br>**Default**: `false` |
-| `Version` | `*string` | Optional | specific FPGA version |
+| `Version` | `*string` | Optional | Specific FPGA version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

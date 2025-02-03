@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `PortalTemplate` | [`*models.WlanPortalTemplateSetting`](../../doc/models/wlan-portal-template-setting.md) | Optional | portal template wlan settings |
+| `PortalTemplate` | [`*models.WlanPortalTemplateSetting`](../../doc/models/wlan-portal-template-setting.md) | Optional | Portal template wlan settings |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

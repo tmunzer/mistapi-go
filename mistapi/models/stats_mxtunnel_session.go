@@ -9,11 +9,11 @@ import (
 
 // StatsMxtunnelSession represents a StatsMxtunnelSession struct.
 type StatsMxtunnelSession struct {
-    // remote sessions id (dynamically unless Tunnel is said to be static)
+    // Remote sessions id (dynamically unless Tunnel is said to be static)
     LocalSid             int                    `json:"local_sid"`
     // WxlanTunnel Remote ID
     RemoteId             string                 `json:"remote_id"`
-    // remote sessions id (dynamically unless Tunnel is said to be static)
+    // Remote sessions id (dynamically unless Tunnel is said to be static)
     RemoteSid            int                    `json:"remote_sid"`
     State                string                 `json:"state"`
     AdditionalProperties map[string]interface{} `json:"_"`

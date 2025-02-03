@@ -14,12 +14,12 @@
 | `AutoProvision` | [`*models.TunnelConfigAutoProvision`](../../doc/models/tunnel-config-auto-provision.md) | Optional | - |
 | `IkeLifetime` | `*int` | Optional | Only if `provider`==`custom-ipsec` |
 | `IkeMode` | [`*models.TunnelConfigIkeModeEnum`](../../doc/models/tunnel-config-ike-mode-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`<br>**Default**: `"main"` |
-| `IkeProposals` | [`[]models.TunnelConfigIkeProposal`](../../doc/models/tunnel-config-ike-proposal.md) | Optional | if `provider`==`custom-ipsec` |
-| `IpsecLifetime` | `*int` | Optional | if `provider`==`custom-ipsec` |
+| `IkeProposals` | [`[]models.TunnelConfigIkeProposal`](../../doc/models/tunnel-config-ike-proposal.md) | Optional | If `provider`==`custom-ipsec` |
+| `IpsecLifetime` | `*int` | Optional | If `provider`==`custom-ipsec` |
 | `IpsecProposals` | [`[]models.TunnelConfigIpsecProposal`](../../doc/models/tunnel-config-ipsec-proposal.md) | Optional | Only if  `provider`==`custom-ipsec` |
 | `LocalId` | `*string` | Optional | Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `Mode` | [`*models.TunnelConfigTunnelModeEnum`](../../doc/models/tunnel-config-tunnel-mode-enum.md) | Optional | Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`<br>**Default**: `"active-standby"` |
-| `Networks` | `[]string` | Optional | if `provider`==`custom-ipsec`, networks reachable via this tunnel |
+| `Networks` | `[]string` | Optional | If `provider`==`custom-ipsec`, networks reachable via this tunnel |
 | `Primary` | [`*models.TunnelConfigNode`](../../doc/models/tunnel-config-node.md) | Optional | Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `Probe` | [`*models.TunnelConfigProbe`](../../doc/models/tunnel-config-probe.md) | Optional | Only if `provider`==`custom-ipsec` |
 | `Protocol` | [`*models.TunnelConfigProtocolEnum`](../../doc/models/tunnel-config-protocol-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `gre`, `ipsec` |

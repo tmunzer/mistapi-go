@@ -11,7 +11,7 @@ type ModuleStatItem struct {
     BiosVersion          Optional[string]                 `json:"bios_version"`
     CpldVersion          Optional[string]                 `json:"cpld_version"`
     CpuStat              *CpuStat                         `json:"cpu_stat,omitempty"`
-    // used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
+    // Used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
     Errors               []ModuleStatItemErrorsItems      `json:"errors,omitempty"`
     Fans                 []ModuleStatItemFansItems        `json:"fans,omitempty"`
     FpcIdx               *int                             `json:"fpc_idx,omitempty"`
@@ -36,7 +36,7 @@ type ModuleStatItem struct {
     Uptime               Optional[int]                    `json:"uptime"`
     VcLinks              []ModuleStatItemVcLinksItem      `json:"vc_links,omitempty"`
     VcMode               Optional[string]                 `json:"vc_mode"`
-    // master / backup / linecard
+    // enum: `master`, `backup`, `linecard`
     VcRole               Optional[string]                 `json:"vc_role"`
     VcState              Optional[string]                 `json:"vc_state"`
     Version              Optional[string]                 `json:"version"`

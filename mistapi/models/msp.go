@@ -9,13 +9,13 @@ import (
 // Msp represents a Msp struct.
 type Msp struct {
     AllowMist            *bool                  `json:"allow_mist,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // For advanced tier (uMSPs) only
     LogoUrl              *string                `json:"logo_url,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     // enum: `advanced`, `base`

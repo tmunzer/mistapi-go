@@ -1,7 +1,7 @@
 
 # Webhook Device Updowns
 
-device up/down webhook sample
+Device up/down webhook sample
 
 *This model accepts additional fields of type interface{}.*
 

@@ -7,7 +7,7 @@ import (
 
 // HaClusterDelete represents a HaClusterDelete struct.
 type HaClusterDelete struct {
-    // node0 mac address
+    // Node0 mac address
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

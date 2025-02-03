@@ -1,7 +1,7 @@
 
 # Mxcluster
 
-mxCluster
+MxCluster
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,12 +13,12 @@ mxCluster
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | configure cloud-assisted dynamic authorization service on this cluster of mist edges |
+| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | Configure cloud-assisted dynamic authorization service on this cluster of mist edges |
 | `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -26,11 +26,11 @@ mxCluster
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |
 | `RadsecTls` | [`*models.MxclusterRadsecTls`](../../doc/models/mxcluster-radsec-tls.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `TuntermApSubnets` | `[]string` | Optional | list of subnets where we allow AP to establish Mist Tunnels from |
+| `TuntermApSubnets` | `[]string` | Optional | List of subnets where we allow AP to establish Mist Tunnels from |
 | `TuntermDhcpdConfig` | [`*models.TuntermDhcpdConfig`](../../doc/models/tunterm-dhcpd-config.md) | Optional | DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN ID |
-| `TuntermExtraRoutes` | [`map[string]models.MxclusterTuntermExtraRoute`](../../doc/models/mxcluster-tunterm-extra-route.md) | Optional | extra routes for Mist Tunneled VLANs. Property key is a CIDR |
-| `TuntermHosts` | `[]string` | Optional | hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
-| `TuntermHostsOrder` | `[]int` | Optional | list of index of tunterm_hosts |
+| `TuntermExtraRoutes` | [`map[string]models.MxclusterTuntermExtraRoute`](../../doc/models/mxcluster-tunterm-extra-route.md) | Optional | Extra routes for Mist Tunneled VLANs. Property key is a CIDR |
+| `TuntermHosts` | `[]string` | Optional | Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP) |
+| `TuntermHostsOrder` | `[]int` | Optional | List of index of tunterm_hosts |
 | `TuntermHostsSelection` | [`*models.MxclusterTuntermHostsSelectionEnum`](../../doc/models/mxcluster-tunterm-hosts-selection-enum.md) | Optional | Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:<br><br>* `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC<br>* `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)<br>* `ordered`: order decided by tunterm_hosts_order<br>**Default**: `"shuffle"` |
 | `TuntermMonitoring` | [`[][]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMonitoringDisabled` | `*bool` | Optional | - |

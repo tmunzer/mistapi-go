@@ -16,7 +16,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*int` | Optional | - |
 | `Type` | `*string` | Optional | **Default**: `"wifi"` |
-| `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
+| `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

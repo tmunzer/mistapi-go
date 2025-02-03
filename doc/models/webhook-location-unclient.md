@@ -13,8 +13,8 @@ Location Unconnected Client sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationUnclientEvent`](../../doc/models/webhook-location-unclient-event.md) | Required | list of events |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location_unclient"` |
+| `Events` | [`[]models.WebhookLocationUnclientEvent`](../../doc/models/webhook-location-unclient-event.md) | Required | List of events |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"location_unclient"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

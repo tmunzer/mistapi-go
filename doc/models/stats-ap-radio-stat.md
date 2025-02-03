@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band24` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | radio stat |
-| `Band5` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | radio stat |
-| `Band6` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | radio stat |
+| `Band24` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
+| `Band5` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
+| `Band6` | [`*models.ApRadioStat`](../../doc/models/ap-radio-stat.md) | Optional | Radio stat |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

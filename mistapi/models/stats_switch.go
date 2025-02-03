@@ -18,7 +18,7 @@ type StatsSwitch struct {
     ClientsStats         *StatsSwitchClientsStats       `json:"clients_stats,omitempty"`
     ConfigStatus         *string                        `json:"config_status,omitempty"`
     CpuStat              *CpuStat                       `json:"cpu_stat,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                       `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]            `json:"deviceprofile_id"`
     // Property key is the network name
@@ -26,11 +26,11 @@ type StatsSwitch struct {
     EvpntopoId           Optional[uuid.UUID]            `json:"evpntopo_id"`
     FwVersionsOutofsync  *bool                          `json:"fw_versions_outofsync,omitempty"`
     Fwupdate             *FwupdateStat                  `json:"fwupdate,omitempty"`
-    // whether the switch supports packet capture
+    // Whether the switch supports packet capture
     HasPcap              *bool                          `json:"has_pcap,omitempty"`
-    // hostname reported by the device
+    // Hostname reported by the device
     Hostname             *string                        `json:"hostname,omitempty"`
-    // device hardware revision number
+    // Device hardware revision number
     HwRev                *string                        `json:"hw_rev,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                     `json:"id,omitempty"`
@@ -39,21 +39,21 @@ type StatsSwitch struct {
     Ip                   *string                        `json:"ip,omitempty"`
     IpStat               *IpStat                        `json:"ip_stat,omitempty"`
     LastSeen             *float64                       `json:"last_seen,omitempty"`
-    // last trouble code of switch
+    // Last trouble code of switch
     LastTrouble          *LastTrouble                   `json:"last_trouble,omitempty"`
     Mac                  *string                        `json:"mac,omitempty"`
     MacTableStats        *MacTableStats                 `json:"mac_table_stats,omitempty"`
     MapId                Optional[uuid.UUID]            `json:"map_id"`
-    // memory usage stat (for virtual chassis, memory usage of master RE)
+    // Memory usage stat (for virtual chassis, memory usage of master RE)
     MemoryStat           *MemoryStat                    `json:"memory_stat,omitempty"`
     Model                *string                        `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                       `json:"modified_time,omitempty"`
     ModuleStat           []ModuleStatItem               `json:"module_stat,omitempty"`
-    // device name if configured
+    // Device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    // only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
+    // Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
     Ports                []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial               *string                        `json:"serial,omitempty"`

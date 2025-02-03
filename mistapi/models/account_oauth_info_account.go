@@ -10,14 +10,14 @@ import (
 type AccountOauthInfoAccount struct {
     // Linked app(zoom/teams/intune) account id
     AccountId            *string                `json:"account_id,omitempty"`
-    // customer account Client ID
+    // Customer account Client ID
     ClientId             *string                `json:"client_id,omitempty"`
     // Name of the company whose account mist has subscribed to
     Company              *string                `json:"company,omitempty"`
     // This error is provided when the account fails to fetch token/data
     Error                *string                `json:"error,omitempty"`
     Errors               []string               `json:"errors,omitempty"`
-    // customer account instance URL
+    // Customer account instance URL
     InstanceUrl          *string                `json:"instance_url,omitempty"`
     // Is the last data pull for account is successful or not
     LastStatus           *string                `json:"last_status,omitempty"`
@@ -30,11 +30,11 @@ type AccountOauthInfoAccount struct {
     MaxDailyApiRequests  *int                   `json:"max_daily_api_requests,omitempty"`
     // Name of the company whose account mist has subscribed to
     Name                 *string                `json:"name,omitempty"`
-    // customer account password instance URL
+    // Customer account password instance URL
     Password             *string                `json:"password,omitempty"`
-    // smart group membership for determining compliance status
+    // Smart group membership for determining compliance status
     SmartgroupName       *string                `json:"smartgroup_name,omitempty"`
-    // customer account username
+    // Customer account username
     Username             *string                `json:"username,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

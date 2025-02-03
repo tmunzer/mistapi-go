@@ -15,7 +15,7 @@ type LicenseUsageOrg struct {
     FullyLoaded          map[string]int         `json:"fully_loaded,omitempty"`
     NumDevices           int                    `json:"num_devices"`
     SiteId               uuid.UUID              `json:"site_id"`
-    // subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN")
+    // Subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN")
     Usages               map[string]int         `json:"usages"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

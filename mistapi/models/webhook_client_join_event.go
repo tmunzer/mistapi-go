@@ -10,18 +10,18 @@ import (
 
 // WebhookClientJoinEvent represents a WebhookClientJoinEvent struct.
 type WebhookClientJoinEvent struct {
-    // mac address of the AP the client connected to
+    // MAC address of the AP the client connected to
     Ap                   string                 `json:"ap"`
     // user-friendly name of the AP the client connected to.
     ApName               string                 `json:"ap_name"`
     // 5GHz or 2.4GHz band
     Band                 string                 `json:"band"`
     Bssid                string                 `json:"bssid"`
-    // time when the user connects
+    // Time when the user connects
     Connect              int                    `json:"connect"`
     // floating point connect timestamp with millisecond precision
     ConnectFloat         float64                `json:"connect_float"`
-    // the client’s mac
+    // Client's MAC Address
     Mac                  string                 `json:"mac"`
     OrgId                uuid.UUID              `json:"org_id"`
     // RSSI when the client associated

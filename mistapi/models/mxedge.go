@@ -11,14 +11,14 @@ import (
 // Mxedge represents a Mxedge struct.
 // MxEdge
 type Mxedge struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime               *float64                              `json:"created_time,omitempty"`
     ForSite                   *bool                                 `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                        *uuid.UUID                            `json:"id,omitempty"`
     Magic                     *string                               `json:"magic,omitempty"`
     Model                     string                                `json:"model"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime              *float64                              `json:"modified_time,omitempty"`
     MxagentRegistered         *bool                                 `json:"mxagent_registered,omitempty"`
     // MxCluster this MxEdge belongs to
@@ -27,29 +27,29 @@ type Mxedge struct {
     Name                      string                                `json:"name"`
     Note                      *string                               `json:"note,omitempty"`
     NtpServers                []string                              `json:"ntp_servers,omitempty"`
-    // ip configuration of the Mist Edge out-of_band management interface
+    // IPconfiguration of the Mist Edge out-of_band management interface
     OobIpConfig               *MxedgeOobIpConfig                    `json:"oob_ip_config,omitempty"`
     OrgId                     *uuid.UUID                            `json:"org_id,omitempty"`
     // Proxy Configuration to talk to Mist
     Proxy                     *Proxy                                `json:"proxy,omitempty"`
-    // list of services to run, tunterm only for now
+    // List of services to run, tunterm only for now
     Services                  []string                              `json:"services,omitempty"`
     SiteId                    *uuid.UUID                            `json:"site_id,omitempty"`
-    // global and per-VLAN. Property key is the VLAN ID
+    // Global and per-VLAN. Property key is the VLAN ID
     TuntermDhcpdConfig        *MxedgeTuntermDhcpdConfig             `json:"tunterm_dhcpd_config,omitempty"`
     // Property key is a CIDR
     TuntermExtraRoutes        map[string]MxedgeTuntermExtraRoute    `json:"tunterm_extra_routes,omitempty"`
     TuntermIgmpSnoopingConfig *MxedgeTuntermIgmpSnoopingConfig      `json:"tunterm_igmp_snooping_config,omitempty"`
-    // ip configuration of the Mist Tunnel interface
+    // IPconfiguration of the Mist Tunnel interface
     TuntermIpConfig           *MxedgeTuntermIpConfig                `json:"tunterm_ip_config,omitempty"`
     TuntermMonitoring         [][]TuntermMonitoringItem             `json:"tunterm_monitoring,omitempty"`
     TuntermMulticastConfig    *MxedgeTuntermMulticastConfig         `json:"tunterm_multicast_config,omitempty"`
-    // ip configs by VLAN ID. Property key is the VLAN ID
+    // IPconfigs by VLAN ID. Property key is the VLAN ID
     TuntermOtherIpConfigs     map[string]MxedgeTuntermOtherIpConfig `json:"tunterm_other_ip_configs,omitempty"`
-    // ethernet port configurations
+    // Ethernet port configurations
     TuntermPortConfig         *TuntermPortConfig                    `json:"tunterm_port_config,omitempty"`
     TuntermRegistered         *bool                                 `json:"tunterm_registered,omitempty"`
-    // if custom vlan settings are desired
+    // If custom vlan settings are desired
     TuntermSwitchConfig       *MxedgeTuntermSwitchConfigs           `json:"tunterm_switch_config,omitempty"`
     Versions                  *MxedgeVersions                       `json:"versions,omitempty"`
     AdditionalProperties      map[string]interface{}                `json:"_"`

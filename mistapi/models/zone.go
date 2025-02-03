@@ -9,20 +9,20 @@ import (
 // Zone represents a Zone struct.
 // Zone
 type Zone struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // map where this zone is defined
+    // Map where this zone is defined
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // The name of the zone
     Name                 *string                `json:"name,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
+    // Vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
     Vertices             []ZoneVertex           `json:"vertices,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

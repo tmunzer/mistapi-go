@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Dscp` | `*int` | Optional | **Constraints**: `>= 0`, `<= 63` |
-| `DstSubnet` | `*string` | Optional | subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
-| `SrcSubnet` | `*string` | Optional | subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
+| `DstSubnet` | `*string` | Optional | Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
+| `SrcSubnet` | `*string` | Optional | Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

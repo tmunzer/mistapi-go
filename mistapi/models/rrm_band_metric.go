@@ -9,15 +9,15 @@ import (
 
 // RrmBandMetric represents a RrmBandMetric struct.
 type RrmBandMetric struct {
-    // average number of co-channel neighbors
+    // Average number of co-channel neighbors
     CochannelNeighbors   float64                              `json:"cochannel_neighbors"`
     // defined by how APs can hear from one and another, 0 - 1 (everyone can hear everyone)
     Density              float64                              `json:"density"`
     // Property key is the channel number
     Interferences        map[string]RrmBandMetricInterference `json:"interferences,omitempty"`
-    // average number of neighbors
+    // Average number of neighbors
     Neighbors            float64                              `json:"neighbors"`
-    // average noise in dBm
+    // Average noise in dBm
     Noise                float64                              `json:"noise"`
     AdditionalProperties map[string]interface{}               `json:"_"`
 }

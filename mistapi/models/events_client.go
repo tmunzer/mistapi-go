@@ -9,7 +9,7 @@ import (
 )
 
 // EventsClient represents a EventsClient struct.
-// client events
+// Client events
 type EventsClient struct {
     Ap                   *string                `json:"ap,omitempty"`
     // enum: `24`, `5`, `6`
@@ -21,9 +21,9 @@ type EventsClient struct {
     Ssid                 *string                `json:"ssid,omitempty"`
     Text                 *string                `json:"text,omitempty"`
     Timestamp            float64                `json:"timestamp"`
-    // event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
+    // Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
     Type                 *string                `json:"type,omitempty"`
-    // for assoc/disassoc events
+    // For assoc/disassoc events
     TypeCode             *int                   `json:"type_code,omitempty"`
     WlanId               *uuid.UUID             `json:"wlan_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

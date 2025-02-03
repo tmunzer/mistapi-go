@@ -8,11 +8,11 @@ import (
 )
 
 // MxedgeTuntermIpConfig represents a MxedgeTuntermIpConfig struct.
-// ip configuration of the Mist Tunnel interface
+// IPconfiguration of the Mist Tunnel interface
 type MxedgeTuntermIpConfig struct {
     Gateway              string                 `json:"gateway"`
     Gateway6             *string                `json:"gateway6,omitempty"`
-    // untagged VLAN
+    // Untagged VLAN
     Ip                   string                 `json:"ip"`
     Ip6                  *string                `json:"ip6,omitempty"`
     Netmask              string                 `json:"netmask"`

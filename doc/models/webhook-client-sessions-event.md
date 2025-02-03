@@ -11,23 +11,23 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ap` | `string` | Required | mac address of the AP the client roamed or disconnected from |
+| `Ap` | `string` | Required | MAC address of the AP the client roamed or disconnected from |
 | `ApName` | `string` | Required | user-friendly name of the AP the client roamed or disconnected from. |
 | `Band` | `string` | Required | 5GHz or 2.4GHz band |
 | `Bssid` | `string` | Required | - |
-| `ClientFamily` | `string` | Required | device family E.g. “Mac”, “iPhone”, “Apple watch” |
-| `ClientManufacture` | `string` | Required | device manufacturer E.g. “Apple” |
-| `ClientModel` | `string` | Required | device model E.g. “8+”, “XS” |
-| `ClientOs` | `string` | Required | device operating system E.g. “Mojave”, “Windows 10”, “Linux” |
-| `Connect` | `int` | Required | time when the user connects |
+| `ClientFamily` | `string` | Required | Device family E.g. “Mac”, “iPhone”, “Apple watch” |
+| `ClientManufacture` | `string` | Required | Device manufacturer E.g. “Apple” |
+| `ClientModel` | `string` | Required | Device model E.g. “8+”, “XS” |
+| `ClientOs` | `string` | Required | Device operating system E.g. “Mojave”, “Windows 10”, “Linux” |
+| `Connect` | `int` | Required | Time when the user connects |
 | `ConnectFloat` | `float64` | Required | floating point connect timestamp with millisecond precision |
-| `Disconnect` | `int` | Required | time when the user disconnects |
+| `Disconnect` | `int` | Required | Time when the user disconnects |
 | `DisconnectFloat` | `float64` | Required | floating point disconnect timestamp with millisecond precision |
-| `Duration` | `int` | Required | the duration of the roamed or complete session indicated by termination_reason field. |
-| `Mac` | `string` | Required | the client’s mac |
+| `Duration` | `int` | Required | Duration of the roamed or complete session indicated by termination_reason field. |
+| `Mac` | `string` | Required | Client's MAC Address' |
 | `NextAp` | `string` | Required | the AP the client has roamed to. |
 | `OrgId` | `uuid.UUID` | Required | - |
-| `Rssi` | `float64` | Required | latest average RSSI before the user disconnects |
+| `Rssi` | `float64` | Required | Latest average RSSI before the user disconnects |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `SiteName` | `string` | Required | - |
 | `Ssid` | `string` | Required | - |

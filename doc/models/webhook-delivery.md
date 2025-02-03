@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Error` | `*string` | Optional | error message, if there is one |
+| `Error` | `*string` | Optional | Error message, if there is one |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `ReqHeaders` | `*string` | Optional | HTTP request headers |

@@ -1,7 +1,7 @@
 
 # Webhook Occupancy Alerts
 
-occupancy alert webhook sample
+Occupancy alert webhook sample
 
 *This model accepts additional fields of type interface{}.*
 

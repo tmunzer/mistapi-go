@@ -7,9 +7,9 @@ import (
 
 // SiteMxtunnelAdditionalMxtunnel represents a SiteMxtunnelAdditionalMxtunnel struct.
 type SiteMxtunnelAdditionalMxtunnel struct {
-    // for AP, how to connect to tunterm or radsecproxy
+    // For AP, how to connect to tunterm or radsecproxy
     Clusters             []SiteMxtunnelCluster     `json:"clusters,omitempty"`
-    // in seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
+    // In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
     HelloInterval        *int                      `json:"hello_interval,omitempty"`
     HelloRetries         *int                      `json:"hello_retries,omitempty"`
     // enum: `ip`, `udp`

@@ -9,7 +9,7 @@ import (
 type SiteTemplate struct {
     AutoUpgrade          *SiteTemplateAutoUpgrade `json:"auto_upgrade,omitempty"`
     Name                 *string                  `json:"name,omitempty"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string        `json:"vars,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`
 }

@@ -11,22 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AssetId` | `uuid.UUID` | Required | asset id |
-| `Beam` | `int` | Required | antenna index, from 1-8, clock-wise starting from the LED |
-| `DeviceId` | `uuid.UUID` | Required | device where the asset reading is from |
+| `AssetId` | `uuid.UUID` | Required | Asset id |
+| `Beam` | `int` | Required | Antenna index, from 1-8, clock-wise starting from the LED |
+| `DeviceId` | `uuid.UUID` | Required | Device where the asset reading is from |
 | `IbeaconMajor` | `*int` | Optional | iBeacon major |
 | `IbeaconMinor` | `*int` | Optional | iBeacon minor |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | iBeacon UUID |
 | `Mac` | `string` | Required | MAC of the beacon |
-| `MapId` | `uuid.UUID` | Required | map id |
-| `MfgCompanyId` | `float64` | Required | optional, BLE manufacturing company ID |
-| `MfgData` | `string` | Required | optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
-| `Rssi` | `float64` | Required | signal strength |
-| `ServiceDataData` | `*string` | Optional | optional, data from service data |
-| `ServiceDataLastRxTime` | `*int` | Optional | optional, last data transmit time from service data |
-| `ServiceDataRxCnt` | `*int` | Optional | optional, data transmit count from service data |
-| `ServiceDataUuid` | `*uuid.UUID` | Optional | optional, UUID from service data |
-| `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | list of service data packets heard from the asset/ beacon |
+| `MapId` | `uuid.UUID` | Required | Map id |
+| `MfgCompanyId` | `float64` | Required | Optional, BLE manufacturing company ID |
+| `MfgData` | `string` | Required | Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
+| `Rssi` | `float64` | Required | Signal strength |
+| `ServiceDataData` | `*string` | Optional | Optional, data from service data |
+| `ServiceDataLastRxTime` | `*int` | Optional | Optional, last data transmit time from service data |
+| `ServiceDataRxCnt` | `*int` | Optional | Optional, data transmit count from service data |
+| `ServiceDataUuid` | `*uuid.UUID` | Optional | Optional, UUID from service data |
+| `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | List of service data packets heard from the asset/ beacon |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -7,13 +7,13 @@ import (
 
 // UtilsShowEvpnDatabase represents a UtilsShowEvpnDatabase struct.
 type UtilsShowEvpnDatabase struct {
-    // duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+    // Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
     Duration             *int                   `json:"duration,omitempty"`
-    // rate at which output will refresh
+    // Rate at which output will refresh
     Interval             *int                   `json:"interval,omitempty"`
-    // client mac filter
+    // Xlient mac filter
     Mac                  *string                `json:"mac,omitempty"`
-    // interface name
+    // Interface name
     PortId               *string                `json:"port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

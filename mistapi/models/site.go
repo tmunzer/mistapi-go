@@ -17,28 +17,28 @@ type Site struct {
     AlarmtemplateId      Optional[uuid.UUID]    `json:"alarmtemplate_id"`
     // AP Template ID, used by APs
     AptemplateId         Optional[uuid.UUID]    `json:"aptemplate_id"`
-    // country code for the site (for AP config generation), in two-character
+    // Country code for the site (for AP config generation), in two-character
     CountryCode          *string                `json:"country_code,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Gateway Template ID, used by gateways
     GatewaytemplateId    Optional[uuid.UUID]    `json:"gatewaytemplate_id"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Latlng               *LatLng                `json:"latlng,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     Name                 string                 `json:"name"`
     // Network Template ID, this takes precedence over Site Settings
     NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
-    // optional, any notes about the site
+    // Optional, any notes about the site
     Notes                *string                `json:"notes,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // RF Template ID, this takes precedence over Site Settings
     RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
     // SecPolicy ID
     SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
-    // sitegroups this site belongs to
+    // Sitegroups this site belongs to
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     // Site Template ID
     SitetemplateId       Optional[uuid.UUID]    `json:"sitetemplate_id"`

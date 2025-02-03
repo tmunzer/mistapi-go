@@ -12,7 +12,7 @@ type VirtualChassisConfigMember struct {
     Locating             *bool                                `json:"locating,omitempty"`
     // fpc0, same as the mac of device_id
     Mac                  string                               `json:"mac"`
-    // to create a preprovisionned virtual chassis
+    // For preprovisionned virtual chassis
     MemberId             *int                                 `json:"member_id,omitempty"`
     VcPorts              []string                             `json:"vc_ports,omitempty"`
     // enum: `backup`, `linecard`, `master`

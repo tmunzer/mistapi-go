@@ -14,13 +14,13 @@ type CaptureRadiotapwired struct {
     // only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`
     Band                      *CaptureRadiotapwiredBandEnum   `json:"band,omitempty"`
     ClientMac                 Optional[string]                `json:"client_mac"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration                  *int                            `json:"duration,omitempty"`
     // enum: `pcap`, `stream`
     Format                    *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen                 *int                            `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets                *int                            `json:"num_packets,omitempty"`
     // tcpdump expression for radiotap interface (802.11 + radio headers)
     RadiotapTcpdumpExpression *string                         `json:"radiotap_tcpdump_expression,omitempty"`
@@ -33,7 +33,7 @@ type CaptureRadiotapwired struct {
     WiredTcpdumpExpression    *string                         `json:"wired_tcpdump_expression,omitempty"`
     // tcpdump expression for radiotap interface (802.11)
     WirelessTcpdumpExpression *string                         `json:"wireless_tcpdump_expression,omitempty"`
-    // wlan id associated with the respective ssid.
+    // WLAN id associated with the respective ssid.
     WlanId                    Optional[string]                `json:"wlan_id"`
     AdditionalProperties      map[string]interface{}          `json:"_"`
 }

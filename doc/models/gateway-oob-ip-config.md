@@ -1,7 +1,7 @@
 
 # Gateway Oob Ip Config
 
-out-of-band (vme/em0/fxp0) IP config
+Out-of-band (vme/em0/fxp0) IP config
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,13 +13,13 @@ out-of-band (vme/em0/fxp0) IP config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Gateway` | `*string` | Optional | if `type`==`static` |
-| `Ip` | `*string` | Optional | if `type`==`static` |
-| `Netmask` | `*string` | Optional | if `type`==`static` |
-| `Node1` | [`*models.GatewayOobIpConfigNode1`](../../doc/models/gateway-oob-ip-config-node-1.md) | Optional | for HA Cluster, node1 can have different IP Config |
+| `Gateway` | `*string` | Optional | If `type`==`static` |
+| `Ip` | `*string` | Optional | If `type`==`static` |
+| `Netmask` | `*string` | Optional | If `type`==`static` |
+| `Node1` | [`*models.GatewayOobIpConfigNode1`](../../doc/models/gateway-oob-ip-config-node-1.md) | Optional | For HA Cluster, node1 can have different IP Config |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
-| `UseMgmtVrf` | `*bool` | Optional | if supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
-| `UseMgmtVrfForHostOut` | `*bool` | Optional | for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
+| `UseMgmtVrf` | `*bool` | Optional | If supported on the platform. If enabled, DNS will be using this routing-instance, too<br>**Default**: `false` |
+| `UseMgmtVrfForHostOut` | `*bool` | Optional | For host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br>**Default**: `false` |
 | `VlanId` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

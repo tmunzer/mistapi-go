@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Discard` | `[]string` | Optional | attributes that you don’t want to copy |
+| `Discard` | `[]string` | Optional | Attributes that you don’t want to copy |
 | `InventoryMac` | `*string` | Optional | MAC Address of the inventory that will be replacing the old one. It has to be claimed and unassigned |
 | `Mac` | `*string` | Optional | MAC Address of the device to replace |
-| `SiteId` | `*string` | Optional | the site_id of the device to be replaced |
-| `TuntermPortConfig` | [`*models.TuntermPortConfig`](../../doc/models/tunterm-port-config.md) | Optional | ethernet port configurations |
+| `SiteId` | `*string` | Optional | Site_id of the device to be replaced |
+| `TuntermPortConfig` | [`*models.TuntermPortConfig`](../../doc/models/tunterm-port-config.md) | Optional | Ethernet port configurations |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

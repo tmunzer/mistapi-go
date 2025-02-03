@@ -18,7 +18,7 @@
 | `Status` | `*string` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
-| `VendorSpecific` | [`*models.StatsDeviceOtherVendorSpecific`](../../doc/models/stats-device-other-vendor-specific.md) | Optional | when `vendor`==`cradlepoint` |
+| `VendorSpecific` | [`*models.StatsDeviceOtherVendorSpecific`](../../doc/models/stats-device-other-vendor-specific.md) | Optional | When `vendor`==`cradlepoint` |
 | `Version` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

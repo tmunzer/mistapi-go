@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `EndTime` | `*int` | Optional | end date of the license term |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `EndTime` | `*int` | Optional | End date of the license term |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `OrderId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Quantity` | `*int` | Optional | number of devices entitled for this license |
+| `Quantity` | `*int` | Optional | Number of devices entitled for this license |
 | `RemainingQuantity` | `*int` | Optional | Number of licenses left in this subscription |
-| `StartTime` | `*int` | Optional | start date of the license term |
+| `StartTime` | `*int` | Optional | Start date of the license term |
 | `SubscriptionId` | `*string` | Optional | - |
 | `Type` | [`*models.LicenseTypeEnum`](../../doc/models/license-type-enum.md) | Optional | enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

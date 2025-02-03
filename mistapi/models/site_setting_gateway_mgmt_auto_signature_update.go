@@ -10,7 +10,7 @@ type SiteSettingGatewayMgmtAutoSignatureUpdate struct {
     // enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed`
     DayOfWeek            *DayOfWeekEnum         `json:"day_of_week,omitempty"`
     Enable               *bool                  `json:"enable,omitempty"`
-    // optional, Mist will decide the timing
+    // Optional, Mist will decide the timing
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

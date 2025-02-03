@@ -8,9 +8,9 @@ import (
 // ApSwitchSetting represents a ApSwitchSetting struct.
 type ApSwitchSetting struct {
     EnableVlan           *bool                  `json:"enable_vlan,omitempty"`
-    // native VLAN id, optional
+    // Native VLAN id, optional
     PortVlanId           *int                   `json:"port_vlan_id,omitempty"`
-    // list of VLAN ids this
+    // List of VLAN ids this
     VlanIds              []int                  `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -19,9 +19,9 @@
 | `Band6Channels` | `map[string][]int` | Optional | Property key is the channel width |
 | `Band6Enabled` | `*bool` | Optional | - |
 | `Certified` | `*bool` | Optional | - |
-| `Code` | `*int` | Optional | country code, ISO 3166-1 numeric |
+| `Code` | `*int` | Optional | Country code, ISO 3166-1 numeric |
 | `DfsOk` | `*bool` | Optional | - |
-| `Key` | `*string` | Optional | country code, in two-character |
+| `Key` | `*string` | Optional | Country code, in two-character |
 | `Name` | `*string` | Optional | - |
 | `Uses` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

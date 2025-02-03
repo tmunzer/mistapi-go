@@ -9,17 +9,17 @@ import (
 type NacPortal struct {
     // if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
     AccessType             *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
-    // background image
+    // Background image
     BgImageUrl             *string                  `json:"bg_image_url,omitempty"`
-    // in days
+    // In days
     CertExpireTime         *int                     `json:"cert_expire_time,omitempty"`
     // enum: `wpa2`, `wpa3`
     EapType                *NacPortalEapTypeEnum    `json:"eap_type,omitempty"`
-    // model, version, fingering, events (connecting, disconnect, roaming), which ap
+    // Model, version, fingering, events (connecting, disconnect, roaming), which ap
     EnableTelemetry        *bool                    `json:"enable_telemetry,omitempty"`
-    // in days
+    // In days
     ExpiryNotificationTime *int                     `json:"expiry_notification_time,omitempty"`
-    // portal wlan settings
+    // Portal wlan settings
     GuestPortalConfig      *WlanPortal              `json:"guest_portal_config,omitempty"`
     Name                   *string                  `json:"name,omitempty"`
     // phase 2

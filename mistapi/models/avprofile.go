@@ -10,13 +10,13 @@ import (
 
 // Avprofile represents a Avprofile struct.
 type Avprofile struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                     `json:"created_time,omitempty"`
     // enum: `block`, `permit`
     FallbackAction       *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                   `json:"id,omitempty"`
-    // in KB
+    // In KB
     MexFilesize          *int                         `json:"mex_filesize,omitempty"`
     MimeWhitelist        []string                     `json:"mime_whitelist,omitempty"`
     ModifiedTime         *float64                     `json:"modified_time,omitempty"`

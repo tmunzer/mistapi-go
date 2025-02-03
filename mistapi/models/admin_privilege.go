@@ -11,27 +11,27 @@ import (
 // AdminPrivilege represents a AdminPrivilege struct.
 // Privilieges settings
 type AdminPrivilege struct {
-    // required if `scope`==`msp`
+    // Required if `scope`==`msp`
     MspId                *uuid.UUID              `json:"msp_id,omitempty"`
-    // logo of the MSP (if the MSP belongs to an Advanced tier)
+    // Logo of the MSP (if the MSP belongs to an Advanced tier)
     MspLogoUrl           *string                 `json:"msp_logo_url,omitempty"`
-    // name of the MSP (if the org belongs to an MSP)
+    // Name of the MSP (if the org belongs to an MSP)
     MspName              Optional[string]        `json:"msp_name"`
-    // custom url of the MSP (if the MSP belongs to an Advanced tier)
+    // Custom url of the MSP (if the MSP belongs to an Advanced tier)
     MspUrl               *string                 `json:"msp_url,omitempty"`
-    // name of the org/site/MSP depending on object scope
+    // Name of the org/site/MSP depending on object scope
     Name                 *string                 `json:"name,omitempty"`
-    // required if `scope`==`org`
+    // Required if `scope`==`org`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // name of the org (for a site belonging to org)
+    // Name of the org (for a site belonging to org)
     OrgName              *string                 `json:"org_name,omitempty"`
-    // if `scope`==`orggroup`
+    // If `scope`==`orggroup`
     OrggroupIds          []uuid.UUID             `json:"orggroup_ids,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 AdminPrivilegeRoleEnum  `json:"role"`
     // enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
     Scope                AdminPrivilegeScopeEnum `json:"scope"`
-    // required if `scope`==`site`
+    // Required if `scope`==`site`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     SitegroupIds         []uuid.UUID             `json:"sitegroup_ids,omitempty"`
     // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.

@@ -19,7 +19,7 @@ type RemoteSyslogServer struct {
     RoutingInstance      *string                         `json:"routing_instance,omitempty"`
     // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum       `json:"severity,omitempty"`
-    // if source_address is configured, will use the vlan firstly otherwise use source_ip
+    // If source_address is configured, will use the vlan firstly otherwise use source_ip
     SourceAddress        *string                         `json:"source_address,omitempty"`
     StructuredData       *bool                           `json:"structured_data,omitempty"`
     Tag                  *string                         `json:"tag,omitempty"`

@@ -6,10 +6,10 @@ import (
 )
 
 // MxedgeTuntermDhcpdConfig represents a MxedgeTuntermDhcpdConfig struct.
-// global and per-VLAN. Property key is the VLAN ID
+// Global and per-VLAN. Property key is the VLAN ID
 type MxedgeTuntermDhcpdConfig struct {
     Enabled              *bool                                       `json:"enabled,omitempty"`
-    // list of DHCP servers; required if `type`==`relay`
+    // List of DHCP servers; required if `type`==`relay`
     Servers              []string                                    `json:"servers,omitempty"`
     // enum: `relay`
     Type                 *MxedgeTuntermDhcpdTypeEnum                 `json:"type,omitempty"`

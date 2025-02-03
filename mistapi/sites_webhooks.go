@@ -421,7 +421,7 @@ func (s *SitesWebhooks) SearchSiteWebhooksDeliveries(
 // PingSiteWebhook takes context, siteId, webhookId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// send a Ping event to the webhook
+// Send a Ping event to the webhook
 func (s *SitesWebhooks) PingSiteWebhook(
     ctx context.Context,
     siteId uuid.UUID,

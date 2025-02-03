@@ -13,11 +13,11 @@ type RrmBand struct {
     Channel              *int                   `json:"channel,omitempty"`
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
     CurrBandwidht        *Dot11BandwidthEnum    `json:"curr_bandwidht,omitempty"`
-    // current channel
+    // Current channel
     CurrChannel          *int                   `json:"curr_channel,omitempty"`
-    // current tx power
+    // Current tx power
     CurrPower            *int                   `json:"curr_power,omitempty"`
-    // current radio band
+    // Current radio band
     CurrUsage            *string                `json:"curr_usage,omitempty"`
     // proposed tx power
     Power                *int                   `json:"power,omitempty"`

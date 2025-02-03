@@ -1,7 +1,7 @@
 
 # Webhook Asset Raw
 
-asset raw webhook sample
+Asset raw webhook sample
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ asset raw webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookAssetRawEvent`](../../doc/models/webhook-asset-raw-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"asset-raw"` |
+| `Events` | [`[]models.WebhookAssetRawEvent`](../../doc/models/webhook-asset-raw-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"asset-raw"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

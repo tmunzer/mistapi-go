@@ -10,9 +10,9 @@ import (
 // WebhookLocationClient represents a WebhookLocationClient struct.
 // Location Client sample
 type WebhookLocationClient struct {
-    // list of events
+    // List of events
     Events               []WebhookLocationClientEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                       `json:"topic"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

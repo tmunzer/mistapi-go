@@ -9,7 +9,7 @@ import (
 type UpgradeFpga struct {
     // Reboot device immediately after upgrade is completed
     Reboot               *bool                  `json:"reboot,omitempty"`
-    // specific fpga version
+    // Specific fpga version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

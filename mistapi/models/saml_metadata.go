@@ -7,15 +7,15 @@ import (
 
 // SamlMetadata represents a SamlMetadata struct.
 type SamlMetadata struct {
-    // if `idp_type`==`saml`
+    // If `idp_type`==`saml`
     AcsUrl               *string                `json:"acs_url,omitempty"`
-    // if `idp_type`==`saml`
+    // If `idp_type`==`saml`
     EntityId             *string                `json:"entity_id,omitempty"`
-    // if `idp_type`==`saml`
+    // If `idp_type`==`saml`
     LogoutUrl            *string                `json:"logout_url,omitempty"`
-    // if `idp_type`==`saml`
+    // If `idp_type`==`saml`
     Metadata             *string                `json:"metadata,omitempty"`
-    // if `idp_type`==`oauth` and `scim_enabled`==`true`
+    // If `idp_type`==`oauth` and `scim_enabled`==`true`
     ScimBaseUrl          *string                `json:"scim_base_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,7 +10,7 @@ type AutoOrient struct {
     // If `force_collection`==`false`, the API attempts to start auto orientation with existing BLE data.
     // If `force_collection`==`true`, the API attempts to start BLE orchestration.
     ForceCollection      *bool                  `json:"force_collection,omitempty"`
-    // list of device macs
+    // List of device macs
     Macs                 []string               `json:"macs,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

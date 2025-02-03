@@ -11,28 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `Enabled` | `*bool` | Optional | whether webhook is enabled<br>**Default**: `true` |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `Enabled` | `*bool` | Optional | Whether webhook is enabled<br>**Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |
-| `Headers` | `models.Optional[map[string]string]` | Optional | if `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000 |
+| `Headers` | `models.Optional[map[string]string]` | Optional | If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000 |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `models.Optional[string]` | Optional | name of the webhook |
-| `Oauth2ClientId` | `*string` | Optional | required when `oauth2_grant_type`==`client_credentials` |
-| `Oauth2ClientSecret` | `*string` | Optional | required when `oauth2_grant_type`==`client_credentials` |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `models.Optional[string]` | Optional | Name of the webhook |
+| `Oauth2ClientId` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials` |
+| `Oauth2ClientSecret` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials` |
 | `Oauth2GrantType` | [`*models.WebhookOauth2GrantTypeEnum`](../../doc/models/webhook-oauth-2-grant-type-enum.md) | Optional | required when `type`==`oauth2`. enum: `client_credentials`, `password` |
-| `Oauth2Password` | `*string` | Optional | required when `oauth2_grant_type`==`password` |
-| `Oauth2Scopes` | `[]string` | Optional | required when `type`==`oauth2`, if provided, will be used in the token request |
-| `Oauth2TokenUrl` | `*string` | Optional | required when `type`==`oauth2` |
-| `Oauth2Username` | `*string` | Optional | required when `oauth2_grant_type`==`password` |
+| `Oauth2Password` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
+| `Oauth2Scopes` | `[]string` | Optional | Required when `type`==`oauth2`, if provided, will be used in the token request |
+| `Oauth2TokenUrl` | `*string` | Optional | Required when `type`==`oauth2` |
+| `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Secret` | `models.Optional[string]` | Optional | only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
+| `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SplunkToken` | `models.Optional[string]` | Optional | required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.' |
+| `SplunkToken` | `models.Optional[string]` | Optional | Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.' |
 | `Topics` | `[]string` | Optional | List of supported webhook topics available with the API Call [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics) |
 | `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br>**Default**: `"http-post"` |
 | `Url` | `*string` | Optional | - |
-| `VerifyCert` | `*bool` | Optional | when url uses HTTPS, whether to verify the certificate<br>**Default**: `true` |
+| `VerifyCert` | `*bool` | Optional | When url uses HTTPS, whether to verify the certificate<br>**Default**: `true` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

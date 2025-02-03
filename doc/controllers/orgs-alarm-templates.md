@@ -289,7 +289,7 @@ ListOrgSuppressedAlarms(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | returns both scopes if not specified<br>**Default**: `"site"` |
+| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | Returns both scopes if not specified<br>**Default**: `"site"` |
 
 ## Response Type
 

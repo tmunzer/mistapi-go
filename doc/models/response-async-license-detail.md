@@ -13,7 +13,7 @@ detail claim status per device
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | device MAC Address |
+| `Mac` | `*string` | Optional | Device MAC Address |
 | `Status` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

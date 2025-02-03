@@ -7,7 +7,7 @@ import (
 
 // ResponseDeviceSnapshot represents a ResponseDeviceSnapshot struct.
 type ResponseDeviceSnapshot struct {
-    // the internal status id
+    // Internal status id
     StatusId             *string                           `json:"status_id,omitempty"`
     // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
     Staus                *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`

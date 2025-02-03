@@ -7,19 +7,19 @@ import (
 
 // UtilsTraceroute represents a UtilsTraceroute struct.
 type UtilsTraceroute struct {
-    // host name
+    // Host name
     Host                 *string                      `json:"host,omitempty"`
-    // for SSR, optional, the source to initiate traceroute from
+    // For SSR, optional, the source to initiate traceroute from
     Network              *string                      `json:"network,omitempty"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum           `json:"node,omitempty"`
-    // when `protocol`==`udp`, not supported in SSR. The udp port to use
+    // When `protocol`==`udp`, not supported in SSR. The udp port to use
     Port                 *int                         `json:"port,omitempty"`
     // enum: `icmp` (Only suported by AP/MxEdge), `udp`
     Protocol             *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
-    // not supported in SSR. Maximum time in seconds to wait for the response
+    // Not supported in SSR. Maximum time in seconds to wait for the response
     Timeout              *int                         `json:"timeout,omitempty"`
-    // for SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
+    // For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
     Vrf                  *string                      `json:"vrf,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

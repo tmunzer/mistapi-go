@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Channelized` | `*bool` | Optional | enable channelization<br>**Default**: `false` |
-| `Speed` | `*string` | Optional | interface speed (e.g. `25g`, `50g`), use the chassis speed by default |
+| `Channelized` | `*bool` | Optional | Enable channelization<br>**Default**: `false` |
+| `Speed` | `*string` | Optional | Interface speed (e.g. `25g`, `50g`), use the chassis speed by default |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

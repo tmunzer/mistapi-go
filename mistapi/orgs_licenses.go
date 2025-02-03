@@ -46,7 +46,7 @@ func (o *OrgsLicenses) ClaimOrgLicense(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "invalid key (or already used)"},
+        "400": {Message: "Invalid key (or already used)"},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},

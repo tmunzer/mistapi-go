@@ -44,7 +44,7 @@ AddSiteMapImage(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mapId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -485,9 +485,9 @@ ImportSiteMaps(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `autoDeviceprofileAssignment` | `*bool` | Form, Optional | whether to auto assign device to deviceprofile by name |
-| `csv` | `*models.FileWrapper` | Form, Optional | csv file for ap name mapping, optional |
-| `file` | `*models.FileWrapper` | Form, Optional | ekahau or ibwave file |
+| `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type

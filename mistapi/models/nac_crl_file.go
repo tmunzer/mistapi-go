@@ -7,11 +7,11 @@ import (
 
 // NacCrlFile represents a NacCrlFile struct.
 type NacCrlFile struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Unique ID for the uploaded CRL file, used to reference the file
     Id                   *string                `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // Issuer name for the CRL file
     Name                 *string                `json:"name,omitempty"`

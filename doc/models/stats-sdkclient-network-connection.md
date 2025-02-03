@@ -1,7 +1,7 @@
 
 # Stats Sdkclient Network Connection
 
-various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
 
 *This model accepts additional fields of type interface{}.*
 

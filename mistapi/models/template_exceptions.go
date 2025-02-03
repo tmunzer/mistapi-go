@@ -7,11 +7,11 @@ import (
 )
 
 // TemplateExceptions represents a TemplateExceptions struct.
-// where this template should not be applied to (takes precedence)
+// Where this template should not be applied to (takes precedence)
 type TemplateExceptions struct {
-    // list of site ids
+    // List of site ids
     SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
-    // list of sitegroup ids
+    // List of sitegroup ids
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

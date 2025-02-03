@@ -10,9 +10,9 @@ type EvpnOptionsUnderlay struct {
     // Underlay BGP Base AS Number
     AsBase               *int                   `json:"as_base,omitempty"`
     RoutedIdPrefix       *string                `json:"routed_id_prefix,omitempty"`
-    // underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6
+    // Underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6
     Subnet               *string                `json:"subnet,omitempty"`
-    // if v6 is desired for underlay
+    // If v6 is desired for underlay
     UseIpv6              *bool                  `json:"use_ipv6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

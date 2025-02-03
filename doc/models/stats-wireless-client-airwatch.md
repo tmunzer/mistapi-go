@@ -1,7 +1,7 @@
 
 # Stats Wireless Client Airwatch
 
-information if airwatch enabled
+Information if airwatch enabled
 
 *This model accepts additional fields of type interface{}.*
 

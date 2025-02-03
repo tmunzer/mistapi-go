@@ -13,7 +13,7 @@ type UserMac struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Labels               []string               `json:"labels,omitempty"`
-    // only non-local-admin MAC is accepted
+    // Only non-local-admin MAC is accepted
     Mac                  string                 `json:"mac"`
     Name                 *string                `json:"name,omitempty"`
     Notes                *string                `json:"notes,omitempty"`

@@ -8,23 +8,23 @@ import (
 // GatewayPortConfigIpConfig represents a GatewayPortConfigIpConfig struct.
 // Junos IP Config
 type GatewayPortConfigIpConfig struct {
-    // except for out-of_band interface (vme/em0/fxp0)
+    // Except for out-of_band interface (vme/em0/fxp0)
     Dns                  []string                `json:"dns,omitempty"`
-    // except for out-of_band interface (vme/em0/fxp0)
+    // Except for out-of_band interface (vme/em0/fxp0)
     DnsSuffix            []string                `json:"dns_suffix,omitempty"`
-    // except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}")
+    // Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}")
     Gateway              *string                 `json:"gateway,omitempty"`
     // Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}")
     Ip                   *string                 `json:"ip,omitempty"`
-    // used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}")
+    // Used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}")
     Netmask              *string                 `json:"netmask,omitempty"`
-    // optional, the network to be used for mgmt
+    // Optional, the network to be used for mgmt
     Network              *string                 `json:"network,omitempty"`
-    // if `type`==`pppoe`
+    // If `type`==`pppoe`
     PoserPassword        *string                 `json:"poser_password,omitempty"`
     // if `type`==`pppoe`. enum: `chap`, `none`, `pap`
     PppoeAuth            *GatewayWanPpoeAuthEnum `json:"pppoe_auth,omitempty"`
-    // if `type`==`pppoe`
+    // If `type`==`pppoe`
     PppoeUsername        *string                 `json:"pppoe_username,omitempty"`
     // enum: `dhcp`, `pppoe`, `static`
     Type                 *GatewayWanTypeEnum     `json:"type,omitempty"`

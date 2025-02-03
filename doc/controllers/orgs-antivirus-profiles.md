@@ -98,7 +98,7 @@ if err != nil {
 
 # Delete Org Antivirus Profile
 
-deleteOrgAntivirusProfile
+DeleteOrgAntivirusProfile
 
 ```go
 DeleteOrgAntivirusProfile(
@@ -290,7 +290,7 @@ if err != nil {
 
 # Update Org Antivirus Profile
 
-update Org Antivirus Profile
+Update Org Antivirus Profile
 
 ```go
 UpdateOrgAntivirusProfile(

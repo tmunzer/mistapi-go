@@ -13,11 +13,11 @@
 |  --- | --- | --- | --- |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Prefix` | `*string` | Optional | IP Prefix |
-| `ServiceIp` | `*string` | Optional | only supported with SSR |
-| `ServiceName` | `*string` | Optional | only supported with SSR |
-| `ServicePort` | `*int` | Optional | only supported with SSR |
-| `ServiceProtocol` | `*string` | Optional | only supported with SSR |
-| `ServiceTenant` | `*string` | Optional | only supported with SSR |
+| `ServiceIp` | `*string` | Optional | Only supported with SSR |
+| `ServiceName` | `*string` | Optional | Only supported with SSR |
+| `ServicePort` | `*int` | Optional | Only supported with SSR |
+| `ServiceProtocol` | `*string` | Optional | Only supported with SSR |
+| `ServiceTenant` | `*string` | Optional | Only supported with SSR |
 | `Vrf` | `*string` | Optional | VRF Name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

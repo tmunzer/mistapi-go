@@ -9,14 +9,14 @@ import (
 
 // ResponseLocationCoverage represents a ResponseLocationCoverage struct.
 type ResponseLocationCoverage struct {
-    // list of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calulate the pixel location from top-left).
+    // List of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calulate the pixel location from top-left).
     BeamsMeans           [][]float64            `json:"beams_means"`
     End                  int                    `json:"end"`
-    // the size of grid, in meter
+    // Size of grid, in meter
     Gridsize             float64                `json:"gridsize"`
-    // list of names annotating the fields in results
+    // List of names annotating the fields in results
     ResultDef            []string               `json:"result_def"`
-    // list of results, see result_def.
+    // List of results, see result_def.
     Results              [][]float64            `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`

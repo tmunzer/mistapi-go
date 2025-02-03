@@ -18,13 +18,13 @@ type ApRadioBand5 struct {
     Channel              Optional[int]             `json:"channel"`
     // For RFTemplates. List of channels, null or empty array means auto
     Channels             Optional[[]int]           `json:"channels"`
-    // whether to disable the radio
+    // Whether to disable the radio
     Disabled             *bool                     `json:"disabled,omitempty"`
     // TX power of the radio. For Devices, 0 means auto. -1 / -2 / -3 / …: treated as 0 / -1 / -2 / …
     Power                Optional[int]             `json:"power"`
-    // when power=0, max tx power to use, HW-specific values will be used if not set
+    // When power=0, max tx power to use, HW-specific values will be used if not set
     PowerMax             Optional[int]             `json:"power_max"`
-    // when power=0, min tx power to use, HW-specific values will be used if not set
+    // When power=0, min tx power to use, HW-specific values will be used if not set
     PowerMin             Optional[int]             `json:"power_min"`
     // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`

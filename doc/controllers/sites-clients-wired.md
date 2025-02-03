@@ -42,13 +42,13 @@ CountSiteWiredClients(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteWiredClientsCountDistinctEnum`](../../doc/models/site-wired-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `mac` | `*string` | Query, Optional | client mac |
-| `deviceMac` | `*string` | Query, Optional | device mac |
-| `portId` | `*string` | Query, Optional | port id |
-| `vlan` | `*string` | Query, Optional | vlan |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `mac` | `*string` | Query, Optional | Client mac |
+| `deviceMac` | `*string` | Query, Optional | Device mac |
+| `portId` | `*string` | Query, Optional | Port id |
+| `vlan` | `*string` | Query, Optional | VLAN |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -156,13 +156,13 @@ SearchSiteWiredClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceMac` | `*string` | Query, Optional | device mac |
-| `mac` | `*string` | Query, Optional | client mac |
-| `ip` | `*string` | Query, Optional | client ip |
-| `portId` | `*string` | Query, Optional | port id |
-| `vlan` | `*string` | Query, Optional | vlan |
-| `manufacture` | `*string` | Query, Optional | manufacture |
-| `text` | `*string` | Query, Optional | single entry of hostname/mac |
+| `deviceMac` | `*string` | Query, Optional | Device mac |
+| `mac` | `*string` | Query, Optional | Client mac |
+| `ip` | `*string` | Query, Optional | Client ip |
+| `portId` | `*string` | Query, Optional | Port id |
+| `vlan` | `*string` | Query, Optional | VLAN |
+| `manufacture` | `*string` | Query, Optional | Manufacture |
+| `text` | `*string` | Query, Optional | Single entry of hostname/mac |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
 | `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
@@ -170,9 +170,9 @@ SearchSiteWiredClients(
 | `dhcpVendorClassIdentifier` | `*string` | Query, Optional | DHCP Vendor Class Identifier |
 | `dhcpRequestParams` | `*string` | Query, Optional | DHCP Request Parameters |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

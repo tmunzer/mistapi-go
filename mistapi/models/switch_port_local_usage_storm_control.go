@@ -8,15 +8,15 @@ import (
 // SwitchPortLocalUsageStormControl represents a SwitchPortLocalUsageStormControl struct.
 // Switch storm control
 type SwitchPortLocalUsageStormControl struct {
-    // whether to disable storm control on broadcast traffic
+    // Whether to disable storm control on broadcast traffic
     NoBroadcast           *bool                  `json:"no_broadcast,omitempty"`
-    // whether to disable storm control on multicast traffic
+    // Whether to disable storm control on multicast traffic
     NoMulticast           *bool                  `json:"no_multicast,omitempty"`
-    // whether to disable storm control on registered multicast traffic
+    // Whether to disable storm control on registered multicast traffic
     NoRegisteredMulticast *bool                  `json:"no_registered_multicast,omitempty"`
-    // whether to disable storm control on unknown unicast traffic
+    // Whether to disable storm control on unknown unicast traffic
     NoUnknownUnicast      *bool                  `json:"no_unknown_unicast,omitempty"`
-    // bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth
+    // Bandwidth-percentage, configures the storm control level as a percentage of the available bandwidth
     Percentage            *int                   `json:"percentage,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
 }

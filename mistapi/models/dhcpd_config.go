@@ -7,7 +7,7 @@ import (
 
 // DhcpdConfig represents a DhcpdConfig struct.
 type DhcpdConfig struct {
-    // if set to `false`, disable the DHCP server
+    // If set to `false`, disable the DHCP server
     Enabled              *bool                          `json:"enabled,omitempty"`
     AdditionalProperties map[string]DhcpdConfigProperty `json:"_"`
 }

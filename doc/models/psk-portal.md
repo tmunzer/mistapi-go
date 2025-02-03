@@ -13,16 +13,16 @@
 |  --- | --- | --- | --- |
 | `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | enum: `sponsor`, `sso`<br>**Default**: `"sso"` |
 | `BgImageUrl` | `*string` | Optional | - |
-| `CleanupPsk` | `*bool` | Optional | used to cleanup exited psk when portal delete or ssid changed<br>**Default**: `false` |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CleanupPsk` | `*bool` | Optional | Used to cleanup exited psk when portal delete or ssid changed<br>**Default**: `false` |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ExpireTime` | `*int` | Optional | unit min |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire |
-| `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | only if `type`==`admin`<br>**Default**: `false` |
+| `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | Only if `type`==`admin`<br>**Default**: `false` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MaxUsage` | `*int` | Optional | `max_usage`==`0` means unlimited<br>**Default**: `0` |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
-| `NotificationRenewUrl` | `*string` | Optional | optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either |
+| `NotificationRenewUrl` | `*string` | Optional | Optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either |
 | `NotifyExpiry` | `*bool` | Optional | If set to true, reminder notification will be sent when psk is about to expire |
 | `NotifyOnCreateOrEdit` | `*bool` | Optional | **Default**: `false` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -30,7 +30,7 @@
 | `RequiredFields` | `[]string` | Optional | what information to ask for (email is required by default) |
 | `Role` | `*string` | Optional | - |
 | `Ssid` | `string` | Required | intended SSID |
-| `Sso` | [`*models.PskPortalSso`](../../doc/models/psk-portal-sso.md) | Optional | if `auth`==`sso` |
+| `Sso` | [`*models.PskPortalSso`](../../doc/models/psk-portal-sso.md) | Optional | If `auth`==`sso` |
 | `TemplateUrl` | `*string` | Optional | UI customization |
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal. enum: `admin`, `byod` |

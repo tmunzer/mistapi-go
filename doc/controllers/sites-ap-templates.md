@@ -27,7 +27,7 @@ ListSiteApTemplateDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | whether resolve the site variables |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables |
 
 ## Response Type
 

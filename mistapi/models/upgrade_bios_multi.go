@@ -8,13 +8,13 @@ import (
 
 // UpgradeBiosMulti represents a UpgradeBiosMulti struct.
 type UpgradeBiosMulti struct {
-    // list of device id to upgrade bios
+    // List of device id to upgrade bios
     DeviceIds            []uuid.UUID            `json:"device_ids,omitempty"`
-    // list of device model to upgrade bios
+    // List of device model to upgrade bios
     Models               []string               `json:"models,omitempty"`
     // Reboot device immediately after upgrade is completed
     Reboot               *bool                  `json:"reboot,omitempty"`
-    // specific bios version
+    // Specific bios version
     Version              *string                `json:"version,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

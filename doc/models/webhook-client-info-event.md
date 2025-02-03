@@ -13,10 +13,10 @@
 |  --- | --- | --- | --- |
 | `Hostname` | `*string` | Optional | Hostname of client |
 | `Ip` | `*string` | Optional | IP address of client |
-| `Mac` | `*string` | Optional | the client’s mac |
+| `Mac` | `*string` | Optional | client's MAC Address |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*float64` | Optional | time at which IP address was assigned E.g. 1703003956 |
+| `Timestamp` | `*float64` | Optional | Time at which IP address was assigned E.g. 1703003956 |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

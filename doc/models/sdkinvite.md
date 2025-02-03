@@ -13,15 +13,15 @@ SDK invite
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ExpireTime` | `*int` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `string` | Required | name, will show up in mobile |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `string` | Required | Name, will show up in mobile |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Quota` | `*int` | Optional | number of time this invite can be used |
-| `QuotaLimited` | `*bool` | Optional | whether quota limiting is enabled<br>**Default**: `false` |
+| `Quota` | `*int` | Optional | Number of time this invite can be used |
+| `QuotaLimited` | `*bool` | Optional | Whether quota limiting is enabled<br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

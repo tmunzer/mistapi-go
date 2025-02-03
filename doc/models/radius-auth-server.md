@@ -13,14 +13,14 @@ Authentication Server
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `string` | Required | ip / hostname of RADIUS server |
+| `Host` | `string` | Required | IP/ hostname of RADIUS server |
 | `KeywrapEnabled` | `*bool` | Optional | - |
 | `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | enum: `ascii`, `hex` |
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812`<br>**Constraints**: `>= 1`, `<= 65535` |
-| `RequireMessageAuthenticator` | `*bool` | Optional | whether to require Message-Authenticator in requests<br>**Default**: `false` |
-| `Secret` | `string` | Required | secret of RADIUS server |
+| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
+| `Secret` | `string` | Required | Secretof RADIUS server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

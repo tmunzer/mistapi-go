@@ -11,7 +11,7 @@ import (
 type ResponseEventsRrm struct {
     End                  int                    `json:"end"`
     Limit                int                    `json:"limit"`
-    // the link to query next set of results. value is null if no next page exists.
+    // Link to query next set of results. value is null if no next page exists.
     Next                 *string                `json:"next,omitempty"`
     Results              []RrmEvent             `json:"results"`
     Start                int                    `json:"start"`

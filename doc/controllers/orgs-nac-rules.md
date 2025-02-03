@@ -19,7 +19,7 @@ orgsNACRules := client.OrgsNACRules()
 
 # Create Org Nac Rule
 
-create Org NAC Rule
+Create Org NAC Rule
 
 ```go
 CreateOrgNacRule(

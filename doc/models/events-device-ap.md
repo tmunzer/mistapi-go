@@ -1,7 +1,7 @@
 
 # Events Device Ap
 
-ap events
+AP events
 
 *This model accepts additional fields of type interface{}.*
 

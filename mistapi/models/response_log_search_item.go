@@ -12,7 +12,7 @@ import (
 type ResponseLogSearchItem struct {
     // admin id
     AdminId              *uuid.UUID             `json:"admin_id"`
-    // name of the admin that performs the action
+    // Name of the admin that performs the action
     AdminName            *string                `json:"admin_name"`
     // field values after the change
     After                *interface{}           `json:"after,omitempty"`
@@ -27,7 +27,7 @@ type ResponseLogSearchItem struct {
     SiteId               *uuid.UUID             `json:"site_id"`
     // sender source ip address
     SrcIp                *string                `json:"src_ip,omitempty"`
-    // start time, in epoch
+    // Start time, in epoch
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

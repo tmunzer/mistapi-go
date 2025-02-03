@@ -1,7 +1,7 @@
 
 # Site Setting Mxedge
 
-site mist edges form a cluster of radsecproxy servers
+Site Mist Edges form a cluster of radsecproxy servers
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,7 +13,7 @@ site mist edges form a cluster of radsecproxy servers
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | configure cloud-assisted dynamic authorization service on this cluster of mist edges |
+| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | Configure cloud-assisted dynamic authorization service on this cluster of mist edges |
 | `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
 | `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |

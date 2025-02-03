@@ -11,12 +11,12 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AmendmentId` | `*string` | Optional | required if `op`==`unamend` |
-| `DstOrgId` | `*uuid.UUID` | Optional | required if `op`==`amend`, destination org id |
-| `Notes` | `*string` | Optional | required if `op`==`annotate` |
+| `AmendmentId` | `*string` | Optional | Required if `op`==`unamend` |
+| `DstOrgId` | `*uuid.UUID` | Optional | Required if `op`==`amend`, destination org id |
+| `Notes` | `*string` | Optional | Required if `op`==`annotate` |
 | `Op` | [`models.MspLicenseActionOperationEnum`](../../doc/models/msp-license-action-operation-enum.md) | Required | enum: `amend`, `annotate`, `delete`, `unamend`<br>**Constraints**: *Minimum Length*: `1` |
-| `Quantity` | `*float64` | Optional | required if `op`==`amend` |
-| `SubscriptionId` | `*string` | Optional | required if `op`==`annotate`<br>**Constraints**: *Minimum Length*: `1` |
+| `Quantity` | `*float64` | Optional | Required if `op`==`amend` |
+| `SubscriptionId` | `*string` | Optional | Required if `op`==`annotate`<br>**Constraints**: *Minimum Length*: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

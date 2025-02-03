@@ -8,7 +8,7 @@ import (
 // SynthetictestProperties represents a SynthetictestProperties struct.
 type SynthetictestProperties struct {
     CustomTestUrls       []string               `json:"custom_test_urls,omitempty"`
-    // for some vlans where we don't want this to run
+    // For some vlans where we don't want this to run
     Disabled             *bool                  `json:"disabled,omitempty"`
     VlanIds              []VlanIdWithVariable   `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

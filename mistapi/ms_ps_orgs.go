@@ -216,7 +216,7 @@ func (m *MSPsOrgs) SearchMspOrgs(
 // DeleteMspOrg takes context, mspId, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// delete MSP Org
+// Delete MSP Org
 func (m *MSPsOrgs) DeleteMspOrg(
     ctx context.Context,
     mspId uuid.UUID,

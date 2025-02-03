@@ -1,7 +1,7 @@
 
 # Site Setting Config Push Policy
 
-mist also uses some heuristic rules to prevent destructive configs from being pushed
+Mist also uses some heuristic rules to prevent destructive configs from being pushed
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ mist also uses some heuristic rules to prevent destructive configs from being pu
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NoPush` | `*bool` | Optional | stop any new config from being pushed to the device<br>**Default**: `false` |
-| `PushWindow` | [`*models.PushPolicyPushWindow`](../../doc/models/push-policy-push-window.md) | Optional | if enabled, new config will only be pushed to device within the specified time window |
+| `NoPush` | `*bool` | Optional | Stop any new config from being pushed to the device<br>**Default**: `false` |
+| `PushWindow` | [`*models.PushPolicyPushWindow`](../../doc/models/push-policy-push-window.md) | Optional | If enabled, new config will only be pushed to device within the specified time window |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -48,8 +48,8 @@ Junos port usages
 | `StpEdge` | `*bool` | Optional | Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames<br>**Default**: `false` |
 | `StpNoRootPort` | `*bool` | Optional | **Default**: `false` |
 | `StpP2p` | `*bool` | Optional | **Default**: `false` |
-| `UiEvpntopoId` | `*uuid.UUID` | Optional | optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches |
-| `UseVstp` | `*bool` | Optional | if this is connected to a vstp network<br>**Default**: `false` |
+| `UiEvpntopoId` | `*uuid.UUID` | Optional | Optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches |
+| `UseVstp` | `*bool` | Optional | If this is connected to a vstp network<br>**Default**: `false` |
 | `VoipNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -10,17 +10,17 @@ import (
 
 // MspLicenseAction represents a MspLicenseAction struct.
 type MspLicenseAction struct {
-    // required if `op`==`unamend`
+    // Required if `op`==`unamend`
     AmendmentId          *string                       `json:"amendment_id,omitempty"`
-    // required if `op`==`amend`, destination org id
+    // Required if `op`==`amend`, destination org id
     DstOrgId             *uuid.UUID                    `json:"dst_org_id,omitempty"`
-    // required if `op`==`annotate`
+    // Required if `op`==`annotate`
     Notes                *string                       `json:"notes,omitempty"`
     // enum: `amend`, `annotate`, `delete`, `unamend`
     Op                   MspLicenseActionOperationEnum `json:"op"`
-    // required if `op`==`amend`
+    // Required if `op`==`amend`
     Quantity             *float64                      `json:"quantity,omitempty"`
-    // required if `op`==`annotate`
+    // Required if `op`==`annotate`
     SubscriptionId       *string                       `json:"subscription_id,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }

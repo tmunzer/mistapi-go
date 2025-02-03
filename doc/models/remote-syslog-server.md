@@ -20,7 +20,7 @@
 | `Protocol` | [`*models.RemoteSyslogServerProtocolEnum`](../../doc/models/remote-syslog-server-protocol-enum.md) | Optional | enum: `tcp`, `udp`<br>**Default**: `"udp"` |
 | `RoutingInstance` | `*string` | Optional | - |
 | `Severity` | [`*models.RemoteSyslogSeverityEnum`](../../doc/models/remote-syslog-severity-enum.md) | Optional | enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`<br>**Default**: `"any"` |
-| `SourceAddress` | `*string` | Optional | if source_address is configured, will use the vlan firstly otherwise use source_ip |
+| `SourceAddress` | `*string` | Optional | If source_address is configured, will use the vlan firstly otherwise use source_ip |
 | `StructuredData` | `*bool` | Optional | - |
 | `Tag` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

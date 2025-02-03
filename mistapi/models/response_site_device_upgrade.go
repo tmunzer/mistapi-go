@@ -11,30 +11,30 @@ import (
 // ResponseSiteDeviceUpgrade represents a ResponseSiteDeviceUpgrade struct.
 type ResponseSiteDeviceUpgrade struct {
     Counts               *UpgradeDevicesTargetIds   `json:"counts,omitempty"`
-    // current canary or rrm phase in progress
+    // Current canary or rrm phase in progress
     CurrentPhase         *int                       `json:"current_phase,omitempty"`
-    // whether to allow local AP-to-AP FW upgrade
+    // Whether to allow local AP-to-AP FW upgrade
     EnableP2p            *bool                      `json:"enable_p2p,omitempty"`
-    // whether to force upgrade when requested version is same as running version
+    // Whether to force upgrade when requested version is same as running version
     Force                *bool                      `json:"force,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                  `json:"id"`
-    // percentage of failures allowed
+    // Percentage of failures allowed
     MaxFailurePercentage *int                       `json:"max_failure_percentage,omitempty"`
-    // if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
+    // If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures          []int                      `json:"max_failures,omitempty"`
     // reboot start time in epoch
     RebootAt             *int                       `json:"reboot_at,omitempty"`
-    // firmware download start time in epoch
+    // Firmware download start time in epoch
     StartTime            *int                       `json:"start_time,omitempty"`
-    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`
+    // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
     Status               *UpgradeDeviceStatusEnum   `json:"status,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
-    // version to upgrade to
+    // Version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
-    // a dictionary of rrm phase number to devices part of that phase
-    UpgradePlan          *interface{}               `json:"upgrade_plan,omitempty"`
+    // If `stragegy`!=`big_bang`, a dictionary of phase number to devices part of that phase
+    UpgradePlan          map[string][]string        `json:"upgrade_plan,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
@@ -150,7 +150,7 @@ type tempResponseSiteDeviceUpgrade  struct {
     Status               *UpgradeDeviceStatusEnum   `json:"status,omitempty"`
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     TargetVersion        *string                    `json:"target_version,omitempty"`
-    UpgradePlan          *interface{}               `json:"upgrade_plan,omitempty"`
+    UpgradePlan          map[string][]string        `json:"upgrade_plan,omitempty"`
 }
 
 func (r *tempResponseSiteDeviceUpgrade) validate() error {

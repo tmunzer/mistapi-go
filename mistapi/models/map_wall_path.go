@@ -6,7 +6,7 @@ import (
 )
 
 // MapWallPath represents a MapWallPath struct.
-// a JSON blob for wall definition (same format as wayfinding_path)
+// JSON blob for wall definition (same format as wayfinding_path)
 type MapWallPath struct {
     Coordinate           *string                `json:"coordinate,omitempty"`
     Nodes                []MapNode              `json:"nodes,omitempty"`

@@ -9,12 +9,12 @@ import (
 )
 
 // DeviceGateway represents a DeviceGateway struct.
-// device gateway
+// Device gateway
 type DeviceGateway struct {
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
     BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime           *float64                           `json:"created_time,omitempty"`
     DeviceprofileId       *uuid.UUID                         `json:"deviceprofile_id,omitempty"`
     DhcpdConfig           *DhcpdConfig                       `json:"dhcpd_config,omitempty"`
@@ -36,21 +36,21 @@ type DeviceGateway struct {
     Image3Url             Optional[string]                   `json:"image3_url"`
     // Property key is the network name
     IpConfigs             map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
-    // device MAC address
+    // Device MAC address
     Mac                   *string                            `json:"mac,omitempty"`
     Managed               *bool                              `json:"managed,omitempty"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                 *uuid.UUID                         `json:"map_id,omitempty"`
-    // device Model
+    // Device Model
     Model                 *string                            `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64                           `json:"modified_time,omitempty"`
     MspId                 *uuid.UUID                         `json:"msp_id,omitempty"`
     Name                  *string                            `json:"name,omitempty"`
     Networks              []Network                          `json:"networks,omitempty"`
     Notes                 *string                            `json:"notes,omitempty"`
     NtpServers            []string                           `json:"ntp_servers,omitempty"`
-    // out-of-band (vme/em0/fxp0) IP config
+    // Out-of-band (vme/em0/fxp0) IP config
     OobIpConfig           *GatewayOobIpConfig                `json:"oob_ip_config,omitempty"`
     OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
     // Property key is the path name
@@ -58,11 +58,11 @@ type DeviceGateway struct {
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]GatewayPortConfig       `json:"port_config,omitempty"`
     PortMirroring         *GatewayPortMirroring              `json:"port_mirroring,omitempty"`
-    // auto assigned if not set
+    // Auto assigned if not set
     RouterId              *string                            `json:"router_id,omitempty"`
     // Property key is the routing policy name
     RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
-    // device Serial
+    // Device Serial
     Serial                *string                            `json:"serial,omitempty"`
     ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
     SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
@@ -71,14 +71,14 @@ type DeviceGateway struct {
     TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
     // Device Type. enum: `gateway`
     Type                  string                             `json:"type"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                  map[string]string                  `json:"vars,omitempty"`
     VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
     // Property key is the network name
     VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
-    // x in pixel
+    // X in pixel
     X                     *float64                           `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                     *float64                           `json:"y,omitempty"`
     AdditionalProperties  map[string]interface{}             `json:"_"`
 }

@@ -8,31 +8,31 @@ import (
 )
 
 // WlanAuth represents a WlanAuth struct.
-// authentication wlan settings
+// Authentication wlan settings
 type WlanAuth struct {
     // SAE anti-clogging token threshold
     AnticlogThreshold    *int                       `json:"anticlog_threshold,omitempty"`
-    // whether to trigger EAP reauth when the session ends
+    // Whether to trigger EAP reauth when the session ends
     EapReauth            *bool                      `json:"eap_reauth,omitempty"`
-    // whether to enable MAC Auth, uses the same auth_servers
+    // Whether to enable MAC Auth, uses the same auth_servers
     EnableMacAuth        *bool                      `json:"enable_mac_auth,omitempty"`
-    // when `type`==`wep`
+    // When `type`==`wep`
     KeyIdx               *int                       `json:"key_idx,omitempty"`
-    // when type=wep, four 10-character or 26-character hex string, null can be used. All keys, if provided, have to be in the same length
+    // When type=wep, four 10-character or 26-character hex string, null can be used. All keys, if provided, have to be in the same length
     Keys                 []string                   `json:"keys,omitempty"`
-    // when `type`==`psk`, whether to only use multi_psk
+    // When `type`==`psk`, whether to only use multi_psk
     MultiPskOnly         *bool                      `json:"multi_psk_only,omitempty"`
     // if `type`==`open`. enum: `disabled`, `enabled` (means transition mode), `required`
     Owe                  *WlanAuthOweEnum           `json:"owe,omitempty"`
-    // when `type`=`psk` or `type`=`eap`, one or more of `wpa1-ccmp`, `wpa1-tkip`, `wpa2-ccmp`, `wpa2-tkip`, `wpa3`
+    // When `type`=`psk` or `type`=`eap`, one or more of `wpa1-ccmp`, `wpa1-tkip`, `wpa2-ccmp`, `wpa2-tkip`, `wpa3`
     Pairwise             []WlanAuthPairwiseItemEnum `json:"pairwise,omitempty"`
-    // when `multi_psk_only`==`true`, whether private wlan is enabled
+    // When `multi_psk_only`==`true`, whether private wlan is enabled
     PrivateWlan          *bool                      `json:"private_wlan,omitempty"`
-    // when `type`==`psk`, 8-64 characters, or 64 hex characters
+    // When `type`==`psk`, 8-64 characters, or 64 hex characters
     Psk                  Optional[string]           `json:"psk"`
     // enum: `eap`, `eap192`, `open`, `psk`, `psk-tkip`, `psk-wpa2-tkip`, `wep`
     Type                 WlanAuthTypeEnum           `json:"type"`
-    // enable WEP as secondary auth
+    // Enable WEP as secondary auth
     WepAsSecondaryAuth   *bool                      `json:"wep_as_secondary_auth,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

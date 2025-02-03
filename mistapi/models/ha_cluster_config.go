@@ -8,9 +8,9 @@ import (
 
 // HaClusterConfig represents a HaClusterConfig struct.
 type HaClusterConfig struct {
-    // if the device is claimed
+    // If the device is claimed
     DisableAutoConfig    *bool                  `json:"disable_auto_config,omitempty"`
-    // if the device is adopted
+    // If the device is adopted
     Managed              *bool                  `json:"managed,omitempty"`
     Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

@@ -9,15 +9,15 @@ import (
 // CPU/core stats list
 type StatsMxedgeCpuStat struct {
     Cpus                 map[string]CpuStat     `json:"cpus,omitempty"`
-    // percentage of Idle, Idle/(Idle + Busy) since last sampling
+    // Percentage of Idle, Idle/(Idle + Busy) since last sampling
     Idle                 *int                   `json:"idle,omitempty"`
-    // percentage of Interrupt, (Irq + SoftIrq)/(Idle + Busy) since last sampling
+    // Percentage of Interrupt, (Irq + SoftIrq)/(Idle + Busy) since last sampling
     Interrupt            *int                   `json:"interrupt,omitempty"`
-    // percentage of System, System/(Idle + Busy) since last sampling
+    // Percentage of System, System/(Idle + Busy) since last sampling
     System               *int                   `json:"system,omitempty"`
-    // percentage of load, Busy/(Idle + Busy) since last sampling
+    // Percentage of load, Busy/(Idle + Busy) since last sampling
     Usage                *int                   `json:"usage,omitempty"`
-    // percentage of User, User/(Idle + Busy) since last sampling
+    // Percentage of User, User/(Idle + Busy) since last sampling
     User                 *int                   `json:"user,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

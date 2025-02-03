@@ -33,8 +33,8 @@ GetGatewayDefaultConfig(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `model` | `string` | Query, Required | model the default gateway config is intended (as the default LAN/WAN port can differ) |
-| `ha` | `*string` | Query, Optional | whether the config is intended for HA |
+| `model` | `string` | Query, Required | Model the default gateway config is intended (as the default LAN/WAN port can differ) |
+| `ha` | `*string` | Query, Optional | Whether the config is intended for HA |
 
 ## Response Type
 

@@ -1,7 +1,7 @@
 
 # Ap Switch
 
-for people who want to fully control the vlans (advanced)
+For people who want to fully control the vlans (advanced)
 
 *This model accepts additional fields of type interface{}.*
 

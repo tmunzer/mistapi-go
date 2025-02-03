@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClientId` | `uuid.UUID` | Required | the client id |
-| `ClientSecret` | `string` | Required | the client secret |
-| `CustomerId` | `int` | Required | the jibestream customer record id |
-| `EndpointUrl` | `string` | Required | the map contents endpoint host |
-| `MapId` | `uuid.UUID` | Required | the jibestream map id |
-| `Mmpp` | `int` | Required | millimeter per pixel |
-| `Ppm` | `float64` | Required | pixel per meter, same as the map JSON value. |
-| `VendorName` | `string` | Required, Constant | the vendor ‘jibestream’. enum: `jibestream`<br>**Value**: `"jibestream"` |
-| `VenueId` | `int` | Required | the venue or organization id |
+| `ClientId` | `uuid.UUID` | Required | Client id |
+| `ClientSecret` | `string` | Required | Client secret |
+| `CustomerId` | `int` | Required | Jibestream customer record id |
+| `EndpointUrl` | `string` | Required | Map contents endpoint host |
+| `MapId` | `uuid.UUID` | Required | Jibestream map id |
+| `Mmpp` | `int` | Required | Millimeter per pixel |
+| `Ppm` | `float64` | Required | Pixel per meter, same as the map JSON value. |
+| `VendorName` | `string` | Required, Constant | The vendor ‘jibestream’. enum: `jibestream`<br>**Value**: `"jibestream"` |
+| `VenueId` | `int` | Required | Venue or organization id |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

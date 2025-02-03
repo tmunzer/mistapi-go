@@ -8,7 +8,7 @@ import (
 
 // MxedgeEvent represents a MxedgeEvent struct.
 type MxedgeEvent struct {
-    // component like PS1, PS2
+    // Component like PS1, PS2
     Component            *string                `json:"component,omitempty"`
     MxclusterId          *string                `json:"mxcluster_id,omitempty"`
     MxedgeId             *string                `json:"mxedge_id,omitempty"`

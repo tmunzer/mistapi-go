@@ -23,8 +23,8 @@ Property key is the network name. Networks to participate in an OSPF area
 | `ImportPolicy` | `*string` | Optional | - |
 | `InterfaceType` | [`*models.OspfAreaNetworkInterfaceTypeEnum`](../../doc/models/ospf-area-network-interface-type-enum.md) | Optional | interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`<br>**Default**: `"broadcast"` |
 | `Metric` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
-| `NoReadvertiseToOverlay` | `*bool` | Optional | by default, we'll re-advertise all learned OSPF routes toward overlay<br>**Default**: `false` |
-| `Passive` | `*bool` | Optional | whether to send OSPF-Hello<br>**Default**: `false` |
+| `NoReadvertiseToOverlay` | `*bool` | Optional | By default, we'll re-advertise all learned OSPF routes toward overlay<br>**Default**: `false` |
+| `Passive` | `*bool` | Optional | Whether to send OSPF-Hello<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

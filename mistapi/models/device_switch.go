@@ -16,12 +16,12 @@ type DeviceSwitch struct {
     AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime           *float64                               `json:"created_time,omitempty"`
     DeviceprofileId       *uuid.UUID                             `json:"deviceprofile_id,omitempty"`
     DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     DhcpdConfig           *SwitchDhcpdConfig                     `json:"dhcpd_config,omitempty"`
-    // for a claimed switch, we control the configs by default. This option (disables the behavior)
+    // For a claimed switch, we control the configs by default. This option (disables the behavior)
     DisableAutoConfig     *bool                                  `json:"disable_auto_config,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsServers            []string                               `json:"dns_servers,omitempty"`
@@ -41,23 +41,23 @@ type DeviceSwitch struct {
     IpConfig              *JunosIpConfig                         `json:"ip_config,omitempty"`
     // Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10")
     LocalPortConfig       map[string]JunosLocalPortConfig        `json:"local_port_config,omitempty"`
-    // device MAC address
+    // Device MAC address
     Mac                   *string                                `json:"mac,omitempty"`
-    // for an adopted switch, we don’t overwrite their existing configs automatically
+    // For an adopted switch, we don’t overwrite their existing configs automatically
     Managed               *bool                                  `json:"managed,omitempty"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                 *uuid.UUID                             `json:"map_id,omitempty"`
-    // enable mist_nac to use radsec
+    // Enable mist_nac to use radsec
     MistNac               *SwitchMistNac                         `json:"mist_nac,omitempty"`
-    // device Model
+    // Device Model
     Model                 *string                                `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64                               `json:"modified_time,omitempty"`
     Name                  *string                                `json:"name,omitempty"`
     // Property key is network name
     Networks              map[string]SwitchNetwork               `json:"networks,omitempty"`
     Notes                 *string                                `json:"notes,omitempty"`
-    // list of NTP servers specific to this device. By default, those in Site Settings will be used
+    // List of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     // Switch OOB IP Config:
     // - If HA configuration: key parameter will be nodeX (eg: node1)
@@ -78,9 +78,9 @@ type DeviceSwitch struct {
     RadiusConfig          *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
     RemoteSyslog          *RemoteSyslog                          `json:"remote_syslog,omitempty"`
     Role                  *string                                `json:"role,omitempty"`
-    // used for OSPF / BGP / EVPN
+    // Used for OSPF / BGP / EVPN
     RouterId              *string                                `json:"router_id,omitempty"`
-    // device Serial
+    // Device Serial
     Serial                *string                                `json:"serial,omitempty"`
     SiteId                *uuid.UUID                             `json:"site_id,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
@@ -89,20 +89,20 @@ type DeviceSwitch struct {
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
     // Device Type. enum: `switch`
     Type                  string                                 `json:"type"`
-    // whether to use it for snmp / syslog / tacplus / radius
+    // Whether to use it for snmp / syslog / tacplus / radius
     UseRouterIdAsSourceIp *bool                                  `json:"use_router_id_as_source_ip,omitempty"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                  map[string]string                      `json:"vars,omitempty"`
-    // required for preprovisioned Virtual Chassis
+    // Required for preprovisioned Virtual Chassis
     VirtualChassis        *SwitchVirtualChassis                  `json:"virtual_chassis,omitempty"`
     VrfConfig             *VrfConfig                             `json:"vrf_config,omitempty"`
     // Property key is the network name
     VrfInstances          map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Junos VRRP config
     VrrpConfig            *VrrpConfig                            `json:"vrrp_config,omitempty"`
-    // x in pixel
+    // X in pixel
     X                     *float64                               `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                     *float64                               `json:"y,omitempty"`
     AdditionalProperties  map[string]interface{}                 `json:"_"`
 }

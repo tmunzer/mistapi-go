@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ActivePorts` | `[]string` | Optional | list of ports active on the LAG defined by the LACP |
+| `ActivePorts` | `[]string` | Optional | List of ports active on the LAG defined by the LACP |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

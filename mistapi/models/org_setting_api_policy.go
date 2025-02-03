@@ -7,7 +7,7 @@ import (
 
 // OrgSettingApiPolicy represents a OrgSettingApiPolicy struct.
 type OrgSettingApiPolicy struct {
-    // by default, API hides password/secrets when the user doesn't have write access
+    // By default, API hides password/secrets when the user doesn't have write access
     // * `true`: API will hide passwords/secrets for all users
     // * `false`: API will hide passwords/secrets for read-only users
     NoReveal             *bool                  `json:"no_reveal,omitempty"`

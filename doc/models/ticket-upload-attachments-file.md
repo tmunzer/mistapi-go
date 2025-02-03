@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*[]byte` | Optional | ekahau or ibwave file |
+| `File` | `*[]byte` | Optional | Ekahau or ibwave file |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

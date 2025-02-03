@@ -7,11 +7,11 @@ import (
 
 // StatsApRadioStat represents a StatsApRadioStat struct.
 type StatsApRadioStat struct {
-    // radio stat
+    // Radio stat
     Band24               *ApRadioStat           `json:"band_24,omitempty"`
-    // radio stat
+    // Radio stat
     Band5                *ApRadioStat           `json:"band_5,omitempty"`
-    // radio stat
+    // Radio stat
     Band6                *ApRadioStat           `json:"band_6,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

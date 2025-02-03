@@ -8,10 +8,10 @@ import (
 
 // IssuedClientCertificate represents a IssuedClientCertificate struct.
 type IssuedClientCertificate struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     DeviceId             *uuid.UUID             `json:"device_id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     SerialNumber         *string                `json:"serial_number,omitempty"`
     SsoNameId            *string                `json:"sso_name_id,omitempty"`

@@ -6,24 +6,24 @@ import (
 )
 
 // RoutingPolicyTermAction represents a RoutingPolicyTermAction struct.
-// when used as import policy
+// When used as import policy
 type RoutingPolicyTermAction struct {
     Accept               *bool                  `json:"accept,omitempty"`
     AddCommunity         []string               `json:"add_community,omitempty"`
-    // for SSR, hub decides how VRF routes are leaked on spoke
+    // For SSR, hub decides how VRF routes are leaked on spoke
     AddTargetVrfs        []string               `json:"add_target_vrfs,omitempty"`
     // route aggregation
     Aggregate            []string               `json:"aggregate,omitempty"`
-    // when used as export policy, optional
+    // When used as export policy, optional
     Community            []string               `json:"community,omitempty"`
-    // when used as export policy, optional. To exclude certain AS
+    // When used as export policy, optional. To exclude certain AS
     ExcludeAsPath        []string               `json:"exclude_as_path,omitempty"`
     ExcludeCommunity     []string               `json:"exclude_community,omitempty"`
-    // when used as export policy, optional
+    // When used as export policy, optional
     ExportCommunitites   []string               `json:"export_communitites,omitempty"`
-    // optional, for an import policy, local_preference can be changed
+    // Optional, for an import policy, local_preference can be changed
     LocalPreference      *string                `json:"local_preference,omitempty"`
-    // when used as export policy, optional. By default, the local AS will be prepended, to change it
+    // When used as export policy, optional. By default, the local AS will be prepended, to change it
     PrependAsPath        []string               `json:"prepend_as_path,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

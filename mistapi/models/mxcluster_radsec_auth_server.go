@@ -7,25 +7,25 @@ import (
 
 // MxclusterRadsecAuthServer represents a MxclusterRadsecAuthServer struct.
 type MxclusterRadsecAuthServer struct {
-    // ip / hostname of RADIUS server
+    // IP / hostname of RADIUS server
     Host                 *string                                           `json:"host,omitempty"`
-    // whether to enable inband status check
+    // Whether to enable inband status check
     InbandStatusCheck    *bool                                             `json:"inband_status_check,omitempty"`
-    // inband status interval, in seconds
+    // Inband status interval, in seconds
     InbandStatusInterval *int                                              `json:"inband_status_interval,omitempty"`
-    // if used for Mist APs, enable keywrap algorithm. Default is false
+    // If used for Mist APs, enable keywrap algorithm. Default is false
     KeywrapEnabled       *bool                                             `json:"keywrap_enabled,omitempty"`
     // if used for Mist APs. enum: `ascii`, `hex`
     KeywrapFormat        Optional[MxclusterRadAuthServerKeywrapFormatEnum] `json:"keywrap_format"`
-    // if used for Mist APs, encryption key
+    // If used for Mist APs, encryption key
     KeywrapKek           *string                                           `json:"keywrap_kek,omitempty"`
-    // if used for Mist APs, Message Authentication Code Key
+    // If used for Mist APs, Message Authentication Code Key
     KeywrapMack          *string                                           `json:"keywrap_mack,omitempty"`
     // Auth port of RADIUS server
     Port                 *int                                              `json:"port,omitempty"`
-    // secret of RADIUS server
+    // Secretof RADIUS server
     Secret               *string                                           `json:"secret,omitempty"`
-    // list of ssids that will use this server if match_ssid is true and match is found
+    // List of ssids that will use this server if match_ssid is true and match is found
     Ssids                []string                                          `json:"ssids,omitempty"`
     AdditionalProperties map[string]interface{}                            `json:"_"`
 }

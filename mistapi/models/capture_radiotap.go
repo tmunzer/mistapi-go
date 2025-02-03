@@ -15,20 +15,20 @@ type CaptureRadiotap struct {
     // enum: `24`, `24,5,6`, `5`, `6`
     Band                 *CaptureRadiotapBandEnum   `json:"band,omitempty"`
     ClientMac            *string                    `json:"client_mac,omitempty"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             *int                       `json:"duration,omitempty"`
     // enum: `pcap`, `stream`
     Format               *CaptureRadiotapFormatEnum `json:"format,omitempty"`
-    // max_len of each packet to capture
+    // Max_len of each packet to capture
     MaxPktLen            *int                       `json:"max_pkt_len,omitempty"`
-    // number of packets to capture, 0 for unlimited
+    // Number of packets to capture, 0 for unlimited
     NumPackets           *int                       `json:"num_packets,omitempty"`
     Ssid                 *string                    `json:"ssid,omitempty"`
     // tcpdump expression specific to radiotap
     TcpdumpExpression    *string                    `json:"tcpdump_expression,omitempty"`
     // enum: `radiotap`
     Type                 string                     `json:"type"`
-    // wlan id associated with the respective ssid.
+    // WLAN id associated with the respective ssid.
     WlanId               *uuid.UUID                 `json:"wlan_id,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

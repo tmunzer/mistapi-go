@@ -14,7 +14,7 @@ type NetworkTemplate struct {
     AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime           *float64                               `json:"created_time,omitempty"`
     DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
@@ -28,14 +28,14 @@ type NetworkTemplate struct {
     Id                    *uuid.UUID                             `json:"id,omitempty"`
     // Org Networks that we'd like to import
     ImportOrgNetworks     []string                               `json:"import_org_networks,omitempty"`
-    // enable mist_nac to use radsec
+    // Enable mist_nac to use radsec
     MistNac               *SwitchMistNac                         `json:"mist_nac,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64                               `json:"modified_time,omitempty"`
     Name                  *string                                `json:"name,omitempty"`
     // Property key is network name
     Networks              map[string]SwitchNetwork               `json:"networks,omitempty"`
-    // list of NTP servers specific to this device. By default, those in Site Settings will be used
+    // List of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
     // Junos OSPF areas
@@ -47,10 +47,10 @@ type NetworkTemplate struct {
     // Junos Radius config
     RadiusConfig          *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
     RemoteSyslog          *RemoteSyslog                          `json:"remote_syslog,omitempty"`
-    // by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
+    // By default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
     RemoveExistingConfigs *bool                                  `json:"remove_existing_configs,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
-    // defines custom switch configuration based on different criterias
+    // Defines custom switch configuration based on different criterias
     SwitchMatching        *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`

@@ -10,13 +10,13 @@ import (
 
 // InventoryUpdate represents a InventoryUpdate struct.
 type InventoryUpdate struct {
-    // if `op`==`assign`, a **cloud-ready** switch/gateway will be managed/configured by Mist by default, this disabled the behavior
+    // If `op`==`assign`, a **cloud-ready** switch/gateway will be managed/configured by Mist by default, this disabled the behavior
     DisableAutoConfig    *bool                        `json:"disable_auto_config,omitempty"`
-    // if `op`==`assign`, `op`==`unassign`, `op`==`upgrade_to_mist`or `op`==`downgrade_to_jsi` , list of MAC, e.g. ["5c5b350e0001"]
+    // If `op`==`assign`, `op`==`unassign`, `op`==`upgrade_to_mist`or `op`==`downgrade_to_jsi` , list of MAC, e.g. ["5c5b350e0001"]
     Macs                 []string                     `json:"macs,omitempty"`
-    // if `op`==`assign`, an **adopted** switch/gateway will not be managed/configured by Mist by default, this enables the behavior
+    // If `op`==`assign`, an **adopted** switch/gateway will not be managed/configured by Mist by default, this enables the behavior
     Managed              *bool                        `json:"managed,omitempty"`
-    // if `op`==`assign`, if true, treat site assignment against an already assigned AP as error
+    // If `op`==`assign`, if true, treat site assignment against an already assigned AP as error
     NoReassign           *bool                        `json:"no_reassign,omitempty"`
     // enum:
     // * `upgrade_to_mist`: Upgrade to mist-managed
@@ -25,9 +25,9 @@ type InventoryUpdate struct {
     // * `unassign`: Unassign inventory from a site
     // * `delete`: Delete multiple inventory from org. If the device is already assigned to a site, it will be unassigned
     Op                   InventoryUpdateOperationEnum `json:"op"`
-    // if `op`==`delete`, list of serial numbers, e.g. ["FXLH2015150025"]
+    // If `op`==`delete`, list of serial numbers, e.g. ["FXLH2015150025"]
     Serials              []string                     `json:"serials,omitempty"`
-    // if `op`==`assign`, target site id
+    // If `op`==`assign`, target site id
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

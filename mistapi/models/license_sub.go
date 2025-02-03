@@ -8,21 +8,21 @@ import (
 
 // LicenseSub represents a LicenseSub struct.
 type LicenseSub struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // end date of the license term
+    // End date of the license term
     EndTime              *int                   `json:"end_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     OrderId              *string                `json:"order_id,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // number of devices entitled for this license
+    // Number of devices entitled for this license
     Quantity             *int                   `json:"quantity,omitempty"`
     // Number of licenses left in this subscription
     RemainingQuantity    *int                   `json:"remaining_quantity,omitempty"`
-    // start date of the license term
+    // Start date of the license term
     StartTime            *int                   `json:"start_time,omitempty"`
     SubscriptionId       *string                `json:"subscription_id,omitempty"`
     // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`

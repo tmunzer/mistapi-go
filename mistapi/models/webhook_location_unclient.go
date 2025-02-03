@@ -10,9 +10,9 @@ import (
 // WebhookLocationUnclient represents a WebhookLocationUnclient struct.
 // Location Unconnected Client sample
 type WebhookLocationUnclient struct {
-    // list of events
+    // List of events
     Events               []WebhookLocationUnclientEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                         `json:"topic"`
     AdditionalProperties map[string]interface{}         `json:"_"`
 }

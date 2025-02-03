@@ -25,7 +25,7 @@ func NewOrgsIDPProfiles(baseController baseController) *OrgsIDPProfiles {
 // ListOrgIdpProfiles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.IdpProfile data and
 // an error if there was an issue with the request or response.
-// get the list of Org IDP Profiles
+// Get the list of Org IDP Profiles
 func (o *OrgsIDPProfiles) ListOrgIdpProfiles(
     ctx context.Context,
     orgId uuid.UUID,

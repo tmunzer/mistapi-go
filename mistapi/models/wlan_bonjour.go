@@ -8,13 +8,13 @@ import (
 )
 
 // WlanBonjour represents a WlanBonjour struct.
-// bonjour gateway wlan settings
+// Bonjour gateway wlan settings
 type WlanBonjour struct {
-    // comma sperated list of additional VLAN IDs (on the LAN side or from other WLANs) should we be forwarding bonjour queries/responses
+    // Comma sperated list of additional VLAN IDs (on the LAN side or from other WLANs) should we be forwarding bonjour queries/responses
     AdditionalVlanIds    string                                  `json:"additional_vlan_ids"`
-    // whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
+    // Whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
     Enabled              *bool                                   `json:"enabled,omitempty"`
-    // what services are allowed.
+    // What services are allowed.
     // Property key is the service name
     Services             map[string]WlanBonjourServiceProperties `json:"services"`
     AdditionalProperties map[string]interface{}                  `json:"_"`

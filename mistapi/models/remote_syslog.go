@@ -11,7 +11,7 @@ type RemoteSyslog struct {
     Console              *RemoteSyslogConsole        `json:"console,omitempty"`
     Enabled              *bool                       `json:"enabled,omitempty"`
     Files                []RemoteSyslogFileConfig    `json:"files,omitempty"`
-    // if source_address is configured, will use the vlan firstly otherwise use source_ip
+    // If source_address is configured, will use the vlan firstly otherwise use source_ip
     Network              *string                     `json:"network,omitempty"`
     SendToAllServers     *bool                       `json:"send_to_all_servers,omitempty"`
     Servers              []RemoteSyslogServer        `json:"servers,omitempty"`

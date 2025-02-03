@@ -15,11 +15,11 @@ Device Profile
 |  --- | --- | --- | --- |
 | `Aeroscout` | [`*models.ApAeroscout`](../../doc/models/ap-aeroscout.md) | Optional | Aeroscout AP settings |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `DisableEth1` | `*bool` | Optional | whether to disable eth1 port<br>**Default**: `false` |
-| `DisableEth2` | `*bool` | Optional | whether to disable eth2 port<br>**Default**: `false` |
-| `DisableEth3` | `*bool` | Optional | whether to disable eth3 port<br>**Default**: `false` |
-| `DisableModule` | `*bool` | Optional | whether to disable module port<br>**Default**: `false` |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `DisableEth1` | `*bool` | Optional | Whether to disable eth1 port<br>**Default**: `false` |
+| `DisableEth2` | `*bool` | Optional | Whether to disable eth2 port<br>**Default**: `false` |
+| `DisableEth3` | `*bool` | Optional | Whether to disable eth3 port<br>**Default**: `false` |
+| `DisableModule` | `*bool` | Optional | Whether to disable module port<br>**Default**: `false` |
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
@@ -27,20 +27,20 @@ Device Profile
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Required | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PoePassthrough` | `*bool` | Optional | whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
+| `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
 | `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | Property key is the interface(s) name (e.g. "eth1,eth2") |
-| `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | power related configs |
+| `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | Power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `SwitchConfig` | [`*models.ApSwitch`](../../doc/models/ap-switch.md) | Optional | for people who want to fully control the vlans (advanced) |
+| `SwitchConfig` | [`*models.ApSwitch`](../../doc/models/ap-switch.md) | Optional | For people who want to fully control the vlans (advanced) |
 | `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br><br>- Note: if native imagotag is enabled, BLE will be disabled automatically<br>- Note: legacy, new config moved to ESL Config. |
-| `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

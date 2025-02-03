@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Group` | `*string` | Optional | refer to group_name under access |
+| `Group` | `*string` | Optional | Refer to group_name under access |
 | `SecurityName` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

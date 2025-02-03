@@ -7,13 +7,13 @@ import (
 
 // MxclusterRadsecAcctServer represents a MxclusterRadsecAcctServer struct.
 type MxclusterRadsecAcctServer struct {
-    // ip / hostname of RADIUS server
+    // IP / hostname of RADIUS server
     Host                 *string                `json:"host,omitempty"`
     // Acct port of RADIUS server
     Port                 *int                   `json:"port,omitempty"`
-    // secret of RADIUS server
+    // Secret of RADIUS server
     Secret               *string                `json:"secret,omitempty"`
-    // list of ssids that will use this server if match_ssid is true and match is found
+    // List of ssids that will use this server if match_ssid is true and match is found
     Ssids                []string               `json:"ssids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

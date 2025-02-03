@@ -7,7 +7,7 @@ import (
 
 // AppProbing represents a AppProbing struct.
 type AppProbing struct {
-    // app-keys from /api/v1/const/applications
+    // APp-keys from /api/v1/const/applications
     Apps                 []string               `json:"apps,omitempty"`
     CustomApps           []AppProbingCustomApp  `json:"custom_apps,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`

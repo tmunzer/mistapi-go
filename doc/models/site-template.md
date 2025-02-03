@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AutoUpgrade` | [`*models.SiteTemplateAutoUpgrade`](../../doc/models/site-template-auto-upgrade.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
-| `Vars` | `map[string]string` | Optional | a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

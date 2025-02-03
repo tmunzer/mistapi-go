@@ -20,19 +20,19 @@ type WebhookLocationEvent struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                     uuid.UUID                     `json:"id"`
     Mac                    *string                       `json:"mac,omitempty"`
-    // map id
+    // Map id
     MapId                  uuid.UUID                     `json:"map_id"`
-    // optional, BLE manufacturing company ID
+    // Optional, BLE manufacturing company ID
     MfgCompanyId           *int                          `json:"mfg_company_id,omitempty"`
-    // optional, BLE manufacturing data in hex byte-string format (ie "112233AABBCC")
+    // Optional, BLE manufacturing data in hex byte-string format (ie "112233AABBCC")
     MfgData                *string                       `json:"mfg_data,omitempty"`
-    // name of the client, may be empty
+    // Name of the client, may be empty
     Name                   *string                       `json:"name,omitempty"`
     SiteId                 uuid.UUID                     `json:"site_id"`
-    // timestamp of the event, epoch
+    // Timestamp of the event, epoch
     Timestamp              int                           `json:"timestamp"`
     Type                   string                        `json:"type"`
-    // optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
+    // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     // x, in meter
     X                      float64                       `json:"x"`

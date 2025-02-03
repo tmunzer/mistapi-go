@@ -73,7 +73,7 @@ func (o *OrgsNACRules) ListOrgNacRules(
 // CreateOrgNacRule takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.NacRule data and
 // an error if there was an issue with the request or response.
-// create Org NAC Rule
+// Create Org NAC Rule
 func (o *OrgsNACRules) CreateOrgNacRule(
     ctx context.Context,
     orgId uuid.UUID,

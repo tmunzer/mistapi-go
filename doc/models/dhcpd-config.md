@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | if set to `false`, disable the DHCP server<br>**Default**: `true` |
+| `Enabled` | `*bool` | Optional | If set to `false`, disable the DHCP server<br>**Default**: `true` |
 | `AdditionalProperties` | [`map[string]models.DhcpdConfigProperty`](../../doc/models/dhcpd-config-property.md) | Optional | - |
 
 ## Example (as JSON)

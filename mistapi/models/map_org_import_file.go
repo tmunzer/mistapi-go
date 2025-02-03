@@ -7,11 +7,11 @@ import (
 
 // MapOrgImportFile represents a MapOrgImportFile struct.
 type MapOrgImportFile struct {
-    // whether to auto assign device to deviceprofile by name
+    // Whether to auto assign device to deviceprofile by name
     AutoDeviceprofileAssignment *bool                  `json:"auto_deviceprofile_assignment,omitempty"`
-    // csv file for ap name mapping, optional
+    // CSV file for ap name mapping, optional
     Csv                         *[]byte                `json:"csv,omitempty"`
-    // ekahau or ibwave file
+    // Ekahau or ibwave file
     File                        *[]byte                `json:"file,omitempty"`
     Json                        *MapOrgImportFileJson  `json:"json,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`

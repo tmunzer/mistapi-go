@@ -1,7 +1,7 @@
 
 # Acl Tag
 
-resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
+Resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,12 +13,12 @@ resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `GbpTag` | `*int` | Optional | required if<br><br>- `type`==`dynamic_gbp` (gbp_tag received from RADIUS)<br>- `type`==`gbp_resource`<br>- `type`==`static_gbp` (applying gbp tag against matching conditions) |
-| `Macs` | `[]string` | Optional | required if<br><br>- `type`==`mac`<br>- `type`==`static_gbp` if from matching mac |
-| `Network` | `*string` | Optional | if:<br><br>* `type`==`mac` (optional. default is `any`)<br>* `type`==`subnet` (optional. default is `any`)<br>* `type`==`network`<br>* `type`==`resource` (optional. default is `any`)<br>* `type`==`static_gbp` if from matching network (vlan)' |
-| `RadiusGroup` | `*string` | Optional | required if:<br><br>* `type`==`radius_group`<br>* `type`==`static_gbp`<br>  if from matching radius_group |
-| `Specs` | [`[]models.AclTagSpec`](../../doc/models/acl-tag-spec.md) | Optional | if `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any |
-| `Subnets` | `[]string` | Optional | if<br><br>- `type`==`subnet`<br>- `type`==`resource` (optional. default is `any`)<br>- `type`==`static_gbp` if from matching subnet |
+| `GbpTag` | `*int` | Optional | Required if<br><br>- `type`==`dynamic_gbp` (gbp_tag received from RADIUS)<br>- `type`==`gbp_resource`<br>- `type`==`static_gbp` (applying gbp tag against matching conditions) |
+| `Macs` | `[]string` | Optional | Required if<br><br>- `type`==`mac`<br>- `type`==`static_gbp` if from matching mac |
+| `Network` | `*string` | Optional | If:<br><br>* `type`==`mac` (optional. default is `any`)<br>* `type`==`subnet` (optional. default is `any`)<br>* `type`==`network`<br>* `type`==`resource` (optional. default is `any`)<br>* `type`==`static_gbp` if from matching network (vlan)' |
+| `RadiusGroup` | `*string` | Optional | Required if:<br><br>* `type`==`radius_group`<br>* `type`==`static_gbp`<br>  if from matching radius_group |
+| `Specs` | [`[]models.AclTagSpec`](../../doc/models/acl-tag-spec.md) | Optional | If `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any |
+| `Subnets` | `[]string` | Optional | If<br><br>- `type`==`subnet`<br>- `type`==`resource` (optional. default is `any`)<br>- `type`==`static_gbp` if from matching subnet |
 | `Type` | [`models.AclTagTypeEnum`](../../doc/models/acl-tag-type-enum.md) | Required | enum:<br><br>* `any`: matching anything not identified<br>* `dynamic_gbp`: from the gbp_tag received from RADIUS<br>* `gbp_resource`: can only be used in `dst_tags`<br>* `mac`<br>* `network`<br>* `radius_group`<br>* `resource`: can only be used in `dst_tags`<br>* `static_gbp`: applying gbp tag against matching conditions<br>* `subnet`' |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

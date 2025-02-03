@@ -13,8 +13,8 @@ Mesh AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether mesh is enabled on this AP<br>**Default**: `false` |
-| `Group` | `models.Optional[int]` | Optional | mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional<br>**Constraints**: `>= 1`, `<= 9` |
+| `Enabled` | `*bool` | Optional | Whether mesh is enabled on this AP<br>**Default**: `false` |
+| `Group` | `models.Optional[int]` | Optional | Mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional<br>**Constraints**: `>= 1`, `<= 9` |
 | `Role` | [`*models.ApMeshRoleEnum`](../../doc/models/ap-mesh-role-enum.md) | Optional | enum: `base`, `remote` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -12,9 +12,9 @@ type TunnelConfig struct {
     IkeLifetime          *int                        `json:"ike_lifetime,omitempty"`
     // Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`
     IkeMode              *TunnelConfigIkeModeEnum    `json:"ike_mode,omitempty"`
-    // if `provider`==`custom-ipsec`
+    // If `provider`==`custom-ipsec`
     IkeProposals         []TunnelConfigIkeProposal   `json:"ike_proposals,omitempty"`
-    // if `provider`==`custom-ipsec`
+    // If `provider`==`custom-ipsec`
     IpsecLifetime        *int                        `json:"ipsec_lifetime,omitempty"`
     // Only if  `provider`==`custom-ipsec`
     IpsecProposals       []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
@@ -22,7 +22,7 @@ type TunnelConfig struct {
     LocalId              *string                     `json:"local_id,omitempty"`
     // Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`
     Mode                 *TunnelConfigTunnelModeEnum `json:"mode,omitempty"`
-    // if `provider`==`custom-ipsec`, networks reachable via this tunnel
+    // If `provider`==`custom-ipsec`, networks reachable via this tunnel
     Networks             []string                    `json:"networks,omitempty"`
     // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     Primary              *TunnelConfigNode           `json:"primary,omitempty"`

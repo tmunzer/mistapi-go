@@ -133,7 +133,7 @@ if err != nil {
 
 # Update Self
 
-update Account Information
+Update Account Information
 
 ```go
 UpdateSelf(
@@ -270,7 +270,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | invalid email address or new email address already exists | [`ResponseDetailStringException`](../../doc/models/response-detail-string-exception.md) |
+| 400 | Invalid email address or new email address already exists | [`ResponseDetailStringException`](../../doc/models/response-detail-string-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |

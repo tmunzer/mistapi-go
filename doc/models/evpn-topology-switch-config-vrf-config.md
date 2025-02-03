@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether to enable VRF (when supported on the device) |
+| `Enabled` | `*bool` | Optional | Whether to enable VRF (when supported on the device) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

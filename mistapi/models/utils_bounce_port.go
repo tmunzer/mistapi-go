@@ -7,7 +7,7 @@ import (
 
 // UtilsBouncePort represents a UtilsBouncePort struct.
 type UtilsBouncePort struct {
-    // list of ports to bounce
+    // List of ports to bounce
     Ports                []string               `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,19 +10,19 @@ import (
 type UpgradeOrgDevices struct {
     // Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
     CanaryPhases            []int                            `json:"canary_phases,omitempty"`
-    // for APs only. whether to allow local AP-to-AP FW upgrade
+    // For APs only. Whether to allow local AP-to-AP FW upgrade
     EnableP2p               *bool                            `json:"enable_p2p,omitempty"`
-    // true will force upgrade when requested version is same as running version
+    // `force`==`true` will force upgrade when requested version is same as running version
     Force                   *bool                            `json:"force,omitempty"`
-    // for APs only and if `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
+    // If `strategy`!=`big_bang`. percentage of failures allowed across the entire upgrade
     MaxFailurePercentage    *int                             `json:"max_failure_percentage,omitempty"`
-    // if `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
+    // If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used
     MaxFailures             []int                            `json:"max_failures,omitempty"`
-    // models which will be selected for upgrade
+    // Models which will be selected for upgrade
     Models                  []string                         `json:"models,omitempty"`
-    // For APs only and if `enable_p2p`==`true`.
+    // If `enable_p2p`==`true`.
     P2pClusterSize          *int                             `json:"p2p_cluster_size,omitempty"`
-    // For APs only and if `enable_p2p`==`true`. Number of parallel p2p download batches to create
+    // If `enable_p2p`==`true`. Number of parallel p2p download batches to create
     P2pParallelism          *int                             `json:"p2p_parallelism,omitempty"`
     // For Switches and Gateways only (APs are automatically rebooted). Reboot device immediately after upgrade is completed
     Reboot                  *bool                            `json:"reboot,omitempty"`
@@ -49,11 +49,11 @@ type UpgradeOrgDevices struct {
     SiteIds                 []uuid.UUID                      `json:"site_ids,omitempty"`
     // For Junos devices only. Perform recovery snapshot after device is rebooted
     Snapshot                *bool                            `json:"snapshot,omitempty"`
-    // upgrade start time in epoch seconds, default is now
+    // Upgrade start time in epoch seconds, default is now
     StartTime               *int                             `json:"start_time,omitempty"`
     // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
     Strategy                *UpgradeDeviceStrategyEnum       `json:"strategy,omitempty"`
-    // specific version / stable, default is to use the lastest available version
+    // Specific version / stable, default is to use the lastest available version
     Version                 *string                          `json:"version,omitempty"`
     AdditionalProperties    map[string]interface{}           `json:"_"`
 }

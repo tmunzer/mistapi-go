@@ -329,7 +329,7 @@ func (s *SitesWlans) DeleteSiteWlanPortalImage(
 // UploadSiteWlanPortalImage takes context, siteId, wlanId, file, json as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Wlan Portal Image Upload
+// WLAN Portal Image Upload
 func (s *SitesWlans) UploadSiteWlanPortalImage(
     ctx context.Context,
     siteId uuid.UUID,

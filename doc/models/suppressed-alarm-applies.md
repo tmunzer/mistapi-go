@@ -1,7 +1,7 @@
 
 # Suppressed Alarm Applies
 
-if `scope`==`site`. Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
+If `scope`==`site`. Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration`
 
 *This model accepts additional fields of type interface{}.*
 

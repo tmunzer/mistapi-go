@@ -13,8 +13,8 @@
 |  --- | --- | --- | --- |
 | `AsBase` | `*int` | Optional | Underlay BGP Base AS Number<br>**Default**: `65001`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `RoutedIdPrefix` | `*string` | Optional | - |
-| `Subnet` | `*string` | Optional | underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6 |
-| `UseIpv6` | `*bool` | Optional | if v6 is desired for underlay<br>**Default**: `false` |
+| `Subnet` | `*string` | Optional | Underlay subnet, by default, `10.255.240.0/20`, or `fd31:5700::/64` for ipv6 |
+| `UseIpv6` | `*bool` | Optional | If v6 is desired for underlay<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -12,15 +12,15 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Action` | [`models.NacRuleActionEnum`](../../doc/models/nac-rule-action-enum.md) | Required | enum: `allow`, `block` |
-| `ApplyTags` | `[]string` | Optional | all optional, this goes into Access-Accept |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `Enabled` | `*bool` | Optional | enabled or not<br>**Default**: `true` |
+| `ApplyTags` | `[]string` | Optional | All optional, this goes into Access-Accept |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `Enabled` | `*bool` | Optional | Enabled or not<br>**Default**: `true` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Matching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NotMatching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
-| `Order` | `*int` | Optional | the order of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
+| `Order` | `*int` | Optional | Prder of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

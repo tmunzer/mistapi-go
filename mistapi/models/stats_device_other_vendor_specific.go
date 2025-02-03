@@ -6,7 +6,7 @@ import (
 )
 
 // StatsDeviceOtherVendorSpecific represents a StatsDeviceOtherVendorSpecific struct.
-// when `vendor`==`cradlepoint`
+// When `vendor`==`cradlepoint`
 type StatsDeviceOtherVendorSpecific struct {
     Ports                map[string]StatsDeviceOtherVendorSpecificPort `json:"ports,omitempty"`
     TargetVersion        *string                                       `json:"target_version,omitempty"`

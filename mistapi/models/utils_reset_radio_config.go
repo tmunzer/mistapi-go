@@ -9,9 +9,9 @@ import (
 
 // UtilsResetRadioConfig represents a UtilsResetRadioConfig struct.
 type UtilsResetRadioConfig struct {
-    // list of bands
+    // List of bands
     Bands                []string               `json:"bands"`
-    // whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)
+    // Whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)
     Force                *bool                  `json:"force,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

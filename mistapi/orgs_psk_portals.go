@@ -368,7 +368,7 @@ func (o *OrgsPskPortals) DeleteOrgPskPortal(
 // GetOrgPskPortal takes context, orgId, pskportalId as parameters and
 // returns an models.ApiResponse with models.PskPortal data and
 // an error if there was an issue with the request or response.
-// get Org Psk Portal Details
+// Get Org Psk Portal Details
 func (o *OrgsPskPortals) GetOrgPskPortal(
     ctx context.Context,
     orgId uuid.UUID,
@@ -409,7 +409,7 @@ func (o *OrgsPskPortals) GetOrgPskPortal(
 // UpdateOrgPskPortal takes context, orgId, pskportalId, body as parameters and
 // returns an models.ApiResponse with models.PskPortal data and
 // an error if there was an issue with the request or response.
-// update Org Psk Portal
+// Update Org Psk Portal
 func (o *OrgsPskPortals) UpdateOrgPskPortal(
     ctx context.Context,
     orgId uuid.UUID,

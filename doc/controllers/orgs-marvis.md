@@ -40,9 +40,9 @@ TroubleshootOrg(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | **required** when troubleshooting device or a client |
 | `siteId` | `*uuid.UUID` | Query, Optional | **required** when troubleshooting site |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `mType` | [`*models.TroubleshootTypeEnum`](../../doc/models/troubleshoot-type-enum.md) | Query, Optional | when troubleshooting site, type of network to troubleshoot |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `mType` | [`*models.TroubleshootTypeEnum`](../../doc/models/troubleshoot-type-enum.md) | Query, Optional | When troubleshooting site, type of network to troubleshoot |
 
 ## Response Type
 

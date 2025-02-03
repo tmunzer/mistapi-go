@@ -148,13 +148,13 @@ GetSiteBeamCoverageOverview(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mapId` | `*string` | Query, Optional | map_id (filter by map_id) |
+| `mapId` | `*string` | Query, Optional | Map_id (filter by map_id) |
 | `mType` | [`*models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Query, Optional | - |
-| `clientType` | `*string` | Query, Optional | client_type (as filter. optional) |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `clientType` | `*string` | Query, Optional | Client_type (as filter. optional) |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `resolution` | [`*models.ResolutionEnum`](../../doc/models/resolution-enum.md) | Query, Optional | **Default**: `"default"` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 
 ## Response Type
 
@@ -370,7 +370,7 @@ GetSiteMachineLearningCurrentStat(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mapId` | `*string` | Query, Optional | map_id (as filter, optional) |
+| `mapId` | `*string` | Query, Optional | Map_id (as filter, optional) |
 
 ## Response Type
 

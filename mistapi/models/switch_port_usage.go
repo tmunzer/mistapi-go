@@ -77,9 +77,9 @@ type SwitchPortUsage struct {
     StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`
     StpNoRootPort                            *bool                                       `json:"stp_no_root_port,omitempty"`
     StpP2p                                   *bool                                       `json:"stp_p2p,omitempty"`
-    // optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches
+    // Optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches
     UiEvpntopoId                             *uuid.UUID                                  `json:"ui_evpntopo_id,omitempty"`
-    // if this is connected to a vstp network
+    // If this is connected to a vstp network
     UseVstp                                  *bool                                       `json:"use_vstp,omitempty"`
     // Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
     VoipNetwork                              *string                                     `json:"voip_network,omitempty"`

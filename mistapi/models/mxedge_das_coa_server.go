@@ -7,14 +7,14 @@ import (
 
 // MxedgeDasCoaServer represents a MxedgeDasCoaServer struct.
 type MxedgeDasCoaServer struct {
-    // whether to disable Event-Timestamp Check
+    // Whether to disable Event-Timestamp Check
     DisableEventTimestampCheck  *bool                  `json:"disable_event_timestamp_check,omitempty"`
     Enabled                     *bool                  `json:"enabled,omitempty"`
-    // this server configured to send CoA|DM to mist edges
+    // This server configured to send CoA|DM to mist edges
     Host                        *string                `json:"host,omitempty"`
-    // mist edges will allow this host on this port
+    // Mist edges will allow this host on this port
     Port                        *int                   `json:"port,omitempty"`
-    // whether to require Message-Authenticator in requests
+    // Whether to require Message-Authenticator in requests
     RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
     Secret                      *string                `json:"secret,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`

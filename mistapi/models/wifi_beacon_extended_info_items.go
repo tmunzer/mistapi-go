@@ -7,11 +7,11 @@ import (
 
 // WifiBeaconExtendedInfoItems represents a WifiBeaconExtendedInfoItems struct.
 type WifiBeaconExtendedInfoItems struct {
-    // frame control field of 802.11 header
+    // Frame control field of 802.11 header
     FrameCtrl            *int                   `json:"frame_ctrl,omitempty"`
     // Extended Info Payload associated with frame
     Payload              *string                `json:"payload,omitempty"`
-    // sequence control field of 802.11 header
+    // Sequence control field of 802.11 header
     SeqCtrl              *int                   `json:"seq_ctrl,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

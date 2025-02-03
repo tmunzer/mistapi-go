@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableEventTimestampCheck` | `*bool` | Optional | whether to disable Event-Timestamp Check<br>**Default**: `false` |
+| `DisableEventTimestampCheck` | `*bool` | Optional | Whether to disable Event-Timestamp Check<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | - |
-| `Host` | `*string` | Optional | this server configured to send CoA\|DM to mist edges |
-| `Port` | `*int` | Optional | mist edges will allow this host on this port<br>**Default**: `3799` |
-| `RequireMessageAuthenticator` | `*bool` | Optional | whether to require Message-Authenticator in requests<br>**Default**: `false` |
+| `Host` | `*string` | Optional | This server configured to send CoA\|DM to mist edges |
+| `Port` | `*int` | Optional | Mist edges will allow this host on this port<br>**Default**: `3799` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
 | `Secret` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

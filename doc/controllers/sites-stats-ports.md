@@ -63,16 +63,16 @@ CountSiteSwOrGwPorts(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SitePortsCountDistinctEnum`](../../doc/models/site-ports-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
-| `mac` | `*string` | Query, Optional | device identifier |
+| `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
+| `mac` | `*string` | Query, Optional | Device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
 | `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
 | `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
-| `poeDisabled` | `*bool` | Query, Optional | is the POE configured not be disabled. |
-| `poeMode` | `*string` | Query, Optional | poe mode depending on class E.g. “802.3at” |
-| `poeOn` | `*bool` | Query, Optional | is the device attached to POE |
-| `portId` | `*string` | Query, Optional | interface name |
-| `portMac` | `*string` | Query, Optional | interface mac address |
+| `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
+| `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. “802.3at” |
+| `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
+| `portId` | `*string` | Query, Optional | Interface name |
+| `portMac` | `*string` | Query, Optional | Interface mac address |
 | `powerDraw` | `*float64` | Query, Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `txPkts` | `*int` | Query, Optional | Output packets |
 | `rxPkts` | `*int` | Query, Optional | Input packets |
@@ -83,14 +83,14 @@ CountSiteSwOrGwPorts(
 | `txBcastPkts` | `*int` | Query, Optional | Broadcast output packets |
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
-| `speed` | `*int` | Query, Optional | port speed |
-| `stpState` | [`*models.CountPortsStpStateEnum`](../../doc/models/count-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
-| `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
-| `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
-| `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `speed` | `*int` | Query, Optional | Port speed |
+| `stpState` | [`*models.CountPortsStpStateEnum`](../../doc/models/count-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `up` | `*bool` | Query, Optional | Indicates if interface is up |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -265,17 +265,17 @@ SearchSiteSwOrGwPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `fullDuplex` | `*bool` | Query, Optional | indicates full or half duplex |
-| `mac` | `*string` | Query, Optional | device identifier |
-| `deviceType` | [`*models.SearchSiteSwOrGwPortsDeviceTypeEnum`](../../doc/models/search-site-sw-or-gw-ports-device-type-enum.md) | Query, Optional | device type |
+| `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
+| `mac` | `*string` | Query, Optional | Device identifier |
+| `deviceType` | [`*models.SearchSiteSwOrGwPortsDeviceTypeEnum`](../../doc/models/search-site-sw-or-gw-ports-device-type-enum.md) | Query, Optional | Device type |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
 | `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
 | `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
-| `poeDisabled` | `*bool` | Query, Optional | is the POE configured not be disabled. |
-| `poeMode` | `*string` | Query, Optional | poe mode depending on class E.g. “802.3at” |
-| `poeOn` | `*bool` | Query, Optional | is the device attached to POE |
-| `portId` | `*string` | Query, Optional | interface name |
-| `portMac` | `*string` | Query, Optional | interface mac address |
+| `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
+| `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. “802.3at” |
+| `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
+| `portId` | `*string` | Query, Optional | Interface name |
+| `portMac` | `*string` | Query, Optional | Interface mac address |
 | `powerDraw` | `*float64` | Query, Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `txPkts` | `*int` | Query, Optional | Output packets |
 | `rxPkts` | `*int` | Query, Optional | Input packets |
@@ -288,25 +288,25 @@ SearchSiteSwOrGwPorts(
 | `txBcastPkts` | `*int` | Query, Optional | Broadcast output packets |
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
-| `speed` | `*int` | Query, Optional | port speed |
+| `speed` | `*int` | Query, Optional | Port speed |
 | `macLimit` | `*int` | Query, Optional | Limit on number of dynamically learned macs |
 | `macCount` | `*int` | Query, Optional | Number of mac addresses in the forwarding table |
-| `up` | `*bool` | Query, Optional | indicates if interface is up |
-| `active` | `*bool` | Query, Optional | indicates if interface is active/inactive |
+| `up` | `*bool` | Query, Optional | Indicates if interface is up |
+| `active` | `*bool` | Query, Optional | Indicates if interface is active/inactive |
 | `jitter` | `*float64` | Query, Optional | Last sampled jitter of the interface |
 | `loss` | `*float64` | Query, Optional | Last sampled loss of the interface |
 | `latency` | `*float64` | Query, Optional | Last sampled latency of the interface |
-| `stpState` | [`*models.SearchSiteSwOrGwPortsStpStateEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | if `up`==`true` |
-| `stpRole` | [`*models.SearchSiteSwOrGwPortsStpRoleEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | if `up`==`true` |
+| `stpState` | [`*models.SearchSiteSwOrGwPortsStpStateEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.SearchSiteSwOrGwPortsStpRoleEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
 | `xcvrPartNumber` | `*string` | Query, Optional | Optic Slot Partnumber, Check for null/empty |
-| `authState` | [`*models.SearchSiteSwOrGwPortsAuthStateEnum`](../../doc/models/search-site-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | if `up`==`true` && has Authenticator role |
+| `authState` | [`*models.SearchSiteSwOrGwPortsAuthStateEnum`](../../doc/models/search-site-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
 | `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
 | `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

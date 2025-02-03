@@ -1,7 +1,7 @@
 
 # Site Engagement Dwell Tag Names
 
-name associated to each tag
+Name associated to each tag
 
 *This model accepts additional fields of type interface{}.*
 

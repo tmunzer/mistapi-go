@@ -9,7 +9,7 @@ import (
 
 // ImageImport represents a ImageImport struct.
 type ImageImport struct {
-    // binary file
+    // Binary file
     File                 []byte                 `json:"file"`
     Json                 *string                `json:"json,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

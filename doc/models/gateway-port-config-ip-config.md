@@ -13,15 +13,15 @@ Junos IP Config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | `[]string` | Optional | except for out-of_band interface (vme/em0/fxp0) |
-| `DnsSuffix` | `[]string` | Optional | except for out-of_band interface (vme/em0/fxp0) |
-| `Gateway` | `*string` | Optional | except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}") |
+| `Dns` | `[]string` | Optional | Except for out-of_band interface (vme/em0/fxp0) |
+| `DnsSuffix` | `[]string` | Optional | Except for out-of_band interface (vme/em0/fxp0) |
+| `Gateway` | `*string` | Optional | Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}") |
 | `Ip` | `*string` | Optional | Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}") |
-| `Netmask` | `*string` | Optional | used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}") |
-| `Network` | `*string` | Optional | optional, the network to be used for mgmt |
-| `PoserPassword` | `*string` | Optional | if `type`==`pppoe` |
+| `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}") |
+| `Network` | `*string` | Optional | Optional, the network to be used for mgmt |
+| `PoserPassword` | `*string` | Optional | If `type`==`pppoe` |
 | `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
-| `PppoeUsername` | `*string` | Optional | if `type`==`pppoe` |
+| `PppoeUsername` | `*string` | Optional | If `type`==`pppoe` |
 | `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | enum: `dhcp`, `pppoe`, `static`<br>**Default**: `"dhcp"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

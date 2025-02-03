@@ -309,7 +309,7 @@ ControlOrgMxEdgeServices(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 | `name` | [`models.MxedgeServiceNameEnum`](../../doc/models/mxedge-service-name-enum.md) | Template, Required | enum: `mxagent`, `mxdas`, `mxnacedge`, `mxocproxy`, `radsecproxy`, `tunterm` |
-| `action` | [`models.MxedgeServiceActionEnum`](../../doc/models/mxedge-service-action-enum.md) | Template, Required | restart or start or stop |
+| `action` | [`models.MxedgeServiceActionEnum`](../../doc/models/mxedge-service-action-enum.md) | Template, Required | Restart or start or stop |
 
 ## Response Type
 
@@ -379,17 +379,17 @@ CountOrgMxEdges(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgMxedgeCountDistinctEnum`](../../doc/models/org-mxedge-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `mxedgeId` | `*string` | Query, Optional | mist edge id |
-| `siteId` | `*string` | Query, Optional | mist edge site id |
-| `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `model` | `*string` | Query, Optional | model name |
-| `distro` | `*string` | Query, Optional | debian code name(buster, bullseye) |
+| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `siteId` | `*string` | Query, Optional | Mist edge site id |
+| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
+| `model` | `*string` | Query, Optional | Model name |
+| `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
 | `tuntermVersion` | `*string` | Query, Optional | tunterm version |
-| `sort` | `*string` | Query, Optional | sort options, -prefix represents DESC order, default is -last_seen |
-| `stats` | `*bool` | Query, Optional | whether to return device stats, default is false |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | Sort options, -prefix represents DESC order, default is -last_seen |
+| `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -498,13 +498,13 @@ CountOrgSiteMxEdgeEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
-| `mxedgeId` | `*string` | Query, Optional | mist edge id |
-| `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
@@ -968,7 +968,7 @@ GetOrgMxEdgeUpgradeInfo(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
+| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
 
 ## Response Type
 
@@ -1042,7 +1042,7 @@ ListOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | filter for site level mist edges<br>**Default**: `"any"` |
+| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br>**Default**: `"any"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -1263,14 +1263,14 @@ SearchOrgMistEdgeEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mxedgeId` | `*string` | Query, Optional | mist edge id |
-| `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `service` | `*string` | Query, Optional | service running on mist edge(mxagent, tunterm etc) |
-| `component` | `*string` | Query, Optional | component like PS1, PS2 |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
+| `component` | `*string` | Query, Optional | Component like PS1, PS2 |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
@@ -1374,17 +1374,17 @@ SearchOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mxedgeId` | `*string` | Query, Optional | mist edge id |
-| `siteId` | `*string` | Query, Optional | mist edge site id |
-| `mxclusterId` | `*string` | Query, Optional | mist edge cluster id |
-| `model` | `*string` | Query, Optional | model name |
-| `distro` | `*string` | Query, Optional | debian code name(buster, bullseye) |
+| `mxedgeId` | `*string` | Query, Optional | Mist edge id |
+| `siteId` | `*string` | Query, Optional | Mist edge site id |
+| `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
+| `model` | `*string` | Query, Optional | Model name |
+| `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
 | `tuntermVersion` | `*string` | Query, Optional | tunterm version |
-| `sort` | `*string` | Query, Optional | sort options, -prefix represents DESC order, default is -last_seen |
-| `stats` | `*bool` | Query, Optional | whether to return device stats, default is false |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | Sort options, -prefix represents DESC order, default is -last_seen |
+| `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 

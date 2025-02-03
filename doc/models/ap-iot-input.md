@@ -13,8 +13,8 @@ IoT Input AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | whether to enable a pin<br>**Default**: `false` |
-| `Name` | `*string` | Optional | optional; descriptive pin name |
+| `Enabled` | `*bool` | Optional | Whether to enable a pin<br>**Default**: `false` |
+| `Name` | `*string` | Optional | Optional; descriptive pin name |
 | `Pullup` | [`*models.ApIotPullupEnum`](../../doc/models/ap-iot-pullup-enum.md) | Optional | the type of pull-up the pin uses. enum: `external`, `internal`, `none`<br>**Default**: `"none"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -9,7 +9,7 @@ import (
 type SsoMxedgeProxyAuthServer struct {
     Host                        *string                `json:"host,omitempty"`
     Port                        *int                   `json:"port,omitempty"`
-    // whether to require Message-Authenticator in requests
+    // Whether to require Message-Authenticator in requests
     RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
     Secret                      *string                `json:"secret,omitempty"`
     AdditionalProperties        map[string]interface{} `json:"_"`

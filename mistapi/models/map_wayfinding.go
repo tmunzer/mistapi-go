@@ -6,7 +6,7 @@ import (
 )
 
 // MapWayfinding represents a MapWayfinding struct.
-// properties related to wayfinding
+// Properties related to wayfinding
 type MapWayfinding struct {
     Micello              *MapWayfindingMicello  `json:"micello,omitempty"`
     SnapToPath           *bool                  `json:"snap_to_path,omitempty"`

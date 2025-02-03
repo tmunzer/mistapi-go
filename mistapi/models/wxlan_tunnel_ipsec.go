@@ -10,9 +10,9 @@ import (
 // WxlanTunnelIpsec represents a WxlanTunnelIpsec struct.
 // IPSec-related configurations; requires DMVPN be enabled
 type WxlanTunnelIpsec struct {
-    // whether ipsec is enabled, requires DMVPN be enabled
+    // Whether ipsec is enabled, requires DMVPN be enabled
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // ipsec pre-shared key
+    // IPSec pre-shared key
     Psk                  string                 `json:"psk"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

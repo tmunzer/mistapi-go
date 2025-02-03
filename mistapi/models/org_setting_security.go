@@ -7,11 +7,11 @@ import (
 
 // OrgSettingSecurity represents a OrgSettingSecurity struct.
 type OrgSettingSecurity struct {
-    // whether to disable local SSH (by default, local SSH is enabled with allow_mist in Org is enabled
+    // Whether to disable local SSH (by default, local SSH is enabled with allow_mist in Org is enabled
     DisableLocalSsh      *bool                  `json:"disable_local_ssh,omitempty"`
     // password required to zeroize devices (FIPS) on site level
     FipsZeroizePassword  *string                `json:"fips_zeroize_password,omitempty"`
-    // whether to allow certain SSH keys to SSH into the AP (see Site:Setting)
+    // Whether to allow certain SSH keys to SSH into the AP (see Site:Setting)
     LimitSshAccess       *bool                  `json:"limit_ssh_access,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -11,7 +11,7 @@ import (
 // StatsAsset represents a StatsAsset struct.
 // Asset statistics
 type StatsAsset struct {
-    // battery voltage, in mV
+    // Battery voltage, in mV
     BatteryVoltage        *float64               `json:"battery_voltage,omitempty"`
     Beam                  *int                   `json:"beam,omitempty"`
     DeviceName            *string                `json:"device_name,omitempty"`
@@ -22,23 +22,23 @@ type StatsAsset struct {
     IbeaconMajor          *int                   `json:"ibeacon_major,omitempty"`
     IbeaconMinor          *int                   `json:"ibeacon_minor,omitempty"`
     IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
-    // last seen timestamp
+    // Last seen timestamp
     LastSeen              *float64               `json:"last_seen,omitempty"`
-    // bluetooth MAC
+    // Bluetooth MAC
     Mac                   string                 `json:"mac"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                 *uuid.UUID             `json:"map_id,omitempty"`
-    // name / label of the device
+    // Name / label of the device
     Name                  *string                `json:"name,omitempty"`
     Rssi                  *int                   `json:"rssi,omitempty"`
-    // only send this for individual asset stat
+    // Only send this for individual asset stat
     Rssizones             []AssetRssiZone        `json:"rssizones,omitempty"`
     Temperatur            *float64               `json:"temperatur,omitempty"`
-    // x in pixel
+    // X in pixel
     X                     *float64               `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                     *float64               `json:"y,omitempty"`
-    // only send this for individual asset stat
+    // Only send this for individual asset stat
     Zones                 []AssetZone            `json:"zones,omitempty"`
     AdditionalProperties  map[string]interface{} `json:"_"`
 }

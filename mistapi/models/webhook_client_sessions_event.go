@@ -10,37 +10,37 @@ import (
 
 // WebhookClientSessionsEvent represents a WebhookClientSessionsEvent struct.
 type WebhookClientSessionsEvent struct {
-    // mac address of the AP the client roamed or disconnected from
+    // MAC address of the AP the client roamed or disconnected from
     Ap                   string                 `json:"ap"`
     // user-friendly name of the AP the client roamed or disconnected from.
     ApName               string                 `json:"ap_name"`
     // 5GHz or 2.4GHz band
     Band                 string                 `json:"band"`
     Bssid                string                 `json:"bssid"`
-    // device family E.g. “Mac”, “iPhone”, “Apple watch”
+    // Device family E.g. “Mac”, “iPhone”, “Apple watch”
     ClientFamily         string                 `json:"client_family"`
-    // device manufacturer E.g. “Apple”
+    // Device manufacturer E.g. “Apple”
     ClientManufacture    string                 `json:"client_manufacture"`
-    // device model E.g. “8+”, “XS”
+    // Device model E.g. “8+”, “XS”
     ClientModel          string                 `json:"client_model"`
-    // device operating system E.g. “Mojave”, “Windows 10”, “Linux”
+    // Device operating system E.g. “Mojave”, “Windows 10”, “Linux”
     ClientOs             string                 `json:"client_os"`
-    // time when the user connects
+    // Time when the user connects
     Connect              int                    `json:"connect"`
     // floating point connect timestamp with millisecond precision
     ConnectFloat         float64                `json:"connect_float"`
-    // time when the user disconnects
+    // Time when the user disconnects
     Disconnect           int                    `json:"disconnect"`
     // floating point disconnect timestamp with millisecond precision
     DisconnectFloat      float64                `json:"disconnect_float"`
-    // the duration of the roamed or complete session indicated by termination_reason field.
+    // Duration of the roamed or complete session indicated by termination_reason field.
     Duration             int                    `json:"duration"`
-    // the client’s mac
+    // Client's MAC Address'
     Mac                  string                 `json:"mac"`
     // the AP the client has roamed to.
     NextAp               string                 `json:"next_ap"`
     OrgId                uuid.UUID              `json:"org_id"`
-    // latest average RSSI before the user disconnects
+    // Latest average RSSI before the user disconnects
     Rssi                 float64                `json:"rssi"`
     SiteId               uuid.UUID              `json:"site_id"`
     SiteName             string                 `json:"site_name"`

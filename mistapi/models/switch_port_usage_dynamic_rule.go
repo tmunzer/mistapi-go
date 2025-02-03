@@ -10,7 +10,7 @@ import (
 // SwitchPortUsageDynamicRule represents a SwitchPortUsageDynamicRule struct.
 type SwitchPortUsageDynamicRule struct {
     Equals               *string                           `json:"equals,omitempty"`
-    // use `equals_any` to match any item in a list
+    // Use `equals_any` to match any item in a list
     EqualsAny            []string                          `json:"equals_any,omitempty"`
     // "[0:3]":"abcdef" -> "abc"
     // "split(.)[1]": "a.b.c" -> "b"

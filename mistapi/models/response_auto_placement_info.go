@@ -7,11 +7,11 @@ import (
 
 // ResponseAutoPlacementInfo represents a ResponseAutoPlacementInfo struct.
 type ResponseAutoPlacementInfo struct {
-    // time when autoplacement completed or was manually stopped
+    // Time when autoplacement completed or was manually stopped
     EndTime              *float64                     `json:"end_time,omitempty"`
     // (Only when inprogress) estimate of the time to completion
     EstTimeLeft          *float64                     `json:"est_time_left,omitempty"`
-    // time when autoplacement process was last queued for this map
+    // Time when autoplacement process was last queued for this map
     StartTime            *int                         `json:"start_time,omitempty"`
     // the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending`
     Status               *AutoPlacementInfoStatusEnum `json:"status,omitempty"`

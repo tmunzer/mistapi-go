@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Address` | `*string` | Optional | required if `protocol`==`icmp` |
+| `Address` | `*string` | Optional | Required if `protocol`==`icmp` |
 | `AppType` | `*string` | Optional | - |
-| `Hostnames` | `[]string` | Optional | if `protocol`==`http` |
+| `Hostnames` | `[]string` | Optional | If `protocol`==`http` |
 | `Key` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | - |
-| `PacketSize` | `*int` | Optional | if `protocol`==`icmp`<br>**Constraints**: `>= 0`, `<= 65400` |
+| `PacketSize` | `*int` | Optional | If `protocol`==`icmp`<br>**Constraints**: `>= 0`, `<= 65400` |
 | `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"http"` |
-| `Url` | `*string` | Optional | if `protocol`==`http` |
+| `Url` | `*string` | Optional | If `protocol`==`http` |
 | `Vrf` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -10,13 +10,13 @@ import (
 // AccountJamfConfig represents a AccountJamfConfig struct.
 // OAuth linked Jamf apps account details
 type AccountJamfConfig struct {
-    // customer account api client id. Required if `app_name`==`crowdstrike`
+    // Customer account api client id. Required if `app_name`==`crowdstrike`
     ClientId             string                 `json:"client_id"`
-    // customer account api client secret
+    // Customer account api client secret
     ClientSecret         string                 `json:"client_secret"`
-    // customer account Jamf instance URL
+    // Customer account Jamf instance URL
     InstanceUrl          string                 `json:"instance_url"`
-    // smart group membership for determining compliance status
+    // Smart group membership for determining compliance status
     SmartgroupName       string                 `json:"smartgroup_name"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

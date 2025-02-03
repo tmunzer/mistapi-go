@@ -130,7 +130,7 @@ if err != nil {
 
 # Delete Org Service
 
-delete Org Service
+Delete Org Service
 
 ```go
 DeleteOrgService(
@@ -366,7 +366,7 @@ if err != nil {
 
 # Update Org Service
 
-update Org Service
+Update Org Service
 
 ```go
 UpdateOrgService(

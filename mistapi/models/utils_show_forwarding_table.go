@@ -11,15 +11,15 @@ type UtilsShowForwardingTable struct {
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     // IP Prefix
     Prefix               *string                `json:"prefix,omitempty"`
-    // only supported with SSR
+    // Only supported with SSR
     ServiceIp            *string                `json:"service_ip,omitempty"`
-    // only supported with SSR
+    // Only supported with SSR
     ServiceName          *string                `json:"service_name,omitempty"`
-    // only supported with SSR
+    // Only supported with SSR
     ServicePort          *int                   `json:"service_port,omitempty"`
-    // only supported with SSR
+    // Only supported with SSR
     ServiceProtocol      *string                `json:"service_protocol,omitempty"`
-    // only supported with SSR
+    // Only supported with SSR
     ServiceTenant        *string                `json:"service_tenant,omitempty"`
     // VRF Name
     Vrf                  *string                `json:"vrf,omitempty"`

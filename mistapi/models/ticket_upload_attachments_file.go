@@ -7,7 +7,7 @@ import (
 
 // TicketUploadAttachmentsFile represents a TicketUploadAttachmentsFile struct.
 type TicketUploadAttachmentsFile struct {
-    // ekahau or ibwave file
+    // Ekahau or ibwave file
     File                 *[]byte                `json:"file,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

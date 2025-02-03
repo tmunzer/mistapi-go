@@ -13,7 +13,7 @@ type WebhookLocationClientEvent struct {
     SiteId                 *uuid.UUID                    `json:"site_id,omitempty"`
     Timestamp              *int                          `json:"timestamp,omitempty"`
     Type                   *string                       `json:"type,omitempty"`
-    // optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
+    // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     // x, in meter
     X                      *float64                      `json:"x,omitempty"`

@@ -9,11 +9,11 @@ import (
 // Radio AP settings
 type ApRadio struct {
     AllowRrmDisable      *bool                   `json:"allow_rrm_disable,omitempty"`
-    // antenna gain for 2.4G - for models with external antenna only
+    // Antenna gain for 2.4G - for models with external antenna only
     AntGain24            *int                    `json:"ant_gain_24,omitempty"`
-    // antenna gain for 5G - for models with external antenna only
+    // Antenna gain for 5G - for models with external antenna only
     AntGain5             *int                    `json:"ant_gain_5,omitempty"`
-    // antenna gain for 6G - for models with external antenna only
+    // Antenna gain for 6G - for models with external antenna only
     AntGain6             *int                    `json:"ant_gain_6,omitempty"`
     // enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
     AntennaMode          *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
@@ -27,9 +27,9 @@ type ApRadio struct {
     Band5On24Radio       *ApRadioBand5           `json:"band_5_on_24_radio,omitempty"`
     // Radio Band AP settings
     Band6                *ApRadioBand6           `json:"band_6,omitempty"`
-    // to make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap
+    // To make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap
     IndoorUse            *bool                   `json:"indoor_use,omitempty"`
-    // whether scanning radio is enabled
+    // Whether scanning radio is enabled
     ScanningEnabled      *bool                   `json:"scanning_enabled,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

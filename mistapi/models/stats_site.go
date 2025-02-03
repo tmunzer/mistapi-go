@@ -14,14 +14,14 @@ type StatsSite struct {
     Address              string                 `json:"address"`
     AlarmtemplateId      *uuid.UUID             `json:"alarmtemplate_id"`
     CountryCode          string                 `json:"country_code"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          float64                `json:"created_time"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID              `json:"id"`
     Lat                  float64                `json:"lat"`
     Latlng               LatLng                 `json:"latlng"`
     Lng                  float64                `json:"lng"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         float64                `json:"modified_time"`
     MspId                uuid.UUID              `json:"msp_id"`
     Name                 string                 `json:"name"`

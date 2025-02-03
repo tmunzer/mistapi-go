@@ -7,7 +7,7 @@ import (
 
 // UtilsClearMacs represents a UtilsClearMacs struct.
 type UtilsClearMacs struct {
-    // a list of ports on which to clear mac addresses. must include logical unit number
+    // List of ports on which to clear mac addresses. must include logical unit number
     Ports                []string               `json:"ports,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

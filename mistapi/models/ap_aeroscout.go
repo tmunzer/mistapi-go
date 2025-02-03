@@ -8,11 +8,11 @@ import (
 // ApAeroscout represents a ApAeroscout struct.
 // Aeroscout AP settings
 type ApAeroscout struct {
-    // whether to enable aeroscout config
+    // Whether to enable aeroscout config
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // required if enabled, aeroscout server host
+    // Required if enabled, aeroscout server host
     Host                 Optional[string]       `json:"host"`
-    // whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
+    // Whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
     LocateConnected      *bool                  `json:"locate_connected,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

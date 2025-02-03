@@ -8,11 +8,11 @@ import (
 )
 
 // WebhookDeviceEvents represents a WebhookDeviceEvents struct.
-// device event webhook sample
+// Device event webhook sample
 type WebhookDeviceEvents struct {
-    // list of events
+    // List of events
     Events               []WebhookDeviceEventsEvent `json:"events"`
-    // topic subscribed to
+    // Topic subscribed to
     Topic                string                     `json:"topic"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

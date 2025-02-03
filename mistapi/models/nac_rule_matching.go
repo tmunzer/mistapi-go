@@ -12,11 +12,11 @@ type NacRuleMatching struct {
     AuthType             *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
     Nactags              []string                      `json:"nactags,omitempty"`
     PortTypes            []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
-    // list of site ids to match
+    // List of site ids to match
     SiteIds              []uuid.UUID                   `json:"site_ids,omitempty"`
-    // list of sitegroup ids to match
+    // List of sitegroup ids to match
     SitegroupIds         []uuid.UUID                   `json:"sitegroup_ids,omitempty"`
-    // list of vendors to match
+    // List of vendors to match
     Vendor               []string                      `json:"vendor,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
 }

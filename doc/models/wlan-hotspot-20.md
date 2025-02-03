@@ -1,7 +1,7 @@
 
 # Wlan Hotspot 20
 
-hostspot 2.0 wlan settings
+Hostspot 2.0 wlan settings
 
 *This model accepts additional fields of type interface{}.*
 
@@ -14,11 +14,11 @@ hostspot 2.0 wlan settings
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DomainName` | `[]string` | Optional | - |
-| `Enabled` | `*bool` | Optional | whether to enable hotspot 2.0 config |
+| `Enabled` | `*bool` | Optional | Whether to enable hotspot 2.0 config |
 | `NaiRealms` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Operators` | [`[]models.WlanHotspot20OperatorsItemEnum`](../../doc/models/wlan-hotspot-20-operators-item-enum.md) | Optional | list of operators to support |
+| `Operators` | [`[]models.WlanHotspot20OperatorsItemEnum`](../../doc/models/wlan-hotspot-20-operators-item-enum.md) | Optional | List of operators to support |
 | `Rcoi` | `[]string` | Optional | - |
-| `VenueName` | `*string` | Optional | venue name, default is site name |
+| `VenueName` | `*string` | Optional | Venue name, default is site name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

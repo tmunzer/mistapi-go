@@ -8,7 +8,7 @@ import (
 // SynthetictestConfigWanSpeedtest represents a SynthetictestConfigWanSpeedtest struct.
 type SynthetictestConfigWanSpeedtest struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // any / HH:MM (24-hour format)
+    // `any` / HH:MM (24-hour format)
     TimeOfDay            *string                `json:"time_of_day,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

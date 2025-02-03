@@ -8,23 +8,23 @@ import (
     "strings"
 )
 
-// ResponseUpgradeSiteDevices represents a ResponseUpgradeSiteDevices struct.
-type ResponseUpgradeSiteDevices struct {
+// ResponseUpgradeId represents a ResponseUpgradeId struct.
+type ResponseUpgradeId struct {
     UpgradeId            uuid.UUID              `json:"upgrade_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for ResponseUpgradeSiteDevices,
+// String implements the fmt.Stringer interface for ResponseUpgradeId,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseUpgradeSiteDevices) String() string {
+func (r ResponseUpgradeId) String() string {
     return fmt.Sprintf(
-    	"ResponseUpgradeSiteDevices[UpgradeId=%v, AdditionalProperties=%v]",
+    	"ResponseUpgradeId[UpgradeId=%v, AdditionalProperties=%v]",
     	r.UpgradeId, r.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for ResponseUpgradeSiteDevices.
-// It customizes the JSON marshaling process for ResponseUpgradeSiteDevices objects.
-func (r ResponseUpgradeSiteDevices) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for ResponseUpgradeId.
+// It customizes the JSON marshaling process for ResponseUpgradeId objects.
+func (r ResponseUpgradeId) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
@@ -34,18 +34,18 @@ func (r ResponseUpgradeSiteDevices) MarshalJSON() (
     return json.Marshal(r.toMap())
 }
 
-// toMap converts the ResponseUpgradeSiteDevices object to a map representation for JSON marshaling.
-func (r ResponseUpgradeSiteDevices) toMap() map[string]any {
+// toMap converts the ResponseUpgradeId object to a map representation for JSON marshaling.
+func (r ResponseUpgradeId) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["upgrade_id"] = r.UpgradeId
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for ResponseUpgradeSiteDevices.
-// It customizes the JSON unmarshaling process for ResponseUpgradeSiteDevices objects.
-func (r *ResponseUpgradeSiteDevices) UnmarshalJSON(input []byte) error {
-    var temp tempResponseUpgradeSiteDevices
+// UnmarshalJSON implements the json.Unmarshaler interface for ResponseUpgradeId.
+// It customizes the JSON unmarshaling process for ResponseUpgradeId objects.
+func (r *ResponseUpgradeId) UnmarshalJSON(input []byte) error {
+    var temp tempResponseUpgradeId
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -64,15 +64,15 @@ func (r *ResponseUpgradeSiteDevices) UnmarshalJSON(input []byte) error {
     return nil
 }
 
-// tempResponseUpgradeSiteDevices is a temporary struct used for validating the fields of ResponseUpgradeSiteDevices.
-type tempResponseUpgradeSiteDevices  struct {
+// tempResponseUpgradeId is a temporary struct used for validating the fields of ResponseUpgradeId.
+type tempResponseUpgradeId  struct {
     UpgradeId *uuid.UUID `json:"upgrade_id"`
 }
 
-func (r *tempResponseUpgradeSiteDevices) validate() error {
+func (r *tempResponseUpgradeId) validate() error {
     var errs []string
     if r.UpgradeId == nil {
-        errs = append(errs, "required field `upgrade_id` is missing for type `response_upgrade_site_devices`")
+        errs = append(errs, "required field `upgrade_id` is missing for type `response_upgrade_id`")
     }
     if len(errs) == 0 {
         return nil

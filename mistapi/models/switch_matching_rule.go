@@ -6,7 +6,7 @@ import (
 )
 
 // SwitchMatchingRule represents a SwitchMatchingRule struct.
-// property key defines the type of matching, value is the string to match. e.g:
+// Property key defines the type of matching, value is the string to match. e.g:
 // * `match_name[0:3]`: switch name must match the first 3 letters of the property value
 // * `match_name[2:6]`: switch name must match the property value from the 2nd to the 6th letter
 // * `match_model[0-8]`: switch model must match the first 8 letters of the property value

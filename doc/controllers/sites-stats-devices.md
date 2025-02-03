@@ -91,7 +91,7 @@ GetSiteDeviceStats(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `fields` | `*string` | Query, Optional | list of additional fields requests, comma separeted, or `fields=*` for all of them |
+| `fields` | `*string` | Query, Optional | List of additional fields requests, comma separeted, or `fields=*` for all of them |
 
 ## Response Type
 
@@ -428,7 +428,7 @@ GetSiteSwitchesMetrics(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.SwitchMetricTypeEnum`](../../doc/models/switch-metric-type-enum.md) | Query, Optional | - |
 | `scope` | [`*models.SwitchMetricScopeEnum`](../../doc/models/switch-metric-scope-enum.md) | Query, Optional | - |
-| `switchMac` | `*string` | Query, Optional | switch mac, used only with metric `type`==`active_ports_summary` |
+| `switchMac` | `*string` | Query, Optional | Switch mac, used only with metric `type`==`active_ports_summary` |
 
 ## Response Type
 

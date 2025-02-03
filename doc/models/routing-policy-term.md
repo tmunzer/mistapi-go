@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | [`*models.RoutingPolicyTermAction`](../../doc/models/routing-policy-term-action.md) | Optional | when used as import policy |
+| `Action` | [`*models.RoutingPolicyTermAction`](../../doc/models/routing-policy-term-action.md) | Optional | When used as import policy |
 | `Matching` | [`*models.RoutingPolicyTermMatching`](../../doc/models/routing-policy-term-matching.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

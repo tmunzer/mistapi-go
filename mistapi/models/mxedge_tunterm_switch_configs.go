@@ -6,7 +6,7 @@ import (
 )
 
 // MxedgeTuntermSwitchConfigs represents a MxedgeTuntermSwitchConfigs struct.
-// if custom vlan settings are desired
+// If custom vlan settings are desired
 type MxedgeTuntermSwitchConfigs struct {
     Enabled              *bool                                `json:"enabled,omitempty"`
     AdditionalProperties map[string]MxedgeTuntermSwitchConfig `json:"_"`

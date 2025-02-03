@@ -14,12 +14,12 @@ Initiate a Client Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `models.Optional[string]` | Optional | - |
-| `ClientMac` | `models.Optional[string]` | Optional | client mac, required if `type`==`client`; optional otherwise |
-| `Duration` | `models.Optional[int]` | Optional | duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
+| `ClientMac` | `models.Optional[string]` | Optional | Client mac, required if `type`==`client`; optional otherwise |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
 | `IncludesMcast` | `*bool` | Optional | **Default**: `false` |
 | `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `128`<br>**Constraints**: `<= 2048` |
-| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024 for client-capture<br>**Default**: `1024` |
-| `Ssid` | `models.Optional[string]` | Optional | optional filter by ssid |
+| `NumPackets` | `models.Optional[int]` | Optional | Number of packets to capture, 0 for unlimited, default is 1024 for client-capture<br>**Default**: `1024` |
+| `Ssid` | `models.Optional[string]` | Optional | Optional filter by ssid |
 | `Type` | `string` | Required, Constant | enum: `client`<br>**Value**: `"client"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

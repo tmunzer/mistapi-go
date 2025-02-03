@@ -8,13 +8,13 @@ import (
 // SiteEngagement represents a SiteEngagement struct.
 // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
 type SiteEngagement struct {
-    // name associated to each tag
+    // Name associated to each tag
     DwellTagNames        *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`
     // add tags to visits within the duration (in seconds)
     DwellTags            *SiteEngagementDwellTags     `json:"dwell_tags,omitempty"`
     // Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
     Hours                *Hours                       `json:"hours,omitempty"`
-    // max time, default is 43200(12h), max is 68400 (18h)
+    // Max time, default is 43200(12h), max is 68400 (18h)
     MaxDwell             *int                         `json:"max_dwell,omitempty"`
     // min time
     MinDwell             *int                         `json:"min_dwell,omitempty"`

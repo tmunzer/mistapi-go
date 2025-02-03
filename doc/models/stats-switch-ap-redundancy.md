@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Modules` | [`map[string]models.StatsSwitchApRedundancyModule`](../../doc/models/stats-switch-ap-redundancy-module.md) | Optional | for a VC / stacked switches. |
+| `Modules` | [`map[string]models.StatsSwitchApRedundancyModule`](../../doc/models/stats-switch-ap-redundancy-module.md) | Optional | For a VC / stacked switches. |
 | `NumAps` | `*int` | Optional | - |
 | `NumApsWithSwitchRedundancy` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

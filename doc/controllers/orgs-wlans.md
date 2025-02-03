@@ -848,7 +848,7 @@ UploadOrgWlanPortalImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type

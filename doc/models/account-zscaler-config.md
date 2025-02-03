@@ -15,8 +15,8 @@ OAuth linked Zscaler apps account details
 |  --- | --- | --- | --- |
 | `CloudName` | `string` | Required | - |
 | `PartnerKey` | `string` | Required | - |
-| `Password` | `string` | Required | customer account password |
-| `Username` | `string` | Required | customer account user name |
+| `Password` | `string` | Required | Customer account password |
+| `Username` | `string` | Required | Customer account user name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -13,19 +13,19 @@ Zone statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AssetsWaits` | [`*models.StatsZoneAssetsWaits`](../../doc/models/stats-zone-assets-waits.md) | Optional | ble asset wait time right now |
-| `ClientsWaits` | [`*models.StatsZoneClientsWaits`](../../doc/models/stats-zone-clients-waits.md) | Optional | client wait time right now |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `AssetsWaits` | [`*models.StatsZoneAssetsWaits`](../../doc/models/stats-zone-assets-waits.md) | Optional | BLE asset wait time right now |
+| `ClientsWaits` | [`*models.StatsZoneClientsWaits`](../../doc/models/stats-zone-clients-waits.md) | Optional | Client wait time right now |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Devices` | [`[]models.StatsRssiZonesDevice`](../../doc/models/stats-rssi-zones-device.md) | Required | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Name` | `string` | Required | name of the zone |
-| `NumAssets` | `*int` | Optional | number of assets |
-| `NumClients` | `*int` | Optional | number of wifi clients (unconnected + connected) |
-| `NumSdkclients` | `*int` | Optional | number of sdk clients |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Name` | `string` | Required | Name of the zone |
+| `NumAssets` | `*int` | Optional | Number of assets |
+| `NumClients` | `*int` | Optional | Number of wifi clients (unconnected + connected) |
+| `NumSdkclients` | `*int` | Optional | Number of sdk clients |
 | `OccupancyLimit` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `SdkclientsWaits` | [`*models.StatsZoneSdkclientsWaits`](../../doc/models/stats-zone-sdkclients-waits.md) | Optional | sdkclient wait time right now |
+| `SdkclientsWaits` | [`*models.StatsZoneSdkclientsWaits`](../../doc/models/stats-zone-sdkclients-waits.md) | Optional | SDK Clients wait time right now |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

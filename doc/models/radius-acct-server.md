@@ -11,13 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `string` | Required | ip / hostname of RADIUS server |
+| `Host` | `string` | Required | IP/ hostname of RADIUS server |
 | `KeywrapEnabled` | `*bool` | Optional | - |
 | `KeywrapFormat` | [`*models.RadiusKeywrapFormatEnum`](../../doc/models/radius-keywrap-format-enum.md) | Optional | enum: `ascii`, `hex` |
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Acct port of RADIUS server<br>**Default**: `1813`<br>**Constraints**: `>= 1`, `<= 65535` |
-| `Secret` | `string` | Required | secret of RADIUS server |
+| `Secret` | `string` | Required | Secretof RADIUS server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

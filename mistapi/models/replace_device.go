@@ -7,15 +7,15 @@ import (
 
 // ReplaceDevice represents a ReplaceDevice struct.
 type ReplaceDevice struct {
-    // attributes that you don’t want to copy
+    // Attributes that you don’t want to copy
     Discard              []string               `json:"discard,omitempty"`
     // MAC Address of the inventory that will be replacing the old one. It has to be claimed and unassigned
     InventoryMac         *string                `json:"inventory_mac,omitempty"`
     // MAC Address of the device to replace
     Mac                  *string                `json:"mac,omitempty"`
-    // the site_id of the device to be replaced
+    // Site_id of the device to be replaced
     SiteId               *string                `json:"site_id,omitempty"`
-    // ethernet port configurations
+    // Ethernet port configurations
     TuntermPortConfig    *TuntermPortConfig     `json:"tunterm_port_config,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

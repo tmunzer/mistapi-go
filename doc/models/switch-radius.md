@@ -1,7 +1,7 @@
 
 # Switch Radius
 
-by default, `radius_config` will be used. if a different one has to be used set `use_different_radius
+By default, `radius_config` will be used. if a different one has to be used set `use_different_radius
 
 *This model accepts additional fields of type interface{}.*
 

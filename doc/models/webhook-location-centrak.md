@@ -13,8 +13,8 @@ location webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | list of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | topic subscribed to<br>**Default**: `"location"` |
+| `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"location"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

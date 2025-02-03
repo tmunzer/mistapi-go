@@ -1,7 +1,7 @@
 
 # Stats Ap Env Stat
 
-device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
+Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
 
 *This model accepts additional fields of type interface{}.*
 

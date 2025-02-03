@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdminId` | `*uuid.UUID` | Required | admin id |
-| `AdminName` | `*string` | Required | name of the admin that performs the action |
+| `AdminName` | `*string` | Required | Name of the admin that performs the action |
 | `After` | `*interface{}` | Optional | field values after the change |
 | `Before` | `*interface{}` | Optional | field values prior to the change |
 | `ForSite` | `*bool` | Optional | - |
@@ -21,7 +21,7 @@
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `*uuid.UUID` | Required | - |
 | `SrcIp` | `*string` | Optional | sender source ip address |
-| `Timestamp` | `float64` | Required | start time, in epoch |
+| `Timestamp` | `float64` | Required | Start time, in epoch |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

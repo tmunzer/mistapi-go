@@ -9,12 +9,12 @@ import (
 type PskPortalPassphraseRules struct {
     AlphabertsEnabled    *bool                  `json:"alphaberts_enabled,omitempty"`
     Length               *int                   `json:"length,omitempty"`
-    // for valid `max_length` and `min_length`, passphrase size is set randomly from that range.
+    // For valid `max_length` and `min_length`, passphrase size is set randomly from that range.
     // - if `max_length` and/or `min_length` are invalid, passphrase size is equal to `length` parameter
     // - if `length` is not set or is invalid, default passphrase size is 8.
     // - valid `max_length`, `min_length`, `length` should be an integer between 8 to 63. Also, `max_length` > `min_length`
     MaxLength            *int                   `json:"max_length,omitempty"`
-    // for valid `max_length` and `min_length`, passphrase size is set randomly from that range.
+    // Ror valid `max_length` and `min_length`, passphrase size is set randomly from that range.
     // - if `max_length` and/or `min_length` are invalid, passphrase size is equal to `length` parameter
     // - if `length` is not set or is invalid, default passphrase size is 8.
     // - valid `max_length`, `min_length`, `length` should be an integer between 8 to 63. Also, `max_length` > `min_length`

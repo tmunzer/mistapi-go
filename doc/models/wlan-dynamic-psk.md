@@ -1,7 +1,7 @@
 
 # Wlan Dynamic Psk
 
-for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
+For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
 
 * PSK will come from RADIUS server
 * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
@@ -22,10 +22,10 @@ for dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DefaultPsk` | `*string` | Optional | default PSK to use if cloud WLC is not available, 8-63 characters<br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `63` |
+| `DefaultPsk` | `*string` | Optional | Default PSK to use if cloud WLC is not available, 8-63 characters<br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `63` |
 | `DefaultVlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `ForceLookup` | `*bool` | Optional | when 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto<br>**Default**: `false` |
+| `ForceLookup` | `*bool` | Optional | When 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto<br>**Default**: `false` |
 | `Source` | [`*models.DynamicPskSourceEnum`](../../doc/models/dynamic-psk-source-enum.md) | Optional | enum: `cloud_psks`, `radius`<br>**Default**: `"radius"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -102,7 +102,7 @@ if err != nil {
 
 # Delete Msp Org
 
-delete MSP Org
+Delete MSP Org
 
 ```go
 DeleteMspOrg(
@@ -433,10 +433,10 @@ SearchMspOrgs(
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `name` | `*string` | Query, Optional | - |
-| `orgId` | `*uuid.UUID` | Query, Optional | org id |
-| `subInsufficient` | `*bool` | Query, Optional | if this org has sufficient subscription |
-| `trialEnabled` | `*bool` | Query, Optional | if this org is under trial period |
-| `usageTypes` | `[]string` | Query, Optional | a list of types that enabled by usage<br>**Constraints**: *Unique Items Required* |
+| `orgId` | `*uuid.UUID` | Query, Optional | Org id |
+| `subInsufficient` | `*bool` | Query, Optional | If this org has sufficient subscription |
+| `trialEnabled` | `*bool` | Query, Optional | If this org is under trial period |
+| `usageTypes` | `[]string` | Query, Optional | List of types that enabled by usage<br>**Constraints**: *Unique Items Required* |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type

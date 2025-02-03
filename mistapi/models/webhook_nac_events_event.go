@@ -10,7 +10,7 @@ import (
 type WebhookNacEventsEvent struct {
     // random mac
     Ap                   *string                `json:"ap,omitempty"`
-    // authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
+    // Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
     AuthType             *string                `json:"auth_type,omitempty"`
     // BSSID
     Bssid                *string                `json:"bssid,omitempty"`
@@ -28,20 +28,20 @@ type WebhookNacEventsEvent struct {
     NacruleId            *uuid.UUID             `json:"nacrule_id,omitempty"`
     // NAC Policy Rule Matched
     NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
-    // vendor of NAS device
+    // Vendor of NAS device
     NasVendor            *string                `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // AP MAC
     RandomMac            *bool                  `json:"random_mac,omitempty"`
     // Radius attributes returned by NAC to NAS Devive
     RespAttrs            []string               `json:"resp_attrs,omitempty"`
-    // site id if assigned, null if not assigned
+    // Site id if assigned, null if not assigned
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // SSID
     Ssid                 *string                `json:"ssid,omitempty"`
-    // start time, in epoch
+    // Start time, in epoch
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // event type, e.g. NAC_CLIENT_PERMIT
+    // Event type, e.g. NAC_CLIENT_PERMIT
     Type                 *string                `json:"type,omitempty"`
     // Username presented by the client
     Username             *string                `json:"username,omitempty"`

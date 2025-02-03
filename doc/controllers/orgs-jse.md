@@ -178,7 +178,7 @@ if err != nil {
 
 # Setup Org Jsec Credential
 
-in JSE UI:
+In JSE UI:
 
 1. Create custom role with Read access to service_location and RW access to site and IPSec profile APIs.
 2. Create a user with the above custom role. - email: john@abc.com

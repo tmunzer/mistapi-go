@@ -15,11 +15,11 @@ type RrmEvent struct {
     Band                 Dot11BandEnum            `json:"band"`
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
     Bandwidth            Dot11BandwidthEnum       `json:"bandwidth"`
-    // channel for the band from rrm
+    // Channel for the band from rrm
     Channel              int                      `json:"channel"`
     // enum: `interference-ap-co-channel`, `interference-ap-non-wifi`, `neighbor-ap-down`, `neighbor-ap-recovered`, `radar-detected`, `rrm-radar`, `scheduled-site_rrm`, `triggered-site_rrm`
     Event                RrmEventTypeEnum         `json:"event"`
-    // tx power of the radio
+    // Tx power of the radio
     Power                int                      `json:"power"`
     // (previously) channel width for the band , 0 means no previously available. enum: `0`, `20`, `40`, `80`, `160`
     PreBandwidth         RrmEventPreBandwidthEnum `json:"pre_bandwidth"`
@@ -28,7 +28,7 @@ type RrmEvent struct {
     // (previously) tx power of the radio, 0 means no previously available
     PrePower             float64                  `json:"pre_power"`
     PreUsage             string                   `json:"pre_usage"`
-    // timestamp of the event
+    // Timestamp of the event
     Timestamp            float64                  `json:"timestamp"`
     Usage                string                   `json:"usage"`
     AdditionalProperties map[string]interface{}   `json:"_"`

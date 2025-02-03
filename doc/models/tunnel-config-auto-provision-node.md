@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ProbeIps` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `WanNames` | `[]string` | Optional | optional, only needed if `vars_only`==`false` |
+| `WanNames` | `[]string` | Optional | Optional, only needed if `vars_only`==`false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

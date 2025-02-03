@@ -9,7 +9,7 @@ import (
 type UtilsShowOspfDatabase struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-    // show originating info, default is false
+    // Show originating info, default is false
     SelfOriginate        *bool                  `json:"self_originate,omitempty"`
     // VRF name
     Vrf                  *string                `json:"vrf,omitempty"`

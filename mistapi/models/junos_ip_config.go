@@ -12,9 +12,9 @@ type JunosIpConfig struct {
     DnsSuffix            []string               `json:"dns_suffix,omitempty"`
     Gateway              *string                `json:"gateway,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
-    // used only if `subnet` is not specified in `networks`
+    // Used only if `subnet` is not specified in `networks`
     Netmask              *string                `json:"netmask,omitempty"`
-    // the network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
+    // Network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
     Network              *string                `json:"network,omitempty"`
     // enum: `dhcp`, `static`
     Type                 *IpTypeEnum            `json:"type,omitempty"`

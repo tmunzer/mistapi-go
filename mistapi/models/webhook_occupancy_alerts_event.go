@@ -10,7 +10,7 @@ import (
 
 // WebhookOccupancyAlertsEvent represents a WebhookOccupancyAlertsEvent struct.
 type WebhookOccupancyAlertsEvent struct {
-    // list of occupancy alerts for non-compliance zones within the site detected around the same time
+    // List of occupancy alerts for non-compliance zones within the site detected around the same time
     AlertEvents          []WebhookOccupancyAlertsEventAlertEventsItems `json:"alert_events,omitempty"`
     ForSite              *bool                                         `json:"for_site,omitempty"`
     SiteId               uuid.UUID                                     `json:"site_id"`

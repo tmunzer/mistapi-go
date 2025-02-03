@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Bands` | `[]string` | Required | list of bands |
-| `Force` | `*bool` | Optional | whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)<br>**Default**: `false` |
+| `Bands` | `[]string` | Required | List of bands |
+| `Force` | `*bool` | Optional | Whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

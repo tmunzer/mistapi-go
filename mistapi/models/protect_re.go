@@ -6,14 +6,14 @@ import (
 )
 
 // ProtectRe represents a ProtectRe struct.
-// restrict inbound-traffic to host
+// Restrict inbound-traffic to host
 // when enabled, all traffic that is not essential to our operation will be dropped 
 // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
 type ProtectRe struct {
-    // optionally, services we'll allow
+    // Optionally, services we'll allow
     AllowedServices      []ProtectReAllowedServiceEnum `json:"allowed_services,omitempty"`
     Custom               []ProtectReCustom             `json:"custom,omitempty"`
-    // when enabled, all traffic that is not essential to our operation will be dropped
+    // When enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default
     // if dhcpd is enabled, we'll make sure it works
     Enabled              *bool                         `json:"enabled,omitempty"`

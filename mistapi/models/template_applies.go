@@ -7,12 +7,12 @@ import (
 )
 
 // TemplateApplies represents a TemplateApplies struct.
-// where this template should be applied to, can be org_id, site_ids, sitegroup_ids
+// Where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 type TemplateApplies struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // list of site ids
+    // List of site ids
     SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
-    // list of sitegroup ids
+    // List of sitegroup ids
     SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

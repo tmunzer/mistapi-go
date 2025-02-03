@@ -13,9 +13,9 @@ management-related properties
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MxtunnelIds` | `[]uuid.UUID` | Optional | list of Mist Tunnels |
-| `UseMxtunnel` | `*bool` | Optional | whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel<br>**Default**: `false` |
-| `UseWxtunnel` | `*bool` | Optional | whether to use wxtunnel for mgmt connectivity<br>**Default**: `false` |
+| `MxtunnelIds` | `[]uuid.UUID` | Optional | List of Mist Tunnels |
+| `UseMxtunnel` | `*bool` | Optional | Whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel<br>**Default**: `false` |
+| `UseWxtunnel` | `*bool` | Optional | Whether to use wxtunnel for mgmt connectivity<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

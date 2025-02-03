@@ -7,32 +7,32 @@ import (
 
 // WlanPortalTemplateSettingLocale represents a WlanPortalTemplateSettingLocale struct.
 type WlanPortalTemplateSettingLocale struct {
-    // label for Amazon auth button
+    // Label for Amazon auth button
     AuthButtonAmazon         *string                `json:"authButtonAmazon,omitempty"`
-    // label for Azure auth button
+    // Label for Azure auth button
     AuthButtonAzure          *string                `json:"authButtonAzure,omitempty"`
-    // label for Email auth button
+    // Label for Email auth button
     AuthButtonEmail          *string                `json:"authButtonEmail,omitempty"`
-    // label for Facebook auth button
+    // Label for Facebook auth button
     AuthButtonFacebook       *string                `json:"authButtonFacebook,omitempty"`
-    // label for Google auth button
+    // Label for Google auth button
     AuthButtonGoogle         *string                `json:"authButtonGoogle,omitempty"`
-    // label for Microsoft auth button
+    // Label for Microsoft auth button
     AuthButtonMicrosoft      *string                `json:"authButtonMicrosoft,omitempty"`
-    // label for passphrase auth button
+    // Label for passphrase auth button
     AuthButtonPassphrase     *string                `json:"authButtonPassphrase,omitempty"`
-    // label for SMS auth button
+    // Label for SMS auth button
     AuthButtonSms            *string                `json:"authButtonSms,omitempty"`
-    // label for Sponsor auth button
+    // Label for Sponsor auth button
     AuthButtonSponsor        *string                `json:"authButtonSponsor,omitempty"`
     AuthLabel                *string                `json:"authLabel,omitempty"`
-    // label of the link to go back to /logon
+    // Label of the link to go back to /logon
     BackLink                 *string                `json:"backLink,omitempty"`
-    // error message when company not provided
+    // Error message when company not provided
     CompanyError             *string                `json:"companyError,omitempty"`
-    // label of company field
+    // Label of company field
     CompanyLabel             *string                `json:"companyLabel,omitempty"`
-    // error message when a user has valid social login but doesn't match specified email domains.
+    // Error message when a user has valid social login but doesn't match specified email domains.
     EmailAccessDomainError   *string                `json:"emailAccessDomainError,omitempty"`
     // Label for cancel confirmation code submission using email auth
     EmailCancel              *string                `json:"emailCancel,omitempty"`
@@ -42,43 +42,43 @@ type WlanPortalTemplateSettingLocale struct {
     EmailCodeMessage         *string                `json:"emailCodeMessage,omitempty"`
     EmailCodeSubmit          *string                `json:"emailCodeSubmit,omitempty"`
     EmailCodeTitle           *string                `json:"emailCodeTitle,omitempty"`
-    // error message when email not provided
+    // Error message when email not provided
     EmailError               *string                `json:"emailError,omitempty"`
     EmailFieldLabel          *string                `json:"emailFieldLabel,omitempty"`
-    // label of email field
+    // Label of email field
     EmailLabel               *string                `json:"emailLabel,omitempty"`
     EmailMessage             *string                `json:"emailMessage,omitempty"`
     // Label for confirmation code submit button using email auth
     EmailSubmit              *string                `json:"emailSubmit,omitempty"`
     // Title for the Email registration
     EmailTitle               *string                `json:"emailTitle,omitempty"`
-    // error message when field1 not provided
+    // Error message when field1 not provided
     Field1Error              *string                `json:"field1Error,omitempty"`
-    // label of field1
+    // Label of field1
     Field1Label              *string                `json:"field1Label,omitempty"`
-    // error message when field2 not provided
+    // Error message when field2 not provided
     Field2Error              *string                `json:"field2Error,omitempty"`
-    // label of field2
+    // Label of field2
     Field2Label              *string                `json:"field2Label,omitempty"`
-    // error message when field3 not provided
+    // Error message when field3 not provided
     Field3Error              *string                `json:"field3Error,omitempty"`
-    // label of field3
+    // Label of field3
     Field3Label              *string                `json:"field3Label,omitempty"`
-    // error message when field4 not provided
+    // Error message when field4 not provided
     Field4Error              *string                `json:"field4Error,omitempty"`
-    // label of field4
+    // Label of field4
     Field4Label              *string                `json:"field4Label,omitempty"`
     Message                  *string                `json:"message,omitempty"`
-    // error message when name not provided
+    // Error message when name not provided
     NameError                *string                `json:"nameError,omitempty"`
-    // label of name field
+    // Label of name field
     NameLabel                *string                `json:"nameLabel,omitempty"`
-    // label for Do Not Store My Personal Information
+    // Label for Do Not Store My Personal Information
     OptoutLabel              *string                `json:"optoutLabel,omitempty"`
     PageTitle                *string                `json:"pageTitle,omitempty"`
     // Label for the Passphrase cancel button
     PassphraseCancel         *string                `json:"passphraseCancel,omitempty"`
-    // error message when invalid passphrase is provided
+    // Error message when invalid passphrase is provided
     PassphraseError          *string                `json:"passphraseError,omitempty"`
     // Passphrase
     PassphraseLabel          *string                `json:"passphraseLabel,omitempty"`
@@ -87,25 +87,25 @@ type WlanPortalTemplateSettingLocale struct {
     PassphraseSubmit         *string                `json:"passphraseSubmit,omitempty"`
     // Title for passphrase details page
     PassphraseTitle          *string                `json:"passphraseTitle,omitempty"`
-    // prefix of the label of the link to go to Privacy Policy
+    // Prefix of the label of the link to go to Privacy Policy
     PrivacyPolicyAcceptLabel *string                `json:"privacyPolicyAcceptLabel,omitempty"`
-    // error message when Privacy Policy not accepted
+    // Error message when Privacy Policy not accepted
     PrivacyPolicyError       *string                `json:"privacyPolicyError,omitempty"`
-    // label of the link to go to Privacy Policy
+    // Label of the link to go to Privacy Policy
     PrivacyPolicyLink        *string                `json:"privacyPolicyLink,omitempty"`
-    // text of the Privacy Policy
+    // Text of the Privacy Policy
     PrivacyPolicyText        *string                `json:"privacyPolicyText,omitempty"`
-    // label to denote required field
+    // Label to denote required field
     RequiredFieldLabel       *string                `json:"requiredFieldLabel,omitempty"`
-    // label of the button to /signin
+    // Label of the button to /signin
     SignInLabel              *string                `json:"signInLabel,omitempty"`
     SmsCarrierDefault        *string                `json:"smsCarrierDefault,omitempty"`
     SmsCarrierError          *string                `json:"smsCarrierError,omitempty"`
-    // label for mobile carrier drop-down list
+    // Label for mobile carrier drop-down list
     SmsCarrierFieldLabel     *string                `json:"smsCarrierFieldLabel,omitempty"`
     // Label for cancel confirmation code submission
     SmsCodeCancel            *string                `json:"smsCodeCancel,omitempty"`
-    // error message when confirmation code is invalid
+    // Error message when confirmation code is invalid
     SmsCodeError             *string                `json:"smsCodeError,omitempty"`
     SmsCodeFieldLabel        *string                `json:"smsCodeFieldLabel,omitempty"`
     SmsCodeMessage           *string                `json:"smsCodeMessage,omitempty"`
@@ -116,51 +116,51 @@ type WlanPortalTemplateSettingLocale struct {
     SmsCountryFormat         *string                `json:"smsCountryFormat,omitempty"`
     // Label for checkbox to specify that the user has access code
     SmsHaveAccessCode        *string                `json:"smsHaveAccessCode,omitempty"`
-    // format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is.
+    // Format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is.
     SmsMessageFormat         *string                `json:"smsMessageFormat,omitempty"`
-    // label for canceling mobile details for SMS auth
+    // Label for canceling mobile details for SMS auth
     SmsNumberCancel          *string                `json:"smsNumberCancel,omitempty"`
     SmsNumberError           *string                `json:"smsNumberError,omitempty"`
-    // label for field to provide mobile number
+    // Label for field to provide mobile number
     SmsNumberFieldLabel      *string                `json:"smsNumberFieldLabel,omitempty"`
     SmsNumberFormat          *string                `json:"smsNumberFormat,omitempty"`
     SmsNumberMessage         *string                `json:"smsNumberMessage,omitempty"`
-    // label for submit button for code generation
+    // Label for submit button for code generation
     SmsNumberSubmit          *string                `json:"smsNumberSubmit,omitempty"`
     // Title for phone number details
     SmsNumberTitle           *string                `json:"smsNumberTitle,omitempty"`
     SmsUsernameFormat        *string                `json:"smsUsernameFormat,omitempty"`
     SponsorBackLink          *string                `json:"sponsorBackLink,omitempty"`
     SponsorCancel            *string                `json:"sponsorCancel,omitempty"`
-    // label for Sponsor Email
+    // Label for Sponsor Email
     SponsorEmail             *string                `json:"sponsorEmail,omitempty"`
     SponsorEmailError        *string                `json:"sponsorEmailError,omitempty"`
     SponsorInfoApproved      *string                `json:"sponsorInfoApproved,omitempty"`
     SponsorInfoDenied        *string                `json:"sponsorInfoDenied,omitempty"`
     SponsorInfoPending       *string                `json:"sponsorInfoPending,omitempty"`
-    // label for Sponsor Name
+    // Label for Sponsor Name
     SponsorName              *string                `json:"sponsorName,omitempty"`
     SponsorNameError         *string                `json:"sponsorNameError,omitempty"`
     SponsorNotePending       *string                `json:"sponsorNotePending,omitempty"`
-    // submit button label request Wifi Access and notify sponsor about guest request
+    // Submit button label request Wifi Access and notify sponsor about guest request
     SponsorRequestAccess     *string                `json:"sponsorRequestAccess,omitempty"`
-    // text to display if sponsor approves request
+    // Text to display if sponsor approves request
     SponsorStatusApproved    *string                `json:"sponsorStatusApproved,omitempty"`
-    // text to display when sponsor denies request
+    // Text to display when sponsor denies request
     SponsorStatusDenied      *string                `json:"sponsorStatusDenied,omitempty"`
-    // text to display if request is still pending
+    // Text to display if request is still pending
     SponsorStatusPending     *string                `json:"sponsorStatusPending,omitempty"`
-    // submit button label to notify sponsor about guest request
+    // Submit button label to notify sponsor about guest request
     SponsorSubmit            *string                `json:"sponsorSubmit,omitempty"`
     SponsorsError            *string                `json:"sponsorsError,omitempty"`
     SponsorsFieldLabel       *string                `json:"sponsorsFieldLabel,omitempty"`
-    // prefix of the label of the link to go to tos
+    // Prefix of the label of the link to go to tos
     TosAcceptLabel           *string                `json:"tosAcceptLabel,omitempty"`
-    // error message when tos not accepted
+    // Error message when tos not accepted
     TosError                 *string                `json:"tosError,omitempty"`
-    // label of the link to go to tos
+    // Label of the link to go to tos
     TosLink                  *string                `json:"tosLink,omitempty"`
-    // text of the Terms of Service
+    // Text of the Terms of Service
     TosText                  *string                `json:"tosText,omitempty"`
     AdditionalProperties     map[string]interface{} `json:"_"`
 }

@@ -50,18 +50,18 @@ CountOrgWirelessClients(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgClientsCountDistinctEnum`](../../doc/models/org-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"device"` |
-| `mac` | `*string` | Query, Optional | partial / full MAC address |
-| `hostname` | `*string` | Query, Optional | partial / full hostname |
-| `device` | `*string` | Query, Optional | device type, e.g. Mac, Nvidia, iPhone |
-| `os` | `*string` | Query, Optional | os, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
+| `mac` | `*string` | Query, Optional | Partial / full MAC address |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
+| `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
+| `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
+| `model` | `*string` | Query, Optional | Model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
-| `vlan` | `*string` | Query, Optional | vlan |
+| `vlan` | `*string` | Query, Optional | VLAN |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -184,10 +184,10 @@ CountOrgWirelessClientsSessions(
 | `clientModel` | `*string` | Query, Optional | E.g. “8+”, “XS” |
 | `clientOs` | `*string` | Query, Optional | E.g. “Mojave”, “Windows 10”, “Linux” |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*string` | Query, Optional | wlan_id |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `wlanId` | `*string` | Query, Optional | WLAN_id |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
@@ -298,18 +298,18 @@ SearchOrgWirelessClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | see [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `reasonCode` | `*int` | Query, Optional | for assoc/disassoc events |
+| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `wlanId` | `*string` | Query, Optional | wlan_id |
-| `nacruleId` | `*string` | Query, Optional | nacrule_id |
+| `wlanId` | `*string` | Query, Optional | WLAN_id |
+| `nacruleId` | `*string` | Query, Optional | Nacrule_id |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -433,13 +433,13 @@ SearchOrgWirelessClientSessions(
 | `clientUsername` | `*string` | Query, Optional | Username |
 | `clientOs` | `*string` | Query, Optional | E.g. “Mojave”, “Windows 10”, “Linux” |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*string` | Query, Optional | wlan_id |
+| `wlanId` | `*string` | Query, Optional | WLAN_id |
 | `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -570,24 +570,24 @@ SearchOrgWirelessClients(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*string` | Query, Optional | Site ID |
-| `mac` | `*string` | Query, Optional | partial / full MAC address |
+| `mac` | `*string` | Query, Optional | Partial / full MAC address |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `hostname` | `*string` | Query, Optional | partial / full hostname |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `band` | `*string` | Query, Optional | Radio band. enum: `24`, `5`, `6` |
-| `device` | `*string` | Query, Optional | device type, e.g. Mac, Nvidia, iPhone |
-| `os` | `*string` | Query, Optional | only available for clients running the Marvis Client app, os, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | only available for clients running the Marvis Client app, model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
+| `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
+| `os` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, os, e.g. Sierra, Yosemite, Windows 10 |
+| `model` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, model, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
 | `pskId` | `*string` | Query, Optional | PSK ID |
-| `pskName` | `*string` | Query, Optional | only available for clients using PPSK authentication, the Name of the PSK |
-| `username` | `*string` | Query, Optional | only available for clients using 802.1X authentication, partial / full username |
-| `vlan` | `*string` | Query, Optional | vlan |
+| `pskName` | `*string` | Query, Optional | Only available for clients using PPSK authentication, the Name of the PSK |
+| `username` | `*string` | Query, Optional | Only available for clients using 802.1X authentication, partial / full username |
+| `vlan` | `*string` | Query, Optional | VLAN |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `text` | `*string` | Query, Optional | partial / full MAC address, hostname, username, psk_name or ip |
+| `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | end datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | duration like 7d, 2w<br>**Default**: `"1d"` |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 
 ## Response Type
 

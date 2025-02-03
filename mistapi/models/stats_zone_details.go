@@ -11,22 +11,22 @@ import (
 // StatsZoneDetails represents a StatsZoneDetails struct.
 // Zone details statistics
 type StatsZoneDetails struct {
-    // list of ble assets currently in the zone and when they entered
+    // List of ble assets currently in the zone and when they entered
     Assets               []string                    `json:"assets,omitempty"`
-    // client wait time right now
+    // Client wait time right now
     ClientWaits          StatsZoneDetailsClientWaits `json:"client_waits"`
-    // list of clients currently in the zone and when they entered
+    // List of clients currently in the zone and when they entered
     Clients              []string                    `json:"clients,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                   `json:"id"`
-    // map_id of the zone
+    // Map_id of the zone
     MapId                uuid.UUID                   `json:"map_id"`
-    // name of the zone
+    // Name of the zone
     Name                 string                      `json:"name"`
     NumClients           int                         `json:"num_clients"`
-    // sdkclient wait time right now
+    // SDK client wait time right now
     NumSdkclients        int                         `json:"num_sdkclients"`
-    // list of sdkclients currently in the zone and when they entered
+    // List of SDK Clients currently in the zone and when they entered
     Sdkclients           []string                    `json:"sdkclients,omitempty"`
     AdditionalProperties map[string]interface{}      `json:"_"`
 }

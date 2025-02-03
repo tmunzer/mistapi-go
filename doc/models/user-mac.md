@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Labels` | `[]string` | Optional | - |
-| `Mac` | `string` | Required | only non-local-admin MAC is accepted |
+| `Mac` | `string` | Required | Only non-local-admin MAC is accepted |
 | `Name` | `*string` | Optional | - |
 | `Notes` | `*string` | Optional | - |
 | `RadiusGroup` | `*string` | Optional | - |

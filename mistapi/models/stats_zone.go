@@ -11,32 +11,32 @@ import (
 // StatsZone represents a StatsZone struct.
 // Zone statistics
 type StatsZone struct {
-    // ble asset wait time right now
+    // BLE asset wait time right now
     AssetsWaits          *StatsZoneAssetsWaits     `json:"assets_waits,omitempty"`
-    // client wait time right now
+    // Client wait time right now
     ClientsWaits         *StatsZoneClientsWaits    `json:"clients_waits,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                  `json:"created_time,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                 `json:"id"`
-    // map_id of the zone
+    // Map_id of the zone
     MapId                uuid.UUID                 `json:"map_id"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                  `json:"modified_time,omitempty"`
-    // name of the zone
+    // Name of the zone
     Name                 string                    `json:"name"`
-    // number of assets
+    // Number of assets
     NumAssets            *int                      `json:"num_assets,omitempty"`
-    // number of wifi clients (unconnected + connected)
+    // Number of wifi clients (unconnected + connected)
     NumClients           *int                      `json:"num_clients,omitempty"`
-    // number of sdk clients
+    // Number of sdk clients
     NumSdkclients        *int                      `json:"num_sdkclients,omitempty"`
     OccupancyLimit       *int                      `json:"occupancy_limit,omitempty"`
     OrgId                *uuid.UUID                `json:"org_id,omitempty"`
-    // sdkclient wait time right now
+    // SDK Clients wait time right now
     SdkclientsWaits      *StatsZoneSdkclientsWaits `json:"sdkclients_waits,omitempty"`
     SiteId               *uuid.UUID                `json:"site_id,omitempty"`
-    // vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
+    // Vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
     Vertices             []ZoneVertex              `json:"vertices,omitempty"`
     VerticesM            []ZoneVertexM             `json:"vertices_m,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`

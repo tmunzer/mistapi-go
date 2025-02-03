@@ -7,7 +7,7 @@ import (
 
 // WlanInjectDhcpOption82 represents a WlanInjectDhcpOption82 struct.
 type WlanInjectDhcpOption82 struct {
-    // information to set in the `circuit_id` field of the DHCP Option 82. It is possible to use static string or the following variables (e.g. `{{SSID}}:{{AP_MAC}}`):
+    // Information to set in the `circuit_id` field of the DHCP Option 82. It is possible to use static string or the following variables (e.g. `{{SSID}}:{{AP_MAC}}`):
     // * {{AP_MAC}}
     // * {{AP_MAC_DASHED}}
     // * {{AP_MODEL}}
@@ -15,7 +15,7 @@ type WlanInjectDhcpOption82 struct {
     // * {{SITE_NAME}}
     // * {{SSID}}
     CircuitId            *string                `json:"circuit_id,omitempty"`
-    // whether to inject option 82 when forwarding DHCP packets
+    // Whether to inject option 82 when forwarding DHCP packets
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

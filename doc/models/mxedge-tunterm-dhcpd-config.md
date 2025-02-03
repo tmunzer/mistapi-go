@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Dhcpd Config
 
-global and per-VLAN. Property key is the VLAN ID
+Global and per-VLAN. Property key is the VLAN ID
 
 *This model accepts additional fields of type [models.MxedgeTuntermDhcpdConfigProperty](../../doc/models/mxedge-tunterm-dhcpd-config-property.md).*
 
@@ -14,7 +14,7 @@ global and per-VLAN. Property key is the VLAN ID
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Servers` | `[]string` | Optional | list of DHCP servers; required if `type`==`relay` |
+| `Servers` | `[]string` | Optional | List of DHCP servers; required if `type`==`relay` |
 | `Type` | [`*models.MxedgeTuntermDhcpdTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
 | `AdditionalProperties` | [`map[string]models.MxedgeTuntermDhcpdConfigProperty`](../../doc/models/mxedge-tunterm-dhcpd-config-property.md) | Optional | - |
 

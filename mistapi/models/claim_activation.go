@@ -9,9 +9,9 @@ import (
 
 // ClaimActivation represents a ClaimActivation struct.
 type ClaimActivation struct {
-    // whether to do a async claim process
+    // Whether to do a async claim process
     Async                *bool                  `json:"async,omitempty"`
-    // activation code
+    // Activation code
     Code                 string                 `json:"code"`
     // enum: `ap`, `gateway`, `switch`
     DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`

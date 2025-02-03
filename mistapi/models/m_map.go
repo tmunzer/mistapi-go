@@ -9,58 +9,58 @@ import (
 // Map represents a Map struct.
 // Map
 type Map struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                 `json:"created_time,omitempty"`
-    // name/val pair objects for location engine to use
+    // Name/val pair objects for location engine to use
     Flags                map[string]int           `json:"flags,omitempty"`
     ForSite              *bool                    `json:"for_site,omitempty"`
-    // when type=image, height of the image map
+    // When type=image, height of the image map
     Height               *int                     `json:"height,omitempty"`
     HeightM              *float64                 `json:"height_m,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID               `json:"id,omitempty"`
-    // when type=google, latitude / longitude of the bottom-right corner
+    // When type=google, latitude / longitude of the bottom-right corner
     LatlngBr             *LatlngBr                `json:"latlng_br,omitempty"`
-    // when type=google, latitude / longitude of the top-left corner
+    // When type=google, latitude / longitude of the top-left corner
     LatlngTl             *LatlngTl                `json:"latlng_tl,omitempty"`
-    // whether this map is considered locked down
+    // Whether this map is considered locked down
     Locked               *bool                    `json:"locked,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                 `json:"modified_time,omitempty"`
     // The name of the map
     Name                 *string                  `json:"name,omitempty"`
     OccupancyLimit       *int                     `json:"occupancy_limit,omitempty"`
     OrgId                *uuid.UUID               `json:"org_id,omitempty"`
-    // orientation of the map, 0 means up is north, 90 means up is west
+    // Orientation of the map, 0 means up is north, 90 means up is west
     Orientation          *int                     `json:"orientation,omitempty"`
-    // the user-annotated x origin, pixels
+    // User-annotated X origin, pixels
     OriginX              *int                     `json:"origin_x,omitempty"`
-    // the user-annotated y origin, pixels
+    // User-annotated Y origin, pixels
     OriginY              *int                     `json:"origin_y,omitempty"`
-    // when type=image, pixels per meter
+    // When type=image, pixels per meter
     Ppm                  *float64                 `json:"ppm,omitempty"`
     SiteId               *uuid.UUID               `json:"site_id,omitempty"`
-    // sitesurvey_path
+    // Sitesurvey_path
     SitesurveyPath       []MapSitesurveyPathItems `json:"sitesurvey_path,omitempty"`
-    // when type=image, the url for the thumbnail image / preview
+    // When type=image, the url for the thumbnail image / preview
     ThumbnailUrl         *string                  `json:"thumbnail_url,omitempty"`
     // enum: `google`, `image`
     Type                 *MapTypeEnum             `json:"type,omitempty"`
-    // when type=image, the url
+    // When type=image, the url
     Url                  *string                  `json:"url,omitempty"`
-    // whether this map uses autooreintation values or ignores them
+    // Whether this map uses autooreintation values or ignores them
     UseAutoOrientation   *bool                    `json:"use_auto_orientation,omitempty"`
-    // whether this map uses autoplacement values or ignores them
+    // Whether this map uses autoplacement values or ignores them
     UseAutoPlacement     *bool                    `json:"use_auto_placement,omitempty"`
     // if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
     View                 Optional[MapViewEnum]    `json:"view"`
-    // a JSON blob for wall definition (same format as wayfinding_path)
+    // JSON blob for wall definition (same format as wayfinding_path)
     WallPath             *MapWallPath             `json:"wall_path,omitempty"`
-    // properties related to wayfinding
+    // Properties related to wayfinding
     Wayfinding           *MapWayfinding           `json:"wayfinding,omitempty"`
-    // a JSON blob for wayfinding (using Dijkstra’s algorithm)
+    // JSON blob for wayfinding (using Dijkstra’s algorithm)
     WayfindingPath       *MapWayfindingPath       `json:"wayfinding_path,omitempty"`
-    // when type=image, width of the image map
+    // When type=image, width of the image map
     Width                *int                     `json:"width,omitempty"`
     WidthM               *float64                 `json:"width_m,omitempty"`
     AdditionalProperties map[string]interface{}   `json:"_"`

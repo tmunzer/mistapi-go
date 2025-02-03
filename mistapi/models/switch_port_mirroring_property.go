@@ -7,15 +7,15 @@ import (
 
 // SwitchPortMirroringProperty represents a SwitchPortMirroringProperty struct.
 type SwitchPortMirroringProperty struct {
-    // at least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
+    // At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
     InputNetworksIngress []string               `json:"input_networks_ingress,omitempty"`
-    // at least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
+    // At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
     InputPortIdsEgress   []string               `json:"input_port_ids_egress,omitempty"`
-    // at least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
+    // At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
     InputPortIdsIngress  []string               `json:"input_port_ids_ingress,omitempty"`
-    // exaclty one of the `output_port_id` or `output_network` should be provided
+    // Exaclty one of the `output_port_id` or `output_network` should be provided
     OutputNetwork        *string                `json:"output_network,omitempty"`
-    // exaclty one of the `output_port_id` or `output_network` should be provided
+    // Exaclty one of the `output_port_id` or `output_network` should be provided
     OutputPortId         *string                `json:"output_port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

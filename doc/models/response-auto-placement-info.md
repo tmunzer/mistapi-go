@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EndTime` | `*float64` | Optional | time when autoplacement completed or was manually stopped |
+| `EndTime` | `*float64` | Optional | Time when autoplacement completed or was manually stopped |
 | `EstTimeLeft` | `*float64` | Optional | (Only when inprogress) estimate of the time to completion |
-| `StartTime` | `*int` | Optional | time when autoplacement process was last queued for this map |
+| `StartTime` | `*int` | Optional | Time when autoplacement process was last queued for this map |
 | `Status` | [`*models.AutoPlacementInfoStatusEnum`](../../doc/models/auto-placement-info-status-enum.md) | Optional | the status of autoplacement for a given map. enum: `done`, `error`, `inprogress`, `pending` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

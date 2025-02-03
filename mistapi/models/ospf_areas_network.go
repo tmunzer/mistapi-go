@@ -22,9 +22,9 @@ type OspfAreasNetwork struct {
     // interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
     InterfaceType          *OspfAreaNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
     Metric                 Optional[int]                     `json:"metric"`
-    // by default, we'll re-advertise all learned OSPF routes toward overlay
+    // By default, we'll re-advertise all learned OSPF routes toward overlay
     NoReadvertiseToOverlay *bool                             `json:"no_readvertise_to_overlay,omitempty"`
-    // whether to send OSPF-Hello
+    // Whether to send OSPF-Hello
     Passive                *bool                             `json:"passive,omitempty"`
     AdditionalProperties   map[string]interface{}            `json:"_"`
 }

@@ -42,7 +42,7 @@ CreateOrgPsk(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `upsert` | `*bool` | Query, Optional | if a key exists with the same `name`, replace it with the new one |
+| `upsert` | `*bool` | Query, Optional | If a key exists with the same `name`, replace it with the new one |
 | `body` | [`*models.Psk`](../../doc/models/psk.md) | Body, Optional | Request Body |
 
 ## Response Type

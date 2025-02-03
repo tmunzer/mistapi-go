@@ -9,9 +9,9 @@ import (
 
 // ZoneVertexM represents a ZoneVertexM struct.
 type ZoneVertexM struct {
-    // x in pixel
+    // X in pixel
     X                    float64                `json:"x"`
-    // y in pixel
+    // Y in pixel
     Y                    float64                `json:"y"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

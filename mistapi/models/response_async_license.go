@@ -10,17 +10,17 @@ type ResponseAsyncLicense struct {
     Completed            []string                        `json:"completed,omitempty"`
     // detail claim status per device
     Detail               *ResponseAsyncLicenseDetail     `json:"detail,omitempty"`
-    // current failed number of device
+    // Current failed number of device
     Failed               *int                            `json:"failed,omitempty"`
-    // current incompleted lists (macs)
+    // Current incompleted lists (macs)
     Incompleted          []string                        `json:"incompleted,omitempty"`
-    // current proceseed number of device
+    // Current proceseed number of device
     Processed            *int                            `json:"processed,omitempty"`
     // epoch time of aysnc claim scheduled
     ScheduledAt          *int                            `json:"scheduled_at,omitempty"`
     // processing status of async. enum: `prepared`, `ongoing`, `done`
     Status               *ResponseAsyncLicenseStatusEnum `json:"status,omitempty"`
-    // current succeed number of device
+    // Current succeed number of device
     Succeed              *int                            `json:"succeed,omitempty"`
     // epoch time of last reporting time
     Timestamp            *int                            `json:"timestamp,omitempty"`

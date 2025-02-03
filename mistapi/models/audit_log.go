@@ -13,9 +13,9 @@ type AuditLog struct {
     // ID of the administrator
     AdminId              uuid.UUID              `json:"admin_id"`
     AdminName            string                 `json:"admin_name"`
-    // field values after the change
+    // Field values after the change
     After                *interface{}           `json:"after,omitempty"`
-    // field values prior to the change
+    // Field values prior to the change
     Before               *interface{}           `json:"before,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organnization

@@ -9,7 +9,7 @@ import (
 
 // BinaryStream represents a BinaryStream struct.
 type BinaryStream struct {
-    // file to updload
+    // File to updload
     File                 []byte                 `json:"file"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -18,10 +18,10 @@ type ConstApChannel struct {
     Band6Channels        map[string][]int       `json:"band6_channels,omitempty"`
     Band6Enabled         *bool                  `json:"band6_enabled,omitempty"`
     Certified            *bool                  `json:"certified,omitempty"`
-    // country code, ISO 3166-1 numeric
+    // Country code, ISO 3166-1 numeric
     Code                 *int                   `json:"code,omitempty"`
     DfsOk                *bool                  `json:"dfs_ok,omitempty"`
-    // country code, in two-character
+    // Country code, in two-character
     Key                  *string                `json:"key,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     Uses                 *string                `json:"uses,omitempty"`

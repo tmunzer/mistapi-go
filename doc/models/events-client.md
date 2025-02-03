@@ -1,7 +1,7 @@
 
 # Events Client
 
-client events
+Client events
 
 *This model accepts additional fields of type interface{}.*
 
@@ -21,8 +21,8 @@ client events
 | `Ssid` | `*string` | Optional | - |
 | `Text` | `*string` | Optional | - |
 | `Timestamp` | `float64` | Required | - |
-| `Type` | `*string` | Optional | event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE |
-| `TypeCode` | `*int` | Optional | for assoc/disassoc events |
+| `Type` | `*string` | Optional | Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE |
+| `TypeCode` | `*int` | Optional | For assoc/disassoc events |
 | `WlanId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

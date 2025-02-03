@@ -6,11 +6,11 @@ import (
 )
 
 // SwitchVirtualChassis represents a SwitchVirtualChassis struct.
-// required for preprovisioned Virtual Chassis
+// Required for preprovisioned Virtual Chassis
 type SwitchVirtualChassis struct {
-    // list of Virtual Chassis members
+    // List of Virtual Chassis members
     Members              []SwitchVirtualChassisMember `json:"members,omitempty"`
-    // to configure whether the VC is preprovisioned or nonprovisioned
+    // To configure whether the VC is preprovisioned or nonprovisioned
     Preprovisioned       *bool                        `json:"preprovisioned,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }

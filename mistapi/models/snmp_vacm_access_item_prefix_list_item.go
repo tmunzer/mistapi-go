@@ -7,11 +7,11 @@ import (
 
 // SnmpVacmAccessItemPrefixListItem represents a SnmpVacmAccessItemPrefixListItem struct.
 type SnmpVacmAccessItemPrefixListItem struct {
-    // only required if `type`==`context_prefix`
+    // Only required if `type`==`context_prefix`
     ContextPrefix        *string                                    `json:"context_prefix,omitempty"`
-    // refer to view name
+    // Refer to view name
     NotifyView           *string                                    `json:"notify_view,omitempty"`
-    // refer to view name
+    // Refer to view name
     ReadView             *string                                    `json:"read_view,omitempty"`
     // enum: `authentication`, `none`, `privacy`
     SecurityLevel        *SnmpVacmAccessItemPrefixListItemLevelEnum `json:"security_level,omitempty"`
@@ -19,7 +19,7 @@ type SnmpVacmAccessItemPrefixListItem struct {
     SecurityModel        *SnmpVacmAccessItemPrefixListItemModelEnum `json:"security_model,omitempty"`
     // enum: `context_prefix`, `default_context_prefix`
     Type                 *SnmpVacmAccessItemTypeEnum                `json:"type,omitempty"`
-    // refer to view name
+    // Refer to view name
     WriteView            *string                                    `json:"write_view,omitempty"`
     AdditionalProperties map[string]interface{}                     `json:"_"`
 }

@@ -13,9 +13,9 @@ OAuth linked CrowdStrike apps account details
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClientId` | `string` | Required | customer account api client ID |
-| `ClientSecret` | `string` | Required | customer account api client Secret |
-| `CustomerId` | `string` | Required | customer id of an admin |
+| `ClientId` | `string` | Required | Customer account api client ID |
+| `ClientSecret` | `string` | Required | Customer account api client Secret |
+| `CustomerId` | `string` | Required | Customer id of an admin |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

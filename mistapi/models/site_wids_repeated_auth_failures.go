@@ -7,9 +7,9 @@ import (
 
 // SiteWidsRepeatedAuthFailures represents a SiteWidsRepeatedAuthFailures struct.
 type SiteWidsRepeatedAuthFailures struct {
-    // window where a trigger will be detected and action to be taken (in seconds)
+    // Window where a trigger will be detected and action to be taken (in seconds)
     Duration             *int                   `json:"duration,omitempty"`
-    // count of events to trigger
+    // Count of events to trigger
     Threshold            *int                   `json:"threshold,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

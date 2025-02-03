@@ -6,7 +6,7 @@ import (
 )
 
 // LatlngBr represents a LatlngBr struct.
-// when type=google, latitude / longitude of the bottom-right corner
+// When type=google, latitude / longitude of the bottom-right corner
 type LatlngBr struct {
     Lat                  *string                `json:"lat,omitempty"`
     Lng                  *string                `json:"lng,omitempty"`

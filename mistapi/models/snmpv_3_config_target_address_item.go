@@ -10,10 +10,10 @@ type Snmpv3ConfigTargetAddressItem struct {
     Address              *string                `json:"address,omitempty"`
     AddressMask          *string                `json:"address_mask,omitempty"`
     Port                 *int                   `json:"port,omitempty"`
-    // <refer to notify tag, can be multiple with blank
+    // Refer to notify tag, can be multiple with blank
     TagList              *string                `json:"tag_list,omitempty"`
     TargetAddressName    *string                `json:"target_address_name,omitempty"`
-    // refer to notify target parameters name
+    // Refer to notify target parameters name
     TargetParameters     *string                `json:"target_parameters,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -7,13 +7,13 @@ import (
 
 // UtilsShowArp represents a UtilsShowArp struct.
 type UtilsShowArp struct {
-    // duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+    // Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
     Duration             *int                   `json:"duration,omitempty"`
-    // rate at which output will refresh
+    // Rate at which output will refresh
     Interval             *int                   `json:"interval,omitempty"`
     // IP Address
     Ip                   *string                `json:"ip,omitempty"`
-    // device Port ID
+    // Device Port ID
     PortId               *string                `json:"port_id,omitempty"`
     // VRF Name
     Vrf                  *string                `json:"vrf,omitempty"`

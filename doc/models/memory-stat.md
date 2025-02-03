@@ -1,7 +1,7 @@
 
 # Memory Stat
 
-memory usage stat (for virtual chassis, memory usage of master RE)
+Memory usage stat (for virtual chassis, memory usage of master RE)
 
 *This model accepts additional fields of type interface{}.*
 

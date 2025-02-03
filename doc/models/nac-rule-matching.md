@@ -14,9 +14,9 @@
 | `AuthType` | [`*models.NacRuleMatchingAuthTypeEnum`](../../doc/models/nac-rule-matching-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
 | `Nactags` | `[]string` | Optional | - |
 | `PortTypes` | [`[]models.NacRuleMatchingPortTypeEnum`](../../doc/models/nac-rule-matching-port-type-enum.md) | Optional | - |
-| `SiteIds` | `[]uuid.UUID` | Optional | list of site ids to match |
-| `SitegroupIds` | `[]uuid.UUID` | Optional | list of sitegroup ids to match |
-| `Vendor` | `[]string` | Optional | list of vendors to match |
+| `SiteIds` | `[]uuid.UUID` | Optional | List of site ids to match |
+| `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids to match |
+| `Vendor` | `[]string` | Optional | List of vendors to match |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

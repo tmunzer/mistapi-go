@@ -13,10 +13,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DwellTagNames` | [`*models.SiteEngagementDwellTagNames`](../../doc/models/site-engagement-dwell-tag-names.md) | Optional | name associated to each tag |
+| `DwellTagNames` | [`*models.SiteEngagementDwellTagNames`](../../doc/models/site-engagement-dwell-tag-names.md) | Optional | Name associated to each tag |
 | `DwellTags` | [`*models.SiteEngagementDwellTags`](../../doc/models/site-engagement-dwell-tags.md) | Optional | add tags to visits within the duration (in seconds) |
 | `Hours` | [`*models.Hours`](../../doc/models/hours.md) | Optional | Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun) |
-| `MaxDwell` | `*int` | Optional | max time, default is 43200(12h), max is 68400 (18h)<br>**Default**: `43200`<br>**Constraints**: `>= 1`, `<= 68400` |
+| `MaxDwell` | `*int` | Optional | Max time, default is 43200(12h), max is 68400 (18h)<br>**Default**: `43200`<br>**Constraints**: `>= 1`, `<= 68400` |
 | `MinDwell` | `*int` | Optional | min time<br>**Constraints**: `>= 0` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

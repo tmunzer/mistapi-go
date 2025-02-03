@@ -10,7 +10,7 @@ import (
 
 // StatsBeacon represents a StatsBeacon struct.
 type StatsBeacon struct {
-    // battery voltage, in mV
+    // Battery voltage, in mV
     BatteryVoltage       *float64               `json:"battery_voltage,omitempty"`
     EddystoneInstance    *string                `json:"eddystone_instance,omitempty"`
     EddystoneNamespace   *string                `json:"eddystone_namespace,omitempty"`

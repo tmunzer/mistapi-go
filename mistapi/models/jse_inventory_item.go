@@ -13,27 +13,27 @@ type JseInventoryItem struct {
     ContractStartTime    *int                      `json:"contract_start_time,omitempty"`
     // Contract type (Maintenance / Subscription / Premium / Gov AdvCare / Gov TAC / High Sec / AdvCare / Gov Premium)
     ContractType         *string                   `json:"contract_type,omitempty"`
-    // po number associated with this SKU
+    // PO number associated with this SKU
     CustomerPo           *string                   `json:"customer_po,omitempty"`
-    // distributor name
+    // Distributor name
     Distributor          *string                   `json:"distributor,omitempty"`
-    // end of life time
+    // End of life time
     EolTime              *int                      `json:"eol_time,omitempty"`
-    // end of support time
+    // End of support time
     EosTime              *int                      `json:"eos_time,omitempty"`
-    // address where the device is installed. It is a combination of address , region , country , zip
+    // Address where the device is installed. It is a combination of address , region , country , zip
     InstalledAddress     *string                   `json:"installed_address,omitempty"`
-    // model of the install base inventory
+    // Model of the install base inventory
     Model                *string                   `json:"model,omitempty"`
-    // order ID associated with this SKU
+    // Order ID associated with this SKU
     OrderId              *string                   `json:"order_id,omitempty"`
-    // reseller name
+    // Reseller name
     Reseller             *string                   `json:"reseller,omitempty"`
-    // serial Number of the inventory
+    // Serial Number of the inventory
     Serial               *string                   `json:"serial,omitempty"`
     // Shipped date
     ShippedTime          *float64                  `json:"shipped_time,omitempty"`
-    // serviceable device stock
+    // Serviceable device stock
     Sku                  *string                   `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
     Type                 *JseInventoryItemTypeEnum `json:"type,omitempty"`

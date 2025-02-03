@@ -9,7 +9,7 @@ import (
 
 // RadiusAcctServer represents a RadiusAcctServer struct.
 type RadiusAcctServer struct {
-    // ip / hostname of RADIUS server
+    // IP/ hostname of RADIUS server
     Host                 string                   `json:"host"`
     KeywrapEnabled       *bool                    `json:"keywrap_enabled,omitempty"`
     // enum: `ascii`, `hex`
@@ -18,7 +18,7 @@ type RadiusAcctServer struct {
     KeywrapMack          *string                  `json:"keywrap_mack,omitempty"`
     // Acct port of RADIUS server
     Port                 *int                     `json:"port,omitempty"`
-    // secret of RADIUS server
+    // Secretof RADIUS server
     Secret               string                   `json:"secret"`
     AdditionalProperties map[string]interface{}   `json:"_"`
 }

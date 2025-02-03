@@ -9,35 +9,35 @@ import (
 
 // SynthetictestDevice represents a SynthetictestDevice struct.
 type SynthetictestDevice struct {
-    // if `type`==`lan_connectivity`
+    // If `type`==`lan_connectivity`
     Host                 *string                          `json:"host,omitempty"`
-    // if `type`==`dns`
+    // If `type`==`dns`
     Hostname             *string                          `json:"hostname,omitempty"`
-    // if `type`==`arp`
+    // If `type`==`arp`
     Ip                   *string                          `json:"ip,omitempty"`
-    // if `type`==`radius`
+    // If `type`==`radius`
     Password             *string                          `json:"password,omitempty"`
-    // if `type`==`lan_connectivity`
+    // If `type`==`lan_connectivity`
     PingCount            *int                             `json:"ping_count,omitempty"`
-    // if `type`==`lan_connectivity`
+    // If `type`==`lan_connectivity`
     PingDetails          *bool                            `json:"ping_details,omitempty"`
-    // if `type`==`lan_connectivity`
+    // If `type`==`lan_connectivity`
     PingSize             *int                             `json:"ping_size,omitempty"`
-    // if `type`==`speedtest`, required for ssr
+    // If `type`==`speedtest`, required for ssr
     PortId               *string                          `json:"port_id,omitempty"`
     // if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
     Protocol             *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
-    // if `type`==`lan_connectivity`
+    // If `type`==`lan_connectivity`
     Tenant               *string                          `json:"tenant,omitempty"`
     // SRX only, traceroute udp port
     TracerouteUdpPort    *int                             `json:"traceroute_udp_port,omitempty"`
     // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
     Type                 SynthetictestTypeEnum            `json:"type"`
-    // if `type`==`curl`
+    // If `type`==`curl`
     Url                  *string                          `json:"url,omitempty"`
-    // if `type`==`radius`
+    // If `type`==`radius`
     Username             *string                          `json:"username,omitempty"`
-    // required for AP
+    // Required for AP
     VlanId               *SynthetictestDeviceVlanId       `json:"vlan_id,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

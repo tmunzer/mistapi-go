@@ -6,7 +6,7 @@ import (
 )
 
 // SwitchRadius represents a SwitchRadius struct.
-// by default, `radius_config` will be used. if a different one has to be used set `use_different_radius
+// By default, `radius_config` will be used. if a different one has to be used set `use_different_radius
 type SwitchRadius struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     // Junos Radius config

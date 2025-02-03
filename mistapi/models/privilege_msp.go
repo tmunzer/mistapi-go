@@ -11,11 +11,11 @@ import (
 // PrivilegeMsp represents a PrivilegeMsp struct.
 // Privilieges settings
 type PrivilegeMsp struct {
-    // if `scope`==`org`
+    // If `scope`==`org`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // name of the org (for a site belonging to org)
+    // Name of the org (for a site belonging to org)
     OrgName              *string                 `json:"org_name,omitempty"`
-    // if `scope`==`orggroup`
+    // If `scope`==`orggroup`
     OrggroupId           *uuid.UUID              `json:"orggroup_id,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
     Role                 PrivilegeMspRoleEnum    `json:"role"`

@@ -1,7 +1,7 @@
 
 # Junos Other Ip Config
 
-optional, if it's required to have switch's L3 presense on a network/vlan
+Optional, if it's required to have switch's L3 presense on a network/vlan
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,11 +13,11 @@ optional, if it's required to have switch's L3 presense on a network/vlan
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EvpnAnycast` | `*bool` | Optional | for EVPN, if anycast is desired<br>**Default**: `false` |
-| `Ip` | `*string` | Optional | required if `type`==`static` |
-| `Ip6` | `*string` | Optional | required if `type6`==`static` |
-| `Netmask` | `*string` | Optional | optional, `subnet` from `network` definition will be used if defined |
-| `Netmask6` | `*string` | Optional | optional, `subnet` from `network` definition will be used if defined |
+| `EvpnAnycast` | `*bool` | Optional | For EVPN, if anycast is desired<br>**Default**: `false` |
+| `Ip` | `*string` | Optional | Required if `type`==`static` |
+| `Ip6` | `*string` | Optional | Required if `type6`==`static` |
+| `Netmask` | `*string` | Optional | Optional, `subnet` from `network` definition will be used if defined |
+| `Netmask6` | `*string` | Optional | Optional, `subnet` from `network` definition will be used if defined |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"disabled"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

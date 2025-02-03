@@ -9,7 +9,7 @@ import (
 type VpnPath struct {
     // enum: `broadband`, `lte`
     BfdProfile           *VpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
-    // if different from the wan port
+    // If different from the wan port
     Ip                   *string                `json:"ip,omitempty"`
     Pod                  *int                   `json:"pod,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

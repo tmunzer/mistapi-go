@@ -11,13 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ap` | `string` | Required | mac address of the AP the client connected to |
+| `Ap` | `string` | Required | MAC address of the AP the client connected to |
 | `ApName` | `string` | Required | user-friendly name of the AP the client connected to. |
 | `Band` | `string` | Required | 5GHz or 2.4GHz band |
 | `Bssid` | `string` | Required | - |
-| `Connect` | `int` | Required | time when the user connects |
+| `Connect` | `int` | Required | Time when the user connects |
 | `ConnectFloat` | `float64` | Required | floating point connect timestamp with millisecond precision |
-| `Mac` | `string` | Required | the client’s mac |
+| `Mac` | `string` | Required | Client's MAC Address |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `Rssi` | `float64` | Required | RSSI when the client associated |
 | `SiteId` | `uuid.UUID` | Required | - |

@@ -15,21 +15,21 @@ Asset Filter
 |  --- | --- | --- | --- |
 | `ApMac` | `*string` | Optional | - |
 | `Beam` | `*int` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
-| `Disasbled` | `*bool` | Optional | whether the asset filter is disabled |
-| `EddystoneUidNamespace` | `*string` | Optional | eddystone uid namespace used to filter assets |
-| `EddystoneUrl` | `*string` | Optional | eddystone url used to filter assets |
+| `Disasbled` | `*bool` | Optional | Whether the asset filter is disabled |
+| `EddystoneUidNamespace` | `*string` | Optional | Eddystone uid namespace used to filter assets |
+| `EddystoneUrl` | `*string` | Optional | Eddystone url used to filter assets |
 | `ForSite` | `*bool` | Optional | - |
 | `IbeaconMajor` | `*int` | Optional | ibeacon major value used to filter assets |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | ibeacon uuid used to filter assets |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
-| `MfgCompanyId` | `*int` | Optional | ble manufacturing-specific company-id used to filter assets |
+| `MfgCompanyId` | `*int` | Optional | BLE manufacturing-specific company-id used to filter assets |
 | `ModifiedTime` | `*float64` | Optional | - |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
-| `ServiceUuid` | `*uuid.UUID` | Optional | ble service data uuid used to filter assets |
+| `ServiceUuid` | `*uuid.UUID` | Optional | BLE service data uuid used to filter assets |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -50,7 +50,7 @@ func (o *OrgsLinkedApplications) LinkOrgToJuniperJuniperAccount(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "account already linked", Unmarshaller: errors.NewResponseDetailString},
+        "400": {Message: "Account already linked", Unmarshaller: errors.NewResponseDetailString},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},

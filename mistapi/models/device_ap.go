@@ -17,22 +17,22 @@ type DeviceAp struct {
     BleConfig            *BleConfig              `json:"ble_config,omitempty"`
     Centrak              *ApCentrak              `json:"centrak,omitempty"`
     ClientBridge         *ApClientBridge         `json:"client_bridge,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                `json:"created_time,omitempty"`
     DeviceprofileId      Optional[uuid.UUID]     `json:"deviceprofile_id"`
-    // whether to disable eth1 port
+    // Whether to disable eth1 port
     DisableEth1          *bool                   `json:"disable_eth1,omitempty"`
-    // whether to disable eth2 port
+    // Whether to disable eth2 port
     DisableEth2          *bool                   `json:"disable_eth2,omitempty"`
-    // whether to disable eth3 port
+    // Whether to disable eth3 port
     DisableEth3          *bool                   `json:"disable_eth3,omitempty"`
-    // whether to disable module port
+    // Whether to disable module port
     DisableModule        *bool                   `json:"disable_module,omitempty"`
     EslConfig            *ApEslConfig            `json:"esl_config,omitempty"`
-    // for some AP models, flow_control can be enabled to address some switch compatibility issue
+    // For some AP models, flow_control can be enabled to address some switch compatibility issue
     FlowControl          *bool                   `json:"flow_control,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
-    // height, in meters, optional
+    // Height, in meters, optional
     Height               *float64                `json:"height,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID              `json:"id,omitempty"`
@@ -45,34 +45,34 @@ type DeviceAp struct {
     IpConfig             *ApIpConfig             `json:"ip_config,omitempty"`
     // LED AP settings
     Led                  *ApLed                  `json:"led,omitempty"`
-    // whether this map is considered locked down
+    // Whether this map is considered locked down
     Locked               *bool                   `json:"locked,omitempty"`
-    // device MAC address
+    // Device MAC address
     Mac                  *string                 `json:"mac,omitempty"`
-    // map where the device belongs to
+    // Map where the device belongs to
     MapId                *uuid.UUID              `json:"map_id,omitempty"`
     // Mesh AP settings
     Mesh                 *ApMesh                 `json:"mesh,omitempty"`
-    // device Model
+    // Device Model
     Model                *string                 `json:"model,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
     Name                 *string                 `json:"name,omitempty"`
-    // any notes about this AP
+    // Any notes about this AP
     Notes                *string                 `json:"notes,omitempty"`
     NtpServers           []string                `json:"ntp_servers,omitempty"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
-    // orientation, 0-359, in degrees, up is 0, right is 90.
+    // Orientation, 0-359, in degrees, up is 0, right is 90.
     Orientation          *int                    `json:"orientation,omitempty"`
-    // whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
+    // Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough       *bool                   `json:"poe_passthrough,omitempty"`
     // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`)
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
-    // power related configs
+    // Power related configs
     PwrConfig            *ApPwrConfig            `json:"pwr_config,omitempty"`
     // Radio AP settings
     RadioConfig          *ApRadio                `json:"radio_config,omitempty"`
-    // device Serial
+    // Device Serial
     Serial               *string                 `json:"serial,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // Device Type. enum: `ap`
@@ -83,11 +83,11 @@ type DeviceAp struct {
     // - Note: if native imagotag is enabled, BLE will be disabled automatically
     // - Note: legacy, new config moved to ESL Config.
     UsbConfig            *ApUsb                  `json:"usb_config,omitempty"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                 map[string]string       `json:"vars,omitempty"`
-    // x in pixel
+    // X in pixel
     X                    *float64                `json:"x,omitempty"`
-    // y in pixel
+    // Y in pixel
     Y                    *float64                `json:"y,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

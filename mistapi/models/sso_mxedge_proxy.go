@@ -7,14 +7,14 @@ import (
 )
 
 // SsoMxedgeProxy represents a SsoMxedgeProxy struct.
-// if `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
+// If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 type SsoMxedgeProxy struct {
     AcctServers          []SsoMxedgeProxyAcctServer `json:"acct_servers,omitempty"`
     AuthServers          []SsoMxedgeProxyAuthServer `json:"auth_servers,omitempty"`
     MxclusterId          *uuid.UUID                 `json:"mxcluster_id,omitempty"`
     // Operator name as Radius attribute while proxying
     OperatorName         *string                    `json:"operator_name,omitempty"`
-    // public hostname/IPs
+    // Public hostname/IPs
     ProxyHosts           []string                   `json:"proxy_hosts,omitempty"`
     // SSIDs that support eduroam
     Ssids                []string                   `json:"ssids,omitempty"`

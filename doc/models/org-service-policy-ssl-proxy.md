@@ -1,7 +1,7 @@
 
 # Org Service Policy Ssl Proxy
 
-for SRX-only
+For SRX-only
 
 *This model accepts additional fields of type interface{}.*
 

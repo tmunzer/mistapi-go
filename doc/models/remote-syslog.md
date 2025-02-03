@@ -15,7 +15,7 @@
 | `Console` | [`*models.RemoteSyslogConsole`](../../doc/models/remote-syslog-console.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Files` | [`[]models.RemoteSyslogFileConfig`](../../doc/models/remote-syslog-file-config.md) | Optional | - |
-| `Network` | `*string` | Optional | if source_address is configured, will use the vlan firstly otherwise use source_ip |
+| `Network` | `*string` | Optional | If source_address is configured, will use the vlan firstly otherwise use source_ip |
 | `SendToAllServers` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | [`[]models.RemoteSyslogServer`](../../doc/models/remote-syslog-server.md) | Optional | - |
 | `TimeFormat` | [`*models.RemoteSyslogTimeFormatEnum`](../../doc/models/remote-syslog-time-format-enum.md) | Optional | enum: `millisecond`, `year`, `year millisecond` |

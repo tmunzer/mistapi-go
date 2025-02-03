@@ -7,7 +7,7 @@ import (
 
 // HaClusterConfigNode represents a HaClusterConfigNode struct.
 type HaClusterConfigNode struct {
-    // node mac, should be unassigned
+    // Node mac, should be unassigned
     Mac                  *string                `json:"mac,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

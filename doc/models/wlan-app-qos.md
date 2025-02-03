@@ -1,7 +1,7 @@
 
 # Wlan App Qos
 
-app qos wlan settings
+APp qos wlan settings
 
 *This model accepts additional fields of type interface{}.*
 

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NoReveal` | `*bool` | Optional | by default, API hides password/secrets when the user doesn't have write access<br><br>* `true`: API will hide passwords/secrets for all users<br>* `false`: API will hide passwords/secrets for read-only users<br>**Default**: `false` |
+| `NoReveal` | `*bool` | Optional | By default, API hides password/secrets when the user doesn't have write access<br><br>* `true`: API will hide passwords/secrets for all users<br>* `false`: API will hide passwords/secrets for read-only users<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

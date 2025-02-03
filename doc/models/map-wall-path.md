@@ -1,7 +1,7 @@
 
 # Map Wall Path
 
-a JSON blob for wall definition (same format as wayfinding_path)
+JSON blob for wall definition (same format as wayfinding_path)
 
 *This model accepts additional fields of type interface{}.*
 

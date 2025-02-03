@@ -11,7 +11,7 @@ import (
 type InsightMetrics struct {
     End                  int                    `json:"end"`
     Interval             int                    `json:"interval"`
-    // results depends on the `metric`
+    // Results depends on the `metric`
     Results              []interface{}          `json:"results"`
     Start                int                    `json:"start"`
     AdditionalProperties map[string]interface{} `json:"_"`

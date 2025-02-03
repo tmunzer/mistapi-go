@@ -13,9 +13,9 @@ Only if `provider`==`custom-ipsec`
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Interval` | `*int` | Optional | how often to trigger the probe |
-| `Threshold` | `*int` | Optional | number of consecutive misses before declaring the tunnel down |
-| `Timeout` | `*int` | Optional | time within which to complete the connectivity check |
+| `Interval` | `*int` | Optional | How often to trigger the probe |
+| `Threshold` | `*int` | Optional | Number of consecutive misses before declaring the tunnel down |
+| `Timeout` | `*int` | Optional | Time within which to complete the connectivity check |
 | `Type` | [`*models.TunnelConfigProbeTypeEnum`](../../doc/models/tunnel-config-probe-type-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"icmp"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

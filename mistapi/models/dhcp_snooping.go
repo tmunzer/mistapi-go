@@ -13,7 +13,7 @@ type DhcpSnooping struct {
     // Enable for check for forging source IP address
     EnableIpSourceGuard  *bool                  `json:"enable_ip_source_guard,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // if `all_networks`==`false`, list of network with DHCP snooping enabled
+    // If `all_networks`==`false`, list of network with DHCP snooping enabled
     Networks             []string               `json:"networks,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

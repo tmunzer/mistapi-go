@@ -574,8 +574,8 @@ ListSiteWlanDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | whether to resolve SITE_VARS<br>**Default**: `false` |
-| `wlanId` | `*string` | Query, Optional | filter by WLAN ID |
+| `resolve` | `*bool` | Query, Optional | Whether to resolve SITE_VARS<br>**Default**: `false` |
+| `wlanId` | `*string` | Query, Optional | Filter by WLAN ID |
 
 ## Response Type
 
@@ -1286,7 +1286,7 @@ if err != nil {
 
 # Upload Site Wlan Portal Image
 
-Wlan Portal Image Upload
+WLAN Portal Image Upload
 
 ```go
 UploadSiteWlanPortalImage(
@@ -1305,7 +1305,7 @@ UploadSiteWlanPortalImage(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type

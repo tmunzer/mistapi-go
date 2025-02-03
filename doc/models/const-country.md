@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Alpha2` | `string` | Required | country code, in two-character |
+| `Alpha2` | `string` | Required | Country code, in two-character |
 | `Certified` | `bool` | Required | - |
 | `Name` | `string` | Required | - |
-| `Numeric` | `float64` | Required | country code, ISO 3166-1 numeric |
+| `Numeric` | `float64` | Required | Country code, ISO 3166-1 numeric |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

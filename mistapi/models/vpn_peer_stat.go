@@ -12,18 +12,18 @@ type VpnPeerStat struct {
     IsActive             *bool                  `json:"is_active,omitempty"`
     LastSeen             *float64               `json:"last_seen,omitempty"`
     Latency              *float64               `json:"latency,omitempty"`
-    // router mac address
+    // Router mac address
     Mac                  *string                `json:"mac,omitempty"`
     Mos                  *float64               `json:"mos,omitempty"`
     Mtu                  *int                   `json:"mtu,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // peer router mac address
+    // Peer router mac address
     PeerMac              *string                `json:"peer_mac,omitempty"`
-    // peer router device interface
+    // Peer router device interface
     PeerPortId           *string                `json:"peer_port_id,omitempty"`
     PeerRouterName       *string                `json:"peer_router_name,omitempty"`
     PeerSiteId           *uuid.UUID             `json:"peer_site_id,omitempty"`
-    // router device interface
+    // Router device interface
     PortId               *string                `json:"port_id,omitempty"`
     RouterName           *string                `json:"router_name,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

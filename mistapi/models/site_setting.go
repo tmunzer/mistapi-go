@@ -17,27 +17,27 @@ type SiteSetting struct {
     Analytic                        *SiteSettingAnalytic                   `json:"analytic,omitempty"`
     ApMatching                      *SiteSettingApMatching                 `json:"ap_matching,omitempty"`
     ApPortConfig                    *SiteSettingApPortConfig               `json:"ap_port_config,omitempty"`
-    // enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
+    // Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
     ApUpdownThreshold               Optional[int]                          `json:"ap_updown_threshold"`
-    // if we're able to determine its x/y/orientation, this will be populated
+    // If we're able to determine its x/y/orientation, this will be populated
     AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
     // Auto Upgrade Settings
     AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
     BlacklistUrl                    *string                                `json:"blacklist_url,omitempty"`
     // BLE AP settings
     BleConfig                       *BleConfig                             `json:"ble_config,omitempty"`
-    // whether to enable ap auto config revert
+    // Whether to enable ap auto config revert
     ConfigAutoRevert                *bool                                  `json:"config_auto_revert,omitempty"`
-    // mist also uses some heuristic rules to prevent destructive configs from being pushed
+    // Mist also uses some heuristic rules to prevent destructive configs from being pushed
     ConfigPushPolicy                *SiteSettingConfigPushPolicy           `json:"config_push_policy,omitempty"`
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
-    // you can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
+    // You can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    // by default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following
+    // By default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following
     DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
     DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
-    // if some system-default port usages are not desired - namely, ap / iot / uplink
+    // If some system-default port usages are not desired - namely, ap / iot / uplink
     DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum          `json:"disabled_system_defined_port_usages,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
@@ -50,7 +50,7 @@ type SiteSetting struct {
     ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
     ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
-    // name/val pair objects for location engine to use
+    // Name/val pair objects for location engine to use
     Flags                           map[string]string                      `json:"flags,omitempty"`
     ForSite                         *bool                                  `json:"for_site,omitempty"`
     // Gateway Template is applied to a site for gateway(s) in a site.
@@ -59,25 +59,25 @@ type SiteSetting struct {
     GatewayAdditionalConfigCmds     []string                               `json:"gateway_additional_config_cmds,omitempty"`
     // Gateway Site settings
     GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
-    // enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
+    // Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
     GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
     // Unique ID of the object instance in the Mist Organnization
     Id                              *uuid.UUID                             `json:"id,omitempty"`
     JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
     // LED AP settings
     Led                             *ApLed                                 `json:"led,omitempty"`
-    // enable mist_nac to use radsec
+    // Enable mist_nac to use radsec
     MistNac                         *SwitchMistNac                         `json:"mist_nac,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime                    *float64                               `json:"modified_time,omitempty"`
-    // site mist edges form a cluster of radsecproxy servers
+    // Site Mist Edges form a cluster of radsecproxy servers
     Mxedge                          *SiteSettingMxedge                     `json:"mxedge,omitempty"`
     MxedgeMgmt                      *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
     // Site MxTunnel
     Mxtunnels                       *SiteMxtunnel                          `json:"mxtunnels,omitempty"`
     // Property key is network name
     Networks                        map[string]SwitchNetwork               `json:"networks,omitempty"`
-    // list of NTP servers
+    // List of NTP servers
     NtpServers                      []string                               `json:"ntp_servers,omitempty"`
     // Occupancy Analytics settings
     Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
@@ -85,7 +85,7 @@ type SiteSetting struct {
     // Junos OSPF areas
     OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
-    // whether to store the config on AP
+    // Whether to store the config on AP
     PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
     // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
     PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
@@ -98,13 +98,13 @@ type SiteSetting struct {
     // Junos Radius config
     RadiusConfig                    *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
     RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
-    // by default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
+    // By default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
     RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
-    // whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
+    // Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
     ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`
     // Rogue site settings
     Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
-    // managed mobility
+    // Managed mobility
     Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`
     // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
     SimpleAlert                     *SimpleAlert                           `json:"simple_alert,omitempty"`
@@ -112,27 +112,27 @@ type SiteSetting struct {
     Skyatp                          *SiteSettingSkyatp                     `json:"skyatp,omitempty"`
     SnmpConfig                      *SnmpConfig                            `json:"snmp_config,omitempty"`
     SrxApp                          *SiteSettingSrxApp                     `json:"srx_app,omitempty"`
-    // when limit_ssh_access = true in Org Setting, list of SSH public keys provided by Mist Support to install onto APs (see Org:Setting)
+    // When limit_ssh_access = true in Org Setting, list of SSH public keys provided by Mist Support to install onto APs (see Org:Setting)
     SshKeys                         []string                               `json:"ssh_keys,omitempty"`
     Ssr                             *SiteSettingSsr                        `json:"ssr,omitempty"`
     StatusPortal                    *SiteSettingStatusPortal               `json:"status_portal,omitempty"`
     // Network Template
     Switch                          *NetworkTemplate                       `json:"switch,omitempty"`
-    // defines custom switch configuration based on different criterias
+    // Defines custom switch configuration based on different criterias
     SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
-    // enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
+    // Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
     SwitchUpdownThreshold           Optional[int]                          `json:"switch_updown_threshold"`
     SyntheticTest                   *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
-    // whether to track anonymous BLE assets (requires ‘track_asset’  enabled)
+    // Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)
     TrackAnonymousDevices           *bool                                  `json:"track_anonymous_devices,omitempty"`
     TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
     TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
     TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
     // AP Uplink port configuration
     UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
-    // a dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
+    // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
     Vars                            map[string]string                      `json:"vars,omitempty"`
     Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
     VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
@@ -140,7 +140,7 @@ type SiteSetting struct {
     VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Property key is the vrrp group
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
-    // optional, for EX9200 only to seggregate virtual-switches. Property key is the instance name
+    // Optional, for EX9200 only to seggregate virtual-switches. Property key is the instance name
     VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
     WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
     WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`

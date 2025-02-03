@@ -9,11 +9,11 @@ import (
 // OrgSettingMgmt represents a OrgSettingMgmt struct.
 // management-related properties
 type OrgSettingMgmt struct {
-    // list of Mist Tunnels
+    // List of Mist Tunnels
     MxtunnelIds          []uuid.UUID            `json:"mxtunnel_ids,omitempty"`
-    // whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel
+    // Whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel
     UseMxtunnel          *bool                  `json:"use_mxtunnel,omitempty"`
-    // whether to use wxtunnel for mgmt connectivity
+    // Whether to use wxtunnel for mgmt connectivity
     UseWxtunnel          *bool                  `json:"use_wxtunnel,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

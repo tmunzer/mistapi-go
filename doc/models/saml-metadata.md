@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AcsUrl` | `*string` | Optional | if `idp_type`==`saml` |
-| `EntityId` | `*string` | Optional | if `idp_type`==`saml` |
-| `LogoutUrl` | `*string` | Optional | if `idp_type`==`saml` |
-| `Metadata` | `*string` | Optional | if `idp_type`==`saml` |
-| `ScimBaseUrl` | `*string` | Optional | if `idp_type`==`oauth` and `scim_enabled`==`true` |
+| `AcsUrl` | `*string` | Optional | If `idp_type`==`saml` |
+| `EntityId` | `*string` | Optional | If `idp_type`==`saml` |
+| `LogoutUrl` | `*string` | Optional | If `idp_type`==`saml` |
+| `Metadata` | `*string` | Optional | If `idp_type`==`saml` |
+| `ScimBaseUrl` | `*string` | Optional | If `idp_type`==`oauth` and `scim_enabled`==`true` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

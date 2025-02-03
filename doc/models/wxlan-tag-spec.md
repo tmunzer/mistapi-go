@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `PortRange` | `*string` | Optional | matched destination port, "0" means any<br>**Default**: `"0"` |
+| `PortRange` | `*string` | Optional | Matched destination port, "0" means any<br>**Default**: `"0"` |
 | `Protocol` | `*string` | Optional | tcp / udp / icmp / gre / any / ":protocol_number", `protocol_number` is between 1-254<br>**Default**: `"any"` |
-| `Subnets` | `[]string` | Optional | matched destination subnets and/or IP Addresses |
+| `Subnets` | `[]string` | Optional | Matched destination subnets and/or IP Addresses |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

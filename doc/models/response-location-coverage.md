@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BeamsMeans` | `[][]float64` | Required | list of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calulate the pixel location from top-left). |
+| `BeamsMeans` | `[][]float64` | Required | List of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calulate the pixel location from top-left). |
 | `End` | `int` | Required | - |
-| `Gridsize` | `float64` | Required | the size of grid, in meter |
-| `ResultDef` | `[]string` | Required | list of names annotating the fields in results |
-| `Results` | `[][]float64` | Required | list of results, see result_def. |
+| `Gridsize` | `float64` | Required | Size of grid, in meter |
+| `ResultDef` | `[]string` | Required | List of names annotating the fields in results |
+| `Results` | `[][]float64` | Required | List of results, see result_def. |
 | `Start` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

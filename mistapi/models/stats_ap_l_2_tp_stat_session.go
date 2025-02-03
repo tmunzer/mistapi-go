@@ -7,11 +7,11 @@ import (
 
 // StatsApL2tpStatSession represents a StatsApL2tpStatSession struct.
 type StatsApL2tpStatSession struct {
-    // remote sessions id (dynamically unless Tunnel is said to be static)
+    // Remote sessions id (dynamically unless Tunnel is said to be static)
     LocalSid             Optional[int]          `json:"local_sid"`
     // WxlanTunnel Remote ID (user-configured)
     RemoteId             Optional[string]       `json:"remote_id"`
-    // remote sessions id (dynamically unless Tunnel is said to be static)
+    // Remote sessions id (dynamically unless Tunnel is said to be static)
     RemoteSid            Optional[int]          `json:"remote_sid"`
     // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *L2tpStateEnum         `json:"state,omitempty"`

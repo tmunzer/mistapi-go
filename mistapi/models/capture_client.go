@@ -11,15 +11,15 @@ import (
 // Initiate a Client Packet Capture
 type CaptureClient struct {
     ApMac                Optional[string]       `json:"ap_mac"`
-    // client mac, required if `type`==`client`; optional otherwise
+    // Client mac, required if `type`==`client`; optional otherwise
     ClientMac            Optional[string]       `json:"client_mac"`
-    // duration of the capture, in seconds
+    // Duration of the capture, in seconds
     Duration             Optional[int]          `json:"duration"`
     IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
     MaxPktLen            Optional[int]          `json:"max_pkt_len"`
-    // number of packets to capture, 0 for unlimited, default is 1024 for client-capture
+    // Number of packets to capture, 0 for unlimited, default is 1024 for client-capture
     NumPackets           Optional[int]          `json:"num_packets"`
-    // optional filter by ssid
+    // Optional filter by ssid
     Ssid                 Optional[string]       `json:"ssid"`
     // enum: `client`
     Type                 string                 `json:"type"`

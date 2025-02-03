@@ -1,7 +1,7 @@
 
 # Ap Pwr Config
 
-power related configs
+Power related configs
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,8 +13,8 @@ power related configs
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Base` | `*int` | Optional | additional power to request during negotiating with PSE over PoE, in mW<br>**Default**: `0` |
-| `PreferUsbOverWifi` | `*bool` | Optional | whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)<br>**Default**: `false` |
+| `Base` | `*int` | Optional | Additional power to request during negotiating with PSE over PoE, in mW<br>**Default**: `0` |
+| `PreferUsbOverWifi` | `*bool` | Optional | Whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

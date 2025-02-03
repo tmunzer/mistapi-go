@@ -11,26 +11,26 @@ import (
 // Network represents a Network struct.
 // Networks are usually subnets that have cross-site significance. `networks`in Org Settings will got merged into `networks`in Site Setting. For gateways, they can be used to define Service Routes.
 type Network struct {
-    // when the object has been created, in epoch
+    // When the object has been created, in epoch
     CreatedTime          *float64                          `json:"created_time,omitempty"`
-    // whether to disallow Mist Devices in the network
+    // Whether to disallow Mist Devices in the network
     DisallowMistServices *bool                             `json:"disallow_mist_services,omitempty"`
     Gateway              *string                           `json:"gateway,omitempty"`
     Gateway6             *string                           `json:"gateway6,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                        `json:"id,omitempty"`
     InternalAccess       *NetworkInternalAccess            `json:"internal_access,omitempty"`
-    // whether this network has direct internet access
+    // Whether this network has direct internet access
     InternetAccess       *NetworkInternetAccess            `json:"internet_access,omitempty"`
-    // whether to allow clients in the network to talk to each other
+    // Whether to allow clients in the network to talk to each other
     Isolation            *bool                             `json:"isolation,omitempty"`
-    // when the object has been modified for the last time, in epoch
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                          `json:"modified_time,omitempty"`
-    // whether to enable multicast support (only PIM-sparse mode is supported)
+    // Whether to enable multicast support (only PIM-sparse mode is supported)
     Multicast            *NetworkMulticast                 `json:"multicast,omitempty"`
     Name                 string                            `json:"name"`
     OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
-    // for a Network (usually LAN), it can be routable to other networks (e.g. OSPF)
+    // For a Network (usually LAN), it can be routable to other networks (e.g. OSPF)
     RoutedForNetworks    []string                          `json:"routed_for_networks,omitempty"`
     Subnet               *string                           `json:"subnet,omitempty"`
     Subnet6              *string                           `json:"subnet6,omitempty"`

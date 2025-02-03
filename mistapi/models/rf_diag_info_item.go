@@ -10,21 +10,21 @@ import (
 
 // RfDiagInfoItem represents a RfDiagInfoItem struct.
 type RfDiagInfoItem struct {
-    // if `type`==`asset`, id of the asset
+    // If `type`==`asset`, id of the asset
     AssetId              *uuid.UUID             `json:"asset_id,omitempty"`
-    // if `type`==`asset`, name of the asset
+    // If `type`==`asset`, name of the asset
     AssetName            *string                `json:"asset_name,omitempty"`
-    // if `type`==`client`, hostname of the client
+    // If `type`==`client`, hostname of the client
     ClientName           *string                `json:"client_name,omitempty"`
     // recording length in seconds, max is 120
     Duration             int                    `json:"duration"`
-    // timestamp of end of recording
+    // Timestamp of end of recording
     EndTime              int                    `json:"end_time"`
     // Number of frames in the output
     FrameCount           int                    `json:"frame_count"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    // if `type`==`client` or `asset`, mac of the device
+    // If `type`==`client` or `asset`, mac of the device
     Mac                  *string                `json:"mac,omitempty"`
     MapId                uuid.UUID              `json:"map_id"`
     Name                 string                 `json:"name"`
@@ -32,15 +32,15 @@ type RfDiagInfoItem struct {
     Next                 *string                `json:"next,omitempty"`
     // URL to a JSON file that contains array of raw location diag events
     RawEvents            string                 `json:"raw_events"`
-    // whether it’s ready for playback
+    // Whether it’s ready for playback
     Ready                bool                   `json:"ready"`
-    // if `type`==`sdkclient`, sdkclient_id of this recording
+    // If `type`==`sdkclient`, sdkclient_id of this recording
     SdkclientId          *uuid.UUID             `json:"sdkclient_id,omitempty"`
-    // if `type`==`sdkclient`, name of the sdkclient
+    // If `type`==`sdkclient`, name of the sdkclient
     SdkclientName        *string                `json:"sdkclient_name,omitempty"`
-    // if `type`==`sdkclient`, device_id of sdkclient
+    // If `type`==`sdkclient`, device_id of sdkclient
     SdkclientUuid        *uuid.UUID             `json:"sdkclient_uuid,omitempty"`
-    // timestamp of the recording (the start)
+    // Timestamp of the recording (the start)
     StartTime            int                    `json:"start_time"`
     // enum: `asset`, `client`, `sdkclient`
     Type                 RfClientTypeEnum       `json:"type"`

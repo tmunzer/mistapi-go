@@ -8,32 +8,32 @@ import (
 )
 
 // AclTag represents a AclTag struct.
-// resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
+// Resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
 type AclTag struct {
-    // required if
+    // Required if
     // - `type`==`dynamic_gbp` (gbp_tag received from RADIUS)
     // - `type`==`gbp_resource`
     // - `type`==`static_gbp` (applying gbp tag against matching conditions)
     GbpTag               *int                   `json:"gbp_tag,omitempty"`
-    // required if
+    // Required if
     // - `type`==`mac`
     // - `type`==`static_gbp` if from matching mac
     Macs                 []string               `json:"macs,omitempty"`
-    // if:
+    // If:
     // * `type`==`mac` (optional. default is `any`)
     // * `type`==`subnet` (optional. default is `any`)
     // * `type`==`network`
     // * `type`==`resource` (optional. default is `any`)
     // * `type`==`static_gbp` if from matching network (vlan)'
     Network              *string                `json:"network,omitempty"`
-    // required if:
+    // Required if:
     // * `type`==`radius_group`
     // * `type`==`static_gbp`
     // if from matching radius_group
     RadiusGroup          *string                `json:"radius_group,omitempty"`
-    // if `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
+    // If `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
     Specs                []AclTagSpec           `json:"specs,omitempty"`
-    // if
+    // If
     // - `type`==`subnet`
     // - `type`==`resource` (optional. default is `any`)
     // - `type`==`static_gbp` if from matching subnet

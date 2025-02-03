@@ -379,22 +379,47 @@ if err != nil {
 
 ```json
 {
-  "counts": {
+  "canary_phases": [
+    1,
+    10,
+    50,
+    100
+  ],
+  "current_phase": 0,
+  "enable_p2p": true,
+  "force": false,
+  "id": "b910de88-0e0e-43a0-b20e-a43aa8788917",
+  "max_failure_percentage": 5,
+  "max_failures": [
+    5,
+    5,
+    5,
+    5
+  ],
+  "p2p_cluster_size": 10,
+  "p2p_parallelism": 2,
+  "reboot_at": 1738233315,
+  "start_time": 1738232698,
+  "status": "created",
+  "strategy": "canary",
+  "target_version": "0.14.29633",
+  "targets": {
     "downloaded": [
-      "5c5b355612ee"
+      "30783a619182"
     ],
     "total": 2,
     "upgraded": [
-      "5c5b3550bd2e"
+      "a8378280da5e"
     ]
   },
-  "enable_p2p": true,
-  "force": true,
-  "id": "473f6eca-6276-4993-bfeb-53cbbbba6f18",
-  "start_time": 1717663165,
-  "status": "created",
-  "strategy": "big_bang",
-  "target_version": "string"
+  "upgrade_plan": {
+    "1": [
+      "30783a619182"
+    ],
+    "2": [
+      "a8378280da5e"
+    ]
+  }
 }
 ```
 
@@ -503,7 +528,7 @@ ListOrgAvailableDeviceVersions(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `model` | `*string` | Query, Optional | fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
+| `model` | `*string` | Query, Optional | Fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
 
 ## Response Type
 
@@ -829,7 +854,7 @@ ListSiteAvailableDeviceVersions(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `model` | `*string` | Query, Optional | fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
+| `model` | `*string` | Query, Optional | Fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
 
 ## Response Type
 
@@ -1374,7 +1399,7 @@ UpgradeSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.UpgradeSiteDevices) (
-    models.ApiResponse[models.ResponseUpgradeSiteDevices],
+    models.ApiResponse[models.ResponseUpgradeId],
     error)
 ```
 
@@ -1387,7 +1412,7 @@ UpgradeSiteDevices(
 
 ## Response Type
 
-[`models.ResponseUpgradeSiteDevices`](../../doc/models/response-upgrade-site-devices.md)
+[`models.ResponseUpgradeId`](../../doc/models/response-upgrade-id.md)
 
 ## Example Usage
 

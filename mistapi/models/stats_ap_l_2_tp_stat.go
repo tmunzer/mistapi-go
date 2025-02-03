@@ -8,11 +8,11 @@ import (
 
 // StatsApL2tpStat represents a StatsApL2tpStat struct.
 type StatsApL2tpStat struct {
-    // list of sessions
+    // List of sessions
     Sessions             []StatsApL2tpStatSession `json:"sessions,omitempty"`
     // enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`
     State                *L2tpStateEnum           `json:"state,omitempty"`
-    // uptime
+    // Uptime
     Uptime               Optional[int]            `json:"uptime"`
     // WxlanTunnel ID
     WxtunnelId           Optional[uuid.UUID]      `json:"wxtunnel_id"`

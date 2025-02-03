@@ -32,7 +32,7 @@ CountSiteApps(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteAppsCountDistinctEnum`](../../doc/models/site-apps-count-distinct-enum.md) | Query, Optional | Default for wireless devices is `ap`. Default for wired devices is `device_mac` |
 | `deviceMac` | `*string` | Query, Optional | MAC of the device |
-| `app` | `*string` | Query, Optional | Application name |
+| `app` | `*string` | Query, Optional | APplication name |
 | `wired` | `*string` | Query, Optional | If a device is wired or wireless. Default is False. |
 
 ## Response Type

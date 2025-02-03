@@ -30,7 +30,7 @@ type StatsApBle struct {
     RxPkts                Optional[int]          `json:"rx_pkts"`
     TxBytes               Optional[int64]        `json:"tx_bytes"`
     TxPkts                Optional[int]          `json:"tx_pkts"`
-    // resets due to tx hung
+    // Resets due to tx hung
     TxResets              Optional[int]          `json:"tx_resets"`
     Uuid                  Optional[uuid.UUID]    `json:"uuid"`
     AdditionalProperties  map[string]interface{} `json:"_"`

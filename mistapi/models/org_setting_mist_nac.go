@@ -7,7 +7,7 @@ import (
 
 // OrgSettingMistNac represents a OrgSettingMistNac struct.
 type OrgSettingMistNac struct {
-    // list of PEM-encoded ca certs
+    // List of PEM-encoded ca certs
     Cacerts                   []string                        `json:"cacerts,omitempty"`
     // use this IDP when no explicit realm present in the incoming username/CN OR when no IDP is explicitly mapped to the incoming realm.
     DefaultIdpId              *string                         `json:"default_idp_id,omitempty"`

@@ -13,19 +13,19 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | when the object has been created, in epoch |
-| `DisallowMistServices` | `*bool` | Optional | whether to disallow Mist Devices in the network<br>**Default**: `false` |
+| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `DisallowMistServices` | `*bool` | Optional | Whether to disallow Mist Devices in the network<br>**Default**: `false` |
 | `Gateway` | `*string` | Optional | - |
 | `Gateway6` | `*string` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `InternalAccess` | [`*models.NetworkInternalAccess`](../../doc/models/network-internal-access.md) | Optional | - |
-| `InternetAccess` | [`*models.NetworkInternetAccess`](../../doc/models/network-internet-access.md) | Optional | whether this network has direct internet access |
-| `Isolation` | `*bool` | Optional | whether to allow clients in the network to talk to each other |
-| `ModifiedTime` | `*float64` | Optional | when the object has been modified for the last time, in epoch |
-| `Multicast` | [`*models.NetworkMulticast`](../../doc/models/network-multicast.md) | Optional | whether to enable multicast support (only PIM-sparse mode is supported) |
+| `InternetAccess` | [`*models.NetworkInternetAccess`](../../doc/models/network-internet-access.md) | Optional | Whether this network has direct internet access |
+| `Isolation` | `*bool` | Optional | Whether to allow clients in the network to talk to each other |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `Multicast` | [`*models.NetworkMulticast`](../../doc/models/network-multicast.md) | Optional | Whether to enable multicast support (only PIM-sparse mode is supported) |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `RoutedForNetworks` | `[]string` | Optional | for a Network (usually LAN), it can be routable to other networks (e.g. OSPF) |
+| `RoutedForNetworks` | `[]string` | Optional | For a Network (usually LAN), it can be routable to other networks (e.g. OSPF) |
 | `Subnet` | `*string` | Optional | - |
 | `Subnet6` | `*string` | Optional | - |
 | `Tenants` | [`map[string]models.NetworkTenant`](../../doc/models/network-tenant.md) | Optional | Property key must be the user/tenant name (i.e. "printer-1") or a Variable (i.e. "{{myvar}}") |

@@ -13,23 +13,23 @@ import (
 type SdkstatsWirelessClient struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                        `json:"id"`
-    // last seen timestamp
+    // Last seen timestamp
     LastSeen             float64                          `json:"last_seen"`
-    // map_id of the sdk client (if known), or null
+    // Map_id of the sdk client (if known), or null
     MapId                Optional[uuid.UUID]              `json:"map_id"`
-    // name of the sdk client (if provided)
+    // Name of the sdk client (if provided)
     Name                 *string                          `json:"name,omitempty"`
-    // various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+    // Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
     NetworkConnection    *StatsSdkclientNetworkConnection `json:"network_connection,omitempty"`
-    // uuid of the sdk client
+    // UUID of the sdk client
     Uuid                 uuid.UUID                        `json:"uuid"`
-    // list of beacon_id’s of the sdk client is in and since when (if known)
+    // List of beacon_id’s of the sdk client is in and since when (if known)
     Vbeacons             []SdkstatsWirelessClientVbeacon  `json:"vbeacons,omitempty"`
-    // x (in pixels) of user location on the map (if known)
+    // X (in pixels) of user location on the map (if known)
     X                    *float64                         `json:"x,omitempty"`
-    // y (in pixels) of user location on the map (if known)
+    // Y (in pixels) of user location on the map (if known)
     Y                    *float64                         `json:"y,omitempty"`
-    // list of zone_id’s of the sdk client is in and since when (if known)
+    // List of zone_id’s of the sdk client is in and since when (if known)
     Zones                []SdkstatsWirelessClientZone     `json:"zones,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

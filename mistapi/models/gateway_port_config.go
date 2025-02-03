@@ -10,68 +10,68 @@ import (
 // GatewayPortConfig represents a GatewayPortConfig struct.
 // Gateway port config
 type GatewayPortConfig struct {
-    // if `aggregated`==`true`. To disable LCP support for the AE interface
+    // If `aggregated`==`true`. To disable LCP support for the AE interface
     AeDisableLacp        *bool                          `json:"ae_disable_lacp,omitempty"`
-    // if `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127)
+    // If `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127)
     AeIdx                Optional[string]               `json:"ae_idx"`
     // For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
     AeLacpForceUp        *bool                          `json:"ae_lacp_force_up,omitempty"`
     Aggregated           *bool                          `json:"aggregated,omitempty"`
-    // if want to generate port up/down alarm, set it to true
+    // If want to generate port up/down alarm, set it to true
     Critical             *bool                          `json:"critical,omitempty"`
     // Interface Description. Can be a variable (i.e. "{{myvar}}")
     Description          *string                        `json:"description,omitempty"`
     DisableAutoneg       *bool                          `json:"disable_autoneg,omitempty"`
-    // port admin up (true) / down (false)
+    // Port admin up (true) / down (false)
     Disabled             *bool                          `json:"disabled,omitempty"`
     // if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
     DslType              *GatewayPortDslTypeEnum        `json:"dsl_type,omitempty"`
-    // if `wan_type`==`dsl`, 16 bit int
+    // If `wan_type`==`dsl`, 16 bit int
     DslVci               *int                           `json:"dsl_vci,omitempty"`
-    // if `wan_type`==`dsl`, 8 bit int
+    // If `wan_type`==`dsl`, 8 bit int
     DslVpi               *int                           `json:"dsl_vpi,omitempty"`
     // enum: `auto`, `full`, `half`
     Duplex               *GatewayPortDuplexEnum         `json:"duplex,omitempty"`
     // Junos IP Config
     IpConfig             *GatewayPortConfigIpConfig     `json:"ip_config,omitempty"`
-    // if `wan_type`==`lte`
+    // If `wan_type`==`lte`
     LteApn               *string                        `json:"lte_apn,omitempty"`
     // if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
     LteAuth              *GatewayPortLteAuthEnum        `json:"lte_auth,omitempty"`
     LteBackup            *bool                          `json:"lte_backup,omitempty"`
-    // if `wan_type`==`lte`
+    // If `wan_type`==`lte`
     LtePassword          *string                        `json:"lte_password,omitempty"`
-    // if `wan_type`==`lte`
+    // If `wan_type`==`lte`
     LteUsername          *string                        `json:"lte_username,omitempty"`
     Mtu                  *int                           `json:"mtu,omitempty"`
-    // name that we'll use to derive config
+    // Name that we'll use to derive config
     Name                 *string                        `json:"name,omitempty"`
-    // if `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface
+    // If `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface
     Networks             []string                       `json:"networks,omitempty"`
-    // for Q-in-Q
+    // For Q-in-Q
     OuterVlanId          *int                           `json:"outer_vlan_id,omitempty"`
     PoeDisabled          *bool                          `json:"poe_disabled,omitempty"`
     // Only for SRX and if `usage`==`lan`, the Untagged VLAN Network
     PortNetwork          *string                        `json:"port_network,omitempty"`
-    // whether to preserve dscp when sending traffic over VPN (SSR-only)
+    // Whether to preserve dscp when sending traffic over VPN (SSR-only)
     PreserveDscp         *bool                          `json:"preserve_dscp,omitempty"`
-    // if HA mode
+    // If HA mode
     Redundant            *bool                          `json:"redundant,omitempty"`
-    // if HA mode
+    // If HA mode
     RethIdx              *int                           `json:"reth_idx,omitempty"`
-    // if HA mode
+    // If HA mode
     RethNode             *string                        `json:"reth_node,omitempty"`
     // SSR only - supporting vlan-based redundancy (matching the size of `networks`)
     RethNodes            []string                       `json:"reth_nodes,omitempty"`
     Speed                *string                        `json:"speed,omitempty"`
-    // when SSR is running as VM, this is required on certain hosting platforms
+    // When SSR is running as VM, this is required on certain hosting platforms
     SsrNoVirtualMac      *bool                          `json:"ssr_no_virtual_mac,omitempty"`
-    // for SSR only
+    // For SSR only
     SvrPortRange         *string                        `json:"svr_port_range,omitempty"`
     TrafficShaping       *GatewayTrafficShaping         `json:"traffic_shaping,omitempty"`
     // port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
     Usage                GatewayPortUsageEnum           `json:"usage"`
-    // if WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
+    // If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
     VlanId               *GatewayPortVlanIdWithVariable `json:"vlan_id,omitempty"`
     // Property key is the VPN name
     VpnPaths             map[string]GatewayPortVpnPath  `json:"vpn_paths,omitempty"`

@@ -380,7 +380,7 @@ func (i *Installer) StopInstallerLocateDevice(
 // DeleteInstallerDeviceImage takes context, orgId, imageName, deviceMac as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// delete image
+// Delete image
 func (i *Installer) DeleteInstallerDeviceImage(
     ctx context.Context,
     orgId uuid.UUID,

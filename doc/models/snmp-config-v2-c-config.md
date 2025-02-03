@@ -12,9 +12,9 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Authorization` | `*string` | Optional | - |
-| `ClientListName` | `*string` | Optional | client_list_name here should refer to client_list above |
+| `ClientListName` | `*string` | Optional | Client_list_name here should refer to client_list above |
 | `CommunityName` | `*string` | Optional | - |
-| `View` | `*string` | Optional | view name here should be defined in views above |
+| `View` | `*string` | Optional | View name here should be defined in views above |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

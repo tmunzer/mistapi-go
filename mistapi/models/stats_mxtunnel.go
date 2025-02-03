@@ -25,7 +25,7 @@ type StatsMxtunnel struct {
     RemoteIp             string                  `json:"remote_ip"`
     RemotePort           *int                    `json:"remote_port,omitempty"`
     RxControlPkts        *int                    `json:"rx_control_pkts,omitempty"`
-    // list of sessions
+    // List of sessions
     Sessions             []StatsMxtunnelSession  `json:"sessions,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     // enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply`

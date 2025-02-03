@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Include` | `*bool` | Optional | if the root oid configured is included |
+| `Include` | `*bool` | Optional | If the root oid configured is included |
 | `Oid` | `*string` | Optional | - |
 | `ViewName` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

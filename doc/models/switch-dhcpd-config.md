@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | if set to `true`, enable the DHCP server<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | If set to `true`, enable the DHCP server<br>**Default**: `false` |
 | `AdditionalProperties` | [`map[string]models.SwitchDhcpdConfigProperty`](../../doc/models/switch-dhcpd-config-property.md) | Optional | - |
 
 ## Example (as JSON)

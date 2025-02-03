@@ -11,7 +11,7 @@ type Tacacs struct {
     // enum: `admin`, `helpdesk`, `none`, `read`
     DefaultRole          *TacacsDefaultRoleEnum `json:"default_role,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // which network the TACACS server resides
+    // Which network the TACACS server resides
     Network              *string                `json:"network,omitempty"`
     TacplusServers       []TacacsAuthServer     `json:"tacplus_servers,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

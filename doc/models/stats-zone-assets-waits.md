@@ -1,7 +1,7 @@
 
 # Stats Zone Assets Waits
 
-ble asset wait time right now
+BLE asset wait time right now
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,9 +13,9 @@ ble asset wait time right now
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Avg` | `*float64` | Optional | average wait time in seconds |
-| `Max` | `*float64` | Optional | longest wait time in seconds |
-| `Min` | `*float64` | Optional | shortest wait time in seconds |
+| `Avg` | `*float64` | Optional | Average wait time in seconds |
+| `Max` | `*float64` | Optional | Longest wait time in seconds |
+| `Min` | `*float64` | Optional | Shortest wait time in seconds |
 | `P95` | `*float64` | Optional | 95th percentile of all the wait time(s) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
