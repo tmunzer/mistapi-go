@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `DownloadRequested` | `[]string` | Optional | List of devices MAC Addresses which cloud has requested to download firmware |
 | `Downloaded` | `[]string` | Optional | List of devices MAC Addresses which have the firmware downloaded |
+| `Downloading` | `[]string` | Optional | List of devices MAC Addresses which are currently downloading the firmware |
 | `Failed` | `[]string` | Optional | List of devices MAC Addresses which have failed to upgrade |
 | `RebootInProgress` | `[]string` | Optional | List of devices MAC Addresses which are rebooting |
 | `Rebooted` | `[]string` | Optional | List of devices MAC Addresses which have rebooted successfully |
@@ -34,17 +35,17 @@
     "downloaded0",
     "downloaded1"
   ],
+  "downloading": [
+    "downloading6",
+    "downloading7",
+    "downloading8"
+  ],
   "failed": [
     "failed6",
     "failed5"
   ],
   "reboot_in_progress": [
     "reboot_in_progress3"
-  ],
-  "rebooted": [
-    "rebooted5",
-    "rebooted6",
-    "rebooted7"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

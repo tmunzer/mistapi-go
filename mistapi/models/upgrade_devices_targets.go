@@ -11,6 +11,8 @@ type UpgradeDevicesTargets struct {
     DownloadRequested    []string               `json:"download_requested,omitempty"`
     // List of devices MAC Addresses which have the firmware downloaded
     Downloaded           []string               `json:"downloaded,omitempty"`
+    // List of devices MAC Addresses which are currently downloading the firmware
+    Downloading          []string               `json:"downloading,omitempty"`
     // List of devices MAC Addresses which have failed to upgrade
     Failed               []string               `json:"failed,omitempty"`
     // List of devices MAC Addresses which are rebooting
@@ -32,8 +34,8 @@ type UpgradeDevicesTargets struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UpgradeDevicesTargets) String() string {
     return fmt.Sprintf(
-    	"UpgradeDevicesTargets[DownloadRequested=%v, Downloaded=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
-    	u.DownloadRequested, u.Downloaded, u.Failed, u.RebootInProgress, u.Rebooted, u.Scheduled, u.Skipped, u.Total, u.Upgraded, u.AdditionalProperties)
+    	"UpgradeDevicesTargets[DownloadRequested=%v, Downloaded=%v, Downloading=%v, Failed=%v, RebootInProgress=%v, Rebooted=%v, Scheduled=%v, Skipped=%v, Total=%v, Upgraded=%v, AdditionalProperties=%v]",
+    	u.DownloadRequested, u.Downloaded, u.Downloading, u.Failed, u.RebootInProgress, u.Rebooted, u.Scheduled, u.Skipped, u.Total, u.Upgraded, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UpgradeDevicesTargets.
@@ -42,7 +44,7 @@ func (u UpgradeDevicesTargets) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(u.AdditionalProperties,
-        "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded"); err != nil {
+        "download_requested", "downloaded", "downloading", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(u.toMap())
@@ -57,6 +59,9 @@ func (u UpgradeDevicesTargets) toMap() map[string]any {
     }
     if u.Downloaded != nil {
         structMap["downloaded"] = u.Downloaded
+    }
+    if u.Downloading != nil {
+        structMap["downloading"] = u.Downloading
     }
     if u.Failed != nil {
         structMap["failed"] = u.Failed
@@ -90,7 +95,7 @@ func (u *UpgradeDevicesTargets) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "download_requested", "downloaded", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "download_requested", "downloaded", "downloading", "failed", "reboot_in_progress", "rebooted", "scheduled", "skipped", "total", "upgraded")
     if err != nil {
     	return err
     }
@@ -98,6 +103,7 @@ func (u *UpgradeDevicesTargets) UnmarshalJSON(input []byte) error {
     
     u.DownloadRequested = temp.DownloadRequested
     u.Downloaded = temp.Downloaded
+    u.Downloading = temp.Downloading
     u.Failed = temp.Failed
     u.RebootInProgress = temp.RebootInProgress
     u.Rebooted = temp.Rebooted
@@ -112,6 +118,7 @@ func (u *UpgradeDevicesTargets) UnmarshalJSON(input []byte) error {
 type tempUpgradeDevicesTargets  struct {
     DownloadRequested []string `json:"download_requested,omitempty"`
     Downloaded        []string `json:"downloaded,omitempty"`
+    Downloading       []string `json:"downloading,omitempty"`
     Failed            []string `json:"failed,omitempty"`
     RebootInProgress  []string `json:"reboot_in_progress,omitempty"`
     Rebooted          []string `json:"rebooted,omitempty"`

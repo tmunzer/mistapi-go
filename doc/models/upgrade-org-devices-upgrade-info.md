@@ -33,15 +33,15 @@
       "downloaded1",
       "downloaded2"
     ],
+    "downloading": [
+      "downloading6"
+    ],
     "failed": [
       "failed6"
     ],
     "reboot_in_progress": [
       "reboot_in_progress3",
       "reboot_in_progress4"
-    ],
-    "rebooted": [
-      "rebooted5"
     ],
     "exampleAdditionalProperty": {
       "key1": "val1",

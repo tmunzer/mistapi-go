@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CurrentPhase` | `*int` | Optional | Current canary or rrm phase in progress |
-| `EnableP2p` | `*bool` | Optional | Whether to allow local AP-to-AP FW upgrade |
+| `EnableP2p` | `*bool` | Optional | Whether to allow local AP-to-AP FW upgrade<br>**Default**: `false` |
 | `Force` | `*bool` | Optional | Whether to force upgrade when requested version is same as running version |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
 | `MaxFailurePercentage` | `*int` | Optional | Percentage of failures allowed |
@@ -30,10 +30,10 @@
 
 ```json
 {
+  "enable_p2p": false,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "strategy": "big_bang",
   "current_phase": 156,
-  "enable_p2p": false,
   "force": false,
   "max_failure_percentage": 22,
   "max_failures": [
