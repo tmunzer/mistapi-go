@@ -16,7 +16,7 @@
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MexFilesize` | `*int` | Optional | In KB<br>**Constraints**: `>= 20`, `<= 40000` |
 | `MimeWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Protocols` | [`[]models.AvprofileProtocolsEnum`](../../doc/models/avprofile-protocols-enum.md) | Optional | - |

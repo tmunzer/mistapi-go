@@ -31,6 +31,7 @@ type AssetFilter struct {
     Id                    *uuid.UUID             `json:"id,omitempty"`
     // BLE manufacturing-specific company-id used to filter assets
     MfgCompanyId          *int                   `json:"mfg_company_id,omitempty"`
+    // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64               `json:"modified_time,omitempty"`
     Name                  string                 `json:"name"`
     OrgId                 *uuid.UUID             `json:"org_id,omitempty"`

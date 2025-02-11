@@ -24,7 +24,7 @@ Beacon
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `Mac` | `*string` | Optional | Optional, MAC of the beacon, currently used only to identify battery voltage |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | Name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Power` | `*int` | Optional | In dBm<br>**Default**: `-12`<br>**Constraints**: `>= -12`, `<= 100` |

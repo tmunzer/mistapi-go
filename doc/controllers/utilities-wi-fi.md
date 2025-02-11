@@ -85,7 +85,7 @@ To unauthorize multiple clients
 DisconnectSiteMultipleClients(
     ctx context.Context,
     siteId uuid.UUID,
-    body *models.MacAddresses) (
+    body []string) (
     http.Response,
     error)
 ```
@@ -95,7 +95,7 @@ DisconnectSiteMultipleClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.MacAddresses`](../../doc/models/mac-addresses.md) | Body, Optional | Request Body |
+| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -108,13 +108,12 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.MacAddresses{
-    Macs:                 []string{
-        "683b679ac024",
-    },
+body := []string{
+    "5c5b350e0001",
+    "5c5b350e0003",
 }
 
-resp, err := utilitiesWiFi.DisconnectSiteMultipleClients(ctx, siteId, &body)
+resp, err := utilitiesWiFi.DisconnectSiteMultipleClients(ctx, siteId, body)
 if err != nil {
     log.Fatalln(err)
 } else {

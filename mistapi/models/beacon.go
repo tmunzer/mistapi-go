@@ -30,6 +30,7 @@ type Beacon struct {
     Mac                  *string                `json:"mac,omitempty"`
     // Map where the device belongs to
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     // Name / label of the device
     Name                 *string                `json:"name,omitempty"`

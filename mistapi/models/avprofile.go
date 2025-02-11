@@ -19,6 +19,7 @@ type Avprofile struct {
     // In KB
     MexFilesize          *int                         `json:"mex_filesize,omitempty"`
     MimeWhitelist        []string                     `json:"mime_whitelist,omitempty"`
+    // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                     `json:"modified_time,omitempty"`
     Name                 string                       `json:"name"`
     OrgId                *uuid.UUID                   `json:"org_id,omitempty"`

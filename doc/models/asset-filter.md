@@ -25,7 +25,7 @@ Asset Filter
 | `IbeaconUuid` | `*uuid.UUID` | Optional | ibeacon uuid used to filter assets |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `MfgCompanyId` | `*int` | Optional | BLE manufacturing-specific company-id used to filter assets |
-| `ModifiedTime` | `*float64` | Optional | - |
+| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Rssi` | `*int` | Optional | - |

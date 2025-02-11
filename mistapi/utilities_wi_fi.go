@@ -66,7 +66,7 @@ func (u *UtilitiesWiFi) ReauthOrgDot1xWirelessClient(
 func (u *UtilitiesWiFi) DisconnectSiteMultipleClients(
     ctx context.Context,
     siteId uuid.UUID,
-    body *models.MacAddresses) (
+    body []string) (
     *http.Response,
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/clients/disconnect")

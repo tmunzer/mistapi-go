@@ -31,8 +31,8 @@ func TestUtilitiesWiFiTestDisconnectSiteMultipleClients(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    
-    resp, err := utilitiesWiFi.DisconnectSiteMultipleClients(ctx, siteId, nil)
+    body := []string{ "5c5b350e0001","5c5b350e0003" }
+    resp, err := utilitiesWiFi.DisconnectSiteMultipleClients(ctx, siteId, body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
