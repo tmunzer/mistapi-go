@@ -39,7 +39,11 @@ SSO Role response
       "orggroup_id": "000010e2-0000-0000-0000-000000000000",
       "role": "admin",
       "scope": "org",
-      "views": "super_observer",
+      "views": [
+        "location",
+        "lobby_admin",
+        "switch_admin"
+      ],
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

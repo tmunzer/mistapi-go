@@ -36,7 +36,7 @@ Gateway port config
 | `Networks` | `[]string` | Optional | If `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
 | `OuterVlanId` | `*int` | Optional | For Q-in-Q |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
-| `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the Untagged VLAN Network |
+| `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the name of the Network to be used as the Untagged VLAN |
 | `PreserveDscp` | `*bool` | Optional | Whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | If HA mode |
 | `RethIdx` | `*int` | Optional | If HA mode |

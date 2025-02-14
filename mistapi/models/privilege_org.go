@@ -12,15 +12,15 @@ import (
 // Privilieges settings
 type PrivilegeOrg struct {
     // If `scope`==`org`
-    OrgId                *uuid.UUID              `json:"org_id,omitempty"`
+    OrgId                *uuid.UUID               `json:"org_id,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
-    Role                 PrivilegeOrgRoleEnum    `json:"role"`
+    Role                 PrivilegeOrgRoleEnum     `json:"role"`
     // enum: `org`, `site`, `sitegroup`
-    Scope                PrivilegeOrgScopeEnum   `json:"scope"`
+    Scope                PrivilegeOrgScopeEnum    `json:"scope"`
     // If `scope`==`site`
-    SiteId               *uuid.UUID              `json:"site_id,omitempty"`
+    SiteId               *uuid.UUID               `json:"site_id,omitempty"`
     // If `scope`==`sitegroup`
-    SitegroupId          *uuid.UUID              `json:"sitegroup_id,omitempty"`
+    SitegroupId          *uuid.UUID               `json:"sitegroup_id,omitempty"`
     // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
     // You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.
     // Below are the list of supported UI views. Note that this is UI only feature.
@@ -34,8 +34,8 @@ type PrivilegeOrg struct {
     // | `switch_admin` | `helpdesk` | can view and manage Switch ports, can view wired clients |
     // | `mxedge_admin` | `admin` | can view and manage Mist edges and Mist tunnels |
     // | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
-    Views                *AdminPrivilegeViewEnum `json:"views,omitempty"`
-    AdditionalProperties map[string]interface{}  `json:"_"`
+    Views                []AdminPrivilegeViewEnum `json:"views,omitempty"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for PrivilegeOrg,
@@ -108,12 +108,12 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
 
 // tempPrivilegeOrg is a temporary struct used for validating the fields of PrivilegeOrg.
 type tempPrivilegeOrg  struct {
-    OrgId       *uuid.UUID              `json:"org_id,omitempty"`
-    Role        *PrivilegeOrgRoleEnum   `json:"role"`
-    Scope       *PrivilegeOrgScopeEnum  `json:"scope"`
-    SiteId      *uuid.UUID              `json:"site_id,omitempty"`
-    SitegroupId *uuid.UUID              `json:"sitegroup_id,omitempty"`
-    Views       *AdminPrivilegeViewEnum `json:"views,omitempty"`
+    OrgId       *uuid.UUID               `json:"org_id,omitempty"`
+    Role        *PrivilegeOrgRoleEnum    `json:"role"`
+    Scope       *PrivilegeOrgScopeEnum   `json:"scope"`
+    SiteId      *uuid.UUID               `json:"site_id,omitempty"`
+    SitegroupId *uuid.UUID               `json:"sitegroup_id,omitempty"`
+    Views       []AdminPrivilegeViewEnum `json:"views,omitempty"`
 }
 
 func (p *tempPrivilegeOrg) validate() error {

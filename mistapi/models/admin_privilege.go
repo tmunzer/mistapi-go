@@ -12,28 +12,28 @@ import (
 // Privilieges settings
 type AdminPrivilege struct {
     // Required if `scope`==`msp`
-    MspId                *uuid.UUID              `json:"msp_id,omitempty"`
+    MspId                *uuid.UUID               `json:"msp_id,omitempty"`
     // Logo of the MSP (if the MSP belongs to an Advanced tier)
-    MspLogoUrl           *string                 `json:"msp_logo_url,omitempty"`
+    MspLogoUrl           *string                  `json:"msp_logo_url,omitempty"`
     // Name of the MSP (if the org belongs to an MSP)
-    MspName              Optional[string]        `json:"msp_name"`
+    MspName              Optional[string]         `json:"msp_name"`
     // Custom url of the MSP (if the MSP belongs to an Advanced tier)
-    MspUrl               *string                 `json:"msp_url,omitempty"`
+    MspUrl               *string                  `json:"msp_url,omitempty"`
     // Name of the org/site/MSP depending on object scope
-    Name                 *string                 `json:"name,omitempty"`
+    Name                 *string                  `json:"name,omitempty"`
     // Required if `scope`==`org`
-    OrgId                *uuid.UUID              `json:"org_id,omitempty"`
+    OrgId                *uuid.UUID               `json:"org_id,omitempty"`
     // Name of the org (for a site belonging to org)
-    OrgName              *string                 `json:"org_name,omitempty"`
+    OrgName              *string                  `json:"org_name,omitempty"`
     // If `scope`==`orggroup`
-    OrggroupIds          []uuid.UUID             `json:"orggroup_ids,omitempty"`
+    OrggroupIds          []uuid.UUID              `json:"orggroup_ids,omitempty"`
     // access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
-    Role                 AdminPrivilegeRoleEnum  `json:"role"`
+    Role                 AdminPrivilegeRoleEnum   `json:"role"`
     // enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
-    Scope                AdminPrivilegeScopeEnum `json:"scope"`
+    Scope                AdminPrivilegeScopeEnum  `json:"scope"`
     // Required if `scope`==`site`
-    SiteId               *uuid.UUID              `json:"site_id,omitempty"`
-    SitegroupIds         []uuid.UUID             `json:"sitegroup_ids,omitempty"`
+    SiteId               *uuid.UUID               `json:"site_id,omitempty"`
+    SitegroupIds         []uuid.UUID              `json:"sitegroup_ids,omitempty"`
     // Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
     // You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.
     // Below are the list of supported UI views. Note that this is UI only feature.
@@ -47,8 +47,8 @@ type AdminPrivilege struct {
     // | `switch_admin` | `helpdesk` | can view and manage Switch ports, can view wired clients |
     // | `mxedge_admin` | `admin` | can view and manage Mist edges and Mist tunnels |
     // | `lobby_admin` | `admin` | full access to Org and Site Pre-shared keys |
-    Views                *AdminPrivilegeViewEnum `json:"views,omitempty"`
-    AdditionalProperties map[string]interface{}  `json:"_"`
+    Views                []AdminPrivilegeViewEnum `json:"views,omitempty"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AdminPrivilege,
@@ -165,7 +165,7 @@ type tempAdminPrivilege  struct {
     Scope        *AdminPrivilegeScopeEnum `json:"scope"`
     SiteId       *uuid.UUID               `json:"site_id,omitempty"`
     SitegroupIds []uuid.UUID              `json:"sitegroup_ids,omitempty"`
-    Views        *AdminPrivilegeViewEnum  `json:"views,omitempty"`
+    Views        []AdminPrivilegeViewEnum `json:"views,omitempty"`
 }
 
 func (a *tempAdminPrivilege) validate() error {

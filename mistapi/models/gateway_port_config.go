@@ -51,7 +51,7 @@ type GatewayPortConfig struct {
     // For Q-in-Q
     OuterVlanId          *int                           `json:"outer_vlan_id,omitempty"`
     PoeDisabled          *bool                          `json:"poe_disabled,omitempty"`
-    // Only for SRX and if `usage`==`lan`, the Untagged VLAN Network
+    // Only for SRX and if `usage`==`lan`, the name of the Network to be used as the Untagged VLAN
     PortNetwork          *string                        `json:"port_network,omitempty"`
     // Whether to preserve dscp when sending traffic over VPN (SSR-only)
     PreserveDscp         *bool                          `json:"preserve_dscp,omitempty"`

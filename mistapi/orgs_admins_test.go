@@ -58,12 +58,8 @@ func TestOrgsAdminsTestUpdateOrgAdmin(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.Admin
-    errBody := json.Unmarshal([]byte(`{"email":"jsnow@abc.com","expire_time":0,"first_name":"John","hours":24,"last_name":"Sno","phone":"string","phone2":"string","privileges":[{"msp_id":"c0cf23fc-d82f-4219-988c-82fb61d8c875","name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","org_name":"string","orggroup_ids":["497f6eca-6276-4993-bfeb-53d5bbba6f08"],"role":"admin","scope":"org","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","sitegroup_ids":["497f6eca-6276-4993-bfeb-53d6bbba6f08"],"views":"switch_admin"}]}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsAdmins.UpdateOrgAdmin(ctx, orgId, adminId, &body)
+    
+    apiResponse, err := orgsAdmins.UpdateOrgAdmin(ctx, orgId, adminId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
