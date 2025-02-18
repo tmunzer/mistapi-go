@@ -24,7 +24,7 @@
 {
   "progress": 10,
   "status_id": 5,
-  "timestamp": 1716480189.81648,
+  "timestamp": 1716480189.8164835,
   "will_retry": false,
   "status": "failed",
   "exampleAdditionalProperty": {

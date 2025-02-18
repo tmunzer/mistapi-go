@@ -28,6 +28,6 @@ func TestOrgsVarsTestSearchOrgVars(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"end":1693952979,"limit":10,"results":[{"created_time":1618457655.3848579,"modified_time":1693610886.4778049,"org_id":"0c160b7f-1027-4cd1-923b-744534c4b070","site_id":"1519f016-4e41-47c0-a396-cce4d04bac0b","src":"site","var":"mvp"}],"start":1693949379,"total":1}`
+    expected := `{"end":1693952979,"limit":10,"results":[{"created_time":1618457655.384858,"modified_time":1693610886.477805,"org_id":"0c160b7f-1027-4cd1-923b-744534c4b070","site_id":"1519f016-4e41-47c0-a396-cce4d04bac0b","src":"site","var":"mvp"}],"start":1693949379,"total":1}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

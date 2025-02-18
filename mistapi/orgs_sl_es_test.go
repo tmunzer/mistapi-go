@@ -30,6 +30,6 @@ func TestOrgsSLEsTestGetOrgSitesSle(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"end":1651323600,"interval":3600,"limit":1,"page":2,"results":[{"application_health":0.82500000479428659,"gateway-health":1,"num_clients":65,"num_gateways":1,"site_id":"f5fcbee5-1234-5678-9101-1619ede87879","wan-link-health":0.99884710892724837}],"start":1651269600,"total":4}`
+    expected := `{"end":1651323600,"interval":3600,"limit":1,"page":2,"results":[{"application_health":0.8250000047942866,"gateway-health":1,"num_clients":65,"num_gateways":1,"site_id":"f5fcbee5-1234-5678-9101-1619ede87879","wan-link-health":0.9988471089272484}],"start":1651269600,"total":4}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

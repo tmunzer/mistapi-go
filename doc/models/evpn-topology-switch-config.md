@@ -127,7 +127,7 @@
       "allow_dhcpd": false,
       "allow_multiple_supplicants": false,
       "bypass_auth_when_server_down": false,
-      "bypass_auth_when_server_down_for_unkonwn_client": false,
+      "bypass_auth_when_server_down_for_unkown_client": false,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

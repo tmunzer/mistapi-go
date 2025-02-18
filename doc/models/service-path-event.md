@@ -36,7 +36,7 @@
   "port_id": "ge-1/0/6",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "text": "Peer Path Down",
-  "timestamp": 1697037328.65177,
+  "timestamp": 1697037328.651775,
   "type": "GW_SERVICE_PATH_REMOVE",
   "version": "6.1.5-14.lts",
   "vpn_name": "Syracuse_HUB",

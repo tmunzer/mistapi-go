@@ -43,8 +43,8 @@
       "name": "6fa474be7ae5",
       "rssi": -60,
       "temperatur": 23,
-      "x": 280.199181403102,
-      "y": 420.298772104653,
+      "x": 280.19918140310193,
+      "y": 420.2987721046529,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
