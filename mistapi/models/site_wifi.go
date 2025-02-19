@@ -15,7 +15,7 @@ type SiteWifi struct {
     // When proxy_arp is enabled, check for arp spoofing.
     EnableArpSpoofCheck               *bool                          `json:"enable_arp_spoof_check,omitempty"`
     EnableSharedRadioScanning         *bool                          `json:"enable_shared_radio_scanning,omitempty"`
-    // Enable WIFI feature (using SUB-MAN license)
+    // Enable Wi-Fi feature (using SUB-MAN license)
     Enabled                           *bool                          `json:"enabled,omitempty"`
     // Whether to locate connected clients
     LocateConnected                   *bool                          `json:"locate_connected,omitempty"`

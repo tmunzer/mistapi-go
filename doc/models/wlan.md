@@ -30,8 +30,8 @@
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | List of RADIUS authentication servers, at least one is needed if `auth type`==`eap`, order matters where the first one is treated as primary |
 | `AuthServersNasId` | `models.Optional[string]` | Optional | Optional, up to 48 bytes, will be dynamically generated if not provided. used only for authentication servers |
 | `AuthServersNasIp` | `models.Optional[string]` | Optional | Optional, NAS-IP-ADDRESS to use |
-| `AuthServersRetries` | `*int` | Optional | Radius auth session retries. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.<br>**Default**: `2` |
-| `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.<br>**Default**: `5` |
+| `AuthServersRetries` | `*int` | Optional | Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.<br>**Default**: `2` |
+| `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.<br>**Default**: `5` |
 | `Band` | `*string` | Optional | `band` is deprecated and kept for backward compability. Use bands instead |
 | `BandSteer` | `*bool` | Optional | Whether to enable band_steering, this works only when band==both<br>**Default**: `false` |
 | `BandSteerForceBand5` | `*bool` | Optional | Force dual_band capable client to connect to 5G<br>**Default**: `false` |
@@ -55,7 +55,7 @@
 | `DisableWmm` | `*bool` | Optional | Whether to disable WMM<br>**Default**: `false` |
 | `DnsServerRewrite` | [`models.Optional[models.WlanDnsServerRewrite]`](../../doc/models/wlan-dns-server-rewrite.md) | Optional | For radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns) |
 | `Dtim` | `*int` | Optional | **Default**: `2` |
-| `DynamicPsk` | [`models.Optional[models.WlanDynamicPsk]`](../../doc/models/wlan-dynamic-psk.md) | Optional | For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)<br><br>* PSK will come from RADIUS server<br>* AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)<br>* AP sends BSSID:SSID as Caller-Station-ID<br>* `auth_servers` is required<br>* PSK will come from cloud WLC if source is cloud_psks<br>* default_psk will be used if cloud WLC is not available<br>* `multi_psk_only` and `psk` is ignored<br>* `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap) |
+| `DynamicPsk` | [`models.Optional[models.WlanDynamicPsk]`](../../doc/models/wlan-dynamic-psk.md) | Optional | For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)<br><br>* PSK will come from RADIUS server<br>* AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)<br>* AP sends BSSID:SSID as Caller-Station-ID<br>* `auth_servers` is required<br>* PSK will come from cloud WLC if source is cloud_psks<br>* default_psk will be used if cloud WLC is not available<br>* `multi_psk_only` and `psk` is ignored<br>* `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap) |
 | `DynamicVlan` | [`models.Optional[models.WlanDynamicVlan]`](../../doc/models/wlan-dynamic-vlan.md) | Optional | For 802.1x |
 | `EnableLocalKeycaching` | `*bool` | Optional | Enable AP-AP keycaching via multicast<br>**Default**: `false` |
 | `EnableWirelessBridging` | `*bool` | Optional | By default, we'd inspect all DHCP packets and drop those unrelated to the wireless client itself in the case where client is a wireless bridge (DHCP packets for other MACs will need to be orwarded), wireless_bridging can be enabled<br>**Default**: `false` |
@@ -94,7 +94,7 @@
 | `PortalSsoUrl` | `models.Optional[string]` | Optional | - |
 | `PortalTemplateUrl` | `models.Optional[string]` | Optional | N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template. |
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
-| `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | Radsec settings |
+| `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | RadSec settings |
 | `Rateset` | [`map[string]models.WlanDatarates`](../../doc/models/wlan-datarates.md) | Optional | Property key is the RF band. enum: `24`, `5`, `6` |
 | `ReconnectClientsWhenRoamingMxcluster` | `*bool` | Optional | When different mxcluster is on different subnet, we'd want to disconnect clients (so they'll reconnect and get new IPs)<br>**Default**: `false` |
 | `RoamMode` | [`*models.WlanRoamModeEnum`](../../doc/models/wlan-roam-mode-enum.md) | Optional | enum: `11r`, `OKC`, `NONE`<br>**Default**: `"NONE"` |
@@ -104,7 +104,7 @@
 | `Ssid` | `string` | Required | Name of the SSID |
 | `TemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Thumbnail` | `models.Optional[string]` | Optional | Url of portal background image thumbnail |
-| `UseEapolV1` | `*bool` | Optional | If `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
+| `UseEapolV1` | `*bool` | Optional | If `auth.type`==`eap` or `auth.type`==`psk`, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | If vlan tagging is enabled<br>**Default**: `false` |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `VlanIds` | [`*models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | - |

@@ -13,8 +13,8 @@ WxLAN Tag
 * radius_group: this is a smart tag that matches RADIUS-Filter-ID, Airespace-ACL-Name (VendorID=14179, VendorType=6) / Aruba-User-Role (VendorID=14823, VendorType=1)
 * radius_username: this matches the ATTR-User-Name(1)
 * radius_class: thie matches the ATTR-Class(25)
-* radius_attr: the values are [ \u201C6=1\u201D, \u201C26=10.2.3.4\u201D ], this support other RADIUS attributes where we know the type
-* radius_vendor: the values are [ \u201C14179.10=1\u201D, \u201C14178.16=1.2.3.4\u201D ], this matches vendor attributes and will be dynamically evaluated
+* radius_attr: the values are [ "6=1" , "26=10.2.3.4" ], this support other RADIUS attributes where we know the type
+* radius_vendor: the values are [ "14179.10=1" , "14178.16=1.2.3.4" ], this matches vendor attributes and will be dynamically evaluated
 
 *This model accepts additional fields of type interface{}.*
 
@@ -42,7 +42,7 @@ WxLAN Tag
 | `Specs` | [`[]models.WxlanTagSpec`](../../doc/models/wxlan-tag-spec.md) | Optional | If `type`==`spec` |
 | `Subnet` | `*string` | Optional | - |
 | `Type` | [`models.WxlanTagTypeEnum`](../../doc/models/wxlan-tag-type-enum.md) | Required | enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan` |
-| `Values` | `[]string` | Optional | Required if `type`==`match` and<br><br>* `match`==`ap_id`: list of AP IDs<br>* `match`==`app`: list of Application Names<br>* `match`==`asset_mac`: list of Asset MAC Addresses<br>* `match`==`client_mac`: list of Client MAC Addresses<br>* `match`==`hostname`: list of Resources Hostnames<br>* `match`==`ip_range_subnet`: list of IP Addresses and/or CIDRs<br>* `match`==`psk_name`: list of PSK Names<br>* `match`==`psk_role`: list of PSK Roles<br>* `match`==`port`: list of Ports or Port Ranges<br>* `match`==`radius_attr`: list of RADIUS Attributes. The values are [ “6=1”, “26=10.2.3.4” ], this support other RADIUS attributes where we know the type<br>* `match`==`radius_class`: list of RADIUS Classes. This matches the ATTR-Class(25)<br>* `match`==`radius_group`: list of RADIUS Groups. This is a smart tag that matches RADIUS-Filter-ID, Airespace-ACL-Name (VendorID=14179, VendorType=6) / Aruba-User-Role (VendorID=14823, VendorType=1)<br>* `match`==`radius_username`: list of RADIUS Usernames. This matches the ATTR-User-Name(1)<br>* `match`==`sdkclient_uuid`: list of SDK UUIDs<br>* `match`==`wlan_id`: list of WLAN IDs<br><br>**Notes**:<br>Variables are not allowed |
+| `Values` | `[]string` | Optional | Required if `type`==`match` and<br><br>* `match`==`ap_id`: list of AP IDs<br>* `match`==`app`: list of Application Names<br>* `match`==`asset_mac`: list of Asset MAC Addresses<br>* `match`==`client_mac`: list of Client MAC Addresses<br>* `match`==`hostname`: list of Resources Hostnames<br>* `match`==`ip_range_subnet`: list of IP Addresses and/or CIDRs<br>* `match`==`psk_name`: list of PSK Names<br>* `match`==`psk_role`: list of PSK Roles<br>* `match`==`port`: list of Ports or Port Ranges<br>* `match`==`radius_attr`: list of RADIUS Attributes. The values are [ "6=1", "26=10.2.3.4" ], this support other RADIUS attributes where we know the type<br>* `match`==`radius_class`: list of RADIUS Classes. This matches the ATTR-Class(25)<br>* `match`==`radius_group`: list of RADIUS Groups. This is a smart tag that matches RADIUS-Filter-ID, Airespace-ACL-Name (VendorID=14179, VendorType=6) / Aruba-User-Role (VendorID=14823, VendorType=1)<br>* `match`==`radius_username`: list of RADIUS Usernames. This matches the ATTR-User-Name(1)<br>* `match`==`sdkclient_uuid`: list of SDK UUIDs<br>* `match`==`wlan_id`: list of WLAN IDs<br><br>**Notes**:<br>Variables are not allowed |
 | `VlanId` | [`*models.WxlanTagVlanId`](../../doc/models/containers/wxlan-tag-vlan-id.md) | Optional | If `type`==`vlan_id`, VLAN ID or variable |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

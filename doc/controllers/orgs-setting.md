@@ -559,7 +559,7 @@ if err != nil {
 
 Verify Customer PCAP Bucket
 
-**Note**: If successful, a “VERIFIED” file will be created in the bucket
+**Note**: If successful, a "VERIFIED" file will be created in the bucket
 
 ```go
 VerifyOrgCustomBucket(

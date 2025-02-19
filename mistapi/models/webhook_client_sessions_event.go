@@ -17,13 +17,13 @@ type WebhookClientSessionsEvent struct {
     // 5GHz or 2.4GHz band
     Band                 string                 `json:"band"`
     Bssid                string                 `json:"bssid"`
-    // Device family E.g. “Mac”, “iPhone”, “Apple watch”
+    // Device family E.g. "Mac", "iPhone", "Apple watch"
     ClientFamily         string                 `json:"client_family"`
-    // Device manufacturer E.g. “Apple”
+    // Device manufacturer E.g. "Apple"
     ClientManufacture    string                 `json:"client_manufacture"`
-    // Device model E.g. “8+”, “XS”
+    // Device model E.g. "8+", "XS"
     ClientModel          string                 `json:"client_model"`
-    // Device operating system E.g. “Mojave”, “Windows 10”, “Linux”
+    // Device operating system E.g. "Mojave", "Windows 10", "Linux"
     ClientOs             string                 `json:"client_os"`
     // Time when the user connects
     Connect              int                    `json:"connect"`

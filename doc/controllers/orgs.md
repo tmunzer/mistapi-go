@@ -96,7 +96,7 @@ if err != nil {
 
 # Create Org
 
-Org admin can invite people to manage the org. Furthermore, he can dictate the level of security those accounts are. The check is enforced when the invited admin tries to “accept” the invitation and every time the admin tries to login
+Org admin can invite people to manage the org. Furthermore, he can dictate the level of security those accounts are. The check is enforced when the invited admin tries to "accept" the invitation and every time the admin tries to login
 
 ```go
 CreateOrg(

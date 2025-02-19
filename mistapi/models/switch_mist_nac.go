@@ -6,7 +6,7 @@ import (
 )
 
 // SwitchMistNac represents a SwitchMistNac struct.
-// Enable mist_nac to use radsec
+// Enable mist_nac to use RadSec
 type SwitchMistNac struct {
     Enabled              *bool                  `json:"enabled,omitempty"`
     Network              *string                `json:"network,omitempty"`

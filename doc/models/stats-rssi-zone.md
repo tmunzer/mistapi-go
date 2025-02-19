@@ -21,7 +21,7 @@ Zone statistics
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | Name of the zone |
 | `NumAssets` | `*int` | Optional | Number of assets |
-| `NumClients` | `*int` | Optional | Number of wifi clients (unconnected + connected) |
+| `NumClients` | `*int` | Optional | Number of Wi-Fi clients (unconnected + connected) |
 | `NumSdkclients` | `*int` | Optional | Number of sdk clients |
 | `OccupancyLimit` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

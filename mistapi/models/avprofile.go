@@ -17,12 +17,13 @@ type Avprofile struct {
     // Unique ID of the object instance in the Mist Organnization
     Id                   *uuid.UUID                   `json:"id,omitempty"`
     // In KB
-    MexFilesize          *int                         `json:"mex_filesize,omitempty"`
+    MaxFilesize          *int                         `json:"max_filesize,omitempty"`
     MimeWhitelist        []string                     `json:"mime_whitelist,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                     `json:"modified_time,omitempty"`
     Name                 string                       `json:"name"`
     OrgId                *uuid.UUID                   `json:"org_id,omitempty"`
+    // List of protocols to monitor. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
     Protocols            []AvprofileProtocolsEnum     `json:"protocols,omitempty"`
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     UrlWhitelist         []string                     `json:"url_whitelist,omitempty"`
@@ -33,8 +34,8 @@ type Avprofile struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a Avprofile) String() string {
     return fmt.Sprintf(
-    	"Avprofile[CreatedTime=%v, FallbackAction=%v, Id=%v, MexFilesize=%v, MimeWhitelist=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Protocols=%v, SiteId=%v, UrlWhitelist=%v, AdditionalProperties=%v]",
-    	a.CreatedTime, a.FallbackAction, a.Id, a.MexFilesize, a.MimeWhitelist, a.ModifiedTime, a.Name, a.OrgId, a.Protocols, a.SiteId, a.UrlWhitelist, a.AdditionalProperties)
+    	"Avprofile[CreatedTime=%v, FallbackAction=%v, Id=%v, MaxFilesize=%v, MimeWhitelist=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Protocols=%v, SiteId=%v, UrlWhitelist=%v, AdditionalProperties=%v]",
+    	a.CreatedTime, a.FallbackAction, a.Id, a.MaxFilesize, a.MimeWhitelist, a.ModifiedTime, a.Name, a.OrgId, a.Protocols, a.SiteId, a.UrlWhitelist, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Avprofile.
@@ -43,7 +44,7 @@ func (a Avprofile) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "created_time", "fallback_action", "id", "mex_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist"); err != nil {
+        "created_time", "fallback_action", "id", "max_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -62,8 +63,8 @@ func (a Avprofile) toMap() map[string]any {
     if a.Id != nil {
         structMap["id"] = a.Id
     }
-    if a.MexFilesize != nil {
-        structMap["mex_filesize"] = a.MexFilesize
+    if a.MaxFilesize != nil {
+        structMap["max_filesize"] = a.MaxFilesize
     }
     if a.MimeWhitelist != nil {
         structMap["mime_whitelist"] = a.MimeWhitelist
@@ -99,7 +100,7 @@ func (a *Avprofile) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "fallback_action", "id", "mex_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "fallback_action", "id", "max_filesize", "mime_whitelist", "modified_time", "name", "org_id", "protocols", "site_id", "url_whitelist")
     if err != nil {
     	return err
     }
@@ -108,7 +109,7 @@ func (a *Avprofile) UnmarshalJSON(input []byte) error {
     a.CreatedTime = temp.CreatedTime
     a.FallbackAction = temp.FallbackAction
     a.Id = temp.Id
-    a.MexFilesize = temp.MexFilesize
+    a.MaxFilesize = temp.MaxFilesize
     a.MimeWhitelist = temp.MimeWhitelist
     a.ModifiedTime = temp.ModifiedTime
     a.Name = *temp.Name
@@ -124,7 +125,7 @@ type tempAvprofile  struct {
     CreatedTime    *float64                     `json:"created_time,omitempty"`
     FallbackAction *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
     Id             *uuid.UUID                   `json:"id,omitempty"`
-    MexFilesize    *int                         `json:"mex_filesize,omitempty"`
+    MaxFilesize    *int                         `json:"max_filesize,omitempty"`
     MimeWhitelist  []string                     `json:"mime_whitelist,omitempty"`
     ModifiedTime   *float64                     `json:"modified_time,omitempty"`
     Name           *string                      `json:"name"`

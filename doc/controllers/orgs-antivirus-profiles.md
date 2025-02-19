@@ -49,17 +49,8 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
-    MimeWhitelist:        []string{
-    },
-    Name:                 "av-custom",
-    Protocols:            []models.AvprofileProtocolsEnum{
-    },
-    UrlWhitelist:         []string{
-    },
-    AdditionalProperties: map[string]interface{}{
-        "max_filesize": interface{}("10000"),
-    },
+    MaxFilesize:          models.ToPointer(10000),
+    Name:                 "name6",
 }
 
 apiResponse, err := orgsAntivirusProfiles.CreateOrgAntivirusProfile(ctx, orgId, &body)
@@ -69,19 +60,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "fallback_action": "permit",
-  "max_filesize": 10000,
-  "mime_whitelist": [],
-  "name": "av-custom",
-  "protocols": [],
-  "url_whitelist": []
 }
 ```
 
@@ -104,7 +82,7 @@ DeleteOrgAntivirusProfile
 DeleteOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID) (
+    avprofileId uuid.UUID) (
     http.Response,
     error)
 ```
@@ -114,7 +92,7 @@ DeleteOrgAntivirusProfile(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `avprofilesId` | `uuid.UUID` | Template, Required | - |
+| `avprofileId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
 
@@ -127,9 +105,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-avprofilesId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+avprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := orgsAntivirusProfiles.DeleteOrgAntivirusProfile(ctx, orgId, avprofilesId)
+resp, err := orgsAntivirusProfiles.DeleteOrgAntivirusProfile(ctx, orgId, avprofileId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -156,7 +134,7 @@ Get Org Antivirus Profile
 GetOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID) (
+    avprofileId uuid.UUID) (
     models.ApiResponse[models.Avprofile],
     error)
 ```
@@ -166,7 +144,7 @@ GetOrgAntivirusProfile(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `avprofilesId` | `uuid.UUID` | Template, Required | - |
+| `avprofileId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
 
@@ -179,28 +157,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-avprofilesId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+avprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsAntivirusProfiles.GetOrgAntivirusProfile(ctx, orgId, avprofilesId)
+apiResponse, err := orgsAntivirusProfiles.GetOrgAntivirusProfile(ctx, orgId, avprofileId)
 if err != nil {
     log.Fatalln(err)
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "fallback_action": "permit",
-  "max_filesize": 10000,
-  "mime_whitelist": [],
-  "name": "av-custom",
-  "protocols": [],
-  "url_whitelist": []
 }
 ```
 
@@ -262,21 +227,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "fallback_action": "permit",
-    "max_filesize": 10000,
-    "mime_whitelist": [],
-    "name": "av-custom",
-    "protocols": [],
-    "url_whitelist": []
-  }
-]
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -296,7 +246,7 @@ Update Org Antivirus Profile
 UpdateOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID,
+    avprofileId uuid.UUID,
     body *models.Avprofile) (
     models.ApiResponse[models.Avprofile],
     error)
@@ -307,7 +257,7 @@ UpdateOrgAntivirusProfile(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `avprofilesId` | `uuid.UUID` | Template, Required | - |
+| `avprofileId` | `uuid.UUID` | Template, Required | - |
 | `body` | [`*models.Avprofile`](../../doc/models/avprofile.md) | Body, Optional | - |
 
 ## Response Type
@@ -321,42 +271,20 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-avprofilesId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+avprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
-    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
-    MimeWhitelist:        []string{
-    },
-    Name:                 "av-custom",
-    Protocols:            []models.AvprofileProtocolsEnum{
-    },
-    UrlWhitelist:         []string{
-    },
-    AdditionalProperties: map[string]interface{}{
-        "max_filesize": interface{}("10000"),
-    },
+    MaxFilesize:          models.ToPointer(10000),
+    Name:                 "name6",
 }
 
-apiResponse, err := orgsAntivirusProfiles.UpdateOrgAntivirusProfile(ctx, orgId, avprofilesId, &body)
+apiResponse, err := orgsAntivirusProfiles.UpdateOrgAntivirusProfile(ctx, orgId, avprofileId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "fallback_action": "permit",
-  "max_filesize": 10000,
-  "mime_whitelist": [],
-  "name": "av-custom",
-  "protocols": [],
-  "url_whitelist": []
 }
 ```
 

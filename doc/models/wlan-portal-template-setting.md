@@ -25,7 +25,7 @@ Portal template wlan settings
 | `AuthButtonPassphrase` | `*string` | Optional | Label for passphrase auth button<br>**Default**: `"Sign in with Passphrase"` |
 | `AuthButtonSms` | `*string` | Optional | Label for SMS auth button<br>**Default**: `"Sign in with Text Message"` |
 | `AuthButtonSponsor` | `*string` | Optional | Label for Sponsor auth button<br>**Default**: `"Sign in as Guest"` |
-| `AuthLabel` | `*string` | Optional | **Default**: `"Connect to WiFi with"` |
+| `AuthLabel` | `*string` | Optional | **Default**: `"Connect to Wi-Fi with"` |
 | `BackLink` | `*string` | Optional | Label of the link to go back to /logon |
 | `CaES` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `Color` | `*string` | Optional | Portal main color<br>**Default**: `"#1074bc"` |
@@ -50,7 +50,7 @@ Portal template wlan settings
 | `EmailError` | `*string` | Optional | Error message when email not provided<br>**Default**: `"Please provide valid email"` |
 | `EmailFieldLabel` | `*string` | Optional | **Default**: `"Enter your email address"` |
 | `EmailLabel` | `*string` | Optional | Label of email field<br>**Default**: `"Email"` |
-| `EmailMessage` | `*string` | Optional | **Default**: `"We will email you an authentication code which you can use to connect to the WiFi network."` |
+| `EmailMessage` | `*string` | Optional | **Default**: `"We will email you an authentication code which you can use to connect to the Wi-Fi network."` |
 | `EmailSubmit` | `*string` | Optional | Label for confirmation code submit button using email auth<br>**Default**: `"Send Access Code"` |
 | `EmailTitle` | `*string` | Optional | Title for the Email registration<br>**Default**: `"Sign in with Email"` |
 | `EnGB` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
@@ -100,7 +100,7 @@ Portal template wlan settings
 | `PassphraseCancel` | `*string` | Optional | Label for the Passphrase cancel button<br>**Default**: `"Cancel"` |
 | `PassphraseError` | `*string` | Optional | Error message when invalid passphrase is provided<br>**Default**: `"Invalid Passphrase"` |
 | `PassphraseLabel` | `*string` | Optional | Passphrase<br>**Default**: `"Passphrase"` |
-| `PassphraseMessage` | `*string` | Optional | **Default**: `"Enter the secret passphrase to access the WiFi network."` |
+| `PassphraseMessage` | `*string` | Optional | **Default**: `"Enter the secret passphrase to access the Wi-Fi network."` |
 | `PassphraseSubmit` | `*string` | Optional | Label for the Passphrase submit button<br>**Default**: `"Sign in"` |
 | `PassphraseTitle` | `*string` | Optional | Title for passphrase details page<br>**Default**: `"Sign in with Passphrase"` |
 | `PlPL` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
@@ -131,12 +131,12 @@ Portal template wlan settings
 | `SmsCountryFormat` | `*string` | Optional | **Default**: `"+1"` |
 | `SmsHaveAccessCode` | `*string` | Optional | Label for checkbox to specify that the user has access code<br>**Default**: `"I have an access code"` |
 | `SmsIsTwilio` | `*bool` | Optional | **Default**: `false` |
-| `SmsMessageFormat` | `*string` | Optional | Format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is. |
+| `SmsMessageFormat` | `*string` | Optional | Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is. |
 | `SmsNumberCancel` | `*string` | Optional | Label for canceling mobile details for SMS auth<br>**Default**: `"Cancel"` |
 | `SmsNumberError` | `*string` | Optional | **Default**: `"Invalid Mobile Number"` |
 | `SmsNumberFieldLabel` | `*string` | Optional | Label for field to provide mobile number<br>**Default**: `"Mobile Number"` |
 | `SmsNumberFormat` | `*string` | Optional | **Default**: `"2125551212 (digits only)"` |
-| `SmsNumberMessage` | `*string` | Optional | **Default**: `"We will send an access code to your mobile number which you can use to connect to the WiFi network. Message and data rates may apply."` |
+| `SmsNumberMessage` | `*string` | Optional | **Default**: `"We will send an access code to your mobile number which you can use to connect to the Wi-Fi network. Message and data rates may apply."` |
 | `SmsNumberSubmit` | `*string` | Optional | Label for submit button for code generation<br>**Default**: `"Send Access Code"` |
 | `SmsNumberTitle` | `*string` | Optional | Title for phone number details<br>**Default**: `"Sign in with Text Message"` |
 | `SmsUsernameFormat` | `*string` | Optional | **Default**: `"username"` |
@@ -152,11 +152,11 @@ Portal template wlan settings
 | `SponsorName` | `*string` | Optional | Label for Sponsor Name<br>**Default**: `"Sponsor Name"` |
 | `SponsorNameError` | `*string` | Optional | **Default**: `"Please provide sponsor name"` |
 | `SponsorNotePending` | `*string` | Optional | **Default**: `"Please wait for them to acknowledge."` |
-| `SponsorRequestAccess` | `*string` | Optional | Submit button label request Wifi Access and notify sponsor about guest request<br>**Default**: `"Request WiFi Access"` |
+| `SponsorRequestAccess` | `*string` | Optional | Submit button label request Wifi Access and notify sponsor about guest request<br>**Default**: `"Request Wi-Fi Access"` |
 | `SponsorStatusApproved` | `*string` | Optional | Text to display if sponsor approves request<br>**Default**: `"Your request was approved"` |
 | `SponsorStatusDenied` | `*string` | Optional | Text to display when sponsor denies request<br>**Default**: `"Your request was denied"` |
 | `SponsorStatusPending` | `*string` | Optional | Text to display if request is still pending<br>**Default**: `"Notification Sent"` |
-| `SponsorSubmit` | `*string` | Optional | Submit button label to notify sponsor about guest request<br>**Default**: `"Request WiFi Access"` |
+| `SponsorSubmit` | `*string` | Optional | Submit button label to notify sponsor about guest request<br>**Default**: `"Request Wi-Fi Access"` |
 | `SponsorsError` | `*string` | Optional | **Default**: `"Please select a sponsor"` |
 | `SponsorsFieldLabel` | `*string` | Optional | **Default**: `"Sponsors"` |
 | `SvSE` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
@@ -188,7 +188,7 @@ Portal template wlan settings
   "authButtonPassphrase": "Sign in with Passphrase",
   "authButtonSms": "Sign in with Text Message",
   "authButtonSponsor": "Sign in as Guest",
-  "authLabel": "Connect to WiFi with",
+  "authLabel": "Connect to Wi-Fi with",
   "color": "#1074bc",
   "colorDark": "#0b5183",
   "colorLight": "#3589c6",
@@ -207,7 +207,7 @@ Portal template wlan settings
   "emailError": "Please provide valid email",
   "emailFieldLabel": "Enter your email address",
   "emailLabel": "Email",
-  "emailMessage": "We will email you an authentication code which you can use to connect to the WiFi network.",
+  "emailMessage": "We will email you an authentication code which you can use to connect to the Wi-Fi network.",
   "emailSubmit": "Send Access Code",
   "emailTitle": "Sign in with Email",
   "field1": false,
@@ -237,7 +237,7 @@ Portal template wlan settings
   "passphraseCancel": "Cancel",
   "passphraseError": "Invalid Passphrase",
   "passphraseLabel": "Passphrase",
-  "passphraseMessage": "Enter the secret passphrase to access the WiFi network.",
+  "passphraseMessage": "Enter the secret passphrase to access the Wi-Fi network.",
   "passphraseSubmit": "Sign in",
   "passphraseTitle": "Sign in with Passphrase",
   "poweredBy": true,
@@ -266,7 +266,7 @@ Portal template wlan settings
   "smsNumberError": "Invalid Mobile Number",
   "smsNumberFieldLabel": "Mobile Number",
   "smsNumberFormat": "2125551212 (digits only)",
-  "smsNumberMessage": "We will send an access code to your mobile number which you can use to connect to the WiFi network. Message and data rates may apply.",
+  "smsNumberMessage": "We will send an access code to your mobile number which you can use to connect to the Wi-Fi network. Message and data rates may apply.",
   "smsNumberSubmit": "Send Access Code",
   "smsNumberTitle": "Sign in with Text Message",
   "smsUsernameFormat": "username",
@@ -280,11 +280,11 @@ Portal template wlan settings
   "sponsorName": "Sponsor Name",
   "sponsorNameError": "Please provide sponsor name",
   "sponsorNotePending": "Please wait for them to acknowledge.",
-  "sponsorRequestAccess": "Request WiFi Access",
+  "sponsorRequestAccess": "Request Wi-Fi Access",
   "sponsorStatusApproved": "Your request was approved",
   "sponsorStatusDenied": "Your request was denied",
   "sponsorStatusPending": "Notification Sent",
-  "sponsorSubmit": "Request WiFi Access",
+  "sponsorSubmit": "Request Wi-Fi Access",
   "sponsorsError": "Please select a sponsor",
   "sponsorsFieldLabel": "Sponsors",
   "tos": true,

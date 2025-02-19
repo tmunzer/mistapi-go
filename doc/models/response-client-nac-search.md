@@ -33,7 +33,7 @@
         "ap7",
         "ap8"
       ],
-      "auth_type": "auth_type4",
+      "auth_type": "peap-tls",
       "cert_cn": [
         "cert_cn9",
         "cert_cn8"

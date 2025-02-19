@@ -10,7 +10,7 @@ type PskPortalTemplate struct {
     // defines alignment on portal. enum: `center`, `left`, `right`
     Alignment            *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
     Color                *string                      `json:"color,omitempty"`
-    // Custom logo with “data:image/png;base64,” format.  default null, uses Juniper Mist Logo
+    // Custom logo with "data:image/png;base64," format.  default null, uses Juniper Mist Logo
     Logo                 Optional[string]             `json:"logo"`
     // Whether to hide "Powered by Juniper Mist" and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`

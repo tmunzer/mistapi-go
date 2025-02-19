@@ -10,13 +10,13 @@ import (
 type SiteOccupancyAnalytics struct {
     // Indicate whether named BLE assets should be included in the zone occupancy calculation
     AssetsEnabled             *bool                  `json:"assets_enabled,omitempty"`
-    // Indicate whether connected WiFi clients should be included in the zone occupancy calculation
+    // Indicate whether connected Wi-Fi clients should be included in the zone occupancy calculation
     ClientsEnabled            *bool                  `json:"clients_enabled,omitempty"`
     // Minimum duration
     MinDuration               *int                   `json:"min_duration,omitempty"`
     // Indicate whether SDK clients should be included in the zone occupancy calculation
     SdkclientsEnabled         *bool                  `json:"sdkclients_enabled,omitempty"`
-    // Indicate whether unconnected WiFi clients should be included in the zone occupancy calculation
+    // Indicate whether unconnected Wi-Fi clients should be included in the zone occupancy calculation
     UnconnectedClientsEnabled *bool                  `json:"unconnected_clients_enabled,omitempty"`
     AdditionalProperties      map[string]interface{} `json:"_"`
 }

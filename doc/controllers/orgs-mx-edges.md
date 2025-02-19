@@ -224,7 +224,7 @@ if err != nil {
 
 # Claim Org Mx Edge
 
-For a Mist Edge in default state, it will show a random claim code like `135-546-673` which you can “claim” it into your Org
+For a Mist Edge in default state, it will show a random claim code like `135-546-673` which you can "claim" it into your Org
 
 ```go
 ClaimOrgMxEdge(

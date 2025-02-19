@@ -14,10 +14,10 @@ Occupancy Analytics settings
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AssetsEnabled` | `*bool` | Optional | Indicate whether named BLE assets should be included in the zone occupancy calculation<br>**Default**: `false` |
-| `ClientsEnabled` | `*bool` | Optional | Indicate whether connected WiFi clients should be included in the zone occupancy calculation<br>**Default**: `true` |
+| `ClientsEnabled` | `*bool` | Optional | Indicate whether connected Wi-Fi clients should be included in the zone occupancy calculation<br>**Default**: `true` |
 | `MinDuration` | `*int` | Optional | Minimum duration<br>**Default**: `3000` |
 | `SdkclientsEnabled` | `*bool` | Optional | Indicate whether SDK clients should be included in the zone occupancy calculation<br>**Default**: `false` |
-| `UnconnectedClientsEnabled` | `*bool` | Optional | Indicate whether unconnected WiFi clients should be included in the zone occupancy calculation<br>**Default**: `false` |
+| `UnconnectedClientsEnabled` | `*bool` | Optional | Indicate whether unconnected Wi-Fi clients should be included in the zone occupancy calculation<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

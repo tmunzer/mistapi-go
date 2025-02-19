@@ -72,9 +72,9 @@ type WlanPortal struct {
     GoogleClientSecret          Optional[string]               `json:"google_client_secret"`
     // Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     GoogleEmailDomains          []string                       `json:"google_email_domains,omitempty"`
-    // Whether google is enabled as login method
+    // Whether Google is enabled as login method
     GoogleEnabled               *bool                          `json:"google_enabled,omitempty"`
-    // Optional if `google_enabled`==`true`. Interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire`
+    // Optional if `google_enabled`==`true`. Interval for which guest remains authorized using Google Auth (in minutes), if not provided, uses expire`
     GoogleExpire                Optional[int]                  `json:"google_expire"`
     // Required if `sms_provider`==`gupshup`
     GupshupPassword             *string                        `json:"gupshup_password,omitempty"`

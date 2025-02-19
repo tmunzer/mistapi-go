@@ -18,7 +18,7 @@ Wi-Fi site settings
 | `DisableRadiosWhenPowerConstrained` | `*bool` | Optional | **Default**: `false` |
 | `EnableArpSpoofCheck` | `*bool` | Optional | When proxy_arp is enabled, check for arp spoofing.<br>**Default**: `false` |
 | `EnableSharedRadioScanning` | `*bool` | Optional | **Default**: `true` |
-| `Enabled` | `*bool` | Optional | Enable WIFI feature (using SUB-MAN license)<br>**Default**: `true` |
+| `Enabled` | `*bool` | Optional | Enable Wi-Fi feature (using SUB-MAN license)<br>**Default**: `true` |
 | `LocateConnected` | `*bool` | Optional | Whether to locate connected clients<br>**Default**: `true` |
 | `LocateUnconnected` | `*bool` | Optional | Whether to locate unconnected clients<br>**Default**: `false` |
 | `MeshAllowDfs` | `*bool` | Optional | Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will distrupt the connection. If roaming is desired, keep it disabled.<br>**Default**: `false` |

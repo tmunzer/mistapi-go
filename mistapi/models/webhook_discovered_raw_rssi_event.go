@@ -25,7 +25,7 @@ type WebhookDiscoveredRawRssiEvent struct {
     MapId                uuid.UUID              `json:"map_id"`
     // BLE manufacturing company ID
     MfgCompanyId         *string                `json:"mfg_company_id,omitempty"`
-    // BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
+    // BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
     MfgData              *string                `json:"mfg_data,omitempty"`
     OrgId                uuid.UUID              `json:"org_id"`
     // Signal strength

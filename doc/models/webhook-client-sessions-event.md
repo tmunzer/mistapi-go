@@ -15,10 +15,10 @@
 | `ApName` | `string` | Required | user-friendly name of the AP the client roamed or disconnected from. |
 | `Band` | `string` | Required | 5GHz or 2.4GHz band |
 | `Bssid` | `string` | Required | - |
-| `ClientFamily` | `string` | Required | Device family E.g. “Mac”, “iPhone”, “Apple watch” |
-| `ClientManufacture` | `string` | Required | Device manufacturer E.g. “Apple” |
-| `ClientModel` | `string` | Required | Device model E.g. “8+”, “XS” |
-| `ClientOs` | `string` | Required | Device operating system E.g. “Mojave”, “Windows 10”, “Linux” |
+| `ClientFamily` | `string` | Required | Device family E.g. "Mac", "iPhone", "Apple watch" |
+| `ClientManufacture` | `string` | Required | Device manufacturer E.g. "Apple" |
+| `ClientModel` | `string` | Required | Device model E.g. "8+", "XS" |
+| `ClientOs` | `string` | Required | Device operating system E.g. "Mojave", "Windows 10", "Linux" |
 | `Connect` | `int` | Required | Time when the user connects |
 | `ConnectFloat` | `float64` | Required | floating point connect timestamp with millisecond precision |
 | `Disconnect` | `int` | Required | Time when the user disconnects |

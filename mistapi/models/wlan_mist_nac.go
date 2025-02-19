@@ -13,7 +13,7 @@ type WlanMistNac struct {
     // * `auth_servers_*` are ignored
     // * `coa_servers` is ignored
     // * `radsec` is ignored
-    // * `coa_enabled` is assumed'
+    // * `coa_enabled` is assumed
     Enabled              *bool                  `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

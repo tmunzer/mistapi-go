@@ -6,7 +6,7 @@ import (
 )
 
 // MxclusterRadsec represents a MxclusterRadsec struct.
-// MxEdge Radsec Configuration
+// MxEdge RadSec Configuration
 type MxclusterRadsec struct {
     // List of RADIUS accounting servers, optional, order matters where the first one is treated as primary
     AcctServers          []MxclusterRadsecAcctServer         `json:"acct_servers,omitempty"`

@@ -14,7 +14,7 @@ type WebhookZoneEvent struct {
     AssetId              *uuid.UUID                  `json:"asset_id,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
     Id                   uuid.UUID                   `json:"id"`
-    // MAC address of wifi client or asset
+    // MAC address of Wi-Fi client or asset
     Mac                  *string                     `json:"mac,omitempty"`
     // Map id
     MapId                uuid.UUID                   `json:"map_id"`

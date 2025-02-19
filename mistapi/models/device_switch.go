@@ -47,7 +47,7 @@ type DeviceSwitch struct {
     Managed               *bool                                  `json:"managed,omitempty"`
     // Map where the device belongs to
     MapId                 *uuid.UUID                             `json:"map_id,omitempty"`
-    // Enable mist_nac to use radsec
+    // Enable mist_nac to use RadSec
     MistNac               *SwitchMistNac                         `json:"mist_nac,omitempty"`
     // Device Model
     Model                 *string                                `json:"model,omitempty"`

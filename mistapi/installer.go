@@ -607,7 +607,7 @@ func (i *Installer) CreateInstallerVirtualChassis(
 // 3. Waiting for the VC state (vc_state) of this VC to be updated to API server 
 // 4. Invoke vc with renumber to replace the new member switch from fpc X to
 // ## Perprovision VC members
-// By specifying “preprovision” op, you can convert the current VC to pre-provisioned mode, update VC members as well as specify vc_ports when adding new members for device models without dedicated vc ports. Use renumber for fpc0 replacement which involves device_id change.
+// By specifying "preprovision" op, you can convert the current VC to pre-provisioned mode, update VC members as well as specify vc_ports when adding new members for device models without dedicated vc ports. Use renumber for fpc0 replacement which involves device_id change.
 // Note: 
 // 1. vc_ports is used for adding new members and not needed if * the device model has dedicated vc ports, or * no new member is added 
 // 2. New VC members to be added should exist in the same Site as the VC

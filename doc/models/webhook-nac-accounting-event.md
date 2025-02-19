@@ -12,19 +12,19 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | MAC address of the AP the client roamed or disconnected from |
-| `AuthType` | `*string` | Optional | radius authentication type |
+| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
 | `Bssid` | `*string` | Optional | MAC physical address of the access point |
 | `ClientIp` | `*string` | Optional | IP Address of client |
-| `ClientType` | `*string` | Optional | Client type E.g. “wired”, “wireless”, “vty” |
+| `ClientType` | `*string` | Optional | Client type E.g. "wired", "wireless", "vty" |
 | `Mac` | `*string` | Optional | Client's MAC Address |
-| `NasVendor` | `*string` | Optional | NAS Device vendor name E.g. “Juniper”, “Cisco” |
+| `NasVendor` | `*string` | Optional | NAS Device vendor name E.g. "Juniper", "Cisco" |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RxPkts` | `*int` | Optional | Number of packets received |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | ESSID |
 | `Timestamp` | `*float64` | Optional | sampling time (in epoch) |
 | `TxPkts` | `*int` | Optional | Number of packets sent |
-| `Type` | `*string` | Optional | Type of event. E.g. “ACCOUNTING_START”, “ACCOUNTING_UPDATE”, “ACCOUNTING_STOP” |
+| `Type` | `*string` | Optional | Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP" |
 | `Username` | `*string` | Optional | Username authenticated with |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

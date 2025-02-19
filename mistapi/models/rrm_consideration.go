@@ -17,7 +17,7 @@ type RrmConsideration struct {
     OtherSsid            *string                `json:"other_ssid,omitempty"`
     // utilization score, 0-1, lower means less utilization (cleaner RF)
     UtilScore            float64                `json:"util_score"`
-    // non-wifi utilization score, 0-1, lower means less utilization (cleaner RF)
+    // non-Wi-Fi utilization score, 0-1, lower means less utilization (cleaner RF)
     UtilScoreNonWifi     float64                `json:"util_score_non_wifi"`
     // other utilization score, 0-1, lower means less utilization (cleaner RF)
     UtilScoreOther       float64                `json:"util_score_other"`

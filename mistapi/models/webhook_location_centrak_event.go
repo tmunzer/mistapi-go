@@ -11,7 +11,7 @@ type WebhookLocationCentrakEvent struct {
     MapId                  *string                       `json:"map_id,omitempty"`
     // Optional, BLE manufacturing company ID
     MfgCompanyId           *int                          `json:"mfg_company_id,omitempty"`
-    // Optional, BLE manufacturing data in hex byte-string format (i.e. “112233AABBCC”)
+    // Optional, BLE manufacturing data in hex byte-string format (i.e. "112233AABBCC")
     MfgData                *string                       `json:"mfg_data,omitempty"`
     // Timestamp of the event, epoch
     Timestamp              *int                          `json:"timestamp,omitempty"`

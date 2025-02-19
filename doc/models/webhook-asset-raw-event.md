@@ -20,7 +20,7 @@
 | `Mac` | `string` | Required | MAC of the beacon |
 | `MapId` | `uuid.UUID` | Required | Map id |
 | `MfgCompanyId` | `float64` | Required | Optional, BLE manufacturing company ID |
-| `MfgData` | `string` | Required | Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
+| `MfgData` | `string` | Required | Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC") |
 | `Rssi` | `float64` | Required | Signal strength |
 | `ServiceDataData` | `*string` | Optional | Optional, data from service data |
 | `ServiceDataLastRxTime` | `*int` | Optional | Optional, last data transmit time from service data |

@@ -62,10 +62,10 @@ SearchOrgSwOrGwPorts(
 | `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
 | `mac` | `*string` | Query, Optional | Device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
-| `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
-| `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
+| `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
+| `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |
 | `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
-| `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. “802.3at” |
+| `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. "802.3at" |
 | `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
 | `portId` | `*string` | Query, Optional | Interface name |
 | `portMac` | `*string` | Query, Optional | Interface mac address |

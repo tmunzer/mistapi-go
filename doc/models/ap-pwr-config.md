@@ -14,7 +14,7 @@ Power related configs
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Base` | `*int` | Optional | Additional power to request during negotiating with PSE over PoE, in mW<br>**Default**: `0` |
-| `PreferUsbOverWifi` | `*bool` | Optional | Whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)<br>**Default**: `false` |
+| `PreferUsbOverWifi` | `*bool` | Optional | Whether to enable power out to peripheral, meanwhile will reduce power to Wi-Fi (only for AP45 at power mode)<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

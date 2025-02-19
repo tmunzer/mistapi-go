@@ -26,7 +26,7 @@
 | `Servers6` | `[]string` | Optional | If `type6`==`relay` |
 | `Type` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"local"` |
 | `Type6` | [`*models.DhcpdConfigTypeEnum`](../../doc/models/dhcpd-config-type-enum.md) | Optional | enum: `local` (DHCP Server), `none`, `relay` (DHCP Relay)<br>**Default**: `"none"` |
-| `VendorEncapsulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | If `type`==`local` or `type6`==`local`. Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code' |
+| `VendorEncapsulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | If `type`==`local` or `type6`==`local`. Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

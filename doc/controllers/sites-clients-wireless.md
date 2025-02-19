@@ -169,10 +169,10 @@ CountSiteWirelessClientSessions(
 | `distinct` | [`*models.SiteClientSessionsCountDistinctEnum`](../../doc/models/site-client-sessions-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `clientFamily` | `*string` | Query, Optional | E.g. “Mac”, “iPhone”, “Apple watch” |
-| `clientManufacture` | `*string` | Query, Optional | E.g. “Apple” |
-| `clientModel` | `*string` | Query, Optional | E.g. “8+”, “XS” |
-| `clientOs` | `*string` | Query, Optional | E.g. “Mojave”, “Windows 10”, “Linux” |
+| `clientFamily` | `*string` | Query, Optional | E.g. "Mac", "iPhone", "Apple watch" |
+| `clientManufacture` | `*string` | Query, Optional | E.g. "Apple" |
+| `clientModel` | `*string` | Query, Optional | E.g. "8+", "XS" |
+| `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `wlanId` | `*string` | Query, Optional | WLAN_id |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -665,11 +665,11 @@ SearchSiteWirelessClientSessions(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `clientFamily` | `*string` | Query, Optional | E.g. “Mac”, “iPhone”, “Apple watch” |
-| `clientManufacture` | `*string` | Query, Optional | E.g. “Apple” |
-| `clientModel` | `*string` | Query, Optional | E.g. “8+”, “XS” |
+| `clientFamily` | `*string` | Query, Optional | E.g. "Mac", "iPhone", "Apple watch" |
+| `clientManufacture` | `*string` | Query, Optional | E.g. "Apple" |
+| `clientModel` | `*string` | Query, Optional | E.g. "8+", "XS" |
 | `clientUsername` | `*string` | Query, Optional | Username |
-| `clientOs` | `*string` | Query, Optional | E.g. “Mojave”, “Windows 10”, “Linux” |
+| `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `wlanId` | `*string` | Query, Optional | WLAN_id |
 | `pskId` | `*string` | Query, Optional | PSK ID |
@@ -809,7 +809,7 @@ SearchSiteWirelessClients(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
 | `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | %odel, e.g. “MBP 15 late 2013”, 6, 6s, “8+ GSM” |
+| `model` | `*string` | Query, Optional | %odel, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
 | `ssid` | `*string` | Query, Optional | - |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |

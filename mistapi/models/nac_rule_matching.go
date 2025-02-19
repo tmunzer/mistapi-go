@@ -9,7 +9,7 @@ import (
 // NacRuleMatching represents a NacRuleMatching struct.
 type NacRuleMatching struct {
     // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
-    AuthType             *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
+    AuthType             *NacAuthTypeEnum              `json:"auth_type,omitempty"`
     Nactags              []string                      `json:"nactags,omitempty"`
     PortTypes            []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
     // List of site ids to match
@@ -91,7 +91,7 @@ func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
 
 // tempNacRuleMatching is a temporary struct used for validating the fields of NacRuleMatching.
 type tempNacRuleMatching  struct {
-    AuthType     *NacRuleMatchingAuthTypeEnum  `json:"auth_type,omitempty"`
+    AuthType     *NacAuthTypeEnum              `json:"auth_type,omitempty"`
     Nactags      []string                      `json:"nactags,omitempty"`
     PortTypes    []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
     SiteIds      []uuid.UUID                   `json:"site_ids,omitempty"`

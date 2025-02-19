@@ -115,18 +115,18 @@ func (o *OrgsAntivirusProfiles) CreateOrgAntivirusProfile(
     return models.NewApiResponse(result, resp), err
 }
 
-// DeleteOrgAntivirusProfile takes context, orgId, avprofilesId as parameters and
+// DeleteOrgAntivirusProfile takes context, orgId, avprofileId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // DeleteOrgAntivirusProfile
 func (o *OrgsAntivirusProfiles) DeleteOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID) (
+    avprofileId uuid.UUID) (
     *http.Response,
     error) {
     req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/avprofiles/%v")
-    req.AppendTemplateParams(orgId, avprofilesId)
+    req.AppendTemplateParams(orgId, avprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -153,18 +153,18 @@ func (o *OrgsAntivirusProfiles) DeleteOrgAntivirusProfile(
     return httpCtx.Response, err
 }
 
-// GetOrgAntivirusProfile takes context, orgId, avprofilesId as parameters and
+// GetOrgAntivirusProfile takes context, orgId, avprofileId as parameters and
 // returns an models.ApiResponse with models.Avprofile data and
 // an error if there was an issue with the request or response.
 // Get Org Antivirus Profile
 func (o *OrgsAntivirusProfiles) GetOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID) (
+    avprofileId uuid.UUID) (
     models.ApiResponse[models.Avprofile],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/avprofiles/%v")
-    req.AppendTemplateParams(orgId, avprofilesId)
+    req.AppendTemplateParams(orgId, avprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),
@@ -194,19 +194,19 @@ func (o *OrgsAntivirusProfiles) GetOrgAntivirusProfile(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateOrgAntivirusProfile takes context, orgId, avprofilesId, body as parameters and
+// UpdateOrgAntivirusProfile takes context, orgId, avprofileId, body as parameters and
 // returns an models.ApiResponse with models.Avprofile data and
 // an error if there was an issue with the request or response.
 // Update Org Antivirus Profile
 func (o *OrgsAntivirusProfiles) UpdateOrgAntivirusProfile(
     ctx context.Context,
     orgId uuid.UUID,
-    avprofilesId uuid.UUID,
+    avprofileId uuid.UUID,
     body *models.Avprofile) (
     models.ApiResponse[models.Avprofile],
     error) {
     req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/avprofiles/%v")
-    req.AppendTemplateParams(orgId, avprofilesId)
+    req.AppendTemplateParams(orgId, avprofileId)
     req.Authenticate(
         NewOrAuth(
             NewAuth("apiToken"),

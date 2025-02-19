@@ -9,16 +9,20 @@ import (
 // EventNacClient represents a EventNacClient struct.
 type EventNacClient struct {
     Ap                   *string                `json:"ap,omitempty"`
-    // Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth"
-    AuthType             *string                `json:"auth_type,omitempty"`
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+    AuthType             *NacAuthTypeEnum       `json:"auth_type,omitempty"`
+    // BSSID
     Bssid                *string                `json:"bssid,omitempty"`
+    // MAC Address of the device (AP, Switch) the client is connected to
     DeviceMac            *string                `json:"device_mac,omitempty"`
     // NAC Policy Dry Run Rule ID, if present and matched
     DryrunNacruleId      *uuid.UUID             `json:"dryrun_nacrule_id,omitempty"`
+    // `true` if dryrun rule present and matched with priority, `false` if not matched or not present
     DryrunNacruleMatched *bool                  `json:"dryrun_nacrule_matched,omitempty"`
+    // If IDP is used, the id of the IDP configuration used
     IdpId                *uuid.UUID             `json:"idp_id,omitempty"`
     IdpRole              []string               `json:"idp_role,omitempty"`
-    // Username presented to the Identity Provider
+    // If IDP is used, the username presented to the Identity Provider
     IdpUsername          *string                `json:"idp_username,omitempty"`
     // Client MAC address
     Mac                  *string                `json:"mac,omitempty"`
@@ -26,24 +30,31 @@ type EventNacClient struct {
     MxedgeId             *string                `json:"mxedge_id,omitempty"`
     // NAC Policy Rule ID, if matched
     NacruleId            *uuid.UUID             `json:"nacrule_id,omitempty"`
+    // NAC Policy Rule Matched
     NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
+    // Vendor name of the NAS
     NasVendor            *string                `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    PortId               *string                `json:"port_id,omitempty"`
-    // Type of client i.e wired, wireless
-    PortType             *string                `json:"port_type,omitempty"`
+    // Port-ids the client was connected to  for the specified duration
+    PortId               []string               `json:"port_id,omitempty"`
+    // Type of network access. enum: `wireless`, `wired`
+    PortType             *NacAccessTypeEnum     `json:"port_type,omitempty"`
+    // Whether the client is using randomized MAC Address or not
     RandomMac            *bool                  `json:"random_mac,omitempty"`
+    // List of Radius AVP returned by the Authentication Server
     RespAttrs            []string               `json:"resp_attrs,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    // SSIDs the client was connecting to
     Ssid                 *string                `json:"ssid,omitempty"`
+    // Start time, in epoch
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // Event type, e.g. NAC_CLIENT_PERMIT
+    // Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions]($e/Constants%20Events/listNacEventsDefinitions) endpoint to get the full list of available values.
     Type                 *string                `json:"type,omitempty"`
     // Labels derived from usermac entry
     UsermacLabel         []string               `json:"usermac_label,omitempty"`
-    // Username presented by the client
+    // username assigned to the client
     Username             *string                `json:"username,omitempty"`
-    // Vlan ID
+    // vlan that assigned to the client
     Vlan                 *string                `json:"vlan,omitempty"`
     // Vlan source, e.g. "nactag", "usermac"
     VlanSource           *string                `json:"vlan_source,omitempty"`
@@ -204,31 +215,31 @@ func (e *EventNacClient) UnmarshalJSON(input []byte) error {
 
 // tempEventNacClient is a temporary struct used for validating the fields of EventNacClient.
 type tempEventNacClient  struct {
-    Ap                   *string    `json:"ap,omitempty"`
-    AuthType             *string    `json:"auth_type,omitempty"`
-    Bssid                *string    `json:"bssid,omitempty"`
-    DeviceMac            *string    `json:"device_mac,omitempty"`
-    DryrunNacruleId      *uuid.UUID `json:"dryrun_nacrule_id,omitempty"`
-    DryrunNacruleMatched *bool      `json:"dryrun_nacrule_matched,omitempty"`
-    IdpId                *uuid.UUID `json:"idp_id,omitempty"`
-    IdpRole              []string   `json:"idp_role,omitempty"`
-    IdpUsername          *string    `json:"idp_username,omitempty"`
-    Mac                  *string    `json:"mac,omitempty"`
-    MxedgeId             *string    `json:"mxedge_id,omitempty"`
-    NacruleId            *uuid.UUID `json:"nacrule_id,omitempty"`
-    NacruleMatched       *bool      `json:"nacrule_matched,omitempty"`
-    NasVendor            *string    `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID `json:"org_id,omitempty"`
-    PortId               *string    `json:"port_id,omitempty"`
-    PortType             *string    `json:"port_type,omitempty"`
-    RandomMac            *bool      `json:"random_mac,omitempty"`
-    RespAttrs            []string   `json:"resp_attrs,omitempty"`
-    SiteId               *uuid.UUID `json:"site_id,omitempty"`
-    Ssid                 *string    `json:"ssid,omitempty"`
-    Timestamp            *float64   `json:"timestamp,omitempty"`
-    Type                 *string    `json:"type,omitempty"`
-    UsermacLabel         []string   `json:"usermac_label,omitempty"`
-    Username             *string    `json:"username,omitempty"`
-    Vlan                 *string    `json:"vlan,omitempty"`
-    VlanSource           *string    `json:"vlan_source,omitempty"`
+    Ap                   *string            `json:"ap,omitempty"`
+    AuthType             *NacAuthTypeEnum   `json:"auth_type,omitempty"`
+    Bssid                *string            `json:"bssid,omitempty"`
+    DeviceMac            *string            `json:"device_mac,omitempty"`
+    DryrunNacruleId      *uuid.UUID         `json:"dryrun_nacrule_id,omitempty"`
+    DryrunNacruleMatched *bool              `json:"dryrun_nacrule_matched,omitempty"`
+    IdpId                *uuid.UUID         `json:"idp_id,omitempty"`
+    IdpRole              []string           `json:"idp_role,omitempty"`
+    IdpUsername          *string            `json:"idp_username,omitempty"`
+    Mac                  *string            `json:"mac,omitempty"`
+    MxedgeId             *string            `json:"mxedge_id,omitempty"`
+    NacruleId            *uuid.UUID         `json:"nacrule_id,omitempty"`
+    NacruleMatched       *bool              `json:"nacrule_matched,omitempty"`
+    NasVendor            *string            `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID         `json:"org_id,omitempty"`
+    PortId               []string           `json:"port_id,omitempty"`
+    PortType             *NacAccessTypeEnum `json:"port_type,omitempty"`
+    RandomMac            *bool              `json:"random_mac,omitempty"`
+    RespAttrs            []string           `json:"resp_attrs,omitempty"`
+    SiteId               *uuid.UUID         `json:"site_id,omitempty"`
+    Ssid                 *string            `json:"ssid,omitempty"`
+    Timestamp            *float64           `json:"timestamp,omitempty"`
+    Type                 *string            `json:"type,omitempty"`
+    UsermacLabel         []string           `json:"usermac_label,omitempty"`
+    Username             *string            `json:"username,omitempty"`
+    Vlan                 *string            `json:"vlan,omitempty"`
+    VlanSource           *string            `json:"vlan_source,omitempty"`
 }

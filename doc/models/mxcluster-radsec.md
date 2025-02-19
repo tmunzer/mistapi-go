@@ -1,7 +1,7 @@
 
 # Mxcluster Radsec
 
-MxEdge Radsec Configuration
+MxEdge RadSec Configuration
 
 *This model accepts additional fields of type interface{}.*
 

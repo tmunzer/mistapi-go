@@ -7,7 +7,7 @@ import (
 )
 
 // Radsec represents a Radsec struct.
-// Radsec settings
+// RadSec settings
 type Radsec struct {
     CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
@@ -18,9 +18,9 @@ type Radsec struct {
     ProxyHosts           []string               `json:"proxy_hosts,omitempty"`
     // Name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge.
     ServerName           *string                `json:"server_name,omitempty"`
-    // List of Radsec Servers. Only if not Mist Edge.
+    // List of RadSec Servers. Only if not Mist Edge.
     Servers              []RadsecServer         `json:"servers,omitempty"`
-    // use mxedge(s) as radsecproxy
+    // use mxedge(s) as RadSec Proxy
     UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
     // To use Site mxedges when this WLAN does not use mxtunnel
     UseSiteMxedge        *bool                  `json:"use_site_mxedge,omitempty"`

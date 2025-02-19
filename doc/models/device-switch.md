@@ -35,7 +35,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `Mac` | `*string` | Optional | Device MAC address |
 | `Managed` | `*bool` | Optional | For an adopted switch, we don’t overwrite their existing configs automatically<br>**Default**: `false` |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
-| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use radsec |
+| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `Model` | `*string` | Optional | Device Model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |

@@ -26,8 +26,8 @@ Port statistics
 | `MacCount` | `*int` | Optional | Number of mac addresses in the forwarding table |
 | `MacLimit` | `*int` | Optional | Limit on number of dynamically learned macs<br>**Constraints**: `>= 0` |
 | `NeighborMac` | `string` | Required | chassis identifier of the chassis type listed |
-| `NeighborPortDesc` | `*string` | Optional | Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39” |
-| `NeighborSystemName` | `*string` | Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local” |
+| `NeighborPortDesc` | `*string` | Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
+| `NeighborSystemName` | `*string` | Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |
 | `PoeDisabled` | `*bool` | Optional | Is the POE configured not be disabled. |
 | `PoeMode` | [`*models.StatsSwitchPortPoeModeEnum`](../../doc/models/stats-switch-port-poe-mode-enum.md) | Optional | enum: `802.3af`, `802.3at`, `802.3bt` |
 | `PoeOn` | `*bool` | Optional | Is the device attached to POE |

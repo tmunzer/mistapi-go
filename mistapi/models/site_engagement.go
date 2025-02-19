@@ -6,7 +6,7 @@ import (
 )
 
 // SiteEngagement represents a SiteEngagement struct.
-// **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
+// **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
 type SiteEngagement struct {
     // Name associated to each tag
     DwellTagNames        *SiteEngagementDwellTagNames `json:"dwell_tag_names,omitempty"`

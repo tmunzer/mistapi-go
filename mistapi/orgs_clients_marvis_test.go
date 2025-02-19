@@ -25,7 +25,7 @@ func TestOrgsClientsMarvisTestListOrgMarvisClientInvites(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6”","name":"Handhelds"}]`
+    expected := `[{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -50,7 +50,7 @@ func TestOrgsClientsMarvisTestCreateOrgMarvisClientInvites(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6”","name":"Handhelds"}`
+    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -92,7 +92,7 @@ func TestOrgsClientsMarvisTestGetOrgMarvisClientInvites(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6”","name":"Handhelds"}`
+    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -121,6 +121,6 @@ func TestOrgsClientsMarvisTestUpdateOrgMarvisClientInvite(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6”","name":"Handhelds"}`
+    expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

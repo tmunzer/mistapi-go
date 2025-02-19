@@ -45,8 +45,8 @@ Portal wlan settings
 | `GoogleClientId` | `models.Optional[string]` | Optional | Google OAuth2 app id. This is optional. If not provided, it will use a default one. |
 | `GoogleClientSecret` | `models.Optional[string]` | Optional | Optional if `google_enabled`==`true`. Google OAuth2 app secret. If google_client_id was provided, provide a correspoinding value. Else leave blank. |
 | `GoogleEmailDomains` | `[]string` | Optional | Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
-| `GoogleEnabled` | `*bool` | Optional | Whether google is enabled as login method<br>**Default**: `false` |
-| `GoogleExpire` | `models.Optional[int]` | Optional | Optional if `google_enabled`==`true`. Interval for which guest remains authorized using google auth (in minutes), if not provided, uses expire` |
+| `GoogleEnabled` | `*bool` | Optional | Whether Google is enabled as login method<br>**Default**: `false` |
+| `GoogleExpire` | `models.Optional[int]` | Optional | Optional if `google_enabled`==`true`. Interval for which guest remains authorized using Google Auth (in minutes), if not provided, uses expire` |
 | `GupshupPassword` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
 | `GupshupUserid` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
 | `MicrosoftClientId` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one. |

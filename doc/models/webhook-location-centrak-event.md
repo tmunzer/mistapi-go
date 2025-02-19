@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `MapId` | `*string` | Optional | Map id |
 | `MfgCompanyId` | `*int` | Optional | Optional, BLE manufacturing company ID |
-| `MfgData` | `*string` | Optional | Optional, BLE manufacturing data in hex byte-string format (i.e. “112233AABBCC”) |
+| `MfgData` | `*string` | Optional | Optional, BLE manufacturing data in hex byte-string format (i.e. "112233AABBCC") |
 | `Timestamp` | `*int` | Optional | Timestamp of the event, epoch |
 | `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
 | `X` | `*float64` | Optional | x, in meter |

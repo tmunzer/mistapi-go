@@ -14,7 +14,7 @@ Initiate a Scan Radio Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `models.Optional[string]` | Optional | Filter by ap_mac |
-| `Aps` | [`map[string]models.CaptureScanAps`](../../doc/models/capture-scan-aps.md) | Optional | Dictionary key is AP mac and value is a dictionary which contains key “band”, “bandwidth”, “channel” and “tcpdump_expression”. In case keys are missed we will take parent value if parent values are not set we will use default value |
+| `Aps` | [`map[string]models.CaptureScanAps`](../../doc/models/capture-scan-aps.md) | Optional | Dictionary key is AP mac and value is a dictionary which contains key "band", "bandwidth", "channel" and "tcpdump_expression". In case keys are missed we will take parent value if parent values are not set we will use default value |
 | `Band` | [`models.Optional[models.CaptureScanBandEnum]`](../../doc/models/capture-scan-band-enum.md) | Optional | Only Single value allowed, default value gets applied when user provides wrong values. enum: `24`, `5`, `6`<br>**Default**: `"5"` |
 | `Bandwidth` | [`*models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Optional | channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6) |
 | `Channel` | `*int` | Optional | Specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values<br>**Default**: `1` |

@@ -16,7 +16,7 @@ type GatewayPathPreferencesPath struct {
     InternetAccess       *bool                  `json:"internet_access,omitempty"`
     // Required when
     // * `type`==`vpn`: the name of the VPN Path to use
-    // * `type`==`wan`: the name of the WAN interface to use'
+    // * `type`==`wan`: the name of the WAN interface to use
     Name                 *string                `json:"name,omitempty"`
     // Required when `type`==`local`
     Networks             []string               `json:"networks,omitempty"`

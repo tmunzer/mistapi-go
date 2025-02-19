@@ -10,7 +10,7 @@ import (
 type ApPwrConfig struct {
     // Additional power to request during negotiating with PSE over PoE, in mW
     Base                 *int                   `json:"base,omitempty"`
-    // Whether to enable power out to peripheral, meanwhile will reduce power to wifi (only for AP45 at power mode)
+    // Whether to enable power out to peripheral, meanwhile will reduce power to Wi-Fi (only for AP45 at power mode)
     PreferUsbOverWifi    *bool                  `json:"prefer_usb_over_wifi,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

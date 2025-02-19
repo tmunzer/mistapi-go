@@ -24,7 +24,7 @@ type Mxcluster struct {
     OrgId                     *uuid.UUID                            `json:"org_id,omitempty"`
     // Proxy Configuration to talk to Mist
     Proxy                     *Proxy                                `json:"proxy,omitempty"`
-    // MxEdge Radsec Configuration
+    // MxEdge RadSec Configuration
     Radsec                    *MxclusterRadsec                      `json:"radsec,omitempty"`
     RadsecTls                 *MxclusterRadsecTls                   `json:"radsec_tls,omitempty"`
     SiteId                    *uuid.UUID                            `json:"site_id,omitempty"`

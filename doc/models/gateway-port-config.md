@@ -17,7 +17,7 @@ Gateway port config
 | `AeIdx` | `models.Optional[string]` | Optional | If `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127) |
 | `AeLacpForceUp` | `*bool` | Optional | For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only<br>**Default**: `false` |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
-| `Critical` | `*bool` | Optional | If want to generate port up/down alarm, set it to true<br>**Default**: `false` |
+| `Critical` | `*bool` | Optional | To generate port up/down alarm, set it to true<br>**Default**: `false` |
 | `Description` | `*string` | Optional | Interface Description. Can be a variable (i.e. "{{myvar}}") |
 | `DisableAutoneg` | `*bool` | Optional | **Default**: `false` |
 | `Disabled` | `*bool` | Optional | Port admin up (true) / down (false)<br>**Default**: `false` |

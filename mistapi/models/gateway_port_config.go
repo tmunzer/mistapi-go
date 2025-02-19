@@ -17,7 +17,7 @@ type GatewayPortConfig struct {
     // For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
     AeLacpForceUp        *bool                          `json:"ae_lacp_force_up,omitempty"`
     Aggregated           *bool                          `json:"aggregated,omitempty"`
-    // If want to generate port up/down alarm, set it to true
+    // To generate port up/down alarm, set it to true
     Critical             *bool                          `json:"critical,omitempty"`
     // Interface Description. Can be a variable (i.e. "{{myvar}}")
     Description          *string                        `json:"description,omitempty"`

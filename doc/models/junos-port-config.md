@@ -17,7 +17,7 @@ Switch port config
 | `AeIdx` | `*int` | Optional | Users could force to use the designated AE name |
 | `AeLacpSlow` | `*bool` | Optional | To use fast timeout |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
-| `Critical` | `*bool` | Optional | If want to generate port up/down alarm |
+| `Critical` | `*bool` | Optional | To generate port up/down alarm |
 | `Description` | `*string` | Optional | - |
 | `DisableAutoneg` | `*bool` | Optional | If `speed` and `duplex` are specified, whether to disable autonegotiation<br>**Default**: `false` |
 | `Duplex` | [`*models.JunosPortConfigDuplexEnum`](../../doc/models/junos-port-config-duplex-enum.md) | Optional | enum: `auto`, `full`, `half`<br>**Default**: `"auto"` |

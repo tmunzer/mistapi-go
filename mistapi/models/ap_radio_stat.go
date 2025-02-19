@@ -29,17 +29,17 @@ type ApRadioStat struct {
     Usage                  Optional[string]       `json:"usage"`
     // All utilization in percentage
     UtilAll                Optional[int]          `json:"util_all"`
-    // Reception of “No Packets” utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise
+    // Reception of "No Packets" utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise
     UtilNonWifi            Optional[int]          `json:"util_non_wifi"`
-    // Reception of “In BSS” utilization in percentage, only frames that are received from AP/STAs within the BSS
+    // Reception of "In BSS" utilization in percentage, only frames that are received from AP/STAs within the BSS
     UtilRxInBss            Optional[int]          `json:"util_rx_in_bss"`
-    // Reception of “Other BSS” utilization in percentage, all frames received from AP/STAs that are outside the BSS
+    // Reception of "Other BSS" utilization in percentage, all frames received from AP/STAs that are outside the BSS
     UtilRxOtherBss         Optional[int]          `json:"util_rx_other_bss"`
     // Transmission utilization in percentage
     UtilTx                 Optional[int]          `json:"util_tx"`
-    // Reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio
+    // Reception of "UnDecodable Wifi" utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio
     UtilUndecodableWifi    Optional[int]          `json:"util_undecodable_wifi"`
-    // Reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver
+    // Reception of "No Category" utilization in percentage, all 802.11 frames that are corrupted at the receiver
     UtilUnknownWifi        Optional[int]          `json:"util_unknown_wifi"`
     AdditionalProperties   map[string]interface{} `json:"_"`
 }

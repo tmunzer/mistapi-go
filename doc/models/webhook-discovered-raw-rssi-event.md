@@ -21,7 +21,7 @@
 | `Mac` | `string` | Required | MAC of the asset/ beacon |
 | `MapId` | `uuid.UUID` | Required | - |
 | `MfgCompanyId` | `*string` | Optional | BLE manufacturing company ID |
-| `MfgData` | `*string` | Optional | BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
+| `MfgData` | `*string` | Optional | BLE manufacturing data in hex byte-string format (ie: "112233AABBCC") |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `Rssi` | `float64` | Required | Signal strength |
 | `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | List of service data packets heard from the asset/ beacon |

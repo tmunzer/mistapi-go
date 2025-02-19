@@ -25,7 +25,7 @@ func NewOrgs(baseController baseController) *Orgs {
 // CreateOrg takes context, body as parameters and
 // returns an models.ApiResponse with models.Org data and
 // an error if there was an issue with the request or response.
-// Org admin can invite people to manage the org. Furthermore, he can dictate the level of security those accounts are. The check is enforced when the invited admin tries to “accept” the invitation and every time the admin tries to login
+// Org admin can invite people to manage the org. Furthermore, he can dictate the level of security those accounts are. The check is enforced when the invited admin tries to "accept" the invitation and every time the admin tries to login
 func (o *Orgs) CreateOrg(
     ctx context.Context,
     body *models.Org) (

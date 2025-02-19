@@ -15,7 +15,7 @@ type OrgSettingMistNac struct {
     DisableRsaeAlgorithms     *bool                           `json:"disable_rsae_algorithms,omitempty"`
     // eap ssl security level, see https://www.openssl.org/docs/man1.1.1/man3/SSL_CTX_set_security_level.html#DEFAULT-CALLBACK-BEHAVIOUR
     EapSslSecurityLevel       *int                            `json:"eap_ssl_security_level,omitempty"`
-    // By default NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site. For strict GDPR compliancy NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled
+    // By default, NAC POD failover considers all NAC pods available around the globe, i.e. EU, US, or APAC based, failover happens based on geo IP of the originating site. For strict GDPR compliancy NAC POD failover would only happen between the PODs located within the EU environment, and no authentication would take place outside of EU. This is an org setting that is applicable to WLANs, switch templates, mxedge clusters that have mist_nac enabled
     EuOnly                    *bool                           `json:"eu_only,omitempty"`
     // allow customer to choose the EAP-TLS client certificate's field to use for IDP Machine Groups lookup. enum: `automatic`, `cn`, `dns`
     IdpMachineCertLookupField *IdpMachineCertLookupFieldEnum  `json:"idp_machine_cert_lookup_field,omitempty"`
@@ -24,11 +24,9 @@ type OrgSettingMistNac struct {
     Idps                      []OrgSettingMistNacIdp          `json:"idps,omitempty"`
     // radius server cert to be presented in EAP TLS
     ServerCert                *OrgSettingMistNacServerCert    `json:"server_cert,omitempty"`
-    // by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
+    // by default, NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
     UseIpVersion              *OrgSettingMistNacIpVersionEnum `json:"use_ip_version,omitempty"`
-    // By default NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(radsec) to reach mist-nac.
-    // Set `use_ssl_port`==`true` to override that port with TCP43 (ssl),
-    // This is a org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
+    // By default, NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(RadSec) to reach mist-nac. Set `use_ssl_port`==`true` to override that port with TCP43 (ssl), This is an org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled
     UseSslPort                *bool                           `json:"use_ssl_port,omitempty"`
     AdditionalProperties      map[string]interface{}          `json:"_"`
 }

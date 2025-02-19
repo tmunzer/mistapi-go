@@ -14,7 +14,7 @@
 | `AlertOnly` | `*bool` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `IdpprofileId` | `*uuid.UUID` | Optional | org_level IDP Profile can be used, this takes precedence over `profile` |
-| `Profile` | `*string` | Optional | enum: `Custom`, `strict` (default), `standard` or keys from from idp_profiles<br>**Default**: `"strict"` |
+| `Profile` | `*string` | Optional | enum: `Custom`, `strict` (default), `standard` or keys from idp_profiles<br>**Default**: `"strict"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

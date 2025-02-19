@@ -8,7 +8,7 @@ import (
 // WlanDynamicPsk represents a WlanDynamicPsk struct.
 // For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
 // * PSK will come from RADIUS server
-// * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
+// * AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)
 // * AP sends BSSID:SSID as Caller-Station-ID
 // * `auth_servers` is required
 // * PSK will come from cloud WLC if source is cloud_psks

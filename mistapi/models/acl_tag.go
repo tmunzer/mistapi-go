@@ -24,7 +24,7 @@ type AclTag struct {
     // * `type`==`subnet` (optional. default is `any`)
     // * `type`==`network`
     // * `type`==`resource` (optional. default is `any`)
-    // * `type`==`static_gbp` if from matching network (vlan)'
+    // * `type`==`static_gbp` if from matching network (vlan)
     Network              *string                `json:"network,omitempty"`
     // Required if:
     // * `type`==`radius_group`

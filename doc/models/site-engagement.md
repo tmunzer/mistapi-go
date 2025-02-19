@@ -1,7 +1,7 @@
 
 # Site Engagement
 
-**Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
+**Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
 
 *This model accepts additional fields of type interface{}.*
 

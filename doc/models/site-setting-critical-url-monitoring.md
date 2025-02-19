@@ -1,7 +1,7 @@
 
 # Site Setting Critical Url Monitoring
 
-You can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
+You can define some URLs that's critical to site operations the latency will be captured and considered for site health
 
 *This model accepts additional fields of type interface{}.*
 

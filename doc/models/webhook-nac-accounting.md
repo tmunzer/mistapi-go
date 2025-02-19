@@ -25,7 +25,7 @@ nac-accounting webhook sample
   "events": [
     {
       "ap": "ap6",
-      "auth_type": "auth_type0",
+      "auth_type": "eap-teap",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
       "client_type": "client_type6",
@@ -36,7 +36,7 @@ nac-accounting webhook sample
     },
     {
       "ap": "ap6",
-      "auth_type": "auth_type0",
+      "auth_type": "eap-teap",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
       "client_type": "client_type6",
@@ -47,7 +47,7 @@ nac-accounting webhook sample
     },
     {
       "ap": "ap6",
-      "auth_type": "auth_type0",
+      "auth_type": "eap-teap",
       "bssid": "bssid4",
       "client_ip": "client_ip0",
       "client_type": "client_type6",

@@ -53,7 +53,7 @@ Alarms(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under “fields” array of /alarm_defs response object. |
+| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
@@ -743,7 +743,7 @@ LocationCentrak(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under “fields” array of /alarm_defs response object. |
+| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
@@ -990,7 +990,7 @@ body := models.WebhookNacAccounting{
     Events:               []models.WebhookNacAccountingEvent{
         models.WebhookNacAccountingEvent{
             Ap:                   models.ToPointer("5c5b355005be"),
-            AuthType:             models.ToPointer("eap-tls"),
+            AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTLS),
             Bssid:                models.ToPointer("5c5b35546bb4"),
             ClientIp:             models.ToPointer("172.16.87.4"),
             ClientType:           models.ToPointer("wireless"),
@@ -1046,20 +1046,12 @@ ctx := context.Background()
 body := models.WebhookNacEvents{
     Events:               []models.WebhookNacEventsEvent{
         models.WebhookNacEventsEvent{
-            Ap:                   models.ToPointer("5c5b35513227"),
-            AuthType:             models.ToPointer("802.1X"),
+            AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
             Bssid:                models.ToPointer("5c5b355fafcc"),
-            DryrunNacruleId:      models.ToPointer(uuid.MustParse("32f27e7d-ff26-4a9b-b3d1-ff9bcb264012")),
-            DryrunNacruleMatched: models.ToPointer(true),
-            IdpId:                models.ToPointer(uuid.MustParse("912ef72e-2239-4996-b81e-469e87a27cd6")),
             IdpRole:              []string{
                 "itsuperusers",
                 "vip",
             },
-            Mac:                  models.ToPointer("ac3eb179e535"),
-            NacruleId:            models.ToPointer(uuid.MustParse("32f27e7d-ff26-4a9b-b3d1-ff9bcb264c62")),
-            NacruleMatched:       models.ToPointer(true),
-            NasVendor:            models.ToPointer("juniper-mist"),
             RandomMac:            models.ToPointer(true),
             RespAttrs:            []string{
                 "Tunnel-Type=VLAN",
@@ -1067,12 +1059,7 @@ body := models.WebhookNacEvents{
                 "Tunnel-Private-Group-Id=750",
                 "User-Name=anonymous",
             },
-            SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
-            Ssid:                 models.ToPointer("##mist_nac"),
             Timestamp:            models.ToPointer(float64(1691512031.358188)),
-            Type:                 models.ToPointer("NAC_CLIENT_PERMIT"),
-            Username:             models.ToPointer("user@deaflyz.net"),
-            Vlan:                 models.ToPointer("750"),
         },
     },
     Topic:                models.ToPointer("string"),

@@ -356,7 +356,7 @@ SearchOrgSites(
 | `remoteSyslogEnabled` | `*bool` | Query, Optional | If Remote Syslog is enabled |
 | `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled |
 | `vnaEnabled` | `*bool` | Query, Optional | If Virtual Network Assistant is enabled |
-| `wifiEnabled` | `*bool` | Query, Optional | If WIFI feature is enabled |
+| `wifiEnabled` | `*bool` | Query, Optional | If Wi-Fi feature is enabled |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |

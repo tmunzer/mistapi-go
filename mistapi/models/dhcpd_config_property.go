@@ -40,7 +40,7 @@ type DhcpdConfigProperty struct {
     Type6                *DhcpdConfigTypeEnum               `json:"type6,omitempty"`
     // If `type`==`local` or `type6`==`local`. Property key is <enterprise number>:<sub option code>, with
     // * enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)
-    // * sub option code: 1-255, sub-option code'
+    // * sub option code: 1-255, sub-option code
     VendorEncapsulated   map[string]DhcpdConfigVendorOption `json:"vendor_encapsulated,omitempty"`
     AdditionalProperties map[string]interface{}             `json:"_"`
 }

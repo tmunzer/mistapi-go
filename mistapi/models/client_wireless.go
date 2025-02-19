@@ -31,7 +31,7 @@ type ClientWireless struct {
     LastFirmware         *string                `json:"last_firmware,omitempty"`
     // Latest hostname we detected for the client
     LastHostname         *string                `json:"last_hostname,omitempty"`
-    // Latest ip address we detected for the client
+    // The last known IP Address for the client
     LastIp               *string                `json:"last_ip,omitempty"`
     // Only when client has the Marvis Client app running. latest client hardware model we detected for the client
     LastModel            *string                `json:"last_model,omitempty"`
@@ -43,10 +43,8 @@ type ClientWireless struct {
     LastPskId            *uuid.UUID             `json:"last_psk_id,omitempty"`
     // Only for PPSK authentication. Latest PPSK Name used by the client
     LastPskName          *string                `json:"last_psk_name,omitempty"`
-    // Name of the latest SSID (WLAN) the client is/was connected to client
+    // If dot1x authentication, the username used during the latest authentication. Otherwise, the MAC address of the client
     LastSsid             *string                `json:"last_ssid,omitempty"`
-    // Only for 802.1X authentication. Latest username used by the client
-    LastUsername         *string                `json:"last_username,omitempty"`
     // Latest VLAN ID assigned to the client
     LastVlan             *int                   `json:"last_vlan,omitempty"`
     // ID of the latest SSID (WLAN) the client is/was connected to
@@ -93,8 +91,8 @@ type ClientWireless struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ClientWireless) String() string {
     return fmt.Sprintf(
-    	"ClientWireless[Ap=%v, AppVersion=%v, Band=%v, Device=%v, Ftc=%v, Hardware=%v, Hostname=%v, Ip=%v, LastAp=%v, LastDevice=%v, LastFirmware=%v, LastHostname=%v, LastIp=%v, LastModel=%v, LastOs=%v, LastOsVersion=%v, LastPskId=%v, LastPskName=%v, LastSsid=%v, LastUsername=%v, LastVlan=%v, LastWlanId=%v, Mac=%v, Mfg=%v, Model=%v, OrgId=%v, Os=%v, OsVersion=%v, Protocol=%v, PskId=%v, PskName=%v, RandomMac=%v, SdkVersion=%v, SiteId=%v, SiteIds=%v, Ssid=%v, Timestamp=%v, Username=%v, Vlan=%v, WlanId=%v, AdditionalProperties=%v]",
-    	c.Ap, c.AppVersion, c.Band, c.Device, c.Ftc, c.Hardware, c.Hostname, c.Ip, c.LastAp, c.LastDevice, c.LastFirmware, c.LastHostname, c.LastIp, c.LastModel, c.LastOs, c.LastOsVersion, c.LastPskId, c.LastPskName, c.LastSsid, c.LastUsername, c.LastVlan, c.LastWlanId, c.Mac, c.Mfg, c.Model, c.OrgId, c.Os, c.OsVersion, c.Protocol, c.PskId, c.PskName, c.RandomMac, c.SdkVersion, c.SiteId, c.SiteIds, c.Ssid, c.Timestamp, c.Username, c.Vlan, c.WlanId, c.AdditionalProperties)
+    	"ClientWireless[Ap=%v, AppVersion=%v, Band=%v, Device=%v, Ftc=%v, Hardware=%v, Hostname=%v, Ip=%v, LastAp=%v, LastDevice=%v, LastFirmware=%v, LastHostname=%v, LastIp=%v, LastModel=%v, LastOs=%v, LastOsVersion=%v, LastPskId=%v, LastPskName=%v, LastSsid=%v, LastVlan=%v, LastWlanId=%v, Mac=%v, Mfg=%v, Model=%v, OrgId=%v, Os=%v, OsVersion=%v, Protocol=%v, PskId=%v, PskName=%v, RandomMac=%v, SdkVersion=%v, SiteId=%v, SiteIds=%v, Ssid=%v, Timestamp=%v, Username=%v, Vlan=%v, WlanId=%v, AdditionalProperties=%v]",
+    	c.Ap, c.AppVersion, c.Band, c.Device, c.Ftc, c.Hardware, c.Hostname, c.Ip, c.LastAp, c.LastDevice, c.LastFirmware, c.LastHostname, c.LastIp, c.LastModel, c.LastOs, c.LastOsVersion, c.LastPskId, c.LastPskName, c.LastSsid, c.LastVlan, c.LastWlanId, c.Mac, c.Mfg, c.Model, c.OrgId, c.Os, c.OsVersion, c.Protocol, c.PskId, c.PskName, c.RandomMac, c.SdkVersion, c.SiteId, c.SiteIds, c.Ssid, c.Timestamp, c.Username, c.Vlan, c.WlanId, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientWireless.
@@ -103,7 +101,7 @@ func (c ClientWireless) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(c.AdditionalProperties,
-        "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_device", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_username", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id"); err != nil {
+        "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_device", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(c.toMap())
@@ -169,9 +167,6 @@ func (c ClientWireless) toMap() map[string]any {
     }
     if c.LastSsid != nil {
         structMap["last_ssid"] = c.LastSsid
-    }
-    if c.LastUsername != nil {
-        structMap["last_username"] = c.LastUsername
     }
     if c.LastVlan != nil {
         structMap["last_vlan"] = c.LastVlan
@@ -244,7 +239,7 @@ func (c *ClientWireless) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_device", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_username", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "app_version", "band", "device", "ftc", "hardware", "hostname", "ip", "last_ap", "last_device", "last_firmware", "last_hostname", "last_ip", "last_model", "last_os", "last_os_version", "last_psk_id", "last_psk_name", "last_ssid", "last_vlan", "last_wlan_id", "mac", "mfg", "model", "org_id", "os", "os_version", "protocol", "psk_id", "psk_name", "random_mac", "sdk_version", "site_id", "site_ids", "ssid", "timestamp", "username", "vlan", "wlan_id")
     if err != nil {
     	return err
     }
@@ -269,7 +264,6 @@ func (c *ClientWireless) UnmarshalJSON(input []byte) error {
     c.LastPskId = temp.LastPskId
     c.LastPskName = temp.LastPskName
     c.LastSsid = temp.LastSsid
-    c.LastUsername = temp.LastUsername
     c.LastVlan = temp.LastVlan
     c.LastWlanId = temp.LastWlanId
     c.Mac = temp.Mac
@@ -314,7 +308,6 @@ type tempClientWireless  struct {
     LastPskId     *uuid.UUID  `json:"last_psk_id,omitempty"`
     LastPskName   *string     `json:"last_psk_name,omitempty"`
     LastSsid      *string     `json:"last_ssid,omitempty"`
-    LastUsername  *string     `json:"last_username,omitempty"`
     LastVlan      *int        `json:"last_vlan,omitempty"`
     LastWlanId    *uuid.UUID  `json:"last_wlan_id,omitempty"`
     Mac           *string     `json:"mac,omitempty"`

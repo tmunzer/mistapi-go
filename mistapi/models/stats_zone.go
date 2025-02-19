@@ -27,7 +27,7 @@ type StatsZone struct {
     Name                 string                    `json:"name"`
     // Number of assets
     NumAssets            *int                      `json:"num_assets,omitempty"`
-    // Number of wifi clients (unconnected + connected)
+    // Number of Wi-Fi clients (unconnected + connected)
     NumClients           *int                      `json:"num_clients,omitempty"`
     // Number of sdk clients
     NumSdkclients        *int                      `json:"num_sdkclients,omitempty"`

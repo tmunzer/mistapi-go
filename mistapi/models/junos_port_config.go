@@ -17,7 +17,7 @@ type JunosPortConfig struct {
     // To use fast timeout
     AeLacpSlow           *bool                      `json:"ae_lacp_slow,omitempty"`
     Aggregated           *bool                      `json:"aggregated,omitempty"`
-    // If want to generate port up/down alarm
+    // To generate port up/down alarm
     Critical             *bool                      `json:"critical,omitempty"`
     Description          *string                    `json:"description,omitempty"`
     // If `speed` and `duplex` are specified, whether to disable autonegotiation

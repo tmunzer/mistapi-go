@@ -66,7 +66,7 @@ if err != nil {
 
 ```json
 {
-  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6”",
+  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6",
   "name": "Handhelds"
 }
 ```
@@ -181,7 +181,7 @@ if err != nil {
 
 ```json
 {
-  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6”",
+  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6",
   "name": "Handhelds"
 }
 ```
@@ -241,7 +241,7 @@ if err != nil {
 ```json
 [
   {
-    "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6”",
+    "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6",
     "name": "Handhelds"
   }
 ]
@@ -311,7 +311,7 @@ if err != nil {
 
 ```json
 {
-  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6”",
+  "id": "3a14098f-b995-7552-b0a4-b8ee39b337a6",
   "name": "Handhelds"
 }
 ```

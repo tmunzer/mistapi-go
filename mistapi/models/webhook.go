@@ -42,7 +42,7 @@ type Webhook struct {
     // * X-Mist-Signature: HMAC_SHA1(secret, body)
     Secret               Optional[string]            `json:"secret"`
     SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
-    // Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.'
+    // Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.
     SplunkToken          Optional[string]            `json:"splunk_token"`
     // List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
     Topics               []string                    `json:"topics,omitempty"`

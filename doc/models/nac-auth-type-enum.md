@@ -1,11 +1,11 @@
 
-# Nac Rule Matching Auth Type Enum
+# Nac Auth Type Enum
 
 enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
 
 ## Enumeration
 
-`NacRuleMatchingAuthTypeEnum`
+`NacAuthTypeEnum`
 
 ## Fields
 
@@ -20,4 +20,10 @@ enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `p
 | `mab` |
 | `peap-tls` |
 | `psk` |
+
+## Example
+
+```
+eap-tls
+```
 

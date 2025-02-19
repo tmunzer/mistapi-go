@@ -8,6 +8,7 @@ import (
 
 // WiredClientResponse represents a WiredClientResponse struct.
 type WiredClientResponse struct {
+    // MAC Address of the switch the client is connected to
     DeviceMac                 []string                               `json:"device_mac,omitempty"`
     DeviceMacPort             []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
     DhcpClientIdentifier      *string                                `json:"dhcp_client_identifier,omitempty"`

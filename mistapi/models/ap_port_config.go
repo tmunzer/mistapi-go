@@ -29,7 +29,7 @@ type ApPortConfig struct {
     PortVlanId           *int                             `json:"port_vlan_id,omitempty"`
     // Junos Radius config
     RadiusConfig         *RadiusConfig                    `json:"radius_config,omitempty"`
-    // Radsec settings
+    // RadSec settings
     Radsec               *Radsec                          `json:"radsec,omitempty"`
     // Optional to specify the vlan id for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.
     // * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.

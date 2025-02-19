@@ -75,7 +75,7 @@
 | `SmsCountryFieldLabel` | `*string` | Optional | - |
 | `SmsCountryFormat` | `*string` | Optional | - |
 | `SmsHaveAccessCode` | `*string` | Optional | Label for checkbox to specify that the user has access code |
-| `SmsMessageFormat` | `*string` | Optional | Format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is. |
+| `SmsMessageFormat` | `*string` | Optional | Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is. |
 | `SmsNumberCancel` | `*string` | Optional | Label for canceling mobile details for SMS auth |
 | `SmsNumberError` | `*string` | Optional | - |
 | `SmsNumberFieldLabel` | `*string` | Optional | Label for field to provide mobile number |

@@ -91,7 +91,7 @@ type Sso struct {
     // if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
     OauthType               *SsoOauthTypeEnum            `json:"oauth_type,omitempty"`
     OrgId                   *uuid.UUID                   `json:"org_id,omitempty"`
-    // If `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is “CN=cn,OU=ou1,OU=ou2,…”</li><li>CN (the key) is case insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is “CN=cn,OU=ou1,OU=ou2” then parsed role value is “cn”</td></tr></table>
+    // If `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is "CN=cn,OU=ou1,OU=ou2,…"</li><li>CN (the key) is case-insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is "CN=cn,OU=ou1,OU=ou2" then parsed role value is "cn"</td></tr></table>
     RoleAttrExtraction      *string                      `json:"role_attr_extraction,omitempty"`
     // If `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from
     RoleAttrFrom            *string                      `json:"role_attr_from,omitempty"`

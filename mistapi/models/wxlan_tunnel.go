@@ -21,7 +21,7 @@ type WxlanTunnel struct {
     // In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.
     HelloInterval        *int                   `json:"hello_interval,omitempty"`
     HelloRetries         *int                   `json:"hello_retries,omitempty"`
-    // Optional, overwrite the hostname in SCCRQ control message, default is \u201C\u201D or null, %H and %M can be used, which will be replace with corresponding values:
+    // Optional, overwrite the hostname in SCCRQ control message, default is  or null, %H and %M can be used, which will be replace with corresponding values:
     // * %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC
     // * %M: MAC (e.g. 5c5b350e0060)
     Hostname             *string                `json:"hostname,omitempty"`
@@ -40,7 +40,7 @@ type WxlanTunnel struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // List of remote peers’ IP or hostname
     Peers                []string               `json:"peers,omitempty"`
-    // Optional, overwrite the router-id in SCCRQ control message, default is “0” or null, can also be an IPv4 address
+    // Optional, overwrite the router-id in SCCRQ control message, default is "" or null, can also be an IPv4 address
     RouterId             *string                `json:"router_id,omitempty"`
     // Secret, ‘’ if no auth is used
     Secret               *string                `json:"secret,omitempty"`

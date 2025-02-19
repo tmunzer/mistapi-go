@@ -26,7 +26,7 @@ func NewOrgsAssetFilters(baseController baseController) *OrgsAssetFilters {
 // returns an models.ApiResponse with []models.AssetFilter data and
 // an error if there was an issue with the request or response.
 // Get List of Org BLE asset filters. 
-// Each asset filter in the list operates independently. For a filter object to match an asset, all of the filter properties must match (logical ‘AND’ of each filter property). For example, the “Visitor Tags” filter below will match an asset when both the “ibeacon\_uuid” and “ibeacon_major” properties match the asset. All non-matching assets are ignored.
+// Each asset filter in the list operates independently. For a filter object to match an asset, all of the filter properties must match (logical ‘AND’ of each filter property). For example, the "Visitor Tags" filter below will match an asset when both the "ibeacon\_uuid" and "ibeacon_major" properties match the asset. All non-matching assets are ignored.
 func (o *OrgsAssetFilters) ListOrgAssetFilters(
     ctx context.Context,
     orgId uuid.UUID,

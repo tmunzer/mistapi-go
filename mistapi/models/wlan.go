@@ -45,9 +45,9 @@ type Wlan struct {
     AuthServersNasId                     Optional[string]               `json:"auth_servers_nas_id"`
     // Optional, NAS-IP-ADDRESS to use
     AuthServersNasIp                     Optional[string]               `json:"auth_servers_nas_ip"`
-    // Radius auth session retries. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
+    // Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
     AuthServersRetries                   *int                           `json:"auth_servers_retries,omitempty"`
-    // Radius auth session timeout. Following fast timers are set if “fast_dot1x_timers” knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
+    // Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
     AuthServersTimeout                   *int                           `json:"auth_servers_timeout,omitempty"`
     // `band` is deprecated and kept for backward compability. Use bands instead
     Band                                 *string                        `json:"band,omitempty"`                                     // Deprecated
@@ -98,7 +98,7 @@ type Wlan struct {
     Dtim                                 *int                           `json:"dtim,omitempty"`
     // For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
     // * PSK will come from RADIUS server
-    // * AP sends client MAC as username ans password (i.e. `enable_mac_auth` is assumed)
+    // * AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)
     // * AP sends BSSID:SSID as Caller-Station-ID
     // * `auth_servers` is required
     // * PSK will come from cloud WLC if source is cloud_psks
@@ -175,7 +175,7 @@ type Wlan struct {
     // N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
     PortalTemplateUrl                    Optional[string]               `json:"portal_template_url"`
     Qos                                  *WlanQos                       `json:"qos,omitempty"`
-    // Radsec settings
+    // RadSec settings
     Radsec                               *Radsec                        `json:"radsec,omitempty"`
     // Property key is the RF band. enum: `24`, `5`, `6`
     Rateset                              map[string]WlanDatarates       `json:"rateset,omitempty"`
@@ -193,7 +193,7 @@ type Wlan struct {
     TemplateId                           Optional[uuid.UUID]            `json:"template_id"`
     // Url of portal background image thumbnail
     Thumbnail                            Optional[string]               `json:"thumbnail"`
-    // If `auth.type`==’eap’ or ‘psk’, should only be set for legacy client, such as pre-2004, 802.11b devices
+    // If `auth.type`==`eap` or `auth.type`==`psk`, should only be set for legacy client, such as pre-2004, 802.11b devices
     UseEapolV1                           *bool                          `json:"use_eapol_v1,omitempty"`
     // If vlan tagging is enabled
     VlanEnabled                          *bool                          `json:"vlan_enabled,omitempty"`

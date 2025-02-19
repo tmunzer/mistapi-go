@@ -23,7 +23,7 @@ MxCluster
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Proxy` | [`*models.Proxy`](../../doc/models/proxy.md) | Optional | Proxy Configuration to talk to Mist |
-| `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge Radsec Configuration |
+| `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge RadSec Configuration |
 | `RadsecTls` | [`*models.MxclusterRadsecTls`](../../doc/models/mxcluster-radsec-tls.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TuntermApSubnets` | `[]string` | Optional | List of subnets where we allow AP to establish Mist Tunnels from |

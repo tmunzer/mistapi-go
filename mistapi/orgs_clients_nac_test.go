@@ -95,7 +95,7 @@ func TestOrgsClientsNACTestSearchOrgNacClientEvents(t *testing.T) {
     
     
     
-    
+    respAttrs := []string{ "Tunnel-Type=VLAN","Tunnel-Medium-Type=IEEE-802","Tunnel-Private-Group-Id=750","User-Name=anonymous" }
     
     
     
@@ -112,7 +112,7 @@ func TestOrgsClientsNACTestSearchOrgNacClientEvents(t *testing.T) {
     
     duration := "1d"
     limit := int(100)
-    apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+    apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -164,6 +164,6 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["string"],"cert_issuer":["string"],"idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"string","last_cert_expiry":0,"last_cert_issuer":"string","last_nacrule_id":"string","last_nacrule_name":"string","last_nas_vendor":"string","last_ssid":"string","last_status":"string","mac":"string","nacrule_id":["string"],"nacrule_matched":true,"nacrule_name":["string"],"nas_vendor":["string"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless"}],"start":1513276353,"total":2}`
+    expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["john@mycorp.net"],"cert_issuer":["/C=US/ST=CA/CN=MyCorp"],"idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"john@mycorp.net","last_cert_expiry":1746711240,"last_cert_issuer":"/C=US/ST=CA/CN=MyCorp","last_cert_serial":"2c63510123456789","last_cert_subject":"/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net","last_nacrule_id":"603b62db-d839-4152-9f7f-f2578443de8d","last_nacrule_name":"Wireless Cert Auth","last_nas_vendor":"juniper-mist","last_ssid":"string","last_status":"permitted","mac":"string","nacrule_id":["603b62db-d839-4152-9f7f-f2578443de8d"],"nacrule_matched":true,"nacrule_name":["Wireless Cert Auth"],"nas_vendor":["juniper-mist"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless"}],"start":1513276353,"total":2}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

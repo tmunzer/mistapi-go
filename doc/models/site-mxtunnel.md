@@ -16,7 +16,7 @@ Site MxTunnel
 | `AdditionalMxtunnels` | [`map[string]models.SiteMxtunnelAdditionalMxtunnel`](../../doc/models/site-mxtunnel-additional-mxtunnel.md) | Optional | - |
 | `ApSubnets` | `[]string` | Optional | List of subnets where we allow AP to establish Mist Tunnels from |
 | `AutoPreemption` | [`*models.AutoPreemption`](../../doc/models/auto-preemption.md) | Optional | Schedule to preempt ap’s which are not connected to preferred peer |
-| `Clusters` | [`[]models.SiteMxtunnelCluster`](../../doc/models/site-mxtunnel-cluster.md) | Optional | For AP, how to connect to tunterm or radsecproxy |
+| `Clusters` | [`[]models.SiteMxtunnelCluster`](../../doc/models/site-mxtunnel-cluster.md) | Optional | For AP, how to connect to tunterm or RadSec Proxy |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |

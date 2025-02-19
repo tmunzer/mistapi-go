@@ -8,9 +8,9 @@ import (
 // SiteRogue represents a SiteRogue struct.
 // Rogue site settings
 type SiteRogue struct {
-    // Whether or not rogue detection is enabled
+    // Whether rogue detection is enabled
     Enabled              *bool                  `json:"enabled,omitempty"`
-    // Whether or not honeypot detection is enabled
+    // Whether honeypot detection is enabled
     HoneypotEnabled      *bool                  `json:"honeypot_enabled,omitempty"`
     // Minimum duration for a bssid to be considered rogue
     MinDuration          *int                   `json:"min_duration,omitempty"`

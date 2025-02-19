@@ -12,7 +12,7 @@ import (
 type CaptureScan struct {
     // Filter by ap_mac
     ApMac                Optional[string]              `json:"ap_mac"`
-    // Dictionary key is AP mac and value is a dictionary which contains key “band”, “bandwidth”, “channel” and “tcpdump_expression”. In case keys are missed we will take parent value if parent values are not set we will use default value
+    // Dictionary key is AP mac and value is a dictionary which contains key "band", "bandwidth", "channel" and "tcpdump_expression". In case keys are missed we will take parent value if parent values are not set we will use default value
     Aps                  map[string]CaptureScanAps     `json:"aps,omitempty"`
     // Only Single value allowed, default value gets applied when user provides wrong values. enum: `24`, `5`, `6`
     Band                 Optional[CaptureScanBandEnum] `json:"band"`

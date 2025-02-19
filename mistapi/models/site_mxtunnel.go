@@ -14,7 +14,7 @@ type SiteMxtunnel struct {
     ApSubnets            []string                                  `json:"ap_subnets,omitempty"`
     // Schedule to preempt ap’s which are not connected to preferred peer
     AutoPreemption       *AutoPreemption                           `json:"auto_preemption,omitempty"`
-    // For AP, how to connect to tunterm or radsecproxy
+    // For AP, how to connect to tunterm or RadSec Proxy
     Clusters             []SiteMxtunnelCluster                     `json:"clusters,omitempty"`
     // When the object has been created, in epoch
     CreatedTime          *float64                                  `json:"created_time,omitempty"`

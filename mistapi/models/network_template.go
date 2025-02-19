@@ -28,7 +28,7 @@ type NetworkTemplate struct {
     Id                    *uuid.UUID                             `json:"id,omitempty"`
     // Org Networks that we'd like to import
     ImportOrgNetworks     []string                               `json:"import_org_networks,omitempty"`
-    // Enable mist_nac to use radsec
+    // Enable mist_nac to use RadSec
     MistNac               *SwitchMistNac                         `json:"mist_nac,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64                               `json:"modified_time,omitempty"`
@@ -47,7 +47,7 @@ type NetworkTemplate struct {
     // Junos Radius config
     RadiusConfig          *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
     RemoteSyslog          *RemoteSyslog                          `json:"remote_syslog,omitempty"`
-    // By default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
+    // By default, when we configure a device, we only clean up config we generate. Remove existing configs if enabled
     RemoveExistingConfigs *bool                                  `json:"remove_existing_configs,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
     // Defines custom switch configuration based on different criterias

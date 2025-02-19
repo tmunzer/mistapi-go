@@ -35,9 +35,9 @@ type OptionalStatsPort struct {
     MacLimit             *int                          `json:"mac_limit,omitempty"`
     // chassis identifier of the chassis type listed
     NeighborMac          string                        `json:"neighbor_mac"`
-    // Description supplied by the system on the interface E.g. “GigabitEthernet2/0/39”
+    // Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39"
     NeighborPortDesc     *string                       `json:"neighbor_port_desc,omitempty"`
-    // Name supplied by the system on the interface E.g. neighbor system name E.g. “Kumar-Acc-SW.mist.local”
+    // Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local"
     NeighborSystemName   *string                       `json:"neighbor_system_name,omitempty"`
     // Is the POE configured not be disabled.
     PoeDisabled          *bool                         `json:"poe_disabled,omitempty"`

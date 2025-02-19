@@ -8,7 +8,7 @@ import (
 // SwitchMgmt represents a SwitchMgmt struct.
 // Switch settings
 type SwitchMgmt struct {
-    // AP_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.
+    // AP_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default, this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.
     ApAffinityThreshold  *int                                     `json:"ap_affinity_threshold,omitempty"`
     // Set Banners for switches. Allows markup formatting
     CliBanner            *string                                  `json:"cli_banner,omitempty"`

@@ -245,7 +245,7 @@ func (o *OrgsSetting) SetOrgCustomBucket(
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Verify Customer PCAP Bucket
-// **Note**: If successful, a “VERIFIED” file will be created in the bucket
+// **Note**: If successful, a "VERIFIED" file will be created in the bucket
 func (o *OrgsSetting) VerifyOrgCustomBucket(
     ctx context.Context,
     orgId uuid.UUID,

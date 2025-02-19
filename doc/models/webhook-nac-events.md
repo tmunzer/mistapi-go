@@ -23,10 +23,10 @@
   "events": [
     {
       "ap": "ap6",
-      "auth_type": "auth_type0",
+      "auth_type": "eap-teap",
       "bssid": "bssid4",
-      "dryrun_nacrule_id": "0000114c-0000-0000-0000-000000000000",
-      "dryrun_nacrule_matched": false,
+      "client_type": "wireless",
+      "device_mac": "device_mac4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -34,10 +34,10 @@
     },
     {
       "ap": "ap6",
-      "auth_type": "auth_type0",
+      "auth_type": "eap-teap",
       "bssid": "bssid4",
-      "dryrun_nacrule_id": "0000114c-0000-0000-0000-000000000000",
-      "dryrun_nacrule_matched": false,
+      "client_type": "wireless",
+      "device_mac": "device_mac4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

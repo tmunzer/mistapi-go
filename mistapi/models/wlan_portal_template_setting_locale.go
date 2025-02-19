@@ -116,7 +116,7 @@ type WlanPortalTemplateSettingLocale struct {
     SmsCountryFormat         *string                `json:"smsCountryFormat,omitempty"`
     // Label for checkbox to specify that the user has access code
     SmsHaveAccessCode        *string                `json:"smsHaveAccessCode,omitempty"`
-    // Format of access code sms message. {{code}} and {{duration}} are place holders and should be retained as is.
+    // Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is.
     SmsMessageFormat         *string                `json:"smsMessageFormat,omitempty"`
     // Label for canceling mobile details for SMS auth
     SmsNumberCancel          *string                `json:"smsNumberCancel,omitempty"`

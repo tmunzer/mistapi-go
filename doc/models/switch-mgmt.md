@@ -13,7 +13,7 @@ Switch settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApAffinityThreshold` | `*int` | Optional | AP_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.<br>**Default**: `10` |
+| `ApAffinityThreshold` | `*int` | Optional | AP_affinity_threshold ap_affinity_threshold can be added as a field under site/setting. By default, this value is set to 12. If the field is set in both site/setting and org/setting, the value from site/setting will be used.<br>**Default**: `10` |
 | `CliBanner` | `*string` | Optional | Set Banners for switches. Allows markup formatting |
 | `CliIdleTimeout` | `*int` | Optional | Sets timeout for switches<br>**Constraints**: `>= 1`, `<= 60` |
 | `ConfigRevertTimer` | `*int` | Optional | Rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |

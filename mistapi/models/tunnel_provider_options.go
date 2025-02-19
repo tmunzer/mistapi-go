@@ -7,7 +7,7 @@ import (
 
 // TunnelProviderOptions represents a TunnelProviderOptions struct.
 type TunnelProviderOptions struct {
-    // For jse-ipsec, this allow provisioning of adequate resource on JSE. Make sure adequate licenses are added
+    // For jse-ipsec, this allows provisioning of adequate resource on JSE. Make sure adequate licenses are added
     Jse                  *TunnelProviderOptionsJse     `json:"jse,omitempty"`
     // For zscaler-ipsec and zscaler-gre
     Zscaler              *TunnelProviderOptionsZscaler `json:"zscaler,omitempty"`

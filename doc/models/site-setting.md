@@ -27,13 +27,13 @@ Site Settings
 | `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br>**Default**: `false` |
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | Mist also uses some heuristic rules to prevent destructive configs from being pushed |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | You can define some URLs that's critical to site operaitons the latency will be captured and considered for site health |
+| `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | You can define some URLs that's critical to site operations the latency will be captured and considered for site health |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | By default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DisabledSystemDefinedPortUsages` | [`[]models.SystemDefinedPortUsagesEnum`](../../doc/models/system-defined-port-usages-enum.md) | Optional | If some system-default port usages are not desired - namely, ap / iot / uplink |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
-| `Engagement` | [`*models.SiteEngagement`](../../doc/models/site-engagement.md) | Optional | **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day |
+| `Engagement` | [`*models.SiteEngagement`](../../doc/models/site-engagement.md) | Optional | **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day |
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
 | `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | - |
 | `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
@@ -46,9 +46,9 @@ Site Settings
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
 | `JuniperSrx` | [`*models.SiteSettingJuniperSrx`](../../doc/models/site-setting-juniper-srx.md) | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
-| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use radsec |
+| `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | Site Mist Edges form a cluster of radsecproxy servers |
+| `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | Site Mist Edges form a cluster of RadSec Proxy servers |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `Mxtunnels` | [`*models.SiteMxtunnel`](../../doc/models/site-mxtunnel.md) | Optional | Site MxTunnel |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
@@ -64,7 +64,7 @@ Site Settings
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
-| `RemoveExistingConfigs` | `*bool` | Optional | By default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled<br>**Default**: `false` |
+| `RemoveExistingConfigs` | `*bool` | Optional | By default, when we configure a device, we only clean up config we generate. Remove existing configs if enabled<br>**Default**: `false` |
 | `ReportGatt` | `*bool` | Optional | Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)<br>**Default**: `false` |
 | `Rogue` | [`*models.SiteRogue`](../../doc/models/site-rogue.md) | Optional | Rogue site settings |
 | `Rtsa` | [`*models.SiteSettingRtsa`](../../doc/models/site-setting-rtsa.md) | Optional | Managed mobility |

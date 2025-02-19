@@ -27,12 +27,12 @@ Radio stat
 | `TxPkts` | `models.Optional[int]` | Optional | - |
 | `Usage` | `models.Optional[string]` | Optional | - |
 | `UtilAll` | `models.Optional[int]` | Optional | All utilization in percentage |
-| `UtilNonWifi` | `models.Optional[int]` | Optional | Reception of “No Packets” utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise |
-| `UtilRxInBss` | `models.Optional[int]` | Optional | Reception of “In BSS” utilization in percentage, only frames that are received from AP/STAs within the BSS |
-| `UtilRxOtherBss` | `models.Optional[int]` | Optional | Reception of “Other BSS” utilization in percentage, all frames received from AP/STAs that are outside the BSS |
+| `UtilNonWifi` | `models.Optional[int]` | Optional | Reception of "No Packets" utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise |
+| `UtilRxInBss` | `models.Optional[int]` | Optional | Reception of "In BSS" utilization in percentage, only frames that are received from AP/STAs within the BSS |
+| `UtilRxOtherBss` | `models.Optional[int]` | Optional | Reception of "Other BSS" utilization in percentage, all frames received from AP/STAs that are outside the BSS |
 | `UtilTx` | `models.Optional[int]` | Optional | Transmission utilization in percentage |
-| `UtilUndecodableWifi` | `models.Optional[int]` | Optional | Reception of “UnDecodable Wifi“ utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio |
-| `UtilUnknownWifi` | `models.Optional[int]` | Optional | Reception of “No Category” utilization in percentage, all 802.11 frames that are corrupted at the receiver |
+| `UtilUndecodableWifi` | `models.Optional[int]` | Optional | Reception of "UnDecodable Wifi" utilization in percentage, only Preamble, PLCP header is decoded, Rest is undecodable in this radio |
+| `UtilUnknownWifi` | `models.Optional[int]` | Optional | Reception of "No Category" utilization in percentage, all 802.11 frames that are corrupted at the receiver |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

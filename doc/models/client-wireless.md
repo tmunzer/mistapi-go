@@ -23,14 +23,13 @@
 | `LastDevice` | `*string` | Optional | Latest type of device we identified (e.g. iPhone, Mac, ...) |
 | `LastFirmware` | `*string` | Optional | Only when client has the Marvis Client app running. Same as "firmware" |
 | `LastHostname` | `*string` | Optional | Latest hostname we detected for the client |
-| `LastIp` | `*string` | Optional | Latest ip address we detected for the client |
+| `LastIp` | `*string` | Optional | The last known IP Address for the client |
 | `LastModel` | `*string` | Optional | Only when client has the Marvis Client app running. latest client hardware model we detected for the client |
 | `LastOs` | `*string` | Optional | Only when client has the Marvis Client app running. Latest version of OS Type we detected for the client |
 | `LastOsVersion` | `*string` | Optional | Only when client has the Marvis Client app running. Latest version of OS Version we detected for the client |
 | `LastPskId` | `*uuid.UUID` | Optional | Only for PPSK authentication. Latest PPSK ID used by the client |
 | `LastPskName` | `*string` | Optional | Only for PPSK authentication. Latest PPSK Name used by the client |
-| `LastSsid` | `*string` | Optional | Name of the latest SSID (WLAN) the client is/was connected to client |
-| `LastUsername` | `*string` | Optional | Only for 802.1X authentication. Latest username used by the client |
+| `LastSsid` | `*string` | Optional | If dot1x authentication, the username used during the latest authentication. Otherwise, the MAC address of the client |
 | `LastVlan` | `*int` | Optional | Latest VLAN ID assigned to the client |
 | `LastWlanId` | `*uuid.UUID` | Optional | ID of the latest SSID (WLAN) the client is/was connected to |
 | `Mac` | `*string` | Optional | Client MAC Address |
@@ -78,17 +77,16 @@
     "192.168.0.2"
   ],
   "last_ap": "a83a79a947ee",
-  "last_device": "Mac",
+  "last_device": "Zebra",
   "last_firmware": "wl0: Jan 20 2024 04:08:41 version 20.103.12.0.8.7.171 FWID 01-e09d2675",
   "last_hostname": "hostname-a",
-  "last_ip": "10.5.23.43",
+  "last_ip": "10.100.0.157",
   "last_model": "MBP 16\\\" M1 2021",
   "last_os": "Sonoma",
   "last_os_version": "14.4.1 (Build 23E224)",
   "last_psk_id": "abf7dc5c-bb51-4bb7-93b6-5547400ffe11",
   "last_psk_name": "iot",
-  "last_ssid": "IoT SSID",
-  "last_username": "user@corp.com",
+  "last_ssid": "john@mycorp.net",
   "last_vlan": 10,
   "last_wlan_id": "e5d67b07-aae8-494b-8584-cbc20c8110aa",
   "mac": "bcd074000000",

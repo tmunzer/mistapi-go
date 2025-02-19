@@ -28,7 +28,7 @@ type ApRadioBand6 struct {
     PowerMin             Optional[int]             `json:"power_min"`
     // enum: `auto`, `long`, `short`
     Preamble             *RadioBandPreambleEnum    `json:"preamble,omitempty"`
-    // For 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed and we'll fallback to Low Power Indoor if AFC failed
+    // For 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed, and we'll fall back to Low Power Indoor if AFC failed
     StandardPower        *bool                     `json:"standard_power,omitempty"`
     AdditionalProperties map[string]interface{}    `json:"_"`
 }

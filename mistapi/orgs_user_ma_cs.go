@@ -28,11 +28,11 @@ func NewOrgsUserMACs(baseController baseController) *OrgsUserMACs {
 // Create Org User MACs
 // ### Usermacs import CSV file format
 // mac,labels,vlan,notes 
-// 921b638445cd,”bldg1,flor1”,vlan-100 
-// 721b638445ef,”bldg2,flor2”,vlan-101,Canon Printers 
-// 721b638445ee,”bldg3,flor3”,vlan-102 
-// 921b638445ce,”bldg4,flor4”,vlan-103 
-// 921b638445cf,”bldg5,flor5”,vlan-104
+// 921b638445cd,"bldg1,flor1",vlan-100 
+// 721b638445ef,"bldg2,flor2",vlan-101,Canon Printers 
+// 721b638445ee,"bldg3,flor3",vlan-102 
+// 921b638445ce,"bldg4,flor4",vlan-103 
+// 921b638445cf,"bldg5,flor5",vlan-104
 func (o *OrgsUserMACs) CreateOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,

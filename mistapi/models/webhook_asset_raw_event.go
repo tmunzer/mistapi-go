@@ -28,7 +28,7 @@ type WebhookAssetRawEvent struct {
     MapId                 uuid.UUID              `json:"map_id"`
     // Optional, BLE manufacturing company ID
     MfgCompanyId          float64                `json:"mfg_company_id"`
-    // Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
+    // Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
     MfgData               string                 `json:"mfg_data"`
     // Signal strength
     Rssi                  float64                `json:"rssi"`

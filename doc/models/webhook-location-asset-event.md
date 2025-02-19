@@ -21,7 +21,7 @@
 | `Mac` | `*string` | Optional | - |
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `MfgCompanyId` | `*int` | Optional | Optional, BLE manufacturing company ID |
-| `MfgData` | `*string` | Optional | Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”) |
+| `MfgData` | `*string` | Optional | Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC") |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*int` | Optional | - |
 | `Type` | `*string` | Optional | **Default**: `"asset"` |

@@ -1,7 +1,7 @@
 
 # Radsec
 
-Radsec settings
+RadSec settings
 
 *This model accepts additional fields of type interface{}.*
 
@@ -19,8 +19,8 @@ Radsec settings
 | `MxclusterIds` | `[]uuid.UUID` | Optional | To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids |
 | `ProxyHosts` | `[]string` | Optional | Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge` |
 | `ServerName` | `*string` | Optional | Name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge. |
-| `Servers` | [`[]models.RadsecServer`](../../doc/models/radsec-server.md) | Optional | List of Radsec Servers. Only if not Mist Edge.<br>**Constraints**: *Unique Items Required* |
-| `UseMxedge` | `*bool` | Optional | use mxedge(s) as radsecproxy |
+| `Servers` | [`[]models.RadsecServer`](../../doc/models/radsec-server.md) | Optional | List of RadSec Servers. Only if not Mist Edge.<br>**Constraints**: *Unique Items Required* |
+| `UseMxedge` | `*bool` | Optional | use mxedge(s) as RadSec Proxy |
 | `UseSiteMxedge` | `*bool` | Optional | To use Site mxedges when this WLAN does not use mxtunnel<br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -1,8 +1,6 @@
 
 # Avprofile Protocols Enum
 
-enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
-
 ## Enumeration
 
 `AvprofileProtocolsEnum`

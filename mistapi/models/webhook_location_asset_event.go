@@ -19,7 +19,7 @@ type WebhookLocationAssetEvent struct {
     MapId                 *uuid.UUID             `json:"map_id,omitempty"`
     // Optional, BLE manufacturing company ID
     MfgCompanyId          *int                   `json:"mfg_company_id,omitempty"`
-    // Optional, BLE manufacturing data in hex byte-string format (ie: “112233AABBCC”)
+    // Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
     MfgData               *string                `json:"mfg_data,omitempty"`
     SiteId                *uuid.UUID             `json:"site_id,omitempty"`
     Timestamp             *int                   `json:"timestamp,omitempty"`

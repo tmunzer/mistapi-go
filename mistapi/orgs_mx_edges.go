@@ -167,7 +167,7 @@ func (o *OrgsMxEdges) AssignOrgMxEdgeToSite(
 // ClaimOrgMxEdge takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseClaimMxEdge data and
 // an error if there was an issue with the request or response.
-// For a Mist Edge in default state, it will show a random claim code like `135-546-673` which you can “claim” it into your Org
+// For a Mist Edge in default state, it will show a random claim code like `135-546-673` which you can "claim" it into your Org
 func (o *OrgsMxEdges) ClaimOrgMxEdge(
     ctx context.Context,
     orgId uuid.UUID,

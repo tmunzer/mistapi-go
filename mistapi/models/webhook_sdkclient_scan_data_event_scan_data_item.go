@@ -13,7 +13,7 @@ type WebhookSdkclientScanDataEventScanDataItem struct {
     Ap                   string                 `json:"ap"`
     // 5GHz or 2.4GHz band, associated with the BSSID scanned. enum: `2.4`, `5`
     Band                 ScanDataItemBandEnum   `json:"band"`
-    // BSSID found during client’s background scan for wifi
+    // BSSID found during client’s background scan for Wi-Fi
     Bssid                string                 `json:"bssid"`
     // Channel of the band found in the scan
     Channel              int                    `json:"channel"`

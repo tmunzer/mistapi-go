@@ -32,7 +32,7 @@ type SiteSetting struct {
     ConfigPushPolicy                *SiteSettingConfigPushPolicy           `json:"config_push_policy,omitempty"`
     // When the object has been created, in epoch
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
-    // You can define some URLs that's critical to site operaitons the latency will be captured and considered for site health
+    // You can define some URLs that's critical to site operations the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
     // By default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following
     DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
@@ -43,7 +43,7 @@ type SiteSetting struct {
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
-    // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently we don't allow multiple ranges for the same day
+    // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     // EVPN Options
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
@@ -66,11 +66,11 @@ type SiteSetting struct {
     JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
     // LED AP settings
     Led                             *ApLed                                 `json:"led,omitempty"`
-    // Enable mist_nac to use radsec
+    // Enable mist_nac to use RadSec
     MistNac                         *SwitchMistNac                         `json:"mist_nac,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime                    *float64                               `json:"modified_time,omitempty"`
-    // Site Mist Edges form a cluster of radsecproxy servers
+    // Site Mist Edges form a cluster of RadSec Proxy servers
     Mxedge                          *SiteSettingMxedge                     `json:"mxedge,omitempty"`
     MxedgeMgmt                      *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
     // Site MxTunnel
@@ -98,7 +98,7 @@ type SiteSetting struct {
     // Junos Radius config
     RadiusConfig                    *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
     RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
-    // By default, when we configure a device, we only clean up config we generates. Remove existing configs if enabled
+    // By default, when we configure a device, we only clean up config we generate. Remove existing configs if enabled
     RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
     // Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
     ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`

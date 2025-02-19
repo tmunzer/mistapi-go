@@ -54,7 +54,7 @@ body := models.NacRule{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5\"",
     },
     Matching:             models.ToPointer(models.NacRuleMatching{
-        AuthType:             models.ToPointer(models.NacRuleMatchingAuthTypeEnum_EAPTLS),
+        AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTLS),
         Nactags:              []string{
             "041d5d36-716c-4cfb-4988-3857c6aa14a2",
             "a809a97f-d599-f812-eb8c-c3f84aabf6ba",

@@ -158,10 +158,10 @@ CountSiteNacClients(
 | `timestamp` | `*float64` | Query, Optional | Start time, in epoch |
 | `lastAp` | `*string` | Query, Optional | AP MAC connected to by client |
 | `mac` | `*string` | Query, Optional | MAC address |
-| `lastStatus` | `*string` | Query, Optional | Connection status of client i.e “permitted”, “denied, “session_ended” |
-| `mType` | `*string` | Query, Optional | Client type i.e. “wireless”, “wired” etc. |
-| `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliancy of client i.e “compliant”, “not compliant” |
-| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg “intune”, “jamf” |
+| `lastStatus` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
+| `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
+| `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliancy of client i.e "compliant", "not compliant" |
+| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -369,7 +369,12 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-
+respAttrs := []string{
+    "Tunnel-Type=VLAN",
+    "Tunnel-Medium-Type=IEEE-802",
+    "Tunnel-Private-Group-Id=750",
+    "User-Name=anonymous",
+}
 
 
 
@@ -401,7 +406,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -519,10 +524,10 @@ SearchSiteNacClients(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
 | `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
-| `status` | `*string` | Query, Optional | Connection status of client i.e “permitted”, “denied, “session_ended” |
-| `mType` | `*string` | Query, Optional | Client type i.e. “wireless”, “wired” etc. |
-| `mdmCompliance` | `*string` | Query, Optional | MDM compliancy of client i.e “compliant”, “not compliant” |
-| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg “intune”, “jamf” |
+| `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
+| `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
+| `mdmCompliance` | `*string` | Query, Optional | MDM compliancy of client i.e "compliant", "not compliant" |
+| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -614,34 +619,36 @@ if err != nil {
       ],
       "auth_type": "eap-tls",
       "cert_cn": [
-        "string"
+        "john@mycorp.net"
       ],
       "cert_issuer": [
-        "string"
+        "/C=US/ST=CA/CN=MyCorp"
       ],
       "idp_id": "string",
       "idp_role": [
         "string"
       ],
       "last_ap": "string",
-      "last_cert_cn": "string",
-      "last_cert_expiry": 0,
-      "last_cert_issuer": "string",
-      "last_nacrule_id": "string",
-      "last_nacrule_name": "string",
-      "last_nas_vendor": "string",
+      "last_cert_cn": "john@mycorp.net",
+      "last_cert_expiry": 1746711240,
+      "last_cert_issuer": "/C=US/ST=CA/CN=MyCorp",
+      "last_cert_serial": "2c63510123456789",
+      "last_cert_subject": "/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net",
+      "last_nacrule_id": "603b62db-d839-4152-9f7f-f2578443de8d",
+      "last_nacrule_name": "Wireless Cert Auth",
+      "last_nas_vendor": "juniper-mist",
       "last_ssid": "string",
-      "last_status": "string",
+      "last_status": "permitted",
       "mac": "string",
       "nacrule_id": [
-        "string"
+        "603b62db-d839-4152-9f7f-f2578443de8d"
       ],
       "nacrule_matched": true,
       "nacrule_name": [
-        "string"
+        "Wireless Cert Auth"
       ],
       "nas_vendor": [
-        "string"
+        "juniper-mist"
       ],
       "org_id": "31f27122-68a9-47a4-b526-8fb8a62a8acb",
       "random_mac": true,

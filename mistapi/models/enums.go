@@ -224,7 +224,6 @@ const (
 )
 
 // AvprofileProtocolsEnum is a string enum.
-// enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
 type AvprofileProtocolsEnum string
 
 const (
@@ -1220,6 +1219,17 @@ const (
     L2tpStateEnum_WAITCTRLREPLY          L2tpStateEnum = "wait-ctrl-reply"
 )
 
+// LastStatusEnum is a string enum.
+// Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped`
+type LastStatusEnum string
+
+const (
+    LastStatusEnum_PERMITTED      LastStatusEnum = "permitted"
+    LastStatusEnum_SESSIONSTARTED LastStatusEnum = "session_started"
+    LastStatusEnum_SESSIONSTOPPED LastStatusEnum = "session_stopped"
+    LastStatusEnum_DENIED         LastStatusEnum = "denied"
+)
+
 // LicenseTypeEnum is a string enum.
 // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`
 type LicenseTypeEnum string
@@ -1566,6 +1576,31 @@ const (
     MxtunnelProtocolEnum_UDP MxtunnelProtocolEnum = "udp"
 )
 
+// NacAccessTypeEnum is a string enum.
+// Type of network access. enum: `wireless`, `wired`
+type NacAccessTypeEnum string
+
+const (
+    NacAccessTypeEnum_WIRELESS NacAccessTypeEnum = "wireless"
+    NacAccessTypeEnum_WIRED    NacAccessTypeEnum = "wired"
+)
+
+// NacAuthTypeEnum is a string enum.
+// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+type NacAuthTypeEnum string
+
+const (
+    NacAuthTypeEnum_CERT       NacAuthTypeEnum = "cert"
+    NacAuthTypeEnum_DEVICEAUTH NacAuthTypeEnum = "device-auth"
+    NacAuthTypeEnum_EAPTEAP    NacAuthTypeEnum = "eap-teap"
+    NacAuthTypeEnum_EAPTLS     NacAuthTypeEnum = "eap-tls"
+    NacAuthTypeEnum_EAPTTLS    NacAuthTypeEnum = "eap-ttls"
+    NacAuthTypeEnum_IDP        NacAuthTypeEnum = "idp"
+    NacAuthTypeEnum_MAB        NacAuthTypeEnum = "mab"
+    NacAuthTypeEnum_PEAPTLS    NacAuthTypeEnum = "peap-tls"
+    NacAuthTypeEnum_PSK        NacAuthTypeEnum = "psk"
+)
+
 // NacPortalAccessTypeEnum is a string enum.
 // if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
 type NacPortalAccessTypeEnum string
@@ -1611,22 +1646,6 @@ type NacRuleActionEnum string
 const (
     NacRuleActionEnum_ALLOW NacRuleActionEnum = "allow"
     NacRuleActionEnum_BLOCK NacRuleActionEnum = "block"
-)
-
-// NacRuleMatchingAuthTypeEnum is a string enum.
-// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
-type NacRuleMatchingAuthTypeEnum string
-
-const (
-    NacRuleMatchingAuthTypeEnum_CERT       NacRuleMatchingAuthTypeEnum = "cert"
-    NacRuleMatchingAuthTypeEnum_DEVICEAUTH NacRuleMatchingAuthTypeEnum = "device-auth"
-    NacRuleMatchingAuthTypeEnum_EAPTEAP    NacRuleMatchingAuthTypeEnum = "eap-teap"
-    NacRuleMatchingAuthTypeEnum_EAPTLS     NacRuleMatchingAuthTypeEnum = "eap-tls"
-    NacRuleMatchingAuthTypeEnum_EAPTTLS    NacRuleMatchingAuthTypeEnum = "eap-ttls"
-    NacRuleMatchingAuthTypeEnum_IDP        NacRuleMatchingAuthTypeEnum = "idp"
-    NacRuleMatchingAuthTypeEnum_MAB        NacRuleMatchingAuthTypeEnum = "mab"
-    NacRuleMatchingAuthTypeEnum_PEAPTLS    NacRuleMatchingAuthTypeEnum = "peap-tls"
-    NacRuleMatchingAuthTypeEnum_PSK        NacRuleMatchingAuthTypeEnum = "psk"
 )
 
 // NacRuleMatchingPortTypeEnum is a string enum.
@@ -1946,7 +1965,7 @@ const (
 )
 
 // OrgSettingMistNacIpVersionEnum is a string enum.
-// by default NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
+// by default, NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`
 type OrgSettingMistNacIpVersionEnum string
 
 const (
