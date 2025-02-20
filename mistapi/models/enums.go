@@ -3239,17 +3239,17 @@ const (
 )
 
 // SnmpUsmpUserAuthenticationTypeEnum is a string enum.
-// sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `authentication_md5`, `authentication_none`, `authentication_sha`, `authentication_sha224`, `authentication_sha256`, `authentication_sha384`, `authentication_sha512`
+// sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `authentication-md5`, `authentication-none`, `authentication-sha`, `authentication-sha224`, `authentication-sha256`, `authentication-sha384`, `authentication-sha512`
 type SnmpUsmpUserAuthenticationTypeEnum string
 
 const (
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONMD5    SnmpUsmpUserAuthenticationTypeEnum = "authentication_md5"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication_none"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha224"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha256"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha384"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmpUserAuthenticationTypeEnum = "authentication_sha512"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIOMD5     SnmpUsmpUserAuthenticationTypeEnum = "authenticatio-_md5"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication-none"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha224"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha256"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha384"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha512"
 )
 
 // SnmpUsmpUserEncryptionTypeEnum is a string enum.

@@ -112,12 +112,12 @@
   ],
   "usm": [
     {
-      "engine-id": "engine-id8",
       "engine_type": "local_engine",
+      "remote_engine_id": "remote_engine_id8",
       "users": [
         {
           "authentication_password": "authentication_password0",
-          "authentication_type": "authentication_sha384",
+          "authentication_type": "authentication-sha384",
           "encryption_password": "encryption_password4",
           "encryption_type": "privacy-3des",
           "name": "name6",
@@ -133,12 +133,12 @@
       }
     },
     {
-      "engine-id": "engine-id8",
       "engine_type": "local_engine",
+      "remote_engine_id": "remote_engine_id8",
       "users": [
         {
           "authentication_password": "authentication_password0",
-          "authentication_type": "authentication_sha384",
+          "authentication_type": "authentication-sha384",
           "encryption_password": "encryption_password4",
           "encryption_type": "privacy-3des",
           "name": "name6",

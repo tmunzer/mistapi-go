@@ -7,9 +7,9 @@ import (
 
 // SnmpUsmpUser represents a SnmpUsmpUser struct.
 type SnmpUsmpUser struct {
-    // Not required if `authentication_type`==`authentication_none`. Include alphabetic, numeric, and special characters, but it cannot include control characters.
+    // Not required if `authentication_type`==`authentication-none`. Include alphabetic, numeric, and special characters, but it cannot include control characters.
     AuthenticationPassword *string                             `json:"authentication_password,omitempty"`
-    // sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `authentication_md5`, `authentication_none`, `authentication_sha`, `authentication_sha224`, `authentication_sha256`, `authentication_sha384`, `authentication_sha512`
+    // sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `authentication-md5`, `authentication-none`, `authentication-sha`, `authentication-sha224`, `authentication-sha256`, `authentication-sha384`, `authentication-sha512`
     AuthenticationType     *SnmpUsmpUserAuthenticationTypeEnum `json:"authentication_type,omitempty"`
     // Not required if `encryption_type`==`privacy-none`. Include alphabetic, numeric, and special characters, but it cannot include control characters
     EncryptionPassword     *string                             `json:"encryption_password,omitempty"`
