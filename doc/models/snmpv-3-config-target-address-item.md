@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Address` | `string` | Required | - |
-| `AddressMask` | `string` | Required | - |
+| `Address` | `*string` | Optional | - |
+| `AddressMask` | `*string` | Optional | - |
 | `Port` | `models.Optional[string]` | Optional | **Default**: `"161"` |
 | `TagList` | `*string` | Optional | Refer to notify tag, can be multiple with blank |
-| `TargetAddressName` | `string` | Required | - |
+| `TargetAddressName` | `*string` | Optional | - |
 | `TargetParameters` | `*string` | Optional | Refer to notify target parameters name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -28,7 +28,6 @@
   "port": "161",
   "target_address_name": "target_address_name",
   "tag_list": "tag_list4",
-  "target_parameters": "target_parameters6",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
