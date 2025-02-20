@@ -66,9 +66,10 @@
     {
       "address": "address8",
       "address_mask": "address_mask0",
-      "port": 198,
+      "port": "port2",
       "tag_list": "tag_list4",
       "target_address_name": "target_address_name6",
+      "target_parameters": "target_parameters6",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -77,9 +78,10 @@
     {
       "address": "address8",
       "address_mask": "address_mask0",
-      "port": 198,
+      "port": "port2",
       "tag_list": "tag_list4",
       "target_address_name": "target_address_name6",
+      "target_parameters": "target_parameters6",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

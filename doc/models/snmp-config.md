@@ -15,7 +15,7 @@
 | `Contact` | `*string` | Optional | - |
 | `Description` | `*string` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
-| `EngineId` | [`*models.SnmpConfigEngineIdEnum`](../../doc/models/snmp-config-engine-id-enum.md) | Optional | enum: `engine-id-suffix`, `local`, `use-default-ip-address`, `use_mac-address` |
+| `EngineId` | `*string` | Optional | **Constraints**: *Maximum Length*: `27` |
 | `Location` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | **Default**: `"default"` |
@@ -67,7 +67,7 @@
       }
     }
   ],
-  "engine_id": "use-default-ip-address",
+  "engine_id": "engine_id6",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

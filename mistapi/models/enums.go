@@ -3208,17 +3208,6 @@ const (
     SleSummaryScopeEnum_ENUMSWITCH SleSummaryScopeEnum = "switch"
 )
 
-// SnmpConfigEngineIdEnum is a string enum.
-// enum: `engine-id-suffix`, `local`, `use-default-ip-address`, `use_mac-address`
-type SnmpConfigEngineIdEnum string
-
-const (
-    SnmpConfigEngineIdEnum_ENGINEIDSUFFIX      SnmpConfigEngineIdEnum = "engine-id-suffix"
-    SnmpConfigEngineIdEnum_LOCAL               SnmpConfigEngineIdEnum = "local"
-    SnmpConfigEngineIdEnum_USEDEFAULTIPADDRESS SnmpConfigEngineIdEnum = "use-default-ip-address"
-    SnmpConfigEngineIdEnum_USEMACADDRESS       SnmpConfigEngineIdEnum = "use_mac-address"
-)
-
 // SnmpConfigTrapVerionEnum is a string enum.
 // enum: `all`, `v1`, `v2`
 type SnmpConfigTrapVerionEnum string
@@ -3243,7 +3232,7 @@ const (
 type SnmpUsmpUserAuthenticationTypeEnum string
 
 const (
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIOMD5     SnmpUsmpUserAuthenticationTypeEnum = "authenticatio-_md5"
+    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIOMD5     SnmpUsmpUserAuthenticationTypeEnum = "authenticatio-md5"
     SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication-none"
     SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha"
     SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha224"

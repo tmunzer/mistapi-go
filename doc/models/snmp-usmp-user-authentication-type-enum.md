@@ -11,7 +11,7 @@ sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `a
 
 | Name |
 |  --- |
-| `authenticatio-_md5` |
+| `authenticatio-md5` |
 | `authentication-none` |
 | `authentication-sha` |
 | `authentication-sha224` |

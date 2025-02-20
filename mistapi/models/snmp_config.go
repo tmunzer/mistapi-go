@@ -7,20 +7,19 @@ import (
 
 // SnmpConfig represents a SnmpConfig struct.
 type SnmpConfig struct {
-    ClientList           []SnmpConfigClientList  `json:"client_list,omitempty"`
-    Contact              *string                 `json:"contact,omitempty"`
-    Description          *string                 `json:"description,omitempty"`
-    Enabled              *bool                   `json:"enabled,omitempty"`
-    // enum: `engine-id-suffix`, `local`, `use-default-ip-address`, `use_mac-address`
-    EngineId             *SnmpConfigEngineIdEnum `json:"engine_id,omitempty"`
-    Location             *string                 `json:"location,omitempty"`
-    Name                 *string                 `json:"name,omitempty"`
-    Network              *string                 `json:"network,omitempty"`
-    TrapGroups           []SnmpConfigTrapGroup   `json:"trap_groups,omitempty"`
-    V2cConfig            []SnmpConfigV2cConfig   `json:"v2c_config,omitempty"`
-    V3Config             *Snmpv3Config           `json:"v3_config,omitempty"`
-    Views                []SnmpConfigView        `json:"views,omitempty"`
-    AdditionalProperties map[string]interface{}  `json:"_"`
+    ClientList           []SnmpConfigClientList `json:"client_list,omitempty"`
+    Contact              *string                `json:"contact,omitempty"`
+    Description          *string                `json:"description,omitempty"`
+    Enabled              *bool                  `json:"enabled,omitempty"`
+    EngineId             *string                `json:"engine_id,omitempty"`
+    Location             *string                `json:"location,omitempty"`
+    Name                 *string                `json:"name,omitempty"`
+    Network              *string                `json:"network,omitempty"`
+    TrapGroups           []SnmpConfigTrapGroup  `json:"trap_groups,omitempty"`
+    V2cConfig            []SnmpConfigV2cConfig  `json:"v2c_config,omitempty"`
+    V3Config             *Snmpv3Config          `json:"v3_config,omitempty"`
+    Views                []SnmpConfigView       `json:"views,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SnmpConfig,
@@ -117,16 +116,16 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
 
 // tempSnmpConfig is a temporary struct used for validating the fields of SnmpConfig.
 type tempSnmpConfig  struct {
-    ClientList  []SnmpConfigClientList  `json:"client_list,omitempty"`
-    Contact     *string                 `json:"contact,omitempty"`
-    Description *string                 `json:"description,omitempty"`
-    Enabled     *bool                   `json:"enabled,omitempty"`
-    EngineId    *SnmpConfigEngineIdEnum `json:"engine_id,omitempty"`
-    Location    *string                 `json:"location,omitempty"`
-    Name        *string                 `json:"name,omitempty"`
-    Network     *string                 `json:"network,omitempty"`
-    TrapGroups  []SnmpConfigTrapGroup   `json:"trap_groups,omitempty"`
-    V2cConfig   []SnmpConfigV2cConfig   `json:"v2c_config,omitempty"`
-    V3Config    *Snmpv3Config           `json:"v3_config,omitempty"`
-    Views       []SnmpConfigView        `json:"views,omitempty"`
+    ClientList  []SnmpConfigClientList `json:"client_list,omitempty"`
+    Contact     *string                `json:"contact,omitempty"`
+    Description *string                `json:"description,omitempty"`
+    Enabled     *bool                  `json:"enabled,omitempty"`
+    EngineId    *string                `json:"engine_id,omitempty"`
+    Location    *string                `json:"location,omitempty"`
+    Name        *string                `json:"name,omitempty"`
+    Network     *string                `json:"network,omitempty"`
+    TrapGroups  []SnmpConfigTrapGroup  `json:"trap_groups,omitempty"`
+    V2cConfig   []SnmpConfigV2cConfig  `json:"v2c_config,omitempty"`
+    V3Config    *Snmpv3Config          `json:"v3_config,omitempty"`
+    Views       []SnmpConfigView       `json:"views,omitempty"`
 }

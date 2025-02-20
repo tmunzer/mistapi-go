@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Address` | `*string` | Optional | - |
-| `AddressMask` | `*string` | Optional | - |
-| `Port` | `*int` | Optional | **Default**: `161` |
+| `Address` | `string` | Required | - |
+| `AddressMask` | `string` | Required | - |
+| `Port` | `models.Optional[string]` | Optional | **Default**: `"161"` |
 | `TagList` | `*string` | Optional | Refer to notify tag, can be multiple with blank |
-| `TargetAddressName` | `*string` | Optional | - |
+| `TargetAddressName` | `string` | Required | - |
 | `TargetParameters` | `*string` | Optional | Refer to notify target parameters name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -23,11 +23,12 @@
 
 ```json
 {
-  "address": "address",
-  "address_mask": "address_mask",
-  "port": 161,
+  "address": "10.11.0.2",
+  "address_mask": "255.255.255.0",
+  "port": "161",
   "target_address_name": "target_address_name",
   "tag_list": "tag_list4",
+  "target_parameters": "target_parameters6",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
