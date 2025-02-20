@@ -11,7 +11,7 @@ type Snmpv3Config struct {
     NotifyFilter         []Snmpv3ConfigNotifyFilterItem  `json:"notify_filter,omitempty"`
     TargetAddress        []Snmpv3ConfigTargetAddressItem `json:"target_address,omitempty"`
     TargetParameters     []Snmpv3ConfigTargetParam       `json:"target_parameters,omitempty"`
-    Usm                  *SnmpUsm                        `json:"usm,omitempty"`
+    Usm                  []SnmpUsm                       `json:"usm,omitempty"`
     Vacm                 *SnmpVacm                       `json:"vacm,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
 }
@@ -53,7 +53,7 @@ func (s Snmpv3Config) toMap() map[string]any {
         structMap["target_parameters"] = s.TargetParameters
     }
     if s.Usm != nil {
-        structMap["usm"] = s.Usm.toMap()
+        structMap["usm"] = s.Usm
     }
     if s.Vacm != nil {
         structMap["vacm"] = s.Vacm.toMap()
@@ -90,6 +90,6 @@ type tempSnmpv3Config  struct {
     NotifyFilter     []Snmpv3ConfigNotifyFilterItem  `json:"notify_filter,omitempty"`
     TargetAddress    []Snmpv3ConfigTargetAddressItem `json:"target_address,omitempty"`
     TargetParameters []Snmpv3ConfigTargetParam       `json:"target_parameters,omitempty"`
-    Usm              *SnmpUsm                        `json:"usm,omitempty"`
+    Usm              []SnmpUsm                       `json:"usm,omitempty"`
     Vacm             *SnmpVacm                       `json:"vacm,omitempty"`
 }
