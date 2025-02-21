@@ -1,5 +1,5 @@
 
-# Org Service Policy Antivirus
+# Service Policy Antivirus
 
 For SRX-only
 
@@ -7,7 +7,7 @@ For SRX-only
 
 ## Structure
 
-`OrgServicePolicyAntivirus`
+`ServicePolicyAntivirus`
 
 ## Fields
 
@@ -23,8 +23,8 @@ For SRX-only
 ```json
 {
   "enabled": false,
-  "avprofile_id": "00000594-0000-0000-0000-000000000000",
-  "profile": "profile8",
+  "avprofile_id": "00000696-0000-0000-0000-000000000000",
+  "profile": "profile0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

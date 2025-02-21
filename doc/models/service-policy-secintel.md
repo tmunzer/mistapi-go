@@ -1,5 +1,5 @@
 
-# Org Service Policies Secintel
+# Service Policy Secintel
 
 For SRX Only
 
@@ -7,7 +7,7 @@ For SRX Only
 
 ## Structure
 
-`OrgServicePoliciesSecintel`
+`ServicePolicySecintel`
 
 ## Fields
 
@@ -24,7 +24,7 @@ For SRX Only
 {
   "enabled": false,
   "profile": "default",
-  "secintelprofile_id": "secintelprofile_id0",
+  "secintelprofile_id": "secintelprofile_id4",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

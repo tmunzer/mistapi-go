@@ -9,32 +9,32 @@ import (
 // OrgServicePolicy represents a OrgServicePolicy struct.
 type OrgServicePolicy struct {
     // enum: `allow`, `deny`
-    Action               *AllowDenyEnum              `json:"action,omitempty"`
+    Action               *AllowDenyEnum            `json:"action,omitempty"`
     // For SRX-only
-    Antivirus            *OrgServicePolicyAntivirus  `json:"antivirus,omitempty"`
+    Antivirus            *ServicePolicyAntivirus   `json:"antivirus,omitempty"`
     // For SRX Only
-    Appqoe               *ServicePolicyAppqoe        `json:"appqoe,omitempty"`
+    Appqoe               *ServicePolicyAppqoe      `json:"appqoe,omitempty"`
     // When the object has been created, in epoch
-    CreatedTime          *float64                    `json:"created_time,omitempty"`
-    Ewf                  []ServicePolicyEwfRule      `json:"ewf,omitempty"`
+    CreatedTime          *float64                  `json:"created_time,omitempty"`
+    Ewf                  []ServicePolicyEwfRule    `json:"ewf,omitempty"`
     // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID                  `json:"id,omitempty"`
-    Idp                  *IdpConfig                  `json:"idp,omitempty"`
+    Id                   *uuid.UUID                `json:"id,omitempty"`
+    Idp                  *IdpConfig                `json:"idp,omitempty"`
     // access within the same VRF
-    LocalRouting         *bool                       `json:"local_routing,omitempty"`
+    LocalRouting         *bool                     `json:"local_routing,omitempty"`
     // When the object has been modified for the last time, in epoch
-    ModifiedTime         *float64                    `json:"modified_time,omitempty"`
-    Name                 *string                     `json:"name,omitempty"`
-    OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
+    ModifiedTime         *float64                  `json:"modified_time,omitempty"`
+    Name                 *string                   `json:"name,omitempty"`
+    OrgId                *uuid.UUID                `json:"org_id,omitempty"`
     // By default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
-    PathPreference       *string                     `json:"path_preference,omitempty"`
+    PathPreference       *string                   `json:"path_preference,omitempty"`
     // For SRX Only
-    Secintel             *OrgServicePoliciesSecintel `json:"secintel,omitempty"`
-    Services             []string                    `json:"services,omitempty"`
+    Secintel             *ServicePolicySecintel    `json:"secintel,omitempty"`
+    Services             []string                  `json:"services,omitempty"`
     // For SRX-only
-    SslProxy             *OrgServicePolicySslProxy   `json:"ssl_proxy,omitempty"`
-    Tenants              []string                    `json:"tenants,omitempty"`
-    AdditionalProperties map[string]interface{}      `json:"_"`
+    SslProxy             *OrgServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+    Tenants              []string                  `json:"tenants,omitempty"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgServicePolicy,
@@ -147,20 +147,20 @@ func (o *OrgServicePolicy) UnmarshalJSON(input []byte) error {
 
 // tempOrgServicePolicy is a temporary struct used for validating the fields of OrgServicePolicy.
 type tempOrgServicePolicy  struct {
-    Action         *AllowDenyEnum              `json:"action,omitempty"`
-    Antivirus      *OrgServicePolicyAntivirus  `json:"antivirus,omitempty"`
-    Appqoe         *ServicePolicyAppqoe        `json:"appqoe,omitempty"`
-    CreatedTime    *float64                    `json:"created_time,omitempty"`
-    Ewf            []ServicePolicyEwfRule      `json:"ewf,omitempty"`
-    Id             *uuid.UUID                  `json:"id,omitempty"`
-    Idp            *IdpConfig                  `json:"idp,omitempty"`
-    LocalRouting   *bool                       `json:"local_routing,omitempty"`
-    ModifiedTime   *float64                    `json:"modified_time,omitempty"`
-    Name           *string                     `json:"name,omitempty"`
-    OrgId          *uuid.UUID                  `json:"org_id,omitempty"`
-    PathPreference *string                     `json:"path_preference,omitempty"`
-    Secintel       *OrgServicePoliciesSecintel `json:"secintel,omitempty"`
-    Services       []string                    `json:"services,omitempty"`
-    SslProxy       *OrgServicePolicySslProxy   `json:"ssl_proxy,omitempty"`
-    Tenants        []string                    `json:"tenants,omitempty"`
+    Action         *AllowDenyEnum            `json:"action,omitempty"`
+    Antivirus      *ServicePolicyAntivirus   `json:"antivirus,omitempty"`
+    Appqoe         *ServicePolicyAppqoe      `json:"appqoe,omitempty"`
+    CreatedTime    *float64                  `json:"created_time,omitempty"`
+    Ewf            []ServicePolicyEwfRule    `json:"ewf,omitempty"`
+    Id             *uuid.UUID                `json:"id,omitempty"`
+    Idp            *IdpConfig                `json:"idp,omitempty"`
+    LocalRouting   *bool                     `json:"local_routing,omitempty"`
+    ModifiedTime   *float64                  `json:"modified_time,omitempty"`
+    Name           *string                   `json:"name,omitempty"`
+    OrgId          *uuid.UUID                `json:"org_id,omitempty"`
+    PathPreference *string                   `json:"path_preference,omitempty"`
+    Secintel       *ServicePolicySecintel    `json:"secintel,omitempty"`
+    Services       []string                  `json:"services,omitempty"`
+    SslProxy       *OrgServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+    Tenants        []string                  `json:"tenants,omitempty"`
 }
