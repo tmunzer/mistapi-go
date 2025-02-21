@@ -25,7 +25,7 @@
 | `PathPreference` | `*string` | Optional | By default, we derive all paths available and use them, optionally, you can customize by using `path_preference` |
 | `Secintel` | [`*models.ServicePolicySecintel`](../../doc/models/service-policy-secintel.md) | Optional | For SRX Only |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `SslProxy` | [`*models.OrgServicePolicySslProxy`](../../doc/models/org-service-policy-ssl-proxy.md) | Optional | For SRX-only |
+| `SslProxy` | [`*models.ServicePolicySslProxy`](../../doc/models/service-policy-ssl-proxy.md) | Optional | For SRX-only |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

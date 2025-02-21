@@ -1,5 +1,5 @@
 
-# Org Service Policy Ssl Proxy
+# Service Policy Ssl Proxy
 
 For SRX-only
 
@@ -7,7 +7,7 @@ For SRX-only
 
 ## Structure
 
-`OrgServicePolicySslProxy`
+`ServicePolicySslProxy`
 
 ## Fields
 
