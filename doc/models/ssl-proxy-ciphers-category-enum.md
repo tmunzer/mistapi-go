@@ -1,11 +1,11 @@
 
-# Ssl Proxy Ciphers Catagory Enum
+# Ssl Proxy Ciphers Category Enum
 
 enum: `medium`, `strong`, `weak`
 
 ## Enumeration
 
-`SslProxyCiphersCatagoryEnum`
+`SslProxyCiphersCategoryEnum`
 
 ## Fields
 

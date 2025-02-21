@@ -13,7 +13,7 @@ For SRX-only
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CiphersCatagory` | [`*models.SslProxyCiphersCatagoryEnum`](../../doc/models/ssl-proxy-ciphers-catagory-enum.md) | Optional | enum: `medium`, `strong`, `weak`<br>**Default**: `"strong"` |
+| `CiphersCategory` | [`*models.SslProxyCiphersCategoryEnum`](../../doc/models/ssl-proxy-ciphers-category-enum.md) | Optional | enum: `medium`, `strong`, `weak`<br>**Default**: `"strong"` |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -21,7 +21,7 @@ For SRX-only
 
 ```json
 {
-  "ciphers_catagory": "strong",
+  "ciphers_category": "strong",
   "enabled": false,
   "exampleAdditionalProperty": {
     "key1": "val1",

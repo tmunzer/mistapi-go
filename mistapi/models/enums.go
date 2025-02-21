@@ -3331,14 +3331,14 @@ const (
     Snmpv3ConfigTargetParamSecurityModelEnum_V2C Snmpv3ConfigTargetParamSecurityModelEnum = "v2c"
 )
 
-// SslProxyCiphersCatagoryEnum is a string enum.
+// SslProxyCiphersCategoryEnum is a string enum.
 // enum: `medium`, `strong`, `weak`
-type SslProxyCiphersCatagoryEnum string
+type SslProxyCiphersCategoryEnum string
 
 const (
-    SslProxyCiphersCatagoryEnum_MEDIUM SslProxyCiphersCatagoryEnum = "medium"
-    SslProxyCiphersCatagoryEnum_STRONG SslProxyCiphersCatagoryEnum = "strong"
-    SslProxyCiphersCatagoryEnum_WEAK   SslProxyCiphersCatagoryEnum = "weak"
+    SslProxyCiphersCategoryEnum_MEDIUM SslProxyCiphersCategoryEnum = "medium"
+    SslProxyCiphersCategoryEnum_STRONG SslProxyCiphersCategoryEnum = "strong"
+    SslProxyCiphersCategoryEnum_WEAK   SslProxyCiphersCategoryEnum = "weak"
 )
 
 // SsoIdpSignAlgoEnum is a string enum.

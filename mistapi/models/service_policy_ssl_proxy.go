@@ -9,7 +9,7 @@ import (
 // For SRX-only
 type ServicePolicySslProxy struct {
     // enum: `medium`, `strong`, `weak`
-    CiphersCatagory      *SslProxyCiphersCatagoryEnum `json:"ciphers_catagory,omitempty"`
+    CiphersCategory      *SslProxyCiphersCategoryEnum `json:"ciphers_category,omitempty"`
     Enabled              *bool                        `json:"enabled,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }
@@ -18,8 +18,8 @@ type ServicePolicySslProxy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s ServicePolicySslProxy) String() string {
     return fmt.Sprintf(
-    	"ServicePolicySslProxy[CiphersCatagory=%v, Enabled=%v, AdditionalProperties=%v]",
-    	s.CiphersCatagory, s.Enabled, s.AdditionalProperties)
+    	"ServicePolicySslProxy[CiphersCategory=%v, Enabled=%v, AdditionalProperties=%v]",
+    	s.CiphersCategory, s.Enabled, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicySslProxy.
@@ -28,7 +28,7 @@ func (s ServicePolicySslProxy) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "ciphers_catagory", "enabled"); err != nil {
+        "ciphers_category", "enabled"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -38,8 +38,8 @@ func (s ServicePolicySslProxy) MarshalJSON() (
 func (s ServicePolicySslProxy) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
-    if s.CiphersCatagory != nil {
-        structMap["ciphers_catagory"] = s.CiphersCatagory
+    if s.CiphersCategory != nil {
+        structMap["ciphers_category"] = s.CiphersCategory
     }
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
@@ -55,19 +55,19 @@ func (s *ServicePolicySslProxy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ciphers_catagory", "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ciphers_category", "enabled")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
-    s.CiphersCatagory = temp.CiphersCatagory
+    s.CiphersCategory = temp.CiphersCategory
     s.Enabled = temp.Enabled
     return nil
 }
 
 // tempServicePolicySslProxy is a temporary struct used for validating the fields of ServicePolicySslProxy.
 type tempServicePolicySslProxy  struct {
-    CiphersCatagory *SslProxyCiphersCatagoryEnum `json:"ciphers_catagory,omitempty"`
+    CiphersCategory *SslProxyCiphersCategoryEnum `json:"ciphers_category,omitempty"`
     Enabled         *bool                        `json:"enabled,omitempty"`
 }
