@@ -61,12 +61,12 @@ func (a *AdminsRecoverPassword) RecoverPassword(
     return httpCtx.Response, err
 }
 
-// VerifyRecoverPasssword takes context, token as parameters and
+// VerifyRecoverPassword takes context, token as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Verify Recover Password
 // With correct verification, the user will be authenticated. UI can then prompt for new password
-func (a *AdminsRecoverPassword) VerifyRecoverPasssword(
+func (a *AdminsRecoverPassword) VerifyRecoverPassword(
     ctx context.Context,
     token string) (
     *http.Response,

@@ -87,7 +87,7 @@ SRX340/SRX345 has dedicated OOB/fxp0 ports
 
 #### SRX550
 
-ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make suenable oob_ip_config as dhcp to maintain cloud connectivity
+ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make enable oob_ip_config as dhcp to maintain cloud connectivity
 
 1. connect ge-0/0/0 to reach Mist (after cluster is fully up, this port becomes OOB/fxp0)
 2. connect ge-0/0/1 back-to-back for ha_control
@@ -136,7 +136,7 @@ SRX340/SRX345 has dedicated OOB/fxp0 ports VSRX has fxp0 as first Network Adapte
 
 #### SRX550
 
-ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make suenable oob_ip_config as dhcp to maintain cloud connectivity
+ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make enable oob_ip_config as dhcp to maintain cloud connectivity
 
 1. connect ge-0/0/0 to reach Mist (after cluster is fully up, this port becomes OOB/fxp0)
 2. connect ge-0/0/1 back-to-back for ha_control
@@ -203,7 +203,7 @@ CreateSiteDeviceHaCluster(
 
 ## Response Type
 
-[`models.GatewayCluster`](../../doc/models/gateway-cluster.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.GatewayCluster](../../doc/models/gateway-cluster.md).
 
 ## Example Usage
 
@@ -283,7 +283,7 @@ DeleteSiteDeviceHaCluster(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -335,7 +335,7 @@ GetSiteDeviceHaClusterNode(
 
 ## Response Type
 
-[`models.GatewayCluster`](../../doc/models/gateway-cluster.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.GatewayCluster](../../doc/models/gateway-cluster.md).
 
 ## Example Usage
 

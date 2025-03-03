@@ -31,7 +31,7 @@ ListSiteApTemplateDerived(
 
 ## Response Type
 
-[`[]models.ApTemplate`](../../doc/models/ap-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ApTemplate](../../doc/models/ap-template.md).
 
 ## Example Usage
 
@@ -137,7 +137,7 @@ if err != nil {
                 "use_site_mxedge": false
               },
               "vlan_id": 9,
-              "vland_ids": [
+              "vlan_ids": [
                 1,
                 10,
                 50
@@ -218,7 +218,7 @@ if err != nil {
                 "use_site_mxedge": false
               },
               "vlan_id": 9,
-              "vland_ids": [
+              "vlan_ids": [
                 1,
                 10,
                 50

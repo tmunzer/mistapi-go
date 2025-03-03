@@ -11,9 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `CachedStats` | `*bool` | Optional | - |
 | `ConfigStatus` | `*string` | Optional | - |
+| `ConnectedDevices` | [`map[string]models.StatsDeviceOtherConnectedDevice`](../../doc/models/stats-device-other-connected-device.md) | Optional | Property key is the connected device MAC Address |
+| `Interfaces` | [`map[string]models.StatsDeviceOtherInterface`](../../doc/models/stats-device-other-interface.md) | Optional | Property key is the interface name |
 | `LastConfig` | `*int` | Optional | - |
 | `LastSeen` | `*int` | Optional | - |
+| `LldpEnabled` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Status` | `*string` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
@@ -34,6 +38,53 @@
   "uptime": 20296,
   "vendor": "cradlepoint",
   "version": "7.22.70",
+  "cached_stats": false,
+  "connected_devices": {
+    "key0": {
+      "mac": "mac2",
+      "name": "name8",
+      "port_id": "port_id8",
+      "type": "type8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key1": {
+      "mac": "mac2",
+      "name": "name8",
+      "port_id": "port_id8",
+      "type": "type8",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "interfaces": {
+    "key0": {
+      "bytes_in": 48,
+      "bytes_out": 188,
+      "carrier": "carrier6",
+      "imei": "imei8",
+      "imsi": "imsi2",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key1": {
+      "bytes_in": 48,
+      "bytes_out": 188,
+      "carrier": "carrier6",
+      "imei": "imei8",
+      "imsi": "imsi2",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -39,7 +39,7 @@ CreateSiteRssiZone(
 
 ## Response Type
 
-[`models.RssiZone`](../../doc/models/rssi-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RssiZone](../../doc/models/rssi-zone.md).
 
 ## Example Usage
 
@@ -115,7 +115,7 @@ DeleteSiteRssiZone(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -167,7 +167,7 @@ GetSiteRssiZone(
 
 ## Response Type
 
-[`[]models.RssiZone`](../../doc/models/rssi-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RssiZone](../../doc/models/rssi-zone.md).
 
 ## Example Usage
 
@@ -244,7 +244,7 @@ ListSiteRssiZones(
 
 ## Response Type
 
-[`[]models.RssiZone`](../../doc/models/rssi-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RssiZone](../../doc/models/rssi-zone.md).
 
 ## Example Usage
 
@@ -302,7 +302,7 @@ UpdateSiteRssiZone(
 
 ## Response Type
 
-[`models.RssiZone`](../../doc/models/rssi-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RssiZone](../../doc/models/rssi-zone.md).
 
 ## Example Usage
 

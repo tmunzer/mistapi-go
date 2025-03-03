@@ -12,7 +12,7 @@ type WlanPortal struct {
     AllowWlanIdRoam             *bool                          `json:"allow_wlan_id_roam,omitempty"`
     // Optional if `amazon_enabled`==`true`. Amazon OAuth2 client id. This is optional. If not provided, it will use a default one.
     AmazonClientId              Optional[string]               `json:"amazon_client_id"`
-    // Optional if `amazon_enabled`==`true`. Amazon OAuth2 client secret. If amazon_client_id was provided, provide a correspoinding value. Else leave blank.
+    // Optional if `amazon_enabled`==`true`. Amazon OAuth2 client secret. If amazon_client_id was provided, provide a corresponding value. Else leave blank.
     AmazonClientSecret          Optional[string]               `json:"amazon_client_secret"`
     // Optional if `amazon_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     AmazonEmailDomains          []string                       `json:"amazon_email_domains,omitempty"`
@@ -54,7 +54,7 @@ type WlanPortal struct {
     ExternalPortalUrl           *string                        `json:"external_portal_url,omitempty"`
     // Required if `facebook_enabled`==`true`. Facebook OAuth2 app id. This is optional. If not provided, it will use a default one.
     FacebookClientId            Optional[string]               `json:"facebook_client_id"`
-    // Required if `facebook_enabled`==`true`. Facebook OAuth2 app secret. If facebook_client_id was provided, provide a correspoinding value. Else leave blank.
+    // Required if `facebook_enabled`==`true`. Facebook OAuth2 app secret. If facebook_client_id was provided, provide a corresponding value. Else leave blank.
     FacebookClientSecret        Optional[string]               `json:"facebook_client_secret"`
     // Optional if `facebook_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     FacebookEmailDomains        []string                       `json:"facebook_email_domains,omitempty"`
@@ -68,7 +68,7 @@ type WlanPortal struct {
     ForwardUrl                  Optional[string]               `json:"forward_url"`
     // Google OAuth2 app id. This is optional. If not provided, it will use a default one.
     GoogleClientId              Optional[string]               `json:"google_client_id"`
-    // Optional if `google_enabled`==`true`. Google OAuth2 app secret. If google_client_id was provided, provide a correspoinding value. Else leave blank.
+    // Optional if `google_enabled`==`true`. Google OAuth2 app secret. If google_client_id was provided, provide a corresponding value. Else leave blank.
     GoogleClientSecret          Optional[string]               `json:"google_client_secret"`
     // Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     GoogleEmailDomains          []string                       `json:"google_email_domains,omitempty"`
@@ -82,7 +82,7 @@ type WlanPortal struct {
     GupshupUserid               *string                        `json:"gupshup_userid,omitempty"`
     // Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one.
     MicrosoftClientId           Optional[string]               `json:"microsoft_client_id"`
-    // Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a correspoinding value. Else leave blank.
+    // Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a corresponding value. Else leave blank.
     MicrosoftClientSecret       Optional[string]               `json:"microsoft_client_secret"`
     // Optional if `microsoft_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed.
     MicrosoftEmailDomains       []string                       `json:"microsoft_email_domains,omitempty"`
@@ -131,9 +131,9 @@ type WlanPortal struct {
     SponsorStatusNotify         *bool                          `json:"sponsor_status_notify,omitempty"`
     // Object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility
     Sponsors                    *WlanPortalSponsors            `json:"sponsors,omitempty"`
-    // Optionl if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
+    // Optional if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
     SsoDefaultRole              *string                        `json:"sso_default_role,omitempty"`
-    // Optionl if `wlan_portal_auth`==`sso`
+    // Optional if `wlan_portal_auth`==`sso`
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
     // Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response)
     SsoIdpCert                  *string                        `json:"sso_idp_cert,omitempty"`

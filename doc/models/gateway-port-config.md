@@ -39,6 +39,7 @@ Gateway port config
 | `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the name of the Network to be used as the Untagged VLAN |
 | `PreserveDscp` | `*bool` | Optional | Whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | If HA mode |
+| `RedundantGroup` | `*int` | Optional | If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX<br>**Constraints**: `>= 1`, `<= 128` |
 | `RethIdx` | `*int` | Optional | If HA mode |
 | `RethNode` | `*string` | Optional | If HA mode |
 | `RethNodes` | `[]string` | Optional | SSR only - supporting vlan-based redundancy (matching the size of `networks`) |
@@ -51,7 +52,7 @@ Gateway port config
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | Property key is the VPN name |
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br>**Default**: `"default"` |
 | `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |
-| `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destianation CIDR (e.g "100.100.100.0/24") |
+| `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destination CIDR (e.g "100.100.100.0/24") |
 | `WanNetworks` | `[]string` | Optional | Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined |
 | `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | Only if `usage`==`wan` |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip |

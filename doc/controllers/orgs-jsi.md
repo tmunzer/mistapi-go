@@ -36,7 +36,7 @@ AdoptOrgJsiDevice(
 
 ## Response Type
 
-[`models.ResponseDeviceConfigCmd`](../../doc/models/response-device-config-cmd.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceConfigCmd](../../doc/models/response-device-config-cmd.md).
 
 ## Example Usage
 
@@ -96,7 +96,7 @@ CreateOrgJsiDeviceShellSession(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
 ## Example Usage
 
@@ -158,7 +158,7 @@ ListOrgJsiDevices(
 
 ## Response Type
 
-[`[]models.JseDevice`](../../doc/models/jse-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.JseDevice](../../doc/models/jse-device.md).
 
 ## Example Usage
 
@@ -214,7 +214,11 @@ if err != nil {
 
 # List Org Jsi Past Purchases
 
-Get List of all devices purchased from the accounts associated with the Org
+This gets all devices purchased from the accounts associated with the Org
+
+* Fetch Install base devices for all linked accounts and associated account of the linked accounts.
+* The primary and the associated account ids will be queries from SFDC by passing the linked account
+* Returns only the device centric details of the Install base device. No customer specific information will be returned.
 
 ```go
 ListOrgJsiPastPurchases(
@@ -224,7 +228,7 @@ ListOrgJsiPastPurchases(
     page *int,
     model *string,
     serial *string) (
-    models.ApiResponse[[]models.JseInventoryItem],
+    models.ApiResponse[[]models.JsInventoryItem],
     error)
 ```
 
@@ -240,7 +244,7 @@ ListOrgJsiPastPurchases(
 
 ## Response Type
 
-[`[]models.JseInventoryItem`](../../doc/models/jse-inventory-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.JsInventoryItem](../../doc/models/js-inventory-item.md).
 
 ## Example Usage
 
@@ -272,23 +276,12 @@ if err != nil {
 ```json
 [
   {
-    "contract_end_time": 1708214400,
-    "contract_id": "68247710",
-    "contract_sku": "PAR-SDCE-EX4300T48",
-    "contract_start_time": 1629331200,
-    "customer_po": "4501942932",
-    "distributor": "dist1",
     "eol_time": 1671062400,
     "eos_time": 1828828800,
-    "installed_address": "Address",
     "model": "EX4300-48T",
-    "order_id": "15909647",
-    "reseller": "reseller1",
     "serial": "PE3721050223",
     "sku": "EX4300-48T-AFI",
     "type": "switch",
-    "warranty_end_time": 2258236800,
-    "warranty_start_time": 1619395200,
     "warranty_type": "Enhanced Hardware Warranty"
   }
 ]

@@ -47,7 +47,7 @@ DeauthSiteWirelessClientsConnectedToARogue(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -99,7 +99,7 @@ DisconnectSiteMultipleClients(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -154,7 +154,7 @@ DisconnectSiteWirelessClient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -206,7 +206,7 @@ OptimizeSiteRrm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -264,7 +264,7 @@ ReauthOrgDot1xWirelessClient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -316,7 +316,7 @@ ReauthSiteDot1xWirelessClient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -366,7 +366,7 @@ ReprovisionSiteAllAps(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -416,7 +416,7 @@ ResetSiteAllApsToUseRrm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -475,7 +475,7 @@ TestSiteWlanTelstraSetup(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -528,7 +528,7 @@ TestSiteWlanTwilioSetup(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -583,7 +583,7 @@ UnauthorizeSiteMultipleClients(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -639,7 +639,7 @@ UnauthorizeSiteWirelessClient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -677,7 +677,7 @@ Zeroize all FIPS APs in the Site
 ZeroizeSiteFipsAllAps(
     ctx context.Context,
     siteId uuid.UUID,
-    body *models.UtilsZeroiseFips) (
+    body *models.UtilsZeroizeFips) (
     http.Response,
     error)
 ```
@@ -687,11 +687,11 @@ ZeroizeSiteFipsAllAps(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsZeroiseFips`](../../doc/models/utils-zeroise-fips.md) | Body, Optional | Request Body |
+| `body` | [`*models.UtilsZeroizeFips`](../../doc/models/utils-zeroize-fips.md) | Body, Optional | Request Body |
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -700,7 +700,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.UtilsZeroiseFips{
+body := models.UtilsZeroizeFips{
     Password:             "NUKETHESITE",
 }
 

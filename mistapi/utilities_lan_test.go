@@ -87,8 +87,8 @@ func TestUtilitiesLANTestCableTestFromSwitch(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestUtilitiesLANTestClearBpduErrosFromPortsOnSwitch tests the behavior of the UtilitiesLAN
-func TestUtilitiesLANTestClearBpduErrosFromPortsOnSwitch(t *testing.T) {
+// TestUtilitiesLANTestClearBpduErrorsFromPortsOnSwitch tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestClearBpduErrorsFromPortsOnSwitch(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -99,7 +99,7 @@ func TestUtilitiesLANTestClearBpduErrosFromPortsOnSwitch(t *testing.T) {
         t.Error(errUUID)
     }
     
-    resp, err := utilitiesLan.ClearBpduErrosFromPortsOnSwitch(ctx, siteId, deviceId, nil)
+    resp, err := utilitiesLan.ClearBpduErrorsFromPortsOnSwitch(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -167,7 +167,7 @@ func TestUtilitiesLANTestCreateSiteDeviceSnapshot(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"status_id":"string","staus":"starting","timestamp":0}`
+    expected := `{"status":"starting","status_id":"string","timestamp":0}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

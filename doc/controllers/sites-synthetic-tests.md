@@ -39,7 +39,7 @@ GetSiteDeviceSyntheticTest(
 
 ## Response Type
 
-[`models.SynthetictestInfo`](../../doc/models/synthetictest-info.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SynthetictestInfo](../../doc/models/synthetictest-info.md).
 
 ## Example Usage
 
@@ -100,7 +100,7 @@ SearchSiteSyntheticTest(
     mType *models.SynthetictestTypeEnum,
     protocol *models.SynthetictestProtocolEnum,
     tenant *string) (
-    models.ApiResponse[models.ReponseSynthetictestSearch],
+    models.ApiResponse[models.ResponseSynthetictestSearch],
     error)
 ```
 
@@ -120,7 +120,7 @@ SearchSiteSyntheticTest(
 
 ## Response Type
 
-[`models.ReponseSynthetictestSearch`](../../doc/models/reponse-synthetictest-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSynthetictestSearch](../../doc/models/response-synthetictest-search.md).
 
 ## Example Usage
 
@@ -231,7 +231,7 @@ StartSiteSwitchRadiusSyntheticTest(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -293,7 +293,7 @@ TriggerSiteDeviceSyntheticTest(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -349,7 +349,7 @@ TriggerSiteSyntheticTest(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.Synthetictest) (
-    models.ApiResponse[models.ReponseSynthetictest],
+    models.ApiResponse[models.ResponseSynthetictest],
     error)
 ```
 
@@ -362,7 +362,7 @@ TriggerSiteSyntheticTest(
 
 ## Response Type
 
-[`models.ReponseSynthetictest`](../../doc/models/reponse-synthetictest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSynthetictest](../../doc/models/response-synthetictest.md).
 
 ## Example Usage
 

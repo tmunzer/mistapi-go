@@ -28,7 +28,7 @@ type GatewayTemplate struct {
     ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     // Gateway matching
     GatewayMatching       *GatewayMatching                   `json:"gateway_matching,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                    *uuid.UUID                         `json:"id,omitempty"`
     // Property key is the profile name
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`

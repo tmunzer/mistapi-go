@@ -11,7 +11,7 @@ import (
 // ResponseSelfOauthLinkSuccess represents a ResponseSelfOauthLinkSuccess struct.
 type ResponseSelfOauthLinkSuccess struct {
     Action               string                 `json:"action"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

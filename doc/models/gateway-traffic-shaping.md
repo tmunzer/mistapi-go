@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClassPercentages` | `[]int` | Optional | percentages for differet class of traffic: high / medium / low / best-effort. Sum must be equal to 100 |
+| `ClassPercentages` | `[]int` | Optional | percentages for different class of traffic: high / medium / low / best-effort. Sum must be equal to 100 |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `MaxTxKbps` | `*int` | Optional | Interface Transmit Cap in kbps |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

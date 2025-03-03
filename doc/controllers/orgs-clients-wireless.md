@@ -40,7 +40,7 @@ CountOrgWirelessClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -67,7 +67,7 @@ CountOrgWirelessClients(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -167,7 +167,7 @@ CountOrgWirelessClientsSessions(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -193,7 +193,7 @@ CountOrgWirelessClientsSessions(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -298,7 +298,7 @@ SearchOrgWirelessClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
@@ -313,7 +313,7 @@ SearchOrgWirelessClientEvents(
 
 ## Response Type
 
-[`models.ResponseEventsSearch`](../../doc/models/response-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsSearch](../../doc/models/response-events-search.md).
 
 ## Example Usage
 
@@ -443,7 +443,7 @@ SearchOrgWirelessClientSessions(
 
 ## Response Type
 
-[`models.SearchWirelessClientSession`](../../doc/models/search-wireless-client-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWirelessClientSession](../../doc/models/search-wireless-client-session.md).
 
 ## Example Usage
 
@@ -591,7 +591,7 @@ SearchOrgWirelessClients(
 
 ## Response Type
 
-[`models.ResponseClientSearch`](../../doc/models/response-client-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientSearch](../../doc/models/response-client-search.md).
 
 ## Example Usage
 

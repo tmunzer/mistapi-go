@@ -39,7 +39,7 @@ CreateOrgSiteTemplates(
 
 ## Response Type
 
-[`models.SiteTemplate`](../../doc/models/site-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SiteTemplate](../../doc/models/site-template.md).
 
 ## Example Usage
 
@@ -116,7 +116,7 @@ DeleteOrgSiteTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -168,7 +168,7 @@ GetOrgSiteTemplate(
 
 ## Response Type
 
-[`models.SiteTemplate`](../../doc/models/site-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SiteTemplate](../../doc/models/site-template.md).
 
 ## Example Usage
 
@@ -242,7 +242,7 @@ ListOrgSiteTemplates(
 
 ## Response Type
 
-[`[]models.SiteTemplate`](../../doc/models/site-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SiteTemplate](../../doc/models/site-template.md).
 
 ## Example Usage
 
@@ -320,7 +320,7 @@ UpdateOrgSiteTemplate(
 
 ## Response Type
 
-[`models.SiteTemplate`](../../doc/models/site-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SiteTemplate](../../doc/models/site-template.md).
 
 ## Example Usage
 

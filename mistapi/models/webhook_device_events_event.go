@@ -11,32 +11,32 @@ import (
 // WebhookDeviceEventsEvent represents a WebhookDeviceEventsEvent struct.
 type WebhookDeviceEventsEvent struct {
     // (will be deprecated soon; please use mac instead) ap mac
-    Ap                   *string                                `json:"ap,omitempty"`
+    Ap                   *string                            `json:"ap,omitempty"`
     // (will be deprecated soon; please use device_name instead) ap name
-    ApName               *string                                `json:"ap_name,omitempty"`
+    ApName               *string                            `json:"ap_name,omitempty"`
     // (optional) audit id
-    AuditId              *uuid.UUID                             `json:"audit_id,omitempty"`
+    AuditId              *uuid.UUID                         `json:"audit_id,omitempty"`
     // Device name
-    DeviceName           string                                 `json:"device_name"`
+    DeviceName           string                             `json:"device_name"`
     // enum: `ap`, `gateway`, `switch`
-    DeviceType           WebhookDeviceEventsEventDeviceTypeEnum `json:"device_type"`
+    DeviceType           DeviceTypeEnum                     `json:"device_type"`
     // (optional) event advisory. enum: `notice`, `warn`
-    EvType               WebhookDeviceEventsEventEvTypeEnum     `json:"ev_type"`
+    EvType               WebhookDeviceEventsEventEvTypeEnum `json:"ev_type"`
     // Device mac
-    Mac                  string                                 `json:"mac"`
-    OrgId                uuid.UUID                              `json:"org_id"`
+    Mac                  string                             `json:"mac"`
+    OrgId                uuid.UUID                          `json:"org_id"`
     // (optional) event reason
-    Reason               *string                                `json:"reason,omitempty"`
-    SiteId               *uuid.UUID                             `json:"site_id,omitempty"`
+    Reason               *string                            `json:"reason,omitempty"`
+    SiteId               *uuid.UUID                         `json:"site_id,omitempty"`
     // Site name
-    SiteName             *string                                `json:"site_name,omitempty"`
+    SiteName             *string                            `json:"site_name,omitempty"`
     // (optional) event description
-    Text                 *string                                `json:"text,omitempty"`
+    Text                 *string                            `json:"text,omitempty"`
     // Time the event occurred e.g. 1565987313
-    Timestamp            int                                    `json:"timestamp"`
+    Timestamp            int                                `json:"timestamp"`
     // Event type
-    Type                 string                                 `json:"type"`
-    AdditionalProperties map[string]interface{}                 `json:"_"`
+    Type                 string                             `json:"type"`
+    AdditionalProperties map[string]interface{}             `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookDeviceEventsEvent,
@@ -131,20 +131,20 @@ func (w *WebhookDeviceEventsEvent) UnmarshalJSON(input []byte) error {
 
 // tempWebhookDeviceEventsEvent is a temporary struct used for validating the fields of WebhookDeviceEventsEvent.
 type tempWebhookDeviceEventsEvent  struct {
-    Ap         *string                                 `json:"ap,omitempty"`
-    ApName     *string                                 `json:"ap_name,omitempty"`
-    AuditId    *uuid.UUID                              `json:"audit_id,omitempty"`
-    DeviceName *string                                 `json:"device_name"`
-    DeviceType *WebhookDeviceEventsEventDeviceTypeEnum `json:"device_type"`
-    EvType     *WebhookDeviceEventsEventEvTypeEnum     `json:"ev_type"`
-    Mac        *string                                 `json:"mac"`
-    OrgId      *uuid.UUID                              `json:"org_id"`
-    Reason     *string                                 `json:"reason,omitempty"`
-    SiteId     *uuid.UUID                              `json:"site_id,omitempty"`
-    SiteName   *string                                 `json:"site_name,omitempty"`
-    Text       *string                                 `json:"text,omitempty"`
-    Timestamp  *int                                    `json:"timestamp"`
-    Type       *string                                 `json:"type"`
+    Ap         *string                             `json:"ap,omitempty"`
+    ApName     *string                             `json:"ap_name,omitempty"`
+    AuditId    *uuid.UUID                          `json:"audit_id,omitempty"`
+    DeviceName *string                             `json:"device_name"`
+    DeviceType *DeviceTypeEnum                     `json:"device_type"`
+    EvType     *WebhookDeviceEventsEventEvTypeEnum `json:"ev_type"`
+    Mac        *string                             `json:"mac"`
+    OrgId      *uuid.UUID                          `json:"org_id"`
+    Reason     *string                             `json:"reason,omitempty"`
+    SiteId     *uuid.UUID                          `json:"site_id,omitempty"`
+    SiteName   *string                             `json:"site_name,omitempty"`
+    Text       *string                             `json:"text,omitempty"`
+    Timestamp  *int                                `json:"timestamp"`
+    Type       *string                             `json:"type"`
 }
 
 func (w *tempWebhookDeviceEventsEvent) validate() error {

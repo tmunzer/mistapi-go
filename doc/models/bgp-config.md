@@ -28,6 +28,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `NeighborAs` | `*int` | Optional | - |
 | `Neighbors` | [`map[string]models.BgpConfigNeighbors`](../../doc/models/bgp-config-neighbors.md) | Optional | If per-neighbor as is desired. Property key is the neighbor address |
 | `Networks` | `[]string` | Optional | If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from |
+| `NoPrivateAs` | `*bool` | Optional | **Default**: `false` |
 | `NoReadvertiseToOverlay` | `*bool` | Optional | By default, we'll re-advertise all learned BGP routers toward overlay<br>**Default**: `false` |
 | `TunnelName` | `*string` | Optional | If `type`==`tunnel` |
 | `Type` | [`*models.BgpConfigTypeEnum`](../../doc/models/bgp-config-type-enum.md) | Optional | enum: `external`, `internal`<br>**Constraints**: *Minimum Length*: `1` |
@@ -45,6 +46,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
   "disable_bfd": false,
   "graceful_restart_time": 0,
   "hold_time": 90,
+  "no_private_as": false,
   "no_readvertise_to_overlay": false,
   "via": "lan",
   "auth_key": "auth_key8",

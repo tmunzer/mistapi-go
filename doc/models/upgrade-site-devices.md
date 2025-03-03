@@ -30,8 +30,8 @@
 | `Rules` | `[]map[string]string` | Optional | Rules used to identify devices which will be selected for upgrade. Device will be selected as long as it satisfies any one rule  <br>Property key defines the type of matching, value is the string to match. e.g:<br><br>* `match_name`: Device name must match the property value<br>* `match_name[0:3]`: Device name must match the first 3 letters of the property value<br>* `match_name[2:6]`: Device name must match the property value from the 2nd to the 6th letter<br>* `match_model`: Device model must match the property value<br>* `match_model[1:3]`: Device model must match the property value from the 1nd to the 3rd letter |
 | `Snapshot` | `*bool` | Optional | For Junos devices only. Perform recovery snapshot after device is rebooted<br>**Default**: `false` |
 | `StartTime` | `*int` | Optional | Upgrade start time in epoch seconds, default is now |
-| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
-| `Version` | `*string` | Optional | Specific version / stable, default is to use the lastest available version |
+| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br>**Default**: `"big_bang"` |
+| `Version` | `*string` | Optional | Specific version / stable, default is to use the latest available version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

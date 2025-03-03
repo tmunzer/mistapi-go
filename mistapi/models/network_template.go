@@ -24,7 +24,7 @@ type NetworkTemplate struct {
     ExtraRoutes           map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
     ExtraRoutes6          map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                    *uuid.UUID                             `json:"id,omitempty"`
     // Org Networks that we'd like to import
     ImportOrgNetworks     []string                               `json:"import_org_networks,omitempty"`
@@ -40,7 +40,7 @@ type NetworkTemplate struct {
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
     // Junos OSPF areas
     OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
-    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
+    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
@@ -50,7 +50,7 @@ type NetworkTemplate struct {
     // By default, when we configure a device, we only clean up config we generate. Remove existing configs if enabled
     RemoveExistingConfigs *bool                                  `json:"remove_existing_configs,omitempty"`
     SnmpConfig            *SnmpConfig                            `json:"snmp_config,omitempty"`
-    // Defines custom switch configuration based on different criterias
+    // Defines custom switch configuration based on different criteria
     SwitchMatching        *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt            *SwitchMgmt                            `json:"switch_mgmt,omitempty"`

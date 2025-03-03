@@ -15,7 +15,7 @@ type UtilsTraceroute struct {
     Node                 *HaClusterNodeEnum           `json:"node,omitempty"`
     // When `protocol`==`udp`, not supported in SSR. The udp port to use
     Port                 *int                         `json:"port,omitempty"`
-    // enum: `icmp` (Only suported by AP/MxEdge), `udp`
+    // enum: `icmp` (Only supported by AP/MxEdge), `udp`
     Protocol             *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
     // Not supported in SSR. Maximum time in seconds to wait for the response
     Timeout              *int                         `json:"timeout,omitempty"`

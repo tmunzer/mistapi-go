@@ -31,7 +31,7 @@ ListSiteDeviceProfilesDerived(
 
 ## Response Type
 
-[`[]models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.Deviceprofile.
 
 ## Example Usage
 
@@ -53,6 +53,8 @@ if err != nil {
             fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *i)
         } else if i, ok := item.AsDeviceprofileGateway(); ok {
             fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *i)
+        } else if i, ok := item.AsDeviceprofileSwitch(); ok {
+            fmt.Println("Value narrowed down to models.DeviceprofileSwitch: ", *i)
         }
     }
 

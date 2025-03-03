@@ -22,7 +22,7 @@ func NewSitesClientsNAC(baseController baseController) *SitesClientsNAC {
 }
 
 // CountSiteNacClients takes context, siteId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of NAC Clients
 func (s *SitesClientsNAC) CountSiteNacClients(
@@ -49,7 +49,7 @@ func (s *SitesClientsNAC) CountSiteNacClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/nac_clients/count")
     req.AppendTemplateParams(siteId)
@@ -135,18 +135,18 @@ func (s *SitesClientsNAC) CountSiteNacClients(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CountSiteNacClientEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of NAC Client-Events
 func (s *SitesClientsNAC) CountSiteNacClientEvents(
@@ -158,7 +158,7 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/nac_clients/events/count")
     req.AppendTemplateParams(siteId)
@@ -199,13 +199,13 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

@@ -134,8 +134,8 @@ func TestOrgsTicketsTestUpdateOrgTicket(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsTicketsTestUploadrgTicketAttachment tests the behavior of the OrgsTickets
-func TestOrgsTicketsTestUploadrgTicketAttachment(t *testing.T) {
+// TestOrgsTicketsTestUploadOrgTicketAttachment tests the behavior of the OrgsTickets
+func TestOrgsTicketsTestUploadOrgTicketAttachment(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -146,7 +146,7 @@ func TestOrgsTicketsTestUploadrgTicketAttachment(t *testing.T) {
         t.Error(errUUID)
     }
     
-    resp, err := orgsTickets.UploadrgTicketAttachment(ctx, orgId, ticketId, nil)
+    resp, err := orgsTickets.UploadOrgTicketAttachment(ctx, orgId, ticketId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

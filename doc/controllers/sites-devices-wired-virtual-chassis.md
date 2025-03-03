@@ -20,13 +20,13 @@ sitesDevicesWiredVirtualChassis := client.SitesDevicesWiredVirtualChassis()
 # Create Site Virtual Chassis
 
 For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.  
-In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn\u2019t have dedicated VC ports, below are procedures to automate the VC creation:
+In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn't have dedicated VC ports, below are procedures to automate the VC creation:
 
-1. Power on the switch that is choosen as the VC master first, and then powering on the other member switches.
+1. Power on the switch that is chosen as the VC master first, and then powering on the other member switches.
 2. Claim or adopt all these switches under the same organization's Inventory
 3. Assign these switches into the same Site
 4. Wait for all the switches to be connected to Mist
-5. Invoke vc command on the switch choosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
+5. Invoke vc command on the switch chosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
 6. Connect the cables to the VC ports for these switches
 7. Wait for the VC to be formed. The Org's inventory will be updated for the new VC.
 
@@ -50,7 +50,7 @@ CreateSiteVirtualChassis(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -111,7 +111,7 @@ if err != nil {
 
 When all the member switches of VC are removed and only member ID 0 is left, the cloud would detect this situation and automatically changes the single switch to non-VC role.
 
-For some unexpected cases that the VC is gone and disconncted, the API below could be used to change the state of VC’s switches to be standalone. After it is executed, all the switches will be shown as standalone switches under Inventory.
+For some unexpected cases that the VC is gone and disconnected, the API below could be used to change the state of VC’s switches to be standalone. After it is executed, all the switches will be shown as standalone switches under Inventory.
 
 ```go
 DeleteSiteVirtualChassis(
@@ -131,7 +131,7 @@ DeleteSiteVirtualChassis(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -185,7 +185,7 @@ GetSiteDeviceVirtualChassis(
 
 ## Response Type
 
-[`models.ResponseVirtualChassisConfig`](../../doc/models/response-virtual-chassis-config.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseVirtualChassisConfig](../../doc/models/response-virtual-chassis-config.md).
 
 ## Example Usage
 
@@ -456,7 +456,7 @@ SetSiteVcPort(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -548,7 +548,7 @@ Please notice that member ID 0 (fpc0) cannot be removed. When a VC has two switc
 When a member switch doesn' t work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
 
 1. Replace a non-fpc0 member switch
-2. Replace fpc0. When fpc0 is relaced, PAPI device config and JUNOS config will be both updated.
+2. Replace fpc0. When fpc0 is replaced, PAPI device config and JUNOS config will be both updated.
 
 For renumber to work, the following procedures are needed:
 
@@ -590,7 +590,7 @@ UpdateSiteVirtualChassisMember(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

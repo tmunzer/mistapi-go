@@ -18,7 +18,7 @@
 | `ExpireTime` | `*int` | Optional | unit min |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire |
 | `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | Only if `type`==`admin`<br>**Default**: `false` |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MaxUsage` | `*int` | Optional | `max_usage`==`0` means unlimited<br>**Default**: `0` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |

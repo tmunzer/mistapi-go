@@ -10,8 +10,8 @@ import (
 type ServicePolicySecintel struct {
     Enabled              *bool                             `json:"enabled,omitempty"`
     // enum: `default`, `standard`, `strict`
-    Profile              *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
-    // org-level secintel Profile can be used, this takes precendence over 'profile'
+    Profile              *ServicePolicySecintelProfileEnum `json:"profile,omitempty"`
+    // org-level secintel Profile can be used, this takes precedence over 'profile'
     SecintelprofileId    *string                           `json:"secintelprofile_id,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
 }
@@ -75,6 +75,6 @@ func (s *ServicePolicySecintel) UnmarshalJSON(input []byte) error {
 // tempServicePolicySecintel is a temporary struct used for validating the fields of ServicePolicySecintel.
 type tempServicePolicySecintel  struct {
     Enabled           *bool                             `json:"enabled,omitempty"`
-    Profile           *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
+    Profile           *ServicePolicySecintelProfileEnum `json:"profile,omitempty"`
     SecintelprofileId *string                           `json:"secintelprofile_id,omitempty"`
 }

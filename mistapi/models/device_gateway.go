@@ -27,7 +27,7 @@ type DeviceGateway struct {
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
     ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     ForSite               *bool                              `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                    *uuid.UUID                         `json:"id,omitempty"`
     // Property key is the profile name
     IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`

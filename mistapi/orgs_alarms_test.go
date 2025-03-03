@@ -84,9 +84,10 @@ func TestOrgsAlarmsTestSearchOrgAlarms(t *testing.T) {
     
     
     
+    
     duration := "1d"
     limit := int(100)
-    apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
+    apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -116,8 +117,8 @@ func TestOrgsAlarmsTestUnackOrgMultipleAlarms(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestOrgsAlarmsTestUnackOrgAllArlarms tests the behavior of the OrgsAlarms
-func TestOrgsAlarmsTestUnackOrgAllArlarms(t *testing.T) {
+// TestOrgsAlarmsTestUnackOrgAllAlarms tests the behavior of the OrgsAlarms
+func TestOrgsAlarmsTestUnackOrgAllAlarms(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -128,7 +129,7 @@ func TestOrgsAlarmsTestUnackOrgAllArlarms(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    resp, err := orgsAlarms.UnackOrgAllArlarms(ctx, orgId, &body)
+    resp, err := orgsAlarms.UnackOrgAllAlarms(ctx, orgId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -152,6 +153,34 @@ func TestOrgsAlarmsTestAckOrgAlarm(t *testing.T) {
         t.Errorf("Cannot parse the model object.")
     }
     resp, err := orgsAlarms.AckOrgAlarm(ctx, orgId, alarmId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestOrgsAlarmsTestUnsubscribeOrgAlarmsReports tests the behavior of the OrgsAlarms
+func TestOrgsAlarmsTestUnsubscribeOrgAlarmsReports(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    resp, err := orgsAlarms.UnsubscribeOrgAlarmsReports(ctx, orgId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestOrgsAlarmsTestSubscribeOrgAlarmsReports tests the behavior of the OrgsAlarms
+func TestOrgsAlarmsTestSubscribeOrgAlarmsReports(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    resp, err := orgsAlarms.SubscribeOrgAlarmsReports(ctx, orgId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

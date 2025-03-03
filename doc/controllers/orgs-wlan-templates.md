@@ -42,7 +42,7 @@ CloneOrgTemplate(
 
 ## Response Type
 
-[`models.Template`](../../doc/models/template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Template](../../doc/models/template.md).
 
 ## Example Usage
 
@@ -133,7 +133,7 @@ CreateOrgTemplate(
 
 ## Response Type
 
-[`models.Template`](../../doc/models/template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Template](../../doc/models/template.md).
 
 ## Example Usage
 
@@ -222,7 +222,7 @@ DeleteOrgTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -274,7 +274,7 @@ GetOrgTemplate(
 
 ## Response Type
 
-[`models.Template`](../../doc/models/template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Template](../../doc/models/template.md).
 
 ## Example Usage
 
@@ -363,7 +363,7 @@ ListOrgTemplates(
 
 ## Response Type
 
-[`[]models.Template`](../../doc/models/template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Template](../../doc/models/template.md).
 
 ## Example Usage
 
@@ -456,7 +456,7 @@ UpdateOrgTemplate(
 
 ## Response Type
 
-[`models.Template`](../../doc/models/template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Template](../../doc/models/template.md).
 
 ## Example Usage
 

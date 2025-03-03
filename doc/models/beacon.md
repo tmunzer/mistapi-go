@@ -21,7 +21,7 @@ Beacon
 | `IbeaconMajor` | `*int` | Optional | Bluetooth tag major |
 | `IbeaconMinor` | `*int` | Optional | Bluetooth tag minor |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | Bluetooth tag UUID |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | Optional, MAC of the beacon, currently used only to identify battery voltage |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

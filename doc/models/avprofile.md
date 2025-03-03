@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `FallbackAction` | [`*models.AvprofileFallbackActionEnum`](../../doc/models/avprofile-fallback-action-enum.md) | Optional | enum: `block`, `permit` |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MaxFilesize` | `*int` | Optional | In KB<br>**Default**: `10000`<br>**Constraints**: `>= 20`, `<= 40000` |
 | `MimeWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

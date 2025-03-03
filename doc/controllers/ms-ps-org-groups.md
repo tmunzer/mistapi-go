@@ -39,7 +39,7 @@ CreateMspOrgGroup(
 
 ## Response Type
 
-[`models.Orggroup`](../../doc/models/orggroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
 ## Example Usage
 
@@ -113,7 +113,7 @@ DeleteMspOrgGroup(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ GetMspOrgGroup(
 
 ## Response Type
 
-[`models.Orggroup`](../../doc/models/orggroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
 ## Example Usage
 
@@ -232,7 +232,7 @@ ListMspOrgGroups(
 
 ## Response Type
 
-[`[]models.Orggroup`](../../doc/models/orggroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Orggroup](../../doc/models/orggroup.md).
 
 ## Example Usage
 
@@ -303,7 +303,7 @@ UpdateMspOrgGroup(
 
 ## Response Type
 
-[`models.Orggroup`](../../doc/models/orggroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Orggroup](../../doc/models/orggroup.md).
 
 ## Example Usage
 

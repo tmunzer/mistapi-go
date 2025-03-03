@@ -3,7 +3,7 @@
 
 PCAP format. enum:
 * `stream`: to Mist cloud
-* `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
+* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 
 ## Enumeration
 

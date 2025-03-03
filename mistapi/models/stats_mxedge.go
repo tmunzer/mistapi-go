@@ -16,7 +16,7 @@ type StatsMxedge struct {
     FipsEnabled          *bool                             `json:"fips_enabled,omitempty"`
     ForSite              *bool                             `json:"for_site,omitempty"`
     Fwupdate             *FwupdateStat                     `json:"fwupdate,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                        `json:"id,omitempty"`
     // IDRAC version of the mist edge device
     IdracVersion         *string                           `json:"idrac_version,omitempty"`

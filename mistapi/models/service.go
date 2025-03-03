@@ -7,17 +7,17 @@ import (
 )
 
 // Service represents a Service struct.
-// APplications used for the Gateway configurations
+// Applications used for the Gateway configurations
 type Service struct {
     // If `type`==`custom`, ip subnets (e.g. 10.0.0.0/8)
     Addresses                     []string                   `json:"addresses,omitempty"`
-    // When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories
+    // When `type`==`app_categories`, list of application categories are available through [List App Category Definitions]($e/Constants%20Definitions/listAppCategoryDefinitions)
     AppCategories                 []string                   `json:"app_categories,omitempty"`
-    // When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories
+    // When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions]($e/Constants%20Definitions/listAppSubCategoryDefinitions)
     AppSubcategories              []string                   `json:"app_subcategories,omitempty"`
     // When `type`==`apps`, list of applications are available through:
-    // * /api/v1/const/applications
-    // * /api/v1/const/gateway_applications
+    // * [List Applications]($e/Constants%20Definitions/listApplications)
+    // * [List Gateway Applications]($e/Constants%20Definitions/listGatewayApplications)
     // * /insight/top_app_by-bytes?wired=true
     Apps                          []string                   `json:"apps,omitempty"`
     // 0 means unlimited
@@ -33,7 +33,7 @@ type Service struct {
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     // If `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                            *uuid.UUID                 `json:"id,omitempty"`
     // For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable
     MaxJitter                     *ServiceMaxJitter          `json:"max_jitter,omitempty"`
@@ -56,7 +56,7 @@ type Service struct {
     SsrRelaxedTcpStateEnforcement *bool                      `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
     // when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
     TrafficClass                  *ServiceTrafficClassEnum   `json:"traffic_class,omitempty"`
-    // values from `/api/v1/consts/traffic_types`
+    // values from [List Traffic Types]($e/Constants%20Definitions/listTrafficTypes)
     TrafficType                   *string                    `json:"traffic_type,omitempty"`
     // enum: `app_categories`, `apps`, `custom`, `urls`
     Type                          *ServiceTypeEnum           `json:"type,omitempty"`

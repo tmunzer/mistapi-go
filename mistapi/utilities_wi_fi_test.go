@@ -139,7 +139,7 @@ func TestUtilitiesWiFiTestZeroizeSiteFipsAllAps(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.UtilsZeroiseFips
+    var body models.UtilsZeroizeFips
     errBody := json.Unmarshal([]byte(`{"password":"NUKETHESITE"}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")

@@ -8,7 +8,7 @@ import (
 
 // StatsWirelessClientZone represents a StatsWirelessClientZone struct.
 type StatsWirelessClientZone struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Since                *int                   `json:"since,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

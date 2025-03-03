@@ -19,7 +19,7 @@ type CallTroubleshootData struct {
     ClientTxBytes         *float64               `json:"client_tx_bytes,omitempty"`
     ClientTxRates         *float64               `json:"client_tx_rates,omitempty"`
     ClientTxRetries       *float64               `json:"client_tx_retries,omitempty"`
-    ClientVpnDistaince    *float64               `json:"client_vpn_distaince,omitempty"`
+    ClientVpnDistance     *float64               `json:"client_vpn_distance,omitempty"`
     ClientWifiVersion     *float64               `json:"client_wifi_version,omitempty"`
     Expected              *float64               `json:"expected,omitempty"`
     RadioBandwidth        *float64               `json:"radio_bandwidth,omitempty"`
@@ -41,8 +41,8 @@ type CallTroubleshootData struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CallTroubleshootData) String() string {
     return fmt.Sprintf(
-    	"CallTroubleshootData[ApNumClients=%v, ApRtt=%v, ClientCpu=%v, ClientNStreams=%v, ClientRadioBand=%v, ClientRssi=%v, ClientRxBytes=%v, ClientRxRates=%v, ClientRxRetries=%v, ClientTxBytes=%v, ClientTxRates=%v, ClientTxRetries=%v, ClientVpnDistaince=%v, ClientWifiVersion=%v, Expected=%v, RadioBandwidth=%v, RadioChannel=%v, RadioTxPower=%v, RadioUtil=%v, RadioUtilInterference=%v, SiteNumClients=%v, WanAvgDownloadMbps=%v, WanAvgUploadMbps=%v, WanJitter=%v, WanMaxDownloadMbps=%v, WanMaxUploadMbps=%v, WanRtt=%v, AdditionalProperties=%v]",
-    	c.ApNumClients, c.ApRtt, c.ClientCpu, c.ClientNStreams, c.ClientRadioBand, c.ClientRssi, c.ClientRxBytes, c.ClientRxRates, c.ClientRxRetries, c.ClientTxBytes, c.ClientTxRates, c.ClientTxRetries, c.ClientVpnDistaince, c.ClientWifiVersion, c.Expected, c.RadioBandwidth, c.RadioChannel, c.RadioTxPower, c.RadioUtil, c.RadioUtilInterference, c.SiteNumClients, c.WanAvgDownloadMbps, c.WanAvgUploadMbps, c.WanJitter, c.WanMaxDownloadMbps, c.WanMaxUploadMbps, c.WanRtt, c.AdditionalProperties)
+    	"CallTroubleshootData[ApNumClients=%v, ApRtt=%v, ClientCpu=%v, ClientNStreams=%v, ClientRadioBand=%v, ClientRssi=%v, ClientRxBytes=%v, ClientRxRates=%v, ClientRxRetries=%v, ClientTxBytes=%v, ClientTxRates=%v, ClientTxRetries=%v, ClientVpnDistance=%v, ClientWifiVersion=%v, Expected=%v, RadioBandwidth=%v, RadioChannel=%v, RadioTxPower=%v, RadioUtil=%v, RadioUtilInterference=%v, SiteNumClients=%v, WanAvgDownloadMbps=%v, WanAvgUploadMbps=%v, WanJitter=%v, WanMaxDownloadMbps=%v, WanMaxUploadMbps=%v, WanRtt=%v, AdditionalProperties=%v]",
+    	c.ApNumClients, c.ApRtt, c.ClientCpu, c.ClientNStreams, c.ClientRadioBand, c.ClientRssi, c.ClientRxBytes, c.ClientRxRates, c.ClientRxRetries, c.ClientTxBytes, c.ClientTxRates, c.ClientTxRetries, c.ClientVpnDistance, c.ClientWifiVersion, c.Expected, c.RadioBandwidth, c.RadioChannel, c.RadioTxPower, c.RadioUtil, c.RadioUtilInterference, c.SiteNumClients, c.WanAvgDownloadMbps, c.WanAvgUploadMbps, c.WanJitter, c.WanMaxDownloadMbps, c.WanMaxUploadMbps, c.WanRtt, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootData.
@@ -51,7 +51,7 @@ func (c CallTroubleshootData) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(c.AdditionalProperties,
-        "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_rx_retries", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distaince", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt"); err != nil {
+        "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_rx_retries", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(c.toMap())
@@ -97,8 +97,8 @@ func (c CallTroubleshootData) toMap() map[string]any {
     if c.ClientTxRetries != nil {
         structMap["client_tx_retries"] = c.ClientTxRetries
     }
-    if c.ClientVpnDistaince != nil {
-        structMap["client_vpn_distaince"] = c.ClientVpnDistaince
+    if c.ClientVpnDistance != nil {
+        structMap["client_vpn_distance"] = c.ClientVpnDistance
     }
     if c.ClientWifiVersion != nil {
         structMap["client_wifi_version"] = c.ClientWifiVersion
@@ -153,7 +153,7 @@ func (c *CallTroubleshootData) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_rx_retries", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distaince", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_rx_retries", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
     if err != nil {
     	return err
     }
@@ -171,7 +171,7 @@ func (c *CallTroubleshootData) UnmarshalJSON(input []byte) error {
     c.ClientTxBytes = temp.ClientTxBytes
     c.ClientTxRates = temp.ClientTxRates
     c.ClientTxRetries = temp.ClientTxRetries
-    c.ClientVpnDistaince = temp.ClientVpnDistaince
+    c.ClientVpnDistance = temp.ClientVpnDistance
     c.ClientWifiVersion = temp.ClientWifiVersion
     c.Expected = temp.Expected
     c.RadioBandwidth = temp.RadioBandwidth
@@ -203,7 +203,7 @@ type tempCallTroubleshootData  struct {
     ClientTxBytes         *float64 `json:"client_tx_bytes,omitempty"`
     ClientTxRates         *float64 `json:"client_tx_rates,omitempty"`
     ClientTxRetries       *float64 `json:"client_tx_retries,omitempty"`
-    ClientVpnDistaince    *float64 `json:"client_vpn_distaince,omitempty"`
+    ClientVpnDistance     *float64 `json:"client_vpn_distance,omitempty"`
     ClientWifiVersion     *float64 `json:"client_wifi_version,omitempty"`
     Expected              *float64 `json:"expected,omitempty"`
     RadioBandwidth        *float64 `json:"radio_bandwidth,omitempty"`

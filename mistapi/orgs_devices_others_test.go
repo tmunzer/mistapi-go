@@ -143,7 +143,7 @@ func TestOrgsDevicesOthersTestGetOrgOtherDevice(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":1676983730,"device_mac":"001122334455","id":"ae9dee49-69e7-4710-a114-5b827a777738","mac":"5c5b35000018","model":"AP41","modified_time":1676983730,"name":"hallway","org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","serial":"FXLH2015150025","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","vendor":"cradlepoint"}`
+    expected := `{"device_mac":"00112233abcd","id":"ae9dee49-69e7-4710-a114-5b827a777738","mac":"5c5b35000018","model":"W2005","name":"W2005-268","org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","serial":"WB23015E025468","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","state":"online","vendor":"cradlepoint","vendor_api_id":"4658714"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

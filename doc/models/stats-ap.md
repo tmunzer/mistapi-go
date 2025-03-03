@@ -29,7 +29,7 @@ AP statistics
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `Gps` | [`*models.StatsApGpsStat`](../../doc/models/stats-ap-gps-stat.md) | Optional | - |
 | `HwRev` | `models.Optional[string]` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `InactiveWiredVlans` | `[]int` | Optional | - |
 | `IotStat` | [`map[string]models.StatsApIotStatAdditionalProperties`](../../doc/models/stats-ap-iot-stat-additional-properties.md) | Optional | - |
 | `Ip` | `models.Optional[string]` | Optional | - |
@@ -140,7 +140,7 @@ AP statistics
     "recommended_anchor": false,
     "status": "status4",
     "status_detail": "status_detail0",
-    "use_auto_placement": false,
+    "x": 15.0,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

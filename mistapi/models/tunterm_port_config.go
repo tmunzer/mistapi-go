@@ -14,7 +14,7 @@ type TuntermPortConfig struct {
     SeparateUpstreamDownstream *bool                  `json:"separate_upstream_downstream,omitempty"`
     // Native VLAN id for upstream ports
     UpstreamPortVlanId         *int                   `json:"upstream_port_vlan_id,omitempty"`
-    // List of ports to be used for upstrea purpose (to LAN)
+    // List of ports to be used for upstream purpose (to LAN)
     UpstreamPorts              []string               `json:"upstream_ports,omitempty"`
     AdditionalProperties       map[string]interface{} `json:"_"`
 }

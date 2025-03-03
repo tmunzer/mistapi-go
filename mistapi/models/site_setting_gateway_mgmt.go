@@ -20,6 +20,9 @@ type SiteSettingGatewayMgmt struct {
     DisableConsole             *bool                                      `json:"disable_console,omitempty"`
     // For both SSR and SRX disable management interface
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
+    // For SSR disable usb interface
+    DisableUsb                 *bool                                      `json:"disable_usb,omitempty"`
+    FipsEnabled                *bool                                      `json:"fips_enabled,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
     // Restrict inbound-traffic to host
     // when enabled, all traffic that is not essential to our operation will be dropped
@@ -36,8 +39,8 @@ type SiteSettingGatewayMgmt struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingGatewayMgmt) String() string {
     return fmt.Sprintf(
-    	"SiteSettingGatewayMgmt[AdminSshkeys=%v, AppProbing=%v, AppUsage=%v, AutoSignatureUpdate=%v, ConfigRevertTimer=%v, DisableConsole=%v, DisableOob=%v, ProbeHosts=%v, ProtectRe=%v, RootPassword=%v, SecurityLogSourceAddress=%v, SecurityLogSourceInterface=%v, AdditionalProperties=%v]",
-    	s.AdminSshkeys, s.AppProbing, s.AppUsage, s.AutoSignatureUpdate, s.ConfigRevertTimer, s.DisableConsole, s.DisableOob, s.ProbeHosts, s.ProtectRe, s.RootPassword, s.SecurityLogSourceAddress, s.SecurityLogSourceInterface, s.AdditionalProperties)
+    	"SiteSettingGatewayMgmt[AdminSshkeys=%v, AppProbing=%v, AppUsage=%v, AutoSignatureUpdate=%v, ConfigRevertTimer=%v, DisableConsole=%v, DisableOob=%v, DisableUsb=%v, FipsEnabled=%v, ProbeHosts=%v, ProtectRe=%v, RootPassword=%v, SecurityLogSourceAddress=%v, SecurityLogSourceInterface=%v, AdditionalProperties=%v]",
+    	s.AdminSshkeys, s.AppProbing, s.AppUsage, s.AutoSignatureUpdate, s.ConfigRevertTimer, s.DisableConsole, s.DisableOob, s.DisableUsb, s.FipsEnabled, s.ProbeHosts, s.ProtectRe, s.RootPassword, s.SecurityLogSourceAddress, s.SecurityLogSourceInterface, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingGatewayMgmt.
@@ -46,7 +49,7 @@ func (s SiteSettingGatewayMgmt) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface"); err != nil {
+        "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -77,6 +80,12 @@ func (s SiteSettingGatewayMgmt) toMap() map[string]any {
     if s.DisableOob != nil {
         structMap["disable_oob"] = s.DisableOob
     }
+    if s.DisableUsb != nil {
+        structMap["disable_usb"] = s.DisableUsb
+    }
+    if s.FipsEnabled != nil {
+        structMap["fips_enabled"] = s.FipsEnabled
+    }
     if s.ProbeHosts != nil {
         structMap["probe_hosts"] = s.ProbeHosts
     }
@@ -103,7 +112,7 @@ func (s *SiteSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sshkeys", "app_probing", "app_usage", "auto_signature_update", "config_revert_timer", "disable_console", "disable_oob", "disable_usb", "fips_enabled", "probe_hosts", "protect_re", "root_password", "security_log_source_address", "security_log_source_interface")
     if err != nil {
     	return err
     }
@@ -116,6 +125,8 @@ func (s *SiteSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     s.ConfigRevertTimer = temp.ConfigRevertTimer
     s.DisableConsole = temp.DisableConsole
     s.DisableOob = temp.DisableOob
+    s.DisableUsb = temp.DisableUsb
+    s.FipsEnabled = temp.FipsEnabled
     s.ProbeHosts = temp.ProbeHosts
     s.ProtectRe = temp.ProtectRe
     s.RootPassword = temp.RootPassword
@@ -133,6 +144,8 @@ type tempSiteSettingGatewayMgmt  struct {
     ConfigRevertTimer          *int                                       `json:"config_revert_timer,omitempty"`
     DisableConsole             *bool                                      `json:"disable_console,omitempty"`
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
+    DisableUsb                 *bool                                      `json:"disable_usb,omitempty"`
+    FipsEnabled                *bool                                      `json:"fips_enabled,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`
     ProtectRe                  *ProtectRe                                 `json:"protect_re,omitempty"`
     RootPassword               *string                                    `json:"root_password,omitempty"`

@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Action` | `string` | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `MapId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
 | `Reason` | `*string` | Optional | - |

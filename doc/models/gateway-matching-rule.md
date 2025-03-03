@@ -13,8 +13,8 @@
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `Name` | `*string` | Optional | - |
-| `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | - |
-| `AdditionalProperties` | `map[string]string` | Optional | property key defines the type of matchine. e.g: `match_name[0:3]`, `match_model[0-6]` or `match_role` |
+| `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
+| `AdditionalProperties` | `map[string]string` | Optional | property key defines the type of matching. e.g: `match_name[0:3]`, `match_model[0-6]` or `match_role` |
 
 ## Example (as JSON)
 

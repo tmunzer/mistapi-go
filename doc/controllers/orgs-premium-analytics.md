@@ -33,7 +33,7 @@ ListOrgPmaDashboards(
 
 ## Response Type
 
-[`[]models.PmaDashboard`](../../doc/models/pma-dashboard.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.PmaDashboard](../../doc/models/pma-dashboard.md).
 
 ## Example Usage
 

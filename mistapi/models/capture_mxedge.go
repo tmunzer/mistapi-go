@@ -14,7 +14,7 @@ type CaptureMxedge struct {
     Duration             *int                            `json:"duration,omitempty"`
     // PCAP format. enum:
     // * `stream`: to Mist cloud
-    // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
+    // * `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
     Format               *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
     // Max_len of each packet to capture
     MaxPktLen            *int                            `json:"max_pkt_len,omitempty"`

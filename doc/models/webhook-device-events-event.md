@@ -15,7 +15,7 @@
 | `ApName` | `*string` | Optional | (will be deprecated soon; please use device_name instead) ap name |
 | `AuditId` | `*uuid.UUID` | Optional | (optional) audit id |
 | `DeviceName` | `string` | Required | Device name |
-| `DeviceType` | [`models.WebhookDeviceEventsEventDeviceTypeEnum`](../../doc/models/webhook-device-events-event-device-type-enum.md) | Required | enum: `ap`, `gateway`, `switch` |
+| `DeviceType` | [`models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Required | enum: `ap`, `gateway`, `switch` |
 | `EvType` | [`models.WebhookDeviceEventsEventEvTypeEnum`](../../doc/models/webhook-device-events-event-ev-type-enum.md) | Required | (optional) event advisory. enum: `notice`, `warn` |
 | `Mac` | `string` | Required | Device mac |
 | `OrgId` | `uuid.UUID` | Required | - |

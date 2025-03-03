@@ -14,7 +14,7 @@ User API Token
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Key` | `*string` | Optional | - |
 | `LastUsed` | `models.Optional[int]` | Optional | - |
 | `Name` | `*string` | Optional | Name of the token |

@@ -30,7 +30,7 @@ CountOrgNacClientEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -40,7 +40,7 @@ CountOrgNacClientEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgNacClientEventsCountDistinctEnum`](../../doc/models/org-nac-client-events-count-distinct-enum.md) | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -48,7 +48,7 @@ CountOrgNacClientEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -138,7 +138,7 @@ CountOrgNacClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -162,7 +162,7 @@ CountOrgNacClients(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `lastStatus` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
-| `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliancy of client i.e "compliant", "not compliant" |
+| `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -172,7 +172,7 @@ CountOrgNacClients(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -310,7 +310,7 @@ SearchOrgNacClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
 | `nacruleId` | `*uuid.UUID` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
 | `dryrunNacruleId` | `*string` | Query, Optional | NAC Policy Dry Run Rule ID, if present and matched |
@@ -342,7 +342,7 @@ SearchOrgNacClientEvents(
 
 ## Response Type
 
-[`models.ResponseEventsNacClientSearch`](../../doc/models/response-events-nac-client-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsNacClientSearch](../../doc/models/response-events-nac-client-search.md).
 
 ## Example Usage
 
@@ -532,7 +532,7 @@ SearchOrgNacClients(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
-| `mdmCompliance` | `*string` | Query, Optional | MDM compliancy of client i.e "compliant", "not compliant" |
+| `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
@@ -544,7 +544,7 @@ SearchOrgNacClients(
 
 ## Response Type
 
-[`models.ResponseClientNacSearch`](../../doc/models/response-client-nac-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientNacSearch](../../doc/models/response-client-nac-search.md).
 
 ## Example Usage
 

@@ -8,25 +8,25 @@ import (
 // StatsMxedgeMemoryStat represents a StatsMxedgeMemoryStat struct.
 // Memory usage
 type StatsMxedgeMemoryStat struct {
-    // The amount of memory, in kibibytes, that has been used more recently and is usually not reclaimed unless absolutely necessary.
+    // The amount of memory, in kilobytes, that has been used more recently and is usually not reclaimed unless absolutely necessary.
     Active               *int                   `json:"active,omitempty"`
     // An estimate of how much memory is available for starting new applications, without swapping.
     Available            *int64                 `json:"available,omitempty"`
-    // The amount, in kibibytes, of temporary storage for raw disk blocks.
+    // The amount, in kilobytes, of temporary storage for raw disk blocks.
     Buffers              *int                   `json:"buffers,omitempty"`
-    // The amount of physical RAM, in kibibytes, used as cache memory.
+    // The amount of physical RAM, in kilobytes, used as cache memory.
     Cached               *int                   `json:"cached,omitempty"`
-    // The amount of physical RAM, in kibibytes, left unused by the system
+    // The amount of physical RAM, in kilobytes, left unused by the system
     Free                 *int64                 `json:"free,omitempty"`
-    // The amount of memory, in kibibytes, that has been used less recently and is more eligible to be reclaimed for other purposes.
+    // The amount of memory, in kilobytes, that has been used less recently and is more eligible to be reclaimed for other purposes.
     Inactive             *int                   `json:"inactive,omitempty"`
-    // The amount of memory, in kibibytes, that has once been moved into swap, then back into the main memory, but still also remains in the swapfile.
+    // The amount of memory, in kilobytes, that has once been moved into swap, then back into the main memory, but still also remains in the swapfile.
     SwapCached           *int                   `json:"swap_cached,omitempty"`
-    // The total amount of swap free, in kibibytes.
+    // The total amount of swap free, in kilobytes.
     SwapFree             *int                   `json:"swap_free,omitempty"`
-    // The total amount of swap available, in kibibytes.
+    // The total amount of swap available, in kilobytes.
     SwapTotal            *int                   `json:"swap_total,omitempty"`
-    // Total amount of usable RAM, in kibibytes, which is physical RAM minus a number of reserved bits and the kernel binary code
+    // Total amount of usable RAM, in kilobytes, which is physical RAM minus a number of reserved bits and the kernel binary code
     Total                *int64                 `json:"total,omitempty"`
     Usage                *int                   `json:"usage,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

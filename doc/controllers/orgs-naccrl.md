@@ -37,7 +37,7 @@ DeleteOrgNacCrl(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -87,7 +87,7 @@ GetOrgNacCrl(
 
 ## Response Type
 
-[`models.ResponseNacCrlFiles`](../../doc/models/response-nac-crl-files.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseNacCrlFiles](../../doc/models/response-nac-crl-files.md).
 
 ## Example Usage
 
@@ -141,7 +141,7 @@ ImportOrgNacCrl(
 
 ## Response Type
 
-[`models.NacCrlFile`](../../doc/models/nac-crl-file.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacCrlFile](../../doc/models/nac-crl-file.md).
 
 ## Example Usage
 

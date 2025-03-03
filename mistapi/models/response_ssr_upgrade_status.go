@@ -12,7 +12,7 @@ import (
 type ResponseSsrUpgradeStatus struct {
     Channel              string                          `json:"channel"`
     DeviceType           *string                         `json:"device_type,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                       `json:"id"`
     Status               string                          `json:"status"`
     Targets              ResponseSsrUpgradeStatusTargets `json:"targets"`

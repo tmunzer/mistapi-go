@@ -8,7 +8,7 @@ import (
 // MxedgeVersions represents a MxedgeVersions struct.
 type MxedgeVersions struct {
     Mxagent              *string                `json:"mxagent,omitempty"`
-    Tuntnerm             *string                `json:"tuntnerm,omitempty"`
+    Tunterm              *string                `json:"tunterm,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -16,8 +16,8 @@ type MxedgeVersions struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MxedgeVersions) String() string {
     return fmt.Sprintf(
-    	"MxedgeVersions[Mxagent=%v, Tuntnerm=%v, AdditionalProperties=%v]",
-    	m.Mxagent, m.Tuntnerm, m.AdditionalProperties)
+    	"MxedgeVersions[Mxagent=%v, Tunterm=%v, AdditionalProperties=%v]",
+    	m.Mxagent, m.Tunterm, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeVersions.
@@ -26,7 +26,7 @@ func (m MxedgeVersions) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "mxagent", "tuntnerm"); err != nil {
+        "mxagent", "tunterm"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -39,8 +39,8 @@ func (m MxedgeVersions) toMap() map[string]any {
     if m.Mxagent != nil {
         structMap["mxagent"] = m.Mxagent
     }
-    if m.Tuntnerm != nil {
-        structMap["tuntnerm"] = m.Tuntnerm
+    if m.Tunterm != nil {
+        structMap["tunterm"] = m.Tunterm
     }
     return structMap
 }
@@ -53,19 +53,19 @@ func (m *MxedgeVersions) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxagent", "tuntnerm")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mxagent", "tunterm")
     if err != nil {
     	return err
     }
     m.AdditionalProperties = additionalProperties
     
     m.Mxagent = temp.Mxagent
-    m.Tuntnerm = temp.Tuntnerm
+    m.Tunterm = temp.Tunterm
     return nil
 }
 
 // tempMxedgeVersions is a temporary struct used for validating the fields of MxedgeVersions.
 type tempMxedgeVersions  struct {
-    Mxagent  *string `json:"mxagent,omitempty"`
-    Tuntnerm *string `json:"tuntnerm,omitempty"`
+    Mxagent *string `json:"mxagent,omitempty"`
+    Tunterm *string `json:"tunterm,omitempty"`
 }

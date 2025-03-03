@@ -15,7 +15,7 @@ Portal wlan settings
 |  --- | --- | --- | --- |
 | `AllowWlanIdRoam` | `*bool` | Optional | Optional if `amazon_enabled`==`true`. Whether to allow guest to connect to other Guest WLANs (with different `WLAN.ssid`) of same org without reauthentication (disable random_mac for seamless roaming)<br>**Default**: `false` |
 | `AmazonClientId` | `models.Optional[string]` | Optional | Optional if `amazon_enabled`==`true`. Amazon OAuth2 client id. This is optional. If not provided, it will use a default one. |
-| `AmazonClientSecret` | `models.Optional[string]` | Optional | Optional if `amazon_enabled`==`true`. Amazon OAuth2 client secret. If amazon_client_id was provided, provide a correspoinding value. Else leave blank. |
+| `AmazonClientSecret` | `models.Optional[string]` | Optional | Optional if `amazon_enabled`==`true`. Amazon OAuth2 client secret. If amazon_client_id was provided, provide a corresponding value. Else leave blank. |
 | `AmazonEmailDomains` | `[]string` | Optional | Optional if `amazon_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `AmazonEnabled` | `*bool` | Optional | Whether amazon is enabled as a login method<br>**Default**: `false` |
 | `AmazonExpire` | `models.Optional[int]` | Optional | Optional if `amazon_enabled`==`true`. Interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
@@ -36,21 +36,21 @@ Portal wlan settings
 | `Expire` | `*int` | Optional | How long to remain authorized, in minutes<br>**Default**: `1440` |
 | `ExternalPortalUrl` | `*string` | Optional | Required if `wlan_portal_auth`==`external`. External portal URL (e.g. https://host/url) where we can append our query parameters to |
 | `FacebookClientId` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`. Facebook OAuth2 app id. This is optional. If not provided, it will use a default one. |
-| `FacebookClientSecret` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`. Facebook OAuth2 app secret. If facebook_client_id was provided, provide a correspoinding value. Else leave blank. |
+| `FacebookClientSecret` | `models.Optional[string]` | Optional | Required if `facebook_enabled`==`true`. Facebook OAuth2 app secret. If facebook_client_id was provided, provide a corresponding value. Else leave blank. |
 | `FacebookEmailDomains` | `[]string` | Optional | Optional if `facebook_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `FacebookEnabled` | `*bool` | Optional | Whether facebook is enabled as a login method<br>**Default**: `false` |
 | `FacebookExpire` | `models.Optional[int]` | Optional | Optional if `facebook_enabled`==`true`. Interval for which guest remains authorized using facebook auth (in minutes), if not provided, uses expire` |
 | `Forward` | `*bool` | Optional | Whether to forward the user to another URL after authorized<br>**Default**: `false` |
 | `ForwardUrl` | `models.Optional[string]` | Optional | URL to forward the user to |
 | `GoogleClientId` | `models.Optional[string]` | Optional | Google OAuth2 app id. This is optional. If not provided, it will use a default one. |
-| `GoogleClientSecret` | `models.Optional[string]` | Optional | Optional if `google_enabled`==`true`. Google OAuth2 app secret. If google_client_id was provided, provide a correspoinding value. Else leave blank. |
+| `GoogleClientSecret` | `models.Optional[string]` | Optional | Optional if `google_enabled`==`true`. Google OAuth2 app secret. If google_client_id was provided, provide a corresponding value. Else leave blank. |
 | `GoogleEmailDomains` | `[]string` | Optional | Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `GoogleEnabled` | `*bool` | Optional | Whether Google is enabled as login method<br>**Default**: `false` |
 | `GoogleExpire` | `models.Optional[int]` | Optional | Optional if `google_enabled`==`true`. Interval for which guest remains authorized using Google Auth (in minutes), if not provided, uses expire` |
 | `GupshupPassword` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
 | `GupshupUserid` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
 | `MicrosoftClientId` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one. |
-| `MicrosoftClientSecret` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a correspoinding value. Else leave blank. |
+| `MicrosoftClientSecret` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a corresponding value. Else leave blank. |
 | `MicrosoftEmailDomains` | `[]string` | Optional | Optional if `microsoft_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `MicrosoftEnabled` | `*bool` | Optional | Whether microsoft 365 is enabled as a login method<br>**Default**: `false` |
 | `MicrosoftExpire` | `models.Optional[int]` | Optional | Optional if `microsoft_enabled`==`true`. Interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire` |
@@ -75,8 +75,8 @@ Portal wlan settings
 | `SponsorNotifyAll` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. If enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |
 | `Sponsors` | [`*models.WlanPortalSponsors`](../../doc/models/containers/wlan-portal-sponsors.md) | Optional | Object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility |
-| `SsoDefaultRole` | `*string` | Optional | Optionl if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
-| `SsoForcedRole` | `*string` | Optional | Optionl if `wlan_portal_auth`==`sso` |
+| `SsoDefaultRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
+| `SsoForcedRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso` |
 | `SsoIdpCert` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response) |
 | `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | Optioanl if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`<br>**Default**: `"sha1"` |
 | `SsoIdpSsoUrl` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL |
@@ -113,7 +113,7 @@ Portal wlan settings
   "facebook_email_domains": null,
   "facebook_enabled": false,
   "forward": false,
-  "forward_url": "http://abc.com/promotions",
+  "forward_url": "https://abc.com/promotions",
   "google_email_domains": [
     "mydomain.edu",
     "mydomain.org"
@@ -142,7 +142,7 @@ Portal wlan settings
   "sso_nameid_format": "email",
   "twilio_auth_token": "af9dac44c344a875ab5d31cb7abcdefg",
   "twilio_phone_number": "+18548888888",
-  "twilio_sid": "AC72ec6ba0ec5af30e6731c5e47abcdefgh",
+  "twilio_sid": "af9dac44c344a875ab5d31cb7abcdefg",
   "amazon_client_id": "amazon_client_id4",
   "amazon_client_secret": "amazon_client_secret0",
   "exampleAdditionalProperty": {

@@ -12,16 +12,15 @@ import (
 // Initiate a Wireless Packet Capture
 type CaptureWireless struct {
     ApMac                Optional[string]           `json:"ap_mac"`
-    // enum: `24`, `24,5,6`, `5`, `6`
+    // enum: `24`, `5`, `6`
     Band                 *CaptureWirelessBandEnum   `json:"band,omitempty"`
     // Duration of the capture, in seconds
-    Duration             *int                       `json:"duration,omitempty"`
+    Duration             Optional[int]              `json:"duration"`
     // pcap format. enum: `pcap`, `stream`
     Format               *CaptureWirelessFormatEnum `json:"format,omitempty"`
-    // Max_len of each packet to capture
-    MaxPktLen            *int                       `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                       `json:"num_packets,omitempty"`
+    MaxPktLen            Optional[int]              `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]              `json:"num_packets"`
     Ssid                 *string                    `json:"ssid,omitempty"`
     // enum: `wireless`
     Type                 string                     `json:"type"`
@@ -64,17 +63,29 @@ func (c CaptureWireless) toMap() map[string]any {
     if c.Band != nil {
         structMap["band"] = c.Band
     }
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.Ssid != nil {
         structMap["ssid"] = c.Ssid
@@ -120,10 +131,10 @@ func (c *CaptureWireless) UnmarshalJSON(input []byte) error {
 type tempCaptureWireless  struct {
     ApMac      Optional[string]           `json:"ap_mac"`
     Band       *CaptureWirelessBandEnum   `json:"band,omitempty"`
-    Duration   *int                       `json:"duration,omitempty"`
+    Duration   Optional[int]              `json:"duration"`
     Format     *CaptureWirelessFormatEnum `json:"format,omitempty"`
-    MaxPktLen  *int                       `json:"max_pkt_len,omitempty"`
-    NumPackets *int                       `json:"num_packets,omitempty"`
+    MaxPktLen  Optional[int]              `json:"max_pkt_len"`
+    NumPackets Optional[int]              `json:"num_packets"`
     Ssid       *string                    `json:"ssid,omitempty"`
     Type       *string                    `json:"type"`
     WlanId     *uuid.UUID                 `json:"wlan_id,omitempty"`

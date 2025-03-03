@@ -11,6 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AuthMethod` | `*string` | Optional | - |
+| `AuthState` | `*string` | Optional | - |
 | `DeviceMac` | `[]string` | Optional | MAC Address of the switch the client is connected to |
 | `DeviceMacPort` | [`[]models.WiredClientResponseDeviceMacPortItem`](../../doc/models/wired-client-response-device-mac-port-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `DhcpClientIdentifier` | `*string` | Optional | - |
@@ -32,6 +34,8 @@
 
 ```json
 {
+  "auth_method": "mac_auth",
+  "auth_state": "authenticated",
   "dhcp_client_identifier": "MAC address 00155df6d500",
   "dhcp_fqdn": "ITS-VMMT0-D1N02.mgthub.local",
   "dhcp_hostname": "ITS-VMMT0-D1N02",
@@ -60,32 +64,6 @@
       "port_id": "port_id4",
       "port_parent": "port_parent6",
       "start": "start8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
-  ],
-  "dhcp_client_options": [
-    {
-      "code": "code2",
-      "data": "data4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "code": "code2",
-      "data": "data4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "code": "code2",
-      "data": "data4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

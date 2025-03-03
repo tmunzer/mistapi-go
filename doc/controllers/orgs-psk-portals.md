@@ -37,7 +37,7 @@ CountOrgPskPortalLogs(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -55,7 +55,7 @@ CountOrgPskPortalLogs(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -137,7 +137,7 @@ CreateOrgPskPortal(
 
 ## Response Type
 
-[`models.PskPortal`](../../doc/models/psk-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.PskPortal](../../doc/models/psk-portal.md).
 
 ## Example Usage
 
@@ -218,7 +218,7 @@ DeleteOrgPskPortal(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -272,7 +272,7 @@ DeleteOrgPskPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -324,7 +324,7 @@ GetOrgPskPortal(
 
 ## Response Type
 
-[`models.PskPortal`](../../doc/models/psk-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.PskPortal](../../doc/models/psk-portal.md).
 
 ## Example Usage
 
@@ -386,7 +386,7 @@ ListOrgPskPortalLogs(
 
 ## Response Type
 
-[`models.ResponsePskPortalLogsSearch`](../../doc/models/response-psk-portal-logs-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePskPortalLogsSearch](../../doc/models/response-psk-portal-logs-search.md).
 
 ## Example Usage
 
@@ -473,7 +473,7 @@ ListOrgPskPortals(
 
 ## Response Type
 
-[`[]models.PskPortal`](../../doc/models/psk-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.PskPortal](../../doc/models/psk-portal.md).
 
 ## Example Usage
 
@@ -551,7 +551,7 @@ SearchOrgPskPortalLogs(
 
 ## Response Type
 
-[`models.ResponsePskPortalLogsSearch`](../../doc/models/response-psk-portal-logs-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePskPortalLogsSearch](../../doc/models/response-psk-portal-logs-search.md).
 
 ## Example Usage
 
@@ -652,7 +652,7 @@ UpdateOrgPskPortal(
 
 ## Response Type
 
-[`models.PskPortal`](../../doc/models/psk-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.PskPortal](../../doc/models/psk-portal.md).
 
 ## Example Usage
 
@@ -737,7 +737,7 @@ UpdateOrgPskPortalTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -799,7 +799,7 @@ UploadOrgPskPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

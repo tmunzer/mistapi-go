@@ -16,7 +16,7 @@ type UiSettingsTile struct {
     Colspan              *int                     `json:"colspan,omitempty"`
     Column               *int                     `json:"column,omitempty"`
     HideEmptyRows        *bool                    `json:"hideEmptyRows,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID               `json:"id,omitempty"`
     Metric               *UiSettingsTileMetric    `json:"metric,omitempty"`
     Name                 *string                  `json:"name,omitempty"`

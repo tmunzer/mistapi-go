@@ -6,7 +6,7 @@ import (
 )
 
 // SimpleAlert represents a SimpleAlert struct.
-// Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
+// Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures
 type SimpleAlert struct {
     ArpFailure           *SimpleAlertArpFailure  `json:"arp_failure,omitempty"`
     DhcpFailure          *SimpleAlertDhcpFailure `json:"dhcp_failure,omitempty"`

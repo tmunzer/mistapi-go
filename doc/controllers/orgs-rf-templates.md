@@ -39,7 +39,7 @@ CreateOrgRfTemplate(
 
 ## Response Type
 
-[`models.RfTemplate`](../../doc/models/rf-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RfTemplate](../../doc/models/rf-template.md).
 
 ## Example Usage
 
@@ -151,7 +151,7 @@ DeleteOrgRfTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -203,7 +203,7 @@ GetOrgRfTemplate(
 
 ## Response Type
 
-[`models.RfTemplate`](../../doc/models/rf-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RfTemplate](../../doc/models/rf-template.md).
 
 ## Example Usage
 
@@ -315,7 +315,7 @@ ListOrgRfTemplates(
 
 ## Response Type
 
-[`[]models.RfTemplate`](../../doc/models/rf-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RfTemplate](../../doc/models/rf-template.md).
 
 ## Example Usage
 
@@ -431,7 +431,7 @@ UpdateOrgRfTemplate(
 
 ## Response Type
 
-[`models.RfTemplate`](../../doc/models/rf-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RfTemplate](../../doc/models/rf-template.md).
 
 ## Example Usage
 

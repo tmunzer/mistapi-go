@@ -7,11 +7,11 @@ import (
 )
 
 // Secpolicy represents a Secpolicy struct.
-// Security Policy is designed to audit / catch discripancies between "what’s intended to be running" versus "what’s actually running" in a network. Many big organizations have separated Security and IT team (for good reasons). Each site can be assigned a security policy. Whenever an AP is provisioned, the configuration will be checked against the security policy. Any violations will be flagged in Device Config History where you can search for the when and where the violation occurs.
+// Security Policy is designed to audit / catch discrepancies between "what’s intended to be running" versus "what’s actually running" in a network. Many big organizations have separated Security and IT team (for good reasons). Each site can be assigned a security policy. Whenever an AP is provisioned, the configuration will be checked against the security policy. Any violations will be flagged in Device Config History where you can search for the when and where the violation occurs.
 type Secpolicy struct {
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`

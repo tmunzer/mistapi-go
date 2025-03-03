@@ -39,7 +39,7 @@ CreateOrgIdpProfile(
 
 ## Response Type
 
-[`models.IdpProfile`](../../doc/models/idp-profile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IdpProfile](../../doc/models/idp-profile.md).
 
 ## Example Usage
 
@@ -140,7 +140,7 @@ DeleteOrgIdpProfile(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -192,7 +192,7 @@ GetOrgIdpProfile(
 
 ## Response Type
 
-[`models.IdpProfile`](../../doc/models/idp-profile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IdpProfile](../../doc/models/idp-profile.md).
 
 ## Example Usage
 
@@ -276,7 +276,7 @@ ListOrgIdpProfiles(
 
 ## Response Type
 
-[`[]models.IdpProfile`](../../doc/models/idp-profile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.IdpProfile](../../doc/models/idp-profile.md).
 
 ## Example Usage
 
@@ -364,7 +364,7 @@ UpdateOrgIdpProfile(
 
 ## Response Type
 
-[`models.IdpProfile`](../../doc/models/idp-profile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IdpProfile](../../doc/models/idp-profile.md).
 
 ## Example Usage
 

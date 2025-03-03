@@ -11,7 +11,7 @@ type SnmpUsm struct {
     EngineType           *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
     // Required only if `engine_type`==`remote_engine`
     RemoteEngineId       *string                `json:"remote_engine_id,omitempty"`
-    Users                []SnmpUsmpUser         `json:"users,omitempty"`
+    Users                []SnmpUsmUser          `json:"users,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -75,5 +75,5 @@ func (s *SnmpUsm) UnmarshalJSON(input []byte) error {
 type tempSnmpUsm  struct {
     EngineType     *SnmpUsmEngineTypeEnum `json:"engine_type,omitempty"`
     RemoteEngineId *string                `json:"remote_engine_id,omitempty"`
-    Users          []SnmpUsmpUser         `json:"users,omitempty"`
+    Users          []SnmpUsmUser          `json:"users,omitempty"`
 }

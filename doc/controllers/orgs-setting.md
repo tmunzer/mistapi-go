@@ -46,7 +46,7 @@ CreateOrgWirelessClientsBlocklist(
 
 ## Response Type
 
-[`models.MacAddresses`](../../doc/models/mac-addresses.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MacAddresses](../../doc/models/mac-addresses.md).
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ DeleteOrgWirelessClientsBlocklist(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -162,7 +162,7 @@ GetOrgSettings(
 
 ## Response Type
 
-[`models.OrgSetting`](../../doc/models/org-setting.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSetting](../../doc/models/org-setting.md).
 
 ## Example Usage
 
@@ -189,13 +189,9 @@ if err != nil {
     "enable": true,
     "rules": [
       {
-        "expression": "string",
-        "model": "string",
-        "prefix": "string",
-        "src": "name",
-        "subnet": "string",
-        "suffix": "string",
-        "value": "string"
+        "match_device_type": "ap",
+        "prefix": "MIST-",
+        "src": "lldp_port_desc"
       }
     ]
   },
@@ -336,7 +332,7 @@ SetOrgCustomBucket(
 
 ## Response Type
 
-[`models.ResponsePcapBucketConfig`](../../doc/models/response-pcap-bucket-config.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapBucketConfig](../../doc/models/response-pcap-bucket-config.md).
 
 ## Example Usage
 
@@ -401,7 +397,7 @@ UpdateOrgSettings(
 
 ## Response Type
 
-[`models.OrgSetting`](../../doc/models/org-setting.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSetting](../../doc/models/org-setting.md).
 
 ## Example Usage
 
@@ -439,13 +435,9 @@ if err != nil {
     "enable": true,
     "rules": [
       {
-        "expression": "string",
-        "model": "string",
-        "prefix": "string",
-        "src": "name",
-        "subnet": "string",
-        "suffix": "string",
-        "value": "string"
+        "match_device_type": "ap",
+        "prefix": "MIST-",
+        "src": "lldp_port_desc"
       }
     ]
   },
@@ -579,7 +571,7 @@ VerifyOrgCustomBucket(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

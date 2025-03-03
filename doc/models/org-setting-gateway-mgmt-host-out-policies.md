@@ -13,10 +13,10 @@ optional, for some of the host-out traffic, the path preference can be specified
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | [`*models.OrgSettingGatewayMgmtHostOutPoliciesDns`](../../doc/models/org-setting-gateway-mgmt-host-out-policies-dns.md) | Optional | - |
-| `Mist` | [`*models.OrgSettingGatewayMgmtHostOutPoliciesMist`](../../doc/models/org-setting-gateway-mgmt-host-out-policies-mist.md) | Optional | - |
-| `Ntp` | [`*models.OrgSettingGatewayMgmtHostOutPoliciesNtp`](../../doc/models/org-setting-gateway-mgmt-host-out-policies-ntp.md) | Optional | - |
-| `Pim` | [`*models.OrgSettingGatewayMgmtHostOutPoliciesNtp`](../../doc/models/org-setting-gateway-mgmt-host-out-policies-ntp.md) | Optional | - |
+| `Dns` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Mist` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Ntp` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Pim` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

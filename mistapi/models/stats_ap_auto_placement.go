@@ -15,8 +15,6 @@ type StatsApAutoPlacement struct {
     Status               *string                   `json:"status,omitempty"`
     // Additional info about placement status
     StatusDetail         *string                   `json:"status_detail,omitempty"`
-    // Flag to represent if auto_placement values are currently utilized
-    UseAutoPlacement     *bool                     `json:"use_auto_placement,omitempty"`
     // X Autoplaced Position in pixels
     X                    *float64                  `json:"x,omitempty"`
     // X Autoplaced Position in meters
@@ -32,8 +30,8 @@ type StatsApAutoPlacement struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsApAutoPlacement) String() string {
     return fmt.Sprintf(
-    	"StatsApAutoPlacement[Info=%v, RecommendedAnchor=%v, Status=%v, StatusDetail=%v, UseAutoPlacement=%v, X=%v, XM=%v, Y=%v, YM=%v, AdditionalProperties=%v]",
-    	s.Info, s.RecommendedAnchor, s.Status, s.StatusDetail, s.UseAutoPlacement, s.X, s.XM, s.Y, s.YM, s.AdditionalProperties)
+    	"StatsApAutoPlacement[Info=%v, RecommendedAnchor=%v, Status=%v, StatusDetail=%v, X=%v, XM=%v, Y=%v, YM=%v, AdditionalProperties=%v]",
+    	s.Info, s.RecommendedAnchor, s.Status, s.StatusDetail, s.X, s.XM, s.Y, s.YM, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApAutoPlacement.
@@ -42,7 +40,7 @@ func (s StatsApAutoPlacement) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "info", "recommended_anchor", "status", "status_detail", "use_auto_placement", "x", "x_m", "y", "y_m"); err != nil {
+        "info", "recommended_anchor", "status", "status_detail", "x", "x_m", "y", "y_m"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -63,9 +61,6 @@ func (s StatsApAutoPlacement) toMap() map[string]any {
     }
     if s.StatusDetail != nil {
         structMap["status_detail"] = s.StatusDetail
-    }
-    if s.UseAutoPlacement != nil {
-        structMap["use_auto_placement"] = s.UseAutoPlacement
     }
     if s.X != nil {
         structMap["x"] = s.X
@@ -90,7 +85,7 @@ func (s *StatsApAutoPlacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "info", "recommended_anchor", "status", "status_detail", "use_auto_placement", "x", "x_m", "y", "y_m")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "info", "recommended_anchor", "status", "status_detail", "x", "x_m", "y", "y_m")
     if err != nil {
     	return err
     }
@@ -100,7 +95,6 @@ func (s *StatsApAutoPlacement) UnmarshalJSON(input []byte) error {
     s.RecommendedAnchor = temp.RecommendedAnchor
     s.Status = temp.Status
     s.StatusDetail = temp.StatusDetail
-    s.UseAutoPlacement = temp.UseAutoPlacement
     s.X = temp.X
     s.XM = temp.XM
     s.Y = temp.Y
@@ -114,7 +108,6 @@ type tempStatsApAutoPlacement  struct {
     RecommendedAnchor *bool                     `json:"recommended_anchor,omitempty"`
     Status            *string                   `json:"status,omitempty"`
     StatusDetail      *string                   `json:"status_detail,omitempty"`
-    UseAutoPlacement  *bool                     `json:"use_auto_placement,omitempty"`
     X                 *float64                  `json:"x,omitempty"`
     XM                *float64                  `json:"x_m,omitempty"`
     Y                 *float64                  `json:"y,omitempty"`

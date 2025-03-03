@@ -22,7 +22,7 @@ func NewSitesStatsBGPPeers(baseController baseController) *SitesStatsBGPPeers {
 }
 
 // CountSiteBgpStats takes context, siteId, state, distinct as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count BGP Stats
 func (s *SitesStatsBGPPeers) CountSiteBgpStats(
@@ -30,7 +30,7 @@ func (s *SitesStatsBGPPeers) CountSiteBgpStats(
     siteId uuid.UUID,
     state *string,
     distinct *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/bgp_peers/count")
     req.AppendTemplateParams(siteId)
@@ -59,13 +59,13 @@ func (s *SitesStatsBGPPeers) CountSiteBgpStats(
         req.QueryParam("distinct", *distinct)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

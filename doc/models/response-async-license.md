@@ -15,7 +15,7 @@
 | `Detail` | [`*models.ResponseAsyncLicenseDetail`](../../doc/models/response-async-license-detail.md) | Optional | detail claim status per device |
 | `Failed` | `*int` | Optional | Current failed number of device |
 | `Incompleted` | `[]string` | Optional | Current incompleted lists (macs) |
-| `Processed` | `*int` | Optional | Current proceseed number of device |
+| `Processed` | `*int` | Optional | Current processed number of device |
 | `ScheduledAt` | `*int` | Optional | epoch time of aysnc claim scheduled |
 | `Status` | [`*models.ResponseAsyncLicenseStatusEnum`](../../doc/models/response-async-license-status-enum.md) | Optional | processing status of async. enum: `prepared`, `ongoing`, `done` |
 | `Succeed` | `*int` | Optional | Current succeed number of device |

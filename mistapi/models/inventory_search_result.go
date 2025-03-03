@@ -19,7 +19,7 @@ type InventorySearchResult struct {
     Sku                  *string                       `json:"sku,omitempty"`
     Status               *string                       `json:"status,omitempty"`
     // enum: `ap`, `gateway`, `switch`
-    Type                 *DeviceTypeEnum               `json:"type,omitempty"`
+    Type                 *DeviceTypeDefaultApEnum      `json:"type,omitempty"`
     VcMac                *string                       `json:"vc_mac,omitempty"`
     Version              *string                       `json:"version,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
@@ -133,7 +133,7 @@ type tempInventorySearchResult  struct {
     SiteId  *uuid.UUID                    `json:"site_id,omitempty"`
     Sku     *string                       `json:"sku,omitempty"`
     Status  *string                       `json:"status,omitempty"`
-    Type    *DeviceTypeEnum               `json:"type,omitempty"`
+    Type    *DeviceTypeDefaultApEnum      `json:"type,omitempty"`
     VcMac   *string                       `json:"vc_mac,omitempty"`
     Version *string                       `json:"version,omitempty"`
 }

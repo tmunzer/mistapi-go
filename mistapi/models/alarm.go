@@ -31,18 +31,22 @@ type Alarm struct {
     Group                string                 `json:"group"`
     // additional information: List of Hostnames of the devices (AP/Switch/Gateway)
     Hostnames            []string               `json:"hostnames,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     // Epoch (seconds) of the last incident/alarm within an alarm window
     LastSeen             float64                `json:"last_seen"`
     // Text describing the alarm
     Note                 *string                `json:"note,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    // Epoch (seconds) of the resolved_time for the alarm
+    ResolvedTime         *int                   `json:"resolved_time,omitempty"`
     // Severity of the alarm
     Severity             string                 `json:"severity"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // List of SSIDs
     Ssids                []string               `json:"ssids,omitempty"`
+    // enum: `open`, `resolved`
+    Status               *AlarmStatusEnum       `json:"status,omitempty"`
     // additional information: List of MACs of the switches
     Switches             []string               `json:"switches,omitempty"`
     // Epoch (seconds) of the first incident/alarm
@@ -56,8 +60,8 @@ type Alarm struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a Alarm) String() string {
     return fmt.Sprintf(
-    	"Alarm[AckAdminId=%v, AckAdminName=%v, Acked=%v, AckedTime=%v, Aps=%v, Bssids=%v, Count=%v, Gateways=%v, Group=%v, Hostnames=%v, Id=%v, LastSeen=%v, Note=%v, OrgId=%v, Severity=%v, SiteId=%v, Ssids=%v, Switches=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
-    	a.AckAdminId, a.AckAdminName, a.Acked, a.AckedTime, a.Aps, a.Bssids, a.Count, a.Gateways, a.Group, a.Hostnames, a.Id, a.LastSeen, a.Note, a.OrgId, a.Severity, a.SiteId, a.Ssids, a.Switches, a.Timestamp, a.Type, a.AdditionalProperties)
+    	"Alarm[AckAdminId=%v, AckAdminName=%v, Acked=%v, AckedTime=%v, Aps=%v, Bssids=%v, Count=%v, Gateways=%v, Group=%v, Hostnames=%v, Id=%v, LastSeen=%v, Note=%v, OrgId=%v, ResolvedTime=%v, Severity=%v, SiteId=%v, Ssids=%v, Status=%v, Switches=%v, Timestamp=%v, Type=%v, AdditionalProperties=%v]",
+    	a.AckAdminId, a.AckAdminName, a.Acked, a.AckedTime, a.Aps, a.Bssids, a.Count, a.Gateways, a.Group, a.Hostnames, a.Id, a.LastSeen, a.Note, a.OrgId, a.ResolvedTime, a.Severity, a.SiteId, a.Ssids, a.Status, a.Switches, a.Timestamp, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Alarm.
@@ -66,7 +70,7 @@ func (a Alarm) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "severity", "site_id", "ssids", "switches", "timestamp", "type"); err != nil {
+        "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "resolved_time", "severity", "site_id", "ssids", "status", "switches", "timestamp", "type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -110,12 +114,18 @@ func (a Alarm) toMap() map[string]any {
     if a.OrgId != nil {
         structMap["org_id"] = a.OrgId
     }
+    if a.ResolvedTime != nil {
+        structMap["resolved_time"] = a.ResolvedTime
+    }
     structMap["severity"] = a.Severity
     if a.SiteId != nil {
         structMap["site_id"] = a.SiteId
     }
     if a.Ssids != nil {
         structMap["ssids"] = a.Ssids
+    }
+    if a.Status != nil {
+        structMap["status"] = a.Status
     }
     if a.Switches != nil {
         structMap["switches"] = a.Switches
@@ -137,7 +147,7 @@ func (a *Alarm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "severity", "site_id", "ssids", "switches", "timestamp", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ack_admin_id", "ack_admin_name", "acked", "acked_time", "aps", "bssids", "count", "gateways", "group", "hostnames", "id", "last_seen", "note", "org_id", "resolved_time", "severity", "site_id", "ssids", "status", "switches", "timestamp", "type")
     if err != nil {
     	return err
     }
@@ -157,9 +167,11 @@ func (a *Alarm) UnmarshalJSON(input []byte) error {
     a.LastSeen = *temp.LastSeen
     a.Note = temp.Note
     a.OrgId = temp.OrgId
+    a.ResolvedTime = temp.ResolvedTime
     a.Severity = *temp.Severity
     a.SiteId = temp.SiteId
     a.Ssids = temp.Ssids
+    a.Status = temp.Status
     a.Switches = temp.Switches
     a.Timestamp = *temp.Timestamp
     a.Type = *temp.Type
@@ -168,26 +180,28 @@ func (a *Alarm) UnmarshalJSON(input []byte) error {
 
 // tempAlarm is a temporary struct used for validating the fields of Alarm.
 type tempAlarm  struct {
-    AckAdminId   *uuid.UUID `json:"ack_admin_id,omitempty"`
-    AckAdminName *string    `json:"ack_admin_name,omitempty"`
-    Acked        *bool      `json:"acked,omitempty"`
-    AckedTime    *int       `json:"acked_time,omitempty"`
-    Aps          []string   `json:"aps,omitempty"`
-    Bssids       []string   `json:"bssids,omitempty"`
-    Count        *int       `json:"count"`
-    Gateways     []string   `json:"gateways,omitempty"`
-    Group        *string    `json:"group"`
-    Hostnames    []string   `json:"hostnames,omitempty"`
-    Id           *uuid.UUID `json:"id"`
-    LastSeen     *float64   `json:"last_seen"`
-    Note         *string    `json:"note,omitempty"`
-    OrgId        *uuid.UUID `json:"org_id,omitempty"`
-    Severity     *string    `json:"severity"`
-    SiteId       *uuid.UUID `json:"site_id,omitempty"`
-    Ssids        []string   `json:"ssids,omitempty"`
-    Switches     []string   `json:"switches,omitempty"`
-    Timestamp    *int       `json:"timestamp"`
-    Type         *string    `json:"type"`
+    AckAdminId   *uuid.UUID       `json:"ack_admin_id,omitempty"`
+    AckAdminName *string          `json:"ack_admin_name,omitempty"`
+    Acked        *bool            `json:"acked,omitempty"`
+    AckedTime    *int             `json:"acked_time,omitempty"`
+    Aps          []string         `json:"aps,omitempty"`
+    Bssids       []string         `json:"bssids,omitempty"`
+    Count        *int             `json:"count"`
+    Gateways     []string         `json:"gateways,omitempty"`
+    Group        *string          `json:"group"`
+    Hostnames    []string         `json:"hostnames,omitempty"`
+    Id           *uuid.UUID       `json:"id"`
+    LastSeen     *float64         `json:"last_seen"`
+    Note         *string          `json:"note,omitempty"`
+    OrgId        *uuid.UUID       `json:"org_id,omitempty"`
+    ResolvedTime *int             `json:"resolved_time,omitempty"`
+    Severity     *string          `json:"severity"`
+    SiteId       *uuid.UUID       `json:"site_id,omitempty"`
+    Ssids        []string         `json:"ssids,omitempty"`
+    Status       *AlarmStatusEnum `json:"status,omitempty"`
+    Switches     []string         `json:"switches,omitempty"`
+    Timestamp    *int             `json:"timestamp"`
+    Type         *string          `json:"type"`
 }
 
 func (a *tempAlarm) validate() error {

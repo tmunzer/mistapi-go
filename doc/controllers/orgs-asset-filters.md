@@ -41,7 +41,7 @@ CreateOrgAssetFilters(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -51,7 +51,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AssetFilter{
-    Disasbled:             models.ToPointer(true),
+    Disabled:              models.ToPointer(true),
     EddystoneUidNamespace: models.ToPointer("string"),
     EddystoneUrl:          models.ToPointer("string"),
     IbeaconMajor:          models.ToPointer(0),
@@ -75,7 +75,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,
@@ -123,7 +123,7 @@ DeleteOrgAssetFilter(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -175,7 +175,7 @@ GetOrgAssetFilter(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -201,7 +201,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,
@@ -252,7 +252,7 @@ ListOrgAssetFilters(
 
 ## Response Type
 
-[`[]models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -310,7 +310,7 @@ UpdateOrgAssetFilters(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -346,7 +346,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,

@@ -17,7 +17,7 @@ Junos port usages
 | `AllowDhcpd` | `*bool` | Optional | Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port. |
 | `AllowMultipleSupplicants` | `*bool` | Optional | Only if `mode`!=`dynamic`<br>**Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down<br>**Default**: `false` |
-| `BypassAuthWhenServerDownForUnkownClient` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
+| `BypassAuthWhenServerDownForUnknownClient` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br>**Default**: `false` |
 | `Description` | `*string` | Optional | Only if `mode`!=`dynamic` |
 | `DisableAutoneg` | `*bool` | Optional | Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation<br>**Default**: `false` |
 | `Disabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether the port is disabled<br>**Default**: `false` |
@@ -26,6 +26,7 @@ Junos port usages
 | `EnableMacAuth` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` whether to enable MAC Auth<br>**Default**: `false` |
 | `EnableQos` | `*bool` | Optional | Only if `mode`!=`dynamic`<br>**Default**: `false` |
 | `GuestNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed) |
+| `InterIsolationNetworkLink` | `*bool` | Optional | `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper device. This has to be applied to both ports connected together<br>**Default**: `false` |
 | `InterSwitchLink` | `*bool` | Optional | Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together<br>**Default**: `false` |
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
@@ -60,7 +61,7 @@ Junos port usages
   "all_networks": false,
   "allow_multiple_supplicants": false,
   "bypass_auth_when_server_down": false,
-  "bypass_auth_when_server_down_for_unkown_client": false,
+  "bypass_auth_when_server_down_for_unknown_client": false,
   "disable_autoneg": false,
   "disabled": false,
   "duplex": "auto",
@@ -70,6 +71,7 @@ Junos port usages
   ],
   "enable_mac_auth": false,
   "enable_qos": false,
+  "inter_isolation_network_link": false,
   "inter_switch_link": false,
   "mac_auth_protocol": "eap-md5",
   "mac_limit": 0,

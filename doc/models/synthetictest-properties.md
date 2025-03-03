@@ -21,7 +21,7 @@
 ```json
 {
   "custom_test_urls": [
-    "http://www.abc.com/",
+    "https://www.abc.com/",
     "https://10.3.5.1:8080/about"
   ],
   "disabled": false,

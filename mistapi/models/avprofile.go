@@ -14,7 +14,7 @@ type Avprofile struct {
     CreatedTime          *float64                     `json:"created_time,omitempty"`
     // enum: `block`, `permit`
     FallbackAction       *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                   `json:"id,omitempty"`
     // In KB
     MaxFilesize          *int                         `json:"max_filesize,omitempty"`

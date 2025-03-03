@@ -364,6 +364,40 @@ func (s *SamplesWebhooks) DiscoveredRawRssi(
     return httpCtx.Response, err
 }
 
+// GuestAuthorization takes context, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Webhook sample for `guest-authorizations` topic
+// **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
+func (s *SamplesWebhooks) GuestAuthorization(
+    ctx context.Context,
+    body *models.WebhookGuestAuthorizations) (
+    *http.Response,
+    error) {
+    req := s.prepareRequest(ctx, "POST", "/webhook_example/_guest_authorizations_")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
 // Location takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

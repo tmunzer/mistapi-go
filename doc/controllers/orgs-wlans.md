@@ -42,7 +42,7 @@ CreateOrgWlan(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -69,6 +69,7 @@ body := models.Wlan{
     ClientLimitDownEnabled:               models.ToPointer(false),
     ClientLimitUpEnabled:                 models.ToPointer(false),
     Disable11ax:                          models.ToPointer(false),
+    Disable11be:                          models.ToPointer(false),
     DisableHtVhtRates:                    models.ToPointer(false),
     DisableUapsd:                         models.ToPointer(false),
     DisableV1RoamNotify:                  models.ToPointer(false),
@@ -218,7 +219,7 @@ DeleteOrgWlan(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -270,7 +271,7 @@ DeleteOrgWlanPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -322,7 +323,7 @@ GetOrgWLAN(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -437,7 +438,7 @@ ListOrgWlans(
 
 ## Response Type
 
-[`[]models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -495,7 +496,7 @@ UpdateOrgWlan(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -681,7 +682,7 @@ UpdateOrgWlanPortalTemplate(
 
 ## Response Type
 
-[`models.WlanPortalTemplate`](../../doc/models/wlan-portal-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WlanPortalTemplate](../../doc/models/wlan-portal-template.md).
 
 ## Example Usage
 
@@ -853,7 +854,7 @@ UploadOrgWlanPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

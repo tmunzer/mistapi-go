@@ -12,7 +12,7 @@ type RrmBand struct {
     // proposed channel
     Channel              *int                   `json:"channel,omitempty"`
     // channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
-    CurrBandwidht        *Dot11BandwidthEnum    `json:"curr_bandwidht,omitempty"`
+    CurrBandwidth        *Dot11BandwidthEnum    `json:"curr_bandwidth,omitempty"`
     // Current channel
     CurrChannel          *int                   `json:"curr_channel,omitempty"`
     // Current tx power
@@ -30,8 +30,8 @@ type RrmBand struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RrmBand) String() string {
     return fmt.Sprintf(
-    	"RrmBand[Bandwidth=%v, Channel=%v, CurrBandwidht=%v, CurrChannel=%v, CurrPower=%v, CurrUsage=%v, Power=%v, Usage=%v, AdditionalProperties=%v]",
-    	r.Bandwidth, r.Channel, r.CurrBandwidht, r.CurrChannel, r.CurrPower, r.CurrUsage, r.Power, r.Usage, r.AdditionalProperties)
+    	"RrmBand[Bandwidth=%v, Channel=%v, CurrBandwidth=%v, CurrChannel=%v, CurrPower=%v, CurrUsage=%v, Power=%v, Usage=%v, AdditionalProperties=%v]",
+    	r.Bandwidth, r.Channel, r.CurrBandwidth, r.CurrChannel, r.CurrPower, r.CurrUsage, r.Power, r.Usage, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBand.
@@ -40,7 +40,7 @@ func (r RrmBand) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "bandwidth", "channel", "curr_bandwidht", "curr_channel", "curr_power", "curr_usage", "power", "usage"); err != nil {
+        "bandwidth", "channel", "curr_bandwidth", "curr_channel", "curr_power", "curr_usage", "power", "usage"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -56,8 +56,8 @@ func (r RrmBand) toMap() map[string]any {
     if r.Channel != nil {
         structMap["channel"] = r.Channel
     }
-    if r.CurrBandwidht != nil {
-        structMap["curr_bandwidht"] = r.CurrBandwidht
+    if r.CurrBandwidth != nil {
+        structMap["curr_bandwidth"] = r.CurrBandwidth
     }
     if r.CurrChannel != nil {
         structMap["curr_channel"] = r.CurrChannel
@@ -85,7 +85,7 @@ func (r *RrmBand) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bandwidth", "channel", "curr_bandwidht", "curr_channel", "curr_power", "curr_usage", "power", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bandwidth", "channel", "curr_bandwidth", "curr_channel", "curr_power", "curr_usage", "power", "usage")
     if err != nil {
     	return err
     }
@@ -93,7 +93,7 @@ func (r *RrmBand) UnmarshalJSON(input []byte) error {
     
     r.Bandwidth = temp.Bandwidth
     r.Channel = temp.Channel
-    r.CurrBandwidht = temp.CurrBandwidht
+    r.CurrBandwidth = temp.CurrBandwidth
     r.CurrChannel = temp.CurrChannel
     r.CurrPower = temp.CurrPower
     r.CurrUsage = temp.CurrUsage
@@ -106,7 +106,7 @@ func (r *RrmBand) UnmarshalJSON(input []byte) error {
 type tempRrmBand  struct {
     Bandwidth     *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
     Channel       *int                `json:"channel,omitempty"`
-    CurrBandwidht *Dot11BandwidthEnum `json:"curr_bandwidht,omitempty"`
+    CurrBandwidth *Dot11BandwidthEnum `json:"curr_bandwidth,omitempty"`
     CurrChannel   *int                `json:"curr_channel,omitempty"`
     CurrPower     *int                `json:"curr_power,omitempty"`
     CurrUsage     *string             `json:"curr_usage,omitempty"`

@@ -49,7 +49,7 @@ CreateOrgUserMacs(
 
 ## Response Type
 
-[`models.UserMac`](../../doc/models/user-mac.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMac](../../doc/models/user-mac.md).
 
 ## Example Usage
 
@@ -128,7 +128,7 @@ DeleteOrgUserMac(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -180,7 +180,7 @@ GetOrgUserMac(
 
 ## Response Type
 
-[`models.UserMac`](../../doc/models/user-mac.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMac](../../doc/models/user-mac.md).
 
 ## Example Usage
 
@@ -256,11 +256,11 @@ ImportOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | File to updload |
+| `file` | `models.FileWrapper` | Form, Required | File to upload |
 
 ## Response Type
 
-[`models.UserMacImport`](../../doc/models/user-mac-import.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMacImport](../../doc/models/user-mac-import.md).
 
 ## Example Usage
 
@@ -331,14 +331,14 @@ SearchOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | Partial/full MAC addres |
+| `mac` | `*string` | Query, Optional | Partial/full MAC address |
 | `labels` | `[]string` | Query, Optional | Optional, array of strings of labels |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
-[`[]models.UserMac`](../../doc/models/user-mac.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UserMac](../../doc/models/user-mac.md).
 
 ## Example Usage
 
@@ -417,7 +417,7 @@ UpdateOrgUserMac(
 
 ## Response Type
 
-[`models.UserMac`](../../doc/models/user-mac.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMac](../../doc/models/user-mac.md).
 
 ## Example Usage
 

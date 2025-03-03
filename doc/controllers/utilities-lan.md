@@ -12,7 +12,7 @@ utilitiesLAN := client.UtilitiesLAN()
 
 * [Cable Test From Switch](../../doc/controllers/utilities-lan.md#cable-test-from-switch)
 * [Clear All Learned Macs From Port on Switch](../../doc/controllers/utilities-lan.md#clear-all-learned-macs-from-port-on-switch)
-* [Clear Bpdu Erros From Ports on Switch](../../doc/controllers/utilities-lan.md#clear-bpdu-erros-from-ports-on-switch)
+* [Clear Bpdu Errors From Ports on Switch](../../doc/controllers/utilities-lan.md#clear-bpdu-errors-from-ports-on-switch)
 * [Create Site Device Snapshot](../../doc/controllers/utilities-lan.md#create-site-device-snapshot)
 * [Poll Site Switch Stats](../../doc/controllers/utilities-lan.md#poll-site-switch-stats)
 * [Reauth Org Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-org-dot-1-x-wired-client)
@@ -70,7 +70,7 @@ CableTestFromSwitch(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -130,7 +130,7 @@ ClearAllLearnedMacsFromPortOnSwitch(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -166,12 +166,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Clear Bpdu Erros From Ports on Switch
+# Clear Bpdu Errors From Ports on Switch
 
 Clear bridge protocol data unit (BPDU) error condition caused by the detection of a possible bridging loop from Spanning Tree Protocol (STP) operation that renders the port unoperational.
 
 ```go
-ClearBpduErrosFromPortsOnSwitch(
+ClearBpduErrorsFromPortsOnSwitch(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -190,7 +190,7 @@ ClearBpduErrosFromPortsOnSwitch(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -203,7 +203,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-resp, err := utilitiesLAN.ClearBpduErrosFromPortsOnSwitch(ctx, siteId, deviceId, nil)
+resp, err := utilitiesLAN.ClearBpduErrorsFromPortsOnSwitch(ctx, siteId, deviceId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -244,7 +244,7 @@ CreateSiteDeviceSnapshot(
 
 ## Response Type
 
-[`models.ResponseDeviceSnapshot`](../../doc/models/response-device-snapshot.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceSnapshot](../../doc/models/response-device-snapshot.md).
 
 ## Example Usage
 
@@ -269,8 +269,8 @@ if err != nil {
 
 ```json
 {
+  "status": "starting",
   "status_id": "string",
-  "staus": "starting",
   "timestamp": 0
 }
 ```
@@ -308,7 +308,7 @@ PollSiteSwitchStats(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -340,7 +340,7 @@ if err != nil {
 
 # Reauth Org Dot 1 X Wired Client
 
-Trigger a CoA (change of authorization) against a Wiired client
+Trigger a CoA (change of authorization) against a Wired client
 
 ```go
 ReauthOrgDot1xWiredClient(
@@ -360,7 +360,7 @@ ReauthOrgDot1xWiredClient(
 
 ## Response Type
 
-[`models.ResponseWiredCoa`](../../doc/models/response-wired-coa.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseWiredCoa](../../doc/models/response-wired-coa.md).
 
 ## Example Usage
 
@@ -404,7 +404,7 @@ if err != nil {
 
 # Reauth Site Dot 1 X Wired Client
 
-Trigger a CoA (change of authorization) against a Wiired client
+Trigger a CoA (change of authorization) against a Wired client
 
 ```go
 ReauthSiteDot1xWiredClient(
@@ -424,7 +424,7 @@ ReauthSiteDot1xWiredClient(
 
 ## Response Type
 
-[`models.ResponseWiredCoa`](../../doc/models/response-wired-coa.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseWiredCoa](../../doc/models/response-wired-coa.md).
 
 ## Example Usage
 
@@ -490,7 +490,7 @@ UpgradeDeviceBios(
 
 ## Response Type
 
-[`models.ResponseDeviceBiosUpgrade`](../../doc/models/response-device-bios-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceBiosUpgrade](../../doc/models/response-device-bios-upgrade.md).
 
 ## Example Usage
 
@@ -560,7 +560,7 @@ UpgradeDeviceFPGA(
 
 ## Response Type
 
-[`models.ResponseDeviceBiosUpgrade`](../../doc/models/response-device-bios-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceBiosUpgrade](../../doc/models/response-device-bios-upgrade.md).
 
 ## Example Usage
 
@@ -628,7 +628,7 @@ UpgradeSiteDevicesBios(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -683,7 +683,7 @@ UpgradeSiteDevicesFpga(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

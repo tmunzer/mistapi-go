@@ -40,7 +40,7 @@ CreateOrgApiToken(
 
 ## Response Type
 
-[`models.OrgApitoken`](../../doc/models/org-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgApitoken](../../doc/models/org-apitoken.md).
 
 ## Example Usage
 
@@ -127,7 +127,7 @@ DeleteOrgApiToken(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -179,7 +179,7 @@ GetOrgApiToken(
 
 ## Response Type
 
-[`models.OrgApitoken`](../../doc/models/org-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgApitoken](../../doc/models/org-apitoken.md).
 
 ## Example Usage
 
@@ -252,7 +252,7 @@ ListOrgApiTokens(
 
 ## Response Type
 
-[`[]models.OrgApitoken`](../../doc/models/org-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.OrgApitoken](../../doc/models/org-apitoken.md).
 
 ## Example Usage
 
@@ -329,7 +329,7 @@ UpdateOrgApiToken(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

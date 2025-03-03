@@ -11,6 +11,7 @@ sitesDevices := client.SitesDevices()
 ## Methods
 
 * [Add Site Device Image](../../doc/controllers/sites-devices.md#add-site-device-image)
+* [Change Site Switch Vc Port Mode](../../doc/controllers/sites-devices.md#change-site-switch-vc-port-mode)
 * [Count Site Device Config History](../../doc/controllers/sites-devices.md#count-site-device-config-history)
 * [Count Site Device Events](../../doc/controllers/sites-devices.md#count-site-device-events)
 * [Count Site Device Last Config](../../doc/controllers/sites-devices.md#count-site-device-last-config)
@@ -55,7 +56,7 @@ AddSiteDeviceImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -91,6 +92,66 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Change Site Switch Vc Port Mode
+
+Change VCP port mode
+
+Some switch model allows changing VCP port behaviors, e.g. - use them as regular network ports - change vcp protocol Note, this command will reboot the switch
+
+```go
+ChangeSiteSwitchVcPortMode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.VcPort) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.VcPort`](../../doc/models/vc-port.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.VcPort{
+    Mode:                 models.ToPointer(models.VcPortModeEnum_NETWORK),
+}
+
+resp, err := sitesDevices.ChangeSiteSwitchVcPortMode(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Count Site Device Config History
 
 Counts the number of entries in device config history for distinct field with given filters
@@ -106,7 +167,7 @@ CountSiteDeviceConfigHistory(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -125,7 +186,7 @@ CountSiteDeviceConfigHistory(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -203,7 +264,7 @@ CountSiteDeviceEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -214,7 +275,7 @@ CountSiteDeviceEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDeviceEventsCountDistinctEnum`](../../doc/models/site-device-events-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
 | `model` | `*string` | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `typeCode` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -223,7 +284,7 @@ CountSiteDeviceEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -301,7 +362,7 @@ CountSiteDeviceLastConfig(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -319,7 +380,7 @@ CountSiteDeviceLastConfig(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -404,7 +465,7 @@ CountSiteDevices(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -433,7 +494,7 @@ CountSiteDevices(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -539,7 +600,7 @@ DeleteSiteDeviceImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -591,7 +652,7 @@ ExportSiteDevices(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -643,7 +704,7 @@ GetSiteDevice(
 
 ## Response Type
 
-[`models.MistDevice`](../../doc/models/containers/mist-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.MistDevice.
 
 ## Example Usage
 
@@ -899,11 +960,11 @@ ImportSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | File to updload |
+| `file` | `models.FileWrapper` | Form, Required | File to upload |
 
 ## Response Type
 
-[`[]models.ConfigDevice`](../../doc/models/containers/config-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.ConfigDevice.
 
 ## Example Usage
 
@@ -973,7 +1034,7 @@ ListSiteDevices(
 
 ## Response Type
 
-[`[]models.ConfigDevice`](../../doc/models/containers/config-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.ConfigDevice.
 
 ## Example Usage
 
@@ -1029,7 +1090,7 @@ Search for entries in device config history
 SearchSiteDeviceConfigHistory(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     limit *int,
     start *int,
@@ -1044,7 +1105,7 @@ SearchSiteDeviceConfigHistory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -1053,7 +1114,7 @@ SearchSiteDeviceConfigHistory(
 
 ## Response Type
 
-[`models.ResponseConfigHistorySearch`](../../doc/models/response-config-history-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseConfigHistorySearch](../../doc/models/response-config-history-search.md).
 
 ## Example Usage
 
@@ -1062,7 +1123,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -1195,7 +1256,7 @@ SearchSiteDeviceEvents(
 | `model` | `*string` | Query, Optional | Device model |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -1204,7 +1265,7 @@ SearchSiteDeviceEvents(
 
 ## Response Type
 
-[`models.ResponseEventsDevices`](../../doc/models/response-events-devices.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsDevices](../../doc/models/response-events-devices.md).
 
 ## Example Usage
 
@@ -1287,7 +1348,7 @@ Search Device Last Configs
 SearchSiteDeviceLastConfigs(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     version *string,
     name *string,
@@ -1304,7 +1365,7 @@ SearchSiteDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
@@ -1315,7 +1376,7 @@ SearchSiteDeviceLastConfigs(
 
 ## Response Type
 
-[`models.ResponseConfigHistorySearch`](../../doc/models/response-config-history-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseConfigHistorySearch](../../doc/models/response-config-history-search.md).
 
 ## Example Usage
 
@@ -1324,7 +1385,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -1439,7 +1500,7 @@ SearchSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
     hostname *string,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     model *string,
     mac *string,
     version *string,
@@ -1475,7 +1536,7 @@ SearchSiteDevices(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | Device model |
 | `mac` | `*string` | Query, Optional | Device MAC |
 | `version` | `*string` | Query, Optional | Version |
@@ -1504,7 +1565,7 @@ SearchSiteDevices(
 
 ## Response Type
 
-[`models.ResponseDeviceSearch`](../../doc/models/response-device-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceSearch](../../doc/models/response-device-search.md).
 
 ## Example Usage
 
@@ -1515,7 +1576,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -1596,7 +1657,7 @@ if err != nil {
       "lldp_mgmt_addr": "10.2.10.139",
       "lldp_port_desc": "GigabitEthernet1/0/1",
       "lldp_port_id": "Gi1/0/1",
-      "lldp_system_desc": "Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team",
+      "lldp_system_desc": "Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team",
       "lldp_system_name": "ME-DC-1-ACC-SW",
       "mac": "5c5b353e5299",
       "model": "AP41",
@@ -1663,7 +1724,7 @@ UpdateSiteDevice(
 
 ## Response Type
 
-[`models.MistDevice`](../../doc/models/containers/mist-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.MistDevice.
 
 ## Example Usage
 

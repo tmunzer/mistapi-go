@@ -37,7 +37,7 @@ DisableOrgMistScep(
 
 ## Response Type
 
-[`models.OrgSettingScep`](../../doc/models/org-setting-scep.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
 
 ## Example Usage
 
@@ -101,7 +101,7 @@ GetOrgIssuedClientCertificates(
 
 ## Response Type
 
-[`models.IssuedClientCertificatesResults`](../../doc/models/issued-client-certificates-results.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IssuedClientCertificatesResults](../../doc/models/issued-client-certificates-results.md).
 
 ## Example Usage
 
@@ -173,7 +173,7 @@ GetOrgMistScep(
 
 ## Response Type
 
-[`models.OrgSettingScep`](../../doc/models/org-setting-scep.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
 
 ## Example Usage
 
@@ -233,7 +233,7 @@ RevokeOrgIssuedClientCertificates(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -289,7 +289,7 @@ UpdateOrgMistScep(
 
 ## Response Type
 
-[`models.OrgSettingScep`](../../doc/models/org-setting-scep.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
 
 ## Example Usage
 

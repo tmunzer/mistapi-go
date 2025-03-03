@@ -29,7 +29,7 @@ type RfTemplate struct {
     // When the object has been created, in epoch
     CreatedTime          *float64                                   `json:"created_time,omitempty"`
     ForSite              *bool                                      `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                                 `json:"id,omitempty"`
     // overwrites for a specific model. If a band is specified, it will shadow the default. Property key is the model name (e.g. "AP63")
     ModelSpecific        map[string]RfTemplateModelSpecificProperty `json:"model_specific,omitempty"`

@@ -39,7 +39,7 @@ CreateOrgService(
 
 ## Response Type
 
-[`models.Service`](../../doc/models/service.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Service](../../doc/models/service.md).
 
 ## Example Usage
 
@@ -150,7 +150,7 @@ DeleteOrgService(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -202,7 +202,7 @@ GetOrgService(
 
 ## Response Type
 
-[`models.Service`](../../doc/models/service.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Service](../../doc/models/service.md).
 
 ## Example Usage
 
@@ -298,7 +298,7 @@ ListOrgServices(
 
 ## Response Type
 
-[`[]models.Service`](../../doc/models/service.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Service](../../doc/models/service.md).
 
 ## Example Usage
 
@@ -388,7 +388,7 @@ UpdateOrgService(
 
 ## Response Type
 
-[`models.Service`](../../doc/models/service.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Service](../../doc/models/service.md).
 
 ## Example Usage
 

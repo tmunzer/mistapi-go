@@ -63,7 +63,7 @@ GetSiteSleClassifierDetails(
 
 ## Response Type
 
-[`models.SleClassifierSummary`](../../doc/models/sle-classifier-summary.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleClassifierSummary](../../doc/models/sle-classifier-summary.md).
 
 ## Example Usage
 
@@ -248,7 +248,7 @@ GetSiteSleHistogram(
 
 ## Response Type
 
-[`models.SleHistogram`](../../doc/models/sle-histogram.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleHistogram](../../doc/models/sle-histogram.md).
 
 ## Example Usage
 
@@ -428,7 +428,7 @@ GetSiteSleImpactSummary(
 
 ## Response Type
 
-[`models.SleImpactSummary`](../../doc/models/sle-impact-summary.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactSummary](../../doc/models/sle-impact-summary.md).
 
 ## Example Usage
 
@@ -649,7 +649,7 @@ GetSiteSleImpactedApplications(
 
 ## Response Type
 
-[`models.SleImpactedApplications`](../../doc/models/sle-impacted-applications.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedApplications](../../doc/models/sle-impacted-applications.md).
 
 ## Example Usage
 
@@ -752,7 +752,7 @@ GetSiteSleImpactedAps(
 
 ## Response Type
 
-[`models.SleImpactedAps`](../../doc/models/sle-impacted-aps.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedAps](../../doc/models/sle-impacted-aps.md).
 
 ## Example Usage
 
@@ -861,7 +861,7 @@ GetSiteSleImpactedChassis(
 
 ## Response Type
 
-[`models.SleImpactedChassis`](../../doc/models/sle-impacted-chassis.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedChassis](../../doc/models/sle-impacted-chassis.md).
 
 ## Example Usage
 
@@ -965,7 +965,7 @@ GetSiteSleImpactedGateways(
 
 ## Response Type
 
-[`models.SleImpactedGateways`](../../doc/models/sle-impacted-gateways.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedGateways](../../doc/models/sle-impacted-gateways.md).
 
 ## Example Usage
 
@@ -1069,7 +1069,7 @@ GetSiteSleImpactedInterfaces(
 
 ## Response Type
 
-[`models.SleImpactedInterfaces`](../../doc/models/sle-impacted-interfaces.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedInterfaces](../../doc/models/sle-impacted-interfaces.md).
 
 ## Example Usage
 
@@ -1180,7 +1180,7 @@ GetSiteSleImpactedSwitches(
 
 ## Response Type
 
-[`models.SleImpactedSwitches`](../../doc/models/sle-impacted-switches.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedSwitches](../../doc/models/sle-impacted-switches.md).
 
 ## Example Usage
 
@@ -1288,7 +1288,7 @@ GetSiteSleImpactedWiredClients(
 
 ## Response Type
 
-[`models.SleImpactedClients`](../../doc/models/sle-impacted-clients.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedClients](../../doc/models/sle-impacted-clients.md).
 
 ## Example Usage
 
@@ -1399,7 +1399,7 @@ GetSiteSleImpactedWirelessClients(
 
 ## Response Type
 
-[`models.SleImpactedUsers`](../../doc/models/sle-impacted-users.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedUsers](../../doc/models/sle-impacted-users.md).
 
 ## Example Usage
 
@@ -1538,7 +1538,7 @@ GetSiteSleMetricClassifiers(
 
 ## Response Type
 
-`[]string`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []string.
 
 ## Example Usage
 
@@ -1616,7 +1616,7 @@ GetSiteSleSummary(
 
 ## Response Type
 
-[`models.SleSummary`](../../doc/models/sle-summary.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleSummary](../../doc/models/sle-summary.md).
 
 ## Example Usage
 
@@ -2156,7 +2156,7 @@ GetSiteSleThreshold(
 
 ## Response Type
 
-[`models.SleThreshold`](../../doc/models/sle-threshold.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleThreshold](../../doc/models/sle-threshold.md).
 
 ## Example Usage
 
@@ -2230,7 +2230,7 @@ GetSiteSlesMetrics(
 
 ## Response Type
 
-[`models.SiteSleMetrics`](../../doc/models/site-sle-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SiteSleMetrics](../../doc/models/site-sle-metrics.md).
 
 ## Example Usage
 
@@ -2336,7 +2336,7 @@ ReplaceSiteSleThreshold(
 
 ## Response Type
 
-[`models.SleThreshold`](../../doc/models/sle-threshold.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleThreshold](../../doc/models/sle-threshold.md).
 
 ## Example Usage
 
@@ -2419,7 +2419,7 @@ UpdateSiteSleThreshold(
 
 ## Response Type
 
-[`models.SleThreshold`](../../doc/models/sle-threshold.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleThreshold](../../doc/models/sle-threshold.md).
 
 ## Example Usage
 

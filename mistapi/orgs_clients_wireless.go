@@ -22,7 +22,7 @@ func NewOrgsClientsWireless(baseController baseController) *OrgsClientsWireless 
 }
 
 // CountOrgWirelessClients takes context, orgId, distinct, mac, hostname, device, os, model, ap, vlan, ssid, ipAddress, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Wireless Clients
 func (o *OrgsClientsWireless) CountOrgWirelessClients(
@@ -43,7 +43,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/count")
     req.AppendTemplateParams(orgId)
@@ -111,13 +111,13 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -326,7 +326,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 }
 
 // CountOrgWirelessClientsSessions takes context, orgId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Wireless Clients Sessions
 func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
@@ -346,7 +346,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/sessions/count")
     req.AppendTemplateParams(orgId)
@@ -411,13 +411,13 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

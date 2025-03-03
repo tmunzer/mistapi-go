@@ -30,7 +30,7 @@ CountOrgSites(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -48,7 +48,7 @@ CountOrgSites(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -130,7 +130,7 @@ CreateOrgSite(
 
 ## Response Type
 
-[`models.Site`](../../doc/models/site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Site](../../doc/models/site.md).
 
 ## Example Usage
 
@@ -238,7 +238,7 @@ ListOrgSites(
 
 ## Response Type
 
-[`[]models.Site`](../../doc/models/site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Site](../../doc/models/site.md).
 
 ## Example Usage
 
@@ -364,7 +364,7 @@ SearchOrgSites(
 
 ## Response Type
 
-[`models.ResponseSiteSearch`](../../doc/models/response-site-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSiteSearch](../../doc/models/response-site-search.md).
 
 ## Example Usage
 

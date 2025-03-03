@@ -17,7 +17,7 @@ type StatsZoneDetails struct {
     ClientWaits          StatsZoneDetailsClientWaits `json:"client_waits"`
     // List of clients currently in the zone and when they entered
     Clients              []string                    `json:"clients,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                   `json:"id"`
     // Map_id of the zone
     MapId                uuid.UUID                   `json:"map_id"`

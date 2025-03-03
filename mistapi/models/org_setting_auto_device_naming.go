@@ -7,9 +7,9 @@ import (
 
 // OrgSettingAutoDeviceNaming represents a OrgSettingAutoDeviceNaming struct.
 type OrgSettingAutoDeviceNaming struct {
-    Enable               *bool                    `json:"enable,omitempty"`
-    Rules                Optional[[]OrgAutoRules] `json:"rules"`
-    AdditionalProperties map[string]interface{}   `json:"_"`
+    Enable               *bool                                      `json:"enable,omitempty"`
+    Rules                Optional[[]OrgSettingAutoDeviceNamingRule] `json:"rules"`
+    AdditionalProperties map[string]interface{}                     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingAutoDeviceNaming,
@@ -70,6 +70,6 @@ func (o *OrgSettingAutoDeviceNaming) UnmarshalJSON(input []byte) error {
 
 // tempOrgSettingAutoDeviceNaming is a temporary struct used for validating the fields of OrgSettingAutoDeviceNaming.
 type tempOrgSettingAutoDeviceNaming  struct {
-    Enable *bool                    `json:"enable,omitempty"`
-    Rules  Optional[[]OrgAutoRules] `json:"rules"`
+    Enable *bool                                      `json:"enable,omitempty"`
+    Rules  Optional[[]OrgSettingAutoDeviceNamingRule] `json:"rules"`
 }

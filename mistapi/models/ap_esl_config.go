@@ -17,7 +17,7 @@ type ApEslConfig struct {
     Host                 *string                `json:"host,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
     Port                 *int                   `json:"port,omitempty"`
-    // note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
+    // note: ble_config will be ignored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
     Type                 *ApEslTypeEnum         `json:"type,omitempty"`
     // Only if `type`==`imagotag` or `type`==`native`
     VerifyCert           *bool                  `json:"verify_cert,omitempty"`

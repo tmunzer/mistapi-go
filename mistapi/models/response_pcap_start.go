@@ -17,7 +17,7 @@ type ResponsePcapStart struct {
     Enabled                 *bool                  `json:"enabled,omitempty"`
     Expiry                  *float64               `json:"expiry,omitempty"`
     Format                  *string                `json:"format,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                      uuid.UUID              `json:"id"`
     IncludeMcast            *bool                  `json:"include_mcast,omitempty"`
     MaxPktLen               *int                   `json:"max_pkt_len,omitempty"`

@@ -8,7 +8,7 @@ import (
 // LastTrouble represents a LastTrouble struct.
 // Last trouble code of switch
 type LastTrouble struct {
-    // Code definitions list at /api/v1/consts/ap_led_status
+    // Code definitions list at [List Ap Led Definition]($e/Constants%20Definitions/listApLedDefinition)
     Code                 *string                `json:"code,omitempty"`
     Timestamp            *int                   `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

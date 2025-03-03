@@ -108,7 +108,7 @@ func (o *OrgsAlarms) AckOrgAllAlarms(
 }
 
 // CountOrgAlarms takes context, orgId, distinct, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Alarms
 func (o *OrgsAlarms) CountOrgAlarms(
@@ -120,7 +120,7 @@ func (o *OrgsAlarms) CountOrgAlarms(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/alarms/count")
     req.AppendTemplateParams(orgId)
@@ -161,17 +161,17 @@ func (o *OrgsAlarms) CountOrgAlarms(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgAlarms takes context, orgId, siteId, mType, start, end, duration, limit as parameters and
+// SearchOrgAlarms takes context, orgId, siteId, mType, status, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Org Alarms
@@ -180,6 +180,7 @@ func (o *OrgsAlarms) SearchOrgAlarms(
     orgId uuid.UUID,
     siteId *uuid.UUID,
     mType *string,
+    status *string,
     start *int,
     end *int,
     duration *string,
@@ -211,6 +212,9 @@ func (o *OrgsAlarms) SearchOrgAlarms(
     }
     if mType != nil {
         req.QueryParam("type", *mType)
+    }
+    if status != nil {
+        req.QueryParam("status", *status)
     }
     if start != nil {
         req.QueryParam("start", *start)
@@ -277,12 +281,12 @@ func (o *OrgsAlarms) UnackOrgMultipleAlarms(
     return httpCtx.Response, err
 }
 
-// UnackOrgAllArlarms takes context, orgId, body as parameters and
+// UnackOrgAllAlarms takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack all Org Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
-func (o *OrgsAlarms) UnackOrgAllArlarms(
+func (o *OrgsAlarms) UnackOrgAllAlarms(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.NoteString) (
@@ -355,6 +359,82 @@ func (o *OrgsAlarms) AckOrgAlarm(
     if body != nil {
         req.Json(body)
     }
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
+// UnsubscribeOrgAlarmsReports takes context, orgId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Unsubscribe from Org Alarms/Reports
+// Subscriptions define how Org Alarms/Reports are delivered to whom
+func (o *OrgsAlarms) UnsubscribeOrgAlarmsReports(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    *http.Response,
+    error) {
+    req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/subscriptions")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
+// SubscribeOrgAlarmsReports takes context, orgId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Subscribe to Org Alarms/Reports
+// Subscriptions define how Org Alarms/Reports are delivered to whom
+func (o *OrgsAlarms) SubscribeOrgAlarmsReports(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    *http.Response,
+    error) {
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/subscriptions")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
     
     httpCtx, err := req.Call()
     if err != nil {

@@ -16,7 +16,7 @@ orgsStatsVPNPeers := client.OrgsStatsVPNPeers()
 
 # Count Org Peer Path Stats
 
-Count Org Peer Path Statgs
+Count Org Peer Path Stats
 
 ```go
 CountOrgPeerPathStats(
@@ -28,7 +28,7 @@ CountOrgPeerPathStats(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -46,7 +46,7 @@ CountOrgPeerPathStats(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -134,7 +134,7 @@ SearchOrgPeerPathStats(
 
 ## Response Type
 
-[`models.VpnPeerStatSearch`](../../doc/models/vpn-peer-stat-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.VpnPeerStatSearch](../../doc/models/vpn-peer-stat-search.md).
 
 ## Example Usage
 

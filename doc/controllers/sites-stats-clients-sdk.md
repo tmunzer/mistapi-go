@@ -36,7 +36,7 @@ GetSiteSdkStats(
 
 ## Response Type
 
-[`models.SdkstatsWirelessClient`](../../doc/models/sdkstats-wireless-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SdkstatsWirelessClient](../../doc/models/sdkstats-wireless-client.md).
 
 ## Example Usage
 
@@ -121,7 +121,7 @@ GetSiteSdkStatsByMap(
 
 ## Response Type
 
-[`[]models.StatsSdkclient`](../../doc/models/stats-sdkclient.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsSdkclient](../../doc/models/stats-sdkclient.md).
 
 ## Example Usage
 

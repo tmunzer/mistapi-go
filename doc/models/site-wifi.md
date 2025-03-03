@@ -21,7 +21,7 @@ Wi-Fi site settings
 | `Enabled` | `*bool` | Optional | Enable Wi-Fi feature (using SUB-MAN license)<br>**Default**: `true` |
 | `LocateConnected` | `*bool` | Optional | Whether to locate connected clients<br>**Default**: `true` |
 | `LocateUnconnected` | `*bool` | Optional | Whether to locate unconnected clients<br>**Default**: `false` |
-| `MeshAllowDfs` | `*bool` | Optional | Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will distrupt the connection. If roaming is desired, keep it disabled.<br>**Default**: `false` |
+| `MeshAllowDfs` | `*bool` | Optional | Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will disrupt the connection. If roaming is desired, keep it disabled.<br>**Default**: `false` |
 | `MeshEnableCrm` | `*bool` | Optional | Used to enable/disable CRM<br>**Default**: `false` |
 | `MeshEnabled` | `*bool` | Optional | Whether to enable Mesh feature for the site<br>**Default**: `false` |
 | `MeshPsk` | `models.Optional[string]` | Optional | Optional passphrase of mesh networking, default is generated randomly |

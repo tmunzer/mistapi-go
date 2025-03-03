@@ -15,6 +15,8 @@ type StatsSwitchPort struct {
     Active               *bool                         `json:"active,omitempty"`
     // if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
     AuthState            *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
+    // Indicates if interface is disabled
+    Disabled             *bool                         `json:"disabled,omitempty"`
     ForSite              *bool                         `json:"for_site,omitempty"`
     // Indicates full or half duplex
     FullDuplex           *bool                         `json:"full_duplex,omitempty"`
@@ -107,8 +109,8 @@ type StatsSwitchPort struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitchPort) String() string {
     return fmt.Sprintf(
-    	"StatsSwitchPort[Active=%v, AuthState=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
-    	s.Active, s.AuthState, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
+    	"StatsSwitchPort[Active=%v, AuthState=%v, Disabled=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
+    	s.Active, s.AuthState, s.Disabled, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchPort.
@@ -117,7 +119,7 @@ func (s StatsSwitchPort) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
+        "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -132,6 +134,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
     }
     if s.AuthState != nil {
         structMap["auth_state"] = s.AuthState
+    }
+    if s.Disabled != nil {
+        structMap["disabled"] = s.Disabled
     }
     if s.ForSite != nil {
         structMap["for_site"] = s.ForSite
@@ -275,7 +280,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
     if err != nil {
     	return err
     }
@@ -283,6 +288,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     
     s.Active = temp.Active
     s.AuthState = temp.AuthState
+    s.Disabled = temp.Disabled
     s.ForSite = temp.ForSite
     s.FullDuplex = temp.FullDuplex
     s.Jitter = temp.Jitter
@@ -335,6 +341,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 type tempStatsSwitchPort  struct {
     Active             *bool                         `json:"active,omitempty"`
     AuthState          *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
+    Disabled           *bool                         `json:"disabled,omitempty"`
     ForSite            *bool                         `json:"for_site,omitempty"`
     FullDuplex         *bool                         `json:"full_duplex,omitempty"`
     Jitter             *float64                      `json:"jitter,omitempty"`

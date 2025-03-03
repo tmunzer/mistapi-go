@@ -16,11 +16,10 @@ When used as import policy
 | `Accept` | `*bool` | Optional | - |
 | `AddCommunity` | `[]string` | Optional | - |
 | `AddTargetVrfs` | `[]string` | Optional | For SSR, hub decides how VRF routes are leaked on spoke |
-| `Aggregate` | `[]string` | Optional | route aggregation |
 | `Community` | `[]string` | Optional | When used as export policy, optional |
 | `ExcludeAsPath` | `[]string` | Optional | When used as export policy, optional. To exclude certain AS |
 | `ExcludeCommunity` | `[]string` | Optional | - |
-| `ExportCommunitites` | `[]string` | Optional | When used as export policy, optional |
+| `ExportCommunities` | `[]string` | Optional | When used as export policy, optional |
 | `LocalPreference` | `*string` | Optional | Optional, for an import policy, local_preference can be changed |
 | `PrependAsPath` | `[]string` | Optional | When used as export policy, optional. By default, the local AS will be prepended, to change it |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -29,10 +28,6 @@ When used as import policy
 
 ```json
 {
-  "aggregate": [
-    "192.168.0.0/16",
-    "10.234.30.0/18"
-  ],
   "accept": false,
   "add_community": [
     "add_community5",
@@ -46,6 +41,11 @@ When used as import policy
     "community0",
     "community9",
     "community8"
+  ],
+  "exclude_as_path": [
+    "exclude_as_path0",
+    "exclude_as_path9",
+    "exclude_as_path8"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

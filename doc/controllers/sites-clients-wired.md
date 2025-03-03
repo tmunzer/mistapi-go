@@ -32,7 +32,7 @@ CountSiteWiredClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -54,7 +54,7 @@ CountSiteWiredClients(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -176,7 +176,7 @@ SearchSiteWiredClients(
 
 ## Response Type
 
-[`models.SearchWiredClient`](../../doc/models/search-wired-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWiredClient](../../doc/models/search-wired-client.md).
 
 ## Example Usage
 
@@ -237,6 +237,8 @@ if err != nil {
   "limit": 1000,
   "results": [
     {
+      "auth_method": "mac_auth",
+      "auth_state": "authenticated",
       "device_mac": [
         "001122334455"
       ],

@@ -41,7 +41,7 @@ CountOrgDeviceEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -57,7 +57,7 @@ CountOrgDeviceEvents(
 | `model` | `*string` | Query, Optional | Device model |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -65,7 +65,7 @@ CountOrgDeviceEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -145,12 +145,12 @@ Counts the number of entries in device config history for distinct field with gi
 CountOrgDeviceLastConfigs(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     distinct *models.OrgDevicesLastConfigsCountDistinctEnum,
     start *int,
     end *int,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -159,7 +159,7 @@ CountOrgDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -167,7 +167,7 @@ CountOrgDeviceLastConfigs(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -176,7 +176,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -247,13 +247,13 @@ CountOrgDevices(
     lldpSystemDesc *string,
     lldpPortId *string,
     lldpMgmtAddr *string,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     start *int,
     end *int,
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -276,7 +276,7 @@ CountOrgDevices(
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -285,7 +285,7 @@ CountOrgDevices(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -322,7 +322,7 @@ ipAddress := "192.168.1.1"
 
 
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -398,7 +398,7 @@ GetOrgJuniperDevicesCommand(
 
 ## Response Type
 
-[`models.ResponseDeviceConfigCmd`](../../doc/models/response-device-config-cmd.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceConfigCmd](../../doc/models/response-device-config-cmd.md).
 
 ## Example Usage
 
@@ -464,7 +464,7 @@ ListOrgApsMacs(
 
 ## Response Type
 
-[`[]models.ApRadioMac`](../../doc/models/ap-radio-mac.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ApRadioMac](../../doc/models/ap-radio-mac.md).
 
 ## Example Usage
 
@@ -541,7 +541,7 @@ ListOrgDevices(
 
 ## Response Type
 
-[`models.ResponseOrgDevices`](../../doc/models/response-org-devices.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgDevices](../../doc/models/response-org-devices.md).
 
 ## Example Usage
 
@@ -617,7 +617,7 @@ SearchOrgDeviceEvents(
 | `deviceType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -626,7 +626,7 @@ SearchOrgDeviceEvents(
 
 ## Response Type
 
-[`models.ResponseDeviceEventsSearch`](../../doc/models/response-device-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceEventsSearch](../../doc/models/response-device-events-search.md).
 
 ## Example Usage
 
@@ -710,7 +710,7 @@ Search Device Last Configs
 SearchOrgDeviceLastConfigs(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     name *string,
     version *string,
@@ -727,7 +727,7 @@ SearchOrgDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC address |
 | `name` | `*string` | Query, Optional | Devices Name |
 | `version` | `*string` | Query, Optional | Device Version |
@@ -738,7 +738,7 @@ SearchOrgDeviceLastConfigs(
 
 ## Response Type
 
-[`models.ResponseConfigHistorySearch`](../../doc/models/response-config-history-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseConfigHistorySearch](../../doc/models/response-config-history-search.md).
 
 ## Example Usage
 
@@ -747,7 +747,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -861,34 +861,43 @@ Search Org Devices
 SearchOrgDevices(
     ctx context.Context,
     orgId uuid.UUID,
-    hostname *string,
-    siteId *string,
-    model *string,
-    mac *string,
-    version *string,
+    band24Bandwidth *int,
+    band24Channel *int,
+    band24Power *int,
+    band5Bandwidth *int,
+    band5Channel *int,
+    band5Power *int,
+    band6Bandwidth *int,
+    band6Channel *int,
+    band6Power *int,
+    cpu *string,
+    clustered *string,
+    eth0PortSpeed *int,
+    evpntopoId *string,
     extIp *string,
-    powerConstrained *bool,
+    hostname *string,
     ipAddress *string,
-    mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
-    mxedgeId *string,
-    mxedgeIds *string,
-    lldpSystemName *string,
-    lldpSystemDesc *string,
-    lldpPortId *string,
+    lastConfigStatus *string,
+    lastHostname *string,
     lldpMgmtAddr *string,
+    lldpPortId *string,
     lldpPowerAllocated *int,
     lldpPowerDraw *int,
-    band24Bandwidth *int,
-    band5Bandwidth *int,
-    band6Bandwidth *int,
-    band24Channel *int,
-    band5Channel *int,
-    band6Channel *int,
-    band24Power *int,
-    band5Power *int,
-    band6Power *int,
-    eth0PortSpeed *int,
-    mType *models.DeviceTypeEnum,
+    lldpSystemDesc *string,
+    lldpSystemName *string,
+    mac *string,
+    model *string,
+    mxedgeId *string,
+    mxedgeIds *string,
+    mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
+    node *string,
+    node0Mac *string,
+    node1Mac *string,
+    powerConstrained *bool,
+    siteId *string,
+    t128agentVersion *string,
+    version *string,
+    mType *models.DeviceTypeDefaultApEnum,
     limit *int,
     start *int,
     end *int,
@@ -902,34 +911,43 @@ SearchOrgDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `siteId` | `*string` | Query, Optional | Site id |
-| `model` | `*string` | Query, Optional | Device model |
-| `mac` | `*string` | Query, Optional | AP mac |
-| `version` | `*string` | Query, Optional | Version |
+| `band24Bandwidth` | `*int` | Query, Optional | If `type`==`ap`, Bandwidth of band_24 |
+| `band24Channel` | `*int` | Query, Optional | If `type`==`ap`, Channel of band_24 |
+| `band24Power` | `*int` | Query, Optional | If `type`==`ap`, Power of band_24 |
+| `band5Bandwidth` | `*int` | Query, Optional | If `type`==`ap`, Bandwidth of band_5 |
+| `band5Channel` | `*int` | Query, Optional | If `type`==`ap`, Channel of band_5 |
+| `band5Power` | `*int` | Query, Optional | If `type`==`ap`, Power of band_5 |
+| `band6Bandwidth` | `*int` | Query, Optional | If `type`==`ap`, Bandwidth of band_6 |
+| `band6Channel` | `*int` | Query, Optional | If `type`==`ap`, Channel of band_6 |
+| `band6Power` | `*int` | Query, Optional | If `type`==`ap`, Power of band_6 |
+| `cpu` | `*string` | Query, Optional | If `type`==`switch` or `type`==`gateway`, max cpu usage |
+| `clustered` | `*string` | Query, Optional | If `type`==`gateway`, true / false |
+| `eth0PortSpeed` | `*int` | Query, Optional | If `type`==`ap`, Port speed of eth0 |
+| `evpntopoId` | `*string` | Query, Optional | If `type`==`switch`, EVPN topology id |
 | `extIp` | `*string` | Query, Optional | External IP Address |
-| `powerConstrained` | `*bool` | Query, Optional | Power_constrained |
+| `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
-| `mxedgeId` | `*string` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
-| `mxedgeIds` | `*string` | Query, Optional | Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
-| `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
-| `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
-| `lldpPortId` | `*string` | Query, Optional | LLDP port id |
-| `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
-| `lldpPowerAllocated` | `*int` | Query, Optional | LLDP Allocated Powe |
-| `lldpPowerDraw` | `*int` | Query, Optional | LLDP Negotiated Power |
-| `band24Bandwidth` | `*int` | Query, Optional | Bandwidth of band_24 |
-| `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
-| `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
-| `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
-| `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
-| `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
-| `band24Power` | `*int` | Query, Optional | Power of band_24 |
-| `band5Power` | `*int` | Query, Optional | Power of band_5 |
-| `band6Power` | `*int` | Query, Optional | Power of band_6 |
-| `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
+| `lastConfigStatus` | `*string` | Query, Optional | If `type`==`switch` or `type`==`gateway`, last configuration status |
+| `lastHostname` | `*string` | Query, Optional | If `type`==`switch` or `type`==`gateway`, last hostname |
+| `lldpMgmtAddr` | `*string` | Query, Optional | If `type`==`ap`, LLDP management ip address |
+| `lldpPortId` | `*string` | Query, Optional | If `type`==`ap`, LLDP port id |
+| `lldpPowerAllocated` | `*int` | Query, Optional | If `type`==`ap`, LLDP Allocated Power |
+| `lldpPowerDraw` | `*int` | Query, Optional | If `type`==`ap`, LLDP Negotiated Power |
+| `lldpSystemDesc` | `*string` | Query, Optional | If `type`==`ap`, LLDP system description |
+| `lldpSystemName` | `*string` | Query, Optional | If `type`==`ap`, LLDP system name |
+| `mac` | `*string` | Query, Optional | Device mac |
+| `model` | `*string` | Query, Optional | Device model |
+| `mxedgeId` | `*string` | Query, Optional | If `type`==`ap`, Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxedgeIds` | `*string` | Query, Optional | If `type`==`ap`, Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge |
+| `mxtunnelStatus` | [`*models.SearchOrgDevicesMxtunnelStatusEnum`](../../doc/models/search-org-devices-mxtunnel-status-enum.md) | Query, Optional | If `type`==`ap`, MxTunnel status, up / down |
+| `node` | `*string` | Query, Optional | If `type`==`gateway`, `node0` / `node1` |
+| `node0Mac` | `*string` | Query, Optional | If `type`==`gateway`, mac for node0 |
+| `node1Mac` | `*string` | Query, Optional | If `type`==`gateway`, mac for node1 |
+| `powerConstrained` | `*bool` | Query, Optional | If `type`==`ap`, Power_constrained |
+| `siteId` | `*string` | Query, Optional | Site id |
+| `t128agentVersion` | `*string` | Query, Optional | If `type`==`gateway`,version of 128T agent |
+| `version` | `*string` | Query, Optional | Version |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -937,7 +955,7 @@ SearchOrgDevices(
 
 ## Response Type
 
-[`models.ResponseDeviceSearch`](../../doc/models/response-device-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceSearch](../../doc/models/response-device-search.md).
 
 ## Example Usage
 
@@ -945,6 +963,22 @@ SearchOrgDevices(
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1000,7 +1034,9 @@ ipAddress := "192.168.1.1"
 
 
 
-mType := models.DeviceTypeEnum_AP
+
+
+mType := models.DeviceTypeDefaultApEnum_AP
 
 limit := 100
 
@@ -1010,7 +1046,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1039,7 +1075,7 @@ if err != nil {
       "lldp_mgmt_addr": "10.2.10.139",
       "lldp_port_desc": "GigabitEthernet1/0/1",
       "lldp_port_id": "Gi1/0/1",
-      "lldp_system_desc": "Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team",
+      "lldp_system_desc": "Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team",
       "lldp_system_name": "ME-DC-1-ACC-SW",
       "mac": "5c5b353e5299",
       "model": "AP41",

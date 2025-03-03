@@ -41,7 +41,7 @@ CreateOrgWxTag(
 
 ## Response Type
 
-[`models.WxlanTag`](../../doc/models/wxlan-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTag](../../doc/models/wxlan-tag.md).
 
 ## Example Usage
 
@@ -140,7 +140,7 @@ DeleteOrgWxTag(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -190,7 +190,7 @@ GetOrgApplicationList(
 
 ## Response Type
 
-[`[]models.SearchWxtagAppsItem`](../../doc/models/search-wxtag-apps-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SearchWxtagAppsItem](../../doc/models/search-wxtag-apps-item.md).
 
 ## Example Usage
 
@@ -254,7 +254,7 @@ GetOrgCurrentMatchingClientsOfAWxTag(
 
 ## Response Type
 
-[`[]models.WxtagClient`](../../doc/models/wxtag-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxtagClient](../../doc/models/wxtag-client.md).
 
 ## Example Usage
 
@@ -308,7 +308,7 @@ GetOrgWxTag(
 
 ## Response Type
 
-[`models.WxlanTag`](../../doc/models/wxlan-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTag](../../doc/models/wxlan-tag.md).
 
 ## Example Usage
 
@@ -401,7 +401,7 @@ ListOrgWxTags(
 
 ## Response Type
 
-[`[]models.WxlanTag`](../../doc/models/wxlan-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxlanTag](../../doc/models/wxlan-tag.md).
 
 ## Example Usage
 
@@ -498,7 +498,7 @@ UpdateOrgWxTag(
 
 ## Response Type
 
-[`models.WxlanTag`](../../doc/models/wxlan-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTag](../../doc/models/wxlan-tag.md).
 
 ## Example Usage
 

@@ -40,7 +40,7 @@ CreateSiteWxRule(
 
 ## Response Type
 
-[`models.WxlanRule`](../../doc/models/wxlan-rule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanRule](../../doc/models/wxlan-rule.md).
 
 ## Example Usage
 
@@ -152,7 +152,7 @@ DeleteSiteWxRule(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -204,7 +204,7 @@ GetSiteWxRule(
 
 ## Response Type
 
-[`models.WxlanRule`](../../doc/models/wxlan-rule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanRule](../../doc/models/wxlan-rule.md).
 
 ## Example Usage
 
@@ -295,7 +295,7 @@ ListSiteWxRules(
 
 ## Response Type
 
-[`[]models.WxlanRule`](../../doc/models/wxlan-rule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxlanRule](../../doc/models/wxlan-rule.md).
 
 ## Example Usage
 
@@ -386,7 +386,7 @@ ListSiteWxRulesDerived(
 
 ## Response Type
 
-[`[]models.WxlanRule`](../../doc/models/wxlan-rule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxlanRule](../../doc/models/wxlan-rule.md).
 
 ## Example Usage
 
@@ -477,7 +477,7 @@ UpdateSiteWxRule(
 
 ## Response Type
 
-[`models.WxlanRule`](../../doc/models/wxlan-rule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanRule](../../doc/models/wxlan-rule.md).
 
 ## Example Usage
 

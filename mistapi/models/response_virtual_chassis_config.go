@@ -9,7 +9,7 @@ import (
 // ResponseVirtualChassisConfig represents a ResponseVirtualChassisConfig struct.
 type ResponseVirtualChassisConfig struct {
     ConfigType           *string                `json:"config_type,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Locating             *bool                  `json:"locating,omitempty"`
     Members              []ModuleStatItem       `json:"members,omitempty"`

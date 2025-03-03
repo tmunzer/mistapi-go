@@ -25,11 +25,11 @@ type SiteMxtunnel struct {
     HelloRetries         *int                                      `json:"hello_retries,omitempty"`
     // Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
     Hosts                []string                                  `json:"hosts,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                                `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                                  `json:"modified_time,omitempty"`
-    // 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
+    // 0 to enable MTU, 552-1500 to start MTU with a lower MTU
     Mtu                  *int                                      `json:"mtu,omitempty"`
     OrgId                *uuid.UUID                                `json:"org_id,omitempty"`
     // enum: `ip`, `udp`

@@ -31,7 +31,7 @@ GetOrgOtherDeviceStats(
 
 ## Response Type
 
-[`models.StatsDeviceOther`](../../doc/models/stats-device-other.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsDeviceOther](../../doc/models/stats-device-other.md).
 
 ## Example Usage
 
@@ -56,32 +56,171 @@ if err != nil {
 
 ```json
 {
-  "config_status": "synced",
-  "last_config": 1675392788,
-  "last_seen": 1675843629,
-  "mac": "5c5b35000018",
-  "status": "online",
-  "uptime": 20296,
+  "cached_stats": true,
+  "connected_devices": {
+    "0200010edbca": {
+      "mac": "020001abcdef",
+      "name": "DNT-NTR-GWE",
+      "port_id": "ge-0/0/1",
+      "type": "gateway"
+    }
+  },
+  "last_seen": 1740996902,
+  "lldp_enabled": true,
+  "mac": "00304498a1e8",
+  "uptime": 622828,
   "vendor": "cradlepoint",
   "vendor_specific": {
-    "ports": {
-      "mdm-4d0e073b": {
-        "bytes_in": 33004879,
-        "bytes_out": 41103393,
-        "health_category": "",
-        "health_score": 0,
-        "id": "101027967",
+    "interfaces": {
+      "ethernet-IPPT": {
+        "bytes_in": 506,
+        "bytes_out": 0,
+        "carrier": "",
+        "imei": "",
+        "imsi": "",
+        "ip": "192.168.5.1",
+        "link": false,
+        "mode": "lan",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Ethernet",
+        "sinr": 0,
+        "state": "",
+        "type": "ethernet",
+        "uptime": 0
+      },
+      "ethernet-lan": {
+        "bytes_in": 13072566048,
+        "bytes_out": 5617915438,
+        "carrier": "",
+        "imei": "",
+        "imsi": "",
+        "ip": "192.168.0.1",
+        "link": false,
+        "mode": "lan",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Ethernet",
+        "sinr": 0,
+        "state": "",
+        "type": "ethernet",
+        "uptime": 0
+      },
+      "mdm-8a1084c9": {
+        "bytes_in": 0,
+        "bytes_out": 0,
+        "carrier": "Unknown Service",
+        "imei": "866401234567894",
+        "imsi": "",
+        "ip": "",
+        "link": false,
         "mode": "wan",
-        "model": "Internal 5GB (SIM1)",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Not Available",
+        "sinr": 0,
+        "state": "NOSIM",
+        "type": "mdm",
+        "uptime": 0
+      },
+      "mdm-8a1fc70c": {
+        "bytes_in": 5623096929,
+        "bytes_out": 12372750366,
+        "carrier": "AT&T",
+        "imei": "866401234567893",
+        "imsi": "208001234567893",
+        "ip": "12.68.86.17",
+        "link": true,
+        "mode": "wan",
+        "rsrp": -108,
+        "rsrq": -14,
+        "rssi": -74,
+        "service_mode": "5G NSA",
+        "sinr": -1.2,
         "state": "READY",
-        "type": "5G",
-        "uptime": 252371.34149021498
+        "type": "mdm",
+        "uptime": 2095779
       }
     },
-    "router_id": null,
-    "target_version": "7.23.40"
+    "ports": {
+      "ethernet-IPPT": {
+        "bytes_in": 506,
+        "bytes_out": 0,
+        "carrier": "",
+        "imei": "",
+        "imsi": "",
+        "ip": "192.168.5.1",
+        "link": false,
+        "mode": "lan",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Ethernet",
+        "sinr": 0,
+        "state": "",
+        "type": "ethernet",
+        "uptime": 0
+      },
+      "ethernet-lan": {
+        "bytes_in": 13072566048,
+        "bytes_out": 5617915438,
+        "carrier": "",
+        "imei": "",
+        "imsi": "",
+        "ip": "192.168.0.1",
+        "link": false,
+        "mode": "lan",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Ethernet",
+        "sinr": 0,
+        "state": "",
+        "type": "ethernet",
+        "uptime": 0
+      },
+      "mdm-8a1084c9": {
+        "bytes_in": 0,
+        "bytes_out": 0,
+        "carrier": "Unknown Service",
+        "imei": "866401234567892",
+        "imsi": "",
+        "ip": "",
+        "link": false,
+        "mode": "wan",
+        "rsrp": 0,
+        "rsrq": 0,
+        "rssi": 0,
+        "service_mode": "Not Available",
+        "sinr": 0,
+        "state": "NOSIM",
+        "type": "mdm",
+        "uptime": 0
+      },
+      "mdm-8a1fc70c": {
+        "bytes_in": 5623096929,
+        "bytes_out": 12372750366,
+        "carrier": "Orange",
+        "imei": "866401234567891",
+        "imsi": "208001234567891",
+        "ip": "10.134.237.57",
+        "link": true,
+        "mode": "wan",
+        "rsrp": -108,
+        "rsrq": -14,
+        "rssi": -74,
+        "service_mode": "5G NSA",
+        "sinr": -1.2,
+        "state": "READY",
+        "type": "mdm",
+        "uptime": 2095779
+      }
+    }
   },
-  "version": "7.22.70"
+  "version": "7.24.80"
 }
 ```
 

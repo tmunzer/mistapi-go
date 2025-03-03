@@ -48,7 +48,7 @@
   "recaptcha": "recaptcha2",
   "recaptcha_flavor": "hcaptcha",
   "referer_invite_token": "Dm2gtT8dwMeM4Bc2E8FLIaA96VHOjPat",
-  "return_to": "http://mist.zendesk.com/hc/quickstart.pdf",
+  "return_to": "https://mist.zendesk.com/hc/quickstart.pdf",
   "state": "CA",
   "street_address": "1601 S De Anza Blvd Ste 248",
   "street_address 2": "1601 S De Anza Blvd Ste 248",

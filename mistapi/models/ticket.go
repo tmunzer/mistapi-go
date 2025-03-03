@@ -14,7 +14,7 @@ type Ticket struct {
     CaseNumber           *string                `json:"case_number,omitempty"`
     Comments             []TicketComment        `json:"comments,omitempty"`
     CreatedAt            *int                   `json:"created_at,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Requester            *string                `json:"requester,omitempty"`
     // Email of the requester

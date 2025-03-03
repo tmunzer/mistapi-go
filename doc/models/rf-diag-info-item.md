@@ -17,7 +17,7 @@
 | `Duration` | `int` | Required | recording length in seconds, max is 120 |
 | `EndTime` | `int` | Required | Timestamp of end of recording |
 | `FrameCount` | `int` | Required | Number of frames in the output |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | If `type`==`client` or `asset`, mac of the device |
 | `MapId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |

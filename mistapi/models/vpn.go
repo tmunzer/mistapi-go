@@ -11,32 +11,28 @@ import (
 // Vpn represents a Vpn struct.
 type Vpn struct {
     // When the object has been created, in epoch
-    CreatedTime          *float64                    `json:"created_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID                  `json:"id,omitempty"`
-    // Gateways participating in mesh overlay by, on its vpn_path under wan port.
-    // The steering behavior is defined at the overlay level.
-    // Property Key is the Gateway Port name (e.g. `wan0`, `wan1`, `mpls`, ..)
-    Links                map[string]VpnLinksSteering `json:"links,omitempty"`
+    CreatedTime          *float64               `json:"created_time,omitempty"`
+    // Unique ID of the object instance in the Mist Organization
+    Id                   *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
-    ModifiedTime         *float64                    `json:"modified_time,omitempty"`
-    Name                 string                      `json:"name"`
-    OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
+    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    Name                 string                 `json:"name"`
+    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // Only if `type`==`hub_spoke`
-    PathSelection        *VpnPathSelection           `json:"path_selection,omitempty"`
-    // Only if `type`==`hub_spoke`. Property key is the VPN name
-    Paths                map[string]VpnPath          `json:"paths"`
+    PathSelection        *VpnPathSelection      `json:"path_selection,omitempty"`
+    // For `type`==`hub_spoke`, Property key is the VPN name. For `type`==`mesh`, Property key is the Interface name
+    Paths                map[string]VpnPath     `json:"paths"`
     // enum: `hub_spoke`, `mesh`
-    Type                 *VpnTypeEnum                `json:"type,omitempty"`
-    AdditionalProperties map[string]interface{}      `json:"_"`
+    Type                 *VpnTypeEnum           `json:"type,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Vpn,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v Vpn) String() string {
     return fmt.Sprintf(
-    	"Vpn[CreatedTime=%v, Id=%v, Links=%v, ModifiedTime=%v, Name=%v, OrgId=%v, PathSelection=%v, Paths=%v, Type=%v, AdditionalProperties=%v]",
-    	v.CreatedTime, v.Id, v.Links, v.ModifiedTime, v.Name, v.OrgId, v.PathSelection, v.Paths, v.Type, v.AdditionalProperties)
+    	"Vpn[CreatedTime=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, PathSelection=%v, Paths=%v, Type=%v, AdditionalProperties=%v]",
+    	v.CreatedTime, v.Id, v.ModifiedTime, v.Name, v.OrgId, v.PathSelection, v.Paths, v.Type, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Vpn.
@@ -45,7 +41,7 @@ func (v Vpn) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(v.AdditionalProperties,
-        "created_time", "id", "links", "modified_time", "name", "org_id", "path_selection", "paths", "type"); err != nil {
+        "created_time", "id", "modified_time", "name", "org_id", "path_selection", "paths", "type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(v.toMap())
@@ -60,9 +56,6 @@ func (v Vpn) toMap() map[string]any {
     }
     if v.Id != nil {
         structMap["id"] = v.Id
-    }
-    if v.Links != nil {
-        structMap["links"] = v.Links
     }
     if v.ModifiedTime != nil {
         structMap["modified_time"] = v.ModifiedTime
@@ -93,7 +86,7 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "links", "modified_time", "name", "org_id", "path_selection", "paths", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "id", "modified_time", "name", "org_id", "path_selection", "paths", "type")
     if err != nil {
     	return err
     }
@@ -101,7 +94,6 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
     
     v.CreatedTime = temp.CreatedTime
     v.Id = temp.Id
-    v.Links = temp.Links
     v.ModifiedTime = temp.ModifiedTime
     v.Name = *temp.Name
     v.OrgId = temp.OrgId
@@ -113,15 +105,14 @@ func (v *Vpn) UnmarshalJSON(input []byte) error {
 
 // tempVpn is a temporary struct used for validating the fields of Vpn.
 type tempVpn  struct {
-    CreatedTime   *float64                    `json:"created_time,omitempty"`
-    Id            *uuid.UUID                  `json:"id,omitempty"`
-    Links         map[string]VpnLinksSteering `json:"links,omitempty"`
-    ModifiedTime  *float64                    `json:"modified_time,omitempty"`
-    Name          *string                     `json:"name"`
-    OrgId         *uuid.UUID                  `json:"org_id,omitempty"`
-    PathSelection *VpnPathSelection           `json:"path_selection,omitempty"`
-    Paths         *map[string]VpnPath         `json:"paths"`
-    Type          *VpnTypeEnum                `json:"type,omitempty"`
+    CreatedTime   *float64            `json:"created_time,omitempty"`
+    Id            *uuid.UUID          `json:"id,omitempty"`
+    ModifiedTime  *float64            `json:"modified_time,omitempty"`
+    Name          *string             `json:"name"`
+    OrgId         *uuid.UUID          `json:"org_id,omitempty"`
+    PathSelection *VpnPathSelection   `json:"path_selection,omitempty"`
+    Paths         *map[string]VpnPath `json:"paths"`
+    Type          *VpnTypeEnum        `json:"type,omitempty"`
 }
 
 func (v *tempVpn) validate() error {

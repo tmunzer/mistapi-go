@@ -23,7 +23,7 @@ func TestOrgsSDKTemplatesTestListSdkTemplates(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"bg_image":"http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}]`
+    expected := `[{"bg_image":"https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -44,7 +44,7 @@ func TestOrgsSDKTemplatesTestCreateSdkTemplate(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"bg_image":"http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
+    expected := `{"bg_image":"https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -86,7 +86,7 @@ func TestOrgsSDKTemplatesTestGetSdkTemplate(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"bg_image":"http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
+    expected := `{"bg_image":"https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -111,6 +111,6 @@ func TestOrgsSDKTemplatesTestUpdateSdkTemplate(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"bg_image":"http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
+    expected := `{"bg_image":"https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg","btn_flr_bgcolor":"#282828","default":true,"header_txt":"Mist","name":"default","search_txtcolor":"#282828","welcome_msg":"Welcome to Mist"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

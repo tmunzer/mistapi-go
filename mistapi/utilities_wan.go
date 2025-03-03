@@ -393,10 +393,10 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
     return models.NewApiResponse(result, resp), err
 }
 
-// ShowSiteSsrOspfDatabase takes context, siteId, deviceId, body as parameters and
+// ShowSiteGatewayOspfDatabase takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get OSPF Database from the Device. The output will be available through websocket. 
+// Get OSPF Database from SSR and SRX. The output will be available through websocket. 
 // As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
@@ -415,7 +415,7 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
 // 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
 // 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
 // ```
-func (u *UtilitiesWAN) ShowSiteSsrOspfDatabase(
+func (u *UtilitiesWAN) ShowSiteGatewayOspfDatabase(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -461,10 +461,10 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfDatabase(
     return models.NewApiResponse(result, resp), err
 }
 
-// ShowSiteSsrOspfInterfaces takes context, siteId, deviceId, body as parameters and
+// ShowSiteGatewayOspfInterfaces takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get OSPF interfaces from the Device. The output will be available through websocket. 
+// Get OSPF interfaces from SSR and SRX. The output will be available through websocket. 
 // As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
@@ -482,7 +482,7 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfDatabase(
 // net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
 // net4               g4                          True   172.16.4.2/24   Broadcast   0.0.0.4   default
 // ```
-func (u *UtilitiesWAN) ShowSiteSsrOspfInterfaces(
+func (u *UtilitiesWAN) ShowSiteGatewayOspfInterfaces(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -528,10 +528,10 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfInterfaces(
     return models.NewApiResponse(result, resp), err
 }
 
-// ShowSiteSsrOspfNeighbors takes context, siteId, deviceId, body as parameters and
+// ShowSiteGatewayOspfNeighbors takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get OSPF Neighbors from the Device. The output will be available through websocket. 
+// Get OSPF Neighbors from SSR and SRX. The output will be available through websocket. 
 // As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
@@ -550,7 +550,7 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfInterfaces(
 // 1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
 // 1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
 // ```
-func (u *UtilitiesWAN) ShowSiteSsrOspfNeighbors(
+func (u *UtilitiesWAN) ShowSiteGatewayOspfNeighbors(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -596,10 +596,10 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfNeighbors(
     return models.NewApiResponse(result, resp), err
 }
 
-// ShowSiteSsrOspfSummary takes context, siteId, deviceId, body as parameters and
+// ShowSiteGatewayOspfSummary takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get OSPF summary from the Device. The output will be available through websocket. 
+// Get OSPF summary from SSR and SRX. The output will be available through websocket. 
 // As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
@@ -617,7 +617,7 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfNeighbors(
 // 1.0.0.2     cisco            False                    0   0.0.0.0
 // 1.0.0.2     cisco            False                    0   0.0.0.4   default
 // ```
-func (u *UtilitiesWAN) ShowSiteSsrOspfSummary(
+func (u *UtilitiesWAN) ShowSiteGatewayOspfSummary(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -688,7 +688,7 @@ func (u *UtilitiesWAN) ShowSiteSsrOspfSummary(
 // 4 Byte AS: advertised and received
 // Route refresh: advertised and received(old &amp; new)
 // Address family IPv4 Unicast: advertised and received
-// Graceful Restart Capabilty: advertised and received
+// Graceful Restart Capability: advertised and received
 // Remote Restart timer is 120 seconds
 // Address families by peer:
 // none

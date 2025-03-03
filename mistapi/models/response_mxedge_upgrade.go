@@ -12,7 +12,7 @@ import (
 type ResponseMxedgeUpgrade struct {
     Channel              string                      `json:"channel"`
     Counts               MxedgeUpgradeResponseCounts `json:"counts"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                   `json:"id"`
     Status               string                      `json:"status"`
     Strategy             string                      `json:"strategy"`

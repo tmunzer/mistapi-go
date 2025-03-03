@@ -118,7 +118,7 @@ func (s *SitesAssets) CreateSiteAsset(
 // ImportSiteAssets takes context, siteId, upsert, file as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Impert Site Assets. 
+// Import Site Assets. 
 // It can be done via a CSV file or a JSON payload.
 // ## CSV File Format
 // ```csv

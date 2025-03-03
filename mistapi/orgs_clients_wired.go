@@ -22,10 +22,10 @@ func NewOrgsClientsWired(baseController baseController) *OrgsClientsWired {
 }
 
 // CountOrgWiredClients takes context, orgId, distinct, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
-// Note: For list of avaialable `type` values, please refer to [listClientEventsDefinitions]($e/Constants%20Events/listClientEventsDefinitions)
+// Note: For list of available `type` values, please refer to [List Client Events Definitions]($e/Constants%20Events/listClientEventsDefinitions)
 func (o *OrgsClientsWired) CountOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
@@ -35,7 +35,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wired_clients/count")
     req.AppendTemplateParams(orgId)
@@ -76,21 +76,21 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWiredClients takes context, orgId, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
+// SearchOrgWiredClients takes context, orgId, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, authState, authMethod, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
-// Note: For list of avaialable `type` values, please refer to [listClientEventsDefinitions]($e/Constants%20Events/listClientEventsDefinitions)
+// Note: For list of available `type` values, please refer to [List Client Events Definitions]($e/Constants%20Events/listClientEventsDefinitions)
 func (o *OrgsClientsWired) SearchOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
@@ -102,6 +102,8 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     ipAddress *string,
     manufacture *string,
     text *string,
+    authState *string,
+    authMethod *string,
     nacruleId *string,
     dhcpHostname *string,
     dhcpFqdn *string,
@@ -157,6 +159,12 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     }
     if text != nil {
         req.QueryParam("text", *text)
+    }
+    if authState != nil {
+        req.QueryParam("auth_state", *authState)
+    }
+    if authMethod != nil {
+        req.QueryParam("auth_method", *authMethod)
     }
     if nacruleId != nil {
         req.QueryParam("nacrule_id", *nacruleId)

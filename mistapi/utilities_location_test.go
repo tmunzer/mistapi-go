@@ -9,8 +9,8 @@ import (
     "testing"
 )
 
-// TestUtilitiesLocationTestSendSiteDevicesArbitratryBleBeacon tests the behavior of the UtilitiesLocation
-func TestUtilitiesLocationTestSendSiteDevicesArbitratryBleBeacon(t *testing.T) {
+// TestUtilitiesLocationTestSendSiteDevicesArbitraryBleBeacon tests the behavior of the UtilitiesLocation
+func TestUtilitiesLocationTestSendSiteDevicesArbitraryBleBeacon(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -21,7 +21,7 @@ func TestUtilitiesLocationTestSendSiteDevicesArbitratryBleBeacon(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    resp, err := utilitiesLocation.SendSiteDevicesArbitratryBleBeacon(ctx, siteId, &body)
+    resp, err := utilitiesLocation.SendSiteDevicesArbitraryBleBeacon(ctx, siteId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

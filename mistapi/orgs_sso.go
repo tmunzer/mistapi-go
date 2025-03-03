@@ -345,7 +345,7 @@ func (o *OrgsSSO) GetOrgSamlMetadata(
 // DownloadOrgSamlMetadata takes context, orgId, ssoId as parameters and
 // returns an models.ApiResponse with []byte data and
 // an error if there was an issue with the request or response.
-// Download Org SAML Metdata
+// Download Org SAML Metadata
 // Example of metadata.xml:
 // ```xml
 // <?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://api.mist.com/api/v1/saml/5hdF5g/login" validUntil="2027-10-12T21:59:01Z" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">

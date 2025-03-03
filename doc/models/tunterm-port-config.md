@@ -16,7 +16,7 @@ Ethernet port configurations
 | `DownstreamPorts` | `[]string` | Optional | List of ports to be used for downstream (to AP) purpose |
 | `SeparateUpstreamDownstream` | `*bool` | Optional | Whether to separate upstream / downstream ports. default is false where all ports will be used.<br>**Default**: `false` |
 | `UpstreamPortVlanId` | `*int` | Optional | Native VLAN id for upstream ports<br>**Default**: `1` |
-| `UpstreamPorts` | `[]string` | Optional | List of ports to be used for upstrea purpose (to LAN) |
+| `UpstreamPorts` | `[]string` | Optional | List of ports to be used for upstream purpose (to LAN) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

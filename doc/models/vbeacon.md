@@ -15,7 +15,7 @@ vBeacon
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Major` | `*int` | Optional | Bluetooth tag major |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `Message` | `*string` | Optional | Message that can be displayed when the sdkclient gets near the vbeacon |
@@ -47,7 +47,7 @@ vBeacon
   "power": 4,
   "power_mode": "custom",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "url": "http://www.mist.com/any",
+  "url": "https://www.mist.com/any",
   "uuid": "31375aeb-b8d3-1ea6-83bf-a31eb04e1c38",
   "wayfinding_nodename": "node1",
   "x": 53.5,

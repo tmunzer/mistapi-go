@@ -40,7 +40,7 @@ GetAdminRegistrationInfo(
 
 ## Response Type
 
-[`models.Recaptcha`](../../doc/models/recaptcha.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Recaptcha](../../doc/models/recaptcha.md).
 
 ## Example Usage
 
@@ -151,7 +151,7 @@ RegisterNewAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -172,7 +172,7 @@ body := models.AdminInvite{
     Recaptcha:            "string",
     RecaptchaFlavor:      models.ToPointer(models.RecaptchaFlavorEnum_HCAPTCHA),
     RefererInviteToken:   models.ToPointer("Dm2gtT8dwMeM4Bc2E8FLIaA96VHOjPat"),
-    ReturnTo:             models.ToPointer("http://mist.zendesk.com/hc/quickstart.pdf"),
+    ReturnTo:             models.ToPointer("https://mist.zendesk.com/hc/quickstart.pdf"),
     State:                models.ToPointer("California"),
     StreetAddress:        models.ToPointer("1601 S De Anza Blvd Ste 248"),
     StreetAddress2:       models.ToPointer("1601 S De Anza Blvd Ste 248"),
@@ -218,7 +218,7 @@ VerifyAdminInvite(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -266,7 +266,7 @@ VerifyRegistration(
 
 ## Response Type
 
-[`models.ResponseVerifyTokenSuccess`](../../doc/models/response-verify-token-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseVerifyTokenSuccess](../../doc/models/response-verify-token-success.md).
 
 ## Example Usage
 
@@ -289,7 +289,7 @@ if err != nil {
 
 ```json
 {
-  "return_to": "http://mist.zendesk.com/hc/quickstart.pdf"
+  "return_to": "https://mist.zendesk.com/hc/quickstart.pdf"
 }
 ```
 

@@ -18,7 +18,7 @@ Map
 | `ForSite` | `*bool` | Optional | - |
 | `Height` | `*int` | Optional | When type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | When type=google, latitude / longitude of the bottom-right corner |
 | `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | When type=google, latitude / longitude of the top-left corner |
 | `Locked` | `*bool` | Optional | Whether this map is considered locked down<br>**Default**: `false` |
@@ -35,8 +35,6 @@ Map
 | `ThumbnailUrl` | `*string` | Optional | When type=image, the url for the thumbnail image / preview |
 | `Type` | [`*models.MapTypeEnum`](../../doc/models/map-type-enum.md) | Optional | enum: `google`, `image`<br>**Default**: `"image"` |
 | `Url` | `*string` | Optional | When type=image, the url |
-| `UseAutoOrientation` | `*bool` | Optional | Whether this map uses autooreintation values or ignores them<br>**Default**: `false` |
-| `UseAutoPlacement` | `*bool` | Optional | Whether this map uses autoplacement values or ignores them<br>**Default**: `false` |
 | `View` | [`models.Optional[models.MapViewEnum]`](../../doc/models/map-view-enum.md) | Optional | if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain` |
 | `WallPath` | [`*models.MapWallPath`](../../doc/models/map-wall-path.md) | Optional | JSON blob for wall definition (same format as wayfinding_path) |
 | `Wayfinding` | [`*models.MapWayfinding`](../../doc/models/map-wayfinding.md) | Optional | Properties related to wayfinding |
@@ -66,8 +64,6 @@ Map
   "thumbnail_url": "https://url/to/image.png",
   "type": "image",
   "url": "https://url/to/image.png",
-  "use_auto_orientation": false,
-  "use_auto_placement": false,
   "width": 1250,
   "created_time": 45.28,
   "for_site": false,

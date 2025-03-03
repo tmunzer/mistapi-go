@@ -18,7 +18,7 @@ type RadiusAcctServer struct {
     KeywrapMack          *string                  `json:"keywrap_mack,omitempty"`
     // Acct port of RADIUS server
     Port                 *int                     `json:"port,omitempty"`
-    // Secretof RADIUS server
+    // Secret of RADIUS server
     Secret               string                   `json:"secret"`
     AdditionalProperties map[string]interface{}   `json:"_"`
 }

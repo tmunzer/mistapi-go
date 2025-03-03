@@ -36,7 +36,7 @@ GetOauth2UrlForLinking(
 
 ## Response Type
 
-[`models.ResponseSelfOauthUrl`](../../doc/models/response-self-oauth-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSelfOauthUrl](../../doc/models/response-self-oauth-url.md).
 
 ## Example Usage
 
@@ -45,7 +45,7 @@ ctx := context.Background()
 
 provider := "provider8"
 
-forward := "http://manage.mist.com/oauth/callback.html"
+forward := "https://manage.mist.com/oauth/callback.html"
 
 apiResponse, err := selfOAuth2.GetOauth2UrlForLinking(ctx, provider, &forward)
 if err != nil {
@@ -99,7 +99,7 @@ LinkOauth2MistAccount(
 
 ## Response Type
 
-[`models.ResponseSelfOauthLinkSuccess`](../../doc/models/response-self-oauth-link-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSelfOauthLinkSuccess](../../doc/models/response-self-oauth-link-success.md).
 
 ## Example Usage
 

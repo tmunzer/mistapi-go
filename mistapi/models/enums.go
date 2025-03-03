@@ -1,5 +1,32 @@
 package models
 
+// AamwProfileActionEnum is a string enum.
+// enum: `block`, `permit`
+type AamwProfileActionEnum string
+
+const (
+    AamwProfileActionEnum_BLOCK  AamwProfileActionEnum = "block"
+    AamwProfileActionEnum_PERMIT AamwProfileActionEnum = "permit"
+)
+
+// AamwProfileCategoryCategoryEnum is a string enum.
+// enum: `archive`, `document`, `pdf`, `executable`, `rich_application`, `library`, `os_package`, `mobile`, `java`, `configuration`, `script`
+type AamwProfileCategoryCategoryEnum string
+
+const (
+    AamwProfileCategoryCategoryEnum_ARCHIVE         AamwProfileCategoryCategoryEnum = "archive"
+    AamwProfileCategoryCategoryEnum_DOCUMENT        AamwProfileCategoryCategoryEnum = "document"
+    AamwProfileCategoryCategoryEnum_PDF             AamwProfileCategoryCategoryEnum = "pdf"
+    AamwProfileCategoryCategoryEnum_EXECUTABLE      AamwProfileCategoryCategoryEnum = "executable"
+    AamwProfileCategoryCategoryEnum_RICHAPPLICATION AamwProfileCategoryCategoryEnum = "rich_application"
+    AamwProfileCategoryCategoryEnum_LIBRARY         AamwProfileCategoryCategoryEnum = "library"
+    AamwProfileCategoryCategoryEnum_OSPACKAGE       AamwProfileCategoryCategoryEnum = "os_package"
+    AamwProfileCategoryCategoryEnum_MOBILE          AamwProfileCategoryCategoryEnum = "mobile"
+    AamwProfileCategoryCategoryEnum_JAVA            AamwProfileCategoryCategoryEnum = "java"
+    AamwProfileCategoryCategoryEnum_CONFIGURATION   AamwProfileCategoryCategoryEnum = "configuration"
+    AamwProfileCategoryCategoryEnum_SCRIPT          AamwProfileCategoryCategoryEnum = "script"
+)
+
 // AclTagTypeEnum is a string enum.
 // enum: 
 // * `any`: matching anything not identified
@@ -72,15 +99,24 @@ const (
     AdminPrivilegeViewEnum_SWITCHADMIN   AdminPrivilegeViewEnum = "switch_admin"
 )
 
-// AlarmCountDisctinctEnum is a string enum.
+// AlarmCountDistinctEnum is a string enum.
 // enum: `acked`, `group`, `severity`, `type`
-type AlarmCountDisctinctEnum string
+type AlarmCountDistinctEnum string
 
 const (
-    AlarmCountDisctinctEnum_ACKED    AlarmCountDisctinctEnum = "acked"
-    AlarmCountDisctinctEnum_GROUP    AlarmCountDisctinctEnum = "group"
-    AlarmCountDisctinctEnum_SEVERITY AlarmCountDisctinctEnum = "severity"
-    AlarmCountDisctinctEnum_ENUMTYPE AlarmCountDisctinctEnum = "type"
+    AlarmCountDistinctEnum_ACKED    AlarmCountDistinctEnum = "acked"
+    AlarmCountDistinctEnum_GROUP    AlarmCountDistinctEnum = "group"
+    AlarmCountDistinctEnum_SEVERITY AlarmCountDistinctEnum = "severity"
+    AlarmCountDistinctEnum_ENUMTYPE AlarmCountDistinctEnum = "type"
+)
+
+// AlarmStatusEnum is a string enum.
+// enum: `open`, `resolved`
+type AlarmStatusEnum string
+
+const (
+    AlarmStatusEnum_OPEN     AlarmStatusEnum = "open"
+    AlarmStatusEnum_RESOLVED AlarmStatusEnum = "resolved"
 )
 
 // AllowDenyEnum is a string enum.
@@ -102,7 +138,7 @@ const (
 )
 
 // ApEslTypeEnum is a string enum.
-// note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
+// note: ble_config will be ignored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum`
 type ApEslTypeEnum string
 
 const (
@@ -120,6 +156,16 @@ const (
     ApIotPullupEnum_EXTERNAL ApIotPullupEnum = "external"
     ApIotPullupEnum_INTERNAL ApIotPullupEnum = "internal"
     ApIotPullupEnum_NONE     ApIotPullupEnum = "none"
+)
+
+// Dot11BandEnum is a string enum.
+// enum: `24`, `5`, `6`
+type Dot11BandEnum string
+
+const (
+    Dot11BandEnum_ENUM24 Dot11BandEnum = "24"
+    Dot11BandEnum_ENUM5  Dot11BandEnum = "5"
+    Dot11BandEnum_ENUM6  Dot11BandEnum = "6"
 )
 
 // ApMeshRoleEnum is a string enum.
@@ -322,7 +368,7 @@ const (
 // CaptureMxedgeFormatEnum is a string enum.
 // PCAP format. enum: 
 // * `stream`: to Mist cloud
-// * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
+// * `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 type CaptureMxedgeFormatEnum string
 
 const (
@@ -473,14 +519,13 @@ const (
 )
 
 // CaptureWirelessBandEnum is a string enum.
-// enum: `24`, `24,5,6`, `5`, `6`
+// enum: `24`, `5`, `6`
 type CaptureWirelessBandEnum string
 
 const (
-    CaptureWirelessBandEnum_ENUM24   CaptureWirelessBandEnum = "24"
-    CaptureWirelessBandEnum_ENUM2456 CaptureWirelessBandEnum = "24,5,6"
-    CaptureWirelessBandEnum_ENUM5    CaptureWirelessBandEnum = "5"
-    CaptureWirelessBandEnum_ENUM6    CaptureWirelessBandEnum = "6"
+    CaptureWirelessBandEnum_ENUM24 CaptureWirelessBandEnum = "24"
+    CaptureWirelessBandEnum_ENUM5  CaptureWirelessBandEnum = "5"
+    CaptureWirelessBandEnum_ENUM6  CaptureWirelessBandEnum = "6"
 )
 
 // CaptureWirelessFormatEnum is a string enum.
@@ -621,12 +666,12 @@ const (
     CountPortsStpStateEnum_LISTENING  CountPortsStpStateEnum = "listening"
 )
 
-// CountSiteCallsDistrinctEnum is a string enum.
+// CountSiteCallsDistinctEnum is a string enum.
 // enum: `mac`
-type CountSiteCallsDistrinctEnum string
+type CountSiteCallsDistinctEnum string
 
 const (
-    CountSiteCallsDistrinctEnum_MAC CountSiteCallsDistrinctEnum = "mac"
+    CountSiteCallsDistinctEnum_MAC CountSiteCallsDistinctEnum = "mac"
 )
 
 // DayOfWeekEnum is a string enum.
@@ -670,6 +715,16 @@ type DeviceTypeApEnum string
 
 const (
     DeviceTypeApEnum_AP DeviceTypeApEnum = "ap"
+)
+
+// DeviceTypeDefaultApEnum is a string enum.
+// enum: `ap`, `gateway`, `switch`
+type DeviceTypeDefaultApEnum string
+
+const (
+    DeviceTypeDefaultApEnum_AP         DeviceTypeDefaultApEnum = "ap"
+    DeviceTypeDefaultApEnum_GATEWAY    DeviceTypeDefaultApEnum = "gateway"
+    DeviceTypeDefaultApEnum_ENUMSWITCH DeviceTypeDefaultApEnum = "switch"
 )
 
 // DeviceTypeGatewayEnum is a string enum.
@@ -757,16 +812,6 @@ type DiscoveredSwitchesMetricScopeEnum string
 const (
     DiscoveredSwitchesMetricScopeEnum_SITE       DiscoveredSwitchesMetricScopeEnum = "site"
     DiscoveredSwitchesMetricScopeEnum_ENUMSWITCH DiscoveredSwitchesMetricScopeEnum = "switch"
-)
-
-// Dot11BandEnum is a string enum.
-// enum: `24`, `5`, `6`
-type Dot11BandEnum string
-
-const (
-    Dot11BandEnum_ENUM24 Dot11BandEnum = "24"
-    Dot11BandEnum_ENUM5  Dot11BandEnum = "5"
-    Dot11BandEnum_ENUM6  Dot11BandEnum = "6"
 )
 
 // Dot11BandwidthEnum is a int enum.
@@ -891,6 +936,17 @@ const (
     FastRoamResultEnum_SUCCESS FastRoamResultEnum = "success"
 )
 
+// FingerprintsCountDistinctEnum is a string enum.
+// enum: `family`, `model`, `os`, `os_type`
+type FingerprintsCountDistinctEnum string
+
+const (
+    FingerprintsCountDistinctEnum_FAMILY FingerprintsCountDistinctEnum = "family"
+    FingerprintsCountDistinctEnum_MODEL  FingerprintsCountDistinctEnum = "model"
+    FingerprintsCountDistinctEnum_OS     FingerprintsCountDistinctEnum = "os"
+    FingerprintsCountDistinctEnum_OSTYPE FingerprintsCountDistinctEnum = "os_type"
+)
+
 // FwupdateStatStatusEnum is a string enum.
 // enum: `inprogress`, `failed`, `upgraded`
 type FwupdateStatStatusEnum string
@@ -972,11 +1028,12 @@ const (
 )
 
 // GatewayPortVpnPathRoleEnum is a string enum.
-// Only if the VPN `type`==`hub_spoke`. enum: `hub`, `spoke`
+// If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`
 type GatewayPortVpnPathRoleEnum string
 
 const (
     GatewayPortVpnPathRoleEnum_HUB   GatewayPortVpnPathRoleEnum = "hub"
+    GatewayPortVpnPathRoleEnum_MESH  GatewayPortVpnPathRoleEnum = "mesh"
     GatewayPortVpnPathRoleEnum_SPOKE GatewayPortVpnPathRoleEnum = "spoke"
 )
 
@@ -1070,7 +1127,7 @@ const (
 // IdpProfileActionEnum is a string enum.
 // enum:
 // * alert (default)
-// * drop: siliently dropping packets
+// * drop: silently dropping packets
 // * close: notify client/server to close connection
 type IdpProfileActionEnum string
 
@@ -1168,16 +1225,6 @@ const (
     IpType6Enum_DHCP     IpType6Enum = "dhcp"
     IpType6Enum_DISABLED IpType6Enum = "disabled"
     IpType6Enum_STATIC   IpType6Enum = "static"
-)
-
-// JseInventoryItemTypeEnum is a string enum.
-// enum: `ap`, `gateway`, `switch`
-type JseInventoryItemTypeEnum string
-
-const (
-    JseInventoryItemTypeEnum_AP         JseInventoryItemTypeEnum = "ap"
-    JseInventoryItemTypeEnum_GATEWAY    JseInventoryItemTypeEnum = "gateway"
-    JseInventoryItemTypeEnum_ENUMSWITCH JseInventoryItemTypeEnum = "switch"
 )
 
 // JunosPortConfigDuplexEnum is a string enum.
@@ -1406,7 +1453,7 @@ const (
 )
 
 // MxclusterNacClientVendorEnum is a string enum.
-// convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, airnonet) etc. enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
+// convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, aironet) etc. enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto`
 type MxclusterNacClientVendorEnum string
 
 const (
@@ -1748,31 +1795,6 @@ const (
     OrgAssetCountDistinctEnum_SITEID       OrgAssetCountDistinctEnum = "site_id"
 )
 
-// OrgAutoRulesMatchDeviceTypeEnum is a string enum.
-// optional/additional filter. enum: `ap`, `gateway`, `other`, `switch`
-type OrgAutoRulesMatchDeviceTypeEnum string
-
-const (
-    OrgAutoRulesMatchDeviceTypeEnum_AP         OrgAutoRulesMatchDeviceTypeEnum = "ap"
-    OrgAutoRulesMatchDeviceTypeEnum_GATEWAY    OrgAutoRulesMatchDeviceTypeEnum = "gateway"
-    OrgAutoRulesMatchDeviceTypeEnum_OTHER      OrgAutoRulesMatchDeviceTypeEnum = "other"
-    OrgAutoRulesMatchDeviceTypeEnum_ENUMSWITCH OrgAutoRulesMatchDeviceTypeEnum = "switch"
-)
-
-// OrgAutoRulesSrcEnum is a string enum.
-// enum: `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
-type OrgAutoRulesSrcEnum string
-
-const (
-    OrgAutoRulesSrcEnum_DNSSUFFIX      OrgAutoRulesSrcEnum = "dns_suffix"
-    OrgAutoRulesSrcEnum_GEOIP          OrgAutoRulesSrcEnum = "geoip"
-    OrgAutoRulesSrcEnum_LLDPPORTDESC   OrgAutoRulesSrcEnum = "lldp_port_desc"
-    OrgAutoRulesSrcEnum_LLDPSYSTEMNAME OrgAutoRulesSrcEnum = "lldp_system_name"
-    OrgAutoRulesSrcEnum_MODEL          OrgAutoRulesSrcEnum = "model"
-    OrgAutoRulesSrcEnum_NAME           OrgAutoRulesSrcEnum = "name"
-    OrgAutoRulesSrcEnum_SUBNET         OrgAutoRulesSrcEnum = "subnet"
-)
-
 // OrgClientSessionsCountDistinctEnum is a string enum.
 // enum: `ap`, `device`, `hostname`, `ip`, `model`, `os`, `ssid`, `vlan`
 type OrgClientSessionsCountDistinctEnum string
@@ -1962,6 +1984,70 @@ const (
     OrgPskPortalLogsCountDistinctEnum_PSKNAME     OrgPskPortalLogsCountDistinctEnum = "psk_name"
     OrgPskPortalLogsCountDistinctEnum_PSKPORTALID OrgPskPortalLogsCountDistinctEnum = "pskportal_id"
     OrgPskPortalLogsCountDistinctEnum_USERID      OrgPskPortalLogsCountDistinctEnum = "user_id"
+)
+
+// OrgSettingAutoDeviceNamingRuleSrcEnum is a string enum.
+// enum: `lldp_port_desc`, `mac`
+type OrgSettingAutoDeviceNamingRuleSrcEnum string
+
+const (
+    OrgSettingAutoDeviceNamingRuleSrcEnum_LLDPPORTDESC OrgSettingAutoDeviceNamingRuleSrcEnum = "lldp_port_desc"
+    OrgSettingAutoDeviceNamingRuleSrcEnum_MAC          OrgSettingAutoDeviceNamingRuleSrcEnum = "mac"
+)
+
+// OrgSettingAutoSiteAssignmentSrcEnum is a string enum.
+// enum: `ext_ip`, `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `model`, `name`, `subnet`
+type OrgSettingAutoSiteAssignmentSrcEnum string
+
+const (
+    OrgSettingAutoSiteAssignmentSrcEnum_EXTIP          OrgSettingAutoSiteAssignmentSrcEnum = "ext_ip"
+    OrgSettingAutoSiteAssignmentSrcEnum_DNSSUFFIX      OrgSettingAutoSiteAssignmentSrcEnum = "dns_suffix"
+    OrgSettingAutoSiteAssignmentSrcEnum_GEOIP          OrgSettingAutoSiteAssignmentSrcEnum = "geoip"
+    OrgSettingAutoSiteAssignmentSrcEnum_LLDPPORTDESC   OrgSettingAutoSiteAssignmentSrcEnum = "lldp_port_desc"
+    OrgSettingAutoSiteAssignmentSrcEnum_LLDPSYSTEMNAME OrgSettingAutoSiteAssignmentSrcEnum = "lldp_system_name"
+    OrgSettingAutoSiteAssignmentSrcEnum_MODEL          OrgSettingAutoSiteAssignmentSrcEnum = "model"
+    OrgSettingAutoSiteAssignmentSrcEnum_NAME           OrgSettingAutoSiteAssignmentSrcEnum = "name"
+    OrgSettingAutoSiteAssignmentSrcEnum_SUBNET         OrgSettingAutoSiteAssignmentSrcEnum = "subnet"
+)
+
+// OrgSettingJunosShellAccessAdminEnum is a string enum.
+// enum: `admin`, `viewer`, `none`
+type OrgSettingJunosShellAccessAdminEnum string
+
+const (
+    OrgSettingJunosShellAccessAdminEnum_ADMIN  OrgSettingJunosShellAccessAdminEnum = "admin"
+    OrgSettingJunosShellAccessAdminEnum_NONE   OrgSettingJunosShellAccessAdminEnum = "none"
+    OrgSettingJunosShellAccessAdminEnum_VIEWER OrgSettingJunosShellAccessAdminEnum = "viewer"
+)
+
+// OrgSettingJunosShellAccessHelpdeskEnum is a string enum.
+// enum: `admin`, `viewer`, `none`
+type OrgSettingJunosShellAccessHelpdeskEnum string
+
+const (
+    OrgSettingJunosShellAccessHelpdeskEnum_ADMIN  OrgSettingJunosShellAccessHelpdeskEnum = "admin"
+    OrgSettingJunosShellAccessHelpdeskEnum_NONE   OrgSettingJunosShellAccessHelpdeskEnum = "none"
+    OrgSettingJunosShellAccessHelpdeskEnum_VIEWER OrgSettingJunosShellAccessHelpdeskEnum = "viewer"
+)
+
+// OrgSettingJunosShellAccessReadEnum is a string enum.
+// enum: `admin`, `viewer`, `none`
+type OrgSettingJunosShellAccessReadEnum string
+
+const (
+    OrgSettingJunosShellAccessReadEnum_ADMIN  OrgSettingJunosShellAccessReadEnum = "admin"
+    OrgSettingJunosShellAccessReadEnum_NONE   OrgSettingJunosShellAccessReadEnum = "none"
+    OrgSettingJunosShellAccessReadEnum_VIEWER OrgSettingJunosShellAccessReadEnum = "viewer"
+)
+
+// OrgSettingJunosShellAccessWriteEnum is a string enum.
+// enum: `admin`, `viewer`, `none`
+type OrgSettingJunosShellAccessWriteEnum string
+
+const (
+    OrgSettingJunosShellAccessWriteEnum_ADMIN  OrgSettingJunosShellAccessWriteEnum = "admin"
+    OrgSettingJunosShellAccessWriteEnum_NONE   OrgSettingJunosShellAccessWriteEnum = "none"
+    OrgSettingJunosShellAccessWriteEnum_VIEWER OrgSettingJunosShellAccessWriteEnum = "viewer"
 )
 
 // OrgSettingMistNacIpVersionEnum is a string enum.
@@ -2654,6 +2740,16 @@ const (
     ServiceFailoverPolicyEnum_REVERTABLE    ServiceFailoverPolicyEnum = "revertable"
 )
 
+// ServicePolicyAamwProfileEnum is a string enum.
+// enum: `docsonly`, `executables`, `standard`
+type ServicePolicyAamwProfileEnum string
+
+const (
+    ServicePolicyAamwProfileEnum_DOCSONLY    ServicePolicyAamwProfileEnum = "docsonly"
+    ServicePolicyAamwProfileEnum_EXECUTABLES ServicePolicyAamwProfileEnum = "executables"
+    ServicePolicyAamwProfileEnum_STANDARD    ServicePolicyAamwProfileEnum = "standard"
+)
+
 // ServicePolicyEwfRuleProfileEnum is a string enum.
 // enum: `critical`, `standard`, `strict`
 type ServicePolicyEwfRuleProfileEnum string
@@ -2662,6 +2758,16 @@ const (
     ServicePolicyEwfRuleProfileEnum_CRITICAL ServicePolicyEwfRuleProfileEnum = "critical"
     ServicePolicyEwfRuleProfileEnum_STANDARD ServicePolicyEwfRuleProfileEnum = "standard"
     ServicePolicyEwfRuleProfileEnum_STRICT   ServicePolicyEwfRuleProfileEnum = "strict"
+)
+
+// ServicePolicySecintelProfileEnum is a string enum.
+// enum: `default`, `standard`, `strict`
+type ServicePolicySecintelProfileEnum string
+
+const (
+    ServicePolicySecintelProfileEnum_ENUMDEFAULT ServicePolicySecintelProfileEnum = "default"
+    ServicePolicySecintelProfileEnum_STANDARD    ServicePolicySecintelProfileEnum = "standard"
+    ServicePolicySecintelProfileEnum_STRICT      ServicePolicySecintelProfileEnum = "strict"
 )
 
 // ServiceTrafficClassEnum is a string enum.
@@ -3208,14 +3314,14 @@ const (
     SleSummaryScopeEnum_ENUMSWITCH SleSummaryScopeEnum = "switch"
 )
 
-// SnmpConfigTrapVerionEnum is a string enum.
+// SnmpConfigTrapVersionEnum is a string enum.
 // enum: `all`, `v1`, `v2`
-type SnmpConfigTrapVerionEnum string
+type SnmpConfigTrapVersionEnum string
 
 const (
-    SnmpConfigTrapVerionEnum_ALL SnmpConfigTrapVerionEnum = "all"
-    SnmpConfigTrapVerionEnum_V1  SnmpConfigTrapVerionEnum = "v1"
-    SnmpConfigTrapVerionEnum_V2  SnmpConfigTrapVerionEnum = "v2"
+    SnmpConfigTrapVersionEnum_ALL SnmpConfigTrapVersionEnum = "all"
+    SnmpConfigTrapVersionEnum_V1  SnmpConfigTrapVersionEnum = "v1"
+    SnmpConfigTrapVersionEnum_V2  SnmpConfigTrapVersionEnum = "v2"
 )
 
 // SnmpUsmEngineTypeEnum is a string enum.
@@ -3227,29 +3333,29 @@ const (
     SnmpUsmEngineTypeEnum_REMOTEENGINE SnmpUsmEngineTypeEnum = "remote_engine"
 )
 
-// SnmpUsmpUserAuthenticationTypeEnum is a string enum.
+// SnmpUsmUserAuthenticationTypeEnum is a string enum.
 // sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `authentication-md5`, `authentication-none`, `authentication-sha`, `authentication-sha224`, `authentication-sha256`, `authentication-sha384`, `authentication-sha512`
-type SnmpUsmpUserAuthenticationTypeEnum string
+type SnmpUsmUserAuthenticationTypeEnum string
 
 const (
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIOMD5     SnmpUsmpUserAuthenticationTypeEnum = "authenticatio-md5"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmpUserAuthenticationTypeEnum = "authentication-none"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha224"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha256"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha384"
-    SnmpUsmpUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmpUserAuthenticationTypeEnum = "authentication-sha512"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONMD5    SnmpUsmUserAuthenticationTypeEnum = "authentication-md5"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONNONE   SnmpUsmUserAuthenticationTypeEnum = "authentication-none"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA    SnmpUsmUserAuthenticationTypeEnum = "authentication-sha"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA224 SnmpUsmUserAuthenticationTypeEnum = "authentication-sha224"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA256 SnmpUsmUserAuthenticationTypeEnum = "authentication-sha256"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA384 SnmpUsmUserAuthenticationTypeEnum = "authentication-sha384"
+    SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA512 SnmpUsmUserAuthenticationTypeEnum = "authentication-sha512"
 )
 
-// SnmpUsmpUserEncryptionTypeEnum is a string enum.
+// SnmpUsmUserEncryptionTypeEnum is a string enum.
 // enum: `privacy-3des`, `privacy-aes128`, `privacy-des`, `privacy-none`
-type SnmpUsmpUserEncryptionTypeEnum string
+type SnmpUsmUserEncryptionTypeEnum string
 
 const (
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACY3DES   SnmpUsmpUserEncryptionTypeEnum = "privacy-3des"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYAES128 SnmpUsmpUserEncryptionTypeEnum = "privacy-aes128"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYDES    SnmpUsmpUserEncryptionTypeEnum = "privacy-des"
-    SnmpUsmpUserEncryptionTypeEnum_PRIVACYNONE   SnmpUsmpUserEncryptionTypeEnum = "privacy-none"
+    SnmpUsmUserEncryptionTypeEnum_PRIVACY3DES   SnmpUsmUserEncryptionTypeEnum = "privacy-3des"
+    SnmpUsmUserEncryptionTypeEnum_PRIVACYAES128 SnmpUsmUserEncryptionTypeEnum = "privacy-aes128"
+    SnmpUsmUserEncryptionTypeEnum_PRIVACYDES    SnmpUsmUserEncryptionTypeEnum = "privacy-des"
+    SnmpUsmUserEncryptionTypeEnum_PRIVACYNONE   SnmpUsmUserEncryptionTypeEnum = "privacy-none"
 )
 
 // SnmpVacmAccessItemPrefixListItemLevelEnum is a string enum.
@@ -3711,16 +3817,6 @@ const (
     SynthetictestDeviceProtocolEnum_TRACEROUTE         SynthetictestDeviceProtocolEnum = "traceroute"
 )
 
-// SynthetictestInfoDeviceTypeEnum is a string enum.
-// enum: `ap`, `gateway`, `switch`
-type SynthetictestInfoDeviceTypeEnum string
-
-const (
-    SynthetictestInfoDeviceTypeEnum_AP         SynthetictestInfoDeviceTypeEnum = "ap"
-    SynthetictestInfoDeviceTypeEnum_GATEWAY    SynthetictestInfoDeviceTypeEnum = "gateway"
-    SynthetictestInfoDeviceTypeEnum_ENUMSWITCH SynthetictestInfoDeviceTypeEnum = "switch"
-)
-
 // SynthetictestProtocolEnum is a string enum.
 // enum: `ping`, `traceroute`
 type SynthetictestProtocolEnum string
@@ -3940,14 +4036,14 @@ const (
     TuntermDhcpdTypeEnum_RELAY TuntermDhcpdTypeEnum = "relay"
 )
 
-// TunternMonitoringProtocolEnum is a string enum.
+// TuntermMonitoringProtocolEnum is a string enum.
 // enum: `arp`, `ping`, `tcp`
-type TunternMonitoringProtocolEnum string
+type TuntermMonitoringProtocolEnum string
 
 const (
-    TunternMonitoringProtocolEnum_ARP  TunternMonitoringProtocolEnum = "arp"
-    TunternMonitoringProtocolEnum_PING TunternMonitoringProtocolEnum = "ping"
-    TunternMonitoringProtocolEnum_TCP  TunternMonitoringProtocolEnum = "tcp"
+    TuntermMonitoringProtocolEnum_ARP  TuntermMonitoringProtocolEnum = "arp"
+    TuntermMonitoringProtocolEnum_PING TuntermMonitoringProtocolEnum = "ping"
+    TuntermMonitoringProtocolEnum_TCP  TuntermMonitoringProtocolEnum = "tcp"
 )
 
 // UpgradeDeviceRrmMeshUpgradeEnum is a string enum.
@@ -3984,7 +4080,7 @@ const (
 )
 
 // UpgradeDeviceStrategyEnum is a string enum.
-// For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+// enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
 type UpgradeDeviceStrategyEnum string
 
 const (
@@ -4004,6 +4100,28 @@ const (
     UpgradeInfoStatusEnum_SCHEDULED  UpgradeInfoStatusEnum = "scheduled"
     UpgradeInfoStatusEnum_STARTING   UpgradeInfoStatusEnum = "starting"
     UpgradeInfoStatusEnum_SUCCESS    UpgradeInfoStatusEnum = "success"
+)
+
+// UpgradeOrgDevicesDownloadStrategyEnum is a string enum.
+// enum:
+// * `big_bang`: download all at once, no orchestration
+// * `serial`: one at a time'
+// * `canary`: upgrade in phases
+type UpgradeOrgDevicesDownloadStrategyEnum string
+
+const (
+    UpgradeOrgDevicesDownloadStrategyEnum_CANARY  UpgradeOrgDevicesDownloadStrategyEnum = "canary"
+    UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG UpgradeOrgDevicesDownloadStrategyEnum = "big_bang"
+    UpgradeOrgDevicesDownloadStrategyEnum_SERIAL  UpgradeOrgDevicesDownloadStrategyEnum = "serial"
+)
+
+// UpgradeOrgDevicesVersionFirmwareTypeEnum is a string enum.
+// enum: `ap`, `junos`
+type UpgradeOrgDevicesVersionFirmwareTypeEnum string
+
+const (
+    UpgradeOrgDevicesVersionFirmwareTypeEnum_AP    UpgradeOrgDevicesVersionFirmwareTypeEnum = "ap"
+    UpgradeOrgDevicesVersionFirmwareTypeEnum_JUNOS UpgradeOrgDevicesVersionFirmwareTypeEnum = "junos"
 )
 
 // UseAutoApValuesForEnum is a string enum.
@@ -4068,7 +4186,7 @@ const (
 )
 
 // UtilsTracerouteProtocolEnum is a string enum.
-// enum: `icmp` (Only suported by AP/MxEdge), `udp`
+// enum: `icmp` (Only supported by AP/MxEdge), `udp`
 type UtilsTracerouteProtocolEnum string
 
 const (
@@ -4083,6 +4201,16 @@ type VarSourceEnum string
 const (
     VarSourceEnum_DEVICEPROFILE VarSourceEnum = "deviceprofile"
     VarSourceEnum_SITE          VarSourceEnum = "site"
+)
+
+// VcPortModeEnum is a string enum.
+// enum: `network`, `vcp-higig`, `vcp-hgoe` (only for EX4400-24X)
+type VcPortModeEnum string
+
+const (
+    VcPortModeEnum_NETWORK  VcPortModeEnum = "network"
+    VcPortModeEnum_VCPHIGIG VcPortModeEnum = "vcp-higig"
+    VcPortModeEnum_VCPHGOE  VcPortModeEnum = "vcp-hgoe"
 )
 
 // VirtualChassisConfigMemberVcRoleEnum is a string enum.
@@ -4182,18 +4310,18 @@ const (
     WanTunnelProtocolEnum_IPSEC WanTunnelProtocolEnum = "ipsec"
 )
 
-// WanUsagesCountDisctinctEnum is a string enum.
+// WanUsagesCountDistinctEnum is a string enum.
 // enum: `mac`, `path_type`, `peer_mac`, `peer_port_id`, `policy`, `port_id`, `tenant`
-type WanUsagesCountDisctinctEnum string
+type WanUsagesCountDistinctEnum string
 
 const (
-    WanUsagesCountDisctinctEnum_MAC        WanUsagesCountDisctinctEnum = "mac"
-    WanUsagesCountDisctinctEnum_PATHTYPE   WanUsagesCountDisctinctEnum = "path_type"
-    WanUsagesCountDisctinctEnum_PEERMAC    WanUsagesCountDisctinctEnum = "peer_mac"
-    WanUsagesCountDisctinctEnum_PEERPORTID WanUsagesCountDisctinctEnum = "peer_port_id"
-    WanUsagesCountDisctinctEnum_POLICY     WanUsagesCountDisctinctEnum = "policy"
-    WanUsagesCountDisctinctEnum_PORTID     WanUsagesCountDisctinctEnum = "port_id"
-    WanUsagesCountDisctinctEnum_TENANT     WanUsagesCountDisctinctEnum = "tenant"
+    WanUsagesCountDistinctEnum_MAC        WanUsagesCountDistinctEnum = "mac"
+    WanUsagesCountDistinctEnum_PATHTYPE   WanUsagesCountDistinctEnum = "path_type"
+    WanUsagesCountDistinctEnum_PEERMAC    WanUsagesCountDistinctEnum = "peer_mac"
+    WanUsagesCountDistinctEnum_PEERPORTID WanUsagesCountDistinctEnum = "peer_port_id"
+    WanUsagesCountDistinctEnum_POLICY     WanUsagesCountDistinctEnum = "policy"
+    WanUsagesCountDistinctEnum_PORTID     WanUsagesCountDistinctEnum = "port_id"
+    WanUsagesCountDistinctEnum_TENANT     WanUsagesCountDistinctEnum = "tenant"
 )
 
 // WebhookClientInfoTopicEnum is a string enum.
@@ -4234,16 +4362,6 @@ const (
     WebhookDeliveryTopicEnum_DEVICEUPDOWNS   WebhookDeliveryTopicEnum = "device-updowns"
     WebhookDeliveryTopicEnum_OCCUPANCYALERTS WebhookDeliveryTopicEnum = "occupancy-alerts"
     WebhookDeliveryTopicEnum_PING            WebhookDeliveryTopicEnum = "ping"
-)
-
-// WebhookDeviceEventsEventDeviceTypeEnum is a string enum.
-// enum: `ap`, `gateway`, `switch`
-type WebhookDeviceEventsEventDeviceTypeEnum string
-
-const (
-    WebhookDeviceEventsEventDeviceTypeEnum_AP         WebhookDeviceEventsEventDeviceTypeEnum = "ap"
-    WebhookDeviceEventsEventDeviceTypeEnum_GATEWAY    WebhookDeviceEventsEventDeviceTypeEnum = "gateway"
-    WebhookDeviceEventsEventDeviceTypeEnum_ENUMSWITCH WebhookDeviceEventsEventDeviceTypeEnum = "switch"
 )
 
 // WebhookDeviceEventsEventEvTypeEnum is a string enum.

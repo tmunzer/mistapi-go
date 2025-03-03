@@ -62,7 +62,7 @@
 | `PrivacyPolicyLink` | `*string` | Optional | Label of the link to go to Privacy Policy |
 | `PrivacyPolicyText` | `*string` | Optional | Text of the Privacy Policy |
 | `RequiredFieldLabel` | `*string` | Optional | Label to denote required field |
-| `SignInLabel` | `*string` | Optional | Label of the button to /signin |
+| `SignInLabel` | `*string` | Optional | Label of the button to signin |
 | `SmsCarrierDefault` | `*string` | Optional | - |
 | `SmsCarrierError` | `*string` | Optional | - |
 | `SmsCarrierFieldLabel` | `*string` | Optional | Label for mobile carrier drop-down list |

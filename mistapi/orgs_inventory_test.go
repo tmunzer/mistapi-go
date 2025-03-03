@@ -18,15 +18,16 @@ func TestOrgsInventoryTestGetOrgInventory(t *testing.T) {
     }
     
     
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     
     
     
     vc := bool(false)
     unassigned := bool(true)
+    
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, &mType, nil, nil, nil, &vc, &unassigned, &limit, &page)
+    apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, &mType, nil, nil, nil, &vc, &unassigned, nil, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -92,7 +93,7 @@ func TestOrgsInventoryTestCountOrgInventory(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     distinct := models.InventoryCountDistinctEnum("model")
     limit := int(100)
     page := int(1)
@@ -189,7 +190,7 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     
     
     

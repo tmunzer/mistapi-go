@@ -16,14 +16,13 @@ Asset Filter
 | `ApMac` | `*string` | Optional | - |
 | `Beam` | `*int` | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Disabled` | `*bool` | Optional | **Default**: `false` |
-| `Disasbled` | `*bool` | Optional | Whether the asset filter is disabled |
+| `Disabled` | `*bool` | Optional | Whether the asset filter is disabled<br>**Default**: `false` |
 | `EddystoneUidNamespace` | `*string` | Optional | Eddystone uid namespace used to filter assets |
 | `EddystoneUrl` | `*string` | Optional | Eddystone url used to filter assets |
 | `ForSite` | `*bool` | Optional | - |
 | `IbeaconMajor` | `*int` | Optional | ibeacon major value used to filter assets |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | ibeacon uuid used to filter assets |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MfgCompanyId` | `*int` | Optional | BLE manufacturing-specific company-id used to filter assets |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
@@ -51,7 +50,6 @@ Asset Filter
   "ap_mac": "ap_mac0",
   "beam": 124,
   "created_time": 126.18,
-  "disasbled": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

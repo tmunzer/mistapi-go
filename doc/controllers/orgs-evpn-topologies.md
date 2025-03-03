@@ -19,7 +19,7 @@ orgsEVPNTopologies := client.OrgsEVPNTopologies()
 
 # Create Org Evpn Topology
 
-While all the `evpn_id` / `downlink_ips` can be specifidd by hand, the easiest way is to call the `build_vpn_topology` API, allowing you to examine the diff, and update it yourself. You can also simply call it with `overwrite=true` which will apply the updates for you.
+While all the `evpn_id` / `downlink_ips` can be specified by hand, the easiest way is to call the `build_vpn_topology` API, allowing you to examine the diff, and update it yourself. You can also simply call it with `overwrite=true` which will apply the updates for you.
 
 **Notes:**
 
@@ -34,7 +34,7 @@ In a small-medium campus, EVPN can also be enabled only at the core switches (up
 
 #### ESI-Lag
 
-If the access switchess does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
+If the access switches does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
 
 #### Leaf / Access / Collapsed-Core
 
@@ -58,7 +58,7 @@ CreateOrgEvpnTopology(
 
 ## Response Type
 
-[`models.EvpnTopology`](../../doc/models/evpn-topology.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.EvpnTopology](../../doc/models/evpn-topology.md).
 
 ## Example Usage
 
@@ -167,7 +167,7 @@ DeleteOrgEvpnTopology(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -219,7 +219,7 @@ GetOrgEvpnTopology(
 
 ## Response Type
 
-[`models.EvpnTopology`](../../doc/models/evpn-topology.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.EvpnTopology](../../doc/models/evpn-topology.md).
 
 ## Example Usage
 
@@ -314,7 +314,7 @@ ListOrgEvpnTopologies(
 
 ## Response Type
 
-[`[]models.EvpnTopologyResponse`](../../doc/models/evpn-topology-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.EvpnTopologyResponse](../../doc/models/evpn-topology-response.md).
 
 ## Example Usage
 
@@ -386,7 +386,7 @@ if err != nil {
 
 # Update Org Evpn Topology
 
-Update the EVPN Topolgy
+Update the EVPN Topology
 
 ```go
 UpdateOrgEvpnTopology(
@@ -408,7 +408,7 @@ UpdateOrgEvpnTopology(
 
 ## Response Type
 
-[`models.EvpnTopology`](../../doc/models/evpn-topology.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.EvpnTopology](../../doc/models/evpn-topology.md).
 
 ## Example Usage
 

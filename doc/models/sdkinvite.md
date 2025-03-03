@@ -16,7 +16,7 @@ SDK invite
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ExpireTime` | `*int` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | Name, will show up in mobile |
 | `OrgId` | `*uuid.UUID` | Optional | - |

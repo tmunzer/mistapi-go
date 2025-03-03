@@ -8,7 +8,7 @@ import (
 // OrgSettingVpnOptions represents a OrgSettingVpnOptions struct.
 type OrgSettingVpnOptions struct {
     AsBase               *int                   `json:"as_base,omitempty"`
-    // equiring /12 or bigger to support 16 private IPs for 65535 gateways
+    // requiring /12 or bigger to support 16 private IPs for 65535 gateways
     StSubnet             *string                `json:"st_subnet,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -39,7 +39,7 @@ GetOrgStats(
 
 ## Response Type
 
-[`models.StatsOrg`](../../doc/models/stats-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsOrg](../../doc/models/stats-org.md).
 
 ## Example Usage
 

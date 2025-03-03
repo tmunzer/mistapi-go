@@ -51,7 +51,7 @@ ImportOrgMapToSite(
 
 ## Response Type
 
-[`models.ResponseMapImport`](../../doc/models/response-map-import.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMapImport](../../doc/models/response-map-import.md).
 
 ## Example Usage
 
@@ -162,7 +162,7 @@ ImportOrgMaps(
 
 ## Response Type
 
-[`models.ResponseMapImport`](../../doc/models/response-map-import.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMapImport](../../doc/models/response-map-import.md).
 
 ## Example Usage
 

@@ -21,12 +21,12 @@ func NewUtilitiesLocation(baseController baseController) *UtilitiesLocation {
     return &utilitiesLocation
 }
 
-// SendSiteDevicesArbitratryBleBeacon takes context, siteId, body as parameters and
+// SendSiteDevicesArbitraryBleBeacon takes context, siteId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Send arbitrary BLE Beacon for a period of time
 // Note that only the devices that are connected will be restarted.
-func (u *UtilitiesLocation) SendSiteDevicesArbitratryBleBeacon(
+func (u *UtilitiesLocation) SendSiteDevicesArbitraryBleBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.UtilsSendBleBeacon) (

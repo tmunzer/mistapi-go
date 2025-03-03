@@ -36,7 +36,7 @@ func TestInstallerTestListInstallerDeviceProfiles(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     apiResponse, err := installer.ListInstallerDeviceProfiles(ctx, orgId, &mType)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
@@ -50,8 +50,8 @@ func TestInstallerTestListInstallerDeviceProfiles(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestInstallerTestListInstallerListOfRenctlyClaimedDevices tests the behavior of the Installer
-func TestInstallerTestListInstallerListOfRenctlyClaimedDevices(t *testing.T) {
+// TestInstallerTestListInstallerListOfRecentlyClaimedDevices tests the behavior of the Installer
+func TestInstallerTestListInstallerListOfRecentlyClaimedDevices(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -62,7 +62,7 @@ func TestInstallerTestListInstallerListOfRenctlyClaimedDevices(t *testing.T) {
     
     limit := int(100)
     page := int(1)
-    apiResponse, err := installer.ListInstallerListOfRenctlyClaimedDevices(ctx, orgId, nil, nil, nil, &limit, &page)
+    apiResponse, err := installer.ListInstallerListOfRecentlyClaimedDevices(ctx, orgId, nil, nil, nil, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

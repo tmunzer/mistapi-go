@@ -257,7 +257,7 @@ func (s *SitesWebhooks) UpdateSiteWebhook(
 }
 
 // CountSiteWebhooksDeliveries takes context, siteId, webhookId, mError, statusCode, status, topic, distinct, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Site Webhooks deliveries
 // Topics Supported:
@@ -279,7 +279,7 @@ func (s *SitesWebhooks) CountSiteWebhooksDeliveries(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/webhooks/%v/events/count")
     req.AppendTemplateParams(siteId, webhookId)
@@ -329,13 +329,13 @@ func (s *SitesWebhooks) CountSiteWebhooksDeliveries(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `By` | `*string` | Optional | - |
-| `DeviceType` | [`*models.SynthetictestInfoDeviceTypeEnum`](../../doc/models/synthetictest-info-device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
+| `DeviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `Failed` | `*bool` | Optional | - |
 | `Latency` | `*int` | Optional | - |
 | `Mac` | `*string` | Optional | - |

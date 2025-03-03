@@ -9,7 +9,7 @@ import (
 // ServicePolicyAntivirus represents a ServicePolicyAntivirus struct.
 // For SRX-only
 type ServicePolicyAntivirus struct {
-    // org-level AV Profile can be used, this takes precendence over 'profile'
+    // org-level AV Profile can be used, this takes precedence over 'profile'
     AvprofileId          *uuid.UUID             `json:"avprofile_id,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     // Default / noftp / httponly / or keys from av_profiles

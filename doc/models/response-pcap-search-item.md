@@ -15,7 +15,7 @@
 | `Aps` | `[]string` | Optional | - |
 | `Duration` | `*float64` | Optional | - |
 | `Format` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MaxNumPackets` | `*float64` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PcapAps` | [`map[string]models.ResponsePcapSearchItemPcapApsItem`](../../doc/models/response-pcap-search-item-pcap-aps-item.md) | Optional | - |

@@ -46,7 +46,7 @@ func TestSitesAlarmsTestCountSiteAlarms(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    distinct := models.AlarmCountDisctinctEnum("type")
+    distinct := models.AlarmCountDistinctEnum("type")
     
     
     
@@ -112,8 +112,8 @@ func TestSitesAlarmsTestUnackSiteMultipleAlarms(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestSitesAlarmsTestUnackSiteAllArlarms tests the behavior of the SitesAlarms
-func TestSitesAlarmsTestUnackSiteAllArlarms(t *testing.T) {
+// TestSitesAlarmsTestUnackSiteAllAlarms tests the behavior of the SitesAlarms
+func TestSitesAlarmsTestUnackSiteAllAlarms(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -124,7 +124,7 @@ func TestSitesAlarmsTestUnackSiteAllArlarms(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    resp, err := sitesAlarms.UnackSiteAllArlarms(ctx, siteId, &body)
+    resp, err := sitesAlarms.UnackSiteAllAlarms(ctx, siteId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

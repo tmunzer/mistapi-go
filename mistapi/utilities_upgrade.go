@@ -25,7 +25,7 @@ func NewUtilitiesUpgrade(baseController baseController) *UtilitiesUpgrade {
 // ListOrgDeviceUpgrades takes context, orgId as parameters and
 // returns an models.ApiResponse with []models.UpgradeOrgDevicesItem data and
 // an error if there was an issue with the request or response.
-// Get List of Org multiple devces upgrades
+// Get List of Org multiple devices upgrades
 func (u *UtilitiesUpgrade) ListOrgDeviceUpgrades(
     ctx context.Context,
     orgId uuid.UUID) (
@@ -65,7 +65,7 @@ func (u *UtilitiesUpgrade) ListOrgDeviceUpgrades(
 // UpgradeOrgDevices takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.ResponseUpgradeOrgDevices data and
 // an error if there was an issue with the request or response.
-// Upgrade Multiple Sites (Only supported for Access Points ugprades)
+// Upgrade Multiple Sites (Only supported for Access Points upgrades)
 func (u *UtilitiesUpgrade) UpgradeOrgDevices(
     ctx context.Context,
     orgId uuid.UUID,
@@ -193,7 +193,7 @@ func (u *UtilitiesUpgrade) CancelOrgDeviceUpgrade(
 func (u *UtilitiesUpgrade) ListOrgAvailableDeviceVersions(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error) {
@@ -747,7 +747,7 @@ func (u *UtilitiesUpgrade) CancelSiteDeviceUpgrade(
 func (u *UtilitiesUpgrade) ListSiteAvailableDeviceVersions(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error) {

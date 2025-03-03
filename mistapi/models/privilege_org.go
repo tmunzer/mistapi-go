@@ -9,7 +9,7 @@ import (
 )
 
 // PrivilegeOrg represents a PrivilegeOrg struct.
-// Privilieges settings
+// Privileges settings
 type PrivilegeOrg struct {
     // If `scope`==`org`
     OrgId                *uuid.UUID               `json:"org_id,omitempty"`

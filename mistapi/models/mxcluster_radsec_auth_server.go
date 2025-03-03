@@ -23,7 +23,7 @@ type MxclusterRadsecAuthServer struct {
     KeywrapMack          *string                                           `json:"keywrap_mack,omitempty"`
     // Auth port of RADIUS server
     Port                 *int                                              `json:"port,omitempty"`
-    // Secretof RADIUS server
+    // Secret of RADIUS server
     Secret               *string                                           `json:"secret,omitempty"`
     // List of ssids that will use this server if match_ssid is true and match is found
     Ssids                []string                                          `json:"ssids,omitempty"`

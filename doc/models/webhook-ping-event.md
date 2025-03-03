@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Name` | `string` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | - |

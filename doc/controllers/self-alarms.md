@@ -22,7 +22,7 @@ ListAlarmSubscriptions(
 
 ## Response Type
 
-[`[]models.ResponseSelfSubscription`](../../doc/models/response-self-subscription.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ResponseSelfSubscription](../../doc/models/response-self-subscription.md).
 
 ## Example Usage
 

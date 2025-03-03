@@ -17,7 +17,7 @@ Site statistics
 | `AlarmtemplateId` | `*uuid.UUID` | Required | - |
 | `CountryCode` | `string` | Required | - |
 | `CreatedTime` | `float64` | Required | When the object has been created, in epoch |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Lat` | `float64` | Required | - |
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
 | `Lng` | `float64` | Required | - |

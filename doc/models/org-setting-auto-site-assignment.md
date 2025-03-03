@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
-| `Rules` | [`models.Optional[[]models.OrgAutoRules]`](../../doc/models/org-auto-rules.md) | Optional | - |
+| `Rules` | [`models.Optional[[]models.OrgSettingAutoAssignmentRule]`](../../doc/models/org-setting-auto-assignment-rule.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -26,7 +26,7 @@
       "expression": "expression4",
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
-      "match_device_type": "other",
+      "match_device_type": "switch",
       "src": "name",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -38,7 +38,7 @@
       "expression": "expression4",
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
-      "match_device_type": "other",
+      "match_device_type": "switch",
       "src": "name",
       "exampleAdditionalProperty": {
         "key1": "val1",

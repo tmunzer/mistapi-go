@@ -154,7 +154,7 @@ func (s *SitesDevicesWANCluster) GetSiteDeviceHaClusterNode(
 // 7.  connect ge-0/0/2 back-to-back for ha_data (fabric); or for SRX380, xe-0/0/16 if 10G SFP+ is used
 // 8.  connect ge-0/0/3- to LAN or additional WANs
 // #### SRX550
-// ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make suenable oob_ip_config as dhcp to maintain cloud connectivity
+// ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make enable oob_ip_config as dhcp to maintain cloud connectivity
 // 1.  connect ge-0/0/0 to reach Mist (after cluster is fully up, this port becomes OOB/fxp0)
 // 2.  connect ge-0/0/1 back-to-back for ha_control
 // 3.  connect ge-0/0/2 back-to-back for ha_data (fabric)
@@ -189,7 +189,7 @@ func (s *SitesDevicesWANCluster) GetSiteDeviceHaClusterNode(
 // 3.  connect ge-0/0/2 back-to-back for ha_data (fabric); or for SRX380, xe-0/0/16 if 10G SFP+ is used
 // 4.  connect ge-0/0/3- to LAN or additional WANs
 // #### SRX550
-// ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make suenable oob_ip_config as dhcp to maintain cloud connectivity
+// ge-0/0/0 becomes OOB/fxp0 after cluster is enabled, make enable oob_ip_config as dhcp to maintain cloud connectivity
 // 1.  connect ge-0/0/0 to reach Mist (after cluster is fully up, this port becomes OOB/fxp0)
 // 2.  connect ge-0/0/1 back-to-back for ha_control
 // 3.  connect ge-0/0/2 back-to-back for ha_data (fabric)

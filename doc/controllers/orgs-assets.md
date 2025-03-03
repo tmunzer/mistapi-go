@@ -40,7 +40,7 @@ CreateOrgAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -113,7 +113,7 @@ DeleteOrgAsset(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ GetOrgAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -215,7 +215,7 @@ if err != nil {
 
 # Import Org Assets
 
-Impert Org Assets.
+Import Org Assets.
 
 It can be done via a CSV file or a JSON payload.
 
@@ -244,7 +244,7 @@ ImportOrgAssets(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -298,7 +298,7 @@ ListOrgAssets(
 
 ## Response Type
 
-[`[]models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -356,7 +356,7 @@ UpdateOrgAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 

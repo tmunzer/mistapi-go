@@ -22,6 +22,7 @@
   "gateways": [
     {
       "api_key": "api_key8",
+      "api_password": "api_password8",
       "api_url": "api_url0",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -30,6 +31,7 @@
     },
     {
       "api_key": "api_key8",
+      "api_password": "api_password8",
       "api_url": "api_url0",
       "exampleAdditionalProperty": {
         "key1": "val1",

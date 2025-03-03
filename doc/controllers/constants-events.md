@@ -31,7 +31,7 @@ ListClientEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstEvent`](../../doc/models/const-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstEvent](../../doc/models/const-event.md).
 
 ## Example Usage
 
@@ -83,7 +83,7 @@ ListDeviceEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstEvent`](../../doc/models/const-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstEvent](../../doc/models/const-event.md).
 
 ## Example Usage
 
@@ -144,7 +144,7 @@ ListMxEdgeEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstEvent`](../../doc/models/const-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstEvent](../../doc/models/const-event.md).
 
 ## Example Usage
 
@@ -207,7 +207,7 @@ ListNacEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstNacEvent`](../../doc/models/const-nac-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstNacEvent](../../doc/models/const-nac-event.md).
 
 ## Example Usage
 
@@ -277,7 +277,7 @@ ListOtherDeviceEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstEvent`](../../doc/models/const-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstEvent](../../doc/models/const-event.md).
 
 ## Example Usage
 
@@ -339,7 +339,7 @@ ListSystemEventsDefinitions(
 
 ## Response Type
 
-[`[]models.ConstEvent`](../../doc/models/const-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstEvent](../../doc/models/const-event.md).
 
 ## Example Usage
 

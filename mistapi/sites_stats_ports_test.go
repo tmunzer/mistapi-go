@@ -104,11 +104,12 @@ func TestSitesStatsPortsTestSearchSiteSwOrGwPorts(t *testing.T) {
     
     
     
+    
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

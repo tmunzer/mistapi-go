@@ -39,7 +39,7 @@ CountSiteWirelessClientEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -49,7 +49,7 @@ CountSiteWirelessClientEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteClientEventsCountDistinctEnum`](../../doc/models/site-client-events-count-distinct-enum.md) | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
@@ -63,7 +63,7 @@ CountSiteWirelessClientEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -157,7 +157,7 @@ CountSiteWirelessClientSessions(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -183,7 +183,7 @@ CountSiteWirelessClientSessions(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -281,7 +281,7 @@ CountSiteWirelessClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -307,7 +307,7 @@ CountSiteWirelessClients(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -427,7 +427,7 @@ GetSiteEventsForClient(
 
 ## Response Type
 
-[`models.ResponseClientEventsSearch`](../../doc/models/response-client-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientEventsSearch](../../doc/models/response-client-events-search.md).
 
 ## Example Usage
 
@@ -536,7 +536,7 @@ SearchSiteWirelessClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
@@ -551,7 +551,7 @@ SearchSiteWirelessClientEvents(
 
 ## Response Type
 
-[`models.ResponseEventsSearch`](../../doc/models/response-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsSearch](../../doc/models/response-events-search.md).
 
 ## Example Usage
 
@@ -681,7 +681,7 @@ SearchSiteWirelessClientSessions(
 
 ## Response Type
 
-[`models.ResponseClientSessionsSearch`](../../doc/models/response-client-sessions-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientSessionsSearch](../../doc/models/response-client-sessions-search.md).
 
 ## Example Usage
 
@@ -809,7 +809,7 @@ SearchSiteWirelessClients(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
 | `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | %odel, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
+| `model` | `*string` | Query, Optional | model, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
 | `ssid` | `*string` | Query, Optional | - |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
@@ -821,7 +821,7 @@ SearchSiteWirelessClients(
 
 ## Response Type
 
-[`models.ResponseClientSearch`](../../doc/models/response-client-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClientSearch](../../doc/models/response-client-search.md).
 
 ## Example Usage
 

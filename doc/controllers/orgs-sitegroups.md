@@ -39,7 +39,7 @@ CreateOrgSiteGroup(
 
 ## Response Type
 
-[`models.Sitegroup`](../../doc/models/sitegroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sitegroup](../../doc/models/sitegroup.md).
 
 ## Example Usage
 
@@ -110,7 +110,7 @@ DeleteOrgSiteGroup(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -162,7 +162,7 @@ GetOrgSiteGroup(
 
 ## Response Type
 
-[`models.Sitegroup`](../../doc/models/sitegroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sitegroup](../../doc/models/sitegroup.md).
 
 ## Example Usage
 
@@ -233,7 +233,7 @@ ListOrgSiteGroups(
 
 ## Response Type
 
-[`[]models.Sitegroup`](../../doc/models/sitegroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sitegroup](../../doc/models/sitegroup.md).
 
 ## Example Usage
 
@@ -308,7 +308,7 @@ UpdateOrgSiteGroup(
 
 ## Response Type
 
-[`models.Sitegroup`](../../doc/models/sitegroup.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sitegroup](../../doc/models/sitegroup.md).
 
 ## Example Usage
 

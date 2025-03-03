@@ -13,7 +13,7 @@ For SRX-only
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AvprofileId` | `*uuid.UUID` | Optional | org-level AV Profile can be used, this takes precendence over 'profile' |
+| `AvprofileId` | `*uuid.UUID` | Optional | org-level AV Profile can be used, this takes precedence over 'profile' |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Profile` | `*string` | Optional | Default / noftp / httponly / or keys from av_profiles |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

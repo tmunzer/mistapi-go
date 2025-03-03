@@ -40,7 +40,7 @@ installer := client.Installer()
 * [Import Installer Map](../../doc/controllers/installer.md#import-installer-map)
 * [List Installer Alarm Templates](../../doc/controllers/installer.md#list-installer-alarm-templates)
 * [List Installer Device Profiles](../../doc/controllers/installer.md#list-installer-device-profiles)
-* [List Installer List of Renctly Claimed Devices](../../doc/controllers/installer.md#list-installer-list-of-renctly-claimed-devices)
+* [List Installer List of Recently Claimed Devices](../../doc/controllers/installer.md#list-installer-list-of-recently-claimed-devices)
 * [List Installer Maps](../../doc/controllers/installer.md#list-installer-maps)
 * [List Installer Rf Templates Names](../../doc/controllers/installer.md#list-installer-rf-templates-names)
 * [List Installer Site Groups](../../doc/controllers/installer.md#list-installer-site-groups)
@@ -86,7 +86,7 @@ AddInstallerDeviceImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -153,7 +153,7 @@ ClaimInstallerDevices(
 
 ## Response Type
 
-[`models.ResponseInventory`](../../doc/models/response-inventory.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseInventory](../../doc/models/response-inventory.md).
 
 ## Example Usage
 
@@ -251,7 +251,7 @@ CreateInstallerMap(
 
 ## Response Type
 
-[`models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -365,12 +365,12 @@ if err != nil {
 
 For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.
 
-In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn’t have dedicated VC ports, below are procedures to automate the VC creation:
+In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn't have dedicated VC ports, below are procedures to automate the VC creation:
 
-1. Power on the switch that is choosen as the VC master first. And then powering on the other member switches.
+1. Power on the switch that is chosen as the VC master first. And then powering on the other member switches.
 2. Claim or adopt all these switches under the same organization’s Inventory
 3. Assign these switches into the same Site
-4. Invoke vc command on the switch choosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
+4. Invoke vc command on the switch chosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
 5. Connect the cables to the VC ports for these switches
 6. Wait for the VC to be formed. The Org’s inventory will be updated for the new VC.
 
@@ -394,7 +394,7 @@ CreateInstallerVirtualChassis(
 
 ## Response Type
 
-[`models.ResponseVirtualChassisConfig`](../../doc/models/response-virtual-chassis-config.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseVirtualChassisConfig](../../doc/models/response-virtual-chassis-config.md).
 
 ## Example Usage
 
@@ -694,7 +694,7 @@ CreateOrUpdateInstallerSites(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -764,7 +764,7 @@ DeleteInstallerDeviceImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -820,7 +820,7 @@ DeleteInstallerMap(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -876,7 +876,7 @@ GetInstallerDeviceVirtualChassis(
 
 ## Response Type
 
-[`models.ResponseVirtualChassisConfig`](../../doc/models/response-virtual-chassis-config.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseVirtualChassisConfig](../../doc/models/response-virtual-chassis-config.md).
 
 ## Example Usage
 
@@ -1153,7 +1153,7 @@ ImportInstallerMap(
 
 ## Response Type
 
-[`models.ResponseMapImport`](../../doc/models/response-map-import.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMapImport](../../doc/models/response-map-import.md).
 
 ## Example Usage
 
@@ -1249,7 +1249,7 @@ ListInstallerAlarmTemplates(
 
 ## Response Type
 
-[`[]models.InstallersItem`](../../doc/models/installers-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallersItem](../../doc/models/installers-item.md).
 
 ## Example Usage
 
@@ -1298,7 +1298,7 @@ Get List of Device Profiles
 ListInstallerDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum) (
+    mType *models.DeviceTypeDefaultApEnum) (
     models.ApiResponse[[]models.InstallersItem],
     error)
 ```
@@ -1308,11 +1308,11 @@ ListInstallerDeviceProfiles(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 
 ## Response Type
 
-[`[]models.InstallersItem`](../../doc/models/installers-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallersItem](../../doc/models/installers-item.md).
 
 ## Example Usage
 
@@ -1321,7 +1321,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 apiResponse, err := installer.ListInstallerDeviceProfiles(ctx, orgId, &mType)
 if err != nil {
@@ -1355,12 +1355,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Installer List of Renctly Claimed Devices
+# List Installer List of Recently Claimed Devices
 
 Get List of recently claimed devices
 
 ```go
-ListInstallerListOfRenctlyClaimedDevices(
+ListInstallerListOfRecentlyClaimedDevices(
     ctx context.Context,
     orgId uuid.UUID,
     model *string,
@@ -1385,7 +1385,7 @@ ListInstallerListOfRenctlyClaimedDevices(
 
 ## Response Type
 
-[`[]models.InstallerDevice`](../../doc/models/installer-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallerDevice](../../doc/models/installer-device.md).
 
 ## Example Usage
 
@@ -1404,7 +1404,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := installer.ListInstallerListOfRenctlyClaimedDevices(ctx, orgId, nil, nil, nil, &limit, &page)
+apiResponse, err := installer.ListInstallerListOfRecentlyClaimedDevices(ctx, orgId, nil, nil, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1468,7 +1468,7 @@ ListInstallerMaps(
 
 ## Response Type
 
-[`[]models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -1615,7 +1615,7 @@ ListInstallerRfTemplatesNames(
 
 ## Response Type
 
-[`[]models.InstallersItem`](../../doc/models/installers-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallersItem](../../doc/models/installers-item.md).
 
 ## Example Usage
 
@@ -1676,7 +1676,7 @@ ListInstallerSiteGroups(
 
 ## Response Type
 
-[`[]models.InstallersItem`](../../doc/models/installers-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallersItem](../../doc/models/installers-item.md).
 
 ## Example Usage
 
@@ -1737,7 +1737,7 @@ ListInstallerSites(
 
 ## Response Type
 
-[`[]models.InstallerSite`](../../doc/models/installer-site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.InstallerSite](../../doc/models/installer-site.md).
 
 ## Example Usage
 
@@ -1810,7 +1810,7 @@ OptimizeInstallerRrm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1864,7 +1864,7 @@ ProvisionInstallerDevices(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1927,7 +1927,7 @@ StartInstallerLocateDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1979,7 +1979,7 @@ StopInstallerLocateDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -2031,7 +2031,7 @@ UnassignInstallerRecentlyClaimedDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -2087,7 +2087,7 @@ UpdateInstallerMap(
 
 ## Response Type
 
-[`models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -2109,8 +2109,6 @@ body := models.Map{
     OriginY:              models.ToPointer(60),
     Ppm:                  models.ToPointer(float64(40.94)),
     Type:                 models.ToPointer(models.MapTypeEnum_IMAGE),
-    UseAutoOrientation:   models.ToPointer(false),
-    UseAutoPlacement:     models.ToPointer(false),
     Width:                models.ToPointer(1250),
 }
 
@@ -2174,10 +2172,10 @@ Please notice that member ID 0 (fpc0) cannot be removed. When a VC has two switc
 
 ## Renumber a member switch
 
-When a member switch doesn’ t work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
+When a member switch doesn't' work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
 
 1. Replace a non-fpc0 member switch
-2. Replace fpc0. When fpc0 is relaced, PAPI device config and JUNOS config will be both updated.
+2. Replace fpc0. When fpc0 is replaced, PAPI device config and JUNOS config will be both updated.
 
 For renumber to work, the following procedures are needed:
 
@@ -2217,7 +2215,7 @@ UpdateInstallerVirtualChassisMember(
 
 ## Response Type
 
-[`models.ResponseVirtualChassisConfig`](../../doc/models/response-virtual-chassis-config.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseVirtualChassisConfig](../../doc/models/response-virtual-chassis-config.md).
 
 ## Example Usage
 

@@ -11,6 +11,7 @@ type Deviceprofile struct {
     value                  any
     isDeviceprofileAp      bool
     isDeviceprofileGateway bool
+    isDeviceprofileSwitch  bool
 }
 
 // String implements the fmt.Stringer interface for Deviceprofile,
@@ -37,6 +38,8 @@ func (d *Deviceprofile) toMap() any {
         return obj.toMap()
     case *DeviceprofileGateway:
         return obj.toMap()
+    case *DeviceprofileSwitch:
+        return obj.toMap()
     }
     return nil
 }
@@ -47,6 +50,7 @@ func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallOneOf(input,
         NewTypeHolder(&DeviceprofileAp{}, false, &d.isDeviceprofileAp),
         NewTypeHolder(&DeviceprofileGateway{}, false, &d.isDeviceprofileGateway),
+        NewTypeHolder(&DeviceprofileSwitch{}, false, &d.isDeviceprofileSwitch),
     )
     
     d.value = result
@@ -71,6 +75,15 @@ func (d *Deviceprofile) AsDeviceprofileGateway() (
     return d.value.(*DeviceprofileGateway), true
 }
 
+func (d *Deviceprofile) AsDeviceprofileSwitch() (
+    *DeviceprofileSwitch,
+    bool) {
+    if !d.isDeviceprofileSwitch {
+        return nil, false
+    }
+    return d.value.(*DeviceprofileSwitch), true
+}
+
 // internalDeviceprofile represents a deviceprofile struct.
 type internalDeviceprofile struct {}
 
@@ -83,5 +96,10 @@ func (d *internalDeviceprofile) FromDeviceprofileAp(val DeviceprofileAp) Devicep
 
 // The internalDeviceprofile instance, wrapping the provided DeviceprofileGateway value.
 func (d *internalDeviceprofile) FromDeviceprofileGateway(val DeviceprofileGateway) Deviceprofile {
+    return Deviceprofile{value: &val}
+}
+
+// The internalDeviceprofile instance, wrapping the provided DeviceprofileSwitch value.
+func (d *internalDeviceprofile) FromDeviceprofileSwitch(val DeviceprofileSwitch) Deviceprofile {
     return Deviceprofile{value: &val}
 }

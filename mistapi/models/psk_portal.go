@@ -23,7 +23,7 @@ type PskPortal struct {
     ExpiryNotificationTime       *int                      `json:"expiry_notification_time,omitempty"`
     // Only if `type`==`admin`
     HidePsksCreatedByOtherAdmins *bool                     `json:"hide_psks_created_by_other_admins,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                           *uuid.UUID                `json:"id,omitempty"`
     // `max_usage`==`0` means unlimited
     MaxUsage                     *int                      `json:"max_usage,omitempty"`

@@ -38,7 +38,7 @@ CreateMspSsoRole(
 
 ## Response Type
 
-[`models.SsoRoleMsp`](../../doc/models/sso-role-msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoRoleMsp](../../doc/models/sso-role-msp.md).
 
 ## Example Usage
 
@@ -121,7 +121,7 @@ DeleteMspSsoRole(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -171,7 +171,7 @@ ListMspSsoRoles(
 
 ## Response Type
 
-[`[]models.SsoRoleMsp`](../../doc/models/sso-role-msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SsoRoleMsp](../../doc/models/sso-role-msp.md).
 
 ## Example Usage
 
@@ -225,7 +225,7 @@ UpdateMspSsoRole(
 
 ## Response Type
 
-[`models.SsoRoleMsp`](../../doc/models/sso-role-msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoRoleMsp](../../doc/models/sso-role-msp.md).
 
 ## Example Usage
 

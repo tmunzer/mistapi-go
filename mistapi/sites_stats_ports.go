@@ -22,7 +22,7 @@ func NewSitesStatsPorts(baseController baseController) *SitesStatsPorts {
 }
 
 // CountSiteSwOrGwPorts takes context, siteId, distinct, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, stpState, stpRole, authState, up, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Switch/Gateway Ports
 func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
@@ -59,7 +59,7 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/ports/count")
     req.AppendTemplateParams(siteId)
@@ -175,17 +175,17 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, limit, start, end, duration as parameters and
+// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, disabled, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseSwitchPortSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -193,6 +193,7 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
     ctx context.Context,
     siteId uuid.UUID,
     fullDuplex *bool,
+    disabled *bool,
     mac *string,
     deviceType *models.SearchSiteSwOrGwPortsDeviceTypeEnum,
     neighborMac *string,
@@ -258,6 +259,9 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
     })
     if fullDuplex != nil {
         req.QueryParam("full_duplex", *fullDuplex)
+    }
+    if disabled != nil {
+        req.QueryParam("disabled", *disabled)
     }
     if mac != nil {
         req.QueryParam("mac", *mac)

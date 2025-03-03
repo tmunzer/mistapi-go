@@ -36,7 +36,7 @@ GetSiteCurrentChannelPlanning(
 
 ## Response Type
 
-[`models.Rrm`](../../doc/models/rrm.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Rrm](../../doc/models/rrm.md).
 
 ## Example Usage
 
@@ -182,7 +182,7 @@ GetSiteCurrentRrmConsiderations(
 
 ## Response Type
 
-[`models.ResponseRrmConsideration`](../../doc/models/response-rrm-consideration.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseRrmConsideration](../../doc/models/response-rrm-consideration.md).
 
 ## Example Usage
 
@@ -263,7 +263,7 @@ GetSiteCurrentRrmNeighbors(
 
 ## Response Type
 
-[`models.ResponseRrmNeighbors`](../../doc/models/response-rrm-neighbors.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseRrmNeighbors](../../doc/models/response-rrm-neighbors.md).
 
 ## Example Usage
 
@@ -353,7 +353,7 @@ GetSiteRrmEvents(
 
 ## Response Type
 
-[`models.ResponseEventsRrm`](../../doc/models/response-events-rrm.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsRrm](../../doc/models/response-events-rrm.md).
 
 ## Example Usage
 

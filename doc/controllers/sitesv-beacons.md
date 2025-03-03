@@ -39,7 +39,7 @@ CreateSiteVBeacon(
 
 ## Response Type
 
-[`models.Vbeacon`](../../doc/models/vbeacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Vbeacon](../../doc/models/vbeacon.md).
 
 ## Example Usage
 
@@ -129,7 +129,7 @@ DeleteSiteVBeacon(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -181,7 +181,7 @@ GetSiteVBeacon(
 
 ## Response Type
 
-[`models.Vbeacon`](../../doc/models/vbeacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Vbeacon](../../doc/models/vbeacon.md).
 
 ## Example Usage
 
@@ -261,7 +261,7 @@ ListSiteVBeacons(
 
 ## Response Type
 
-[`[]models.Vbeacon`](../../doc/models/vbeacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Vbeacon](../../doc/models/vbeacon.md).
 
 ## Example Usage
 
@@ -345,7 +345,7 @@ UpdateSiteVBeacon(
 
 ## Response Type
 
-[`models.Vbeacon`](../../doc/models/vbeacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Vbeacon](../../doc/models/vbeacon.md).
 
 ## Example Usage
 

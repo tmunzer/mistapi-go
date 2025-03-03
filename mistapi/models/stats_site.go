@@ -16,7 +16,7 @@ type StatsSite struct {
     CountryCode          string                 `json:"country_code"`
     // When the object has been created, in epoch
     CreatedTime          float64                `json:"created_time"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Lat                  float64                `json:"lat"`
     Latlng               LatLng                 `json:"latlng"`

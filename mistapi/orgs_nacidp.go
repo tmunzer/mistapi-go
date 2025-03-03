@@ -29,14 +29,14 @@ func NewOrgsNACIDP(baseController baseController) *OrgsNACIDP {
 // `WS /api-ws/v1/stream`
 // ``` json
 // {
-// "subscribe": "orgs/:org_id/mist_nac/test_idp"
+// "subscribe": "orgs/{org_id}/mist_nac/test_idp"
 // }
 // ```
 // ### Response (no idp can be found)
 // ``` json
 // {
 // "event": "data",
-// "channel": "/orgs/:org_id/mist_nac/test_idp",
+// "channel": "/orgs/{org_id}/mist_nac/test_idp",
 // "status": 
 // "data": {
 // "status": "failure",
@@ -48,7 +48,7 @@ func NewOrgsNACIDP(baseController baseController) *OrgsNACIDP {
 // ``` json
 // {
 // "event": "data",
-// "channel": "/orgs/:org_id/mist_nac/test_idp",
+// "channel": "/orgs/{org_id}/mist_nac/test_idp",
 // "status": 
 // "data": {
 // "status": "success",
@@ -62,7 +62,7 @@ func NewOrgsNACIDP(baseController baseController) *OrgsNACIDP {
 // ``` json
 // {
 // "event": "data",
-// "channel": "/orgs/:org_id/mist_nac/test_idp",
+// "channel": "/orgs/{org_id}/mist_nac/test_idp",
 // "status": 
 // "data": {
 // "status": "failure",

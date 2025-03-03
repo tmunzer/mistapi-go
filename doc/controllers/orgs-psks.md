@@ -47,7 +47,7 @@ CreateOrgPsk(
 
 ## Response Type
 
-[`models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -61,9 +61,8 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Psk{
     ExpireTime:             models.NewOptional(models.ToPointer(1614990263)),
     Macs:                   []string{
-        "11:22:33:44:55:66",
-        "aa:bb:",
-        "53",
+        "112233abcedf",
+        "aabbcc*",
     },
     MaxUsage:               models.ToPointer(0),
     Name:                   "name6",
@@ -116,7 +115,7 @@ DeleteOrgPsk(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -170,7 +169,7 @@ DeleteOrgPskList(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -228,7 +227,7 @@ DeleteOrgPskOldPassphrase(
 
 ## Response Type
 
-[`models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -282,7 +281,7 @@ GetOrgPsk(
 
 ## Response Type
 
-[`models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -346,7 +345,7 @@ ImportOrgPsks(
 
 ## Response Type
 
-[`[]models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -378,7 +377,7 @@ if err != nil {
     "modified_time": 0,
     "name": "string",
     "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "passphrase": "stringst",
+    "passphrase": "secretpsk",
     "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
     "ssid": "string",
     "usage": "multi",
@@ -428,7 +427,7 @@ ListOrgPsks(
 
 ## Response Type
 
-[`[]models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -468,7 +467,7 @@ if err != nil {
     "modified_time": 0,
     "name": "string",
     "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "passphrase": "stringst",
+    "passphrase": "secretpsk",
     "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
     "ssid": "string",
     "usage": "multi",
@@ -510,7 +509,7 @@ UpdateOrgMultiplePsks(
 
 ## Response Type
 
-[`[]models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -525,7 +524,7 @@ body := []models.Psk{
         Mac:                    models.ToPointer("string"),
         MaxUsage:               models.ToPointer(0),
         Name:                   "string",
-        Passphrase:             "stringst",
+        Passphrase:             "secretpsk",
         Ssid:                   "string",
         Usage:                  models.ToPointer(models.PskUsageEnum_MULTI),
         VlanId:                 models.ToPointer(models.PskVlanIdContainer.FromNumber(10)),
@@ -553,7 +552,7 @@ if err != nil {
     "modified_time": 0,
     "name": "string",
     "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-    "passphrase": "stringst",
+    "passphrase": "secretpsk",
     "site_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
     "ssid": "string",
     "usage": "multi",
@@ -597,7 +596,7 @@ UpdateOrgPsk(
 
 ## Response Type
 
-[`models.Psk`](../../doc/models/psk.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Psk](../../doc/models/psk.md).
 
 ## Example Usage
 
@@ -611,9 +610,8 @@ pskId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Psk{
     ExpireTime:             models.NewOptional(models.ToPointer(1614990263)),
     Macs:                   []string{
-        "11:22:33:44:55:66",
-        "aa:bb:",
-        "53",
+        "112233abcedf",
+        "aabbcc*",
     },
     MaxUsage:               models.ToPointer(0),
     Name:                   "name6",

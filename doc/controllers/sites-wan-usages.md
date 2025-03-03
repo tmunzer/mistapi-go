@@ -16,7 +16,7 @@ sitesWANUsages := client.SitesWANUsages()
 
 # Count Site Wan Usage
 
-Count Site WAN Uages
+Count Site WAN Usages
 
 ```go
 CountSiteWanUsage(
@@ -29,13 +29,13 @@ CountSiteWanUsage(
     policy *string,
     tenant *string,
     pathType *string,
-    distinct *models.WanUsagesCountDisctinctEnum,
+    distinct *models.WanUsagesCountDistinctEnum,
     start *int,
     end *int,
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -51,7 +51,7 @@ CountSiteWanUsage(
 | `policy` | `*string` | Query, Optional | Policy for the wan path |
 | `tenant` | `*string` | Query, Optional | Tenant network in which the packet is sent |
 | `pathType` | `*string` | Query, Optional | path_type of the port |
-| `distinct` | [`*models.WanUsagesCountDisctinctEnum`](../../doc/models/wan-usages-count-disctinct-enum.md) | Query, Optional | **Default**: `"policy"` |
+| `distinct` | [`*models.WanUsagesCountDistinctEnum`](../../doc/models/wan-usages-count-distinct-enum.md) | Query, Optional | **Default**: `"policy"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -60,7 +60,7 @@ CountSiteWanUsage(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -83,7 +83,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-distinct := models.WanUsagesCountDisctinctEnum_POLICY
+distinct := models.WanUsagesCountDistinctEnum_POLICY
 
 
 
@@ -136,7 +136,7 @@ if err != nil {
 
 # Search Site Wan Usage
 
-Search Site WAN Uages
+Search Site WAN Usages
 
 ```go
 SearchSiteWanUsage(
@@ -178,7 +178,7 @@ SearchSiteWanUsage(
 
 ## Response Type
 
-[`models.SearchWanUsage`](../../doc/models/search-wan-usage.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWanUsage](../../doc/models/search-wan-usage.md).
 
 ## Example Usage
 

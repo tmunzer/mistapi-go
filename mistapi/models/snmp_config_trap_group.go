@@ -7,13 +7,13 @@ import (
 
 // SnmpConfigTrapGroup represents a SnmpConfigTrapGroup struct.
 type SnmpConfigTrapGroup struct {
-    Categories           []string                  `json:"categories,omitempty"`
+    Categories           []string                   `json:"categories,omitempty"`
     // Categories list can refer to https://www.juniper.net/documentation/software/topics/task/configuration/snmp_trap-groups-configuring-junos-nm.html
-    GroupName            *string                   `json:"group_name,omitempty"`
-    Targets              []string                  `json:"targets,omitempty"`
+    GroupName            *string                    `json:"group_name,omitempty"`
+    Targets              []string                   `json:"targets,omitempty"`
     // enum: `all`, `v1`, `v2`
-    Version              *SnmpConfigTrapVerionEnum `json:"version,omitempty"`
-    AdditionalProperties map[string]interface{}    `json:"_"`
+    Version              *SnmpConfigTrapVersionEnum `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SnmpConfigTrapGroup,
@@ -78,8 +78,8 @@ func (s *SnmpConfigTrapGroup) UnmarshalJSON(input []byte) error {
 
 // tempSnmpConfigTrapGroup is a temporary struct used for validating the fields of SnmpConfigTrapGroup.
 type tempSnmpConfigTrapGroup  struct {
-    Categories []string                  `json:"categories,omitempty"`
-    GroupName  *string                   `json:"group_name,omitempty"`
-    Targets    []string                  `json:"targets,omitempty"`
-    Version    *SnmpConfigTrapVerionEnum `json:"version,omitempty"`
+    Categories []string                   `json:"categories,omitempty"`
+    GroupName  *string                    `json:"group_name,omitempty"`
+    Targets    []string                   `json:"targets,omitempty"`
+    Version    *SnmpConfigTrapVersionEnum `json:"version,omitempty"`
 }

@@ -1,7 +1,7 @@
 
 # Switch Matching
 
-Defines custom switch configuration based on different criterias
+Defines custom switch configuration based on different criteria
 
 *This model accepts additional fields of type interface{}.*
 

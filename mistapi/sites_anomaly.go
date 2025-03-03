@@ -63,11 +63,11 @@ func (s *SitesAnomaly) GetSiteAnomalyEventsForClient(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteAnomalyEventsforDevice takes context, siteId, metric, deviceMac as parameters and
+// GetSiteAnomalyEventsForDevice takes context, siteId, metric, deviceMac as parameters and
 // returns an models.ApiResponse with models.ResponseAnomalySearch data and
 // an error if there was an issue with the request or response.
 // Get Device Anomaly Events
-func (s *SitesAnomaly) GetSiteAnomalyEventsforDevice(
+func (s *SitesAnomaly) GetSiteAnomalyEventsForDevice(
     ctx context.Context,
     siteId uuid.UUID,
     metric string,

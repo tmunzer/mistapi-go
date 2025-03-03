@@ -8,7 +8,7 @@ import (
 
 // AssetZone represents a AssetZone struct.
 type AssetZone struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Since                *float64               `json:"since,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

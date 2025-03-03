@@ -24,7 +24,7 @@ CountSiteBgpStats(
     siteId uuid.UUID,
     state *string,
     distinct *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -38,7 +38,7 @@ CountSiteBgpStats(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -110,7 +110,7 @@ SearchSiteBgpStats(
 
 ## Response Type
 
-[`models.ResponseSearchBgps`](../../doc/models/response-search-bgps.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSearchBgps](../../doc/models/response-search-bgps.md).
 
 ## Example Usage
 

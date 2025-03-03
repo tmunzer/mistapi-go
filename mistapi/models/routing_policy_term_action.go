@@ -12,15 +12,13 @@ type RoutingPolicyTermAction struct {
     AddCommunity         []string               `json:"add_community,omitempty"`
     // For SSR, hub decides how VRF routes are leaked on spoke
     AddTargetVrfs        []string               `json:"add_target_vrfs,omitempty"`
-    // route aggregation
-    Aggregate            []string               `json:"aggregate,omitempty"`
     // When used as export policy, optional
     Community            []string               `json:"community,omitempty"`
     // When used as export policy, optional. To exclude certain AS
     ExcludeAsPath        []string               `json:"exclude_as_path,omitempty"`
     ExcludeCommunity     []string               `json:"exclude_community,omitempty"`
     // When used as export policy, optional
-    ExportCommunitites   []string               `json:"export_communitites,omitempty"`
+    ExportCommunities    []string               `json:"export_communities,omitempty"`
     // Optional, for an import policy, local_preference can be changed
     LocalPreference      *string                `json:"local_preference,omitempty"`
     // When used as export policy, optional. By default, the local AS will be prepended, to change it
@@ -32,8 +30,8 @@ type RoutingPolicyTermAction struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RoutingPolicyTermAction) String() string {
     return fmt.Sprintf(
-    	"RoutingPolicyTermAction[Accept=%v, AddCommunity=%v, AddTargetVrfs=%v, Aggregate=%v, Community=%v, ExcludeAsPath=%v, ExcludeCommunity=%v, ExportCommunitites=%v, LocalPreference=%v, PrependAsPath=%v, AdditionalProperties=%v]",
-    	r.Accept, r.AddCommunity, r.AddTargetVrfs, r.Aggregate, r.Community, r.ExcludeAsPath, r.ExcludeCommunity, r.ExportCommunitites, r.LocalPreference, r.PrependAsPath, r.AdditionalProperties)
+    	"RoutingPolicyTermAction[Accept=%v, AddCommunity=%v, AddTargetVrfs=%v, Community=%v, ExcludeAsPath=%v, ExcludeCommunity=%v, ExportCommunities=%v, LocalPreference=%v, PrependAsPath=%v, AdditionalProperties=%v]",
+    	r.Accept, r.AddCommunity, r.AddTargetVrfs, r.Community, r.ExcludeAsPath, r.ExcludeCommunity, r.ExportCommunities, r.LocalPreference, r.PrependAsPath, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTermAction.
@@ -42,7 +40,7 @@ func (r RoutingPolicyTermAction) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "accept", "add_community", "add_target_vrfs", "aggregate", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path"); err != nil {
+        "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "prepend_as_path"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -61,9 +59,6 @@ func (r RoutingPolicyTermAction) toMap() map[string]any {
     if r.AddTargetVrfs != nil {
         structMap["add_target_vrfs"] = r.AddTargetVrfs
     }
-    if r.Aggregate != nil {
-        structMap["aggregate"] = r.Aggregate
-    }
     if r.Community != nil {
         structMap["community"] = r.Community
     }
@@ -73,8 +68,8 @@ func (r RoutingPolicyTermAction) toMap() map[string]any {
     if r.ExcludeCommunity != nil {
         structMap["exclude_community"] = r.ExcludeCommunity
     }
-    if r.ExportCommunitites != nil {
-        structMap["export_communitites"] = r.ExportCommunitites
+    if r.ExportCommunities != nil {
+        structMap["export_communities"] = r.ExportCommunities
     }
     if r.LocalPreference != nil {
         structMap["local_preference"] = r.LocalPreference
@@ -93,7 +88,7 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "aggregate", "community", "exclude_as_path", "exclude_community", "export_communitites", "local_preference", "prepend_as_path")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accept", "add_community", "add_target_vrfs", "community", "exclude_as_path", "exclude_community", "export_communities", "local_preference", "prepend_as_path")
     if err != nil {
     	return err
     }
@@ -102,11 +97,10 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
     r.Accept = temp.Accept
     r.AddCommunity = temp.AddCommunity
     r.AddTargetVrfs = temp.AddTargetVrfs
-    r.Aggregate = temp.Aggregate
     r.Community = temp.Community
     r.ExcludeAsPath = temp.ExcludeAsPath
     r.ExcludeCommunity = temp.ExcludeCommunity
-    r.ExportCommunitites = temp.ExportCommunitites
+    r.ExportCommunities = temp.ExportCommunities
     r.LocalPreference = temp.LocalPreference
     r.PrependAsPath = temp.PrependAsPath
     return nil
@@ -114,14 +108,13 @@ func (r *RoutingPolicyTermAction) UnmarshalJSON(input []byte) error {
 
 // tempRoutingPolicyTermAction is a temporary struct used for validating the fields of RoutingPolicyTermAction.
 type tempRoutingPolicyTermAction  struct {
-    Accept             *bool    `json:"accept,omitempty"`
-    AddCommunity       []string `json:"add_community,omitempty"`
-    AddTargetVrfs      []string `json:"add_target_vrfs,omitempty"`
-    Aggregate          []string `json:"aggregate,omitempty"`
-    Community          []string `json:"community,omitempty"`
-    ExcludeAsPath      []string `json:"exclude_as_path,omitempty"`
-    ExcludeCommunity   []string `json:"exclude_community,omitempty"`
-    ExportCommunitites []string `json:"export_communitites,omitempty"`
-    LocalPreference    *string  `json:"local_preference,omitempty"`
-    PrependAsPath      []string `json:"prepend_as_path,omitempty"`
+    Accept            *bool    `json:"accept,omitempty"`
+    AddCommunity      []string `json:"add_community,omitempty"`
+    AddTargetVrfs     []string `json:"add_target_vrfs,omitempty"`
+    Community         []string `json:"community,omitempty"`
+    ExcludeAsPath     []string `json:"exclude_as_path,omitempty"`
+    ExcludeCommunity  []string `json:"exclude_community,omitempty"`
+    ExportCommunities []string `json:"export_communities,omitempty"`
+    LocalPreference   *string  `json:"local_preference,omitempty"`
+    PrependAsPath     []string `json:"prepend_as_path,omitempty"`
 }

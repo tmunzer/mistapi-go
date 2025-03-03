@@ -3,22 +3,26 @@ package models
 import (
     "encoding/json"
     "fmt"
-    "github.com/google/uuid"
 )
 
 // StatsDeviceOtherVendorSpecificPort represents a StatsDeviceOtherVendorSpecificPort struct.
 type StatsDeviceOtherVendorSpecificPort struct {
-    BytesIn              *int                   `json:"bytes_in,omitempty"`
-    BytesOut             *int                   `json:"bytes_out,omitempty"`
-    HealthCategory       *string                `json:"health_category,omitempty"`
-    HealthScore          *int                   `json:"health_score,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID             `json:"id,omitempty"`
+    BytesIn              *int64                 `json:"bytes_in,omitempty"`
+    BytesOut             *int64                 `json:"bytes_out,omitempty"`
+    Carrier              *string                `json:"carrier,omitempty"`
+    Imei                 *string                `json:"imei,omitempty"`
+    Imsi                 *string                `json:"imsi,omitempty"`
+    Ip                   *string                `json:"ip,omitempty"`
+    Link                 *bool                  `json:"link,omitempty"`
     Mode                 *string                `json:"mode,omitempty"`
-    Model                *string                `json:"model,omitempty"`
+    Rsrp                 *float64               `json:"rsrp,omitempty"`
+    Rsrq                 *float64               `json:"rsrq,omitempty"`
+    Rssi                 *int                   `json:"rssi,omitempty"`
+    ServiceMode          *string                `json:"service_mode,omitempty"`
+    Sinr                 *float64               `json:"sinr,omitempty"`
     State                *string                `json:"state,omitempty"`
     Type                 *string                `json:"type,omitempty"`
-    Uptime               *float64               `json:"uptime,omitempty"`
+    Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -26,8 +30,8 @@ type StatsDeviceOtherVendorSpecificPort struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsDeviceOtherVendorSpecificPort) String() string {
     return fmt.Sprintf(
-    	"StatsDeviceOtherVendorSpecificPort[BytesIn=%v, BytesOut=%v, HealthCategory=%v, HealthScore=%v, Id=%v, Mode=%v, Model=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
-    	s.BytesIn, s.BytesOut, s.HealthCategory, s.HealthScore, s.Id, s.Mode, s.Model, s.State, s.Type, s.Uptime, s.AdditionalProperties)
+    	"StatsDeviceOtherVendorSpecificPort[BytesIn=%v, BytesOut=%v, Carrier=%v, Imei=%v, Imsi=%v, Ip=%v, Link=%v, Mode=%v, Rsrp=%v, Rsrq=%v, Rssi=%v, ServiceMode=%v, Sinr=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.BytesIn, s.BytesOut, s.Carrier, s.Imei, s.Imsi, s.Ip, s.Link, s.Mode, s.Rsrp, s.Rsrq, s.Rssi, s.ServiceMode, s.Sinr, s.State, s.Type, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecificPort.
@@ -36,7 +40,7 @@ func (s StatsDeviceOtherVendorSpecificPort) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "bytes_in", "bytes_out", "health_category", "health_score", "id", "mode", "model", "state", "type", "uptime"); err != nil {
+        "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -52,20 +56,38 @@ func (s StatsDeviceOtherVendorSpecificPort) toMap() map[string]any {
     if s.BytesOut != nil {
         structMap["bytes_out"] = s.BytesOut
     }
-    if s.HealthCategory != nil {
-        structMap["health_category"] = s.HealthCategory
+    if s.Carrier != nil {
+        structMap["carrier"] = s.Carrier
     }
-    if s.HealthScore != nil {
-        structMap["health_score"] = s.HealthScore
+    if s.Imei != nil {
+        structMap["imei"] = s.Imei
     }
-    if s.Id != nil {
-        structMap["id"] = s.Id
+    if s.Imsi != nil {
+        structMap["imsi"] = s.Imsi
+    }
+    if s.Ip != nil {
+        structMap["ip"] = s.Ip
+    }
+    if s.Link != nil {
+        structMap["link"] = s.Link
     }
     if s.Mode != nil {
         structMap["mode"] = s.Mode
     }
-    if s.Model != nil {
-        structMap["model"] = s.Model
+    if s.Rsrp != nil {
+        structMap["rsrp"] = s.Rsrp
+    }
+    if s.Rsrq != nil {
+        structMap["rsrq"] = s.Rsrq
+    }
+    if s.Rssi != nil {
+        structMap["rssi"] = s.Rssi
+    }
+    if s.ServiceMode != nil {
+        structMap["service_mode"] = s.ServiceMode
+    }
+    if s.Sinr != nil {
+        structMap["sinr"] = s.Sinr
     }
     if s.State != nil {
         structMap["state"] = s.State
@@ -87,7 +109,7 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "health_category", "health_score", "id", "mode", "model", "state", "type", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime")
     if err != nil {
     	return err
     }
@@ -95,11 +117,17 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
     
     s.BytesIn = temp.BytesIn
     s.BytesOut = temp.BytesOut
-    s.HealthCategory = temp.HealthCategory
-    s.HealthScore = temp.HealthScore
-    s.Id = temp.Id
+    s.Carrier = temp.Carrier
+    s.Imei = temp.Imei
+    s.Imsi = temp.Imsi
+    s.Ip = temp.Ip
+    s.Link = temp.Link
     s.Mode = temp.Mode
-    s.Model = temp.Model
+    s.Rsrp = temp.Rsrp
+    s.Rsrq = temp.Rsrq
+    s.Rssi = temp.Rssi
+    s.ServiceMode = temp.ServiceMode
+    s.Sinr = temp.Sinr
     s.State = temp.State
     s.Type = temp.Type
     s.Uptime = temp.Uptime
@@ -108,14 +136,20 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
 
 // tempStatsDeviceOtherVendorSpecificPort is a temporary struct used for validating the fields of StatsDeviceOtherVendorSpecificPort.
 type tempStatsDeviceOtherVendorSpecificPort  struct {
-    BytesIn        *int       `json:"bytes_in,omitempty"`
-    BytesOut       *int       `json:"bytes_out,omitempty"`
-    HealthCategory *string    `json:"health_category,omitempty"`
-    HealthScore    *int       `json:"health_score,omitempty"`
-    Id             *uuid.UUID `json:"id,omitempty"`
-    Mode           *string    `json:"mode,omitempty"`
-    Model          *string    `json:"model,omitempty"`
-    State          *string    `json:"state,omitempty"`
-    Type           *string    `json:"type,omitempty"`
-    Uptime         *float64   `json:"uptime,omitempty"`
+    BytesIn     *int64   `json:"bytes_in,omitempty"`
+    BytesOut    *int64   `json:"bytes_out,omitempty"`
+    Carrier     *string  `json:"carrier,omitempty"`
+    Imei        *string  `json:"imei,omitempty"`
+    Imsi        *string  `json:"imsi,omitempty"`
+    Ip          *string  `json:"ip,omitempty"`
+    Link        *bool    `json:"link,omitempty"`
+    Mode        *string  `json:"mode,omitempty"`
+    Rsrp        *float64 `json:"rsrp,omitempty"`
+    Rsrq        *float64 `json:"rsrq,omitempty"`
+    Rssi        *int     `json:"rssi,omitempty"`
+    ServiceMode *string  `json:"service_mode,omitempty"`
+    Sinr        *float64 `json:"sinr,omitempty"`
+    State       *string  `json:"state,omitempty"`
+    Type        *string  `json:"type,omitempty"`
+    Uptime      *int     `json:"uptime,omitempty"`
 }

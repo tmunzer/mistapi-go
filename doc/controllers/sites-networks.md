@@ -31,7 +31,7 @@ ListSiteNetworksDerived(
 
 ## Response Type
 
-[`[]models.Network`](../../doc/models/network.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Network](../../doc/models/network.md).
 
 ## Example Usage
 

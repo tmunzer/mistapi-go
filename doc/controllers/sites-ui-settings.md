@@ -40,7 +40,7 @@ CreateSiteUiSettings(
 
 ## Response Type
 
-[`models.UiSettings`](../../doc/models/ui-settings.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 
@@ -206,7 +206,7 @@ DeleteSiteUiSetting(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -258,7 +258,7 @@ GetSiteUiSetting(
 
 ## Response Type
 
-[`[]models.UiSettings`](../../doc/models/ui-settings.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 
@@ -375,7 +375,7 @@ ListSiteUiSettingDerived(
 
 ## Response Type
 
-[`models.UiSettings`](../../doc/models/ui-settings.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 
@@ -488,7 +488,7 @@ ListSiteUiSettings(
 
 ## Response Type
 
-[`[]models.UiSettings`](../../doc/models/ui-settings.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 
@@ -607,7 +607,7 @@ UpdateSiteUiSetting(
 
 ## Response Type
 
-[`models.UiSettings`](../../doc/models/ui-settings.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 

@@ -24,7 +24,7 @@ func NewMSPsInventory(baseController baseController) *MSPsInventory {
 // GetMspInventoryByMac takes context, mspId, deviceMac as parameters and
 // returns an models.ApiResponse with models.ResponseMspInventoryDevice data and
 // an error if there was an issue with the request or response.
-// Get Inventoy By device MAC address
+// Get Inventory By device MAC address
 func (m *MSPsInventory) GetMspInventoryByMac(
     ctx context.Context,
     mspId uuid.UUID,

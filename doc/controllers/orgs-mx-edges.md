@@ -20,6 +20,7 @@ orgsMxEdges := client.OrgsMxEdges()
 * [Create Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#create-org-mx-edge)
 * [Delete Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#delete-org-mx-edge)
 * [Delete Org Mx Edge Image](../../doc/controllers/orgs-mx-edges.md#delete-org-mx-edge-image)
+* [Disconnect Org Mx Edge Tunterm Aps](../../doc/controllers/orgs-mx-edges.md#disconnect-org-mx-edge-tunterm-aps)
 * [Get Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#get-org-mx-edge)
 * [Get Org Mx Edge Upgrade Info](../../doc/controllers/orgs-mx-edges.md#get-org-mx-edge-upgrade-info)
 * [List Org Mx Edges](../../doc/controllers/orgs-mx-edges.md#list-org-mx-edges)
@@ -58,7 +59,7 @@ AddOrgMxEdgeImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -114,7 +115,7 @@ AssignOrgMxEdgeToSite(
 
 ## Response Type
 
-[`models.ResponseAssignSuccess`](../../doc/models/response-assign-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
 ## Example Usage
 
@@ -185,7 +186,7 @@ BounceOrgMxEdgeDataPorts(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -244,7 +245,7 @@ ClaimOrgMxEdge(
 
 ## Response Type
 
-[`models.ResponseClaimMxEdge`](../../doc/models/response-claim-mx-edge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClaimMxEdge](../../doc/models/response-claim-mx-edge.md).
 
 ## Example Usage
 
@@ -313,7 +314,7 @@ ControlOrgMxEdgeServices(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -369,7 +370,7 @@ CountOrgMxEdges(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -395,7 +396,7 @@ CountOrgMxEdges(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -488,7 +489,7 @@ CountOrgSiteMxEdgeEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -500,7 +501,7 @@ CountOrgSiteMxEdgeEvents(
 | `distinct` | [`*models.OrgMxedgeEventsCountDistinctEnum`](../../doc/models/org-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -509,7 +510,7 @@ CountOrgSiteMxEdgeEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -597,7 +598,7 @@ CreateOrgMxEdge(
 
 ## Response Type
 
-[`models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -754,7 +755,7 @@ DeleteOrgMxEdge(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -808,7 +809,7 @@ DeleteOrgMxEdgeImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -822,6 +823,67 @@ mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 imageNumber := 110
 
 resp, err := orgsMxEdges.DeleteOrgMxEdgeImage(ctx, orgId, mxedgeId, imageNumber)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Disconnect Org Mx Edge Tunterm Aps
+
+Disconnect AP’s from TunTerm
+
+```go
+DisconnectOrgMxEdgeTuntermAps(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mxedgeId uuid.UUID,
+    body *models.MacAddresses) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mxedgeId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.MacAddresses`](../../doc/models/mac-addresses.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.MacAddresses{
+    Macs:                 []string{
+        "5c5b353e4eb1",
+        "5c5b353e4eb2",
+    },
+}
+
+resp, err := orgsMxEdges.DisconnectOrgMxEdgeTuntermAps(ctx, orgId, mxedgeId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -862,7 +924,7 @@ GetOrgMxEdge(
 
 ## Response Type
 
-[`models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -958,7 +1020,8 @@ Get Mist Edge Upgrade Information
 GetOrgMxEdgeUpgradeInfo(
     ctx context.Context,
     orgId uuid.UUID,
-    channel *models.GetOrgMxedgeUpgradeInfoChannelEnum) (
+    channel *models.GetOrgMxedgeUpgradeInfoChannelEnum,
+    distro *string) (
     models.ApiResponse[[]models.MxedgeUpgradeInfoItems],
     error)
 ```
@@ -969,10 +1032,11 @@ GetOrgMxEdgeUpgradeInfo(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
+| `distro` | `*string` | Query, Optional | Distro code name (e.g. `buster`, `bullseye`, ...) |
 
 ## Response Type
 
-[`[]models.MxedgeUpgradeInfoItems`](../../doc/models/mxedge-upgrade-info-items.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.MxedgeUpgradeInfoItems](../../doc/models/mxedge-upgrade-info-items.md).
 
 ## Example Usage
 
@@ -983,7 +1047,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 channel := models.GetOrgMxedgeUpgradeInfoChannelEnum_STABLE
 
-apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel)
+
+
+apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1048,7 +1114,7 @@ ListOrgMxEdges(
 
 ## Response Type
 
-[`[]models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -1207,7 +1273,7 @@ RestartOrgMxEdge(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1265,7 +1331,7 @@ SearchOrgMistEdgeEvents(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -1275,7 +1341,7 @@ SearchOrgMistEdgeEvents(
 
 ## Response Type
 
-[`models.ResponseMxedgeEventsSearch`](../../doc/models/response-mxedge-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeEventsSearch](../../doc/models/response-mxedge-events-search.md).
 
 ## Example Usage
 
@@ -1390,7 +1456,7 @@ SearchOrgMxEdges(
 
 ## Response Type
 
-[`models.ResponseMxedgeSearch`](../../doc/models/response-mxedge-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeSearch](../../doc/models/response-mxedge-search.md).
 
 ## Example Usage
 
@@ -1490,7 +1556,7 @@ UnassignOrgMxEdgeFromSite(
 
 ## Response Type
 
-[`models.ResponseAssignSuccess`](../../doc/models/response-assign-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
 ## Example Usage
 
@@ -1558,7 +1624,7 @@ UnregisterOrgMxEdge(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1612,7 +1678,7 @@ UpdateOrgMxEdge(
 
 ## Response Type
 
-[`models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -1752,7 +1818,7 @@ UploadOrgMxEdgeSupportFiles(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

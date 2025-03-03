@@ -17,7 +17,7 @@ sitesMapsAutoZone := client.SitesMapsAutoZone()
 
 # Delete Site Map Auto Zone
 
-This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is proccessing the map or awaiting review will be rejected.
+This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is processing the map or awaiting review will be rejected.
 
 ```go
 DeleteSiteMapAutoZone(
@@ -37,7 +37,7 @@ DeleteSiteMapAutoZone(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -89,7 +89,7 @@ GetSiteMapAutoZoneStatus(
 
 ## Response Type
 
-[`models.ResponseAutoZone`](../../doc/models/response-auto-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAutoZone](../../doc/models/response-auto-zone.md).
 
 ## Example Usage
 
@@ -175,7 +175,7 @@ if err != nil {
 
 # Start Site Map Auto Zone
 
-This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Reppeated POST requests to this endpoint while the auto zones service is proccessing the map will be rejected.
+This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is processing the map will be rejected.
 
 ```go
 StartSiteMapAutoZone(
@@ -195,7 +195,7 @@ StartSiteMapAutoZone(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

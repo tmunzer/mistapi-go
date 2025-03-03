@@ -38,7 +38,7 @@ CountSiteZoneSessions(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -61,7 +61,7 @@ CountSiteZoneSessions(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -153,7 +153,7 @@ CreateSiteZone(
 
 ## Response Type
 
-[`models.Zone`](../../doc/models/zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Zone](../../doc/models/zone.md).
 
 ## Example Usage
 
@@ -235,7 +235,7 @@ DeleteSiteZone(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -287,7 +287,7 @@ GetSiteZone(
 
 ## Response Type
 
-[`models.Zone`](../../doc/models/zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Zone](../../doc/models/zone.md).
 
 ## Example Usage
 
@@ -363,7 +363,7 @@ ListSiteZones(
 
 ## Response Type
 
-[`[]models.Zone`](../../doc/models/zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Zone](../../doc/models/zone.md).
 
 ## Example Usage
 
@@ -459,7 +459,7 @@ SearchSiteZoneSessions(
 
 ## Response Type
 
-[`models.ResponseZoneSearch`](../../doc/models/response-zone-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseZoneSearch](../../doc/models/response-zone-search.md).
 
 ## Example Usage
 
@@ -553,7 +553,7 @@ UpdateSiteZone(
 
 ## Response Type
 
-[`models.Zone`](../../doc/models/zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Zone](../../doc/models/zone.md).
 
 ## Example Usage
 

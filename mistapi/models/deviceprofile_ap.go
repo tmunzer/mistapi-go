@@ -27,7 +27,7 @@ type DeviceprofileAp struct {
     DisableModule        *bool                   `json:"disable_module,omitempty"`
     EslConfig            *ApEslConfig            `json:"esl_config,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID              `json:"id,omitempty"`
     // IoT AP settings
     IotConfig            *ApIot                  `json:"iot_config,omitempty"`

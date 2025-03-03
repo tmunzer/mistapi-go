@@ -29,7 +29,7 @@
 {
   "address": "192.168.1.1",
   "hostnames": [
-    "http://www.abc.com"
+    "https://www.abc.com"
   ],
   "name": "pos_app",
   "network": "lan",

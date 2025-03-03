@@ -9,57 +9,59 @@ import (
 // Webhook represents a Webhook struct.
 type Webhook struct {
     // When the object has been created, in epoch
-    CreatedTime          *float64                    `json:"created_time,omitempty"`
+    CreatedTime           *float64                    `json:"created_time,omitempty"`
     // Whether webhook is enabled
-    Enabled              *bool                       `json:"enabled,omitempty"`
-    ForSite              *bool                       `json:"for_site,omitempty"`
+    Enabled               *bool                       `json:"enabled,omitempty"`
+    ForSite               *bool                       `json:"for_site,omitempty"`
     // If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000
-    Headers              Optional[map[string]string] `json:"headers"`
-    // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID                  `json:"id,omitempty"`
+    Headers               Optional[map[string]string] `json:"headers"`
+    // Unique ID of the object instance in the Mist Organization
+    Id                    *uuid.UUID                  `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
-    ModifiedTime         *float64                    `json:"modified_time,omitempty"`
+    ModifiedTime          *float64                    `json:"modified_time,omitempty"`
     // Name of the webhook
-    Name                 Optional[string]            `json:"name"`
+    Name                  Optional[string]            `json:"name"`
     // Required when `oauth2_grant_type`==`client_credentials`
-    Oauth2ClientId       *string                     `json:"oauth2_client_id,omitempty"`
+    Oauth2ClientId        *string                     `json:"oauth2_client_id,omitempty"`
     // Required when `oauth2_grant_type`==`client_credentials`
-    Oauth2ClientSecret   *string                     `json:"oauth2_client_secret,omitempty"`
+    Oauth2ClientSecret    *string                     `json:"oauth2_client_secret,omitempty"`
     // required when `type`==`oauth2`. enum: `client_credentials`, `password`
-    Oauth2GrantType      *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
+    Oauth2GrantType       *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
     // Required when `oauth2_grant_type`==`password`
-    Oauth2Password       *string                     `json:"oauth2_password,omitempty"`
+    Oauth2Password        *string                     `json:"oauth2_password,omitempty"`
     // Required when `type`==`oauth2`, if provided, will be used in the token request
-    Oauth2Scopes         []string                    `json:"oauth2_scopes,omitempty"`
+    Oauth2Scopes          []string                    `json:"oauth2_scopes,omitempty"`
     // Required when `type`==`oauth2`
-    Oauth2TokenUrl       *string                     `json:"oauth2_token_url,omitempty"`
+    Oauth2TokenUrl        *string                     `json:"oauth2_token_url,omitempty"`
     // Required when `oauth2_grant_type`==`password`
-    Oauth2Username       *string                     `json:"oauth2_username,omitempty"`
-    OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
+    Oauth2Username        *string                     `json:"oauth2_username,omitempty"`
+    OrgId                 *uuid.UUID                  `json:"org_id,omitempty"`
     // Only if `type`=`http-post`
     // when `secret` is provided, two  HTTP headers will be added:
     // * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
     // * X-Mist-Signature: HMAC_SHA1(secret, body)
-    Secret               Optional[string]            `json:"secret"`
-    SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
+    Secret                Optional[string]            `json:"secret"`
+    // Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics))
+    SingleEventPerMessage *bool                       `json:"single_event_per_message,omitempty"`
+    SiteId                *uuid.UUID                  `json:"site_id,omitempty"`
     // Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.
-    SplunkToken          Optional[string]            `json:"splunk_token"`
+    SplunkToken           Optional[string]            `json:"splunk_token"`
     // List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
-    Topics               []string                    `json:"topics,omitempty"`
+    Topics                []string                    `json:"topics,omitempty"`
     // enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
-    Type                 *WebhookTypeEnum            `json:"type,omitempty"`
-    Url                  *string                     `json:"url,omitempty"`
+    Type                  *WebhookTypeEnum            `json:"type,omitempty"`
+    Url                   *string                     `json:"url,omitempty"`
     // When url uses HTTPS, whether to verify the certificate
-    VerifyCert           *bool                       `json:"verify_cert,omitempty"`
-    AdditionalProperties map[string]interface{}      `json:"_"`
+    VerifyCert            *bool                       `json:"verify_cert,omitempty"`
+    AdditionalProperties  map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Webhook,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w Webhook) String() string {
     return fmt.Sprintf(
-    	"Webhook[CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
-    	w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
+    	"Webhook[CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SingleEventPerMessage=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
+    	w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SingleEventPerMessage, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Webhook.
@@ -68,7 +70,7 @@ func (w Webhook) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
+        "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -138,6 +140,9 @@ func (w Webhook) toMap() map[string]any {
             structMap["secret"] = nil
         }
     }
+    if w.SingleEventPerMessage != nil {
+        structMap["single_event_per_message"] = w.SingleEventPerMessage
+    }
     if w.SiteId != nil {
         structMap["site_id"] = w.SiteId
     }
@@ -171,7 +176,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
     if err != nil {
     	return err
     }
@@ -193,6 +198,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
     w.Oauth2Username = temp.Oauth2Username
     w.OrgId = temp.OrgId
     w.Secret = temp.Secret
+    w.SingleEventPerMessage = temp.SingleEventPerMessage
     w.SiteId = temp.SiteId
     w.SplunkToken = temp.SplunkToken
     w.Topics = temp.Topics
@@ -204,26 +210,27 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 
 // tempWebhook is a temporary struct used for validating the fields of Webhook.
 type tempWebhook  struct {
-    CreatedTime        *float64                    `json:"created_time,omitempty"`
-    Enabled            *bool                       `json:"enabled,omitempty"`
-    ForSite            *bool                       `json:"for_site,omitempty"`
-    Headers            Optional[map[string]string] `json:"headers"`
-    Id                 *uuid.UUID                  `json:"id,omitempty"`
-    ModifiedTime       *float64                    `json:"modified_time,omitempty"`
-    Name               Optional[string]            `json:"name"`
-    Oauth2ClientId     *string                     `json:"oauth2_client_id,omitempty"`
-    Oauth2ClientSecret *string                     `json:"oauth2_client_secret,omitempty"`
-    Oauth2GrantType    *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
-    Oauth2Password     *string                     `json:"oauth2_password,omitempty"`
-    Oauth2Scopes       []string                    `json:"oauth2_scopes,omitempty"`
-    Oauth2TokenUrl     *string                     `json:"oauth2_token_url,omitempty"`
-    Oauth2Username     *string                     `json:"oauth2_username,omitempty"`
-    OrgId              *uuid.UUID                  `json:"org_id,omitempty"`
-    Secret             Optional[string]            `json:"secret"`
-    SiteId             *uuid.UUID                  `json:"site_id,omitempty"`
-    SplunkToken        Optional[string]            `json:"splunk_token"`
-    Topics             []string                    `json:"topics,omitempty"`
-    Type               *WebhookTypeEnum            `json:"type,omitempty"`
-    Url                *string                     `json:"url,omitempty"`
-    VerifyCert         *bool                       `json:"verify_cert,omitempty"`
+    CreatedTime           *float64                    `json:"created_time,omitempty"`
+    Enabled               *bool                       `json:"enabled,omitempty"`
+    ForSite               *bool                       `json:"for_site,omitempty"`
+    Headers               Optional[map[string]string] `json:"headers"`
+    Id                    *uuid.UUID                  `json:"id,omitempty"`
+    ModifiedTime          *float64                    `json:"modified_time,omitempty"`
+    Name                  Optional[string]            `json:"name"`
+    Oauth2ClientId        *string                     `json:"oauth2_client_id,omitempty"`
+    Oauth2ClientSecret    *string                     `json:"oauth2_client_secret,omitempty"`
+    Oauth2GrantType       *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
+    Oauth2Password        *string                     `json:"oauth2_password,omitempty"`
+    Oauth2Scopes          []string                    `json:"oauth2_scopes,omitempty"`
+    Oauth2TokenUrl        *string                     `json:"oauth2_token_url,omitempty"`
+    Oauth2Username        *string                     `json:"oauth2_username,omitempty"`
+    OrgId                 *uuid.UUID                  `json:"org_id,omitempty"`
+    Secret                Optional[string]            `json:"secret"`
+    SingleEventPerMessage *bool                       `json:"single_event_per_message,omitempty"`
+    SiteId                *uuid.UUID                  `json:"site_id,omitempty"`
+    SplunkToken           Optional[string]            `json:"splunk_token"`
+    Topics                []string                    `json:"topics,omitempty"`
+    Type                  *WebhookTypeEnum            `json:"type,omitempty"`
+    Url                   *string                     `json:"url,omitempty"`
+    VerifyCert            *bool                       `json:"verify_cert,omitempty"`
 }

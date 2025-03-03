@@ -31,7 +31,7 @@ ListSiteSecIntelProfilesDerived(
 
 ## Response Type
 
-[`[]models.SecintelProfile`](../../doc/models/secintel-profile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SecintelProfile](../../doc/models/secintel-profile.md).
 
 ## Example Usage
 

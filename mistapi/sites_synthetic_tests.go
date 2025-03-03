@@ -161,14 +161,14 @@ func (s *SitesSyntheticTests) TriggerSiteDeviceSyntheticTest(
 }
 
 // TriggerSiteSyntheticTest takes context, siteId, body as parameters and
-// returns an models.ApiResponse with models.ReponseSynthetictest data and
+// returns an models.ApiResponse with models.ResponseSynthetictest data and
 // an error if there was an issue with the request or response.
 // Trigger Synthetic Testing
 func (s *SitesSyntheticTests) TriggerSiteSyntheticTest(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.Synthetictest) (
-    models.ApiResponse[models.ReponseSynthetictest],
+    models.ApiResponse[models.ResponseSynthetictest],
     error) {
     req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/synthetic_test")
     req.AppendTemplateParams(siteId)
@@ -195,18 +195,18 @@ func (s *SitesSyntheticTests) TriggerSiteSyntheticTest(
         req.Json(body)
     }
     
-    var result models.ReponseSynthetictest
+    var result models.ResponseSynthetictest
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ReponseSynthetictest](decoder)
+    result, err = utilities.DecodeResults[models.ResponseSynthetictest](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // SearchSiteSyntheticTest takes context, siteId, mac, portId, vlanId, by, reason, mType, protocol, tenant as parameters and
-// returns an models.ApiResponse with models.ReponseSynthetictestSearch data and
+// returns an models.ApiResponse with models.ResponseSynthetictestSearch data and
 // an error if there was an issue with the request or response.
 // Search Site Synthetic Testing
 func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
@@ -220,7 +220,7 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
     mType *models.SynthetictestTypeEnum,
     protocol *models.SynthetictestProtocolEnum,
     tenant *string) (
-    models.ApiResponse[models.ReponseSynthetictestSearch],
+    models.ApiResponse[models.ResponseSynthetictestSearch],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/synthetic_test/search")
     req.AppendTemplateParams(siteId)
@@ -267,12 +267,12 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
         req.QueryParam("tenant", *tenant)
     }
     
-    var result models.ReponseSynthetictestSearch
+    var result models.ResponseSynthetictestSearch
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.ReponseSynthetictestSearch](decoder)
+    result, err = utilities.DecodeResults[models.ResponseSynthetictestSearch](decoder)
     return models.NewApiResponse(result, resp), err
 }

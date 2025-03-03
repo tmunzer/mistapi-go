@@ -16,7 +16,7 @@ type ResponseSiteDeviceUpgrade struct {
     EnableP2p            *bool                      `json:"enable_p2p,omitempty"`
     // Whether to force upgrade when requested version is same as running version
     Force                *bool                      `json:"force,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                  `json:"id"`
     // Percentage of failures allowed
     MaxFailurePercentage *int                       `json:"max_failure_percentage,omitempty"`
@@ -28,12 +28,12 @@ type ResponseSiteDeviceUpgrade struct {
     StartTime            *int                       `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`
     Status               *UpgradeDeviceStatusEnum   `json:"status,omitempty"`
-    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+    // enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
     Strategy             *UpgradeDeviceStrategyEnum `json:"strategy,omitempty"`
     // Version to upgrade to
     TargetVersion        *string                    `json:"target_version,omitempty"`
     Targets              *UpgradeDevicesTargets     `json:"targets,omitempty"`
-    // If `stragegy`!=`big_bang`, a dictionary of phase number to devices part of that phase
+    // If `strategy`!=`big_bang`, a dictionary of phase number to devices part of that phase
     UpgradePlan          map[string][]string        `json:"upgrade_plan,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }

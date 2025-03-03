@@ -22,7 +22,7 @@ type RfDiagInfoItem struct {
     EndTime              int                    `json:"end_time"`
     // Number of frames in the output
     FrameCount           int                    `json:"frame_count"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // If `type`==`client` or `asset`, mac of the device
     Mac                  *string                `json:"mac,omitempty"`

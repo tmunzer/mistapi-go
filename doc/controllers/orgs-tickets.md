@@ -17,7 +17,7 @@ orgsTickets := client.OrgsTickets()
 * [Get Org Ticket Attachment](../../doc/controllers/orgs-tickets.md#get-org-ticket-attachment)
 * [List Org Tickets](../../doc/controllers/orgs-tickets.md#list-org-tickets)
 * [Update Org Ticket](../../doc/controllers/orgs-tickets.md#update-org-ticket)
-* [Uploadrg Ticket Attachment](../../doc/controllers/orgs-tickets.md#uploadrg-ticket-attachment)
+* [Upload Org Ticket Attachment](../../doc/controllers/orgs-tickets.md#upload-org-ticket-attachment)
 
 
 # Add Org Ticket Comment
@@ -46,7 +46,7 @@ AddOrgTicketComment(
 
 ## Response Type
 
-[`models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 
@@ -119,7 +119,7 @@ CountOrgTickets(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgTicketsCountDistinctEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -132,7 +132,7 @@ CountOrgTickets(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -204,7 +204,7 @@ CreateOrgTicket(
 
 ## Response Type
 
-[`models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 
@@ -298,7 +298,7 @@ GetOrgTicket(
 
 ## Response Type
 
-[`models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 
@@ -394,7 +394,7 @@ GetOrgTicketAttachment(
 
 ## Response Type
 
-[`models.TicketAttachment`](../../doc/models/ticket-attachment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.TicketAttachment](../../doc/models/ticket-attachment.md).
 
 ## Example Usage
 
@@ -468,7 +468,7 @@ ListOrgTickets(
 
 ## Response Type
 
-[`[]models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 
@@ -558,7 +558,7 @@ UpdateOrgTicket(
 
 ## Response Type
 
-[`models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 
@@ -626,12 +626,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Uploadrg Ticket Attachment
+# Upload Org Ticket Attachment
 
 Get Org ticket Attachment
 
 ```go
-UploadrgTicketAttachment(
+UploadOrgTicketAttachment(
     ctx context.Context,
     orgId uuid.UUID,
     ticketId uuid.UUID,
@@ -650,7 +650,7 @@ UploadrgTicketAttachment(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -663,7 +663,7 @@ ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-resp, err := orgsTickets.UploadrgTicketAttachment(ctx, orgId, ticketId, nil)
+resp, err := orgsTickets.UploadOrgTicketAttachment(ctx, orgId, ticketId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

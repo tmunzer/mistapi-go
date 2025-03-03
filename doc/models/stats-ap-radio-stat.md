@@ -23,7 +23,7 @@
   "band_24": {
     "bandwidth": 20,
     "channel": 80,
-    "dynamic_chaining_enalbed": false,
+    "dynamic_chaining_enabled": false,
     "mac": "mac4",
     "noise_floor": 180,
     "exampleAdditionalProperty": {
@@ -34,7 +34,7 @@
   "band_5": {
     "bandwidth": 20,
     "channel": 132,
-    "dynamic_chaining_enalbed": false,
+    "dynamic_chaining_enabled": false,
     "mac": "mac6",
     "noise_floor": 128,
     "exampleAdditionalProperty": {
@@ -45,7 +45,7 @@
   "band_6": {
     "bandwidth": 20,
     "channel": 200,
-    "dynamic_chaining_enalbed": false,
+    "dynamic_chaining_enabled": false,
     "mac": "mac8",
     "noise_floor": 60,
     "exampleAdditionalProperty": {

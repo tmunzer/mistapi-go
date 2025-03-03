@@ -16,7 +16,7 @@
 | `Count` | `*int` | Optional | If present, represents number of events of given type occurred in current interval, default=1 |
 | `EventId` | `*uuid.UUID` | Optional | Event id |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `LastSeen` | `float64` | Required | - |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `OrgId` | `uuid.UUID` | Required | - |

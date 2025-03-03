@@ -71,7 +71,7 @@ func (s *SitesMxEdges) ListSiteMxEdges(
 }
 
 // CountSiteMxEdgeEvents takes context, siteId, distinct, mxedgeId, mxclusterId, mType, service, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Mist Edge Events
 func (s *SitesMxEdges) CountSiteMxEdgeEvents(
@@ -86,7 +86,7 @@ func (s *SitesMxEdges) CountSiteMxEdgeEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges/events/count")
     req.AppendTemplateParams(siteId)
@@ -136,13 +136,13 @@ func (s *SitesMxEdges) CountSiteMxEdgeEvents(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

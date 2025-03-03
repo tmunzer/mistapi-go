@@ -148,6 +148,7 @@ const (
     MIST_GLOBAL_02 Environment = "Mist Global 02"
     MIST_GLOBAL_03 Environment = "Mist Global 03"
     MIST_GLOBAL_04 Environment = "Mist Global 04"
+    MIST_GLOBAL_05 Environment = "Mist Global 05"
     MIST_EMEA_01   Environment = "Mist EMEA 01"
     MIST_EMEA_02   Environment = "Mist EMEA 02"
     MIST_EMEA_03   Environment = "Mist EMEA 03"

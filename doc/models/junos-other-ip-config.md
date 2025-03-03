@@ -1,7 +1,7 @@
 
 # Junos Other Ip Config
 
-Optional, if it's required to have switch's L3 presense on a network/vlan
+Optional, if it's required to have switch's L3 presence on a network/vlan
 
 *This model accepts additional fields of type interface{}.*
 

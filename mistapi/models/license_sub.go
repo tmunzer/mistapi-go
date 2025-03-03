@@ -12,7 +12,7 @@ type LicenseSub struct {
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // End date of the license term
     EndTime              *int                   `json:"end_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`

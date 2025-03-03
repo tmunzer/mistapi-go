@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AssetId` | `*uuid.UUID` | Optional | UUID of named asset |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | MAC address of Wi-Fi client or asset |
 | `MapId` | `uuid.UUID` | Required | Map id |
 | `Name` | `*string` | Optional | Name of the client, may be empty |

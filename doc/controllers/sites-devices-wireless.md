@@ -37,7 +37,7 @@ GetSiteDeviceIotPort(
 
 ## Response Type
 
-`map[string]int`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type map[string]int.
 
 ## Example Usage
 
@@ -96,11 +96,11 @@ GetSiteDeviceRadioChannels(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `countryCode` | `*string` | Query, Optional | Country code for the site (for AP config generation), in [two-character](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) |
+| `countryCode` | `*string` | Query, Optional | Country code for the site (for AP config generation), in [two-character](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) |
 
 ## Response Type
 
-[`models.ResponseDeviceRadioChannels`](../../doc/models/response-device-radio-channels.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceRadioChannels](../../doc/models/response-device-radio-channels.md).
 
 ## Example Usage
 
@@ -329,7 +329,7 @@ SetSiteDeviceIotPort(
 
 ## Response Type
 
-`map[string]int`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type map[string]int.
 
 ## Example Usage
 

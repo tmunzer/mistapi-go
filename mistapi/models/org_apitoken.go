@@ -18,7 +18,7 @@ type OrgApitoken struct {
     CreatedBy            Optional[string]       `json:"created_by"`
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Key                  *string                `json:"key,omitempty"`
     LastUsed             Optional[float64]      `json:"last_used"`

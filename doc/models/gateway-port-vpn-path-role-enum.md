@@ -1,7 +1,7 @@
 
 # Gateway Port Vpn Path Role Enum
 
-Only if the VPN `type`==`hub_spoke`. enum: `hub`, `spoke`
+If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`
 
 ## Enumeration
 
@@ -12,5 +12,6 @@ Only if the VPN `type`==`hub_spoke`. enum: `hub`, `spoke`
 | Name |
 |  --- |
 | `hub` |
+| `mesh` |
 | `spoke` |
 

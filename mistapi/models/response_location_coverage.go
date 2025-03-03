@@ -9,7 +9,7 @@ import (
 
 // ResponseLocationCoverage represents a ResponseLocationCoverage struct.
 type ResponseLocationCoverage struct {
-    // List of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calulate the pixel location from top-left).
+    // List of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calculate the pixel location from top-left).
     BeamsMeans           [][]float64            `json:"beams_means"`
     End                  int                    `json:"end"`
     // Size of grid, in meter

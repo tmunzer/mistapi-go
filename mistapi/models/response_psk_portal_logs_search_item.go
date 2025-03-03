@@ -8,7 +8,7 @@ import (
 
 // ResponsePskPortalLogsSearchItem represents a ResponsePskPortalLogsSearchItem struct.
 type ResponsePskPortalLogsSearchItem struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Message              *string                `json:"message,omitempty"`
     NameId               *string                `json:"name_id,omitempty"`

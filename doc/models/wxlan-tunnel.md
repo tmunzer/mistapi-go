@@ -20,7 +20,7 @@ WxLAn Tunnel
 | `HelloInterval` | `*int` | Optional | In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
 | `HelloRetries` | `*int` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
 | `Hostname` | `*string` | Optional | Optional, overwrite the hostname in SCCRQ control message, default is  or null, %H and %M can be used, which will be replace with corresponding values:<br><br>* %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC<br>* %M: MAC (e.g. 5c5b350e0060) |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Ipsec` | [`*models.WxlanTunnelIpsec`](../../doc/models/wxlan-tunnel-ipsec.md) | Optional | IPSec-related configurations; requires DMVPN be enabled |
 | `IsStatic` | `*bool` | Optional | Whether it’s static/unmanaged (i.e. no control session). As the session configurations are not compatible, cannot be toggled.<br>**Default**: `false` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

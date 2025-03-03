@@ -38,7 +38,7 @@ ClaimMspLicence(
 
 ## Response Type
 
-[`models.ResponseClaimLicense`](../../doc/models/response-claim-license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClaimLicense](../../doc/models/response-claim-license.md).
 
 ## Example Usage
 
@@ -145,7 +145,7 @@ ListMspLicenses(
 
 ## Response Type
 
-[`models.License`](../../doc/models/license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.License](../../doc/models/license.md).
 
 ## Example Usage
 
@@ -391,7 +391,7 @@ ListMspOrgLicenses(
 
 ## Response Type
 
-[`models.License`](../../doc/models/license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.License](../../doc/models/license.md).
 
 ## Example Usage
 
@@ -639,7 +639,7 @@ MoveOrDeleteMspLicenseToAnotherOrg(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

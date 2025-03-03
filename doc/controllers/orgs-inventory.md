@@ -43,7 +43,7 @@ AddOrgInventory(
 
 ## Response Type
 
-[`models.ResponseInventory`](../../doc/models/response-inventory.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseInventory](../../doc/models/response-inventory.md).
 
 ## Example Usage
 
@@ -123,11 +123,11 @@ Count in the Org Inventory
 CountOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     distinct *models.InventoryCountDistinctEnum,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -136,14 +136,14 @@ CountOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.InventoryCountDistinctEnum`](../../doc/models/inventory-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -152,7 +152,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 distinct := models.InventoryCountDistinctEnum_MODEL
 
@@ -221,7 +221,7 @@ CreateOrgGatewayHaCluster(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -287,7 +287,7 @@ DeleteOrgGatewayHaCluster(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -334,8 +334,8 @@ In our implementation, we strive to achieve that without manual user configurati
 
 The perceivable result is
 
-1. from `/sites/:site_id/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members
-2. from `/orgs/:org_id/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
+1. from `/sites/{site_id}/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members
+2. from `/orgs/{org_id}/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
 
 ```go
 GetOrgInventory(
@@ -343,12 +343,13 @@ GetOrgInventory(
     orgId uuid.UUID,
     serial *string,
     model *string,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     siteId *string,
     vcMac *string,
     vc *bool,
     unassigned *bool,
+    modifiedAfter *int,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Inventory],
@@ -362,18 +363,19 @@ GetOrgInventory(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `model` | `*string` | Query, Optional | Device model |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
 | `vc` | `*bool` | Query, Optional | To display Virtual Chassis members<br>**Default**: `false` |
 | `unassigned` | `*bool` | Query, Optional | To display Unassigned devices<br>**Default**: `true` |
+| `modifiedAfter` | `*int` | Query, Optional | Filter on inventory last modified time, in epoch |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
-[`[]models.Inventory`](../../doc/models/inventory.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Inventory](../../doc/models/inventory.md).
 
 ## Example Usage
 
@@ -386,7 +388,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -398,11 +400,13 @@ vc := false
 
 unassigned := true
 
+
+
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, &mType, nil, nil, nil, &vc, &unassigned, &limit, &page)
+apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, &mType, nil, nil, nil, &vc, &unassigned, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -463,7 +467,7 @@ ReevaluateOrgAutoAssignment(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -519,7 +523,7 @@ ReplaceOrgDevices(
 
 ## Response Type
 
-[`models.ResponseOrgInventoryChange`](../../doc/models/response-org-inventory-change.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgInventoryChange](../../doc/models/response-org-inventory-change.md).
 
 ## Example Usage
 
@@ -578,7 +582,7 @@ Search in the Org Inventory
 SearchOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     vcMac *string,
     masterMac *string,
@@ -600,7 +604,7 @@ SearchOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
 | `masterMac` | `*string` | Query, Optional | Master device mac for virtual mac cluster |
@@ -616,7 +620,7 @@ SearchOrgInventory(
 
 ## Response Type
 
-[`models.InventorySearch`](../../doc/models/inventory-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.InventorySearch](../../doc/models/inventory-search.md).
 
 ## Example Usage
 
@@ -625,7 +629,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -726,7 +730,7 @@ UpdateOrgInventoryAssignment(
 
 ## Response Type
 
-[`models.ResponseOrgInventoryChange`](../../doc/models/response-org-inventory-change.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgInventoryChange](../../doc/models/response-org-inventory-change.md).
 
 ## Example Usage
 

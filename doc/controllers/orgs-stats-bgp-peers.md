@@ -22,7 +22,7 @@ Count Org BGP Stats
 CountOrgBgpStats(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -34,7 +34,7 @@ CountOrgBgpStats(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -102,7 +102,7 @@ SearchOrgBgpStats(
 
 ## Response Type
 
-[`models.ResponseSearchBgps`](../../doc/models/response-search-bgps.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSearchBgps](../../doc/models/response-search-bgps.md).
 
 ## Example Usage
 

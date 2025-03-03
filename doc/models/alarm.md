@@ -23,13 +23,15 @@ Additional information per alarm type
 | `Gateways` | `[]string` | Optional | additional information: List of MACs of the gateways |
 | `Group` | `string` | Required | Group of the alarm |
 | `Hostnames` | `[]string` | Optional | additional information: List of Hostnames of the devices (AP/Switch/Gateway) |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `LastSeen` | `float64` | Required | Epoch (seconds) of the last incident/alarm within an alarm window |
 | `Note` | `*string` | Optional | Text describing the alarm |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `ResolvedTime` | `*int` | Optional | Epoch (seconds) of the resolved_time for the alarm |
 | `Severity` | `string` | Required | Severity of the alarm |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssids` | `[]string` | Optional | List of SSIDs |
+| `Status` | [`*models.AlarmStatusEnum`](../../doc/models/alarm-status-enum.md) | Optional | enum: `open`, `resolved` |
 | `Switches` | `[]string` | Optional | additional information: List of MACs of the switches |
 | `Timestamp` | `int` | Required | Epoch (seconds) of the first incident/alarm |
 | `Type` | `string` | Required | Key-name of the alarm type |

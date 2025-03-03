@@ -21,7 +21,7 @@ type SiteWifi struct {
     LocateConnected                   *bool                          `json:"locate_connected,omitempty"`
     // Whether to locate unconnected clients
     LocateUnconnected                 *bool                          `json:"locate_unconnected,omitempty"`
-    // Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will distrupt the connection. If roaming is desired, keep it disabled.
+    // Whether to allow Mesh to use DFS channels. For DFS channels, Remote Mesh AP would have to do CAC when scanning for new Base AP, which is slow and will disrupt the connection. If roaming is desired, keep it disabled.
     MeshAllowDfs                      *bool                          `json:"mesh_allow_dfs,omitempty"`
     // Used to enable/disable CRM
     MeshEnableCrm                     *bool                          `json:"mesh_enable_crm,omitempty"`

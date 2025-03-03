@@ -19,7 +19,7 @@
 | `Colspan` | `*int` | Optional | - |
 | `Column` | `*int` | Optional | - |
 | `HideEmptyRows` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Metric` | [`*models.UiSettingsTileMetric`](../../doc/models/ui-settings-tile-metric.md) | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Row` | `*int` | Optional | - |

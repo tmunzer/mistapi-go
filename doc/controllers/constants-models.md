@@ -38,7 +38,7 @@ GetGatewayDefaultConfig(
 
 ## Response Type
 
-`interface{}`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type interface{}.
 
 ## Example Usage
 
@@ -153,7 +153,7 @@ ListDeviceModels(
 
 ## Response Type
 
-[`[]models.ConstDeviceModel`](../../doc/models/containers/const-device-model.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.ConstDeviceModel.
 
 ## Example Usage
 
@@ -204,7 +204,7 @@ ListMxEdgeModels(
 
 ## Response Type
 
-[`[]models.ConstMxedgeModel`](../../doc/models/const-mxedge-model.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstMxedgeModel](../../doc/models/const-mxedge-model.md).
 
 ## Example Usage
 
@@ -274,7 +274,7 @@ ListSupportedOtherDeviceModels(
 
 ## Response Type
 
-[`[]models.ConstOtherDeviceModel`](../../doc/models/const-other-device-model.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstOtherDeviceModel](../../doc/models/const-other-device-model.md).
 
 ## Example Usage
 

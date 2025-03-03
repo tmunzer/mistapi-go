@@ -20,7 +20,7 @@
 ```json
 {
   "iso_code": "AK",
-  "name": "Alaske",
+  "name": "Alaska",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

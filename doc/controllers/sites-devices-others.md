@@ -29,7 +29,7 @@ CountSiteOtherDeviceEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -39,7 +39,7 @@ CountSiteOtherDeviceEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteOtherDeviceEventsCountDistinctEnum`](../../doc/models/site-other-device-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `mType` | `*string` | Query, Optional | See  [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -47,7 +47,7 @@ CountSiteOtherDeviceEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -141,7 +141,7 @@ ListSiteOtherDevices(
 
 ## Response Type
 
-[`[]models.DeviceOther`](../../doc/models/device-other.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.DeviceOther](../../doc/models/device-other.md).
 
 ## Example Usage
 
@@ -233,7 +233,7 @@ SearchSiteOtherDeviceEvents(
 | `mac` | `*string` | Query, Optional | MAC |
 | `deviceMac` | `*string` | Query, Optional | MAC of attached device |
 | `vendor` | `*string` | Query, Optional | Vendor name |
-| `mType` | `*string` | Query, Optional | See  [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -241,7 +241,7 @@ SearchSiteOtherDeviceEvents(
 
 ## Response Type
 
-[`models.ResponseEventsOtherDevicesSearch`](../../doc/models/response-events-other-devices-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsOtherDevicesSearch](../../doc/models/response-events-other-devices-search.md).
 
 ## Example Usage
 

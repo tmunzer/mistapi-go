@@ -84,7 +84,7 @@ ArpFromDevice(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -171,7 +171,7 @@ BounceDevicePort(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -244,7 +244,7 @@ ClearSiteDeviceMacTable(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -304,7 +304,7 @@ ClearSiteDevicePolicyHitCount(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
 ## Example Usage
 
@@ -358,7 +358,7 @@ CreateSiteDeviceShellSession(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
 ## Example Usage
 
@@ -417,7 +417,7 @@ GetSiteDeviceConfigCmd(
 
 ## Response Type
 
-[`models.ResponseDeviceConfigCli`](../../doc/models/response-device-config-cli.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceConfigCli](../../doc/models/response-device-config-cli.md).
 
 ## Example Usage
 
@@ -463,7 +463,7 @@ if err != nil {
 
 # Get Site Device Ztp Password
 
-In the case where soemthing happens during/after ZTP, the root-password is modified (required for ZTP to set up outbound-ssh) but the user-defined password config has not be configured. This API can be used to retrieve the temporary password.
+In the case where something happens during/after ZTP, the root-password is modified (required for ZTP to set up outbound-ssh) but the user-defined password config has not be configured. This API can be used to retrieve the temporary password.
 
 ```go
 GetSiteDeviceZtpPassword(
@@ -483,7 +483,7 @@ GetSiteDeviceZtpPassword(
 
 ## Response Type
 
-[`models.RootPasswordString`](../../doc/models/root-password-string.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RootPasswordString](../../doc/models/root-password-string.md).
 
 ## Example Usage
 
@@ -550,7 +550,7 @@ MonitorSiteDeviceTraffic(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
 ## Example Usage
 
@@ -635,7 +635,7 @@ PingFromDevice(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -674,7 +674,7 @@ if err != nil {
 
 # Readopt Site Octerm Device
 
-For the octerm devices, the device ID must come from fpc0. However, for a VC, the users may change the original fpc0 from CLI. To fix the issue, the readopt API could be used to trigger the readopt process so the device would get the corret device ID to connect the cloud.
+For the octerm devices, the device ID must come from fpc0. However, for a VC, the users may change the original fpc0 from CLI. To fix the issue, the readopt API could be used to trigger the readopt process so the device would get the correct device ID to connect the cloud.
 
 ```go
 ReadoptSiteOctermDevice(
@@ -694,7 +694,7 @@ ReadoptSiteOctermDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -748,7 +748,7 @@ ReleaseSiteDeviceDhcpLease(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -804,7 +804,7 @@ ReprovisionSiteOctermDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -858,7 +858,7 @@ RestartSiteDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -912,7 +912,7 @@ RestartSiteMultipleDevices(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -983,7 +983,7 @@ ShowSiteDeviceArpTable(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1063,7 +1063,7 @@ ShowSiteDeviceBgpSummary(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
-    body *models.UtilsShowBgpRummary) (
+    body *models.UtilsShowBgpSummary) (
     models.ApiResponse[models.WebsocketSession],
     error)
 ```
@@ -1074,11 +1074,11 @@ ShowSiteDeviceBgpSummary(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowBgpRummary`](../../doc/models/utils-show-bgp-rummary.md) | Body, Optional | All attributes are optional |
+| `body` | [`*models.UtilsShowBgpSummary`](../../doc/models/utils-show-bgp-summary.md) | Body, Optional | All attributes are optional |
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1136,7 +1136,7 @@ ShowSiteDeviceDhcpLeases(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1196,7 +1196,7 @@ ShowSiteDeviceEvpnDatabase(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1276,7 +1276,7 @@ ShowSiteDeviceForwardingTable(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1354,7 +1354,7 @@ ShowSiteDeviceMacTable(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1429,7 +1429,7 @@ StartSiteLocateDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1486,7 +1486,7 @@ StopSiteLocateDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1568,7 +1568,7 @@ TracerouteFromDevice(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1643,7 +1643,7 @@ UploadSiteDeviceSupportFile(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

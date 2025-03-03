@@ -18,7 +18,7 @@ type NacTag struct {
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
     // If `type`==`gbp_tag`
     GbpTag               *int                    `json:"gbp_tag,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID              `json:"id,omitempty"`
     // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
     Match                *NacTagMatchEnum        `json:"match,omitempty"`

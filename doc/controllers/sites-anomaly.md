@@ -12,7 +12,7 @@ sitesAnomaly := client.SitesAnomaly()
 
 * [Get Site Anomaly Events](../../doc/controllers/sites-anomaly.md#get-site-anomaly-events)
 * [Get Site Anomaly Events for Client](../../doc/controllers/sites-anomaly.md#get-site-anomaly-events-for-client)
-* [Get Site Anomaly Eventsfor Device](../../doc/controllers/sites-anomaly.md#get-site-anomaly-eventsfor-device)
+* [Get Site Anomaly Events for Device](../../doc/controllers/sites-anomaly.md#get-site-anomaly-events-for-device)
 
 
 # Get Site Anomaly Events
@@ -33,11 +33,11 @@ GetSiteAnomalyEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 
 ## Response Type
 
-[`models.ResponseAnomalySearch`](../../doc/models/response-anomaly-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAnomalySearch](../../doc/models/response-anomaly-search.md).
 
 ## Example Usage
 
@@ -89,11 +89,11 @@ GetSiteAnomalyEventsForClient(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 
 ## Response Type
 
-[`models.ResponseAnomalySearch`](../../doc/models/response-anomaly-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAnomalySearch](../../doc/models/response-anomaly-search.md).
 
 ## Example Usage
 
@@ -127,12 +127,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Anomaly Eventsfor Device
+# Get Site Anomaly Events for Device
 
 Get Device Anomaly Events
 
 ```go
-GetSiteAnomalyEventsforDevice(
+GetSiteAnomalyEventsForDevice(
     ctx context.Context,
     siteId uuid.UUID,
     metric string,
@@ -146,12 +146,12 @@ GetSiteAnomalyEventsforDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
 
-[`models.ResponseAnomalySearch`](../../doc/models/response-anomaly-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAnomalySearch](../../doc/models/response-anomaly-search.md).
 
 ## Example Usage
 
@@ -164,7 +164,7 @@ metric := "metric8"
 
 deviceMac := "0000000000ab"
 
-apiResponse, err := sitesAnomaly.GetSiteAnomalyEventsforDevice(ctx, siteId, metric, deviceMac)
+apiResponse, err := sitesAnomaly.GetSiteAnomalyEventsForDevice(ctx, siteId, metric, deviceMac)
 if err != nil {
     log.Fatalln(err)
 } else {

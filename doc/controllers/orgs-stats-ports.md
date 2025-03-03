@@ -95,7 +95,7 @@ SearchOrgSwOrGwPorts(
 
 ## Response Type
 
-[`models.ResponsePortStatsSearch`](../../doc/models/response-port-stats-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePortStatsSearch](../../doc/models/response-port-stats-search.md).
 
 ## Example Usage
 

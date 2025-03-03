@@ -42,7 +42,7 @@ CreateMspSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -153,7 +153,7 @@ DeleteMspSso(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -223,7 +223,7 @@ DownloadMspSamlMetadata(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -277,7 +277,7 @@ GetMspSamlMetadata(
 
 ## Response Type
 
-[`models.SamlMetadata`](../../doc/models/saml-metadata.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SamlMetadata](../../doc/models/saml-metadata.md).
 
 ## Example Usage
 
@@ -342,7 +342,7 @@ GetMspSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -420,7 +420,7 @@ ListMspSsoLatestFailures(
 
 ## Response Type
 
-[`models.ResponseSsoFailureSearch`](../../doc/models/response-sso-failure-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsoFailureSearch](../../doc/models/response-sso-failure-search.md).
 
 ## Example Usage
 
@@ -486,7 +486,7 @@ ListMspSsos(
 
 ## Response Type
 
-[`[]models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -566,7 +566,7 @@ UpdateMspSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 

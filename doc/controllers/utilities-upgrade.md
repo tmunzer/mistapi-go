@@ -55,7 +55,7 @@ CancelOrgDeviceUpgrade(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -107,7 +107,7 @@ CancelOrgSsrUpgrade(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -159,7 +159,7 @@ CancelSiteDeviceUpgrade(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -211,7 +211,7 @@ GetOrgDeviceUpgrade(
 
 ## Response Type
 
-[`models.ResponseUpgradeOrgDevices`](../../doc/models/response-upgrade-org-devices.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseUpgradeOrgDevices](../../doc/models/response-upgrade-org-devices.md).
 
 ## Example Usage
 
@@ -300,7 +300,7 @@ GetOrgMxEdgeUpgrade(
 
 ## Response Type
 
-[`models.ResponseMxedgeUpgrade`](../../doc/models/response-mxedge-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
 
 ## Example Usage
 
@@ -354,7 +354,7 @@ GetSiteDeviceUpgrade(
 
 ## Response Type
 
-[`models.ResponseSiteDeviceUpgrade`](../../doc/models/response-site-device-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSiteDeviceUpgrade](../../doc/models/response-site-device-upgrade.md).
 
 ## Example Usage
 
@@ -456,7 +456,7 @@ GetSiteSsrUpgrade(
 
 ## Response Type
 
-[`models.ResponseSsrUpgradeStatus`](../../doc/models/response-ssr-upgrade-status.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsrUpgradeStatus](../../doc/models/response-ssr-upgrade-status.md).
 
 ## Example Usage
 
@@ -516,7 +516,7 @@ Get List of Available Device Versions
 ListOrgAvailableDeviceVersions(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error)
@@ -527,12 +527,12 @@ ListOrgAvailableDeviceVersions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | Fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
 
 ## Response Type
 
-[`[]models.DeviceVersionItem`](../../doc/models/device-version-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.DeviceVersionItem](../../doc/models/device-version-item.md).
 
 ## Example Usage
 
@@ -541,7 +541,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -604,7 +604,7 @@ ListOrgAvailableSsrVersions(
 
 ## Response Type
 
-[`[]models.SsrVersion`](../../doc/models/ssr-version.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SsrVersion](../../doc/models/ssr-version.md).
 
 ## Example Usage
 
@@ -649,7 +649,7 @@ if err != nil {
 
 # List Org Device Upgrades
 
-Get List of Org multiple devces upgrades
+Get List of Org multiple devices upgrades
 
 ```go
 ListOrgDeviceUpgrades(
@@ -667,7 +667,7 @@ ListOrgDeviceUpgrades(
 
 ## Response Type
 
-[`[]models.UpgradeOrgDevicesItem`](../../doc/models/upgrade-org-devices-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UpgradeOrgDevicesItem](../../doc/models/upgrade-org-devices-item.md).
 
 ## Example Usage
 
@@ -733,7 +733,7 @@ ListOrgMxEdgeUpgrades(
 
 ## Response Type
 
-[`[]models.ResponseMxedgeUpgrade`](../../doc/models/response-mxedge-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
 
 ## Example Usage
 
@@ -783,7 +783,7 @@ ListOrgSsrUpgrades(
 
 ## Response Type
 
-[`[]models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ResponseSsrUpgrade](../../doc/models/response-ssr-upgrade.md).
 
 ## Example Usage
 
@@ -842,7 +842,7 @@ Get List of Available Device Versions
 ListSiteAvailableDeviceVersions(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     model *string) (
     models.ApiResponse[[]models.DeviceVersionItem],
     error)
@@ -853,12 +853,12 @@ ListSiteAvailableDeviceVersions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | Fetch version for device model, use/combine with `type` as needed (for switch and gateway devices) |
 
 ## Response Type
 
-[`[]models.DeviceVersionItem`](../../doc/models/device-version-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.DeviceVersionItem](../../doc/models/device-version-item.md).
 
 ## Example Usage
 
@@ -867,7 +867,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
@@ -930,7 +930,7 @@ ListSiteDeviceUpgrades(
 
 ## Response Type
 
-[`[]models.ResponseSiteDeviceUpgradesItem`](../../doc/models/response-site-device-upgrades-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ResponseSiteDeviceUpgradesItem](../../doc/models/response-site-device-upgrades-item.md).
 
 ## Example Usage
 
@@ -1011,7 +1011,7 @@ UpgradeDevice(
 
 ## Response Type
 
-[`models.ResponseDeviceUpgrade`](../../doc/models/response-device-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceUpgrade](../../doc/models/response-device-upgrade.md).
 
 ## Example Usage
 
@@ -1058,7 +1058,7 @@ if err != nil {
 
 # Upgrade Org Devices
 
-Upgrade Multiple Sites (Only supported for Access Points ugprades)
+Upgrade Multiple Sites (Only supported for Access Points upgrades)
 
 ```go
 UpgradeOrgDevices(
@@ -1078,7 +1078,7 @@ UpgradeOrgDevices(
 
 ## Response Type
 
-[`models.ResponseUpgradeOrgDevices`](../../doc/models/response-upgrade-org-devices.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseUpgradeOrgDevices](../../doc/models/response-upgrade-org-devices.md).
 
 ## Example Usage
 
@@ -1088,11 +1088,13 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeOrgDevices{
-    Force:                   models.ToPointer(false),
+    AllSites:                models.ToPointer(false),
+    DownloadStrategy:        models.ToPointer(models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG),
     MaxFailurePercentage:    models.ToPointer(5),
     P2pClusterSize:          models.ToPointer(0),
-    Reboot:                  models.ToPointer(false),
     RebootAt:                models.ToPointer(1624399840),
+    RebootDatetime:          models.ToPointer("2024-06-13 15:00:00-07:00"),
+    RebootStrategy:          models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
     RrmFirstBatchPercentage: models.ToPointer(2),
     RrmMaxBatchPercentage:   models.ToPointer(10),
     RrmMeshUpgrade:          models.ToPointer(models.UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL),
@@ -1110,9 +1112,9 @@ body := models.UpgradeOrgDevices{
         },
     },
     Snapshot:                models.ToPointer(false),
+    StartDatetime:           models.ToPointer("2024-06-13 15:00:00-07:00"),
     StartTime:               models.ToPointer(1624399840),
     Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
-    Version:                 models.ToPointer("3.1.5"),
 }
 
 apiResponse, err := utilitiesUpgrade.UpgradeOrgDevices(ctx, orgId, &body)
@@ -1195,7 +1197,7 @@ UpgradeOrgJsiDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1251,7 +1253,7 @@ UpgradeOrgMxEdges(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1329,7 +1331,7 @@ UpgradeOrgSsrs(
 
 ## Response Type
 
-[`models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsrUpgrade](../../doc/models/response-ssr-upgrade.md).
 
 ## Example Usage
 
@@ -1412,7 +1414,7 @@ UpgradeSiteDevices(
 
 ## Response Type
 
-[`models.ResponseUpgradeId`](../../doc/models/response-upgrade-id.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseUpgradeId](../../doc/models/response-upgrade-id.md).
 
 ## Example Usage
 
@@ -1502,7 +1504,7 @@ UpgradeSsr(
 
 ## Response Type
 
-[`models.ResponseSsrUpgrade`](../../doc/models/response-ssr-upgrade.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsrUpgrade](../../doc/models/response-ssr-upgrade.md).
 
 ## Example Usage
 

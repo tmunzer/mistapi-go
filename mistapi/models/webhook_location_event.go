@@ -17,7 +17,7 @@ type WebhookLocationEvent struct {
     IbeaconMajor           *int                          `json:"ibeacon_major,omitempty"`
     IbeaconMinor           *int                          `json:"ibeacon_minor,omitempty"`
     IbeaconUuid            *uuid.UUID                    `json:"ibeacon_uuid,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                     uuid.UUID                     `json:"id"`
     Mac                    *string                       `json:"mac,omitempty"`
     // Map id

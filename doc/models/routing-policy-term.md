@@ -28,15 +28,13 @@
       "add_target_vrfs9",
       "add_target_vrfs8"
     ],
-    "aggregate": [
-      "aggregate1",
-      "aggregate0",
-      "aggregate9"
-    ],
     "community": [
       "community8",
       "community9",
       "community0"
+    ],
+    "exclude_as_path": [
+      "exclude_as_path4"
     ],
     "exampleAdditionalProperty": {
       "key1": "val1",

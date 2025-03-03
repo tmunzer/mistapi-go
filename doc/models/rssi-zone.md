@@ -16,7 +16,7 @@ RSSI Zone
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Devices` | [`[]models.RssiZoneDevice`](../../doc/models/rssi-zone-device.md) | Required | List of devices and the respective RSSI values to be considered in the zone<br>**Constraints**: *Unique Items Required* |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the zone |
 | `OrgId` | `*uuid.UUID` | Optional | - |

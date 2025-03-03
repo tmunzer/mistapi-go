@@ -8,6 +8,7 @@ import (
 // SiteSettingJuniperSrxGateway represents a SiteSettingJuniperSrxGateway struct.
 type SiteSettingJuniperSrxGateway struct {
     ApiKey               *string                `json:"api_key,omitempty"`
+    ApiPassword          *string                `json:"api_password,omitempty"`
     ApiUrl               *string                `json:"api_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -16,8 +17,8 @@ type SiteSettingJuniperSrxGateway struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingJuniperSrxGateway) String() string {
     return fmt.Sprintf(
-    	"SiteSettingJuniperSrxGateway[ApiKey=%v, ApiUrl=%v, AdditionalProperties=%v]",
-    	s.ApiKey, s.ApiUrl, s.AdditionalProperties)
+    	"SiteSettingJuniperSrxGateway[ApiKey=%v, ApiPassword=%v, ApiUrl=%v, AdditionalProperties=%v]",
+    	s.ApiKey, s.ApiPassword, s.ApiUrl, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingJuniperSrxGateway.
@@ -26,7 +27,7 @@ func (s SiteSettingJuniperSrxGateway) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "api_key", "api_url"); err != nil {
+        "api_key", "api_password", "api_url"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -38,6 +39,9 @@ func (s SiteSettingJuniperSrxGateway) toMap() map[string]any {
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
     if s.ApiKey != nil {
         structMap["api_key"] = s.ApiKey
+    }
+    if s.ApiPassword != nil {
+        structMap["api_password"] = s.ApiPassword
     }
     if s.ApiUrl != nil {
         structMap["api_url"] = s.ApiUrl
@@ -53,19 +57,21 @@ func (s *SiteSettingJuniperSrxGateway) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "api_key", "api_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "api_key", "api_password", "api_url")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.ApiKey = temp.ApiKey
+    s.ApiPassword = temp.ApiPassword
     s.ApiUrl = temp.ApiUrl
     return nil
 }
 
 // tempSiteSettingJuniperSrxGateway is a temporary struct used for validating the fields of SiteSettingJuniperSrxGateway.
 type tempSiteSettingJuniperSrxGateway  struct {
-    ApiKey *string `json:"api_key,omitempty"`
-    ApiUrl *string `json:"api_url,omitempty"`
+    ApiKey      *string `json:"api_key,omitempty"`
+    ApiPassword *string `json:"api_password,omitempty"`
+    ApiUrl      *string `json:"api_url,omitempty"`
 }

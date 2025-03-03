@@ -14,16 +14,16 @@
 | `CurrentPhase` | `*int` | Optional | Current canary or rrm phase in progress |
 | `EnableP2p` | `*bool` | Optional | Whether to allow local AP-to-AP FW upgrade<br>**Default**: `false` |
 | `Force` | `*bool` | Optional | Whether to force upgrade when requested version is same as running version |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `MaxFailurePercentage` | `*int` | Optional | Percentage of failures allowed |
 | `MaxFailures` | `[]int` | Optional | If `strategy`==`canary`. Number of failures allowed within each phase. Only applicable for `canary`. Array length should be same as `canary_phases`. Will be used if provided, else `max_failure_percentage` will be used |
 | `RebootAt` | `*int` | Optional | reboot start time in epoch |
 | `StartTime` | `*int` | Optional | Firmware download start time in epoch |
 | `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued` |
-| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)<br>**Default**: `"big_bang"` |
+| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br>**Default**: `"big_bang"` |
 | `TargetVersion` | `*string` | Optional | Version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |
 | `Targets` | [`*models.UpgradeDevicesTargets`](../../doc/models/upgrade-devices-targets.md) | Optional | - |
-| `UpgradePlan` | `map[string][]string` | Optional | If `stragegy`!=`big_bang`, a dictionary of phase number to devices part of that phase |
+| `UpgradePlan` | `map[string][]string` | Optional | If `strategy`!=`big_bang`, a dictionary of phase number to devices part of that phase |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

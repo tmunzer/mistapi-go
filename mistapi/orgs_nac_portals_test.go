@@ -184,8 +184,8 @@ func TestOrgsNACPortalsTestUploadOrgNacPortalImage(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestOrgsNACPortalsTestUpdateOrgNacPortalTempalte tests the behavior of the OrgsNACPortals
-func TestOrgsNACPortalsTestUpdateOrgNacPortalTempalte(t *testing.T) {
+// TestOrgsNACPortalsTestUpdateOrgNacPortalTemplate tests the behavior of the OrgsNACPortals
+func TestOrgsNACPortalsTestUpdateOrgNacPortalTemplate(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -196,7 +196,7 @@ func TestOrgsNACPortalsTestUpdateOrgNacPortalTempalte(t *testing.T) {
         t.Error(errUUID)
     }
     
-    resp, err := orgsNacPortals.UpdateOrgNacPortalTempalte(ctx, orgId, nacportalId, nil)
+    resp, err := orgsNacPortals.UpdateOrgNacPortalTemplate(ctx, orgId, nacportalId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

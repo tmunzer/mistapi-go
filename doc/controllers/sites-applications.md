@@ -29,7 +29,7 @@ ListSiteApps(
 
 ## Response Type
 
-[`[]models.SiteApp`](../../doc/models/site-app.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SiteApp](../../doc/models/site-app.md).
 
 ## Example Usage
 

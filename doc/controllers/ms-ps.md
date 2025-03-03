@@ -39,7 +39,7 @@ CreateMsp(
 
 ## Response Type
 
-[`models.Msp`](../../doc/models/msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Msp](../../doc/models/msp.md).
 
 ## Example Usage
 
@@ -102,7 +102,7 @@ DeleteMsp(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -150,7 +150,7 @@ GetMspDetails(
 
 ## Response Type
 
-[`models.Msp`](../../doc/models/msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Msp](../../doc/models/msp.md).
 
 ## Example Usage
 
@@ -223,7 +223,7 @@ SearchMspOrgGroup(
 
 ## Response Type
 
-[`models.ResponseSearch`](../../doc/models/response-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSearch](../../doc/models/response-search.md).
 
 ## Example Usage
 
@@ -304,7 +304,7 @@ UpdateMsp(
 
 ## Response Type
 
-[`models.Msp`](../../doc/models/msp.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Msp](../../doc/models/msp.md).
 
 ## Example Usage
 

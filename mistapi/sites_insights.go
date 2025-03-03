@@ -25,7 +25,7 @@ func NewSitesInsights(baseController baseController) *SitesInsights {
 // returns an models.ApiResponse with models.InsightMetrics data and
 // an error if there was an issue with the request or response.
 // Get Client Insight Metrics
-// See metrics possibilities at /api/v1/const/insight_metrics
+// See metrics possibilities at [List Insight Metrics]($e/Constants%20Definitions/listInsightMetrics)
 func (s *SitesInsights) GetSiteInsightMetricsForClient(
     ctx context.Context,
     siteId uuid.UUID,
@@ -92,7 +92,7 @@ func (s *SitesInsights) GetSiteInsightMetricsForClient(
 // returns an models.ApiResponse with models.ResponseDeviceMetrics data and
 // an error if there was an issue with the request or response.
 // Get AP Insight Metrics
-// See metrics possibilities at /api/v1/const/insight_metrics
+// See metrics possibilities at [List Insight Metrics]($e/Constants%20Definitions/listInsightMetrics)
 func (s *SitesInsights) GetSiteInsightMetricsForDevice(
     ctx context.Context,
     siteId uuid.UUID,
@@ -159,7 +159,7 @@ func (s *SitesInsights) GetSiteInsightMetricsForDevice(
 // returns an models.ApiResponse with models.InsightMetrics data and
 // an error if there was an issue with the request or response.
 // Get Site Insight Metrics
-// See metrics possibilities at /api/v1/const/insight_metrics
+// See metrics possibilities at [List Insight Metrics]($e/Constants%20Definitions/listInsightMetrics)
 func (s *SitesInsights) GetSiteInsightMetrics(
     ctx context.Context,
     siteId uuid.UUID,

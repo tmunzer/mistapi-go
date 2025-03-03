@@ -19,7 +19,7 @@ type Mxtunnel struct {
     // In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.
     HelloInterval        Optional[int]          `json:"hello_interval"`
     HelloRetries         Optional[int]          `json:"hello_retries"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Ipsec                *MxtunnelIpsec         `json:"ipsec,omitempty"`
     // When the object has been modified for the last time, in epoch

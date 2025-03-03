@@ -44,7 +44,7 @@ ClearSiteApAutoOrient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -104,7 +104,7 @@ ClearSiteApAutoplacement(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -142,7 +142,14 @@ if err != nil {
 
 # Confirm Site Ap Localization Data
 
-This API is used to accept or reject the cached autoplacement and auto orientation values of a map or subset of APs on a map. A rejected AP will retain its current X,Y and orientation until accpeted.
+This API is used to accept or reject the cached autoplacement and auto-orientation values of a map or subset of APs on a map. Any APs that have autoplacement values are stored in cache for up to 7 days while awaiting acceptance or rejection.
+
+```
+Accepting the autoplacement values overwrites the existing X, Y, and orientation of the accepted APs with their cached autoplacement values.
+Rejecting the autoplacement values causes the APs to retain their current X, Y, and orientation.
+```
+
+Once a decision (accept or reject) is made, or the 7-day time-to-live (TTL) expires, the cached values are deleted.
 
 ```go
 ConfirmSiteApLocalizationData(
@@ -164,7 +171,7 @@ ConfirmSiteApLocalizationData(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -195,7 +202,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Invalid localization service expected: placement or orientation | `ApiError` |
+| 400 | Map does not exist or belong to specified site / Invalid localization service. Expected [placement, orientation] | `ApiError` |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -224,7 +231,7 @@ DeleteSiteApAutoOrientation(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -276,7 +283,7 @@ DeleteSiteApAutoplacement(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -340,7 +347,7 @@ GetSiteApAutoPlacement(
 
 ## Response Type
 
-[`models.ResponseAutoPlacementInfo`](../../doc/models/response-auto-placement-info.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAutoPlacementInfo](../../doc/models/response-auto-placement-info.md).
 
 ## Example Usage
 
@@ -384,9 +391,13 @@ if err != nil {
 
 # Run Site Ap Autoplacement
 
-This API is called to trigger a map for auto placement. For auto placement feature to work, RTT-FTM data need to be collected from the APs on the map. This scan is disruptive and therefore the user must be notified of service disrution during the functioning of auto placement Repeated POST to this endpoint while a map is still running will be rejected.
+This API is called to trigger auto placement for a map. For the auto placement feature to work, RTT-FTM data needs to be collected from the APs on the map.  
+This scan is disruptive, and users must be notified of service disruption during the auto placement process. Repeated POST requests to this endpoint while a map is still running will be rejected.
 
-List of devices to provide suggestions for is an optional parameter that can be given to this API. This will provide autoplacement suggestions only for the devices specified. If no list of devices is provided, all APs asociated with that map are considered by default
+`force_collection` is set to `false` by default. If `force_collection` is set to `false`, the API attempts to start localization with existing data. If no data exists, the API attempts to start orchestration.  
+If `force_collection` is set to `true`, the API attempts to start orchestration.
+
+Providing a list of devices is optional. If provided, autoplacement suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 
 ```go
 RunSiteApAutoplacement(
@@ -394,7 +405,7 @@ RunSiteApAutoplacement(
     siteId uuid.UUID,
     mapId uuid.UUID,
     body *models.AutoPlacement) (
-    http.Response,
+    models.ApiResponse[models.ResponseAutoplacement],
     error)
 ```
 
@@ -408,7 +419,7 @@ RunSiteApAutoplacement(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAutoplacement](../../doc/models/response-autoplacement.md).
 
 ## Example Usage
 
@@ -420,14 +431,40 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AutoPlacement{
+    Dryrun:               models.ToPointer(false),
     ForceCollection:      models.ToPointer(false),
+    Override:             models.ToPointer(false),
 }
 
-resp, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, &body)
+apiResponse, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
-    fmt.Println(resp.StatusCode)
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "devices": {
+    "00000000001": {
+      "valid": true
+    },
+    "00000000002": {
+      "valid": true
+    },
+    "00000000003": {
+      "valid": true
+    }
+  },
+  "estimated_runtime": 30,
+  "reason": "Map Already Enqueued",
+  "started": false,
+  "valid": true
 }
 ```
 
@@ -435,7 +472,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | * Map has less than 3 APs associated with it to perform auto placement<br>* Auto AP Placement is already in progress for this Map<br>* Autoplacement data does not exist or has gone stale | `ApiError` |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -446,7 +483,7 @@ if err != nil {
 
 This API is called to trigger a map for auto orientation. For auto orient feature to work, BLE data needs to be collected from the APs on the map. This precess is not disruptive unlike FTM collection. Repeated POST to this endpoint while a map is still running will be rejected.
 
-List of devices to provide suggestions for is an optional parameter that can be given to this API. This will provide auto orient suggestions only for the devices specified. If no list of devices is provided, all APs asociated with that map are considered by default
+List of devices to provide suggestions for is an optional parameter that can be given to this API. This will provide auto orient suggestions only for the devices specified. If no list of devices is provided, all APs associated with that map are considered by default
 
 ```go
 StartSiteApAutoOrientation(
@@ -468,7 +505,7 @@ StartSiteApAutoOrientation(
 
 ## Response Type
 
-[`models.ResponseAutoOrientation`](../../doc/models/response-auto-orientation.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAutoOrientation](../../doc/models/response-auto-orientation.md).
 
 ## Example Usage
 

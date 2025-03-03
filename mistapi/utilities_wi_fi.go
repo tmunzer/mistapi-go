@@ -347,7 +347,7 @@ func (u *UtilitiesWiFi) ResetSiteAllApsToUseRrm(
 func (u *UtilitiesWiFi) ZeroizeSiteFipsAllAps(
     ctx context.Context,
     siteId uuid.UUID,
-    body *models.UtilsZeroiseFips) (
+    body *models.UtilsZeroizeFips) (
     *http.Response,
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/zeroize")

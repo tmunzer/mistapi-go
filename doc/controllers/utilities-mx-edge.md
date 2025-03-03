@@ -31,7 +31,7 @@ PreemptSitesMxTunnel(
 
 ## Response Type
 
-[`models.ResponseMxtunnelsPreemptAps`](../../doc/models/response-mxtunnels-preempt-aps.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxtunnelsPreemptAps](../../doc/models/response-mxtunnels-preempt-aps.md).
 
 ## Example Usage
 

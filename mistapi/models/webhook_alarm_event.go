@@ -17,7 +17,7 @@ type WebhookAlarmEvent struct {
     // Event id
     EventId              *uuid.UUID             `json:"event_id,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     LastSeen             float64                `json:"last_seen"`
     // only for HA. enum: `node0`, `node1`

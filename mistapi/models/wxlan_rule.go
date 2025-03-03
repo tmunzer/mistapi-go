@@ -26,11 +26,11 @@ type WxlanRule struct {
     DstWxtags            []string               `json:"dst_wxtags,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
-    // Prder how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
+    // Order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
     Order                int                    `json:"order"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

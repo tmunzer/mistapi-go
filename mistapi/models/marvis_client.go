@@ -8,11 +8,11 @@ import (
 
 // MarvisClient represents a MarvisClient struct.
 type MarvisClient struct {
-    Diabled              *bool                  `json:"diabled,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    Disabled             *bool                  `json:"disabled,omitempty"`
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
-    // In MDM, add `--provision_url <provision_url>` to the instlal command
+    // In MDM, add `--provision_url <provision_url>` to the install command
     ProvisionUrl         *string                `json:"provision_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -21,8 +21,8 @@ type MarvisClient struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MarvisClient) String() string {
     return fmt.Sprintf(
-    	"MarvisClient[Diabled=%v, Id=%v, Name=%v, ProvisionUrl=%v, AdditionalProperties=%v]",
-    	m.Diabled, m.Id, m.Name, m.ProvisionUrl, m.AdditionalProperties)
+    	"MarvisClient[Disabled=%v, Id=%v, Name=%v, ProvisionUrl=%v, AdditionalProperties=%v]",
+    	m.Disabled, m.Id, m.Name, m.ProvisionUrl, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MarvisClient.
@@ -31,7 +31,7 @@ func (m MarvisClient) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "diabled", "id", "name", "provision_url"); err != nil {
+        "disabled", "id", "name", "provision_url"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -41,8 +41,8 @@ func (m MarvisClient) MarshalJSON() (
 func (m MarvisClient) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, m.AdditionalProperties)
-    if m.Diabled != nil {
-        structMap["diabled"] = m.Diabled
+    if m.Disabled != nil {
+        structMap["disabled"] = m.Disabled
     }
     if m.Id != nil {
         structMap["id"] = m.Id
@@ -64,13 +64,13 @@ func (m *MarvisClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "diabled", "id", "name", "provision_url")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "id", "name", "provision_url")
     if err != nil {
     	return err
     }
     m.AdditionalProperties = additionalProperties
     
-    m.Diabled = temp.Diabled
+    m.Disabled = temp.Disabled
     m.Id = temp.Id
     m.Name = temp.Name
     m.ProvisionUrl = temp.ProvisionUrl
@@ -79,7 +79,7 @@ func (m *MarvisClient) UnmarshalJSON(input []byte) error {
 
 // tempMarvisClient is a temporary struct used for validating the fields of MarvisClient.
 type tempMarvisClient  struct {
-    Diabled      *bool      `json:"diabled,omitempty"`
+    Disabled     *bool      `json:"disabled,omitempty"`
     Id           *uuid.UUID `json:"id,omitempty"`
     Name         *string    `json:"name,omitempty"`
     ProvisionUrl *string    `json:"provision_url,omitempty"`

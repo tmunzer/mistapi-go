@@ -3,23 +3,24 @@ package models
 import (
     "encoding/json"
     "fmt"
-    "github.com/google/uuid"
 )
 
 // CallTroubleshootSummary represents a CallTroubleshootSummary struct.
 type CallTroubleshootSummary struct {
-    Mac                  *string                  `json:"mac,omitempty"`
-    MeetingId            *uuid.UUID               `json:"meeting_id,omitempty"`
-    Results              []CallTroubleshootSummar `json:"results,omitempty"`
-    AdditionalProperties map[string]interface{}   `json:"_"`
+    AudioIn              *CallTroubleshootSummaryData `json:"audio_in,omitempty"`
+    AudioOut             *CallTroubleshootSummaryData `json:"audio_out,omitempty"`
+    Timestamp            *int                         `json:"timestamp,omitempty"`
+    VideoIn              *CallTroubleshootSummaryData `json:"video_in,omitempty"`
+    VideoOut             *CallTroubleshootSummaryData `json:"video_out,omitempty"`
+    AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for CallTroubleshootSummary,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CallTroubleshootSummary) String() string {
     return fmt.Sprintf(
-    	"CallTroubleshootSummary[Mac=%v, MeetingId=%v, Results=%v, AdditionalProperties=%v]",
-    	c.Mac, c.MeetingId, c.Results, c.AdditionalProperties)
+    	"CallTroubleshootSummary[AudioIn=%v, AudioOut=%v, Timestamp=%v, VideoIn=%v, VideoOut=%v, AdditionalProperties=%v]",
+    	c.AudioIn, c.AudioOut, c.Timestamp, c.VideoIn, c.VideoOut, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummary.
@@ -28,7 +29,7 @@ func (c CallTroubleshootSummary) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(c.AdditionalProperties,
-        "mac", "meeting_id", "results"); err != nil {
+        "audio_in", "audio_out", "timestamp", "video_in", "video_out"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(c.toMap())
@@ -38,14 +39,20 @@ func (c CallTroubleshootSummary) MarshalJSON() (
 func (c CallTroubleshootSummary) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, c.AdditionalProperties)
-    if c.Mac != nil {
-        structMap["mac"] = c.Mac
+    if c.AudioIn != nil {
+        structMap["audio_in"] = c.AudioIn.toMap()
     }
-    if c.MeetingId != nil {
-        structMap["meeting_id"] = c.MeetingId
+    if c.AudioOut != nil {
+        structMap["audio_out"] = c.AudioOut.toMap()
     }
-    if c.Results != nil {
-        structMap["results"] = c.Results
+    if c.Timestamp != nil {
+        structMap["timestamp"] = c.Timestamp
+    }
+    if c.VideoIn != nil {
+        structMap["video_in"] = c.VideoIn.toMap()
+    }
+    if c.VideoOut != nil {
+        structMap["video_out"] = c.VideoOut.toMap()
     }
     return structMap
 }
@@ -58,21 +65,25 @@ func (c *CallTroubleshootSummary) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "meeting_id", "results")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "audio_in", "audio_out", "timestamp", "video_in", "video_out")
     if err != nil {
     	return err
     }
     c.AdditionalProperties = additionalProperties
     
-    c.Mac = temp.Mac
-    c.MeetingId = temp.MeetingId
-    c.Results = temp.Results
+    c.AudioIn = temp.AudioIn
+    c.AudioOut = temp.AudioOut
+    c.Timestamp = temp.Timestamp
+    c.VideoIn = temp.VideoIn
+    c.VideoOut = temp.VideoOut
     return nil
 }
 
 // tempCallTroubleshootSummary is a temporary struct used for validating the fields of CallTroubleshootSummary.
 type tempCallTroubleshootSummary  struct {
-    Mac       *string                  `json:"mac,omitempty"`
-    MeetingId *uuid.UUID               `json:"meeting_id,omitempty"`
-    Results   []CallTroubleshootSummar `json:"results,omitempty"`
+    AudioIn   *CallTroubleshootSummaryData `json:"audio_in,omitempty"`
+    AudioOut  *CallTroubleshootSummaryData `json:"audio_out,omitempty"`
+    Timestamp *int                         `json:"timestamp,omitempty"`
+    VideoIn   *CallTroubleshootSummaryData `json:"video_in,omitempty"`
+    VideoOut  *CallTroubleshootSummaryData `json:"video_out,omitempty"`
 }

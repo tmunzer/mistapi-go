@@ -43,7 +43,7 @@ AssignOrgDeviceProfile(
 
 ## Response Type
 
-[`models.ResponseAssignSuccess`](../../doc/models/response-assign-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ CreateOrgDeviceProfiles(
 
 ## Response Type
 
-[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.Deviceprofile.
 
 ## Example Usage
 
@@ -160,6 +160,8 @@ if err != nil {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
     } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileSwitch(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileSwitch: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
@@ -289,7 +291,7 @@ DeleteOrgDeviceProfile(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -341,7 +343,7 @@ GetOrgDeviceProfile(
 
 ## Response Type
 
-[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.Deviceprofile.
 
 ## Example Usage
 
@@ -362,6 +364,8 @@ if err != nil {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
     } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileSwitch(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileSwitch: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)
@@ -477,7 +481,7 @@ Get List of Org Device Profiles
 ListOrgDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Deviceprofile],
@@ -489,13 +493,13 @@ ListOrgDeviceProfiles(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
 
 ## Response Type
 
-[`[]models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.Deviceprofile.
 
 ## Example Usage
 
@@ -504,7 +508,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeEnum_AP
+mType := models.DeviceTypeDefaultApEnum_AP
 
 limit := 100
 
@@ -521,6 +525,8 @@ if err != nil {
             fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *i)
         } else if i, ok := item.AsDeviceprofileGateway(); ok {
             fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *i)
+        } else if i, ok := item.AsDeviceprofileSwitch(); ok {
+            fmt.Println("Value narrowed down to models.DeviceprofileSwitch: ", *i)
         }
     }
 
@@ -660,7 +666,7 @@ UnassignOrgDeviceProfile(
 
 ## Response Type
 
-[`models.ResponseAssignSuccess`](../../doc/models/response-assign-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAssignSuccess](../../doc/models/response-assign-success.md).
 
 ## Example Usage
 
@@ -733,7 +739,7 @@ UpdateOrgDeviceProfile(
 
 ## Response Type
 
-[`models.Deviceprofile`](../../doc/models/containers/deviceprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.Deviceprofile.
 
 ## Example Usage
 
@@ -802,6 +808,8 @@ if err != nil {
         fmt.Println("Value narrowed down to models.DeviceprofileAp: ", *r)
     } else if r, ok := responseBody.AsDeviceprofileGateway(); ok {
         fmt.Println("Value narrowed down to models.DeviceprofileGateway: ", *r)
+    } else if r, ok := responseBody.AsDeviceprofileSwitch(); ok {
+        fmt.Println("Value narrowed down to models.DeviceprofileSwitch: ", *r)
     }
 
     fmt.Println(apiResponse.Response.StatusCode)

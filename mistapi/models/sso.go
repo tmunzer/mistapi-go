@@ -23,7 +23,7 @@ type Sso struct {
     Domain                  *string                      `json:"domain,omitempty"`
     // Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group
     GroupFilter             *string                      `json:"group_filter,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                      *uuid.UUID                   `json:"id,omitempty"`
     // If `idp_type`==`saml`. IDP Cert (used to verify the signed response)
     IdpCert                 *string                      `json:"idp_cert,omitempty"`

@@ -34,7 +34,7 @@ RRM
     "key0": {
       "bandwidth": 20,
       "channel": 80,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 200,
       "curr_power": 116,
       "exampleAdditionalProperty": {
@@ -45,7 +45,7 @@ RRM
     "key1": {
       "bandwidth": 20,
       "channel": 80,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 200,
       "curr_power": 116,
       "exampleAdditionalProperty": {
@@ -56,7 +56,7 @@ RRM
     "key2": {
       "bandwidth": 20,
       "channel": 80,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 200,
       "curr_power": 116,
       "exampleAdditionalProperty": {
@@ -95,7 +95,7 @@ RRM
     "key0": {
       "bandwidth": 20,
       "channel": 132,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 252,
       "curr_power": 64,
       "exampleAdditionalProperty": {
@@ -106,7 +106,7 @@ RRM
     "key1": {
       "bandwidth": 20,
       "channel": 132,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 252,
       "curr_power": 64,
       "exampleAdditionalProperty": {
@@ -175,7 +175,7 @@ RRM
     "key0": {
       "bandwidth": 20,
       "channel": 200,
-      "curr_bandwidht": 80,
+      "curr_bandwidth": 80,
       "curr_channel": 64,
       "curr_power": 252,
       "exampleAdditionalProperty": {

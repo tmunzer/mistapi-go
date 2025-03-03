@@ -58,9 +58,9 @@
 | `WlanId` | `uuid.UUID` | Required | WLAN ID the client is connected to |
 | `WxruleId` | `*uuid.UUID` | Optional | Current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched. |
 | `WxruleUsage` | [`[]models.StatsWirelessClientWxruleUsage`](../../doc/models/stats-wireless-client-wxrule-usage.md) | Optional | Current WxlanRule usage per tag_id |
-| `X` | `*float64` | Optional | Estimated clinet location in pixels |
+| `X` | `*float64` | Optional | Estimated client location in pixels |
 | `XM` | `*float64` | Optional | Estimated client location in meter |
-| `Y` | `*float64` | Optional | Estimated clinet location in pixels |
+| `Y` | `*float64` | Optional | Estimated client location in pixels |
 | `YM` | `*float64` | Optional | Estimated client location in meter |
 | `Zones` | [`[]models.StatsWirelessClientZone`](../../doc/models/stats-wireless-client-zone.md) | Optional | List of zone_id’s where client is in and since when (if known) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

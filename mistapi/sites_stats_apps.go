@@ -22,7 +22,7 @@ func NewSitesStatsApps(baseController baseController) *SitesStatsApps {
 }
 
 // CountSiteApps takes context, siteId, distinct, deviceMac, app, wired as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Applications
 func (s *SitesStatsApps) CountSiteApps(
@@ -32,7 +32,7 @@ func (s *SitesStatsApps) CountSiteApps(
     deviceMac *string,
     app *string,
     wired *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/apps/count")
     req.AppendTemplateParams(siteId)
@@ -67,12 +67,12 @@ func (s *SitesStatsApps) CountSiteApps(
         req.QueryParam("wired", *wired)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }

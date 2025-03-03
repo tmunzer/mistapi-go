@@ -25,7 +25,7 @@ func NewSitesMapsAutoZone(baseController baseController) *SitesMapsAutoZone {
 // DeleteSiteMapAutoZone takes context, mapId, siteId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is proccessing the map or awaiting review will be rejected.
+// This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is processing the map or awaiting review will be rejected.
 func (s *SitesMapsAutoZone) DeleteSiteMapAutoZone(
     ctx context.Context,
     mapId uuid.UUID,
@@ -104,7 +104,7 @@ func (s *SitesMapsAutoZone) GetSiteMapAutoZoneStatus(
 // StartSiteMapAutoZone takes context, mapId, siteId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Reppeated POST requests to this endpoint while the auto zones service is proccessing the map will be rejected.
+// This API starts the auto zones service for a specified map. This map must have an image to parse for the auto zones service. Repeated POST requests to this endpoint while the auto zones service is processing the map will be rejected.
 func (s *SitesMapsAutoZone) StartSiteMapAutoZone(
     ctx context.Context,
     mapId uuid.UUID,

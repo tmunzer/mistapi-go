@@ -13,7 +13,7 @@ orgsVars := client.OrgsVars()
 
 Search vars
 
-Example: /api/v1/orgs/:org_id/vars/search?vars=*
+Example: /api/v1/orgs/{org_id}/vars/search?vars=*
 
 ```go
 SearchOrgVars(
@@ -41,7 +41,7 @@ SearchOrgVars(
 
 ## Response Type
 
-[`models.ResponseSearchVar`](../../doc/models/response-search-var.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSearchVar](../../doc/models/response-search-var.md).
 
 ## Example Usage
 

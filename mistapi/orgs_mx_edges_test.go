@@ -265,7 +265,8 @@ func TestOrgsMxEdgesTestGetOrgMxEdgeUpgradeInfo(t *testing.T) {
         t.Error(errUUID)
     }
     channel := models.GetOrgMxedgeUpgradeInfoChannelEnum("stable")
-    apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel)
+    
+    apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -384,6 +385,29 @@ func TestOrgsMxEdgesTestBounceOrgMxEdgeDataPorts(t *testing.T) {
         t.Errorf("Cannot parse the model object.")
     }
     resp, err := orgsMxEdges.BounceOrgMxEdgeDataPorts(ctx, orgId, mxedgeId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestOrgsMxEdgesTestDisconnectOrgMxEdgeTuntermAps tests the behavior of the OrgsMxEdges
+func TestOrgsMxEdgesTestDisconnectOrgMxEdgeTuntermAps(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mxedgeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.MacAddresses
+    errBody := json.Unmarshal([]byte(`{"macs":["5c5b353e4eb1","5c5b353e4eb2"]}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    resp, err := orgsMxEdges.DisconnectOrgMxEdgeTuntermAps(ctx, orgId, mxedgeId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

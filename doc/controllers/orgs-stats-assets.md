@@ -24,7 +24,7 @@ CountOrgAssetsByDistanceField(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgAssetCountDistinctEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -37,7 +37,7 @@ CountOrgAssetsByDistanceField(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -117,7 +117,7 @@ ListOrgAssetsStats(
 
 ## Response Type
 
-[`[]models.StatsAsset`](../../doc/models/stats-asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsAsset](../../doc/models/stats-asset.md).
 
 ## Example Usage
 
@@ -247,7 +247,7 @@ SearchOrgAssets(
 
 ## Response Type
 
-[`models.ResponseStatsAssets`](../../doc/models/response-stats-assets.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseStatsAssets](../../doc/models/response-stats-assets.md).
 
 ## Example Usage
 

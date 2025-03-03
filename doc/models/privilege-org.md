@@ -1,7 +1,7 @@
 
 # Privilege Org
 
-Privilieges settings
+Privileges settings
 
 *This model accepts additional fields of type interface{}.*
 

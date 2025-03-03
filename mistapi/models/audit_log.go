@@ -18,7 +18,7 @@ type AuditLog struct {
     // Field values prior to the change
     Before               *interface{}           `json:"before,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Message              string                 `json:"message"`
     OrgId                uuid.UUID              `json:"org_id"`

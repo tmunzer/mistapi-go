@@ -15,7 +15,7 @@ type AlarmTemplate struct {
     CreatedTime          *float64                     `json:"created_time,omitempty"`
     // Delivery object to configure the alarm delivery
     Delivery             Delivery                     `json:"delivery"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                   `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                     `json:"modified_time,omitempty"`

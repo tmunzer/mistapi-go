@@ -6,7 +6,7 @@ import (
 )
 
 // JunosOtherIpConfig represents a JunosOtherIpConfig struct.
-// Optional, if it's required to have switch's L3 presense on a network/vlan
+// Optional, if it's required to have switch's L3 presence on a network/vlan
 type JunosOtherIpConfig struct {
     // For EVPN, if anycast is desired
     EvpnAnycast          *bool                  `json:"evpn_anycast,omitempty"`

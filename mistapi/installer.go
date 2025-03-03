@@ -69,7 +69,7 @@ func (i *Installer) ListInstallerAlarmTemplates(
 func (i *Installer) ListInstallerDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum) (
+    mType *models.DeviceTypeDefaultApEnum) (
     models.ApiResponse[[]models.InstallersItem],
     error) {
     req := i.prepareRequest(ctx, "GET", "/api/v1/installer/orgs/%v/deviceprofiles")
@@ -106,11 +106,11 @@ func (i *Installer) ListInstallerDeviceProfiles(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListInstallerListOfRenctlyClaimedDevices takes context, orgId, model, siteName, siteId, limit, page as parameters and
+// ListInstallerListOfRecentlyClaimedDevices takes context, orgId, model, siteName, siteId, limit, page as parameters and
 // returns an models.ApiResponse with []models.InstallerDevice data and
 // an error if there was an issue with the request or response.
 // Get List of recently claimed devices
-func (i *Installer) ListInstallerListOfRenctlyClaimedDevices(
+func (i *Installer) ListInstallerListOfRecentlyClaimedDevices(
     ctx context.Context,
     orgId uuid.UUID,
     model *string,
@@ -523,11 +523,11 @@ func (i *Installer) GetInstallerDeviceVirtualChassis(
 // returns an models.ApiResponse with models.ResponseVirtualChassisConfig data and
 // an error if there was an issue with the request or response.
 // For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.
-// In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn’t have dedicated VC ports, below are procedures to automate the VC creation:
-// 1. Power on the switch that is choosen as the VC master first. And then powering on the other member switches.
+// In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn't have dedicated VC ports, below are procedures to automate the VC creation:
+// 1. Power on the switch that is chosen as the VC master first. And then powering on the other member switches.
 // 2. Claim or adopt all these switches under the same organization’s Inventory
 // 3. Assign these switches into the same Site
-// 4. Invoke vc command on the switch choosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
+// 4. Invoke vc command on the switch chosen to be the VC master. For EX2300-C-12P, VC ports will be created automatically.
 // 5. Connect the cables to the VC ports for these switches
 // 6. Wait for the VC to be formed. The Org’s inventory will be updated for the new VC.
 func (i *Installer) CreateInstallerVirtualChassis(
@@ -598,9 +598,9 @@ func (i *Installer) CreateInstallerVirtualChassis(
 // 5. The Org’s Inventory shows the switch is removed.
 // Please notice that member ID 0 (fpc0) cannot be removed. When a VC has two switches left, unplugging the cable may result in the situation that fpc0 becomes a line card (LC). When this situation is happening, please re-plug in the cable, wait for both switches becoming present (show virtual-chassis) and then removing the cable again.
 // ## Renumber a member switch
-// When a member switch doesn’ t work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
+// When a member switch doesn't' work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
 // 1. Replace a non-fpc0 member switch
-// 2. Replace fpc0. When fpc0 is relaced, PAPI device config and JUNOS config will be both updated.
+// 2. Replace fpc0. When fpc0 is replaced, PAPI device config and JUNOS config will be both updated.
 // For renumber to work, the following procedures are needed: 
 // 1. Ensuring the VC is connected to the cloud and the state of the member switch to be replaced must be non present. 
 // 2. Adding the new member switch to the VC 

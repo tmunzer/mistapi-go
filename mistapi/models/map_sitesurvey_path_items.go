@@ -9,7 +9,7 @@ import (
 // MapSitesurveyPathItems represents a MapSitesurveyPathItems struct.
 type MapSitesurveyPathItems struct {
     Coordinate           *string                `json:"coordinate,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     Nodes                []MapNode              `json:"nodes,omitempty"`

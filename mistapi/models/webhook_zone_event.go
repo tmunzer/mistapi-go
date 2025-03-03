@@ -12,7 +12,7 @@ import (
 type WebhookZoneEvent struct {
     // UUID of named asset
     AssetId              *uuid.UUID                  `json:"asset_id,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                   `json:"id"`
     // MAC address of Wi-Fi client or asset
     Mac                  *string                     `json:"mac,omitempty"`

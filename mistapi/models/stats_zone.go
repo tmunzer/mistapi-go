@@ -17,7 +17,7 @@ type StatsZone struct {
     ClientsWaits         *StatsZoneClientsWaits    `json:"clients_waits,omitempty"`
     // When the object has been created, in epoch
     CreatedTime          *float64                  `json:"created_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                 `json:"id"`
     // Map_id of the zone
     MapId                uuid.UUID                 `json:"map_id"`

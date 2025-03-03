@@ -32,7 +32,7 @@
 | `AuthServersNasIp` | `models.Optional[string]` | Optional | Optional, NAS-IP-ADDRESS to use |
 | `AuthServersRetries` | `*int` | Optional | Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.<br>**Default**: `2` |
 | `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.<br>**Default**: `5` |
-| `Band` | `*string` | Optional | `band` is deprecated and kept for backward compability. Use bands instead |
+| `Band` | `*string` | Optional | `band` is deprecated and kept for backward compatibility. Use bands instead |
 | `BandSteer` | `*bool` | Optional | Whether to enable band_steering, this works only when band==both<br>**Default**: `false` |
 | `BandSteerForceBand5` | `*bool` | Optional | Force dual_band capable client to connect to 5G<br>**Default**: `false` |
 | `Bands` | [`[]models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Optional | List of radios that the wlan should apply to. |
@@ -46,6 +46,7 @@
 | `CoaServers` | [`[]models.CoaServer`](../../doc/models/coa-server.md) | Optional | List of COA (change of authorization) servers, optional |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Disable11ax` | `*bool` | Optional | Some old WLAN drivers may not be compatible<br>**Default**: `false` |
+| `Disable11be` | `*bool` | Optional | To disable Wi-Fi 7 EHT IEs<br>**Default**: `false` |
 | `DisableHtVhtRates` | `*bool` | Optional | To disable ht or vht rates<br>**Default**: `false` |
 | `DisableUapsd` | `*bool` | Optional | Whether to disable U-APSD<br>**Default**: `false` |
 | `DisableV1RoamNotify` | `*bool` | Optional | Disable sending v2 roam notification messages<br>**Default**: `false` |
@@ -58,7 +59,7 @@
 | `DynamicPsk` | [`models.Optional[models.WlanDynamicPsk]`](../../doc/models/wlan-dynamic-psk.md) | Optional | For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)<br><br>* PSK will come from RADIUS server<br>* AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)<br>* AP sends BSSID:SSID as Caller-Station-ID<br>* `auth_servers` is required<br>* PSK will come from cloud WLC if source is cloud_psks<br>* default_psk will be used if cloud WLC is not available<br>* `multi_psk_only` and `psk` is ignored<br>* `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap) |
 | `DynamicVlan` | [`models.Optional[models.WlanDynamicVlan]`](../../doc/models/wlan-dynamic-vlan.md) | Optional | For 802.1x |
 | `EnableLocalKeycaching` | `*bool` | Optional | Enable AP-AP keycaching via multicast<br>**Default**: `false` |
-| `EnableWirelessBridging` | `*bool` | Optional | By default, we'd inspect all DHCP packets and drop those unrelated to the wireless client itself in the case where client is a wireless bridge (DHCP packets for other MACs will need to be orwarded), wireless_bridging can be enabled<br>**Default**: `false` |
+| `EnableWirelessBridging` | `*bool` | Optional | By default, we'd inspect all DHCP packets and drop those unrelated to the wireless client itself in the case where client is a wireless bridge (DHCP packets for other MACs will need to be forwarded), wireless_bridging can be enabled<br>**Default**: `false` |
 | `EnableWirelessBridgingDhcpTracking` | `*bool` | Optional | If the client bridge is doing DHCP on behalf of other devices (L2-NAT), enable dhcp_tracking will cut down DHCP response packets to be forwarded to wireless<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | If this wlan is enabled<br>**Default**: `true` |
 | `FastDot1xTimers` | `*bool` | Optional | If set to true, sets default fast-timers with values calculated from ‘auth_servers_timeout’ and ‘auth_server_retries’ .<br>**Default**: `false` |
@@ -66,7 +67,7 @@
 | `HideSsid` | `*bool` | Optional | Whether to hide SSID in beacon<br>**Default**: `false` |
 | `HostnameIe` | `*bool` | Optional | Include hostname inside IE in AP beacons / probe responses<br>**Default**: `false` |
 | `Hotspot20` | [`*models.WlanHotspot20`](../../doc/models/wlan-hotspot-20.md) | Optional | Hostspot 2.0 wlan settings |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `InjectDhcpOption82` | [`*models.WlanInjectDhcpOption82`](../../doc/models/wlan-inject-dhcp-option-82.md) | Optional | - |
 | `Interface` | [`*models.WlanInterfaceEnum`](../../doc/models/wlan-interface-enum.md) | Optional | where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
 | `Isolation` | `*bool` | Optional | Whether to stop clients to talk to each other<br>**Default**: `false` |
@@ -81,7 +82,7 @@
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxtunnelId` | `*uuid.UUID` | Optional | (deprecated, use mxtunnel_ids instead) when `interface`==`mxtunnel`, id of the Mist Tunnel |
 | `MxtunnelIds` | `[]string` | Optional | When `interface`=`mxtunnel`, id of the Mist Tunnel |
-| `MxtunnelName` | `[]string` | Optional | When `interface`=`site_medge`, name of the mxtunnel that in mxtunnels under Site Setting |
+| `MxtunnelName` | `[]string` | Optional | When `interface`=`site_mxedge`, name of the mxtunnel that in mxtunnels under Site Setting |
 | `NoStaticDns` | `*bool` | Optional | Whether to only allow client to use DNS that we’ve learned from DHCP response<br>**Default**: `false` |
 | `NoStaticIp` | `*bool` | Optional | Whether to only allow client that we’ve learned from DHCP exchange to talk<br>**Default**: `false` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -139,6 +140,7 @@
   "client_limit_down_enabled": false,
   "client_limit_up_enabled": false,
   "disable_11ax": false,
+  "disable_11be": false,
   "disable_ht_vht_rates": false,
   "disable_uapsd": false,
   "disable_v1_roam_notify": false,

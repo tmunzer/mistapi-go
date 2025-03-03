@@ -22,7 +22,7 @@ orgsAlarmTemplates := client.OrgsAlarmTemplates()
 
 # Create Org Alarm Template
 
-Available rules can be found in Orgs>Consts>getAlarmDefs
+Available rules can be found in [List Alarm Definitions#](../../doc/controllers/constants-definitions.md#list-alarm-definitions)
 
 The delivery dict is only required if different from the template delivery settings.
 
@@ -44,7 +44,7 @@ CreateOrgAlarmTemplate(
 
 ## Response Type
 
-[`models.AlarmTemplate`](../../doc/models/alarm-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AlarmTemplate](../../doc/models/alarm-template.md).
 
 ## Example Usage
 
@@ -129,7 +129,7 @@ DeleteOrgAlarmTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -181,7 +181,7 @@ GetOrgAlarmTemplate(
 
 ## Response Type
 
-[`models.AlarmTemplate`](../../doc/models/alarm-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AlarmTemplate](../../doc/models/alarm-template.md).
 
 ## Example Usage
 
@@ -237,7 +237,7 @@ ListOrgAlarmTemplates(
 
 ## Response Type
 
-[`[]models.AlarmTemplate`](../../doc/models/alarm-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.AlarmTemplate](../../doc/models/alarm-template.md).
 
 ## Example Usage
 
@@ -293,7 +293,7 @@ ListOrgSuppressedAlarms(
 
 ## Response Type
 
-[`models.ResponseOrgSuppressAlarm`](../../doc/models/response-org-suppress-alarm.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgSuppressAlarm](../../doc/models/response-org-suppress-alarm.md).
 
 ## Example Usage
 
@@ -370,7 +370,7 @@ SuppressOrgAlarm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -424,7 +424,7 @@ UnsuppressOrgSuppressedAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -476,7 +476,7 @@ UpdateOrgAlarmTemplate(
 
 ## Response Type
 
-[`models.AlarmTemplate`](../../doc/models/alarm-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AlarmTemplate](../../doc/models/alarm-template.md).
 
 ## Example Usage
 

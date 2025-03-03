@@ -9,7 +9,7 @@ import (
 )
 
 // PrivilegeMsp represents a PrivilegeMsp struct.
-// Privilieges settings
+// Privileges settings
 type PrivilegeMsp struct {
     // If `scope`==`org`
     OrgId                *uuid.UUID               `json:"org_id,omitempty"`

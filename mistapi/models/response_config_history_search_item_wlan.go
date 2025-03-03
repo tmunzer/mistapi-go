@@ -12,7 +12,7 @@ import (
 type ResponseConfigHistorySearchItemWlan struct {
     Auth                 string                 `json:"auth"`
     Bands                []string               `json:"bands,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Ssid                 string                 `json:"ssid"`
     VlanIds              []string               `json:"vlan_ids,omitempty"`

@@ -16,6 +16,8 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
+| `AggregateRoutes` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "172.16.3.0/24") |
+| `AggregateRoutes6` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64") |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
@@ -26,7 +28,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `EvpnConfig` | [`*models.EvpnConfig`](../../doc/models/evpn-config.md) | Optional | EVPN Junos settings |
 | `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | - |
 | `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |
 | `Image3Url` | `models.Optional[string]` | Optional | - |
@@ -47,7 +49,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `OspfAreas` | [`map[string]models.OspfArea`](../../doc/models/ospf-area.md) | Optional | Junos OSPF areas |
 | `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Property key is the network name. Defines the additional IP Addresses configured on the device. |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
-| `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed |
+| `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
@@ -73,6 +75,28 @@ You can configure `port_usages` and `networks` settings at the device level, but
 
 ```json
 {
+  "aggregate_routes": {
+    "172.16.3.0/24": {
+      "discard": false,
+      "metric": 28,
+      "preference": 30,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "aggregate_routes6": {
+    "2a02:1234:420a:10c9::/64": {
+      "discard": false,
+      "metric": 126,
+      "preference": 30,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
   "disable_auto_config": false,
   "extra_routes6": {
     "2a02:1234:420a:10c9::/64": {
@@ -178,8 +202,6 @@ You can configure `port_usages` and `networks` settings at the device level, but
     "additional_config_cmds2",
     "additional_config_cmds3"
   ],
-  "created_time": 110.44,
-  "deviceprofile_id": "000024d0-0000-0000-0000-000000000000",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

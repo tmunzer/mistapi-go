@@ -13,7 +13,7 @@ type ResponseSsrUpgrade struct {
     Channel              string                   `json:"channel"`
     Counts               ResponseSsrUpgradeCounts `json:"counts"`
     DeviceType           string                   `json:"device_type"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                `json:"id"`
     Status               string                   `json:"status"`
     Strategy             string                   `json:"strategy"`

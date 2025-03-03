@@ -36,7 +36,7 @@ CountSiteRogueEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -59,7 +59,7 @@ CountSiteRogueEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -151,7 +151,7 @@ GetSiteRogueAP(
 
 ## Response Type
 
-[`models.RogueDetails`](../../doc/models/rogue-details.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.RogueDetails](../../doc/models/rogue-details.md).
 
 ## Example Usage
 
@@ -224,7 +224,7 @@ ListSiteRogueAPs(
 
 ## Response Type
 
-[`models.ResponseInsightRogue`](../../doc/models/response-insight-rogue.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseInsightRogue](../../doc/models/response-insight-rogue.md).
 
 ## Example Usage
 
@@ -318,7 +318,7 @@ ListSiteRogueClients(
 
 ## Response Type
 
-[`models.ResponseInsightRogueClient`](../../doc/models/response-insight-rogue-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseInsightRogueClient](../../doc/models/response-insight-rogue-client.md).
 
 ## Example Usage
 
@@ -420,7 +420,7 @@ SearchSiteRogueEvents(
 
 ## Response Type
 
-[`models.ResponseEventsRogueSearch`](../../doc/models/response-events-rogue-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsRogueSearch](../../doc/models/response-events-rogue-search.md).
 
 ## Example Usage
 

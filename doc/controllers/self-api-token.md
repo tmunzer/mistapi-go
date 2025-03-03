@@ -38,7 +38,7 @@ CreateApiToken(
 
 ## Response Type
 
-[`[]models.UserApitoken`](../../doc/models/user-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UserApitoken](../../doc/models/user-apitoken.md).
 
 ## Example Usage
 
@@ -104,7 +104,7 @@ DeleteApiToken(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -152,7 +152,7 @@ GetApiToken(
 
 ## Response Type
 
-[`models.UserApitoken`](../../doc/models/user-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserApitoken](../../doc/models/user-apitoken.md).
 
 ## Example Usage
 
@@ -207,7 +207,7 @@ ListApiTokens(
 
 ## Response Type
 
-[`[]models.UserApitoken`](../../doc/models/user-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UserApitoken](../../doc/models/user-apitoken.md).
 
 ## Example Usage
 
@@ -271,7 +271,7 @@ UpdateApiToken(
 
 ## Response Type
 
-[`models.UserApitoken`](../../doc/models/user-apitoken.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserApitoken](../../doc/models/user-apitoken.md).
 
 ## Example Usage
 

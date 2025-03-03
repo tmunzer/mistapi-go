@@ -42,7 +42,7 @@ CreateMspOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -122,7 +122,7 @@ DeleteMspOrg(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -174,7 +174,7 @@ GetMspOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -248,7 +248,7 @@ ListMspOrgStats(
 
 ## Response Type
 
-[`[]models.StatsOrg`](../../doc/models/stats-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsOrg](../../doc/models/stats-org.md).
 
 ## Example Usage
 
@@ -302,7 +302,7 @@ ListMspOrgs(
 
 ## Response Type
 
-[`[]models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -374,7 +374,7 @@ ManageMspOrgs(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -441,7 +441,7 @@ SearchMspOrgs(
 
 ## Response Type
 
-[`models.ResponseOrgSearch`](../../doc/models/response-org-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgSearch](../../doc/models/response-org-search.md).
 
 ## Example Usage
 
@@ -555,7 +555,7 @@ UpdateMspOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 

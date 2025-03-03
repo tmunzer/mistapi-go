@@ -8,7 +8,7 @@ import (
 
 // InstallersItem represents a InstallersItem struct.
 type InstallersItem struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

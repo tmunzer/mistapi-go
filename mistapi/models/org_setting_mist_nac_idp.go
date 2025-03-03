@@ -10,7 +10,7 @@ import (
 type OrgSettingMistNacIdp struct {
     // When the IDP of mxedge_proxy type, exclude the following realms from proxying in addition to other valid home realms in this org
     ExcludeRealms        []string               `json:"exclude_realms,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // Which realm should trigger this IDP. User Realm is extracted from:
     // * Username-AVP (`mist.com` from john@mist.com)

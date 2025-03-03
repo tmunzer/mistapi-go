@@ -17,7 +17,7 @@ type CaptureClient struct {
     Duration             Optional[int]          `json:"duration"`
     IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
     MaxPktLen            Optional[int]          `json:"max_pkt_len"`
-    // Number of packets to capture, 0 for unlimited, default is 1024 for client-capture
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
     NumPackets           Optional[int]          `json:"num_packets"`
     // Optional filter by ssid
     Ssid                 Optional[string]       `json:"ssid"`

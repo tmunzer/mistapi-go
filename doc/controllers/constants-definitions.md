@@ -18,6 +18,7 @@ constantsDefinitions := client.ConstantsDefinitions()
 * [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions)
 * [List Applications](../../doc/controllers/constants-definitions.md#list-applications)
 * [List Country Codes](../../doc/controllers/constants-definitions.md#list-country-codes)
+* [List Fingerprint Types](../../doc/controllers/constants-definitions.md#list-fingerprint-types)
 * [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)
 * [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 * [List Marvis Client Versions](../../doc/controllers/constants-definitions.md#list-marvis-client-versions)
@@ -40,7 +41,7 @@ GetLicenseTypes(
 
 ## Response Type
 
-[`[]models.ConstLicenseType`](../../doc/models/const-license-type.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstLicenseType](../../doc/models/const-license-type.md).
 
 ## Example Usage
 
@@ -88,7 +89,7 @@ if err != nil {
 
 Get List of brief definitions of all the supported alarm types.
 
-The example field contains an example payload as you would recieve in the alarm webhook output.
+The example field contains an example payload as you would receive in the alarm webhook output.
 
 HA cluster node names will be specified in the `node` field, if applicable.'
 
@@ -101,7 +102,7 @@ ListAlarmDefinitions(
 
 ## Response Type
 
-[`[]models.ConstAlarmDefinition`](../../doc/models/const-alarm-definition.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstAlarmDefinition](../../doc/models/const-alarm-definition.md).
 
 ## Example Usage
 
@@ -184,7 +185,7 @@ ListApChannels(
 
 ## Response Type
 
-[`models.ConstApChannel`](../../doc/models/const-ap-channel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ConstApChannel](../../doc/models/const-ap-channel.md).
 
 ## Example Usage
 
@@ -654,7 +655,7 @@ ListApLedDefinition(
 
 ## Response Type
 
-[`[]models.ConstApLed`](../../doc/models/const-ap-led.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstApLed](../../doc/models/const-ap-led.md).
 
 ## Example Usage
 
@@ -697,7 +698,7 @@ if err != nil {
 
 # List App Category Definitions
 
-Get List of definitions of all the supported Application Categories. The example field contains an example payload as you would recieve in the alarm webhook output.
+Get List of definitions of all the supported Application Categories. The example field contains an example payload as you would receive in the alarm webhook output.
 
 ```go
 ListAppCategoryDefinitions(
@@ -708,7 +709,7 @@ ListAppCategoryDefinitions(
 
 ## Response Type
 
-[`[]models.ConstAppCategoryDefinition`](../../doc/models/const-app-category-definition.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstAppCategoryDefinition](../../doc/models/const-app-category-definition.md).
 
 ## Example Usage
 
@@ -774,7 +775,7 @@ if err != nil {
 
 # List App Sub Category Definitions
 
-Get List of definitions of all the supported Application sub-categories. The example field contains an example payload as you would recieve in the alarm webhook output.
+Get List of definitions of all the supported Application sub-categories. The example field contains an example payload as you would receive in the alarm webhook output.
 
 ```go
 ListAppSubCategoryDefinitions(
@@ -785,7 +786,7 @@ ListAppSubCategoryDefinitions(
 
 ## Response Type
 
-[`[]models.ConstAppSubcategoryDefinition`](../../doc/models/const-app-subcategory-definition.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstAppSubcategoryDefinition](../../doc/models/const-app-subcategory-definition.md).
 
 ## Example Usage
 
@@ -838,7 +839,7 @@ ListApplications(
 
 ## Response Type
 
-[`[]models.ConstApplicationDefinition`](../../doc/models/const-application-definition.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstApplicationDefinition](../../doc/models/const-application-definition.md).
 
 ## Example Usage
 
@@ -904,7 +905,7 @@ ListCountryCodes(
 
 ## Response Type
 
-[`[]models.ConstCountry`](../../doc/models/const-country.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstCountry](../../doc/models/const-country.md).
 
 ## Example Usage
 
@@ -947,6 +948,96 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# List Fingerprint Types
+
+Get List of supported fingerprint attribute values
+
+* family
+* model
+* mfg
+* os_type
+
+This information can be used in the [Mist NAC Rules]($h/Orgs%20NAC%20Rules/_overview) `matching` attribute.
+
+```go
+ListFingerprintTypes(
+    ctx context.Context) (
+    models.ApiResponse[models.ConstFingerprintTypes],
+    error)
+```
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ConstFingerprintTypes](../../doc/models/const-fingerprint-types.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListFingerprintTypes(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "family": [
+    "2Wire Router",
+    "3Com Switches",
+    "ACTi Corporation Network Camera",
+    "APC Video Equipment",
+    "APC-Schneider UPS",
+    "Aastra VoIP",
+    "Acer",
+    "Actiontec Wireless Router",
+    "Aerohive Access Point",
+    "Alcatel",
+    "Alcatel VoIP",
+    "Amazon Echo"
+  ],
+  "mfg": [
+    "100fio Networks Technology llc",
+    "10NET COMMUNICATIONS/DCA",
+    "11wave Technonlogy Co.,Ltd",
+    "12Sided Technology, LLC",
+    "1Net Corporation",
+    "1Verge Internet Technology (Beijing) Co., Ltd."
+  ],
+  "model": [
+    "10T Lite",
+    "10T Pro",
+    "10th Gen",
+    "11 Lite",
+    "11 Pro",
+    "11 Pro Max"
+  ],
+  "os_type": [
+    "Android",
+    "Apple OS",
+    "Asha Platform OS"
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # List Gateway Applications
 
 Get the full list of applications that we recognize
@@ -960,7 +1051,7 @@ ListGatewayApplications(
 
 ## Response Type
 
-[`[]models.ConstGatewayApplicationsDefinition`](../../doc/models/const-gateway-applications-definition.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstGatewayApplicationsDefinition](../../doc/models/const-gateway-applications-definition.md).
 
 ## Example Usage
 
@@ -1014,7 +1105,7 @@ ListInsightMetrics(
 
 ## Response Type
 
-[`map[string]models.ConstInsightMetricsProperty`](../../doc/models/const-insight-metrics-property.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [map[string]models.ConstInsightMetricsProperty](../../doc/models/const-insight-metrics-property.md).
 
 ## Example Usage
 
@@ -1140,7 +1231,7 @@ ListMarvisClientVersions(
 
 ## Response Type
 
-[`[]models.ConstMarvisClientVersion`](../../doc/models/const-marvis-client-version.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstMarvisClientVersion](../../doc/models/const-marvis-client-version.md).
 
 ## Example Usage
 
@@ -1209,7 +1300,7 @@ ListSiteLanguages(
 
 ## Response Type
 
-[`[]models.ConstLanguage`](../../doc/models/const-language.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstLanguage](../../doc/models/const-language.md).
 
 ## Example Usage
 
@@ -1269,7 +1360,7 @@ ListStates(
 
 ## Response Type
 
-[`[]models.ConstState`](../../doc/models/const-state.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstState](../../doc/models/const-state.md).
 
 ## Example Usage
 
@@ -1339,7 +1430,7 @@ ListTrafficTypes(
 
 ## Response Type
 
-[`[]models.ConstTrafficType`](../../doc/models/const-traffic-type.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstTrafficType](../../doc/models/const-traffic-type.md).
 
 ## Example Usage
 
@@ -1397,7 +1488,7 @@ ListWebhookTopics(
 
 ## Response Type
 
-[`[]models.ConstWebhookTopic`](../../doc/models/const-webhook-topic.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstWebhookTopic](../../doc/models/const-webhook-topic.md).
 
 ## Example Usage
 
@@ -1450,6 +1541,7 @@ if err != nil {
     "key": "client-sessions"
   },
   {
+    "allows_single_event_per_message": true,
     "for_org": true,
     "key": "device-events"
   },

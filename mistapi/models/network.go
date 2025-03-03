@@ -17,7 +17,7 @@ type Network struct {
     DisallowMistServices *bool                             `json:"disallow_mist_services,omitempty"`
     Gateway              *string                           `json:"gateway,omitempty"`
     Gateway6             *string                           `json:"gateway6,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                        `json:"id,omitempty"`
     InternalAccess       *NetworkInternalAccess            `json:"internal_access,omitempty"`
     // Whether this network has direct internet access

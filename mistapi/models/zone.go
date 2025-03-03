@@ -12,7 +12,7 @@ type Zone struct {
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // Map where this zone is defined
     MapId                *uuid.UUID             `json:"map_id,omitempty"`

@@ -72,7 +72,7 @@ var orgsClientsWireless OrgsClientsWireless
 
 var orgsClientsSdk OrgsClientsSDK
 
-var orgsCradlepoint OrgsCradlepoint
+var orgsIntegrationCradlepoint OrgsIntegrationCradlepoint
 
 var orgsCrl OrgsCRL
 
@@ -84,9 +84,11 @@ var orgsDevicesSsr OrgsDevicesSSR
 
 var orgsEvpnTopologies OrgsEVPNTopologies
 
+var orgsIntegrationJuniper OrgsIntegrationJuniper
+
 var orgsDevicesOthers OrgsDevicesOthers
 
-var orgsSettingZscaler OrgsSettingZscaler
+var orgsIntegrationZscaler OrgsIntegrationZscaler
 
 var orgsScep OrgsSCEP
 
@@ -98,13 +100,15 @@ var orgsIdpProfiles OrgsIDPProfiles
 
 var orgsInventory OrgsInventory
 
-var orgsJse OrgsJSE
+var orgsIntegrationJse OrgsIntegrationJSE
+
+var orgsAdvancedAntiMalwareProfiles OrgsAdvancedAntiMalwareProfiles
+
+var orgsIntegrationSkyAtp OrgsIntegrationSkyATP
 
 var orgsJsi OrgsJSI
 
 var orgsLicenses OrgsLicenses
-
-var orgsLinkedApplications OrgsLinkedApplications
 
 var orgsLogs OrgsLogs
 
@@ -119,6 +123,8 @@ var orgsMxEdges OrgsMxEdges
 var orgsMxTunnels OrgsMxTunnels
 
 var orgsNacidp OrgsNACIDP
+
+var orgsNacFingerprints OrgsNACFingerprints
 
 var orgsNacTags OrgsNACTags
 
@@ -164,7 +170,7 @@ var orgsSdkInvites OrgsSDKInvites
 
 var orgsSdkTemplates OrgsSDKTemplates
 
-var orgsSecPolicies OrgsSecPolicies
+var orgsSecurityPolicies OrgsSecurityPolicies
 
 var orgsServices OrgsServices
 
@@ -183,8 +189,6 @@ var orgsSlEs OrgsSLEs
 var orgsSsoRoles OrgsSSORoles
 
 var orgsSso OrgsSSO
-
-var orgsSubscriptions OrgsSubscriptions
 
 var orgsWlanTemplates OrgsWLANTemplates
 
@@ -425,23 +429,25 @@ func init() {
     orgsClientsWired = *client.OrgsClientsWired()
     orgsClientsWireless = *client.OrgsClientsWireless()
     orgsClientsSdk = *client.OrgsClientsSDK()
-    orgsCradlepoint = *client.OrgsCradlepoint()
+    orgsIntegrationCradlepoint = *client.OrgsIntegrationCradlepoint()
     orgsCrl = *client.OrgsCRL()
     orgsDeviceProfiles = *client.OrgsDeviceProfiles()
     orgsDevices = *client.OrgsDevices()
     orgsDevicesSsr = *client.OrgsDevicesSSR()
     orgsEvpnTopologies = *client.OrgsEVPNTopologies()
+    orgsIntegrationJuniper = *client.OrgsIntegrationJuniper()
     orgsDevicesOthers = *client.OrgsDevicesOthers()
-    orgsSettingZscaler = *client.OrgsSettingZscaler()
+    orgsIntegrationZscaler = *client.OrgsIntegrationZscaler()
     orgsScep = *client.OrgsSCEP()
     orgsGatewayTemplates = *client.OrgsGatewayTemplates()
     orgsGuests = *client.OrgsGuests()
     orgsIdpProfiles = *client.OrgsIDPProfiles()
     orgsInventory = *client.OrgsInventory()
-    orgsJse = *client.OrgsJSE()
+    orgsIntegrationJse = *client.OrgsIntegrationJSE()
+    orgsAdvancedAntiMalwareProfiles = *client.OrgsAdvancedAntiMalwareProfiles()
+    orgsIntegrationSkyAtp = *client.OrgsIntegrationSkyATP()
     orgsJsi = *client.OrgsJSI()
     orgsLicenses = *client.OrgsLicenses()
-    orgsLinkedApplications = *client.OrgsLinkedApplications()
     orgsLogs = *client.OrgsLogs()
     orgsMarvis = *client.OrgsMarvis()
     orgsMaps = *client.OrgsMaps()
@@ -449,6 +455,7 @@ func init() {
     orgsMxEdges = *client.OrgsMxEdges()
     orgsMxTunnels = *client.OrgsMxTunnels()
     orgsNacidp = *client.OrgsNACIDP()
+    orgsNacFingerprints = *client.OrgsNACFingerprints()
     orgsNacTags = *client.OrgsNACTags()
     orgsNacPortals = *client.OrgsNACPortals()
     orgsNaccrl = *client.OrgsNACCRL()
@@ -471,7 +478,7 @@ func init() {
     orgsRfTemplates = *client.OrgsRFTemplates()
     orgsSdkInvites = *client.OrgsSDKInvites()
     orgsSdkTemplates = *client.OrgsSDKTemplates()
-    orgsSecPolicies = *client.OrgsSecPolicies()
+    orgsSecurityPolicies = *client.OrgsSecurityPolicies()
     orgsServices = *client.OrgsServices()
     orgsServicePolicies = *client.OrgsServicePolicies()
     orgsSetting = *client.OrgsSetting()
@@ -481,7 +488,6 @@ func init() {
     orgsSlEs = *client.OrgsSLEs()
     orgsSsoRoles = *client.OrgsSSORoles()
     orgsSso = *client.OrgsSSO()
-    orgsSubscriptions = *client.OrgsSubscriptions()
     orgsWlanTemplates = *client.OrgsWLANTemplates()
     orgsTickets = *client.OrgsTickets()
     orgsUserMaCs = *client.OrgsUserMACs()

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2412.1.40**
+> Version: **2502.1.1**
 > 
-> Date: **February 21, 2025**
+> Date: **March 3, 2025**
 
 ---
 
@@ -126,6 +126,7 @@ The SDK can be configured to use a different environment for making API calls. A
 | Mist Global 02 | - |
 | Mist Global 03 | - |
 | Mist Global 04 | - |
+| Mist Global 05 | - |
 | Mist EMEA 01 | - |
 | Mist EMEA 02 | - |
 | Mist EMEA 03 | - |
@@ -166,6 +167,7 @@ This API uses the following authentication schemes.
 * [MS Ps Tickets](doc/controllers/ms-ps-tickets.md)
 * [Orgs](doc/controllers/orgs.md)
 * [Orgs Admins](doc/controllers/orgs-admins.md)
+* [Orgs Advanced Anti Malware Profiles](doc/controllers/orgs-advanced-anti-malware-profiles.md)
 * [Orgs Alarms](doc/controllers/orgs-alarms.md)
 * [Orgs Alarm Templates](doc/controllers/orgs-alarm-templates.md)
 * [Orgs Antivirus Profiles](doc/controllers/orgs-antivirus-profiles.md)
@@ -180,7 +182,6 @@ This API uses the following authentication schemes.
 * [Orgs Clients-Wan](doc/controllers/orgs-clients-wan.md)
 * [Orgs Clients-Wired](doc/controllers/orgs-clients-wired.md)
 * [Orgs Clients-Wireless](doc/controllers/orgs-clients-wireless.md)
-* [Orgs Cradlepoint](doc/controllers/orgs-cradlepoint.md)
 * [Orgs CRL](doc/controllers/orgs-crl.md)
 * [Orgs Device Profiles](doc/controllers/orgs-device-profiles.md)
 * [Orgs Devices](doc/controllers/orgs-devices.md)
@@ -190,8 +191,12 @@ This API uses the following authentication schemes.
 * [Orgs Gateway Templates](doc/controllers/orgs-gateway-templates.md)
 * [Orgs Guests](doc/controllers/orgs-guests.md)
 * [Orgs IDP Profiles](doc/controllers/orgs-idp-profiles.md)
+* [Orgs Integration Cradlepoint](doc/controllers/orgs-integration-cradlepoint.md)
+* [Orgs Integration JSE](doc/controllers/orgs-integration-jse.md)
+* [Orgs Integration Juniper](doc/controllers/orgs-integration-juniper.md)
+* [Orgs Integration Sky ATP](doc/controllers/orgs-integration-sky-atp.md)
+* [Orgs Integration Zscaler](doc/controllers/orgs-integration-zscaler.md)
 * [Orgs Inventory](doc/controllers/orgs-inventory.md)
-* [Orgs JSE](doc/controllers/orgs-jse.md)
 * [Orgs JSI](doc/controllers/orgs-jsi.md)
 * [Orgs Licenses](doc/controllers/orgs-licenses.md)
 * [Orgs Linked Applications](doc/controllers/orgs-linked-applications.md)
@@ -202,6 +207,7 @@ This API uses the following authentication schemes.
 * [Orgs Mx Edges](doc/controllers/orgs-mx-edges.md)
 * [Orgs Mx Tunnels](doc/controllers/orgs-mx-tunnels.md)
 * [Orgs NACCRL](doc/controllers/orgs-naccrl.md)
+* [Orgs NAC Fingerprints](doc/controllers/orgs-nac-fingerprints.md)
 * [Orgs NACIDP](doc/controllers/orgs-nacidp.md)
 * [Orgs NAC Portals](doc/controllers/orgs-nac-portals.md)
 * [Orgs NAC Rules](doc/controllers/orgs-nac-rules.md)
@@ -216,11 +222,10 @@ This API uses the following authentication schemes.
 * [Orgs SDK Invites](doc/controllers/orgs-sdk-invites.md)
 * [Orgs SDK Templates](doc/controllers/orgs-sdk-templates.md)
 * [Orgs Sec Intel Profiles](doc/controllers/orgs-sec-intel-profiles.md)
-* [Orgs Sec Policies](doc/controllers/orgs-sec-policies.md)
+* [Orgs Security Policies](doc/controllers/orgs-security-policies.md)
 * [Orgs Service Policies](doc/controllers/orgs-service-policies.md)
 * [Orgs Services](doc/controllers/orgs-services.md)
 * [Orgs Setting](doc/controllers/orgs-setting.md)
-* [Orgs Setting Zscaler](doc/controllers/orgs-setting-zscaler.md)
 * [Orgs Sitegroups](doc/controllers/orgs-sitegroups.md)
 * [Orgs Sites](doc/controllers/orgs-sites.md)
 * [Orgs Site Templates](doc/controllers/orgs-site-templates.md)
@@ -237,7 +242,6 @@ This API uses the following authentication schemes.
 * [Orgs Stats-Sites](doc/controllers/orgs-stats-sites.md)
 * [Orgs Stats-Tunnels](doc/controllers/orgs-stats-tunnels.md)
 * [Orgs Stats-VPN Peers](doc/controllers/orgs-stats-vpn-peers.md)
-* [Orgs Subscriptions](doc/controllers/orgs-subscriptions.md)
 * [Orgs Tickets](doc/controllers/orgs-tickets.md)
 * [Orgs User MA Cs](doc/controllers/orgs-user-ma-cs.md)
 * [Orgs Vars](doc/controllers/orgs-vars.md)
@@ -339,6 +343,7 @@ This API uses the following authentication schemes.
 
 * [HttpConfiguration](doc/http-configuration.md)
 * [RetryConfiguration](doc/retry-configuration.md)
+* [ApiResponse](doc/api-response.md)
 * [LoggerConfiguration](doc/logger-configuration.md)
 * [RequestLoggerConfiguration](doc/request-logger-configuration.md)
 * [ResponseLoggerConfiguration](doc/response-logger-configuration.md)

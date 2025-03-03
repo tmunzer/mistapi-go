@@ -11,7 +11,7 @@ import (
 type UtilsReleaseDhcp struct {
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-    // The nework interface on which to release the current DHCP release
+    // The network interface on which to release the current DHCP release
     PortId               string                 `json:"port_id"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

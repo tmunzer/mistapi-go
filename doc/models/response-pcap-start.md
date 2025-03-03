@@ -18,7 +18,7 @@
 | `Enabled` | `*bool` | Optional | - |
 | `Expiry` | `*float64` | Optional | - |
 | `Format` | `*string` | Optional | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `IncludeMcast` | `*bool` | Optional | - |
 | `MaxPktLen` | `*int` | Optional | - |
 | `NumPackets` | `*int` | Optional | - |

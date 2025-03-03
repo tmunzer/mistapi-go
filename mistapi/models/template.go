@@ -21,7 +21,7 @@ type Template struct {
     Exceptions            *TemplateExceptions    `json:"exceptions,omitempty"`
     // Whether to further filter by Device Profile
     FilterByDeviceprofile *bool                  `json:"filter_by_deviceprofile,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                    *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime          *float64               `json:"modified_time,omitempty"`

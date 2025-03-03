@@ -23,7 +23,7 @@ type Site struct {
     CreatedTime          *float64               `json:"created_time,omitempty"`
     // Gateway Template ID, used by gateways
     GatewaytemplateId    Optional[uuid.UUID]    `json:"gatewaytemplate_id"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Latlng               *LatLng                `json:"latlng,omitempty"`
     // When the object has been modified for the last time, in epoch

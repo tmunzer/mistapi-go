@@ -16,7 +16,7 @@
 | `Enabled` | `*bool` | Optional | usb_config is ignored if esl_config enabled<br>**Default**: `false` |
 | `Host` | `*string` | Optional | Only if `type`==`imagotag` or `type`==`native` |
 | `Port` | `*int` | Optional | Only if `type`==`imagotag` or `type`==`native` |
-| `Type` | [`*models.ApEslTypeEnum`](../../doc/models/ap-esl-type-enum.md) | Optional | note: ble_config will be ingored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum` |
+| `Type` | [`*models.ApEslTypeEnum`](../../doc/models/ap-esl-type-enum.md) | Optional | note: ble_config will be ignored if esl_config is enabled and with native mode. enum: `hanshow`, `imagotag`, `native`, `solum` |
 | `VerifyCert` | `*bool` | Optional | Only if `type`==`imagotag` or `type`==`native` |
 | `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hanshow`<br>**Default**: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

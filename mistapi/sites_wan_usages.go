@@ -22,9 +22,9 @@ func NewSitesWANUsages(baseController baseController) *SitesWANUsages {
 }
 
 // CountSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, distinct, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Site WAN Uages
+// Count Site WAN Usages
 func (s *SitesWANUsages) CountSiteWanUsage(
     ctx context.Context,
     siteId uuid.UUID,
@@ -35,13 +35,13 @@ func (s *SitesWANUsages) CountSiteWanUsage(
     policy *string,
     tenant *string,
     pathType *string,
-    distinct *models.WanUsagesCountDisctinctEnum,
+    distinct *models.WanUsagesCountDistinctEnum,
     start *int,
     end *int,
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wan_usages/count")
     req.AppendTemplateParams(siteId)
@@ -103,20 +103,20 @@ func (s *SitesWANUsages) CountSiteWanUsage(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // SearchSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.SearchWanUsage data and
 // an error if there was an issue with the request or response.
-// Search Site WAN Uages
+// Search Site WAN Usages
 func (s *SitesWANUsages) SearchSiteWanUsage(
     ctx context.Context,
     siteId uuid.UUID,

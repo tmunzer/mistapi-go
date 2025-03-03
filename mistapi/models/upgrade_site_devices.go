@@ -52,9 +52,9 @@ type UpgradeSiteDevices struct {
     Snapshot                *bool                            `json:"snapshot,omitempty"`
     // Upgrade start time in epoch seconds, default is now
     StartTime               *int                             `json:"start_time,omitempty"`
-    // For APs only. enum: `big_bang` (upgrade all at once), `canary`, `rrm`, `serial` (one at a time)
+    // enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)
     Strategy                *UpgradeDeviceStrategyEnum       `json:"strategy,omitempty"`
-    // Specific version / stable, default is to use the lastest available version
+    // Specific version / stable, default is to use the latest available version
     Version                 *string                          `json:"version,omitempty"`
     AdditionalProperties    map[string]interface{}           `json:"_"`
 }

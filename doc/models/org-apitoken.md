@@ -19,7 +19,7 @@ returned in the POST API Response (only in the afterward GET)
 |  --- | --- | --- | --- |
 | `CreatedBy` | `models.Optional[string]` | Optional | email of the token creator / null if creator is deleted |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Key` | `*string` | Optional | - |
 | `LastUsed` | `models.Optional[float64]` | Optional | - |
 | `Name` | `string` | Required | Name of the token |

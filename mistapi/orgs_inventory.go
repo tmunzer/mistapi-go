@@ -22,7 +22,7 @@ func NewOrgsInventory(baseController baseController) *OrgsInventory {
     return &orgsInventory
 }
 
-// GetOrgInventory takes context, orgId, serial, model, mType, mac, siteId, vcMac, vc, unassigned, limit, page as parameters and
+// GetOrgInventory takes context, orgId, serial, model, mType, mac, siteId, vcMac, vc, unassigned, modifiedAfter, limit, page as parameters and
 // returns an models.ApiResponse with []models.Inventory data and
 // an error if there was an issue with the request or response.
 // Get Org Inventory
@@ -32,19 +32,20 @@ func NewOrgsInventory(baseController baseController) *OrgsInventory {
 // 1. during claim or adoption a VC, we require FPC0 to exist and will use its MAC as identify for the entire chassis
 // 2. other VC members will be automatically populated when they’re all present
 // The perceivable result is 
-// 1. from `/sites/:site_id/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members 
-// 2. from `/orgs/:org_id/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
+// 1. from `/sites/{site_id}/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members 
+// 2. from `/orgs/{org_id}/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
 func (o *OrgsInventory) GetOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
     serial *string,
     model *string,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     siteId *string,
     vcMac *string,
     vc *bool,
     unassigned *bool,
+    modifiedAfter *int,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Inventory],
@@ -92,6 +93,9 @@ func (o *OrgsInventory) GetOrgInventory(
     }
     if unassigned != nil {
         req.QueryParam("unassigned", *unassigned)
+    }
+    if modifiedAfter != nil {
+        req.QueryParam("modified_after", *modifiedAfter)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
@@ -201,17 +205,17 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 }
 
 // CountOrgInventory takes context, orgId, mType, distinct, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count in the Org Inventory
 func (o *OrgsInventory) CountOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     distinct *models.InventoryCountDistinctEnum,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory/count")
     req.AppendTemplateParams(orgId)
@@ -246,13 +250,13 @@ func (o *OrgsInventory) CountOrgInventory(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -446,7 +450,7 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 func (o *OrgsInventory) SearchOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     vcMac *string,
     masterMac *string,

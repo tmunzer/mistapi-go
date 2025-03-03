@@ -37,7 +37,7 @@ DeleteSite(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -85,7 +85,7 @@ GetSiteInfo(
 
 ## Response Type
 
-[`models.Site`](../../doc/models/site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Site](../../doc/models/site.md).
 
 ## Example Usage
 
@@ -167,7 +167,7 @@ UpdateSiteInfo(
 
 ## Response Type
 
-[`models.Site`](../../doc/models/site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Site](../../doc/models/site.md).
 
 ## Example Usage
 

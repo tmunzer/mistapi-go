@@ -14,7 +14,7 @@
 | `Channel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Counts` | [`models.ResponseSsrUpgradeCounts`](../../doc/models/response-ssr-upgrade-counts.md) | Required | - |
 | `DeviceType` | `string` | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Strategy` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Versions` | `map[string]string` | Required | - |

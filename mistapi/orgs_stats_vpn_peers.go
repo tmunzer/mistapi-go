@@ -22,9 +22,9 @@ func NewOrgsStatsVPNPeers(baseController baseController) *OrgsStatsVPNPeers {
 }
 
 // CountOrgPeerPathStats takes context, orgId, distinct, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Peer Path Statgs
+// Count Org Peer Path Stats
 func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
     ctx context.Context,
     orgId uuid.UUID,
@@ -34,7 +34,7 @@ func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/vpn_peers/count")
     req.AppendTemplateParams(orgId)
@@ -75,13 +75,13 @@ func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

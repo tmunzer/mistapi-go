@@ -43,7 +43,7 @@ ActivateSdkInvite(
 
 ## Response Type
 
-[`models.ResponseMobileVerifySecret`](../../doc/models/response-mobile-verify-secret.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMobileVerifySecret](../../doc/models/response-mobile-verify-secret.md).
 
 ## Example Usage
 
@@ -109,7 +109,7 @@ CreateSdkInvite(
 
 ## Response Type
 
-[`models.Sdkinvite`](../../doc/models/sdkinvite.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdkinvite](../../doc/models/sdkinvite.md).
 
 ## Example Usage
 
@@ -181,7 +181,7 @@ GetSdkInvite(
 
 ## Response Type
 
-[`models.Sdkinvite`](../../doc/models/sdkinvite.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdkinvite](../../doc/models/sdkinvite.md).
 
 ## Example Usage
 
@@ -248,7 +248,7 @@ GetSdkInviteQrCode(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -300,7 +300,7 @@ ListSdkInvites(
 
 ## Response Type
 
-[`[]models.Sdkinvite`](../../doc/models/sdkinvite.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sdkinvite](../../doc/models/sdkinvite.md).
 
 ## Example Usage
 
@@ -367,7 +367,7 @@ RevokeSdkInvite(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -421,7 +421,7 @@ SendSdkInviteEmail(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -479,7 +479,7 @@ SendSdkInviteSms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -537,7 +537,7 @@ UpdateSdkInvite(
 
 ## Response Type
 
-[`models.Sdkinvite`](../../doc/models/sdkinvite.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdkinvite](../../doc/models/sdkinvite.md).
 
 ## Example Usage
 

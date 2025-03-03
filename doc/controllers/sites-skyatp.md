@@ -32,7 +32,7 @@ CountSiteSkyatpEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -54,7 +54,7 @@ CountSiteSkyatpEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -160,7 +160,7 @@ SearchSiteSkyatpEvents(
 
 ## Response Type
 
-[`models.ResponseEventsSkyAtpSearch`](../../doc/models/response-events-sky-atp-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsSkyAtpSearch](../../doc/models/response-events-sky-atp-search.md).
 
 ## Example Usage
 

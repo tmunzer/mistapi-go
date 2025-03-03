@@ -23,7 +23,7 @@ CountMspTickets(
     ctx context.Context,
     mspId uuid.UUID,
     distinct *models.MspTicketsCountDistinctEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -36,7 +36,7 @@ CountMspTickets(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -112,7 +112,7 @@ ListMspTickets(
 
 ## Response Type
 
-[`[]models.Ticket`](../../doc/models/ticket.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Ticket](../../doc/models/ticket.md).
 
 ## Example Usage
 

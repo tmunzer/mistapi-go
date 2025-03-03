@@ -23,7 +23,7 @@
   "accounts": [
     {
       "account_id": "iojzXIJWEuiD73ZvydOfg",
-      "company": "Test Compay1 Ltd",
+      "company": "Test Company1 Ltd",
       "error": "OAuth token refresh failed, please re-link your account",
       "errors": [
         "OAuth token refresh failed, please re-link your account",

@@ -19,7 +19,7 @@ orgsServicePolicies := client.OrgsServicePolicies()
 
 # Create Org Service Policy
 
-Create Org Serrvice Policy
+Create Org Service Policy
 
 ```go
 CreateOrgServicePolicy(
@@ -39,7 +39,7 @@ CreateOrgServicePolicy(
 
 ## Response Type
 
-[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgServicePolicy](../../doc/models/org-service-policy.md).
 
 ## Example Usage
 
@@ -82,7 +82,7 @@ if err != nil {
 
 # Delete Org Service Policy
 
-Delete Org Service Policuy
+Delete Org Service Policy
 
 ```go
 DeleteOrgServicePolicy(
@@ -102,7 +102,7 @@ DeleteOrgServicePolicy(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -154,7 +154,7 @@ GetOrgServicePolicy(
 
 ## Response Type
 
-[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgServicePolicy](../../doc/models/org-service-policy.md).
 
 ## Example Usage
 
@@ -210,7 +210,7 @@ ListOrgServicePolicies(
 
 ## Response Type
 
-[`[]models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.OrgServicePolicy](../../doc/models/org-service-policy.md).
 
 ## Example Usage
 
@@ -267,7 +267,7 @@ if err != nil {
 
 # Update Org Service Policy
 
-Update Org Serrvice Policy
+Update Org Service Policy
 
 ```go
 UpdateOrgServicePolicy(
@@ -289,7 +289,7 @@ UpdateOrgServicePolicy(
 
 ## Response Type
 
-[`models.OrgServicePolicy`](../../doc/models/org-service-policy.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgServicePolicy](../../doc/models/org-service-policy.md).
 
 ## Example Usage
 

@@ -39,7 +39,7 @@ CreateOrgAntivirusProfile(
 
 ## Response Type
 
-[`models.Avprofile`](../../doc/models/avprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Avprofile](../../doc/models/avprofile.md).
 
 ## Example Usage
 
@@ -49,8 +49,16 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
     MaxFilesize:          models.ToPointer(10000),
-    Name:                 "name6",
+    MimeWhitelist:        []string{
+    },
+    Name:                 "av-custom",
+    Protocols:            []models.AvprofileProtocolsEnum{
+        models.AvprofileProtocolsEnum_HTTP,
+    },
+    UrlWhitelist:         []string{
+    },
 }
 
 apiResponse, err := orgsAntivirusProfiles.CreateOrgAntivirusProfile(ctx, orgId, &body)
@@ -60,6 +68,21 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "fallback_action": "permit",
+  "max_filesize": 10000,
+  "mime_whitelist": [],
+  "name": "av-custom",
+  "protocols": [
+    "http"
+  ],
+  "url_whitelist": []
 }
 ```
 
@@ -96,7 +119,7 @@ DeleteOrgAntivirusProfile(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -148,7 +171,7 @@ GetOrgAntivirusProfile(
 
 ## Response Type
 
-[`models.Avprofile`](../../doc/models/avprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Avprofile](../../doc/models/avprofile.md).
 
 ## Example Usage
 
@@ -166,6 +189,21 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "fallback_action": "permit",
+  "max_filesize": 10000,
+  "mime_whitelist": [],
+  "name": "av-custom",
+  "protocols": [
+    "http"
+  ],
+  "url_whitelist": []
 }
 ```
 
@@ -204,7 +242,7 @@ ListOrgAntivirusProfiles(
 
 ## Response Type
 
-[`[]models.Avprofile`](../../doc/models/avprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Avprofile](../../doc/models/avprofile.md).
 
 ## Example Usage
 
@@ -225,6 +263,23 @@ if err != nil {
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
 }
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "fallback_action": "permit",
+    "max_filesize": 10000,
+    "mime_whitelist": [],
+    "name": "av-custom",
+    "protocols": [
+      "http"
+    ],
+    "url_whitelist": []
+  }
+]
 ```
 
 ## Errors
@@ -262,7 +317,7 @@ UpdateOrgAntivirusProfile(
 
 ## Response Type
 
-[`models.Avprofile`](../../doc/models/avprofile.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Avprofile](../../doc/models/avprofile.md).
 
 ## Example Usage
 
@@ -274,8 +329,16 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 avprofileId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Avprofile{
+    FallbackAction:       models.ToPointer(models.AvprofileFallbackActionEnum_PERMIT),
     MaxFilesize:          models.ToPointer(10000),
-    Name:                 "name6",
+    MimeWhitelist:        []string{
+    },
+    Name:                 "av-custom",
+    Protocols:            []models.AvprofileProtocolsEnum{
+        models.AvprofileProtocolsEnum_HTTP,
+    },
+    UrlWhitelist:         []string{
+    },
 }
 
 apiResponse, err := orgsAntivirusProfiles.UpdateOrgAntivirusProfile(ctx, orgId, avprofileId, &body)
@@ -285,6 +348,21 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "fallback_action": "permit",
+  "max_filesize": 10000,
+  "mime_whitelist": [],
+  "name": "av-custom",
+  "protocols": [
+    "http"
+  ],
+  "url_whitelist": []
 }
 ```
 

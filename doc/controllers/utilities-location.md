@@ -9,14 +9,14 @@ utilitiesLocation := client.UtilitiesLocation()
 `UtilitiesLocation`
 
 
-# Send Site Devices Arbitratry Ble Beacon
+# Send Site Devices Arbitrary Ble Beacon
 
 Send arbitrary BLE Beacon for a period of time
 
 Note that only the devices that are connected will be restarted.
 
 ```go
-SendSiteDevicesArbitratryBleBeacon(
+SendSiteDevicesArbitraryBleBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.UtilsSendBleBeacon) (
@@ -33,7 +33,7 @@ SendSiteDevicesArbitratryBleBeacon(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -55,7 +55,7 @@ body := models.UtilsSendBleBeacon{
     },
 }
 
-resp, err := utilitiesLocation.SendSiteDevicesArbitratryBleBeacon(ctx, siteId, &body)
+resp, err := utilitiesLocation.SendSiteDevicesArbitraryBleBeacon(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

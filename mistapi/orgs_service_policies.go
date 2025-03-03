@@ -73,7 +73,7 @@ func (o *OrgsServicePolicies) ListOrgServicePolicies(
 // CreateOrgServicePolicy takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Create Org Serrvice Policy
+// Create Org Service Policy
 func (o *OrgsServicePolicies) CreateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
@@ -118,7 +118,7 @@ func (o *OrgsServicePolicies) CreateOrgServicePolicy(
 // DeleteOrgServicePolicy takes context, orgId, servicepolicyId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Service Policuy
+// Delete Org Service Policy
 func (o *OrgsServicePolicies) DeleteOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,
@@ -197,7 +197,7 @@ func (o *OrgsServicePolicies) GetOrgServicePolicy(
 // UpdateOrgServicePolicy takes context, orgId, servicepolicyId, body as parameters and
 // returns an models.ApiResponse with models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Update Org Serrvice Policy
+// Update Org Service Policy
 func (o *OrgsServicePolicies) UpdateOrgServicePolicy(
     ctx context.Context,
     orgId uuid.UUID,

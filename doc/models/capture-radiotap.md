@@ -16,12 +16,12 @@ Initiate a Radiotap Packet Capture
 | `ApMac` | `*string` | Optional | - |
 | `Band` | [`*models.CaptureRadiotapBandEnum`](../../doc/models/capture-radiotap-band-enum.md) | Optional | enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
 | `ClientMac` | `*string` | Optional | - |
-| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureRadiotapFormatEnum`](../../doc/models/capture-radiotap-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
-| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
-| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ssid` | `*string` | Optional | - |
-| `TcpdumpExpression` | `*string` | Optional | tcpdump expression specific to radiotap |
+| `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
 | `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Value**: `"radiotap"` |
 | `WlanId` | `*uuid.UUID` | Optional | WLAN id associated with the respective ssid. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -33,11 +33,11 @@ Initiate a Radiotap Packet Capture
   "ap_mac": "a83a79a947ee",
   "band": "24",
   "client_mac": "38f9d3972ff1",
-  "duration": 600,
+  "duration": 300,
   "format": "stream",
-  "max_pkt_len": 68,
-  "num_packets": 100,
-  "ssid": "atest",
+  "max_pkt_len": 128,
+  "num_packets": 1000,
+  "ssid": "test",
   "tcpdump_expression": "tcp port 80",
   "type": "radiotap",
   "wlan_id": "fac8e973-feb9-421a-b381-aabbc4b61f5a",

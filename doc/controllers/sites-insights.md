@@ -18,7 +18,7 @@ sitesInsights := client.SitesInsights()
 # Get Site Insight Metrics
 
 Get Site Insight Metrics
-See metrics possibilities at /api/v1/const/insight_metrics
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetrics(
@@ -40,7 +40,7 @@ GetSiteInsightMetrics(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -50,7 +50,7 @@ GetSiteInsightMetrics(
 
 ## Response Type
 
-[`models.InsightMetrics`](../../doc/models/insight-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.InsightMetrics](../../doc/models/insight-metrics.md).
 
 ## Example Usage
 
@@ -110,7 +110,7 @@ if err != nil {
 # Get Site Insight Metrics for Client
 
 Get Client Insight Metrics
-See metrics possibilities at /api/v1/const/insight_metrics
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetricsForClient(
@@ -134,7 +134,7 @@ GetSiteInsightMetricsForClient(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -144,7 +144,7 @@ GetSiteInsightMetricsForClient(
 
 ## Response Type
 
-[`models.InsightMetrics`](../../doc/models/insight-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.InsightMetrics](../../doc/models/insight-metrics.md).
 
 ## Example Usage
 
@@ -206,7 +206,7 @@ if err != nil {
 # Get Site Insight Metrics for Device
 
 Get AP Insight Metrics
-See metrics possibilities at /api/v1/const/insight_metrics
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetricsForDevice(
@@ -229,7 +229,7 @@ GetSiteInsightMetricsForDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -240,7 +240,7 @@ GetSiteInsightMetricsForDevice(
 
 ## Response Type
 
-[`models.ResponseDeviceMetrics`](../../doc/models/response-device-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceMetrics](../../doc/models/response-device-metrics.md).
 
 ## Example Usage
 

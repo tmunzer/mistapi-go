@@ -10,6 +10,7 @@ type GatewayMatchingRule struct {
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
     AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
     Name                 *string                    `json:"name,omitempty"`
+    // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
     AdditionalProperties map[string]string          `json:"_"`
 }

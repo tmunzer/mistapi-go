@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
-| `Rules` | [`models.Optional[[]models.OrgAutoRules]`](../../doc/models/org-auto-rules.md) | Optional | - |
+| `Rules` | [`models.Optional[[]models.OrgSettingAutoDeviceNamingRule]`](../../doc/models/org-setting-auto-device-naming-rule.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -22,24 +22,22 @@
   "enable": false,
   "rules": [
     {
-      "create_new_site_if_needed": false,
       "expression": "expression4",
-      "gatewaytemplate_id": "gatewaytemplate_id0",
-      "match_country": "match_country8",
-      "match_device_type": "other",
-      "src": "name",
+      "match_device": "ap",
+      "prefix": "prefix6",
+      "src": "lldp_port_desc",
+      "suffix": "suffix2",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
       }
     },
     {
-      "create_new_site_if_needed": false,
       "expression": "expression4",
-      "gatewaytemplate_id": "gatewaytemplate_id0",
-      "match_country": "match_country8",
-      "match_device_type": "other",
-      "src": "name",
+      "match_device": "ap",
+      "prefix": "prefix6",
+      "src": "lldp_port_desc",
+      "suffix": "suffix2",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

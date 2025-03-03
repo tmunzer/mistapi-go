@@ -106,11 +106,17 @@ func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement(t *testing.T) {
         t.Error(errUUID)
     }
     
-    resp, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, nil)
+    apiResponse, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
 // TestSitesMapsAutoPlacementTestClearSiteApAutoOrient tests the behavior of the SitesMapsAutoPlacement

@@ -11,7 +11,7 @@ type UtilsShowEvpnDatabase struct {
     Duration             *int                   `json:"duration,omitempty"`
     // Rate at which output will refresh
     Interval             *int                   `json:"interval,omitempty"`
-    // Xlient mac filter
+    // Client mac filter
     Mac                  *string                `json:"mac,omitempty"`
     // Interface name
     PortId               *string                `json:"port_id,omitempty"`

@@ -15,12 +15,12 @@ func TestSitesStatsCallsTestCountSiteCalls(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    distrinct := models.CountSiteCallsDistrinctEnum("mac")
+    distinct := models.CountSiteCallsDistinctEnum("mac")
     
     
     
     
-    apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distrinct, nil, nil, nil, nil)
+    apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, nil, nil, nil, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

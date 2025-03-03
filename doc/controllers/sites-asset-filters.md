@@ -39,7 +39,7 @@ CreateSiteAssetFilters(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -74,7 +74,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,
@@ -122,7 +122,7 @@ DeleteSiteAssetFilter(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -174,7 +174,7 @@ GetSiteAssetFilter(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -200,7 +200,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,
@@ -250,7 +250,7 @@ ListSiteAssetFilters(
 
 ## Response Type
 
-[`[]models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -308,7 +308,7 @@ UpdateSiteAssetFilter(
 
 ## Response Type
 
-[`models.AssetFilter`](../../doc/models/asset-filter.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AssetFilter](../../doc/models/asset-filter.md).
 
 ## Example Usage
 
@@ -345,7 +345,7 @@ if err != nil {
 ```json
 {
   "created_time": 0,
-  "disasbled": true,
+  "disabled": true,
   "eddystone_uid_namespace": "string",
   "eddystone_url": "string",
   "for_site": true,

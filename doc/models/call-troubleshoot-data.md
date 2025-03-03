@@ -23,7 +23,7 @@
 | `ClientTxBytes` | `*float64` | Optional | - |
 | `ClientTxRates` | `*float64` | Optional | - |
 | `ClientTxRetries` | `*float64` | Optional | - |
-| `ClientVpnDistaince` | `*float64` | Optional | - |
+| `ClientVpnDistance` | `*float64` | Optional | - |
 | `ClientWifiVersion` | `*float64` | Optional | - |
 | `Expected` | `*float64` | Optional | - |
 | `RadioBandwidth` | `*float64` | Optional | - |
@@ -56,7 +56,7 @@
   "client_tx_bytes": 0.15803306,
   "client_tx_rates": 0.62357205,
   "client_tx_retries": 0.77553505,
-  "client_vpn_distaince": 1.6474955,
+  "client_vpn_distance": 1.6474955,
   "client_wifi_version": 0.18267937,
   "expected": 30.941595,
   "radio_bandwidth": -0.06538621,

@@ -17,7 +17,7 @@ zero or more criteria/filter can be specified to match the term, all criteria ha
 | `Community` | `[]string` | Optional | - |
 | `Network` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Prefix` | `[]string` | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
-| `Protocol` | `[]string` | Optional | `direct`, `bgp`, `osp`, ... |
+| `Protocol` | `[]string` | Optional | `direct`, `bgp`, `osp`, `static`, `aggregate`... |
 | `RouteExists` | [`*models.RoutingPolicyTermMatchingRouteExists`](../../doc/models/routing-policy-term-matching-route-exists.md) | Optional | - |
 | `VpnNeighborMac` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn) |
 | `VpnPath` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn). ordered- |

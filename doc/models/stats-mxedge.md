@@ -16,7 +16,7 @@
 | `FipsEnabled` | `*bool` | Optional | Indicate fips configuration on the device |
 | `ForSite` | `*bool` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `IdracVersion` | `*string` | Optional | IDRAC version of the mist edge device |
 | `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP stats |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |

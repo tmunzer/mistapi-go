@@ -39,7 +39,7 @@ CreateOrgWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -151,7 +151,7 @@ DeleteOrgWxTunnel(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -203,7 +203,7 @@ GetOrgWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -309,7 +309,7 @@ ListOrgWxTunnels(
 
 ## Response Type
 
-[`[]models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -419,7 +419,7 @@ UpdateOrgWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 

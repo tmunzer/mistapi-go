@@ -39,7 +39,7 @@ CreateOrgSsoRole(
 
 ## Response Type
 
-[`models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoRoleOrg](../../doc/models/sso-role-org.md).
 
 ## Example Usage
 
@@ -131,7 +131,7 @@ DeleteOrgSsoRole(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -183,7 +183,7 @@ GetOrgSsoRole(
 
 ## Response Type
 
-[`models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoRoleOrg](../../doc/models/sso-role-org.md).
 
 ## Example Usage
 
@@ -260,7 +260,7 @@ ListOrgSsoRoles(
 
 ## Response Type
 
-[`[]models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.SsoRoleOrg](../../doc/models/sso-role-org.md).
 
 ## Example Usage
 
@@ -318,7 +318,7 @@ UpdateOrgSsoRole(
 
 ## Response Type
 
-[`models.SsoRoleOrg`](../../doc/models/sso-role-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoRoleOrg](../../doc/models/sso-role-org.md).
 
 ## Example Usage
 

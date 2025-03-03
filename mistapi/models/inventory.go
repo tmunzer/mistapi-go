@@ -9,41 +9,41 @@ import (
 // Inventory represents a Inventory struct.
 type Inventory struct {
     // Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
-    Adopted              *bool                  `json:"adopted,omitempty"`
+    Adopted              *bool                    `json:"adopted,omitempty"`
     // Whether the device is connected
-    Connected            *bool                  `json:"connected,omitempty"`
+    Connected            *bool                    `json:"connected,omitempty"`
     // When the object has been created, in epoch
-    CreatedTime          *float64               `json:"created_time,omitempty"`
+    CreatedTime          *float64                 `json:"created_time,omitempty"`
     // Deviceprofile id if assigned, null if not assigned
-    DeviceprofileId      Optional[string]       `json:"deviceprofile_id"`
+    DeviceprofileId      Optional[string]         `json:"deviceprofile_id"`
     // Hostname reported by the device
-    Hostname             *string                `json:"hostname,omitempty"`
+    Hostname             *string                  `json:"hostname,omitempty"`
     // Device hardware revision number
-    HwRev                *string                `json:"hw_rev,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
-    Id                   *uuid.UUID             `json:"id,omitempty"`
-    Jsi                  *bool                  `json:"jsi,omitempty"`
+    HwRev                *string                  `json:"hw_rev,omitempty"`
+    // Unique ID of the object instance in the Mist Organization
+    Id                   *uuid.UUID               `json:"id,omitempty"`
+    Jsi                  *bool                    `json:"jsi,omitempty"`
     // Device MAC address
-    Mac                  *string                `json:"mac,omitempty"`
+    Mac                  *string                  `json:"mac,omitempty"`
     // Device claim code
-    Magic                *string                `json:"magic,omitempty"`
+    Magic                *string                  `json:"magic,omitempty"`
     // Device model
-    Model                *string                `json:"model,omitempty"`
+    Model                *string                  `json:"model,omitempty"`
     // When the object has been modified for the last time, in epoch
-    ModifiedTime         *float64               `json:"modified_time,omitempty"`
+    ModifiedTime         *float64                 `json:"modified_time,omitempty"`
     // Device name if configured
-    Name                 *string                `json:"name,omitempty"`
-    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    Name                 *string                  `json:"name,omitempty"`
+    OrgId                *uuid.UUID               `json:"org_id,omitempty"`
     // Device serial
-    Serial               *string                `json:"serial,omitempty"`
-    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    Serial               *string                  `json:"serial,omitempty"`
+    SiteId               *uuid.UUID               `json:"site_id,omitempty"`
     // Device stock keeping unit
-    Sku                  *string                `json:"sku,omitempty"`
+    Sku                  *string                  `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
-    Type                 *DeviceTypeEnum        `json:"type,omitempty"`
+    Type                 *DeviceTypeDefaultApEnum `json:"type,omitempty"`
     // If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster
-    VcMac                *string                `json:"vc_mac,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    VcMac                *string                  `json:"vc_mac,omitempty"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Inventory,
@@ -172,23 +172,23 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 
 // tempInventory is a temporary struct used for validating the fields of Inventory.
 type tempInventory  struct {
-    Adopted         *bool            `json:"adopted,omitempty"`
-    Connected       *bool            `json:"connected,omitempty"`
-    CreatedTime     *float64         `json:"created_time,omitempty"`
-    DeviceprofileId Optional[string] `json:"deviceprofile_id"`
-    Hostname        *string          `json:"hostname,omitempty"`
-    HwRev           *string          `json:"hw_rev,omitempty"`
-    Id              *uuid.UUID       `json:"id,omitempty"`
-    Jsi             *bool            `json:"jsi,omitempty"`
-    Mac             *string          `json:"mac,omitempty"`
-    Magic           *string          `json:"magic,omitempty"`
-    Model           *string          `json:"model,omitempty"`
-    ModifiedTime    *float64         `json:"modified_time,omitempty"`
-    Name            *string          `json:"name,omitempty"`
-    OrgId           *uuid.UUID       `json:"org_id,omitempty"`
-    Serial          *string          `json:"serial,omitempty"`
-    SiteId          *uuid.UUID       `json:"site_id,omitempty"`
-    Sku             *string          `json:"sku,omitempty"`
-    Type            *DeviceTypeEnum  `json:"type,omitempty"`
-    VcMac           *string          `json:"vc_mac,omitempty"`
+    Adopted         *bool                    `json:"adopted,omitempty"`
+    Connected       *bool                    `json:"connected,omitempty"`
+    CreatedTime     *float64                 `json:"created_time,omitempty"`
+    DeviceprofileId Optional[string]         `json:"deviceprofile_id"`
+    Hostname        *string                  `json:"hostname,omitempty"`
+    HwRev           *string                  `json:"hw_rev,omitempty"`
+    Id              *uuid.UUID               `json:"id,omitempty"`
+    Jsi             *bool                    `json:"jsi,omitempty"`
+    Mac             *string                  `json:"mac,omitempty"`
+    Magic           *string                  `json:"magic,omitempty"`
+    Model           *string                  `json:"model,omitempty"`
+    ModifiedTime    *float64                 `json:"modified_time,omitempty"`
+    Name            *string                  `json:"name,omitempty"`
+    OrgId           *uuid.UUID               `json:"org_id,omitempty"`
+    Serial          *string                  `json:"serial,omitempty"`
+    SiteId          *uuid.UUID               `json:"site_id,omitempty"`
+    Sku             *string                  `json:"sku,omitempty"`
+    Type            *DeviceTypeDefaultApEnum `json:"type,omitempty"`
+    VcMac           *string                  `json:"vc_mac,omitempty"`
 }

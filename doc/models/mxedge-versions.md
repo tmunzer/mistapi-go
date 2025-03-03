@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Mxagent` | `*string` | Optional | - |
-| `Tuntnerm` | `*string` | Optional | - |
+| `Tunterm` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -20,7 +20,7 @@
 ```json
 {
   "mxagent": "mxagent8",
-  "tuntnerm": "tuntnerm4",
+  "tunterm": "tunterm0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

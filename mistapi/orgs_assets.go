@@ -118,7 +118,7 @@ func (o *OrgsAssets) CreateOrgAsset(
 // ImportOrgAssets takes context, orgId, file as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Impert Org Assets. 
+// Import Org Assets. 
 // It can be done via a CSV file or a JSON payload.
 // #### CSV File Format
 // ```csv

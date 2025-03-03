@@ -15,7 +15,7 @@ Asset
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `string` | Required | Bluetooth MAC |
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

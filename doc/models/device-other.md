@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceMac` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -21,7 +21,9 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Serial` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `State` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
+| `VendorApiId` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

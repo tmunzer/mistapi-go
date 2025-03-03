@@ -29,7 +29,7 @@ GetSiteJseInfo(
 
 ## Response Type
 
-[`models.AccountJseInfo`](../../doc/models/account-jse-info.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountJseInfo](../../doc/models/account-jse-info.md).
 
 ## Example Usage
 

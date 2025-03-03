@@ -11,7 +11,7 @@ mSPsInventory := client.MSPsInventory()
 
 # Get Msp Inventory by Mac
 
-Get Inventoy By device MAC address
+Get Inventory By device MAC address
 
 ```go
 GetMspInventoryByMac(
@@ -31,7 +31,7 @@ GetMspInventoryByMac(
 
 ## Response Type
 
-[`models.ResponseMspInventoryDevice`](../../doc/models/response-msp-inventory-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMspInventoryDevice](../../doc/models/response-msp-inventory-device.md).
 
 ## Example Usage
 

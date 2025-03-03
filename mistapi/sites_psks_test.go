@@ -30,7 +30,7 @@ func TestSitesPsksTestListSitePsks(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"stringst","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -42,7 +42,7 @@ func TestSitesPsksTestCreateSitePsk(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.Psk
-    errBody := json.Unmarshal([]byte(`{"mac":"string","name":"string","passphrase":"stringst","ssid":"string","usage":"multi","vlan_id":1}`), &body)
+    errBody := json.Unmarshal([]byte(`{"mac":"string","name":"string","passphrase":"secretpsk","ssid":"string","usage":"multi","vlan_id":1}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
@@ -74,7 +74,7 @@ func TestSitesPsksTestUpdateSiteMultiplePsks(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"stringst","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -95,7 +95,7 @@ func TestSitesPsksTestImportSitePsks(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"stringst","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -151,7 +151,7 @@ func TestSitesPsksTestUpdateSitePsk(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.Psk
-    errBody := json.Unmarshal([]byte(`{"mac":"string","name":"string","passphrase":"stringst","ssid":"string","usage":"multi","vlan_id":1}`), &body)
+    errBody := json.Unmarshal([]byte(`{"mac":"string","name":"string","passphrase":"secretpsk","ssid":"string","usage":"multi","vlan_id":1}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }

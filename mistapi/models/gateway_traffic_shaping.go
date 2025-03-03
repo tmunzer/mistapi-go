@@ -7,7 +7,7 @@ import (
 
 // GatewayTrafficShaping represents a GatewayTrafficShaping struct.
 type GatewayTrafficShaping struct {
-    // percentages for differet class of traffic: high / medium / low / best-effort. Sum must be equal to 100
+    // percentages for different class of traffic: high / medium / low / best-effort. Sum must be equal to 100
     ClassPercentages     []int                  `json:"class_percentages,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     // Interface Transmit Cap in kbps

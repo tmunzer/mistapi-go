@@ -13,7 +13,7 @@ type AssetOfInterest struct {
     By                   *string                `json:"by,omitempty"`
     CurrSite             *string                `json:"curr_site,omitempty"`
     DeviceName           *string                `json:"device_name,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     LastSeen             *float64               `json:"last_seen,omitempty"`
     Mac                  *string                `json:"mac,omitempty"`

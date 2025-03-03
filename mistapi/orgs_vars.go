@@ -25,7 +25,7 @@ func NewOrgsVars(baseController baseController) *OrgsVars {
 // returns an models.ApiResponse with models.ResponseSearchVar data and
 // an error if there was an issue with the request or response.
 // Search vars
-// Example: /api/v1/orgs/:org_id/vars/search?vars=*
+// Example: /api/v1/orgs/{org_id}/vars/search?vars=*
 func (o *OrgsVars) SearchOrgVars(
     ctx context.Context,
     orgId uuid.UUID,

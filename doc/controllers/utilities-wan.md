@@ -16,12 +16,12 @@ utilitiesWAN := client.UtilitiesWAN()
 * [Release Site Ssr Dhcp Lease](../../doc/controllers/utilities-wan.md#release-site-ssr-dhcp-lease)
 * [Run Site Srx Top Command](../../doc/controllers/utilities-wan.md#run-site-srx-top-command)
 * [Service Ping From Ssr](../../doc/controllers/utilities-wan.md#service-ping-from-ssr)
+* [Show Site Gateway Ospf Database](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-database)
+* [Show Site Gateway Ospf Interfaces](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-interfaces)
+* [Show Site Gateway Ospf Neighbors](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-neighbors)
+* [Show Site Gateway Ospf Summary](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-summary)
 * [Show Site Ssr and Srx Routes](../../doc/controllers/utilities-wan.md#show-site-ssr-and-srx-routes)
 * [Show Site Ssr and Srx Sessions](../../doc/controllers/utilities-wan.md#show-site-ssr-and-srx-sessions)
-* [Show Site Ssr Ospf Database](../../doc/controllers/utilities-wan.md#show-site-ssr-ospf-database)
-* [Show Site Ssr Ospf Interfaces](../../doc/controllers/utilities-wan.md#show-site-ssr-ospf-interfaces)
-* [Show Site Ssr Ospf Neighbors](../../doc/controllers/utilities-wan.md#show-site-ssr-ospf-neighbors)
-* [Show Site Ssr Ospf Summary](../../doc/controllers/utilities-wan.md#show-site-ssr-ospf-summary)
 * [Show Site Ssr Service Path](../../doc/controllers/utilities-wan.md#show-site-ssr-service-path)
 * [Test Site Ssr Dns Resolution](../../doc/controllers/utilities-wan.md#test-site-ssr-dns-resolution)
 
@@ -50,7 +50,7 @@ ClearSiteDeviceSession(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ ClearSiteSsrArpCache(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -177,7 +177,7 @@ ClearSiteSsrBgpRoutes(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -267,7 +267,7 @@ ReleaseSiteSsrDhcpLease(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -337,7 +337,7 @@ RunSiteSrxTopCommand(
 
 ## Response Type
 
-[`models.WebsocketSessionWithUrl`](../../doc/models/websocket-session-with-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSessionWithUrl](../../doc/models/websocket-session-with-url.md).
 
 ## Example Usage
 
@@ -418,7 +418,7 @@ ServicePingFromSsr(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -436,6 +436,344 @@ body := models.UtilsServicePing{
 }
 
 apiResponse, err := utilitiesWAN.ServicePingFromSsr(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Gateway Ospf Database
+
+Get OSPF Database from SSR and SRX. The output will be available through websocket.
+
+As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+#### Example output from ws stream
+
+```
+===== ==================== ========== ======= ======== ================ =================== =================
+Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
+===== ==================== ========== ======= ======== ================ =================== =================
+      1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
+      1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
+      1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
+      1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
+```
+
+```go
+ShowSiteGatewayOspfDatabase(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfDatabase) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowOspfDatabase`](../../doc/models/utils-show-ospf-database.md) | Body, Optional | All attributes are optional |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowOspfDatabase{
+    SelfOriginate:        models.ToPointer(false),
+    Vrf:                  models.ToPointer("lan"),
+}
+
+apiResponse, err := utilitiesWAN.ShowSiteGatewayOspfDatabase(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Gateway Ospf Interfaces
+
+Get OSPF interfaces from SSR and SRX. The output will be available through websocket.
+
+As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+#### Example output from ws stream
+
+```
+===== ================== =================== ============== =============== =========== ========= ===========
+Vrf   Device Interface   Network Interface   Interface Up   IP Address      OSPF Type   Area ID   Area Type
+===== ================== =================== ============== =============== =========== ========= ===========
+      net1               g1                          True   172.16.1.2/24   Broadcast   0.0.0.0   default
+      net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
+      net4               g4                          True   172.16.4.2/24   Broadcast   0.0.0.4   default
+```
+
+```go
+ShowSiteGatewayOspfInterfaces(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfInterfaces) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowOspfInterfaces`](../../doc/models/utils-show-ospf-interfaces.md) | Body, Optional | All attributes are optional |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowOspfInterfaces{
+    PortId:               models.ToPointer("ge-0/0/3"),
+    Vrf:                  models.ToPointer("lan"),
+}
+
+apiResponse, err := utilitiesWAN.ShowSiteGatewayOspfInterfaces(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Gateway Ospf Neighbors
+
+Get OSPF Neighbors from SSR and SRX. The output will be available through websocket.
+
+As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+#### Example output from ws stream
+
+```
+===== ==================== ========== ======= ======== ================ =================== =================
+Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
+===== ==================== ========== ======= ======== ================ =================== =================
+      1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
+      1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
+      1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
+      1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
+```
+
+```go
+ShowSiteGatewayOspfNeighbors(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfNeighbors) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowOspfNeighbors`](../../doc/models/utils-show-ospf-neighbors.md) | Body, Optional | All attributes are optional |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowOspfNeighbors{
+    Neighbor:             models.ToPointer("10.1.1.1"),
+    PortId:               models.ToPointer("ge-0/0/3"),
+    Vrf:                  models.ToPointer("lan"),
+}
+
+apiResponse, err := utilitiesWAN.ShowSiteGatewayOspfNeighbors(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Gateway Ospf Summary
+
+Get OSPF summary from SSR and SRX. The output will be available through websocket.
+
+As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+#### Example output from ws stream
+
+```
+===== =========== ========== ============= ==================== ========= =========== =============
+Vrf   Router ID   ABR Type   ASBR Router   External LSA Count   Area ID   Area Type   Area Border
+                                                                                      Router
+===== =========== ========== ============= ==================== ========= =========== =============
+      1.0.0.2     cisco            False                    0   0.0.0.0
+      1.0.0.2     cisco            False                    0   0.0.0.4   default
+```
+
+```go
+ShowSiteGatewayOspfSummary(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowOspfSummary) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowOspfSummary`](../../doc/models/utils-show-ospf-summary.md) | Body, Optional | All attributes are optional |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowOspfSummary{
+    Vrf:                  models.ToPointer("lan"),
+}
+
+apiResponse, err := utilitiesWAN.ShowSiteGatewayOspfSummary(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -486,7 +824,7 @@ link
     4 Byte AS: advertised and received
     Route refresh: advertised and received(old &amp; new)
     Address family IPv4 Unicast: advertised and received
-    Graceful Restart Capabilty: advertised and received
+    Graceful Restart Capability: advertised and received
       Remote Restart timer is 120 seconds
       Address families by peer:
         none
@@ -513,7 +851,7 @@ ShowSiteSsrAndSrxRoutes(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -591,7 +929,7 @@ ShowSiteSsrAndSrxSessions(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -608,344 +946,6 @@ body := models.UtilsShowSession{
 }
 
 apiResponse, err := utilitiesWAN.ShowSiteSsrAndSrxSessions(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Show Site Ssr Ospf Database
-
-Get OSPF Database from the Device. The output will be available through websocket.
-
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-#### Example output from ws stream
-
-```
-===== ==================== ========== ======= ======== ================ =================== =================
-Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
-===== ==================== ========== ======= ======== ================ =================== =================
-      1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
-      1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
-      1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
-      1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
-```
-
-```go
-ShowSiteSsrOspfDatabase(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowOspfDatabase) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfDatabase`](../../doc/models/utils-show-ospf-database.md) | Body, Optional | All attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowOspfDatabase{
-    SelfOriginate:        models.ToPointer(false),
-    Vrf:                  models.ToPointer("lan"),
-}
-
-apiResponse, err := utilitiesWAN.ShowSiteSsrOspfDatabase(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Show Site Ssr Ospf Interfaces
-
-Get OSPF interfaces from the Device. The output will be available through websocket.
-
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-#### Example output from ws stream
-
-```
-===== ================== =================== ============== =============== =========== ========= ===========
-Vrf   Device Interface   Network Interface   Interface Up   IP Address      OSPF Type   Area ID   Area Type
-===== ================== =================== ============== =============== =========== ========= ===========
-      net1               g1                          True   172.16.1.2/24   Broadcast   0.0.0.0   default
-      net3               g3                          True   172.16.3.2/24   Broadcast   0.0.0.0   default
-      net4               g4                          True   172.16.4.2/24   Broadcast   0.0.0.4   default
-```
-
-```go
-ShowSiteSsrOspfInterfaces(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowOspfInterfaces) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfInterfaces`](../../doc/models/utils-show-ospf-interfaces.md) | Body, Optional | All attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowOspfInterfaces{
-    PortId:               models.ToPointer("ge-0/0/3"),
-    Vrf:                  models.ToPointer("lan"),
-}
-
-apiResponse, err := utilitiesWAN.ShowSiteSsrOspfInterfaces(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Show Site Ssr Ospf Neighbors
-
-Get OSPF Neighbors from the Device. The output will be available through websocket.
-
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-#### Example output from ws stream
-
-```
-===== ==================== ========== ======= ======== ================ =================== =================
-Vrf   Neighbor Router ID   Priority   State   Uptime   Dead Timer Due   Interface Address   Interface State
-===== ==================== ========== ======= ======== ================ =================== =================
-      1.0.0.3                     1   Full       852               38   172.16.3.2          Backup
-      1.0.0.4                     1   Full       811               33   172.16.3.2          DROther
-      1.0.0.3                     1   Full       852               38   172.16.4.2          Backup
-      1.0.0.4                     1   Full       811               34   172.16.4.2          DROther
-```
-
-```go
-ShowSiteSsrOspfNeighbors(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowOspfNeighbors) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfNeighbors`](../../doc/models/utils-show-ospf-neighbors.md) | Body, Optional | All attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowOspfNeighbors{
-    Neighbor:             models.ToPointer("10.1.1.1"),
-    PortId:               models.ToPointer("ge-0/0/3"),
-    Vrf:                  models.ToPointer("lan"),
-}
-
-apiResponse, err := utilitiesWAN.ShowSiteSsrOspfNeighbors(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Show Site Ssr Ospf Summary
-
-Get OSPF summary from the Device. The output will be available through websocket.
-
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-  "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-#### Example output from ws stream
-
-```
-===== =========== ========== ============= ==================== ========= =========== =============
-Vrf   Router ID   ABR Type   ASBR Router   External LSA Count   Area ID   Area Type   Area Border
-                                                                                      Router
-===== =========== ========== ============= ==================== ========= =========== =============
-      1.0.0.2     cisco            False                    0   0.0.0.0
-      1.0.0.2     cisco            False                    0   0.0.0.4   default
-```
-
-```go
-ShowSiteSsrOspfSummary(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowOspfSummary) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowOspfSummary`](../../doc/models/utils-show-ospf-summary.md) | Body, Optional | All attributes are optional |
-
-## Response Type
-
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowOspfSummary{
-    Vrf:                  models.ToPointer("lan"),
-}
-
-apiResponse, err := utilitiesWAN.ShowSiteSsrOspfSummary(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1002,7 +1002,7 @@ ShowSiteSsrServicePath(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 
@@ -1081,7 +1081,7 @@ TestSiteSsrDnsResolution(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 

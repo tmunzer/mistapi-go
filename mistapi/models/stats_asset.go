@@ -33,7 +33,7 @@ type StatsAsset struct {
     Rssi                  *int                   `json:"rssi,omitempty"`
     // Only send this for individual asset stat
     Rssizones             []AssetRssiZone        `json:"rssizones,omitempty"`
-    Temperatur            *float64               `json:"temperatur,omitempty"`
+    Temperature           *float64               `json:"temperature,omitempty"`
     // X in pixel
     X                     *float64               `json:"x,omitempty"`
     // Y in pixel
@@ -47,8 +47,8 @@ type StatsAsset struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsAsset) String() string {
     return fmt.Sprintf(
-    	"StatsAsset[BatteryVoltage=%v, Beam=%v, DeviceName=%v, Duration=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, LastSeen=%v, Mac=%v, MapId=%v, Name=%v, Rssi=%v, Rssizones=%v, Temperatur=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
-    	s.BatteryVoltage, s.Beam, s.DeviceName, s.Duration, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlUrl, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.LastSeen, s.Mac, s.MapId, s.Name, s.Rssi, s.Rssizones, s.Temperatur, s.X, s.Y, s.Zones, s.AdditionalProperties)
+    	"StatsAsset[BatteryVoltage=%v, Beam=%v, DeviceName=%v, Duration=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, LastSeen=%v, Mac=%v, MapId=%v, Name=%v, Rssi=%v, Rssizones=%v, Temperature=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
+    	s.BatteryVoltage, s.Beam, s.DeviceName, s.Duration, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlUrl, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.LastSeen, s.Mac, s.MapId, s.Name, s.Rssi, s.Rssizones, s.Temperature, s.X, s.Y, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAsset.
@@ -57,7 +57,7 @@ func (s StatsAsset) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperatur", "x", "y", "zones"); err != nil {
+        "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperature", "x", "y", "zones"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -113,8 +113,8 @@ func (s StatsAsset) toMap() map[string]any {
     if s.Rssizones != nil {
         structMap["rssizones"] = s.Rssizones
     }
-    if s.Temperatur != nil {
-        structMap["temperatur"] = s.Temperatur
+    if s.Temperature != nil {
+        structMap["temperature"] = s.Temperature
     }
     if s.X != nil {
         structMap["x"] = s.X
@@ -140,7 +140,7 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperatur", "x", "y", "zones")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "battery_voltage", "beam", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "last_seen", "mac", "map_id", "name", "rssi", "rssizones", "temperature", "x", "y", "zones")
     if err != nil {
     	return err
     }
@@ -162,7 +162,7 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
     s.Name = temp.Name
     s.Rssi = temp.Rssi
     s.Rssizones = temp.Rssizones
-    s.Temperatur = temp.Temperatur
+    s.Temperature = temp.Temperature
     s.X = temp.X
     s.Y = temp.Y
     s.Zones = temp.Zones
@@ -187,7 +187,7 @@ type tempStatsAsset  struct {
     Name                  *string         `json:"name,omitempty"`
     Rssi                  *int            `json:"rssi,omitempty"`
     Rssizones             []AssetRssiZone `json:"rssizones,omitempty"`
-    Temperatur            *float64        `json:"temperatur,omitempty"`
+    Temperature           *float64        `json:"temperature,omitempty"`
     X                     *float64        `json:"x,omitempty"`
     Y                     *float64        `json:"y,omitempty"`
     Zones                 []AssetZone     `json:"zones,omitempty"`

@@ -49,7 +49,7 @@ AddSiteMapImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -111,7 +111,7 @@ BulkAssignSiteApsToMap(
 
 ## Response Type
 
-[`models.ResponseSetDevicesMap`](../../doc/models/response-set-devices-map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSetDevicesMap](../../doc/models/response-set-devices-map.md).
 
 ## Example Usage
 
@@ -185,7 +185,7 @@ CreateSiteMap(
 
 ## Response Type
 
-[`models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -316,7 +316,7 @@ DeleteSiteMap(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -368,7 +368,7 @@ DeleteSiteMapImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -420,7 +420,7 @@ GetSiteMap(
 
 ## Response Type
 
-[`models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -492,7 +492,7 @@ ImportSiteMaps(
 
 ## Response Type
 
-[`models.ResponseMapImport`](../../doc/models/response-map-import.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMapImport](../../doc/models/response-map-import.md).
 
 ## Example Usage
 
@@ -590,7 +590,7 @@ ImportSiteWayfindings(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -656,7 +656,7 @@ ListSiteMaps(
 
 ## Response Type
 
-[`[]models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Map](../../doc/models/map.md).
 
 ## Example Usage
 
@@ -813,7 +813,7 @@ ReplaceSiteMapImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -871,7 +871,7 @@ UpdateSiteMap(
 
 ## Response Type
 
-[`models.Map`](../../doc/models/map.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Map](../../doc/models/map.md).
 
 ## Example Usage
 

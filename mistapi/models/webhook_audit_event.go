@@ -12,7 +12,7 @@ import (
 type WebhookAuditEvent struct {
     AdminName            string                 `json:"admin_name"`
     DeviceId             uuid.UUID              `json:"device_id"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Message              string                 `json:"message"`
     OrgId                uuid.UUID              `json:"org_id"`

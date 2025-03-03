@@ -14,7 +14,7 @@ type ResponseSiteSearchItem struct {
     AutoUpgradeVersion   string                 `json:"auto_upgrade_version"`
     CountryCode          *string                `json:"country_code"`
     HoneypotEnabled      bool                   `json:"honeypot_enabled"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Name                 string                 `json:"name"`
     OrgId                uuid.UUID              `json:"org_id"`

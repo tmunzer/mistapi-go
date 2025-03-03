@@ -10,7 +10,7 @@ import (
 
 // UserMac represents a UserMac struct.
 type UserMac struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Labels               []string               `json:"labels,omitempty"`
     // Only non-local-admin MAC is accepted

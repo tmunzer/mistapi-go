@@ -15,6 +15,7 @@ Switch port statistics
 |  --- | --- | --- | --- |
 | `Active` | `*bool` | Optional | Indicates if interface is active/inactive |
 | `AuthState` | [`*models.StatsSwitchPortAuthStateEnum`](../../doc/models/stats-switch-port-auth-state-enum.md) | Optional | if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init` |
+| `Disabled` | `*bool` | Optional | Indicates if interface is disabled |
 | `ForSite` | `*bool` | Optional | - |
 | `FullDuplex` | `*bool` | Optional | Indicates full or half duplex |
 | `Jitter` | `*float64` | Optional | Last sampled jitter of the interface |
@@ -86,8 +87,8 @@ Switch port statistics
   "xcvr_serial": "N6AA9HT",
   "active": false,
   "auth_state": "held",
+  "disabled": false,
   "for_site": false,
-  "jitter": 198.02,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

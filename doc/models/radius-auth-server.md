@@ -20,7 +20,7 @@ Authentication Server
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812`<br>**Constraints**: `>= 1`, `<= 65535` |
 | `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
-| `Secret` | `string` | Required | Secretof RADIUS server |
+| `Secret` | `string` | Required | Secret of RADIUS server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -120,14 +120,14 @@ func (o *OrgsTickets) CreateOrgTicket(
 }
 
 // CountOrgTickets takes context, orgId, distinct as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org Tickets
 func (o *OrgsTickets) CountOrgTickets(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgTicketsCountDistinctEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets/count")
     req.AppendTemplateParams(orgId)
@@ -153,13 +153,13 @@ func (o *OrgsTickets) CountOrgTickets(
         req.QueryParam("distinct", *distinct)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -262,11 +262,11 @@ func (o *OrgsTickets) UpdateOrgTicket(
     return models.NewApiResponse(result, resp), err
 }
 
-// UploadrgTicketAttachment takes context, orgId, ticketId, file as parameters and
+// UploadOrgTicketAttachment takes context, orgId, ticketId, file as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Get Org ticket Attachment
-func (o *OrgsTickets) UploadrgTicketAttachment(
+func (o *OrgsTickets) UploadOrgTicketAttachment(
     ctx context.Context,
     orgId uuid.UUID,
     ticketId uuid.UUID,

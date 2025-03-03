@@ -23,13 +23,12 @@ type CaptureScan struct {
     // Filter by client mac
     ClientMac            Optional[string]              `json:"client_mac"`
     // Duration of the capture, in seconds
-    Duration             *int                          `json:"duration,omitempty"`
+    Duration             Optional[int]                 `json:"duration"`
     // enum: `pcap`, `stream`
     Format               *CaptureScanFormatEnum        `json:"format,omitempty"`
-    // Max_len of each packet to capture
-    MaxPktLen            *int                          `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                          `json:"num_packets,omitempty"`
+    MaxPktLen            Optional[int]                 `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]                 `json:"num_packets"`
     // tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
     TcpdumpExpression    *string                       `json:"tcpdump_expression,omitempty"`
     // enum: `scan`
@@ -93,17 +92,29 @@ func (c CaptureScan) toMap() map[string]any {
             structMap["client_mac"] = nil
         }
     }
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.TcpdumpExpression != nil {
         structMap["tcpdump_expression"] = c.TcpdumpExpression
@@ -157,10 +168,10 @@ type tempCaptureScan  struct {
     Bandwidth         *Dot11BandwidthEnum           `json:"bandwidth,omitempty"`
     Channel           *int                          `json:"channel,omitempty"`
     ClientMac         Optional[string]              `json:"client_mac"`
-    Duration          *int                          `json:"duration,omitempty"`
+    Duration          Optional[int]                 `json:"duration"`
     Format            *CaptureScanFormatEnum        `json:"format,omitempty"`
-    MaxPktLen         *int                          `json:"max_pkt_len,omitempty"`
-    NumPackets        *int                          `json:"num_packets,omitempty"`
+    MaxPktLen         Optional[int]                 `json:"max_pkt_len"`
+    NumPackets        Optional[int]                 `json:"num_packets"`
     TcpdumpExpression *string                       `json:"tcpdump_expression,omitempty"`
     Type              *string                       `json:"type"`
     Width             *string                       `json:"width,omitempty"`

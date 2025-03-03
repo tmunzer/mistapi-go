@@ -14,11 +14,11 @@ type CaptureNewAssoc struct {
     // Client mac, required if `type`==`client`; optional otherwise
     ClientMac            *string                `json:"client_mac,omitempty"`
     // Duration of the capture, in seconds
-    Duration             *int                   `json:"duration,omitempty"`
+    Duration             Optional[int]          `json:"duration"`
     IncludesMcast        *bool                  `json:"includes_mcast,omitempty"`
-    MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                   `json:"num_packets,omitempty"`
+    MaxPktLen            Optional[int]          `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]          `json:"num_packets"`
     // Optional filter by ssid
     Ssid                 *string                `json:"ssid,omitempty"`
     // enum: `new_assoc`
@@ -56,17 +56,29 @@ func (c CaptureNewAssoc) toMap() map[string]any {
     if c.ClientMac != nil {
         structMap["client_mac"] = c.ClientMac
     }
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.IncludesMcast != nil {
         structMap["includes_mcast"] = c.IncludesMcast
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.Ssid != nil {
         structMap["ssid"] = c.Ssid
@@ -106,14 +118,14 @@ func (c *CaptureNewAssoc) UnmarshalJSON(input []byte) error {
 
 // tempCaptureNewAssoc is a temporary struct used for validating the fields of CaptureNewAssoc.
 type tempCaptureNewAssoc  struct {
-    ApMac         *string `json:"ap_mac,omitempty"`
-    ClientMac     *string `json:"client_mac,omitempty"`
-    Duration      *int    `json:"duration,omitempty"`
-    IncludesMcast *bool   `json:"includes_mcast,omitempty"`
-    MaxPktLen     *int    `json:"max_pkt_len,omitempty"`
-    NumPackets    *int    `json:"num_packets,omitempty"`
-    Ssid          *string `json:"ssid,omitempty"`
-    Type          *string `json:"type"`
+    ApMac         *string       `json:"ap_mac,omitempty"`
+    ClientMac     *string       `json:"client_mac,omitempty"`
+    Duration      Optional[int] `json:"duration"`
+    IncludesMcast *bool         `json:"includes_mcast,omitempty"`
+    MaxPktLen     Optional[int] `json:"max_pkt_len"`
+    NumPackets    Optional[int] `json:"num_packets"`
+    Ssid          *string       `json:"ssid,omitempty"`
+    Type          *string       `json:"type"`
 }
 
 func (c *tempCaptureNewAssoc) validate() error {

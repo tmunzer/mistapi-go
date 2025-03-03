@@ -19,14 +19,14 @@ import (
 // * client_mac: values are a list of MAC addresses
 // * radius_group: this is a smart tag that matches RADIUS-Filter-ID, Airespace-ACL-Name (VendorID=14179, VendorType=6) / Aruba-User-Role (VendorID=14823, VendorType=1)
 // * radius_username: this matches the ATTR-User-Name(1)
-// * radius_class: thie matches the ATTR-Class(25)
+// * radius_class: the matches the ATTR-Class(25)
 // * radius_attr: the values are [ "6=1" , "26=10.2.3.4" ], this support other RADIUS attributes where we know the type
 // * radius_vendor: the values are [ "14179.10=1" , "14178.16=1.2.3.4" ], this matches vendor attributes and will be dynamically evaluated
 type WxlanTag struct {
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     LastIps              []string               `json:"last_ips,omitempty"`
     // If `type`==`client`, Client MAC Address

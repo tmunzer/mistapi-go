@@ -39,7 +39,7 @@ CreateOrgAptemplate(
 
 ## Response Type
 
-[`models.ApTemplate`](../../doc/models/ap-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
 ## Example Usage
 
@@ -124,7 +124,7 @@ body := models.ApTemplate{
                             UseSiteMxedge:        models.ToPointer(false),
                         }),
                         VlanId:               models.ToPointer(9),
-                        VlandIds:             []int{
+                        VlanIds:              []int{
                             1,
                             10,
                             50,
@@ -204,7 +204,7 @@ body := models.ApTemplate{
                             UseSiteMxedge:        models.ToPointer(false),
                         }),
                         VlanId:               models.ToPointer(9),
-                        VlandIds:             []int{
+                        VlanIds:              []int{
                             1,
                             10,
                             50,
@@ -330,7 +330,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50
@@ -411,7 +411,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50
@@ -479,7 +479,7 @@ DeleteOrgAptemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -531,7 +531,7 @@ GetOrgAptemplate(
 
 ## Response Type
 
-[`models.ApTemplate`](../../doc/models/ap-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
 ## Example Usage
 
@@ -636,7 +636,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50
@@ -717,7 +717,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50
@@ -787,7 +787,7 @@ ListOrgAptemplates(
 
 ## Response Type
 
-[`[]models.ApTemplate`](../../doc/models/ap-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ApTemplate](../../doc/models/ap-template.md).
 
 ## Example Usage
 
@@ -895,7 +895,7 @@ if err != nil {
                 "use_site_mxedge": false
               },
               "vlan_id": 9,
-              "vland_ids": [
+              "vlan_ids": [
                 1,
                 10,
                 50
@@ -976,7 +976,7 @@ if err != nil {
                 "use_site_mxedge": false
               },
               "vlan_id": 9,
-              "vland_ids": [
+              "vlan_ids": [
                 1,
                 10,
                 50
@@ -1047,7 +1047,7 @@ UpdateOrgAptemplate(
 
 ## Response Type
 
-[`models.ApTemplate`](../../doc/models/ap-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
 ## Example Usage
 
@@ -1134,7 +1134,7 @@ body := models.ApTemplate{
                             UseSiteMxedge:        models.ToPointer(false),
                         }),
                         VlanId:               models.ToPointer(9),
-                        VlandIds:             []int{
+                        VlanIds:              []int{
                             1,
                             10,
                             50,
@@ -1214,7 +1214,7 @@ body := models.ApTemplate{
                             UseSiteMxedge:        models.ToPointer(false),
                         }),
                         VlanId:               models.ToPointer(9),
-                        VlandIds:             []int{
+                        VlanIds:              []int{
                             1,
                             10,
                             50,
@@ -1340,7 +1340,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50
@@ -1421,7 +1421,7 @@ if err != nil {
               "use_site_mxedge": false
             },
             "vlan_id": 9,
-            "vland_ids": [
+            "vlan_ids": [
               1,
               10,
               50

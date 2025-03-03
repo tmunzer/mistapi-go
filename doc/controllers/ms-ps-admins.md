@@ -41,7 +41,7 @@ GetMspAdmin(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -127,7 +127,7 @@ InviteMspAdmin(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -230,7 +230,7 @@ ListMspAdmins(
 
 ## Response Type
 
-[`[]models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -313,7 +313,7 @@ RevokeMspAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -365,7 +365,7 @@ UninviteMspAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -419,7 +419,7 @@ UpdateMspAdmin(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -526,7 +526,7 @@ UpdateMspAdminInvite(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 

@@ -16,7 +16,7 @@
 | `By` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `CurrSite` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `DeviceName` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `LastSeen` | `*float64` | Optional | - |
 | `Mac` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |
 | `Manufacture` | `*string` | Optional | **Constraints**: *Minimum Length*: `1` |

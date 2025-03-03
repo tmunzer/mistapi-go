@@ -42,7 +42,7 @@ CloneOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ CreateOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -187,7 +187,7 @@ DeleteOrg(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -235,7 +235,7 @@ GetOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 
@@ -319,7 +319,7 @@ SearchOrgEvents(
 
 ## Response Type
 
-[`models.ResponseEventsOrgsSearch`](../../doc/models/response-events-orgs-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsOrgsSearch](../../doc/models/response-events-orgs-search.md).
 
 ## Example Usage
 
@@ -381,7 +381,7 @@ UpdateOrg(
 
 ## Response Type
 
-[`models.Org`](../../doc/models/org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Org](../../doc/models/org.md).
 
 ## Example Usage
 

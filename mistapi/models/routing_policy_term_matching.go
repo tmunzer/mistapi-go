@@ -14,7 +14,7 @@ type RoutingPolicyTermMatching struct {
     Network              []string                              `json:"network,omitempty"`
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
     Prefix               []string                              `json:"prefix,omitempty"`
-    // `direct`, `bgp`, `osp`, ...
+    // `direct`, `bgp`, `osp`, `static`, `aggregate`...
     Protocol             []string                              `json:"protocol,omitempty"`
     RouteExists          *RoutingPolicyTermMatchingRouteExists `json:"route_exists,omitempty"`
     // overlay-facing criteria (used for bgp_config where via=vpn)

@@ -21,7 +21,7 @@ type StatsUnconnectedClient struct {
     Manufacture          string                 `json:"manufacture"`
     // Map_id of the client (if known), or null
     MapId                Optional[uuid.UUID]    `json:"map_id"`
-    // Client RSSI observered by the AP that heard the client (in dBm)
+    // Client RSSI observed by the AP that heard the client (in dBm)
     Rssi                 int                    `json:"rssi"`
     // X (in pixels) of user location on the map (if known)
     X                    *float64               `json:"x,omitempty"`

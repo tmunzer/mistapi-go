@@ -37,7 +37,7 @@ GetOauth2AuthorizationUrlForLogin(
 
 ## Response Type
 
-[`models.ResponseLoginOauthUrl`](../../doc/models/response-login-oauth-url.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseLoginOauthUrl](../../doc/models/response-login-oauth-url.md).
 
 ## Example Usage
 
@@ -46,7 +46,7 @@ ctx := context.Background()
 
 provider := "provider8"
 
-forward := "http://manage.mist.com/oauth/callback.html"
+forward := "https://manage.mist.com/oauth/callback.html"
 
 apiResponse, err := adminsLoginOAuth2.GetOauth2AuthorizationUrlForLogin(ctx, provider, &forward)
 if err != nil {
@@ -100,7 +100,7 @@ LoginOauth2(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -152,7 +152,7 @@ UnlinkOauth2Provider(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

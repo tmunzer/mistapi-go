@@ -8,11 +8,11 @@ import (
 // OrgSettingGatewayMgmtHostOutPolicies represents a OrgSettingGatewayMgmtHostOutPolicies struct.
 // optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
 type OrgSettingGatewayMgmtHostOutPolicies struct {
-    Dns                  *OrgSettingGatewayMgmtHostOutPoliciesDns  `json:"dns,omitempty"`
-    Mist                 *OrgSettingGatewayMgmtHostOutPoliciesMist `json:"mist,omitempty"`
-    Ntp                  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"ntp,omitempty"`
-    Pim                  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"pim,omitempty"`
-    AdditionalProperties map[string]interface{}                    `json:"_"`
+    Dns                  *OrgSettingGatewayMgmtHostOutPolicy `json:"dns,omitempty"`
+    Mist                 *OrgSettingGatewayMgmtHostOutPolicy `json:"mist,omitempty"`
+    Ntp                  *OrgSettingGatewayMgmtHostOutPolicy `json:"ntp,omitempty"`
+    Pim                  *OrgSettingGatewayMgmtHostOutPolicy `json:"pim,omitempty"`
+    AdditionalProperties map[string]interface{}              `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingGatewayMgmtHostOutPolicies,
@@ -77,8 +77,8 @@ func (o *OrgSettingGatewayMgmtHostOutPolicies) UnmarshalJSON(input []byte) error
 
 // tempOrgSettingGatewayMgmtHostOutPolicies is a temporary struct used for validating the fields of OrgSettingGatewayMgmtHostOutPolicies.
 type tempOrgSettingGatewayMgmtHostOutPolicies  struct {
-    Dns  *OrgSettingGatewayMgmtHostOutPoliciesDns  `json:"dns,omitempty"`
-    Mist *OrgSettingGatewayMgmtHostOutPoliciesMist `json:"mist,omitempty"`
-    Ntp  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"ntp,omitempty"`
-    Pim  *OrgSettingGatewayMgmtHostOutPoliciesNtp  `json:"pim,omitempty"`
+    Dns  *OrgSettingGatewayMgmtHostOutPolicy `json:"dns,omitempty"`
+    Mist *OrgSettingGatewayMgmtHostOutPolicy `json:"mist,omitempty"`
+    Ntp  *OrgSettingGatewayMgmtHostOutPolicy `json:"ntp,omitempty"`
+    Pim  *OrgSettingGatewayMgmtHostOutPolicy `json:"pim,omitempty"`
 }

@@ -36,7 +36,7 @@ CountSiteMxEdgeEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -48,7 +48,7 @@ CountSiteMxEdgeEvents(
 | `distinct` | [`*models.SiteMxedgeEventsCountDistinctEnum`](../../doc/models/site-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -57,7 +57,7 @@ CountSiteMxEdgeEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -145,7 +145,7 @@ DeleteSiteMxEdge(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -197,7 +197,7 @@ GetSiteMxEdge(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -251,7 +251,7 @@ ListSiteMxEdges(
 
 ## Response Type
 
-[`[]models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -414,7 +414,7 @@ SearchSiteMistEdgeEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -424,7 +424,7 @@ SearchSiteMistEdgeEvents(
 
 ## Response Type
 
-[`models.ResponseMxedgeEventsSearch`](../../doc/models/response-mxedge-events-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeEventsSearch](../../doc/models/response-mxedge-events-search.md).
 
 ## Example Usage
 
@@ -517,7 +517,7 @@ UpdateSiteMxEdge(
 
 ## Response Type
 
-[`models.Mxedge`](../../doc/models/mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Mxedge](../../doc/models/mxedge.md).
 
 ## Example Usage
 
@@ -634,7 +634,7 @@ UploadSiteMxEdgeSupportFiles(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

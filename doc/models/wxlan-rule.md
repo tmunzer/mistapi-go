@@ -22,9 +22,9 @@ WXlan
 | `DstWxtags` | `[]string` | Optional | List of WxTag UUID |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Order` | `int` | Required | Prder how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= -1` |
+| `Order` | `int` | Required | Order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked<br>**Constraints**: `>= -1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SrcWxtags` | `[]string` | Required | List of WxTag UUID to determine if this rule would match |

@@ -24,7 +24,7 @@ type Beacon struct {
     IbeaconMinor         *int                   `json:"ibeacon_minor,omitempty"`
     // Bluetooth tag UUID
     IbeaconUuid          *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // Optional, MAC of the beacon, currently used only to identify battery voltage
     Mac                  *string                `json:"mac,omitempty"`

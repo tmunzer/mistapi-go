@@ -11,13 +11,12 @@ import (
 // Initiate a Switch (Junos) Packet Capture
 type CaptureSwitch struct {
     // Duration of the capture, in seconds
-    Duration             *int                                           `json:"duration,omitempty"`
+    Duration             Optional[int]                                  `json:"duration"`
     // enum: `stream`
     Format               *CaptureSwitchFormatEnum                       `json:"format,omitempty"`
-    // Max_len of each packet to capture
-    MaxPktLen            *int                                           `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                                           `json:"num_packets,omitempty"`
+    MaxPktLen            Optional[int]                                  `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]                                  `json:"num_packets"`
     // Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
     Ports                map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
     // Property key is the switch mac
@@ -53,17 +52,29 @@ func (c CaptureSwitch) MarshalJSON() (
 func (c CaptureSwitch) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, c.AdditionalProperties)
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.Ports != nil {
         structMap["ports"] = c.Ports
@@ -107,10 +118,10 @@ func (c *CaptureSwitch) UnmarshalJSON(input []byte) error {
 
 // tempCaptureSwitch is a temporary struct used for validating the fields of CaptureSwitch.
 type tempCaptureSwitch  struct {
-    Duration          *int                                           `json:"duration,omitempty"`
+    Duration          Optional[int]                                  `json:"duration"`
     Format            *CaptureSwitchFormatEnum                       `json:"format,omitempty"`
-    MaxPktLen         *int                                           `json:"max_pkt_len,omitempty"`
-    NumPackets        *int                                           `json:"num_packets,omitempty"`
+    MaxPktLen         Optional[int]                                  `json:"max_pkt_len"`
+    NumPackets        Optional[int]                                  `json:"num_packets"`
     Ports             map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
     Switches          *map[string]CaptureSwitchSwitches              `json:"switches"`
     TcpdumpExpression *string                                        `json:"tcpdump_expression,omitempty"`

@@ -30,7 +30,7 @@ CountSiteDiscoveredSwitches(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -48,7 +48,7 @@ CountSiteDiscoveredSwitches(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -132,7 +132,7 @@ GetSiteDiscoveredSwitchesMetrics(
 
 ## Response Type
 
-[`models.ResponseDswitchesMetrics`](../../doc/models/response-dswitches-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDswitchesMetrics](../../doc/models/response-dswitches-metrics.md).
 
 ## Example Usage
 
@@ -255,7 +255,7 @@ SearchSiteDiscoveredSwitches(
 
 ## Response Type
 
-[`models.ResponseDiscoveredSwitches`](../../doc/models/response-discovered-switches.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDiscoveredSwitches](../../doc/models/response-discovered-switches.md).
 
 ## Example Usage
 
@@ -370,7 +370,7 @@ SearchSiteDiscoveredSwitchesMetrics(
 
 ## Response Type
 
-[`models.ResponseDiscoveredSwitchMetrics`](../../doc/models/response-discovered-switch-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDiscoveredSwitchMetrics](../../doc/models/response-discovered-switch-metrics.md).
 
 ## Example Usage
 

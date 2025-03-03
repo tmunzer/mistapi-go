@@ -18,7 +18,7 @@ type RftemplateRadioBand24 struct {
     Channels             Optional[[]int]           `json:"channels"`
     // Whether to disable the radio
     Disabled             *bool                     `json:"disabled,omitempty"`
-    // Tx power of the radio. For Devices, 0 means auto. -1 / -2 / -3 / …: treated as 0 / -1 / -2 / …
+    // tx power of the radio, null or 0 means auto, when power_min=power_max=power=0 to indicate power=0
     Power                Optional[int]             `json:"power"`
     // When power=0, max tx power to use, HW-specific values will be used if not set
     PowerMax             Optional[int]             `json:"power_max"`

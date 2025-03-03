@@ -19,7 +19,7 @@ SDK Template
 | `Default` | `*bool` | Optional | Whether this is the default template when there are multiple templates |
 | `ForSite` | `*bool` | Optional | - |
 | `HeaderTxt` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | Name for identification purpose |
 | `OrgId` | `*uuid.UUID` | Optional | - |

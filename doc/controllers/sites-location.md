@@ -42,7 +42,7 @@ ClearSiteMlOverwriteForDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -94,7 +94,7 @@ ClearSiteMlOverwriteForMap(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -158,7 +158,7 @@ GetSiteBeamCoverageOverview(
 
 ## Response Type
 
-[`models.ResponseLocationCoverage`](../../doc/models/response-location-coverage.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseLocationCoverage](../../doc/models/response-location-coverage.md).
 
 ## Example Usage
 
@@ -271,7 +271,7 @@ GetSiteDefaultPlfForModels(
 
 ## Response Type
 
-`[]interface{}`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []interface{}.
 
 ## Example Usage
 
@@ -374,7 +374,7 @@ GetSiteMachineLearningCurrentStat(
 
 ## Response Type
 
-`[]interface{}`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []interface{}.
 
 ## Example Usage
 
@@ -480,7 +480,7 @@ OverwriteSiteMlForDevice(
 
 ## Response Type
 
-`[]interface{}`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []interface{}.
 
 ## Example Usage
 
@@ -597,7 +597,7 @@ OverwriteSiteMlForMap(
 
 ## Response Type
 
-`[]interface{}`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []interface{}.
 
 ## Example Usage
 
@@ -712,7 +712,7 @@ ResetSiteMlStatsByMap(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

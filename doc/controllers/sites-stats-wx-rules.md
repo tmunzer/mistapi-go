@@ -29,7 +29,7 @@ GetSiteWxRulesUsage(
 
 ## Response Type
 
-[`[]models.StatsWxrule`](../../doc/models/stats-wxrule.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsWxrule](../../doc/models/stats-wxrule.md).
 
 ## Example Usage
 

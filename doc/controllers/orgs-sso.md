@@ -42,7 +42,7 @@ CreateOrgSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -129,7 +129,7 @@ DeleteOrgSso(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -161,7 +161,7 @@ if err != nil {
 
 # Download Org Saml Metadata
 
-Download Org SAML Metdata
+Download Org SAML Metadata
 
 Example of metadata.xml:
 
@@ -199,7 +199,7 @@ DownloadOrgSamlMetadata(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -253,7 +253,7 @@ GetOrgSamlMetadata(
 
 ## Response Type
 
-[`models.SamlMetadata`](../../doc/models/saml-metadata.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SamlMetadata](../../doc/models/saml-metadata.md).
 
 ## Example Usage
 
@@ -318,7 +318,7 @@ GetOrgSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -406,7 +406,7 @@ ListOrgSsoLatestFailures(
 
 ## Response Type
 
-[`models.ResponseSsoFailureSearch`](../../doc/models/response-sso-failure-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsoFailureSearch](../../doc/models/response-sso-failure-search.md).
 
 ## Example Usage
 
@@ -486,7 +486,7 @@ ListOrgSsos(
 
 ## Response Type
 
-[`[]models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 
@@ -570,7 +570,7 @@ UpdateOrgSso(
 
 ## Response Type
 
-[`models.Sso`](../../doc/models/sso.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sso](../../doc/models/sso.md).
 
 ## Example Usage
 

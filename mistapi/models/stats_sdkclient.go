@@ -11,7 +11,7 @@ import (
 // StatsSdkclient represents a StatsSdkclient struct.
 // SDK Client statistics
 type StatsSdkclient struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                       `json:"id"`
     // Last seen timestamp
     LastSeen             float64                         `json:"last_seen"`

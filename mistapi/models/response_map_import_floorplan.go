@@ -11,7 +11,7 @@ import (
 // ResponseMapImportFloorplan represents a ResponseMapImportFloorplan struct.
 type ResponseMapImportFloorplan struct {
     Action               string                 `json:"action"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     MapId                uuid.UUID              `json:"map_id"`
     Name                 string                 `json:"name"`

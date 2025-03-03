@@ -15,22 +15,21 @@ type CaptureRadiotapwired struct {
     Band                      *CaptureRadiotapwiredBandEnum   `json:"band,omitempty"`
     ClientMac                 Optional[string]                `json:"client_mac"`
     // Duration of the capture, in seconds
-    Duration                  *int                            `json:"duration,omitempty"`
+    Duration                  Optional[int]                   `json:"duration"`
     // enum: `pcap`, `stream`
     Format                    *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
-    // Max_len of each packet to capture
-    MaxPktLen                 *int                            `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets                *int                            `json:"num_packets,omitempty"`
+    MaxPktLen                 Optional[int]                   `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets                Optional[int]                   `json:"num_packets"`
     // tcpdump expression for radiotap interface (802.11 + radio headers)
     RadiotapTcpdumpExpression *string                         `json:"radiotap_tcpdump_expression,omitempty"`
     Ssid                      Optional[string]                `json:"ssid"`
-    // tcpdump expression common for wired,radiotap
-    TcpdumpExpression         *string                         `json:"tcpdump_expression,omitempty"`
+    // tcpdump expression
+    TcpdumpExpression         Optional[string]                `json:"tcpdump_expression"`
     // enum: `radiotap,wired`
     Type                      string                          `json:"type"`
-    // tcpdump expression for wired
-    WiredTcpdumpExpression    *string                         `json:"wired_tcpdump_expression,omitempty"`
+    // tcpdump expression
+    WiredTcpdumpExpression    Optional[string]                `json:"wired_tcpdump_expression"`
     // tcpdump expression for radiotap interface (802.11)
     WirelessTcpdumpExpression *string                         `json:"wireless_tcpdump_expression,omitempty"`
     // WLAN id associated with the respective ssid.
@@ -79,17 +78,29 @@ func (c CaptureRadiotapwired) toMap() map[string]any {
             structMap["client_mac"] = nil
         }
     }
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.RadiotapTcpdumpExpression != nil {
         structMap["radiotap_tcpdump_expression"] = c.RadiotapTcpdumpExpression
@@ -101,12 +112,20 @@ func (c CaptureRadiotapwired) toMap() map[string]any {
             structMap["ssid"] = nil
         }
     }
-    if c.TcpdumpExpression != nil {
-        structMap["tcpdump_expression"] = c.TcpdumpExpression
+    if c.TcpdumpExpression.IsValueSet() {
+        if c.TcpdumpExpression.Value() != nil {
+            structMap["tcpdump_expression"] = c.TcpdumpExpression.Value()
+        } else {
+            structMap["tcpdump_expression"] = nil
+        }
     }
     structMap["type"] = c.Type
-    if c.WiredTcpdumpExpression != nil {
-        structMap["wired_tcpdump_expression"] = c.WiredTcpdumpExpression
+    if c.WiredTcpdumpExpression.IsValueSet() {
+        if c.WiredTcpdumpExpression.Value() != nil {
+            structMap["wired_tcpdump_expression"] = c.WiredTcpdumpExpression.Value()
+        } else {
+            structMap["wired_tcpdump_expression"] = nil
+        }
     }
     if c.WirelessTcpdumpExpression != nil {
         structMap["wireless_tcpdump_expression"] = c.WirelessTcpdumpExpression
@@ -161,15 +180,15 @@ type tempCaptureRadiotapwired  struct {
     ApMac                     Optional[string]                `json:"ap_mac"`
     Band                      *CaptureRadiotapwiredBandEnum   `json:"band,omitempty"`
     ClientMac                 Optional[string]                `json:"client_mac"`
-    Duration                  *int                            `json:"duration,omitempty"`
+    Duration                  Optional[int]                   `json:"duration"`
     Format                    *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
-    MaxPktLen                 *int                            `json:"max_pkt_len,omitempty"`
-    NumPackets                *int                            `json:"num_packets,omitempty"`
+    MaxPktLen                 Optional[int]                   `json:"max_pkt_len"`
+    NumPackets                Optional[int]                   `json:"num_packets"`
     RadiotapTcpdumpExpression *string                         `json:"radiotap_tcpdump_expression,omitempty"`
     Ssid                      Optional[string]                `json:"ssid"`
-    TcpdumpExpression         *string                         `json:"tcpdump_expression,omitempty"`
+    TcpdumpExpression         Optional[string]                `json:"tcpdump_expression"`
     Type                      *string                         `json:"type"`
-    WiredTcpdumpExpression    *string                         `json:"wired_tcpdump_expression,omitempty"`
+    WiredTcpdumpExpression    Optional[string]                `json:"wired_tcpdump_expression"`
     WirelessTcpdumpExpression *string                         `json:"wireless_tcpdump_expression,omitempty"`
     WlanId                    Optional[string]                `json:"wlan_id"`
 }

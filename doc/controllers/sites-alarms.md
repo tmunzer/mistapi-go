@@ -17,7 +17,7 @@ sitesAlarms := client.SitesAlarms()
 * [Search Site Alarms](../../doc/controllers/sites-alarms.md#search-site-alarms)
 * [Subscribe Site Alarms](../../doc/controllers/sites-alarms.md#subscribe-site-alarms)
 * [Unack Site Alarm](../../doc/controllers/sites-alarms.md#unack-site-alarm)
-* [Unack Site All Arlarms](../../doc/controllers/sites-alarms.md#unack-site-all-arlarms)
+* [Unack Site All Alarms](../../doc/controllers/sites-alarms.md#unack-site-all-alarms)
 * [Unack Site Multiple Alarms](../../doc/controllers/sites-alarms.md#unack-site-multiple-alarms)
 * [Unsubscribe Site Alarms](../../doc/controllers/sites-alarms.md#unsubscribe-site-alarms)
 
@@ -46,7 +46,7 @@ AckSiteAlarm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -104,7 +104,7 @@ AckSiteAllAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -158,7 +158,7 @@ AckSiteMultipleAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -202,7 +202,7 @@ Count Site Alarms
 CountSiteAlarms(
     ctx context.Context,
     siteId uuid.UUID,
-    distinct *models.AlarmCountDisctinctEnum,
+    distinct *models.AlarmCountDistinctEnum,
     ackAdminName *string,
     acked *bool,
     mType *string,
@@ -213,7 +213,7 @@ CountSiteAlarms(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -222,7 +222,7 @@ CountSiteAlarms(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.AlarmCountDisctinctEnum`](../../doc/models/alarm-count-disctinct-enum.md) | Query, Optional | Group by and count the alarms by some distinct field<br>**Default**: `"type"` |
+| `distinct` | [`*models.AlarmCountDistinctEnum`](../../doc/models/alarm-count-distinct-enum.md) | Query, Optional | Group by and count the alarms by some distinct field<br>**Default**: `"type"` |
 | `ackAdminName` | `*string` | Query, Optional | Name of the admins who have acked the alarms; accepts multiple values separated by comma |
 | `acked` | `*bool` | Query, Optional | - |
 | `mType` | `*string` | Query, Optional | Key-name of the alarms; accepts multiple values separated by comma |
@@ -236,7 +236,7 @@ CountSiteAlarms(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -245,7 +245,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.AlarmCountDisctinctEnum_ENUMTYPE
+distinct := models.AlarmCountDistinctEnum_ENUMTYPE
 
 
 
@@ -344,7 +344,7 @@ SearchSiteAlarms(
 
 ## Response Type
 
-[`models.AlarmSearchResult`](../../doc/models/alarm-search-result.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AlarmSearchResult](../../doc/models/alarm-search-result.md).
 
 ## Example Usage
 
@@ -412,7 +412,7 @@ SubscribeSiteAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -464,7 +464,7 @@ UnackSiteAlarm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -498,14 +498,14 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Unack Site All Arlarms
+# Unack Site All Alarms
 
 Unack all Site Alarms
 
 **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
 
 ```go
-UnackSiteAllArlarms(
+UnackSiteAllAlarms(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.NoteString) (
@@ -522,7 +522,7 @@ UnackSiteAllArlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -535,7 +535,7 @@ body := models.NoteString{
     Note:                 models.ToPointer("maintenance window"),
 }
 
-resp, err := sitesAlarms.UnackSiteAllArlarms(ctx, siteId, &body)
+resp, err := sitesAlarms.UnackSiteAllAlarms(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -576,7 +576,7 @@ UnackSiteMultipleAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -632,7 +632,7 @@ UnsubscribeSiteAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

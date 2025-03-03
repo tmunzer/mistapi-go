@@ -32,7 +32,7 @@ CountOrgGuestAuthorizations(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -50,7 +50,7 @@ CountOrgGuestAuthorizations(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -132,7 +132,7 @@ DeleteOrgGuestAuthorization(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -184,7 +184,7 @@ GetOrgGuestAuthorization(
 
 ## Response Type
 
-[`models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 
@@ -255,7 +255,7 @@ ListOrgGuestAuthorizations(
 
 ## Response Type
 
-[`[]models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 
@@ -331,7 +331,7 @@ SearchOrgGuestAuthorization(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `*string` | Query, Optional | WLAN ID |
-| `authMethod` | `*string` | Query, Optional | Authentication Methdo |
+| `authMethod` | `*string` | Query, Optional | Authentication Method |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -340,7 +340,7 @@ SearchOrgGuestAuthorization(
 
 ## Response Type
 
-[`models.ResponseGuestSearch`](../../doc/models/response-guest-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseGuestSearch](../../doc/models/response-guest-search.md).
 
 ## Example Usage
 
@@ -444,7 +444,7 @@ UpdateOrgGuestAuthorization(
 
 ## Response Type
 
-[`models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 

@@ -120,6 +120,22 @@ func TestConstantsDefinitionsTestListCountryCodes(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestConstantsDefinitionsTestListFingerprintTypes tests the behavior of the ConstantsDefinitions
+func TestConstantsDefinitionsTestListFingerprintTypes(t *testing.T) {
+    ctx := context.Background()
+    apiResponse, err := constantsDefinitions.ListFingerprintTypes(ctx)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"family":["2Wire Router","3Com Switches","ACTi Corporation Network Camera","APC Video Equipment","APC-Schneider UPS","Aastra VoIP","Acer","Actiontec Wireless Router","Aerohive Access Point","Alcatel","Alcatel VoIP","Amazon Echo"],"mfg":["100fio Networks Technology llc","10NET COMMUNICATIONS/DCA","11wave Technonlogy Co.,Ltd","12Sided Technology, LLC","1Net Corporation","1Verge Internet Technology (Beijing) Co., Ltd."],"model":["10T Lite","10T Pro","10th Gen","11 Lite","11 Pro","11 Pro Max"],"os_type":["Android","Apple OS","Asha Platform OS"]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestConstantsDefinitionsTestListGatewayApplications tests the behavior of the ConstantsDefinitions
 func TestConstantsDefinitionsTestListGatewayApplications(t *testing.T) {
     ctx := context.Background()
@@ -228,6 +244,6 @@ func TestConstantsDefinitionsTestListWebhookTopics(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"}]`
+    expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"allows_single_event_per_message":true,"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

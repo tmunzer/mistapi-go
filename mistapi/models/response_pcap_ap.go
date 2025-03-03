@@ -10,7 +10,7 @@ type ResponsePcapAp struct {
     Band                 *int                   `json:"band,omitempty"`
     Bandwidth            *int                   `json:"bandwidth,omitempty"`
     Channel              *int                   `json:"channel,omitempty"`
-    TcpdumpExpresssion   Optional[string]       `json:"tcpdump_expresssion"`
+    TcpdumpExpression    Optional[string]       `json:"tcpdump_expression"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type ResponsePcapAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponsePcapAp) String() string {
     return fmt.Sprintf(
-    	"ResponsePcapAp[Band=%v, Bandwidth=%v, Channel=%v, TcpdumpExpresssion=%v, AdditionalProperties=%v]",
-    	r.Band, r.Bandwidth, r.Channel, r.TcpdumpExpresssion, r.AdditionalProperties)
+    	"ResponsePcapAp[Band=%v, Bandwidth=%v, Channel=%v, TcpdumpExpression=%v, AdditionalProperties=%v]",
+    	r.Band, r.Bandwidth, r.Channel, r.TcpdumpExpression, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapAp.
@@ -28,7 +28,7 @@ func (r ResponsePcapAp) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "band", "bandwidth", "channel", "tcpdump_expresssion"); err != nil {
+        "band", "bandwidth", "channel", "tcpdump_expression"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -47,11 +47,11 @@ func (r ResponsePcapAp) toMap() map[string]any {
     if r.Channel != nil {
         structMap["channel"] = r.Channel
     }
-    if r.TcpdumpExpresssion.IsValueSet() {
-        if r.TcpdumpExpresssion.Value() != nil {
-            structMap["tcpdump_expresssion"] = r.TcpdumpExpresssion.Value()
+    if r.TcpdumpExpression.IsValueSet() {
+        if r.TcpdumpExpression.Value() != nil {
+            structMap["tcpdump_expression"] = r.TcpdumpExpression.Value()
         } else {
-            structMap["tcpdump_expresssion"] = nil
+            structMap["tcpdump_expression"] = nil
         }
     }
     return structMap
@@ -65,7 +65,7 @@ func (r *ResponsePcapAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "bandwidth", "channel", "tcpdump_expresssion")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "bandwidth", "channel", "tcpdump_expression")
     if err != nil {
     	return err
     }
@@ -74,14 +74,14 @@ func (r *ResponsePcapAp) UnmarshalJSON(input []byte) error {
     r.Band = temp.Band
     r.Bandwidth = temp.Bandwidth
     r.Channel = temp.Channel
-    r.TcpdumpExpresssion = temp.TcpdumpExpresssion
+    r.TcpdumpExpression = temp.TcpdumpExpression
     return nil
 }
 
 // tempResponsePcapAp is a temporary struct used for validating the fields of ResponsePcapAp.
 type tempResponsePcapAp  struct {
-    Band               *int             `json:"band,omitempty"`
-    Bandwidth          *int             `json:"bandwidth,omitempty"`
-    Channel            *int             `json:"channel,omitempty"`
-    TcpdumpExpresssion Optional[string] `json:"tcpdump_expresssion"`
+    Band              *int             `json:"band,omitempty"`
+    Bandwidth         *int             `json:"bandwidth,omitempty"`
+    Channel           *int             `json:"channel,omitempty"`
+    TcpdumpExpression Optional[string] `json:"tcpdump_expression"`
 }

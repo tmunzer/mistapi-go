@@ -25,12 +25,12 @@ Count by Distinct Attributes of Calls
 CountSiteCalls(
     ctx context.Context,
     siteId uuid.UUID,
-    distrinct *models.CountSiteCallsDistrinctEnum,
+    distinct *models.CountSiteCallsDistinctEnum,
     rating *int,
     app *string,
     start *string,
     end *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -39,7 +39,7 @@ CountSiteCalls(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distrinct` | [`*models.CountSiteCallsDistrinctEnum`](../../doc/models/count-site-calls-distrinct-enum.md) | Query, Optional | **Default**: `"mac"` |
+| `distinct` | [`*models.CountSiteCallsDistinctEnum`](../../doc/models/count-site-calls-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `rating` | `*int` | Query, Optional | Feedback rating (e.g. "rating=1" or "rating=1,2")<br>**Constraints**: `>= 1`, `<= 5` |
 | `app` | `*string` | Query, Optional | - |
 | `start` | `*string` | Query, Optional | - |
@@ -47,7 +47,7 @@ CountSiteCalls(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -56,7 +56,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distrinct := models.CountSiteCallsDistrinctEnum_MAC
+distinct := models.CountSiteCallsDistinctEnum_MAC
 
 
 
@@ -66,7 +66,7 @@ distrinct := models.CountSiteCallsDistrinctEnum_MAC
 
 
 
-apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distrinct, nil, nil, nil, nil)
+apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, nil, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -133,7 +133,7 @@ GetSiteCallsSummary(
 
 ## Response Type
 
-[`models.ResponseStatsCallsSummary`](../../doc/models/response-stats-calls-summary.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseStatsCallsSummary](../../doc/models/response-stats-calls-summary.md).
 
 ## Example Usage
 
@@ -202,7 +202,7 @@ ListSiteTroubleshootCalls(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.CallTroubleshootSummary],
+    models.ApiResponse[models.ResponseCallTroubleshootSummary],
     error)
 ```
 
@@ -223,7 +223,7 @@ ListSiteTroubleshootCalls(
 
 ## Response Type
 
-[`models.CallTroubleshootSummary`](../../doc/models/call-troubleshoot-summary.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCallTroubleshootSummary](../../doc/models/response-call-troubleshoot-summary.md).
 
 ## Example Usage
 
@@ -401,7 +401,7 @@ SearchSiteCalls(
 
 ## Response Type
 
-[`models.ResponseStatsCalls`](../../doc/models/response-stats-calls.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseStatsCalls](../../doc/models/response-stats-calls.md).
 
 ## Example Usage
 
@@ -481,7 +481,7 @@ TroubleshootSiteCall(
 
 ## Response Type
 
-[`models.CallTroubleshoot`](../../doc/models/call-troubleshoot.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.CallTroubleshoot](../../doc/models/call-troubleshoot.md).
 
 ## Example Usage
 
@@ -539,7 +539,7 @@ if err != nil {
         "client_tx_bytes": 0.15803306,
         "client_tx_rates": 0.62357205,
         "client_tx_retries": 0.77553505,
-        "client_vpn_distaince": 1.6474955,
+        "client_vpn_distance": 1.6474955,
         "client_wifi_version": 0.18267937,
         "expected": 30.941595,
         "radio_bandwidth": -0.06538621,
@@ -568,7 +568,7 @@ if err != nil {
         "client_tx_bytes": 0.15803306,
         "client_tx_rates": 0.62357205,
         "client_tx_retries": 0.77553505,
-        "client_vpn_distaince": 1.6474955,
+        "client_vpn_distance": 1.6474955,
         "client_wifi_version": 0.18267937,
         "expected": 30.941595,
         "radio_bandwidth": -0.06538621,
@@ -598,7 +598,7 @@ if err != nil {
         "client_tx_bytes": 0.15803306,
         "client_tx_rates": 0.62357205,
         "client_tx_retries": 0.77553505,
-        "client_vpn_distaince": 1.6474955,
+        "client_vpn_distance": 1.6474955,
         "client_wifi_version": 0.18267937,
         "expected": 30.941595,
         "radio_bandwidth": -0.06538621,
@@ -627,7 +627,7 @@ if err != nil {
         "client_tx_bytes": 0.15803306,
         "client_tx_rates": 0.62357205,
         "client_tx_retries": 0.77553505,
-        "client_vpn_distaince": 1.6474955,
+        "client_vpn_distance": 1.6474955,
         "client_wifi_version": 0.18267937,
         "expected": 30.941595,
         "radio_bandwidth": -0.06538621,

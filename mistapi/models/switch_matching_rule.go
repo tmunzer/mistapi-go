@@ -16,12 +16,13 @@ type SwitchMatchingRule struct {
     AdditionalConfigCmds []string                               `json:"additional_config_cmds,omitempty"`
     // In-Band Management interface configuration
     IpConfig             *SwitchMatchingRuleIpConfig            `json:"ip_config,omitempty"`
+    // Rule name. WARNING: the name `default` is reserved and can only be used for the last rule in the list
     Name                 *string                                `json:"name,omitempty"`
     // Out-of-Band Management interface configuration
     OobIpConfig          *SwitchMatchingRuleOobIpConfig         `json:"oob_ip_config,omitempty"`
-    // Propery key is the interface name or interface range
+    // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig           map[string]JunosPortConfig             `json:"port_config,omitempty"`
-    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
+    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
     PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Switch settings
     SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`

@@ -22,7 +22,7 @@ func NewSitesClientsWireless(baseController baseController) *SitesClientsWireles
 }
 
 // CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
 func (s *SitesClientsWireless) CountSiteWirelessClients(
@@ -42,7 +42,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/count")
     req.AppendTemplateParams(siteId)
@@ -107,18 +107,18 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CountSiteWirelessClientEvents takes context, siteId, distinct, mType, reasonCode, ssid, ap, proto, band, wlanId, limit, start, end, duration as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Client-Events
 func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
@@ -136,7 +136,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
     start *int,
     end *int,
     duration *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/events/count")
     req.AppendTemplateParams(siteId)
@@ -195,13 +195,13 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
         req.QueryParam("duration", *duration)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -391,7 +391,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 }
 
 // CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Client Sessions
 func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
@@ -411,7 +411,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/sessions/count")
     req.AppendTemplateParams(siteId)
@@ -476,13 +476,13 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

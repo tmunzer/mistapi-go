@@ -398,7 +398,7 @@ func (u *UtilitiesPCAPs) GetSiteCapturingStatus(
 // ```json
 // {
 // "event": "data"
-// "channel": "/sites/:site_id/pcaps"
+// "channel": "/sites/{site_id}/pcaps"
 // "data": {
 // "capture_id": "6b1be4fb-b239-44d9-9d3b-cb1ff3af1721",
 // "lost_messages": 0

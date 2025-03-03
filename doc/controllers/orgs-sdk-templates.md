@@ -39,7 +39,7 @@ CreateSdkTemplate(
 
 ## Response Type
 
-[`models.Sdktemplate`](../../doc/models/sdktemplate.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
 ## Example Usage
 
@@ -66,7 +66,7 @@ if err != nil {
 
 ```json
 {
-  "bg_image": "http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
+  "bg_image": "https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
   "btn_flr_bgcolor": "#282828",
   "default": true,
   "header_txt": "Mist",
@@ -109,7 +109,7 @@ DeleteSdkTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -161,7 +161,7 @@ GetSdkTemplate(
 
 ## Response Type
 
-[`models.Sdktemplate`](../../doc/models/sdktemplate.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
 ## Example Usage
 
@@ -186,7 +186,7 @@ if err != nil {
 
 ```json
 {
-  "bg_image": "http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
+  "bg_image": "https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
   "btn_flr_bgcolor": "#282828",
   "default": true,
   "header_txt": "Mist",
@@ -227,7 +227,7 @@ ListSdkTemplates(
 
 ## Response Type
 
-[`[]models.Sdktemplate`](../../doc/models/sdktemplate.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Sdktemplate](../../doc/models/sdktemplate.md).
 
 ## Example Usage
 
@@ -251,7 +251,7 @@ if err != nil {
 ```json
 [
   {
-    "bg_image": "http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
+    "bg_image": "https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
     "btn_flr_bgcolor": "#282828",
     "default": true,
     "header_txt": "Mist",
@@ -297,7 +297,7 @@ UpdateSdkTemplate(
 
 ## Response Type
 
-[`models.Sdktemplate`](../../doc/models/sdktemplate.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Sdktemplate](../../doc/models/sdktemplate.md).
 
 ## Example Usage
 
@@ -326,7 +326,7 @@ if err != nil {
 
 ```json
 {
-  "bg_image": "http://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
+  "bg_image": "https://p.imgci.com/db/PICTURES/CMS/227700/227791.4.jpg",
   "btn_flr_bgcolor": "#282828",
   "default": true,
   "header_txt": "Mist",

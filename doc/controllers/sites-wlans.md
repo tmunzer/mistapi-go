@@ -43,7 +43,7 @@ CreateSiteWlan(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -360,7 +360,7 @@ DeleteSiteWlan(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -412,7 +412,7 @@ DeleteSiteWlanPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -464,7 +464,7 @@ GetSiteWlan(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -579,7 +579,7 @@ ListSiteWlanDerived(
 
 ## Response Type
 
-[`[]models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -637,7 +637,7 @@ ListSiteWlans(
 
 ## Response Type
 
-[`[]models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -695,7 +695,7 @@ UpdateSiteWlan(
 
 ## Response Type
 
-[`models.Wlan`](../../doc/models/wlan.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Wlan](../../doc/models/wlan.md).
 
 ## Example Usage
 
@@ -1032,7 +1032,7 @@ UpdateSiteWlanPortalTemplate(
 
 ## Response Type
 
-[`models.WlanPortalTemplate`](../../doc/models/wlan-portal-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WlanPortalTemplate](../../doc/models/wlan-portal-template.md).
 
 ## Example Usage
 
@@ -1310,7 +1310,7 @@ UploadSiteWlanPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

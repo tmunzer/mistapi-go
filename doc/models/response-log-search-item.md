@@ -16,7 +16,7 @@
 | `After` | `*interface{}` | Optional | field values after the change |
 | `Before` | `*interface{}` | Optional | field values prior to the change |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Message` | `string` | Required | log message |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `*uuid.UUID` | Required | - |

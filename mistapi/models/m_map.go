@@ -17,7 +17,7 @@ type Map struct {
     // When type=image, height of the image map
     Height               *int                     `json:"height,omitempty"`
     HeightM              *float64                 `json:"height_m,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID               `json:"id,omitempty"`
     // When type=google, latitude / longitude of the bottom-right corner
     LatlngBr             *LatlngBr                `json:"latlng_br,omitempty"`
@@ -48,10 +48,6 @@ type Map struct {
     Type                 *MapTypeEnum             `json:"type,omitempty"`
     // When type=image, the url
     Url                  *string                  `json:"url,omitempty"`
-    // Whether this map uses autooreintation values or ignores them
-    UseAutoOrientation   *bool                    `json:"use_auto_orientation,omitempty"`
-    // Whether this map uses autoplacement values or ignores them
-    UseAutoPlacement     *bool                    `json:"use_auto_placement,omitempty"`
     // if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
     View                 Optional[MapViewEnum]    `json:"view"`
     // JSON blob for wall definition (same format as wayfinding_path)
@@ -70,8 +66,8 @@ type Map struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m Map) String() string {
     return fmt.Sprintf(
-    	"Map[CreatedTime=%v, Flags=%v, ForSite=%v, Height=%v, HeightM=%v, Id=%v, LatlngBr=%v, LatlngTl=%v, Locked=%v, ModifiedTime=%v, Name=%v, OccupancyLimit=%v, OrgId=%v, Orientation=%v, OriginX=%v, OriginY=%v, Ppm=%v, SiteId=%v, SitesurveyPath=%v, ThumbnailUrl=%v, Type=%v, Url=%v, UseAutoOrientation=%v, UseAutoPlacement=%v, View=%v, WallPath=%v, Wayfinding=%v, WayfindingPath=%v, Width=%v, WidthM=%v, AdditionalProperties=%v]",
-    	m.CreatedTime, m.Flags, m.ForSite, m.Height, m.HeightM, m.Id, m.LatlngBr, m.LatlngTl, m.Locked, m.ModifiedTime, m.Name, m.OccupancyLimit, m.OrgId, m.Orientation, m.OriginX, m.OriginY, m.Ppm, m.SiteId, m.SitesurveyPath, m.ThumbnailUrl, m.Type, m.Url, m.UseAutoOrientation, m.UseAutoPlacement, m.View, m.WallPath, m.Wayfinding, m.WayfindingPath, m.Width, m.WidthM, m.AdditionalProperties)
+    	"Map[CreatedTime=%v, Flags=%v, ForSite=%v, Height=%v, HeightM=%v, Id=%v, LatlngBr=%v, LatlngTl=%v, Locked=%v, ModifiedTime=%v, Name=%v, OccupancyLimit=%v, OrgId=%v, Orientation=%v, OriginX=%v, OriginY=%v, Ppm=%v, SiteId=%v, SitesurveyPath=%v, ThumbnailUrl=%v, Type=%v, Url=%v, View=%v, WallPath=%v, Wayfinding=%v, WayfindingPath=%v, Width=%v, WidthM=%v, AdditionalProperties=%v]",
+    	m.CreatedTime, m.Flags, m.ForSite, m.Height, m.HeightM, m.Id, m.LatlngBr, m.LatlngTl, m.Locked, m.ModifiedTime, m.Name, m.OccupancyLimit, m.OrgId, m.Orientation, m.OriginX, m.OriginY, m.Ppm, m.SiteId, m.SitesurveyPath, m.ThumbnailUrl, m.Type, m.Url, m.View, m.WallPath, m.Wayfinding, m.WayfindingPath, m.Width, m.WidthM, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Map.
@@ -80,7 +76,7 @@ func (m Map) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "use_auto_orientation", "use_auto_placement", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m"); err != nil {
+        "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -156,12 +152,6 @@ func (m Map) toMap() map[string]any {
     if m.Url != nil {
         structMap["url"] = m.Url
     }
-    if m.UseAutoOrientation != nil {
-        structMap["use_auto_orientation"] = m.UseAutoOrientation
-    }
-    if m.UseAutoPlacement != nil {
-        structMap["use_auto_placement"] = m.UseAutoPlacement
-    }
     if m.View.IsValueSet() {
         if m.View.Value() != nil {
             structMap["view"] = m.View.Value()
@@ -195,7 +185,7 @@ func (m *Map) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "use_auto_orientation", "use_auto_placement", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "flags", "for_site", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
     if err != nil {
     	return err
     }
@@ -223,8 +213,6 @@ func (m *Map) UnmarshalJSON(input []byte) error {
     m.ThumbnailUrl = temp.ThumbnailUrl
     m.Type = temp.Type
     m.Url = temp.Url
-    m.UseAutoOrientation = temp.UseAutoOrientation
-    m.UseAutoPlacement = temp.UseAutoPlacement
     m.View = temp.View
     m.WallPath = temp.WallPath
     m.Wayfinding = temp.Wayfinding
@@ -236,34 +224,32 @@ func (m *Map) UnmarshalJSON(input []byte) error {
 
 // tempMap is a temporary struct used for validating the fields of Map.
 type tempMap  struct {
-    CreatedTime        *float64                 `json:"created_time,omitempty"`
-    Flags              map[string]int           `json:"flags,omitempty"`
-    ForSite            *bool                    `json:"for_site,omitempty"`
-    Height             *int                     `json:"height,omitempty"`
-    HeightM            *float64                 `json:"height_m,omitempty"`
-    Id                 *uuid.UUID               `json:"id,omitempty"`
-    LatlngBr           *LatlngBr                `json:"latlng_br,omitempty"`
-    LatlngTl           *LatlngTl                `json:"latlng_tl,omitempty"`
-    Locked             *bool                    `json:"locked,omitempty"`
-    ModifiedTime       *float64                 `json:"modified_time,omitempty"`
-    Name               *string                  `json:"name,omitempty"`
-    OccupancyLimit     *int                     `json:"occupancy_limit,omitempty"`
-    OrgId              *uuid.UUID               `json:"org_id,omitempty"`
-    Orientation        *int                     `json:"orientation,omitempty"`
-    OriginX            *int                     `json:"origin_x,omitempty"`
-    OriginY            *int                     `json:"origin_y,omitempty"`
-    Ppm                *float64                 `json:"ppm,omitempty"`
-    SiteId             *uuid.UUID               `json:"site_id,omitempty"`
-    SitesurveyPath     []MapSitesurveyPathItems `json:"sitesurvey_path,omitempty"`
-    ThumbnailUrl       *string                  `json:"thumbnail_url,omitempty"`
-    Type               *MapTypeEnum             `json:"type,omitempty"`
-    Url                *string                  `json:"url,omitempty"`
-    UseAutoOrientation *bool                    `json:"use_auto_orientation,omitempty"`
-    UseAutoPlacement   *bool                    `json:"use_auto_placement,omitempty"`
-    View               Optional[MapViewEnum]    `json:"view"`
-    WallPath           *MapWallPath             `json:"wall_path,omitempty"`
-    Wayfinding         *MapWayfinding           `json:"wayfinding,omitempty"`
-    WayfindingPath     *MapWayfindingPath       `json:"wayfinding_path,omitempty"`
-    Width              *int                     `json:"width,omitempty"`
-    WidthM             *float64                 `json:"width_m,omitempty"`
+    CreatedTime    *float64                 `json:"created_time,omitempty"`
+    Flags          map[string]int           `json:"flags,omitempty"`
+    ForSite        *bool                    `json:"for_site,omitempty"`
+    Height         *int                     `json:"height,omitempty"`
+    HeightM        *float64                 `json:"height_m,omitempty"`
+    Id             *uuid.UUID               `json:"id,omitempty"`
+    LatlngBr       *LatlngBr                `json:"latlng_br,omitempty"`
+    LatlngTl       *LatlngTl                `json:"latlng_tl,omitempty"`
+    Locked         *bool                    `json:"locked,omitempty"`
+    ModifiedTime   *float64                 `json:"modified_time,omitempty"`
+    Name           *string                  `json:"name,omitempty"`
+    OccupancyLimit *int                     `json:"occupancy_limit,omitempty"`
+    OrgId          *uuid.UUID               `json:"org_id,omitempty"`
+    Orientation    *int                     `json:"orientation,omitempty"`
+    OriginX        *int                     `json:"origin_x,omitempty"`
+    OriginY        *int                     `json:"origin_y,omitempty"`
+    Ppm            *float64                 `json:"ppm,omitempty"`
+    SiteId         *uuid.UUID               `json:"site_id,omitempty"`
+    SitesurveyPath []MapSitesurveyPathItems `json:"sitesurvey_path,omitempty"`
+    ThumbnailUrl   *string                  `json:"thumbnail_url,omitempty"`
+    Type           *MapTypeEnum             `json:"type,omitempty"`
+    Url            *string                  `json:"url,omitempty"`
+    View           Optional[MapViewEnum]    `json:"view"`
+    WallPath       *MapWallPath             `json:"wall_path,omitempty"`
+    Wayfinding     *MapWayfinding           `json:"wayfinding,omitempty"`
+    WayfindingPath *MapWayfindingPath       `json:"wayfinding_path,omitempty"`
+    Width          *int                     `json:"width,omitempty"`
+    WidthM         *float64                 `json:"width_m,omitempty"`
 }

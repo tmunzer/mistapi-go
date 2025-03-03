@@ -17,7 +17,7 @@ orgsDevicesSSR := client.OrgsDevicesSSR()
 GetOrg128TRegistrationCommands(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.ReponseRouter128tRegisterCmd],
+    models.ApiResponse[models.ResponseRouter128tRegisterCmd],
     error)
 ```
 
@@ -29,7 +29,7 @@ GetOrg128TRegistrationCommands(
 
 ## Response Type
 
-[`models.ReponseRouter128tRegisterCmd`](../../doc/models/reponse-router-128-t-register-cmd.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseRouter128tRegisterCmd](../../doc/models/response-router-128-t-register-cmd.md).
 
 ## Example Usage
 

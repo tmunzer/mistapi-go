@@ -16,6 +16,7 @@ type SwitchSearch struct {
     ExtIp                *string                `json:"ext_ip,omitempty"`
     Hostname             []string               `json:"hostname,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
+    LastConfigStatus     *string                `json:"last_config_status,omitempty"`
     LastHostname         *string                `json:"last_hostname,omitempty"`
     LastTroubleCode      *string                `json:"last_trouble_code,omitempty"`
     LastTroubleTimestamp *int                   `json:"last_trouble_timestamp,omitempty"`
@@ -39,8 +40,8 @@ type SwitchSearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchSearch) String() string {
     return fmt.Sprintf(
-    	"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
-    	s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
+    	"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastConfigStatus, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchSearch.
@@ -49,7 +50,7 @@ func (s SwitchSearch) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
+        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -76,6 +77,9 @@ func (s SwitchSearch) toMap() map[string]any {
     }
     if s.Ip != nil {
         structMap["ip"] = s.Ip
+    }
+    if s.LastConfigStatus != nil {
+        structMap["last_config_status"] = s.LastConfigStatus
     }
     if s.LastHostname != nil {
         structMap["last_hostname"] = s.LastHostname
@@ -135,7 +139,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
     if err != nil {
     	return err
     }
@@ -147,6 +151,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     s.ExtIp = temp.ExtIp
     s.Hostname = temp.Hostname
     s.Ip = temp.Ip
+    s.LastConfigStatus = temp.LastConfigStatus
     s.LastHostname = temp.LastHostname
     s.LastTroubleCode = temp.LastTroubleCode
     s.LastTroubleTimestamp = temp.LastTroubleTimestamp
@@ -173,6 +178,7 @@ type tempSwitchSearch  struct {
     ExtIp                *string    `json:"ext_ip,omitempty"`
     Hostname             []string   `json:"hostname,omitempty"`
     Ip                   *string    `json:"ip,omitempty"`
+    LastConfigStatus     *string    `json:"last_config_status,omitempty"`
     LastHostname         *string    `json:"last_hostname,omitempty"`
     LastTroubleCode      *string    `json:"last_trouble_code,omitempty"`
     LastTroubleTimestamp *int       `json:"last_trouble_timestamp,omitempty"`

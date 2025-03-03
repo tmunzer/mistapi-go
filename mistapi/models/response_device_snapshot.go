@@ -7,10 +7,10 @@ import (
 
 // ResponseDeviceSnapshot represents a ResponseDeviceSnapshot struct.
 type ResponseDeviceSnapshot struct {
+    // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
+    Status               *ResponseDeviceSnapshotStatusEnum `json:"status,omitempty"`
     // Internal status id
     StatusId             *string                           `json:"status_id,omitempty"`
-    // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
-    Staus                *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp            *float64                          `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
 }
@@ -19,8 +19,8 @@ type ResponseDeviceSnapshot struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseDeviceSnapshot) String() string {
     return fmt.Sprintf(
-    	"ResponseDeviceSnapshot[StatusId=%v, Staus=%v, Timestamp=%v, AdditionalProperties=%v]",
-    	r.StatusId, r.Staus, r.Timestamp, r.AdditionalProperties)
+    	"ResponseDeviceSnapshot[Status=%v, StatusId=%v, Timestamp=%v, AdditionalProperties=%v]",
+    	r.Status, r.StatusId, r.Timestamp, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceSnapshot.
@@ -29,7 +29,7 @@ func (r ResponseDeviceSnapshot) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "status_id", "staus", "timestamp"); err != nil {
+        "status", "status_id", "timestamp"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -39,11 +39,11 @@ func (r ResponseDeviceSnapshot) MarshalJSON() (
 func (r ResponseDeviceSnapshot) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
+    if r.Status != nil {
+        structMap["status"] = r.Status
+    }
     if r.StatusId != nil {
         structMap["status_id"] = r.StatusId
-    }
-    if r.Staus != nil {
-        structMap["staus"] = r.Staus
     }
     if r.Timestamp != nil {
         structMap["timestamp"] = r.Timestamp
@@ -59,21 +59,21 @@ func (r *ResponseDeviceSnapshot) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status_id", "staus", "timestamp")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "status", "status_id", "timestamp")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
+    r.Status = temp.Status
     r.StatusId = temp.StatusId
-    r.Staus = temp.Staus
     r.Timestamp = temp.Timestamp
     return nil
 }
 
 // tempResponseDeviceSnapshot is a temporary struct used for validating the fields of ResponseDeviceSnapshot.
 type tempResponseDeviceSnapshot  struct {
+    Status    *ResponseDeviceSnapshotStatusEnum `json:"status,omitempty"`
     StatusId  *string                           `json:"status_id,omitempty"`
-    Staus     *ResponseDeviceSnapshotStatusEnum `json:"staus,omitempty"`
     Timestamp *float64                          `json:"timestamp,omitempty"`
 }

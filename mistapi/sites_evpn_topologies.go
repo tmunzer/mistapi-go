@@ -65,7 +65,7 @@ func (s *SitesEVPNTopologies) ListSiteEvpnTopologies(
 // CreateSiteEvpnTopology takes context, siteId, body as parameters and
 // returns an models.ApiResponse with models.EvpnTopology data and
 // an error if there was an issue with the request or response.
-// While all the `evpn_id` / `downlink_ips` can be specifidd by hand, the easiest way is to call the `build_vpn_topology` API, allowing you to examine the diff, and update it yourself. You can also simply call it with `overwrite=true` which will apply the updates for you.
+// While all the `evpn_id` / `downlink_ips` can be specified by hand, the easiest way is to call the `build_vpn_topology` API, allowing you to examine the diff, and update it yourself. You can also simply call it with `overwrite=true` which will apply the updates for you.
 // **Notes:**
 // 1. You can use `core` / `distribution` / `access` to create a CLOS topology
 // 2. You can also use `core` / `distribution` to form a 2-tier EVPN topology where ESI-Lag is configured distribution to connect to access switches
@@ -74,7 +74,7 @@ func (s *SitesEVPNTopologies) ListSiteEvpnTopologies(
 // #### Collapsed Core
 // In a small-medium campus, EVPN can also be enabled only at the core switches (up to 4) by assigning all participating switches with `collapsed-core role`. When there are more than 2 switches, a ring-like topology will be formed.
 // #### ESI-Lag
-// If the access switchess does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
+// If the access switches does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
 // #### Leaf / Access / Collapsed-Core
 // For leaf nodes in a EVPN topology, you’d have to configure the IPs for networks that would participate in EVPN. Optionally, VRFs to isolate traffic from one tenant verus another
 func (s *SitesEVPNTopologies) CreateSiteEvpnTopology(
@@ -200,7 +200,7 @@ func (s *SitesEVPNTopologies) GetSiteEvpnTopology(
 // UpdateSiteEvpnTopology takes context, siteId, evpnTopologyId, body as parameters and
 // returns an models.ApiResponse with models.EvpnTopology data and
 // an error if there was an issue with the request or response.
-// Update the EVPN Topolgy
+// Update the EVPN Topology
 func (s *SitesEVPNTopologies) UpdateSiteEvpnTopology(
     ctx context.Context,
     siteId uuid.UUID,

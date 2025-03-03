@@ -24,7 +24,7 @@ CountOrgTunnelsStats(
     orgId uuid.UUID,
     distinct *models.OrgTunnelCountDistinctEnum,
     mType *models.OrgTunnelTypeCountEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -38,7 +38,7 @@ CountOrgTunnelsStats(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -150,7 +150,7 @@ SearchOrgTunnelsStats(
 
 ## Response Type
 
-[`models.ResponseTunnelSearch`](../../doc/models/response-tunnel-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseTunnelSearch](../../doc/models/response-tunnel-search.md).
 
 ## Example Usage
 

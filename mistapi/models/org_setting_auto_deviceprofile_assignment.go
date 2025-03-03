@@ -7,9 +7,9 @@ import (
 
 // OrgSettingAutoDeviceprofileAssignment represents a OrgSettingAutoDeviceprofileAssignment struct.
 type OrgSettingAutoDeviceprofileAssignment struct {
-    Enable               *bool                    `json:"enable,omitempty"`
-    Rules                Optional[[]OrgAutoRules] `json:"rules"`
-    AdditionalProperties map[string]interface{}   `json:"_"`
+    Enable               *bool                                    `json:"enable,omitempty"`
+    Rules                Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingAutoDeviceprofileAssignment,
@@ -70,6 +70,6 @@ func (o *OrgSettingAutoDeviceprofileAssignment) UnmarshalJSON(input []byte) erro
 
 // tempOrgSettingAutoDeviceprofileAssignment is a temporary struct used for validating the fields of OrgSettingAutoDeviceprofileAssignment.
 type tempOrgSettingAutoDeviceprofileAssignment  struct {
-    Enable *bool                    `json:"enable,omitempty"`
-    Rules  Optional[[]OrgAutoRules] `json:"rules"`
+    Enable *bool                                    `json:"enable,omitempty"`
+    Rules  Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
 }

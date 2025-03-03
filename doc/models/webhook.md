@@ -15,7 +15,7 @@
 | `Enabled` | `*bool` | Optional | Whether webhook is enabled<br>**Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |
 | `Headers` | `models.Optional[map[string]string]` | Optional | If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000 |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `models.Optional[string]` | Optional | Name of the webhook |
 | `Oauth2ClientId` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials` |
@@ -27,6 +27,7 @@
 | `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
+| `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics))<br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it. |
 | `Topics` | `[]string` | Optional | List of supported webhook topics available with the API Call [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics) |
@@ -46,6 +47,7 @@
   },
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "single_event_per_message": false,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "http-post",
   "verify_cert": true,

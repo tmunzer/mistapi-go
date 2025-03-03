@@ -18,7 +18,7 @@ Template
 | `DeviceprofileIds` | `[]uuid.UUID` | Optional | List of Device Profile ids |
 | `Exceptions` | [`*models.TemplateExceptions`](../../doc/models/template-exceptions.md) | Optional | Where this template should not be applied to (takes precedence) |
 | `FilterByDeviceprofile` | `*bool` | Optional | Whether to further filter by Device Profile |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

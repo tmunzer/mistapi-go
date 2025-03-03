@@ -46,7 +46,7 @@ CountSiteWebhooksDeliveries(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -68,7 +68,7 @@ CountSiteWebhooksDeliveries(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -185,7 +185,7 @@ CreateSiteWebhook(
 
 ## Response Type
 
-[`models.Webhook`](../../doc/models/webhook.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Webhook](../../doc/models/webhook.md).
 
 ## Example Usage
 
@@ -195,18 +195,18 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:              models.ToPointer(true),
-    Headers:              models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:               models.ToPointer(true),
+    Headers:               models.NewOptional(models.ToPointer(map[string]string{
     })),
-    Name:                 models.NewOptional(models.ToPointer("string")),
-    Secret:               models.NewOptional(models.ToPointer("string")),
-    SplunkToken:          models.NewOptional(models.ToPointer("string")),
-    Topics:               []string{
+    Name:                  models.NewOptional(models.ToPointer("string")),
+    Secret:                models.NewOptional(models.ToPointer("string")),
+    SplunkToken:           models.NewOptional(models.ToPointer("string")),
+    Topics:                []string{
         "location",
     },
-    Type:                 models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
-    Url:                  models.ToPointer("string"),
-    VerifyCert:           models.ToPointer(true),
+    Type:                  models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
+    Url:                   models.ToPointer("string"),
+    VerifyCert:            models.ToPointer(true),
 }
 
 apiResponse, err := sitesWebhooks.CreateSiteWebhook(ctx, siteId, &body)
@@ -275,7 +275,7 @@ DeleteSiteWebhook(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -327,7 +327,7 @@ GetSiteWebhook(
 
 ## Response Type
 
-[`models.Webhook`](../../doc/models/webhook.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Webhook](../../doc/models/webhook.md).
 
 ## Example Usage
 
@@ -406,7 +406,7 @@ ListSiteWebhooks(
 
 ## Response Type
 
-[`[]models.Webhook`](../../doc/models/webhook.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Webhook](../../doc/models/webhook.md).
 
 ## Example Usage
 
@@ -487,7 +487,7 @@ PingSiteWebhook(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -563,7 +563,7 @@ SearchSiteWebhooksDeliveries(
 
 ## Response Type
 
-[`models.SearchWebhookDelivery`](../../doc/models/search-webhook-delivery.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWebhookDelivery](../../doc/models/search-webhook-delivery.md).
 
 ## Example Usage
 
@@ -613,7 +613,7 @@ if err != nil {
       "org_id": "fc7e2967-e7ef-41e6-b007-1217713de05a",
       "req_headers": "{\\\"Content-Type\\\":[\\\"application/json\\\"],\\\"User-Agent\\\":[\\\"Mist-webhook\\\"]}",
       "req_payload": "{\\\"topic\\\":\\\"audits\\\",\\\"events\\\":[{\\\"admin_name\\\":\\\"John Doe john.doe@juniper.net\\\",\\\"after\\\":\\\"{\\\\\"radio_config\\\\\": {\\\\\"band_24\\\\\": {\\\\\"disabled\\\\\": false, \\\\\"allow_rrm_disable\\\\\": false, \\\\\"power_min\\\\\": null, \\\\\"power_max\\\\\": null, \\\\\"power\\\\\": 10, \\\\\"preamble\\\\\": \\\\\"short\\\\\", \\\\\"channels\\\\\": [1, 10], \\\\\"bandwidth\\\\\": 20}}}\\\",\\\"before\\\":\\\"{\\\\\"radio_config\\\\\": {\\\\\"band_24\\\\\": {\\\\\"disabled\\\\\": false, \\\\\"allow_rrm_disable\\\\\": false, \\\\\"power_min\\\\\": 8, \\\\\"power_max\\\\\": 18, \\\\\"power\\\\\": null, \\\\\"preamble\\\\\": \\\\\"long\\\\\", \\\\\"channels\\\\\": [1, 10], \\\\\"bandwidth\\\\\": 20}}}\\\",\\\"id\\\":\\\"737909a2-04ff-4aeb-b9da-cc924e74a4dd\\\",\\\"message\\\":\\\"Update Site Settings\\\",\\\"org_id\\\":\\\"fc7e2967-e7ef-41e6-b007-1217713de05a\\\",\\\"site_id\\\":\\\"256c3a35-9cb7-436e-bc6d-314972645d95\\\",\\\"site_name\\\":\\\"Test Site\\\",\\\"src_ip\\\":\\\"1.2.3.4\\\",\\\"timestamp\\\":1685956576.923601,\\\"user_agent\\\":\\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36\\\"}]}",
-      "req_url": "http://example.com",
+      "req_url": "https://example.com",
       "resp_body": "Ok",
       "resp_headers": "string",
       "site_id": "256c3a35-9cb7-436e-bc6d-314972645d95",
@@ -664,7 +664,7 @@ UpdateSiteWebhook(
 
 ## Response Type
 
-[`models.Webhook`](../../doc/models/webhook.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Webhook](../../doc/models/webhook.md).
 
 ## Example Usage
 
@@ -676,18 +676,18 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Webhook{
-    Enabled:              models.ToPointer(true),
-    Headers:              models.NewOptional(models.ToPointer(map[string]string{
+    Enabled:               models.ToPointer(true),
+    Headers:               models.NewOptional(models.ToPointer(map[string]string{
     })),
-    Name:                 models.NewOptional(models.ToPointer("string")),
-    Secret:               models.NewOptional(models.ToPointer("string")),
-    SplunkToken:          models.NewOptional(models.ToPointer("string")),
-    Topics:               []string{
+    Name:                  models.NewOptional(models.ToPointer("string")),
+    Secret:                models.NewOptional(models.ToPointer("string")),
+    SplunkToken:           models.NewOptional(models.ToPointer("string")),
+    Topics:                []string{
         "location",
     },
-    Type:                 models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
-    Url:                  models.ToPointer("string"),
-    VerifyCert:           models.ToPointer(true),
+    Type:                  models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
+    Url:                   models.ToPointer("string"),
+    VerifyCert:            models.ToPointer(true),
 }
 
 apiResponse, err := sitesWebhooks.UpdateSiteWebhook(ctx, siteId, webhookId, &body)

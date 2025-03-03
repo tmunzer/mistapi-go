@@ -21,7 +21,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | - |
 | `Status` | `*string` | Optional | - |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
+| `Type` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

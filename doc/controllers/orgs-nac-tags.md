@@ -39,7 +39,7 @@ CreateOrgNacTag(
 
 ## Response Type
 
-[`models.NacTag`](../../doc/models/nac-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacTag](../../doc/models/nac-tag.md).
 
 ## Example Usage
 
@@ -126,7 +126,7 @@ DeleteOrgNacTag(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -178,7 +178,7 @@ GetOrgNacTag(
 
 ## Response Type
 
-[`models.NacTag`](../../doc/models/nac-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacTag](../../doc/models/nac-tag.md).
 
 ## Example Usage
 
@@ -254,7 +254,7 @@ ListOrgNacTags(
 
 ## Response Type
 
-[`[]models.NacTag`](../../doc/models/nac-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.NacTag](../../doc/models/nac-tag.md).
 
 ## Example Usage
 
@@ -318,7 +318,7 @@ UpdateOrgNacTag(
 
 ## Response Type
 
-[`models.NacTag`](../../doc/models/nac-tag.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacTag](../../doc/models/nac-tag.md).
 
 ## Example Usage
 

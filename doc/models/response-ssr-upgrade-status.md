@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Channel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `DeviceType` | `*string` | Optional | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Targets` | [`models.ResponseSsrUpgradeStatusTargets`](../../doc/models/response-ssr-upgrade-status-targets.md) | Required | - |
 | `Versions` | `interface{}` | Required | - |

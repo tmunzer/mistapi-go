@@ -39,7 +39,7 @@ ListOrgSiteStats(
 
 ## Response Type
 
-[`[]models.StatsSite`](../../doc/models/stats-site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsSite](../../doc/models/stats-site.md).
 
 ## Example Usage
 

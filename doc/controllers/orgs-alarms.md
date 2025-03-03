@@ -15,8 +15,10 @@ orgsAlarms := client.OrgsAlarms()
 * [Ack Org Multiple Alarms](../../doc/controllers/orgs-alarms.md#ack-org-multiple-alarms)
 * [Count Org Alarms](../../doc/controllers/orgs-alarms.md#count-org-alarms)
 * [Search Org Alarms](../../doc/controllers/orgs-alarms.md#search-org-alarms)
-* [Unack Org All Arlarms](../../doc/controllers/orgs-alarms.md#unack-org-all-arlarms)
+* [Subscribe Org Alarms Reports](../../doc/controllers/orgs-alarms.md#subscribe-org-alarms-reports)
+* [Unack Org All Alarms](../../doc/controllers/orgs-alarms.md#unack-org-all-alarms)
 * [Unack Org Multiple Alarms](../../doc/controllers/orgs-alarms.md#unack-org-multiple-alarms)
+* [Unsubscribe Org Alarms Reports](../../doc/controllers/orgs-alarms.md#unsubscribe-org-alarms-reports)
 
 
 # Ack Org Alarm
@@ -43,7 +45,7 @@ AckOrgAlarm(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -101,7 +103,7 @@ AckOrgAllAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -155,7 +157,7 @@ AckOrgMultipleAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -205,7 +207,7 @@ CountOrgAlarms(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -223,7 +225,7 @@ CountOrgAlarms(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -293,6 +295,7 @@ SearchOrgAlarms(
     orgId uuid.UUID,
     siteId *uuid.UUID,
     mType *string,
+    status *string,
     start *int,
     end *int,
     duration *string,
@@ -308,6 +311,7 @@ SearchOrgAlarms(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
 | `mType` | `*string` | Query, Optional | Alarm type |
+| `status` | `*string` | Query, Optional | Alarm status. Accepts multiple values separated by comma. enum: `open`, `resolved` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -315,7 +319,7 @@ SearchOrgAlarms(
 
 ## Response Type
 
-[`models.AlarmSearchResult`](../../doc/models/alarm-search-result.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AlarmSearchResult](../../doc/models/alarm-search-result.md).
 
 ## Example Usage
 
@@ -332,11 +336,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -357,14 +363,63 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Unack Org All Arlarms
+# Subscribe Org Alarms Reports
+
+Subscribe to Org Alarms/Reports
+Subscriptions define how Org Alarms/Reports are delivered to whom
+
+```go
+SubscribeOrgAlarmsReports(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := orgsAlarms.SubscribeOrgAlarmsReports(ctx, orgId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Unack Org All Alarms
 
 Unack all Org Alarms
 
 **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
 
 ```go
-UnackOrgAllArlarms(
+UnackOrgAllAlarms(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.NoteString) (
@@ -381,7 +436,7 @@ UnackOrgAllArlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -394,7 +449,7 @@ body := models.NoteString{
     Note:                 models.ToPointer("maintenance window"),
 }
 
-resp, err := orgsAlarms.UnackOrgAllArlarms(ctx, orgId, &body)
+resp, err := orgsAlarms.UnackOrgAllAlarms(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -435,7 +490,7 @@ UnackOrgMultipleAlarms(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -453,6 +508,55 @@ body := models.Alarms{
 }
 
 resp, err := orgsAlarms.UnackOrgMultipleAlarms(ctx, orgId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Unsubscribe Org Alarms Reports
+
+Unsubscribe from Org Alarms/Reports
+Subscriptions define how Org Alarms/Reports are delivered to whom
+
+```go
+UnsubscribeOrgAlarmsReports(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := orgsAlarms.UnsubscribeOrgAlarmsReports(ctx, orgId)
 if err != nil {
     log.Fatalln(err)
 } else {

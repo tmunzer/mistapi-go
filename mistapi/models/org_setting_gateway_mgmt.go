@@ -10,6 +10,8 @@ type OrgSettingGatewayMgmt struct {
     AppProbing           *OrgSettingGatewayMgmtAppProbing      `json:"app_probing,omitempty"`
     // consumes uplink bandwidth, requires WA license
     AppUsage             *bool                                 `json:"app_usage,omitempty"`
+    FipsEnabled          *bool                                 `json:"fips_enabled,omitempty"`
+    HostInPolicies       *OrgSettingGatewayMgmtHostInPolicies  `json:"host_in_policies,omitempty"`
     // optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
     HostOutPolicies      *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`
     OverlayIp            *OrgSettingGatewayMgmtOverlayIp       `json:"overlay_ip,omitempty"`
@@ -20,8 +22,8 @@ type OrgSettingGatewayMgmt struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingGatewayMgmt) String() string {
     return fmt.Sprintf(
-    	"OrgSettingGatewayMgmt[AppProbing=%v, AppUsage=%v, HostOutPolicies=%v, OverlayIp=%v, AdditionalProperties=%v]",
-    	o.AppProbing, o.AppUsage, o.HostOutPolicies, o.OverlayIp, o.AdditionalProperties)
+    	"OrgSettingGatewayMgmt[AppProbing=%v, AppUsage=%v, FipsEnabled=%v, HostInPolicies=%v, HostOutPolicies=%v, OverlayIp=%v, AdditionalProperties=%v]",
+    	o.AppProbing, o.AppUsage, o.FipsEnabled, o.HostInPolicies, o.HostOutPolicies, o.OverlayIp, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmt.
@@ -30,7 +32,7 @@ func (o OrgSettingGatewayMgmt) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "app_probing", "app_usage", "host_out_policies", "overlay_ip"); err != nil {
+        "app_probing", "app_usage", "fips_enabled", "host_in_policies", "host_out_policies", "overlay_ip"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -45,6 +47,12 @@ func (o OrgSettingGatewayMgmt) toMap() map[string]any {
     }
     if o.AppUsage != nil {
         structMap["app_usage"] = o.AppUsage
+    }
+    if o.FipsEnabled != nil {
+        structMap["fips_enabled"] = o.FipsEnabled
+    }
+    if o.HostInPolicies != nil {
+        structMap["host_in_policies"] = o.HostInPolicies.toMap()
     }
     if o.HostOutPolicies != nil {
         structMap["host_out_policies"] = o.HostOutPolicies.toMap()
@@ -63,7 +71,7 @@ func (o *OrgSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app_probing", "app_usage", "host_out_policies", "overlay_ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "app_probing", "app_usage", "fips_enabled", "host_in_policies", "host_out_policies", "overlay_ip")
     if err != nil {
     	return err
     }
@@ -71,6 +79,8 @@ func (o *OrgSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
     
     o.AppProbing = temp.AppProbing
     o.AppUsage = temp.AppUsage
+    o.FipsEnabled = temp.FipsEnabled
+    o.HostInPolicies = temp.HostInPolicies
     o.HostOutPolicies = temp.HostOutPolicies
     o.OverlayIp = temp.OverlayIp
     return nil
@@ -80,6 +90,8 @@ func (o *OrgSettingGatewayMgmt) UnmarshalJSON(input []byte) error {
 type tempOrgSettingGatewayMgmt  struct {
     AppProbing      *OrgSettingGatewayMgmtAppProbing      `json:"app_probing,omitempty"`
     AppUsage        *bool                                 `json:"app_usage,omitempty"`
+    FipsEnabled     *bool                                 `json:"fips_enabled,omitempty"`
+    HostInPolicies  *OrgSettingGatewayMgmtHostInPolicies  `json:"host_in_policies,omitempty"`
     HostOutPolicies *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`
     OverlayIp       *OrgSettingGatewayMgmtOverlayIp       `json:"overlay_ip,omitempty"`
 }

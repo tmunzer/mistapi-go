@@ -38,7 +38,7 @@ GetOrgMxEdgeStats(
 
 ## Response Type
 
-[`models.StatsMxedge`](../../doc/models/stats-mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsMxedge](../../doc/models/stats-mxedge.md).
 
 ## Example Usage
 
@@ -275,7 +275,7 @@ ListOrgMxEdgesStats(
 
 ## Response Type
 
-[`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsMxedge](../../doc/models/stats-mxedge.md).
 
 ## Example Usage
 

@@ -34,7 +34,7 @@ CountOrgOtherDeviceEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -44,7 +44,7 @@ CountOrgOtherDeviceEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgOtherdevicesEventsCountDistinctEnum`](../../doc/models/org-otherdevices-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `mType` | `*string` | Query, Optional | See  [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -52,7 +52,7 @@ CountOrgOtherDeviceEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -134,7 +134,7 @@ DeleteOrgOtherDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -186,7 +186,7 @@ GetOrgOtherDevice(
 
 ## Response Type
 
-[`models.DeviceOther`](../../doc/models/device-other.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.DeviceOther](../../doc/models/device-other.md).
 
 ## Example Usage
 
@@ -211,17 +211,17 @@ if err != nil {
 
 ```json
 {
-  "created_time": 1676983730,
-  "device_mac": "001122334455",
+  "device_mac": "00112233abcd",
   "id": "ae9dee49-69e7-4710-a114-5b827a777738",
   "mac": "5c5b35000018",
-  "model": "AP41",
-  "modified_time": 1676983730,
-  "name": "hallway",
+  "model": "W2005",
+  "name": "W2005-268",
   "org_id": "2818e386-8dec-2562-9ede-5b8a0fbbdc71",
-  "serial": "FXLH2015150025",
+  "serial": "WB23015E025468",
   "site_id": "4ac1dcf4-9d8b-7211-65c4-057819f0862b",
-  "vendor": "cradlepoint"
+  "state": "online",
+  "vendor": "cradlepoint",
+  "vendor_api_id": "4658714"
 }
 ```
 
@@ -270,7 +270,7 @@ ListOrgOtherDevices(
 
 ## Response Type
 
-[`[]models.DeviceOther`](../../doc/models/device-other.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.DeviceOther](../../doc/models/device-other.md).
 
 ## Example Usage
 
@@ -356,7 +356,7 @@ RebootOrgOtherDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -418,7 +418,7 @@ SearchOrgOtherDeviceEvents(
 | `deviceMac` | `*string` | Query, Optional | MAC of attached device |
 | `model` | `*string` | Query, Optional | Device model |
 | `vendor` | `*string` | Query, Optional | Vendor name |
-| `mType` | `*string` | Query, Optional | See  [listDeviceEventsDefinitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -426,7 +426,7 @@ SearchOrgOtherDeviceEvents(
 
 ## Response Type
 
-[`models.ResponseEventsOtherDevicesSearch`](../../doc/models/response-events-other-devices-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsOtherDevicesSearch](../../doc/models/response-events-other-devices-search.md).
 
 ## Example Usage
 
@@ -521,7 +521,7 @@ UpdateOrgOtherDevice(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -578,7 +578,7 @@ UpdateOrgOtherDevices(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

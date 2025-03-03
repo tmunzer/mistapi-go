@@ -16,13 +16,13 @@
 | `ClientMac` | `models.Optional[string]` | Optional | - |
 | `Duration` | `*int` | Optional | - |
 | `Failed` | `[]string` | Optional | List of APs where configuration attempt failed |
-| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
+| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
 | `Gateways` | `[]string` | Optional | Information on gateways to capture packets on if a gateway capture type is specified |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `IncludesMcast` | `*bool` | Optional | - |
 | `MaxNumPackets` | `*int` | Optional | Max number of packets configured by user |
 | `MaxPktLen` | `*int` | Optional | - |
-| `Mxedges` | `[]string` | Optional | nformation on mxedges to capture packets on if a mxedge capture type is specified |
+| `Mxedges` | `[]string` | Optional | Information on mxedges to capture packets on if a mxedge capture type is specified |
 | `NumPackets` | `*int` | Optional | total number of packets captured by all AP, not applicable for type [client, new_assoc] |
 | `Ok` | `[]string` | Optional | List of target APs successfully configured to capture packets |
 | `PcapAps` | [`map[string]models.ResponsePcapAp`](../../doc/models/response-pcap-ap.md) | Optional | - |
@@ -54,7 +54,7 @@
       "band": 6,
       "bandwidth": 20,
       "channel": 133,
-      "tcpdump_expressiin": null
+      "tcpdump_expression": null
     }
   },
   "started_time": 1435080709,

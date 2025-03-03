@@ -23,6 +23,7 @@ type SiteSetting struct {
     AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
     // Auto Upgrade Settings
     AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
+    AutoUpgradeLinecard             *bool                                  `json:"auto_upgrade_linecard,omitempty"`
     BlacklistUrl                    *string                                `json:"blacklist_url,omitempty"`
     // BLE AP settings
     BleConfig                       *BleConfig                             `json:"ble_config,omitempty"`
@@ -43,6 +44,7 @@ type SiteSetting struct {
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
+    EnableUnii4                     *bool                                  `json:"enable_unii_4,omitempty"`
     // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     // EVPN Options
@@ -61,7 +63,7 @@ type SiteSetting struct {
     GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
     // Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
     GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                              *uuid.UUID                             `json:"id,omitempty"`
     JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
     // LED AP settings
@@ -87,7 +89,7 @@ type SiteSetting struct {
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
     // Whether to store the config on AP
     PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
-    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 port mirrorings is allowed
+    // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
     PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
     PortUsages                      map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
@@ -106,7 +108,7 @@ type SiteSetting struct {
     Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
     // Managed mobility
     Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`
-    // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures
+    // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures
     SimpleAlert                     *SimpleAlert                           `json:"simple_alert,omitempty"`
     SiteId                          *uuid.UUID                             `json:"site_id,omitempty"`
     Skyatp                          *SiteSettingSkyatp                     `json:"skyatp,omitempty"`
@@ -118,7 +120,7 @@ type SiteSetting struct {
     StatusPortal                    *SiteSettingStatusPortal               `json:"status_portal,omitempty"`
     // Network Template
     Switch                          *NetworkTemplate                       `json:"switch,omitempty"`
-    // Defines custom switch configuration based on different criterias
+    // Defines custom switch configuration based on different criteria
     SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
     // Switch settings
     SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
@@ -140,7 +142,7 @@ type SiteSetting struct {
     VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
     // Property key is the vrrp group
     VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
-    // Optional, for EX9200 only to seggregate virtual-switches. Property key is the instance name
+    // Optional, for EX9200 only to segregate virtual-switches. Property key is the instance name
     VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
     WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
     WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`
@@ -159,8 +161,8 @@ type SiteSetting struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSetting) String() string {
     return fmt.Sprintf(
-    	"SiteSetting[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, Vars=%v, Vna=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AdditionalProperties=%v]",
-    	s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.Vars, s.Vna, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AdditionalProperties)
+    	"SiteSetting[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeLinecard=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, Vars=%v, Vna=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AdditionalProperties=%v]",
+    	s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeLinecard, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.Vars, s.Vna, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSetting.
@@ -169,7 +171,7 @@ func (s SiteSetting) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
+        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_linecard", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -210,6 +212,9 @@ func (s SiteSetting) toMap() map[string]any {
     if s.AutoUpgrade != nil {
         structMap["auto_upgrade"] = s.AutoUpgrade.toMap()
     }
+    if s.AutoUpgradeLinecard != nil {
+        structMap["auto_upgrade_linecard"] = s.AutoUpgradeLinecard
+    }
     if s.BlacklistUrl != nil {
         structMap["blacklist_url"] = s.BlacklistUrl
     }
@@ -246,6 +251,9 @@ func (s SiteSetting) toMap() map[string]any {
     }
     if s.DnsSuffix != nil {
         structMap["dns_suffix"] = s.DnsSuffix
+    }
+    if s.EnableUnii4 != nil {
+        structMap["enable_unii_4"] = s.EnableUnii4
     }
     if s.Engagement != nil {
         structMap["engagement"] = s.Engagement.toMap()
@@ -464,7 +472,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_linecard", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
     if err != nil {
     	return err
     }
@@ -479,6 +487,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     s.ApUpdownThreshold = temp.ApUpdownThreshold
     s.AutoPlacement = temp.AutoPlacement
     s.AutoUpgrade = temp.AutoUpgrade
+    s.AutoUpgradeLinecard = temp.AutoUpgradeLinecard
     s.BlacklistUrl = temp.BlacklistUrl
     s.BleConfig = temp.BleConfig
     s.ConfigAutoRevert = temp.ConfigAutoRevert
@@ -490,6 +499,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
     s.DisabledSystemDefinedPortUsages = temp.DisabledSystemDefinedPortUsages
     s.DnsServers = temp.DnsServers
     s.DnsSuffix = temp.DnsSuffix
+    s.EnableUnii4 = temp.EnableUnii4
     s.Engagement = temp.Engagement
     s.EvpnOptions = temp.EvpnOptions
     s.ExtraRoutes = temp.ExtraRoutes
@@ -570,6 +580,7 @@ type tempSiteSetting  struct {
     ApUpdownThreshold               Optional[int]                          `json:"ap_updown_threshold"`
     AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
     AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
+    AutoUpgradeLinecard             *bool                                  `json:"auto_upgrade_linecard,omitempty"`
     BlacklistUrl                    *string                                `json:"blacklist_url,omitempty"`
     BleConfig                       *BleConfig                             `json:"ble_config,omitempty"`
     ConfigAutoRevert                *bool                                  `json:"config_auto_revert,omitempty"`
@@ -581,6 +592,7 @@ type tempSiteSetting  struct {
     DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum          `json:"disabled_system_defined_port_usages,omitempty"`
     DnsServers                      []string                               `json:"dns_servers,omitempty"`
     DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
+    EnableUnii4                     *bool                                  `json:"enable_unii_4,omitempty"`
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
     ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`

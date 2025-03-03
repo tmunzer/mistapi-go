@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Channel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Counts` | [`models.MxedgeUpgradeResponseCounts`](../../doc/models/mxedge-upgrade-response-counts.md) | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Strategy` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Versions` | `interface{}` | Required | - |

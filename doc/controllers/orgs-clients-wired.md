@@ -18,7 +18,7 @@ orgsClientsWired := client.OrgsClientsWired()
 
 Count by Distinct Attributes of Clients
 
-Note: For list of avaialable `type` values, please refer to [listClientEventsDefinitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
+Note: For list of available `type` values, please refer to [List Client Events Definitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
 
 ```go
 CountOrgWiredClients(
@@ -30,7 +30,7 @@ CountOrgWiredClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -48,7 +48,7 @@ CountOrgWiredClients(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -112,7 +112,7 @@ if err != nil {
 
 Search for Wired Clients in org
 
-Note: For list of avaialable `type` values, please refer to [listClientEventsDefinitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
+Note: For list of available `type` values, please refer to [List Client Events Definitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
 
 ```go
 SearchOrgWiredClients(
@@ -126,6 +126,8 @@ SearchOrgWiredClients(
     ipAddress *string,
     manufacture *string,
     text *string,
+    authState *string,
+    authMethod *string,
     nacruleId *string,
     dhcpHostname *string,
     dhcpFqdn *string,
@@ -153,6 +155,8 @@ SearchOrgWiredClients(
 | `ipAddress` | `*string` | Query, Optional | - |
 | `manufacture` | `*string` | Query, Optional | Client manufacturer |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname or username |
+| `authState` | `*string` | Query, Optional | authentication state |
+| `authMethod` | `*string` | Query, Optional | authentication method |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
 | `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
@@ -166,7 +170,7 @@ SearchOrgWiredClients(
 
 ## Response Type
 
-[`models.SearchWiredClient`](../../doc/models/search-wired-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SearchWiredClient](../../doc/models/search-wired-client.md).
 
 ## Example Usage
 
@@ -203,6 +207,10 @@ ipAddress := "192.168.1.1"
 
 
 
+
+
+
+
 limit := 100
 
 
@@ -211,7 +219,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -229,6 +237,8 @@ if err != nil {
   "limit": 1000,
   "results": [
     {
+      "auth_method": "mac_auth",
+      "auth_state": "authenticated",
       "device_mac": [
         "001122334455"
       ],

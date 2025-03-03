@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `EngineType` | [`*models.SnmpUsmEngineTypeEnum`](../../doc/models/snmp-usm-engine-type-enum.md) | Optional | enum: `local_engine`, `remote_engine` |
 | `RemoteEngineId` | `*string` | Optional | Required only if `engine_type`==`remote_engine` |
-| `Users` | [`[]models.SnmpUsmpUser`](../../doc/models/snmp-usmp-user.md) | Optional | - |
+| `Users` | [`[]models.SnmpUsmUser`](../../doc/models/snmp-usm-user.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

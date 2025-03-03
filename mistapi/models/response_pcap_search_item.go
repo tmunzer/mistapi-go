@@ -14,7 +14,7 @@ type ResponsePcapSearchItem struct {
     Aps                  []string                                     `json:"aps,omitempty"`
     Duration             *float64                                     `json:"duration,omitempty"`
     Format               *string                                      `json:"format,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                                   `json:"id,omitempty"`
     MaxNumPackets        *float64                                     `json:"max_num_packets,omitempty"`
     OrgId                *uuid.UUID                                   `json:"org_id,omitempty"`

@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Address` | `string` | Required | - |
 | `CountryCode` | `string` | Required | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
 | `Name` | `string` | Required | - |
 | `RftemplateName` | `*string` | Optional | - |

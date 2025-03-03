@@ -168,7 +168,7 @@ func (s *SitesRfdiags) DeleteSiteRfdiagRecording(
 // GetSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and
 // returns an models.ApiResponse with []models.RfDiagInfoItem data and
 // an error if there was an issue with the request or response.
-// Get RF Diage Recording Details
+// Get RF Diag Recording Details
 func (s *SitesRfdiags) GetSiteRfdiagRecording(
     ctx context.Context,
     siteId uuid.UUID,

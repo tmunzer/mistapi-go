@@ -17,7 +17,7 @@
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | `*int` | Optional | Acct port of RADIUS server<br>**Default**: `1813`<br>**Constraints**: `>= 1`, `<= 65535` |
-| `Secret` | `string` | Required | Secretof RADIUS server |
+| `Secret` | `string` | Required | Secret of RADIUS server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

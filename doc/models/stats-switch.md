@@ -29,7 +29,7 @@ Switch statistics
 | `HasPcap` | `*bool` | Optional | Whether the switch supports packet capture |
 | `Hostname` | `*string` | Optional | Hostname reported by the device |
 | `HwRev` | `*string` | Optional | Device hardware revision number |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `*string` | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
@@ -44,7 +44,7 @@ Switch statistics
 | `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | Device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
+| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `Serial` | `*string` | Optional | - |
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |

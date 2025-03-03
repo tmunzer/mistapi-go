@@ -19,10 +19,10 @@ Initiate a Scan Radio Packet Capture
 | `Bandwidth` | [`*models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Optional | channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6) |
 | `Channel` | `*int` | Optional | Specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values<br>**Default**: `1` |
 | `ClientMac` | `models.Optional[string]` | Optional | Filter by client mac |
-| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 0`, `<= 86400` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureScanFormatEnum`](../../doc/models/capture-scan-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
-| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br>**Default**: `512`<br>**Constraints**: `>= 0`, `<= 2048` |
-| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br>**Default**: `1024` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
 | `Type` | `string` | Required, Constant | enum: `scan`<br>**Value**: `"scan"` |
 | `Width` | `*string` | Optional | Specify the bandwidth value with respect to the channel. |
@@ -36,10 +36,10 @@ Initiate a Scan Radio Packet Capture
   "bandwidth": 20,
   "channel": 1,
   "client_mac": "38f9d3972ff1",
-  "duration": 600,
+  "duration": 300,
   "format": "stream",
-  "max_pkt_len": 68,
-  "num_packets": 100,
+  "max_pkt_len": 128,
+  "num_packets": 1000,
   "tcpdump_expression": "tcp port 80",
   "type": "scan",
   "ap_mac": "ap_mac4",

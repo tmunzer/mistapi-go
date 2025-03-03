@@ -1,7 +1,7 @@
 
 # Utils Traceroute Protocol Enum
 
-enum: `icmp` (Only suported by AP/MxEdge), `udp`
+enum: `icmp` (Only supported by AP/MxEdge), `udp`
 
 ## Enumeration
 

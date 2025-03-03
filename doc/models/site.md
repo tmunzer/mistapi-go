@@ -19,7 +19,7 @@ Site
 | `CountryCode` | `*string` | Optional | Country code for the site (for AP config generation), in two-character |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `GatewaytemplateId` | `models.Optional[uuid.UUID]` | Optional | Gateway Template ID, used by gateways |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Latlng` | [`*models.LatLng`](../../doc/models/lat-lng.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |

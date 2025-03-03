@@ -13,6 +13,8 @@ Data rates wlan settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Eht` | `models.Optional[string]` | Optional | If `template`==`custom`. EHT MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit) |
+| `He` | `models.Optional[string]` | Optional | If `template`==`custom`. HE MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit |
 | `Ht` | `models.Optional[string]` | Optional | If `template`==`custom`. MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit), e.g. 00ff 00f0 001f limits HT rates to MCS 0-7 for 1 stream, MCS 4-7 for 2 stream (i.e. MCS 12-15), MCS 1-5 for 3 stream (i.e. MCS 16-20) |
 | `Legacy` | [`[]models.WlanDataratesLegacyItemEnum`](../../doc/models/wlan-datarates-legacy-item-enum.md) | Optional | If `template`==`custom`. List of supported rates (IE=1) and extended supported rates (IE=50) for custom template, append ‘b’ at the end to indicate a rate being basic/mandatory. If `template`==`custom` is configured and legacy does not define at least one basic rate, it will use `no-legacy` default values |
 | `MinRssi` | `*int` | Optional | Minimum RSSI for client to connect, 0 means not enforcing<br>**Default**: `0` |
@@ -24,6 +26,8 @@ Data rates wlan settings
 
 ```json
 {
+  "eht": "3fff0fff0fff03ff",
+  "he": "0fff0fff0fff0fff",
   "ht": "00ff00ff00ff",
   "legacy": [
     "6",

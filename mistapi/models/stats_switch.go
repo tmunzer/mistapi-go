@@ -32,7 +32,7 @@ type StatsSwitch struct {
     Hostname             *string                        `json:"hostname,omitempty"`
     // Device hardware revision number
     HwRev                *string                        `json:"hw_rev,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                     `json:"id,omitempty"`
     // Property key is the interface name
     IfStat               map[string]IfStatProperty      `json:"if_stat,omitempty"`
@@ -53,7 +53,7 @@ type StatsSwitch struct {
     // Device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    // Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/:site_id/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
+    // Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
     Ports                []OptionalStatsPort            `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial               *string                        `json:"serial,omitempty"`

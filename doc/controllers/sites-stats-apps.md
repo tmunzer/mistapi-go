@@ -21,7 +21,7 @@ CountSiteApps(
     deviceMac *string,
     app *string,
     wired *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -32,12 +32,12 @@ CountSiteApps(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteAppsCountDistinctEnum`](../../doc/models/site-apps-count-distinct-enum.md) | Query, Optional | Default for wireless devices is `ap`. Default for wired devices is `device_mac` |
 | `deviceMac` | `*string` | Query, Optional | MAC of the device |
-| `app` | `*string` | Query, Optional | APplication name |
+| `app` | `*string` | Query, Optional | Application name |
 | `wired` | `*string` | Query, Optional | If a device is wired or wireless. Default is False. |
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 

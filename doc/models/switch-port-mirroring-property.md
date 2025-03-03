@@ -14,8 +14,8 @@
 | `InputNetworksIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
 | `InputPortIdsEgress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
 | `InputPortIdsIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
-| `OutputNetwork` | `*string` | Optional | Exaclty one of the `output_port_id` or `output_network` should be provided |
-| `OutputPortId` | `*string` | Optional | Exaclty one of the `output_port_id` or `output_network` should be provided |
+| `OutputNetwork` | `*string` | Optional | Exactly one of the `output_port_id` or `output_network` should be provided |
+| `OutputPortId` | `*string` | Optional | Exactly one of the `output_port_id` or `output_network` should be provided |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

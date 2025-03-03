@@ -24,7 +24,7 @@ func NewOrgsMarvis(baseController baseController) *OrgsMarvis {
 // TroubleshootOrg takes context, orgId, mac, siteId, start, end, mType as parameters and
 // returns an models.ApiResponse with models.ResponseTroubleshoot data and
 // an error if there was an issue with the request or response.
-// Troubleshoot sites, devices, clients, and wired clientsfor maximum of last 7 days from current time. See search APIs for device information:
+// Troubleshoot sites, devices, clients, and wired clients for maximum of last 7 days from current time. See search APIs for device information:
 // - [search Device]($e/Orgs%20Devices/searchOrgDevices)
 // - [search Wireless Client]($e/Orgs%20Clients%20-%20Wireless/searchOrgWirelessClients)
 // - [search Wired Client]($e/Orgs%20Clients%20-%20Wired/searchOrgWiredClients)

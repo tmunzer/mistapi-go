@@ -69,3 +69,19 @@ func TestSelfAccountTestUpdateSelfEmail(t *testing.T) {
     }
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
+
+// TestSelfAccountTestGetSelfApiUsage tests the behavior of the SelfAccount
+func TestSelfAccountTestGetSelfApiUsage(t *testing.T) {
+    ctx := context.Background()
+    apiResponse, err := selfAccount.GetSelfApiUsage(ctx)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"request_limit":5000,"requests":5}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}

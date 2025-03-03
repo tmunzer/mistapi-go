@@ -38,7 +38,7 @@ GetSiteRssiZoneStats(
 
 ## Response Type
 
-[`models.StatsZoneDetails`](../../doc/models/stats-zone-details.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsZoneDetails](../../doc/models/stats-zone-details.md).
 
 ## Example Usage
 
@@ -119,7 +119,7 @@ GetSiteZoneStats(
 
 ## Response Type
 
-[`models.StatsZoneDetails`](../../doc/models/stats-zone-details.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsZoneDetails](../../doc/models/stats-zone-details.md).
 
 ## Example Usage
 
@@ -198,7 +198,7 @@ ListSiteRssiZonesStats(
 
 ## Response Type
 
-[`[]models.StatsRssiZone`](../../doc/models/stats-rssi-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsRssiZone](../../doc/models/stats-rssi-zone.md).
 
 ## Example Usage
 
@@ -307,7 +307,7 @@ ListSiteZonesStats(
 
 ## Response Type
 
-[`[]models.StatsZone`](../../doc/models/stats-zone.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsZone](../../doc/models/stats-zone.md).
 
 ## Example Usage
 

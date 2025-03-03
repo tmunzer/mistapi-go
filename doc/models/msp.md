@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AllowMist` | `*bool` | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `LogoUrl` | `*string` | Optional | For advanced tier (uMSPs) only |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |

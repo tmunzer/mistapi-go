@@ -19,7 +19,7 @@ UI Settings
 | `DefaultTimeRange` | [`*models.UiSettingsDefaultTimeRange`](../../doc/models/ui-settings-default-time-range.md) | Optional | - |
 | `Description` | `string` | Required | - |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `IsCustomDataboard` | `*bool` | Optional | - |
 | `IsScopeLinked` | `*bool` | Optional | - |
 | `IsTimeRangeLinked` | `*bool` | Optional | - |

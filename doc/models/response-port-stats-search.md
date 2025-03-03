@@ -47,8 +47,8 @@
       "xcvr_serial": "N6AA9HT",
       "active": false,
       "auth_state": "authenticated",
+      "disabled": false,
       "for_site": false,
-      "jitter": 27.56,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

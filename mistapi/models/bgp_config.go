@@ -34,6 +34,7 @@ type BgpConfig struct {
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     // If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from
     Networks               []string                      `json:"networks,omitempty"`
+    NoPrivateAs            *bool                         `json:"no_private_as,omitempty"`
     // By default, we'll re-advertise all learned BGP routers toward overlay
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
     // If `type`==`tunnel`
@@ -52,8 +53,8 @@ type BgpConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (b BgpConfig) String() string {
     return fmt.Sprintf(
-    	"BgpConfig[AuthKey=%v, BfdMinimumInterval=%v, BfdMultiplier=%v, DisableBfd=%v, Export=%v, ExportPolicy=%v, ExtendedV4Nexthop=%v, GracefulRestartTime=%v, HoldTime=%v, Import=%v, ImportPolicy=%v, LocalAs=%v, NeighborAs=%v, Neighbors=%v, Networks=%v, NoReadvertiseToOverlay=%v, TunnelName=%v, Type=%v, Via=%v, VpnName=%v, WanName=%v, AdditionalProperties=%v]",
-    	b.AuthKey, b.BfdMinimumInterval, b.BfdMultiplier, b.DisableBfd, b.Export, b.ExportPolicy, b.ExtendedV4Nexthop, b.GracefulRestartTime, b.HoldTime, b.Import, b.ImportPolicy, b.LocalAs, b.NeighborAs, b.Neighbors, b.Networks, b.NoReadvertiseToOverlay, b.TunnelName, b.Type, b.Via, b.VpnName, b.WanName, b.AdditionalProperties)
+    	"BgpConfig[AuthKey=%v, BfdMinimumInterval=%v, BfdMultiplier=%v, DisableBfd=%v, Export=%v, ExportPolicy=%v, ExtendedV4Nexthop=%v, GracefulRestartTime=%v, HoldTime=%v, Import=%v, ImportPolicy=%v, LocalAs=%v, NeighborAs=%v, Neighbors=%v, Networks=%v, NoPrivateAs=%v, NoReadvertiseToOverlay=%v, TunnelName=%v, Type=%v, Via=%v, VpnName=%v, WanName=%v, AdditionalProperties=%v]",
+    	b.AuthKey, b.BfdMinimumInterval, b.BfdMultiplier, b.DisableBfd, b.Export, b.ExportPolicy, b.ExtendedV4Nexthop, b.GracefulRestartTime, b.HoldTime, b.Import, b.ImportPolicy, b.LocalAs, b.NeighborAs, b.Neighbors, b.Networks, b.NoPrivateAs, b.NoReadvertiseToOverlay, b.TunnelName, b.Type, b.Via, b.VpnName, b.WanName, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfig.
@@ -62,7 +63,7 @@ func (b BgpConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(b.AdditionalProperties,
-        "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name"); err != nil {
+        "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_private_as", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(b.toMap())
@@ -125,6 +126,9 @@ func (b BgpConfig) toMap() map[string]any {
     if b.Networks != nil {
         structMap["networks"] = b.Networks
     }
+    if b.NoPrivateAs != nil {
+        structMap["no_private_as"] = b.NoPrivateAs
+    }
     if b.NoReadvertiseToOverlay != nil {
         structMap["no_readvertise_to_overlay"] = b.NoReadvertiseToOverlay
     }
@@ -154,7 +158,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_key", "bfd_minimum_interval", "bfd_multiplier", "disable_bfd", "export", "export_policy", "extended_v4_nexthop", "graceful_restart_time", "hold_time", "import", "import_policy", "local_as", "neighbor_as", "neighbors", "networks", "no_private_as", "no_readvertise_to_overlay", "tunnel_name", "type", "via", "vpn_name", "wan_name")
     if err != nil {
     	return err
     }
@@ -175,6 +179,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     b.NeighborAs = temp.NeighborAs
     b.Neighbors = temp.Neighbors
     b.Networks = temp.Networks
+    b.NoPrivateAs = temp.NoPrivateAs
     b.NoReadvertiseToOverlay = temp.NoReadvertiseToOverlay
     b.TunnelName = temp.TunnelName
     b.Type = temp.Type
@@ -201,6 +206,7 @@ type tempBgpConfig  struct {
     NeighborAs             *int                          `json:"neighbor_as,omitempty"`
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     Networks               []string                      `json:"networks,omitempty"`
+    NoPrivateAs            *bool                         `json:"no_private_as,omitempty"`
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
     TunnelName             *string                       `json:"tunnel_name,omitempty"`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`

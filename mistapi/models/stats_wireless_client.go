@@ -102,11 +102,11 @@ type StatsWirelessClient struct {
     WxruleId             *uuid.UUID                       `json:"wxrule_id,omitempty"`
     // Current WxlanRule usage per tag_id
     WxruleUsage          []StatsWirelessClientWxruleUsage `json:"wxrule_usage,omitempty"`
-    // Estimated clinet location in pixels
+    // Estimated client location in pixels
     X                    *float64                         `json:"x,omitempty"`
     // Estimated client location in meter
     XM                   *float64                         `json:"x_m,omitempty"`
-    // Estimated clinet location in pixels
+    // Estimated client location in pixels
     Y                    *float64                         `json:"y,omitempty"`
     // Estimated client location in meter
     YM                   *float64                         `json:"y_m,omitempty"`

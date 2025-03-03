@@ -4,7 +4,7 @@
 enum:
 
 * alert (default)
-* drop: siliently dropping packets
+* drop: silently dropping packets
 * close: notify client/server to close connection
 
 ## Enumeration

@@ -96,19 +96,19 @@ func (s *SitesStatsCalls) TroubleshootSiteCall(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteCalls takes context, siteId, distrinct, rating, app, start, end as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// CountSiteCalls takes context, siteId, distinct, rating, app, start, end as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Calls
 func (s *SitesStatsCalls) CountSiteCalls(
     ctx context.Context,
     siteId uuid.UUID,
-    distrinct *models.CountSiteCallsDistrinctEnum,
+    distinct *models.CountSiteCallsDistinctEnum,
     rating *int,
     app *string,
     start *string,
     end *string) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/count")
     req.AppendTemplateParams(siteId)
@@ -130,8 +130,8 @@ func (s *SitesStatsCalls) CountSiteCalls(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if distrinct != nil {
-        req.QueryParam("distrinct", *distrinct)
+    if distinct != nil {
+        req.QueryParam("distinct", *distinct)
     }
     if rating != nil {
         req.QueryParam("rating", *rating)
@@ -146,13 +146,13 @@ func (s *SitesStatsCalls) CountSiteCalls(
         req.QueryParam("end", *end)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -277,7 +277,7 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
 }
 
 // ListSiteTroubleshootCalls takes context, siteId, ap, meetingId, mac, app, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.CallTroubleshootSummary data and
+// returns an models.ApiResponse with models.ResponseCallTroubleshootSummary data and
 // an error if there was an issue with the request or response.
 // Summary of calls troubleshoot by site
 func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
@@ -292,7 +292,7 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.CallTroubleshootSummary],
+    models.ApiResponse[models.ResponseCallTroubleshootSummary],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/troubleshoot")
     req.AppendTemplateParams(siteId)
@@ -342,12 +342,12 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
         req.QueryParam("page", *page)
     }
     
-    var result models.CallTroubleshootSummary
+    var result models.ResponseCallTroubleshootSummary
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.CallTroubleshootSummary](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCallTroubleshootSummary](decoder)
     return models.NewApiResponse(result, resp), err
 }

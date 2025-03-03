@@ -10,7 +10,7 @@ import (
 
 // WebhookPingEvent represents a WebhookPingEvent struct.
 type WebhookPingEvent struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
     Name                 string                 `json:"name"`
     SiteId               uuid.UUID              `json:"site_id"`

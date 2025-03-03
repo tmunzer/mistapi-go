@@ -7,9 +7,9 @@ import (
 
 // OrgSettingAutoSiteAssignment represents a OrgSettingAutoSiteAssignment struct.
 type OrgSettingAutoSiteAssignment struct {
-    Enable               *bool                    `json:"enable,omitempty"`
-    Rules                Optional[[]OrgAutoRules] `json:"rules"`
-    AdditionalProperties map[string]interface{}   `json:"_"`
+    Enable               *bool                                    `json:"enable,omitempty"`
+    Rules                Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingAutoSiteAssignment,
@@ -70,6 +70,6 @@ func (o *OrgSettingAutoSiteAssignment) UnmarshalJSON(input []byte) error {
 
 // tempOrgSettingAutoSiteAssignment is a temporary struct used for validating the fields of OrgSettingAutoSiteAssignment.
 type tempOrgSettingAutoSiteAssignment  struct {
-    Enable *bool                    `json:"enable,omitempty"`
-    Rules  Optional[[]OrgAutoRules] `json:"rules"`
+    Enable *bool                                    `json:"enable,omitempty"`
+    Rules  Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
 }

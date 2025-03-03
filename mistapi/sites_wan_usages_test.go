@@ -22,7 +22,7 @@ func TestSitesWANUsagesTestCountSiteWanUsage(t *testing.T) {
     
     
     
-    distinct := models.WanUsagesCountDisctinctEnum("policy")
+    distinct := models.WanUsagesCountDistinctEnum("policy")
     
     
     duration := "1d"

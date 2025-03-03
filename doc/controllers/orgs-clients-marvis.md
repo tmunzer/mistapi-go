@@ -39,7 +39,7 @@ CreateOrgMarvisClientInvites(
 
 ## Response Type
 
-[`models.MarvisClient`](../../doc/models/marvis-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MarvisClient](../../doc/models/marvis-client.md).
 
 ## Example Usage
 
@@ -104,7 +104,7 @@ DeleteOrgMarvisClientInvite(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -156,7 +156,7 @@ GetOrgMarvisClientInvites(
 
 ## Response Type
 
-[`models.MarvisClient`](../../doc/models/marvis-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MarvisClient](../../doc/models/marvis-client.md).
 
 ## Example Usage
 
@@ -217,7 +217,7 @@ ListOrgMarvisClientInvites(
 
 ## Response Type
 
-[`[]models.MarvisClient`](../../doc/models/marvis-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.MarvisClient](../../doc/models/marvis-client.md).
 
 ## Example Usage
 
@@ -282,7 +282,7 @@ UpdateOrgMarvisClientInvite(
 
 ## Response Type
 
-[`models.MarvisClient`](../../doc/models/marvis-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MarvisClient](../../doc/models/marvis-client.md).
 
 ## Example Usage
 

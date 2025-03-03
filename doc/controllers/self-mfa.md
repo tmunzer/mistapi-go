@@ -34,7 +34,7 @@ GenerateSecretFor2faVerification(
 
 ## Response Type
 
-[`models.ResponseTwoFactorJson`](../../doc/models/response-two-factor-json.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseTwoFactorJson](../../doc/models/response-two-factor-json.md).
 
 ## Example Usage
 
@@ -94,7 +94,7 @@ VerifyTwoFactor(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

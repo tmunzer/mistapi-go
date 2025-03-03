@@ -11,7 +11,7 @@ adminsRecoverPassword := client.AdminsRecoverPassword()
 ## Methods
 
 * [Recover Password](../../doc/controllers/admins-recover-password.md#recover-password)
-* [Verify Recover Passsword](../../doc/controllers/admins-recover-password.md#verify-recover-passsword)
+* [Verify Recover Password](../../doc/controllers/admins-recover-password.md#verify-recover-password)
 
 
 # Recover Password
@@ -35,7 +35,7 @@ RecoverPassword(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -67,13 +67,13 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Verify Recover Passsword
+# Verify Recover Password
 
 Verify Recover Password
 With correct verification, the user will be authenticated. UI can then prompt for new password
 
 ```go
-VerifyRecoverPasssword(
+VerifyRecoverPassword(
     ctx context.Context,
     token string) (
     http.Response,
@@ -88,7 +88,7 @@ VerifyRecoverPasssword(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -97,7 +97,7 @@ ctx := context.Background()
 
 token := "token6"
 
-resp, err := adminsRecoverPassword.VerifyRecoverPasssword(ctx, token)
+resp, err := adminsRecoverPassword.VerifyRecoverPassword(ctx, token)
 if err != nil {
     log.Fatalln(err)
 } else {

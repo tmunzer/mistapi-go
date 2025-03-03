@@ -515,7 +515,7 @@ func (u *UtilitiesCommon) PingFromDevice(
 // ReadoptSiteOctermDevice takes context, siteId, deviceId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// For the octerm devices, the device ID must come from fpc0. However, for a VC, the users may change the original fpc0 from CLI. To fix the issue, the readopt API could be used to trigger the readopt process so the device would get the corret device ID to connect the cloud.
+// For the octerm devices, the device ID must come from fpc0. However, for a VC, the users may change the original fpc0 from CLI. To fix the issue, the readopt API could be used to trigger the readopt process so the device would get the correct device ID to connect the cloud.
 func (u *UtilitiesCommon) ReadoptSiteOctermDevice(
     ctx context.Context,
     siteId uuid.UUID,
@@ -638,7 +638,7 @@ func (u *UtilitiesCommon) ReprovisionSiteOctermDevice(
 // GetSiteDeviceZtpPassword takes context, siteId, deviceId as parameters and
 // returns an models.ApiResponse with models.RootPasswordString data and
 // an error if there was an issue with the request or response.
-// In the case where soemthing happens during/after ZTP, the root-password is modified (required for ZTP to set up outbound-ssh) but the user-defined password config has not be configured. This API can be used to retrieve the temporary password.
+// In the case where something happens during/after ZTP, the root-password is modified (required for ZTP to set up outbound-ssh) but the user-defined password config has not be configured. This API can be used to retrieve the temporary password.
 func (u *UtilitiesCommon) GetSiteDeviceZtpPassword(
     ctx context.Context,
     siteId uuid.UUID,
@@ -848,7 +848,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceBgpSummary(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
-    body *models.UtilsShowBgpRummary) (
+    body *models.UtilsShowBgpSummary) (
     models.ApiResponse[models.WebsocketSession],
     error) {
     req := u.prepareRequest(

@@ -21,7 +21,7 @@ type RadiusAuthServer struct {
     Port                        *int                     `json:"port,omitempty"`
     // Whether to require Message-Authenticator in requests
     RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
-    // Secretof RADIUS server
+    // Secret of RADIUS server
     Secret                      string                   `json:"secret"`
     AdditionalProperties        map[string]interface{}   `json:"_"`
 }

@@ -19,7 +19,7 @@ IDP Credential Validation. The output will be available through websocket. As th
 
 ```json
 {
-    "subscribe": "orgs/:org_id/mist_nac/test_idp"
+    "subscribe": "orgs/{org_id}/mist_nac/test_idp"
 }
 
 ```
@@ -29,7 +29,7 @@ IDP Credential Validation. The output will be available through websocket. As th
 ```json
 {
     "event": "data",
-    "channel": "/orgs/:org_id/mist_nac/test_idp",
+    "channel": "/orgs/{org_id}/mist_nac/test_idp",
     "status": 
     "data": {
         "status": "failure",
@@ -44,7 +44,7 @@ IDP Credential Validation. The output will be available through websocket. As th
 ```json
 {
     "event": "data",
-    "channel": "/orgs/:org_id/mist_nac/test_idp",
+    "channel": "/orgs/{org_id}/mist_nac/test_idp",
     "status": 
     "data": {
         "status": "success",
@@ -61,7 +61,7 @@ IDP Credential Validation. The output will be available through websocket. As th
 ```json
 {
     "event": "data",
-    "channel": "/orgs/:org_id/mist_nac/test_idp",
+    "channel": "/orgs/{org_id}/mist_nac/test_idp",
     "status": 
     "data": {
         "status": "failure",
@@ -91,7 +91,7 @@ ValidateOrgIdpCredential(
 
 ## Response Type
 
-[`models.WebsocketSession`](../../doc/models/websocket-session.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
 
 ## Example Usage
 

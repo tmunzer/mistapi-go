@@ -8,6 +8,10 @@ import (
 // WlanDatarates represents a WlanDatarates struct.
 // Data rates wlan settings
 type WlanDatarates struct {
+    // If `template`==`custom`. EHT MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit)
+    Eht                  Optional[string]                    `json:"eht"`
+    // If `template`==`custom`. HE MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit
+    He                   Optional[string]                    `json:"he"`
     // If `template`==`custom`. MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit), e.g. 00ff 00f0 001f limits HT rates to MCS 0-7 for 1 stream, MCS 4-7 for 2 stream (i.e. MCS 12-15), MCS 1-5 for 3 stream (i.e. MCS 16-20)
     Ht                   Optional[string]                    `json:"ht"`
     // If `template`==`custom`. List of supported rates (IE=1) and extended supported rates (IE=50) for custom template, append ‘b’ at the end to indicate a rate being basic/mandatory. If `template`==`custom` is configured and legacy does not define at least one basic rate, it will use `no-legacy` default values
@@ -30,8 +34,8 @@ type WlanDatarates struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanDatarates) String() string {
     return fmt.Sprintf(
-    	"WlanDatarates[Ht=%v, Legacy=%v, MinRssi=%v, Template=%v, Vht=%v, AdditionalProperties=%v]",
-    	w.Ht, w.Legacy, w.MinRssi, w.Template, w.Vht, w.AdditionalProperties)
+    	"WlanDatarates[Eht=%v, He=%v, Ht=%v, Legacy=%v, MinRssi=%v, Template=%v, Vht=%v, AdditionalProperties=%v]",
+    	w.Eht, w.He, w.Ht, w.Legacy, w.MinRssi, w.Template, w.Vht, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDatarates.
@@ -40,7 +44,7 @@ func (w WlanDatarates) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "ht", "legacy", "min_rssi", "template", "vht"); err != nil {
+        "eht", "he", "ht", "legacy", "min_rssi", "template", "vht"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -50,6 +54,20 @@ func (w WlanDatarates) MarshalJSON() (
 func (w WlanDatarates) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
+    if w.Eht.IsValueSet() {
+        if w.Eht.Value() != nil {
+            structMap["eht"] = w.Eht.Value()
+        } else {
+            structMap["eht"] = nil
+        }
+    }
+    if w.He.IsValueSet() {
+        if w.He.Value() != nil {
+            structMap["he"] = w.He.Value()
+        } else {
+            structMap["he"] = nil
+        }
+    }
     if w.Ht.IsValueSet() {
         if w.Ht.Value() != nil {
             structMap["ht"] = w.Ht.Value()
@@ -88,12 +106,14 @@ func (w *WlanDatarates) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ht", "legacy", "min_rssi", "template", "vht")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "eht", "he", "ht", "legacy", "min_rssi", "template", "vht")
     if err != nil {
     	return err
     }
     w.AdditionalProperties = additionalProperties
     
+    w.Eht = temp.Eht
+    w.He = temp.He
     w.Ht = temp.Ht
     w.Legacy = temp.Legacy
     w.MinRssi = temp.MinRssi
@@ -104,6 +124,8 @@ func (w *WlanDatarates) UnmarshalJSON(input []byte) error {
 
 // tempWlanDatarates is a temporary struct used for validating the fields of WlanDatarates.
 type tempWlanDatarates  struct {
+    Eht      Optional[string]                    `json:"eht"`
+    He       Optional[string]                    `json:"he"`
     Ht       Optional[string]                    `json:"ht"`
     Legacy   []WlanDataratesLegacyItemEnum       `json:"legacy,omitempty"`
     MinRssi  *int                                `json:"min_rssi,omitempty"`

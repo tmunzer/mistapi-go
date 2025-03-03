@@ -99,7 +99,7 @@ func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     
     apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, nil)
     if err != nil {
@@ -368,7 +368,7 @@ func TestUtilitiesUpgradeTestListSiteAvailableDeviceVersions(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     
     apiResponse, err := utilitiesUpgrade.ListSiteAvailableDeviceVersions(ctx, siteId, &mType, nil)
     if err != nil {

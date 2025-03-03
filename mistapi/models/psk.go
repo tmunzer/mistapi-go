@@ -21,11 +21,11 @@ type Psk struct {
     ExpireTime             Optional[int]          `json:"expire_time"`
     // Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire
     ExpiryNotificationTime *int                   `json:"expiry_notification_time,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                     *uuid.UUID             `json:"id,omitempty"`
     // If `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding`
     Mac                    *string                `json:"mac,omitempty"`
-    // If `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(11:22:*) or both. This list is capped at 5000
+    // If `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(1122*) or both. This list is capped at 5000
     Macs                   []string               `json:"macs,omitempty"`
     // For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)
     MaxUsage               *int                   `json:"max_usage,omitempty"`

@@ -19,6 +19,7 @@ type SwitchMgmt struct {
     // Enable to provide the FQDN with DHCP option 81
     DhcpOptionFqdn       *bool                                    `json:"dhcp_option_fqdn,omitempty"`
     DisableOobDownAlarm  *bool                                    `json:"disable_oob_down_alarm,omitempty"`
+    FipsEnabled          *bool                                    `json:"fips_enabled,omitempty"`
     // Property key is the user name. For Local user authentication
     LocalAccounts        map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost      *string                                  `json:"mxedge_proxy_host,omitempty"`
@@ -40,8 +41,8 @@ type SwitchMgmt struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchMgmt) String() string {
     return fmt.Sprintf(
-    	"SwitchMgmt[ApAffinityThreshold=%v, CliBanner=%v, CliIdleTimeout=%v, ConfigRevertTimer=%v, DhcpOptionFqdn=%v, DisableOobDownAlarm=%v, LocalAccounts=%v, MxedgeProxyHost=%v, MxedgeProxyPort=%v, ProtectRe=%v, Radius=%v, RootPassword=%v, Tacacs=%v, UseMxedgeProxy=%v, AdditionalProperties=%v]",
-    	s.ApAffinityThreshold, s.CliBanner, s.CliIdleTimeout, s.ConfigRevertTimer, s.DhcpOptionFqdn, s.DisableOobDownAlarm, s.LocalAccounts, s.MxedgeProxyHost, s.MxedgeProxyPort, s.ProtectRe, s.Radius, s.RootPassword, s.Tacacs, s.UseMxedgeProxy, s.AdditionalProperties)
+    	"SwitchMgmt[ApAffinityThreshold=%v, CliBanner=%v, CliIdleTimeout=%v, ConfigRevertTimer=%v, DhcpOptionFqdn=%v, DisableOobDownAlarm=%v, FipsEnabled=%v, LocalAccounts=%v, MxedgeProxyHost=%v, MxedgeProxyPort=%v, ProtectRe=%v, Radius=%v, RootPassword=%v, Tacacs=%v, UseMxedgeProxy=%v, AdditionalProperties=%v]",
+    	s.ApAffinityThreshold, s.CliBanner, s.CliIdleTimeout, s.ConfigRevertTimer, s.DhcpOptionFqdn, s.DisableOobDownAlarm, s.FipsEnabled, s.LocalAccounts, s.MxedgeProxyHost, s.MxedgeProxyPort, s.ProtectRe, s.Radius, s.RootPassword, s.Tacacs, s.UseMxedgeProxy, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMgmt.
@@ -50,7 +51,7 @@ func (s SwitchMgmt) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy"); err != nil {
+        "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "fips_enabled", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -77,6 +78,9 @@ func (s SwitchMgmt) toMap() map[string]any {
     }
     if s.DisableOobDownAlarm != nil {
         structMap["disable_oob_down_alarm"] = s.DisableOobDownAlarm
+    }
+    if s.FipsEnabled != nil {
+        structMap["fips_enabled"] = s.FipsEnabled
     }
     if s.LocalAccounts != nil {
         structMap["local_accounts"] = s.LocalAccounts
@@ -113,7 +117,7 @@ func (s *SwitchMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_affinity_threshold", "cli_banner", "cli_idle_timeout", "config_revert_timer", "dhcp_option_fqdn", "disable_oob_down_alarm", "fips_enabled", "local_accounts", "mxedge_proxy_host", "mxedge_proxy_port", "protect_re", "radius", "root_password", "tacacs", "use_mxedge_proxy")
     if err != nil {
     	return err
     }
@@ -125,6 +129,7 @@ func (s *SwitchMgmt) UnmarshalJSON(input []byte) error {
     s.ConfigRevertTimer = temp.ConfigRevertTimer
     s.DhcpOptionFqdn = temp.DhcpOptionFqdn
     s.DisableOobDownAlarm = temp.DisableOobDownAlarm
+    s.FipsEnabled = temp.FipsEnabled
     s.LocalAccounts = temp.LocalAccounts
     s.MxedgeProxyHost = temp.MxedgeProxyHost
     s.MxedgeProxyPort = temp.MxedgeProxyPort
@@ -144,6 +149,7 @@ type tempSwitchMgmt  struct {
     ConfigRevertTimer   *int                                     `json:"config_revert_timer,omitempty"`
     DhcpOptionFqdn      *bool                                    `json:"dhcp_option_fqdn,omitempty"`
     DisableOobDownAlarm *bool                                    `json:"disable_oob_down_alarm,omitempty"`
+    FipsEnabled         *bool                                    `json:"fips_enabled,omitempty"`
     LocalAccounts       map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost     *string                                  `json:"mxedge_proxy_host,omitempty"`
     MxedgeProxyPort     *int                                     `json:"mxedge_proxy_port,omitempty"`

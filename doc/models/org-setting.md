@@ -31,11 +31,12 @@ Org Settings
 | `ForSite` | `*bool` | Optional | - |
 | `GatewayMgmt` | [`*models.OrgSettingGatewayMgmt`](../../doc/models/org-setting-gateway-mgmt.md) | Optional | - |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Installer` | [`*models.OrgSettingInstaller`](../../doc/models/org-setting-installer.md) | Optional | - |
 | `Jcloud` | [`*models.OrgSettingJcloud`](../../doc/models/org-setting-jcloud.md) | Optional | - |
 | `JcloudRa` | [`*models.OrgSettingJcloudRa`](../../doc/models/org-setting-jcloud-ra.md) | Optional | JCloud Routing Assurance connexion |
 | `Juniper` | [`*models.AccountJuniperInfo`](../../doc/models/account-juniper-info.md) | Optional | - |
+| `JunosShellAccess` | [`*models.OrgSettingJunosShellAccess`](../../doc/models/org-setting-junos-shell-access.md) | Optional | by default, webshell access is only enabled for Admin user |
 | `Mgmt` | [`*models.OrgSettingMgmt`](../../doc/models/org-setting-mgmt.md) | Optional | management-related properties |
 | `MistNac` | [`*models.OrgSettingMistNac`](../../doc/models/org-setting-mist-nac.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -48,7 +49,7 @@ Org Settings
 | `Pcap` | [`*models.OrgSettingPcap`](../../doc/models/org-setting-pcap.md) | Optional | - |
 | `PcapBucketVerified` | `*bool` | Optional | - |
 | `Security` | [`*models.OrgSettingSecurity`](../../doc/models/org-setting-security.md) | Optional | - |
-| `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountring over X failures |
+| `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures |
 | `SwitchMgmt` | [`*models.OrgSettingSwitchMgmt`](../../doc/models/org-setting-switch-mgmt.md) | Optional | - |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br>**Default**: `0` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
@@ -87,24 +88,22 @@ Org Settings
     "enable": false,
     "rules": [
       {
-        "create_new_site_if_needed": false,
         "expression": "expression4",
-        "gatewaytemplate_id": "gatewaytemplate_id0",
-        "match_country": "match_country8",
-        "match_device_type": "other",
-        "src": "name",
+        "match_device": "ap",
+        "prefix": "prefix6",
+        "src": "lldp_port_desc",
+        "suffix": "suffix2",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"
         }
       },
       {
-        "create_new_site_if_needed": false,
         "expression": "expression4",
-        "gatewaytemplate_id": "gatewaytemplate_id0",
-        "match_country": "match_country8",
-        "match_device_type": "other",
-        "src": "name",
+        "match_device": "ap",
+        "prefix": "prefix6",
+        "src": "lldp_port_desc",
+        "suffix": "suffix2",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"
@@ -124,7 +123,7 @@ Org Settings
         "expression": "expression4",
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
-        "match_device_type": "other",
+        "match_device_type": "switch",
         "src": "name",
         "exampleAdditionalProperty": {
           "key1": "val1",
@@ -145,7 +144,7 @@ Org Settings
         "expression": "expression4",
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
-        "match_device_type": "other",
+        "match_device_type": "switch",
         "src": "name",
         "exampleAdditionalProperty": {
           "key1": "val1",

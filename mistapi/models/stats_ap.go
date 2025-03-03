@@ -29,7 +29,7 @@ type StatsAp struct {
     Fwupdate             *FwupdateStat                                 `json:"fwupdate,omitempty"`
     Gps                  *StatsApGpsStat                               `json:"gps,omitempty"`
     HwRev                Optional[string]                              `json:"hw_rev"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                                    `json:"id,omitempty"`
     InactiveWiredVlans   []int                                         `json:"inactive_wired_vlans,omitempty"`
     IotStat              map[string]StatsApIotStatAdditionalProperties `json:"iot_stat,omitempty"`

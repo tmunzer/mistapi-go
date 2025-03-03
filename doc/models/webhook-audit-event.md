@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AdminName` | `string` | Required | - |
 | `DeviceId` | `uuid.UUID` | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Message` | `string` | Required | - |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |

@@ -49,20 +49,23 @@ type ClientInterface interface {
     OrgsClientsWired() *OrgsClientsWired
     OrgsClientsWireless() *OrgsClientsWireless
     OrgsClientsSDK() *OrgsClientsSDK
-    OrgsCradlepoint() *OrgsCradlepoint
+    OrgsIntegrationCradlepoint() *OrgsIntegrationCradlepoint
     OrgsCRL() *OrgsCRL
     OrgsDeviceProfiles() *OrgsDeviceProfiles
     OrgsDevices() *OrgsDevices
     OrgsDevicesSSR() *OrgsDevicesSSR
     OrgsEVPNTopologies() *OrgsEVPNTopologies
+    OrgsIntegrationJuniper() *OrgsIntegrationJuniper
     OrgsDevicesOthers() *OrgsDevicesOthers
-    OrgsSettingZscaler() *OrgsSettingZscaler
+    OrgsIntegrationZscaler() *OrgsIntegrationZscaler
     OrgsSCEP() *OrgsSCEP
     OrgsGatewayTemplates() *OrgsGatewayTemplates
     OrgsGuests() *OrgsGuests
     OrgsIDPProfiles() *OrgsIDPProfiles
     OrgsInventory() *OrgsInventory
-    OrgsJSE() *OrgsJSE
+    OrgsIntegrationJSE() *OrgsIntegrationJSE
+    OrgsAdvancedAntiMalwareProfiles() *OrgsAdvancedAntiMalwareProfiles
+    OrgsIntegrationSkyATP() *OrgsIntegrationSkyATP
     OrgsJSI() *OrgsJSI
     OrgsLicenses() *OrgsLicenses
     OrgsLinkedApplications() *OrgsLinkedApplications
@@ -73,6 +76,7 @@ type ClientInterface interface {
     OrgsMxEdges() *OrgsMxEdges
     OrgsMxTunnels() *OrgsMxTunnels
     OrgsNACIDP() *OrgsNACIDP
+    OrgsNACFingerprints() *OrgsNACFingerprints
     OrgsNACTags() *OrgsNACTags
     OrgsNACPortals() *OrgsNACPortals
     OrgsNACCRL() *OrgsNACCRL
@@ -95,7 +99,7 @@ type ClientInterface interface {
     OrgsRFTemplates() *OrgsRFTemplates
     OrgsSDKInvites() *OrgsSDKInvites
     OrgsSDKTemplates() *OrgsSDKTemplates
-    OrgsSecPolicies() *OrgsSecPolicies
+    OrgsSecurityPolicies() *OrgsSecurityPolicies
     OrgsServices() *OrgsServices
     OrgsServicePolicies() *OrgsServicePolicies
     OrgsSetting() *OrgsSetting
@@ -105,7 +109,6 @@ type ClientInterface interface {
     OrgsSLEs() *OrgsSLEs
     OrgsSSORoles() *OrgsSSORoles
     OrgsSSO() *OrgsSSO
-    OrgsSubscriptions() *OrgsSubscriptions
     OrgsWLANTemplates() *OrgsWLANTemplates
     OrgsTickets() *OrgsTickets
     OrgsUserMACs() *OrgsUserMACs
@@ -249,20 +252,23 @@ type client struct {
     orgsClientsWired                OrgsClientsWired
     orgsClientsWireless             OrgsClientsWireless
     orgsClientsSDK                  OrgsClientsSDK
-    orgsCradlepoint                 OrgsCradlepoint
+    orgsIntegrationCradlepoint      OrgsIntegrationCradlepoint
     orgsCRL                         OrgsCRL
     orgsDeviceProfiles              OrgsDeviceProfiles
     orgsDevices                     OrgsDevices
     orgsDevicesSSR                  OrgsDevicesSSR
     orgsEVPNTopologies              OrgsEVPNTopologies
+    orgsIntegrationJuniper          OrgsIntegrationJuniper
     orgsDevicesOthers               OrgsDevicesOthers
-    orgsSettingZscaler              OrgsSettingZscaler
+    orgsIntegrationZscaler          OrgsIntegrationZscaler
     orgsSCEP                        OrgsSCEP
     orgsGatewayTemplates            OrgsGatewayTemplates
     orgsGuests                      OrgsGuests
     orgsIDPProfiles                 OrgsIDPProfiles
     orgsInventory                   OrgsInventory
-    orgsJSE                         OrgsJSE
+    orgsIntegrationJSE              OrgsIntegrationJSE
+    orgsAdvancedAntiMalwareProfiles OrgsAdvancedAntiMalwareProfiles
+    orgsIntegrationSkyATP           OrgsIntegrationSkyATP
     orgsJSI                         OrgsJSI
     orgsLicenses                    OrgsLicenses
     orgsLinkedApplications          OrgsLinkedApplications
@@ -273,6 +279,7 @@ type client struct {
     orgsMxEdges                     OrgsMxEdges
     orgsMxTunnels                   OrgsMxTunnels
     orgsNACIDP                      OrgsNACIDP
+    orgsNACFingerprints             OrgsNACFingerprints
     orgsNACTags                     OrgsNACTags
     orgsNACPortals                  OrgsNACPortals
     orgsNACCRL                      OrgsNACCRL
@@ -295,7 +302,7 @@ type client struct {
     orgsRFTemplates                 OrgsRFTemplates
     orgsSDKInvites                  OrgsSDKInvites
     orgsSDKTemplates                OrgsSDKTemplates
-    orgsSecPolicies                 OrgsSecPolicies
+    orgsSecurityPolicies            OrgsSecurityPolicies
     orgsServices                    OrgsServices
     orgsServicePolicies             OrgsServicePolicies
     orgsSetting                     OrgsSetting
@@ -305,7 +312,6 @@ type client struct {
     orgsSLEs                        OrgsSLEs
     orgsSSORoles                    OrgsSSORoles
     orgsSSO                         OrgsSSO
-    orgsSubscriptions               OrgsSubscriptions
     orgsWLANTemplates               OrgsWLANTemplates
     orgsTickets                     OrgsTickets
     orgsUserMACs                    OrgsUserMACs
@@ -412,7 +418,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2412.1.40")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2502.1.1")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -467,20 +473,23 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsClientsWired = *NewOrgsClientsWired(*baseController)
     client.orgsClientsWireless = *NewOrgsClientsWireless(*baseController)
     client.orgsClientsSDK = *NewOrgsClientsSDK(*baseController)
-    client.orgsCradlepoint = *NewOrgsCradlepoint(*baseController)
+    client.orgsIntegrationCradlepoint = *NewOrgsIntegrationCradlepoint(*baseController)
     client.orgsCRL = *NewOrgsCRL(*baseController)
     client.orgsDeviceProfiles = *NewOrgsDeviceProfiles(*baseController)
     client.orgsDevices = *NewOrgsDevices(*baseController)
     client.orgsDevicesSSR = *NewOrgsDevicesSSR(*baseController)
     client.orgsEVPNTopologies = *NewOrgsEVPNTopologies(*baseController)
+    client.orgsIntegrationJuniper = *NewOrgsIntegrationJuniper(*baseController)
     client.orgsDevicesOthers = *NewOrgsDevicesOthers(*baseController)
-    client.orgsSettingZscaler = *NewOrgsSettingZscaler(*baseController)
+    client.orgsIntegrationZscaler = *NewOrgsIntegrationZscaler(*baseController)
     client.orgsSCEP = *NewOrgsSCEP(*baseController)
     client.orgsGatewayTemplates = *NewOrgsGatewayTemplates(*baseController)
     client.orgsGuests = *NewOrgsGuests(*baseController)
     client.orgsIDPProfiles = *NewOrgsIDPProfiles(*baseController)
     client.orgsInventory = *NewOrgsInventory(*baseController)
-    client.orgsJSE = *NewOrgsJSE(*baseController)
+    client.orgsIntegrationJSE = *NewOrgsIntegrationJSE(*baseController)
+    client.orgsAdvancedAntiMalwareProfiles = *NewOrgsAdvancedAntiMalwareProfiles(*baseController)
+    client.orgsIntegrationSkyATP = *NewOrgsIntegrationSkyATP(*baseController)
     client.orgsJSI = *NewOrgsJSI(*baseController)
     client.orgsLicenses = *NewOrgsLicenses(*baseController)
     client.orgsLinkedApplications = *NewOrgsLinkedApplications(*baseController)
@@ -491,6 +500,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsMxEdges = *NewOrgsMxEdges(*baseController)
     client.orgsMxTunnels = *NewOrgsMxTunnels(*baseController)
     client.orgsNACIDP = *NewOrgsNACIDP(*baseController)
+    client.orgsNACFingerprints = *NewOrgsNACFingerprints(*baseController)
     client.orgsNACTags = *NewOrgsNACTags(*baseController)
     client.orgsNACPortals = *NewOrgsNACPortals(*baseController)
     client.orgsNACCRL = *NewOrgsNACCRL(*baseController)
@@ -513,7 +523,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsRFTemplates = *NewOrgsRFTemplates(*baseController)
     client.orgsSDKInvites = *NewOrgsSDKInvites(*baseController)
     client.orgsSDKTemplates = *NewOrgsSDKTemplates(*baseController)
-    client.orgsSecPolicies = *NewOrgsSecPolicies(*baseController)
+    client.orgsSecurityPolicies = *NewOrgsSecurityPolicies(*baseController)
     client.orgsServices = *NewOrgsServices(*baseController)
     client.orgsServicePolicies = *NewOrgsServicePolicies(*baseController)
     client.orgsSetting = *NewOrgsSetting(*baseController)
@@ -523,7 +533,6 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsSLEs = *NewOrgsSLEs(*baseController)
     client.orgsSSORoles = *NewOrgsSSORoles(*baseController)
     client.orgsSSO = *NewOrgsSSO(*baseController)
-    client.orgsSubscriptions = *NewOrgsSubscriptions(*baseController)
     client.orgsWLANTemplates = *NewOrgsWLANTemplates(*baseController)
     client.orgsTickets = *NewOrgsTickets(*baseController)
     client.orgsUserMACs = *NewOrgsUserMACs(*baseController)
@@ -824,9 +833,9 @@ func (c *client) OrgsClientsSDK() *OrgsClientsSDK {
     return &c.orgsClientsSDK
 }
 
-// OrgsCradlepoint returns the orgsCradlepoint instance of the client.
-func (c *client) OrgsCradlepoint() *OrgsCradlepoint {
-    return &c.orgsCradlepoint
+// OrgsIntegrationCradlepoint returns the orgsIntegrationCradlepoint instance of the client.
+func (c *client) OrgsIntegrationCradlepoint() *OrgsIntegrationCradlepoint {
+    return &c.orgsIntegrationCradlepoint
 }
 
 // OrgsCRL returns the orgsCRL instance of the client.
@@ -854,14 +863,19 @@ func (c *client) OrgsEVPNTopologies() *OrgsEVPNTopologies {
     return &c.orgsEVPNTopologies
 }
 
+// OrgsIntegrationJuniper returns the orgsIntegrationJuniper instance of the client.
+func (c *client) OrgsIntegrationJuniper() *OrgsIntegrationJuniper {
+    return &c.orgsIntegrationJuniper
+}
+
 // OrgsDevicesOthers returns the orgsDevicesOthers instance of the client.
 func (c *client) OrgsDevicesOthers() *OrgsDevicesOthers {
     return &c.orgsDevicesOthers
 }
 
-// OrgsSettingZscaler returns the orgsSettingZscaler instance of the client.
-func (c *client) OrgsSettingZscaler() *OrgsSettingZscaler {
-    return &c.orgsSettingZscaler
+// OrgsIntegrationZscaler returns the orgsIntegrationZscaler instance of the client.
+func (c *client) OrgsIntegrationZscaler() *OrgsIntegrationZscaler {
+    return &c.orgsIntegrationZscaler
 }
 
 // OrgsSCEP returns the orgsSCEP instance of the client.
@@ -889,9 +903,19 @@ func (c *client) OrgsInventory() *OrgsInventory {
     return &c.orgsInventory
 }
 
-// OrgsJSE returns the orgsJSE instance of the client.
-func (c *client) OrgsJSE() *OrgsJSE {
-    return &c.orgsJSE
+// OrgsIntegrationJSE returns the orgsIntegrationJSE instance of the client.
+func (c *client) OrgsIntegrationJSE() *OrgsIntegrationJSE {
+    return &c.orgsIntegrationJSE
+}
+
+// OrgsAdvancedAntiMalwareProfiles returns the orgsAdvancedAntiMalwareProfiles instance of the client.
+func (c *client) OrgsAdvancedAntiMalwareProfiles() *OrgsAdvancedAntiMalwareProfiles {
+    return &c.orgsAdvancedAntiMalwareProfiles
+}
+
+// OrgsIntegrationSkyATP returns the orgsIntegrationSkyATP instance of the client.
+func (c *client) OrgsIntegrationSkyATP() *OrgsIntegrationSkyATP {
+    return &c.orgsIntegrationSkyATP
 }
 
 // OrgsJSI returns the orgsJSI instance of the client.
@@ -942,6 +966,11 @@ func (c *client) OrgsMxTunnels() *OrgsMxTunnels {
 // OrgsNACIDP returns the orgsNACIDP instance of the client.
 func (c *client) OrgsNACIDP() *OrgsNACIDP {
     return &c.orgsNACIDP
+}
+
+// OrgsNACFingerprints returns the orgsNACFingerprints instance of the client.
+func (c *client) OrgsNACFingerprints() *OrgsNACFingerprints {
+    return &c.orgsNACFingerprints
 }
 
 // OrgsNACTags returns the orgsNACTags instance of the client.
@@ -1054,9 +1083,9 @@ func (c *client) OrgsSDKTemplates() *OrgsSDKTemplates {
     return &c.orgsSDKTemplates
 }
 
-// OrgsSecPolicies returns the orgsSecPolicies instance of the client.
-func (c *client) OrgsSecPolicies() *OrgsSecPolicies {
-    return &c.orgsSecPolicies
+// OrgsSecurityPolicies returns the orgsSecurityPolicies instance of the client.
+func (c *client) OrgsSecurityPolicies() *OrgsSecurityPolicies {
+    return &c.orgsSecurityPolicies
 }
 
 // OrgsServices returns the orgsServices instance of the client.
@@ -1102,11 +1131,6 @@ func (c *client) OrgsSSORoles() *OrgsSSORoles {
 // OrgsSSO returns the orgsSSO instance of the client.
 func (c *client) OrgsSSO() *OrgsSSO {
     return &c.orgsSSO
-}
-
-// OrgsSubscriptions returns the orgsSubscriptions instance of the client.
-func (c *client) OrgsSubscriptions() *OrgsSubscriptions {
-    return &c.orgsSubscriptions
 }
 
 // OrgsWLANTemplates returns the orgsWLANTemplates instance of the client.
@@ -1637,6 +1661,11 @@ func getBaseUri(
     if configuration.Environment() == Environment(MIST_GLOBAL_04) {
         if server == Server(APIHOST) {
             return "https://api.gc2.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_GLOBAL_05) {
+        if server == Server(APIHOST) {
+            return "https://api.gc4.mist.com"
         }
     }
     if configuration.Environment() == Environment(MIST_EMEA_01) {

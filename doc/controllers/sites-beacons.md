@@ -39,7 +39,7 @@ CreateSiteBeacon(
 
 ## Response Type
 
-[`models.Beacon`](../../doc/models/beacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Beacon](../../doc/models/beacon.md).
 
 ## Example Usage
 
@@ -131,7 +131,7 @@ DeleteSiteBeacons(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -183,7 +183,7 @@ GetSiteBeacon(
 
 ## Response Type
 
-[`models.Beacon`](../../doc/models/beacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Beacon](../../doc/models/beacon.md).
 
 ## Example Usage
 
@@ -264,7 +264,7 @@ ListSiteBeacons(
 
 ## Response Type
 
-[`[]models.Beacon`](../../doc/models/beacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Beacon](../../doc/models/beacon.md).
 
 ## Example Usage
 
@@ -349,7 +349,7 @@ UpdateSiteBeacons(
 
 ## Response Type
 
-[`models.Beacon`](../../doc/models/beacon.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Beacon](../../doc/models/beacon.md).
 
 ## Example Usage
 

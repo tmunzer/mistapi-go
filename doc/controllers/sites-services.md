@@ -38,7 +38,7 @@ CountSiteServicePathEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -65,7 +65,7 @@ CountSiteServicePathEvents(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ ListSiteServicesDerived(
 
 ## Response Type
 
-[`[]models.Service`](../../doc/models/service.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Service](../../doc/models/service.md).
 
 ## Example Usage
 
@@ -281,7 +281,7 @@ SearchSiteServicePathEvents(
 
 ## Response Type
 
-[`models.ResponseEventsPathSearch`](../../doc/models/response-events-path-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseEventsPathSearch](../../doc/models/response-events-path-search.md).
 
 ## Example Usage
 

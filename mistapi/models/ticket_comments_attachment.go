@@ -12,7 +12,7 @@ type TicketCommentsAttachment struct {
     ContentUrl           *string                `json:"content_url,omitempty"`
     CreatedAt            *int                   `json:"created_at,omitempty"`
     FileName             *string                `json:"file_name,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     SizeInBytes          *int                   `json:"size_in_bytes,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

@@ -20,6 +20,7 @@ samplesWebhooks := client.SamplesWebhooks()
 * [Device Events](../../doc/controllers/samples-webhooks.md#device-events)
 * [Device up Down](../../doc/controllers/samples-webhooks.md#device-up-down)
 * [Discovered-Raw-Rssi](../../doc/controllers/samples-webhooks.md#discovered-raw-rssi)
+* [Guest Authorization](../../doc/controllers/samples-webhooks.md#guest-authorization)
 * [Location](../../doc/controllers/samples-webhooks.md#location)
 * [Location Asset](../../doc/controllers/samples-webhooks.md#location-asset)
 * [Location Centrak](../../doc/controllers/samples-webhooks.md#location-centrak)
@@ -53,11 +54,11 @@ Alarms(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under "fields" array of /alarm_defs response object. |
+| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions), under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -105,7 +106,7 @@ AssetRaw(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -163,7 +164,7 @@ Audits(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -213,7 +214,7 @@ ClientInfo(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -263,7 +264,7 @@ ClientJoin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -322,7 +323,7 @@ ClientLatency(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -378,7 +379,7 @@ ClientSessions(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -452,7 +453,7 @@ DeviceEvents(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -466,7 +467,7 @@ body := models.WebhookDeviceEvents{
             ApName:               models.ToPointer("string"),
             AuditId:              models.ToPointer(uuid.MustParse("78c04fa6-cfb4-46a0-9aa5-3681ba4f3897")),
             DeviceName:           "string",
-            DeviceType:           models.WebhookDeviceEventsEventDeviceTypeEnum_AP,
+            DeviceType:           models.DeviceTypeEnum_AP,
             EvType:               models.WebhookDeviceEventsEventEvTypeEnum_NOTICE,
             Mac:                  "string",
             Reason:               models.ToPointer("string"),
@@ -510,7 +511,7 @@ DeviceUpDown(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -557,7 +558,7 @@ DiscoveredRawRssi(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -602,6 +603,70 @@ if err != nil {
 ```
 
 
+# Guest Authorization
+
+Webhook sample for `guest-authorizations` topic
+
+**Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
+
+```go
+GuestAuthorization(
+    ctx context.Context,
+    body *models.WebhookGuestAuthorizations) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`*models.WebhookGuestAuthorizations`](../../doc/models/webhook-guest-authorizations.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+body := models.WebhookGuestAuthorizations{
+    Events:               []models.WebhookGuestAuthorizationsEvent{
+        models.WebhookGuestAuthorizationsEvent{
+            Ap:                     models.ToPointer("5c5b350e55c8"),
+            AuthMethod:             models.ToPointer("passphrase"),
+            AuthorizedExpiringTime: models.ToPointer(1677076639),
+            AuthorizedTime:         models.ToPointer(1677076519),
+            Carrier:                models.ToPointer("docomo"),
+            Client:                 models.ToPointer("ac2316eca70a"),
+            Company:                models.ToPointer("MIST"),
+            Email:                  models.ToPointer("abcd@abcd.com"),
+            Field1:                 models.ToPointer("field1 value"),
+            Field2:                 models.ToPointer("field2 value"),
+            Field3:                 models.ToPointer("field3 value"),
+            Field4:                 models.ToPointer("field4 value"),
+            Mobile:                 models.ToPointer("+0123456789"),
+            Name:                   models.ToPointer("Dr Strange"),
+            SmsGateway:             models.ToPointer("Telstra"),
+            SponsorEmail:           models.ToPointer("sponsor@gmail.com"),
+            Ssid:                   models.ToPointer("Portal Auth"),
+            WlanId:                 models.ToPointer("7681be9a-044a-4622-90cf-3accde5ad853"),
+        },
+    },
+    Topic:                models.ToPointer("guest-authorizations"),
+}
+
+resp, err := samplesWebhooks.GuestAuthorization(ctx, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+
 # Location
 
 Webhook sample for `location` topic
@@ -624,7 +689,7 @@ Location(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -686,7 +751,7 @@ LocationAsset(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -743,11 +808,11 @@ LocationCentrak(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API https://api.mist.com/api/v1/const/alarm_defs, under "fields" array of /alarm_defs response object. |
+| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions), under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -809,7 +874,7 @@ LocationClient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -868,7 +933,7 @@ LocationSdk(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -920,7 +985,7 @@ LocationUnclient(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -979,7 +1044,7 @@ NacAccounting(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1036,7 +1101,7 @@ NacEvents(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1096,7 +1161,7 @@ OccupancyAlerts(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1142,7 +1207,7 @@ Ping(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1190,7 +1255,7 @@ SdkclientScanData(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1263,7 +1328,7 @@ SiteSle(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -1315,7 +1380,7 @@ Zone(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

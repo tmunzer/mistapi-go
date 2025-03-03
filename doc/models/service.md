@@ -1,7 +1,7 @@
 
 # Service
 
-APplications used for the Gateway configurations
+Applications used for the Gateway configurations
 
 *This model accepts additional fields of type interface{}.*
 
@@ -14,9 +14,9 @@ APplications used for the Gateway configurations
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Addresses` | `[]string` | Optional | If `type`==`custom`, ip subnets (e.g. 10.0.0.0/8) |
-| `AppCategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_categories |
-| `AppSubcategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through /api/v1/const/app_subcategories |
-| `Apps` | `[]string` | Optional | When `type`==`apps`, list of applications are available through:<br><br>* /api/v1/const/applications<br>* /api/v1/const/gateway_applications<br>* /insight/top_app_by-bytes?wired=true |
+| `AppCategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Category Definitions](../../doc/controllers/constants-definitions.md#list-app-category-definitions) |
+| `AppSubcategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions) |
+| `Apps` | `[]string` | Optional | When `type`==`apps`, list of applications are available through:<br><br>* [List Applications](../../doc/controllers/constants-definitions.md#list-applications)<br>* [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)<br>* /insight/top_app_by-bytes?wired=true |
 | `ClientLimitDown` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
 | `ClientLimitUp` | `*int` | Optional | 0 means unlimited<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 107374182` |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
@@ -24,7 +24,7 @@ APplications used for the Gateway configurations
 | `Dscp` | [`*models.ServiceDscp`](../../doc/models/containers/service-dscp.md) | Optional | For SSR only, when `traffic_type`==`custom`. 0-63 or variable |
 | `FailoverPolicy` | [`*models.ServiceFailoverPolicyEnum`](../../doc/models/service-failover-policy-enum.md) | Optional | enum: `non_revertable`, `none`, `revertable`<br>**Default**: `"revertable"` |
 | `Hostnames` | `[]string` | Optional | If `type`==`custom`, web filtering |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MaxJitter` | [`*models.ServiceMaxJitter`](../../doc/models/containers/service-max-jitter.md) | Optional | For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
 | `MaxLatency` | [`*models.ServiceMaxLatency`](../../doc/models/containers/service-max-latency.md) | Optional | For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-2147483647 or variable |
 | `MaxLoss` | [`*models.ServiceMaxLoss`](../../doc/models/containers/service-max-loss.md) | Optional | For SSR only, when `traffic_type`==`custom`, for uplink selection. 0-100 or variable |
@@ -37,7 +37,7 @@ APplications used for the Gateway configurations
 | `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | When `type`==`custom`, optional, if it doesn't exist, http and https is assumed |
 | `SsrRelaxedTcpStateEnforcement` | `*bool` | Optional | **Default**: `false` |
 | `TrafficClass` | [`*models.ServiceTrafficClassEnum`](../../doc/models/service-traffic-class-enum.md) | Optional | when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`<br>**Default**: `"best_effort"` |
-| `TrafficType` | `*string` | Optional | values from `/api/v1/consts/traffic_types`<br>**Default**: `"data_best_effort"` |
+| `TrafficType` | `*string` | Optional | values from [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)<br>**Default**: `"data_best_effort"` |
 | `Type` | [`*models.ServiceTypeEnum`](../../doc/models/service-type-enum.md) | Optional | enum: `app_categories`, `apps`, `custom`, `urls`<br>**Default**: `"custom"` |
 | `Urls` | `[]string` | Optional | When `type`==`urls`, no need for spec as URL can encode the ports being used |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

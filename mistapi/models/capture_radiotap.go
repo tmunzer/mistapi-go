@@ -16,16 +16,15 @@ type CaptureRadiotap struct {
     Band                 *CaptureRadiotapBandEnum   `json:"band,omitempty"`
     ClientMac            *string                    `json:"client_mac,omitempty"`
     // Duration of the capture, in seconds
-    Duration             *int                       `json:"duration,omitempty"`
+    Duration             Optional[int]              `json:"duration"`
     // enum: `pcap`, `stream`
     Format               *CaptureRadiotapFormatEnum `json:"format,omitempty"`
-    // Max_len of each packet to capture
-    MaxPktLen            *int                       `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                       `json:"num_packets,omitempty"`
+    MaxPktLen            Optional[int]              `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]              `json:"num_packets"`
     Ssid                 *string                    `json:"ssid,omitempty"`
-    // tcpdump expression specific to radiotap
-    TcpdumpExpression    *string                    `json:"tcpdump_expression,omitempty"`
+    // tcpdump expression
+    TcpdumpExpression    Optional[string]           `json:"tcpdump_expression"`
     // enum: `radiotap`
     Type                 string                     `json:"type"`
     // WLAN id associated with the respective ssid.
@@ -66,23 +65,39 @@ func (c CaptureRadiotap) toMap() map[string]any {
     if c.ClientMac != nil {
         structMap["client_mac"] = c.ClientMac
     }
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.Ssid != nil {
         structMap["ssid"] = c.Ssid
     }
-    if c.TcpdumpExpression != nil {
-        structMap["tcpdump_expression"] = c.TcpdumpExpression
+    if c.TcpdumpExpression.IsValueSet() {
+        if c.TcpdumpExpression.Value() != nil {
+            structMap["tcpdump_expression"] = c.TcpdumpExpression.Value()
+        } else {
+            structMap["tcpdump_expression"] = nil
+        }
     }
     structMap["type"] = c.Type
     if c.WlanId != nil {
@@ -128,12 +143,12 @@ type tempCaptureRadiotap  struct {
     ApMac             *string                    `json:"ap_mac,omitempty"`
     Band              *CaptureRadiotapBandEnum   `json:"band,omitempty"`
     ClientMac         *string                    `json:"client_mac,omitempty"`
-    Duration          *int                       `json:"duration,omitempty"`
+    Duration          Optional[int]              `json:"duration"`
     Format            *CaptureRadiotapFormatEnum `json:"format,omitempty"`
-    MaxPktLen         *int                       `json:"max_pkt_len,omitempty"`
-    NumPackets        *int                       `json:"num_packets,omitempty"`
+    MaxPktLen         Optional[int]              `json:"max_pkt_len"`
+    NumPackets        Optional[int]              `json:"num_packets"`
     Ssid              *string                    `json:"ssid,omitempty"`
-    TcpdumpExpression *string                    `json:"tcpdump_expression,omitempty"`
+    TcpdumpExpression Optional[string]           `json:"tcpdump_expression"`
     Type              *string                    `json:"type"`
     WlanId            *uuid.UUID                 `json:"wlan_id,omitempty"`
 }

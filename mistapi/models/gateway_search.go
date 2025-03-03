@@ -16,6 +16,7 @@ type GatewaySearch struct {
     ExtIp                *string                `json:"ext_ip,omitempty"`
     Hostname             []string               `json:"hostname,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
+    LastConfigStatus     *string                `json:"last_config_status,omitempty"`
     LastHostname         *string                `json:"last_hostname,omitempty"`
     LastTroubleCode      *string                `json:"last_trouble_code,omitempty"`
     LastTroubleTimestamp *int                   `json:"last_trouble_timestamp,omitempty"`
@@ -43,8 +44,8 @@ type GatewaySearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewaySearch) String() string {
     return fmt.Sprintf(
-    	"GatewaySearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, Node=%v, Node0Mac=%v, Node1Mac=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, T128agentVersion=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
-    	g.Clustered, g.EvpnMissingLinks, g.EvpntopoId, g.ExtIp, g.Hostname, g.Ip, g.LastHostname, g.LastTroubleCode, g.LastTroubleTimestamp, g.Mac, g.Managed, g.Model, g.Node, g.Node0Mac, g.Node1Mac, g.NumMembers, g.OrgId, g.Role, g.SiteId, g.T128agentVersion, g.TimeDrifted, g.Timestamp, g.Type, g.Uptime, g.Version, g.AdditionalProperties)
+    	"GatewaySearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, Node=%v, Node0Mac=%v, Node1Mac=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, T128agentVersion=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+    	g.Clustered, g.EvpnMissingLinks, g.EvpntopoId, g.ExtIp, g.Hostname, g.Ip, g.LastConfigStatus, g.LastHostname, g.LastTroubleCode, g.LastTroubleTimestamp, g.Mac, g.Managed, g.Model, g.Node, g.Node0Mac, g.Node1Mac, g.NumMembers, g.OrgId, g.Role, g.SiteId, g.T128agentVersion, g.TimeDrifted, g.Timestamp, g.Type, g.Uptime, g.Version, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewaySearch.
@@ -53,7 +54,7 @@ func (g GatewaySearch) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(g.AdditionalProperties,
-        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
+        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(g.toMap())
@@ -80,6 +81,9 @@ func (g GatewaySearch) toMap() map[string]any {
     }
     if g.Ip != nil {
         structMap["ip"] = g.Ip
+    }
+    if g.LastConfigStatus != nil {
+        structMap["last_config_status"] = g.LastConfigStatus
     }
     if g.LastHostname != nil {
         structMap["last_hostname"] = g.LastHostname
@@ -151,7 +155,7 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version")
     if err != nil {
     	return err
     }
@@ -163,6 +167,7 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
     g.ExtIp = temp.ExtIp
     g.Hostname = temp.Hostname
     g.Ip = temp.Ip
+    g.LastConfigStatus = temp.LastConfigStatus
     g.LastHostname = temp.LastHostname
     g.LastTroubleCode = temp.LastTroubleCode
     g.LastTroubleTimestamp = temp.LastTroubleTimestamp
@@ -193,6 +198,7 @@ type tempGatewaySearch  struct {
     ExtIp                *string    `json:"ext_ip,omitempty"`
     Hostname             []string   `json:"hostname,omitempty"`
     Ip                   *string    `json:"ip,omitempty"`
+    LastConfigStatus     *string    `json:"last_config_status,omitempty"`
     LastHostname         *string    `json:"last_hostname,omitempty"`
     LastTroubleCode      *string    `json:"last_trouble_code,omitempty"`
     LastTroubleTimestamp *int       `json:"last_trouble_timestamp,omitempty"`

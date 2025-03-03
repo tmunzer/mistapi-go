@@ -38,7 +38,7 @@ ListSelfAuditLogs(
 
 ## Response Type
 
-[`models.ResponseSelfAuditLogs`](../../doc/models/response-self-audit-logs.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSelfAuditLogs](../../doc/models/response-self-audit-logs.md).
 
 ## Example Usage
 

@@ -7,6 +7,7 @@ import (
 
 // MxedgeMgmt represents a MxedgeMgmt struct.
 type MxedgeMgmt struct {
+    ConfigAutoRevert     *bool                     `json:"config_auto_revert,omitempty"`
     FipsEnabled          *bool                     `json:"fips_enabled,omitempty"`
     MistPassword         *string                   `json:"mist_password,omitempty"`
     // enum: `dhcp`, `disabled`, `static`
@@ -21,8 +22,8 @@ type MxedgeMgmt struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MxedgeMgmt) String() string {
     return fmt.Sprintf(
-    	"MxedgeMgmt[FipsEnabled=%v, MistPassword=%v, OobIpType=%v, OobIpType6=%v, RootPassword=%v, AdditionalProperties=%v]",
-    	m.FipsEnabled, m.MistPassword, m.OobIpType, m.OobIpType6, m.RootPassword, m.AdditionalProperties)
+    	"MxedgeMgmt[ConfigAutoRevert=%v, FipsEnabled=%v, MistPassword=%v, OobIpType=%v, OobIpType6=%v, RootPassword=%v, AdditionalProperties=%v]",
+    	m.ConfigAutoRevert, m.FipsEnabled, m.MistPassword, m.OobIpType, m.OobIpType6, m.RootPassword, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeMgmt.
@@ -31,7 +32,7 @@ func (m MxedgeMgmt) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(m.AdditionalProperties,
-        "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password"); err != nil {
+        "config_auto_revert", "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(m.toMap())
@@ -41,6 +42,9 @@ func (m MxedgeMgmt) MarshalJSON() (
 func (m MxedgeMgmt) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, m.AdditionalProperties)
+    if m.ConfigAutoRevert != nil {
+        structMap["config_auto_revert"] = m.ConfigAutoRevert
+    }
     if m.FipsEnabled != nil {
         structMap["fips_enabled"] = m.FipsEnabled
     }
@@ -67,12 +71,13 @@ func (m *MxedgeMgmt) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_auto_revert", "fips_enabled", "mist_password", "oob_ip_type", "oob_ip_type6", "root_password")
     if err != nil {
     	return err
     }
     m.AdditionalProperties = additionalProperties
     
+    m.ConfigAutoRevert = temp.ConfigAutoRevert
     m.FipsEnabled = temp.FipsEnabled
     m.MistPassword = temp.MistPassword
     m.OobIpType = temp.OobIpType
@@ -83,9 +88,10 @@ func (m *MxedgeMgmt) UnmarshalJSON(input []byte) error {
 
 // tempMxedgeMgmt is a temporary struct used for validating the fields of MxedgeMgmt.
 type tempMxedgeMgmt  struct {
-    FipsEnabled  *bool                     `json:"fips_enabled,omitempty"`
-    MistPassword *string                   `json:"mist_password,omitempty"`
-    OobIpType    *MxedgeMgmtOobIpTypeEnum  `json:"oob_ip_type,omitempty"`
-    OobIpType6   *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
-    RootPassword *string                   `json:"root_password,omitempty"`
+    ConfigAutoRevert *bool                     `json:"config_auto_revert,omitempty"`
+    FipsEnabled      *bool                     `json:"fips_enabled,omitempty"`
+    MistPassword     *string                   `json:"mist_password,omitempty"`
+    OobIpType        *MxedgeMgmtOobIpTypeEnum  `json:"oob_ip_type,omitempty"`
+    OobIpType6       *MxedgeMgmtOobIpType6Enum `json:"oob_ip_type6,omitempty"`
+    RootPassword     *string                   `json:"root_password,omitempty"`
 }

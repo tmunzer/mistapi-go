@@ -14,7 +14,7 @@
 | `AlarmtemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `AllowMist` | `*bool` | Optional | **Default**: `true` |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MspLogoUrl` | `*string` | Optional | logo uploaded by the MSP with advanced tier, only present if provided |

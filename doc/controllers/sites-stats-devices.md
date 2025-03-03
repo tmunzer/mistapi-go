@@ -39,7 +39,7 @@ GetSiteAllClientsStatsByDevice(
 
 ## Response Type
 
-[`[]models.StatsWirelessClient`](../../doc/models/stats-wireless-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsWirelessClient](../../doc/models/stats-wireless-client.md).
 
 ## Example Usage
 
@@ -91,11 +91,11 @@ GetSiteDeviceStats(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `fields` | `*string` | Query, Optional | List of additional fields requests, comma separeted, or `fields=*` for all of them |
+| `fields` | `*string` | Query, Optional | List of additional fields requests, comma separated, or `fields=*` for all of them |
 
 ## Response Type
 
-[`models.StatsDevice`](../../doc/models/containers/stats-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type models.StatsDevice.
 
 ## Example Usage
 
@@ -358,7 +358,7 @@ GetSiteGatewayMetrics(
 
 ## Response Type
 
-[`models.GatewayMetrics`](../../doc/models/gateway-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.GatewayMetrics](../../doc/models/gateway-metrics.md).
 
 ## Example Usage
 
@@ -432,7 +432,7 @@ GetSiteSwitchesMetrics(
 
 ## Response Type
 
-[`models.ResponseSwitchMetrics`](../../doc/models/response-switch-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSwitchMetrics](../../doc/models/response-switch-metrics.md).
 
 ## Example Usage
 
@@ -538,7 +538,7 @@ ListSiteDevicesStats(
 
 ## Response Type
 
-[`[]models.StatsDevice`](../../doc/models/containers/stats-device.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.StatsDevice.
 
 ## Example Usage
 

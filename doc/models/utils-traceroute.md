@@ -15,7 +15,7 @@
 | `Network` | `*string` | Optional | For SSR, optional, the source to initiate traceroute from<br>**Default**: `"internal"` |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Port` | `*int` | Optional | When `protocol`==`udp`, not supported in SSR. The udp port to use<br>**Default**: `33434` |
-| `Protocol` | [`*models.UtilsTracerouteProtocolEnum`](../../doc/models/utils-traceroute-protocol-enum.md) | Optional | enum: `icmp` (Only suported by AP/MxEdge), `udp`<br>**Default**: `"udp"` |
+| `Protocol` | [`*models.UtilsTracerouteProtocolEnum`](../../doc/models/utils-traceroute-protocol-enum.md) | Optional | enum: `icmp` (Only supported by AP/MxEdge), `udp`<br>**Default**: `"udp"` |
 | `Timeout` | `*int` | Optional | Not supported in SSR. Maximum time in seconds to wait for the response<br>**Default**: `60` |
 | `Vrf` | `*string` | Optional | For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

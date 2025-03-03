@@ -39,7 +39,7 @@ CreateOrgNetworkTemplate(
 
 ## Response Type
 
-[`models.NetworkTemplate`](../../doc/models/network-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NetworkTemplate](../../doc/models/network-template.md).
 
 ## Example Usage
 
@@ -90,9 +90,9 @@ body := models.NetworkTemplate{
     },
     PortUsages:            map[string]models.SwitchPortUsage{
         "dynamic": models.SwitchPortUsage{
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_DYNAMIC),
-            ResetDefaultWhen:                        models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
-            Rules:                                   []models.SwitchPortUsageDynamicRule{
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_DYNAMIC),
+            ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
+            Rules:                                    []models.SwitchPortUsageDynamicRule{
                 models.SwitchPortUsageDynamicRule{
                     Equals:               models.ToPointer("string"),
                     EqualsAny:            []string{
@@ -105,69 +105,69 @@ body := models.NetworkTemplate{
             },
         },
         "property1": models.SwitchPortUsage{
-            AllNetworks:                             models.ToPointer(false),
-            AllowDhcpd:                              models.ToPointer(true),
-            BypassAuthWhenServerDown:                models.ToPointer(true),
-            Description:                             models.ToPointer("string"),
-            DisableAutoneg:                          models.ToPointer(false),
-            Disabled:                                models.ToPointer(false),
-            Duplex:                                  models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
-            EnableMacAuth:                           models.ToPointer(true),
-            EnableQos:                               models.ToPointer(true),
-            GuestNetwork:                            models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                             models.ToPointer(true),
-            MacLimit:                                models.ToPointer(0),
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                     models.ToPointer(0),
-            Networks:                                []string{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
                 "string",
             },
-            PersistMac:                              models.ToPointer(false),
-            PoeDisabled:                             models.ToPointer(false),
-            PortAuth:                                models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
-            PortNetwork:                             models.ToPointer("string"),
-            Speed:                                   models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
-            StormControl:                            models.ToPointer(models.SwitchPortUsageStormControl{
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
                 NoMulticast:           models.ToPointer(false),
                 NoRegisteredMulticast: models.ToPointer(false),
                 NoUnknownUnicast:      models.ToPointer(false),
                 Percentage:            models.ToPointer(80),
             }),
-            StpEdge:                                 models.ToPointer(true),
-            VoipNetwork:                             models.ToPointer("string"),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
         },
         "property2": models.SwitchPortUsage{
-            AllNetworks:                             models.ToPointer(false),
-            AllowDhcpd:                              models.ToPointer(true),
-            BypassAuthWhenServerDown:                models.ToPointer(true),
-            Description:                             models.ToPointer("string"),
-            DisableAutoneg:                          models.ToPointer(false),
-            Disabled:                                models.ToPointer(false),
-            Duplex:                                  models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
-            EnableMacAuth:                           models.ToPointer(true),
-            EnableQos:                               models.ToPointer(true),
-            GuestNetwork:                            models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                             models.ToPointer(true),
-            MacLimit:                                models.ToPointer(0),
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                     models.ToPointer(0),
-            Networks:                                []string{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
                 "string",
             },
-            PersistMac:                              models.ToPointer(false),
-            PoeDisabled:                             models.ToPointer(false),
-            PortNetwork:                             models.ToPointer("string"),
-            Speed:                                   models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
-            StormControl:                            models.ToPointer(models.SwitchPortUsageStormControl{
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
                 NoMulticast:           models.ToPointer(false),
                 NoRegisteredMulticast: models.ToPointer(false),
                 NoUnknownUnicast:      models.ToPointer(false),
                 Percentage:            models.ToPointer(80),
             }),
-            StpEdge:                                 models.ToPointer(true),
-            VoipNetwork:                             models.ToPointer("string"),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
@@ -204,7 +204,7 @@ body := models.NetworkTemplate{
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes:          map[string]models.VrfExtraRoute{
+            ExtraRoutes:            map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("192.0.2.10"),
                 },
@@ -212,12 +212,12 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
             },
-            Networks:             []string{
+            Networks:               []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes:          map[string]models.VrfExtraRoute{
+            ExtraRoutes:            map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -225,7 +225,7 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.10"),
                 },
             },
-            Networks:             []string{
+            Networks:               []string{
                 "string",
             },
         },
@@ -478,7 +478,7 @@ DeleteOrgNetworkTemplate(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -530,7 +530,7 @@ GetOrgNetworkTemplate(
 
 ## Response Type
 
-[`models.NetworkTemplate`](../../doc/models/network-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NetworkTemplate](../../doc/models/network-template.md).
 
 ## Example Usage
 
@@ -586,7 +586,7 @@ ListOrgNetworkTemplates(
 
 ## Response Type
 
-[`[]models.NetworkTemplate`](../../doc/models/network-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.NetworkTemplate](../../doc/models/network-template.md).
 
 ## Example Usage
 
@@ -950,7 +950,7 @@ UpdateOrgNetworkTemplates(
 
 ## Response Type
 
-[`models.NetworkTemplate`](../../doc/models/network-template.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NetworkTemplate](../../doc/models/network-template.md).
 
 ## Example Usage
 
@@ -1011,9 +1011,9 @@ body := models.NetworkTemplate{
     },
     PortUsages:            map[string]models.SwitchPortUsage{
         "dynamic": models.SwitchPortUsage{
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_DYNAMIC),
-            ResetDefaultWhen:                        models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
-            Rules:                                   []models.SwitchPortUsageDynamicRule{
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_DYNAMIC),
+            ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
+            Rules:                                    []models.SwitchPortUsageDynamicRule{
                 models.SwitchPortUsageDynamicRule{
                     Equals:               models.ToPointer("string"),
                     EqualsAny:            []string{
@@ -1026,69 +1026,69 @@ body := models.NetworkTemplate{
             },
         },
         "property1": models.SwitchPortUsage{
-            AllNetworks:                             models.ToPointer(false),
-            AllowDhcpd:                              models.ToPointer(true),
-            BypassAuthWhenServerDown:                models.ToPointer(true),
-            Description:                             models.ToPointer("string"),
-            DisableAutoneg:                          models.ToPointer(false),
-            Disabled:                                models.ToPointer(false),
-            Duplex:                                  models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
-            EnableMacAuth:                           models.ToPointer(true),
-            EnableQos:                               models.ToPointer(true),
-            GuestNetwork:                            models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                             models.ToPointer(true),
-            MacLimit:                                models.ToPointer(0),
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                     models.ToPointer(0),
-            Networks:                                []string{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
                 "string",
             },
-            PersistMac:                              models.ToPointer(false),
-            PoeDisabled:                             models.ToPointer(false),
-            PortAuth:                                models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
-            PortNetwork:                             models.ToPointer("string"),
-            Speed:                                   models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
-            StormControl:                            models.ToPointer(models.SwitchPortUsageStormControl{
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
                 NoMulticast:           models.ToPointer(false),
                 NoRegisteredMulticast: models.ToPointer(false),
                 NoUnknownUnicast:      models.ToPointer(false),
                 Percentage:            models.ToPointer(80),
             }),
-            StpEdge:                                 models.ToPointer(true),
-            VoipNetwork:                             models.ToPointer("string"),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
         },
         "property2": models.SwitchPortUsage{
-            AllNetworks:                             models.ToPointer(false),
-            AllowDhcpd:                              models.ToPointer(true),
-            BypassAuthWhenServerDown:                models.ToPointer(true),
-            Description:                             models.ToPointer("string"),
-            DisableAutoneg:                          models.ToPointer(false),
-            Disabled:                                models.ToPointer(false),
-            Duplex:                                  models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
-            EnableMacAuth:                           models.ToPointer(true),
-            EnableQos:                               models.ToPointer(true),
-            GuestNetwork:                            models.NewOptional(models.ToPointer("string")),
-            MacAuthOnly:                             models.ToPointer(true),
-            MacLimit:                                models.ToPointer(0),
-            Mode:                                    models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                     models.ToPointer(0),
-            Networks:                                []string{
+            AllNetworks:                              models.ToPointer(false),
+            AllowDhcpd:                               models.ToPointer(true),
+            BypassAuthWhenServerDown:                 models.ToPointer(true),
+            Description:                              models.ToPointer("string"),
+            DisableAutoneg:                           models.ToPointer(false),
+            Disabled:                                 models.ToPointer(false),
+            Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
+            EnableMacAuth:                            models.ToPointer(true),
+            EnableQos:                                models.ToPointer(true),
+            GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
+            MacAuthOnly:                              models.ToPointer(true),
+            MacLimit:                                 models.ToPointer(0),
+            Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
+            Mtu:                                      models.ToPointer(0),
+            Networks:                                 []string{
                 "string",
             },
-            PersistMac:                              models.ToPointer(false),
-            PoeDisabled:                             models.ToPointer(false),
-            PortNetwork:                             models.ToPointer("string"),
-            Speed:                                   models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
-            StormControl:                            models.ToPointer(models.SwitchPortUsageStormControl{
+            PersistMac:                               models.ToPointer(false),
+            PoeDisabled:                              models.ToPointer(false),
+            PortNetwork:                              models.ToPointer("string"),
+            Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
+            StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
                 NoMulticast:           models.ToPointer(false),
                 NoRegisteredMulticast: models.ToPointer(false),
                 NoUnknownUnicast:      models.ToPointer(false),
                 Percentage:            models.ToPointer(80),
             }),
-            StpEdge:                                 models.ToPointer(true),
-            VoipNetwork:                             models.ToPointer("string"),
+            StpEdge:                                  models.ToPointer(true),
+            VoipNetwork:                              models.ToPointer("string"),
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
@@ -1125,7 +1125,7 @@ body := models.NetworkTemplate{
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes:          map[string]models.VrfExtraRoute{
+            ExtraRoutes:            map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -1133,12 +1133,12 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:             []string{
+            Networks:               []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes:          map[string]models.VrfExtraRoute{
+            ExtraRoutes:            map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -1146,7 +1146,7 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:             []string{
+            Networks:               []string{
                 "string",
             },
         },

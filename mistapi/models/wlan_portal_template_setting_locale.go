@@ -97,7 +97,7 @@ type WlanPortalTemplateSettingLocale struct {
     PrivacyPolicyText        *string                `json:"privacyPolicyText,omitempty"`
     // Label to denote required field
     RequiredFieldLabel       *string                `json:"requiredFieldLabel,omitempty"`
-    // Label of the button to /signin
+    // Label of the button to signin
     SignInLabel              *string                `json:"signInLabel,omitempty"`
     SmsCarrierDefault        *string                `json:"smsCarrierDefault,omitempty"`
     SmsCarrierError          *string                `json:"smsCarrierError,omitempty"`

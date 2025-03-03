@@ -25,7 +25,7 @@ func NewUtilitiesLAN(baseController baseController) *UtilitiesLAN {
 // ReauthOrgDot1xWiredClient takes context, orgId, clientMac as parameters and
 // returns an models.ApiResponse with models.ResponseWiredCoa data and
 // an error if there was an issue with the request or response.
-// Trigger a CoA (change of authorization) against a Wiired client
+// Trigger a CoA (change of authorization) against a Wired client
 func (u *UtilitiesLAN) ReauthOrgDot1xWiredClient(
     ctx context.Context,
     orgId uuid.UUID,
@@ -211,11 +211,11 @@ func (u *UtilitiesLAN) CableTestFromSwitch(
     return models.NewApiResponse(result, resp), err
 }
 
-// ClearBpduErrosFromPortsOnSwitch takes context, siteId, deviceId, body as parameters and
+// ClearBpduErrorsFromPortsOnSwitch takes context, siteId, deviceId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear bridge protocol data unit (BPDU) error condition caused by the detection of a possible bridging loop from Spanning Tree Protocol (STP) operation that renders the port unoperational.
-func (u *UtilitiesLAN) ClearBpduErrosFromPortsOnSwitch(
+func (u *UtilitiesLAN) ClearBpduErrorsFromPortsOnSwitch(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID,
@@ -475,7 +475,7 @@ func (u *UtilitiesLAN) UpgradeDeviceFPGA(
 // ReauthSiteDot1xWiredClient takes context, siteId, clientMac as parameters and
 // returns an models.ApiResponse with models.ResponseWiredCoa data and
 // an error if there was an issue with the request or response.
-// Trigger a CoA (change of authorization) against a Wiired client
+// Trigger a CoA (change of authorization) against a Wired client
 func (u *UtilitiesLAN) ReauthSiteDot1xWiredClient(
     ctx context.Context,
     siteId uuid.UUID,

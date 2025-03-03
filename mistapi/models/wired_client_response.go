@@ -8,6 +8,8 @@ import (
 
 // WiredClientResponse represents a WiredClientResponse struct.
 type WiredClientResponse struct {
+    AuthMethod                *string                                `json:"auth_method,omitempty"`
+    AuthState                 *string                                `json:"auth_state,omitempty"`
     // MAC Address of the switch the client is connected to
     DeviceMac                 []string                               `json:"device_mac,omitempty"`
     DeviceMacPort             []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
@@ -31,8 +33,8 @@ type WiredClientResponse struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WiredClientResponse) String() string {
     return fmt.Sprintf(
-    	"WiredClientResponse[DeviceMac=%v, DeviceMacPort=%v, DhcpClientIdentifier=%v, DhcpClientOptions=%v, DhcpFqdn=%v, DhcpHostname=%v, DhcpRequestParams=%v, DhcpVendorClassIdentifier=%v, Ip=%v, Mac=%v, OrgId=%v, PortId=%v, SiteId=%v, Timestamp=%v, Vlan=%v, AdditionalProperties=%v]",
-    	w.DeviceMac, w.DeviceMacPort, w.DhcpClientIdentifier, w.DhcpClientOptions, w.DhcpFqdn, w.DhcpHostname, w.DhcpRequestParams, w.DhcpVendorClassIdentifier, w.Ip, w.Mac, w.OrgId, w.PortId, w.SiteId, w.Timestamp, w.Vlan, w.AdditionalProperties)
+    	"WiredClientResponse[AuthMethod=%v, AuthState=%v, DeviceMac=%v, DeviceMacPort=%v, DhcpClientIdentifier=%v, DhcpClientOptions=%v, DhcpFqdn=%v, DhcpHostname=%v, DhcpRequestParams=%v, DhcpVendorClassIdentifier=%v, Ip=%v, Mac=%v, OrgId=%v, PortId=%v, SiteId=%v, Timestamp=%v, Vlan=%v, AdditionalProperties=%v]",
+    	w.AuthMethod, w.AuthState, w.DeviceMac, w.DeviceMacPort, w.DhcpClientIdentifier, w.DhcpClientOptions, w.DhcpFqdn, w.DhcpHostname, w.DhcpRequestParams, w.DhcpVendorClassIdentifier, w.Ip, w.Mac, w.OrgId, w.PortId, w.SiteId, w.Timestamp, w.Vlan, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WiredClientResponse.
@@ -41,7 +43,7 @@ func (w WiredClientResponse) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan"); err != nil {
+        "auth_method", "auth_state", "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -51,6 +53,12 @@ func (w WiredClientResponse) MarshalJSON() (
 func (w WiredClientResponse) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
+    if w.AuthMethod != nil {
+        structMap["auth_method"] = w.AuthMethod
+    }
+    if w.AuthState != nil {
+        structMap["auth_state"] = w.AuthState
+    }
     if w.DeviceMac != nil {
         structMap["device_mac"] = w.DeviceMac
     }
@@ -107,12 +115,14 @@ func (w *WiredClientResponse) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_method", "auth_state", "device_mac", "device_mac_port", "dhcp_client_identifier", "dhcp_client_options", "dhcp_fqdn", "dhcp_hostname", "dhcp_request_params", "dhcp_vendor_class_identifier", "ip", "mac", "org_id", "port_id", "site_id", "timestamp", "vlan")
     if err != nil {
     	return err
     }
     w.AdditionalProperties = additionalProperties
     
+    w.AuthMethod = temp.AuthMethod
+    w.AuthState = temp.AuthState
     w.DeviceMac = temp.DeviceMac
     w.DeviceMacPort = temp.DeviceMacPort
     w.DhcpClientIdentifier = temp.DhcpClientIdentifier
@@ -133,6 +143,8 @@ func (w *WiredClientResponse) UnmarshalJSON(input []byte) error {
 
 // tempWiredClientResponse is a temporary struct used for validating the fields of WiredClientResponse.
 type tempWiredClientResponse  struct {
+    AuthMethod                *string                                `json:"auth_method,omitempty"`
+    AuthState                 *string                                `json:"auth_state,omitempty"`
     DeviceMac                 []string                               `json:"device_mac,omitempty"`
     DeviceMacPort             []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
     DhcpClientIdentifier      *string                                `json:"dhcp_client_identifier,omitempty"`

@@ -108,13 +108,13 @@ func (s *SitesAlarms) AckSiteAllAlarms(
 }
 
 // CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Site Alarms
 func (s *SitesAlarms) CountSiteAlarms(
     ctx context.Context,
     siteId uuid.UUID,
-    distinct *models.AlarmCountDisctinctEnum,
+    distinct *models.AlarmCountDistinctEnum,
     ackAdminName *string,
     acked *bool,
     mType *string,
@@ -125,7 +125,7 @@ func (s *SitesAlarms) CountSiteAlarms(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/alarms/count")
     req.AppendTemplateParams(siteId)
@@ -181,13 +181,13 @@ func (s *SitesAlarms) CountSiteAlarms(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -309,12 +309,12 @@ func (s *SitesAlarms) UnackSiteMultipleAlarms(
     return httpCtx.Response, err
 }
 
-// UnackSiteAllArlarms takes context, siteId, body as parameters and
+// UnackSiteAllAlarms takes context, siteId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Unack all Site Alarms
 // **N.B.**: Batch size for multiple alarm ack and unack has to be less or or equal to 1000.
-func (s *SitesAlarms) UnackSiteAllArlarms(
+func (s *SitesAlarms) UnackSiteAllAlarms(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.NoteString) (

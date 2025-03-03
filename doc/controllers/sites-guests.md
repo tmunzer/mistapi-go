@@ -33,7 +33,7 @@ CountSiteGuestAuthorizations(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -51,7 +51,7 @@ CountSiteGuestAuthorizations(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -133,7 +133,7 @@ DeleteSiteGuestAuthorization(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -185,7 +185,7 @@ GetSiteGuestAuthorization(
 
 ## Response Type
 
-[`models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 
@@ -258,7 +258,7 @@ ListSiteAllGuestAuthorizations(
 
 ## Response Type
 
-[`[]models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 
@@ -335,7 +335,7 @@ ListSiteAllGuestAuthorizationsDerived(
 
 ## Response Type
 
-[`[]models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 
@@ -424,7 +424,7 @@ SearchSiteGuestAuthorization(
 
 ## Response Type
 
-[`models.ResponseGuestSearch`](../../doc/models/response-guest-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseGuestSearch](../../doc/models/response-guest-search.md).
 
 ## Example Usage
 
@@ -528,7 +528,7 @@ UpdateSiteGuestAuthorization(
 
 ## Response Type
 
-[`models.Guest`](../../doc/models/guest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Guest](../../doc/models/guest.md).
 
 ## Example Usage
 

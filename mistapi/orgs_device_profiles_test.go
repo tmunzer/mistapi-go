@@ -16,7 +16,7 @@ func TestOrgsDeviceProfilesTestListOrgDeviceProfiles(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    mType := models.DeviceTypeEnum("ap")
+    mType := models.DeviceTypeDefaultApEnum("ap")
     limit := int(100)
     page := int(1)
     apiResponse, err := orgsDeviceProfiles.ListOrgDeviceProfiles(ctx, orgId, &mType, &limit, &page)
@@ -39,12 +39,8 @@ func TestOrgsDeviceProfilesTestCreateOrgDeviceProfiles(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.Deviceprofile
-    errBody := json.Unmarshal([]byte(`{"aeroscout":{"enabled":false,"host":"aero.pvt.net","locate_connected":true},"led":{"brightness":255,"enabled":true},"name":"string","ntp_servers":["10.10.10.10"],"type":"ap","usb_config":{"cacert":"string","channel":3,"enabled":true,"host":"1.1.1.1","port":0,"type":"imagotag","verify_cert":true,"vlan_id":1}}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfiles(ctx, orgId, &body)
+    
+    apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfiles(ctx, orgId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -110,12 +106,8 @@ func TestOrgsDeviceProfilesTestUpdateOrgDeviceProfile(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    var body models.Deviceprofile
-    errBody := json.Unmarshal([]byte(`{"aeroscout":{"enabled":true,"host":"string"},"disable_eth1":true,"disable_module":true,"mesh":{"enabled":true,"group":1,"role":"base"},"name":"string","poe_passthrough":true,"radio_config":{"ant_gain_24":0,"ant_gain_5":0,"band_24":{"allow_rrm_disable":true,"antenna_mode":"default","bandwidth":20,"channel":6,"disabled":true,"power":8,"preamble":"auto","usage":"24"},"band_24_usage":"24","band_5":{"allow_rrm_disable":true,"antenna_mode":"default","bandwidth":20,"channel":50,"disabled":true,"power_max":8,"power_min":15,"preamble":"auto","usage":"24"},"scanning_enabled":true},"type":"ap"}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    apiResponse, err := orgsDeviceProfiles.UpdateOrgDeviceProfile(ctx, orgId, deviceprofileId, &body)
+    
+    apiResponse, err := orgsDeviceProfiles.UpdateOrgDeviceProfile(ctx, orgId, deviceprofileId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

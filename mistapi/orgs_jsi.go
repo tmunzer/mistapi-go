@@ -167,9 +167,12 @@ func (o *OrgsJSI) CreateOrgJsiDeviceShellSession(
 }
 
 // ListOrgJsiPastPurchases takes context, orgId, limit, page, model, serial as parameters and
-// returns an models.ApiResponse with []models.JseInventoryItem data and
+// returns an models.ApiResponse with []models.JsInventoryItem data and
 // an error if there was an issue with the request or response.
-// Get List of all devices purchased from the accounts associated with the Org
+// This gets all devices purchased from the accounts associated with the Org 
+// * Fetch Install base devices for all linked accounts and associated account of the linked accounts. 
+// * The primary and the associated account ids will be queries from SFDC by passing the linked account 
+// * Returns only the device centric details of the Install base device. No customer specific information will be returned.
 func (o *OrgsJSI) ListOrgJsiPastPurchases(
     ctx context.Context,
     orgId uuid.UUID,
@@ -177,7 +180,7 @@ func (o *OrgsJSI) ListOrgJsiPastPurchases(
     page *int,
     model *string,
     serial *string) (
-    models.ApiResponse[[]models.JseInventoryItem],
+    models.ApiResponse[[]models.JsInventoryItem],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory")
     req.AppendTemplateParams(orgId)
@@ -212,12 +215,12 @@ func (o *OrgsJSI) ListOrgJsiPastPurchases(
         req.QueryParam("serial", *serial)
     }
     
-    var result []models.JseInventoryItem
+    var result []models.JsInventoryItem
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.JseInventoryItem](decoder)
+    result, err = utilities.DecodeResults[[]models.JsInventoryItem](decoder)
     return models.NewApiResponse(result, resp), err
 }

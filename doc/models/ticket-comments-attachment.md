@@ -15,7 +15,7 @@
 | `ContentUrl` | `*string` | Optional | - |
 | `CreatedAt` | `*int` | Optional | - |
 | `FileName` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `SizeInBytes` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

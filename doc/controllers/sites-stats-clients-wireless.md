@@ -40,7 +40,7 @@ GetSiteWirelessClientStats(
 
 ## Response Type
 
-[`[]models.StatsClient`](../../doc/models/containers/stats-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.StatsClient.
 
 ## Example Usage
 
@@ -114,7 +114,7 @@ GetSiteWirelessClientsStatsByMap(
 
 ## Response Type
 
-[`[]models.StatsWirelessClient`](../../doc/models/stats-wireless-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsWirelessClient](../../doc/models/stats-wireless-client.md).
 
 ## Example Usage
 
@@ -178,7 +178,7 @@ ListSiteUnconnectedClientStats(
 
 ## Response Type
 
-[`[]models.StatsUnconnectedClient`](../../doc/models/stats-unconnected-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsUnconnectedClient](../../doc/models/stats-unconnected-client.md).
 
 ## Example Usage
 
@@ -256,7 +256,7 @@ ListSiteWirelessClientsStats(
 
 ## Response Type
 
-[`[]models.StatsClient`](../../doc/models/containers/stats-client.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.StatsClient.
 
 ## Example Usage
 

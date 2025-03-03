@@ -8,7 +8,7 @@ import (
 
 // UpgradeOrgDevicesUpgradeInfo represents a UpgradeOrgDevicesUpgradeInfo struct.
 type UpgradeOrgDevicesUpgradeInfo struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID               `json:"id,omitempty"`
     StartTime            *int                     `json:"start_time,omitempty"`
     // status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued`

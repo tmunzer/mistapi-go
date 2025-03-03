@@ -17,7 +17,7 @@
 | `DeviceprofileId` | `models.Optional[string]` | Optional | Deviceprofile id if assigned, null if not assigned |
 | `Hostname` | `*string` | Optional | Hostname reported by the device |
 | `HwRev` | `*string` | Optional | Device hardware revision number |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Jsi` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | Device MAC address |
 | `Magic` | `*string` | Optional | Device claim code |
@@ -28,7 +28,7 @@
 | `Serial` | `*string` | Optional | Device serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | Device stock keeping unit |
-| `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
+| `Type` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Clust, MAC Address of the Cluster |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

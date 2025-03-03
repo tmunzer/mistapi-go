@@ -11,7 +11,7 @@ type DeviceOther struct {
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     DeviceMac            *string                `json:"device_mac,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     Mac                  *string                `json:"mac,omitempty"`
     Model                *string                `json:"model,omitempty"`
@@ -21,7 +21,9 @@ type DeviceOther struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     Serial               *string                `json:"serial,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    State                *string                `json:"state,omitempty"`
     Vendor               *string                `json:"vendor,omitempty"`
+    VendorApiId          *string                `json:"vendor_api_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -29,8 +31,8 @@ type DeviceOther struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceOther) String() string {
     return fmt.Sprintf(
-    	"DeviceOther[CreatedTime=%v, DeviceMac=%v, Id=%v, Mac=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Vendor=%v, AdditionalProperties=%v]",
-    	d.CreatedTime, d.DeviceMac, d.Id, d.Mac, d.Model, d.ModifiedTime, d.Name, d.OrgId, d.Serial, d.SiteId, d.Vendor, d.AdditionalProperties)
+    	"DeviceOther[CreatedTime=%v, DeviceMac=%v, Id=%v, Mac=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, State=%v, Vendor=%v, VendorApiId=%v, AdditionalProperties=%v]",
+    	d.CreatedTime, d.DeviceMac, d.Id, d.Mac, d.Model, d.ModifiedTime, d.Name, d.OrgId, d.Serial, d.SiteId, d.State, d.Vendor, d.VendorApiId, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceOther.
@@ -39,7 +41,7 @@ func (d DeviceOther) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(d.AdditionalProperties,
-        "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "vendor"); err != nil {
+        "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "state", "vendor", "vendor_api_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(d.toMap())
@@ -79,8 +81,14 @@ func (d DeviceOther) toMap() map[string]any {
     if d.SiteId != nil {
         structMap["site_id"] = d.SiteId
     }
+    if d.State != nil {
+        structMap["state"] = d.State
+    }
     if d.Vendor != nil {
         structMap["vendor"] = d.Vendor
+    }
+    if d.VendorApiId != nil {
+        structMap["vendor_api_id"] = d.VendorApiId
     }
     return structMap
 }
@@ -93,7 +101,7 @@ func (d *DeviceOther) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "device_mac", "id", "mac", "model", "modified_time", "name", "org_id", "serial", "site_id", "state", "vendor", "vendor_api_id")
     if err != nil {
     	return err
     }
@@ -109,7 +117,9 @@ func (d *DeviceOther) UnmarshalJSON(input []byte) error {
     d.OrgId = temp.OrgId
     d.Serial = temp.Serial
     d.SiteId = temp.SiteId
+    d.State = temp.State
     d.Vendor = temp.Vendor
+    d.VendorApiId = temp.VendorApiId
     return nil
 }
 
@@ -125,5 +135,7 @@ type tempDeviceOther  struct {
     OrgId        *uuid.UUID `json:"org_id,omitempty"`
     Serial       *string    `json:"serial,omitempty"`
     SiteId       *uuid.UUID `json:"site_id,omitempty"`
+    State        *string    `json:"state,omitempty"`
     Vendor       *string    `json:"vendor,omitempty"`
+    VendorApiId  *string    `json:"vendor_api_id,omitempty"`
 }

@@ -7,25 +7,31 @@ import (
 
 // StatsDeviceOther represents a StatsDeviceOther struct.
 type StatsDeviceOther struct {
-    ConfigStatus         *string                         `json:"config_status,omitempty"`
-    LastConfig           *int                            `json:"last_config,omitempty"`
-    LastSeen             *int                            `json:"last_seen,omitempty"`
-    Mac                  *string                         `json:"mac,omitempty"`
-    Status               *string                         `json:"status,omitempty"`
-    Uptime               *int                            `json:"uptime,omitempty"`
-    Vendor               *string                         `json:"vendor,omitempty"`
+    CachedStats          *bool                                      `json:"cached_stats,omitempty"`
+    ConfigStatus         *string                                    `json:"config_status,omitempty"`
+    // Property key is the connected device MAC Address
+    ConnectedDevices     map[string]StatsDeviceOtherConnectedDevice `json:"connected_devices,omitempty"`
+    // Property key is the interface name
+    Interfaces           map[string]StatsDeviceOtherInterface       `json:"interfaces,omitempty"`
+    LastConfig           *int                                       `json:"last_config,omitempty"`
+    LastSeen             *int                                       `json:"last_seen,omitempty"`
+    LldpEnabled          *bool                                      `json:"lldp_enabled,omitempty"`
+    Mac                  *string                                    `json:"mac,omitempty"`
+    Status               *string                                    `json:"status,omitempty"`
+    Uptime               *int                                       `json:"uptime,omitempty"`
+    Vendor               *string                                    `json:"vendor,omitempty"`
     // When `vendor`==`cradlepoint`
-    VendorSpecific       *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
-    Version              *string                         `json:"version,omitempty"`
-    AdditionalProperties map[string]interface{}          `json:"_"`
+    VendorSpecific       *StatsDeviceOtherVendorSpecific            `json:"vendor_specific,omitempty"`
+    Version              *string                                    `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{}                     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsDeviceOther,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsDeviceOther) String() string {
     return fmt.Sprintf(
-    	"StatsDeviceOther[ConfigStatus=%v, LastConfig=%v, LastSeen=%v, Mac=%v, Status=%v, Uptime=%v, Vendor=%v, VendorSpecific=%v, Version=%v, AdditionalProperties=%v]",
-    	s.ConfigStatus, s.LastConfig, s.LastSeen, s.Mac, s.Status, s.Uptime, s.Vendor, s.VendorSpecific, s.Version, s.AdditionalProperties)
+    	"StatsDeviceOther[CachedStats=%v, ConfigStatus=%v, ConnectedDevices=%v, Interfaces=%v, LastConfig=%v, LastSeen=%v, LldpEnabled=%v, Mac=%v, Status=%v, Uptime=%v, Vendor=%v, VendorSpecific=%v, Version=%v, AdditionalProperties=%v]",
+    	s.CachedStats, s.ConfigStatus, s.ConnectedDevices, s.Interfaces, s.LastConfig, s.LastSeen, s.LldpEnabled, s.Mac, s.Status, s.Uptime, s.Vendor, s.VendorSpecific, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOther.
@@ -34,7 +40,7 @@ func (s StatsDeviceOther) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "config_status", "last_config", "last_seen", "mac", "status", "uptime", "vendor", "vendor_specific", "version"); err != nil {
+        "cached_stats", "config_status", "connected_devices", "interfaces", "last_config", "last_seen", "lldp_enabled", "mac", "status", "uptime", "vendor", "vendor_specific", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -44,14 +50,26 @@ func (s StatsDeviceOther) MarshalJSON() (
 func (s StatsDeviceOther) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
+    if s.CachedStats != nil {
+        structMap["cached_stats"] = s.CachedStats
+    }
     if s.ConfigStatus != nil {
         structMap["config_status"] = s.ConfigStatus
+    }
+    if s.ConnectedDevices != nil {
+        structMap["connected_devices"] = s.ConnectedDevices
+    }
+    if s.Interfaces != nil {
+        structMap["interfaces"] = s.Interfaces
     }
     if s.LastConfig != nil {
         structMap["last_config"] = s.LastConfig
     }
     if s.LastSeen != nil {
         structMap["last_seen"] = s.LastSeen
+    }
+    if s.LldpEnabled != nil {
+        structMap["lldp_enabled"] = s.LldpEnabled
     }
     if s.Mac != nil {
         structMap["mac"] = s.Mac
@@ -82,15 +100,19 @@ func (s *StatsDeviceOther) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_status", "last_config", "last_seen", "mac", "status", "uptime", "vendor", "vendor_specific", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cached_stats", "config_status", "connected_devices", "interfaces", "last_config", "last_seen", "lldp_enabled", "mac", "status", "uptime", "vendor", "vendor_specific", "version")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
+    s.CachedStats = temp.CachedStats
     s.ConfigStatus = temp.ConfigStatus
+    s.ConnectedDevices = temp.ConnectedDevices
+    s.Interfaces = temp.Interfaces
     s.LastConfig = temp.LastConfig
     s.LastSeen = temp.LastSeen
+    s.LldpEnabled = temp.LldpEnabled
     s.Mac = temp.Mac
     s.Status = temp.Status
     s.Uptime = temp.Uptime
@@ -102,13 +124,17 @@ func (s *StatsDeviceOther) UnmarshalJSON(input []byte) error {
 
 // tempStatsDeviceOther is a temporary struct used for validating the fields of StatsDeviceOther.
 type tempStatsDeviceOther  struct {
-    ConfigStatus   *string                         `json:"config_status,omitempty"`
-    LastConfig     *int                            `json:"last_config,omitempty"`
-    LastSeen       *int                            `json:"last_seen,omitempty"`
-    Mac            *string                         `json:"mac,omitempty"`
-    Status         *string                         `json:"status,omitempty"`
-    Uptime         *int                            `json:"uptime,omitempty"`
-    Vendor         *string                         `json:"vendor,omitempty"`
-    VendorSpecific *StatsDeviceOtherVendorSpecific `json:"vendor_specific,omitempty"`
-    Version        *string                         `json:"version,omitempty"`
+    CachedStats      *bool                                      `json:"cached_stats,omitempty"`
+    ConfigStatus     *string                                    `json:"config_status,omitempty"`
+    ConnectedDevices map[string]StatsDeviceOtherConnectedDevice `json:"connected_devices,omitempty"`
+    Interfaces       map[string]StatsDeviceOtherInterface       `json:"interfaces,omitempty"`
+    LastConfig       *int                                       `json:"last_config,omitempty"`
+    LastSeen         *int                                       `json:"last_seen,omitempty"`
+    LldpEnabled      *bool                                      `json:"lldp_enabled,omitempty"`
+    Mac              *string                                    `json:"mac,omitempty"`
+    Status           *string                                    `json:"status,omitempty"`
+    Uptime           *int                                       `json:"uptime,omitempty"`
+    Vendor           *string                                    `json:"vendor,omitempty"`
+    VendorSpecific   *StatsDeviceOtherVendorSpecific            `json:"vendor_specific,omitempty"`
+    Version          *string                                    `json:"version,omitempty"`
 }

@@ -11,7 +11,7 @@ orgsMarvis := client.OrgsMarvis()
 
 # Troubleshoot Org
 
-Troubleshoot sites, devices, clients, and wired clientsfor maximum of last 7 days from current time. See search APIs for device information:
+Troubleshoot sites, devices, clients, and wired clients for maximum of last 7 days from current time. See search APIs for device information:
 
 - [search Device](../../doc/controllers/orgs-devices.md#search-org-devices)
 - [search Wireless Client](../../doc/controllers/orgs-clients-wireless.md#search-org-wireless-clients)
@@ -46,7 +46,7 @@ TroubleshootOrg(
 
 ## Response Type
 
-[`models.ResponseTroubleshoot`](../../doc/models/response-troubleshoot.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseTroubleshoot](../../doc/models/response-troubleshoot.md).
 
 ## Example Usage
 

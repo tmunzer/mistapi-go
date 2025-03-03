@@ -12,7 +12,7 @@ type TuntermMonitoringItem struct {
     // When `protocol`==`tcp`
     Port                 *int                           `json:"port,omitempty"`
     // enum: `arp`, `ping`, `tcp`
-    Protocol             *TunternMonitoringProtocolEnum `json:"protocol,omitempty"`
+    Protocol             *TuntermMonitoringProtocolEnum `json:"protocol,omitempty"`
     // Optional source for the monitoring check, vlan_id configured in tunterm_other_ip_configs
     SrcVlanId            *int                           `json:"src_vlan_id,omitempty"`
     Timeout              *int                           `json:"timeout,omitempty"`
@@ -87,7 +87,7 @@ func (t *TuntermMonitoringItem) UnmarshalJSON(input []byte) error {
 type tempTuntermMonitoringItem  struct {
     Host      *string                        `json:"host,omitempty"`
     Port      *int                           `json:"port,omitempty"`
-    Protocol  *TunternMonitoringProtocolEnum `json:"protocol,omitempty"`
+    Protocol  *TuntermMonitoringProtocolEnum `json:"protocol,omitempty"`
     SrcVlanId *int                           `json:"src_vlan_id,omitempty"`
     Timeout   *int                           `json:"timeout,omitempty"`
 }

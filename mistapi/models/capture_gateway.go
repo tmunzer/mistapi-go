@@ -8,18 +8,18 @@ import (
 )
 
 // CaptureGateway represents a CaptureGateway struct.
-// Initiate a Gateway (SSR) Packet Capture
+// Initiate a Gateway (SSR/SRX) Packet Capture
 type CaptureGateway struct {
     // Duration of the capture, in seconds
-    Duration             *int                                  `json:"duration,omitempty"`
+    Duration             Optional[int]                         `json:"duration"`
     // enum: `stream`
     Format               *CaptureGatewayFormatEnum             `json:"format,omitempty"`
     // List of SSRs. Property key is the SSR MAC
     Gateways             map[string]CaptureGatewayGateways     `json:"gateways"`
-    // Max_len of each packet to capture
-    MaxPktLen            *int                                  `json:"max_pkt_len,omitempty"`
-    // Number of packets to capture, 0 for unlimited
-    NumPackets           *int                                  `json:"num_packets,omitempty"`
+    // minimum is 64 (SSR) / 68 (SRX) maximum is 10240 (SSR) / 1520 (SRX)
+    MaxPktLen            Optional[int]                         `json:"max_pkt_len"`
+    // number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
+    NumPackets           Optional[int]                         `json:"num_packets"`
     // Property key is the port ID
     Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
     // enum: `gateway`
@@ -51,18 +51,30 @@ func (c CaptureGateway) MarshalJSON() (
 func (c CaptureGateway) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, c.AdditionalProperties)
-    if c.Duration != nil {
-        structMap["duration"] = c.Duration
+    if c.Duration.IsValueSet() {
+        if c.Duration.Value() != nil {
+            structMap["duration"] = c.Duration.Value()
+        } else {
+            structMap["duration"] = nil
+        }
     }
     if c.Format != nil {
         structMap["format"] = c.Format
     }
     structMap["gateways"] = c.Gateways
-    if c.MaxPktLen != nil {
-        structMap["max_pkt_len"] = c.MaxPktLen
+    if c.MaxPktLen.IsValueSet() {
+        if c.MaxPktLen.Value() != nil {
+            structMap["max_pkt_len"] = c.MaxPktLen.Value()
+        } else {
+            structMap["max_pkt_len"] = nil
+        }
     }
-    if c.NumPackets != nil {
-        structMap["num_packets"] = c.NumPackets
+    if c.NumPackets.IsValueSet() {
+        if c.NumPackets.Value() != nil {
+            structMap["num_packets"] = c.NumPackets.Value()
+        } else {
+            structMap["num_packets"] = nil
+        }
     }
     if c.Ports != nil {
         structMap["ports"] = c.Ports
@@ -101,11 +113,11 @@ func (c *CaptureGateway) UnmarshalJSON(input []byte) error {
 
 // tempCaptureGateway is a temporary struct used for validating the fields of CaptureGateway.
 type tempCaptureGateway  struct {
-    Duration   *int                                  `json:"duration,omitempty"`
+    Duration   Optional[int]                         `json:"duration"`
     Format     *CaptureGatewayFormatEnum             `json:"format,omitempty"`
     Gateways   *map[string]CaptureGatewayGateways    `json:"gateways"`
-    MaxPktLen  *int                                  `json:"max_pkt_len,omitempty"`
-    NumPackets *int                                  `json:"num_packets,omitempty"`
+    MaxPktLen  Optional[int]                         `json:"max_pkt_len"`
+    NumPackets Optional[int]                         `json:"num_packets"`
     Ports      map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
     Type       *string                               `json:"type"`
 }

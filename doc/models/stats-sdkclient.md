@@ -13,7 +13,7 @@ SDK Client statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `LastSeen` | `float64` | Required | Last seen timestamp |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the sdk client (if known), or null |
 | `Name` | `*string` | Optional | Name of the sdk client (if provided) |

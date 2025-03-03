@@ -15,7 +15,6 @@
 | `RecommendedAnchor` | `*bool` | Optional | Flag to represent if AP is recommended as an anchor by auto placement service |
 | `Status` | `*string` | Optional | Basic Placement Status |
 | `StatusDetail` | `*string` | Optional | Additional info about placement status |
-| `UseAutoPlacement` | `*bool` | Optional | Flag to represent if auto_placement values are currently utilized |
 | `X` | `*float64` | Optional | X Autoplaced Position in pixels |
 | `XM` | `*float64` | Optional | X Autoplaced Position in meters |
 | `Y` | `*float64` | Optional | Y Autoplaced Position in pixels |
@@ -50,7 +49,6 @@
     }
   },
   "recommended_anchor": false,
-  "use_auto_placement": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

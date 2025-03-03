@@ -33,7 +33,7 @@
       "duration": 120,
       "eddystone_uid_instance": "5c5b35000001",
       "eddystone_uid_namespace": "2818e3868dec25629ede",
-      "eddystone_url_url": "ttps://www.abc.com",
+      "eddystone_url_url": "https://www.abc.com",
       "ibeacon_major": 12,
       "ibeacon_minor": 138,
       "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
@@ -42,7 +42,7 @@
       "map_id": "c45be59f-854d-4ef7-b782-dcd6309c84a9",
       "name": "6fa474be7ae5",
       "rssi": -60,
-      "temperatur": 23,
+      "temperature": 23,
       "x": 280.19918140310193,
       "y": 420.2987721046529,
       "exampleAdditionalProperty": {

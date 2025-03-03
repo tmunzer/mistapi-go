@@ -19,7 +19,7 @@ type ResponseLogSearchItem struct {
     // field values prior to the change
     Before               *interface{}           `json:"before,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // log message
     Message              string                 `json:"message"`

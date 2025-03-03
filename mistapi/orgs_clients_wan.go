@@ -22,7 +22,7 @@ func NewOrgsClientsWan(baseController baseController) *OrgsClientsWan {
 }
 
 // CountOrgWanClientEvents takes context, orgId, distinct, mType, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Org WAN Client-Events
 func (o *OrgsClientsWan) CountOrgWanClientEvents(
@@ -34,7 +34,7 @@ func (o *OrgsClientsWan) CountOrgWanClientEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wan_client/events/count")
     req.AppendTemplateParams(orgId)
@@ -75,18 +75,18 @@ func (o *OrgsClientsWan) CountOrgWanClientEvents(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // CountOrgWanClients takes context, orgId, distinct, start, end, duration, limit, page as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org WAN Clients
 func (o *OrgsClientsWan) CountOrgWanClients(
@@ -98,7 +98,7 @@ func (o *OrgsClientsWan) CountOrgWanClients(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wan_clients/count")
     req.AppendTemplateParams(orgId)
@@ -139,13 +139,13 @@ func (o *OrgsClientsWan) CountOrgWanClients(
         req.QueryParam("page", *page)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

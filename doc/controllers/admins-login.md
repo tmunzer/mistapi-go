@@ -38,7 +38,7 @@ Login(
 
 ## Response Type
 
-[`models.ResponseLoginSuccess`](../../doc/models/response-login-success.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseLoginSuccess](../../doc/models/response-login-success.md).
 
 ## Example Usage
 
@@ -98,7 +98,7 @@ TwoFactor(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -122,8 +122,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | two_factor code is incorrect or the user hasn’t login yet | `ApiError` |
+| 401 | two_factor code is incorrect or the user hasn't login yet | `ApiError` |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | The user doesn’t have 2FA enabled | `ApiError` |
+| 404 | The user doesn't have 2FA enabled | `ApiError` |
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 

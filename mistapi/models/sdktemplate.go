@@ -19,7 +19,7 @@ type Sdktemplate struct {
     Default              *bool                  `json:"default,omitempty"`
     ForSite              *bool                  `json:"for_site,omitempty"`
     HeaderTxt            *string                `json:"header_txt,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`

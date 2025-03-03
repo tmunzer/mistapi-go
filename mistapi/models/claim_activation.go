@@ -10,14 +10,14 @@ import (
 // ClaimActivation represents a ClaimActivation struct.
 type ClaimActivation struct {
     // Whether to do a async claim process
-    Async                *bool                  `json:"async,omitempty"`
+    Async                *bool                    `json:"async,omitempty"`
     // Activation code
-    Code                 string                 `json:"code"`
+    Code                 string                   `json:"code"`
     // enum: `ap`, `gateway`, `switch`
-    DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`
+    DeviceType           *DeviceTypeDefaultApEnum `json:"device_type,omitempty"`
     // what to claim. enum: `all`, `inventory`, `license`
-    Type                 ClaimTypeEnum          `json:"type"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Type                 ClaimTypeEnum            `json:"type"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ClaimActivation,
@@ -82,10 +82,10 @@ func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
 
 // tempClaimActivation is a temporary struct used for validating the fields of ClaimActivation.
 type tempClaimActivation  struct {
-    Async      *bool           `json:"async,omitempty"`
-    Code       *string         `json:"code"`
-    DeviceType *DeviceTypeEnum `json:"device_type,omitempty"`
-    Type       *ClaimTypeEnum  `json:"type"`
+    Async      *bool                    `json:"async,omitempty"`
+    Code       *string                  `json:"code"`
+    DeviceType *DeviceTypeDefaultApEnum `json:"device_type,omitempty"`
+    Type       *ClaimTypeEnum           `json:"type"`
 }
 
 func (c *tempClaimActivation) validate() error {

@@ -66,7 +66,7 @@ func (s *SitesServices) ListSiteServicesDerived(
 }
 
 // CountSiteServicePathEvents takes context, siteId, distinct, mType, text, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Service Path Events
 func (s *SitesServices) CountSiteServicePathEvents(
@@ -87,7 +87,7 @@ func (s *SitesServices) CountSiteServicePathEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/services/events/count")
     req.AppendTemplateParams(siteId)
@@ -155,13 +155,13 @@ func (s *SitesServices) CountSiteServicePathEvents(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

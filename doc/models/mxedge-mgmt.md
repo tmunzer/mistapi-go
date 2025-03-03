@@ -11,6 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `ConfigAutoRevert` | `*bool` | Optional | **Default**: `false` |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `MistPassword` | `*string` | Optional | - |
 | `OobIpType` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | enum: `dhcp`, `disabled`, `static`<br>**Default**: `"dhcp"` |
@@ -22,6 +23,7 @@
 
 ```json
 {
+  "config_auto_revert": false,
   "fips_enabled": false,
   "mist_password": "MIST_PASSWORD",
   "oob_ip_type": "dhcp",

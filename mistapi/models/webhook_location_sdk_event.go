@@ -8,7 +8,7 @@ import (
 
 // WebhookLocationSdkEvent represents a WebhookLocationSdkEvent struct.
 type WebhookLocationSdkEvent struct {
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
     Name                 *string                `json:"name,omitempty"`

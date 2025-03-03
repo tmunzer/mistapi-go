@@ -73,7 +73,7 @@ func (o *OrgsAlarmTemplates) ListOrgAlarmTemplates(
 // CreateOrgAlarmTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AlarmTemplate data and
 // an error if there was an issue with the request or response.
-// Available rules can be found in Orgs>Consts>getAlarmDefs
+// Available rules can be found in [List Alarm Definitions#]($e/Constants%20Definitions/listAlarmDefinitions)
 // The delivery dict is only required if different from the template delivery settings.
 func (o *OrgsAlarmTemplates) CreateOrgAlarmTemplate(
     ctx context.Context,

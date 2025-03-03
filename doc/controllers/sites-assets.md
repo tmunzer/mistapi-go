@@ -40,7 +40,7 @@ CreateSiteAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -113,7 +113,7 @@ DeleteSiteAsset(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -165,7 +165,7 @@ GetSiteAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -215,7 +215,7 @@ if err != nil {
 
 # Import Site Assets
 
-Impert Site Assets.
+Import Site Assets.
 
 It can be done via a CSV file or a JSON payload.
 
@@ -246,7 +246,7 @@ ImportSiteAssets(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -302,7 +302,7 @@ ListSiteAssets(
 
 ## Response Type
 
-[`[]models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -360,7 +360,7 @@ UpdateSiteAsset(
 
 ## Response Type
 
-[`models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 

@@ -39,7 +39,7 @@ CreateSiteWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -182,7 +182,7 @@ DeleteSiteWxTunnel(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -234,7 +234,7 @@ GetSiteWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -340,7 +340,7 @@ ListSiteWxTunnels(
 
 ## Response Type
 
-[`[]models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 
@@ -450,7 +450,7 @@ UpdateSiteWxTunnel(
 
 ## Response Type
 
-[`models.WxlanTunnel`](../../doc/models/wxlan-tunnel.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WxlanTunnel](../../doc/models/wxlan-tunnel.md).
 
 ## Example Usage
 

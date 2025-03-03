@@ -19,17 +19,17 @@ type ResponsePcapStatus struct {
     Failed                    []string                  `json:"failed,omitempty"`
     // PCAP format. enum:
     // * `stream`: to Mist cloud
-    // * `tzsp`: tream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
+    // * `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
     Format                    *CaptureMxedgeFormatEnum  `json:"format,omitempty"`
     // Information on gateways to capture packets on if a gateway capture type is specified
     Gateways                  []string                  `json:"gateways,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                        uuid.UUID                 `json:"id"`
     IncludesMcast             *bool                     `json:"includes_mcast,omitempty"`
     // Max number of packets configured by user
     MaxNumPackets             *int                      `json:"max_num_packets,omitempty"`
     MaxPktLen                 *int                      `json:"max_pkt_len,omitempty"`
-    // nformation on mxedges to capture packets on if a mxedge capture type is specified
+    // Information on mxedges to capture packets on if a mxedge capture type is specified
     Mxedges                   []string                  `json:"mxedges,omitempty"`
     // total number of packets captured by all AP, not applicable for type [client, new_assoc]
     NumPackets                *int                      `json:"num_packets,omitempty"`

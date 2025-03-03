@@ -12,7 +12,7 @@ WxLAN Tag
   * client_mac: values are a list of MAC addresses
 * radius_group: this is a smart tag that matches RADIUS-Filter-ID, Airespace-ACL-Name (VendorID=14179, VendorType=6) / Aruba-User-Role (VendorID=14823, VendorType=1)
 * radius_username: this matches the ATTR-User-Name(1)
-* radius_class: thie matches the ATTR-Class(25)
+* radius_class: the matches the ATTR-Class(25)
 * radius_attr: the values are [ "6=1" , "26=10.2.3.4" ], this support other RADIUS attributes where we know the type
 * radius_vendor: the values are [ "14179.10=1" , "14178.16=1.2.3.4" ], this matches vendor attributes and will be dynamically evaluated
 
@@ -28,7 +28,7 @@ WxLAN Tag
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `LastIps` | `[]string` | Optional | - |
 | `Mac` | `models.Optional[string]` | Optional | If `type`==`client`, Client MAC Address |
 | `Match` | [`*models.WxlanTagMatchEnum`](../../doc/models/wxlan-tag-match-enum.md) | Optional | required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id` |

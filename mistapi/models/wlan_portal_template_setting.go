@@ -10,210 +10,218 @@ import (
 // WlanPortalTemplateSetting represents a WlanPortalTemplateSetting struct.
 // Portal template wlan settings
 type WlanPortalTemplateSetting struct {
-    AccessCodeAlternateEmail *string                          `json:"accessCodeAlternateEmail,omitempty"`
+    AccessCodeAlternateEmail  *string                          `json:"accessCodeAlternateEmail,omitempty"`
     // defines alignment on portal. enum: `center`, `left`, `right`
-    Alignment                *PortalTemplateAlignmentEnum     `json:"alignment,omitempty"`
-    Ar                       *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
+    Alignment                 *PortalTemplateAlignmentEnum     `json:"alignment,omitempty"`
+    Ar                        *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
     // Label for Amazon auth button
-    AuthButtonAmazon         *string                          `json:"authButtonAmazon,omitempty"`
+    AuthButtonAmazon          *string                          `json:"authButtonAmazon,omitempty"`
     // Label for Azure auth button
-    AuthButtonAzure          *string                          `json:"authButtonAzure,omitempty"`
+    AuthButtonAzure           *string                          `json:"authButtonAzure,omitempty"`
     // Label for Email auth button
-    AuthButtonEmail          *string                          `json:"authButtonEmail,omitempty"`
+    AuthButtonEmail           *string                          `json:"authButtonEmail,omitempty"`
     // Label for Facebook auth button
-    AuthButtonFacebook       *string                          `json:"authButtonFacebook,omitempty"`
+    AuthButtonFacebook        *string                          `json:"authButtonFacebook,omitempty"`
     // Label for Google auth button
-    AuthButtonGoogle         *string                          `json:"authButtonGoogle,omitempty"`
+    AuthButtonGoogle          *string                          `json:"authButtonGoogle,omitempty"`
     // Label for Microsoft auth button
-    AuthButtonMicrosoft      *string                          `json:"authButtonMicrosoft,omitempty"`
+    AuthButtonMicrosoft       *string                          `json:"authButtonMicrosoft,omitempty"`
     // Label for passphrase auth button
-    AuthButtonPassphrase     *string                          `json:"authButtonPassphrase,omitempty"`
+    AuthButtonPassphrase      *string                          `json:"authButtonPassphrase,omitempty"`
     // Label for SMS auth button
-    AuthButtonSms            *string                          `json:"authButtonSms,omitempty"`
+    AuthButtonSms             *string                          `json:"authButtonSms,omitempty"`
     // Label for Sponsor auth button
-    AuthButtonSponsor        *string                          `json:"authButtonSponsor,omitempty"`
-    AuthLabel                *string                          `json:"authLabel,omitempty"`
+    AuthButtonSponsor         *string                          `json:"authButtonSponsor,omitempty"`
+    AuthLabel                 *string                          `json:"authLabel,omitempty"`
     // Label of the link to go back to /logon
-    BackLink                 *string                          `json:"backLink,omitempty"`
-    CaES                     *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
+    BackLink                  *string                          `json:"backLink,omitempty"`
+    CaES                      *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
     // Portal main color
-    Color                    *string                          `json:"color,omitempty"`
-    ColorDark                *string                          `json:"colorDark,omitempty"`
-    ColorLight               *string                          `json:"colorLight,omitempty"`
+    Color                     *string                          `json:"color,omitempty"`
+    ColorDark                 *string                          `json:"colorDark,omitempty"`
+    ColorLight                *string                          `json:"colorLight,omitempty"`
     // Whether company field is required
-    Company                  *bool                            `json:"company,omitempty"`
+    Company                   *bool                            `json:"company,omitempty"`
     // Error message when company not provided
-    CompanyError             *string                          `json:"companyError,omitempty"`
+    CompanyError              *string                          `json:"companyError,omitempty"`
     // Label of company field
-    CompanyLabel             *string                          `json:"companyLabel,omitempty"`
-    CsCZ                     *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
-    DaDK                     *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
-    DeDE                     *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
-    ElGR                     *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
+    CompanyLabel              *string                          `json:"companyLabel,omitempty"`
+    CsCZ                      *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
+    DaDK                      *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
+    DeDE                      *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
+    ElGR                      *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
     // Whether email field is required
-    Email                    *bool                            `json:"email,omitempty"`
+    Email                     *bool                            `json:"email,omitempty"`
     // Error message when a user has valid social login but doesn't match specified email domains.
-    EmailAccessDomainError   *string                          `json:"emailAccessDomainError,omitempty"`
+    EmailAccessDomainError    *string                          `json:"emailAccessDomainError,omitempty"`
     // Label for cancel confirmation code submission using email auth
-    EmailCancel              *string                          `json:"emailCancel,omitempty"`
-    EmailCodeCancel          *string                          `json:"emailCodeCancel,omitempty"`
-    EmailCodeError           *string                          `json:"emailCodeError,omitempty"`
-    EmailCodeFieldLabel      *string                          `json:"emailCodeFieldLabel,omitempty"`
-    EmailCodeMessage         *string                          `json:"emailCodeMessage,omitempty"`
-    EmailCodeSubmit          *string                          `json:"emailCodeSubmit,omitempty"`
-    EmailCodeTitle           *string                          `json:"emailCodeTitle,omitempty"`
+    EmailCancel               *string                          `json:"emailCancel,omitempty"`
+    EmailCodeCancel           *string                          `json:"emailCodeCancel,omitempty"`
+    EmailCodeError            *string                          `json:"emailCodeError,omitempty"`
+    EmailCodeFieldLabel       *string                          `json:"emailCodeFieldLabel,omitempty"`
+    EmailCodeMessage          *string                          `json:"emailCodeMessage,omitempty"`
+    EmailCodeSubmit           *string                          `json:"emailCodeSubmit,omitempty"`
+    EmailCodeTitle            *string                          `json:"emailCodeTitle,omitempty"`
     // Error message when email not provided
-    EmailError               *string                          `json:"emailError,omitempty"`
-    EmailFieldLabel          *string                          `json:"emailFieldLabel,omitempty"`
+    EmailError                *string                          `json:"emailError,omitempty"`
+    EmailFieldLabel           *string                          `json:"emailFieldLabel,omitempty"`
     // Label of email field
-    EmailLabel               *string                          `json:"emailLabel,omitempty"`
-    EmailMessage             *string                          `json:"emailMessage,omitempty"`
+    EmailLabel                *string                          `json:"emailLabel,omitempty"`
+    EmailMessage              *string                          `json:"emailMessage,omitempty"`
     // Label for confirmation code submit button using email auth
-    EmailSubmit              *string                          `json:"emailSubmit,omitempty"`
+    EmailSubmit               *string                          `json:"emailSubmit,omitempty"`
     // Title for the Email registration
-    EmailTitle               *string                          `json:"emailTitle,omitempty"`
-    EnGB                     *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
-    EnUS                     *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
-    EsES                     *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
-    FiFI                     *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
+    EmailTitle                *string                          `json:"emailTitle,omitempty"`
+    EnGB                      *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
+    EnUS                      *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
+    EsES                      *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
+    FiFI                      *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
     // Whether to ask field1
-    Field1                   *bool                            `json:"field1,omitempty"`
+    Field1                    *bool                            `json:"field1,omitempty"`
     // Error message when field1 not provided
-    Field1Error              *string                          `json:"field1Error,omitempty"`
+    Field1Error               *string                          `json:"field1Error,omitempty"`
     // Label of field1
-    Field1Label              *string                          `json:"field1Label,omitempty"`
+    Field1Label               *string                          `json:"field1Label,omitempty"`
     // Whether field1 is required field
-    Field1Required           *bool                            `json:"field1Required,omitempty"`
+    Field1Required            *bool                            `json:"field1Required,omitempty"`
     // Whether to ask field2
-    Field2                   *bool                            `json:"field2,omitempty"`
+    Field2                    *bool                            `json:"field2,omitempty"`
     // Error message when field2 not provided
-    Field2Error              *string                          `json:"field2Error,omitempty"`
+    Field2Error               *string                          `json:"field2Error,omitempty"`
     // Label of field2
-    Field2Label              *string                          `json:"field2Label,omitempty"`
+    Field2Label               *string                          `json:"field2Label,omitempty"`
     // Whether field2 is required field
-    Field2Required           *bool                            `json:"field2Required,omitempty"`
+    Field2Required            *bool                            `json:"field2Required,omitempty"`
     // Whether to ask field3
-    Field3                   *bool                            `json:"field3,omitempty"`
+    Field3                    *bool                            `json:"field3,omitempty"`
     // Error message when field3 not provided
-    Field3Error              *string                          `json:"field3Error,omitempty"`
+    Field3Error               *string                          `json:"field3Error,omitempty"`
     // Label of field3
-    Field3Label              *string                          `json:"field3Label,omitempty"`
+    Field3Label               *string                          `json:"field3Label,omitempty"`
     // Whether field3 is required field
-    Field3Required           *bool                            `json:"field3Required,omitempty"`
+    Field3Required            *bool                            `json:"field3Required,omitempty"`
     // Whether to ask field4
-    Field4                   *bool                            `json:"field4,omitempty"`
+    Field4                    *bool                            `json:"field4,omitempty"`
     // Error message when field4 not provided
-    Field4Error              *string                          `json:"field4Error,omitempty"`
+    Field4Error               *string                          `json:"field4Error,omitempty"`
     // Label of field4
-    Field4Label              *string                          `json:"field4Label,omitempty"`
+    Field4Label               *string                          `json:"field4Label,omitempty"`
     // Whether field4 is required field
-    Field4Required           *bool                            `json:"field4Required,omitempty"`
-    FrFR                     *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
-    HeIL                     *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
-    HiIN                     *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
-    HrHR                     *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
-    HuHU                     *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
-    IdID                     *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
-    ItIT                     *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
-    JaJP                     *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
-    KoKR                     *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
+    Field4Required            *bool                            `json:"field4Required,omitempty"`
+    FrFR                      *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
+    HeIL                      *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
+    HiIN                      *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
+    HrHR                      *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
+    HuHU                      *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
+    IdID                      *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
+    ItIT                      *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
+    JaJP                      *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
+    KoKR                      *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
     // Custom logo with `data:image/png;base64,` format, default null, uses Juniper Mist Logo. File size must be less than 100kB and image dimensions must be less than 500px x 200px (width x height).
-    Logo                     Optional[string]                 `json:"logo"`
+    Logo                      Optional[string]                 `json:"logo"`
     // Height of the logo, in px
-    LogoHeight               *int                             `json:"logoHeight,omitempty"`
+    LogoHeight                *int                             `json:"logoHeight,omitempty"`
     // Width of the logo, in px
-    LogoWidth                *int                             `json:"logoWidth,omitempty"`
-    Message                  *string                          `json:"message,omitempty"`
-    MsMY                     *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
-    MultiAuth                *bool                            `json:"multiAuth,omitempty"`
+    LogoWidth                 *int                             `json:"logoWidth,omitempty"`
+    // label of the link to go to /marketing_policy
+    MarketingPolicyLink       *string                          `json:"marketingPolicyLink,omitempty"`
+    // hether marketing policy optin is enabled
+    MarketingPolicyOptIn      *bool                            `json:"marketingPolicyOptIn,omitempty"`
+    // label for marketing optin
+    MarketingPolicyOptInLabel *string                          `json:"marketingPolicyOptInLabel,omitempty"`
+    // marketing policy text
+    MarketingPolicyOptInText  *string                          `json:"marketingPolicyOptInText,omitempty"`
+    Message                   *string                          `json:"message,omitempty"`
+    MsMY                      *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
+    MultiAuth                 *bool                            `json:"multiAuth,omitempty"`
     // Whether name field is required
-    Name                     *bool                            `json:"name,omitempty"`
+    Name                      *bool                            `json:"name,omitempty"`
     // Error message when name not provided
-    NameError                *string                          `json:"nameError,omitempty"`
+    NameError                 *string                          `json:"nameError,omitempty"`
     // Label of name field
-    NameLabel                *string                          `json:"nameLabel,omitempty"`
-    NbNO                     *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
-    NlNL                     *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
+    NameLabel                 *string                          `json:"nameLabel,omitempty"`
+    NbNO                      *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
+    NlNL                      *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
     // Default value for the `Do not store` checkbox
-    OptOutDefault            *bool                            `json:"optOutDefault,omitempty"`
+    OptOutDefault             *bool                            `json:"optOutDefault,omitempty"`
     // Whether to display Do Not Store My Personal Information
-    Optout                   *bool                            `json:"optout,omitempty"`
+    Optout                    *bool                            `json:"optout,omitempty"`
     // Label for Do Not Store My Personal Information
-    OptoutLabel              *string                          `json:"optoutLabel,omitempty"`
-    PageTitle                string                           `json:"pageTitle"`
+    OptoutLabel               *string                          `json:"optoutLabel,omitempty"`
+    PageTitle                 string                           `json:"pageTitle"`
     // Label for the Passphrase cancel button
-    PassphraseCancel         *string                          `json:"passphraseCancel,omitempty"`
+    PassphraseCancel          *string                          `json:"passphraseCancel,omitempty"`
     // Error message when invalid passphrase is provided
-    PassphraseError          *string                          `json:"passphraseError,omitempty"`
+    PassphraseError           *string                          `json:"passphraseError,omitempty"`
     // Passphrase
-    PassphraseLabel          *string                          `json:"passphraseLabel,omitempty"`
-    PassphraseMessage        *string                          `json:"passphraseMessage,omitempty"`
+    PassphraseLabel           *string                          `json:"passphraseLabel,omitempty"`
+    PassphraseMessage         *string                          `json:"passphraseMessage,omitempty"`
     // Label for the Passphrase submit button
-    PassphraseSubmit         *string                          `json:"passphraseSubmit,omitempty"`
+    PassphraseSubmit          *string                          `json:"passphraseSubmit,omitempty"`
     // Title for passphrase details page
-    PassphraseTitle          *string                          `json:"passphraseTitle,omitempty"`
-    PlPL                     *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
+    PassphraseTitle           *string                          `json:"passphraseTitle,omitempty"`
+    PlPL                      *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
     // Whether to show \"Powered by Mist\"
-    PoweredBy                *bool                            `json:"poweredBy,omitempty"`
+    PoweredBy                 *bool                            `json:"poweredBy,omitempty"`
     // Whether to require the Privacy Term acceptance
-    Privacy                  *bool                            `json:"privacy,omitempty"`
+    Privacy                   *bool                            `json:"privacy,omitempty"`
     // Prefix of the label of the link to go to Privacy Policy
-    PrivacyPolicyAcceptLabel *string                          `json:"privacyPolicyAcceptLabel,omitempty"`
+    PrivacyPolicyAcceptLabel  *string                          `json:"privacyPolicyAcceptLabel,omitempty"`
     // Error message when Privacy Policy not accepted
-    PrivacyPolicyError       *string                          `json:"privacyPolicyError,omitempty"`
+    PrivacyPolicyError        *string                          `json:"privacyPolicyError,omitempty"`
     // Label of the link to go to Privacy Policy
-    PrivacyPolicyLink        *string                          `json:"privacyPolicyLink,omitempty"`
+    PrivacyPolicyLink         *string                          `json:"privacyPolicyLink,omitempty"`
     // Text of the Privacy Policy
-    PrivacyPolicyText        *string                          `json:"privacyPolicyText,omitempty"`
-    PtBR                     *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
-    PtPT                     *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
+    PrivacyPolicyText         *string                          `json:"privacyPolicyText,omitempty"`
+    PtBR                      *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
+    PtPT                      *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
     // Label to denote required field
-    RequiredFieldLabel       *string                          `json:"requiredFieldLabel,omitempty"`
-    ResponsiveLayout         *bool                            `json:"responsiveLayout,omitempty"`
-    RoRO                     *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
-    RuRU                     *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
-    // Label of the button to /signin
-    SignInLabel              *string                          `json:"signInLabel,omitempty"`
-    SkSK                     *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
-    SmsCarrierDefault        *string                          `json:"smsCarrierDefault,omitempty"`
-    SmsCarrierError          *string                          `json:"smsCarrierError,omitempty"`
+    RequiredFieldLabel        *string                          `json:"requiredFieldLabel,omitempty"`
+    ResponsiveLayout          *bool                            `json:"responsiveLayout,omitempty"`
+    RoRO                      *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
+    RuRU                      *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
+    // Label of the button to signin
+    SignInLabel               *string                          `json:"signInLabel,omitempty"`
+    SkSK                      *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
+    SmsCarrierDefault         *string                          `json:"smsCarrierDefault,omitempty"`
+    SmsCarrierError           *string                          `json:"smsCarrierError,omitempty"`
     // Label for mobile carrier drop-down list
-    SmsCarrierFieldLabel     *string                          `json:"smsCarrierFieldLabel,omitempty"`
+    SmsCarrierFieldLabel      *string                          `json:"smsCarrierFieldLabel,omitempty"`
     // Label for cancel confirmation code submission
-    SmsCodeCancel            *string                          `json:"smsCodeCancel,omitempty"`
+    SmsCodeCancel             *string                          `json:"smsCodeCancel,omitempty"`
     // Error message when confirmation code is invalid
-    SmsCodeError             *string                          `json:"smsCodeError,omitempty"`
-    SmsCodeFieldLabel        *string                          `json:"smsCodeFieldLabel,omitempty"`
-    SmsCodeMessage           *string                          `json:"smsCodeMessage,omitempty"`
+    SmsCodeError              *string                          `json:"smsCodeError,omitempty"`
+    SmsCodeFieldLabel         *string                          `json:"smsCodeFieldLabel,omitempty"`
+    SmsCodeMessage            *string                          `json:"smsCodeMessage,omitempty"`
     // Label for confirmation code submit button
-    SmsCodeSubmit            *string                          `json:"smsCodeSubmit,omitempty"`
-    SmsCodeTitle             *string                          `json:"smsCodeTitle,omitempty"`
-    SmsCountryFieldLabel     *string                          `json:"smsCountryFieldLabel,omitempty"`
-    SmsCountryFormat         *string                          `json:"smsCountryFormat,omitempty"`
+    SmsCodeSubmit             *string                          `json:"smsCodeSubmit,omitempty"`
+    SmsCodeTitle              *string                          `json:"smsCodeTitle,omitempty"`
+    SmsCountryFieldLabel      *string                          `json:"smsCountryFieldLabel,omitempty"`
+    SmsCountryFormat          *string                          `json:"smsCountryFormat,omitempty"`
     // Label for checkbox to specify that the user has access code
-    SmsHaveAccessCode        *string                          `json:"smsHaveAccessCode,omitempty"`
-    SmsIsTwilio              *bool                            `json:"smsIsTwilio,omitempty"`
+    SmsHaveAccessCode         *string                          `json:"smsHaveAccessCode,omitempty"`
+    SmsIsTwilio               *bool                            `json:"smsIsTwilio,omitempty"`
     // Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is.
-    SmsMessageFormat         *string                          `json:"smsMessageFormat,omitempty"`
+    SmsMessageFormat          *string                          `json:"smsMessageFormat,omitempty"`
     // Label for canceling mobile details for SMS auth
-    SmsNumberCancel          *string                          `json:"smsNumberCancel,omitempty"`
-    SmsNumberError           *string                          `json:"smsNumberError,omitempty"`
+    SmsNumberCancel           *string                          `json:"smsNumberCancel,omitempty"`
+    SmsNumberError            *string                          `json:"smsNumberError,omitempty"`
     // Label for field to provide mobile number
-    SmsNumberFieldLabel      *string                          `json:"smsNumberFieldLabel,omitempty"`
-    SmsNumberFormat          *string                          `json:"smsNumberFormat,omitempty"`
-    SmsNumberMessage         *string                          `json:"smsNumberMessage,omitempty"`
+    SmsNumberFieldLabel       *string                          `json:"smsNumberFieldLabel,omitempty"`
+    SmsNumberFormat           *string                          `json:"smsNumberFormat,omitempty"`
+    SmsNumberMessage          *string                          `json:"smsNumberMessage,omitempty"`
     // Label for submit button for code generation
-    SmsNumberSubmit          *string                          `json:"smsNumberSubmit,omitempty"`
+    SmsNumberSubmit           *string                          `json:"smsNumberSubmit,omitempty"`
     // Title for phone number details
-    SmsNumberTitle           *string                          `json:"smsNumberTitle,omitempty"`
-    SmsUsernameFormat        *string                          `json:"smsUsernameFormat,omitempty"`
+    SmsNumberTitle            *string                          `json:"smsNumberTitle,omitempty"`
+    SmsUsernameFormat         *string                          `json:"smsUsernameFormat,omitempty"`
     // How long confirmation code should be considered valid (in minutes)
-    SmsValidityDuration      *int                             `json:"smsValidityDuration,omitempty"`
-    SponsorBackLink          *string                          `json:"sponsorBackLink,omitempty"`
-    SponsorCancel            *string                          `json:"sponsorCancel,omitempty"`
+    SmsValidityDuration       *int                             `json:"smsValidityDuration,omitempty"`
+    SponsorBackLink           *string                          `json:"sponsorBackLink,omitempty"`
+    SponsorCancel             *string                          `json:"sponsorCancel,omitempty"`
     // Label for Sponsor Email
-    SponsorEmail             *string                          `json:"sponsorEmail,omitempty"`
-    SponsorEmailError        *string                          `json:"sponsorEmailError,omitempty"`
+    SponsorEmail              *string                          `json:"sponsorEmail,omitempty"`
+    SponsorEmailError         *string                          `json:"sponsorEmailError,omitempty"`
     // HTML template to replace/override default sponsor email template
     // Sponsor Email Template supports following template variables:
     // * `approve_url`: Renders URL to approve the request; optionally &minutes=N query param can be appended to change the Authorization period of the guest, where N is a valid integer denoting number of minutes a guest remains authorized
@@ -224,51 +232,51 @@ type WlanPortalTemplateSetting struct {
     // * `field2`: Renders value of the Custom Field 2
     // * `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)
     // * `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes)
-    SponsorEmailTemplate     *string                          `json:"sponsorEmailTemplate,omitempty"`
-    SponsorInfoApproved      *string                          `json:"sponsorInfoApproved,omitempty"`
-    SponsorInfoDenied        *string                          `json:"sponsorInfoDenied,omitempty"`
-    SponsorInfoPending       *string                          `json:"sponsorInfoPending,omitempty"`
+    SponsorEmailTemplate      *string                          `json:"sponsorEmailTemplate,omitempty"`
+    SponsorInfoApproved       *string                          `json:"sponsorInfoApproved,omitempty"`
+    SponsorInfoDenied         *string                          `json:"sponsorInfoDenied,omitempty"`
+    SponsorInfoPending        *string                          `json:"sponsorInfoPending,omitempty"`
     // Label for Sponsor Name
-    SponsorName              *string                          `json:"sponsorName,omitempty"`
-    SponsorNameError         *string                          `json:"sponsorNameError,omitempty"`
-    SponsorNotePending       *string                          `json:"sponsorNotePending,omitempty"`
+    SponsorName               *string                          `json:"sponsorName,omitempty"`
+    SponsorNameError          *string                          `json:"sponsorNameError,omitempty"`
+    SponsorNotePending        *string                          `json:"sponsorNotePending,omitempty"`
     // Submit button label request Wifi Access and notify sponsor about guest request
-    SponsorRequestAccess     *string                          `json:"sponsorRequestAccess,omitempty"`
+    SponsorRequestAccess      *string                          `json:"sponsorRequestAccess,omitempty"`
     // Text to display if sponsor approves request
-    SponsorStatusApproved    *string                          `json:"sponsorStatusApproved,omitempty"`
+    SponsorStatusApproved     *string                          `json:"sponsorStatusApproved,omitempty"`
     // Text to display when sponsor denies request
-    SponsorStatusDenied      *string                          `json:"sponsorStatusDenied,omitempty"`
+    SponsorStatusDenied       *string                          `json:"sponsorStatusDenied,omitempty"`
     // Text to display if request is still pending
-    SponsorStatusPending     *string                          `json:"sponsorStatusPending,omitempty"`
+    SponsorStatusPending      *string                          `json:"sponsorStatusPending,omitempty"`
     // Submit button label to notify sponsor about guest request
-    SponsorSubmit            *string                          `json:"sponsorSubmit,omitempty"`
-    SponsorsError            *string                          `json:"sponsorsError,omitempty"`
-    SponsorsFieldLabel       *string                          `json:"sponsorsFieldLabel,omitempty"`
-    SvSE                     *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
-    ThTH                     *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
-    Tos                      *bool                            `json:"tos,omitempty"`
+    SponsorSubmit             *string                          `json:"sponsorSubmit,omitempty"`
+    SponsorsError             *string                          `json:"sponsorsError,omitempty"`
+    SponsorsFieldLabel        *string                          `json:"sponsorsFieldLabel,omitempty"`
+    SvSE                      *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
+    ThTH                      *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
+    Tos                       *bool                            `json:"tos,omitempty"`
     // Prefix of the label of the link to go to tos
-    TosAcceptLabel           *string                          `json:"tosAcceptLabel,omitempty"`
+    TosAcceptLabel            *string                          `json:"tosAcceptLabel,omitempty"`
     // Error message when tos not accepted
-    TosError                 *string                          `json:"tosError,omitempty"`
+    TosError                  *string                          `json:"tosError,omitempty"`
     // Label of the link to go to tos
-    TosLink                  *string                          `json:"tosLink,omitempty"`
+    TosLink                   *string                          `json:"tosLink,omitempty"`
     // Text of the Terms of Service
-    TosText                  *string                          `json:"tosText,omitempty"`
-    TrTR                     *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
-    UkUA                     *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
-    ViVN                     *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
-    ZhHans                   *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
-    ZhHant                   *WlanPortalTemplateSettingLocale `json:"zh-Hant,omitempty"`
-    AdditionalProperties     map[string]interface{}           `json:"_"`
+    TosText                   *string                          `json:"tosText,omitempty"`
+    TrTR                      *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
+    UkUA                      *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
+    ViVN                      *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
+    ZhHans                    *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
+    ZhHant                    *WlanPortalTemplateSettingLocale `json:"zh-Hant,omitempty"`
+    AdditionalProperties      map[string]interface{}           `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WlanPortalTemplateSetting,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanPortalTemplateSetting) String() string {
     return fmt.Sprintf(
-    	"WlanPortalTemplateSetting[AccessCodeAlternateEmail=%v, Alignment=%v, Ar=%v, AuthButtonAmazon=%v, AuthButtonAzure=%v, AuthButtonEmail=%v, AuthButtonFacebook=%v, AuthButtonGoogle=%v, AuthButtonMicrosoft=%v, AuthButtonPassphrase=%v, AuthButtonSms=%v, AuthButtonSponsor=%v, AuthLabel=%v, BackLink=%v, CaES=%v, Color=%v, ColorDark=%v, ColorLight=%v, Company=%v, CompanyError=%v, CompanyLabel=%v, CsCZ=%v, DaDK=%v, DeDE=%v, ElGR=%v, Email=%v, EmailAccessDomainError=%v, EmailCancel=%v, EmailCodeCancel=%v, EmailCodeError=%v, EmailCodeFieldLabel=%v, EmailCodeMessage=%v, EmailCodeSubmit=%v, EmailCodeTitle=%v, EmailError=%v, EmailFieldLabel=%v, EmailLabel=%v, EmailMessage=%v, EmailSubmit=%v, EmailTitle=%v, EnGB=%v, EnUS=%v, EsES=%v, FiFI=%v, Field1=%v, Field1Error=%v, Field1Label=%v, Field1Required=%v, Field2=%v, Field2Error=%v, Field2Label=%v, Field2Required=%v, Field3=%v, Field3Error=%v, Field3Label=%v, Field3Required=%v, Field4=%v, Field4Error=%v, Field4Label=%v, Field4Required=%v, FrFR=%v, HeIL=%v, HiIN=%v, HrHR=%v, HuHU=%v, IdID=%v, ItIT=%v, JaJP=%v, KoKR=%v, Logo=%v, LogoHeight=%v, LogoWidth=%v, Message=%v, MsMY=%v, MultiAuth=%v, Name=%v, NameError=%v, NameLabel=%v, NbNO=%v, NlNL=%v, OptOutDefault=%v, Optout=%v, OptoutLabel=%v, PageTitle=%v, PassphraseCancel=%v, PassphraseError=%v, PassphraseLabel=%v, PassphraseMessage=%v, PassphraseSubmit=%v, PassphraseTitle=%v, PlPL=%v, PoweredBy=%v, Privacy=%v, PrivacyPolicyAcceptLabel=%v, PrivacyPolicyError=%v, PrivacyPolicyLink=%v, PrivacyPolicyText=%v, PtBR=%v, PtPT=%v, RequiredFieldLabel=%v, ResponsiveLayout=%v, RoRO=%v, RuRU=%v, SignInLabel=%v, SkSK=%v, SmsCarrierDefault=%v, SmsCarrierError=%v, SmsCarrierFieldLabel=%v, SmsCodeCancel=%v, SmsCodeError=%v, SmsCodeFieldLabel=%v, SmsCodeMessage=%v, SmsCodeSubmit=%v, SmsCodeTitle=%v, SmsCountryFieldLabel=%v, SmsCountryFormat=%v, SmsHaveAccessCode=%v, SmsIsTwilio=%v, SmsMessageFormat=%v, SmsNumberCancel=%v, SmsNumberError=%v, SmsNumberFieldLabel=%v, SmsNumberFormat=%v, SmsNumberMessage=%v, SmsNumberSubmit=%v, SmsNumberTitle=%v, SmsUsernameFormat=%v, SmsValidityDuration=%v, SponsorBackLink=%v, SponsorCancel=%v, SponsorEmail=%v, SponsorEmailError=%v, SponsorEmailTemplate=%v, SponsorInfoApproved=%v, SponsorInfoDenied=%v, SponsorInfoPending=%v, SponsorName=%v, SponsorNameError=%v, SponsorNotePending=%v, SponsorRequestAccess=%v, SponsorStatusApproved=%v, SponsorStatusDenied=%v, SponsorStatusPending=%v, SponsorSubmit=%v, SponsorsError=%v, SponsorsFieldLabel=%v, SvSE=%v, ThTH=%v, Tos=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, TrTR=%v, UkUA=%v, ViVN=%v, ZhHans=%v, ZhHant=%v, AdditionalProperties=%v]",
-    	w.AccessCodeAlternateEmail, w.Alignment, w.Ar, w.AuthButtonAmazon, w.AuthButtonAzure, w.AuthButtonEmail, w.AuthButtonFacebook, w.AuthButtonGoogle, w.AuthButtonMicrosoft, w.AuthButtonPassphrase, w.AuthButtonSms, w.AuthButtonSponsor, w.AuthLabel, w.BackLink, w.CaES, w.Color, w.ColorDark, w.ColorLight, w.Company, w.CompanyError, w.CompanyLabel, w.CsCZ, w.DaDK, w.DeDE, w.ElGR, w.Email, w.EmailAccessDomainError, w.EmailCancel, w.EmailCodeCancel, w.EmailCodeError, w.EmailCodeFieldLabel, w.EmailCodeMessage, w.EmailCodeSubmit, w.EmailCodeTitle, w.EmailError, w.EmailFieldLabel, w.EmailLabel, w.EmailMessage, w.EmailSubmit, w.EmailTitle, w.EnGB, w.EnUS, w.EsES, w.FiFI, w.Field1, w.Field1Error, w.Field1Label, w.Field1Required, w.Field2, w.Field2Error, w.Field2Label, w.Field2Required, w.Field3, w.Field3Error, w.Field3Label, w.Field3Required, w.Field4, w.Field4Error, w.Field4Label, w.Field4Required, w.FrFR, w.HeIL, w.HiIN, w.HrHR, w.HuHU, w.IdID, w.ItIT, w.JaJP, w.KoKR, w.Logo, w.LogoHeight, w.LogoWidth, w.Message, w.MsMY, w.MultiAuth, w.Name, w.NameError, w.NameLabel, w.NbNO, w.NlNL, w.OptOutDefault, w.Optout, w.OptoutLabel, w.PageTitle, w.PassphraseCancel, w.PassphraseError, w.PassphraseLabel, w.PassphraseMessage, w.PassphraseSubmit, w.PassphraseTitle, w.PlPL, w.PoweredBy, w.Privacy, w.PrivacyPolicyAcceptLabel, w.PrivacyPolicyError, w.PrivacyPolicyLink, w.PrivacyPolicyText, w.PtBR, w.PtPT, w.RequiredFieldLabel, w.ResponsiveLayout, w.RoRO, w.RuRU, w.SignInLabel, w.SkSK, w.SmsCarrierDefault, w.SmsCarrierError, w.SmsCarrierFieldLabel, w.SmsCodeCancel, w.SmsCodeError, w.SmsCodeFieldLabel, w.SmsCodeMessage, w.SmsCodeSubmit, w.SmsCodeTitle, w.SmsCountryFieldLabel, w.SmsCountryFormat, w.SmsHaveAccessCode, w.SmsIsTwilio, w.SmsMessageFormat, w.SmsNumberCancel, w.SmsNumberError, w.SmsNumberFieldLabel, w.SmsNumberFormat, w.SmsNumberMessage, w.SmsNumberSubmit, w.SmsNumberTitle, w.SmsUsernameFormat, w.SmsValidityDuration, w.SponsorBackLink, w.SponsorCancel, w.SponsorEmail, w.SponsorEmailError, w.SponsorEmailTemplate, w.SponsorInfoApproved, w.SponsorInfoDenied, w.SponsorInfoPending, w.SponsorName, w.SponsorNameError, w.SponsorNotePending, w.SponsorRequestAccess, w.SponsorStatusApproved, w.SponsorStatusDenied, w.SponsorStatusPending, w.SponsorSubmit, w.SponsorsError, w.SponsorsFieldLabel, w.SvSE, w.ThTH, w.Tos, w.TosAcceptLabel, w.TosError, w.TosLink, w.TosText, w.TrTR, w.UkUA, w.ViVN, w.ZhHans, w.ZhHant, w.AdditionalProperties)
+    	"WlanPortalTemplateSetting[AccessCodeAlternateEmail=%v, Alignment=%v, Ar=%v, AuthButtonAmazon=%v, AuthButtonAzure=%v, AuthButtonEmail=%v, AuthButtonFacebook=%v, AuthButtonGoogle=%v, AuthButtonMicrosoft=%v, AuthButtonPassphrase=%v, AuthButtonSms=%v, AuthButtonSponsor=%v, AuthLabel=%v, BackLink=%v, CaES=%v, Color=%v, ColorDark=%v, ColorLight=%v, Company=%v, CompanyError=%v, CompanyLabel=%v, CsCZ=%v, DaDK=%v, DeDE=%v, ElGR=%v, Email=%v, EmailAccessDomainError=%v, EmailCancel=%v, EmailCodeCancel=%v, EmailCodeError=%v, EmailCodeFieldLabel=%v, EmailCodeMessage=%v, EmailCodeSubmit=%v, EmailCodeTitle=%v, EmailError=%v, EmailFieldLabel=%v, EmailLabel=%v, EmailMessage=%v, EmailSubmit=%v, EmailTitle=%v, EnGB=%v, EnUS=%v, EsES=%v, FiFI=%v, Field1=%v, Field1Error=%v, Field1Label=%v, Field1Required=%v, Field2=%v, Field2Error=%v, Field2Label=%v, Field2Required=%v, Field3=%v, Field3Error=%v, Field3Label=%v, Field3Required=%v, Field4=%v, Field4Error=%v, Field4Label=%v, Field4Required=%v, FrFR=%v, HeIL=%v, HiIN=%v, HrHR=%v, HuHU=%v, IdID=%v, ItIT=%v, JaJP=%v, KoKR=%v, Logo=%v, LogoHeight=%v, LogoWidth=%v, MarketingPolicyLink=%v, MarketingPolicyOptIn=%v, MarketingPolicyOptInLabel=%v, MarketingPolicyOptInText=%v, Message=%v, MsMY=%v, MultiAuth=%v, Name=%v, NameError=%v, NameLabel=%v, NbNO=%v, NlNL=%v, OptOutDefault=%v, Optout=%v, OptoutLabel=%v, PageTitle=%v, PassphraseCancel=%v, PassphraseError=%v, PassphraseLabel=%v, PassphraseMessage=%v, PassphraseSubmit=%v, PassphraseTitle=%v, PlPL=%v, PoweredBy=%v, Privacy=%v, PrivacyPolicyAcceptLabel=%v, PrivacyPolicyError=%v, PrivacyPolicyLink=%v, PrivacyPolicyText=%v, PtBR=%v, PtPT=%v, RequiredFieldLabel=%v, ResponsiveLayout=%v, RoRO=%v, RuRU=%v, SignInLabel=%v, SkSK=%v, SmsCarrierDefault=%v, SmsCarrierError=%v, SmsCarrierFieldLabel=%v, SmsCodeCancel=%v, SmsCodeError=%v, SmsCodeFieldLabel=%v, SmsCodeMessage=%v, SmsCodeSubmit=%v, SmsCodeTitle=%v, SmsCountryFieldLabel=%v, SmsCountryFormat=%v, SmsHaveAccessCode=%v, SmsIsTwilio=%v, SmsMessageFormat=%v, SmsNumberCancel=%v, SmsNumberError=%v, SmsNumberFieldLabel=%v, SmsNumberFormat=%v, SmsNumberMessage=%v, SmsNumberSubmit=%v, SmsNumberTitle=%v, SmsUsernameFormat=%v, SmsValidityDuration=%v, SponsorBackLink=%v, SponsorCancel=%v, SponsorEmail=%v, SponsorEmailError=%v, SponsorEmailTemplate=%v, SponsorInfoApproved=%v, SponsorInfoDenied=%v, SponsorInfoPending=%v, SponsorName=%v, SponsorNameError=%v, SponsorNotePending=%v, SponsorRequestAccess=%v, SponsorStatusApproved=%v, SponsorStatusDenied=%v, SponsorStatusPending=%v, SponsorSubmit=%v, SponsorsError=%v, SponsorsFieldLabel=%v, SvSE=%v, ThTH=%v, Tos=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, TrTR=%v, UkUA=%v, ViVN=%v, ZhHans=%v, ZhHant=%v, AdditionalProperties=%v]",
+    	w.AccessCodeAlternateEmail, w.Alignment, w.Ar, w.AuthButtonAmazon, w.AuthButtonAzure, w.AuthButtonEmail, w.AuthButtonFacebook, w.AuthButtonGoogle, w.AuthButtonMicrosoft, w.AuthButtonPassphrase, w.AuthButtonSms, w.AuthButtonSponsor, w.AuthLabel, w.BackLink, w.CaES, w.Color, w.ColorDark, w.ColorLight, w.Company, w.CompanyError, w.CompanyLabel, w.CsCZ, w.DaDK, w.DeDE, w.ElGR, w.Email, w.EmailAccessDomainError, w.EmailCancel, w.EmailCodeCancel, w.EmailCodeError, w.EmailCodeFieldLabel, w.EmailCodeMessage, w.EmailCodeSubmit, w.EmailCodeTitle, w.EmailError, w.EmailFieldLabel, w.EmailLabel, w.EmailMessage, w.EmailSubmit, w.EmailTitle, w.EnGB, w.EnUS, w.EsES, w.FiFI, w.Field1, w.Field1Error, w.Field1Label, w.Field1Required, w.Field2, w.Field2Error, w.Field2Label, w.Field2Required, w.Field3, w.Field3Error, w.Field3Label, w.Field3Required, w.Field4, w.Field4Error, w.Field4Label, w.Field4Required, w.FrFR, w.HeIL, w.HiIN, w.HrHR, w.HuHU, w.IdID, w.ItIT, w.JaJP, w.KoKR, w.Logo, w.LogoHeight, w.LogoWidth, w.MarketingPolicyLink, w.MarketingPolicyOptIn, w.MarketingPolicyOptInLabel, w.MarketingPolicyOptInText, w.Message, w.MsMY, w.MultiAuth, w.Name, w.NameError, w.NameLabel, w.NbNO, w.NlNL, w.OptOutDefault, w.Optout, w.OptoutLabel, w.PageTitle, w.PassphraseCancel, w.PassphraseError, w.PassphraseLabel, w.PassphraseMessage, w.PassphraseSubmit, w.PassphraseTitle, w.PlPL, w.PoweredBy, w.Privacy, w.PrivacyPolicyAcceptLabel, w.PrivacyPolicyError, w.PrivacyPolicyLink, w.PrivacyPolicyText, w.PtBR, w.PtPT, w.RequiredFieldLabel, w.ResponsiveLayout, w.RoRO, w.RuRU, w.SignInLabel, w.SkSK, w.SmsCarrierDefault, w.SmsCarrierError, w.SmsCarrierFieldLabel, w.SmsCodeCancel, w.SmsCodeError, w.SmsCodeFieldLabel, w.SmsCodeMessage, w.SmsCodeSubmit, w.SmsCodeTitle, w.SmsCountryFieldLabel, w.SmsCountryFormat, w.SmsHaveAccessCode, w.SmsIsTwilio, w.SmsMessageFormat, w.SmsNumberCancel, w.SmsNumberError, w.SmsNumberFieldLabel, w.SmsNumberFormat, w.SmsNumberMessage, w.SmsNumberSubmit, w.SmsNumberTitle, w.SmsUsernameFormat, w.SmsValidityDuration, w.SponsorBackLink, w.SponsorCancel, w.SponsorEmail, w.SponsorEmailError, w.SponsorEmailTemplate, w.SponsorInfoApproved, w.SponsorInfoDenied, w.SponsorInfoPending, w.SponsorName, w.SponsorNameError, w.SponsorNotePending, w.SponsorRequestAccess, w.SponsorStatusApproved, w.SponsorStatusDenied, w.SponsorStatusPending, w.SponsorSubmit, w.SponsorsError, w.SponsorsFieldLabel, w.SvSE, w.ThTH, w.Tos, w.TosAcceptLabel, w.TosError, w.TosLink, w.TosText, w.TrTR, w.UkUA, w.ViVN, w.ZhHans, w.ZhHant, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortalTemplateSetting.
@@ -277,7 +285,7 @@ func (w WlanPortalTemplateSetting) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "logo", "logoHeight", "logoWidth", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant"); err != nil {
+        "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "logo", "logoHeight", "logoWidth", "marketingPolicyLink", "marketingPolicyOptIn", "marketingPolicyOptInLabel", "marketingPolicyOptInText", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -506,6 +514,18 @@ func (w WlanPortalTemplateSetting) toMap() map[string]any {
     }
     if w.LogoWidth != nil {
         structMap["logoWidth"] = w.LogoWidth
+    }
+    if w.MarketingPolicyLink != nil {
+        structMap["marketingPolicyLink"] = w.MarketingPolicyLink
+    }
+    if w.MarketingPolicyOptIn != nil {
+        structMap["marketingPolicyOptIn"] = w.MarketingPolicyOptIn
+    }
+    if w.MarketingPolicyOptInLabel != nil {
+        structMap["marketingPolicyOptInLabel"] = w.MarketingPolicyOptInLabel
+    }
+    if w.MarketingPolicyOptInText != nil {
+        structMap["marketingPolicyOptInText"] = w.MarketingPolicyOptInText
     }
     if w.Message != nil {
         structMap["message"] = w.Message
@@ -778,7 +798,7 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "logo", "logoHeight", "logoWidth", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "accessCodeAlternateEmail", "alignment", "ar", "authButtonAmazon", "authButtonAzure", "authButtonEmail", "authButtonFacebook", "authButtonGoogle", "authButtonMicrosoft", "authButtonPassphrase", "authButtonSms", "authButtonSponsor", "authLabel", "backLink", "ca-ES", "color", "colorDark", "colorLight", "company", "companyError", "companyLabel", "cs-CZ", "da-DK", "de-DE", "el-GR", "email", "emailAccessDomainError", "emailCancel", "emailCodeCancel", "emailCodeError", "emailCodeFieldLabel", "emailCodeMessage", "emailCodeSubmit", "emailCodeTitle", "emailError", "emailFieldLabel", "emailLabel", "emailMessage", "emailSubmit", "emailTitle", "en-GB", "en-US", "es-ES", "fi-FI", "field1", "field1Error", "field1Label", "field1Required", "field2", "field2Error", "field2Label", "field2Required", "field3", "field3Error", "field3Label", "field3Required", "field4", "field4Error", "field4Label", "field4Required", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU", "id-ID", "it-IT", "ja-JP", "ko-KR", "logo", "logoHeight", "logoWidth", "marketingPolicyLink", "marketingPolicyOptIn", "marketingPolicyOptInLabel", "marketingPolicyOptInText", "message", "ms-MY", "multiAuth", "name", "nameError", "nameLabel", "nb-NO", "nl-NL", "optOutDefault", "optout", "optoutLabel", "pageTitle", "passphraseCancel", "passphraseError", "passphraseLabel", "passphraseMessage", "passphraseSubmit", "passphraseTitle", "pl-PL", "poweredBy", "privacy", "privacyPolicyAcceptLabel", "privacyPolicyError", "privacyPolicyLink", "privacyPolicyText", "pt-BR", "pt-PT", "requiredFieldLabel", "responsiveLayout", "ro-RO", "ru-RU", "signInLabel", "sk-SK", "smsCarrierDefault", "smsCarrierError", "smsCarrierFieldLabel", "smsCodeCancel", "smsCodeError", "smsCodeFieldLabel", "smsCodeMessage", "smsCodeSubmit", "smsCodeTitle", "smsCountryFieldLabel", "smsCountryFormat", "smsHaveAccessCode", "smsIsTwilio", "smsMessageFormat", "smsNumberCancel", "smsNumberError", "smsNumberFieldLabel", "smsNumberFormat", "smsNumberMessage", "smsNumberSubmit", "smsNumberTitle", "smsUsernameFormat", "smsValidityDuration", "sponsorBackLink", "sponsorCancel", "sponsorEmail", "sponsorEmailError", "sponsorEmailTemplate", "sponsorInfoApproved", "sponsorInfoDenied", "sponsorInfoPending", "sponsorName", "sponsorNameError", "sponsorNotePending", "sponsorRequestAccess", "sponsorStatusApproved", "sponsorStatusDenied", "sponsorStatusPending", "sponsorSubmit", "sponsorsError", "sponsorsFieldLabel", "sv-SE", "th-TH", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tr-TR", "uk-UA", "vi-VN", "zh-Hans", "zh-Hant")
     if err != nil {
     	return err
     }
@@ -856,6 +876,10 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
     w.Logo = temp.Logo
     w.LogoHeight = temp.LogoHeight
     w.LogoWidth = temp.LogoWidth
+    w.MarketingPolicyLink = temp.MarketingPolicyLink
+    w.MarketingPolicyOptIn = temp.MarketingPolicyOptIn
+    w.MarketingPolicyOptInLabel = temp.MarketingPolicyOptInLabel
+    w.MarketingPolicyOptInText = temp.MarketingPolicyOptInText
     w.Message = temp.Message
     w.MsMY = temp.MsMY
     w.MultiAuth = temp.MultiAuth
@@ -947,164 +971,168 @@ func (w *WlanPortalTemplateSetting) UnmarshalJSON(input []byte) error {
 
 // tempWlanPortalTemplateSetting is a temporary struct used for validating the fields of WlanPortalTemplateSetting.
 type tempWlanPortalTemplateSetting  struct {
-    AccessCodeAlternateEmail *string                          `json:"accessCodeAlternateEmail,omitempty"`
-    Alignment                *PortalTemplateAlignmentEnum     `json:"alignment,omitempty"`
-    Ar                       *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
-    AuthButtonAmazon         *string                          `json:"authButtonAmazon,omitempty"`
-    AuthButtonAzure          *string                          `json:"authButtonAzure,omitempty"`
-    AuthButtonEmail          *string                          `json:"authButtonEmail,omitempty"`
-    AuthButtonFacebook       *string                          `json:"authButtonFacebook,omitempty"`
-    AuthButtonGoogle         *string                          `json:"authButtonGoogle,omitempty"`
-    AuthButtonMicrosoft      *string                          `json:"authButtonMicrosoft,omitempty"`
-    AuthButtonPassphrase     *string                          `json:"authButtonPassphrase,omitempty"`
-    AuthButtonSms            *string                          `json:"authButtonSms,omitempty"`
-    AuthButtonSponsor        *string                          `json:"authButtonSponsor,omitempty"`
-    AuthLabel                *string                          `json:"authLabel,omitempty"`
-    BackLink                 *string                          `json:"backLink,omitempty"`
-    CaES                     *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
-    Color                    *string                          `json:"color,omitempty"`
-    ColorDark                *string                          `json:"colorDark,omitempty"`
-    ColorLight               *string                          `json:"colorLight,omitempty"`
-    Company                  *bool                            `json:"company,omitempty"`
-    CompanyError             *string                          `json:"companyError,omitempty"`
-    CompanyLabel             *string                          `json:"companyLabel,omitempty"`
-    CsCZ                     *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
-    DaDK                     *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
-    DeDE                     *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
-    ElGR                     *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
-    Email                    *bool                            `json:"email,omitempty"`
-    EmailAccessDomainError   *string                          `json:"emailAccessDomainError,omitempty"`
-    EmailCancel              *string                          `json:"emailCancel,omitempty"`
-    EmailCodeCancel          *string                          `json:"emailCodeCancel,omitempty"`
-    EmailCodeError           *string                          `json:"emailCodeError,omitempty"`
-    EmailCodeFieldLabel      *string                          `json:"emailCodeFieldLabel,omitempty"`
-    EmailCodeMessage         *string                          `json:"emailCodeMessage,omitempty"`
-    EmailCodeSubmit          *string                          `json:"emailCodeSubmit,omitempty"`
-    EmailCodeTitle           *string                          `json:"emailCodeTitle,omitempty"`
-    EmailError               *string                          `json:"emailError,omitempty"`
-    EmailFieldLabel          *string                          `json:"emailFieldLabel,omitempty"`
-    EmailLabel               *string                          `json:"emailLabel,omitempty"`
-    EmailMessage             *string                          `json:"emailMessage,omitempty"`
-    EmailSubmit              *string                          `json:"emailSubmit,omitempty"`
-    EmailTitle               *string                          `json:"emailTitle,omitempty"`
-    EnGB                     *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
-    EnUS                     *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
-    EsES                     *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
-    FiFI                     *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
-    Field1                   *bool                            `json:"field1,omitempty"`
-    Field1Error              *string                          `json:"field1Error,omitempty"`
-    Field1Label              *string                          `json:"field1Label,omitempty"`
-    Field1Required           *bool                            `json:"field1Required,omitempty"`
-    Field2                   *bool                            `json:"field2,omitempty"`
-    Field2Error              *string                          `json:"field2Error,omitempty"`
-    Field2Label              *string                          `json:"field2Label,omitempty"`
-    Field2Required           *bool                            `json:"field2Required,omitempty"`
-    Field3                   *bool                            `json:"field3,omitempty"`
-    Field3Error              *string                          `json:"field3Error,omitempty"`
-    Field3Label              *string                          `json:"field3Label,omitempty"`
-    Field3Required           *bool                            `json:"field3Required,omitempty"`
-    Field4                   *bool                            `json:"field4,omitempty"`
-    Field4Error              *string                          `json:"field4Error,omitempty"`
-    Field4Label              *string                          `json:"field4Label,omitempty"`
-    Field4Required           *bool                            `json:"field4Required,omitempty"`
-    FrFR                     *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
-    HeIL                     *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
-    HiIN                     *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
-    HrHR                     *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
-    HuHU                     *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
-    IdID                     *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
-    ItIT                     *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
-    JaJP                     *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
-    KoKR                     *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
-    Logo                     Optional[string]                 `json:"logo"`
-    LogoHeight               *int                             `json:"logoHeight,omitempty"`
-    LogoWidth                *int                             `json:"logoWidth,omitempty"`
-    Message                  *string                          `json:"message,omitempty"`
-    MsMY                     *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
-    MultiAuth                *bool                            `json:"multiAuth,omitempty"`
-    Name                     *bool                            `json:"name,omitempty"`
-    NameError                *string                          `json:"nameError,omitempty"`
-    NameLabel                *string                          `json:"nameLabel,omitempty"`
-    NbNO                     *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
-    NlNL                     *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
-    OptOutDefault            *bool                            `json:"optOutDefault,omitempty"`
-    Optout                   *bool                            `json:"optout,omitempty"`
-    OptoutLabel              *string                          `json:"optoutLabel,omitempty"`
-    PageTitle                *string                          `json:"pageTitle"`
-    PassphraseCancel         *string                          `json:"passphraseCancel,omitempty"`
-    PassphraseError          *string                          `json:"passphraseError,omitempty"`
-    PassphraseLabel          *string                          `json:"passphraseLabel,omitempty"`
-    PassphraseMessage        *string                          `json:"passphraseMessage,omitempty"`
-    PassphraseSubmit         *string                          `json:"passphraseSubmit,omitempty"`
-    PassphraseTitle          *string                          `json:"passphraseTitle,omitempty"`
-    PlPL                     *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
-    PoweredBy                *bool                            `json:"poweredBy,omitempty"`
-    Privacy                  *bool                            `json:"privacy,omitempty"`
-    PrivacyPolicyAcceptLabel *string                          `json:"privacyPolicyAcceptLabel,omitempty"`
-    PrivacyPolicyError       *string                          `json:"privacyPolicyError,omitempty"`
-    PrivacyPolicyLink        *string                          `json:"privacyPolicyLink,omitempty"`
-    PrivacyPolicyText        *string                          `json:"privacyPolicyText,omitempty"`
-    PtBR                     *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
-    PtPT                     *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
-    RequiredFieldLabel       *string                          `json:"requiredFieldLabel,omitempty"`
-    ResponsiveLayout         *bool                            `json:"responsiveLayout,omitempty"`
-    RoRO                     *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
-    RuRU                     *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
-    SignInLabel              *string                          `json:"signInLabel,omitempty"`
-    SkSK                     *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
-    SmsCarrierDefault        *string                          `json:"smsCarrierDefault,omitempty"`
-    SmsCarrierError          *string                          `json:"smsCarrierError,omitempty"`
-    SmsCarrierFieldLabel     *string                          `json:"smsCarrierFieldLabel,omitempty"`
-    SmsCodeCancel            *string                          `json:"smsCodeCancel,omitempty"`
-    SmsCodeError             *string                          `json:"smsCodeError,omitempty"`
-    SmsCodeFieldLabel        *string                          `json:"smsCodeFieldLabel,omitempty"`
-    SmsCodeMessage           *string                          `json:"smsCodeMessage,omitempty"`
-    SmsCodeSubmit            *string                          `json:"smsCodeSubmit,omitempty"`
-    SmsCodeTitle             *string                          `json:"smsCodeTitle,omitempty"`
-    SmsCountryFieldLabel     *string                          `json:"smsCountryFieldLabel,omitempty"`
-    SmsCountryFormat         *string                          `json:"smsCountryFormat,omitempty"`
-    SmsHaveAccessCode        *string                          `json:"smsHaveAccessCode,omitempty"`
-    SmsIsTwilio              *bool                            `json:"smsIsTwilio,omitempty"`
-    SmsMessageFormat         *string                          `json:"smsMessageFormat,omitempty"`
-    SmsNumberCancel          *string                          `json:"smsNumberCancel,omitempty"`
-    SmsNumberError           *string                          `json:"smsNumberError,omitempty"`
-    SmsNumberFieldLabel      *string                          `json:"smsNumberFieldLabel,omitempty"`
-    SmsNumberFormat          *string                          `json:"smsNumberFormat,omitempty"`
-    SmsNumberMessage         *string                          `json:"smsNumberMessage,omitempty"`
-    SmsNumberSubmit          *string                          `json:"smsNumberSubmit,omitempty"`
-    SmsNumberTitle           *string                          `json:"smsNumberTitle,omitempty"`
-    SmsUsernameFormat        *string                          `json:"smsUsernameFormat,omitempty"`
-    SmsValidityDuration      *int                             `json:"smsValidityDuration,omitempty"`
-    SponsorBackLink          *string                          `json:"sponsorBackLink,omitempty"`
-    SponsorCancel            *string                          `json:"sponsorCancel,omitempty"`
-    SponsorEmail             *string                          `json:"sponsorEmail,omitempty"`
-    SponsorEmailError        *string                          `json:"sponsorEmailError,omitempty"`
-    SponsorEmailTemplate     *string                          `json:"sponsorEmailTemplate,omitempty"`
-    SponsorInfoApproved      *string                          `json:"sponsorInfoApproved,omitempty"`
-    SponsorInfoDenied        *string                          `json:"sponsorInfoDenied,omitempty"`
-    SponsorInfoPending       *string                          `json:"sponsorInfoPending,omitempty"`
-    SponsorName              *string                          `json:"sponsorName,omitempty"`
-    SponsorNameError         *string                          `json:"sponsorNameError,omitempty"`
-    SponsorNotePending       *string                          `json:"sponsorNotePending,omitempty"`
-    SponsorRequestAccess     *string                          `json:"sponsorRequestAccess,omitempty"`
-    SponsorStatusApproved    *string                          `json:"sponsorStatusApproved,omitempty"`
-    SponsorStatusDenied      *string                          `json:"sponsorStatusDenied,omitempty"`
-    SponsorStatusPending     *string                          `json:"sponsorStatusPending,omitempty"`
-    SponsorSubmit            *string                          `json:"sponsorSubmit,omitempty"`
-    SponsorsError            *string                          `json:"sponsorsError,omitempty"`
-    SponsorsFieldLabel       *string                          `json:"sponsorsFieldLabel,omitempty"`
-    SvSE                     *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
-    ThTH                     *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
-    Tos                      *bool                            `json:"tos,omitempty"`
-    TosAcceptLabel           *string                          `json:"tosAcceptLabel,omitempty"`
-    TosError                 *string                          `json:"tosError,omitempty"`
-    TosLink                  *string                          `json:"tosLink,omitempty"`
-    TosText                  *string                          `json:"tosText,omitempty"`
-    TrTR                     *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
-    UkUA                     *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
-    ViVN                     *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
-    ZhHans                   *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
-    ZhHant                   *WlanPortalTemplateSettingLocale `json:"zh-Hant,omitempty"`
+    AccessCodeAlternateEmail  *string                          `json:"accessCodeAlternateEmail,omitempty"`
+    Alignment                 *PortalTemplateAlignmentEnum     `json:"alignment,omitempty"`
+    Ar                        *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
+    AuthButtonAmazon          *string                          `json:"authButtonAmazon,omitempty"`
+    AuthButtonAzure           *string                          `json:"authButtonAzure,omitempty"`
+    AuthButtonEmail           *string                          `json:"authButtonEmail,omitempty"`
+    AuthButtonFacebook        *string                          `json:"authButtonFacebook,omitempty"`
+    AuthButtonGoogle          *string                          `json:"authButtonGoogle,omitempty"`
+    AuthButtonMicrosoft       *string                          `json:"authButtonMicrosoft,omitempty"`
+    AuthButtonPassphrase      *string                          `json:"authButtonPassphrase,omitempty"`
+    AuthButtonSms             *string                          `json:"authButtonSms,omitempty"`
+    AuthButtonSponsor         *string                          `json:"authButtonSponsor,omitempty"`
+    AuthLabel                 *string                          `json:"authLabel,omitempty"`
+    BackLink                  *string                          `json:"backLink,omitempty"`
+    CaES                      *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
+    Color                     *string                          `json:"color,omitempty"`
+    ColorDark                 *string                          `json:"colorDark,omitempty"`
+    ColorLight                *string                          `json:"colorLight,omitempty"`
+    Company                   *bool                            `json:"company,omitempty"`
+    CompanyError              *string                          `json:"companyError,omitempty"`
+    CompanyLabel              *string                          `json:"companyLabel,omitempty"`
+    CsCZ                      *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
+    DaDK                      *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
+    DeDE                      *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
+    ElGR                      *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
+    Email                     *bool                            `json:"email,omitempty"`
+    EmailAccessDomainError    *string                          `json:"emailAccessDomainError,omitempty"`
+    EmailCancel               *string                          `json:"emailCancel,omitempty"`
+    EmailCodeCancel           *string                          `json:"emailCodeCancel,omitempty"`
+    EmailCodeError            *string                          `json:"emailCodeError,omitempty"`
+    EmailCodeFieldLabel       *string                          `json:"emailCodeFieldLabel,omitempty"`
+    EmailCodeMessage          *string                          `json:"emailCodeMessage,omitempty"`
+    EmailCodeSubmit           *string                          `json:"emailCodeSubmit,omitempty"`
+    EmailCodeTitle            *string                          `json:"emailCodeTitle,omitempty"`
+    EmailError                *string                          `json:"emailError,omitempty"`
+    EmailFieldLabel           *string                          `json:"emailFieldLabel,omitempty"`
+    EmailLabel                *string                          `json:"emailLabel,omitempty"`
+    EmailMessage              *string                          `json:"emailMessage,omitempty"`
+    EmailSubmit               *string                          `json:"emailSubmit,omitempty"`
+    EmailTitle                *string                          `json:"emailTitle,omitempty"`
+    EnGB                      *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
+    EnUS                      *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
+    EsES                      *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
+    FiFI                      *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
+    Field1                    *bool                            `json:"field1,omitempty"`
+    Field1Error               *string                          `json:"field1Error,omitempty"`
+    Field1Label               *string                          `json:"field1Label,omitempty"`
+    Field1Required            *bool                            `json:"field1Required,omitempty"`
+    Field2                    *bool                            `json:"field2,omitempty"`
+    Field2Error               *string                          `json:"field2Error,omitempty"`
+    Field2Label               *string                          `json:"field2Label,omitempty"`
+    Field2Required            *bool                            `json:"field2Required,omitempty"`
+    Field3                    *bool                            `json:"field3,omitempty"`
+    Field3Error               *string                          `json:"field3Error,omitempty"`
+    Field3Label               *string                          `json:"field3Label,omitempty"`
+    Field3Required            *bool                            `json:"field3Required,omitempty"`
+    Field4                    *bool                            `json:"field4,omitempty"`
+    Field4Error               *string                          `json:"field4Error,omitempty"`
+    Field4Label               *string                          `json:"field4Label,omitempty"`
+    Field4Required            *bool                            `json:"field4Required,omitempty"`
+    FrFR                      *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
+    HeIL                      *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
+    HiIN                      *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
+    HrHR                      *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
+    HuHU                      *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
+    IdID                      *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
+    ItIT                      *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
+    JaJP                      *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
+    KoKR                      *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
+    Logo                      Optional[string]                 `json:"logo"`
+    LogoHeight                *int                             `json:"logoHeight,omitempty"`
+    LogoWidth                 *int                             `json:"logoWidth,omitempty"`
+    MarketingPolicyLink       *string                          `json:"marketingPolicyLink,omitempty"`
+    MarketingPolicyOptIn      *bool                            `json:"marketingPolicyOptIn,omitempty"`
+    MarketingPolicyOptInLabel *string                          `json:"marketingPolicyOptInLabel,omitempty"`
+    MarketingPolicyOptInText  *string                          `json:"marketingPolicyOptInText,omitempty"`
+    Message                   *string                          `json:"message,omitempty"`
+    MsMY                      *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
+    MultiAuth                 *bool                            `json:"multiAuth,omitempty"`
+    Name                      *bool                            `json:"name,omitempty"`
+    NameError                 *string                          `json:"nameError,omitempty"`
+    NameLabel                 *string                          `json:"nameLabel,omitempty"`
+    NbNO                      *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
+    NlNL                      *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
+    OptOutDefault             *bool                            `json:"optOutDefault,omitempty"`
+    Optout                    *bool                            `json:"optout,omitempty"`
+    OptoutLabel               *string                          `json:"optoutLabel,omitempty"`
+    PageTitle                 *string                          `json:"pageTitle"`
+    PassphraseCancel          *string                          `json:"passphraseCancel,omitempty"`
+    PassphraseError           *string                          `json:"passphraseError,omitempty"`
+    PassphraseLabel           *string                          `json:"passphraseLabel,omitempty"`
+    PassphraseMessage         *string                          `json:"passphraseMessage,omitempty"`
+    PassphraseSubmit          *string                          `json:"passphraseSubmit,omitempty"`
+    PassphraseTitle           *string                          `json:"passphraseTitle,omitempty"`
+    PlPL                      *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
+    PoweredBy                 *bool                            `json:"poweredBy,omitempty"`
+    Privacy                   *bool                            `json:"privacy,omitempty"`
+    PrivacyPolicyAcceptLabel  *string                          `json:"privacyPolicyAcceptLabel,omitempty"`
+    PrivacyPolicyError        *string                          `json:"privacyPolicyError,omitempty"`
+    PrivacyPolicyLink         *string                          `json:"privacyPolicyLink,omitempty"`
+    PrivacyPolicyText         *string                          `json:"privacyPolicyText,omitempty"`
+    PtBR                      *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
+    PtPT                      *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
+    RequiredFieldLabel        *string                          `json:"requiredFieldLabel,omitempty"`
+    ResponsiveLayout          *bool                            `json:"responsiveLayout,omitempty"`
+    RoRO                      *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
+    RuRU                      *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
+    SignInLabel               *string                          `json:"signInLabel,omitempty"`
+    SkSK                      *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
+    SmsCarrierDefault         *string                          `json:"smsCarrierDefault,omitempty"`
+    SmsCarrierError           *string                          `json:"smsCarrierError,omitempty"`
+    SmsCarrierFieldLabel      *string                          `json:"smsCarrierFieldLabel,omitempty"`
+    SmsCodeCancel             *string                          `json:"smsCodeCancel,omitempty"`
+    SmsCodeError              *string                          `json:"smsCodeError,omitempty"`
+    SmsCodeFieldLabel         *string                          `json:"smsCodeFieldLabel,omitempty"`
+    SmsCodeMessage            *string                          `json:"smsCodeMessage,omitempty"`
+    SmsCodeSubmit             *string                          `json:"smsCodeSubmit,omitempty"`
+    SmsCodeTitle              *string                          `json:"smsCodeTitle,omitempty"`
+    SmsCountryFieldLabel      *string                          `json:"smsCountryFieldLabel,omitempty"`
+    SmsCountryFormat          *string                          `json:"smsCountryFormat,omitempty"`
+    SmsHaveAccessCode         *string                          `json:"smsHaveAccessCode,omitempty"`
+    SmsIsTwilio               *bool                            `json:"smsIsTwilio,omitempty"`
+    SmsMessageFormat          *string                          `json:"smsMessageFormat,omitempty"`
+    SmsNumberCancel           *string                          `json:"smsNumberCancel,omitempty"`
+    SmsNumberError            *string                          `json:"smsNumberError,omitempty"`
+    SmsNumberFieldLabel       *string                          `json:"smsNumberFieldLabel,omitempty"`
+    SmsNumberFormat           *string                          `json:"smsNumberFormat,omitempty"`
+    SmsNumberMessage          *string                          `json:"smsNumberMessage,omitempty"`
+    SmsNumberSubmit           *string                          `json:"smsNumberSubmit,omitempty"`
+    SmsNumberTitle            *string                          `json:"smsNumberTitle,omitempty"`
+    SmsUsernameFormat         *string                          `json:"smsUsernameFormat,omitempty"`
+    SmsValidityDuration       *int                             `json:"smsValidityDuration,omitempty"`
+    SponsorBackLink           *string                          `json:"sponsorBackLink,omitempty"`
+    SponsorCancel             *string                          `json:"sponsorCancel,omitempty"`
+    SponsorEmail              *string                          `json:"sponsorEmail,omitempty"`
+    SponsorEmailError         *string                          `json:"sponsorEmailError,omitempty"`
+    SponsorEmailTemplate      *string                          `json:"sponsorEmailTemplate,omitempty"`
+    SponsorInfoApproved       *string                          `json:"sponsorInfoApproved,omitempty"`
+    SponsorInfoDenied         *string                          `json:"sponsorInfoDenied,omitempty"`
+    SponsorInfoPending        *string                          `json:"sponsorInfoPending,omitempty"`
+    SponsorName               *string                          `json:"sponsorName,omitempty"`
+    SponsorNameError          *string                          `json:"sponsorNameError,omitempty"`
+    SponsorNotePending        *string                          `json:"sponsorNotePending,omitempty"`
+    SponsorRequestAccess      *string                          `json:"sponsorRequestAccess,omitempty"`
+    SponsorStatusApproved     *string                          `json:"sponsorStatusApproved,omitempty"`
+    SponsorStatusDenied       *string                          `json:"sponsorStatusDenied,omitempty"`
+    SponsorStatusPending      *string                          `json:"sponsorStatusPending,omitempty"`
+    SponsorSubmit             *string                          `json:"sponsorSubmit,omitempty"`
+    SponsorsError             *string                          `json:"sponsorsError,omitempty"`
+    SponsorsFieldLabel        *string                          `json:"sponsorsFieldLabel,omitempty"`
+    SvSE                      *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
+    ThTH                      *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
+    Tos                       *bool                            `json:"tos,omitempty"`
+    TosAcceptLabel            *string                          `json:"tosAcceptLabel,omitempty"`
+    TosError                  *string                          `json:"tosError,omitempty"`
+    TosLink                   *string                          `json:"tosLink,omitempty"`
+    TosText                   *string                          `json:"tosText,omitempty"`
+    TrTR                      *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
+    UkUA                      *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
+    ViVN                      *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
+    ZhHans                    *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
+    ZhHant                    *WlanPortalTemplateSettingLocale `json:"zh-Hant,omitempty"`
 }
 
 func (w *tempWlanPortalTemplateSetting) validate() error {

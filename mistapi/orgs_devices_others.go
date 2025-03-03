@@ -133,7 +133,7 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
 }
 
 // CountOrgOtherDeviceEvents takes context, orgId, distinct, mType, start, end, duration, limit as parameters and
-// returns an models.ApiResponse with models.RepsonseCount data and
+// returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Org OtherDevices Events
 func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
@@ -145,7 +145,7 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
     end *int,
     duration *string,
     limit *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/otherdevices/events/count")
     req.AppendTemplateParams(orgId)
@@ -186,13 +186,13 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
         req.QueryParam("limit", *limit)
     }
     
-    var result models.RepsonseCount
+    var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.RepsonseCount](decoder)
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

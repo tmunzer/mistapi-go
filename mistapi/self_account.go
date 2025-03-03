@@ -218,3 +218,40 @@ func (s *SelfAccount) VerifySelfEmail(
     }
     return httpCtx.Response, err
 }
+
+// GetSelfApiUsage takes context as parameters and
+// returns an models.ApiResponse with models.ApiUsage data and
+// an error if there was an issue with the request or response.
+// Get the status of the API usage for the current user or API Token
+func (s *SelfAccount) GetSelfApiUsage(ctx context.Context) (
+    models.ApiResponse[models.ApiUsage],
+    error) {
+    req := s.prepareRequest(ctx, "GET", "/api/v1/self/usage")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    var result models.ApiUsage
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ApiUsage](decoder)
+    return models.NewApiResponse(result, resp), err
+}

@@ -17,6 +17,7 @@
 | `ExtIp` | `*string` | Optional | - |
 | `Hostname` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Ip` | `*string` | Optional | - |
+| `LastConfigStatus` | `*string` | Optional | - |
 | `LastHostname` | `*string` | Optional | - |
 | `LastTroubleCode` | `*string` | Optional | - |
 | `LastTroubleTimestamp` | `*int` | Optional | - |

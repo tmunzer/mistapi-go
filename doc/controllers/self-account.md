@@ -12,6 +12,7 @@ selfAccount := client.SelfAccount()
 
 * [Delete Self](../../doc/controllers/self-account.md#delete-self)
 * [Get Self](../../doc/controllers/self-account.md#get-self)
+* [Get Self Api Usage](../../doc/controllers/self-account.md#get-self-api-usage)
 * [Update Self](../../doc/controllers/self-account.md#update-self)
 * [Update Self Email](../../doc/controllers/self-account.md#update-self-email)
 * [Verify Self Email](../../doc/controllers/self-account.md#verify-self-email)
@@ -34,7 +35,7 @@ DeleteSelf(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -73,7 +74,7 @@ GetSelf(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -131,6 +132,56 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Get Self Api Usage
+
+Get the status of the API usage for the current user or API Token
+
+```go
+GetSelfApiUsage(
+    ctx context.Context) (
+    models.ApiResponse[models.ApiUsage],
+    error)
+```
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApiUsage](../../doc/models/api-usage.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := selfAccount.GetSelfApiUsage(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "request_limit": 5000,
+  "requests": 5
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Update Self
 
 Update Account Information
@@ -151,7 +202,7 @@ UpdateSelf(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -247,7 +298,7 @@ UpdateSelfEmail(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -297,7 +348,7 @@ VerifySelfEmail(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

@@ -17,7 +17,7 @@ Zone statistics
 | `ClientsWaits` | [`*models.StatsZoneClientsWaits`](../../doc/models/stats-zone-clients-waits.md) | Optional | Client wait time right now |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Devices` | [`[]models.StatsRssiZonesDevice`](../../doc/models/stats-rssi-zones-device.md) | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | Name of the zone |
 | `NumAssets` | `*int` | Optional | Number of assets |

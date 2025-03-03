@@ -41,7 +41,7 @@ GetOrgCapturingStatus(
 
 ## Response Type
 
-[`models.ResponsePcapStatus`](../../doc/models/response-pcap-status.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapStatus](../../doc/models/response-pcap-status.md).
 
 ## Example Usage
 
@@ -115,7 +115,7 @@ GetSiteCapturingStatus(
 
 ## Response Type
 
-[`models.ResponsePcapStatus`](../../doc/models/response-pcap-status.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapStatus](../../doc/models/response-pcap-status.md).
 
 ## Example Usage
 
@@ -199,7 +199,7 @@ ListOrgPacketCaptures(
 
 ## Response Type
 
-[`models.ResponsePcapSearch`](../../doc/models/response-pcap-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapSearch](../../doc/models/response-pcap-search.md).
 
 ## Example Usage
 
@@ -292,7 +292,7 @@ ListSitePacketCaptures(
 
 ## Response Type
 
-[`models.ResponsePcapSearch`](../../doc/models/response-pcap-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapSearch](../../doc/models/response-pcap-search.md).
 
 ## Example Usage
 
@@ -421,7 +421,7 @@ StartOrgPacketCapture(
 
 ## Response Type
 
-[`models.ResponsePcapStart`](../../doc/models/response-pcap-start.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapStart](../../doc/models/response-pcap-start.md).
 
 ## Example Usage
 
@@ -515,7 +515,7 @@ The output will be available through websocket. As there can be multiple command
 ```json
 {
     "event": "data"
-    "channel": "/sites/:site_id/pcaps"
+    "channel": "/sites/{site_id}/pcaps"
     "data": {
          "capture_id": "6b1be4fb-b239-44d9-9d3b-cb1ff3af1721",
      "lost_messages": 0
@@ -603,7 +603,7 @@ StartSitePacketCapture(
 
 ## Response Type
 
-[`models.ResponsePcapStart`](../../doc/models/response-pcap-start.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponsePcapStart](../../doc/models/response-pcap-start.md).
 
 ## Example Usage
 
@@ -614,10 +614,10 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.CaptureSiteContainer.FromCaptureNewAssoc(models.CaptureNewAssoc{
     ClientMac:            models.ToPointer("60a10a773412"),
-    Duration:             models.ToPointer(600),
+    Duration:             models.NewOptional(models.ToPointer(600)),
     IncludesMcast:        models.ToPointer(false),
-    MaxPktLen:            models.ToPointer(128),
-    NumPackets:           models.ToPointer(100),
+    MaxPktLen:            models.NewOptional(models.ToPointer(128)),
+    NumPackets:           models.NewOptional(models.ToPointer(100)),
     Type:                 "new_assoc",
 })
 
@@ -685,7 +685,7 @@ StopOrgPacketCapture(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -733,7 +733,7 @@ StopSitePacketCapture(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -785,7 +785,7 @@ UpdateSitePacketCapture(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

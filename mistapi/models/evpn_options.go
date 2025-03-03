@@ -19,12 +19,14 @@ type EvpnOptions struct {
     // Optional, for ERB or CLOS, you can either use esilag to upstream routers or to also be the virtual-gateway. When `routed_at` != `core`, whether to do virtual-gateway at core as well
     CoreAsBorder         *bool                            `json:"core_as_border,omitempty"`
     Overlay              *EvpnOptionsOverlay              `json:"overlay,omitempty"`
-    // Only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-01-01 as the virtual-gateway-address's v4_mac. If enabled, 00-00-5e-00-XX-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
+    // Only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-01-01 as the virtual-gateway-address's v4_mac. If enabled, 00-00-5e-00-0X-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
     PerVlanVgaV4Mac      *bool                            `json:"per_vlan_vga_v4_mac,omitempty"`
+    // Only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-02-01 as the virtual-gateway-address's v6_mac. If enabled, 00-00-5e-00-1X-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
+    PerVlanVgaV6Mac      *bool                            `json:"per_vlan_vga_v6_mac,omitempty"`
     // optional, where virtual-gateway should reside. enum: `core`, `distribution`, `edge`
     RoutedAt             *EvpnOptionsRoutedAtEnum         `json:"routed_at,omitempty"`
     Underlay             *EvpnOptionsUnderlay             `json:"underlay,omitempty"`
-    // Optional, for EX9200 only to seggregate virtual-switches
+    // Optional, for EX9200 only to segregate virtual-switches
     VsInstances          map[string]EvpnOptionsVsInstance `json:"vs_instances,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }
@@ -33,8 +35,8 @@ type EvpnOptions struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (e EvpnOptions) String() string {
     return fmt.Sprintf(
-    	"EvpnOptions[AutoLoopbackSubnet=%v, AutoLoopbackSubnet6=%v, AutoRouterIdSubnet=%v, AutoRouterIdSubnet6=%v, CoreAsBorder=%v, Overlay=%v, PerVlanVgaV4Mac=%v, RoutedAt=%v, Underlay=%v, VsInstances=%v, AdditionalProperties=%v]",
-    	e.AutoLoopbackSubnet, e.AutoLoopbackSubnet6, e.AutoRouterIdSubnet, e.AutoRouterIdSubnet6, e.CoreAsBorder, e.Overlay, e.PerVlanVgaV4Mac, e.RoutedAt, e.Underlay, e.VsInstances, e.AdditionalProperties)
+    	"EvpnOptions[AutoLoopbackSubnet=%v, AutoLoopbackSubnet6=%v, AutoRouterIdSubnet=%v, AutoRouterIdSubnet6=%v, CoreAsBorder=%v, Overlay=%v, PerVlanVgaV4Mac=%v, PerVlanVgaV6Mac=%v, RoutedAt=%v, Underlay=%v, VsInstances=%v, AdditionalProperties=%v]",
+    	e.AutoLoopbackSubnet, e.AutoLoopbackSubnet6, e.AutoRouterIdSubnet, e.AutoRouterIdSubnet6, e.CoreAsBorder, e.Overlay, e.PerVlanVgaV4Mac, e.PerVlanVgaV6Mac, e.RoutedAt, e.Underlay, e.VsInstances, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptions.
@@ -43,7 +45,7 @@ func (e EvpnOptions) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(e.AdditionalProperties,
-        "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "routed_at", "underlay", "vs_instances"); err != nil {
+        "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(e.toMap())
@@ -74,6 +76,9 @@ func (e EvpnOptions) toMap() map[string]any {
     if e.PerVlanVgaV4Mac != nil {
         structMap["per_vlan_vga_v4_mac"] = e.PerVlanVgaV4Mac
     }
+    if e.PerVlanVgaV6Mac != nil {
+        structMap["per_vlan_vga_v6_mac"] = e.PerVlanVgaV6Mac
+    }
     if e.RoutedAt != nil {
         structMap["routed_at"] = e.RoutedAt
     }
@@ -94,7 +99,7 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "routed_at", "underlay", "vs_instances")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances")
     if err != nil {
     	return err
     }
@@ -107,6 +112,7 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
     e.CoreAsBorder = temp.CoreAsBorder
     e.Overlay = temp.Overlay
     e.PerVlanVgaV4Mac = temp.PerVlanVgaV4Mac
+    e.PerVlanVgaV6Mac = temp.PerVlanVgaV6Mac
     e.RoutedAt = temp.RoutedAt
     e.Underlay = temp.Underlay
     e.VsInstances = temp.VsInstances
@@ -122,6 +128,7 @@ type tempEvpnOptions  struct {
     CoreAsBorder        *bool                            `json:"core_as_border,omitempty"`
     Overlay             *EvpnOptionsOverlay              `json:"overlay,omitempty"`
     PerVlanVgaV4Mac     *bool                            `json:"per_vlan_vga_v4_mac,omitempty"`
+    PerVlanVgaV6Mac     *bool                            `json:"per_vlan_vga_v6_mac,omitempty"`
     RoutedAt            *EvpnOptionsRoutedAtEnum         `json:"routed_at,omitempty"`
     Underlay            *EvpnOptionsUnderlay             `json:"underlay,omitempty"`
     VsInstances         map[string]EvpnOptionsVsInstance `json:"vs_instances,omitempty"`

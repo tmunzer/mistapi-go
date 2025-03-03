@@ -16,15 +16,15 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 | `ApMac` | `models.Optional[string]` | Optional | - |
 | `Band` | [`*models.CaptureRadiotapwiredBandEnum`](../../doc/models/capture-radiotapwired-band-enum.md) | Optional | only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
 | `ClientMac` | `models.Optional[string]` | Optional | - |
-| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
 | `Format` | [`*models.CaptureRadiotapwiredFormatEnum`](../../doc/models/capture-radiotapwired-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
-| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
-| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `>= 0` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
 | `RadiotapTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11 + radio headers) |
 | `Ssid` | `models.Optional[string]` | Optional | - |
-| `TcpdumpExpression` | `*string` | Optional | tcpdump expression common for wired,radiotap |
+| `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
 | `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br>**Value**: `"radiotap,wired"` |
-| `WiredTcpdumpExpression` | `*string` | Optional | tcpdump expression for wired |
+| `WiredTcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
 | `WirelessTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11) |
 | `WlanId` | `models.Optional[string]` | Optional | WLAN id associated with the respective ssid. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -35,12 +35,13 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 {
   "band": "24",
   "client_mac": "38f9d3972ff1",
-  "duration": 600,
+  "duration": 300,
   "format": "stream",
-  "max_pkt_len": 68,
-  "num_packets": 100,
+  "max_pkt_len": 128,
+  "num_packets": 1000,
   "radiotap_tcpdump_expression": "type",
-  "ssid": "atest",
+  "ssid": "test",
+  "tcpdump_expression": "tcp port 80",
   "type": "radiotap,wired",
   "wired_tcpdump_expression": "tcp port 80",
   "wlan_id": "fac8e973-feb9-421a-b381-aabbc4b61f5a",

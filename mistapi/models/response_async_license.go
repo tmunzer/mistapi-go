@@ -14,7 +14,7 @@ type ResponseAsyncLicense struct {
     Failed               *int                            `json:"failed,omitempty"`
     // Current incompleted lists (macs)
     Incompleted          []string                        `json:"incompleted,omitempty"`
-    // Current proceseed number of device
+    // Current processed number of device
     Processed            *int                            `json:"processed,omitempty"`
     // epoch time of aysnc claim scheduled
     ScheduledAt          *int                            `json:"scheduled_at,omitempty"`

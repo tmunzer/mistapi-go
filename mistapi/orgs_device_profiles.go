@@ -29,7 +29,7 @@ func NewOrgsDeviceProfiles(baseController baseController) *OrgsDeviceProfiles {
 func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeEnum,
+    mType *models.DeviceTypeDefaultApEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Deviceprofile],

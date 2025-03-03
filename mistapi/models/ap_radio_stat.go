@@ -13,7 +13,7 @@ type ApRadioStat struct {
     // Current channel the radio is running on
     Channel                Optional[int]          `json:"channel"`
     // Use dynamic chaining for downlink
-    DynamicChainingEnalbed Optional[bool]         `json:"dynamic_chaining_enalbed"`
+    DynamicChainingEnabled Optional[bool]         `json:"dynamic_chaining_enabled"`
     // Radio (base) mac, it can have 16 bssids (e.g. 5c5b350001a0-5c5b350001af)
     Mac                    Optional[string]       `json:"mac"`
     NoiseFloor             Optional[int]          `json:"noise_floor"`
@@ -48,8 +48,8 @@ type ApRadioStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApRadioStat) String() string {
     return fmt.Sprintf(
-    	"ApRadioStat[Bandwidth=%v, Channel=%v, DynamicChainingEnalbed=%v, Mac=%v, NoiseFloor=%v, NumClients=%v, NumWlans=%v, Power=%v, RxBytes=%v, RxPkts=%v, TxBytes=%v, TxPkts=%v, Usage=%v, UtilAll=%v, UtilNonWifi=%v, UtilRxInBss=%v, UtilRxOtherBss=%v, UtilTx=%v, UtilUndecodableWifi=%v, UtilUnknownWifi=%v, AdditionalProperties=%v]",
-    	a.Bandwidth, a.Channel, a.DynamicChainingEnalbed, a.Mac, a.NoiseFloor, a.NumClients, a.NumWlans, a.Power, a.RxBytes, a.RxPkts, a.TxBytes, a.TxPkts, a.Usage, a.UtilAll, a.UtilNonWifi, a.UtilRxInBss, a.UtilRxOtherBss, a.UtilTx, a.UtilUndecodableWifi, a.UtilUnknownWifi, a.AdditionalProperties)
+    	"ApRadioStat[Bandwidth=%v, Channel=%v, DynamicChainingEnabled=%v, Mac=%v, NoiseFloor=%v, NumClients=%v, NumWlans=%v, Power=%v, RxBytes=%v, RxPkts=%v, TxBytes=%v, TxPkts=%v, Usage=%v, UtilAll=%v, UtilNonWifi=%v, UtilRxInBss=%v, UtilRxOtherBss=%v, UtilTx=%v, UtilUndecodableWifi=%v, UtilUnknownWifi=%v, AdditionalProperties=%v]",
+    	a.Bandwidth, a.Channel, a.DynamicChainingEnabled, a.Mac, a.NoiseFloor, a.NumClients, a.NumWlans, a.Power, a.RxBytes, a.RxPkts, a.TxBytes, a.TxPkts, a.Usage, a.UtilAll, a.UtilNonWifi, a.UtilRxInBss, a.UtilRxOtherBss, a.UtilTx, a.UtilUndecodableWifi, a.UtilUnknownWifi, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioStat.
@@ -58,7 +58,7 @@ func (a ApRadioStat) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi"); err != nil {
+        "bandwidth", "channel", "dynamic_chaining_enabled", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -78,11 +78,11 @@ func (a ApRadioStat) toMap() map[string]any {
             structMap["channel"] = nil
         }
     }
-    if a.DynamicChainingEnalbed.IsValueSet() {
-        if a.DynamicChainingEnalbed.Value() != nil {
-            structMap["dynamic_chaining_enalbed"] = a.DynamicChainingEnalbed.Value()
+    if a.DynamicChainingEnabled.IsValueSet() {
+        if a.DynamicChainingEnabled.Value() != nil {
+            structMap["dynamic_chaining_enabled"] = a.DynamicChainingEnabled.Value()
         } else {
-            structMap["dynamic_chaining_enalbed"] = nil
+            structMap["dynamic_chaining_enabled"] = nil
         }
     }
     if a.Mac.IsValueSet() {
@@ -211,7 +211,7 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bandwidth", "channel", "dynamic_chaining_enalbed", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bandwidth", "channel", "dynamic_chaining_enabled", "mac", "noise_floor", "num_clients", "num_wlans", "power", "rx_bytes", "rx_pkts", "tx_bytes", "tx_pkts", "usage", "util_all", "util_non_wifi", "util_rx_in_bss", "util_rx_other_bss", "util_tx", "util_undecodable_wifi", "util_unknown_wifi")
     if err != nil {
     	return err
     }
@@ -219,7 +219,7 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
     
     a.Bandwidth = temp.Bandwidth
     a.Channel = temp.Channel
-    a.DynamicChainingEnalbed = temp.DynamicChainingEnalbed
+    a.DynamicChainingEnabled = temp.DynamicChainingEnabled
     a.Mac = temp.Mac
     a.NoiseFloor = temp.NoiseFloor
     a.NumClients = temp.NumClients
@@ -244,7 +244,7 @@ func (a *ApRadioStat) UnmarshalJSON(input []byte) error {
 type tempApRadioStat  struct {
     Bandwidth              *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
     Channel                Optional[int]       `json:"channel"`
-    DynamicChainingEnalbed Optional[bool]      `json:"dynamic_chaining_enalbed"`
+    DynamicChainingEnabled Optional[bool]      `json:"dynamic_chaining_enabled"`
     Mac                    Optional[string]    `json:"mac"`
     NoiseFloor             Optional[int]       `json:"noise_floor"`
     NumClients             Optional[int]       `json:"num_clients"`

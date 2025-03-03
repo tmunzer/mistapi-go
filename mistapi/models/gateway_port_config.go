@@ -57,6 +57,8 @@ type GatewayPortConfig struct {
     PreserveDscp         *bool                          `json:"preserve_dscp,omitempty"`
     // If HA mode
     Redundant            *bool                          `json:"redundant,omitempty"`
+    // If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX
+    RedundantGroup       *int                           `json:"redundant_group,omitempty"`
     // If HA mode
     RethIdx              *int                           `json:"reth_idx,omitempty"`
     // If HA mode
@@ -79,7 +81,7 @@ type GatewayPortConfig struct {
     WanArpPolicer        *GatewayPortWanArpPolicerEnum  `json:"wan_arp_policer,omitempty"`
     // Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP
     WanExtIp             *string                        `json:"wan_ext_ip,omitempty"`
-    // Only if `usage`==`wan`. Property Key is the destianation CIDR (e.g "100.100.100.0/24")
+    // Only if `usage`==`wan`. Property Key is the destination CIDR (e.g "100.100.100.0/24")
     WanExtraRoutes       map[string]WanExtraRoutes      `json:"wan_extra_routes,omitempty"`
     // Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined
     WanNetworks          []string                       `json:"wan_networks,omitempty"`
@@ -96,8 +98,8 @@ type GatewayPortConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayPortConfig) String() string {
     return fmt.Sprintf(
-    	"GatewayPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpForceUp=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, DslType=%v, DslVci=%v, DslVpi=%v, Duplex=%v, IpConfig=%v, LteApn=%v, LteAuth=%v, LteBackup=%v, LtePassword=%v, LteUsername=%v, Mtu=%v, Name=%v, Networks=%v, OuterVlanId=%v, PoeDisabled=%v, PortNetwork=%v, PreserveDscp=%v, Redundant=%v, RethIdx=%v, RethNode=%v, RethNodes=%v, Speed=%v, SsrNoVirtualMac=%v, SvrPortRange=%v, TrafficShaping=%v, Usage=%v, VlanId=%v, VpnPaths=%v, WanArpPolicer=%v, WanExtIp=%v, WanExtraRoutes=%v, WanNetworks=%v, WanProbeOverride=%v, WanSourceNat=%v, WanType=%v, AdditionalProperties=%v]",
-    	g.AeDisableLacp, g.AeIdx, g.AeLacpForceUp, g.Aggregated, g.Critical, g.Description, g.DisableAutoneg, g.Disabled, g.DslType, g.DslVci, g.DslVpi, g.Duplex, g.IpConfig, g.LteApn, g.LteAuth, g.LteBackup, g.LtePassword, g.LteUsername, g.Mtu, g.Name, g.Networks, g.OuterVlanId, g.PoeDisabled, g.PortNetwork, g.PreserveDscp, g.Redundant, g.RethIdx, g.RethNode, g.RethNodes, g.Speed, g.SsrNoVirtualMac, g.SvrPortRange, g.TrafficShaping, g.Usage, g.VlanId, g.VpnPaths, g.WanArpPolicer, g.WanExtIp, g.WanExtraRoutes, g.WanNetworks, g.WanProbeOverride, g.WanSourceNat, g.WanType, g.AdditionalProperties)
+    	"GatewayPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpForceUp=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, DslType=%v, DslVci=%v, DslVpi=%v, Duplex=%v, IpConfig=%v, LteApn=%v, LteAuth=%v, LteBackup=%v, LtePassword=%v, LteUsername=%v, Mtu=%v, Name=%v, Networks=%v, OuterVlanId=%v, PoeDisabled=%v, PortNetwork=%v, PreserveDscp=%v, Redundant=%v, RedundantGroup=%v, RethIdx=%v, RethNode=%v, RethNodes=%v, Speed=%v, SsrNoVirtualMac=%v, SvrPortRange=%v, TrafficShaping=%v, Usage=%v, VlanId=%v, VpnPaths=%v, WanArpPolicer=%v, WanExtIp=%v, WanExtraRoutes=%v, WanNetworks=%v, WanProbeOverride=%v, WanSourceNat=%v, WanType=%v, AdditionalProperties=%v]",
+    	g.AeDisableLacp, g.AeIdx, g.AeLacpForceUp, g.Aggregated, g.Critical, g.Description, g.DisableAutoneg, g.Disabled, g.DslType, g.DslVci, g.DslVpi, g.Duplex, g.IpConfig, g.LteApn, g.LteAuth, g.LteBackup, g.LtePassword, g.LteUsername, g.Mtu, g.Name, g.Networks, g.OuterVlanId, g.PoeDisabled, g.PortNetwork, g.PreserveDscp, g.Redundant, g.RedundantGroup, g.RethIdx, g.RethNode, g.RethNodes, g.Speed, g.SsrNoVirtualMac, g.SvrPortRange, g.TrafficShaping, g.Usage, g.VlanId, g.VpnPaths, g.WanArpPolicer, g.WanExtIp, g.WanExtraRoutes, g.WanNetworks, g.WanProbeOverride, g.WanSourceNat, g.WanType, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortConfig.
@@ -106,7 +108,7 @@ func (g GatewayPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(g.AdditionalProperties,
-        "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type"); err != nil {
+        "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "redundant_group", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(g.toMap())
@@ -198,6 +200,9 @@ func (g GatewayPortConfig) toMap() map[string]any {
     if g.Redundant != nil {
         structMap["redundant"] = g.Redundant
     }
+    if g.RedundantGroup != nil {
+        structMap["redundant_group"] = g.RedundantGroup
+    }
     if g.RethIdx != nil {
         structMap["reth_idx"] = g.RethIdx
     }
@@ -262,7 +267,7 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "aggregated", "critical", "description", "disable_autoneg", "disabled", "dsl_type", "dsl_vci", "dsl_vpi", "duplex", "ip_config", "lte_apn", "lte_auth", "lte_backup", "lte_password", "lte_username", "mtu", "name", "networks", "outer_vlan_id", "poe_disabled", "port_network", "preserve_dscp", "redundant", "redundant_group", "reth_idx", "reth_node", "reth_nodes", "speed", "ssr_no_virtual_mac", "svr_port_range", "traffic_shaping", "usage", "vlan_id", "vpn_paths", "wan_arp_policer", "wan_ext_ip", "wan_extra_routes", "wan_networks", "wan_probe_override", "wan_source_nat", "wan_type")
     if err != nil {
     	return err
     }
@@ -294,6 +299,7 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
     g.PortNetwork = temp.PortNetwork
     g.PreserveDscp = temp.PreserveDscp
     g.Redundant = temp.Redundant
+    g.RedundantGroup = temp.RedundantGroup
     g.RethIdx = temp.RethIdx
     g.RethNode = temp.RethNode
     g.RethNodes = temp.RethNodes
@@ -342,6 +348,7 @@ type tempGatewayPortConfig  struct {
     PortNetwork      *string                        `json:"port_network,omitempty"`
     PreserveDscp     *bool                          `json:"preserve_dscp,omitempty"`
     Redundant        *bool                          `json:"redundant,omitempty"`
+    RedundantGroup   *int                           `json:"redundant_group,omitempty"`
     RethIdx          *int                           `json:"reth_idx,omitempty"`
     RethNode         *string                        `json:"reth_node,omitempty"`
     RethNodes        []string                       `json:"reth_nodes,omitempty"`

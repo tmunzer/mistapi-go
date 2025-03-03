@@ -39,7 +39,7 @@ ClaimOrgLicense(
 
 ## Response Type
 
-[`models.ResponseClaimLicense`](../../doc/models/response-claim-license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseClaimLicense](../../doc/models/response-claim-license.md).
 
 ## Example Usage
 
@@ -148,7 +148,7 @@ GetOrgLicencesBySite(
 
 ## Response Type
 
-[`[]models.LicenseUsageOrg`](../../doc/models/license-usage-org.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.LicenseUsageOrg](../../doc/models/license-usage-org.md).
 
 ## Example Usage
 
@@ -217,7 +217,7 @@ GetOrgLicencesSummary(
 
 ## Response Type
 
-[`models.License`](../../doc/models/license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.License](../../doc/models/license.md).
 
 ## Example Usage
 
@@ -465,7 +465,7 @@ GetOrgLicenseAsyncClaimStatus(
 
 ## Response Type
 
-[`models.ResponseAsyncLicense`](../../doc/models/response-async-license.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAsyncLicense](../../doc/models/response-async-license.md).
 
 ## Example Usage
 
@@ -550,7 +550,7 @@ MoveOrDeleteOrgLicenseToAnotherOrg(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

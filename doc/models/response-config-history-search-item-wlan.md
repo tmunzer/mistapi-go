@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Auth` | `string` | Required | - |
 | `Bands` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Ssid` | `string` | Required | - |
 | `VlanIds` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

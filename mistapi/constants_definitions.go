@@ -24,7 +24,7 @@ func NewConstantsDefinitions(baseController baseController) *ConstantsDefinition
 // returns an models.ApiResponse with []models.ConstAlarmDefinition data and
 // an error if there was an issue with the request or response.
 // Get List of brief definitions of all the supported alarm types.
-// The example field contains an example payload as you would recieve in the alarm webhook output.
+// The example field contains an example payload as you would receive in the alarm webhook output.
 // HA cluster node names will be specified in the `node` field, if applicable.'
 func (c *ConstantsDefinitions) ListAlarmDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAlarmDefinition],
@@ -141,7 +141,7 @@ func (c *ConstantsDefinitions) ListApLedDefinition(ctx context.Context) (
 // ListAppCategoryDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAppCategoryDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of definitions of all the supported Application Categories. The example field contains an example payload as you would recieve in the alarm webhook output.
+// Get List of definitions of all the supported Application Categories. The example field contains an example payload as you would receive in the alarm webhook output.
 func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAppCategoryDefinition],
     error) {
@@ -178,7 +178,7 @@ func (c *ConstantsDefinitions) ListAppCategoryDefinitions(ctx context.Context) (
 // ListAppSubCategoryDefinitions takes context as parameters and
 // returns an models.ApiResponse with []models.ConstAppSubcategoryDefinition data and
 // an error if there was an issue with the request or response.
-// Get List of definitions of all the supported Application sub-categories. The example field contains an example payload as you would recieve in the alarm webhook output.
+// Get List of definitions of all the supported Application sub-categories. The example field contains an example payload as you would receive in the alarm webhook output.
 func (c *ConstantsDefinitions) ListAppSubCategoryDefinitions(ctx context.Context) (
     models.ApiResponse[[]models.ConstAppSubcategoryDefinition],
     error) {
@@ -288,6 +288,48 @@ func (c *ConstantsDefinitions) ListCountryCodes(
     }
     
     result, err = utilities.DecodeResults[[]models.ConstCountry](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// ListFingerprintTypes takes context as parameters and
+// returns an models.ApiResponse with models.ConstFingerprintTypes data and
+// an error if there was an issue with the request or response.
+// Get List of supported fingerprint attribute values
+// * family
+// * model
+// * mfg
+// * os_type
+// This information can be used in the [Mist NAC Rules]($h/Orgs%20NAC%20Rules/_overview) `matching` attribute.
+func (c *ConstantsDefinitions) ListFingerprintTypes(ctx context.Context) (
+    models.ApiResponse[models.ConstFingerprintTypes],
+    error) {
+    req := c.prepareRequest(ctx, "GET", "/api/v1/const/fingerprint_types")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    var result models.ConstFingerprintTypes
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ConstFingerprintTypes](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

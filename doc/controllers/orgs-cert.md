@@ -36,7 +36,7 @@ ClearOrgCertificates(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -84,7 +84,7 @@ GetOrgCertificates(
 
 ## Response Type
 
-[`models.ResponseCertificate`](../../doc/models/response-certificate.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCertificate](../../doc/models/response-certificate.md).
 
 ## Example Usage
 
@@ -142,7 +142,7 @@ GetOrgSslProxyCert(
 
 ## Response Type
 
-[`models.OrgSslProxyCert`](../../doc/models/org-ssl-proxy-cert.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSslProxyCert](../../doc/models/org-ssl-proxy-cert.md).
 
 ## Example Usage
 
@@ -202,7 +202,7 @@ TruncateOrgCrlFile(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

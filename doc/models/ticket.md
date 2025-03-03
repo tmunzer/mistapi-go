@@ -16,7 +16,7 @@ Support Ticket
 | `CaseNumber` | `*string` | Optional | - |
 | `Comments` | [`[]models.TicketComment`](../../doc/models/ticket-comment.md) | Optional | - |
 | `CreatedAt` | `*int` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Requester` | `*string` | Optional | - |
 | `RequesterEmail` | `*string` | Optional | Email of the requester |
 | `Status` | [`*models.TicketStatusEnum`](../../doc/models/ticket-status-enum.md) | Optional | Ticket status. enum:<br><br>* open: ticket is open, Mist is working on it<br>* pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)<br>* solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)<br>* closed: ticket is archived and cannot be changed. |

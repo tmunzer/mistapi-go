@@ -53,7 +53,7 @@ CountSiteSwOrGwPorts(
     duration *string,
     limit *int,
     page *int) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -96,7 +96,7 @@ CountSiteSwOrGwPorts(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -215,6 +215,7 @@ SearchSiteSwOrGwPorts(
     ctx context.Context,
     siteId uuid.UUID,
     fullDuplex *bool,
+    disabled *bool,
     mac *string,
     deviceType *models.SearchSiteSwOrGwPortsDeviceTypeEnum,
     neighborMac *string,
@@ -266,6 +267,7 @@ SearchSiteSwOrGwPorts(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
+| `disabled` | `*bool` | Query, Optional | Indicates if interface is disabled |
 | `mac` | `*string` | Query, Optional | Device identifier |
 | `deviceType` | [`*models.SearchSiteSwOrGwPortsDeviceTypeEnum`](../../doc/models/search-site-sw-or-gw-ports-device-type-enum.md) | Query, Optional | Device type |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
@@ -310,7 +312,7 @@ SearchSiteSwOrGwPorts(
 
 ## Response Type
 
-[`models.ResponseSwitchPortSearch`](../../doc/models/response-switch-port-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSwitchPortSearch](../../doc/models/response-switch-port-search.md).
 
 ## Example Usage
 
@@ -318,6 +320,8 @@ SearchSiteSwOrGwPorts(
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
 
 
 
@@ -403,7 +407,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

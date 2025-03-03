@@ -23,9 +23,11 @@ type ApPortConfig struct {
     MxTunnelId           *uuid.UUID                       `json:"mx_tunnel_id,omitempty"`
     // If `forwarding`==`site_mxedge`, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     MxtunnelName         *string                          `json:"mxtunnel_name,omitempty"`
+    // for Q-in-Q configuration
+    OuterVlanId          *int                             `json:"outer_vlan_id,omitempty"`
     // When doing port auth. enum: `dot1x`, `none`
     PortAuth             *ApPortConfigPortAuthEnum        `json:"port_auth,omitempty"`
-    // If `forwrding`==`limited`
+    // If `forwarding`==`limited`
     PortVlanId           *int                             `json:"port_vlan_id,omitempty"`
     // Junos Radius config
     RadiusConfig         *RadiusConfig                    `json:"radius_config,omitempty"`
@@ -35,8 +37,8 @@ type ApPortConfig struct {
     // * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
     // * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
     VlanId               *int                             `json:"vlan_id,omitempty"`
-    // If `forwrding`==`limited`
-    VlandIds             []int                            `json:"vland_ids,omitempty"`
+    // If `forwarding`==`limited`
+    VlanIds              []int                            `json:"vlan_ids,omitempty"`
     // If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
     WxtunnelId           *uuid.UUID                       `json:"wxtunnel_id,omitempty"`
     // If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
@@ -48,8 +50,8 @@ type ApPortConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApPortConfig) String() string {
     return fmt.Sprintf(
-    	"ApPortConfig[Disabled=%v, DynamicVlan=%v, EnableMacAuth=%v, Forwarding=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MistNac=%v, MxTunnelId=%v, MxtunnelName=%v, PortAuth=%v, PortVlanId=%v, RadiusConfig=%v, Radsec=%v, VlanId=%v, VlandIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
-    	a.Disabled, a.DynamicVlan, a.EnableMacAuth, a.Forwarding, a.MacAuthPreferred, a.MacAuthProtocol, a.MistNac, a.MxTunnelId, a.MxtunnelName, a.PortAuth, a.PortVlanId, a.RadiusConfig, a.Radsec, a.VlanId, a.VlandIds, a.WxtunnelId, a.WxtunnelRemoteId, a.AdditionalProperties)
+    	"ApPortConfig[Disabled=%v, DynamicVlan=%v, EnableMacAuth=%v, Forwarding=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MistNac=%v, MxTunnelId=%v, MxtunnelName=%v, OuterVlanId=%v, PortAuth=%v, PortVlanId=%v, RadiusConfig=%v, Radsec=%v, VlanId=%v, VlanIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
+    	a.Disabled, a.DynamicVlan, a.EnableMacAuth, a.Forwarding, a.MacAuthPreferred, a.MacAuthProtocol, a.MistNac, a.MxTunnelId, a.MxtunnelName, a.OuterVlanId, a.PortAuth, a.PortVlanId, a.RadiusConfig, a.Radsec, a.VlanId, a.VlanIds, a.WxtunnelId, a.WxtunnelRemoteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApPortConfig.
@@ -58,7 +60,7 @@ func (a ApPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
+        "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "outer_vlan_id", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vlan_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -95,6 +97,9 @@ func (a ApPortConfig) toMap() map[string]any {
     if a.MxtunnelName != nil {
         structMap["mxtunnel_name"] = a.MxtunnelName
     }
+    if a.OuterVlanId != nil {
+        structMap["outer_vlan_id"] = a.OuterVlanId
+    }
     if a.PortAuth != nil {
         structMap["port_auth"] = a.PortAuth
     }
@@ -110,8 +115,8 @@ func (a ApPortConfig) toMap() map[string]any {
     if a.VlanId != nil {
         structMap["vlan_id"] = a.VlanId
     }
-    if a.VlandIds != nil {
-        structMap["vland_ids"] = a.VlandIds
+    if a.VlanIds != nil {
+        structMap["vlan_ids"] = a.VlanIds
     }
     if a.WxtunnelId != nil {
         structMap["wxtunnel_id"] = a.WxtunnelId
@@ -130,7 +135,7 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vland_ids", "wxtunnel_id", "wxtunnel_remote_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "dynamic_vlan", "enable_mac_auth", "forwarding", "mac_auth_preferred", "mac_auth_protocol", "mist_nac", "mx_tunnel_id", "mxtunnel_name", "outer_vlan_id", "port_auth", "port_vlan_id", "radius_config", "radsec", "vlan_id", "vlan_ids", "wxtunnel_id", "wxtunnel_remote_id")
     if err != nil {
     	return err
     }
@@ -145,12 +150,13 @@ func (a *ApPortConfig) UnmarshalJSON(input []byte) error {
     a.MistNac = temp.MistNac
     a.MxTunnelId = temp.MxTunnelId
     a.MxtunnelName = temp.MxtunnelName
+    a.OuterVlanId = temp.OuterVlanId
     a.PortAuth = temp.PortAuth
     a.PortVlanId = temp.PortVlanId
     a.RadiusConfig = temp.RadiusConfig
     a.Radsec = temp.Radsec
     a.VlanId = temp.VlanId
-    a.VlandIds = temp.VlandIds
+    a.VlanIds = temp.VlanIds
     a.WxtunnelId = temp.WxtunnelId
     a.WxtunnelRemoteId = temp.WxtunnelRemoteId
     return nil
@@ -167,12 +173,13 @@ type tempApPortConfig  struct {
     MistNac          *WlanMistNac                     `json:"mist_nac,omitempty"`
     MxTunnelId       *uuid.UUID                       `json:"mx_tunnel_id,omitempty"`
     MxtunnelName     *string                          `json:"mxtunnel_name,omitempty"`
+    OuterVlanId      *int                             `json:"outer_vlan_id,omitempty"`
     PortAuth         *ApPortConfigPortAuthEnum        `json:"port_auth,omitempty"`
     PortVlanId       *int                             `json:"port_vlan_id,omitempty"`
     RadiusConfig     *RadiusConfig                    `json:"radius_config,omitempty"`
     Radsec           *Radsec                          `json:"radsec,omitempty"`
     VlanId           *int                             `json:"vlan_id,omitempty"`
-    VlandIds         []int                            `json:"vland_ids,omitempty"`
+    VlanIds          []int                            `json:"vlan_ids,omitempty"`
     WxtunnelId       *uuid.UUID                       `json:"wxtunnel_id,omitempty"`
     WxtunnelRemoteId *string                          `json:"wxtunnel_remote_id,omitempty"`
 }

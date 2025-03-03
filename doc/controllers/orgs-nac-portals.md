@@ -19,7 +19,7 @@ orgsNACPortals := client.OrgsNACPortals()
 * [List Org Nac Portal Sso Latest Failures](../../doc/controllers/orgs-nac-portals.md#list-org-nac-portal-sso-latest-failures)
 * [List Org Nac Portals](../../doc/controllers/orgs-nac-portals.md#list-org-nac-portals)
 * [Update Org Nac Portal](../../doc/controllers/orgs-nac-portals.md#update-org-nac-portal)
-* [Update Org Nac Portal Tempalte](../../doc/controllers/orgs-nac-portals.md#update-org-nac-portal-tempalte)
+* [Update Org Nac Portal Template](../../doc/controllers/orgs-nac-portals.md#update-org-nac-portal-template)
 * [Upload Org Nac Portal Image](../../doc/controllers/orgs-nac-portals.md#upload-org-nac-portal-image)
 
 
@@ -45,7 +45,7 @@ CreateOrgNacPortal(
 
 ## Response Type
 
-[`models.NacPortal`](../../doc/models/nac-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacPortal](../../doc/models/nac-portal.md).
 
 ## Example Usage
 
@@ -133,7 +133,7 @@ DeleteOrgNacPortal(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -187,7 +187,7 @@ DeleteOrgNacPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -219,7 +219,7 @@ if err != nil {
 
 # Download Org Nac Portal Saml Metadata
 
-Download Org NAC Portal SAML Metdata
+Download Org NAC Portal SAML Metadata
 
 Example of metadata.xml:
 
@@ -257,7 +257,7 @@ DownloadOrgNacPortalSamlMetadata(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -311,7 +311,7 @@ GetOrgNacPortal(
 
 ## Response Type
 
-[`models.NacPortal`](../../doc/models/nac-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacPortal](../../doc/models/nac-portal.md).
 
 ## Example Usage
 
@@ -393,7 +393,7 @@ GetOrgNacPortalSamlMetadata(
 
 ## Response Type
 
-[`models.SamlMetadata`](../../doc/models/saml-metadata.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SamlMetadata](../../doc/models/saml-metadata.md).
 
 ## Example Usage
 
@@ -468,7 +468,7 @@ ListOrgNacPortalSsoLatestFailures(
 
 ## Response Type
 
-[`models.ResponseSsoFailureSearch`](../../doc/models/response-sso-failure-search.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsoFailureSearch](../../doc/models/response-sso-failure-search.md).
 
 ## Example Usage
 
@@ -548,7 +548,7 @@ ListOrgNacPortals(
 
 ## Response Type
 
-[`[]models.NacPortal`](../../doc/models/nac-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.NacPortal](../../doc/models/nac-portal.md).
 
 ## Example Usage
 
@@ -636,7 +636,7 @@ UpdateOrgNacPortal(
 
 ## Response Type
 
-[`models.NacPortal`](../../doc/models/nac-portal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacPortal](../../doc/models/nac-portal.md).
 
 ## Example Usage
 
@@ -704,12 +704,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Org Nac Portal Tempalte
+# Update Org Nac Portal Template
 
 Update Org NAC Portal Template
 
 ```go
-UpdateOrgNacPortalTempalte(
+UpdateOrgNacPortalTemplate(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID,
@@ -728,7 +728,7 @@ UpdateOrgNacPortalTempalte(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -745,7 +745,7 @@ body := models.NacPortalTemplate{
     PoweredBy:            models.ToPointer(false),
 }
 
-resp, err := orgsNACPortals.UpdateOrgNacPortalTempalte(ctx, orgId, nacportalId, &body)
+resp, err := orgsNACPortals.UpdateOrgNacPortalTemplate(ctx, orgId, nacportalId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -790,7 +790,7 @@ UploadOrgNacPortalImage(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

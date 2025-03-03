@@ -29,7 +29,7 @@ GetSiteLicenseUsage(
 
 ## Response Type
 
-[`models.LicenseUsageSite`](../../doc/models/license-usage-site.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.LicenseUsageSite](../../doc/models/license-usage-site.md).
 
 ## Example Usage
 

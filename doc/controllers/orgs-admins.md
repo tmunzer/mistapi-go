@@ -40,7 +40,7 @@ InviteOrgAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -111,7 +111,7 @@ ListOrgAdmins(
 
 ## Response Type
 
-[`[]models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -194,7 +194,7 @@ RevokeOrgAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -246,7 +246,7 @@ UninviteOrgAdmin(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -300,7 +300,7 @@ UpdateOrgAdmin(
 
 ## Response Type
 
-[`models.Admin`](../../doc/models/admin.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.Admin](../../doc/models/admin.md).
 
 ## Example Usage
 
@@ -416,7 +416,7 @@ UpdateOrgAdminInvite(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 

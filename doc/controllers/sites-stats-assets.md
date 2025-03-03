@@ -28,7 +28,7 @@ CountSiteAssets(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteAssetsCountDistinctEnum) (
-    models.ApiResponse[models.RepsonseCount],
+    models.ApiResponse[models.ResponseCount],
     error)
 ```
 
@@ -41,7 +41,7 @@ CountSiteAssets(
 
 ## Response Type
 
-[`models.RepsonseCount`](../../doc/models/repsonse-count.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
 
 ## Example Usage
 
@@ -117,7 +117,7 @@ GetSiteAssetStats(
 
 ## Response Type
 
-[`models.StatsAsset`](../../doc/models/stats-asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.StatsAsset](../../doc/models/stats-asset.md).
 
 ## Example Usage
 
@@ -215,7 +215,7 @@ GetSiteAssetsOfInterest(
 
 ## Response Type
 
-[`[]models.AssetOfInterest`](../../doc/models/asset-of-interest.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.AssetOfInterest](../../doc/models/asset-of-interest.md).
 
 ## Example Usage
 
@@ -298,7 +298,7 @@ GetSiteDiscoveredAssetByMap(
 
 ## Response Type
 
-[`[]models.StatsAsset`](../../doc/models/stats-asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsAsset](../../doc/models/stats-asset.md).
 
 ## Example Usage
 
@@ -360,7 +360,7 @@ ListSiteAssetsStats(
 
 ## Response Type
 
-[`[]models.StatsAsset`](../../doc/models/stats-asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.StatsAsset](../../doc/models/stats-asset.md).
 
 ## Example Usage
 
@@ -464,7 +464,7 @@ ListSiteDiscoveredAssets(
 
 ## Response Type
 
-[`[]models.Asset`](../../doc/models/asset.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.Asset](../../doc/models/asset.md).
 
 ## Example Usage
 
@@ -560,7 +560,7 @@ SearchSiteAssets(
 
 ## Response Type
 
-[`models.ResponseStatsAssets`](../../doc/models/response-stats-assets.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseStatsAssets](../../doc/models/response-stats-assets.md).
 
 ## Example Usage
 

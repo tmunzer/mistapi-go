@@ -32,8 +32,8 @@ GetMspSle(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See /api/v1/const/insight_metrics for available metrics |
-| `sle` | `*string` | Query, Optional | See /api/v1/const/insight_metrics for more details |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
+| `sle` | `*string` | Query, Optional | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for more details |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -41,7 +41,7 @@ GetMspSle(
 
 ## Response Type
 
-[`models.InsightMetrics`](../../doc/models/insight-metrics.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.InsightMetrics](../../doc/models/insight-metrics.md).
 
 ## Example Usage
 

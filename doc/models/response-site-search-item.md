@@ -15,7 +15,7 @@
 | `AutoUpgradeVersion` | `string` | Required | - |
 | `CountryCode` | `*string` | Required | - |
 | `HoneypotEnabled` | `bool` | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Name` | `string` | Required | - |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |

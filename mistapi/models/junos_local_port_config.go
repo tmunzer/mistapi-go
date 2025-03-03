@@ -11,83 +11,83 @@ import (
 // Switch port config
 type JunosLocalPortConfig struct {
     // Only if `mode`==`trunk` whether to trunk all network/vlans
-    AllNetworks                             *bool                                    `json:"all_networks,omitempty"`
+    AllNetworks                              *bool                                    `json:"all_networks,omitempty"`
     // If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port.
-    AllowDhcpd                              *bool                                    `json:"allow_dhcpd,omitempty"`
-    AllowMultipleSupplicants                *bool                                    `json:"allow_multiple_supplicants,omitempty"`
+    AllowDhcpd                               *bool                                    `json:"allow_dhcpd,omitempty"`
+    AllowMultipleSupplicants                 *bool                                    `json:"allow_multiple_supplicants,omitempty"`
     // Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down
-    BypassAuthWhenServerDown                *bool                                    `json:"bypass_auth_when_server_down,omitempty"`
+    BypassAuthWhenServerDown                 *bool                                    `json:"bypass_auth_when_server_down,omitempty"`
     // Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down
-    BypassAuthWhenServerDownForUnkownClient *bool                                    `json:"bypass_auth_when_server_down_for_unkown_client,omitempty"`
-    Description                             *string                                  `json:"description,omitempty"`
+    BypassAuthWhenServerDownForUnknownClient *bool                                    `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
+    Description                              *string                                  `json:"description,omitempty"`
     // Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation
-    DisableAutoneg                          *bool                                    `json:"disable_autoneg,omitempty"`
+    DisableAutoneg                           *bool                                    `json:"disable_autoneg,omitempty"`
     // Whether the port is disabled
-    Disabled                                *bool                                    `json:"disabled,omitempty"`
+    Disabled                                 *bool                                    `json:"disabled,omitempty"`
     // link connection mode. enum: `auto`, `full`, `half`
-    Duplex                                  *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
+    Duplex                                   *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
     // Only if `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
-    DynamicVlanNetworks                     []string                                 `json:"dynamic_vlan_networks,omitempty"`
+    DynamicVlanNetworks                      []string                                 `json:"dynamic_vlan_networks,omitempty"`
     // Only if `port_auth`==`dot1x` whether to enable MAC Auth
-    EnableMacAuth                           *bool                                    `json:"enable_mac_auth,omitempty"`
-    EnableQos                               *bool                                    `json:"enable_qos,omitempty"`
+    EnableMacAuth                            *bool                                    `json:"enable_mac_auth,omitempty"`
+    EnableQos                                *bool                                    `json:"enable_qos,omitempty"`
     // Only if `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
-    GuestNetwork                            Optional[string]                         `json:"guest_network"`
+    GuestNetwork                             Optional[string]                         `json:"guest_network"`
     // inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
-    InterSwitchLink                         *bool                                    `json:"inter_switch_link,omitempty"`
+    InterSwitchLink                          *bool                                    `json:"inter_switch_link,omitempty"`
     // Only if `enable_mac_auth`==`true`
-    MacAuthOnly                             *bool                                    `json:"mac_auth_only,omitempty"`
+    MacAuthOnly                              *bool                                    `json:"mac_auth_only,omitempty"`
     // Only if `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x.
-    MacAuthPreferred                        *bool                                    `json:"mac_auth_preferred,omitempty"`
+    MacAuthPreferred                         *bool                                    `json:"mac_auth_preferred,omitempty"`
     // Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
-    MacAuthProtocol                         *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
+    MacAuthProtocol                          *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
     // Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
-    MacLimit                                *int                                     `json:"mac_limit,omitempty"`
+    MacLimit                                 *int                                     `json:"mac_limit,omitempty"`
     // enum: `access`, `inet`, `trunk`
-    Mode                                    *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
+    Mode                                     *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
     // Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
-    Mtu                                     *int                                     `json:"mtu,omitempty"`
+    Mtu                                      *int                                     `json:"mtu,omitempty"`
     // Only if `mode`==`trunk`, the list of network/vlans
-    Networks                                []string                                 `json:"networks,omitempty"`
+    Networks                                 []string                                 `json:"networks,omitempty"`
     // Additional note for the port config override
-    Note                                    *string                                  `json:"note,omitempty"`
+    Note                                     *string                                  `json:"note,omitempty"`
     // Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
-    PersistMac                              *bool                                    `json:"persist_mac,omitempty"`
+    PersistMac                               *bool                                    `json:"persist_mac,omitempty"`
     // Whether PoE capabilities are disabled for a port
-    PoeDisabled                             *bool                                    `json:"poe_disabled,omitempty"`
+    PoeDisabled                              *bool                                    `json:"poe_disabled,omitempty"`
     // if dot1x is desired, set to dot1x. enum: `dot1x`
-    PortAuth                                Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
+    PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
     // Native network/vlan for untagged traffic
-    PortNetwork                             *string                                  `json:"port_network,omitempty"`
+    PortNetwork                              *string                                  `json:"port_network,omitempty"`
     // Only if `port_auth`=`dot1x` reauthentication interval range
-    ReauthInterval                          *int                                     `json:"reauth_interval,omitempty"`
+    ReauthInterval                           *int                                     `json:"reauth_interval,omitempty"`
     // Only if `port_auth`==`dot1x` sets server fail fallback vlan
-    ServerFailNetwork                       Optional[string]                         `json:"server_fail_network"`
+    ServerFailNetwork                        Optional[string]                         `json:"server_fail_network"`
     // Only if `port_auth`==`dot1x` when radius server reject / fails
-    ServerRejectNetwork                     Optional[string]                         `json:"server_reject_network"`
+    ServerRejectNetwork                      Optional[string]                         `json:"server_reject_network"`
     // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
-    Speed                                   *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`
+    Speed                                    *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`
     // Switch storm control
-    StormControl                            *SwitchPortLocalUsageStormControl        `json:"storm_control,omitempty"`
+    StormControl                             *SwitchPortLocalUsageStormControl        `json:"storm_control,omitempty"`
     // When enabled, the port is not expected to receive BPDU frames
-    StpEdge                                 *bool                                    `json:"stp_edge,omitempty"`
-    StpNoRootPort                           *bool                                    `json:"stp_no_root_port,omitempty"`
-    StpP2p                                  *bool                                    `json:"stp_p2p,omitempty"`
+    StpEdge                                  *bool                                    `json:"stp_edge,omitempty"`
+    StpNoRootPort                            *bool                                    `json:"stp_no_root_port,omitempty"`
+    StpP2p                                   *bool                                    `json:"stp_p2p,omitempty"`
     // Port usage name.
-    Usage                                   string                                   `json:"usage"`
+    Usage                                    string                                   `json:"usage"`
     // If this is connected to a vstp network
-    UseVstp                                 *bool                                    `json:"use_vstp,omitempty"`
+    UseVstp                                  *bool                                    `json:"use_vstp,omitempty"`
     // Network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
-    VoipNetwork                             *string                                  `json:"voip_network,omitempty"`
-    AdditionalProperties                    map[string]interface{}                   `json:"_"`
+    VoipNetwork                              *string                                  `json:"voip_network,omitempty"`
+    AdditionalProperties                     map[string]interface{}                   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for JunosLocalPortConfig,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JunosLocalPortConfig) String() string {
     return fmt.Sprintf(
-    	"JunosLocalPortConfig[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnkownClient=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, Note=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, Usage=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
-    	j.AllNetworks, j.AllowDhcpd, j.AllowMultipleSupplicants, j.BypassAuthWhenServerDown, j.BypassAuthWhenServerDownForUnkownClient, j.Description, j.DisableAutoneg, j.Disabled, j.Duplex, j.DynamicVlanNetworks, j.EnableMacAuth, j.EnableQos, j.GuestNetwork, j.InterSwitchLink, j.MacAuthOnly, j.MacAuthPreferred, j.MacAuthProtocol, j.MacLimit, j.Mode, j.Mtu, j.Networks, j.Note, j.PersistMac, j.PoeDisabled, j.PortAuth, j.PortNetwork, j.ReauthInterval, j.ServerFailNetwork, j.ServerRejectNetwork, j.Speed, j.StormControl, j.StpEdge, j.StpNoRootPort, j.StpP2p, j.Usage, j.UseVstp, j.VoipNetwork, j.AdditionalProperties)
+    	"JunosLocalPortConfig[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnknownClient=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, Note=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, Usage=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
+    	j.AllNetworks, j.AllowDhcpd, j.AllowMultipleSupplicants, j.BypassAuthWhenServerDown, j.BypassAuthWhenServerDownForUnknownClient, j.Description, j.DisableAutoneg, j.Disabled, j.Duplex, j.DynamicVlanNetworks, j.EnableMacAuth, j.EnableQos, j.GuestNetwork, j.InterSwitchLink, j.MacAuthOnly, j.MacAuthPreferred, j.MacAuthProtocol, j.MacLimit, j.Mode, j.Mtu, j.Networks, j.Note, j.PersistMac, j.PoeDisabled, j.PortAuth, j.PortNetwork, j.ReauthInterval, j.ServerFailNetwork, j.ServerRejectNetwork, j.Speed, j.StormControl, j.StpEdge, j.StpNoRootPort, j.StpP2p, j.Usage, j.UseVstp, j.VoipNetwork, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosLocalPortConfig.
@@ -96,7 +96,7 @@ func (j JunosLocalPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(j.AdditionalProperties,
-        "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkown_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network"); err != nil {
+        "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(j.toMap())
@@ -118,8 +118,8 @@ func (j JunosLocalPortConfig) toMap() map[string]any {
     if j.BypassAuthWhenServerDown != nil {
         structMap["bypass_auth_when_server_down"] = j.BypassAuthWhenServerDown
     }
-    if j.BypassAuthWhenServerDownForUnkownClient != nil {
-        structMap["bypass_auth_when_server_down_for_unkown_client"] = j.BypassAuthWhenServerDownForUnkownClient
+    if j.BypassAuthWhenServerDownForUnknownClient != nil {
+        structMap["bypass_auth_when_server_down_for_unknown_client"] = j.BypassAuthWhenServerDownForUnknownClient
     }
     if j.Description != nil {
         structMap["description"] = j.Description
@@ -246,7 +246,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unkown_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "note", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "usage", "use_vstp", "voip_network")
     if err != nil {
     	return err
     }
@@ -256,7 +256,7 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
     j.AllowDhcpd = temp.AllowDhcpd
     j.AllowMultipleSupplicants = temp.AllowMultipleSupplicants
     j.BypassAuthWhenServerDown = temp.BypassAuthWhenServerDown
-    j.BypassAuthWhenServerDownForUnkownClient = temp.BypassAuthWhenServerDownForUnkownClient
+    j.BypassAuthWhenServerDownForUnknownClient = temp.BypassAuthWhenServerDownForUnknownClient
     j.Description = temp.Description
     j.DisableAutoneg = temp.DisableAutoneg
     j.Disabled = temp.Disabled
@@ -294,43 +294,43 @@ func (j *JunosLocalPortConfig) UnmarshalJSON(input []byte) error {
 
 // tempJunosLocalPortConfig is a temporary struct used for validating the fields of JunosLocalPortConfig.
 type tempJunosLocalPortConfig  struct {
-    AllNetworks                             *bool                                    `json:"all_networks,omitempty"`
-    AllowDhcpd                              *bool                                    `json:"allow_dhcpd,omitempty"`
-    AllowMultipleSupplicants                *bool                                    `json:"allow_multiple_supplicants,omitempty"`
-    BypassAuthWhenServerDown                *bool                                    `json:"bypass_auth_when_server_down,omitempty"`
-    BypassAuthWhenServerDownForUnkownClient *bool                                    `json:"bypass_auth_when_server_down_for_unkown_client,omitempty"`
-    Description                             *string                                  `json:"description,omitempty"`
-    DisableAutoneg                          *bool                                    `json:"disable_autoneg,omitempty"`
-    Disabled                                *bool                                    `json:"disabled,omitempty"`
-    Duplex                                  *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
-    DynamicVlanNetworks                     []string                                 `json:"dynamic_vlan_networks,omitempty"`
-    EnableMacAuth                           *bool                                    `json:"enable_mac_auth,omitempty"`
-    EnableQos                               *bool                                    `json:"enable_qos,omitempty"`
-    GuestNetwork                            Optional[string]                         `json:"guest_network"`
-    InterSwitchLink                         *bool                                    `json:"inter_switch_link,omitempty"`
-    MacAuthOnly                             *bool                                    `json:"mac_auth_only,omitempty"`
-    MacAuthPreferred                        *bool                                    `json:"mac_auth_preferred,omitempty"`
-    MacAuthProtocol                         *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
-    MacLimit                                *int                                     `json:"mac_limit,omitempty"`
-    Mode                                    *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
-    Mtu                                     *int                                     `json:"mtu,omitempty"`
-    Networks                                []string                                 `json:"networks,omitempty"`
-    Note                                    *string                                  `json:"note,omitempty"`
-    PersistMac                              *bool                                    `json:"persist_mac,omitempty"`
-    PoeDisabled                             *bool                                    `json:"poe_disabled,omitempty"`
-    PortAuth                                Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
-    PortNetwork                             *string                                  `json:"port_network,omitempty"`
-    ReauthInterval                          *int                                     `json:"reauth_interval,omitempty"`
-    ServerFailNetwork                       Optional[string]                         `json:"server_fail_network"`
-    ServerRejectNetwork                     Optional[string]                         `json:"server_reject_network"`
-    Speed                                   *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`
-    StormControl                            *SwitchPortLocalUsageStormControl        `json:"storm_control,omitempty"`
-    StpEdge                                 *bool                                    `json:"stp_edge,omitempty"`
-    StpNoRootPort                           *bool                                    `json:"stp_no_root_port,omitempty"`
-    StpP2p                                  *bool                                    `json:"stp_p2p,omitempty"`
-    Usage                                   *string                                  `json:"usage"`
-    UseVstp                                 *bool                                    `json:"use_vstp,omitempty"`
-    VoipNetwork                             *string                                  `json:"voip_network,omitempty"`
+    AllNetworks                              *bool                                    `json:"all_networks,omitempty"`
+    AllowDhcpd                               *bool                                    `json:"allow_dhcpd,omitempty"`
+    AllowMultipleSupplicants                 *bool                                    `json:"allow_multiple_supplicants,omitempty"`
+    BypassAuthWhenServerDown                 *bool                                    `json:"bypass_auth_when_server_down,omitempty"`
+    BypassAuthWhenServerDownForUnknownClient *bool                                    `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
+    Description                              *string                                  `json:"description,omitempty"`
+    DisableAutoneg                           *bool                                    `json:"disable_autoneg,omitempty"`
+    Disabled                                 *bool                                    `json:"disabled,omitempty"`
+    Duplex                                   *SwitchPortLocalUsageDuplexEnum          `json:"duplex,omitempty"`
+    DynamicVlanNetworks                      []string                                 `json:"dynamic_vlan_networks,omitempty"`
+    EnableMacAuth                            *bool                                    `json:"enable_mac_auth,omitempty"`
+    EnableQos                                *bool                                    `json:"enable_qos,omitempty"`
+    GuestNetwork                             Optional[string]                         `json:"guest_network"`
+    InterSwitchLink                          *bool                                    `json:"inter_switch_link,omitempty"`
+    MacAuthOnly                              *bool                                    `json:"mac_auth_only,omitempty"`
+    MacAuthPreferred                         *bool                                    `json:"mac_auth_preferred,omitempty"`
+    MacAuthProtocol                          *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
+    MacLimit                                 *int                                     `json:"mac_limit,omitempty"`
+    Mode                                     *SwitchPortLocalUsageModeEnum            `json:"mode,omitempty"`
+    Mtu                                      *int                                     `json:"mtu,omitempty"`
+    Networks                                 []string                                 `json:"networks,omitempty"`
+    Note                                     *string                                  `json:"note,omitempty"`
+    PersistMac                               *bool                                    `json:"persist_mac,omitempty"`
+    PoeDisabled                              *bool                                    `json:"poe_disabled,omitempty"`
+    PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
+    PortNetwork                              *string                                  `json:"port_network,omitempty"`
+    ReauthInterval                           *int                                     `json:"reauth_interval,omitempty"`
+    ServerFailNetwork                        Optional[string]                         `json:"server_fail_network"`
+    ServerRejectNetwork                      Optional[string]                         `json:"server_reject_network"`
+    Speed                                    *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`
+    StormControl                             *SwitchPortLocalUsageStormControl        `json:"storm_control,omitempty"`
+    StpEdge                                  *bool                                    `json:"stp_edge,omitempty"`
+    StpNoRootPort                            *bool                                    `json:"stp_no_root_port,omitempty"`
+    StpP2p                                   *bool                                    `json:"stp_p2p,omitempty"`
+    Usage                                    *string                                  `json:"usage"`
+    UseVstp                                  *bool                                    `json:"use_vstp,omitempty"`
+    VoipNetwork                              *string                                  `json:"voip_network,omitempty"`
 }
 
 func (j *tempJunosLocalPortConfig) validate() error {

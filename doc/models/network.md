@@ -17,7 +17,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | `DisallowMistServices` | `*bool` | Optional | Whether to disallow Mist Devices in the network<br>**Default**: `false` |
 | `Gateway` | `*string` | Optional | - |
 | `Gateway6` | `*string` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `InternalAccess` | [`*models.NetworkInternalAccess`](../../doc/models/network-internal-access.md) | Optional | - |
 | `InternetAccess` | [`*models.NetworkInternetAccess`](../../doc/models/network-internet-access.md) | Optional | Whether this network has direct internet access |
 | `Isolation` | `*bool` | Optional | Whether to allow clients in the network to talk to each other |

@@ -85,6 +85,10 @@ Portal template wlan settings
 | `Logo` | `models.Optional[string]` | Optional | Custom logo with `data:image/png;base64,` format, default null, uses Juniper Mist Logo. File size must be less than 100kB and image dimensions must be less than 500px x 200px (width x height). |
 | `LogoHeight` | `*int` | Optional | Height of the logo, in px<br>**Constraints**: `>= 0`, `<= 200` |
 | `LogoWidth` | `*int` | Optional | Width of the logo, in px<br>**Constraints**: `>= 0`, `<= 500` |
+| `MarketingPolicyLink` | `*string` | Optional | label of the link to go to /marketing_policy<br>**Default**: `"Marketing Policy"` |
+| `MarketingPolicyOptIn` | `*bool` | Optional | hether marketing policy optin is enabled<br>**Default**: `false` |
+| `MarketingPolicyOptInLabel` | `*string` | Optional | label for marketing optin<br>**Default**: `"I wish to receive Marketing notifications"` |
+| `MarketingPolicyOptInText` | `*string` | Optional | marketing policy text<br>**Default**: `"Marketing policy content"` |
 | `Message` | `*string` | Optional | **Default**: `"Sign in to get online"` |
 | `MsMY` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `MultiAuth` | `*bool` | Optional | **Default**: `false` |
@@ -116,7 +120,7 @@ Portal template wlan settings
 | `ResponsiveLayout` | `*bool` | Optional | **Default**: `true` |
 | `RoRO` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `RuRU` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
-| `SignInLabel` | `*string` | Optional | Label of the button to /signin<br>**Default**: `"Sign In"` |
+| `SignInLabel` | `*string` | Optional | Label of the button to signin<br>**Default**: `"Sign In"` |
 | `SkSK` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `SmsCarrierDefault` | `*string` | Optional | **Default**: `"Please Select"` |
 | `SmsCarrierError` | `*string` | Optional | **Default**: `"Please select a mobile carrier"` |
@@ -225,6 +229,10 @@ Portal template wlan settings
   "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZg…",
   "logoHeight": 123,
   "logoWidth": 408,
+  "marketingPolicyLink": "Marketing Policy",
+  "marketingPolicyOptIn": false,
+  "marketingPolicyOptInLabel": "I wish to receive Marketing notifications",
+  "marketingPolicyOptInText": "Marketing policy content",
   "message": "Sign in to get online",
   "multiAuth": false,
   "name": false,

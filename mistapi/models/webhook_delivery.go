@@ -10,7 +10,7 @@ import (
 type WebhookDelivery struct {
     // Error message, if there is one
     Error                *string                    `json:"error,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                 `json:"id,omitempty"`
     OrgId                *uuid.UUID                 `json:"org_id,omitempty"`
     // HTTP request headers

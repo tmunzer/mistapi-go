@@ -8,7 +8,7 @@ import (
 // NetworkMulticast represents a NetworkMulticast struct.
 // Whether to enable multicast support (only PIM-sparse mode is supported)
 type NetworkMulticast struct {
-    // If the network will only be the soruce of the multicast traffic, IGMP can be disabled
+    // If the network will only be the source of the multicast traffic, IGMP can be disabled
     DisableIgmp          *bool                            `json:"disable_igmp,omitempty"`
     Enabled              *bool                            `json:"enabled,omitempty"`
     // Group address to RP (rendezvous point) mapping. Property Key is the CIDR (example "225.1.0.3/32")

@@ -15,9 +15,8 @@ type AssetFilter struct {
     Beam                  *int                   `json:"beam,omitempty"`
     // When the object has been created, in epoch
     CreatedTime           *float64               `json:"created_time,omitempty"`
-    Disabled              *bool                  `json:"disabled,omitempty"`
     // Whether the asset filter is disabled
-    Disasbled             *bool                  `json:"disasbled,omitempty"`
+    Disabled              *bool                  `json:"disabled,omitempty"`
     // Eddystone uid namespace used to filter assets
     EddystoneUidNamespace *string                `json:"eddystone_uid_namespace,omitempty"`
     // Eddystone url used to filter assets
@@ -27,7 +26,7 @@ type AssetFilter struct {
     IbeaconMajor          *int                   `json:"ibeacon_major,omitempty"`
     // ibeacon uuid used to filter assets
     IbeaconUuid           *uuid.UUID             `json:"ibeacon_uuid,omitempty"`
-    // Unique ID of the object instance in the Mist Organnization
+    // Unique ID of the object instance in the Mist Organization
     Id                    *uuid.UUID             `json:"id,omitempty"`
     // BLE manufacturing-specific company-id used to filter assets
     MfgCompanyId          *int                   `json:"mfg_company_id,omitempty"`
@@ -46,8 +45,8 @@ type AssetFilter struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AssetFilter) String() string {
     return fmt.Sprintf(
-    	"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, Disasbled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
-    	a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.Disasbled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
+    	"AssetFilter[ApMac=%v, Beam=%v, CreatedTime=%v, Disabled=%v, EddystoneUidNamespace=%v, EddystoneUrl=%v, ForSite=%v, IbeaconMajor=%v, IbeaconUuid=%v, Id=%v, MfgCompanyId=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Rssi=%v, ServiceUuid=%v, SiteId=%v, AdditionalProperties=%v]",
+    	a.ApMac, a.Beam, a.CreatedTime, a.Disabled, a.EddystoneUidNamespace, a.EddystoneUrl, a.ForSite, a.IbeaconMajor, a.IbeaconUuid, a.Id, a.MfgCompanyId, a.ModifiedTime, a.Name, a.OrgId, a.Rssi, a.ServiceUuid, a.SiteId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AssetFilter.
@@ -56,7 +55,7 @@ func (a AssetFilter) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "ap_mac", "beam", "created_time", "disabled", "disasbled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
+        "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -77,9 +76,6 @@ func (a AssetFilter) toMap() map[string]any {
     }
     if a.Disabled != nil {
         structMap["disabled"] = a.Disabled
-    }
-    if a.Disasbled != nil {
-        structMap["disasbled"] = a.Disasbled
     }
     if a.EddystoneUidNamespace != nil {
         structMap["eddystone_uid_namespace"] = a.EddystoneUidNamespace
@@ -133,7 +129,7 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "created_time", "disabled", "disasbled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "beam", "created_time", "disabled", "eddystone_uid_namespace", "eddystone_url", "for_site", "ibeacon_major", "ibeacon_uuid", "id", "mfg_company_id", "modified_time", "name", "org_id", "rssi", "service_uuid", "site_id")
     if err != nil {
     	return err
     }
@@ -143,7 +139,6 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
     a.Beam = temp.Beam
     a.CreatedTime = temp.CreatedTime
     a.Disabled = temp.Disabled
-    a.Disasbled = temp.Disasbled
     a.EddystoneUidNamespace = temp.EddystoneUidNamespace
     a.EddystoneUrl = temp.EddystoneUrl
     a.ForSite = temp.ForSite
@@ -166,7 +161,6 @@ type tempAssetFilter  struct {
     Beam                  *int       `json:"beam,omitempty"`
     CreatedTime           *float64   `json:"created_time,omitempty"`
     Disabled              *bool      `json:"disabled,omitempty"`
-    Disasbled             *bool      `json:"disasbled,omitempty"`
     EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
     EddystoneUrl          *string    `json:"eddystone_url,omitempty"`
     ForSite               *bool      `json:"for_site,omitempty"`

@@ -18,7 +18,7 @@ SSO
 | `DefaultRole` | `*string` | Optional | If `idp_type`==`saml`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `Domain` | `*string` | Optional | Random string generated during the SSO creation and used to generate the SAML URLs:<br><br>* ACS URL = `/api/v1/saml/{domain}/login` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/login`)<br>* Single Logout URL = `/api/v1/saml/{domain}/logout` (e.g. `https://api.mist.com/api/v1/saml/s4t5vwv8/logout`) |
 | `GroupFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of group |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organnization |
+| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `IdpCert` | `*string` | Optional | If `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512` |
 | `IdpSsoUrl` | `*string` | Optional | Required if `idp_type`==`saml`, IDP Single-Sign-On URL |

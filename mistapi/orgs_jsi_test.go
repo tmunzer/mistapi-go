@@ -91,6 +91,6 @@ func TestOrgsJSITestListOrgJsiPastPurchases(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `[{"contract_end_time":1708214400,"contract_id":"68247710","contract_sku":"PAR-SDCE-EX4300T48","contract_start_time":1629331200,"customer_po":"4501942932","distributor":"dist1","eol_time":1671062400,"eos_time":1828828800,"installed_address":"Address","model":"EX4300-48T","order_id":"15909647","reseller":"reseller1","serial":"PE3721050223","sku":"EX4300-48T-AFI","type":"switch","warranty_end_time":2258236800,"warranty_start_time":1619395200,"warranty_type":"Enhanced Hardware Warranty"}]`
+    expected := `[{"eol_time":1671062400,"eos_time":1828828800,"model":"EX4300-48T","serial":"PE3721050223","sku":"EX4300-48T-AFI","type":"switch","warranty_type":"Enhanced Hardware Warranty"}]`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

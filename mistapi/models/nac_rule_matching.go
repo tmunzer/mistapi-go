@@ -10,7 +10,15 @@ import (
 type NacRuleMatching struct {
     // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
     AuthType             *NacAuthTypeEnum              `json:"auth_type,omitempty"`
+    // List of client device families to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed family values
+    Family               []string                      `json:"family,omitempty"`
+    // List of client device models to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed model values
+    Mfg                  []string                      `json:"mfg,omitempty"`
+    // List of client device manufacturers to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed mfg values
+    Model                []string                      `json:"model,omitempty"`
     Nactags              []string                      `json:"nactags,omitempty"`
+    // List of client device os types to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed os_type values
+    OsType               []string                      `json:"os_type,omitempty"`
     PortTypes            []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
     // List of site ids to match
     SiteIds              []uuid.UUID                   `json:"site_ids,omitempty"`
@@ -25,8 +33,8 @@ type NacRuleMatching struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacRuleMatching) String() string {
     return fmt.Sprintf(
-    	"NacRuleMatching[AuthType=%v, Nactags=%v, PortTypes=%v, SiteIds=%v, SitegroupIds=%v, Vendor=%v, AdditionalProperties=%v]",
-    	n.AuthType, n.Nactags, n.PortTypes, n.SiteIds, n.SitegroupIds, n.Vendor, n.AdditionalProperties)
+    	"NacRuleMatching[AuthType=%v, Family=%v, Mfg=%v, Model=%v, Nactags=%v, OsType=%v, PortTypes=%v, SiteIds=%v, SitegroupIds=%v, Vendor=%v, AdditionalProperties=%v]",
+    	n.AuthType, n.Family, n.Mfg, n.Model, n.Nactags, n.OsType, n.PortTypes, n.SiteIds, n.SitegroupIds, n.Vendor, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacRuleMatching.
@@ -35,7 +43,7 @@ func (n NacRuleMatching) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(n.AdditionalProperties,
-        "auth_type", "nactags", "port_types", "site_ids", "sitegroup_ids", "vendor"); err != nil {
+        "auth_type", "family", "mfg", "model", "nactags", "os_type", "port_types", "site_ids", "sitegroup_ids", "vendor"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(n.toMap())
@@ -48,8 +56,20 @@ func (n NacRuleMatching) toMap() map[string]any {
     if n.AuthType != nil {
         structMap["auth_type"] = n.AuthType
     }
+    if n.Family != nil {
+        structMap["family"] = n.Family
+    }
+    if n.Mfg != nil {
+        structMap["mfg"] = n.Mfg
+    }
+    if n.Model != nil {
+        structMap["model"] = n.Model
+    }
     if n.Nactags != nil {
         structMap["nactags"] = n.Nactags
+    }
+    if n.OsType != nil {
+        structMap["os_type"] = n.OsType
     }
     if n.PortTypes != nil {
         structMap["port_types"] = n.PortTypes
@@ -74,14 +94,18 @@ func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_type", "nactags", "port_types", "site_ids", "sitegroup_ids", "vendor")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth_type", "family", "mfg", "model", "nactags", "os_type", "port_types", "site_ids", "sitegroup_ids", "vendor")
     if err != nil {
     	return err
     }
     n.AdditionalProperties = additionalProperties
     
     n.AuthType = temp.AuthType
+    n.Family = temp.Family
+    n.Mfg = temp.Mfg
+    n.Model = temp.Model
     n.Nactags = temp.Nactags
+    n.OsType = temp.OsType
     n.PortTypes = temp.PortTypes
     n.SiteIds = temp.SiteIds
     n.SitegroupIds = temp.SitegroupIds
@@ -92,7 +116,11 @@ func (n *NacRuleMatching) UnmarshalJSON(input []byte) error {
 // tempNacRuleMatching is a temporary struct used for validating the fields of NacRuleMatching.
 type tempNacRuleMatching  struct {
     AuthType     *NacAuthTypeEnum              `json:"auth_type,omitempty"`
+    Family       []string                      `json:"family,omitempty"`
+    Mfg          []string                      `json:"mfg,omitempty"`
+    Model        []string                      `json:"model,omitempty"`
     Nactags      []string                      `json:"nactags,omitempty"`
+    OsType       []string                      `json:"os_type,omitempty"`
     PortTypes    []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
     SiteIds      []uuid.UUID                   `json:"site_ids,omitempty"`
     SitegroupIds []uuid.UUID                   `json:"sitegroup_ids,omitempty"`

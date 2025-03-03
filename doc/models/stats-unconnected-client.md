@@ -18,7 +18,7 @@ Unconnected clients statistics
 | `Mac` | `string` | Required | MAC address of the (unconnected) client |
 | `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the client (if known), or null |
-| `Rssi` | `int` | Required | Client RSSI observered by the AP that heard the client (in dBm) |
+| `Rssi` | `int` | Required | Client RSSI observed by the AP that heard the client (in dBm) |
 | `X` | `*float64` | Optional | X (in pixels) of user location on the map (if known) |
 | `Y` | `float64` | Required | Y (in pixels) of user location on the map (if known) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

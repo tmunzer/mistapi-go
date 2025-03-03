@@ -13,7 +13,7 @@ Last trouble code of switch
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Code` | `*string` | Optional | Code definitions list at /api/v1/consts/ap_led_status |
+| `Code` | `*string` | Optional | Code definitions list at [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition) |
 | `Timestamp` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

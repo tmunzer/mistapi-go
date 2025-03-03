@@ -41,7 +41,7 @@ DeleteSiteRfdiagRecording(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -94,7 +94,7 @@ DownloadSiteRfdiagRecording(
 
 ## Response Type
 
-`[]byte`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -128,7 +128,7 @@ if err != nil {
 
 # Get Site Rfdiag Recording
 
-Get RF Diage Recording Details
+Get RF Diag Recording Details
 
 ```go
 GetSiteRfdiagRecording(
@@ -148,7 +148,7 @@ GetSiteRfdiagRecording(
 
 ## Response Type
 
-[`[]models.RfDiagInfoItem`](../../doc/models/rf-diag-info-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RfDiagInfoItem](../../doc/models/rf-diag-info-item.md).
 
 ## Example Usage
 
@@ -238,7 +238,7 @@ GetSiteSiteRfdiagRecording(
 
 ## Response Type
 
-[`[][]models.RfDiagInfoItem`](../../doc/models/rf-diag-info-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[][]models.RfDiagInfoItem](../../doc/models/rf-diag-info-item.md).
 
 ## Example Usage
 
@@ -330,7 +330,7 @@ StartSiteRecording(
 
 ## Response Type
 
-[`[]models.RfDiagInfoItem`](../../doc/models/rf-diag-info-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RfDiagInfoItem](../../doc/models/rf-diag-info-item.md).
 
 ## Example Usage
 
@@ -416,7 +416,7 @@ StopSiteRfdiagRecording(
 
 ## Response Type
 
-``
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -470,7 +470,7 @@ UpdateSiteRfdiagRecording(
 
 ## Response Type
 
-[`[]models.RfDiagInfoItem`](../../doc/models/rf-diag-info-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.RfDiagInfoItem](../../doc/models/rf-diag-info-item.md).
 
 ## Example Usage
 
