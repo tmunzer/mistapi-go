@@ -25,6 +25,7 @@ Device Profile
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `IotConfig` | [`*models.ApIot`](../../doc/models/ap-iot.md) | Optional | IoT AP settings |
 | `IpConfig` | [`*models.ApIpConfig`](../../doc/models/ap-ip-config.md) | Optional | IP AP settings |
+| `LacpConfig` | [`*models.DeviceApLacpConfig`](../../doc/models/device-ap-lacp-config.md) | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

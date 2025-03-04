@@ -33,6 +33,7 @@ type DeviceprofileAp struct {
     IotConfig            *ApIot                  `json:"iot_config,omitempty"`
     // IP AP settings
     IpConfig             *ApIpConfig             `json:"ip_config,omitempty"`
+    LacpConfig           *DeviceApLacpConfig     `json:"lacp_config,omitempty"`
     // LED AP settings
     Led                  *ApLed                  `json:"led,omitempty"`
     // Mesh AP settings
@@ -70,8 +71,8 @@ type DeviceprofileAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceprofileAp) String() string {
     return fmt.Sprintf(
-    	"DeviceprofileAp[Aeroscout=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, AdditionalProperties=%v]",
-    	d.Aeroscout, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.AdditionalProperties)
+    	"DeviceprofileAp[Aeroscout=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, AdditionalProperties=%v]",
+    	d.Aeroscout, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.
@@ -80,7 +81,7 @@ func (d DeviceprofileAp) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(d.AdditionalProperties,
-        "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars"); err != nil {
+        "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(d.toMap())
@@ -125,6 +126,9 @@ func (d DeviceprofileAp) toMap() map[string]any {
     }
     if d.IpConfig != nil {
         structMap["ip_config"] = d.IpConfig.toMap()
+    }
+    if d.LacpConfig != nil {
+        structMap["lacp_config"] = d.LacpConfig.toMap()
     }
     if d.Led != nil {
         structMap["led"] = d.Led.toMap()
@@ -189,7 +193,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars")
     if err != nil {
     	return err
     }
@@ -207,6 +211,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
     d.Id = temp.Id
     d.IotConfig = temp.IotConfig
     d.IpConfig = temp.IpConfig
+    d.LacpConfig = temp.LacpConfig
     d.Led = temp.Led
     d.Mesh = temp.Mesh
     d.ModifiedTime = temp.ModifiedTime
@@ -240,6 +245,7 @@ type tempDeviceprofileAp  struct {
     Id               *uuid.UUID              `json:"id,omitempty"`
     IotConfig        *ApIot                  `json:"iot_config,omitempty"`
     IpConfig         *ApIpConfig             `json:"ip_config,omitempty"`
+    LacpConfig       *DeviceApLacpConfig     `json:"lacp_config,omitempty"`
     Led              *ApLed                  `json:"led,omitempty"`
     Mesh             *ApMesh                 `json:"mesh,omitempty"`
     ModifiedTime     *float64                `json:"modified_time,omitempty"`
