@@ -46,6 +46,10 @@
 | `Field3Label` | `*string` | Optional | Label of field3 |
 | `Field4Error` | `*string` | Optional | Error message when field4 not provided |
 | `Field4Label` | `*string` | Optional | Label of field4 |
+| `MarketingPolicyLink` | `*string` | Optional | label of the link to go to /marketing_policy |
+| `MarketingPolicyOptIn` | `*bool` | Optional | hether marketing policy optin is enabled |
+| `MarketingPolicyOptInLabel` | `*string` | Optional | label for marketing optin |
+| `MarketingPolicyOptInText` | `*string` | Optional | marketing policy text |
 | `Message` | `*string` | Optional | - |
 | `NameError` | `*string` | Optional | Error message when name not provided |
 | `NameLabel` | `*string` | Optional | Label of name field |
