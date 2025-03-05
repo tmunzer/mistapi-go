@@ -418,7 +418,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2502.1.4")
+    client.userAgent = utilities.UpdateUserAgent("SDK 2502.1.5")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {

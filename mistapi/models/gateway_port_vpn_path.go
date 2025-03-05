@@ -15,8 +15,7 @@ type GatewayPortVpnPath struct {
     Preference           *int                              `json:"preference,omitempty"`
     // If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`
     Role                 *GatewayPortVpnPathRoleEnum       `json:"role,omitempty"`
-    // Only if the VPN `type`==`hub_spoke`
-    TrafficShaping       *GatewayPortVpnPathTrafficShaping `json:"traffic_shaping,omitempty"`
+    TrafficShaping       *GatewayTrafficShaping            `json:"traffic_shaping,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
@@ -90,5 +89,5 @@ type tempGatewayPortVpnPath  struct {
     BfdUseTunnelMode *bool                             `json:"bfd_use_tunnel_mode,omitempty"`
     Preference       *int                              `json:"preference,omitempty"`
     Role             *GatewayPortVpnPathRoleEnum       `json:"role,omitempty"`
-    TrafficShaping   *GatewayPortVpnPathTrafficShaping `json:"traffic_shaping,omitempty"`
+    TrafficShaping   *GatewayTrafficShaping            `json:"traffic_shaping,omitempty"`
 }
