@@ -3,13 +3,14 @@ package models
 import (
     "encoding/json"
     "fmt"
+    "github.com/google/uuid"
 )
 
 // ServicePolicyAamw represents a ServicePolicyAamw struct.
 // For SRX Only
 type ServicePolicyAamw struct {
     // org-level Advanced Advance Anti Malware Profile (SkyAtp) Profile can be used, this takes precedence over 'profile'
-    AamwprofileId        *string                       `json:"aamwprofile_id,omitempty"`
+    AamwprofileId        *uuid.UUID                    `json:"aamwprofile_id,omitempty"`
     Enabled              *bool                         `json:"enabled,omitempty"`
     // enum: `docsonly`, `executables`, `standard`
     Profile              *ServicePolicyAamwProfileEnum `json:"profile,omitempty"`
@@ -74,7 +75,7 @@ func (s *ServicePolicyAamw) UnmarshalJSON(input []byte) error {
 
 // tempServicePolicyAamw is a temporary struct used for validating the fields of ServicePolicyAamw.
 type tempServicePolicyAamw  struct {
-    AamwprofileId *string                       `json:"aamwprofile_id,omitempty"`
+    AamwprofileId *uuid.UUID                    `json:"aamwprofile_id,omitempty"`
     Enabled       *bool                         `json:"enabled,omitempty"`
     Profile       *ServicePolicyAamwProfileEnum `json:"profile,omitempty"`
 }
