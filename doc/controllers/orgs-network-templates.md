@@ -204,7 +204,7 @@ body := models.NetworkTemplate{
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes:            map[string]models.VrfExtraRoute{
+            ExtraRoutes:             map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("192.0.2.10"),
                 },
@@ -212,12 +212,12 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
             },
-            Networks:               []string{
+            Networks:                []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes:            map[string]models.VrfExtraRoute{
+            ExtraRoutes:             map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -225,7 +225,7 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.10"),
                 },
             },
-            Networks:               []string{
+            Networks:                []string{
                 "string",
             },
         },
@@ -1125,7 +1125,7 @@ body := models.NetworkTemplate{
     }),
     VrfInstances:          map[string]models.SwitchVrfInstance{
         "property1": models.SwitchVrfInstance{
-            ExtraRoutes:            map[string]models.VrfExtraRoute{
+            ExtraRoutes:             map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -1133,12 +1133,12 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:               []string{
+            Networks:                []string{
                 "string",
             },
         },
         "property2": models.SwitchVrfInstance{
-            ExtraRoutes:            map[string]models.VrfExtraRoute{
+            ExtraRoutes:             map[string]models.VrfExtraRoute{
                 "property1": models.VrfExtraRoute{
                     Via:                  models.ToPointer("198.51.100.1"),
                 },
@@ -1146,7 +1146,7 @@ body := models.NetworkTemplate{
                     Via:                  models.ToPointer("198.51.100.2"),
                 },
             },
-            Networks:               []string{
+            Networks:                []string{
                 "string",
             },
         },

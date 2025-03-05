@@ -21,6 +21,7 @@ type NetworkTemplate struct {
     DnsServers            []string                               `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix             []string                               `json:"dns_suffix,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes           map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
     ExtraRoutes6          map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`

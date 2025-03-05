@@ -49,6 +49,7 @@ type SiteSetting struct {
     Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
     // EVPN Options
     EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
     ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
     ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`

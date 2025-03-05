@@ -12,7 +12,12 @@ type ApPortConfig struct {
     // Optional dynamic vlan
     DynamicVlan          *ApPortConfigDynamicVlan         `json:"dynamic_vlan,omitempty"`
     EnableMacAuth        *bool                            `json:"enable_mac_auth,omitempty"`
-    // enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`
+    // enum:
+    // * `all`: local breakout, All VLANs
+    // * `limited`: local breakout, only the VLANs configured in `port_vlan_id` and `vlan_ids`
+    // * `mxtunnel`: central breakout to an Org Mist Edge (requires `mxtunnel_id`)
+    // * `site_mxedge`: central breakout to a Site Mist Edge (requires `mxtunnel_name`)
+    // * `wxtunnel`': central breakout to an Org WxTunnel (requires `wxtunnel_id`)
     Forwarding           *ApPortConfigForwardingEnum      `json:"forwarding,omitempty"`
     // When `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth
     MacAuthPreferred     *bool                            `json:"mac_auth_preferred,omitempty"`

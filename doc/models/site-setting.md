@@ -37,7 +37,7 @@ Site Settings
 | `EnableUnii4` | `*bool` | Optional | **Default**: `false` |
 | `Engagement` | [`*models.SiteEngagement`](../../doc/models/site-engagement.md) | Optional | **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day |
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
-| `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | - |
+| `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Flags` | `map[string]string` | Optional | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
@@ -113,6 +113,11 @@ Site Settings
   "config_auto_revert": false,
   "device_updown_threshold": 0,
   "enable_unii_4": false,
+  "extra_routes": {
+    "0.0.0.0/0": {
+      "via": "192.168.1.10"
+    }
+  },
   "extra_routes6": {
     "2a02:1234:420a:10c9::/64": {
       "via": "2a02:1234:200a::100"

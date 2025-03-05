@@ -12,8 +12,11 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AggregateRoutes` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "172.16.3.0/24") |
-| `EvpnAutoLookbackSubnet` | `*string` | Optional | - |
+| `AggregateRoutes6` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64") |
+| `EvpnAutoLoopbackSubnet` | `*string` | Optional | - |
+| `EvpnAutoLoopbackSubnet6` | `*string` | Optional | - |
 | `ExtraRoutes` | [`map[string]models.VrfExtraRoute`](../../doc/models/vrf-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
+| `ExtraRoutes6` | [`map[string]models.VrfExtraRoute`](../../doc/models/vrf-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Networks` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -53,7 +56,37 @@
       }
     }
   },
-  "evpn_auto_lookback_subnet": "evpn_auto_lookback_subnet0",
+  "aggregate_routes6": {
+    "key0": {
+      "discard": false,
+      "metric": 126,
+      "preference": 50,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key1": {
+      "discard": false,
+      "metric": 126,
+      "preference": 50,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key2": {
+      "discard": false,
+      "metric": 126,
+      "preference": 50,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "evpn_auto_loopback_subnet": "evpn_auto_loopback_subnet2",
+  "evpn_auto_loopback_subnet6": "evpn_auto_loopback_subnet66",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

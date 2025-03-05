@@ -14,7 +14,7 @@
 | `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `DynamicVlan` | [`*models.ApPortConfigDynamicVlan`](../../doc/models/ap-port-config-dynamic-vlan.md) | Optional | Optional dynamic vlan |
 | `EnableMacAuth` | `*bool` | Optional | **Default**: `false` |
-| `Forwarding` | [`*models.ApPortConfigForwardingEnum`](../../doc/models/ap-port-config-forwarding-enum.md) | Optional | enum: `all`, `limited`, `mxtunnel`, `site_mxedge`, `wxtunnel`<br>**Default**: `"all"` |
+| `Forwarding` | [`*models.ApPortConfigForwardingEnum`](../../doc/models/ap-port-config-forwarding-enum.md) | Optional | enum:<br><br>* `all`: local breakout, All VLANs<br>* `limited`: local breakout, only the VLANs configured in `port_vlan_id` and `vlan_ids`<br>* `mxtunnel`: central breakout to an Org Mist Edge (requires `mxtunnel_id`)<br>* `site_mxedge`: central breakout to a Site Mist Edge (requires `mxtunnel_name`)<br>* `wxtunnel`': central breakout to an Org WxTunnel (requires `wxtunnel_id`)<br>**Default**: `"all"` |
 | `MacAuthPreferred` | `*bool` | Optional | When `true`, we'll do dot1x then mac_auth. enable this to prefer mac_auth<br>**Default**: `false` |
 | `MacAuthProtocol` | [`*models.ApPortConfigMacAuthProtocolEnum`](../../doc/models/ap-port-config-mac-auth-protocol-enum.md) | Optional | if `enable_mac_auth`==`true`, allows user to select an authentication protocol. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"pap"` |
 | `MistNac` | [`*models.WlanMistNac`](../../doc/models/wlan-mist-nac.md) | Optional | - |
