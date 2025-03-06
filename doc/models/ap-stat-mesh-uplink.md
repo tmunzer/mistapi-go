@@ -14,7 +14,7 @@
 | `Band` | `*string` | Optional | - |
 | `Channel` | `*int` | Optional | - |
 | `IdleTime` | `*int` | Optional | - |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Proto` | `*string` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
 | `RxBps` | `*int` | Optional | - |

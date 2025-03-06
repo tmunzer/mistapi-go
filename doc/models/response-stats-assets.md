@@ -37,7 +37,7 @@
       "ibeacon_major": 12,
       "ibeacon_minor": 138,
       "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
-      "last_seen": 1428939600,
+      "last_seen": 1470417522,
       "mac": "6fa474be7ae5",
       "map_id": "c45be59f-854d-4ef7-b782-dcd6309c84a9",
       "name": "6fa474be7ae5",

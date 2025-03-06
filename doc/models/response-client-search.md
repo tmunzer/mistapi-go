@@ -87,7 +87,6 @@
       "ssid": [
         "IoT SSID"
       ],
-      "timestamp": 1714124722.113,
       "username": [
         "user@corp.com"
       ],

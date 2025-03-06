@@ -19,7 +19,7 @@
 | `Ssids` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Ssids24` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Ssids5` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Version` | `string` | Required | - |
 | `Wlans` | [`[]models.ResponseConfigHistorySearchItemWlan`](../../doc/models/response-config-history-search-item-wlan.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

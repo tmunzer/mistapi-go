@@ -20,7 +20,7 @@
 | `IdracVersion` | `*string` | Optional | IDRAC version of the mist edge device |
 | `IpStat` | [`*models.StatsMxedgeIpStat`](../../doc/models/stats-mxedge-ip-stat.md) | Optional | IP stats |
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `*string` | Optional | - |
 | `MemoryStat` | [`*models.StatsMxedgeMemoryStat`](../../doc/models/stats-mxedge-memory-stat.md) | Optional | Memory usage |
 | `Model` | `*string` | Optional | - |
@@ -61,7 +61,7 @@
       ]
     }
   },
-  "last_seen": 1633721215,
+  "last_seen": 1470417522,
   "mac": "020000a80cb4",
   "model": "ME-VM",
   "mxagent_registered": true,

@@ -10,7 +10,8 @@ import (
 type LastTrouble struct {
     // Code definitions list at [List Ap Led Definition]($e/Constants%20Definitions/listApLedDefinition)
     Code                 *string                `json:"code,omitempty"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -68,6 +69,6 @@ func (l *LastTrouble) UnmarshalJSON(input []byte) error {
 
 // tempLastTrouble is a temporary struct used for validating the fields of LastTrouble.
 type tempLastTrouble  struct {
-    Code      *string `json:"code,omitempty"`
-    Timestamp *int    `json:"timestamp,omitempty"`
+    Code      *string  `json:"code,omitempty"`
+    Timestamp *float64 `json:"timestamp,omitempty"`
 }

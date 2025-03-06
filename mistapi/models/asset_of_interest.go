@@ -15,7 +15,8 @@ type AssetOfInterest struct {
     DeviceName           *string                `json:"device_name,omitempty"`
     // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID             `json:"id,omitempty"`
-    LastSeen             *float64               `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]      `json:"last_seen"`
     Mac                  *string                `json:"mac,omitempty"`
     Manufacture          *string                `json:"manufacture,omitempty"`
     MapId                *string                `json:"map_id,omitempty"`
@@ -66,8 +67,12 @@ func (a AssetOfInterest) toMap() map[string]any {
     if a.Id != nil {
         structMap["id"] = a.Id
     }
-    if a.LastSeen != nil {
-        structMap["last_seen"] = a.LastSeen
+    if a.LastSeen.IsValueSet() {
+        if a.LastSeen.Value() != nil {
+            structMap["last_seen"] = a.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if a.Mac != nil {
         structMap["mac"] = a.Mac
@@ -118,16 +123,16 @@ func (a *AssetOfInterest) UnmarshalJSON(input []byte) error {
 
 // tempAssetOfInterest is a temporary struct used for validating the fields of AssetOfInterest.
 type tempAssetOfInterest  struct {
-    ApMac       *string    `json:"ap_mac,omitempty"`
-    Beam        *float64   `json:"beam,omitempty"`
-    By          *string    `json:"by,omitempty"`
-    CurrSite    *string    `json:"curr_site,omitempty"`
-    DeviceName  *string    `json:"device_name,omitempty"`
-    Id          *uuid.UUID `json:"id,omitempty"`
-    LastSeen    *float64   `json:"last_seen,omitempty"`
-    Mac         *string    `json:"mac,omitempty"`
-    Manufacture *string    `json:"manufacture,omitempty"`
-    MapId       *string    `json:"map_id,omitempty"`
-    Name        *string    `json:"name,omitempty"`
-    Rssi        *float64   `json:"rssi,omitempty"`
+    ApMac       *string           `json:"ap_mac,omitempty"`
+    Beam        *float64          `json:"beam,omitempty"`
+    By          *string           `json:"by,omitempty"`
+    CurrSite    *string           `json:"curr_site,omitempty"`
+    DeviceName  *string           `json:"device_name,omitempty"`
+    Id          *uuid.UUID        `json:"id,omitempty"`
+    LastSeen    Optional[float64] `json:"last_seen"`
+    Mac         *string           `json:"mac,omitempty"`
+    Manufacture *string           `json:"manufacture,omitempty"`
+    MapId       *string           `json:"map_id,omitempty"`
+    Name        *string           `json:"name,omitempty"`
+    Rssi        *float64          `json:"rssi,omitempty"`
 }

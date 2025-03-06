@@ -9,7 +9,8 @@ import (
 type ResponseZoneSearchItem struct {
     Enter                *int                   `json:"enter,omitempty"`
     Scope                *string                `json:"scope,omitempty"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     User                 *string                `json:"user,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -76,8 +77,8 @@ func (r *ResponseZoneSearchItem) UnmarshalJSON(input []byte) error {
 
 // tempResponseZoneSearchItem is a temporary struct used for validating the fields of ResponseZoneSearchItem.
 type tempResponseZoneSearchItem  struct {
-    Enter     *int    `json:"enter,omitempty"`
-    Scope     *string `json:"scope,omitempty"`
-    Timestamp *int    `json:"timestamp,omitempty"`
-    User      *string `json:"user,omitempty"`
+    Enter     *int     `json:"enter,omitempty"`
+    Scope     *string  `json:"scope,omitempty"`
+    Timestamp *float64 `json:"timestamp,omitempty"`
+    User      *string  `json:"user,omitempty"`
 }

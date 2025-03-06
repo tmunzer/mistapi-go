@@ -28,7 +28,7 @@ type RrmEvent struct {
     // (previously) tx power of the radio, 0 means no previously available
     PrePower             float64                  `json:"pre_power"`
     PreUsage             string                   `json:"pre_usage"`
-    // Timestamp of the event
+    // Epoch (seconds)
     Timestamp            float64                  `json:"timestamp"`
     Usage                string                   `json:"usage"`
     AdditionalProperties map[string]interface{}   `json:"_"`

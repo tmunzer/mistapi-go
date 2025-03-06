@@ -14,7 +14,8 @@ type StatsBeacon struct {
     BatteryVoltage       *float64               `json:"battery_voltage,omitempty"`
     EddystoneInstance    *string                `json:"eddystone_instance,omitempty"`
     EddystoneNamespace   *string                `json:"eddystone_namespace,omitempty"`
-    LastSeen             float64                `json:"last_seen"`
+    // Last seen timestamp
+    LastSeen             *float64               `json:"last_seen"`
     Mac                  string                 `json:"mac"`
     MapId                uuid.UUID              `json:"map_id"`
     Name                 string                 `json:"name"`
@@ -58,7 +59,11 @@ func (s StatsBeacon) toMap() map[string]any {
     if s.EddystoneNamespace != nil {
         structMap["eddystone_namespace"] = s.EddystoneNamespace
     }
-    structMap["last_seen"] = s.LastSeen
+    if s.LastSeen != nil {
+        structMap["last_seen"] = s.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     structMap["mac"] = s.Mac
     structMap["map_id"] = s.MapId
     structMap["name"] = s.Name
@@ -90,7 +95,7 @@ func (s *StatsBeacon) UnmarshalJSON(input []byte) error {
     s.BatteryVoltage = temp.BatteryVoltage
     s.EddystoneInstance = temp.EddystoneInstance
     s.EddystoneNamespace = temp.EddystoneNamespace
-    s.LastSeen = *temp.LastSeen
+    s.LastSeen = temp.LastSeen
     s.Mac = *temp.Mac
     s.MapId = *temp.MapId
     s.Name = *temp.Name
@@ -118,9 +123,6 @@ type tempStatsBeacon  struct {
 
 func (s *tempStatsBeacon) validate() error {
     var errs []string
-    if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `stats_beacon`")
-    }
     if s.Mac == nil {
         errs = append(errs, "required field `mac` is missing for type `stats_beacon`")
     }

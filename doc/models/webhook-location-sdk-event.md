@@ -15,7 +15,7 @@
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | **Default**: `"sdk"` |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
@@ -29,10 +29,10 @@
   "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
   "name": "optional",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 1461220784,
   "type": "sdk",
   "x": 13.5,
   "y": 3.2,
+  "timestamp": 92.28,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -14,7 +14,7 @@
 | `BatteryVoltage` | `*float64` | Optional | Battery voltage, in mV |
 | `EddystoneInstance` | `*string` | Optional | - |
 | `EddystoneNamespace` | `*string` | Optional | - |
-| `LastSeen` | `float64` | Required | - |
+| `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `Mac` | `string` | Required | - |
 | `MapId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |
@@ -28,10 +28,7 @@
 
 ```json
 {
-  "battery_voltage": 33.46,
-  "eddystone_instance": "eddystone_instance8",
-  "eddystone_namespace": "eddystone_namespace4",
-  "last_seen": 108.9,
+  "last_seen": 1470417522.0,
   "mac": "mac4",
   "map_id": "0000106c-0000-0000-0000-000000000000",
   "name": "name0",
@@ -39,6 +36,9 @@
   "type": "type0",
   "x": 146.94,
   "y": 240.34,
+  "battery_voltage": 33.46,
+  "eddystone_instance": "eddystone_instance8",
+  "eddystone_namespace": "eddystone_namespace4",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

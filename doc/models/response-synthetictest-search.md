@@ -34,7 +34,6 @@
       "reason": "interface not ready to perform test",
       "rx_mbps": 322,
       "start_time": 1675718807,
-      "timestamp": 1675718807,
       "tx_mbps": 199,
       "vlan_id": 20,
       "device_type": "gateway",

@@ -10,6 +10,7 @@ import (
 type OrgEvent struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     Text                 *string                `json:"text,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

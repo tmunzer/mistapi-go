@@ -9,7 +9,8 @@ import (
 type CallTroubleshootSummary struct {
     AudioIn              *CallTroubleshootSummaryData `json:"audio_in,omitempty"`
     AudioOut             *CallTroubleshootSummaryData `json:"audio_out,omitempty"`
-    Timestamp            *int                         `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64                     `json:"timestamp,omitempty"`
     VideoIn              *CallTroubleshootSummaryData `json:"video_in,omitempty"`
     VideoOut             *CallTroubleshootSummaryData `json:"video_out,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
@@ -83,7 +84,7 @@ func (c *CallTroubleshootSummary) UnmarshalJSON(input []byte) error {
 type tempCallTroubleshootSummary  struct {
     AudioIn   *CallTroubleshootSummaryData `json:"audio_in,omitempty"`
     AudioOut  *CallTroubleshootSummaryData `json:"audio_out,omitempty"`
-    Timestamp *int                         `json:"timestamp,omitempty"`
+    Timestamp *float64                     `json:"timestamp,omitempty"`
     VideoIn   *CallTroubleshootSummaryData `json:"video_in,omitempty"`
     VideoOut  *CallTroubleshootSummaryData `json:"video_out,omitempty"`
 }

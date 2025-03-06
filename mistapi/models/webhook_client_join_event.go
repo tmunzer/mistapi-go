@@ -30,6 +30,7 @@ type WebhookClientJoinEvent struct {
     SiteName             string                 `json:"site_name"`
     // ESSID
     Ssid                 string                 `json:"ssid"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     // schema version of this message
     Version              float64                `json:"version"`

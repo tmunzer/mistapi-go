@@ -39,7 +39,7 @@ type StatsWirelessClient struct {
     // E.g. WPA2-PSK/CCMP
     KeyMgmt              string                           `json:"key_mgmt"`
     // Last seen timestamp
-    LastSeen             float64                          `json:"last_seen"`
+    LastSeen             *float64                         `json:"last_seen"`
     // Client mac
     Mac                  string                           `json:"mac"`
     // Device manufacture, through fingerprinting or OUI
@@ -166,7 +166,11 @@ func (s StatsWirelessClient) toMap() map[string]any {
     structMap["ip"] = s.Ip
     structMap["is_guest"] = s.IsGuest
     structMap["key_mgmt"] = s.KeyMgmt
-    structMap["last_seen"] = s.LastSeen
+    if s.LastSeen != nil {
+        structMap["last_seen"] = s.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     structMap["mac"] = s.Mac
     structMap["manufacture"] = s.Manufacture
     if s.MapId != nil {
@@ -277,7 +281,7 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     s.Ip = *temp.Ip
     s.IsGuest = *temp.IsGuest
     s.KeyMgmt = *temp.KeyMgmt
-    s.LastSeen = *temp.LastSeen
+    s.LastSeen = temp.LastSeen
     s.Mac = *temp.Mac
     s.Manufacture = *temp.Manufacture
     s.MapId = temp.MapId
@@ -401,9 +405,6 @@ func (s *tempStatsWirelessClient) validate() error {
     }
     if s.KeyMgmt == nil {
         errs = append(errs, "required field `key_mgmt` is missing for type `stats_wireless_client`")
-    }
-    if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `stats_wireless_client`")
     }
     if s.Mac == nil {
         errs = append(errs, "required field `mac` is missing for type `stats_wireless_client`")

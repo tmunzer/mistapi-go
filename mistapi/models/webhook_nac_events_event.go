@@ -46,7 +46,7 @@ type WebhookNacEventsEvent struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // SSIDs the client was connecting to
     Ssid                 *string                `json:"ssid,omitempty"`
-    // Start time, in epoch
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions]($e/Constants%20Events/listNacEventsDefinitions) endpoint to get the full list of available values.
     Type                 *string                `json:"type,omitempty"`

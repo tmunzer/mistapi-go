@@ -26,7 +26,7 @@ location webhook sample
       "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "map_id": "00001148-0000-0000-0000-000000000000",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "timestamp": 130,
+      "timestamp": 188.18,
       "type": "type0",
       "x": 94.86,
       "y": 226.14,

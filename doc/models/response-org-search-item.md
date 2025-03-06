@@ -32,7 +32,7 @@
 | `SubMeEntitled` | `*int` | Optional | - |
 | `SubVnaEntitled` | `*int` | Optional | - |
 | `SubVnaRequired` | `*int` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `TrialEnabled` | `*bool` | Optional | If this org is under trial period |
 | `UsageTypes` | `[]string` | Optional | a list of types that enabled by usage |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -16,7 +16,7 @@
 | `ConnectionBssid` | `string` | Required | BSSID of the AP the client is connected to |
 | `ConnectionChannel` | `int` | Required | Channel of the band the client is connected to |
 | `ConnectionRssi` | `float64` | Required | RSSI of the client’s connection to the AP/BSSID |
-| `LastSeen` | `float64` | Required | Time client last seen with scan data |
+| `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `Mac` | `string` | Required | Client's MAC Address |
 | `ScanData` | [`[]models.WebhookSdkclientScanDataEventScanDataItem`](../../doc/models/webhook-sdkclient-scan-data-event-scan-data-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `uuid.UUID` | Required | - |
@@ -31,7 +31,7 @@
   "connection_bssid": "connection_bssid4",
   "connection_channel": 154,
   "connection_rssi": 55.12,
-  "last_seen": 116.26,
+  "last_seen": 1470417522.0,
   "mac": "mac0",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "scan_data": [

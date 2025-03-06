@@ -47,6 +47,7 @@ type WebhookClientSessionsEvent struct {
     Ssid                 string                 `json:"ssid"`
     // 1 disassociate - when the client disassociates. 2 inactive - when the client is timeout. 3 roamed - when the client is roamed between APs
     TerminationReason    int                    `json:"termination_reason"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     // schema version of this message
     Version              float64                `json:"version"`

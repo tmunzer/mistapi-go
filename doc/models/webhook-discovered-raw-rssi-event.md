@@ -26,7 +26,7 @@
 | `Rssi` | `float64` | Required | Signal strength |
 | `ServicePackets` | [`[]models.ServicePacket`](../../doc/models/service-packet.md) | Optional | List of service data packets heard from the asset/ beacon |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

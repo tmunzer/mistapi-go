@@ -26,7 +26,7 @@
 | `Ip` | `string` | Required | - |
 | `IsGuest` | `bool` | Required | Whether this is a guest<br>**Default**: `false` |
 | `KeyMgmt` | `string` | Required | E.g. WPA2-PSK/CCMP |
-| `LastSeen` | `float64` | Required | Last seen timestamp |
+| `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `Mac` | `string` | Required | Client mac |
 | `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
 | `MapId` | `*uuid.UUID` | Optional | Estimated client location - map_id |
@@ -78,7 +78,7 @@
   "ip": "ip4",
   "is_guest": false,
   "key_mgmt": "key_mgmt2",
-  "last_seen": 102.5,
+  "last_seen": 1470417522.0,
   "mac": "mac4",
   "manufacture": "manufacture4",
   "model": "model8",

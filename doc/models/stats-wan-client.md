@@ -22,7 +22,7 @@
 | `Network` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Wcid` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -16,7 +16,7 @@ MxTunnels statistics
 | `Ap` | `*string` | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mtu` | `*int` | Optional | - |
 | `MxclusterId` | `*uuid.UUID` | Optional | - |
 | `MxedgeId` | `*uuid.UUID` | Optional | - |
@@ -37,6 +37,7 @@ MxTunnels statistics
 
 ```json
 {
+  "last_seen": 1470417522.0,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "remote_ip": "remote_ip4",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
@@ -53,7 +54,6 @@ MxTunnels statistics
       "key2": "val2"
     }
   },
-  "last_seen": 249.6,
   "mtu": 34,
   "exampleAdditionalProperty": {
     "key1": "val1",

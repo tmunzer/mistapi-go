@@ -13,6 +13,7 @@ type EventOtherdevice struct {
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Text                 *string                `json:"text,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     Vendor               *string                `json:"vendor,omitempty"`

@@ -16,7 +16,7 @@ type WebhookClientInfoEvent struct {
     Mac                  *string                `json:"mac,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // Time at which IP address was assigned E.g. 1703003956
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

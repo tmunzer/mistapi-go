@@ -29,8 +29,8 @@ type WebhookLocationEvent struct {
     // Name of the client, may be empty
     Name                   *string                       `json:"name,omitempty"`
     SiteId                 uuid.UUID                     `json:"site_id"`
-    // Timestamp of the event, epoch
-    Timestamp              int                           `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp              float64                       `json:"timestamp"`
     Type                   string                        `json:"type"`
     // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
@@ -167,7 +167,7 @@ type tempWebhookLocationEvent  struct {
     MfgData                *string                       `json:"mfg_data,omitempty"`
     Name                   *string                       `json:"name,omitempty"`
     SiteId                 *uuid.UUID                    `json:"site_id"`
-    Timestamp              *int                          `json:"timestamp"`
+    Timestamp              *float64                      `json:"timestamp"`
     Type                   *string                       `json:"type"`
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     X                      *float64                      `json:"x"`

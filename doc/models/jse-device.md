@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ExtIp` | `*string` | Optional | When available |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `Serial` | `*string` | Optional | - |
@@ -22,8 +22,8 @@
 
 ```json
 {
+  "last_seen": 1470417522.0,
   "ext_ip": "ext_ip6",
-  "last_seen": 77.36,
   "mac": "mac0",
   "model": "model6",
   "serial": "serial6",

@@ -16,7 +16,7 @@
 | `ExtIp` | `*string` | Optional | - |
 | `Height` | `*float64` | Optional | - |
 | `Ip` | `*string` | Optional | - |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `*string` | Optional | - |
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `Model` | `*string` | Optional | - |
@@ -40,7 +40,7 @@
   "ext_ip": "12.34.56.78",
   "height": 2.7,
   "ip": "192.168.1.111",
-  "last_seen": 1687887907.5919843,
+  "last_seen": 1470417522,
   "mac": "5c5b35000018",
   "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
   "model": "AP41",

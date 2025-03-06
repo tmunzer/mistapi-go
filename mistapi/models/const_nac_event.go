@@ -22,6 +22,7 @@ type ConstNacEvent struct {
     RandomMac            *bool                  `json:"random_mac,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Ssid                 *string                `json:"ssid,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     Username             *string                `json:"username,omitempty"`

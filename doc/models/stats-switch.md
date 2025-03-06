@@ -33,7 +33,7 @@ Switch statistics
 | `IfStat` | [`map[string]models.IfStatProperty`](../../doc/models/if-stat-property.md) | Optional | Property key is the interface name |
 | `Ip` | `*string` | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | Last trouble code of switch |
 | `Mac` | `*string` | Optional | - |
 | `MacTableStats` | [`*models.MacTableStats`](../../doc/models/mac-table-stats.md) | Optional | - |
@@ -44,7 +44,7 @@ Switch statistics
 | `ModuleStat` | [`[]models.StatsSwitchModuleStatItem`](../../doc/models/stats-switch-module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Name` | `*string` | Optional | Device name if configured |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
+| `Ports` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Optional | - |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `Serial` | `*string` | Optional | - |
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
@@ -65,7 +65,7 @@ Switch statistics
   "hostname": "sj-sw1",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "ip": "10.2.11.137",
-  "last_seen": 1553203563,
+  "last_seen": 1470417522,
   "model": "EX4600",
   "name": "sj-sw1",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",

@@ -11,6 +11,7 @@ type ResponseDeviceSnapshot struct {
     Status               *ResponseDeviceSnapshotStatusEnum `json:"status,omitempty"`
     // Internal status id
     StatusId             *string                           `json:"status_id,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64                          `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{}            `json:"_"`
 }

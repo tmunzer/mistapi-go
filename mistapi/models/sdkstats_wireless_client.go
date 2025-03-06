@@ -14,7 +14,7 @@ type SdkstatsWirelessClient struct {
     // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID                        `json:"id"`
     // Last seen timestamp
-    LastSeen             float64                          `json:"last_seen"`
+    LastSeen             *float64                         `json:"last_seen"`
     // Map_id of the sdk client (if known), or null
     MapId                Optional[uuid.UUID]              `json:"map_id"`
     // Name of the sdk client (if provided)
@@ -59,7 +59,11 @@ func (s SdkstatsWirelessClient) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["id"] = s.Id
-    structMap["last_seen"] = s.LastSeen
+    if s.LastSeen != nil {
+        structMap["last_seen"] = s.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     if s.MapId.IsValueSet() {
         if s.MapId.Value() != nil {
             structMap["map_id"] = s.MapId.Value()
@@ -108,7 +112,7 @@ func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
     s.AdditionalProperties = additionalProperties
     
     s.Id = *temp.Id
-    s.LastSeen = *temp.LastSeen
+    s.LastSeen = temp.LastSeen
     s.MapId = temp.MapId
     s.Name = temp.Name
     s.NetworkConnection = temp.NetworkConnection
@@ -138,9 +142,6 @@ func (s *tempSdkstatsWirelessClient) validate() error {
     var errs []string
     if s.Id == nil {
         errs = append(errs, "required field `id` is missing for type `sdkstats_wireless_client`")
-    }
-    if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `sdkstats_wireless_client`")
     }
     if s.Uuid == nil {
         errs = append(errs, "required field `uuid` is missing for type `sdkstats_wireless_client`")

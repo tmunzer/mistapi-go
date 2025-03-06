@@ -25,7 +25,7 @@
 | `RandomMac` | `*bool` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `Username` | `*string` | Optional | - |
 | `Wcid` | `*uuid.UUID` | Optional | - |
@@ -51,7 +51,6 @@
   "random_mac": true,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ssid": "Test_Suriya-SSID",
-  "timestamp": 1685658478.438995,
   "type": "NAC_CLIENT_CERT_CHECK_SUCCESS",
   "username": "suriyas@juniper.net",
   "wcid": "b43637b0-f0d9-0a1d-1ec2-73c394a9f679",

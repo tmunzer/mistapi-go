@@ -25,7 +25,7 @@
 | `RxRoutes` | `*int` | Optional | Number of received routes |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `State` | [`*models.BgpStatsStateEnum`](../../doc/models/bgp-stats-state-enum.md) | Optional | enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent` |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `TxPkts` | `*int` | Optional | - |
 | `TxRoutes` | `*int` | Optional | - |
 | `Up` | `*bool` | Optional | - |
@@ -48,7 +48,6 @@
   "rx_routes": 60,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "state": "established",
-  "timestamp": 1666251056.07,
   "tx_pkts": 1735,
   "tx_routes": 60,
   "uptime": 31355,

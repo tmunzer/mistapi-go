@@ -14,6 +14,7 @@ type Anomaly struct {
     Since                *float64               `json:"since,omitempty"`
     SleBaseline          float64                `json:"sle_baseline"`
     SleDeviation         float64                `json:"sle_deviation"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

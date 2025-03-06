@@ -16,7 +16,7 @@
 | `MxedgeId` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Service` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -28,7 +28,6 @@
   "mxedge_id": "00000000-0000-0000-1000-020000dc585c",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "service": "tunterm",
-  "timestamp": 1694678225.927,
   "type": "ME_SERVICE_STOPPED",
   "component": "component6",
   "exampleAdditionalProperty": {

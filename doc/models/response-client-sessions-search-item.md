@@ -22,7 +22,7 @@
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Ssid` | `string` | Required | - |
 | `Tags` | `[]string` | Optional | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `WlanId` | `uuid.UUID` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

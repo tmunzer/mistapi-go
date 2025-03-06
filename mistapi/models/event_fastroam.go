@@ -15,7 +15,7 @@ type EventFastroam struct {
     Latency              float64                `json:"latency"`
     Ssid                 string                 `json:"ssid"`
     Subtype              *string                `json:"subtype,omitempty"`
-    // Timestamp of the event in nsec
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     // enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
     Type                 *EventFastroamTypeEnum `json:"type,omitempty"`

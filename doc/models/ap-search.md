@@ -43,7 +43,7 @@
 | `PowerOpmode` | `string` | Required | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | Version |
 | `Wlans` | [`[]models.ApSearchWlan`](../../doc/models/ap-search-wlan.md) | Required | - |

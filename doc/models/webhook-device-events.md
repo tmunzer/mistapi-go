@@ -29,7 +29,7 @@ Device event webhook sample
       "mac": "mac4",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "timestamp": 130,
+      "timestamp": 188.18,
       "type": "type0",
       "ap": "ap6",
       "ap_name": "ap_name8",

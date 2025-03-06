@@ -21,7 +21,7 @@
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `*uuid.UUID` | Required | - |
 | `SrcIp` | `*string` | Optional | sender source ip address |
-| `Timestamp` | `float64` | Required | Start time, in epoch |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

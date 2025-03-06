@@ -22,8 +22,8 @@ type ResponseAsyncLicense struct {
     Status               *ResponseAsyncLicenseStatusEnum `json:"status,omitempty"`
     // Current succeed number of device
     Succeed              *int                            `json:"succeed,omitempty"`
-    // epoch time of last reporting time
-    Timestamp            *int                            `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64                        `json:"timestamp,omitempty"`
     // total number of device included in claim
     Total                *int                            `json:"total,omitempty"`
     AdditionalProperties map[string]interface{}          `json:"_"`
@@ -123,6 +123,6 @@ type tempResponseAsyncLicense  struct {
     ScheduledAt *int                            `json:"scheduled_at,omitempty"`
     Status      *ResponseAsyncLicenseStatusEnum `json:"status,omitempty"`
     Succeed     *int                            `json:"succeed,omitempty"`
-    Timestamp   *int                            `json:"timestamp,omitempty"`
+    Timestamp   *float64                        `json:"timestamp,omitempty"`
     Total       *int                            `json:"total,omitempty"`
 }

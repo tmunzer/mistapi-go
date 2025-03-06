@@ -20,7 +20,7 @@
 | `OsType` | `*string` | Optional | - |
 | `RandomMac` | `*bool` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

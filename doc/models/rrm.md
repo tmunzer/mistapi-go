@@ -23,7 +23,7 @@ RRM
 | `RftemplateId` | `uuid.UUID` | Required | - |
 | `RftemplateName` | `string` | Required | - |
 | `Status` | [`models.RrmStatusEnum`](../../doc/models/rrm-status-enum.md) | Required | enum: `ready`, `unknown`, `updating` |
-| `Timestamp` | `float64` | Required | Time where the status was updated |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

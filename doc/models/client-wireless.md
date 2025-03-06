@@ -46,7 +46,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | Mist Site ID where the client is connected |
 | `SiteIds` | `[]uuid.UUID` | Optional | List of Mist Site IDs where the client was connected |
 | `Ssid` | `[]string` | Optional | List of the WLAN names the client was connected to |
-| `Timestamp` | `*float64` | Optional | When the data has been updated |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Username` | `[]string` | Optional | Only for 802.1X authentication. List of usernames used by the client |
 | `Vlan` | `[]int` | Optional | List of vlans that have been assigned to the client |
 | `WlanId` | `[]uuid.UUID` | Optional | List of IDs of WLANs the client was connected to |
@@ -116,7 +116,6 @@
   "ssid": [
     "IoT SSID"
   ],
-  "timestamp": 1714124722.113,
   "username": [
     "user@corp.com"
   ],

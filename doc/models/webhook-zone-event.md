@@ -17,7 +17,7 @@
 | `MapId` | `uuid.UUID` | Required | Map id |
 | `Name` | `*string` | Optional | Name of the client, may be empty |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `int` | Required | Timestamp of the event, epoch |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enum: `enter`, `exit` |
 | `Type` | `string` | Required | - |
 | `ZoneId` | `uuid.UUID` | Required | Zone id |
@@ -30,7 +30,7 @@
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "00000996-0000-0000-0000-000000000000",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 52,
+  "timestamp": 207.88,
   "trigger": "enter",
   "type": "type0",
   "zone_id": "00001712-0000-0000-0000-000000000000",

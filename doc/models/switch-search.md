@@ -20,7 +20,7 @@
 | `LastConfigStatus` | `*string` | Optional | - |
 | `LastHostname` | `*string` | Optional | - |
 | `LastTroubleCode` | `*string` | Optional | - |
-| `LastTroubleTimestamp` | `*int` | Optional | - |
+| `LastTroubleTimestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Mac` | `*string` | Optional | - |
 | `Managed` | `*bool` | Optional | - |
 | `Model` | `*string` | Optional | - |
@@ -29,7 +29,7 @@
 | `Role` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TimeDrifted` | `*bool` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |

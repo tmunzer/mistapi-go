@@ -11,7 +11,7 @@ import (
 type ResponseDeviceUpgrade struct {
     // enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
     Status               UpgradeInfoStatusEnum  `json:"status"`
-    // Timestamp
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

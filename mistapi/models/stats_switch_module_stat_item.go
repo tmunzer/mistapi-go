@@ -16,6 +16,7 @@ type StatsSwitchModuleStatItem struct {
     Fans                 []ModuleStatItemFansItems        `json:"fans,omitempty"`
     FpcIdx               *int                             `json:"fpc_idx,omitempty"`
     FpgaVersion          Optional[string]                 `json:"fpga_version"`
+    // Last seen timestamp
     LastSeen             Optional[float64]                `json:"last_seen"`
     Locating             *bool                            `json:"locating,omitempty"`
     Mac                  *string                          `json:"mac,omitempty"`

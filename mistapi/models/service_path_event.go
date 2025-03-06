@@ -15,6 +15,7 @@ type ServicePathEvent struct {
     PortId               *string                `json:"port_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Text                 *string                `json:"text,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     Version              *string                `json:"version,omitempty"`

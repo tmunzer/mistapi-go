@@ -13,7 +13,8 @@ type WebhookLocationSdkEvent struct {
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
     Name                 *string                `json:"name,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     Type                 *string                `json:"type,omitempty"`
     // x, in meter
     X                    *float64               `json:"x,omitempty"`
@@ -104,7 +105,7 @@ type tempWebhookLocationSdkEvent  struct {
     MapId     *uuid.UUID `json:"map_id,omitempty"`
     Name      *string    `json:"name,omitempty"`
     SiteId    *uuid.UUID `json:"site_id,omitempty"`
-    Timestamp *int       `json:"timestamp,omitempty"`
+    Timestamp *float64   `json:"timestamp,omitempty"`
     Type      *string    `json:"type,omitempty"`
     X         *float64   `json:"x,omitempty"`
     Y         *float64   `json:"y,omitempty"`

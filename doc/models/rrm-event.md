@@ -21,7 +21,7 @@
 | `PreChannel` | `int` | Required | (previously) channel for the band, 0 means no previously available |
 | `PrePower` | `float64` | Required | (previously) tx power of the radio, 0 means no previously available |
 | `PreUsage` | `string` | Required | - |
-| `Timestamp` | `float64` | Required | Timestamp of the event |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Usage` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

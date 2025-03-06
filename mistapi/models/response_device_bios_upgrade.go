@@ -8,7 +8,8 @@ import (
 // ResponseDeviceBiosUpgrade represents a ResponseDeviceBiosUpgrade struct.
 type ResponseDeviceBiosUpgrade struct {
     Status               *string                `json:"status,omitempty"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -66,6 +67,6 @@ func (r *ResponseDeviceBiosUpgrade) UnmarshalJSON(input []byte) error {
 
 // tempResponseDeviceBiosUpgrade is a temporary struct used for validating the fields of ResponseDeviceBiosUpgrade.
 type tempResponseDeviceBiosUpgrade  struct {
-    Status    *string `json:"status,omitempty"`
-    Timestamp *int    `json:"timestamp,omitempty"`
+    Status    *string  `json:"status,omitempty"`
+    Timestamp *float64 `json:"timestamp,omitempty"`
 }

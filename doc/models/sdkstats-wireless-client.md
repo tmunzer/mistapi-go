@@ -14,7 +14,7 @@ SDK Client Details statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
-| `LastSeen` | `float64` | Required | Last seen timestamp |
+| `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the sdk client (if known), or null |
 | `Name` | `*string` | Optional | Name of the sdk client (if provided) |
 | `NetworkConnection` | [`*models.StatsSdkclientNetworkConnection`](../../doc/models/stats-sdkclient-network-connection.md) | Optional | Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as |
@@ -30,7 +30,7 @@ SDK Client Details statistics
 ```json
 {
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "last_seen": 207.0,
+  "last_seen": 1470417522.0,
   "uuid": "00000510-0000-0000-0000-000000000000",
   "map_id": "0000112a-0000-0000-0000-000000000000",
   "name": "name0",

@@ -9,7 +9,8 @@ import (
 type JseDevice struct {
     // When available
     ExtIp                *string                `json:"ext_ip,omitempty"`
-    LastSeen             *float64               `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]      `json:"last_seen"`
     Mac                  *string                `json:"mac,omitempty"`
     Model                *string                `json:"model,omitempty"`
     Serial               *string                `json:"serial,omitempty"`
@@ -43,8 +44,12 @@ func (j JseDevice) toMap() map[string]any {
     if j.ExtIp != nil {
         structMap["ext_ip"] = j.ExtIp
     }
-    if j.LastSeen != nil {
-        structMap["last_seen"] = j.LastSeen
+    if j.LastSeen.IsValueSet() {
+        if j.LastSeen.Value() != nil {
+            structMap["last_seen"] = j.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if j.Mac != nil {
         structMap["mac"] = j.Mac
@@ -82,9 +87,9 @@ func (j *JseDevice) UnmarshalJSON(input []byte) error {
 
 // tempJseDevice is a temporary struct used for validating the fields of JseDevice.
 type tempJseDevice  struct {
-    ExtIp    *string  `json:"ext_ip,omitempty"`
-    LastSeen *float64 `json:"last_seen,omitempty"`
-    Mac      *string  `json:"mac,omitempty"`
-    Model    *string  `json:"model,omitempty"`
-    Serial   *string  `json:"serial,omitempty"`
+    ExtIp    *string           `json:"ext_ip,omitempty"`
+    LastSeen Optional[float64] `json:"last_seen"`
+    Mac      *string           `json:"mac,omitempty"`
+    Model    *string           `json:"model,omitempty"`
+    Serial   *string           `json:"serial,omitempty"`
 }

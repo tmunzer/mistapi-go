@@ -23,7 +23,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SiteName` | `*string` | Optional | Site name |
 | `Text` | `*string` | Optional | (optional) event description |
-| `Timestamp` | `int` | Required | Time the event occurred e.g. 1565987313 |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | Event type |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -37,7 +37,7 @@
   "mac": "mac2",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 250,
+  "timestamp": 184.26,
   "type": "type2",
   "ap": "ap4",
   "ap_name": "ap_name6",

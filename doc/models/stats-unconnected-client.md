@@ -14,7 +14,7 @@ Unconnected clients statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `string` | Required | MAC address of the AP that heard the client |
-| `LastSeen` | `float64` | Required | Last seen timestamp |
+| `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `Mac` | `string` | Required | MAC address of the (unconnected) client |
 | `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the client (if known), or null |
@@ -28,13 +28,13 @@ Unconnected clients statistics
 ```json
 {
   "ap_mac": "ap_mac4",
-  "last_seen": 109.82,
+  "last_seen": 1470417522.0,
   "mac": "mac6",
   "manufacture": "manufacture6",
-  "map_id": "00000b60-0000-0000-0000-000000000000",
   "rssi": 166,
-  "x": 109.98,
   "y": 241.26,
+  "map_id": "00000b60-0000-0000-0000-000000000000",
+  "x": 109.98,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

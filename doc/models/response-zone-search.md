@@ -32,7 +32,7 @@
     {
       "enter": 226,
       "scope": "scope6",
-      "timestamp": 8,
+      "timestamp": 2.64,
       "user": "user6",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -42,7 +42,7 @@
     {
       "enter": 226,
       "scope": "scope6",
-      "timestamp": 8,
+      "timestamp": 2.64,
       "user": "user6",
       "exampleAdditionalProperty": {
         "key1": "val1",

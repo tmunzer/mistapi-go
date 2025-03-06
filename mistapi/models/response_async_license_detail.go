@@ -11,6 +11,7 @@ type ResponseAsyncLicenseDetail struct {
     // Device MAC Address
     Mac                  *string                `json:"mac,omitempty"`
     Status               *string                `json:"status,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

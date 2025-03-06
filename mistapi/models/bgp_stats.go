@@ -30,6 +30,7 @@ type BgpStats struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
     State                *BgpStatsStateEnum     `json:"state,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     TxPkts               *int                   `json:"tx_pkts,omitempty"`
     TxRoutes             *int                   `json:"tx_routes,omitempty"`

@@ -17,7 +17,7 @@
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `SiteName` | `string` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

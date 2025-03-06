@@ -31,6 +31,7 @@ type ResponseOrgSearchItem struct {
     SubMeEntitled        *int                   `json:"sub_me_entitled,omitempty"`
     SubVnaEntitled       *int                   `json:"sub_vna_entitled,omitempty"`
     SubVnaRequired       *int                   `json:"sub_vna_required,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // If this org is under trial period
     TrialEnabled         *bool                  `json:"trial_enabled,omitempty"`

@@ -11,7 +11,8 @@ type ApStatMeshUplink struct {
     Band                 *string                `json:"band,omitempty"`
     Channel              *int                   `json:"channel,omitempty"`
     IdleTime             *int                   `json:"idle_time,omitempty"`
-    LastSeen             *float64               `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]      `json:"last_seen"`
     Proto                *string                `json:"proto,omitempty"`
     Rssi                 *int                   `json:"rssi,omitempty"`
     RxBps                *int                   `json:"rx_bps,omitempty"`
@@ -63,8 +64,12 @@ func (a ApStatMeshUplink) toMap() map[string]any {
     if a.IdleTime != nil {
         structMap["idle_time"] = a.IdleTime
     }
-    if a.LastSeen != nil {
-        structMap["last_seen"] = a.LastSeen
+    if a.LastSeen.IsValueSet() {
+        if a.LastSeen.Value() != nil {
+            structMap["last_seen"] = a.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if a.Proto != nil {
         structMap["proto"] = a.Proto
@@ -152,23 +157,23 @@ func (a *ApStatMeshUplink) UnmarshalJSON(input []byte) error {
 
 // tempApStatMeshUplink is a temporary struct used for validating the fields of ApStatMeshUplink.
 type tempApStatMeshUplink  struct {
-    Band       *string    `json:"band,omitempty"`
-    Channel    *int       `json:"channel,omitempty"`
-    IdleTime   *int       `json:"idle_time,omitempty"`
-    LastSeen   *float64   `json:"last_seen,omitempty"`
-    Proto      *string    `json:"proto,omitempty"`
-    Rssi       *int       `json:"rssi,omitempty"`
-    RxBps      *int       `json:"rx_bps,omitempty"`
-    RxBytes    *int       `json:"rx_bytes,omitempty"`
-    RxPackets  *int       `json:"rx_packets,omitempty"`
-    RxRate     *int       `json:"rx_rate,omitempty"`
-    RxRetries  *int       `json:"rx_retries,omitempty"`
-    SiteId     *uuid.UUID `json:"site_id,omitempty"`
-    Snr        *int       `json:"snr,omitempty"`
-    TxBps      *int       `json:"tx_bps,omitempty"`
-    TxBytes    *int       `json:"tx_bytes,omitempty"`
-    TxPackets  *int       `json:"tx_packets,omitempty"`
-    TxRate     *int       `json:"tx_rate,omitempty"`
-    TxRetries  *int       `json:"tx_retries,omitempty"`
-    UplinkApId *uuid.UUID `json:"uplink_ap_id,omitempty"`
+    Band       *string           `json:"band,omitempty"`
+    Channel    *int              `json:"channel,omitempty"`
+    IdleTime   *int              `json:"idle_time,omitempty"`
+    LastSeen   Optional[float64] `json:"last_seen"`
+    Proto      *string           `json:"proto,omitempty"`
+    Rssi       *int              `json:"rssi,omitempty"`
+    RxBps      *int              `json:"rx_bps,omitempty"`
+    RxBytes    *int              `json:"rx_bytes,omitempty"`
+    RxPackets  *int              `json:"rx_packets,omitempty"`
+    RxRate     *int              `json:"rx_rate,omitempty"`
+    RxRetries  *int              `json:"rx_retries,omitempty"`
+    SiteId     *uuid.UUID        `json:"site_id,omitempty"`
+    Snr        *int              `json:"snr,omitempty"`
+    TxBps      *int              `json:"tx_bps,omitempty"`
+    TxBytes    *int              `json:"tx_bytes,omitempty"`
+    TxPackets  *int              `json:"tx_packets,omitempty"`
+    TxRate     *int              `json:"tx_rate,omitempty"`
+    TxRetries  *int              `json:"tx_retries,omitempty"`
+    UplinkApId *uuid.UUID        `json:"uplink_ap_id,omitempty"`
 }

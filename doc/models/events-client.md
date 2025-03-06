@@ -20,7 +20,7 @@ Client events
 | `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | enum: `a`, `ac`, `ax`, `b`, `g`, `n` |
 | `Ssid` | `*string` | Optional | - |
 | `Text` | `*string` | Optional | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `*string` | Optional | Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE |
 | `TypeCode` | `*int` | Optional | For assoc/disassoc events |
 | `WlanId` | `*uuid.UUID` | Optional | - |

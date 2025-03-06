@@ -5,8 +5,8 @@ import (
     "fmt"
 )
 
-// OptionalStatWanTunnel represents a OptionalStatWanTunnel struct.
-type OptionalStatWanTunnel struct {
+// StatsGatewayWanTunnel represents a StatsGatewayWanTunnel struct.
+type StatsGatewayWanTunnel struct {
     // Authentication algorithm
     AuthAlgo             *string                     `json:"auth_algo,omitempty"`
     // Encryption algorithm
@@ -43,94 +43,94 @@ type OptionalStatWanTunnel struct {
     AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
-// String implements the fmt.Stringer interface for OptionalStatWanTunnel,
+// String implements the fmt.Stringer interface for StatsGatewayWanTunnel,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
-func (o OptionalStatWanTunnel) String() string {
+func (s StatsGatewayWanTunnel) String() string {
     return fmt.Sprintf(
-    	"OptionalStatWanTunnel[AuthAlgo=%v, EncryptAlgo=%v, IkeVersion=%v, Ip=%v, LastEvent=%v, LastFlapped=%v, Node=%v, PeerHost=%v, PeerIp=%v, Priority=%v, Protocol=%v, RxBytes=%v, RxPkts=%v, TunnelName=%v, TxBytes=%v, TxPkts=%v, Up=%v, Uptime=%v, WanName=%v, AdditionalProperties=%v]",
-    	o.AuthAlgo, o.EncryptAlgo, o.IkeVersion, o.Ip, o.LastEvent, o.LastFlapped, o.Node, o.PeerHost, o.PeerIp, o.Priority, o.Protocol, o.RxBytes, o.RxPkts, o.TunnelName, o.TxBytes, o.TxPkts, o.Up, o.Uptime, o.WanName, o.AdditionalProperties)
+    	"StatsGatewayWanTunnel[AuthAlgo=%v, EncryptAlgo=%v, IkeVersion=%v, Ip=%v, LastEvent=%v, LastFlapped=%v, Node=%v, PeerHost=%v, PeerIp=%v, Priority=%v, Protocol=%v, RxBytes=%v, RxPkts=%v, TunnelName=%v, TxBytes=%v, TxPkts=%v, Up=%v, Uptime=%v, WanName=%v, AdditionalProperties=%v]",
+    	s.AuthAlgo, s.EncryptAlgo, s.IkeVersion, s.Ip, s.LastEvent, s.LastFlapped, s.Node, s.PeerHost, s.PeerIp, s.Priority, s.Protocol, s.RxBytes, s.RxPkts, s.TunnelName, s.TxBytes, s.TxPkts, s.Up, s.Uptime, s.WanName, s.AdditionalProperties)
 }
 
-// MarshalJSON implements the json.Marshaler interface for OptionalStatWanTunnel.
-// It customizes the JSON marshaling process for OptionalStatWanTunnel objects.
-func (o OptionalStatWanTunnel) MarshalJSON() (
+// MarshalJSON implements the json.Marshaler interface for StatsGatewayWanTunnel.
+// It customizes the JSON marshaling process for StatsGatewayWanTunnel objects.
+func (s StatsGatewayWanTunnel) MarshalJSON() (
     []byte,
     error) {
-    if err := DetectConflictingProperties(o.AdditionalProperties,
+    if err := DetectConflictingProperties(s.AdditionalProperties,
         "auth_algo", "encrypt_algo", "ike_version", "ip", "last_event", "last_flapped", "node", "peer_host", "peer_ip", "priority", "protocol", "rx_bytes", "rx_pkts", "tunnel_name", "tx_bytes", "tx_pkts", "up", "uptime", "wan_name"); err != nil {
         return []byte{}, err
     }
-    return json.Marshal(o.toMap())
+    return json.Marshal(s.toMap())
 }
 
-// toMap converts the OptionalStatWanTunnel object to a map representation for JSON marshaling.
-func (o OptionalStatWanTunnel) toMap() map[string]any {
+// toMap converts the StatsGatewayWanTunnel object to a map representation for JSON marshaling.
+func (s StatsGatewayWanTunnel) toMap() map[string]any {
     structMap := make(map[string]any)
-    MergeAdditionalProperties(structMap, o.AdditionalProperties)
-    if o.AuthAlgo != nil {
-        structMap["auth_algo"] = o.AuthAlgo
+    MergeAdditionalProperties(structMap, s.AdditionalProperties)
+    if s.AuthAlgo != nil {
+        structMap["auth_algo"] = s.AuthAlgo
     }
-    if o.EncryptAlgo != nil {
-        structMap["encrypt_algo"] = o.EncryptAlgo
+    if s.EncryptAlgo != nil {
+        structMap["encrypt_algo"] = s.EncryptAlgo
     }
-    if o.IkeVersion != nil {
-        structMap["ike_version"] = o.IkeVersion
+    if s.IkeVersion != nil {
+        structMap["ike_version"] = s.IkeVersion
     }
-    if o.Ip != nil {
-        structMap["ip"] = o.Ip
+    if s.Ip != nil {
+        structMap["ip"] = s.Ip
     }
-    if o.LastEvent != nil {
-        structMap["last_event"] = o.LastEvent
+    if s.LastEvent != nil {
+        structMap["last_event"] = s.LastEvent
     }
-    if o.LastFlapped != nil {
-        structMap["last_flapped"] = o.LastFlapped
+    if s.LastFlapped != nil {
+        structMap["last_flapped"] = s.LastFlapped
     }
-    if o.Node != nil {
-        structMap["node"] = o.Node
+    if s.Node != nil {
+        structMap["node"] = s.Node
     }
-    if o.PeerHost != nil {
-        structMap["peer_host"] = o.PeerHost
+    if s.PeerHost != nil {
+        structMap["peer_host"] = s.PeerHost
     }
-    if o.PeerIp != nil {
-        structMap["peer_ip"] = o.PeerIp
+    if s.PeerIp != nil {
+        structMap["peer_ip"] = s.PeerIp
     }
-    if o.Priority != nil {
-        structMap["priority"] = o.Priority
+    if s.Priority != nil {
+        structMap["priority"] = s.Priority
     }
-    if o.Protocol != nil {
-        structMap["protocol"] = o.Protocol
+    if s.Protocol != nil {
+        structMap["protocol"] = s.Protocol
     }
-    if o.RxBytes != nil {
-        structMap["rx_bytes"] = o.RxBytes
+    if s.RxBytes != nil {
+        structMap["rx_bytes"] = s.RxBytes
     }
-    if o.RxPkts != nil {
-        structMap["rx_pkts"] = o.RxPkts
+    if s.RxPkts != nil {
+        structMap["rx_pkts"] = s.RxPkts
     }
-    if o.TunnelName != nil {
-        structMap["tunnel_name"] = o.TunnelName
+    if s.TunnelName != nil {
+        structMap["tunnel_name"] = s.TunnelName
     }
-    if o.TxBytes != nil {
-        structMap["tx_bytes"] = o.TxBytes
+    if s.TxBytes != nil {
+        structMap["tx_bytes"] = s.TxBytes
     }
-    if o.TxPkts != nil {
-        structMap["tx_pkts"] = o.TxPkts
+    if s.TxPkts != nil {
+        structMap["tx_pkts"] = s.TxPkts
     }
-    if o.Up != nil {
-        structMap["up"] = o.Up
+    if s.Up != nil {
+        structMap["up"] = s.Up
     }
-    if o.Uptime != nil {
-        structMap["uptime"] = o.Uptime
+    if s.Uptime != nil {
+        structMap["uptime"] = s.Uptime
     }
-    if o.WanName != nil {
-        structMap["wan_name"] = o.WanName
+    if s.WanName != nil {
+        structMap["wan_name"] = s.WanName
     }
     return structMap
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface for OptionalStatWanTunnel.
-// It customizes the JSON unmarshaling process for OptionalStatWanTunnel objects.
-func (o *OptionalStatWanTunnel) UnmarshalJSON(input []byte) error {
-    var temp tempOptionalStatWanTunnel
+// UnmarshalJSON implements the json.Unmarshaler interface for StatsGatewayWanTunnel.
+// It customizes the JSON unmarshaling process for StatsGatewayWanTunnel objects.
+func (s *StatsGatewayWanTunnel) UnmarshalJSON(input []byte) error {
+    var temp tempStatsGatewayWanTunnel
     err := json.Unmarshal(input, &temp)
     if err != nil {
     	return err
@@ -139,32 +139,32 @@ func (o *OptionalStatWanTunnel) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    o.AdditionalProperties = additionalProperties
+    s.AdditionalProperties = additionalProperties
     
-    o.AuthAlgo = temp.AuthAlgo
-    o.EncryptAlgo = temp.EncryptAlgo
-    o.IkeVersion = temp.IkeVersion
-    o.Ip = temp.Ip
-    o.LastEvent = temp.LastEvent
-    o.LastFlapped = temp.LastFlapped
-    o.Node = temp.Node
-    o.PeerHost = temp.PeerHost
-    o.PeerIp = temp.PeerIp
-    o.Priority = temp.Priority
-    o.Protocol = temp.Protocol
-    o.RxBytes = temp.RxBytes
-    o.RxPkts = temp.RxPkts
-    o.TunnelName = temp.TunnelName
-    o.TxBytes = temp.TxBytes
-    o.TxPkts = temp.TxPkts
-    o.Up = temp.Up
-    o.Uptime = temp.Uptime
-    o.WanName = temp.WanName
+    s.AuthAlgo = temp.AuthAlgo
+    s.EncryptAlgo = temp.EncryptAlgo
+    s.IkeVersion = temp.IkeVersion
+    s.Ip = temp.Ip
+    s.LastEvent = temp.LastEvent
+    s.LastFlapped = temp.LastFlapped
+    s.Node = temp.Node
+    s.PeerHost = temp.PeerHost
+    s.PeerIp = temp.PeerIp
+    s.Priority = temp.Priority
+    s.Protocol = temp.Protocol
+    s.RxBytes = temp.RxBytes
+    s.RxPkts = temp.RxPkts
+    s.TunnelName = temp.TunnelName
+    s.TxBytes = temp.TxBytes
+    s.TxPkts = temp.TxPkts
+    s.Up = temp.Up
+    s.Uptime = temp.Uptime
+    s.WanName = temp.WanName
     return nil
 }
 
-// tempOptionalStatWanTunnel is a temporary struct used for validating the fields of OptionalStatWanTunnel.
-type tempOptionalStatWanTunnel  struct {
+// tempStatsGatewayWanTunnel is a temporary struct used for validating the fields of StatsGatewayWanTunnel.
+type tempStatsGatewayWanTunnel  struct {
     AuthAlgo    *string                     `json:"auth_algo,omitempty"`
     EncryptAlgo *string                     `json:"encrypt_algo,omitempty"`
     IkeVersion  *string                     `json:"ike_version,omitempty"`

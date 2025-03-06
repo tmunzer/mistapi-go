@@ -22,7 +22,7 @@ AP events
 | `PortId` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Text` | `*string` | Optional | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

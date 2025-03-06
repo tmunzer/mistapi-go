@@ -18,6 +18,7 @@ type DiscoveredSwitch struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     SystemDesc           *string                `json:"system_desc,omitempty"`
     SystemName           *string                `json:"system_name,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Vendor               *string                `json:"vendor,omitempty"`
     Version              *string                `json:"version,omitempty"`

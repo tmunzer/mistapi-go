@@ -18,6 +18,7 @@ type SynthetictestInfo struct {
     RxMbps               *int                   `json:"rx_mbps,omitempty"`
     StartTime            *int                   `json:"start_time,omitempty"`
     Status               *string                `json:"status,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     TxMbps               *int                   `json:"tx_mbps,omitempty"`
     // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`

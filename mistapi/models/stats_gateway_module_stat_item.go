@@ -12,6 +12,7 @@ type StatsGatewayModuleStatItem struct {
     CpldVersion          Optional[string]                 `json:"cpld_version"`
     Fans                 []ModuleStatItemFansItems        `json:"fans,omitempty"`
     FpgaVersion          Optional[string]                 `json:"fpga_version"`
+    // Last seen timestamp
     LastSeen             Optional[float64]                `json:"last_seen"`
     Locating             *bool                            `json:"locating,omitempty"`
     Mac                  *string                          `json:"mac,omitempty"`

@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Status` | [`*models.ResponseDeviceSnapshotStatusEnum`](../../doc/models/response-device-snapshot-status-enum.md) | Optional | enum: `error`, `inprogress`, `scheduled`, `starting`, `success` |
 | `StatusId` | `*string` | Optional | Internal status id |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

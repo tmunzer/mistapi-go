@@ -23,7 +23,7 @@
 | `SiteId` | `uuid.UUID` | Required | - |
 | `SiteName` | `string` | Required | - |
 | `Ssid` | `string` | Required | ESSID |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Version` | `float64` | Required | schema version of this message |
 | `WlanId` | `uuid.UUID` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

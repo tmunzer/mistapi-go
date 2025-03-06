@@ -11,7 +11,8 @@ type FwupdateStat struct {
     // enum: `inprogress`, `failed`, `upgraded`
     Status               Optional[FwupdateStatStatusEnum] `json:"status"`
     StatusId             Optional[int]                    `json:"status_id"`
-    Timestamp            Optional[float64]                `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp            *float64                         `json:"timestamp,omitempty"`
     WillRetry            Optional[bool]                   `json:"will_retry"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }
@@ -61,12 +62,8 @@ func (f FwupdateStat) toMap() map[string]any {
             structMap["status_id"] = nil
         }
     }
-    if f.Timestamp.IsValueSet() {
-        if f.Timestamp.Value() != nil {
-            structMap["timestamp"] = f.Timestamp.Value()
-        } else {
-            structMap["timestamp"] = nil
-        }
+    if f.Timestamp != nil {
+        structMap["timestamp"] = f.Timestamp
     }
     if f.WillRetry.IsValueSet() {
         if f.WillRetry.Value() != nil {
@@ -105,6 +102,6 @@ type tempFwupdateStat  struct {
     Progress  Optional[int]                    `json:"progress"`
     Status    Optional[FwupdateStatStatusEnum] `json:"status"`
     StatusId  Optional[int]                    `json:"status_id"`
-    Timestamp Optional[float64]                `json:"timestamp"`
+    Timestamp *float64                         `json:"timestamp,omitempty"`
     WillRetry Optional[bool]                   `json:"will_retry"`
 }

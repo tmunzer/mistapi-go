@@ -27,11 +27,11 @@
   "limit": 8,
   "results": [
     {
+      "last_seen": 1470417522.0,
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "peer_site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "is_active": false,
-      "last_seen": 165.16,
       "latency": 250.14,
       "mac": "mac0",
       "mos": 27.76,

@@ -13,7 +13,8 @@ type InstallerDevice struct {
     ExtIp                *string                `json:"ext_ip,omitempty"`
     Height               *float64               `json:"height,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
-    LastSeen             *float64               `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]      `json:"last_seen"`
     Mac                  *string                `json:"mac,omitempty"`
     MapId                *uuid.UUID             `json:"map_id,omitempty"`
     Model                *string                `json:"model,omitempty"`
@@ -68,8 +69,12 @@ func (i InstallerDevice) toMap() map[string]any {
     if i.Ip != nil {
         structMap["ip"] = i.Ip
     }
-    if i.LastSeen != nil {
-        structMap["last_seen"] = i.LastSeen
+    if i.LastSeen.IsValueSet() {
+        if i.LastSeen.Value() != nil {
+            structMap["last_seen"] = i.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if i.Mac != nil {
         structMap["mac"] = i.Mac
@@ -151,22 +156,22 @@ func (i *InstallerDevice) UnmarshalJSON(input []byte) error {
 
 // tempInstallerDevice is a temporary struct used for validating the fields of InstallerDevice.
 type tempInstallerDevice  struct {
-    Connected         *bool            `json:"connected,omitempty"`
-    DeviceprofileName *string          `json:"deviceprofile_name,omitempty"`
-    ExtIp             *string          `json:"ext_ip,omitempty"`
-    Height            *float64         `json:"height,omitempty"`
-    Ip                *string          `json:"ip,omitempty"`
-    LastSeen          *float64         `json:"last_seen,omitempty"`
-    Mac               *string          `json:"mac,omitempty"`
-    MapId             *uuid.UUID       `json:"map_id,omitempty"`
-    Model             *string          `json:"model,omitempty"`
-    Name              *string          `json:"name,omitempty"`
-    Orientation       *int             `json:"orientation,omitempty"`
-    Serial            *string          `json:"serial,omitempty"`
-    SiteName          *string          `json:"site_name,omitempty"`
-    Uptime            *int             `json:"uptime,omitempty"`
-    VcMac             Optional[string] `json:"vc_mac"`
-    Version           *string          `json:"version,omitempty"`
-    X                 *float64         `json:"x,omitempty"`
-    Y                 *float64         `json:"y,omitempty"`
+    Connected         *bool             `json:"connected,omitempty"`
+    DeviceprofileName *string           `json:"deviceprofile_name,omitempty"`
+    ExtIp             *string           `json:"ext_ip,omitempty"`
+    Height            *float64          `json:"height,omitempty"`
+    Ip                *string           `json:"ip,omitempty"`
+    LastSeen          Optional[float64] `json:"last_seen"`
+    Mac               *string           `json:"mac,omitempty"`
+    MapId             *uuid.UUID        `json:"map_id,omitempty"`
+    Model             *string           `json:"model,omitempty"`
+    Name              *string           `json:"name,omitempty"`
+    Orientation       *int              `json:"orientation,omitempty"`
+    Serial            *string           `json:"serial,omitempty"`
+    SiteName          *string           `json:"site_name,omitempty"`
+    Uptime            *int              `json:"uptime,omitempty"`
+    VcMac             Optional[string]  `json:"vc_mac"`
+    Version           *string           `json:"version,omitempty"`
+    X                 *float64          `json:"x,omitempty"`
+    Y                 *float64          `json:"y,omitempty"`
 }

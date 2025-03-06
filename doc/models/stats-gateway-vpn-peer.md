@@ -1,18 +1,18 @@
 
-# Optional Stat Vpn Peer
+# Stats Gateway Vpn Peer
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`OptionalStatVpnPeer`
+`StatsGatewayVpnPeer`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `IsActive` | `*bool` | Optional | Redundancy status of the associated interface |
-| `LastSeen` | `*float64` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Latency` | `*float64` | Optional | - |
 | `Mos` | `*float64` | Optional | - |
 | `Mtu` | `*int` | Optional | - |
@@ -31,12 +31,12 @@
 
 ```json
 {
+  "last_seen": 1470417522.0,
   "peer_site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "is_active": false,
-  "last_seen": 64.7,
-  "latency": 94.6,
-  "mos": 183.3,
-  "mtu": 232,
+  "latency": 42.94,
+  "mos": 234.96,
+  "mtu": 22,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

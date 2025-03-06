@@ -14,7 +14,7 @@
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Name` | `string` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

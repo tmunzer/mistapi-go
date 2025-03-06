@@ -17,7 +17,7 @@
 | `Channel` | `int` | Required | Channel of the band found in the scan |
 | `Rssi` | `float64` | Required | Client's RSSI relative to the BSSID scanned |
 | `Ssid` | `string` | Required | ESSID containing the BSSID scanned |
-| `Timestamp` | `float64` | Required | Time the scan of the particular BSSID occurred |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

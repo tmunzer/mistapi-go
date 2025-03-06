@@ -58,7 +58,7 @@
         "ffeeddccbbaa",
         "ffeeddccbbab"
       ],
-      "timestamp": 1711031774,
+      "timestamp": 2.64,
       "type": "rogue_client",
       "exampleAdditionalProperty": {
         "key1": "val1",

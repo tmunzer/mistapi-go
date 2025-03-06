@@ -11,7 +11,8 @@ type WebhookSiteSleEvent struct {
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     SiteId               *uuid.UUID              `json:"site_id,omitempty"`
     Sle                  *WebhookSiteSleEventSle `json:"sle,omitempty"`
-    Timestamp            *int                    `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64                `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
@@ -80,5 +81,5 @@ type tempWebhookSiteSleEvent  struct {
     OrgId     *uuid.UUID              `json:"org_id,omitempty"`
     SiteId    *uuid.UUID              `json:"site_id,omitempty"`
     Sle       *WebhookSiteSleEventSle `json:"sle,omitempty"`
-    Timestamp *int                    `json:"timestamp,omitempty"`
+    Timestamp *float64                `json:"timestamp,omitempty"`
 }

@@ -19,13 +19,15 @@ type WebhookAlarmEvent struct {
     ForSite              *bool                  `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organization
     Id                   uuid.UUID              `json:"id"`
-    LastSeen             float64                `json:"last_seen"`
+    // Last seen timestamp
+    LastSeen             *float64               `json:"last_seen"`
     // only for HA. enum: `node0`, `node1`
     Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
     OrgId                uuid.UUID              `json:"org_id"`
     SiteId               uuid.UUID              `json:"site_id"`
     Ssids                []string               `json:"ssids,omitempty"`
-    Timestamp            int                    `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp            float64                `json:"timestamp"`
     // Event type
     Type                 string                 `json:"type"`
     // If presents, represents that this is an update to event with given id sent earlier. default=false
@@ -73,7 +75,11 @@ func (w WebhookAlarmEvent) toMap() map[string]any {
         structMap["for_site"] = w.ForSite
     }
     structMap["id"] = w.Id
-    structMap["last_seen"] = w.LastSeen
+    if w.LastSeen != nil {
+        structMap["last_seen"] = w.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     if w.Node != nil {
         structMap["node"] = w.Node
     }
@@ -114,7 +120,7 @@ func (w *WebhookAlarmEvent) UnmarshalJSON(input []byte) error {
     w.EventId = temp.EventId
     w.ForSite = temp.ForSite
     w.Id = *temp.Id
-    w.LastSeen = *temp.LastSeen
+    w.LastSeen = temp.LastSeen
     w.Node = temp.Node
     w.OrgId = *temp.OrgId
     w.SiteId = *temp.SiteId
@@ -138,7 +144,7 @@ type tempWebhookAlarmEvent  struct {
     OrgId     *uuid.UUID         `json:"org_id"`
     SiteId    *uuid.UUID         `json:"site_id"`
     Ssids     []string           `json:"ssids,omitempty"`
-    Timestamp *int               `json:"timestamp"`
+    Timestamp *float64           `json:"timestamp"`
     Type      *string            `json:"type"`
     Update    *bool              `json:"update,omitempty"`
 }
@@ -147,9 +153,6 @@ func (w *tempWebhookAlarmEvent) validate() error {
     var errs []string
     if w.Id == nil {
         errs = append(errs, "required field `id` is missing for type `webhook_alarm_event`")
-    }
-    if w.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `webhook_alarm_event`")
     }
     if w.OrgId == nil {
         errs = append(errs, "required field `org_id` is missing for type `webhook_alarm_event`")

@@ -22,6 +22,7 @@ type WirelessClientSession struct {
     SiteId               uuid.UUID              `json:"site_id"`
     Ssid                 string                 `json:"ssid"`
     Tags                 []string               `json:"tags,omitempty"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     WlanId               uuid.UUID              `json:"wlan_id"`
     AdditionalProperties map[string]interface{} `json:"_"`

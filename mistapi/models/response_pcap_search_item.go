@@ -22,6 +22,7 @@ type ResponsePcapSearchItem struct {
     PcapUrl              *string                                      `json:"pcap_url,omitempty"`
     SiteId               *uuid.UUID                                   `json:"site_id,omitempty"`
     TerminationReason    *string                                      `json:"termination_reason,omitempty"`
+    // Epoch (seconds)
     Timestamp            float64                                      `json:"timestamp"`
     Type                 string                                       `json:"type"`
     Url                  string                                       `json:"url"`

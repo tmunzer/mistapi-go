@@ -1,5 +1,5 @@
 
-# Optional Stats Port
+# Stats Gateway Port
 
 Port statistics
 
@@ -7,7 +7,7 @@ Port statistics
 
 ## Structure
 
-`OptionalStatsPort`
+`StatsGatewayPort`
 
 ## Fields
 
@@ -15,6 +15,7 @@ Port statistics
 |  --- | --- | --- | --- |
 | `Active` | `*bool` | Optional | Indicates if interface is active/inactive |
 | `AuthState` | [`*models.StatsSwitchPortAuthStateEnum`](../../doc/models/stats-switch-port-auth-state-enum.md) | Optional | if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init` |
+| `Disabled` | `*bool` | Optional | Indicates if interface is disabled |
 | `ForSite` | `*bool` | Optional | - |
 | `FullDuplex` | `*bool` | Optional | Indicates full or half duplex |
 | `Jitter` | `*float64` | Optional | Last sampled jitter of the interface |
@@ -69,7 +70,7 @@ Port statistics
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
   "rx_bytes": 4563443626,
-  "rx_pkts": 38,
+  "rx_pkts": 76,
   "speed": 1000,
   "tx_bytes": 11299516780,
   "tx_pkts": 492176,
@@ -78,9 +79,9 @@ Port statistics
   "xcvr_part_number": "740-021487",
   "xcvr_serial": "N6AA9HT",
   "active": false,
-  "auth_state": "authenticated",
+  "auth_state": "held",
+  "disabled": false,
   "for_site": false,
-  "jitter": 62.72,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

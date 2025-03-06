@@ -26,7 +26,7 @@ type Rrm struct {
     RftemplateName       string                 `json:"rftemplate_name"`
     // enum: `ready`, `unknown`, `updating`
     Status               RrmStatusEnum          `json:"status"`
-    // Time where the status was updated
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

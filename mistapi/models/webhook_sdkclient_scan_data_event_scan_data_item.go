@@ -21,7 +21,7 @@ type WebhookSdkclientScanDataEventScanDataItem struct {
     Rssi                 float64                `json:"rssi"`
     // ESSID containing the BSSID scanned
     Ssid                 string                 `json:"ssid"`
-    // Time the scan of the particular BSSID occurred
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

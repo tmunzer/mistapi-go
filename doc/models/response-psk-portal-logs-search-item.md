@@ -18,7 +18,7 @@
 | `PskId` | `*uuid.UUID` | Optional | - |
 | `PskName` | `*string` | Optional | - |
 | `PskportalId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -32,7 +32,6 @@
   "psk_id": "608fe603-f9f0-4ce9-9473-04ef6c6ea749",
   "psk_name": "test@mist.com",
   "pskportal_id": "c1742c09-af35-4161-96ef-7dc65c6d5674",
-  "timestamp": 1686346104.096,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

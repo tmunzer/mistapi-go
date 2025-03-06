@@ -20,7 +20,8 @@ type DiscoveredSwitchMetric struct {
     SiteId               *uuid.UUID                 `json:"site_id,omitempty"`
     SystemDesc           *string                    `json:"system_desc,omitempty"`
     SystemName           *string                    `json:"system_name,omitempty"`
-    Timestamp            *int                       `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64                   `json:"timestamp,omitempty"`
     Type                 *string                    `json:"type,omitempty"`
     Vendor               *string                    `json:"vendor,omitempty"`
     Version              *string                    `json:"version,omitempty"`
@@ -149,7 +150,7 @@ type tempDiscoveredSwitchMetric  struct {
     SiteId     *uuid.UUID                 `json:"site_id,omitempty"`
     SystemDesc *string                    `json:"system_desc,omitempty"`
     SystemName *string                    `json:"system_name,omitempty"`
-    Timestamp  *int                       `json:"timestamp,omitempty"`
+    Timestamp  *float64                   `json:"timestamp,omitempty"`
     Type       *string                    `json:"type,omitempty"`
     Vendor     *string                    `json:"vendor,omitempty"`
     Version    *string                    `json:"version,omitempty"`

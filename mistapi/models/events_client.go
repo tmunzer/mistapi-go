@@ -20,6 +20,7 @@ type EventsClient struct {
     Proto                Dot11ProtoEnum         `json:"proto"`
     Ssid                 *string                `json:"ssid,omitempty"`
     Text                 *string                `json:"text,omitempty"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     // Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
     Type                 *string                `json:"type,omitempty"`

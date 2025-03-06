@@ -38,7 +38,8 @@ type StatsSwitch struct {
     IfStat               map[string]IfStatProperty      `json:"if_stat,omitempty"`
     Ip                   *string                        `json:"ip,omitempty"`
     IpStat               *IpStat                        `json:"ip_stat,omitempty"`
-    LastSeen             *float64                       `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]              `json:"last_seen"`
     // Last trouble code of switch
     LastTrouble          *LastTrouble                   `json:"last_trouble,omitempty"`
     Mac                  *string                        `json:"mac,omitempty"`
@@ -53,8 +54,7 @@ type StatsSwitch struct {
     // Device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
-    // Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
-    Ports                []OptionalStatsPort            `json:"ports,omitempty"`
+    Ports                []StatsSwitchPort              `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial               *string                        `json:"serial,omitempty"`
     ServiceStat          map[string]ServiceStatProperty `json:"service_stat,omitempty"`
@@ -161,8 +161,12 @@ func (s StatsSwitch) toMap() map[string]any {
     if s.IpStat != nil {
         structMap["ip_stat"] = s.IpStat.toMap()
     }
-    if s.LastSeen != nil {
-        structMap["last_seen"] = s.LastSeen
+    if s.LastSeen.IsValueSet() {
+        if s.LastSeen.Value() != nil {
+            structMap["last_seen"] = s.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if s.LastTrouble != nil {
         structMap["last_trouble"] = s.LastTrouble.toMap()
@@ -329,7 +333,7 @@ type tempStatsSwitch  struct {
     IfStat              map[string]IfStatProperty      `json:"if_stat,omitempty"`
     Ip                  *string                        `json:"ip,omitempty"`
     IpStat              *IpStat                        `json:"ip_stat,omitempty"`
-    LastSeen            *float64                       `json:"last_seen,omitempty"`
+    LastSeen            Optional[float64]              `json:"last_seen"`
     LastTrouble         *LastTrouble                   `json:"last_trouble,omitempty"`
     Mac                 *string                        `json:"mac,omitempty"`
     MacTableStats       *MacTableStats                 `json:"mac_table_stats,omitempty"`
@@ -340,7 +344,7 @@ type tempStatsSwitch  struct {
     ModuleStat          []StatsSwitchModuleStatItem    `json:"module_stat,omitempty"`
     Name                *string                        `json:"name,omitempty"`
     OrgId               *uuid.UUID                     `json:"org_id,omitempty"`
-    Ports               []OptionalStatsPort            `json:"ports,omitempty"`
+    Ports               []StatsSwitchPort              `json:"ports,omitempty"`
     RouteSummaryStats   *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     Serial              *string                        `json:"serial,omitempty"`
     ServiceStat         map[string]ServiceStatProperty `json:"service_stat,omitempty"`

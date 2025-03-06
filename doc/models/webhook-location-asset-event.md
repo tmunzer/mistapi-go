@@ -23,7 +23,7 @@
 | `MfgCompanyId` | `*int` | Optional | Optional, BLE manufacturing company ID |
 | `MfgData` | `*string` | Optional | Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC") |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | **Default**: `"asset"` |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
@@ -45,7 +45,6 @@
   "mfg_company_id": 935,
   "mfg_data": "648520a1020000",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 1461220784,
   "type": "asset",
   "x": 13.5,
   "y": 3.2,

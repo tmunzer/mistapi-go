@@ -19,7 +19,8 @@ type WebhookClientLatencyEvent struct {
     MinDns               *float64               `json:"min_dns,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -128,5 +129,5 @@ type tempWebhookClientLatencyEvent  struct {
     MinDns    *float64   `json:"min_dns,omitempty"`
     OrgId     *uuid.UUID `json:"org_id,omitempty"`
     SiteId    *uuid.UUID `json:"site_id,omitempty"`
-    Timestamp *int       `json:"timestamp,omitempty"`
+    Timestamp *float64   `json:"timestamp,omitempty"`
 }

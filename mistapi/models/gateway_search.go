@@ -32,6 +32,7 @@ type GatewaySearch struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     T128agentVersion     *string                `json:"t128agent_version,omitempty"`
     TimeDrifted          *bool                  `json:"time_drifted,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Device Type. enum: `gateway`
     Type                 string                 `json:"type"`

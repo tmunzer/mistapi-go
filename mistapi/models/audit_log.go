@@ -23,6 +23,7 @@ type AuditLog struct {
     Message              string                 `json:"message"`
     OrgId                uuid.UUID              `json:"org_id"`
     SiteId               uuid.UUID              `json:"site_id"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

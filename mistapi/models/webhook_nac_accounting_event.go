@@ -28,7 +28,7 @@ type WebhookNacAccountingEvent struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // ESSID
     Ssid                 *string                `json:"ssid,omitempty"`
-    // sampling time (in epoch)
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Number of packets sent
     TxPkts               *int                   `json:"tx_pkts,omitempty"`

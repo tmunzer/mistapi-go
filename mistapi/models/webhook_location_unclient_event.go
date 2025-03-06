@@ -11,7 +11,8 @@ type WebhookLocationUnclientEvent struct {
     Mac                    *string                       `json:"mac,omitempty"`
     MapId                  *uuid.UUID                    `json:"map_id,omitempty"`
     SiteId                 *uuid.UUID                    `json:"site_id,omitempty"`
-    Timestamp              *int                          `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp              *float64                      `json:"timestamp,omitempty"`
     Type                   *string                       `json:"type,omitempty"`
     // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
@@ -103,7 +104,7 @@ type tempWebhookLocationUnclientEvent  struct {
     Mac                    *string                       `json:"mac,omitempty"`
     MapId                  *uuid.UUID                    `json:"map_id,omitempty"`
     SiteId                 *uuid.UUID                    `json:"site_id,omitempty"`
-    Timestamp              *int                          `json:"timestamp,omitempty"`
+    Timestamp              *float64                      `json:"timestamp,omitempty"`
     Type                   *string                       `json:"type,omitempty"`
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     X                      *float64                      `json:"x,omitempty"`

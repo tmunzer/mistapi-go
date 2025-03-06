@@ -1,11 +1,11 @@
 
-# Optional Stat Wan Tunnel
+# Stats Gateway Wan Tunnel
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`OptionalStatWanTunnel`
+`StatsGatewayWanTunnel`
 
 ## Fields
 
@@ -38,10 +38,10 @@
 {
   "wan_name": "wan",
   "auth_algo": "auth_algo8",
-  "encrypt_algo": "encrypt_algo8",
-  "ike_version": "ike_version8",
-  "ip": "ip8",
-  "last_event": "last_event8",
+  "encrypt_algo": "encrypt_algo4",
+  "ike_version": "ike_version4",
+  "ip": "ip4",
+  "last_event": "last_event4",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -32,7 +32,7 @@
 | `SiteName` | `string` | Required | - |
 | `Ssid` | `string` | Required | - |
 | `TerminationReason` | `int` | Required | 1 disassociate - when the client disassociates. 2 inactive - when the client is timeout. 3 roamed - when the client is roamed between APs |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Version` | `float64` | Required | schema version of this message |
 | `WlanId` | `uuid.UUID` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

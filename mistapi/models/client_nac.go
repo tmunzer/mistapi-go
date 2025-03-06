@@ -75,7 +75,7 @@ type ClientNac struct {
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // SSIDs the client was connected to  for the specified duration
     Ssid                 []string               `json:"ssid,omitempty"`
-    // Start time, in epoch
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Type of network access. enum: `wireless`, `wired`
     Type                 *NacAccessTypeEnum     `json:"type,omitempty"`

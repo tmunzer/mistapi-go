@@ -23,7 +23,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SystemDesc` | `*string` | Optional | - |
 | `SystemName` | `*string` | Optional | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
 | `Version` | `*string` | Optional | - |
@@ -41,7 +41,6 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "system_desc": "Juniper Networks, Inc. ex4100-f-12p Ethernet Switch, kernel JUNOS 22.4R3.25, Build date: 2024-02-10 00:49:09 UTC Copyright (c) 1996-2024 Juniper Networks, Inc.",
   "system_name": "SW-HLAB-ea2e00",
-  "timestamp": 1675193400,
   "type": "inactive_wired_vlans",
   "adopted": false,
   "aps": [

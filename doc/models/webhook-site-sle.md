@@ -33,7 +33,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 130,
+      "timestamp": 188.18,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -51,7 +51,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 130,
+      "timestamp": 188.18,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

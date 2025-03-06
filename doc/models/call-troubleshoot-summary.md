@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AudioIn` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
 | `AudioOut` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `VideoIn` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
 | `VideoOut` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -22,7 +22,6 @@
 
 ```json
 {
-  "timestamp": 1695425115,
   "audio_in": {
     "ap_num_clients": 152.32,
     "ap_rtt": 133.36,
@@ -45,6 +44,7 @@
       "key2": "val2"
     }
   },
+  "timestamp": 110.48,
   "video_in": {
     "ap_num_clients": 44.64,
     "ap_rtt": 25.68,

@@ -14,7 +14,7 @@ type StatsUnconnectedClient struct {
     // MAC address of the AP that heard the client
     ApMac                string                 `json:"ap_mac"`
     // Last seen timestamp
-    LastSeen             float64                `json:"last_seen"`
+    LastSeen             *float64               `json:"last_seen"`
     // MAC address of the (unconnected) client
     Mac                  string                 `json:"mac"`
     // Device manufacture, through fingerprinting or OUI
@@ -55,7 +55,11 @@ func (s StatsUnconnectedClient) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
     structMap["ap_mac"] = s.ApMac
-    structMap["last_seen"] = s.LastSeen
+    if s.LastSeen != nil {
+        structMap["last_seen"] = s.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     structMap["mac"] = s.Mac
     structMap["manufacture"] = s.Manufacture
     if s.MapId.IsValueSet() {
@@ -92,7 +96,7 @@ func (s *StatsUnconnectedClient) UnmarshalJSON(input []byte) error {
     s.AdditionalProperties = additionalProperties
     
     s.ApMac = *temp.ApMac
-    s.LastSeen = *temp.LastSeen
+    s.LastSeen = temp.LastSeen
     s.Mac = *temp.Mac
     s.Manufacture = *temp.Manufacture
     s.MapId = temp.MapId
@@ -118,9 +122,6 @@ func (s *tempStatsUnconnectedClient) validate() error {
     var errs []string
     if s.ApMac == nil {
         errs = append(errs, "required field `ap_mac` is missing for type `stats_unconnected_client`")
-    }
-    if s.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `stats_unconnected_client`")
     }
     if s.Mac == nil {
         errs = append(errs, "required field `mac` is missing for type `stats_unconnected_client`")

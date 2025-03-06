@@ -22,7 +22,8 @@ type WebhookLocationAssetEvent struct {
     // Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
     MfgData               *string                `json:"mfg_data,omitempty"`
     SiteId                *uuid.UUID             `json:"site_id,omitempty"`
-    Timestamp             *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp             *float64               `json:"timestamp,omitempty"`
     Type                  *string                `json:"type,omitempty"`
     // x, in meter
     X                     *float64               `json:"x,omitempty"`
@@ -153,7 +154,7 @@ type tempWebhookLocationAssetEvent  struct {
     MfgCompanyId          *int       `json:"mfg_company_id,omitempty"`
     MfgData               *string    `json:"mfg_data,omitempty"`
     SiteId                *uuid.UUID `json:"site_id,omitempty"`
-    Timestamp             *int       `json:"timestamp,omitempty"`
+    Timestamp             *float64   `json:"timestamp,omitempty"`
     Type                  *string    `json:"type,omitempty"`
     X                     *float64   `json:"x,omitempty"`
     Y                     *float64   `json:"y,omitempty"`

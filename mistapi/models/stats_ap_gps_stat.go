@@ -19,7 +19,7 @@ type StatsApGpsStat struct {
     // * `gps`: from this device’s GPS estimates
     // * `other_ap` from neighboring device GPS estimates
     Src                  *StatsApGpsStatSrcEnum `json:"src,omitempty"`
-    // The unix timestamp when the GPS data was recorded.
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

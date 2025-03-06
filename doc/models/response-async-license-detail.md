@@ -15,7 +15,7 @@ detail claim status per device
 |  --- | --- | --- | --- |
 | `Mac` | `*string` | Optional | Device MAC Address |
 | `Status` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

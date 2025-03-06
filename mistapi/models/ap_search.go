@@ -58,6 +58,7 @@ type ApSearch struct {
     PowerOpmode          string                 `json:"power_opmode"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Sku                  *string                `json:"sku,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Uptime               *int                   `json:"uptime,omitempty"`
     // Version

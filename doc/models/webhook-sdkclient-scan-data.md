@@ -26,7 +26,7 @@
       "connection_bssid": "connection_bssid8",
       "connection_channel": 46,
       "connection_rssi": 33.56,
-      "last_seen": 94.7,
+      "last_seen": 1470417522.0,
       "mac": "mac4",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "scan_data": [

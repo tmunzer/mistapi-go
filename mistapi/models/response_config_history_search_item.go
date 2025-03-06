@@ -17,6 +17,7 @@ type ResponseConfigHistorySearchItem struct {
     Ssids                []string                               `json:"ssids,omitempty"`
     Ssids24              []string                               `json:"ssids_24,omitempty"`
     Ssids5               []string                               `json:"ssids_5,omitempty"`
+    // Epoch (seconds)
     Timestamp            float64                                `json:"timestamp"`
     Version              string                                 `json:"version"`
     Wlans                []ResponseConfigHistorySearchItemWlan  `json:"wlans,omitempty"`

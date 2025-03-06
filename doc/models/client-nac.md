@@ -48,7 +48,7 @@
 | `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `[]string` | Optional | SSIDs the client was connected to  for the specified duration |
-| `Timestamp` | `*float64` | Optional | Start time, in epoch |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Optional | Type of network access. enum: `wireless`, `wired` |
 | `Username` | `[]string` | Optional | List of usernames that have been assigned to the client |
 | `Vlan` | `[]string` | Optional | List of vlans that have been assigned to the client |
@@ -118,7 +118,6 @@
   "ssid": [
     "MyCorp-NAC"
   ],
-  "timestamp": 1691512031.358188,
   "type": "wireless",
   "exampleAdditionalProperty": {
     "key1": "val1",

@@ -16,7 +16,7 @@
 | `CpldVersion` | `models.Optional[string]` | Optional | - |
 | `Fans` | [`[]models.ModuleStatItemFansItems`](../../doc/models/module-stat-item-fans-items.md) | Optional | **Constraints**: *Unique Items Required* |
 | `FpgaVersion` | `models.Optional[string]` | Optional | - |
-| `LastSeen` | `models.Optional[float64]` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Locating` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Model` | `models.Optional[string]` | Optional | - |
@@ -45,6 +45,7 @@
 
 ```json
 {
+  "last_seen": 1470417522,
   "mac": "fc3342123456",
   "model": "EX4300-48P",
   "serial": "PX8716230021",

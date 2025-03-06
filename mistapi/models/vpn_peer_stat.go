@@ -10,7 +10,8 @@ import (
 type VpnPeerStat struct {
     // Redundancy status of the associated interface
     IsActive             *bool                  `json:"is_active,omitempty"`
-    LastSeen             *float64               `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]      `json:"last_seen"`
     Latency              *float64               `json:"latency,omitempty"`
     // Router mac address
     Mac                  *string                `json:"mac,omitempty"`
@@ -61,8 +62,12 @@ func (v VpnPeerStat) toMap() map[string]any {
     if v.IsActive != nil {
         structMap["is_active"] = v.IsActive
     }
-    if v.LastSeen != nil {
-        structMap["last_seen"] = v.LastSeen
+    if v.LastSeen.IsValueSet() {
+        if v.LastSeen.Value() != nil {
+            structMap["last_seen"] = v.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if v.Latency != nil {
         structMap["latency"] = v.Latency
@@ -148,21 +153,21 @@ func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
 
 // tempVpnPeerStat is a temporary struct used for validating the fields of VpnPeerStat.
 type tempVpnPeerStat  struct {
-    IsActive       *bool      `json:"is_active,omitempty"`
-    LastSeen       *float64   `json:"last_seen,omitempty"`
-    Latency        *float64   `json:"latency,omitempty"`
-    Mac            *string    `json:"mac,omitempty"`
-    Mos            *float64   `json:"mos,omitempty"`
-    Mtu            *int       `json:"mtu,omitempty"`
-    OrgId          *uuid.UUID `json:"org_id,omitempty"`
-    PeerMac        *string    `json:"peer_mac,omitempty"`
-    PeerPortId     *string    `json:"peer_port_id,omitempty"`
-    PeerRouterName *string    `json:"peer_router_name,omitempty"`
-    PeerSiteId     *uuid.UUID `json:"peer_site_id,omitempty"`
-    PortId         *string    `json:"port_id,omitempty"`
-    RouterName     *string    `json:"router_name,omitempty"`
-    SiteId         *uuid.UUID `json:"site_id,omitempty"`
-    Type           *string    `json:"type,omitempty"`
-    Up             *bool      `json:"up,omitempty"`
-    Uptime         *int       `json:"uptime,omitempty"`
+    IsActive       *bool             `json:"is_active,omitempty"`
+    LastSeen       Optional[float64] `json:"last_seen"`
+    Latency        *float64          `json:"latency,omitempty"`
+    Mac            *string           `json:"mac,omitempty"`
+    Mos            *float64          `json:"mos,omitempty"`
+    Mtu            *int              `json:"mtu,omitempty"`
+    OrgId          *uuid.UUID        `json:"org_id,omitempty"`
+    PeerMac        *string           `json:"peer_mac,omitempty"`
+    PeerPortId     *string           `json:"peer_port_id,omitempty"`
+    PeerRouterName *string           `json:"peer_router_name,omitempty"`
+    PeerSiteId     *uuid.UUID        `json:"peer_site_id,omitempty"`
+    PortId         *string           `json:"port_id,omitempty"`
+    RouterName     *string           `json:"router_name,omitempty"`
+    SiteId         *uuid.UUID        `json:"site_id,omitempty"`
+    Type           *string           `json:"type,omitempty"`
+    Up             *bool             `json:"up,omitempty"`
+    Uptime         *int              `json:"uptime,omitempty"`
 }

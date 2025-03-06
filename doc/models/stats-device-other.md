@@ -16,7 +16,7 @@
 | `ConnectedDevices` | [`map[string]models.StatsDeviceOtherConnectedDevice`](../../doc/models/stats-device-other-connected-device.md) | Optional | Property key is the connected device MAC Address |
 | `Interfaces` | [`map[string]models.StatsDeviceOtherInterface`](../../doc/models/stats-device-other-interface.md) | Optional | Property key is the interface name |
 | `LastConfig` | `*int` | Optional | - |
-| `LastSeen` | `*int` | Optional | - |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `LldpEnabled` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Status` | `*string` | Optional | - |
@@ -32,7 +32,7 @@
 {
   "config_status": "synced",
   "last_config": 1675392788,
-  "last_seen": 1675843629,
+  "last_seen": 1470417522,
   "mac": "5c5b35000018",
   "status": "online",
   "uptime": 20296,

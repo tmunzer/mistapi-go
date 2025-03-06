@@ -76,7 +76,7 @@ type ClientWireless struct {
     SiteIds              []uuid.UUID            `json:"site_ids,omitempty"`
     // List of the WLAN names the client was connected to
     Ssid                 []string               `json:"ssid,omitempty"`
-    // When the data has been updated
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Only for 802.1X authentication. List of usernames used by the client
     Username             []string               `json:"username,omitempty"`

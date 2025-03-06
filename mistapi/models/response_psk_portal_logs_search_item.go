@@ -16,6 +16,7 @@ type ResponsePskPortalLogsSearchItem struct {
     PskId                *uuid.UUID             `json:"psk_id,omitempty"`
     PskName              *string                `json:"psk_name,omitempty"`
     PskportalId          *uuid.UUID             `json:"pskportal_id,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

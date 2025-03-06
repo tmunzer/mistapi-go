@@ -43,6 +43,7 @@ type WebhookAssetRawEvent struct {
     // List of service data packets heard from the asset/ beacon
     ServicePackets        []ServicePacket        `json:"service_packets,omitempty"`
     SiteId                uuid.UUID              `json:"site_id"`
+    // Epoch (seconds)
     Timestamp             float64                `json:"timestamp"`
     AdditionalProperties  map[string]interface{} `json:"_"`
 }

@@ -14,7 +14,7 @@ Last trouble code of switch
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Code` | `*string` | Optional | Code definitions list at [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition) |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -22,7 +22,7 @@ Last trouble code of switch
 ```json
 {
   "code": "03",
-  "timestamp": 1428949501,
+  "timestamp": 160.78,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -33,7 +33,7 @@ Additional information per alarm type
 | `Ssids` | `[]string` | Optional | List of SSIDs |
 | `Status` | [`*models.AlarmStatusEnum`](../../doc/models/alarm-status-enum.md) | Optional | enum: `open`, `resolved` |
 | `Switches` | `[]string` | Optional | additional information: List of MACs of the switches |
-| `Timestamp` | `int` | Required | Epoch (seconds) of the first incident/alarm |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | Key-name of the alarm type |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -68,7 +68,7 @@ Additional information per alarm type
     "ffeeddccbbaa",
     "ffeeddccbbab"
   ],
-  "timestamp": 1711031774,
+  "timestamp": 237.82,
   "type": "rogue_client",
   "exampleAdditionalProperty": {
     "key1": "val1",

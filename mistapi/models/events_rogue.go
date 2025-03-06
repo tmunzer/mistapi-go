@@ -15,6 +15,7 @@ type EventsRogue struct {
     Channel              int                    `json:"channel"`
     Rssi                 int                    `json:"rssi"`
     Ssid                 string                 `json:"ssid"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

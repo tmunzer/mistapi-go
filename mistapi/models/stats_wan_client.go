@@ -19,6 +19,7 @@ type StatsWanClient struct {
     Network              *string                `json:"network,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     Wcid                 *string                `json:"wcid,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

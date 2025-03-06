@@ -22,7 +22,7 @@
 | `PcapUrl` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TerminationReason` | `*string` | Optional | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | - |
 | `Url` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

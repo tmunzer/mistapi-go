@@ -31,7 +31,7 @@
 | `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | SSIDs the client was connecting to |
-| `Timestamp` | `*float64` | Optional | Start time, in epoch |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) endpoint to get the full list of available values. |
 | `Username` | `*string` | Optional | username assigned to the client |
 | `Vlan` | `*string` | Optional | vlan that assigned to the client |
@@ -69,7 +69,6 @@
   ],
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ssid": "MyCorp-NAC",
-  "timestamp": 1691512031.358188,
   "type": "NAC_CLIENT_PERMIT",
   "vlan_source": "nactag",
   "exampleAdditionalProperty": {

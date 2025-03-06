@@ -22,7 +22,7 @@
 | `RxPkts` | `*int` | Optional | Number of packets received |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | ESSID |
-| `Timestamp` | `*float64` | Optional | sampling time (in epoch) |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `TxPkts` | `*int` | Optional | Number of packets sent |
 | `Type` | `*string` | Optional | Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP" |
 | `Username` | `*string` | Optional | Username authenticated with |
@@ -43,7 +43,6 @@
   "rx_pkts": 9523,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ssid": "Test-CMR SSID",
-  "timestamp": 1547235620.89,
   "tx_pkts": 5233,
   "type": "NAC_ACCOUNTING_STOP",
   "username": "hi",

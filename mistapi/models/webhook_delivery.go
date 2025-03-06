@@ -27,6 +27,7 @@ type WebhookDelivery struct {
     // webhook delivery status. enum: `failure`, `success`
     Status               *WebhookDeliveryStatusEnum `json:"status,omitempty"`
     StatusCode           *int                       `json:"status_code,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64                   `json:"timestamp,omitempty"`
     // webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping`
     Topic                *WebhookDeliveryTopicEnum  `json:"topic,omitempty"`

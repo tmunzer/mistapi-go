@@ -20,6 +20,7 @@ type EventsDeviceAp struct {
     PortId               *string                `json:"port_id,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     Text                 *string                `json:"text,omitempty"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

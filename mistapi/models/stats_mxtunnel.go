@@ -14,7 +14,8 @@ type StatsMxtunnel struct {
     Ap                   *string                 `json:"ap,omitempty"`
     ForSite              *bool                   `json:"for_site,omitempty"`
     Fwupdate             *FwupdateStat           `json:"fwupdate,omitempty"`
-    LastSeen             *float64                `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]       `json:"last_seen"`
     Mtu                  *int                    `json:"mtu,omitempty"`
     MxclusterId          *uuid.UUID              `json:"mxcluster_id,omitempty"`
     MxedgeId             *uuid.UUID              `json:"mxedge_id,omitempty"`
@@ -68,8 +69,12 @@ func (s StatsMxtunnel) toMap() map[string]any {
     if s.Fwupdate != nil {
         structMap["fwupdate"] = s.Fwupdate.toMap()
     }
-    if s.LastSeen != nil {
-        structMap["last_seen"] = s.LastSeen
+    if s.LastSeen.IsValueSet() {
+        if s.LastSeen.Value() != nil {
+            structMap["last_seen"] = s.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if s.Mtu != nil {
         structMap["mtu"] = s.Mtu
@@ -158,7 +163,7 @@ type tempStatsMxtunnel  struct {
     Ap            *string                 `json:"ap,omitempty"`
     ForSite       *bool                   `json:"for_site,omitempty"`
     Fwupdate      *FwupdateStat           `json:"fwupdate,omitempty"`
-    LastSeen      *float64                `json:"last_seen,omitempty"`
+    LastSeen      Optional[float64]       `json:"last_seen"`
     Mtu           *int                    `json:"mtu,omitempty"`
     MxclusterId   *uuid.UUID              `json:"mxcluster_id,omitempty"`
     MxedgeId      *uuid.UUID              `json:"mxedge_id,omitempty"`

@@ -24,6 +24,7 @@ type WiredClientResponse struct {
     OrgId                     *uuid.UUID                             `json:"org_id,omitempty"`
     PortId                    []string                               `json:"port_id,omitempty"`
     SiteId                    *uuid.UUID                             `json:"site_id,omitempty"`
+    // Epoch (seconds)
     Timestamp                 *float64                               `json:"timestamp,omitempty"`
     Vlan                      []int                                  `json:"vlan,omitempty"`
     AdditionalProperties      map[string]interface{}                 `json:"_"`

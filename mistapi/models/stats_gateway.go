@@ -14,7 +14,7 @@ type StatsGateway struct {
     ApRedundancy         *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats        *ArpTableStats                 `json:"arp_table_stats,omitempty"`
     // Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
-    BgpPeers             []OptionalStatsBgp             `json:"bgp_peers,omitempty"`
+    BgpPeers             []BgpPeer                      `json:"bgp_peers,omitempty"`
     CertExpiry           *int64                         `json:"cert_expiry,omitempty"`
     ClusterConfig        *StatsClusterConfig            `json:"cluster_config,omitempty"`
     ClusterStat          *StatsGatewayCluster           `json:"cluster_stat,omitempty"`
@@ -48,7 +48,7 @@ type StatsGateway struct {
     IpStat               *IpStat                        `json:"ip_stat,omitempty"`
     IsHa                 Optional[bool]                 `json:"is_ha"`
     // Last seen timestamp
-    LastSeen             *float64                       `json:"last_seen,omitempty"`
+    LastSeen             Optional[float64]              `json:"last_seen"`
     // Device mac
     Mac                  string                         `json:"mac"`
     // Serial Number
@@ -68,7 +68,7 @@ type StatsGateway struct {
     NodeName             *string                        `json:"node_name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
     // Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed
-    Ports                []OptionalStatsPort            `json:"ports,omitempty"`
+    Ports                []StatsGatewayPort             `json:"ports,omitempty"`
     RouteSummaryStats    *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     // Device name if configured
     RouterName           *string                        `json:"router_name,omitempty"`
@@ -82,13 +82,13 @@ type StatsGateway struct {
     SpuStat              []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status               *string                        `json:"status,omitempty"`
     // Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
-    Tunnels              []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
+    Tunnels              []StatsGatewayWanTunnel        `json:"tunnels,omitempty"`
     // Device Type. enum: `gateway`
     Type                 string                         `json:"type"`
     Uptime               Optional[float64]              `json:"uptime"`
     Version              Optional[string]               `json:"version"`
     // Only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed
-    VpnPeers             []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
+    VpnPeers             []StatsGatewayVpnPeer          `json:"vpn_peers,omitempty"`
     AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
@@ -218,8 +218,12 @@ func (s StatsGateway) toMap() map[string]any {
             structMap["is_ha"] = nil
         }
     }
-    if s.LastSeen != nil {
-        structMap["last_seen"] = s.LastSeen
+    if s.LastSeen.IsValueSet() {
+        if s.LastSeen.Value() != nil {
+            structMap["last_seen"] = s.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     structMap["mac"] = s.Mac
     if s.MapId.IsValueSet() {
@@ -392,7 +396,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 type tempStatsGateway  struct {
     ApRedundancy      *ApRedundancy                  `json:"ap_redundancy,omitempty"`
     ArpTableStats     *ArpTableStats                 `json:"arp_table_stats,omitempty"`
-    BgpPeers          []OptionalStatsBgp             `json:"bgp_peers,omitempty"`
+    BgpPeers          []BgpPeer                      `json:"bgp_peers,omitempty"`
     CertExpiry        *int64                         `json:"cert_expiry,omitempty"`
     ClusterConfig     *StatsClusterConfig            `json:"cluster_config,omitempty"`
     ClusterStat       *StatsGatewayCluster           `json:"cluster_stat,omitempty"`
@@ -416,7 +420,7 @@ type tempStatsGateway  struct {
     Ip2Stat           *IpStat                        `json:"ip2_stat,omitempty"`
     IpStat            *IpStat                        `json:"ip_stat,omitempty"`
     IsHa              Optional[bool]                 `json:"is_ha"`
-    LastSeen          *float64                       `json:"last_seen,omitempty"`
+    LastSeen          Optional[float64]              `json:"last_seen"`
     Mac               *string                        `json:"mac"`
     MapId             Optional[uuid.UUID]            `json:"map_id"`
     Memory2Stat       *MemoryStat                    `json:"memory2_stat,omitempty"`
@@ -428,7 +432,7 @@ type tempStatsGateway  struct {
     Name              *string                        `json:"name,omitempty"`
     NodeName          *string                        `json:"node_name,omitempty"`
     OrgId             *uuid.UUID                     `json:"org_id,omitempty"`
-    Ports             []OptionalStatsPort            `json:"ports,omitempty"`
+    Ports             []StatsGatewayPort             `json:"ports,omitempty"`
     RouteSummaryStats *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
     RouterName        *string                        `json:"router_name,omitempty"`
     Serial            *string                        `json:"serial,omitempty"`
@@ -439,11 +443,11 @@ type tempStatsGateway  struct {
     Spu2Stat          []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
     SpuStat           []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
     Status            *string                        `json:"status,omitempty"`
-    Tunnels           []OptionalStatWanTunnel        `json:"tunnels,omitempty"`
+    Tunnels           []StatsGatewayWanTunnel        `json:"tunnels,omitempty"`
     Type              *string                        `json:"type"`
     Uptime            Optional[float64]              `json:"uptime"`
     Version           Optional[string]               `json:"version"`
-    VpnPeers          []OptionalStatVpnPeer          `json:"vpn_peers,omitempty"`
+    VpnPeers          []StatsGatewayVpnPeer          `json:"vpn_peers,omitempty"`
 }
 
 func (s *tempStatsGateway) validate() error {

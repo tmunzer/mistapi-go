@@ -24,7 +24,8 @@ type StatsMxedge struct {
     IpStat               *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
     // Stat for LAG (Link Aggregation Group). Property key is the LAG name
     LagStat              map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
-    LastSeen             *float64                          `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]                 `json:"last_seen"`
     Mac                  *string                           `json:"mac,omitempty"`
     // Memory usage
     MemoryStat           *StatsMxedgeMemoryStat            `json:"memory_stat,omitempty"`
@@ -108,8 +109,12 @@ func (s StatsMxedge) toMap() map[string]any {
     if s.LagStat != nil {
         structMap["lag_stat"] = s.LagStat
     }
-    if s.LastSeen != nil {
-        structMap["last_seen"] = s.LastSeen
+    if s.LastSeen.IsValueSet() {
+        if s.LastSeen.Value() != nil {
+            structMap["last_seen"] = s.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if s.Mac != nil {
         structMap["mac"] = s.Mac
@@ -248,7 +253,7 @@ type tempStatsMxedge  struct {
     IdracVersion       *string                           `json:"idrac_version,omitempty"`
     IpStat             *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
     LagStat            map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
-    LastSeen           *float64                          `json:"last_seen,omitempty"`
+    LastSeen           Optional[float64]                 `json:"last_seen"`
     Mac                *string                           `json:"mac,omitempty"`
     MemoryStat         *StatsMxedgeMemoryStat            `json:"memory_stat,omitempty"`
     Model              *string                           `json:"model,omitempty"`

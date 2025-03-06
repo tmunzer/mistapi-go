@@ -11,6 +11,7 @@ import (
 type ResponseSsoFailureSearchItem struct {
     Detail               string                 `json:"detail"`
     SamlAssertionXml     string                 `json:"saml_assertion_xml"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

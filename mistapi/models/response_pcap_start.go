@@ -27,6 +27,7 @@ type ResponsePcapStart struct {
     SiteId                  uuid.UUID              `json:"site_id"`
     Ssid                    Optional[string]       `json:"ssid"`
     TcpdumpParserExpression Optional[string]       `json:"tcpdump_parser_expression"`
+    // Epoch (seconds)
     Timestamp               float64                `json:"timestamp"`
     Type                    string                 `json:"type"`
     AdditionalProperties    map[string]interface{} `json:"_"`

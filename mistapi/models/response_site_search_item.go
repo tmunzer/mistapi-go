@@ -19,6 +19,7 @@ type ResponseSiteSearchItem struct {
     Name                 string                 `json:"name"`
     OrgId                uuid.UUID              `json:"org_id"`
     SiteId               uuid.UUID              `json:"site_id"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     Timezone             string                 `json:"timezone"`
     VnaEnabled           bool                   `json:"vna_enabled"`

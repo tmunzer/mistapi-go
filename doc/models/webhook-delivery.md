@@ -22,7 +22,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Optional | webhook delivery status. enum: `failure`, `success` |
 | `StatusCode` | `*int` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Optional | webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping` |
 | `WebhookId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -40,7 +40,6 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "status": "failure",
   "status_code": 200,
-  "timestamp": 1687962508.583656,
   "topic": "audits",
   "webhook_id": "7a11b901-f719-4c91-8aef-deb8699a6364",
   "error": "error0",

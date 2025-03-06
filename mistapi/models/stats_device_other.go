@@ -14,7 +14,8 @@ type StatsDeviceOther struct {
     // Property key is the interface name
     Interfaces           map[string]StatsDeviceOtherInterface       `json:"interfaces,omitempty"`
     LastConfig           *int                                       `json:"last_config,omitempty"`
-    LastSeen             *int                                       `json:"last_seen,omitempty"`
+    // Last seen timestamp
+    LastSeen             Optional[float64]                          `json:"last_seen"`
     LldpEnabled          *bool                                      `json:"lldp_enabled,omitempty"`
     Mac                  *string                                    `json:"mac,omitempty"`
     Status               *string                                    `json:"status,omitempty"`
@@ -65,8 +66,12 @@ func (s StatsDeviceOther) toMap() map[string]any {
     if s.LastConfig != nil {
         structMap["last_config"] = s.LastConfig
     }
-    if s.LastSeen != nil {
-        structMap["last_seen"] = s.LastSeen
+    if s.LastSeen.IsValueSet() {
+        if s.LastSeen.Value() != nil {
+            structMap["last_seen"] = s.LastSeen.Value()
+        } else {
+            structMap["last_seen"] = nil
+        }
     }
     if s.LldpEnabled != nil {
         structMap["lldp_enabled"] = s.LldpEnabled
@@ -129,7 +134,7 @@ type tempStatsDeviceOther  struct {
     ConnectedDevices map[string]StatsDeviceOtherConnectedDevice `json:"connected_devices,omitempty"`
     Interfaces       map[string]StatsDeviceOtherInterface       `json:"interfaces,omitempty"`
     LastConfig       *int                                       `json:"last_config,omitempty"`
-    LastSeen         *int                                       `json:"last_seen,omitempty"`
+    LastSeen         Optional[float64]                          `json:"last_seen"`
     LldpEnabled      *bool                                      `json:"lldp_enabled,omitempty"`
     Mac              *string                                    `json:"mac,omitempty"`
     Status           *string                                    `json:"status,omitempty"`

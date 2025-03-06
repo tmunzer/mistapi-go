@@ -46,7 +46,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 8,
+      "timestamp": 2.64,
       "video_in": {
         "ap_num_clients": 44.64,
         "ap_rtt": 25.68,
@@ -97,7 +97,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 8,
+      "timestamp": 2.64,
       "video_in": {
         "ap_num_clients": 44.64,
         "ap_rtt": 25.68,
@@ -148,7 +148,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 8,
+      "timestamp": 2.64,
       "video_in": {
         "ap_num_clients": 44.64,
         "ap_rtt": 25.68,

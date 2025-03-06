@@ -33,7 +33,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `T128agentVersion` | `*string` | Optional | - |
 | `TimeDrifted` | `*bool` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |

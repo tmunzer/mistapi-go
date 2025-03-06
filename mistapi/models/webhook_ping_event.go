@@ -14,6 +14,7 @@ type WebhookPingEvent struct {
     Id                   uuid.UUID              `json:"id"`
     Name                 string                 `json:"name"`
     SiteId               uuid.UUID              `json:"site_id"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

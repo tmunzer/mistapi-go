@@ -32,8 +32,8 @@ type WebhookDeviceEventsEvent struct {
     SiteName             *string                            `json:"site_name,omitempty"`
     // (optional) event description
     Text                 *string                            `json:"text,omitempty"`
-    // Time the event occurred e.g. 1565987313
-    Timestamp            int                                `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp            float64                            `json:"timestamp"`
     // Event type
     Type                 string                             `json:"type"`
     AdditionalProperties map[string]interface{}             `json:"_"`
@@ -143,7 +143,7 @@ type tempWebhookDeviceEventsEvent  struct {
     SiteId     *uuid.UUID                          `json:"site_id,omitempty"`
     SiteName   *string                             `json:"site_name,omitempty"`
     Text       *string                             `json:"text,omitempty"`
-    Timestamp  *int                                `json:"timestamp"`
+    Timestamp  *float64                            `json:"timestamp"`
     Type       *string                             `json:"type"`
 }
 

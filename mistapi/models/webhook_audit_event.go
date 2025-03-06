@@ -18,6 +18,7 @@ type WebhookAuditEvent struct {
     OrgId                uuid.UUID              `json:"org_id"`
     SiteId               uuid.UUID              `json:"site_id"`
     SrcIp                string                 `json:"src_ip"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,7 +16,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Text` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -29,7 +29,6 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "text": "Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.",
-  "timestamp": 547235620.89,
   "type": "CELLULAR_EDGE_MODEM_WAN_PLUGGED",
   "vendor": "cradlepoint",
   "device_mac": "device_mac8",

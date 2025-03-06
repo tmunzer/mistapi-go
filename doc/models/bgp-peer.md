@@ -1,5 +1,5 @@
 
-# Optional Stats Bgp
+# Bgp Peer
 
 Only present when `bgp_peers` in `fields` query parameter
 
@@ -7,7 +7,7 @@ Only present when `bgp_peers` in `fields` query parameter
 
 ## Structure
 
-`OptionalStatsBgp`
+`BgpPeer`
 
 ## Fields
 
@@ -23,7 +23,7 @@ Only present when `bgp_peers` in `fields` query parameter
 | `RxPkts` | `*int` | Optional | - |
 | `RxRoutes` | `*int` | Optional | Number of received routes |
 | `State` | [`*models.BgpStatsStateEnum`](../../doc/models/bgp-stats-state-enum.md) | Optional | enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent` |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `TxPkts` | `*int` | Optional | - |
 | `TxRoutes` | `*int` | Optional | - |
 | `Up` | `*bool` | Optional | - |
@@ -43,7 +43,6 @@ Only present when `bgp_peers` in `fields` query parameter
   "rx_pkts": 63366,
   "rx_routes": 60,
   "state": "established",
-  "timestamp": 1666251056.07,
   "tx_pkts": 1735,
   "tx_routes": 60,
   "uptime": 31355,

@@ -26,7 +26,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortId` | `[]string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Vlan` | `[]int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

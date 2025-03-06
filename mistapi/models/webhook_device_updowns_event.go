@@ -16,6 +16,7 @@ type WebhookDeviceUpdownsEvent struct {
     OrgId                uuid.UUID              `json:"org_id"`
     SiteId               uuid.UUID              `json:"site_id"`
     SiteName             string                 `json:"site_name"`
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`

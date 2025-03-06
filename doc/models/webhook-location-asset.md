@@ -35,7 +35,6 @@ Location Asset sample
       "mfg_company_id": 935,
       "mfg_data": "648520a1020000",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "timestamp": 1461220784,
       "type": "asset",
       "x": 13.5,
       "y": 3.2,

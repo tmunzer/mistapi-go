@@ -19,7 +19,7 @@
 | `Name` | `string` | Required | - |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Timezone` | `string` | Required | - |
 | `VnaEnabled` | `bool` | Required | - |
 | `WifiEnabled` | `bool` | Required | - |

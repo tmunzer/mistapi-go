@@ -17,7 +17,7 @@
 | `Latency` | `float64` | Required | - |
 | `Ssid` | `string` | Required | - |
 | `Subtype` | `*string` | Optional | - |
-| `Timestamp` | `float64` | Required | Timestamp of the event in nsec |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | [`*models.EventFastroamTypeEnum`](../../doc/models/event-fastroam-type-enum.md) | Optional | enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

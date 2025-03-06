@@ -17,7 +17,7 @@ Anomaly
 | `Since` | `*float64` | Optional | - |
 | `SleBaseline` | `float64` | Required | - |
 | `SleDeviation` | `float64` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

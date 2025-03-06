@@ -19,7 +19,7 @@
 | `ScheduledAt` | `*int` | Optional | epoch time of aysnc claim scheduled |
 | `Status` | [`*models.ResponseAsyncLicenseStatusEnum`](../../doc/models/response-async-license-status-enum.md) | Optional | processing status of async. enum: `prepared`, `ongoing`, `done` |
 | `Succeed` | `*int` | Optional | Current succeed number of device |
-| `Timestamp` | `*int` | Optional | epoch time of last reporting time |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Total` | `*int` | Optional | total number of device included in claim |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

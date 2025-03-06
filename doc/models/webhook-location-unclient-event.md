@@ -14,7 +14,7 @@
 | `Mac` | `*string` | Optional | - |
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Timestamp` | `*int` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | **Default**: `"wifi"` |
 | `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
 | `X` | `*float64` | Optional | x, in meter |
@@ -28,10 +28,10 @@
   "mac": "5684dae9ac8b",
   "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "timestamp": 1461220784,
   "type": "wifi",
   "x": 13.5,
   "y": 3.2,
+  "timestamp": 37.58,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

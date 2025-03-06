@@ -33,7 +33,8 @@ type WebhookDiscoveredRawRssiEvent struct {
     // List of service data packets heard from the asset/ beacon
     ServicePackets       []ServicePacket        `json:"service_packets,omitempty"`
     SiteId               uuid.UUID              `json:"site_id"`
-    Timestamp            *int                   `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -152,7 +153,7 @@ type tempWebhookDiscoveredRawRssiEvent  struct {
     Rssi           *float64        `json:"rssi"`
     ServicePackets []ServicePacket `json:"service_packets,omitempty"`
     SiteId         *uuid.UUID      `json:"site_id"`
-    Timestamp      *int            `json:"timestamp,omitempty"`
+    Timestamp      *float64        `json:"timestamp,omitempty"`
 }
 
 func (w *tempWebhookDiscoveredRawRssiEvent) validate() error {

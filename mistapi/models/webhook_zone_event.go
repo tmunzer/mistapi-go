@@ -21,8 +21,8 @@ type WebhookZoneEvent struct {
     // Name of the client, may be empty
     Name                 *string                     `json:"name,omitempty"`
     SiteId               uuid.UUID                   `json:"site_id"`
-    // Timestamp of the event, epoch
-    Timestamp            int                         `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp            float64                     `json:"timestamp"`
     // enum: `enter`, `exit`
     Trigger              WebhookZoneEventTriggerEnum `json:"trigger"`
     Type                 string                      `json:"type"`
@@ -113,7 +113,7 @@ type tempWebhookZoneEvent  struct {
     MapId     *uuid.UUID                   `json:"map_id"`
     Name      *string                      `json:"name,omitempty"`
     SiteId    *uuid.UUID                   `json:"site_id"`
-    Timestamp *int                         `json:"timestamp"`
+    Timestamp *float64                     `json:"timestamp"`
     Trigger   *WebhookZoneEventTriggerEnum `json:"trigger"`
     Type      *string                      `json:"type"`
     ZoneId    *uuid.UUID                   `json:"zone_id"`

@@ -20,8 +20,8 @@ type WebhookSdkclientScanDataEvent struct {
     ConnectionChannel    int                                         `json:"connection_channel"`
     // RSSI of the client’s connection to the AP/BSSID
     ConnectionRssi       float64                                     `json:"connection_rssi"`
-    // Time client last seen with scan data
-    LastSeen             float64                                     `json:"last_seen"`
+    // Last seen timestamp
+    LastSeen             *float64                                    `json:"last_seen"`
     // Client's MAC Address
     Mac                  string                                      `json:"mac"`
     ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
@@ -58,7 +58,11 @@ func (w WebhookSdkclientScanDataEvent) toMap() map[string]any {
     structMap["connection_bssid"] = w.ConnectionBssid
     structMap["connection_channel"] = w.ConnectionChannel
     structMap["connection_rssi"] = w.ConnectionRssi
-    structMap["last_seen"] = w.LastSeen
+    if w.LastSeen != nil {
+        structMap["last_seen"] = w.LastSeen
+    } else {
+        structMap["last_seen"] = nil
+    }
     structMap["mac"] = w.Mac
     if w.ScanData != nil {
         structMap["scan_data"] = w.ScanData
@@ -90,7 +94,7 @@ func (w *WebhookSdkclientScanDataEvent) UnmarshalJSON(input []byte) error {
     w.ConnectionBssid = *temp.ConnectionBssid
     w.ConnectionChannel = *temp.ConnectionChannel
     w.ConnectionRssi = *temp.ConnectionRssi
-    w.LastSeen = *temp.LastSeen
+    w.LastSeen = temp.LastSeen
     w.Mac = *temp.Mac
     w.ScanData = temp.ScanData
     w.SiteId = *temp.SiteId
@@ -126,9 +130,6 @@ func (w *tempWebhookSdkclientScanDataEvent) validate() error {
     }
     if w.ConnectionRssi == nil {
         errs = append(errs, "required field `connection_rssi` is missing for type `webhook_sdkclient_scan_data_event`")
-    }
-    if w.LastSeen == nil {
-        errs = append(errs, "required field `last_seen` is missing for type `webhook_sdkclient_scan_data_event`")
     }
     if w.Mac == nil {
         errs = append(errs, "required field `mac` is missing for type `webhook_sdkclient_scan_data_event`")

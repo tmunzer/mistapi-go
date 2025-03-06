@@ -26,10 +26,10 @@ Location Client sample
       "mac": "5684dae9ac8b",
       "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "timestamp": 1461220784,
       "type": "wifi",
       "x": 13.5,
       "y": 3.2,
+      "timestamp": 188.18,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

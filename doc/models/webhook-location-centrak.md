@@ -26,7 +26,7 @@ location webhook sample
       "map_id": "map_id4",
       "mfg_company_id": 234,
       "mfg_data": "mfg_data2",
-      "timestamp": 130,
+      "timestamp": 188.18,
       "wifi_beacon_extended_info": [
         {
           "frame_ctrl": 244,

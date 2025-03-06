@@ -27,7 +27,7 @@ type ResponseLogSearchItem struct {
     SiteId               *uuid.UUID             `json:"site_id"`
     // sender source ip address
     SrcIp                *string                `json:"src_ip,omitempty"`
-    // Start time, in epoch
+    // Epoch (seconds)
     Timestamp            float64                `json:"timestamp"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

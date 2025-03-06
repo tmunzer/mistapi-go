@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Detail` | `string` | Required | - |
 | `SamlAssertionXml` | `string` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

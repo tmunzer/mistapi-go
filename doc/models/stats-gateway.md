@@ -15,7 +15,7 @@ Gateway statistics
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.ApRedundancy`](../../doc/models/ap-redundancy.md) | Optional | - |
 | `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
-| `BgpPeers` | [`[]models.OptionalStatsBgp`](../../doc/models/optional-stats-bgp.md) | Optional | Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed |
+| `BgpPeers` | [`[]models.BgpPeer`](../../doc/models/bgp-peer.md) | Optional | Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed |
 | `CertExpiry` | `*int64` | Optional | - |
 | `ClusterConfig` | [`*models.StatsClusterConfig`](../../doc/models/stats-cluster-config.md) | Optional | - |
 | `ClusterStat` | [`*models.StatsGatewayCluster`](../../doc/models/stats-gateway-cluster.md) | Optional | - |
@@ -39,7 +39,7 @@ Gateway statistics
 | `Ip2Stat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
 | `IpStat` | [`*models.IpStat`](../../doc/models/ip-stat.md) | Optional | - |
 | `IsHa` | `models.Optional[bool]` | Optional | - |
-| `LastSeen` | `*float64` | Optional | Last seen timestamp |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `string` | Required | Device mac |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Serial Number |
 | `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
@@ -51,7 +51,7 @@ Gateway statistics
 | `Name` | `*string` | Optional | Device name if configured |
 | `NodeName` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Ports` | [`[]models.OptionalStatsPort`](../../doc/models/optional-stats-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
+| `Ports` | [`[]models.StatsGatewayPort`](../../doc/models/stats-gateway-port.md) | Optional | Only present when `ports` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/ports/search` result object, except that org_id, site_id, mac, model are removed |
 | `RouteSummaryStats` | [`*models.RouteSummaryStats`](../../doc/models/route-summary-stats.md) | Optional | - |
 | `RouterName` | `*string` | Optional | Device name if configured |
 | `Serial` | `*string` | Optional | Serial Number |
@@ -62,11 +62,11 @@ Gateway statistics
 | `Spu2Stat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
-| `Tunnels` | [`[]models.OptionalStatWanTunnel`](../../doc/models/optional-stat-wan-tunnel.md) | Optional | Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
+| `Tunnels` | [`[]models.StatsGatewayWanTunnel`](../../doc/models/stats-gateway-wan-tunnel.md) | Optional | Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
 | `Uptime` | `models.Optional[float64]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
-| `VpnPeers` | [`[]models.OptionalStatVpnPeer`](../../doc/models/optional-stat-vpn-peer.md) | Optional | Only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |
+| `VpnPeers` | [`[]models.StatsGatewayVpnPeer`](../../doc/models/stats-gateway-vpn-peer.md) | Optional | Only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -77,7 +77,7 @@ Gateway statistics
   "hostname": "sj1",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "ip": "10.2.11.137",
-  "last_seen": 1553203563,
+  "last_seen": 1470417522,
   "mac": "dc38e1dbf3cd",
   "model": "SRX320",
   "name": "sj1",

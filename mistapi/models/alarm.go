@@ -49,8 +49,8 @@ type Alarm struct {
     Status               *AlarmStatusEnum       `json:"status,omitempty"`
     // additional information: List of MACs of the switches
     Switches             []string               `json:"switches,omitempty"`
-    // Epoch (seconds) of the first incident/alarm
-    Timestamp            int                    `json:"timestamp"`
+    // Epoch (seconds)
+    Timestamp            float64                `json:"timestamp"`
     // Key-name of the alarm type
     Type                 string                 `json:"type"`
     AdditionalProperties map[string]interface{} `json:"_"`
@@ -200,7 +200,7 @@ type tempAlarm  struct {
     Ssids        []string         `json:"ssids,omitempty"`
     Status       *AlarmStatusEnum `json:"status,omitempty"`
     Switches     []string         `json:"switches,omitempty"`
-    Timestamp    *int             `json:"timestamp"`
+    Timestamp    *float64         `json:"timestamp"`
     Type         *string          `json:"type"`
 }
 

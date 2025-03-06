@@ -15,7 +15,7 @@
 | `MapId` | `uuid.UUID` | Required | - |
 | `OccupancyLimit` | `int` | Required | - |
 | `OrgId` | `uuid.UUID` | Required | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | [`models.WebhookOccupancyAlertTypeEnum`](../../doc/models/webhook-occupancy-alert-type-enum.md) | Required | enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION` |
 | `ZoneId` | `uuid.UUID` | Required | - |
 | `ZoneName` | `string` | Required | - |

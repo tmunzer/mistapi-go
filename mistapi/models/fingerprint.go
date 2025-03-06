@@ -17,6 +17,7 @@ type Fingerprint struct {
     OsType               *string                `json:"os_type,omitempty"`
     RandomMac            *bool                  `json:"random_mac,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

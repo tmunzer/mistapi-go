@@ -13,8 +13,8 @@ type WebhookLocationCentrakEvent struct {
     MfgCompanyId           *int                          `json:"mfg_company_id,omitempty"`
     // Optional, BLE manufacturing data in hex byte-string format (i.e. "112233AABBCC")
     MfgData                *string                       `json:"mfg_data,omitempty"`
-    // Timestamp of the event, epoch
-    Timestamp              *int                          `json:"timestamp,omitempty"`
+    // Epoch (seconds)
+    Timestamp              *float64                      `json:"timestamp,omitempty"`
     // Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     // x, in meter
@@ -101,7 +101,7 @@ type tempWebhookLocationCentrakEvent  struct {
     MapId                  *string                       `json:"map_id,omitempty"`
     MfgCompanyId           *int                          `json:"mfg_company_id,omitempty"`
     MfgData                *string                       `json:"mfg_data,omitempty"`
-    Timestamp              *int                          `json:"timestamp,omitempty"`
+    Timestamp              *float64                      `json:"timestamp,omitempty"`
     WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
     X                      *float64                      `json:"x,omitempty"`
     Y                      *float64                      `json:"y,omitempty"`

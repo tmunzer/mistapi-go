@@ -14,6 +14,7 @@ type WebhookOccupancyAlertsEventAlertEventsItems struct {
     MapId                uuid.UUID                     `json:"map_id"`
     OccupancyLimit       int                           `json:"occupancy_limit"`
     OrgId                uuid.UUID                     `json:"org_id"`
+    // Epoch (seconds)
     Timestamp            float64                       `json:"timestamp"`
     // enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
     Type                 WebhookOccupancyAlertTypeEnum `json:"type"`

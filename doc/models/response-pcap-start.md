@@ -27,7 +27,7 @@
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Ssid` | `models.Optional[string]` | Optional | - |
 | `TcpdumpParserExpression` | `models.Optional[string]` | Optional | - |
-| `Timestamp` | `float64` | Required | - |
+| `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

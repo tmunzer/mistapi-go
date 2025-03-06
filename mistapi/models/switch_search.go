@@ -19,7 +19,8 @@ type SwitchSearch struct {
     LastConfigStatus     *string                `json:"last_config_status,omitempty"`
     LastHostname         *string                `json:"last_hostname,omitempty"`
     LastTroubleCode      *string                `json:"last_trouble_code,omitempty"`
-    LastTroubleTimestamp *int                   `json:"last_trouble_timestamp,omitempty"`
+    // Epoch (seconds)
+    LastTroubleTimestamp *float64               `json:"last_trouble_timestamp,omitempty"`
     Mac                  *string                `json:"mac,omitempty"`
     Managed              *bool                  `json:"managed,omitempty"`
     Model                *string                `json:"model,omitempty"`
@@ -28,6 +29,7 @@ type SwitchSearch struct {
     Role                 *string                `json:"role,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     TimeDrifted          *bool                  `json:"time_drifted,omitempty"`
+    // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
     // Device Type. enum: `switch`
     Type                 string                 `json:"type"`
@@ -181,7 +183,7 @@ type tempSwitchSearch  struct {
     LastConfigStatus     *string    `json:"last_config_status,omitempty"`
     LastHostname         *string    `json:"last_hostname,omitempty"`
     LastTroubleCode      *string    `json:"last_trouble_code,omitempty"`
-    LastTroubleTimestamp *int       `json:"last_trouble_timestamp,omitempty"`
+    LastTroubleTimestamp *float64   `json:"last_trouble_timestamp,omitempty"`
     Mac                  *string    `json:"mac,omitempty"`
     Managed              *bool      `json:"managed,omitempty"`
     Model                *string    `json:"model,omitempty"`

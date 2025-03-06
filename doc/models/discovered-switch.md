@@ -21,7 +21,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SystemDesc` | `*string` | Optional | - |
 | `SystemName` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | - |
+| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Vendor` | `*string` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
