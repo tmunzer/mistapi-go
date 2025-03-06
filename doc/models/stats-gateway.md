@@ -46,8 +46,8 @@ Gateway statistics
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `*string` | Optional | Device model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Module2Stat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `ModuleStat` | [`[]models.ModuleStatItem`](../../doc/models/module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Module2Stat` | [`[]models.StatsGatewayModuleStatItem`](../../doc/models/stats-gateway-module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `1` |
+| `ModuleStat` | [`[]models.StatsGatewayModuleStatItem`](../../doc/models/stats-gateway-module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `1` |
 | `Name` | `*string` | Optional | Device name if configured |
 | `NodeName` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

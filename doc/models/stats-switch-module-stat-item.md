@@ -1,11 +1,11 @@
 
-# Module Stat Item
+# Stats Switch Module Stat Item
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ModuleStatItem`
+`StatsSwitchModuleStatItem`
 
 ## Fields
 
@@ -20,6 +20,8 @@
 | `FpcIdx` | `*int` | Optional | - |
 | `FpgaVersion` | `models.Optional[string]` | Optional | - |
 | `LastSeen` | `models.Optional[float64]` | Optional | - |
+| `Locating` | `*bool` | Optional | - |
+| `Mac` | `*string` | Optional | - |
 | `Model` | `models.Optional[string]` | Optional | - |
 | `OpticsCpldVersion` | `models.Optional[string]` | Optional | - |
 | `PendingVersion` | `models.Optional[string]` | Optional | - |
@@ -48,12 +50,13 @@
 
 ```json
 {
+  "mac": "fc3342123456",
   "model": "EX4300-48P",
   "serial": "PX8716230021",
   "vc_role": "master",
-  "backup_version": "backup_version8",
-  "bios_version": "bios_version6",
-  "cpld_version": "cpld_version4",
+  "backup_version": "backup_version0",
+  "bios_version": "bios_version4",
+  "cpld_version": "cpld_version6",
   "cpu_stat": {
     "idle": 102.08,
     "interrupt": 215.84,

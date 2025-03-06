@@ -8,18 +8,18 @@ import (
 
 // ResponseVirtualChassisConfig represents a ResponseVirtualChassisConfig struct.
 type ResponseVirtualChassisConfig struct {
-    ConfigType           *string                `json:"config_type,omitempty"`
+    ConfigType           *string                     `json:"config_type,omitempty"`
     // Unique ID of the object instance in the Mist Organization
-    Id                   *uuid.UUID             `json:"id,omitempty"`
-    Locating             *bool                  `json:"locating,omitempty"`
-    Members              []ModuleStatItem       `json:"members,omitempty"`
-    Model                *string                `json:"model,omitempty"`
-    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    Serial               *string                `json:"serial,omitempty"`
-    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    Status               *string                `json:"status,omitempty"`
-    VcMac                *string                `json:"vc_mac,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Id                   *uuid.UUID                  `json:"id,omitempty"`
+    Locating             *bool                       `json:"locating,omitempty"`
+    Members              []StatsSwitchModuleStatItem `json:"members,omitempty"`
+    Model                *string                     `json:"model,omitempty"`
+    OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
+    Serial               *string                     `json:"serial,omitempty"`
+    SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
+    Status               *string                     `json:"status,omitempty"`
+    VcMac                *string                     `json:"vc_mac,omitempty"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseVirtualChassisConfig,
@@ -108,14 +108,14 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 
 // tempResponseVirtualChassisConfig is a temporary struct used for validating the fields of ResponseVirtualChassisConfig.
 type tempResponseVirtualChassisConfig  struct {
-    ConfigType *string          `json:"config_type,omitempty"`
-    Id         *uuid.UUID       `json:"id,omitempty"`
-    Locating   *bool            `json:"locating,omitempty"`
-    Members    []ModuleStatItem `json:"members,omitempty"`
-    Model      *string          `json:"model,omitempty"`
-    OrgId      *uuid.UUID       `json:"org_id,omitempty"`
-    Serial     *string          `json:"serial,omitempty"`
-    SiteId     *uuid.UUID       `json:"site_id,omitempty"`
-    Status     *string          `json:"status,omitempty"`
-    VcMac      *string          `json:"vc_mac,omitempty"`
+    ConfigType *string                     `json:"config_type,omitempty"`
+    Id         *uuid.UUID                  `json:"id,omitempty"`
+    Locating   *bool                       `json:"locating,omitempty"`
+    Members    []StatsSwitchModuleStatItem `json:"members,omitempty"`
+    Model      *string                     `json:"model,omitempty"`
+    OrgId      *uuid.UUID                  `json:"org_id,omitempty"`
+    Serial     *string                     `json:"serial,omitempty"`
+    SiteId     *uuid.UUID                  `json:"site_id,omitempty"`
+    Status     *string                     `json:"status,omitempty"`
+    VcMac      *string                     `json:"vc_mac,omitempty"`
 }

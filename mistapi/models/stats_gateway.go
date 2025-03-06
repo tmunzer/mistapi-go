@@ -61,8 +61,8 @@ type StatsGateway struct {
     Model                *string                        `json:"model,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                       `json:"modified_time,omitempty"`
-    Module2Stat          []ModuleStatItem               `json:"module2_stat,omitempty"`
-    ModuleStat           []ModuleStatItem               `json:"module_stat,omitempty"`
+    Module2Stat          []StatsGatewayModuleStatItem   `json:"module2_stat,omitempty"`
+    ModuleStat           []StatsGatewayModuleStatItem   `json:"module_stat,omitempty"`
     // Device name if configured
     Name                 *string                        `json:"name,omitempty"`
     NodeName             *string                        `json:"node_name,omitempty"`
@@ -423,8 +423,8 @@ type tempStatsGateway  struct {
     MemoryStat        *MemoryStat                    `json:"memory_stat,omitempty"`
     Model             *string                        `json:"model,omitempty"`
     ModifiedTime      *float64                       `json:"modified_time,omitempty"`
-    Module2Stat       []ModuleStatItem               `json:"module2_stat,omitempty"`
-    ModuleStat        []ModuleStatItem               `json:"module_stat,omitempty"`
+    Module2Stat       []StatsGatewayModuleStatItem   `json:"module2_stat,omitempty"`
+    ModuleStat        []StatsGatewayModuleStatItem   `json:"module_stat,omitempty"`
     Name              *string                        `json:"name,omitempty"`
     NodeName          *string                        `json:"node_name,omitempty"`
     OrgId             *uuid.UUID                     `json:"org_id,omitempty"`

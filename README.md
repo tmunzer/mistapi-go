@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2502.1.6**
+> Version: **2502.1.8**
 > 
-> Date: **March 5, 2025**
+> Date: **March 6, 2025**
 
 ---
 

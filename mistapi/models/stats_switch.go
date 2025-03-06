@@ -49,7 +49,7 @@ type StatsSwitch struct {
     Model                *string                        `json:"model,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                       `json:"modified_time,omitempty"`
-    ModuleStat           []ModuleStatItem               `json:"module_stat,omitempty"`
+    ModuleStat           []StatsSwitchModuleStatItem    `json:"module_stat,omitempty"`
     // Device name if configured
     Name                 *string                        `json:"name,omitempty"`
     OrgId                *uuid.UUID                     `json:"org_id,omitempty"`
@@ -337,7 +337,7 @@ type tempStatsSwitch  struct {
     MemoryStat          *MemoryStat                    `json:"memory_stat,omitempty"`
     Model               *string                        `json:"model,omitempty"`
     ModifiedTime        *float64                       `json:"modified_time,omitempty"`
-    ModuleStat          []ModuleStatItem               `json:"module_stat,omitempty"`
+    ModuleStat          []StatsSwitchModuleStatItem    `json:"module_stat,omitempty"`
     Name                *string                        `json:"name,omitempty"`
     OrgId               *uuid.UUID                     `json:"org_id,omitempty"`
     Ports               []OptionalStatsPort            `json:"ports,omitempty"`

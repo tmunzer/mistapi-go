@@ -82,7 +82,7 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
 }
 
 // GetSiteWirelessClientStats takes context, siteId, clientMac, wired as parameters and
-// returns an models.ApiResponse with []models.StatsClient data and
+// returns an models.ApiResponse with models.StatsClient data and
 // an error if there was an issue with the request or response.
 // Get Site Client Stats Details
 func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
@@ -90,7 +90,7 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
     siteId uuid.UUID,
     clientMac string,
     wired *bool) (
-    models.ApiResponse[[]models.StatsClient],
+    models.ApiResponse[models.StatsClient],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/clients/%v")
     req.AppendTemplateParams(siteId, clientMac)
@@ -116,13 +116,13 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientStats(
         req.QueryParam("wired", *wired)
     }
     
-    var result []models.StatsClient
+    var result models.StatsClient
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.StatsClient](decoder)
+    result, err = utilities.DecodeResults[models.StatsClient](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

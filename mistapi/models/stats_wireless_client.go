@@ -24,7 +24,7 @@ type StatsWirelessClient struct {
     // Current channel
     Channel              int                              `json:"channel"`
     // Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands)
-    DualBand             bool                             `json:"dual_band"`
+    DualBand             *bool                            `json:"dual_band,omitempty"`
     // Device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE …
     Family               string                           `json:"family"`
     // Guest
@@ -32,7 +32,7 @@ type StatsWirelessClient struct {
     // Hostname that we learned from sniffing DHCP
     Hostname             string                           `json:"hostname"`
     // How long, in seconds, has the client been idle (since the last RX packet)
-    IdleTime             float64                          `json:"idle_time"`
+    IdleTime             *float64                         `json:"idle_time,omitempty"`
     Ip                   string                           `json:"ip"`
     // Whether this is a guest
     IsGuest              bool                             `json:"is_guest"`
@@ -53,7 +53,7 @@ type StatsWirelessClient struct {
     // Device os, through fingerprinting
     Os                   string                           `json:"os"`
     // If it’s currently in power-save mode
-    PowerSaving          bool                             `json:"power_saving"`
+    PowerSaving          *bool                            `json:"power_saving,omitempty"`
     // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
     Proto                Dot11ProtoEnum                   `json:"proto"`
     // PSK id (if multi-psk is used)
@@ -67,7 +67,7 @@ type StatsWirelessClient struct {
     // Amount of traffic received from client since client connects
     RxBytes              float64                          `json:"rx_bytes"`
     // Amount of traffic received from client since client connects
-    RxPackets            float64                          `json:"rx_packets"`
+    RxPackets            *float64                         `json:"rx_packets,omitempty"`
     // RX Rate, Mbps
     RxRate               float64                          `json:"rx_rate"`
     // Amount of rx retries
@@ -81,7 +81,7 @@ type StatsWirelessClient struct {
     // Amount of traffic sent to client since client connects
     TxBytes              float64                          `json:"tx_bytes"`
     // Amount of traffic sent to client since client connects
-    TxPackets            float64                          `json:"tx_packets"`
+    TxPackets            *float64                         `json:"tx_packets,omitempty"`
     // TX Rate, Mbps
     TxRate               float64                          `json:"tx_rate"`
     // Amount of tx retries
@@ -89,13 +89,13 @@ type StatsWirelessClient struct {
     // Client’s type, regular / vip / resource / blocked (if client object is created)
     Type                 *string                          `json:"type,omitempty"`
     // How long, in seconds, has the client been connected
-    Uptime               float64                          `json:"uptime"`
+    Uptime               *float64                         `json:"uptime,omitempty"`
     // Username that we learned from 802.1X exchange or Per_user PSK or User Portal
-    Username             string                           `json:"username"`
+    Username             *string                          `json:"username,omitempty"`
     // List of beacon_id’s where the client is in and since when (if known)
     Vbeacons             []StatsWirelessClientVbeacon     `json:"vbeacons,omitempty"`
     // VLAN id, could be empty (from older AP)
-    VlanId               *int                             `json:"vlan_id,omitempty"`
+    VlanId               *string                          `json:"vlan_id,omitempty"`
     // WLAN ID the client is connected to
     WlanId               uuid.UUID                        `json:"wlan_id"`
     // Current WxlanRule using for a Client or an authorized Guest (portal user). null if default rule is matched.
@@ -152,13 +152,17 @@ func (s StatsWirelessClient) toMap() map[string]any {
     structMap["ap_mac"] = s.ApMac
     structMap["band"] = s.Band
     structMap["channel"] = s.Channel
-    structMap["dual_band"] = s.DualBand
+    if s.DualBand != nil {
+        structMap["dual_band"] = s.DualBand
+    }
     structMap["family"] = s.Family
     if s.Guest != nil {
         structMap["guest"] = s.Guest.toMap()
     }
     structMap["hostname"] = s.Hostname
-    structMap["idle_time"] = s.IdleTime
+    if s.IdleTime != nil {
+        structMap["idle_time"] = s.IdleTime
+    }
     structMap["ip"] = s.Ip
     structMap["is_guest"] = s.IsGuest
     structMap["key_mgmt"] = s.KeyMgmt
@@ -173,7 +177,9 @@ func (s StatsWirelessClient) toMap() map[string]any {
         structMap["num_locating_aps"] = s.NumLocatingAps
     }
     structMap["os"] = s.Os
-    structMap["power_saving"] = s.PowerSaving
+    if s.PowerSaving != nil {
+        structMap["power_saving"] = s.PowerSaving
+    }
     structMap["proto"] = s.Proto
     if s.PskId != nil {
         structMap["psk_id"] = s.PskId
@@ -184,21 +190,29 @@ func (s StatsWirelessClient) toMap() map[string]any {
     }
     structMap["rx_bps"] = s.RxBps
     structMap["rx_bytes"] = s.RxBytes
-    structMap["rx_packets"] = s.RxPackets
+    if s.RxPackets != nil {
+        structMap["rx_packets"] = s.RxPackets
+    }
     structMap["rx_rate"] = s.RxRate
     structMap["rx_retries"] = s.RxRetries
     structMap["snr"] = s.Snr
     structMap["ssid"] = s.Ssid
     structMap["tx_bps"] = s.TxBps
     structMap["tx_bytes"] = s.TxBytes
-    structMap["tx_packets"] = s.TxPackets
+    if s.TxPackets != nil {
+        structMap["tx_packets"] = s.TxPackets
+    }
     structMap["tx_rate"] = s.TxRate
     structMap["tx_retries"] = s.TxRetries
     if s.Type != nil {
         structMap["type"] = s.Type
     }
-    structMap["uptime"] = s.Uptime
-    structMap["username"] = s.Username
+    if s.Uptime != nil {
+        structMap["uptime"] = s.Uptime
+    }
+    if s.Username != nil {
+        structMap["username"] = s.Username
+    }
     if s.Vbeacons != nil {
         structMap["vbeacons"] = s.Vbeacons
     }
@@ -255,11 +269,11 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     s.ApMac = *temp.ApMac
     s.Band = *temp.Band
     s.Channel = *temp.Channel
-    s.DualBand = *temp.DualBand
+    s.DualBand = temp.DualBand
     s.Family = *temp.Family
     s.Guest = temp.Guest
     s.Hostname = *temp.Hostname
-    s.IdleTime = *temp.IdleTime
+    s.IdleTime = temp.IdleTime
     s.Ip = *temp.Ip
     s.IsGuest = *temp.IsGuest
     s.KeyMgmt = *temp.KeyMgmt
@@ -270,26 +284,26 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     s.Model = *temp.Model
     s.NumLocatingAps = temp.NumLocatingAps
     s.Os = *temp.Os
-    s.PowerSaving = *temp.PowerSaving
+    s.PowerSaving = temp.PowerSaving
     s.Proto = *temp.Proto
     s.PskId = temp.PskId
     s.Rssi = *temp.Rssi
     s.Rssizones = temp.Rssizones
     s.RxBps = *temp.RxBps
     s.RxBytes = *temp.RxBytes
-    s.RxPackets = *temp.RxPackets
+    s.RxPackets = temp.RxPackets
     s.RxRate = *temp.RxRate
     s.RxRetries = *temp.RxRetries
     s.Snr = *temp.Snr
     s.Ssid = *temp.Ssid
     s.TxBps = *temp.TxBps
     s.TxBytes = *temp.TxBytes
-    s.TxPackets = *temp.TxPackets
+    s.TxPackets = temp.TxPackets
     s.TxRate = *temp.TxRate
     s.TxRetries = *temp.TxRetries
     s.Type = temp.Type
-    s.Uptime = *temp.Uptime
-    s.Username = *temp.Username
+    s.Uptime = temp.Uptime
+    s.Username = temp.Username
     s.Vbeacons = temp.Vbeacons
     s.VlanId = temp.VlanId
     s.WlanId = *temp.WlanId
@@ -312,11 +326,11 @@ type tempStatsWirelessClient  struct {
     ApMac           *string                          `json:"ap_mac"`
     Band            *Dot11BandEnum                   `json:"band"`
     Channel         *int                             `json:"channel"`
-    DualBand        *bool                            `json:"dual_band"`
+    DualBand        *bool                            `json:"dual_band,omitempty"`
     Family          *string                          `json:"family"`
     Guest           *Guest                           `json:"guest,omitempty"`
     Hostname        *string                          `json:"hostname"`
-    IdleTime        *float64                         `json:"idle_time"`
+    IdleTime        *float64                         `json:"idle_time,omitempty"`
     Ip              *string                          `json:"ip"`
     IsGuest         *bool                            `json:"is_guest"`
     KeyMgmt         *string                          `json:"key_mgmt"`
@@ -327,28 +341,28 @@ type tempStatsWirelessClient  struct {
     Model           *string                          `json:"model"`
     NumLocatingAps  *int                             `json:"num_locating_aps,omitempty"`
     Os              *string                          `json:"os"`
-    PowerSaving     *bool                            `json:"power_saving"`
+    PowerSaving     *bool                            `json:"power_saving,omitempty"`
     Proto           *Dot11ProtoEnum                  `json:"proto"`
     PskId           *uuid.UUID                       `json:"psk_id,omitempty"`
     Rssi            *float64                         `json:"rssi"`
     Rssizones       []StatsWirelessClientRssiZone    `json:"rssizones,omitempty"`
     RxBps           *float64                         `json:"rx_bps"`
     RxBytes         *float64                         `json:"rx_bytes"`
-    RxPackets       *float64                         `json:"rx_packets"`
+    RxPackets       *float64                         `json:"rx_packets,omitempty"`
     RxRate          *float64                         `json:"rx_rate"`
     RxRetries       *float64                         `json:"rx_retries"`
     Snr             *float64                         `json:"snr"`
     Ssid            *string                          `json:"ssid"`
     TxBps           *float64                         `json:"tx_bps"`
     TxBytes         *float64                         `json:"tx_bytes"`
-    TxPackets       *float64                         `json:"tx_packets"`
+    TxPackets       *float64                         `json:"tx_packets,omitempty"`
     TxRate          *float64                         `json:"tx_rate"`
     TxRetries       *float64                         `json:"tx_retries"`
     Type            *string                          `json:"type,omitempty"`
-    Uptime          *float64                         `json:"uptime"`
-    Username        *string                          `json:"username"`
+    Uptime          *float64                         `json:"uptime,omitempty"`
+    Username        *string                          `json:"username,omitempty"`
     Vbeacons        []StatsWirelessClientVbeacon     `json:"vbeacons,omitempty"`
-    VlanId          *int                             `json:"vlan_id,omitempty"`
+    VlanId          *string                          `json:"vlan_id,omitempty"`
     WlanId          *uuid.UUID                       `json:"wlan_id"`
     WxruleId        *uuid.UUID                       `json:"wxrule_id,omitempty"`
     WxruleUsage     []StatsWirelessClientWxruleUsage `json:"wxrule_usage,omitempty"`
@@ -373,17 +387,11 @@ func (s *tempStatsWirelessClient) validate() error {
     if s.Channel == nil {
         errs = append(errs, "required field `channel` is missing for type `stats_wireless_client`")
     }
-    if s.DualBand == nil {
-        errs = append(errs, "required field `dual_band` is missing for type `stats_wireless_client`")
-    }
     if s.Family == nil {
         errs = append(errs, "required field `family` is missing for type `stats_wireless_client`")
     }
     if s.Hostname == nil {
         errs = append(errs, "required field `hostname` is missing for type `stats_wireless_client`")
-    }
-    if s.IdleTime == nil {
-        errs = append(errs, "required field `idle_time` is missing for type `stats_wireless_client`")
     }
     if s.Ip == nil {
         errs = append(errs, "required field `ip` is missing for type `stats_wireless_client`")
@@ -409,9 +417,6 @@ func (s *tempStatsWirelessClient) validate() error {
     if s.Os == nil {
         errs = append(errs, "required field `os` is missing for type `stats_wireless_client`")
     }
-    if s.PowerSaving == nil {
-        errs = append(errs, "required field `power_saving` is missing for type `stats_wireless_client`")
-    }
     if s.Proto == nil {
         errs = append(errs, "required field `proto` is missing for type `stats_wireless_client`")
     }
@@ -423,9 +428,6 @@ func (s *tempStatsWirelessClient) validate() error {
     }
     if s.RxBytes == nil {
         errs = append(errs, "required field `rx_bytes` is missing for type `stats_wireless_client`")
-    }
-    if s.RxPackets == nil {
-        errs = append(errs, "required field `rx_packets` is missing for type `stats_wireless_client`")
     }
     if s.RxRate == nil {
         errs = append(errs, "required field `rx_rate` is missing for type `stats_wireless_client`")
@@ -445,20 +447,11 @@ func (s *tempStatsWirelessClient) validate() error {
     if s.TxBytes == nil {
         errs = append(errs, "required field `tx_bytes` is missing for type `stats_wireless_client`")
     }
-    if s.TxPackets == nil {
-        errs = append(errs, "required field `tx_packets` is missing for type `stats_wireless_client`")
-    }
     if s.TxRate == nil {
         errs = append(errs, "required field `tx_rate` is missing for type `stats_wireless_client`")
     }
     if s.TxRetries == nil {
         errs = append(errs, "required field `tx_retries` is missing for type `stats_wireless_client`")
-    }
-    if s.Uptime == nil {
-        errs = append(errs, "required field `uptime` is missing for type `stats_wireless_client`")
-    }
-    if s.Username == nil {
-        errs = append(errs, "required field `username` is missing for type `stats_wireless_client`")
     }
     if s.WlanId == nil {
         errs = append(errs, "required field `wlan_id` is missing for type `stats_wireless_client`")
