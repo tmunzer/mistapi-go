@@ -16,8 +16,7 @@ type NacTag struct {
     CreatedTime          *float64                `json:"created_time,omitempty"`
     // If `type`==`egress_vlan_names`, list of egress vlans to return
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
-    // If `type`==`gbp_tag`
-    GbpTag               *int                    `json:"gbp_tag,omitempty"`
+    GbpTag               *IntegerOrString        `json:"gbp_tag,omitempty"`
     // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID              `json:"id,omitempty"`
     // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
@@ -88,7 +87,7 @@ func (n NacTag) toMap() map[string]any {
         structMap["egress_vlan_names"] = n.EgressVlanNames
     }
     if n.GbpTag != nil {
-        structMap["gbp_tag"] = n.GbpTag
+        structMap["gbp_tag"] = n.GbpTag.toMap()
     }
     if n.Id != nil {
         structMap["id"] = n.Id
@@ -175,7 +174,7 @@ type tempNacTag  struct {
     AllowUsermacOverride *bool                   `json:"allow_usermac_override,omitempty"`
     CreatedTime          *float64                `json:"created_time,omitempty"`
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
-    GbpTag               *int                    `json:"gbp_tag,omitempty"`
+    GbpTag               *IntegerOrString        `json:"gbp_tag,omitempty"`
     Id                   *uuid.UUID              `json:"id,omitempty"`
     Match                *NacTagMatchEnum        `json:"match,omitempty"`
     MatchAll             *bool                   `json:"match_all,omitempty"`

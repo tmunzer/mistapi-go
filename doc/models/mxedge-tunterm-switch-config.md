@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PortVlanId` | `*int` | Optional | - |
-| `VlanIds` | [`[]models.MxedgeTuntermSwitchConfigVlanId`](../../doc/models/containers/mxedge-tunterm-switch-config-vlan-id.md) | Optional | - |
+| `VlanIds` | [`[]models.IntegerOrString`](../../doc/models/containers/integer-or-string.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

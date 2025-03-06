@@ -646,10 +646,10 @@ body := models.Mxedge{
         AdditionalProperties: map[string]models.MxedgeTuntermSwitchConfig{
             "0": models.MxedgeTuntermSwitchConfig{
                 PortVlanId:           models.ToPointer(1),
-                VlanIds:              []models.MxedgeTuntermSwitchConfigVlanId{
-                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(5),
-                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(2),
-                    models.MxedgeTuntermSwitchConfigVlanIdContainer.FromNumber(3),
+                VlanIds:              []models.IntegerOrString{
+                    models.IntegerOrStringContainer.FromNumber(5),
+                    models.IntegerOrStringContainer.FromNumber(2),
+                    models.IntegerOrStringContainer.FromNumber(3),
                 },
             },
         },

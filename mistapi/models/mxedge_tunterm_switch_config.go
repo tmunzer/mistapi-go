@@ -7,9 +7,9 @@ import (
 
 // MxedgeTuntermSwitchConfig represents a MxedgeTuntermSwitchConfig struct.
 type MxedgeTuntermSwitchConfig struct {
-    PortVlanId           *int                              `json:"port_vlan_id,omitempty"`
-    VlanIds              []MxedgeTuntermSwitchConfigVlanId `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]interface{}            `json:"_"`
+    PortVlanId           *int                   `json:"port_vlan_id,omitempty"`
+    VlanIds              []IntegerOrString      `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxedgeTuntermSwitchConfig,
@@ -66,6 +66,6 @@ func (m *MxedgeTuntermSwitchConfig) UnmarshalJSON(input []byte) error {
 
 // tempMxedgeTuntermSwitchConfig is a temporary struct used for validating the fields of MxedgeTuntermSwitchConfig.
 type tempMxedgeTuntermSwitchConfig  struct {
-    PortVlanId *int                              `json:"port_vlan_id,omitempty"`
-    VlanIds    []MxedgeTuntermSwitchConfigVlanId `json:"vlan_ids,omitempty"`
+    PortVlanId *int              `json:"port_vlan_id,omitempty"`
+    VlanIds    []IntegerOrString `json:"vlan_ids,omitempty"`
 }
