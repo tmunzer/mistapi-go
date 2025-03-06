@@ -64,13 +64,13 @@ type StatsSwitchPort struct {
     // Input rate
     RxBps                *int                          `json:"rx_bps,omitempty"`
     // Rx bytes
-    RxBytes              int64                         `json:"rx_bytes"`
+    RxBytes              *int                          `json:"rx_bytes,omitempty"`
     // Input errors
     RxErrors             *int                          `json:"rx_errors,omitempty"`
     // Multicast input packets
     RxMcastPkts          *int                          `json:"rx_mcast_pkts,omitempty"`
     // Rx packets
-    RxPkts               int                           `json:"rx_pkts"`
+    RxPkts               *int                          `json:"rx_pkts,omitempty"`
     SiteId               uuid.UUID                     `json:"site_id"`
     // Port speed
     Speed                *int                          `json:"speed,omitempty"`
@@ -83,13 +83,13 @@ type StatsSwitchPort struct {
     // Output rate
     TxBps                *int                          `json:"tx_bps,omitempty"`
     // Tx bytes
-    TxBytes              int64                         `json:"tx_bytes"`
+    TxBytes              *int                          `json:"tx_bytes,omitempty"`
     // Output errors
     TxErrors             *int                          `json:"tx_errors,omitempty"`
     // Multicast output packets
     TxMcastPkts          *int                          `json:"tx_mcast_pkts,omitempty"`
     // Tx packets
-    TxPkts               int                           `json:"tx_pkts"`
+    TxPkts               *int                          `json:"tx_pkts,omitempty"`
     // device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
     Type                 *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
     // Indicates if interface is unconfigured
@@ -215,14 +215,18 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.RxBps != nil {
         structMap["rx_bps"] = s.RxBps
     }
-    structMap["rx_bytes"] = s.RxBytes
+    if s.RxBytes != nil {
+        structMap["rx_bytes"] = s.RxBytes
+    }
     if s.RxErrors != nil {
         structMap["rx_errors"] = s.RxErrors
     }
     if s.RxMcastPkts != nil {
         structMap["rx_mcast_pkts"] = s.RxMcastPkts
     }
-    structMap["rx_pkts"] = s.RxPkts
+    if s.RxPkts != nil {
+        structMap["rx_pkts"] = s.RxPkts
+    }
     structMap["site_id"] = s.SiteId
     if s.Speed != nil {
         structMap["speed"] = s.Speed
@@ -239,14 +243,18 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.TxBps != nil {
         structMap["tx_bps"] = s.TxBps
     }
-    structMap["tx_bytes"] = s.TxBytes
+    if s.TxBytes != nil {
+        structMap["tx_bytes"] = s.TxBytes
+    }
     if s.TxErrors != nil {
         structMap["tx_errors"] = s.TxErrors
     }
     if s.TxMcastPkts != nil {
         structMap["tx_mcast_pkts"] = s.TxMcastPkts
     }
-    structMap["tx_pkts"] = s.TxPkts
+    if s.TxPkts != nil {
+        structMap["tx_pkts"] = s.TxPkts
+    }
     if s.Type != nil {
         structMap["type"] = s.Type
     }
@@ -314,20 +322,20 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
     s.PowerDraw = temp.PowerDraw
     s.RxBcastPkts = temp.RxBcastPkts
     s.RxBps = temp.RxBps
-    s.RxBytes = *temp.RxBytes
+    s.RxBytes = temp.RxBytes
     s.RxErrors = temp.RxErrors
     s.RxMcastPkts = temp.RxMcastPkts
-    s.RxPkts = *temp.RxPkts
+    s.RxPkts = temp.RxPkts
     s.SiteId = *temp.SiteId
     s.Speed = temp.Speed
     s.StpRole = temp.StpRole
     s.StpState = temp.StpState
     s.TxBcastPkts = temp.TxBcastPkts
     s.TxBps = temp.TxBps
-    s.TxBytes = *temp.TxBytes
+    s.TxBytes = temp.TxBytes
     s.TxErrors = temp.TxErrors
     s.TxMcastPkts = temp.TxMcastPkts
-    s.TxPkts = *temp.TxPkts
+    s.TxPkts = temp.TxPkts
     s.Type = temp.Type
     s.Unconfigured = temp.Unconfigured
     s.Up = temp.Up
@@ -367,20 +375,20 @@ type tempStatsSwitchPort  struct {
     PowerDraw          *float64                      `json:"power_draw,omitempty"`
     RxBcastPkts        *int                          `json:"rx_bcast_pkts,omitempty"`
     RxBps              *int                          `json:"rx_bps,omitempty"`
-    RxBytes            *int64                        `json:"rx_bytes"`
+    RxBytes            *int                          `json:"rx_bytes,omitempty"`
     RxErrors           *int                          `json:"rx_errors,omitempty"`
     RxMcastPkts        *int                          `json:"rx_mcast_pkts,omitempty"`
-    RxPkts             *int                          `json:"rx_pkts"`
+    RxPkts             *int                          `json:"rx_pkts,omitempty"`
     SiteId             *uuid.UUID                    `json:"site_id"`
     Speed              *int                          `json:"speed,omitempty"`
     StpRole            *StatsSwitchPortStpRoleEnum   `json:"stp_role,omitempty"`
     StpState           *StatsSwitchPortStpStateEnum  `json:"stp_state,omitempty"`
     TxBcastPkts        *int                          `json:"tx_bcast_pkts,omitempty"`
     TxBps              *int                          `json:"tx_bps,omitempty"`
-    TxBytes            *int64                        `json:"tx_bytes"`
+    TxBytes            *int                          `json:"tx_bytes,omitempty"`
     TxErrors           *int                          `json:"tx_errors,omitempty"`
     TxMcastPkts        *int                          `json:"tx_mcast_pkts,omitempty"`
-    TxPkts             *int                          `json:"tx_pkts"`
+    TxPkts             *int                          `json:"tx_pkts,omitempty"`
     Type               *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
     Unconfigured       *bool                         `json:"unconfigured,omitempty"`
     Up                 *bool                         `json:"up,omitempty"`
@@ -406,20 +414,8 @@ func (s *tempStatsSwitchPort) validate() error {
     if s.PortMac == nil {
         errs = append(errs, "required field `port_mac` is missing for type `stats_switch_port`")
     }
-    if s.RxBytes == nil {
-        errs = append(errs, "required field `rx_bytes` is missing for type `stats_switch_port`")
-    }
-    if s.RxPkts == nil {
-        errs = append(errs, "required field `rx_pkts` is missing for type `stats_switch_port`")
-    }
     if s.SiteId == nil {
         errs = append(errs, "required field `site_id` is missing for type `stats_switch_port`")
-    }
-    if s.TxBytes == nil {
-        errs = append(errs, "required field `tx_bytes` is missing for type `stats_switch_port`")
-    }
-    if s.TxPkts == nil {
-        errs = append(errs, "required field `tx_pkts` is missing for type `stats_switch_port`")
     }
     if len(errs) == 0 {
         return nil
