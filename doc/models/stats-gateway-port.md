@@ -38,19 +38,19 @@ Port statistics
 | `PowerDraw` | `*float64` | Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `RxBcastPkts` | `*int` | Optional | Broadcast input packets |
 | `RxBps` | `*int` | Optional | Input rate |
-| `RxBytes` | `int64` | Required | Rx bytes |
+| `RxBytes` | `*int` | Optional | Rx bytes |
 | `RxErrors` | `*int` | Optional | Input errors |
 | `RxMcastPkts` | `*int` | Optional | Multicast input packets |
-| `RxPkts` | `int` | Required | Rx packets |
+| `RxPkts` | `*int` | Optional | Rx packets |
 | `Speed` | `*int` | Optional | Port speed |
 | `StpRole` | [`*models.StatsSwitchPortStpRoleEnum`](../../doc/models/stats-switch-port-stp-role-enum.md) | Optional | if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented` |
 | `StpState` | [`*models.StatsSwitchPortStpStateEnum`](../../doc/models/stats-switch-port-stp-state-enum.md) | Optional | if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
 | `TxBcastPkts` | `*int` | Optional | Broadcast output packets |
 | `TxBps` | `*int` | Optional | Output rate |
-| `TxBytes` | `int64` | Required | Tx bytes |
+| `TxBytes` | `*int` | Optional | Tx bytes |
 | `TxErrors` | `*int` | Optional | Output errors |
 | `TxMcastPkts` | `*int` | Optional | Multicast output packets |
-| `TxPkts` | `int` | Required | Tx packets |
+| `TxPkts` | `*int` | Optional | Tx packets |
 | `Type` | [`*models.StatsSwitchPortTypeEnum`](../../doc/models/stats-switch-port-type-enum.md) | Optional | device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch` |
 | `Unconfigured` | `*bool` | Optional | Indicates if interface is unconfigured |
 | `Up` | `*bool` | Optional | Indicates if interface is up |
@@ -69,10 +69,7 @@ Port statistics
   "neighbor_system_name": "CORP-D-SW-2",
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
-  "rx_bytes": 4563443626,
-  "rx_pkts": 76,
   "speed": 1000,
-  "tx_bytes": 11299516780,
   "tx_pkts": 492176,
   "type": "gateway",
   "xcvr_model": "SFP+-10G-SR",
