@@ -24,8 +24,8 @@ If custom vlan settings are desired
   "exampleAdditionalProperty": {
     "port_vlan_id": 176,
     "vlan_ids": [
-      106,
-      107
+      "String7",
+      "String8"
     ],
     "exampleAdditionalProperty": {
       "key1": "val1",

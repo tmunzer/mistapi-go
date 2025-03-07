@@ -16,7 +16,8 @@ type NacTag struct {
     CreatedTime          *float64                `json:"created_time,omitempty"`
     // If `type`==`egress_vlan_names`, list of egress vlans to return
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
-    GbpTag               *IntegerOrString        `json:"gbp_tag,omitempty"`
+    // If `type`==`gbp_tag`
+    GbpTag               *NacTagGbpTag           `json:"gbp_tag,omitempty"`
     // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID              `json:"id,omitempty"`
     // if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
@@ -174,7 +175,7 @@ type tempNacTag  struct {
     AllowUsermacOverride *bool                   `json:"allow_usermac_override,omitempty"`
     CreatedTime          *float64                `json:"created_time,omitempty"`
     EgressVlanNames      []string                `json:"egress_vlan_names,omitempty"`
-    GbpTag               *IntegerOrString        `json:"gbp_tag,omitempty"`
+    GbpTag               *NacTagGbpTag           `json:"gbp_tag,omitempty"`
     Id                   *uuid.UUID              `json:"id,omitempty"`
     Match                *NacTagMatchEnum        `json:"match,omitempty"`
     MatchAll             *bool                   `json:"match_all,omitempty"`

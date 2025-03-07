@@ -92,7 +92,7 @@ body := models.Wlan{
     AppQos:                               models.ToPointer(models.WlanAppQos{
         Apps:                 map[string]models.WlanAppQosAppsProperties{
             "skype-business-video": models.WlanAppQosAppsProperties{
-                Dscp:                 models.ToPointer(32),
+                Dscp:                 models.ToPointer(models.DscpContainer.FromNumber(32)),
                 DstSubnet:            models.ToPointer("10.2.0.0/16"),
                 SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
@@ -100,7 +100,7 @@ body := models.Wlan{
         Enabled:              models.ToPointer(true),
         Others:               []models.WlanAppQosOthersItem{
             models.WlanAppQosOthersItem{
-                Dscp:                 models.ToPointer(32),
+                Dscp:                 models.ToPointer(models.DscpContainer.FromNumber(32)),
                 DstSubnet:            models.ToPointer("10.2.0.0/16"),
                 PortRanges:           models.ToPointer("80,1024-6553"),
                 Protocol:             models.ToPointer("udp"),
@@ -152,7 +152,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    "10,20",
+        AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
@@ -746,7 +746,7 @@ body := models.Wlan{
     AppQos:                               models.ToPointer(models.WlanAppQos{
         Apps:                 map[string]models.WlanAppQosAppsProperties{
             "skype-business-video": models.WlanAppQosAppsProperties{
-                Dscp:                 models.ToPointer(32),
+                Dscp:                 models.ToPointer(models.DscpContainer.FromNumber(32)),
                 DstSubnet:            models.ToPointer("10.2.0.0/16"),
                 SrcSubnet:            models.ToPointer("10.2.0.0/16"),
             },
@@ -754,7 +754,7 @@ body := models.Wlan{
         Enabled:              models.ToPointer(true),
         Others:               []models.WlanAppQosOthersItem{
             models.WlanAppQosOthersItem{
-                Dscp:                 models.ToPointer(32),
+                Dscp:                 models.ToPointer(models.DscpContainer.FromNumber(32)),
                 DstSubnet:            models.ToPointer("10.2.0.0/16"),
                 PortRanges:           models.ToPointer("80,1024-6553"),
                 Protocol:             models.ToPointer("udp"),
@@ -806,7 +806,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    "10,20",
+        AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{

@@ -7,7 +7,8 @@ import (
 
 // WlanAppQosAppsProperties represents a WlanAppQosAppsProperties struct.
 type WlanAppQosAppsProperties struct {
-    Dscp                 *int                   `json:"dscp,omitempty"`
+    // DSCP value range between 0 and 63
+    Dscp                 *Dscp                  `json:"dscp,omitempty"`
     // Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
     DstSubnet            *string                `json:"dst_subnet,omitempty"`
     // Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load)
@@ -40,7 +41,7 @@ func (w WlanAppQosAppsProperties) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Dscp != nil {
-        structMap["dscp"] = w.Dscp
+        structMap["dscp"] = w.Dscp.toMap()
     }
     if w.DstSubnet != nil {
         structMap["dst_subnet"] = w.DstSubnet
@@ -73,7 +74,7 @@ func (w *WlanAppQosAppsProperties) UnmarshalJSON(input []byte) error {
 
 // tempWlanAppQosAppsProperties is a temporary struct used for validating the fields of WlanAppQosAppsProperties.
 type tempWlanAppQosAppsProperties  struct {
-    Dscp      *int    `json:"dscp,omitempty"`
+    Dscp      *Dscp   `json:"dscp,omitempty"`
     DstSubnet *string `json:"dst_subnet,omitempty"`
     SrcSubnet *string `json:"src_subnet,omitempty"`
 }

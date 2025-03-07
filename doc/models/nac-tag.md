@@ -14,7 +14,7 @@
 | `AllowUsermacOverride` | `*bool` | Optional | Can be set to true to allow the override by usermac result<br>**Default**: `false` |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `EgressVlanNames` | `[]string` | Optional | If `type`==`egress_vlan_names`, list of egress vlans to return |
-| `GbpTag` | [`*models.IntegerOrString`](../../doc/models/containers/integer-or-string.md) | Optional | - |
+| `GbpTag` | [`*models.NacTagGbpTag`](../../doc/models/containers/nac-tag-gbp-tag.md) | Optional | If `type`==`gbp_tag` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br>**Constraints**: *Minimum Length*: `1` |
 | `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`<br>**Default**: `false` |

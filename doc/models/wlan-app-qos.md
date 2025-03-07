@@ -36,7 +36,7 @@ APp qos wlan settings
   "enabled": false,
   "others": [
     {
-      "dscp": 44,
+      "dscp": "String7",
       "dst_subnet": "dst_subnet2",
       "port_ranges": "port_ranges6",
       "protocol": "protocol2",
@@ -47,7 +47,7 @@ APp qos wlan settings
       }
     },
     {
-      "dscp": 44,
+      "dscp": "String7",
       "dst_subnet": "dst_subnet2",
       "port_ranges": "port_ranges6",
       "protocol": "protocol2",

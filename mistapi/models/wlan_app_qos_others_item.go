@@ -7,7 +7,8 @@ import (
 
 // WlanAppQosOthersItem represents a WlanAppQosOthersItem struct.
 type WlanAppQosOthersItem struct {
-    Dscp                 *int                   `json:"dscp,omitempty"`
+    // DSCP value range between 0 and 63
+    Dscp                 *Dscp                  `json:"dscp,omitempty"`
     DstSubnet            *string                `json:"dst_subnet,omitempty"`
     PortRanges           *string                `json:"port_ranges,omitempty"`
     Protocol             *string                `json:"protocol,omitempty"`
@@ -40,7 +41,7 @@ func (w WlanAppQosOthersItem) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
     if w.Dscp != nil {
-        structMap["dscp"] = w.Dscp
+        structMap["dscp"] = w.Dscp.toMap()
     }
     if w.DstSubnet != nil {
         structMap["dst_subnet"] = w.DstSubnet
@@ -81,7 +82,7 @@ func (w *WlanAppQosOthersItem) UnmarshalJSON(input []byte) error {
 
 // tempWlanAppQosOthersItem is a temporary struct used for validating the fields of WlanAppQosOthersItem.
 type tempWlanAppQosOthersItem  struct {
-    Dscp       *int    `json:"dscp,omitempty"`
+    Dscp       *Dscp   `json:"dscp,omitempty"`
     DstSubnet  *string `json:"dst_subnet,omitempty"`
     PortRanges *string `json:"port_ranges,omitempty"`
     Protocol   *string `json:"protocol,omitempty"`

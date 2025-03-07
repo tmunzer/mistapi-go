@@ -61,8 +61,8 @@ type SwitchPortUsage struct {
     PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
     // Only if `mode`!=`dynamic` native network/vlan for untagged traffic
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
-    // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range
-    ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
+    // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
+    ReauthInterval                           *SwitchPortUsageReauthInterval              `json:"reauth_interval,omitempty"`
     // Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)
     ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
     // Only if `mode`==`dynamic`
@@ -199,7 +199,7 @@ func (s SwitchPortUsage) toMap() map[string]any {
         structMap["port_network"] = s.PortNetwork
     }
     if s.ReauthInterval != nil {
-        structMap["reauth_interval"] = s.ReauthInterval
+        structMap["reauth_interval"] = s.ReauthInterval.toMap()
     }
     if s.ResetDefaultWhen != nil {
         structMap["reset_default_when"] = s.ResetDefaultWhen
@@ -332,7 +332,7 @@ type tempSwitchPortUsage  struct {
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
     PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
     PortNetwork                              *string                                     `json:"port_network,omitempty"`
-    ReauthInterval                           *int                                        `json:"reauth_interval,omitempty"`
+    ReauthInterval                           *SwitchPortUsageReauthInterval              `json:"reauth_interval,omitempty"`
     ResetDefaultWhen                         *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
     Rules                                    []SwitchPortUsageDynamicRule                `json:"rules,omitempty"`
     ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`

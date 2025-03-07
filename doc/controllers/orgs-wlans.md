@@ -520,7 +520,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    "10,20",
+        AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{

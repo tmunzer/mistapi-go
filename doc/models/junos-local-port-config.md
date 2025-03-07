@@ -39,7 +39,7 @@ Switch port config
 | `PoeDisabled` | `*bool` | Optional | Whether PoE capabilities are disabled for a port<br>**Default**: `false` |
 | `PortAuth` | [`models.Optional[models.SwitchPortLocalUsageDot1xEnum]`](../../doc/models/switch-port-local-usage-dot-1-x-enum.md) | Optional | if dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Native network/vlan for untagged traffic |
-| `ReauthInterval` | `*int` | Optional | Only if `port_auth`=`dot1x` reauthentication interval range<br>**Default**: `3600`<br>**Constraints**: `>= 10`, `<= 65535` |
+| `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600) |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `port_auth`==`dot1x` sets server fail fallback vlan |
 | `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `port_auth`==`dot1x` when radius server reject / fails |
 | `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br>**Default**: `"auto"` |
@@ -75,7 +75,6 @@ Switch port config
   "note": "force 100M for camera",
   "persist_mac": false,
   "poe_disabled": false,
-  "reauth_interval": 3600,
   "speed": "auto",
   "stp_edge": false,
   "stp_no_root_port": false,

@@ -39,7 +39,7 @@ Junos port usages
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port<br>**Default**: `false` |
 | `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1xEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` native network/vlan for untagged traffic |
-| `ReauthInterval` | `*int` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range<br>**Default**: `3600`<br>**Constraints**: `>= 10`, `<= 65535` |
+| `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600) |
 | `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)<br>**Default**: `"link_down"` |
 | `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic` |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x` sets server fail fallback vlan |
@@ -77,7 +77,6 @@ Junos port usages
   "mac_limit": 0,
   "persist_mac": false,
   "poe_disabled": false,
-  "reauth_interval": 3600,
   "reset_default_when": "link_down",
   "speed": "auto",
   "stp_edge": false,

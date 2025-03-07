@@ -59,8 +59,8 @@ type JunosLocalPortConfig struct {
     PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
     // Native network/vlan for untagged traffic
     PortNetwork                              *string                                  `json:"port_network,omitempty"`
-    // Only if `port_auth`=`dot1x` reauthentication interval range
-    ReauthInterval                           *int                                     `json:"reauth_interval,omitempty"`
+    // Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
+    ReauthInterval                           *SwitchPortUsageReauthInterval           `json:"reauth_interval,omitempty"`
     // Only if `port_auth`==`dot1x` sets server fail fallback vlan
     ServerFailNetwork                        Optional[string]                         `json:"server_fail_network"`
     // Only if `port_auth`==`dot1x` when radius server reject / fails
@@ -193,7 +193,7 @@ func (j JunosLocalPortConfig) toMap() map[string]any {
         structMap["port_network"] = j.PortNetwork
     }
     if j.ReauthInterval != nil {
-        structMap["reauth_interval"] = j.ReauthInterval
+        structMap["reauth_interval"] = j.ReauthInterval.toMap()
     }
     if j.ServerFailNetwork.IsValueSet() {
         if j.ServerFailNetwork.Value() != nil {
@@ -320,7 +320,7 @@ type tempJunosLocalPortConfig  struct {
     PoeDisabled                              *bool                                    `json:"poe_disabled,omitempty"`
     PortAuth                                 Optional[SwitchPortLocalUsageDot1xEnum]  `json:"port_auth"`
     PortNetwork                              *string                                  `json:"port_network,omitempty"`
-    ReauthInterval                           *int                                     `json:"reauth_interval,omitempty"`
+    ReauthInterval                           *SwitchPortUsageReauthInterval           `json:"reauth_interval,omitempty"`
     ServerFailNetwork                        Optional[string]                         `json:"server_fail_network"`
     ServerRejectNetwork                      Optional[string]                         `json:"server_reject_network"`
     Speed                                    *JunosPortConfigSpeedEnum                `json:"speed,omitempty"`

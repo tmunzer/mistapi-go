@@ -10,7 +10,7 @@ type ApSwitchSetting struct {
     EnableVlan           *bool                  `json:"enable_vlan,omitempty"`
     // Native VLAN id, optional
     PortVlanId           *int                   `json:"port_vlan_id,omitempty"`
-    // List of VLAN ids this
+    // List of VLAN ids
     VlanIds              []int                  `json:"vlan_ids,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

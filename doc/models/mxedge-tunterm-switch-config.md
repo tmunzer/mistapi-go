@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PortVlanId` | `*int` | Optional | - |
-| `VlanIds` | [`[]models.IntegerOrString`](../../doc/models/containers/integer-or-string.md) | Optional | - |
+| `VlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -21,7 +21,7 @@
 {
   "port_vlan_id": 66,
   "vlan_ids": [
-    252
+    "String5"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",
