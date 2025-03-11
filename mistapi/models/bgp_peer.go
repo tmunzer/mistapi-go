@@ -12,10 +12,11 @@ type BgpPeer struct {
     EvpnOverlay          *bool                  `json:"evpn_overlay,omitempty"`
     // If this is created for overlay
     ForOverlay           *bool                  `json:"for_overlay,omitempty"`
-    // AS
-    LocalAs              *int                   `json:"local_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    LocalAs              *BgpAs                 `json:"local_as,omitempty"`
     Neighbor             *string                `json:"neighbor,omitempty"`
-    NeighborAs           *int                   `json:"neighbor_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    NeighborAs           *BgpAs                 `json:"neighbor_as,omitempty"`
     // If it's another device in the same org
     NeighborMac          *string                `json:"neighbor_mac,omitempty"`
     // Node0/node1
@@ -66,13 +67,13 @@ func (b BgpPeer) toMap() map[string]any {
         structMap["for_overlay"] = b.ForOverlay
     }
     if b.LocalAs != nil {
-        structMap["local_as"] = b.LocalAs
+        structMap["local_as"] = b.LocalAs.toMap()
     }
     if b.Neighbor != nil {
         structMap["neighbor"] = b.Neighbor
     }
     if b.NeighborAs != nil {
-        structMap["neighbor_as"] = b.NeighborAs
+        structMap["neighbor_as"] = b.NeighborAs.toMap()
     }
     if b.NeighborMac != nil {
         structMap["neighbor_mac"] = b.NeighborMac
@@ -147,9 +148,9 @@ func (b *BgpPeer) UnmarshalJSON(input []byte) error {
 type tempBgpPeer  struct {
     EvpnOverlay *bool              `json:"evpn_overlay,omitempty"`
     ForOverlay  *bool              `json:"for_overlay,omitempty"`
-    LocalAs     *int               `json:"local_as,omitempty"`
+    LocalAs     *BgpAs             `json:"local_as,omitempty"`
     Neighbor    *string            `json:"neighbor,omitempty"`
-    NeighborAs  *int               `json:"neighbor_as,omitempty"`
+    NeighborAs  *BgpAs             `json:"neighbor_as,omitempty"`
     NeighborMac *string            `json:"neighbor_mac,omitempty"`
     Node        *string            `json:"node,omitempty"`
     RxPkts      *int               `json:"rx_pkts,omitempty"`

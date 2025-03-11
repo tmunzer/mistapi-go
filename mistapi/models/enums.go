@@ -4738,3 +4738,11 @@ const (
     ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
     ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
 )
+
+// TypeEnum is a string enum.
+type TypeEnum string
+
+const (
+    TypeEnum_IPSEC TypeEnum = "ipsec"
+    TypeEnum_SVR   TypeEnum = "svr"
+)

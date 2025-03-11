@@ -61,13 +61,20 @@ func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgBgpStats takes context, orgId as parameters and
+// SearchOrgBgpStats takes context, orgId, mac, neighborMac, siteId, vrfName, start, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseSearchBgps data and
 // an error if there was an issue with the request or response.
 // Search Org BGP Stats
 func (o *OrgsStatsBGPPeers) SearchOrgBgpStats(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    mac *string,
+    neighborMac *string,
+    siteId *string,
+    vrfName *string,
+    start *int,
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseSearchBgps],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/bgp_peers/search")
@@ -90,6 +97,27 @@ func (o *OrgsStatsBGPPeers) SearchOrgBgpStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if mac != nil {
+        req.QueryParam("mac", *mac)
+    }
+    if neighborMac != nil {
+        req.QueryParam("neighbor_mac", *neighborMac)
+    }
+    if siteId != nil {
+        req.QueryParam("site_id", *siteId)
+    }
+    if vrfName != nil {
+        req.QueryParam("vrf_name", *vrfName)
+    }
+    if start != nil {
+        req.QueryParam("start", *start)
+    }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
     
     var result models.ResponseSearchBgps
     decoder, resp, err := req.CallAsJson()

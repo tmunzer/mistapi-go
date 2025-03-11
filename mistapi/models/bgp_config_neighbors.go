@@ -14,7 +14,8 @@ type BgpConfigNeighbors struct {
     ImportPolicy         *string                `json:"import_policy,omitempty"`
     // Assuming BGP neighbor is directly connected
     MultihopTtl          *int                   `json:"multihop_ttl,omitempty"`
-    NeighborAs           *int                   `json:"neighbor_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    NeighborAs           *BgpAs                 `json:"neighbor_as,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -58,7 +59,7 @@ func (b BgpConfigNeighbors) toMap() map[string]any {
         structMap["multihop_ttl"] = b.MultihopTtl
     }
     if b.NeighborAs != nil {
-        structMap["neighbor_as"] = b.NeighborAs
+        structMap["neighbor_as"] = b.NeighborAs.toMap()
     }
     return structMap
 }
@@ -93,5 +94,5 @@ type tempBgpConfigNeighbors  struct {
     HoldTime     *int    `json:"hold_time,omitempty"`
     ImportPolicy *string `json:"import_policy,omitempty"`
     MultihopTtl  *int    `json:"multihop_ttl,omitempty"`
-    NeighborAs   *int    `json:"neighbor_as,omitempty"`
+    NeighborAs   *BgpAs  `json:"neighbor_as,omitempty"`
 }

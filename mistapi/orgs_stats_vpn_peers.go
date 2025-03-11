@@ -85,15 +85,17 @@ func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgPeerPathStats takes context, orgId, start, end, duration, limit as parameters and
+// SearchOrgPeerPathStats takes context, orgId, mac, siteId, mType, start, duration, limit as parameters and
 // returns an models.ApiResponse with models.VpnPeerStatSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Peer Path Stats
 func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
     ctx context.Context,
     orgId uuid.UUID,
+    mac *string,
+    siteId *string,
+    mType *models.TypeEnum,
     start *int,
-    end *int,
     duration *string,
     limit *int) (
     models.ApiResponse[models.VpnPeerStatSearch],
@@ -118,11 +120,17 @@ func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if mac != nil {
+        req.QueryParam("mac", *mac)
+    }
+    if siteId != nil {
+        req.QueryParam("site_id", *siteId)
+    }
+    if mType != nil {
+        req.QueryParam("type", *mType)
+    }
     if start != nil {
         req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
     }
     if duration != nil {
         req.QueryParam("duration", *duration)

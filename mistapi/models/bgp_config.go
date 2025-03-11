@@ -28,8 +28,10 @@ type BgpConfig struct {
     Import                 *string                       `json:"import,omitempty"`
     // Default import policies if no per-neighbor policies defined
     ImportPolicy           *string                       `json:"import_policy,omitempty"`
-    LocalAs                *int                          `json:"local_as,omitempty"`
-    NeighborAs             *int                          `json:"neighbor_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    LocalAs                *BgpAs                        `json:"local_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    NeighborAs             *BgpAs                        `json:"neighbor_as,omitempty"`
     // If per-neighbor as is desired. Property key is the neighbor address
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     // If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from
@@ -115,10 +117,10 @@ func (b BgpConfig) toMap() map[string]any {
         structMap["import_policy"] = b.ImportPolicy
     }
     if b.LocalAs != nil {
-        structMap["local_as"] = b.LocalAs
+        structMap["local_as"] = b.LocalAs.toMap()
     }
     if b.NeighborAs != nil {
-        structMap["neighbor_as"] = b.NeighborAs
+        structMap["neighbor_as"] = b.NeighborAs.toMap()
     }
     if b.Neighbors != nil {
         structMap["neighbors"] = b.Neighbors
@@ -202,8 +204,8 @@ type tempBgpConfig  struct {
     HoldTime               *int                          `json:"hold_time,omitempty"`
     Import                 *string                       `json:"import,omitempty"`
     ImportPolicy           *string                       `json:"import_policy,omitempty"`
-    LocalAs                *int                          `json:"local_as,omitempty"`
-    NeighborAs             *int                          `json:"neighbor_as,omitempty"`
+    LocalAs                *BgpAs                        `json:"local_as,omitempty"`
+    NeighborAs             *BgpAs                        `json:"neighbor_as,omitempty"`
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     Networks               []string                      `json:"networks,omitempty"`
     NoPrivateAs            *bool                         `json:"no_private_as,omitempty"`

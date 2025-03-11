@@ -42,9 +42,11 @@ func TestOrgsStatsVPNPeersTestSearchOrgPeerPathStats(t *testing.T) {
     }
     
     
+    
+    
     duration := "1d"
     limit := int(100)
-    apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, &duration, &limit)
+    apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

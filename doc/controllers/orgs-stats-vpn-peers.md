@@ -114,8 +114,10 @@ Search Org Peer Path Stats
 SearchOrgPeerPathStats(
     ctx context.Context,
     orgId uuid.UUID,
+    mac *string,
+    siteId *string,
+    mType *models.TypeEnum,
     start *int,
-    end *int,
     duration *string,
     limit *int) (
     models.ApiResponse[models.VpnPeerStatSearch],
@@ -127,8 +129,10 @@ SearchOrgPeerPathStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `mac` | `*string` | Query, Optional | - |
+| `siteId` | `*string` | Query, Optional | - |
+| `mType` | [`*models.TypeEnum`](../../doc/models/type-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
@@ -147,11 +151,15 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsStatsVPNPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, &duration, &limit)
+apiResponse, err := orgsStatsVPNPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

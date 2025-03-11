@@ -28,7 +28,7 @@
     {
       "evpn_overlay": false,
       "for_overlay": false,
-      "local_as": 18,
+      "local_as": "String3",
       "mac": "mac0",
       "model": "model4",
       "exampleAdditionalProperty": {

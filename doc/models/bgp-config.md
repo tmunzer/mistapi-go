@@ -24,8 +24,8 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `HoldTime` | `*int` | Optional | **Default**: `90`<br>**Constraints**: `>= 0`, `<= 65535` |
 | `Import` | `*string` | Optional | - |
 | `ImportPolicy` | `*string` | Optional | Default import policies if no per-neighbor policies defined |
-| `LocalAs` | `*int` | Optional | - |
-| `NeighborAs` | `*int` | Optional | - |
+| `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
+| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
 | `Neighbors` | [`map[string]models.BgpConfigNeighbors`](../../doc/models/bgp-config-neighbors.md) | Optional | If per-neighbor as is desired. Property key is the neighbor address |
 | `Networks` | `[]string` | Optional | If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from |
 | `NoPrivateAs` | `*bool` | Optional | **Default**: `false` |
@@ -46,6 +46,8 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
   "disable_bfd": false,
   "graceful_restart_time": 0,
   "hold_time": 90,
+  "local_as": 65000,
+  "neighbor_as": 65000,
   "no_private_as": false,
   "no_readvertise_to_overlay": false,
   "via": "lan",

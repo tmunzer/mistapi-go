@@ -12,13 +12,14 @@ type BgpStats struct {
     EvpnOverlay          *bool                  `json:"evpn_overlay,omitempty"`
     // If this is created for overlay
     ForOverlay           *bool                  `json:"for_overlay,omitempty"`
-    // AS
-    LocalAs              *int                   `json:"local_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    LocalAs              *BgpAs                 `json:"local_as,omitempty"`
     // Router mac address
     Mac                  *string                `json:"mac,omitempty"`
     Model                *string                `json:"model,omitempty"`
     Neighbor             *string                `json:"neighbor,omitempty"`
-    NeighborAs           *int                   `json:"neighbor_as,omitempty"`
+    // BGP AS, value in range 1-4294967295
+    NeighborAs           *BgpAs                 `json:"neighbor_as,omitempty"`
     // If it's another device in the same org
     NeighborMac          *string                `json:"neighbor_mac,omitempty"`
     // Node0/node1
@@ -71,7 +72,7 @@ func (b BgpStats) toMap() map[string]any {
         structMap["for_overlay"] = b.ForOverlay
     }
     if b.LocalAs != nil {
-        structMap["local_as"] = b.LocalAs
+        structMap["local_as"] = b.LocalAs.toMap()
     }
     if b.Mac != nil {
         structMap["mac"] = b.Mac
@@ -83,7 +84,7 @@ func (b BgpStats) toMap() map[string]any {
         structMap["neighbor"] = b.Neighbor
     }
     if b.NeighborAs != nil {
-        structMap["neighbor_as"] = b.NeighborAs
+        structMap["neighbor_as"] = b.NeighborAs.toMap()
     }
     if b.NeighborMac != nil {
         structMap["neighbor_mac"] = b.NeighborMac
@@ -168,11 +169,11 @@ func (b *BgpStats) UnmarshalJSON(input []byte) error {
 type tempBgpStats  struct {
     EvpnOverlay *bool              `json:"evpn_overlay,omitempty"`
     ForOverlay  *bool              `json:"for_overlay,omitempty"`
-    LocalAs     *int               `json:"local_as,omitempty"`
+    LocalAs     *BgpAs             `json:"local_as,omitempty"`
     Mac         *string            `json:"mac,omitempty"`
     Model       *string            `json:"model,omitempty"`
     Neighbor    *string            `json:"neighbor,omitempty"`
-    NeighborAs  *int               `json:"neighbor_as,omitempty"`
+    NeighborAs  *BgpAs             `json:"neighbor_as,omitempty"`
     NeighborMac *string            `json:"neighbor_mac,omitempty"`
     Node        *string            `json:"node,omitempty"`
     OrgId       *uuid.UUID         `json:"org_id,omitempty"`

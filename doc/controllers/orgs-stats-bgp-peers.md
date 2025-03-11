@@ -89,7 +89,14 @@ Search Org BGP Stats
 ```go
 SearchOrgBgpStats(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    mac *string,
+    neighborMac *string,
+    siteId *string,
+    vrfName *string,
+    start *int,
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseSearchBgps],
     error)
 ```
@@ -99,6 +106,13 @@ SearchOrgBgpStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `mac` | `*string` | Query, Optional | - |
+| `neighborMac` | `*string` | Query, Optional | - |
+| `siteId` | `*string` | Query, Optional | - |
+| `vrfName` | `*string` | Query, Optional | - |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -111,7 +125,21 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsStatsBGPPeers.SearchOrgBgpStats(ctx, orgId)
+
+
+
+
+
+
+
+
+
+
+duration := "10m"
+
+limit := 100
+
+apiResponse, err := orgsStatsBGPPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

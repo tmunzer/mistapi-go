@@ -34,7 +34,14 @@ func TestOrgsStatsBGPPeersTestSearchOrgBgpStats(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId)
+    
+    
+    
+    
+    
+    duration := "1d"
+    limit := int(100)
+    apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

@@ -8,12 +8,14 @@ import (
 // StatsApPortStat represents a StatsApPortStat struct.
 type StatsApPortStat struct {
     FullDuplex           Optional[bool]         `json:"full_duplex"`
-    RxBytes              Optional[float64]      `json:"rx_bytes"`
-    RxErrors             Optional[float64]      `json:"rx_errors"`
-    RxPkts               Optional[float64]      `json:"rx_pkts"`
+    RxBytes              Optional[int]          `json:"rx_bytes"`
+    RxErrors             Optional[int]          `json:"rx_errors"`
+    RxPeakBps            Optional[int]          `json:"rx_peak_bps"`
+    RxPkts               Optional[int]          `json:"rx_pkts"`
     Speed                Optional[int]          `json:"speed"`
-    TxBytes              Optional[float64]      `json:"tx_bytes"`
-    TxPkts               Optional[float64]      `json:"tx_pkts"`
+    TxBytes              Optional[int]          `json:"tx_bytes"`
+    TxPeakBps            Optional[int]          `json:"tx_peak_bps"`
+    TxPkts               Optional[int]          `json:"tx_pkts"`
     Up                   Optional[bool]         `json:"up"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -22,8 +24,8 @@ type StatsApPortStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsApPortStat) String() string {
     return fmt.Sprintf(
-    	"StatsApPortStat[FullDuplex=%v, RxBytes=%v, RxErrors=%v, RxPkts=%v, Speed=%v, TxBytes=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
-    	s.FullDuplex, s.RxBytes, s.RxErrors, s.RxPkts, s.Speed, s.TxBytes, s.TxPkts, s.Up, s.AdditionalProperties)
+    	"StatsApPortStat[FullDuplex=%v, RxBytes=%v, RxErrors=%v, RxPeakBps=%v, RxPkts=%v, Speed=%v, TxBytes=%v, TxPeakBps=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
+    	s.FullDuplex, s.RxBytes, s.RxErrors, s.RxPeakBps, s.RxPkts, s.Speed, s.TxBytes, s.TxPeakBps, s.TxPkts, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApPortStat.
@@ -32,7 +34,7 @@ func (s StatsApPortStat) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "full_duplex", "rx_bytes", "rx_errors", "rx_pkts", "speed", "tx_bytes", "tx_pkts", "up"); err != nil {
+        "full_duplex", "rx_bytes", "rx_errors", "rx_peak_bps", "rx_pkts", "speed", "tx_bytes", "tx_peak_bps", "tx_pkts", "up"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -63,6 +65,13 @@ func (s StatsApPortStat) toMap() map[string]any {
             structMap["rx_errors"] = nil
         }
     }
+    if s.RxPeakBps.IsValueSet() {
+        if s.RxPeakBps.Value() != nil {
+            structMap["rx_peak_bps"] = s.RxPeakBps.Value()
+        } else {
+            structMap["rx_peak_bps"] = nil
+        }
+    }
     if s.RxPkts.IsValueSet() {
         if s.RxPkts.Value() != nil {
             structMap["rx_pkts"] = s.RxPkts.Value()
@@ -82,6 +91,13 @@ func (s StatsApPortStat) toMap() map[string]any {
             structMap["tx_bytes"] = s.TxBytes.Value()
         } else {
             structMap["tx_bytes"] = nil
+        }
+    }
+    if s.TxPeakBps.IsValueSet() {
+        if s.TxPeakBps.Value() != nil {
+            structMap["tx_peak_bps"] = s.TxPeakBps.Value()
+        } else {
+            structMap["tx_peak_bps"] = nil
         }
     }
     if s.TxPkts.IsValueSet() {
@@ -109,7 +125,7 @@ func (s *StatsApPortStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "rx_bytes", "rx_errors", "rx_pkts", "speed", "tx_bytes", "tx_pkts", "up")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "rx_bytes", "rx_errors", "rx_peak_bps", "rx_pkts", "speed", "tx_bytes", "tx_peak_bps", "tx_pkts", "up")
     if err != nil {
     	return err
     }
@@ -118,9 +134,11 @@ func (s *StatsApPortStat) UnmarshalJSON(input []byte) error {
     s.FullDuplex = temp.FullDuplex
     s.RxBytes = temp.RxBytes
     s.RxErrors = temp.RxErrors
+    s.RxPeakBps = temp.RxPeakBps
     s.RxPkts = temp.RxPkts
     s.Speed = temp.Speed
     s.TxBytes = temp.TxBytes
+    s.TxPeakBps = temp.TxPeakBps
     s.TxPkts = temp.TxPkts
     s.Up = temp.Up
     return nil
@@ -128,12 +146,14 @@ func (s *StatsApPortStat) UnmarshalJSON(input []byte) error {
 
 // tempStatsApPortStat is a temporary struct used for validating the fields of StatsApPortStat.
 type tempStatsApPortStat  struct {
-    FullDuplex Optional[bool]    `json:"full_duplex"`
-    RxBytes    Optional[float64] `json:"rx_bytes"`
-    RxErrors   Optional[float64] `json:"rx_errors"`
-    RxPkts     Optional[float64] `json:"rx_pkts"`
-    Speed      Optional[int]     `json:"speed"`
-    TxBytes    Optional[float64] `json:"tx_bytes"`
-    TxPkts     Optional[float64] `json:"tx_pkts"`
-    Up         Optional[bool]    `json:"up"`
+    FullDuplex Optional[bool] `json:"full_duplex"`
+    RxBytes    Optional[int]  `json:"rx_bytes"`
+    RxErrors   Optional[int]  `json:"rx_errors"`
+    RxPeakBps  Optional[int]  `json:"rx_peak_bps"`
+    RxPkts     Optional[int]  `json:"rx_pkts"`
+    Speed      Optional[int]  `json:"speed"`
+    TxBytes    Optional[int]  `json:"tx_bytes"`
+    TxPeakBps  Optional[int]  `json:"tx_peak_bps"`
+    TxPkts     Optional[int]  `json:"tx_pkts"`
+    Up         Optional[bool] `json:"up"`
 }

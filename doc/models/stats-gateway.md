@@ -120,9 +120,9 @@ Gateway statistics
     {
       "evpn_overlay": false,
       "for_overlay": false,
-      "local_as": 146,
+      "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": 172,
+      "neighbor_as": "String9",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -131,9 +131,9 @@ Gateway statistics
     {
       "evpn_overlay": false,
       "for_overlay": false,
-      "local_as": 146,
+      "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": 172,
+      "neighbor_as": "String9",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -142,9 +142,9 @@ Gateway statistics
     {
       "evpn_overlay": false,
       "for_overlay": false,
-      "local_as": 146,
+      "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": 172,
+      "neighbor_as": "String9",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
