@@ -39,7 +39,7 @@ func (o *OrgsInventory) GetOrgInventory(
     orgId uuid.UUID,
     serial *string,
     model *string,
-    mType *models.DeviceTypeDefaultApEnum,
+    mType *models.DeviceTypeEnum,
     mac *string,
     siteId *string,
     vcMac *string,

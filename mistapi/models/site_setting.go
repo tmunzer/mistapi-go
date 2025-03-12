@@ -35,7 +35,7 @@ type SiteSetting struct {
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
     // You can define some URLs that's critical to site operations the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    // By default, device_updown_thresold, if set, will apply to all devices types if different values for specific device type is desired, use the following
+    // By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following
     DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
     DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
     // If some system-default port usages are not desired - namely, ap / iot / uplink

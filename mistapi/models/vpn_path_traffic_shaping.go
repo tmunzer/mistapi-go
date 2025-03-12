@@ -7,7 +7,7 @@ import (
 
 // VpnPathTrafficShaping represents a VpnPathTrafficShaping struct.
 type VpnPathTrafficShaping struct {
-    // percentages for differet class of traffic: high / medium / low / best-effort adding up to 100
+    // percentages for different class of traffic: high / medium / low / best-effort adding up to 100
     ClassPercentage      []int                  `json:"class_percentage,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     MaxTxKbps            Optional[int]          `json:"max_tx_kbps"`

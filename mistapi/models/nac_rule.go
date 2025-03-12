@@ -25,7 +25,7 @@ type NacRule struct {
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     Name                 string                 `json:"name"`
     NotMatching          *NacRuleMatching       `json:"not_matching,omitempty"`
-    // Prder of the rule, lower value implies higher priority
+    // Order of the rule, lower value implies higher priority
     Order                *int                   `json:"order,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`

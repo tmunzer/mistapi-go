@@ -21,10 +21,10 @@ Radio stat
 | `NumClients` | `models.Optional[int]` | Optional | - |
 | `NumWlans` | `*int` | Optional | How many WLANs are applied to the radio |
 | `Power` | `models.Optional[int]` | Optional | Transmit power (in dBm) |
-| `RxBytes` | `models.Optional[int]` | Optional | - |
-| `RxPkts` | `models.Optional[int]` | Optional | - |
-| `TxBytes` | `models.Optional[int]` | Optional | - |
-| `TxPkts` | `models.Optional[int]` | Optional | - |
+| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
+| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Usage` | `models.Optional[string]` | Optional | - |
 | `UtilAll` | `models.Optional[int]` | Optional | All utilization in percentage |
 | `UtilNonWifi` | `models.Optional[int]` | Optional | Reception of "No Packets" utilization in percentage, received frames with invalid PLCPs and CRS glitches as noise |
@@ -41,6 +41,10 @@ Radio stat
 {
   "bandwidth": 20,
   "noise_floor": -90,
+  "rx_bytes": 8515104416,
+  "rx_pkts": 57770567,
+  "tx_bytes": 211217389682,
+  "tx_pkts": 812204062,
   "usage": "24",
   "channel": 138,
   "dynamic_chaining_enabled": false,

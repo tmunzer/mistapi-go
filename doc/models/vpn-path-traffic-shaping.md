@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ClassPercentage` | `[]int` | Optional | percentages for differet class of traffic: high / medium / low / best-effort adding up to 100<br>**Constraints**: *Minimum Items*: `4`, *Maximum Items*: `4` |
+| `ClassPercentage` | `[]int` | Optional | percentages for different class of traffic: high / medium / low / best-effort adding up to 100<br>**Constraints**: *Minimum Items*: `4`, *Maximum Items*: `4` |
 | `Enabled` | `*bool` | Optional | - |
 | `MaxTxKbps` | `models.Optional[int]` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

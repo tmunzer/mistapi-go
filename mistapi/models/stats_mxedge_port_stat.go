@@ -9,14 +9,18 @@ import (
 type StatsMxedgePortStat struct {
     FullDuplex           *bool                  `json:"full_duplex,omitempty"`
     Mac                  *string                `json:"mac,omitempty"`
-    RxBytes              *float64               `json:"rx_bytes,omitempty"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]        `json:"rx_bytes"`
     RxErrors             *int                   `json:"rx_errors,omitempty"`
-    RxPkts               *int                   `json:"rx_pkts,omitempty"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]        `json:"rx_pkts"`
     Speed                *int                   `json:"speed,omitempty"`
     State                *string                `json:"state,omitempty"`
-    TxBytes              *int                   `json:"tx_bytes,omitempty"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]        `json:"tx_bytes"`
     TxErrors             *int                   `json:"tx_errors,omitempty"`
-    TxPkts               *int                   `json:"tx_pkts,omitempty"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]        `json:"tx_pkts"`
     Up                   *bool                  `json:"up,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -51,14 +55,22 @@ func (s StatsMxedgePortStat) toMap() map[string]any {
     if s.Mac != nil {
         structMap["mac"] = s.Mac
     }
-    if s.RxBytes != nil {
-        structMap["rx_bytes"] = s.RxBytes
+    if s.RxBytes.IsValueSet() {
+        if s.RxBytes.Value() != nil {
+            structMap["rx_bytes"] = s.RxBytes.Value()
+        } else {
+            structMap["rx_bytes"] = nil
+        }
     }
     if s.RxErrors != nil {
         structMap["rx_errors"] = s.RxErrors
     }
-    if s.RxPkts != nil {
-        structMap["rx_pkts"] = s.RxPkts
+    if s.RxPkts.IsValueSet() {
+        if s.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = s.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if s.Speed != nil {
         structMap["speed"] = s.Speed
@@ -66,14 +78,22 @@ func (s StatsMxedgePortStat) toMap() map[string]any {
     if s.State != nil {
         structMap["state"] = s.State
     }
-    if s.TxBytes != nil {
-        structMap["tx_bytes"] = s.TxBytes
+    if s.TxBytes.IsValueSet() {
+        if s.TxBytes.Value() != nil {
+            structMap["tx_bytes"] = s.TxBytes.Value()
+        } else {
+            structMap["tx_bytes"] = nil
+        }
     }
     if s.TxErrors != nil {
         structMap["tx_errors"] = s.TxErrors
     }
-    if s.TxPkts != nil {
-        structMap["tx_pkts"] = s.TxPkts
+    if s.TxPkts.IsValueSet() {
+        if s.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = s.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if s.Up != nil {
         structMap["up"] = s.Up
@@ -111,15 +131,15 @@ func (s *StatsMxedgePortStat) UnmarshalJSON(input []byte) error {
 
 // tempStatsMxedgePortStat is a temporary struct used for validating the fields of StatsMxedgePortStat.
 type tempStatsMxedgePortStat  struct {
-    FullDuplex *bool    `json:"full_duplex,omitempty"`
-    Mac        *string  `json:"mac,omitempty"`
-    RxBytes    *float64 `json:"rx_bytes,omitempty"`
-    RxErrors   *int     `json:"rx_errors,omitempty"`
-    RxPkts     *int     `json:"rx_pkts,omitempty"`
-    Speed      *int     `json:"speed,omitempty"`
-    State      *string  `json:"state,omitempty"`
-    TxBytes    *int     `json:"tx_bytes,omitempty"`
-    TxErrors   *int     `json:"tx_errors,omitempty"`
-    TxPkts     *int     `json:"tx_pkts,omitempty"`
-    Up         *bool    `json:"up,omitempty"`
+    FullDuplex *bool           `json:"full_duplex,omitempty"`
+    Mac        *string         `json:"mac,omitempty"`
+    RxBytes    Optional[int64] `json:"rx_bytes"`
+    RxErrors   *int            `json:"rx_errors,omitempty"`
+    RxPkts     Optional[int64] `json:"rx_pkts"`
+    Speed      *int            `json:"speed,omitempty"`
+    State      *string         `json:"state,omitempty"`
+    TxBytes    Optional[int64] `json:"tx_bytes"`
+    TxErrors   *int            `json:"tx_errors,omitempty"`
+    TxPkts     Optional[int64] `json:"tx_pkts"`
+    Up         *bool           `json:"up,omitempty"`
 }

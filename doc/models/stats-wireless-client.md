@@ -38,18 +38,18 @@
 | `PskId` | `*uuid.UUID` | Optional | PSK id (if multi-psk is used) |
 | `Rssi` | `float64` | Required | Signal strength |
 | `Rssizones` | [`[]models.StatsWirelessClientRssiZone`](../../doc/models/stats-wireless-client-rssi-zone.md) | Optional | List of rssizone_id’s where client is in and since when (if known) |
-| `RxBps` | `float64` | Required | Rate of receiving traffic from the clients, bits/seconds, last known |
-| `RxBytes` | `float64` | Required | Amount of traffic received from client since client connects |
-| `RxPackets` | `*float64` | Optional | Amount of traffic received from client since client connects |
-| `RxRate` | `float64` | Required | RX Rate, Mbps |
-| `RxRetries` | `float64` | Required | Amount of rx retries |
+| `RxBps` | `*int64` | Required | Rate of receiving traffic, bits/seconds, last known |
+| `RxBytes` | `*int64` | Required | Amount of traffic received since connection |
+| `RxPackets` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
+| `RxRate` | `*float64` | Required | RX Rate, Mbps |
+| `RxRetries` | `*int` | Required | Amount of rx retries |
 | `Snr` | `float64` | Required | Signal over noise |
 | `Ssid` | `string` | Required | SSID the client is connected to |
-| `TxBps` | `float64` | Required | Rate of transmitting traffic to the clients, bits/seconds, last known |
-| `TxBytes` | `float64` | Required | Amount of traffic sent to client since client connects |
-| `TxPackets` | `*float64` | Optional | Amount of traffic sent to client since client connects |
-| `TxRate` | `float64` | Required | TX Rate, Mbps |
-| `TxRetries` | `float64` | Required | Amount of tx retries |
+| `TxBps` | `*int64` | Required | Rate of transmitting traffic, bits/seconds, last known |
+| `TxBytes` | `*int64` | Required | Amount of traffic sent since connection |
+| `TxPackets` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
+| `TxRate` | `*float64` | Required | TX Rate, Mbps |
+| `TxRetries` | `*int` | Required | Amount of tx retries |
 | `Type` | `*string` | Optional | Client’s type, regular / vip / resource / blocked (if client object is created) |
 | `Uptime` | `*float64` | Optional | How long, in seconds, has the client been connected |
 | `Username` | `*string` | Optional | Username that we learned from 802.1X exchange or Per_user PSK or User Portal |
@@ -85,16 +85,18 @@
   "os": "os8",
   "proto": "g",
   "rssi": 66.02,
-  "rx_bps": 172.7,
-  "rx_bytes": 68.38,
+  "rx_bps": 60003,
+  "rx_bytes": 8515104416,
+  "rx_packets": 57770567,
   "rx_rate": 1.8,
-  "rx_retries": 35.02,
+  "rx_retries": 174,
   "snr": 64.24,
   "ssid": "ssid8",
-  "tx_bps": 144.84,
-  "tx_bytes": 190.08,
+  "tx_bps": 634301,
+  "tx_bytes": 211217389682,
+  "tx_packets": 812204062,
   "tx_rate": 235.96,
-  "tx_retries": 39.78,
+  "tx_retries": 138,
   "wlan_id": "000004a8-0000-0000-0000-000000000000",
   "accuracy": 154,
   "airespace_ifname": "airespace_ifname0",

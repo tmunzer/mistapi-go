@@ -23,7 +23,7 @@ type Vpn struct {
     // For `type`==`hub_spoke`, Property key is the VPN name. For `type`==`mesh`, Property key is the Interface name
     Paths                map[string]VpnPath     `json:"paths"`
     // enum: `hub_spoke`, `mesh`
-    Type                 *VpnTypeEnum           `json:"type,omitempty"`
+    Type                 *VpnModeEnum           `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -112,7 +112,7 @@ type tempVpn  struct {
     OrgId         *uuid.UUID          `json:"org_id,omitempty"`
     PathSelection *VpnPathSelection   `json:"path_selection,omitempty"`
     Paths         *map[string]VpnPath `json:"paths"`
-    Type          *VpnTypeEnum        `json:"type,omitempty"`
+    Type          *VpnModeEnum        `json:"type,omitempty"`
 }
 
 func (v *tempVpn) validate() error {

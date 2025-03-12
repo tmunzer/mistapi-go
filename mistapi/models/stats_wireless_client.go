@@ -62,30 +62,30 @@ type StatsWirelessClient struct {
     Rssi                 float64                          `json:"rssi"`
     // List of rssizone_id’s where client is in and since when (if known)
     Rssizones            []StatsWirelessClientRssiZone    `json:"rssizones,omitempty"`
-    // Rate of receiving traffic from the clients, bits/seconds, last known
-    RxBps                float64                          `json:"rx_bps"`
-    // Amount of traffic received from client since client connects
-    RxBytes              float64                          `json:"rx_bytes"`
-    // Amount of traffic received from client since client connects
-    RxPackets            *float64                         `json:"rx_packets,omitempty"`
+    // Rate of receiving traffic, bits/seconds, last known
+    RxBps                *int64                           `json:"rx_bps"`
+    // Amount of traffic received since connection
+    RxBytes              *int64                           `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPackets            Optional[int64]                  `json:"rx_packets"`
     // RX Rate, Mbps
-    RxRate               float64                          `json:"rx_rate"`
+    RxRate               *float64                         `json:"rx_rate"`
     // Amount of rx retries
-    RxRetries            float64                          `json:"rx_retries"`
+    RxRetries            *int                             `json:"rx_retries"`
     // Signal over noise
     Snr                  float64                          `json:"snr"`
     // SSID the client is connected to
     Ssid                 string                           `json:"ssid"`
-    // Rate of transmitting traffic to the clients, bits/seconds, last known
-    TxBps                float64                          `json:"tx_bps"`
-    // Amount of traffic sent to client since client connects
-    TxBytes              float64                          `json:"tx_bytes"`
-    // Amount of traffic sent to client since client connects
-    TxPackets            *float64                         `json:"tx_packets,omitempty"`
+    // Rate of transmitting traffic, bits/seconds, last known
+    TxBps                *int64                           `json:"tx_bps"`
+    // Amount of traffic sent since connection
+    TxBytes              *int64                           `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPackets            Optional[int64]                  `json:"tx_packets"`
     // TX Rate, Mbps
-    TxRate               float64                          `json:"tx_rate"`
+    TxRate               *float64                         `json:"tx_rate"`
     // Amount of tx retries
-    TxRetries            float64                          `json:"tx_retries"`
+    TxRetries            *int                             `json:"tx_retries"`
     // Client’s type, regular / vip / resource / blocked (if client object is created)
     Type                 *string                          `json:"type,omitempty"`
     // How long, in seconds, has the client been connected
@@ -192,22 +192,62 @@ func (s StatsWirelessClient) toMap() map[string]any {
     if s.Rssizones != nil {
         structMap["rssizones"] = s.Rssizones
     }
-    structMap["rx_bps"] = s.RxBps
-    structMap["rx_bytes"] = s.RxBytes
-    if s.RxPackets != nil {
-        structMap["rx_packets"] = s.RxPackets
+    if s.RxBps != nil {
+        structMap["rx_bps"] = s.RxBps
+    } else {
+        structMap["rx_bps"] = nil
     }
-    structMap["rx_rate"] = s.RxRate
-    structMap["rx_retries"] = s.RxRetries
+    if s.RxBytes != nil {
+        structMap["rx_bytes"] = s.RxBytes
+    } else {
+        structMap["rx_bytes"] = nil
+    }
+    if s.RxPackets.IsValueSet() {
+        if s.RxPackets.Value() != nil {
+            structMap["rx_packets"] = s.RxPackets.Value()
+        } else {
+            structMap["rx_packets"] = nil
+        }
+    }
+    if s.RxRate != nil {
+        structMap["rx_rate"] = s.RxRate
+    } else {
+        structMap["rx_rate"] = nil
+    }
+    if s.RxRetries != nil {
+        structMap["rx_retries"] = s.RxRetries
+    } else {
+        structMap["rx_retries"] = nil
+    }
     structMap["snr"] = s.Snr
     structMap["ssid"] = s.Ssid
-    structMap["tx_bps"] = s.TxBps
-    structMap["tx_bytes"] = s.TxBytes
-    if s.TxPackets != nil {
-        structMap["tx_packets"] = s.TxPackets
+    if s.TxBps != nil {
+        structMap["tx_bps"] = s.TxBps
+    } else {
+        structMap["tx_bps"] = nil
     }
-    structMap["tx_rate"] = s.TxRate
-    structMap["tx_retries"] = s.TxRetries
+    if s.TxBytes != nil {
+        structMap["tx_bytes"] = s.TxBytes
+    } else {
+        structMap["tx_bytes"] = nil
+    }
+    if s.TxPackets.IsValueSet() {
+        if s.TxPackets.Value() != nil {
+            structMap["tx_packets"] = s.TxPackets.Value()
+        } else {
+            structMap["tx_packets"] = nil
+        }
+    }
+    if s.TxRate != nil {
+        structMap["tx_rate"] = s.TxRate
+    } else {
+        structMap["tx_rate"] = nil
+    }
+    if s.TxRetries != nil {
+        structMap["tx_retries"] = s.TxRetries
+    } else {
+        structMap["tx_retries"] = nil
+    }
     if s.Type != nil {
         structMap["type"] = s.Type
     }
@@ -293,18 +333,18 @@ func (s *StatsWirelessClient) UnmarshalJSON(input []byte) error {
     s.PskId = temp.PskId
     s.Rssi = *temp.Rssi
     s.Rssizones = temp.Rssizones
-    s.RxBps = *temp.RxBps
-    s.RxBytes = *temp.RxBytes
+    s.RxBps = temp.RxBps
+    s.RxBytes = temp.RxBytes
     s.RxPackets = temp.RxPackets
-    s.RxRate = *temp.RxRate
-    s.RxRetries = *temp.RxRetries
+    s.RxRate = temp.RxRate
+    s.RxRetries = temp.RxRetries
     s.Snr = *temp.Snr
     s.Ssid = *temp.Ssid
-    s.TxBps = *temp.TxBps
-    s.TxBytes = *temp.TxBytes
+    s.TxBps = temp.TxBps
+    s.TxBytes = temp.TxBytes
     s.TxPackets = temp.TxPackets
-    s.TxRate = *temp.TxRate
-    s.TxRetries = *temp.TxRetries
+    s.TxRate = temp.TxRate
+    s.TxRetries = temp.TxRetries
     s.Type = temp.Type
     s.Uptime = temp.Uptime
     s.Username = temp.Username
@@ -350,18 +390,18 @@ type tempStatsWirelessClient  struct {
     PskId           *uuid.UUID                       `json:"psk_id,omitempty"`
     Rssi            *float64                         `json:"rssi"`
     Rssizones       []StatsWirelessClientRssiZone    `json:"rssizones,omitempty"`
-    RxBps           *float64                         `json:"rx_bps"`
-    RxBytes         *float64                         `json:"rx_bytes"`
-    RxPackets       *float64                         `json:"rx_packets,omitempty"`
+    RxBps           *int64                           `json:"rx_bps"`
+    RxBytes         *int64                           `json:"rx_bytes"`
+    RxPackets       Optional[int64]                  `json:"rx_packets"`
     RxRate          *float64                         `json:"rx_rate"`
-    RxRetries       *float64                         `json:"rx_retries"`
+    RxRetries       *int                             `json:"rx_retries"`
     Snr             *float64                         `json:"snr"`
     Ssid            *string                          `json:"ssid"`
-    TxBps           *float64                         `json:"tx_bps"`
-    TxBytes         *float64                         `json:"tx_bytes"`
-    TxPackets       *float64                         `json:"tx_packets,omitempty"`
+    TxBps           *int64                           `json:"tx_bps"`
+    TxBytes         *int64                           `json:"tx_bytes"`
+    TxPackets       Optional[int64]                  `json:"tx_packets"`
     TxRate          *float64                         `json:"tx_rate"`
-    TxRetries       *float64                         `json:"tx_retries"`
+    TxRetries       *int                             `json:"tx_retries"`
     Type            *string                          `json:"type,omitempty"`
     Uptime          *float64                         `json:"uptime,omitempty"`
     Username        *string                          `json:"username,omitempty"`
@@ -424,35 +464,11 @@ func (s *tempStatsWirelessClient) validate() error {
     if s.Rssi == nil {
         errs = append(errs, "required field `rssi` is missing for type `stats_wireless_client`")
     }
-    if s.RxBps == nil {
-        errs = append(errs, "required field `rx_bps` is missing for type `stats_wireless_client`")
-    }
-    if s.RxBytes == nil {
-        errs = append(errs, "required field `rx_bytes` is missing for type `stats_wireless_client`")
-    }
-    if s.RxRate == nil {
-        errs = append(errs, "required field `rx_rate` is missing for type `stats_wireless_client`")
-    }
-    if s.RxRetries == nil {
-        errs = append(errs, "required field `rx_retries` is missing for type `stats_wireless_client`")
-    }
     if s.Snr == nil {
         errs = append(errs, "required field `snr` is missing for type `stats_wireless_client`")
     }
     if s.Ssid == nil {
         errs = append(errs, "required field `ssid` is missing for type `stats_wireless_client`")
-    }
-    if s.TxBps == nil {
-        errs = append(errs, "required field `tx_bps` is missing for type `stats_wireless_client`")
-    }
-    if s.TxBytes == nil {
-        errs = append(errs, "required field `tx_bytes` is missing for type `stats_wireless_client`")
-    }
-    if s.TxRate == nil {
-        errs = append(errs, "required field `tx_rate` is missing for type `stats_wireless_client`")
-    }
-    if s.TxRetries == nil {
-        errs = append(errs, "required field `tx_retries` is missing for type `stats_wireless_client`")
     }
     if s.WlanId == nil {
         errs = append(errs, "required field `wlan_id` is missing for type `stats_wireless_client`")

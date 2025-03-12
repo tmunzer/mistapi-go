@@ -4269,6 +4269,15 @@ const (
     VisitsScopeEnum_ZONE     VisitsScopeEnum = "zone"
 )
 
+// VpnModeEnum is a string enum.
+// enum: `hub_spoke`, `mesh`
+type VpnModeEnum string
+
+const (
+    VpnModeEnum_HUBSPOKE VpnModeEnum = "hub_spoke"
+    VpnModeEnum_MESH     VpnModeEnum = "mesh"
+)
+
 // VpnPathBfdProfileEnum is a string enum.
 // enum: `broadband`, `lte`
 type VpnPathBfdProfileEnum string
@@ -4289,12 +4298,11 @@ const (
 )
 
 // VpnTypeEnum is a string enum.
-// enum: `hub_spoke`, `mesh`
 type VpnTypeEnum string
 
 const (
-    VpnTypeEnum_HUBSPOKE VpnTypeEnum = "hub_spoke"
-    VpnTypeEnum_MESH     VpnTypeEnum = "mesh"
+    VpnTypeEnum_IPSEC VpnTypeEnum = "ipsec"
+    VpnTypeEnum_SVR   VpnTypeEnum = "svr"
 )
 
 // VrrpGroupAuthTypeEnum is a string enum.
@@ -4737,12 +4745,4 @@ type ZoneTypeEnum string
 const (
     ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
     ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
-)
-
-// TypeEnum is a string enum.
-type TypeEnum string
-
-const (
-    TypeEnum_IPSEC TypeEnum = "ipsec"
-    TypeEnum_SVR   TypeEnum = "svr"
 )

@@ -9,7 +9,7 @@ import (
 
 // GatewayClusterNode represents a GatewayClusterNode struct.
 type GatewayClusterNode struct {
-    // Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b")
+    // Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
     Mac                  string                 `json:"mac"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

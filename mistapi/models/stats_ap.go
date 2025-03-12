@@ -54,7 +54,7 @@ type StatsAp struct {
     Mac                  *string                                       `json:"mac"`
     MapId                Optional[uuid.UUID]                           `json:"map_id"`
     MemUsedKb            Optional[int64]                               `json:"mem_used_kb"`
-    // Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`)
+    // Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`)
     MeshDownlinks        map[string]ApStatMeshDownlink                 `json:"mesh_downlinks,omitempty"`
     MeshUplink           *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`
     // Device model
@@ -81,17 +81,23 @@ type StatsAp struct {
     PowerSrc             Optional[string]                              `json:"power_src"`
     RadioConfig          *StatsApRadioConfig                           `json:"radio_config,omitempty"`
     RadioStat            *StatsApRadioStat                             `json:"radio_stat,omitempty"`
-    RxBps                Optional[float64]                             `json:"rx_bps"`
+    // Rate of receiving traffic, bits/seconds, last known
+    RxBps                Optional[int64]                               `json:"rx_bps"`
+    // Amount of traffic received since connection
     RxBytes              Optional[int64]                               `json:"rx_bytes"`
-    RxPkts               Optional[int]                                 `json:"rx_pkts"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]                               `json:"rx_pkts"`
     // Serial Number
     Serial               Optional[string]                              `json:"serial"`
     SiteId               *uuid.UUID                                    `json:"site_id,omitempty"`
     Status               Optional[string]                              `json:"status"`
     SwitchRedundancy     *StatsApSwitchRedundancy                      `json:"switch_redundancy,omitempty"`
-    TxBps                Optional[float64]                             `json:"tx_bps"`
-    TxBytes              Optional[float64]                             `json:"tx_bytes"`
-    TxPkts               Optional[float64]                             `json:"tx_pkts"`
+    // Rate of transmitting traffic, bits/seconds, last known
+    TxBps                Optional[int64]                               `json:"tx_bps"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]                               `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]                               `json:"tx_pkts"`
     // Device Type. enum: `ap`
     Type                 string                                        `json:"type"`
     // How long, in seconds, has the device been up (or rebooted)
@@ -608,16 +614,16 @@ type tempStatsAp  struct {
     PowerSrc           Optional[string]                              `json:"power_src"`
     RadioConfig        *StatsApRadioConfig                           `json:"radio_config,omitempty"`
     RadioStat          *StatsApRadioStat                             `json:"radio_stat,omitempty"`
-    RxBps              Optional[float64]                             `json:"rx_bps"`
+    RxBps              Optional[int64]                               `json:"rx_bps"`
     RxBytes            Optional[int64]                               `json:"rx_bytes"`
-    RxPkts             Optional[int]                                 `json:"rx_pkts"`
+    RxPkts             Optional[int64]                               `json:"rx_pkts"`
     Serial             Optional[string]                              `json:"serial"`
     SiteId             *uuid.UUID                                    `json:"site_id,omitempty"`
     Status             Optional[string]                              `json:"status"`
     SwitchRedundancy   *StatsApSwitchRedundancy                      `json:"switch_redundancy,omitempty"`
-    TxBps              Optional[float64]                             `json:"tx_bps"`
-    TxBytes            Optional[float64]                             `json:"tx_bytes"`
-    TxPkts             Optional[float64]                             `json:"tx_pkts"`
+    TxBps              Optional[int64]                               `json:"tx_bps"`
+    TxBytes            Optional[int64]                               `json:"tx_bytes"`
+    TxPkts             Optional[int64]                               `json:"tx_pkts"`
     Type               *string                                       `json:"type"`
     Uptime             Optional[float64]                             `json:"uptime"`
     UsbStat            *StatsApUsbStat                               `json:"usb_stat,omitempty"`

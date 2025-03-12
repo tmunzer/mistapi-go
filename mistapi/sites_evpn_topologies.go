@@ -22,14 +22,16 @@ func NewSitesEVPNTopologies(baseController baseController) *SitesEVPNTopologies 
     return &sitesEVPNTopologies
 }
 
-// ListSiteEvpnTopologies takes context, siteId as parameters and
-// returns an models.ApiResponse with models.EvpnTopology data and
+// ListSiteEvpnTopologies takes context, siteId, limit, page as parameters and
+// returns an models.ApiResponse with []models.EvpnTopologyResponse data and
 // an error if there was an issue with the request or response.
 // Get the existing EVPN topology
 func (s *SitesEVPNTopologies) ListSiteEvpnTopologies(
     ctx context.Context,
-    siteId uuid.UUID) (
-    models.ApiResponse[models.EvpnTopology],
+    siteId uuid.UUID,
+    limit *int,
+    page *int) (
+    models.ApiResponse[[]models.EvpnTopologyResponse],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/evpn_topologies")
     req.AppendTemplateParams(siteId)
@@ -51,14 +53,20 @@ func (s *SitesEVPNTopologies) ListSiteEvpnTopologies(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
+    }
     
-    var result models.EvpnTopology
+    var result []models.EvpnTopologyResponse
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.EvpnTopology](decoder)
+    result, err = utilities.DecodeResults[[]models.EvpnTopologyResponse](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

@@ -24,7 +24,7 @@
 | `ExtIp` | `*string` | Optional | - |
 | `Hostname` | `[]string` | Optional | Partial / full hostname |
 | `InactiveWiredVlans` | `[]int` | Optional | - |
-| `Ip` | `*string` | Optional | IPaddress |
+| `Ip` | `*string` | Optional | IP Address |
 | `LastHostname` | `*string` | Optional | - |
 | `LldpMgmtAddr` | `*string` | Optional | LLDP management ip address |
 | `LldpPortDesc` | `*string` | Optional | - |

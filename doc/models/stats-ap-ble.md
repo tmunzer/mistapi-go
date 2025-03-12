@@ -28,10 +28,10 @@
 | `Major` | `models.Optional[int]` | Optional | - |
 | `Minors` | `[]int` | Optional | - |
 | `Power` | `models.Optional[int]` | Optional | - |
-| `RxBytes` | `models.Optional[int]` | Optional | - |
-| `RxPkts` | `models.Optional[int]` | Optional | - |
-| `TxBytes` | `models.Optional[int64]` | Optional | - |
-| `TxPkts` | `models.Optional[int]` | Optional | - |
+| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
+| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `TxResets` | `models.Optional[int]` | Optional | Resets due to tx hung |
 | `Uuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -55,10 +55,10 @@
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "major": 12345,
   "power": 10,
-  "rx_bytes": 135,
-  "rx_pkts": 135,
-  "tx_bytes": 5231513353,
-  "tx_pkts": 135135135,
+  "rx_bytes": 8515104416,
+  "rx_pkts": 57770567,
+  "tx_bytes": 211217389682,
+  "tx_pkts": 812204062,
   "tx_resets": 0,
   "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64",
   "beacon_enabled": false,

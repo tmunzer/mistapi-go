@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `DnsServers` | `[]string` | Optional | If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used |
 | `DnsSuffix` | `[]string` | Optional | If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used |
-| `FixedBindings` | [`map[string]models.DhcpdConfigFixedBinding`](../../doc/models/dhcpd-config-fixed-binding.md) | Optional | If `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b") |
+| `FixedBindings` | [`map[string]models.DhcpdConfigFixedBinding`](../../doc/models/dhcpd-config-fixed-binding.md) | Optional | If `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b") |
 | `Gateway` | `*string` | Optional | If `type`==`server`  - optional, `ip` will be used if not provided |
 | `IpEnd` | `*string` | Optional | If `type`==`server` |
 | `IpEnd6` | `*string` | Optional | If `type6`==`server` |

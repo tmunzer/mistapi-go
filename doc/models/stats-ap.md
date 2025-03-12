@@ -45,7 +45,7 @@ AP statistics
 | `Mac` | `*string` | Required | Device mac |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `MemUsedKb` | `models.Optional[int64]` | Optional | - |
-| `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g `00000000-0000-0000-1000-5c5b35000010`) |
+| `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
 | `Model` | `*string` | Required | Device model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -62,16 +62,16 @@ AP statistics
 | `PowerSrc` | `models.Optional[string]` | Optional | DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown) |
 | `RadioConfig` | [`*models.StatsApRadioConfig`](../../doc/models/stats-ap-radio-config.md) | Optional | - |
 | `RadioStat` | [`*models.StatsApRadioStat`](../../doc/models/stats-ap-radio-stat.md) | Optional | - |
-| `RxBps` | `models.Optional[float64]` | Optional | - |
-| `RxBytes` | `models.Optional[int64]` | Optional | - |
-| `RxPkts` | `models.Optional[int]` | Optional | - |
+| `RxBps` | `models.Optional[int64]` | Optional | Rate of receiving traffic, bits/seconds, last known |
+| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `Serial` | `models.Optional[string]` | Optional | Serial Number |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `models.Optional[string]` | Optional | - |
 | `SwitchRedundancy` | [`*models.StatsApSwitchRedundancy`](../../doc/models/stats-ap-switch-redundancy.md) | Optional | - |
-| `TxBps` | `models.Optional[float64]` | Optional | - |
-| `TxBytes` | `models.Optional[float64]` | Optional | - |
-| `TxPkts` | `models.Optional[float64]` | Optional | - |
+| `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
+| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
 | `Uptime` | `models.Optional[float64]` | Optional | How long, in seconds, has the device been up (or rebooted) |
 | `UsbStat` | [`*models.StatsApUsbStat`](../../doc/models/stats-ap-usb-stat.md) | Optional | - |

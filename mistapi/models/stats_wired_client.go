@@ -20,15 +20,15 @@ type StatsWiredClient struct {
     LastSeen             *float64               `json:"last_seen,omitempty"`
     // Client mac
     Mac                  string                 `json:"mac"`
-    // Amount of traffic sent to client since client connects
-    RxBytes              *float64               `json:"rx_bytes,omitempty"`
-    // Amount of traffic sent to client since client connects
-    RxPkts               *float64               `json:"rx_pkts,omitempty"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]        `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]        `json:"rx_pkts"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    // amount of traffic received from client since client connects
-    TxBytes              *float64               `json:"tx_bytes,omitempty"`
-    // Amount of traffic received from client since client connects
-    TxPkts               *float64               `json:"tx_pkts,omitempty"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]        `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]        `json:"tx_pkts"`
     // How long, in seconds, has the client been connected
     Uptime               *float64               `json:"uptime,omitempty"`
     // VLAN id, could be empty
@@ -73,20 +73,36 @@ func (s StatsWiredClient) toMap() map[string]any {
         structMap["last_seen"] = s.LastSeen
     }
     structMap["mac"] = s.Mac
-    if s.RxBytes != nil {
-        structMap["rx_bytes"] = s.RxBytes
+    if s.RxBytes.IsValueSet() {
+        if s.RxBytes.Value() != nil {
+            structMap["rx_bytes"] = s.RxBytes.Value()
+        } else {
+            structMap["rx_bytes"] = nil
+        }
     }
-    if s.RxPkts != nil {
-        structMap["rx_pkts"] = s.RxPkts
+    if s.RxPkts.IsValueSet() {
+        if s.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = s.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if s.SiteId != nil {
         structMap["site_id"] = s.SiteId
     }
-    if s.TxBytes != nil {
-        structMap["tx_bytes"] = s.TxBytes
+    if s.TxBytes.IsValueSet() {
+        if s.TxBytes.Value() != nil {
+            structMap["tx_bytes"] = s.TxBytes.Value()
+        } else {
+            structMap["tx_bytes"] = nil
+        }
     }
-    if s.TxPkts != nil {
-        structMap["tx_pkts"] = s.TxPkts
+    if s.TxPkts.IsValueSet() {
+        if s.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = s.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if s.Uptime != nil {
         structMap["uptime"] = s.Uptime
@@ -132,18 +148,18 @@ func (s *StatsWiredClient) UnmarshalJSON(input []byte) error {
 
 // tempStatsWiredClient is a temporary struct used for validating the fields of StatsWiredClient.
 type tempStatsWiredClient  struct {
-    AuthState *string    `json:"auth_state,omitempty"`
-    DeviceId  *string    `json:"device_id,omitempty"`
-    EthPort   *string    `json:"eth_port,omitempty"`
-    LastSeen  *float64   `json:"last_seen,omitempty"`
-    Mac       *string    `json:"mac"`
-    RxBytes   *float64   `json:"rx_bytes,omitempty"`
-    RxPkts    *float64   `json:"rx_pkts,omitempty"`
-    SiteId    *uuid.UUID `json:"site_id,omitempty"`
-    TxBytes   *float64   `json:"tx_bytes,omitempty"`
-    TxPkts    *float64   `json:"tx_pkts,omitempty"`
-    Uptime    *float64   `json:"uptime,omitempty"`
-    VlanId    *float64   `json:"vlan_id,omitempty"`
+    AuthState *string         `json:"auth_state,omitempty"`
+    DeviceId  *string         `json:"device_id,omitempty"`
+    EthPort   *string         `json:"eth_port,omitempty"`
+    LastSeen  *float64        `json:"last_seen,omitempty"`
+    Mac       *string         `json:"mac"`
+    RxBytes   Optional[int64] `json:"rx_bytes"`
+    RxPkts    Optional[int64] `json:"rx_pkts"`
+    SiteId    *uuid.UUID      `json:"site_id,omitempty"`
+    TxBytes   Optional[int64] `json:"tx_bytes"`
+    TxPkts    Optional[int64] `json:"tx_pkts"`
+    Uptime    *float64        `json:"uptime,omitempty"`
+    VlanId    *float64        `json:"vlan_id,omitempty"`
 }
 
 func (s *tempStatsWiredClient) validate() error {

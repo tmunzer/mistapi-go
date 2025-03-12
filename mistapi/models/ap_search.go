@@ -30,7 +30,7 @@ type ApSearch struct {
     // Partial / full hostname
     Hostname             []string               `json:"hostname,omitempty"`
     InactiveWiredVlans   []int                  `json:"inactive_wired_vlans,omitempty"`
-    // IPaddress
+    // IP Address
     Ip                   *string                `json:"ip,omitempty"`
     LastHostname         *string                `json:"last_hostname,omitempty"`
     // LLDP management ip address

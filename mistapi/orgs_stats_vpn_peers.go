@@ -94,7 +94,7 @@ func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
     orgId uuid.UUID,
     mac *string,
     siteId *string,
-    mType *models.TypeEnum,
+    mType *models.VpnTypeEnum,
     start *int,
     duration *string,
     limit *int) (

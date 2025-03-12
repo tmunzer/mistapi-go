@@ -7,7 +7,7 @@ import (
 
 // SiteSettingApPortConfig represents a SiteSettingApPortConfig struct.
 type SiteSettingApPortConfig struct {
-    // Property key is the AP model (e.g "AP32")
+    // Property key is the AP model (e.g. "AP32")
     ModelSpecific        map[string]ApPortConfig `json:"model_specific,omitempty"`
     AdditionalProperties map[string]interface{}  `json:"_"`
 }

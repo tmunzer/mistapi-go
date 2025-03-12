@@ -20,11 +20,11 @@ Only present when `bgp_peers` in `fields` query parameter
 | `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
 | `NeighborMac` | `*string` | Optional | If it's another device in the same org |
 | `Node` | `*string` | Optional | Node0/node1 |
-| `RxPkts` | `*int` | Optional | - |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `RxRoutes` | `*int` | Optional | Number of received routes |
 | `State` | [`*models.BgpStatsStateEnum`](../../doc/models/bgp-stats-state-enum.md) | Optional | enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent` |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `TxPkts` | `*int` | Optional | - |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `TxRoutes` | `*int` | Optional | - |
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
@@ -40,10 +40,10 @@ Only present when `bgp_peers` in `fields` query parameter
   "neighbor_as": 65000,
   "neighbor_mac": "020001c04600",
   "node": "node0",
-  "rx_pkts": 63366,
+  "rx_pkts": 57770567,
   "rx_routes": 60,
   "state": "established",
-  "tx_pkts": 1735,
+  "tx_pkts": 812204062,
   "tx_routes": 60,
   "uptime": 31355,
   "vrf_name": "default",

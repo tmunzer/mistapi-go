@@ -15,7 +15,7 @@ type CpuStat struct {
     LoadAvg              []float64              `json:"load_avg,omitempty"`
     // Percentage of CPU time being used by system processes
     System               Optional[float64]      `json:"system"`
-    // Percentage of CPU time being used by user processe
+    // Percentage of CPU time being used by user processes
     User                 Optional[float64]      `json:"user"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

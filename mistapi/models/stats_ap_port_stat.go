@@ -8,14 +8,18 @@ import (
 // StatsApPortStat represents a StatsApPortStat struct.
 type StatsApPortStat struct {
     FullDuplex           Optional[bool]         `json:"full_duplex"`
-    RxBytes              Optional[int]          `json:"rx_bytes"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]        `json:"rx_bytes"`
     RxErrors             Optional[int]          `json:"rx_errors"`
     RxPeakBps            Optional[int]          `json:"rx_peak_bps"`
-    RxPkts               Optional[int]          `json:"rx_pkts"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]        `json:"rx_pkts"`
     Speed                Optional[int]          `json:"speed"`
-    TxBytes              Optional[int]          `json:"tx_bytes"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]        `json:"tx_bytes"`
     TxPeakBps            Optional[int]          `json:"tx_peak_bps"`
-    TxPkts               Optional[int]          `json:"tx_pkts"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]        `json:"tx_pkts"`
     Up                   Optional[bool]         `json:"up"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -146,14 +150,14 @@ func (s *StatsApPortStat) UnmarshalJSON(input []byte) error {
 
 // tempStatsApPortStat is a temporary struct used for validating the fields of StatsApPortStat.
 type tempStatsApPortStat  struct {
-    FullDuplex Optional[bool] `json:"full_duplex"`
-    RxBytes    Optional[int]  `json:"rx_bytes"`
-    RxErrors   Optional[int]  `json:"rx_errors"`
-    RxPeakBps  Optional[int]  `json:"rx_peak_bps"`
-    RxPkts     Optional[int]  `json:"rx_pkts"`
-    Speed      Optional[int]  `json:"speed"`
-    TxBytes    Optional[int]  `json:"tx_bytes"`
-    TxPeakBps  Optional[int]  `json:"tx_peak_bps"`
-    TxPkts     Optional[int]  `json:"tx_pkts"`
-    Up         Optional[bool] `json:"up"`
+    FullDuplex Optional[bool]  `json:"full_duplex"`
+    RxBytes    Optional[int64] `json:"rx_bytes"`
+    RxErrors   Optional[int]   `json:"rx_errors"`
+    RxPeakBps  Optional[int]   `json:"rx_peak_bps"`
+    RxPkts     Optional[int64] `json:"rx_pkts"`
+    Speed      Optional[int]   `json:"speed"`
+    TxBytes    Optional[int64] `json:"tx_bytes"`
+    TxPeakBps  Optional[int]   `json:"tx_peak_bps"`
+    TxPkts     Optional[int64] `json:"tx_pkts"`
+    Up         Optional[bool]  `json:"up"`
 }

@@ -116,7 +116,7 @@ SearchOrgPeerPathStats(
     orgId uuid.UUID,
     mac *string,
     siteId *string,
-    mType *models.TypeEnum,
+    mType *models.VpnTypeEnum,
     start *int,
     duration *string,
     limit *int) (
@@ -131,7 +131,7 @@ SearchOrgPeerPathStats(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | - |
 | `siteId` | `*string` | Query, Optional | - |
-| `mType` | [`*models.TypeEnum`](../../doc/models/type-enum.md) | Query, Optional | - |
+| `mType` | [`*models.VpnTypeEnum`](../../doc/models/vpn-type-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |

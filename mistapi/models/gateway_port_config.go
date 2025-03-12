@@ -81,7 +81,7 @@ type GatewayPortConfig struct {
     WanArpPolicer        *GatewayPortWanArpPolicerEnum  `json:"wan_arp_policer,omitempty"`
     // Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP
     WanExtIp             *string                        `json:"wan_ext_ip,omitempty"`
-    // Only if `usage`==`wan`. Property Key is the destination CIDR (e.g "100.100.100.0/24")
+    // Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "100.100.100.0/24")
     WanExtraRoutes       map[string]WanExtraRoutes      `json:"wan_extra_routes,omitempty"`
     // Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined
     WanNetworks          []string                       `json:"wan_networks,omitempty"`

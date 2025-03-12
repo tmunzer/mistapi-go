@@ -125,7 +125,7 @@ type WlanPortalTemplateSetting struct {
     LogoWidth                 *int                             `json:"logoWidth,omitempty"`
     // label of the link to go to /marketing_policy
     MarketingPolicyLink       *string                          `json:"marketingPolicyLink,omitempty"`
-    // hether marketing policy optin is enabled
+    // Whether marketing policy optin is enabled
     MarketingPolicyOptIn      *bool                            `json:"marketingPolicyOptIn,omitempty"`
     // label for marketing optin
     MarketingPolicyOptInLabel *string                          `json:"marketingPolicyOptInLabel,omitempty"`

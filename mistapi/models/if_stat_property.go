@@ -14,11 +14,15 @@ type IfStatProperty struct {
     PortId               *string                  `json:"port_id,omitempty"`
     PortUsage            *string                  `json:"port_usage,omitempty"`
     RedundancyState      *string                  `json:"redundancy_state,omitempty"`
-    RxBytes              *int                     `json:"rx_bytes,omitempty"`
-    RxPkts               *int                     `json:"rx_pkts,omitempty"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]          `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]          `json:"rx_pkts"`
     ServpInfo            *IfStatPropertyServpInfo `json:"servp_info,omitempty"`
-    TxBytes              *int                     `json:"tx_bytes,omitempty"`
-    TxPkts               *int                     `json:"tx_pkts,omitempty"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]          `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]          `json:"tx_pkts"`
     Up                   *bool                    `json:"up,omitempty"`
     Vlan                 *int                     `json:"vlan,omitempty"`
     WanName              *string                  `json:"wan_name,omitempty"`
@@ -71,20 +75,36 @@ func (i IfStatProperty) toMap() map[string]any {
     if i.RedundancyState != nil {
         structMap["redundancy_state"] = i.RedundancyState
     }
-    if i.RxBytes != nil {
-        structMap["rx_bytes"] = i.RxBytes
+    if i.RxBytes.IsValueSet() {
+        if i.RxBytes.Value() != nil {
+            structMap["rx_bytes"] = i.RxBytes.Value()
+        } else {
+            structMap["rx_bytes"] = nil
+        }
     }
-    if i.RxPkts != nil {
-        structMap["rx_pkts"] = i.RxPkts
+    if i.RxPkts.IsValueSet() {
+        if i.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = i.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if i.ServpInfo != nil {
         structMap["servp_info"] = i.ServpInfo.toMap()
     }
-    if i.TxBytes != nil {
-        structMap["tx_bytes"] = i.TxBytes
+    if i.TxBytes.IsValueSet() {
+        if i.TxBytes.Value() != nil {
+            structMap["tx_bytes"] = i.TxBytes.Value()
+        } else {
+            structMap["tx_bytes"] = nil
+        }
     }
-    if i.TxPkts != nil {
-        structMap["tx_pkts"] = i.TxPkts
+    if i.TxPkts.IsValueSet() {
+        if i.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = i.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if i.Up != nil {
         structMap["up"] = i.Up
@@ -143,11 +163,11 @@ type tempIfStatProperty  struct {
     PortId          *string                  `json:"port_id,omitempty"`
     PortUsage       *string                  `json:"port_usage,omitempty"`
     RedundancyState *string                  `json:"redundancy_state,omitempty"`
-    RxBytes         *int                     `json:"rx_bytes,omitempty"`
-    RxPkts          *int                     `json:"rx_pkts,omitempty"`
+    RxBytes         Optional[int64]          `json:"rx_bytes"`
+    RxPkts          Optional[int64]          `json:"rx_pkts"`
     ServpInfo       *IfStatPropertyServpInfo `json:"servp_info,omitempty"`
-    TxBytes         *int                     `json:"tx_bytes,omitempty"`
-    TxPkts          *int                     `json:"tx_pkts,omitempty"`
+    TxBytes         Optional[int64]          `json:"tx_bytes"`
+    TxPkts          Optional[int64]          `json:"tx_pkts"`
     Up              *bool                    `json:"up,omitempty"`
     Vlan            *int                     `json:"vlan,omitempty"`
     WanName         *string                  `json:"wan_name,omitempty"`

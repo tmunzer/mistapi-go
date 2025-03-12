@@ -40,21 +40,21 @@ Switch port statistics
 | `PortUsage` | [`*models.StatsSwitchPortPortUsageEnum`](../../doc/models/stats-switch-port-port-usage-enum.md) | Optional | gateway port usage. enum: `lan` |
 | `PowerDraw` | `*float64` | Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `RxBcastPkts` | `*int` | Optional | Broadcast input packets |
-| `RxBps` | `*int` | Optional | Input rate |
-| `RxBytes` | `*int` | Optional | Rx bytes |
+| `RxBps` | `models.Optional[int64]` | Optional | Rate of receiving traffic, bits/seconds, last known |
+| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
 | `RxErrors` | `*int` | Optional | Input errors |
 | `RxMcastPkts` | `*int` | Optional | Multicast input packets |
-| `RxPkts` | `*int` | Optional | Rx packets |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Speed` | `*int` | Optional | Port speed |
 | `StpRole` | [`*models.StatsSwitchPortStpRoleEnum`](../../doc/models/stats-switch-port-stp-role-enum.md) | Optional | if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented` |
 | `StpState` | [`*models.StatsSwitchPortStpStateEnum`](../../doc/models/stats-switch-port-stp-state-enum.md) | Optional | if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
 | `TxBcastPkts` | `*int` | Optional | Broadcast output packets |
-| `TxBps` | `*int` | Optional | Output rate |
-| `TxBytes` | `*int` | Optional | Tx bytes |
+| `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
+| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
 | `TxErrors` | `*int` | Optional | Output errors |
 | `TxMcastPkts` | `*int` | Optional | Multicast output packets |
-| `TxPkts` | `*int` | Optional | Tx packets |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Type` | [`*models.StatsSwitchPortTypeEnum`](../../doc/models/stats-switch-port-type-enum.md) | Optional | device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch` |
 | `Unconfigured` | `*bool` | Optional | Indicates if interface is unconfigured |
 | `Up` | `*bool` | Optional | Indicates if interface is up |
@@ -75,9 +75,14 @@ Switch port statistics
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
+  "rx_bps": 60003,
+  "rx_bytes": 8515104416,
+  "rx_pkts": 57770567,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "speed": 1000,
-  "tx_pkts": 492176,
+  "tx_bps": 634301,
+  "tx_bytes": 211217389682,
+  "tx_pkts": 812204062,
   "type": "gateway",
   "xcvr_model": "SFP+-10G-SR",
   "xcvr_part_number": "740-021487",

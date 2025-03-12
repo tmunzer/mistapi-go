@@ -61,16 +61,16 @@ type StatsSwitchPort struct {
     PowerDraw            *float64                      `json:"power_draw,omitempty"`
     // Broadcast input packets
     RxBcastPkts          *int                          `json:"rx_bcast_pkts,omitempty"`
-    // Input rate
-    RxBps                *int                          `json:"rx_bps,omitempty"`
-    // Rx bytes
-    RxBytes              *int                          `json:"rx_bytes,omitempty"`
+    // Rate of receiving traffic, bits/seconds, last known
+    RxBps                Optional[int64]               `json:"rx_bps"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]               `json:"rx_bytes"`
     // Input errors
     RxErrors             *int                          `json:"rx_errors,omitempty"`
     // Multicast input packets
     RxMcastPkts          *int                          `json:"rx_mcast_pkts,omitempty"`
-    // Rx packets
-    RxPkts               *int                          `json:"rx_pkts,omitempty"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]               `json:"rx_pkts"`
     SiteId               uuid.UUID                     `json:"site_id"`
     // Port speed
     Speed                *int                          `json:"speed,omitempty"`
@@ -80,16 +80,16 @@ type StatsSwitchPort struct {
     StpState             *StatsSwitchPortStpStateEnum  `json:"stp_state,omitempty"`
     // Broadcast output packets
     TxBcastPkts          *int                          `json:"tx_bcast_pkts,omitempty"`
-    // Output rate
-    TxBps                *int                          `json:"tx_bps,omitempty"`
-    // Tx bytes
-    TxBytes              *int                          `json:"tx_bytes,omitempty"`
+    // Rate of transmitting traffic, bits/seconds, last known
+    TxBps                Optional[int64]               `json:"tx_bps"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]               `json:"tx_bytes"`
     // Output errors
     TxErrors             *int                          `json:"tx_errors,omitempty"`
     // Multicast output packets
     TxMcastPkts          *int                          `json:"tx_mcast_pkts,omitempty"`
-    // Tx packets
-    TxPkts               *int                          `json:"tx_pkts,omitempty"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]               `json:"tx_pkts"`
     // device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
     Type                 *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
     // Indicates if interface is unconfigured
@@ -212,11 +212,19 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.RxBcastPkts != nil {
         structMap["rx_bcast_pkts"] = s.RxBcastPkts
     }
-    if s.RxBps != nil {
-        structMap["rx_bps"] = s.RxBps
+    if s.RxBps.IsValueSet() {
+        if s.RxBps.Value() != nil {
+            structMap["rx_bps"] = s.RxBps.Value()
+        } else {
+            structMap["rx_bps"] = nil
+        }
     }
-    if s.RxBytes != nil {
-        structMap["rx_bytes"] = s.RxBytes
+    if s.RxBytes.IsValueSet() {
+        if s.RxBytes.Value() != nil {
+            structMap["rx_bytes"] = s.RxBytes.Value()
+        } else {
+            structMap["rx_bytes"] = nil
+        }
     }
     if s.RxErrors != nil {
         structMap["rx_errors"] = s.RxErrors
@@ -224,8 +232,12 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.RxMcastPkts != nil {
         structMap["rx_mcast_pkts"] = s.RxMcastPkts
     }
-    if s.RxPkts != nil {
-        structMap["rx_pkts"] = s.RxPkts
+    if s.RxPkts.IsValueSet() {
+        if s.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = s.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     structMap["site_id"] = s.SiteId
     if s.Speed != nil {
@@ -240,11 +252,19 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.TxBcastPkts != nil {
         structMap["tx_bcast_pkts"] = s.TxBcastPkts
     }
-    if s.TxBps != nil {
-        structMap["tx_bps"] = s.TxBps
+    if s.TxBps.IsValueSet() {
+        if s.TxBps.Value() != nil {
+            structMap["tx_bps"] = s.TxBps.Value()
+        } else {
+            structMap["tx_bps"] = nil
+        }
     }
-    if s.TxBytes != nil {
-        structMap["tx_bytes"] = s.TxBytes
+    if s.TxBytes.IsValueSet() {
+        if s.TxBytes.Value() != nil {
+            structMap["tx_bytes"] = s.TxBytes.Value()
+        } else {
+            structMap["tx_bytes"] = nil
+        }
     }
     if s.TxErrors != nil {
         structMap["tx_errors"] = s.TxErrors
@@ -252,8 +272,12 @@ func (s StatsSwitchPort) toMap() map[string]any {
     if s.TxMcastPkts != nil {
         structMap["tx_mcast_pkts"] = s.TxMcastPkts
     }
-    if s.TxPkts != nil {
-        structMap["tx_pkts"] = s.TxPkts
+    if s.TxPkts.IsValueSet() {
+        if s.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = s.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if s.Type != nil {
         structMap["type"] = s.Type
@@ -374,21 +398,21 @@ type tempStatsSwitchPort  struct {
     PortUsage          *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
     PowerDraw          *float64                      `json:"power_draw,omitempty"`
     RxBcastPkts        *int                          `json:"rx_bcast_pkts,omitempty"`
-    RxBps              *int                          `json:"rx_bps,omitempty"`
-    RxBytes            *int                          `json:"rx_bytes,omitempty"`
+    RxBps              Optional[int64]               `json:"rx_bps"`
+    RxBytes            Optional[int64]               `json:"rx_bytes"`
     RxErrors           *int                          `json:"rx_errors,omitempty"`
     RxMcastPkts        *int                          `json:"rx_mcast_pkts,omitempty"`
-    RxPkts             *int                          `json:"rx_pkts,omitempty"`
+    RxPkts             Optional[int64]               `json:"rx_pkts"`
     SiteId             *uuid.UUID                    `json:"site_id"`
     Speed              *int                          `json:"speed,omitempty"`
     StpRole            *StatsSwitchPortStpRoleEnum   `json:"stp_role,omitempty"`
     StpState           *StatsSwitchPortStpStateEnum  `json:"stp_state,omitempty"`
     TxBcastPkts        *int                          `json:"tx_bcast_pkts,omitempty"`
-    TxBps              *int                          `json:"tx_bps,omitempty"`
-    TxBytes            *int                          `json:"tx_bytes,omitempty"`
+    TxBps              Optional[int64]               `json:"tx_bps"`
+    TxBytes            Optional[int64]               `json:"tx_bytes"`
     TxErrors           *int                          `json:"tx_errors,omitempty"`
     TxMcastPkts        *int                          `json:"tx_mcast_pkts,omitempty"`
-    TxPkts             *int                          `json:"tx_pkts,omitempty"`
+    TxPkts             Optional[int64]               `json:"tx_pkts"`
     Type               *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
     Unconfigured       *bool                         `json:"unconfigured,omitempty"`
     Up                 *bool                         `json:"up,omitempty"`

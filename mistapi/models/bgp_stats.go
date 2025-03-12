@@ -25,7 +25,8 @@ type BgpStats struct {
     // Node0/node1
     Node                 *string                `json:"node,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    RxPkts               *int                   `json:"rx_pkts,omitempty"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]        `json:"rx_pkts"`
     // Number of received routes
     RxRoutes             *int                   `json:"rx_routes,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
@@ -33,7 +34,8 @@ type BgpStats struct {
     State                *BgpStatsStateEnum     `json:"state,omitempty"`
     // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    TxPkts               *int                   `json:"tx_pkts,omitempty"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]        `json:"tx_pkts"`
     TxRoutes             *int                   `json:"tx_routes,omitempty"`
     Up                   *bool                  `json:"up,omitempty"`
     Uptime               *int                   `json:"uptime,omitempty"`
@@ -95,8 +97,12 @@ func (b BgpStats) toMap() map[string]any {
     if b.OrgId != nil {
         structMap["org_id"] = b.OrgId
     }
-    if b.RxPkts != nil {
-        structMap["rx_pkts"] = b.RxPkts
+    if b.RxPkts.IsValueSet() {
+        if b.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = b.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if b.RxRoutes != nil {
         structMap["rx_routes"] = b.RxRoutes
@@ -110,8 +116,12 @@ func (b BgpStats) toMap() map[string]any {
     if b.Timestamp != nil {
         structMap["timestamp"] = b.Timestamp
     }
-    if b.TxPkts != nil {
-        structMap["tx_pkts"] = b.TxPkts
+    if b.TxPkts.IsValueSet() {
+        if b.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = b.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if b.TxRoutes != nil {
         structMap["tx_routes"] = b.TxRoutes
@@ -177,12 +187,12 @@ type tempBgpStats  struct {
     NeighborMac *string            `json:"neighbor_mac,omitempty"`
     Node        *string            `json:"node,omitempty"`
     OrgId       *uuid.UUID         `json:"org_id,omitempty"`
-    RxPkts      *int               `json:"rx_pkts,omitempty"`
+    RxPkts      Optional[int64]    `json:"rx_pkts"`
     RxRoutes    *int               `json:"rx_routes,omitempty"`
     SiteId      *uuid.UUID         `json:"site_id,omitempty"`
     State       *BgpStatsStateEnum `json:"state,omitempty"`
     Timestamp   *float64           `json:"timestamp,omitempty"`
-    TxPkts      *int               `json:"tx_pkts,omitempty"`
+    TxPkts      Optional[int64]    `json:"tx_pkts"`
     TxRoutes    *int               `json:"tx_routes,omitempty"`
     Up          *bool              `json:"up,omitempty"`
     Uptime      *int               `json:"uptime,omitempty"`

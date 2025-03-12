@@ -26,10 +26,14 @@ type StatsApBle struct {
     Major                 Optional[int]          `json:"major"`
     Minors                []int                  `json:"minors,omitempty"`
     Power                 Optional[int]          `json:"power"`
-    RxBytes               Optional[int]          `json:"rx_bytes"`
-    RxPkts                Optional[int]          `json:"rx_pkts"`
+    // Amount of traffic received since connection
+    RxBytes               Optional[int64]        `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPkts                Optional[int64]        `json:"rx_pkts"`
+    // Amount of traffic sent since connection
     TxBytes               Optional[int64]        `json:"tx_bytes"`
-    TxPkts                Optional[int]          `json:"tx_pkts"`
+    // Amount of packets sent since connection
+    TxPkts                Optional[int64]        `json:"tx_pkts"`
     // Resets due to tx hung
     TxResets              Optional[int]          `json:"tx_resets"`
     Uuid                  Optional[uuid.UUID]    `json:"uuid"`
@@ -279,10 +283,10 @@ type tempStatsApBle  struct {
     Major                 Optional[int]       `json:"major"`
     Minors                []int               `json:"minors,omitempty"`
     Power                 Optional[int]       `json:"power"`
-    RxBytes               Optional[int]       `json:"rx_bytes"`
-    RxPkts                Optional[int]       `json:"rx_pkts"`
+    RxBytes               Optional[int64]     `json:"rx_bytes"`
+    RxPkts                Optional[int64]     `json:"rx_pkts"`
     TxBytes               Optional[int64]     `json:"tx_bytes"`
-    TxPkts                Optional[int]       `json:"tx_pkts"`
+    TxPkts                Optional[int64]     `json:"tx_pkts"`
     TxResets              Optional[int]       `json:"tx_resets"`
     Uuid                  Optional[uuid.UUID] `json:"uuid"`
 }

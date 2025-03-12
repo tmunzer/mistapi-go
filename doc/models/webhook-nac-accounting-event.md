@@ -19,11 +19,11 @@
 | `Mac` | `*string` | Optional | Client's MAC Address |
 | `NasVendor` | `*string` | Optional | NAS Device vendor name E.g. "Juniper", "Cisco" |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `RxPkts` | `*int` | Optional | Number of packets received |
+| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | ESSID |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `TxPkts` | `*int` | Optional | Number of packets sent |
+| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Type` | `*string` | Optional | Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP" |
 | `Username` | `*string` | Optional | Username authenticated with |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -40,10 +40,10 @@
   "mac": "6e795836d5f9",
   "nas_vendor": "juniper-mist",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "rx_pkts": 9523,
+  "rx_pkts": 57770567,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "ssid": "Test-CMR SSID",
-  "tx_pkts": 5233,
+  "tx_pkts": 812204062,
   "type": "NAC_ACCOUNTING_STOP",
   "username": "hi",
   "exampleAdditionalProperty": {

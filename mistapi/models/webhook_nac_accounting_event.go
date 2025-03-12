@@ -23,15 +23,15 @@ type WebhookNacAccountingEvent struct {
     // NAS Device vendor name E.g. "Juniper", "Cisco"
     NasVendor            *string                `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    // Number of packets received
-    RxPkts               *int                   `json:"rx_pkts,omitempty"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]        `json:"rx_pkts"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`
     // ESSID
     Ssid                 *string                `json:"ssid,omitempty"`
     // Epoch (seconds)
     Timestamp            *float64               `json:"timestamp,omitempty"`
-    // Number of packets sent
-    TxPkts               *int                   `json:"tx_pkts,omitempty"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]        `json:"tx_pkts"`
     // Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP"
     Type                 *string                `json:"type,omitempty"`
     // Username authenticated with
@@ -87,8 +87,12 @@ func (w WebhookNacAccountingEvent) toMap() map[string]any {
     if w.OrgId != nil {
         structMap["org_id"] = w.OrgId
     }
-    if w.RxPkts != nil {
-        structMap["rx_pkts"] = w.RxPkts
+    if w.RxPkts.IsValueSet() {
+        if w.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = w.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if w.SiteId != nil {
         structMap["site_id"] = w.SiteId
@@ -99,8 +103,12 @@ func (w WebhookNacAccountingEvent) toMap() map[string]any {
     if w.Timestamp != nil {
         structMap["timestamp"] = w.Timestamp
     }
-    if w.TxPkts != nil {
-        structMap["tx_pkts"] = w.TxPkts
+    if w.TxPkts.IsValueSet() {
+        if w.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = w.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if w.Type != nil {
         structMap["type"] = w.Type
@@ -153,11 +161,11 @@ type tempWebhookNacAccountingEvent  struct {
     Mac        *string          `json:"mac,omitempty"`
     NasVendor  *string          `json:"nas_vendor,omitempty"`
     OrgId      *uuid.UUID       `json:"org_id,omitempty"`
-    RxPkts     *int             `json:"rx_pkts,omitempty"`
+    RxPkts     Optional[int64]  `json:"rx_pkts"`
     SiteId     *uuid.UUID       `json:"site_id,omitempty"`
     Ssid       *string          `json:"ssid,omitempty"`
     Timestamp  *float64         `json:"timestamp,omitempty"`
-    TxPkts     *int             `json:"tx_pkts,omitempty"`
+    TxPkts     Optional[int64]  `json:"tx_pkts"`
     Type       *string          `json:"type,omitempty"`
     Username   *string          `json:"username,omitempty"`
 }

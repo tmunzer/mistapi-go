@@ -13,7 +13,7 @@ type StatsGatewayWanTunnel struct {
     EncryptAlgo          *string                     `json:"encrypt_algo,omitempty"`
     // IKE version
     IkeVersion           *string                     `json:"ike_version,omitempty"`
-    // IPaddress
+    // IP Address
     Ip                   *string                     `json:"ip,omitempty"`
     // Reason of why the tunnel is down
     LastEvent            *string                     `json:"last_event,omitempty"`
@@ -29,12 +29,16 @@ type StatsGatewayWanTunnel struct {
     Priority             *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
     // enum: `gre`, `ipsec`
     Protocol             *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
-    RxBytes              *int                        `json:"rx_bytes,omitempty"`
-    RxPkts               *int                        `json:"rx_pkts,omitempty"`
+    // Amount of traffic received since connection
+    RxBytes              Optional[int64]             `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPkts               Optional[int64]             `json:"rx_pkts"`
     // Mist Tunnel Name
     TunnelName           *string                     `json:"tunnel_name,omitempty"`
-    TxBytes              *int                        `json:"tx_bytes,omitempty"`
-    TxPkts               *int                        `json:"tx_pkts,omitempty"`
+    // Amount of traffic sent since connection
+    TxBytes              Optional[int64]             `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPkts               Optional[int64]             `json:"tx_pkts"`
     Up                   *bool                       `json:"up,omitempty"`
     // Duration from first (or last) SA was established
     Uptime               *int                        `json:"uptime,omitempty"`
@@ -100,20 +104,36 @@ func (s StatsGatewayWanTunnel) toMap() map[string]any {
     if s.Protocol != nil {
         structMap["protocol"] = s.Protocol
     }
-    if s.RxBytes != nil {
-        structMap["rx_bytes"] = s.RxBytes
+    if s.RxBytes.IsValueSet() {
+        if s.RxBytes.Value() != nil {
+            structMap["rx_bytes"] = s.RxBytes.Value()
+        } else {
+            structMap["rx_bytes"] = nil
+        }
     }
-    if s.RxPkts != nil {
-        structMap["rx_pkts"] = s.RxPkts
+    if s.RxPkts.IsValueSet() {
+        if s.RxPkts.Value() != nil {
+            structMap["rx_pkts"] = s.RxPkts.Value()
+        } else {
+            structMap["rx_pkts"] = nil
+        }
     }
     if s.TunnelName != nil {
         structMap["tunnel_name"] = s.TunnelName
     }
-    if s.TxBytes != nil {
-        structMap["tx_bytes"] = s.TxBytes
+    if s.TxBytes.IsValueSet() {
+        if s.TxBytes.Value() != nil {
+            structMap["tx_bytes"] = s.TxBytes.Value()
+        } else {
+            structMap["tx_bytes"] = nil
+        }
     }
-    if s.TxPkts != nil {
-        structMap["tx_pkts"] = s.TxPkts
+    if s.TxPkts.IsValueSet() {
+        if s.TxPkts.Value() != nil {
+            structMap["tx_pkts"] = s.TxPkts.Value()
+        } else {
+            structMap["tx_pkts"] = nil
+        }
     }
     if s.Up != nil {
         structMap["up"] = s.Up
@@ -176,11 +196,11 @@ type tempStatsGatewayWanTunnel  struct {
     PeerIp      *string                     `json:"peer_ip,omitempty"`
     Priority    *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
     Protocol    *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
-    RxBytes     *int                        `json:"rx_bytes,omitempty"`
-    RxPkts      *int                        `json:"rx_pkts,omitempty"`
+    RxBytes     Optional[int64]             `json:"rx_bytes"`
+    RxPkts      Optional[int64]             `json:"rx_pkts"`
     TunnelName  *string                     `json:"tunnel_name,omitempty"`
-    TxBytes     *int                        `json:"tx_bytes,omitempty"`
-    TxPkts      *int                        `json:"tx_pkts,omitempty"`
+    TxBytes     Optional[int64]             `json:"tx_bytes"`
+    TxPkts      Optional[int64]             `json:"tx_pkts"`
     Up          *bool                       `json:"up,omitempty"`
     Uptime      *int                        `json:"uptime,omitempty"`
     WanName     *string                     `json:"wan_name,omitempty"`

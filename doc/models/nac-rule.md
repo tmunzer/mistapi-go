@@ -20,7 +20,7 @@
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NotMatching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
-| `Order` | `*int` | Optional | Prder of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
+| `Order` | `*int` | Optional | Order of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -343,7 +343,7 @@ GetOrgInventory(
     orgId uuid.UUID,
     serial *string,
     model *string,
-    mType *models.DeviceTypeDefaultApEnum,
+    mType *models.DeviceTypeEnum,
     mac *string,
     siteId *string,
     vcMac *string,
@@ -363,7 +363,7 @@ GetOrgInventory(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `model` | `*string` | Query, Optional | Device model |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
@@ -388,7 +388,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-mType := models.DeviceTypeDefaultApEnum_AP
+
 
 
 
@@ -406,7 +406,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, &mType, nil, nil, nil, &vc, &unassigned, nil, &limit, &page)
+apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, nil, nil, nil, nil, &vc, &unassigned, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

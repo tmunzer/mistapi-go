@@ -22,10 +22,14 @@ type ApRadioStat struct {
     NumWlans               *int                   `json:"num_wlans,omitempty"`
     // Transmit power (in dBm)
     Power                  Optional[int]          `json:"power"`
-    RxBytes                Optional[int]          `json:"rx_bytes"`
-    RxPkts                 Optional[int]          `json:"rx_pkts"`
-    TxBytes                Optional[int]          `json:"tx_bytes"`
-    TxPkts                 Optional[int]          `json:"tx_pkts"`
+    // Amount of traffic received since connection
+    RxBytes                Optional[int64]        `json:"rx_bytes"`
+    // Amount of packets received since connection
+    RxPkts                 Optional[int64]        `json:"rx_pkts"`
+    // Amount of traffic sent since connection
+    TxBytes                Optional[int64]        `json:"tx_bytes"`
+    // Amount of packets sent since connection
+    TxPkts                 Optional[int64]        `json:"tx_pkts"`
     Usage                  Optional[string]       `json:"usage"`
     // All utilization in percentage
     UtilAll                Optional[int]          `json:"util_all"`
@@ -250,10 +254,10 @@ type tempApRadioStat  struct {
     NumClients             Optional[int]       `json:"num_clients"`
     NumWlans               *int                `json:"num_wlans,omitempty"`
     Power                  Optional[int]       `json:"power"`
-    RxBytes                Optional[int]       `json:"rx_bytes"`
-    RxPkts                 Optional[int]       `json:"rx_pkts"`
-    TxBytes                Optional[int]       `json:"tx_bytes"`
-    TxPkts                 Optional[int]       `json:"tx_pkts"`
+    RxBytes                Optional[int64]     `json:"rx_bytes"`
+    RxPkts                 Optional[int64]     `json:"rx_pkts"`
+    TxBytes                Optional[int64]     `json:"tx_bytes"`
+    TxPkts                 Optional[int64]     `json:"tx_pkts"`
     Usage                  Optional[string]    `json:"usage"`
     UtilAll                Optional[int]       `json:"util_all"`
     UtilNonWifi            Optional[int]       `json:"util_non_wifi"`

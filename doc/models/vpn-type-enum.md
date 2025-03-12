@@ -1,8 +1,6 @@
 
 # Vpn Type Enum
 
-enum: `hub_spoke`, `mesh`
-
 ## Enumeration
 
 `VpnTypeEnum`
@@ -11,6 +9,6 @@ enum: `hub_spoke`, `mesh`
 
 | Name |
 |  --- |
-| `hub_spoke` |
-| `mesh` |
+| `ipsec` |
+| `svr` |
 

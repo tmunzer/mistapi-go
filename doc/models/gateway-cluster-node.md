@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g "5684dae9ac8b") |
+| `Mac` | `string` | Required | Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b") |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

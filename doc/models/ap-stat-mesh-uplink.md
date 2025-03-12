@@ -17,18 +17,18 @@
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Proto` | `*string` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
-| `RxBps` | `*int` | Optional | - |
-| `RxBytes` | `*int` | Optional | - |
-| `RxPackets` | `*int` | Optional | - |
-| `RxRate` | `*int` | Optional | - |
-| `RxRetries` | `*int` | Optional | - |
+| `RxBps` | `models.Optional[int64]` | Optional | Rate of receiving traffic, bits/seconds, last known |
+| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
+| `RxPackets` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
+| `RxRate` | `models.Optional[float64]` | Optional | RX Rate, Mbps |
+| `RxRetries` | `models.Optional[int]` | Optional | Amount of rx retries |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Snr` | `*int` | Optional | - |
-| `TxBps` | `*int` | Optional | - |
-| `TxBytes` | `*int` | Optional | - |
-| `TxPackets` | `*int` | Optional | - |
-| `TxRate` | `*int` | Optional | - |
-| `TxRetries` | `*int` | Optional | - |
+| `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
+| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
+| `TxPackets` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
+| `TxRate` | `models.Optional[float64]` | Optional | TX Rate, Mbps |
+| `TxRetries` | `models.Optional[int]` | Optional | Amount of tx retries |
 | `UplinkApId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -42,18 +42,14 @@
   "last_seen": 1470417522.0,
   "proto": "n",
   "rssi": -65,
-  "rx_bps": 12,
-  "rx_bytes": 217416,
-  "rx_packets": 2337,
-  "rx_rate": 65,
-  "rx_retries": 5,
+  "rx_bps": 60003,
+  "rx_bytes": 8515104416,
+  "rx_packets": 57770567,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "snr": 31,
-  "tx_bps": 6,
-  "tx_bytes": 175132,
-  "tx_packets": 1566,
-  "tx_rate": 65,
-  "tx_retries": 500,
+  "tx_bps": 634301,
+  "tx_bytes": 211217389682,
+  "tx_packets": 812204062,
   "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010",
   "exampleAdditionalProperty": {
     "key1": "val1",

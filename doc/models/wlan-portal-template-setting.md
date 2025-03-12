@@ -86,7 +86,7 @@ Portal template wlan settings
 | `LogoHeight` | `*int` | Optional | Height of the logo, in px<br>**Constraints**: `>= 0`, `<= 200` |
 | `LogoWidth` | `*int` | Optional | Width of the logo, in px<br>**Constraints**: `>= 0`, `<= 500` |
 | `MarketingPolicyLink` | `*string` | Optional | label of the link to go to /marketing_policy<br>**Default**: `"Marketing Policy"` |
-| `MarketingPolicyOptIn` | `*bool` | Optional | hether marketing policy optin is enabled<br>**Default**: `false` |
+| `MarketingPolicyOptIn` | `*bool` | Optional | Whether marketing policy optin is enabled<br>**Default**: `false` |
 | `MarketingPolicyOptInLabel` | `*string` | Optional | label for marketing optin<br>**Default**: `"I wish to receive Marketing notifications"` |
 | `MarketingPolicyOptInText` | `*string` | Optional | marketing policy text<br>**Default**: `"Marketing policy content"` |
 | `Message` | `*string` | Optional | **Default**: `"Sign in to get online"` |
