@@ -13,7 +13,7 @@ orgsLinkedApplications := client.OrgsLinkedApplications()
 * [Add Org Oauth App Accounts](../../doc/controllers/orgs-linked-applications.md#add-org-oauth-app-accounts)
 * [Delete Org Oauth App Authorization](../../doc/controllers/orgs-linked-applications.md#delete-org-oauth-app-authorization)
 * [Get Org Oauth App Linked Status](../../doc/controllers/orgs-linked-applications.md#get-org-oauth-app-linked-status)
-* [Update Org Oauth App Accounts](../../doc/controllers/orgs-linked-applications.md#update-org-oauth-app-accounts)
+* [Update Org Oauth App Account](../../doc/controllers/orgs-linked-applications.md#update-org-oauth-app-account)
 
 
 # Add Org Oauth App Accounts
@@ -247,14 +247,14 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Org Oauth App Accounts
+# Update Org Oauth App Account
 
 Update Zoom, Teams, Intune Authorization.
 
 Request Payload, These Field And Values Will Be Specific To Each Of The Third Party Apps Accounts.
 
 ```go
-UpdateOrgOauthAppAccounts(
+UpdateOrgOauthAppAccount(
     ctx context.Context,
     orgId uuid.UUID,
     appName models.OauthAppNameEnum,
@@ -289,7 +289,7 @@ body := models.AccountOauthConfig{
     MaxDailyApiRequests:  models.ToPointer(5000),
 }
 
-resp, err := orgsLinkedApplications.UpdateOrgOauthAppAccounts(ctx, orgId, appName, &body)
+resp, err := orgsLinkedApplications.UpdateOrgOauthAppAccount(ctx, orgId, appName, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

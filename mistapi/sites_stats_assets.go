@@ -81,58 +81,6 @@ func (s *SitesStatsAssets) ListSiteAssetsStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteAssetStats takes context, siteId, start, end, duration as parameters and
-// returns an models.ApiResponse with models.StatsAsset data and
-// an error if there was an issue with the request or response.
-// Get Site Asset Details
-func (s *SitesStatsAssets) GetSiteAssetStats(
-    ctx context.Context,
-    siteId uuid.UUID,
-    start *int,
-    end *int,
-    duration *string) (
-    models.ApiResponse[models.StatsAsset],
-    error) {
-    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/asset_id")
-    req.AppendTemplateParams(siteId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    if start != nil {
-        req.QueryParam("start", *start)
-    }
-    if end != nil {
-        req.QueryParam("end", *end)
-    }
-    if duration != nil {
-        req.QueryParam("duration", *duration)
-    }
-    
-    var result models.StatsAsset
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.StatsAsset](decoder)
-    return models.NewApiResponse(result, resp), err
-}
-
 // CountSiteAssets takes context, siteId, distinct as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
@@ -286,6 +234,59 @@ func (s *SitesStatsAssets) SearchSiteAssets(
     }
     
     result, err = utilities.DecodeResults[models.ResponseStatsAssets](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteAssetStats takes context, siteId, assetId, start, end, duration as parameters and
+// returns an models.ApiResponse with models.StatsAsset data and
+// an error if there was an issue with the request or response.
+// Get Site Asset Details
+func (s *SitesStatsAssets) GetSiteAssetStats(
+    ctx context.Context,
+    siteId uuid.UUID,
+    assetId uuid.UUID,
+    start *int,
+    end *int,
+    duration *string) (
+    models.ApiResponse[models.StatsAsset],
+    error) {
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/%v")
+    req.AppendTemplateParams(siteId, assetId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if start != nil {
+        req.QueryParam("start", *start)
+    }
+    if end != nil {
+        req.QueryParam("end", *end)
+    }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
+    
+    var result models.StatsAsset
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.StatsAsset](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

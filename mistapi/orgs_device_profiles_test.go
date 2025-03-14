@@ -32,15 +32,15 @@ func TestOrgsDeviceProfilesTestListOrgDeviceProfiles(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsDeviceProfilesTestCreateOrgDeviceProfiles tests the behavior of the OrgsDeviceProfiles
-func TestOrgsDeviceProfilesTestCreateOrgDeviceProfiles(t *testing.T) {
+// TestOrgsDeviceProfilesTestCreateOrgDeviceProfile tests the behavior of the OrgsDeviceProfiles
+func TestOrgsDeviceProfilesTestCreateOrgDeviceProfile(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfiles(ctx, orgId, nil)
+    apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfile(ctx, orgId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

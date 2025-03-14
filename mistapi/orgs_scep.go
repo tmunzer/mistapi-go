@@ -147,11 +147,11 @@ func (o *OrgsSCEP) UpdateOrgMistScep(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetOrgIssuedClientCertificates takes context, orgId, ssoNameId, serialNumber, deviceId as parameters and
+// ListOrgIssuedClientCertificates takes context, orgId, ssoNameId, serialNumber, deviceId as parameters and
 // returns an models.ApiResponse with models.IssuedClientCertificatesResults data and
 // an error if there was an issue with the request or response.
 // Get Issued Client Certificates
-func (o *OrgsSCEP) GetOrgIssuedClientCertificates(
+func (o *OrgsSCEP) ListOrgIssuedClientCertificates(
     ctx context.Context,
     orgId uuid.UUID,
     ssoNameId *string,

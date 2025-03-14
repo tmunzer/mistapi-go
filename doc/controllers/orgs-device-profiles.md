@@ -11,7 +11,7 @@ orgsDeviceProfiles := client.OrgsDeviceProfiles()
 ## Methods
 
 * [Assign Org Device Profile](../../doc/controllers/orgs-device-profiles.md#assign-org-device-profile)
-* [Create Org Device Profiles](../../doc/controllers/orgs-device-profiles.md#create-org-device-profiles)
+* [Create Org Device Profile](../../doc/controllers/orgs-device-profiles.md#create-org-device-profile)
 * [Delete Org Device Profile](../../doc/controllers/orgs-device-profiles.md#delete-org-device-profile)
 * [Get Org Device Profile](../../doc/controllers/orgs-device-profiles.md#get-org-device-profile)
 * [List Org Device Profiles](../../doc/controllers/orgs-device-profiles.md#list-org-device-profiles)
@@ -92,12 +92,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Create Org Device Profiles
+# Create Org Device Profile
 
 Create Device Profile
 
 ```go
-CreateOrgDeviceProfiles(
+CreateOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Deviceprofile) (
@@ -150,7 +150,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
     }),
 })
 
-apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfiles(ctx, orgId, &body)
+apiResponse, err := orgsDeviceProfiles.CreateOrgDeviceProfile(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

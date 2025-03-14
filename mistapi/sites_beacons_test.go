@@ -56,8 +56,8 @@ func TestSitesBeaconsTestCreateSiteBeacon(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesBeaconsTestDeleteSiteBeacons tests the behavior of the SitesBeacons
-func TestSitesBeaconsTestDeleteSiteBeacons(t *testing.T) {
+// TestSitesBeaconsTestDeleteSiteBeacon tests the behavior of the SitesBeacons
+func TestSitesBeaconsTestDeleteSiteBeacon(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -67,7 +67,7 @@ func TestSitesBeaconsTestDeleteSiteBeacons(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    resp, err := sitesBeacons.DeleteSiteBeacons(ctx, siteId, beaconId)
+    resp, err := sitesBeacons.DeleteSiteBeacon(ctx, siteId, beaconId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -98,8 +98,8 @@ func TestSitesBeaconsTestGetSiteBeacon(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesBeaconsTestUpdateSiteBeacons tests the behavior of the SitesBeacons
-func TestSitesBeaconsTestUpdateSiteBeacons(t *testing.T) {
+// TestSitesBeaconsTestUpdateSiteBeacon tests the behavior of the SitesBeacons
+func TestSitesBeaconsTestUpdateSiteBeacon(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -114,7 +114,7 @@ func TestSitesBeaconsTestUpdateSiteBeacons(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := sitesBeacons.UpdateSiteBeacons(ctx, siteId, beaconId, &body)
+    apiResponse, err := sitesBeacons.UpdateSiteBeacon(ctx, siteId, beaconId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

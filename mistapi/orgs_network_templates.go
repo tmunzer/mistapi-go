@@ -194,11 +194,11 @@ func (o *OrgsNetworkTemplates) GetOrgNetworkTemplate(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateOrgNetworkTemplates takes context, orgId, networktemplateId, body as parameters and
+// UpdateOrgNetworkTemplate takes context, orgId, networktemplateId, body as parameters and
 // returns an models.ApiResponse with models.NetworkTemplate data and
 // an error if there was an issue with the request or response.
 // Update Org Network Template
-func (o *OrgsNetworkTemplates) UpdateOrgNetworkTemplates(
+func (o *OrgsNetworkTemplates) UpdateOrgNetworkTemplate(
     ctx context.Context,
     orgId uuid.UUID,
     networktemplateId uuid.UUID,

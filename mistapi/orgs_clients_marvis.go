@@ -62,11 +62,11 @@ func (o *OrgsClientsMarvis) ListOrgMarvisClientInvites(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgMarvisClientInvites takes context, orgId, body as parameters and
+// CreateOrgMarvisClientInvite takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.MarvisClient data and
 // an error if there was an issue with the request or response.
-// Create Org Marvis Client Invites
-func (o *OrgsClientsMarvis) CreateOrgMarvisClientInvites(
+// Create Org Marvis Client Invite
+func (o *OrgsClientsMarvis) CreateOrgMarvisClientInvite(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.MarvisClient) (
@@ -145,11 +145,11 @@ func (o *OrgsClientsMarvis) DeleteOrgMarvisClientInvite(
     return httpCtx.Response, err
 }
 
-// GetOrgMarvisClientInvites takes context, orgId, marvisinviteId as parameters and
+// GetOrgMarvisClientInvite takes context, orgId, marvisinviteId as parameters and
 // returns an models.ApiResponse with models.MarvisClient data and
 // an error if there was an issue with the request or response.
 // Get Org Marvis Client Invite
-func (o *OrgsClientsMarvis) GetOrgMarvisClientInvites(
+func (o *OrgsClientsMarvis) GetOrgMarvisClientInvite(
     ctx context.Context,
     orgId uuid.UUID,
     marvisinviteId uuid.UUID) (

@@ -10,7 +10,6 @@ constantsDefinitions := client.ConstantsDefinitions()
 
 ## Methods
 
-* [Get License Types](../../doc/controllers/constants-definitions.md#get-license-types)
 * [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions)
 * [List Ap Channels](../../doc/controllers/constants-definitions.md#list-ap-channels)
 * [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition)
@@ -21,68 +20,12 @@ constantsDefinitions := client.ConstantsDefinitions()
 * [List Fingerprint Types](../../doc/controllers/constants-definitions.md#list-fingerprint-types)
 * [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)
 * [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
+* [List License Types](../../doc/controllers/constants-definitions.md#list-license-types)
 * [List Marvis Client Versions](../../doc/controllers/constants-definitions.md#list-marvis-client-versions)
 * [List Site Languages](../../doc/controllers/constants-definitions.md#list-site-languages)
 * [List States](../../doc/controllers/constants-definitions.md#list-states)
 * [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)
 * [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics)
-
-
-# Get License Types
-
-Get License Types
-
-```go
-GetLicenseTypes(
-    ctx context.Context) (
-    models.ApiResponse[[]models.ConstLicenseType],
-    error)
-```
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstLicenseType](../../doc/models/const-license-type.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-apiResponse, err := constantsDefinitions.GetLicenseTypes(ctx)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "description": "Wired Assurance 12",
-    "includes": [
-      "sub_ex12a",
-      "sub_ex12p"
-    ],
-    "key": "sub_ex12",
-    "name": "SUB-EX12"
-  }
-]
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # List Alarm Definitions
@@ -1205,6 +1148,63 @@ if err != nil {
     "unit": ""
   }
 }
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List License Types
+
+Get License Types
+
+```go
+ListLicenseTypes(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstLicenseType],
+    error)
+```
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstLicenseType](../../doc/models/const-license-type.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListLicenseTypes(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "description": "Wired Assurance 12",
+    "includes": [
+      "sub_ex12a",
+      "sub_ex12p"
+    ],
+    "key": "sub_ex12",
+    "name": "SUB-EX12"
+  }
+]
 ```
 
 ## Errors

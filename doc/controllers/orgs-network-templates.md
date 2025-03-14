@@ -14,7 +14,7 @@ orgsNetworkTemplates := client.OrgsNetworkTemplates()
 * [Delete Org Network Template](../../doc/controllers/orgs-network-templates.md#delete-org-network-template)
 * [Get Org Network Template](../../doc/controllers/orgs-network-templates.md#get-org-network-template)
 * [List Org Network Templates](../../doc/controllers/orgs-network-templates.md#list-org-network-templates)
-* [Update Org Network Templates](../../doc/controllers/orgs-network-templates.md#update-org-network-templates)
+* [Update Org Network Template](../../doc/controllers/orgs-network-templates.md#update-org-network-template)
 
 
 # Create Org Network Template
@@ -926,12 +926,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Org Network Templates
+# Update Org Network Template
 
 Update Org Network Template
 
 ```go
-UpdateOrgNetworkTemplates(
+UpdateOrgNetworkTemplate(
     ctx context.Context,
     orgId uuid.UUID,
     networktemplateId uuid.UUID,
@@ -1156,7 +1156,7 @@ body := models.NetworkTemplate{
     },
 }
 
-apiResponse, err := orgsNetworkTemplates.UpdateOrgNetworkTemplates(ctx, orgId, networktemplateId, &body)
+apiResponse, err := orgsNetworkTemplates.UpdateOrgNetworkTemplate(ctx, orgId, networktemplateId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

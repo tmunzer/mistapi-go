@@ -70,11 +70,11 @@ func (o *OrgsVPNs) ListOrgsVpns(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgVpns takes context, orgId, body as parameters and
+// CreateOrgVpn takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Vpn data and
 // an error if there was an issue with the request or response.
 // Create Org VPN
-func (o *OrgsVPNs) CreateOrgVpns(
+func (o *OrgsVPNs) CreateOrgVpn(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Vpn) (

@@ -27,8 +27,8 @@ func TestSitesRRMTestGetSiteCurrentChannelPlanning(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesRRMTestGetSiteRrmEvents tests the behavior of the SitesRRM
-func TestSitesRRMTestGetSiteRrmEvents(t *testing.T) {
+// TestSitesRRMTestListSiteRrmEvents tests the behavior of the SitesRRM
+func TestSitesRRMTestListSiteRrmEvents(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -40,7 +40,7 @@ func TestSitesRRMTestGetSiteRrmEvents(t *testing.T) {
     duration := "1d"
     limit := int(100)
     page := int(1)
-    apiResponse, err := sitesRrm.GetSiteRrmEvents(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
+    apiResponse, err := sitesRrm.ListSiteRrmEvents(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

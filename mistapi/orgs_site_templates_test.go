@@ -29,15 +29,15 @@ func TestOrgsSiteTemplatesTestListOrgSiteTemplates(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsSiteTemplatesTestCreateOrgSiteTemplates tests the behavior of the OrgsSiteTemplates
-func TestOrgsSiteTemplatesTestCreateOrgSiteTemplates(t *testing.T) {
+// TestOrgsSiteTemplatesTestCreateOrgSiteTemplate tests the behavior of the OrgsSiteTemplates
+func TestOrgsSiteTemplatesTestCreateOrgSiteTemplate(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := orgsSiteTemplates.CreateOrgSiteTemplates(ctx, orgId, nil)
+    apiResponse, err := orgsSiteTemplates.CreateOrgSiteTemplate(ctx, orgId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

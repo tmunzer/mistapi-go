@@ -99,6 +99,7 @@ Get Site Asset Details
 GetSiteAssetStats(
     ctx context.Context,
     siteId uuid.UUID,
+    assetId uuid.UUID,
     start *int,
     end *int,
     duration *string) (
@@ -111,6 +112,7 @@ GetSiteAssetStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
+| `assetId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
@@ -126,13 +128,15 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesStatsAssets.GetSiteAssetStats(ctx, siteId, nil, nil, &duration)
+apiResponse, err := sitesStatsAssets.GetSiteAssetStats(ctx, siteId, assetId, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

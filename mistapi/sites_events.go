@@ -21,11 +21,11 @@ func NewSitesEvents(baseController baseController) *SitesEvents {
     return &sitesEvents
 }
 
-// GetSiteRoamingEvents takes context, siteId, mType, limit, start, end, duration as parameters and
+// ListSiteRoamingEvents takes context, siteId, mType, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseEventsFastroam data and
 // an error if there was an issue with the request or response.
-// Get Roaming Events data
-func (s *SitesEvents) GetSiteRoamingEvents(
+// List Roaming Events data
+func (s *SitesEvents) ListSiteRoamingEvents(
     ctx context.Context,
     siteId uuid.UUID,
     mType *models.FastRoamResultEnum,

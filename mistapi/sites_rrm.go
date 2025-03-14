@@ -107,11 +107,11 @@ func (s *SitesRRM) GetSiteCurrentRrmConsiderations(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteRrmEvents takes context, siteId, band, start, end, duration, limit, page as parameters and
+// ListSiteRrmEvents takes context, siteId, band, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseEventsRrm data and
 // an error if there was an issue with the request or response.
-// Get Site RRM Events
-func (s *SitesRRM) GetSiteRrmEvents(
+// List Site RRM Events
+func (s *SitesRRM) ListSiteRrmEvents(
     ctx context.Context,
     siteId uuid.UUID,
     band *models.Dot11BandEnum,
@@ -171,11 +171,11 @@ func (s *SitesRRM) GetSiteRrmEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteCurrentRrmNeighbors takes context, siteId, band, limit, page as parameters and
+// ListSiteCurrentRrmNeighbors takes context, siteId, band, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseRrmNeighbors data and
 // an error if there was an issue with the request or response.
-// Get Current RRM observed neighbors
-func (s *SitesRRM) GetSiteCurrentRrmNeighbors(
+// List Current RRM observed neighbors
+func (s *SitesRRM) ListSiteCurrentRrmNeighbors(
     ctx context.Context,
     siteId uuid.UUID,
     band models.Dot11BandEnum,

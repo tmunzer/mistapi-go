@@ -70,11 +70,11 @@ func (s *SitesAssetFilters) ListSiteAssetFilters(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateSiteAssetFilters takes context, siteId, body as parameters and
+// CreateSiteAssetFilter takes context, siteId, body as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
 // Create Site Asset Filter
-func (s *SitesAssetFilters) CreateSiteAssetFilters(
+func (s *SitesAssetFilters) CreateSiteAssetFilter(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.AssetFilter) (

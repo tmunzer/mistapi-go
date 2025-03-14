@@ -10,19 +10,19 @@ orgsSiteTemplates := client.OrgsSiteTemplates()
 
 ## Methods
 
-* [Create Org Site Templates](../../doc/controllers/orgs-site-templates.md#create-org-site-templates)
+* [Create Org Site Template](../../doc/controllers/orgs-site-templates.md#create-org-site-template)
 * [Delete Org Site Template](../../doc/controllers/orgs-site-templates.md#delete-org-site-template)
 * [Get Org Site Template](../../doc/controllers/orgs-site-templates.md#get-org-site-template)
 * [List Org Site Templates](../../doc/controllers/orgs-site-templates.md#list-org-site-templates)
 * [Update Org Site Template](../../doc/controllers/orgs-site-templates.md#update-org-site-template)
 
 
-# Create Org Site Templates
+# Create Org Site Template
 
 Create Org Site Template
 
 ```go
-CreateOrgSiteTemplates(
+CreateOrgSiteTemplate(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.SiteTemplate) (
@@ -55,7 +55,7 @@ body := models.SiteTemplate{
     },
 }
 
-apiResponse, err := orgsSiteTemplates.CreateOrgSiteTemplates(ctx, orgId, &body)
+apiResponse, err := orgsSiteTemplates.CreateOrgSiteTemplate(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

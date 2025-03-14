@@ -74,11 +74,11 @@ func (o *OrgsDeviceProfiles) ListOrgDeviceProfiles(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgDeviceProfiles takes context, orgId, body as parameters and
+// CreateOrgDeviceProfile takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Deviceprofile data and
 // an error if there was an issue with the request or response.
 // Create Device Profile
-func (o *OrgsDeviceProfiles) CreateOrgDeviceProfiles(
+func (o *OrgsDeviceProfiles) CreateOrgDeviceProfile(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Deviceprofile) (

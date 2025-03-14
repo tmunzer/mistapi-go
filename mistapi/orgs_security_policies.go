@@ -70,11 +70,11 @@ func (o *OrgsSecurityPolicies) ListOrgSecPolicies(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgSecPolicies takes context, orgId, body as parameters and
+// CreateOrgSecPolicy takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Secpolicy data and
 // an error if there was an issue with the request or response.
 // Create Org Security Policy
-func (o *OrgsSecurityPolicies) CreateOrgSecPolicies(
+func (o *OrgsSecurityPolicies) CreateOrgSecPolicy(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Secpolicy) (
@@ -194,11 +194,11 @@ func (o *OrgsSecurityPolicies) GetOrgSecPolicy(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateOrgSecPolicies takes context, orgId, secpolicyId, body as parameters and
+// UpdateOrgSecPolicy takes context, orgId, secpolicyId, body as parameters and
 // returns an models.ApiResponse with models.Secpolicy data and
 // an error if there was an issue with the request or response.
 // Update Org Security Policy
-func (o *OrgsSecurityPolicies) UpdateOrgSecPolicies(
+func (o *OrgsSecurityPolicies) UpdateOrgSecPolicy(
     ctx context.Context,
     orgId uuid.UUID,
     secpolicyId uuid.UUID,

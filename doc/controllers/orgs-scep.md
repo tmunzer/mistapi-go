@@ -11,8 +11,8 @@ orgsSCEP := client.OrgsSCEP()
 ## Methods
 
 * [Disable Org Mist Scep](../../doc/controllers/orgs-scep.md#disable-org-mist-scep)
-* [Get Org Issued Client Certificates](../../doc/controllers/orgs-scep.md#get-org-issued-client-certificates)
 * [Get Org Mist Scep](../../doc/controllers/orgs-scep.md#get-org-mist-scep)
+* [List Org Issued Client Certificates](../../doc/controllers/orgs-scep.md#list-org-issued-client-certificates)
 * [Revoke Org Issued Client Certificates](../../doc/controllers/orgs-scep.md#revoke-org-issued-client-certificates)
 * [Update Org Mist Scep](../../doc/controllers/orgs-scep.md#update-org-mist-scep)
 
@@ -75,84 +75,6 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Issued Client Certificates
-
-Get Issued Client Certificates
-
-```go
-GetOrgIssuedClientCertificates(
-    ctx context.Context,
-    orgId uuid.UUID,
-    ssoNameId *string,
-    serialNumber *string,
-    deviceId *string) (
-    models.ApiResponse[models.IssuedClientCertificatesResults],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-| `ssoNameId` | `*string` | Query, Optional | sso_name_id obtained from NAC Portal |
-| `serialNumber` | `*string` | Query, Optional | Serial Number of the certificate |
-| `deviceId` | `*string` | Query, Optional | Device ID |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IssuedClientCertificatesResults](../../doc/models/issued-client-certificates-results.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
-
-apiResponse, err := orgsSCEP.GetOrgIssuedClientCertificates(ctx, orgId, nil, nil, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "results": [
-    {
-      "created_time": 1431382121,
-      "device_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
-      "expire_time": 1718921115,
-      "serial_number": "13 00 13 03 23 EE D5 84 01",
-      "sso_name_id": "john@corp.com"
-    }
-  ]
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
 # Get Org Mist Scep
 
 Get Mist SCEP Org setting
@@ -197,6 +119,84 @@ if err != nil {
 ```json
 {
   "enabled": true
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Org Issued Client Certificates
+
+Get Issued Client Certificates
+
+```go
+ListOrgIssuedClientCertificates(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ssoNameId *string,
+    serialNumber *string,
+    deviceId *string) (
+    models.ApiResponse[models.IssuedClientCertificatesResults],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ssoNameId` | `*string` | Query, Optional | sso_name_id obtained from NAC Portal |
+| `serialNumber` | `*string` | Query, Optional | Serial Number of the certificate |
+| `deviceId` | `*string` | Query, Optional | Device ID |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.IssuedClientCertificatesResults](../../doc/models/issued-client-certificates-results.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
+
+
+
+apiResponse, err := orgsSCEP.ListOrgIssuedClientCertificates(ctx, orgId, nil, nil, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "results": [
+    {
+      "created_time": 1431382121,
+      "device_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
+      "expire_time": 1718921115,
+      "serial_number": "13 00 13 03 23 EE D5 84 01",
+      "sso_name_id": "john@corp.com"
+    }
+  ]
 }
 ```
 

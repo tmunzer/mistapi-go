@@ -81,11 +81,11 @@ func (s *SitesSLEs) GetSiteSleClassifierDetails(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleMetricClassifiers takes context, siteId, scope, scopeId, metric as parameters and
+// ListSiteSleMetricClassifiers takes context, siteId, scope, scopeId, metric as parameters and
 // returns an models.ApiResponse with []string data and
 // an error if there was an issue with the request or response.
-// Get the list of classifiers for a specific metric
-func (s *SitesSLEs) GetSiteSleMetricClassifiers(
+// List classifiers for a specific metric
+func (s *SitesSLEs) ListSiteSleMetricClassifiers(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleMetricClassifiersScopeParametersEnum,
@@ -257,11 +257,11 @@ func (s *SitesSLEs) GetSiteSleImpactSummary(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedApplications takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedApplications takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedApplications data and
 // an error if there was an issue with the request or response.
-// For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedApplications(
+// For WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedApplications(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleScopeEnum,
@@ -320,11 +320,11 @@ func (s *SitesSLEs) GetSiteSleImpactedApplications(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedAps takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedAps takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedAps data and
 // an error if there was an issue with the request or response.
-// For Wireless SLEs. Get list of impacted APs optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedAps(
+// For Wireless SLEs. Listimpacted APs optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedAps(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedApsScopeParametersEnum,
@@ -383,11 +383,11 @@ func (s *SitesSLEs) GetSiteSleImpactedAps(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedChassis takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedChassis takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedChassis data and
 // an error if there was an issue with the request or response.
-// For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedChassis(
+// For Wired and WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedChassis(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedChassisScopeParametersEnum,
@@ -446,11 +446,11 @@ func (s *SitesSLEs) GetSiteSleImpactedChassis(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedWiredClients takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedWiredClients takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedClients data and
 // an error if there was an issue with the request or response.
-// For Wired SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedWiredClients(
+// For Wired SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedWiredClients(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedClientsScopeParametersEnum,
@@ -509,11 +509,11 @@ func (s *SitesSLEs) GetSiteSleImpactedWiredClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedGateways takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedGateways takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedGateways data and
 // an error if there was an issue with the request or response.
-// For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedGateways(
+// For WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedGateways(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedGatewaysScopeParametersEnum,
@@ -572,11 +572,11 @@ func (s *SitesSLEs) GetSiteSleImpactedGateways(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedInterfaces takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedInterfaces takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedInterfaces data and
 // an error if there was an issue with the request or response.
-// For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedInterfaces(
+// For Wired and WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedInterfaces(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedInterfacesScopeParametersEnum,
@@ -635,11 +635,11 @@ func (s *SitesSLEs) GetSiteSleImpactedInterfaces(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedSwitches takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedSwitches takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedSwitches data and
 // an error if there was an issue with the request or response.
-// For Wired SLEs. Get list of impacted switches optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedSwitches(
+// For Wired SLEs. List the impacted switches optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedSwitches(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedSwitchesScopeParametersEnum,
@@ -698,11 +698,11 @@ func (s *SitesSLEs) GetSiteSleImpactedSwitches(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSleImpactedWirelessClients takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
+// ListSiteSleImpactedWirelessClients takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedUsers data and
 // an error if there was an issue with the request or response.
-// For Wireless SLEs. Get list of impacted wireless users optionally filtered by classifier and failure type
-func (s *SitesSLEs) GetSiteSleImpactedWirelessClients(
+// For Wireless SLEs. List the impacted wireless users optionally filtered by classifier and failure type
+func (s *SitesSLEs) ListSiteSleImpactedWirelessClients(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleImpactedUsersScopeParameterEnum,
@@ -971,11 +971,11 @@ func (s *SitesSLEs) UpdateSiteSleThreshold(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteSlesMetrics takes context, siteId, scope, scopeId as parameters and
+// ListSiteSlesMetrics takes context, siteId, scope, scopeId as parameters and
 // returns an models.ApiResponse with models.SiteSleMetrics data and
 // an error if there was an issue with the request or response.
-// Get the list of metrics for the given scope
-func (s *SitesSLEs) GetSiteSlesMetrics(
+// List the metrics for the given scope
+func (s *SitesSLEs) ListSiteSlesMetrics(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleMetricsScopeParametersEnum,

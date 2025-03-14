@@ -96,8 +96,8 @@ func TestOrgsNetworkTemplatesTestGetOrgNetworkTemplate(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestOrgsNetworkTemplatesTestUpdateOrgNetworkTemplates tests the behavior of the OrgsNetworkTemplates
-func TestOrgsNetworkTemplatesTestUpdateOrgNetworkTemplates(t *testing.T) {
+// TestOrgsNetworkTemplatesTestUpdateOrgNetworkTemplate tests the behavior of the OrgsNetworkTemplates
+func TestOrgsNetworkTemplatesTestUpdateOrgNetworkTemplate(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -112,7 +112,7 @@ func TestOrgsNetworkTemplatesTestUpdateOrgNetworkTemplates(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsNetworkTemplates.UpdateOrgNetworkTemplates(ctx, orgId, networktemplateId, &body)
+    apiResponse, err := orgsNetworkTemplates.UpdateOrgNetworkTemplate(ctx, orgId, networktemplateId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

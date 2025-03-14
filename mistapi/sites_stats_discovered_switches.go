@@ -157,11 +157,11 @@ func (s *SitesStatsDiscoveredSwitches) CountSiteDiscoveredSwitches(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetSiteDiscoveredSwitchesMetrics takes context, siteId, threshold, systemName as parameters and
+// ListSiteDiscoveredSwitchesMetrics takes context, siteId, threshold, systemName as parameters and
 // returns an models.ApiResponse with models.ResponseDswitchesMetrics data and
 // an error if there was an issue with the request or response.
 // Discovered switches related metrics, lists related switch system names & details if not compliant
-func (s *SitesStatsDiscoveredSwitches) GetSiteDiscoveredSwitchesMetrics(
+func (s *SitesStatsDiscoveredSwitches) ListSiteDiscoveredSwitchesMetrics(
     ctx context.Context,
     siteId uuid.UUID,
     threshold *string,

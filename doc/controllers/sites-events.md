@@ -11,7 +11,7 @@ sitesEvents := client.SitesEvents()
 ## Methods
 
 * [Count Site System Events](../../doc/controllers/sites-events.md#count-site-system-events)
-* [Get Site Roaming Events](../../doc/controllers/sites-events.md#get-site-roaming-events)
+* [List Site Roaming Events](../../doc/controllers/sites-events.md#list-site-roaming-events)
 * [Search Site System Events](../../doc/controllers/sites-events.md#search-site-system-events)
 
 
@@ -107,12 +107,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Roaming Events
+# List Site Roaming Events
 
-Get Roaming Events data
+List Roaming Events data
 
 ```go
-GetSiteRoamingEvents(
+ListSiteRoamingEvents(
     ctx context.Context,
     siteId uuid.UUID,
     mType *models.FastRoamResultEnum,
@@ -156,7 +156,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesEvents.GetSiteRoamingEvents(ctx, siteId, nil, &limit, nil, nil, &duration)
+apiResponse, err := sitesEvents.ListSiteRoamingEvents(ctx, siteId, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

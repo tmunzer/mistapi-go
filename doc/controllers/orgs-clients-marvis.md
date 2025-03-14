@@ -10,19 +10,19 @@ orgsClientsMarvis := client.OrgsClientsMarvis()
 
 ## Methods
 
-* [Create Org Marvis Client Invites](../../doc/controllers/orgs-clients-marvis.md#create-org-marvis-client-invites)
+* [Create Org Marvis Client Invite](../../doc/controllers/orgs-clients-marvis.md#create-org-marvis-client-invite)
 * [Delete Org Marvis Client Invite](../../doc/controllers/orgs-clients-marvis.md#delete-org-marvis-client-invite)
-* [Get Org Marvis Client Invites](../../doc/controllers/orgs-clients-marvis.md#get-org-marvis-client-invites)
+* [Get Org Marvis Client Invite](../../doc/controllers/orgs-clients-marvis.md#get-org-marvis-client-invite)
 * [List Org Marvis Client Invites](../../doc/controllers/orgs-clients-marvis.md#list-org-marvis-client-invites)
 * [Update Org Marvis Client Invite](../../doc/controllers/orgs-clients-marvis.md#update-org-marvis-client-invite)
 
 
-# Create Org Marvis Client Invites
+# Create Org Marvis Client Invite
 
-Create Org Marvis Client Invites
+Create Org Marvis Client Invite
 
 ```go
-CreateOrgMarvisClientInvites(
+CreateOrgMarvisClientInvite(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.MarvisClient) (
@@ -52,7 +52,7 @@ body := models.MarvisClient{
     Name:                 models.ToPointer("string"),
 }
 
-apiResponse, err := orgsClientsMarvis.CreateOrgMarvisClientInvites(ctx, orgId, &body)
+apiResponse, err := orgsClientsMarvis.CreateOrgMarvisClientInvite(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -134,12 +134,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Marvis Client Invites
+# Get Org Marvis Client Invite
 
 Get Org Marvis Client Invite
 
 ```go
-GetOrgMarvisClientInvites(
+GetOrgMarvisClientInvite(
     ctx context.Context,
     orgId uuid.UUID,
     marvisinviteId uuid.UUID) (
@@ -167,7 +167,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 marvisinviteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsClientsMarvis.GetOrgMarvisClientInvites(ctx, orgId, marvisinviteId)
+apiResponse, err := orgsClientsMarvis.GetOrgMarvisClientInvite(ctx, orgId, marvisinviteId)
 if err != nil {
     log.Fatalln(err)
 } else {

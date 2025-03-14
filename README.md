@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2502.1.15**
+> Version: **2502.1.16**
 > 
-> Date: **March 12, 2025**
+> Date: **March 14, 2025**
 
 ---
 
@@ -15,9 +15,7 @@
 * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html)
 * [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html)
 * [Mist Product Updates](https://www.juniper.net/documentation/us/en/software/mist/product-updates/)
-
----
-
+  | ---
 
 ### Helpful Resources
 

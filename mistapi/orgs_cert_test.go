@@ -7,14 +7,14 @@ import (
     "testing"
 )
 
-// TestOrgsCertTestGetOrgCertificates tests the behavior of the OrgsCert
-func TestOrgsCertTestGetOrgCertificates(t *testing.T) {
+// TestOrgsCertTestListOrgCertificates tests the behavior of the OrgsCert
+func TestOrgsCertTestListOrgCertificates(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsCert.GetOrgCertificates(ctx, orgId)
+    apiResponse, err := orgsCert.ListOrgCertificates(ctx, orgId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

@@ -29,8 +29,8 @@ func TestOrgsAssetFiltersTestListOrgAssetFilters(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestOrgsAssetFiltersTestCreateOrgAssetFilters tests the behavior of the OrgsAssetFilters
-func TestOrgsAssetFiltersTestCreateOrgAssetFilters(t *testing.T) {
+// TestOrgsAssetFiltersTestCreateOrgAssetFilter tests the behavior of the OrgsAssetFilters
+func TestOrgsAssetFiltersTestCreateOrgAssetFilter(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -41,7 +41,7 @@ func TestOrgsAssetFiltersTestCreateOrgAssetFilters(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsAssetFilters.CreateOrgAssetFilters(ctx, orgId, &body)
+    apiResponse, err := orgsAssetFilters.CreateOrgAssetFilter(ctx, orgId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -96,8 +96,8 @@ func TestOrgsAssetFiltersTestGetOrgAssetFilter(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsAssetFiltersTestUpdateOrgAssetFilters tests the behavior of the OrgsAssetFilters
-func TestOrgsAssetFiltersTestUpdateOrgAssetFilters(t *testing.T) {
+// TestOrgsAssetFiltersTestUpdateOrgAssetFilter tests the behavior of the OrgsAssetFilters
+func TestOrgsAssetFiltersTestUpdateOrgAssetFilter(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -112,7 +112,7 @@ func TestOrgsAssetFiltersTestUpdateOrgAssetFilters(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsAssetFilters.UpdateOrgAssetFilters(ctx, orgId, assetfilterId, &body)
+    apiResponse, err := orgsAssetFilters.UpdateOrgAssetFilter(ctx, orgId, assetfilterId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

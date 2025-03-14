@@ -111,12 +111,12 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateOrgOauthAppAccounts takes context, orgId, appName, body as parameters and
+// UpdateOrgOauthAppAccount takes context, orgId, appName, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Update Zoom, Teams, Intune Authorization.
 // Request Payload, These Field And Values Will Be Specific To Each Of The Third Party Apps Accounts.
-func (o *OrgsLinkedApplications) UpdateOrgOauthAppAccounts(
+func (o *OrgsLinkedApplications) UpdateOrgOauthAppAccount(
     ctx context.Context,
     orgId uuid.UUID,
     appName models.OauthAppNameEnum,

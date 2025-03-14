@@ -8,8 +8,8 @@ import (
     "testing"
 )
 
-// TestSitesEventsTestGetSiteRoamingEvents tests the behavior of the SitesEvents
-func TestSitesEventsTestGetSiteRoamingEvents(t *testing.T) {
+// TestSitesEventsTestListSiteRoamingEvents tests the behavior of the SitesEvents
+func TestSitesEventsTestListSiteRoamingEvents(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -20,7 +20,7 @@ func TestSitesEventsTestGetSiteRoamingEvents(t *testing.T) {
     
     
     duration := "1d"
-    apiResponse, err := sitesEvents.GetSiteRoamingEvents(ctx, siteId, nil, &limit, nil, nil, &duration)
+    apiResponse, err := sitesEvents.ListSiteRoamingEvents(ctx, siteId, nil, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

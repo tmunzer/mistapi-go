@@ -13,18 +13,18 @@ sitesSLEs := client.SitesSLEs()
 * [Get Site Sle Classifier Details](../../doc/controllers/sites-sl-es.md#get-site-sle-classifier-details)
 * [Get Site Sle Histogram](../../doc/controllers/sites-sl-es.md#get-site-sle-histogram)
 * [Get Site Sle Impact Summary](../../doc/controllers/sites-sl-es.md#get-site-sle-impact-summary)
-* [Get Site Sle Impacted Applications](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-applications)
-* [Get Site Sle Impacted Aps](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-aps)
-* [Get Site Sle Impacted Chassis](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-chassis)
-* [Get Site Sle Impacted Gateways](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-gateways)
-* [Get Site Sle Impacted Interfaces](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-interfaces)
-* [Get Site Sle Impacted Switches](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-switches)
-* [Get Site Sle Impacted Wired Clients](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-wired-clients)
-* [Get Site Sle Impacted Wireless Clients](../../doc/controllers/sites-sl-es.md#get-site-sle-impacted-wireless-clients)
-* [Get Site Sle Metric Classifiers](../../doc/controllers/sites-sl-es.md#get-site-sle-metric-classifiers)
 * [Get Site Sle Summary](../../doc/controllers/sites-sl-es.md#get-site-sle-summary)
 * [Get Site Sle Threshold](../../doc/controllers/sites-sl-es.md#get-site-sle-threshold)
-* [Get Site Sles Metrics](../../doc/controllers/sites-sl-es.md#get-site-sles-metrics)
+* [List Site Sle Impacted Applications](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-applications)
+* [List Site Sle Impacted Aps](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-aps)
+* [List Site Sle Impacted Chassis](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-chassis)
+* [List Site Sle Impacted Gateways](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-gateways)
+* [List Site Sle Impacted Interfaces](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-interfaces)
+* [List Site Sle Impacted Switches](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-switches)
+* [List Site Sle Impacted Wired Clients](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-wired-clients)
+* [List Site Sle Impacted Wireless Clients](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-wireless-clients)
+* [List Site Sle Metric Classifiers](../../doc/controllers/sites-sl-es.md#list-site-sle-metric-classifiers)
+* [List Site Sles Metrics](../../doc/controllers/sites-sl-es.md#list-site-sles-metrics)
 * [Replace Site Sle Threshold](../../doc/controllers/sites-sl-es.md#replace-site-sle-threshold)
 * [Update Site Sle Threshold](../../doc/controllers/sites-sl-es.md#update-site-sle-threshold)
 
@@ -602,975 +602,6 @@ if err != nil {
     }
   ]
 }
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Applications
-
-For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedApplications(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleScopeEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedApplications],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleScopeEnum`](../../doc/models/site-sle-scope-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedApplications](../../doc/models/sle-impacted-applications.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleScopeEnum_ENUMSWITCH
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedApplications(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "apps": [
-    {
-      "app": "ZOOM",
-      "degraded": 371103,
-      "duration": 0,
-      "name": "ZOOM",
-      "threshold": 173,
-      "total": 1771274
-    }
-  ],
-  "classifier": "",
-  "end": 1668760746,
-  "failure": "",
-  "limit": "1000",
-  "metric": "application_health",
-  "page": 1,
-  "start": 1668121200,
-  "total_count": 1
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Aps
-
-For Wireless SLEs. Get list of impacted APs optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedAps(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedApsScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedAps],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedApsScopeParametersEnum`](../../doc/models/site-sle-impacted-aps-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedAps](../../doc/models/sle-impacted-aps.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedApsScopeParametersEnum_SITE
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedAps(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "aps": [
-    {
-      "ap_mac": "5c5b35500000",
-      "degraded": 1486,
-      "duration": 0,
-      "name": "ap43.lab",
-      "total": 27377
-    },
-    {
-      "ap_mac": "d420b0830000",
-      "degraded": 3,
-      "duration": 0,
-      "name": "ap33.lab",
-      "total": 1189
-    }
-  ],
-  "classifier": "",
-  "end": 1627313016,
-  "failure": "",
-  "limit": 1000,
-  "metric": "capacity",
-  "page": 1,
-  "start": 1627226616,
-  "total_count": 2
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Chassis
-
-For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedChassis(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedChassisScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedChassis],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedChassisScopeParametersEnum`](../../doc/models/site-sle-impacted-chassis-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedChassis](../../doc/models/sle-impacted-chassis.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedChassisScopeParametersEnum_ENUMSWITCH
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedChassis(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "chassis": [
-    {
-      "chassis": "1",
-      "degraded": 12.283334,
-      "duration": 13655.167,
-      "role": "master",
-      "switch_mac": "d0dd49012345",
-      "switch_name": "test-chassis",
-      "total": 13655.167
-    }
-  ],
-  "classifier": "",
-  "end": 1668760643,
-  "failure": "",
-  "limit": 1000,
-  "metric": "switch_health",
-  "page": 1,
-  "start": 1668121200,
-  "total_count": 1
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Gateways
-
-For WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedGateways(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedGatewaysScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedGateways],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedGatewaysScopeParametersEnum`](../../doc/models/site-sle-impacted-gateways-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedGateways](../../doc/models/sle-impacted-gateways.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedGatewaysScopeParametersEnum_SITE
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedGateways(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "classifier": "",
-  "end": 1668760746,
-  "failure": "",
-  "gateways": [
-    {
-      "degraded": 758573.1,
-      "duration": 2770997,
-      "gateway_mac": "fc3342001122",
-      "gateway_model": "SRX320",
-      "gateway_version": "20.4R1.12",
-      "name": "test-SRX",
-      "total": 2770997
-    }
-  ],
-  "limit": 1000,
-  "metric": "application_health",
-  "page": 1,
-  "start": 1668121200,
-  "total_count": 1
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Interfaces
-
-For Wired and WAN SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedInterfaces(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedInterfacesScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedInterfaces],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedInterfacesScopeParametersEnum`](../../doc/models/site-sle-impacted-interfaces-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedInterfaces](../../doc/models/sle-impacted-interfaces.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedInterfacesScopeParametersEnum_ENUMSWITCH
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedInterfaces(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "classifier": "",
-  "end": 1668760198,
-  "failure": "",
-  "interfaces": [
-    {
-      "degraded": 11.583333,
-      "duration": 765.4667,
-      "interface_name": "ge-0/0/10",
-      "switch_mac": "2c2131001122",
-      "switch_name": "test-ex",
-      "total": 765.4667
-    },
-    {
-      "degraded": 191.08333,
-      "duration": 13775.35,
-      "interface_name": "xe-0/1/0",
-      "switch_mac": "2c2131001122",
-      "switch_name": "test-ex",
-      "total": 13775.35
-    }
-  ],
-  "limit": 1000,
-  "metric": "switch_throughput",
-  "page": 1,
-  "start": 1668726000,
-  "total_count": 5
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Switches
-
-For Wired SLEs. Get list of impacted switches optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedSwitches(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedSwitchesScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedSwitches],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedSwitchesScopeParametersEnum`](../../doc/models/site-sle-impacted-switches-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedSwitches](../../doc/models/sle-impacted-switches.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedSwitchesScopeParametersEnum_SITE
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedSwitches(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "classifier": "",
-  "end": 1668760198,
-  "failure": "",
-  "limit": 1000,
-  "metric": "switch_throughput",
-  "page": 1,
-  "start": 1668726000,
-  "switches": [
-    {
-      "degraded": 109.88333,
-      "duration": 5753.75,
-      "interface": [
-        "ge-0/0/11",
-        "xe-0/1/0"
-      ],
-      "name": "test-ex",
-      "switch_mac": "2c2131001122",
-      "switch_model": "EX2300-C-12P",
-      "switch_version": "20.4R3-S3.4",
-      "total": 5753.75
-    }
-  ],
-  "total_count": 1
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Wired Clients
-
-For Wired SLEs. Get list of impacted interfaces optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedWiredClients(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedClientsScopeParametersEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedClients],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedClientsScopeParametersEnum`](../../doc/models/site-sle-impacted-clients-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedClients](../../doc/models/sle-impacted-clients.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedClientsScopeParametersEnum_ENUMSWITCH
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedWiredClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "classifier": "",
-  "clients": [
-    {
-      "degraded": 40,
-      "duration": 11014,
-      "mac": "001122334455",
-      "name": "test-device",
-      "switches": [
-        {
-          "interfaces": [
-            "ge-0/0/6"
-          ],
-          "switch_mac": "2c2131001122",
-          "switch_name": "test-ex"
-        }
-      ],
-      "total": 11014
-    }
-  ],
-  "end": 1668760198,
-  "failure": "",
-  "limit": 1000,
-  "metric": "switch_throughput",
-  "page": 1,
-  "start": 1668726000,
-  "total_count": 1
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Impacted Wireless Clients
-
-For Wireless SLEs. Get list of impacted wireless users optionally filtered by classifier and failure type
-
-```go
-GetSiteSleImpactedWirelessClients(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleImpactedUsersScopeParameterEnum,
-    scopeId uuid.UUID,
-    metric string,
-    start *int,
-    end *int,
-    duration *string,
-    classifier *string) (
-    models.ApiResponse[models.SleImpactedUsers],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleImpactedUsersScopeParameterEnum`](../../doc/models/site-sle-impacted-users-scope-parameter-enum.md) | Template, Required | - |
-| `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `classifier` | `*string` | Query, Optional | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedUsers](../../doc/models/sle-impacted-users.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleImpactedUsersScopeParameterEnum_AP
-
-scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
-
-metric := "metric8"
-
-
-
-
-
-duration := "10m"
-
-
-
-apiResponse, err := sitesSLEs.GetSiteSleImpactedWirelessClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "classifier": "",
-  "end": 1627313103,
-  "failure": "",
-  "limit": 1000,
-  "metric": "capacity",
-  "page": 1,
-  "start": 1627226703,
-  "total_count": 21,
-  "users": [
-    {
-      "ap_mac": "d420b0830000",
-      "ap_name": "ap33.lab",
-      "degraded": 2,
-      "device_os": "14.6",
-      "device_type": "iPhone",
-      "duration": 1270,
-      "mac": "dc080f360000",
-      "name": "aPhone-20973",
-      "ssid": "lab.1X",
-      "total": 1270,
-      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
-    },
-    {
-      "ap_mac": "5c5b35500000",
-      "ap_name": "ap43.lab",
-      "degraded": 36,
-      "device_os": "Android 11",
-      "device_type": "OnePlus",
-      "duration": 767,
-      "mac": "4c4feedc0000",
-      "name": "OnePlus-8",
-      "ssid": "lab.1X",
-      "total": 767,
-      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
-    },
-    {
-      "ap_mac": "5c5b35500000",
-      "ap_name": "ap43.lab",
-      "degraded": 2,
-      "device_os": "Catalina",
-      "device_type": "Mac",
-      "duration": 1405,
-      "mac": "a483e7390000",
-      "name": "tmunzer-mbp",
-      "ssid": "lab.1X",
-      "total": 1405,
-      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
-    },
-    {
-      "ap_mac": "5c5b35500000",
-      "ap_name": "ap43.lab",
-      "degraded": 81,
-      "device_os": "Linux",
-      "device_type": "unknown",
-      "duration": 1403,
-      "mac": "5caafd0d0000",
-      "name": "SonosZP",
-      "ssid": "lab",
-      "total": 1403,
-      "wlan_id": "649a2336-0000-0000-0000-f637dbe50e7b"
-    }
-  ]
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Site Sle Metric Classifiers
-
-Get the list of classifiers for a specific metric
-
-```go
-GetSiteSleMetricClassifiers(
-    ctx context.Context,
-    siteId uuid.UUID,
-    scope models.SiteSleMetricClassifiersScopeParametersEnum,
-    scopeId string,
-    metric string) (
-    models.ApiResponse[[]string],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`models.SiteSleMetricClassifiersScopeParametersEnum`](../../doc/models/site-sle-metric-classifiers-scope-parameters-enum.md) | Template, Required | - |
-| `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []string.
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-scope := models.SiteSleMetricClassifiersScopeParametersEnum_GATEWAY
-
-scopeId := "scope_id0"
-
-metric := "metric8"
-
-apiResponse, err := sitesSLEs.GetSiteSleMetricClassifiers(ctx, siteId, scope, scopeId, metric)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response
-
-```
-[
-  "asymmetry-uplink",
-  "weak-signal",
-  "asymmetry-downlink"
-]
 ```
 
 ## Errors
@@ -2206,12 +1237,981 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Sles Metrics
+# List Site Sle Impacted Applications
 
-Get the list of metrics for the given scope
+For WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
 
 ```go
-GetSiteSlesMetrics(
+ListSiteSleImpactedApplications(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleScopeEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedApplications],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleScopeEnum`](../../doc/models/site-sle-scope-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedApplications](../../doc/models/sle-impacted-applications.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleScopeEnum_ENUMSWITCH
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedApplications(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "apps": [
+    {
+      "app": "ZOOM",
+      "degraded": 371103,
+      "duration": 0,
+      "name": "ZOOM",
+      "threshold": 173,
+      "total": 1771274
+    }
+  ],
+  "classifier": "",
+  "end": 1668760746,
+  "failure": "",
+  "limit": "1000",
+  "metric": "application_health",
+  "page": 1,
+  "start": 1668121200,
+  "total_count": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Aps
+
+For Wireless SLEs. Listimpacted APs optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedAps(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedApsScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedAps],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedApsScopeParametersEnum`](../../doc/models/site-sle-impacted-aps-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedAps](../../doc/models/sle-impacted-aps.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedApsScopeParametersEnum_SITE
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedAps(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "aps": [
+    {
+      "ap_mac": "5c5b35500000",
+      "degraded": 1486,
+      "duration": 0,
+      "name": "ap43.lab",
+      "total": 27377
+    },
+    {
+      "ap_mac": "d420b0830000",
+      "degraded": 3,
+      "duration": 0,
+      "name": "ap33.lab",
+      "total": 1189
+    }
+  ],
+  "classifier": "",
+  "end": 1627313016,
+  "failure": "",
+  "limit": 1000,
+  "metric": "capacity",
+  "page": 1,
+  "start": 1627226616,
+  "total_count": 2
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Chassis
+
+For Wired and WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedChassis(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedChassisScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedChassis],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedChassisScopeParametersEnum`](../../doc/models/site-sle-impacted-chassis-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedChassis](../../doc/models/sle-impacted-chassis.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedChassisScopeParametersEnum_ENUMSWITCH
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedChassis(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "chassis": [
+    {
+      "chassis": "1",
+      "degraded": 12.283334,
+      "duration": 13655.167,
+      "role": "master",
+      "switch_mac": "d0dd49012345",
+      "switch_name": "test-chassis",
+      "total": 13655.167
+    }
+  ],
+  "classifier": "",
+  "end": 1668760643,
+  "failure": "",
+  "limit": 1000,
+  "metric": "switch_health",
+  "page": 1,
+  "start": 1668121200,
+  "total_count": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Gateways
+
+For WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedGateways(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedGatewaysScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedGateways],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedGatewaysScopeParametersEnum`](../../doc/models/site-sle-impacted-gateways-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedGateways](../../doc/models/sle-impacted-gateways.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedGatewaysScopeParametersEnum_SITE
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedGateways(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": "",
+  "end": 1668760746,
+  "failure": "",
+  "gateways": [
+    {
+      "degraded": 758573.1,
+      "duration": 2770997,
+      "gateway_mac": "fc3342001122",
+      "gateway_model": "SRX320",
+      "gateway_version": "20.4R1.12",
+      "name": "test-SRX",
+      "total": 2770997
+    }
+  ],
+  "limit": 1000,
+  "metric": "application_health",
+  "page": 1,
+  "start": 1668121200,
+  "total_count": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Interfaces
+
+For Wired and WAN SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedInterfaces(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedInterfacesScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedInterfaces],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedInterfacesScopeParametersEnum`](../../doc/models/site-sle-impacted-interfaces-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedInterfaces](../../doc/models/sle-impacted-interfaces.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedInterfacesScopeParametersEnum_ENUMSWITCH
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedInterfaces(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": "",
+  "end": 1668760198,
+  "failure": "",
+  "interfaces": [
+    {
+      "degraded": 11.583333,
+      "duration": 765.4667,
+      "interface_name": "ge-0/0/10",
+      "switch_mac": "2c2131001122",
+      "switch_name": "test-ex",
+      "total": 765.4667
+    },
+    {
+      "degraded": 191.08333,
+      "duration": 13775.35,
+      "interface_name": "xe-0/1/0",
+      "switch_mac": "2c2131001122",
+      "switch_name": "test-ex",
+      "total": 13775.35
+    }
+  ],
+  "limit": 1000,
+  "metric": "switch_throughput",
+  "page": 1,
+  "start": 1668726000,
+  "total_count": 5
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Switches
+
+For Wired SLEs. List the impacted switches optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedSwitches(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedSwitchesScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedSwitches],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedSwitchesScopeParametersEnum`](../../doc/models/site-sle-impacted-switches-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedSwitches](../../doc/models/sle-impacted-switches.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedSwitchesScopeParametersEnum_SITE
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedSwitches(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": "",
+  "end": 1668760198,
+  "failure": "",
+  "limit": 1000,
+  "metric": "switch_throughput",
+  "page": 1,
+  "start": 1668726000,
+  "switches": [
+    {
+      "degraded": 109.88333,
+      "duration": 5753.75,
+      "interface": [
+        "ge-0/0/11",
+        "xe-0/1/0"
+      ],
+      "name": "test-ex",
+      "switch_mac": "2c2131001122",
+      "switch_model": "EX2300-C-12P",
+      "switch_version": "20.4R3-S3.4",
+      "total": 5753.75
+    }
+  ],
+  "total_count": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Wired Clients
+
+For Wired SLEs. List the impacted interfaces optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedWiredClients(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedClientsScopeParametersEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedClients],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedClientsScopeParametersEnum`](../../doc/models/site-sle-impacted-clients-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedClients](../../doc/models/sle-impacted-clients.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedClientsScopeParametersEnum_ENUMSWITCH
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedWiredClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": "",
+  "clients": [
+    {
+      "degraded": 40,
+      "duration": 11014,
+      "mac": "001122334455",
+      "name": "test-device",
+      "switches": [
+        {
+          "interfaces": [
+            "ge-0/0/6"
+          ],
+          "switch_mac": "2c2131001122",
+          "switch_name": "test-ex"
+        }
+      ],
+      "total": 11014
+    }
+  ],
+  "end": 1668760198,
+  "failure": "",
+  "limit": 1000,
+  "metric": "switch_throughput",
+  "page": 1,
+  "start": 1668726000,
+  "total_count": 1
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Impacted Wireless Clients
+
+For Wireless SLEs. List the impacted wireless users optionally filtered by classifier and failure type
+
+```go
+ListSiteSleImpactedWirelessClients(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleImpactedUsersScopeParameterEnum,
+    scopeId uuid.UUID,
+    metric string,
+    start *int,
+    end *int,
+    duration *string,
+    classifier *string) (
+    models.ApiResponse[models.SleImpactedUsers],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleImpactedUsersScopeParameterEnum`](../../doc/models/site-sle-impacted-users-scope-parameter-enum.md) | Template, Required | - |
+| `scopeId` | `uuid.UUID` | Template, Required | - |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `classifier` | `*string` | Query, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleImpactedUsers](../../doc/models/sle-impacted-users.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleImpactedUsersScopeParameterEnum_AP
+
+scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
+
+metric := "metric8"
+
+
+
+
+
+duration := "10m"
+
+
+
+apiResponse, err := sitesSLEs.ListSiteSleImpactedWirelessClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": "",
+  "end": 1627313103,
+  "failure": "",
+  "limit": 1000,
+  "metric": "capacity",
+  "page": 1,
+  "start": 1627226703,
+  "total_count": 21,
+  "users": [
+    {
+      "ap_mac": "d420b0830000",
+      "ap_name": "ap33.lab",
+      "degraded": 2,
+      "device_os": "14.6",
+      "device_type": "iPhone",
+      "duration": 1270,
+      "mac": "dc080f360000",
+      "name": "aPhone-20973",
+      "ssid": "lab.1X",
+      "total": 1270,
+      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
+    },
+    {
+      "ap_mac": "5c5b35500000",
+      "ap_name": "ap43.lab",
+      "degraded": 36,
+      "device_os": "Android 11",
+      "device_type": "OnePlus",
+      "duration": 767,
+      "mac": "4c4feedc0000",
+      "name": "OnePlus-8",
+      "ssid": "lab.1X",
+      "total": 767,
+      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
+    },
+    {
+      "ap_mac": "5c5b35500000",
+      "ap_name": "ap43.lab",
+      "degraded": 2,
+      "device_os": "Catalina",
+      "device_type": "Mac",
+      "duration": 1405,
+      "mac": "a483e7390000",
+      "name": "tmunzer-mbp",
+      "ssid": "lab.1X",
+      "total": 1405,
+      "wlan_id": "a937da77-0000-0000-0000-f2134d7b1483"
+    },
+    {
+      "ap_mac": "5c5b35500000",
+      "ap_name": "ap43.lab",
+      "degraded": 81,
+      "device_os": "Linux",
+      "device_type": "unknown",
+      "duration": 1403,
+      "mac": "5caafd0d0000",
+      "name": "SonosZP",
+      "ssid": "lab",
+      "total": 1403,
+      "wlan_id": "649a2336-0000-0000-0000-f637dbe50e7b"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sle Metric Classifiers
+
+List classifiers for a specific metric
+
+```go
+ListSiteSleMetricClassifiers(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleMetricClassifiersScopeParametersEnum,
+    scopeId string,
+    metric string) (
+    models.ApiResponse[[]string],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleMetricClassifiersScopeParametersEnum`](../../doc/models/site-sle-metric-classifiers-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
+| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []string.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleMetricClassifiersScopeParametersEnum_GATEWAY
+
+scopeId := "scope_id0"
+
+metric := "metric8"
+
+apiResponse, err := sitesSLEs.ListSiteSleMetricClassifiers(ctx, siteId, scope, scopeId, metric)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response
+
+```
+[
+  "asymmetry-uplink",
+  "weak-signal",
+  "asymmetry-downlink"
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# List Site Sles Metrics
+
+List the metrics for the given scope
+
+```go
+ListSiteSlesMetrics(
     ctx context.Context,
     siteId uuid.UUID,
     scope models.SiteSleMetricsScopeParametersEnum,
@@ -2243,7 +2243,7 @@ scope := models.SiteSleMetricsScopeParametersEnum_GATEWAY
 
 scopeId := "scope_id0"
 
-apiResponse, err := sitesSLEs.GetSiteSlesMetrics(ctx, siteId, scope, scopeId)
+apiResponse, err := sitesSLEs.ListSiteSlesMetrics(ctx, siteId, scope, scopeId)
 if err != nil {
     log.Fatalln(err)
 } else {

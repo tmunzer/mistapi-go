@@ -74,8 +74,8 @@ func TestOrgsSCEPTestUpdateOrgMistScep(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsSCEPTestGetOrgIssuedClientCertificates tests the behavior of the OrgsSCEP
-func TestOrgsSCEPTestGetOrgIssuedClientCertificates(t *testing.T) {
+// TestOrgsSCEPTestListOrgIssuedClientCertificates tests the behavior of the OrgsSCEP
+func TestOrgsSCEPTestListOrgIssuedClientCertificates(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -84,7 +84,7 @@ func TestOrgsSCEPTestGetOrgIssuedClientCertificates(t *testing.T) {
     
     
     
-    apiResponse, err := orgsScep.GetOrgIssuedClientCertificates(ctx, orgId, nil, nil, nil)
+    apiResponse, err := orgsScep.ListOrgIssuedClientCertificates(ctx, orgId, nil, nil, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

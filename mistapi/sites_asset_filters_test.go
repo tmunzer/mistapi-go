@@ -27,15 +27,15 @@ func TestSitesAssetFiltersTestListSiteAssetFilters(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestSitesAssetFiltersTestCreateSiteAssetFilters tests the behavior of the SitesAssetFilters
-func TestSitesAssetFiltersTestCreateSiteAssetFilters(t *testing.T) {
+// TestSitesAssetFiltersTestCreateSiteAssetFilter tests the behavior of the SitesAssetFilters
+func TestSitesAssetFiltersTestCreateSiteAssetFilter(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := sitesAssetFilters.CreateSiteAssetFilters(ctx, siteId, nil)
+    apiResponse, err := sitesAssetFilters.CreateSiteAssetFilter(ctx, siteId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

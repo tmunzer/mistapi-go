@@ -444,11 +444,11 @@ func (c *ConstantsDefinitions) ListSiteLanguages(ctx context.Context) (
     return models.NewApiResponse(result, resp), err
 }
 
-// GetLicenseTypes takes context as parameters and
+// ListLicenseTypes takes context as parameters and
 // returns an models.ApiResponse with []models.ConstLicenseType data and
 // an error if there was an issue with the request or response.
 // Get License Types
-func (c *ConstantsDefinitions) GetLicenseTypes(ctx context.Context) (
+func (c *ConstantsDefinitions) ListLicenseTypes(ctx context.Context) (
     models.ApiResponse[[]models.ConstLicenseType],
     error) {
     req := c.prepareRequest(ctx, "GET", "/api/v1/const/license_types")

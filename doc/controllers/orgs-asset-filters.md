@@ -10,21 +10,21 @@ orgsAssetFilters := client.OrgsAssetFilters()
 
 ## Methods
 
-* [Create Org Asset Filters](../../doc/controllers/orgs-asset-filters.md#create-org-asset-filters)
+* [Create Org Asset Filter](../../doc/controllers/orgs-asset-filters.md#create-org-asset-filter)
 * [Delete Org Asset Filter](../../doc/controllers/orgs-asset-filters.md#delete-org-asset-filter)
 * [Get Org Asset Filter](../../doc/controllers/orgs-asset-filters.md#get-org-asset-filter)
 * [List Org Asset Filters](../../doc/controllers/orgs-asset-filters.md#list-org-asset-filters)
-* [Update Org Asset Filters](../../doc/controllers/orgs-asset-filters.md#update-org-asset-filters)
+* [Update Org Asset Filter](../../doc/controllers/orgs-asset-filters.md#update-org-asset-filter)
 
 
-# Create Org Asset Filters
+# Create Org Asset Filter
 
 Create Asset Filter
 
 Creates a single BLE asset filter for the given site. Any subset of filter properties can be included in the filter. A matching asset must meet the conditions of all given filter properties (logical ‘AND’).
 
 ```go
-CreateOrgAssetFilters(
+CreateOrgAssetFilter(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.AssetFilter) (
@@ -60,7 +60,7 @@ body := models.AssetFilter{
     Name:                  "string",
 }
 
-apiResponse, err := orgsAssetFilters.CreateOrgAssetFilters(ctx, orgId, &body)
+apiResponse, err := orgsAssetFilters.CreateOrgAssetFilter(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -286,12 +286,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Org Asset Filters
+# Update Org Asset Filter
 
 Updates an existing BLE asset filter for the given site.
 
 ```go
-UpdateOrgAssetFilters(
+UpdateOrgAssetFilter(
     ctx context.Context,
     orgId uuid.UUID,
     assetfilterId uuid.UUID,
@@ -331,7 +331,7 @@ body := models.AssetFilter{
     Name:                  "string",
 }
 
-apiResponse, err := orgsAssetFilters.UpdateOrgAssetFilters(ctx, orgId, assetfilterId, &body)
+apiResponse, err := orgsAssetFilters.UpdateOrgAssetFilter(ctx, orgId, assetfilterId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

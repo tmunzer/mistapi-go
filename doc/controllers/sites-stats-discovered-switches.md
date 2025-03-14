@@ -11,7 +11,7 @@ sitesStatsDiscoveredSwitches := client.SitesStatsDiscoveredSwitches()
 ## Methods
 
 * [Count Site Discovered Switches](../../doc/controllers/sites-stats-discovered-switches.md#count-site-discovered-switches)
-* [Get Site Discovered Switches Metrics](../../doc/controllers/sites-stats-discovered-switches.md#get-site-discovered-switches-metrics)
+* [List Site Discovered Switches Metrics](../../doc/controllers/sites-stats-discovered-switches.md#list-site-discovered-switches-metrics)
 * [Search Site Discovered Switches](../../doc/controllers/sites-stats-discovered-switches.md#search-site-discovered-switches)
 * [Search Site Discovered Switches Metrics](../../doc/controllers/sites-stats-discovered-switches.md#search-site-discovered-switches-metrics)
 
@@ -108,12 +108,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Discovered Switches Metrics
+# List Site Discovered Switches Metrics
 
 Discovered switches related metrics, lists related switch system names & details if not compliant
 
 ```go
-GetSiteDiscoveredSwitchesMetrics(
+ListSiteDiscoveredSwitchesMetrics(
     ctx context.Context,
     siteId uuid.UUID,
     threshold *string,
@@ -145,7 +145,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesStatsDiscoveredSwitches.GetSiteDiscoveredSwitchesMetrics(ctx, siteId, nil, nil)
+apiResponse, err := sitesStatsDiscoveredSwitches.ListSiteDiscoveredSwitchesMetrics(ctx, siteId, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

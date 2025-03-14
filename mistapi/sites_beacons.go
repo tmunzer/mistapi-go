@@ -115,11 +115,11 @@ func (s *SitesBeacons) CreateSiteBeacon(
     return models.NewApiResponse(result, resp), err
 }
 
-// DeleteSiteBeacons takes context, siteId, beaconId as parameters and
+// DeleteSiteBeacon takes context, siteId, beaconId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Delete Site Beacon
-func (s *SitesBeacons) DeleteSiteBeacons(
+func (s *SitesBeacons) DeleteSiteBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     beaconId uuid.UUID) (
@@ -194,11 +194,11 @@ func (s *SitesBeacons) GetSiteBeacon(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateSiteBeacons takes context, siteId, beaconId, body as parameters and
+// UpdateSiteBeacon takes context, siteId, beaconId, body as parameters and
 // returns an models.ApiResponse with models.Beacon data and
 // an error if there was an issue with the request or response.
 // Update Site Beacon
-func (s *SitesBeacons) UpdateSiteBeacons(
+func (s *SitesBeacons) UpdateSiteBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     beaconId uuid.UUID,

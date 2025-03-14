@@ -10,19 +10,19 @@ orgsVPNs := client.OrgsVPNs()
 
 ## Methods
 
-* [Create Org Vpns](../../doc/controllers/orgs-vp-ns.md#create-org-vpns)
+* [Create Org Vpn](../../doc/controllers/orgs-vp-ns.md#create-org-vpn)
 * [Delete Org Vpn](../../doc/controllers/orgs-vp-ns.md#delete-org-vpn)
 * [Get Org Vpn](../../doc/controllers/orgs-vp-ns.md#get-org-vpn)
 * [List Orgs Vpns](../../doc/controllers/orgs-vp-ns.md#list-orgs-vpns)
 * [Update Org Vpn](../../doc/controllers/orgs-vp-ns.md#update-org-vpn)
 
 
-# Create Org Vpns
+# Create Org Vpn
 
 Create Org VPN
 
 ```go
-CreateOrgVpns(
+CreateOrgVpn(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Vpn) (
@@ -62,7 +62,7 @@ body := models.Vpn{
     },
 }
 
-apiResponse, err := orgsVPNs.CreateOrgVpns(ctx, orgId, &body)
+apiResponse, err := orgsVPNs.CreateOrgVpn(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

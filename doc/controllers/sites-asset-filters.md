@@ -10,19 +10,19 @@ sitesAssetFilters := client.SitesAssetFilters()
 
 ## Methods
 
-* [Create Site Asset Filters](../../doc/controllers/sites-asset-filters.md#create-site-asset-filters)
+* [Create Site Asset Filter](../../doc/controllers/sites-asset-filters.md#create-site-asset-filter)
 * [Delete Site Asset Filter](../../doc/controllers/sites-asset-filters.md#delete-site-asset-filter)
 * [Get Site Asset Filter](../../doc/controllers/sites-asset-filters.md#get-site-asset-filter)
 * [List Site Asset Filters](../../doc/controllers/sites-asset-filters.md#list-site-asset-filters)
 * [Update Site Asset Filter](../../doc/controllers/sites-asset-filters.md#update-site-asset-filter)
 
 
-# Create Site Asset Filters
+# Create Site Asset Filter
 
 Create Site Asset Filter
 
 ```go
-CreateSiteAssetFilters(
+CreateSiteAssetFilter(
     ctx context.Context,
     siteId uuid.UUID,
     body *models.AssetFilter) (
@@ -59,7 +59,7 @@ body := models.AssetFilter{
     ServiceUuid:           models.ToPointer(uuid.MustParse("0000fe6a-0000-1000-8000-0030459b3cfb")),
 }
 
-apiResponse, err := sitesAssetFilters.CreateSiteAssetFilters(ctx, siteId, &body)
+apiResponse, err := sitesAssetFilters.CreateSiteAssetFilter(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

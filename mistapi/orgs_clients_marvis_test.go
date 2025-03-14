@@ -29,8 +29,8 @@ func TestOrgsClientsMarvisTestListOrgMarvisClientInvites(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsClientsMarvisTestCreateOrgMarvisClientInvites tests the behavior of the OrgsClientsMarvis
-func TestOrgsClientsMarvisTestCreateOrgMarvisClientInvites(t *testing.T) {
+// TestOrgsClientsMarvisTestCreateOrgMarvisClientInvite tests the behavior of the OrgsClientsMarvis
+func TestOrgsClientsMarvisTestCreateOrgMarvisClientInvite(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -41,7 +41,7 @@ func TestOrgsClientsMarvisTestCreateOrgMarvisClientInvites(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsClientsMarvis.CreateOrgMarvisClientInvites(ctx, orgId, &body)
+    apiResponse, err := orgsClientsMarvis.CreateOrgMarvisClientInvite(ctx, orgId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -72,8 +72,8 @@ func TestOrgsClientsMarvisTestDeleteOrgMarvisClientInvite(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestOrgsClientsMarvisTestGetOrgMarvisClientInvites tests the behavior of the OrgsClientsMarvis
-func TestOrgsClientsMarvisTestGetOrgMarvisClientInvites(t *testing.T) {
+// TestOrgsClientsMarvisTestGetOrgMarvisClientInvite tests the behavior of the OrgsClientsMarvis
+func TestOrgsClientsMarvisTestGetOrgMarvisClientInvite(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -83,7 +83,7 @@ func TestOrgsClientsMarvisTestGetOrgMarvisClientInvites(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := orgsClientsMarvis.GetOrgMarvisClientInvites(ctx, orgId, marvisinviteId)
+    apiResponse, err := orgsClientsMarvis.GetOrgMarvisClientInvite(ctx, orgId, marvisinviteId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

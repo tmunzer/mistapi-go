@@ -70,11 +70,11 @@ func (o *OrgsSiteTemplates) ListOrgSiteTemplates(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgSiteTemplates takes context, orgId, body as parameters and
+// CreateOrgSiteTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.SiteTemplate data and
 // an error if there was an issue with the request or response.
 // Create Org Site Template
-func (o *OrgsSiteTemplates) CreateOrgSiteTemplates(
+func (o *OrgsSiteTemplates) CreateOrgSiteTemplate(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.SiteTemplate) (

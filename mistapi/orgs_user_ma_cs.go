@@ -22,7 +22,7 @@ func NewOrgsUserMACs(baseController baseController) *OrgsUserMACs {
     return &orgsUserMACs
 }
 
-// CreateOrgUserMacs takes context, orgId, body as parameters and
+// CreateOrgUserMac takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.UserMac data and
 // an error if there was an issue with the request or response.
 // Create Org User MACs
@@ -33,7 +33,7 @@ func NewOrgsUserMACs(baseController baseController) *OrgsUserMACs {
 // 721b638445ee,"bldg3,flor3",vlan-102 
 // 921b638445ce,"bldg4,flor4",vlan-103 
 // 921b638445cf,"bldg5,flor5",vlan-104
-func (o *OrgsUserMACs) CreateOrgUserMacs(
+func (o *OrgsUserMACs) CreateOrgUserMac(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.UserMac) (

@@ -60,8 +60,8 @@ func TestSitesStatsDiscoveredSwitchesTestCountSiteDiscoveredSwitches(t *testing.
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesStatsDiscoveredSwitchesTestGetSiteDiscoveredSwitchesMetrics tests the behavior of the SitesStatsDiscoveredSwitches
-func TestSitesStatsDiscoveredSwitchesTestGetSiteDiscoveredSwitchesMetrics(t *testing.T) {
+// TestSitesStatsDiscoveredSwitchesTestListSiteDiscoveredSwitchesMetrics tests the behavior of the SitesStatsDiscoveredSwitches
+func TestSitesStatsDiscoveredSwitchesTestListSiteDiscoveredSwitchesMetrics(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -69,7 +69,7 @@ func TestSitesStatsDiscoveredSwitchesTestGetSiteDiscoveredSwitchesMetrics(t *tes
     }
     
     
-    apiResponse, err := sitesStatsDiscoveredSwitches.GetSiteDiscoveredSwitchesMetrics(ctx, siteId, nil, nil)
+    apiResponse, err := sitesStatsDiscoveredSwitches.ListSiteDiscoveredSwitchesMetrics(ctx, siteId, nil, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

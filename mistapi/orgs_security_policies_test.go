@@ -31,8 +31,8 @@ func TestOrgsSecurityPoliciesTestListOrgSecPolicies(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsSecurityPoliciesTestCreateOrgSecPolicies tests the behavior of the OrgsSecurityPolicies
-func TestOrgsSecurityPoliciesTestCreateOrgSecPolicies(t *testing.T) {
+// TestOrgsSecurityPoliciesTestCreateOrgSecPolicy tests the behavior of the OrgsSecurityPolicies
+func TestOrgsSecurityPoliciesTestCreateOrgSecPolicy(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -43,7 +43,7 @@ func TestOrgsSecurityPoliciesTestCreateOrgSecPolicies(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsSecurityPolicies.CreateOrgSecPolicies(ctx, orgId, &body)
+    apiResponse, err := orgsSecurityPolicies.CreateOrgSecPolicy(ctx, orgId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -98,8 +98,8 @@ func TestOrgsSecurityPoliciesTestGetOrgSecPolicy(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsSecurityPoliciesTestUpdateOrgSecPolicies tests the behavior of the OrgsSecurityPolicies
-func TestOrgsSecurityPoliciesTestUpdateOrgSecPolicies(t *testing.T) {
+// TestOrgsSecurityPoliciesTestUpdateOrgSecPolicy tests the behavior of the OrgsSecurityPolicies
+func TestOrgsSecurityPoliciesTestUpdateOrgSecPolicy(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -110,7 +110,7 @@ func TestOrgsSecurityPoliciesTestUpdateOrgSecPolicies(t *testing.T) {
         t.Error(errUUID)
     }
     
-    apiResponse, err := orgsSecurityPolicies.UpdateOrgSecPolicies(ctx, orgId, secpolicyId, nil)
+    apiResponse, err := orgsSecurityPolicies.UpdateOrgSecPolicy(ctx, orgId, secpolicyId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

@@ -11,10 +11,10 @@ sitesBeacons := client.SitesBeacons()
 ## Methods
 
 * [Create Site Beacon](../../doc/controllers/sites-beacons.md#create-site-beacon)
-* [Delete Site Beacons](../../doc/controllers/sites-beacons.md#delete-site-beacons)
+* [Delete Site Beacon](../../doc/controllers/sites-beacons.md#delete-site-beacon)
 * [Get Site Beacon](../../doc/controllers/sites-beacons.md#get-site-beacon)
 * [List Site Beacons](../../doc/controllers/sites-beacons.md#list-site-beacons)
-* [Update Site Beacons](../../doc/controllers/sites-beacons.md#update-site-beacons)
+* [Update Site Beacon](../../doc/controllers/sites-beacons.md#update-site-beacon)
 
 
 # Create Site Beacon
@@ -109,12 +109,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Delete Site Beacons
+# Delete Site Beacon
 
 Delete Site Beacon
 
 ```go
-DeleteSiteBeacons(
+DeleteSiteBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     beaconId uuid.UUID) (
@@ -142,7 +142,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 beaconId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := sitesBeacons.DeleteSiteBeacons(ctx, siteId, beaconId)
+resp, err := sitesBeacons.DeleteSiteBeacon(ctx, siteId, beaconId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -325,12 +325,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Site Beacons
+# Update Site Beacon
 
 Update Site Beacon
 
 ```go
-UpdateSiteBeacons(
+UpdateSiteBeacon(
     ctx context.Context,
     siteId uuid.UUID,
     beaconId uuid.UUID,
@@ -375,7 +375,7 @@ body := models.Beacon{
     Y:                    models.ToPointer(float64(0)),
 }
 
-apiResponse, err := sitesBeacons.UpdateSiteBeacons(ctx, siteId, beaconId, &body)
+apiResponse, err := sitesBeacons.UpdateSiteBeacon(ctx, siteId, beaconId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

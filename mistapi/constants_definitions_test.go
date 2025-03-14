@@ -184,10 +184,10 @@ func TestConstantsDefinitionsTestListSiteLanguages(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestConstantsDefinitionsTestGetLicenseTypes tests the behavior of the ConstantsDefinitions
-func TestConstantsDefinitionsTestGetLicenseTypes(t *testing.T) {
+// TestConstantsDefinitionsTestListLicenseTypes tests the behavior of the ConstantsDefinitions
+func TestConstantsDefinitionsTestListLicenseTypes(t *testing.T) {
     ctx := context.Background()
-    apiResponse, err := constantsDefinitions.GetLicenseTypes(ctx)
+    apiResponse, err := constantsDefinitions.ListLicenseTypes(ctx)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

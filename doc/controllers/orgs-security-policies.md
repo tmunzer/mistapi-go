@@ -10,19 +10,19 @@ orgsSecurityPolicies := client.OrgsSecurityPolicies()
 
 ## Methods
 
-* [Create Org Sec Policies](../../doc/controllers/orgs-security-policies.md#create-org-sec-policies)
+* [Create Org Sec Policy](../../doc/controllers/orgs-security-policies.md#create-org-sec-policy)
 * [Delete Org Sec Policy](../../doc/controllers/orgs-security-policies.md#delete-org-sec-policy)
 * [Get Org Sec Policy](../../doc/controllers/orgs-security-policies.md#get-org-sec-policy)
 * [List Org Sec Policies](../../doc/controllers/orgs-security-policies.md#list-org-sec-policies)
-* [Update Org Sec Policies](../../doc/controllers/orgs-security-policies.md#update-org-sec-policies)
+* [Update Org Sec Policy](../../doc/controllers/orgs-security-policies.md#update-org-sec-policy)
 
 
-# Create Org Sec Policies
+# Create Org Sec Policy
 
 Create Org Security Policy
 
 ```go
-CreateOrgSecPolicies(
+CreateOrgSecPolicy(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.Secpolicy) (
@@ -441,7 +441,7 @@ body := models.Secpolicy{
     },
 }
 
-apiResponse, err := orgsSecurityPolicies.CreateOrgSecPolicies(ctx, orgId, &body)
+apiResponse, err := orgsSecurityPolicies.CreateOrgSecPolicy(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -712,12 +712,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Update Org Sec Policies
+# Update Org Sec Policy
 
 Update Org Security Policy
 
 ```go
-UpdateOrgSecPolicies(
+UpdateOrgSecPolicy(
     ctx context.Context,
     orgId uuid.UUID,
     secpolicyId uuid.UUID,
@@ -750,7 +750,7 @@ secpolicyId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Secpolicy{
 }
 
-apiResponse, err := orgsSecurityPolicies.UpdateOrgSecPolicies(ctx, orgId, secpolicyId, &body)
+apiResponse, err := orgsSecurityPolicies.UpdateOrgSecPolicy(ctx, orgId, secpolicyId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

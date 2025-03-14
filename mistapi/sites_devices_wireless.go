@@ -21,11 +21,11 @@ func NewSitesDevicesWireless(baseController baseController) *SitesDevicesWireles
     return &sitesDevicesWireless
 }
 
-// GetSiteDeviceRadioChannels takes context, siteId, countryCode as parameters and
+// ListSiteDeviceRadioChannels takes context, siteId, countryCode as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceRadioChannels data and
 // an error if there was an issue with the request or response.
 // Get a list of allowed channels (per channel width)
-func (s *SitesDevicesWireless) GetSiteDeviceRadioChannels(
+func (s *SitesDevicesWireless) ListSiteDeviceRadioChannels(
     ctx context.Context,
     siteId uuid.UUID,
     countryCode *string) (

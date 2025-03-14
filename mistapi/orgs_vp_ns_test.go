@@ -31,8 +31,8 @@ func TestOrgsVPNsTestListOrgsVpns(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestOrgsVPNsTestCreateOrgVpns tests the behavior of the OrgsVPNs
-func TestOrgsVPNsTestCreateOrgVpns(t *testing.T) {
+// TestOrgsVPNsTestCreateOrgVpn tests the behavior of the OrgsVPNs
+func TestOrgsVPNsTestCreateOrgVpn(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -43,7 +43,7 @@ func TestOrgsVPNsTestCreateOrgVpns(t *testing.T) {
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
-    apiResponse, err := orgsVpNs.CreateOrgVpns(ctx, orgId, &body)
+    apiResponse, err := orgsVpNs.CreateOrgVpn(ctx, orgId, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

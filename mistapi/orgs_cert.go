@@ -22,11 +22,11 @@ func NewOrgsCert(baseController baseController) *OrgsCert {
     return &orgsCert
 }
 
-// GetOrgCertificates takes context, orgId as parameters and
+// ListOrgCertificates takes context, orgId as parameters and
 // returns an models.ApiResponse with models.ResponseCertificate data and
 // an error if there was an issue with the request or response.
 // Get Org Certificates
-func (o *OrgsCert) GetOrgCertificates(
+func (o *OrgsCert) ListOrgCertificates(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[models.ResponseCertificate],

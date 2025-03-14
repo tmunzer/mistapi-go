@@ -11,7 +11,7 @@ sitesDevicesWireless := client.SitesDevicesWireless()
 ## Methods
 
 * [Get Site Device Iot Port](../../doc/controllers/sites-devices-wireless.md#get-site-device-iot-port)
-* [Get Site Device Radio Channels](../../doc/controllers/sites-devices-wireless.md#get-site-device-radio-channels)
+* [List Site Device Radio Channels](../../doc/controllers/sites-devices-wireless.md#list-site-device-radio-channels)
 * [Set Site Device Iot Port](../../doc/controllers/sites-devices-wireless.md#set-site-device-iot-port)
 
 
@@ -78,12 +78,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Device Radio Channels
+# List Site Device Radio Channels
 
 Get a list of allowed channels (per channel width)
 
 ```go
-GetSiteDeviceRadioChannels(
+ListSiteDeviceRadioChannels(
     ctx context.Context,
     siteId uuid.UUID,
     countryCode *string) (
@@ -111,7 +111,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 countryCode := "US"
 
-apiResponse, err := sitesDevicesWireless.GetSiteDeviceRadioChannels(ctx, siteId, &countryCode)
+apiResponse, err := sitesDevicesWireless.ListSiteDeviceRadioChannels(ctx, siteId, &countryCode)
 if err != nil {
     log.Fatalln(err)
 } else {

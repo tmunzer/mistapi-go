@@ -7,15 +7,15 @@ import (
     "testing"
 )
 
-// TestOrgsUserMACsTestCreateOrgUserMacs tests the behavior of the OrgsUserMACs
-func TestOrgsUserMACsTestCreateOrgUserMacs(t *testing.T) {
+// TestOrgsUserMACsTestCreateOrgUserMac tests the behavior of the OrgsUserMACs
+func TestOrgsUserMACsTestCreateOrgUserMac(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     
-    apiResponse, err := orgsUserMaCs.CreateOrgUserMacs(ctx, orgId, nil)
+    apiResponse, err := orgsUserMaCs.CreateOrgUserMac(ctx, orgId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

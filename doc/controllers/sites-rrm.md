@@ -12,8 +12,8 @@ sitesRRM := client.SitesRRM()
 
 * [Get Site Current Channel Planning](../../doc/controllers/sites-rrm.md#get-site-current-channel-planning)
 * [Get Site Current Rrm Considerations](../../doc/controllers/sites-rrm.md#get-site-current-rrm-considerations)
-* [Get Site Current Rrm Neighbors](../../doc/controllers/sites-rrm.md#get-site-current-rrm-neighbors)
-* [Get Site Rrm Events](../../doc/controllers/sites-rrm.md#get-site-rrm-events)
+* [List Site Current Rrm Neighbors](../../doc/controllers/sites-rrm.md#list-site-current-rrm-neighbors)
+* [List Site Rrm Events](../../doc/controllers/sites-rrm.md#list-site-rrm-events)
 
 
 # Get Site Current Channel Planning
@@ -237,12 +237,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Current Rrm Neighbors
+# List Site Current Rrm Neighbors
 
-Get Current RRM observed neighbors
+List Current RRM observed neighbors
 
 ```go
-GetSiteCurrentRrmNeighbors(
+ListSiteCurrentRrmNeighbors(
     ctx context.Context,
     siteId uuid.UUID,
     band models.Dot11BandEnum,
@@ -278,7 +278,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := sitesRRM.GetSiteCurrentRrmNeighbors(ctx, siteId, band, &limit, &page)
+apiResponse, err := sitesRRM.ListSiteCurrentRrmNeighbors(ctx, siteId, band, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -321,12 +321,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Rrm Events
+# List Site Rrm Events
 
-Get Site RRM Events
+List Site RRM Events
 
 ```go
-GetSiteRrmEvents(
+ListSiteRrmEvents(
     ctx context.Context,
     siteId uuid.UUID,
     band *models.Dot11BandEnum,
@@ -374,7 +374,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := sitesRRM.GetSiteRrmEvents(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesRRM.ListSiteRrmEvents(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -71,12 +71,12 @@ func (o *OrgsAssetFilters) ListOrgAssetFilters(
     return models.NewApiResponse(result, resp), err
 }
 
-// CreateOrgAssetFilters takes context, orgId, body as parameters and
+// CreateOrgAssetFilter takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
 // Create Asset Filter
 // Creates a single BLE asset filter for the given site. Any subset of filter properties can be included in the filter. A matching asset must meet the conditions of all given filter properties (logical ‘AND’).
-func (o *OrgsAssetFilters) CreateOrgAssetFilters(
+func (o *OrgsAssetFilters) CreateOrgAssetFilter(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.AssetFilter) (
@@ -196,11 +196,11 @@ func (o *OrgsAssetFilters) GetOrgAssetFilter(
     return models.NewApiResponse(result, resp), err
 }
 
-// UpdateOrgAssetFilters takes context, orgId, assetfilterId, body as parameters and
+// UpdateOrgAssetFilter takes context, orgId, assetfilterId, body as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
 // Updates an existing BLE asset filter for the given site.
-func (o *OrgsAssetFilters) UpdateOrgAssetFilters(
+func (o *OrgsAssetFilters) UpdateOrgAssetFilter(
     ctx context.Context,
     orgId uuid.UUID,
     assetfilterId uuid.UUID,

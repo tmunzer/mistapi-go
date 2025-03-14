@@ -10,7 +10,7 @@ orgsUserMACs := client.OrgsUserMACs()
 
 ## Methods
 
-* [Create Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#create-org-user-macs)
+* [Create Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#create-org-user-mac)
 * [Delete Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#delete-org-user-mac)
 * [Get Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#get-org-user-mac)
 * [Import Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#import-org-user-macs)
@@ -18,7 +18,7 @@ orgsUserMACs := client.OrgsUserMACs()
 * [Update Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#update-org-user-mac)
 
 
-# Create Org User Macs
+# Create Org User Mac
 
 Create Org User MACs
 
@@ -32,7 +32,7 @@ mac,labels,vlan,notes
 921b638445cf,"bldg5,flor5",vlan-104
 
 ```go
-CreateOrgUserMacs(
+CreateOrgUserMac(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.UserMac) (
@@ -70,7 +70,7 @@ body := models.UserMac{
     Vlan:                 models.ToPointer("30"),
 }
 
-apiResponse, err := orgsUserMACs.CreateOrgUserMacs(ctx, orgId, &body)
+apiResponse, err := orgsUserMACs.CreateOrgUserMac(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

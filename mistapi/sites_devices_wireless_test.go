@@ -7,15 +7,15 @@ import (
     "testing"
 )
 
-// TestSitesDevicesWirelessTestGetSiteDeviceRadioChannels tests the behavior of the SitesDevicesWireless
-func TestSitesDevicesWirelessTestGetSiteDeviceRadioChannels(t *testing.T) {
+// TestSitesDevicesWirelessTestListSiteDeviceRadioChannels tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestListSiteDeviceRadioChannels(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
     countryCode := "US"
-    apiResponse, err := sitesDevicesWireless.GetSiteDeviceRadioChannels(ctx, siteId, &countryCode)
+    apiResponse, err := sitesDevicesWireless.ListSiteDeviceRadioChannels(ctx, siteId, &countryCode)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
