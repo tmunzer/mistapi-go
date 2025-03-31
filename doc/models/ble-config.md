@@ -13,8 +13,8 @@ BLE AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BeaconEnabled` | `*bool` | Optional | Whether Mist beacons is enabled<br>**Default**: `false` |
-| `BeaconRate` | `*int` | Optional | Required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second<br>**Default**: `0` |
+| `BeaconEnabled` | `*bool` | Optional | Whether Mist beacons is enabled<br>**Default**: `true` |
+| `BeaconRate` | `*int` | Optional | Required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second |
 | `BeaconRateMode` | [`*models.BleConfigBeaconRateModeEnum`](../../doc/models/ble-config-beacon-rate-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
 | `BeamDisabled` | `[]int` | Optional | List of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam) |
 | `CustomBlePacketEnabled` | `*bool` | Optional | Can be enabled if `beacon_enabled`==`true`, whether to send custom packet<br>**Default**: `false` |
@@ -46,7 +46,7 @@ BLE AP settings
 
 ```json
 {
-  "beacon_enabled": false,
+  "beacon_enabled": true,
   "beacon_rate": 3,
   "beacon_rate_mode": "custom",
   "beam_disabled": [

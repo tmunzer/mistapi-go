@@ -54,8 +54,8 @@ body := models.Avprofile{
     MimeWhitelist:        []string{
     },
     Name:                 "av-custom",
-    Protocols:            []models.AvprofileProtocolsEnum{
-        models.AvprofileProtocolsEnum_HTTP,
+    Protocols:            []models.AvprofileProtocolEnum{
+        models.AvprofileProtocolEnum_HTTP,
     },
     UrlWhitelist:         []string{
     },
@@ -334,8 +334,8 @@ body := models.Avprofile{
     MimeWhitelist:        []string{
     },
     Name:                 "av-custom",
-    Protocols:            []models.AvprofileProtocolsEnum{
-        models.AvprofileProtocolsEnum_HTTP,
+    Protocols:            []models.AvprofileProtocolEnum{
+        models.AvprofileProtocolEnum_HTTP,
     },
     UrlWhitelist:         []string{
     },

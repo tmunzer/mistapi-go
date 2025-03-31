@@ -40,7 +40,7 @@ Gateway port config
 | `PreserveDscp` | `*bool` | Optional | Whether to preserve dscp when sending traffic over VPN (SSR-only)<br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | If HA mode |
 | `RedundantGroup` | `*int` | Optional | If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX<br>**Constraints**: `>= 1`, `<= 128` |
-| `RethIdx` | `*int` | Optional | If HA mode |
+| `RethIdx` | [`*models.GatewayPortConfigRethIdx`](../../doc/models/containers/gateway-port-config-reth-idx.md) | Optional | For SRX only and if HA Mode |
 | `RethNode` | `*string` | Optional | If HA mode |
 | `RethNodes` | `[]string` | Optional | SSR only - supporting vlan-based redundancy (matching the size of `networks`) |
 | `Speed` | `*string` | Optional | **Default**: `"auto"` |

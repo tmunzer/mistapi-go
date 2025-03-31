@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Files` | `*int` | Optional | - |
+| `Files` | [`*models.RemoteSyslogArchiveFiles`](../../doc/models/containers/remote-syslog-archive-files.md) | Optional | - |
 | `Size` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -13,7 +13,8 @@ type RemoteSyslogServer struct {
     Facility             *RemoteSyslogFacilityEnum       `json:"facility,omitempty"`
     Host                 *string                         `json:"host,omitempty"`
     Match                *string                         `json:"match,omitempty"`
-    Port                 *int                            `json:"port,omitempty"`
+    // Syslog Service Port, value from 1 to 65535
+    Port                 *RemoteSyslogServerPort         `json:"port,omitempty"`
     // enum: `tcp`, `udp`
     Protocol             *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
     RoutingInstance      *string                         `json:"routing_instance,omitempty"`
@@ -66,7 +67,7 @@ func (r RemoteSyslogServer) toMap() map[string]any {
         structMap["match"] = r.Match
     }
     if r.Port != nil {
-        structMap["port"] = r.Port
+        structMap["port"] = r.Port.toMap()
     }
     if r.Protocol != nil {
         structMap["protocol"] = r.Protocol
@@ -125,7 +126,7 @@ type tempRemoteSyslogServer  struct {
     Facility         *RemoteSyslogFacilityEnum       `json:"facility,omitempty"`
     Host             *string                         `json:"host,omitempty"`
     Match            *string                         `json:"match,omitempty"`
-    Port             *int                            `json:"port,omitempty"`
+    Port             *RemoteSyslogServerPort         `json:"port,omitempty"`
     Protocol         *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
     RoutingInstance  *string                         `json:"routing_instance,omitempty"`
     Severity         *RemoteSyslogSeverityEnum       `json:"severity,omitempty"`

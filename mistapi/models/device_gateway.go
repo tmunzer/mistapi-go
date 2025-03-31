@@ -22,9 +22,9 @@ type DeviceGateway struct {
     DnsServers            []string                           `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
     DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
-    // Property key is the destination CIDR (e.g. "10.0.0.0/8")
+    // Property key is the destination CIDR (e.g. "10.0.0.0/8"), the destination Network name or a variable (e.g. "{{myvar}}")
     ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
-    // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
+    // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64"), the destination Network name or a variable (e.g. "{{myvar}}")
     ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
     ForSite               *bool                              `json:"for_site,omitempty"`
     // Unique ID of the object instance in the Mist Organization

@@ -45,12 +45,12 @@ type SwitchPortUsage struct {
     MacAuthPreferred                         *bool                                       `json:"mac_auth_preferred,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
-    // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
-    MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
+    // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+    MacLimit                                 *SwitchPortUsageMacLimit                    `json:"mac_limit,omitempty"`
     // `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
     // Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514.
-    Mtu                                      *int                                        `json:"mtu,omitempty"`
+    Mtu                                      *SwitchPortUsageMtu                         `json:"mtu,omitempty"`
     // Only if `mode`==`trunk`, the list of network/vlans
     Networks                                 []string                                    `json:"networks,omitempty"`
     // Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
@@ -84,7 +84,7 @@ type SwitchPortUsage struct {
     // If this is connected to a vstp network
     UseVstp                                  *bool                                       `json:"use_vstp,omitempty"`
     // Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
-    VoipNetwork                              *string                                     `json:"voip_network,omitempty"`
+    VoipNetwork                              Optional[string]                            `json:"voip_network"`
     AdditionalProperties                     map[string]interface{}                      `json:"_"`
 }
 
@@ -171,13 +171,13 @@ func (s SwitchPortUsage) toMap() map[string]any {
         structMap["mac_auth_protocol"] = s.MacAuthProtocol
     }
     if s.MacLimit != nil {
-        structMap["mac_limit"] = s.MacLimit
+        structMap["mac_limit"] = s.MacLimit.toMap()
     }
     if s.Mode != nil {
         structMap["mode"] = s.Mode
     }
     if s.Mtu != nil {
-        structMap["mtu"] = s.Mtu
+        structMap["mtu"] = s.Mtu.toMap()
     }
     if s.Networks != nil {
         structMap["networks"] = s.Networks
@@ -242,8 +242,12 @@ func (s SwitchPortUsage) toMap() map[string]any {
     if s.UseVstp != nil {
         structMap["use_vstp"] = s.UseVstp
     }
-    if s.VoipNetwork != nil {
-        structMap["voip_network"] = s.VoipNetwork
+    if s.VoipNetwork.IsValueSet() {
+        if s.VoipNetwork.Value() != nil {
+            structMap["voip_network"] = s.VoipNetwork.Value()
+        } else {
+            structMap["voip_network"] = nil
+        }
     }
     return structMap
 }
@@ -324,9 +328,9 @@ type tempSwitchPortUsage  struct {
     MacAuthOnly                              *bool                                       `json:"mac_auth_only,omitempty"`
     MacAuthPreferred                         *bool                                       `json:"mac_auth_preferred,omitempty"`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
-    MacLimit                                 *int                                        `json:"mac_limit,omitempty"`
+    MacLimit                                 *SwitchPortUsageMacLimit                    `json:"mac_limit,omitempty"`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
-    Mtu                                      *int                                        `json:"mtu,omitempty"`
+    Mtu                                      *SwitchPortUsageMtu                         `json:"mtu,omitempty"`
     Networks                                 []string                                    `json:"networks,omitempty"`
     PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
     PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
@@ -344,5 +348,5 @@ type tempSwitchPortUsage  struct {
     StpP2p                                   *bool                                       `json:"stp_p2p,omitempty"`
     UiEvpntopoId                             *uuid.UUID                                  `json:"ui_evpntopo_id,omitempty"`
     UseVstp                                  *bool                                       `json:"use_vstp,omitempty"`
-    VoipNetwork                              *string                                     `json:"voip_network,omitempty"`
+    VoipNetwork                              Optional[string]                            `json:"voip_network"`
 }

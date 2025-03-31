@@ -67,7 +67,7 @@ RRM
   },
   "band_24_metric": {
     "cochannel_neighbors": 161.38,
-    "density": 107.0,
+    "density": 1.0,
     "interferences": {
       "149": {
         "radar": 0.3,
@@ -117,7 +117,7 @@ RRM
   },
   "band_5_metric": {
     "cochannel_neighbors": 78.16,
-    "density": 23.78,
+    "density": 1.0,
     "interferences": {
       "149": {
         "radar": 0.3,
@@ -186,7 +186,7 @@ RRM
   },
   "band_6_metric": {
     "cochannel_neighbors": 154.0,
-    "density": 99.62,
+    "density": 1.0,
     "interferences": {
       "key0": {
         "radar": 1.76,

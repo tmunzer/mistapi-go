@@ -116,9 +116,9 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
+            MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(0),
+            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -135,7 +135,7 @@ body := models.NetworkTemplate{
                 Percentage:            models.ToPointer(80),
             }),
             StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
+            VoipNetwork:                              models.NewOptional(models.ToPointer("string")),
         },
         "property2": models.SwitchPortUsage{
             AllNetworks:                              models.ToPointer(false),
@@ -149,9 +149,9 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
+            MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(0),
+            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -167,7 +167,7 @@ body := models.NetworkTemplate{
                 Percentage:            models.ToPointer(80),
             }),
             StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
+            VoipNetwork:                              models.NewOptional(models.ToPointer("string")),
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
@@ -329,7 +329,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -364,7 +364,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -1037,9 +1037,9 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
+            MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(0),
+            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -1056,7 +1056,7 @@ body := models.NetworkTemplate{
                 Percentage:            models.ToPointer(80),
             }),
             StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
+            VoipNetwork:                              models.NewOptional(models.ToPointer("string")),
         },
         "property2": models.SwitchPortUsage{
             AllNetworks:                              models.ToPointer(false),
@@ -1070,9 +1070,9 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
-            MacLimit:                                 models.ToPointer(0),
+            MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(0),
+            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -1088,7 +1088,7 @@ body := models.NetworkTemplate{
                 Percentage:            models.ToPointer(80),
             }),
             StpEdge:                                  models.ToPointer(true),
-            VoipNetwork:                              models.ToPointer("string"),
+            VoipNetwork:                              models.NewOptional(models.ToPointer("string")),
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
@@ -1248,7 +1248,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -1283,7 +1283,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],

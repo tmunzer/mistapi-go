@@ -266,23 +266,24 @@ const (
 )
 
 // AvprofileFallbackActionEnum is a string enum.
-// enum: `block`, `permit`
+// enum: `block`, `log-and-permit`, `permit`
 type AvprofileFallbackActionEnum string
 
 const (
-    AvprofileFallbackActionEnum_BLOCK  AvprofileFallbackActionEnum = "block"
-    AvprofileFallbackActionEnum_PERMIT AvprofileFallbackActionEnum = "permit"
+    AvprofileFallbackActionEnum_BLOCK        AvprofileFallbackActionEnum = "block"
+    AvprofileFallbackActionEnum_LOGANDPERMIT AvprofileFallbackActionEnum = "log-and-permit"
+    AvprofileFallbackActionEnum_PERMIT       AvprofileFallbackActionEnum = "permit"
 )
 
-// AvprofileProtocolsEnum is a string enum.
-type AvprofileProtocolsEnum string
+// AvprofileProtocolEnum is a string enum.
+type AvprofileProtocolEnum string
 
 const (
-    AvprofileProtocolsEnum_FTP  AvprofileProtocolsEnum = "ftp"
-    AvprofileProtocolsEnum_HTTP AvprofileProtocolsEnum = "http"
-    AvprofileProtocolsEnum_IMAP AvprofileProtocolsEnum = "imap"
-    AvprofileProtocolsEnum_POP3 AvprofileProtocolsEnum = "pop3"
-    AvprofileProtocolsEnum_SMTP AvprofileProtocolsEnum = "smtp"
+    AvprofileProtocolEnum_FTP  AvprofileProtocolEnum = "ftp"
+    AvprofileProtocolEnum_HTTP AvprofileProtocolEnum = "http"
+    AvprofileProtocolEnum_IMAP AvprofileProtocolEnum = "imap"
+    AvprofileProtocolEnum_POP3 AvprofileProtocolEnum = "pop3"
+    AvprofileProtocolEnum_SMTP AvprofileProtocolEnum = "smtp"
 )
 
 // BeaconTypeEnum is a string enum.
@@ -2736,13 +2737,13 @@ const (
 )
 
 // ServiceFailoverPolicyEnum is a string enum.
-// enum: `non_revertable`, `none`, `revertable`
+// enum: `non_revertible`, `none`, `revertible`
 type ServiceFailoverPolicyEnum string
 
 const (
-    ServiceFailoverPolicyEnum_NONREVERTABLE ServiceFailoverPolicyEnum = "non_revertable"
+    ServiceFailoverPolicyEnum_NONREVERTIBLE ServiceFailoverPolicyEnum = "non_revertible"
     ServiceFailoverPolicyEnum_NONE          ServiceFailoverPolicyEnum = "none"
-    ServiceFailoverPolicyEnum_REVERTABLE    ServiceFailoverPolicyEnum = "revertable"
+    ServiceFailoverPolicyEnum_REVERTIBLE    ServiceFailoverPolicyEnum = "revertible"
 )
 
 // ServicePolicyAamwProfileEnum is a string enum.
@@ -3800,6 +3801,15 @@ const (
     SwitchPortUsageSpeedEnum_ENUM40G  SwitchPortUsageSpeedEnum = "40g"
     SwitchPortUsageSpeedEnum_ENUM100G SwitchPortUsageSpeedEnum = "100g"
     SwitchPortUsageSpeedEnum_AUTO     SwitchPortUsageSpeedEnum = "auto"
+)
+
+// SwitchRadiusConfigAuthServerSelectionEnum is a string enum.
+// enum: `ordered`, `unordered`
+type SwitchRadiusConfigAuthServerSelectionEnum string
+
+const (
+    SwitchRadiusConfigAuthServerSelectionEnum_ORDERED   SwitchRadiusConfigAuthServerSelectionEnum = "ordered"
+    SwitchRadiusConfigAuthServerSelectionEnum_UNORDERED SwitchRadiusConfigAuthServerSelectionEnum = "unordered"
 )
 
 // SwitchVirtualChassisMemberVcRoleEnum is a string enum.

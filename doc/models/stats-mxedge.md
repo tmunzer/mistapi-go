@@ -151,7 +151,7 @@
   "created_time": 71.86,
   "fips_enabled": false,
   "fwupdate": {
-    "progress": 122,
+    "progress": 100,
     "status": "inprogress",
     "status_id": 70,
     "timestamp": 147.68,

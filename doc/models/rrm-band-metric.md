@@ -23,7 +23,7 @@
 ```json
 {
   "cochannel_neighbors": 110.94,
-  "density": 56.56,
+  "density": 1.0,
   "interferences": {
     "149": {
       "radar": 0.3,

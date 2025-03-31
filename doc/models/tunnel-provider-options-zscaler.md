@@ -44,7 +44,7 @@ For zscaler-ipsec and zscaler-gre
   "surrogate_IP": false,
   "up_bandwidth": 200,
   "xff_forward_enabled": false,
-  "aup_timeout_in_days": 208,
+  "aup_timeout_in_days": 180,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

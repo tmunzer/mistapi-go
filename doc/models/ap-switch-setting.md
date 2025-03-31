@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `EnableVlan` | `*bool` | Optional | - |
-| `PortVlanId` | `*int` | Optional | Native VLAN id, optional<br>**Constraints**: `>= 1`, `<= 4094` |
+| `PortVlanId` | [`*models.ApSwitchSettingPortVlanId`](../../doc/models/containers/ap-switch-setting-port-vlan-id.md) | Optional | Native VLAN id, optional |
 | `VlanIds` | `[]int` | Optional | List of VLAN ids<br>**Constraints**: `>= 1`, `<= 4094` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -21,9 +21,9 @@
 ```json
 {
   "enable_vlan": false,
-  "port_vlan_id": 112,
+  "port_vlan_id": 34,
   "vlan_ids": [
-    0,
+    1,
     1,
     2
   ],

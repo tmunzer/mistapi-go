@@ -44,7 +44,7 @@ MxTunnels statistics
   "ap": "ap4",
   "for_site": false,
   "fwupdate": {
-    "progress": 122,
+    "progress": 100,
     "status": "inprogress",
     "status_id": 70,
     "timestamp": 147.68,

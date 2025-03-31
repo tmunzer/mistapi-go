@@ -69,7 +69,7 @@ Site MxTunnel
         }
       ],
       "hello_interval": 38,
-      "hello_retries": 186,
+      "hello_retries": 30,
       "protocol": "ip",
       "vlan_ids": [
         142,
@@ -104,7 +104,7 @@ Site MxTunnel
         }
       ],
       "hello_interval": 38,
-      "hello_retries": 186,
+      "hello_retries": 30,
       "protocol": "ip",
       "vlan_ids": [
         142,

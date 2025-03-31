@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `BfdProfile` | [`*models.VpnPathBfdProfileEnum`](../../doc/models/vpn-path-bfd-profile-enum.md) | Optional | enum: `broadband`, `lte`<br>**Default**: `"broadband"` |
-| `BfdUseTunnelMode` | `*bool` | Optional | If `type`==`mesh` and for SSR only, whether toi use tunnel mode<br>**Default**: `false` |
+| `BfdUseTunnelMode` | `*bool` | Optional | If `type`==`mesh` and for SSR only, whether to use tunnel mode<br>**Default**: `false` |
 | `Ip` | `*string` | Optional | If different from the wan port |
 | `PeerPaths` | [`map[string]models.VpnPathPeerPathsPeer`](../../doc/models/vpn-path-peer-paths-peer.md) | Optional | If `type`==`mesh`, Property key is the Peer Interface name |
 | `Pod` | `*int` | Optional | **Default**: `1`<br>**Constraints**: `>= 1`, `<= 128` |

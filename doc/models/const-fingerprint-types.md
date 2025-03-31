@@ -14,7 +14,7 @@
 | `Family` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Mfg` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Model` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `OsType` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Os` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -32,8 +32,8 @@
     "model8",
     "model9"
   ],
-  "os_type": [
-    "os_type3"
+  "os": [
+    "os3"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

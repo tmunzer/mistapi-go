@@ -41,7 +41,6 @@ Org Settings
 | `MistNac` | [`*models.OrgSettingMistNac`](../../doc/models/org-setting-mist-nac.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
-| `MxedgeFipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `OpticPortConfig` | [`map[string]models.OpticPortConfigPort`](../../doc/models/optic-port-config-port.md) | Optional | Property key is the interface name or range (e.g. `et-0/0/47`, `et-0/0/48-49`) |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -73,7 +72,6 @@ Org Settings
   "gateway_updown_threshold": 10,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
-  "mxedge_fips_enabled": false,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "switch_updown_threshold": 0,
   "ui_idle_timeout": 10,

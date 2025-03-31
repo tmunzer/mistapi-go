@@ -412,7 +412,6 @@ body := models.OrgSetting{
     DisablePcap:                 models.ToPointer(false),
     DisableRemoteShell:          models.ToPointer(false),
     GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),
-    MxedgeFipsEnabled:           models.ToPointer(false),
     SwitchUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     UiIdleTimeout:               models.ToPointer(10),
 }

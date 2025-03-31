@@ -24,6 +24,7 @@ By default, `radius_config` will be used. if a different one has to be used set 
 {
   "enabled": false,
   "radius_config": {
+    "acct_immediate_update": false,
     "acct_interim_interval": 118,
     "acct_servers": [
       {
@@ -53,6 +54,7 @@ By default, `radius_config` will be used. if a different one has to be used set 
         }
       }
     ],
+    "auth_server_selection": "ordered",
     "auth_servers": [
       {
         "host": "host0",
@@ -94,8 +96,6 @@ By default, `radius_config` will be used. if a different one has to be used set 
         }
       }
     ],
-    "auth_servers_retries": 194,
-    "auth_servers_timeout": 232,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

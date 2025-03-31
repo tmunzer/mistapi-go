@@ -19,7 +19,7 @@
 
 ```json
 {
-  "member": 184,
+  "member": 9,
   "node": "node0",
   "exampleAdditionalProperty": {
     "key1": "val1",

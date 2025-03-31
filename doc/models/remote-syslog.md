@@ -41,7 +41,7 @@
   ],
   "time_format": "millisecond",
   "archive": {
-    "files": 122,
+    "files": "String5",
     "size": "size8",
     "exampleAdditionalProperty": {
       "key1": "val1",
@@ -83,7 +83,7 @@
   "files": [
     {
       "archive": {
-        "files": 122,
+        "files": "String5",
         "size": "size8",
         "exampleAdditionalProperty": {
           "key1": "val1",
@@ -118,7 +118,7 @@
     },
     {
       "archive": {
-        "files": 122,
+        "files": "String5",
         "size": "size8",
         "exampleAdditionalProperty": {
           "key1": "val1",
@@ -153,7 +153,7 @@
     },
     {
       "archive": {
-        "files": 122,
+        "files": "String5",
         "size": "size8",
         "exampleAdditionalProperty": {
           "key1": "val1",

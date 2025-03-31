@@ -22,8 +22,10 @@ type SwitchMgmt struct {
     FipsEnabled          *bool                                    `json:"fips_enabled,omitempty"`
     // Property key is the user name. For Local user authentication
     LocalAccounts        map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
+    // IP Address or FQDN of the Mist Edge used to proxy the switch management traffic to the Mist Cloud
     MxedgeProxyHost      *string                                  `json:"mxedge_proxy_host,omitempty"`
-    MxedgeProxyPort      *int                                     `json:"mxedge_proxy_port,omitempty"`
+    // Mist Edge port used to proxy the switch management traffic to the Mist Cloud. Value in range 1-65535
+    MxedgeProxyPort      *SwitchMgmtMxedgeProxyPort               `json:"mxedge_proxy_port,omitempty"`
     // Restrict inbound-traffic to host
     // when enabled, all traffic that is not essential to our operation will be dropped
     // e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
@@ -89,7 +91,7 @@ func (s SwitchMgmt) toMap() map[string]any {
         structMap["mxedge_proxy_host"] = s.MxedgeProxyHost
     }
     if s.MxedgeProxyPort != nil {
-        structMap["mxedge_proxy_port"] = s.MxedgeProxyPort
+        structMap["mxedge_proxy_port"] = s.MxedgeProxyPort.toMap()
     }
     if s.ProtectRe != nil {
         structMap["protect_re"] = s.ProtectRe.toMap()
@@ -152,7 +154,7 @@ type tempSwitchMgmt  struct {
     FipsEnabled         *bool                                    `json:"fips_enabled,omitempty"`
     LocalAccounts       map[string]ConfigSwitchLocalAccountsUser `json:"local_accounts,omitempty"`
     MxedgeProxyHost     *string                                  `json:"mxedge_proxy_host,omitempty"`
-    MxedgeProxyPort     *int                                     `json:"mxedge_proxy_port,omitempty"`
+    MxedgeProxyPort     *SwitchMgmtMxedgeProxyPort               `json:"mxedge_proxy_port,omitempty"`
     ProtectRe           *ProtectRe                               `json:"protect_re,omitempty"`
     Radius              *SwitchRadius                            `json:"radius,omitempty"`
     RootPassword        *string                                  `json:"root_password,omitempty"`

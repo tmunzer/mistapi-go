@@ -24,7 +24,7 @@ Set of heuristic rules will be enabled when marvis subscription is not available
 {
   "arp_failure": {
     "client_count": 26,
-    "duration": 130,
+    "duration": 60,
     "incident_count": 226,
     "exampleAdditionalProperty": {
       "key1": "val1",
@@ -33,7 +33,7 @@ Set of heuristic rules will be enabled when marvis subscription is not available
   },
   "dhcp_failure": {
     "client_count": 246,
-    "duration": 94,
+    "duration": 60,
     "incident_count": 6,
     "exampleAdditionalProperty": {
       "key1": "val1",
@@ -42,7 +42,7 @@ Set of heuristic rules will be enabled when marvis subscription is not available
   },
   "dns_failure": {
     "client_count": 252,
-    "duration": 100,
+    "duration": 60,
     "incident_count": 0,
     "exampleAdditionalProperty": {
       "key1": "val1",

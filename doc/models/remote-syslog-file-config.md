@@ -26,7 +26,7 @@
   "file": "file-name",
   "match": "!alarm|ntp|errors.crc_error[chan]",
   "archive": {
-    "files": 122,
+    "files": "String5",
     "size": "size8",
     "exampleAdditionalProperty": {
       "key1": "val1",

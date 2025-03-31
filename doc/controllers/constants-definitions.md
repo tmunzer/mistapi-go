@@ -962,7 +962,7 @@ if err != nil {
     "11 Pro",
     "11 Pro Max"
   ],
-  "os_type": [
+  "os": [
     "Android",
     "Apple OS",
     "Asha Platform OS"

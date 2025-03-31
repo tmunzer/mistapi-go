@@ -1,7 +1,7 @@
 
 # Stats Ap Lldp Stat
 
-LLDP Stat (neighbor information, power negotiations)
+LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed.
 
 *This model accepts additional fields of type interface{}.*
 
@@ -15,14 +15,21 @@ LLDP Stat (neighbor information, power negotiations)
 |  --- | --- | --- | --- |
 | `ChassisId` | `models.Optional[string]` | Optional | - |
 | `LldpMedSupported` | `models.Optional[bool]` | Optional | Whether it support LLDP-MED |
-| `MgmtAddr` | `models.Optional[string]` | Optional | Switch’s management address (if advertised), can be IPv4, IPv6, or MAC |
-| `MgmtAddrs` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `PortDesc` | `models.Optional[string]` | Optional | ge-0/0/4 |
-| `PortId` | `models.Optional[string]` | Optional | - |
-| `PowerAllocated` | `models.Optional[float64]` | Optional | In mW, provided/allocated by PSE |
+| `MgmtAddr` | `models.Optional[string]` | Optional | Management IP address of the switch |
+| `MgmtAddrs` | `[]string` | Optional | List of management IP addresses (IPv4 and IPv6) |
+| `PortDesc` | `models.Optional[string]` | Optional | Port description, e.g. “2/20”, “Port 2 on Switch0” |
+| `PortId` | `models.Optional[string]` | Optional | Port identifier |
+| `PowerAllocated` | `models.Optional[float64]` | Optional | In mW, power allocated by PSE |
+| `PowerAvail` | `*int` | Optional | In mW, total Power Avail at AP from pwr source |
+| `PowerBudget` | `*int` | Optional | In mW, surplus if positive or deficit if negative |
+| `PowerConstrained` | `*bool` | Optional | Whether power is insufficient |
 | `PowerDraw` | `models.Optional[float64]` | Optional | In mW, total power needed by PD |
+| `PowerNeeded` | `*int` | Optional | In mW, total Power needed incl Peripherals |
+| `PowerOpmode` | `*string` | Optional | Constrained mode |
 | `PowerRequestCount` | `models.Optional[int]` | Optional | Number of negotiations, if it keeps increasing, we don’ t have a stable power |
-| `PowerRequested` | `models.Optional[float64]` | Optional | In mW, the current power requested by PD |
+| `PowerRequested` | `models.Optional[float64]` | Optional | In mW, power requested by PD |
+| `PowerSrc` | `*string` | Optional | Single power source (DC Input / PoE 802.3at / PoE 802.3af / PoE 802.3bt / MULTI-PD / LLDP / ? (unknown)). |
+| `PowerSrcs` | `[]string` | Optional | List of management IP addresses (IPv4 and IPv6) |
 | `SystemDesc` | `models.Optional[string]` | Optional | Description provided by switch |
 | `SystemName` | `models.Optional[string]` | Optional | Name of the switch |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -31,6 +38,7 @@ LLDP Stat (neighbor information, power negotiations)
 
 ```json
 {
+  "port_desc": "2/20",
   "port_id": "ge-0/0/4",
   "system_desc": "uniper Networks, Inc. ex4300-48t internet router, kernel JUNOS 20.4R3-S7.2, Build date: 2023-04-21 19:47:18 UTC Copyright (c) 1996-2023 Juniper Networks, Inc.",
   "system_name": "Core-AE23",
@@ -41,7 +49,6 @@ LLDP Stat (neighbor information, power negotiations)
     "mgmt_addrs9",
     "mgmt_addrs0"
   ],
-  "port_desc": "port_desc0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

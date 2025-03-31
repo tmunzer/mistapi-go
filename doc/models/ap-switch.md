@@ -29,7 +29,7 @@ For people who want to fully control the vlans (advanced)
   "enabled": false,
   "eth0": {
     "enable_vlan": false,
-    "port_vlan_id": 106,
+    "port_vlan_id": 28,
     "vlan_ids": [
       114,
       115,
@@ -42,7 +42,7 @@ For people who want to fully control the vlans (advanced)
   },
   "eth1": {
     "enable_vlan": false,
-    "port_vlan_id": 138,
+    "port_vlan_id": 60,
     "vlan_ids": [
       146,
       147,
@@ -55,7 +55,7 @@ For people who want to fully control the vlans (advanced)
   },
   "eth2": {
     "enable_vlan": false,
-    "port_vlan_id": 110,
+    "port_vlan_id": 32,
     "vlan_ids": [
       118,
       119,
@@ -68,7 +68,7 @@ For people who want to fully control the vlans (advanced)
   },
   "eth3": {
     "enable_vlan": false,
-    "port_vlan_id": 228,
+    "port_vlan_id": 150,
     "vlan_ids": [
       236,
       237

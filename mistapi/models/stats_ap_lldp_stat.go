@@ -6,25 +6,41 @@ import (
 )
 
 // StatsApLldpStat represents a StatsApLldpStat struct.
-// LLDP Stat (neighbor information, power negotiations)
+// LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed.
 type StatsApLldpStat struct {
     ChassisId            Optional[string]       `json:"chassis_id"`
     // Whether it support LLDP-MED
     LldpMedSupported     Optional[bool]         `json:"lldp_med_supported"`
-    // Switch’s management address (if advertised), can be IPv4, IPv6, or MAC
+    // Management IP address of the switch
     MgmtAddr             Optional[string]       `json:"mgmt_addr"`
+    // List of management IP addresses (IPv4 and IPv6)
     MgmtAddrs            []string               `json:"mgmt_addrs,omitempty"`
-    // ge-0/0/4
+    // Port description, e.g. “2/20”, “Port 2 on Switch0”
     PortDesc             Optional[string]       `json:"port_desc"`
+    // Port identifier
     PortId               Optional[string]       `json:"port_id"`
-    // In mW, provided/allocated by PSE
+    // In mW, power allocated by PSE
     PowerAllocated       Optional[float64]      `json:"power_allocated"`
+    // In mW, total Power Avail at AP from pwr source
+    PowerAvail           *int                   `json:"power_avail,omitempty"`
+    // In mW, surplus if positive or deficit if negative
+    PowerBudget          *int                   `json:"power_budget,omitempty"`
+    // Whether power is insufficient
+    PowerConstrained     *bool                  `json:"power_constrained,omitempty"`
     // In mW, total power needed by PD
     PowerDraw            Optional[float64]      `json:"power_draw"`
+    // In mW, total Power needed incl Peripherals
+    PowerNeeded          *int                   `json:"power_needed,omitempty"`
+    // Constrained mode
+    PowerOpmode          *string                `json:"power_opmode,omitempty"`
     // Number of negotiations, if it keeps increasing, we don’ t have a stable power
     PowerRequestCount    Optional[int]          `json:"power_request_count"`
-    // In mW, the current power requested by PD
+    // In mW, power requested by PD
     PowerRequested       Optional[float64]      `json:"power_requested"`
+    // Single power source (DC Input / PoE 802.3at / PoE 802.3af / PoE 802.3bt / MULTI-PD / LLDP / ? (unknown)).
+    PowerSrc             *string                `json:"power_src,omitempty"`
+    // List of management IP addresses (IPv4 and IPv6)
+    PowerSrcs            []string               `json:"power_srcs,omitempty"`
     // Description provided by switch
     SystemDesc           Optional[string]       `json:"system_desc"`
     // Name of the switch
@@ -36,8 +52,8 @@ type StatsApLldpStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsApLldpStat) String() string {
     return fmt.Sprintf(
-    	"StatsApLldpStat[ChassisId=%v, LldpMedSupported=%v, MgmtAddr=%v, MgmtAddrs=%v, PortDesc=%v, PortId=%v, PowerAllocated=%v, PowerDraw=%v, PowerRequestCount=%v, PowerRequested=%v, SystemDesc=%v, SystemName=%v, AdditionalProperties=%v]",
-    	s.ChassisId, s.LldpMedSupported, s.MgmtAddr, s.MgmtAddrs, s.PortDesc, s.PortId, s.PowerAllocated, s.PowerDraw, s.PowerRequestCount, s.PowerRequested, s.SystemDesc, s.SystemName, s.AdditionalProperties)
+    	"StatsApLldpStat[ChassisId=%v, LldpMedSupported=%v, MgmtAddr=%v, MgmtAddrs=%v, PortDesc=%v, PortId=%v, PowerAllocated=%v, PowerAvail=%v, PowerBudget=%v, PowerConstrained=%v, PowerDraw=%v, PowerNeeded=%v, PowerOpmode=%v, PowerRequestCount=%v, PowerRequested=%v, PowerSrc=%v, PowerSrcs=%v, SystemDesc=%v, SystemName=%v, AdditionalProperties=%v]",
+    	s.ChassisId, s.LldpMedSupported, s.MgmtAddr, s.MgmtAddrs, s.PortDesc, s.PortId, s.PowerAllocated, s.PowerAvail, s.PowerBudget, s.PowerConstrained, s.PowerDraw, s.PowerNeeded, s.PowerOpmode, s.PowerRequestCount, s.PowerRequested, s.PowerSrc, s.PowerSrcs, s.SystemDesc, s.SystemName, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApLldpStat.
@@ -46,7 +62,7 @@ func (s StatsApLldpStat) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_draw", "power_request_count", "power_requested", "system_desc", "system_name"); err != nil {
+        "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_avail", "power_budget", "power_constrained", "power_draw", "power_needed", "power_opmode", "power_request_count", "power_requested", "power_src", "power_srcs", "system_desc", "system_name"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -101,12 +117,27 @@ func (s StatsApLldpStat) toMap() map[string]any {
             structMap["power_allocated"] = nil
         }
     }
+    if s.PowerAvail != nil {
+        structMap["power_avail"] = s.PowerAvail
+    }
+    if s.PowerBudget != nil {
+        structMap["power_budget"] = s.PowerBudget
+    }
+    if s.PowerConstrained != nil {
+        structMap["power_constrained"] = s.PowerConstrained
+    }
     if s.PowerDraw.IsValueSet() {
         if s.PowerDraw.Value() != nil {
             structMap["power_draw"] = s.PowerDraw.Value()
         } else {
             structMap["power_draw"] = nil
         }
+    }
+    if s.PowerNeeded != nil {
+        structMap["power_needed"] = s.PowerNeeded
+    }
+    if s.PowerOpmode != nil {
+        structMap["power_opmode"] = s.PowerOpmode
     }
     if s.PowerRequestCount.IsValueSet() {
         if s.PowerRequestCount.Value() != nil {
@@ -121,6 +152,12 @@ func (s StatsApLldpStat) toMap() map[string]any {
         } else {
             structMap["power_requested"] = nil
         }
+    }
+    if s.PowerSrc != nil {
+        structMap["power_src"] = s.PowerSrc
+    }
+    if s.PowerSrcs != nil {
+        structMap["power_srcs"] = s.PowerSrcs
     }
     if s.SystemDesc.IsValueSet() {
         if s.SystemDesc.Value() != nil {
@@ -147,7 +184,7 @@ func (s *StatsApLldpStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_draw", "power_request_count", "power_requested", "system_desc", "system_name")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "chassis_id", "lldp_med_supported", "mgmt_addr", "mgmt_addrs", "port_desc", "port_id", "power_allocated", "power_avail", "power_budget", "power_constrained", "power_draw", "power_needed", "power_opmode", "power_request_count", "power_requested", "power_src", "power_srcs", "system_desc", "system_name")
     if err != nil {
     	return err
     }
@@ -160,9 +197,16 @@ func (s *StatsApLldpStat) UnmarshalJSON(input []byte) error {
     s.PortDesc = temp.PortDesc
     s.PortId = temp.PortId
     s.PowerAllocated = temp.PowerAllocated
+    s.PowerAvail = temp.PowerAvail
+    s.PowerBudget = temp.PowerBudget
+    s.PowerConstrained = temp.PowerConstrained
     s.PowerDraw = temp.PowerDraw
+    s.PowerNeeded = temp.PowerNeeded
+    s.PowerOpmode = temp.PowerOpmode
     s.PowerRequestCount = temp.PowerRequestCount
     s.PowerRequested = temp.PowerRequested
+    s.PowerSrc = temp.PowerSrc
+    s.PowerSrcs = temp.PowerSrcs
     s.SystemDesc = temp.SystemDesc
     s.SystemName = temp.SystemName
     return nil
@@ -177,9 +221,16 @@ type tempStatsApLldpStat  struct {
     PortDesc          Optional[string]  `json:"port_desc"`
     PortId            Optional[string]  `json:"port_id"`
     PowerAllocated    Optional[float64] `json:"power_allocated"`
+    PowerAvail        *int              `json:"power_avail,omitempty"`
+    PowerBudget       *int              `json:"power_budget,omitempty"`
+    PowerConstrained  *bool             `json:"power_constrained,omitempty"`
     PowerDraw         Optional[float64] `json:"power_draw"`
+    PowerNeeded       *int              `json:"power_needed,omitempty"`
+    PowerOpmode       *string           `json:"power_opmode,omitempty"`
     PowerRequestCount Optional[int]     `json:"power_request_count"`
     PowerRequested    Optional[float64] `json:"power_requested"`
+    PowerSrc          *string           `json:"power_src,omitempty"`
+    PowerSrcs         []string          `json:"power_srcs,omitempty"`
     SystemDesc        Optional[string]  `json:"system_desc"`
     SystemName        Optional[string]  `json:"system_name"`
 }

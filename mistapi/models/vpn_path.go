@@ -9,7 +9,7 @@ import (
 type VpnPath struct {
     // enum: `broadband`, `lte`
     BfdProfile           *VpnPathBfdProfileEnum          `json:"bfd_profile,omitempty"`
-    // If `type`==`mesh` and for SSR only, whether toi use tunnel mode
+    // If `type`==`mesh` and for SSR only, whether to use tunnel mode
     BfdUseTunnelMode     *bool                           `json:"bfd_use_tunnel_mode,omitempty"`
     // If different from the wan port
     Ip                   *string                         `json:"ip,omitempty"`

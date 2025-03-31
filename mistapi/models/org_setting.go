@@ -52,7 +52,6 @@ type OrgSetting struct {
     // When the object has been modified for the last time, in epoch
     ModifiedTime                *float64                               `json:"modified_time,omitempty"`
     MspId                       *uuid.UUID                             `json:"msp_id,omitempty"`
-    MxedgeFipsEnabled           *bool                                  `json:"mxedge_fips_enabled,omitempty"`
     MxedgeMgmt                  *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
     // Property key is the interface name or range (e.g. `et-0/0/47`, `et-0/0/48-49`)
     OpticPortConfig             map[string]OpticPortConfigPort         `json:"optic_port_config,omitempty"`
@@ -83,8 +82,8 @@ type OrgSetting struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSetting) String() string {
     return fmt.Sprintf(
-    	"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JunosShellAccess=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeFipsEnabled=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
-    	o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JunosShellAccess, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeFipsEnabled, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
+    	"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JunosShellAccess=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
+    	o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JunosShellAccess, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSetting.
@@ -93,7 +92,7 @@ func (o OrgSetting) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
+        "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -199,9 +198,6 @@ func (o OrgSetting) toMap() map[string]any {
     if o.MspId != nil {
         structMap["msp_id"] = o.MspId
     }
-    if o.MxedgeFipsEnabled != nil {
-        structMap["mxedge_fips_enabled"] = o.MxedgeFipsEnabled
-    }
     if o.MxedgeMgmt != nil {
         structMap["mxedge_mgmt"] = o.MxedgeMgmt.toMap()
     }
@@ -268,7 +264,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_fips_enabled", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
     if err != nil {
     	return err
     }
@@ -302,7 +298,6 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
     o.MistNac = temp.MistNac
     o.ModifiedTime = temp.ModifiedTime
     o.MspId = temp.MspId
-    o.MxedgeFipsEnabled = temp.MxedgeFipsEnabled
     o.MxedgeMgmt = temp.MxedgeMgmt
     o.OpticPortConfig = temp.OpticPortConfig
     o.OrgId = temp.OrgId
@@ -353,7 +348,6 @@ type tempOrgSetting  struct {
     MistNac                     *OrgSettingMistNac                     `json:"mist_nac,omitempty"`
     ModifiedTime                *float64                               `json:"modified_time,omitempty"`
     MspId                       *uuid.UUID                             `json:"msp_id,omitempty"`
-    MxedgeFipsEnabled           *bool                                  `json:"mxedge_fips_enabled,omitempty"`
     MxedgeMgmt                  *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
     OpticPortConfig             map[string]OpticPortConfigPort         `json:"optic_port_config,omitempty"`
     OrgId                       *uuid.UUID                             `json:"org_id,omitempty"`

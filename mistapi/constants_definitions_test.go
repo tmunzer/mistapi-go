@@ -132,7 +132,7 @@ func TestConstantsDefinitionsTestListFingerprintTypes(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"family":["2Wire Router","3Com Switches","ACTi Corporation Network Camera","APC Video Equipment","APC-Schneider UPS","Aastra VoIP","Acer","Actiontec Wireless Router","Aerohive Access Point","Alcatel","Alcatel VoIP","Amazon Echo"],"mfg":["100fio Networks Technology llc","10NET COMMUNICATIONS/DCA","11wave Technonlogy Co.,Ltd","12Sided Technology, LLC","1Net Corporation","1Verge Internet Technology (Beijing) Co., Ltd."],"model":["10T Lite","10T Pro","10th Gen","11 Lite","11 Pro","11 Pro Max"],"os_type":["Android","Apple OS","Asha Platform OS"]}`
+    expected := `{"family":["2Wire Router","3Com Switches","ACTi Corporation Network Camera","APC Video Equipment","APC-Schneider UPS","Aastra VoIP","Acer","Actiontec Wireless Router","Aerohive Access Point","Alcatel","Alcatel VoIP","Amazon Echo"],"mfg":["100fio Networks Technology llc","10NET COMMUNICATIONS/DCA","11wave Technonlogy Co.,Ltd","12Sided Technology, LLC","1Net Corporation","1Verge Internet Technology (Beijing) Co., Ltd."],"model":["10T Lite","10T Pro","10th Gen","11 Lite","11 Pro","11 Pro Max"],"os":["Android","Apple OS","Asha Platform OS"]}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

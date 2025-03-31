@@ -13,7 +13,7 @@ orgsVPNs := client.OrgsVPNs()
 * [Create Org Vpn](../../doc/controllers/orgs-vp-ns.md#create-org-vpn)
 * [Delete Org Vpn](../../doc/controllers/orgs-vp-ns.md#delete-org-vpn)
 * [Get Org Vpn](../../doc/controllers/orgs-vp-ns.md#get-org-vpn)
-* [List Orgs Vpns](../../doc/controllers/orgs-vp-ns.md#list-orgs-vpns)
+* [List Org Vpns](../../doc/controllers/orgs-vp-ns.md#list-org-vpns)
 * [Update Org Vpn](../../doc/controllers/orgs-vp-ns.md#update-org-vpn)
 
 
@@ -233,12 +233,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Orgs Vpns
+# List Org Vpns
 
 Get List of Org VPNs
 
 ```go
-ListOrgsVpns(
+ListOrgVpns(
     ctx context.Context,
     orgId uuid.UUID,
     limit *int,
@@ -270,7 +270,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsVPNs.ListOrgsVpns(ctx, orgId, &limit, &page)
+apiResponse, err := orgsVPNs.ListOrgVpns(ctx, orgId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -70,7 +70,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-imageNumber := 110
+imageNumber := 3
 
 
 
@@ -820,7 +820,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-imageNumber := 110
+imageNumber := 3
 
 resp, err := orgsMxEdges.DeleteOrgMxEdgeImage(ctx, orgId, mxedgeId, imageNumber)
 if err != nil {

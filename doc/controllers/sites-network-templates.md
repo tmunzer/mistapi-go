@@ -139,7 +139,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -174,7 +174,7 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 0,
+      "mtu": 1500,
       "networks": [
         "string"
       ],

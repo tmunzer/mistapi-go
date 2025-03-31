@@ -7,12 +7,12 @@ import (
 
 // ApSwitchSetting represents a ApSwitchSetting struct.
 type ApSwitchSetting struct {
-    EnableVlan           *bool                  `json:"enable_vlan,omitempty"`
+    EnableVlan           *bool                      `json:"enable_vlan,omitempty"`
     // Native VLAN id, optional
-    PortVlanId           *int                   `json:"port_vlan_id,omitempty"`
+    PortVlanId           *ApSwitchSettingPortVlanId `json:"port_vlan_id,omitempty"`
     // List of VLAN ids
-    VlanIds              []int                  `json:"vlan_ids,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    VlanIds              []int                      `json:"vlan_ids,omitempty"`
+    AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ApSwitchSetting,
@@ -43,7 +43,7 @@ func (a ApSwitchSetting) toMap() map[string]any {
         structMap["enable_vlan"] = a.EnableVlan
     }
     if a.PortVlanId != nil {
-        structMap["port_vlan_id"] = a.PortVlanId
+        structMap["port_vlan_id"] = a.PortVlanId.toMap()
     }
     if a.VlanIds != nil {
         structMap["vlan_ids"] = a.VlanIds
@@ -73,7 +73,7 @@ func (a *ApSwitchSetting) UnmarshalJSON(input []byte) error {
 
 // tempApSwitchSetting is a temporary struct used for validating the fields of ApSwitchSetting.
 type tempApSwitchSetting  struct {
-    EnableVlan *bool `json:"enable_vlan,omitempty"`
-    PortVlanId *int  `json:"port_vlan_id,omitempty"`
-    VlanIds    []int `json:"vlan_ids,omitempty"`
+    EnableVlan *bool                      `json:"enable_vlan,omitempty"`
+    PortVlanId *ApSwitchSettingPortVlanId `json:"port_vlan_id,omitempty"`
+    VlanIds    []int                      `json:"vlan_ids,omitempty"`
 }

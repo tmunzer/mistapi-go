@@ -1,7 +1,7 @@
 
 # Service Failover Policy Enum
 
-enum: `non_revertable`, `none`, `revertable`
+enum: `non_revertible`, `none`, `revertible`
 
 ## Enumeration
 
@@ -11,7 +11,7 @@ enum: `non_revertable`, `none`, `revertable`
 
 | Name |
 |  --- |
-| `non_revertable` |
+| `non_revertible` |
 | `none` |
-| `revertable` |
+| `revertible` |
 

@@ -14,6 +14,7 @@ type ApAeroscout struct {
     Host                 Optional[string]       `json:"host"`
     // Whether to enable the feature to allow wireless clients data received and sent to AES server for location calculation
     LocateConnected      *bool                  `json:"locate_connected,omitempty"`
+    Port                 Optional[int]          `json:"port"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -21,8 +22,8 @@ type ApAeroscout struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApAeroscout) String() string {
     return fmt.Sprintf(
-    	"ApAeroscout[Enabled=%v, Host=%v, LocateConnected=%v, AdditionalProperties=%v]",
-    	a.Enabled, a.Host, a.LocateConnected, a.AdditionalProperties)
+    	"ApAeroscout[Enabled=%v, Host=%v, LocateConnected=%v, Port=%v, AdditionalProperties=%v]",
+    	a.Enabled, a.Host, a.LocateConnected, a.Port, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApAeroscout.
@@ -31,7 +32,7 @@ func (a ApAeroscout) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "enabled", "host", "locate_connected"); err != nil {
+        "enabled", "host", "locate_connected", "port"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -54,6 +55,13 @@ func (a ApAeroscout) toMap() map[string]any {
     if a.LocateConnected != nil {
         structMap["locate_connected"] = a.LocateConnected
     }
+    if a.Port.IsValueSet() {
+        if a.Port.Value() != nil {
+            structMap["port"] = a.Port.Value()
+        } else {
+            structMap["port"] = nil
+        }
+    }
     return structMap
 }
 
@@ -65,7 +73,7 @@ func (a *ApAeroscout) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "host", "locate_connected")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "host", "locate_connected", "port")
     if err != nil {
     	return err
     }
@@ -74,6 +82,7 @@ func (a *ApAeroscout) UnmarshalJSON(input []byte) error {
     a.Enabled = temp.Enabled
     a.Host = temp.Host
     a.LocateConnected = temp.LocateConnected
+    a.Port = temp.Port
     return nil
 }
 
@@ -82,4 +91,5 @@ type tempApAeroscout  struct {
     Enabled         *bool            `json:"enabled,omitempty"`
     Host            Optional[string] `json:"host"`
     LocateConnected *bool            `json:"locate_connected,omitempty"`
+    Port            Optional[int]    `json:"port"`
 }

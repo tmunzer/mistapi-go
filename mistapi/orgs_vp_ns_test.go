@@ -9,8 +9,8 @@ import (
     "testing"
 )
 
-// TestOrgsVPNsTestListOrgsVpns tests the behavior of the OrgsVPNs
-func TestOrgsVPNsTestListOrgsVpns(t *testing.T) {
+// TestOrgsVPNsTestListOrgVpns tests the behavior of the OrgsVPNs
+func TestOrgsVPNsTestListOrgVpns(t *testing.T) {
     ctx := context.Background()
     orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
@@ -18,7 +18,7 @@ func TestOrgsVPNsTestListOrgsVpns(t *testing.T) {
     }
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsVpNs.ListOrgsVpns(ctx, orgId, &limit, &page)
+    apiResponse, err := orgsVpNs.ListOrgVpns(ctx, orgId, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

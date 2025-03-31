@@ -21,8 +21,8 @@ Switch settings
 | `DisableOobDownAlarm` | `*bool` | Optional | - |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `LocalAccounts` | [`map[string]models.ConfigSwitchLocalAccountsUser`](../../doc/models/config-switch-local-accounts-user.md) | Optional | Property key is the user name. For Local user authentication |
-| `MxedgeProxyHost` | `*string` | Optional | - |
-| `MxedgeProxyPort` | `*int` | Optional | **Default**: `2222`<br>**Constraints**: `>= 1`, `<= 65535` |
+| `MxedgeProxyHost` | `*string` | Optional | IP Address or FQDN of the Mist Edge used to proxy the switch management traffic to the Mist Cloud |
+| `MxedgeProxyPort` | [`*models.SwitchMgmtMxedgeProxyPort`](../../doc/models/containers/switch-mgmt-mxedge-proxy-port.md) | Optional | Mist Edge port used to proxy the switch management traffic to the Mist Cloud. Value in range 1-65535 |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | Restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
 | `Radius` | [`*models.SwitchRadius`](../../doc/models/switch-radius.md) | Optional | By default, `radius_config` will be used. if a different one has to be used set `use_different_radius |
 | `RootPassword` | `*string` | Optional | - |
@@ -39,8 +39,7 @@ Switch settings
   "config_revert_timer": 10,
   "dhcp_option_fqdn": false,
   "fips_enabled": false,
-  "mxedge_proxy_port": 2222,
-  "cli_idle_timeout": 142,
+  "cli_idle_timeout": 60,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

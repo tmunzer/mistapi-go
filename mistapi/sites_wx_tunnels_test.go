@@ -39,7 +39,7 @@ func TestSitesWxTunnelsTestCreateSiteWxTunnel(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.WxlanTunnel
-    errBody := json.Unmarshal([]byte(`{"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"mtu":0,"name":"string","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"udp_port":0,"use_udp":true}`), &body)
+    errBody := json.Unmarshal([]byte(`{"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"mtu":1500,"name":"string","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"udp_port":0,"use_udp":true}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
@@ -52,7 +52,7 @@ func TestSitesWxTunnelsTestCreateSiteWxTunnel(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
+    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":1500,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -94,7 +94,7 @@ func TestSitesWxTunnelsTestGetSiteWxTunnel(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
+    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":1500,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -110,7 +110,7 @@ func TestSitesWxTunnelsTestUpdateSiteWxTunnel(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.WxlanTunnel
-    errBody := json.Unmarshal([]byte(`{"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"mtu":0,"name":"string","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"udp_port":0,"use_udp":true}`), &body)
+    errBody := json.Unmarshal([]byte(`{"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"mtu":1500,"name":"string","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"udp_port":0,"use_udp":true}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
@@ -123,6 +123,6 @@ func TestSitesWxTunnelsTestUpdateSiteWxTunnel(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
+    expected := `{"created_time":0,"dmvpn":{"enabled":true,"holding_time":0,"host_routes":["string"]},"for_mgmt":true,"hello_interval":1,"hello_retries":3,"hostname":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ipsec":{"enabled":true,"psk":"string123"},"is_static":true,"modified_time":0,"mtu":1500,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","peers":["string"],"router_id":"string","secret":"string","sessions":[{"ap_as_session_id":"string","comment":"string","enable_cookie":true,"ethertype":"ethernet","local_session_id":1,"pseudo_802.1ad_enabled":true,"remote_id":"string","remote_session_id":1,"use_ap_as_session_ids":true}],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","udp_port":0,"use_udp":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

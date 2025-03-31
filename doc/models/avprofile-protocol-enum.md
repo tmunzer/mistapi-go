@@ -1,9 +1,9 @@
 
-# Avprofile Protocols Enum
+# Avprofile Protocol Enum
 
 ## Enumeration
 
-`AvprofileProtocolsEnum`
+`AvprofileProtocolEnum`
 
 ## Fields
 

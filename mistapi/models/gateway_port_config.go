@@ -59,8 +59,8 @@ type GatewayPortConfig struct {
     Redundant            *bool                          `json:"redundant,omitempty"`
     // If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX
     RedundantGroup       *int                           `json:"redundant_group,omitempty"`
-    // If HA mode
-    RethIdx              *int                           `json:"reth_idx,omitempty"`
+    // For SRX only and if HA Mode
+    RethIdx              *GatewayPortConfigRethIdx      `json:"reth_idx,omitempty"`
     // If HA mode
     RethNode             *string                        `json:"reth_node,omitempty"`
     // SSR only - supporting vlan-based redundancy (matching the size of `networks`)
@@ -204,7 +204,7 @@ func (g GatewayPortConfig) toMap() map[string]any {
         structMap["redundant_group"] = g.RedundantGroup
     }
     if g.RethIdx != nil {
-        structMap["reth_idx"] = g.RethIdx
+        structMap["reth_idx"] = g.RethIdx.toMap()
     }
     if g.RethNode != nil {
         structMap["reth_node"] = g.RethNode
@@ -349,7 +349,7 @@ type tempGatewayPortConfig  struct {
     PreserveDscp     *bool                          `json:"preserve_dscp,omitempty"`
     Redundant        *bool                          `json:"redundant,omitempty"`
     RedundantGroup   *int                           `json:"redundant_group,omitempty"`
-    RethIdx          *int                           `json:"reth_idx,omitempty"`
+    RethIdx          *GatewayPortConfigRethIdx      `json:"reth_idx,omitempty"`
     RethNode         *string                        `json:"reth_node,omitempty"`
     RethNodes        []string                       `json:"reth_nodes,omitempty"`
     Speed            *string                        `json:"speed,omitempty"`

@@ -92,7 +92,7 @@ if err != nil {
   ],
   "created_time": 0,
   "dscp": 0,
-  "failover_policy": "revertable",
+  "failover_policy": "revertible",
   "hostnames": [
     "string"
   ],
@@ -238,7 +238,7 @@ if err != nil {
   ],
   "created_time": 0,
   "dscp": 0,
-  "failover_policy": "revertable",
+  "failover_policy": "revertible",
   "hostnames": [
     "string"
   ],
@@ -410,7 +410,7 @@ body := models.Service{
         "string",
     },
     Dscp:                          models.ToPointer(models.ServiceDscpContainer.FromNumber(0)),
-    FailoverPolicy:                models.ToPointer(models.ServiceFailoverPolicyEnum_REVERTABLE),
+    FailoverPolicy:                models.ToPointer(models.ServiceFailoverPolicyEnum_REVERTIBLE),
     Hostnames:                     []string{
         "string",
     },
@@ -458,7 +458,7 @@ if err != nil {
   ],
   "created_time": 0,
   "dscp": 0,
-  "failover_policy": "revertable",
+  "failover_policy": "revertible",
   "hostnames": [
     "string"
   ],

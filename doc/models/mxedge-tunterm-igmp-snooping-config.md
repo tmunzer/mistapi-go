@@ -25,7 +25,7 @@
     "max_response_time": 136,
     "mtu": 120,
     "query_interval": 156,
-    "robustness": 80,
+    "robustness": 7,
     "version": 0,
     "exampleAdditionalProperty": {
       "key1": "val1",

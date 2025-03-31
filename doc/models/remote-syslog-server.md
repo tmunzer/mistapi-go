@@ -16,7 +16,7 @@
 | `Facility` | [`*models.RemoteSyslogFacilityEnum`](../../doc/models/remote-syslog-facility-enum.md) | Optional | enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`<br>**Default**: `"any"` |
 | `Host` | `*string` | Optional | - |
 | `Match` | `*string` | Optional | - |
-| `Port` | `*int` | Optional | **Default**: `514` |
+| `Port` | [`*models.RemoteSyslogServerPort`](../../doc/models/containers/remote-syslog-server-port.md) | Optional | Syslog Service Port, value from 1 to 65535 |
 | `Protocol` | [`*models.RemoteSyslogServerProtocolEnum`](../../doc/models/remote-syslog-server-protocol-enum.md) | Optional | enum: `tcp`, `udp`<br>**Default**: `"udp"` |
 | `RoutingInstance` | `*string` | Optional | - |
 | `Severity` | [`*models.RemoteSyslogSeverityEnum`](../../doc/models/remote-syslog-severity-enum.md) | Optional | enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`<br>**Default**: `"any"` |
@@ -32,7 +32,6 @@
   "facility": "config",
   "host": "syslogd.internal",
   "match": "!alarm|ntp|errors.crc_error[chan]",
-  "port": 514,
   "protocol": "udp",
   "routing_instance": "routing-instance-name",
   "severity": "any",

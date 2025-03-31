@@ -39,7 +39,8 @@ AP statistics
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `LastTrouble` | [`*models.LastTrouble`](../../doc/models/last-trouble.md) | Optional | Last trouble code of switch |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
-| `LldpStat` | [`*models.StatsApLldpStat`](../../doc/models/stats-ap-lldp-stat.md) | Optional | LLDP Stat (neighbor information, power negotiations) |
+| `LldpStat` | [`*models.StatsApLldpStat`](../../doc/models/stats-ap-lldp-stat.md) | Optional | LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed. |
+| `LldpStats` | [`map[string]models.StatsApLldpStat`](../../doc/models/stats-ap-lldp-stat.md) | Optional | Property key is the port name (e.g. "eth0", "eth1", ...). Map of ethernet ports to their respective LLDP neighbor information and power negotiations. Only present when multiple neighbors exist. |
 | `Locating` | `models.Optional[bool]` | Optional | - |
 | `Locked` | `models.Optional[bool]` | Optional | Whether this AP is considered locked (placement / orientation has been vetted) |
 | `Mac` | `*string` | Required | Device mac |

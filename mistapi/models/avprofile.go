@@ -12,7 +12,7 @@ import (
 type Avprofile struct {
     // When the object has been created, in epoch
     CreatedTime          *float64                     `json:"created_time,omitempty"`
-    // enum: `block`, `permit`
+    // enum: `block`, `log-and-permit`, `permit`
     FallbackAction       *AvprofileFallbackActionEnum `json:"fallback_action,omitempty"`
     // Unique ID of the object instance in the Mist Organization
     Id                   *uuid.UUID                   `json:"id,omitempty"`
@@ -24,7 +24,7 @@ type Avprofile struct {
     Name                 string                       `json:"name"`
     OrgId                *uuid.UUID                   `json:"org_id,omitempty"`
     // List of protocols to monitor. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
-    Protocols            []AvprofileProtocolsEnum     `json:"protocols,omitempty"`
+    Protocols            []AvprofileProtocolEnum      `json:"protocols,omitempty"`
     SiteId               *uuid.UUID                   `json:"site_id,omitempty"`
     UrlWhitelist         []string                     `json:"url_whitelist,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
@@ -130,7 +130,7 @@ type tempAvprofile  struct {
     ModifiedTime   *float64                     `json:"modified_time,omitempty"`
     Name           *string                      `json:"name"`
     OrgId          *uuid.UUID                   `json:"org_id,omitempty"`
-    Protocols      []AvprofileProtocolsEnum     `json:"protocols,omitempty"`
+    Protocols      []AvprofileProtocolEnum      `json:"protocols,omitempty"`
     SiteId         *uuid.UUID                   `json:"site_id,omitempty"`
     UrlWhitelist   []string                     `json:"url_whitelist,omitempty"`
 }

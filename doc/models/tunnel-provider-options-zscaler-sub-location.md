@@ -40,7 +40,7 @@
   "ofw_enabled": false,
   "surrogate_IP": false,
   "up_bandwidth": 200,
-  "aup_timeout_in_days": 254,
+  "aup_timeout_in_days": 180,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -13,11 +13,16 @@ Junos Radius config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AcctImmediateUpdate` | `*bool` | Optional | - |
 | `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 65535` |
 | `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | **Constraints**: *Unique Items Required* |
+| `AuthServerSelection` | [`*models.SwitchRadiusConfigAuthServerSelectionEnum`](../../doc/models/switch-radius-config-auth-server-selection-enum.md) | Optional | enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `AuthServersRetries` | `*int` | Optional | Radius auth session retries<br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout<br>**Default**: `5` |
+| `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
+| `CoaPort` | [`*models.CoaPort`](../../doc/models/containers/coa-port.md) | Optional | CoA Port, value from 1 to 65535 |
+| `FastDot1xTimers` | `*bool` | Optional | **Default**: `false` |
 | `Network` | `*string` | Optional | Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | Use `network`or `source_ip` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -27,8 +32,12 @@ Junos Radius config
 ```json
 {
   "acct_interim_interval": 0,
+  "auth_server_selection": "ordered",
   "auth_servers_retries": 3,
   "auth_servers_timeout": 5,
+  "coa_enabled": false,
+  "fast_dot1x_timers": false,
+  "acct_immediate_update": false,
   "acct_servers": [
     {
       "host": "host4",

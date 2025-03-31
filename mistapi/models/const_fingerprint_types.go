@@ -10,7 +10,7 @@ type ConstFingerprintTypes struct {
     Family               []string               `json:"family,omitempty"`
     Mfg                  []string               `json:"mfg,omitempty"`
     Model                []string               `json:"model,omitempty"`
-    OsType               []string               `json:"os_type,omitempty"`
+    Os                   []string               `json:"os,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type ConstFingerprintTypes struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ConstFingerprintTypes) String() string {
     return fmt.Sprintf(
-    	"ConstFingerprintTypes[Family=%v, Mfg=%v, Model=%v, OsType=%v, AdditionalProperties=%v]",
-    	c.Family, c.Mfg, c.Model, c.OsType, c.AdditionalProperties)
+    	"ConstFingerprintTypes[Family=%v, Mfg=%v, Model=%v, Os=%v, AdditionalProperties=%v]",
+    	c.Family, c.Mfg, c.Model, c.Os, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstFingerprintTypes.
@@ -28,7 +28,7 @@ func (c ConstFingerprintTypes) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(c.AdditionalProperties,
-        "family", "mfg", "model", "os_type"); err != nil {
+        "family", "mfg", "model", "os"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(c.toMap())
@@ -47,8 +47,8 @@ func (c ConstFingerprintTypes) toMap() map[string]any {
     if c.Model != nil {
         structMap["model"] = c.Model
     }
-    if c.OsType != nil {
-        structMap["os_type"] = c.OsType
+    if c.Os != nil {
+        structMap["os"] = c.Os
     }
     return structMap
 }
@@ -61,7 +61,7 @@ func (c *ConstFingerprintTypes) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "family", "mfg", "model", "os_type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "family", "mfg", "model", "os")
     if err != nil {
     	return err
     }
@@ -70,7 +70,7 @@ func (c *ConstFingerprintTypes) UnmarshalJSON(input []byte) error {
     c.Family = temp.Family
     c.Mfg = temp.Mfg
     c.Model = temp.Model
-    c.OsType = temp.OsType
+    c.Os = temp.Os
     return nil
 }
 
@@ -79,5 +79,5 @@ type tempConstFingerprintTypes  struct {
     Family []string `json:"family,omitempty"`
     Mfg    []string `json:"mfg,omitempty"`
     Model  []string `json:"model,omitempty"`
-    OsType []string `json:"os_type,omitempty"`
+    Os     []string `json:"os,omitempty"`
 }

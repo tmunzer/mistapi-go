@@ -28,9 +28,9 @@
   "numerics_enabled": true,
   "symbols": "()[]{}_%@#&$",
   "symbols_enabled": true,
-  "length": 80,
-  "max_length": 148,
-  "min_length": 112,
+  "length": 63,
+  "max_length": 63,
+  "min_length": 63,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

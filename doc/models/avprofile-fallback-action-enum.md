@@ -1,7 +1,7 @@
 
 # Avprofile Fallback Action Enum
 
-enum: `block`, `permit`
+enum: `block`, `log-and-permit`, `permit`
 
 ## Enumeration
 
@@ -12,5 +12,6 @@ enum: `block`, `permit`
 | Name |
 |  --- |
 | `block` |
+| `log-and-permit` |
 | `permit` |
 

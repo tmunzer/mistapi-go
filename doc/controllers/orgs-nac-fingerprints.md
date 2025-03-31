@@ -135,7 +135,7 @@ SearchOrgClientFingerprints(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `family` | `*string` | Query, Optional | Family name of the client device |
+| `family` | `*string` | Query, Optional | Device Category  of the client device |
 | `model` | `*string` | Query, Optional | Model name of the client device |
 | `mfg` | `*string` | Query, Optional | Manufacturer name of the client device |
 | `os` | `*string` | Query, Optional | Operating System name and version of the client device |
@@ -206,8 +206,8 @@ if err != nil {
       "mfg": "Apple, Inc.",
       "model": "Unknown",
       "org_id": "bb2fb165-0931-49c7-a1b8-9b5814326b7d",
-      "os": "Apple OS",
-      "os_type": "Apple OS",
+      "os": "iOS 18.1.1",
+      "os_type": "iOS",
       "random_mac": true,
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "timestamp": 1735678662.58

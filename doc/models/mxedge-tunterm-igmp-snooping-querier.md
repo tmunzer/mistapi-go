@@ -26,7 +26,7 @@
   "mtu": 1500,
   "query_interval": 125,
   "version": 3,
-  "robustness": 150,
+  "robustness": 7,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -52,7 +52,7 @@ func TestOrgsServicesTestCreateOrgService(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertable","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
+    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertible","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -94,7 +94,7 @@ func TestOrgsServicesTestGetOrgService(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertable","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
+    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertible","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -110,7 +110,7 @@ func TestOrgsServicesTestUpdateOrgService(t *testing.T) {
         t.Error(errUUID)
     }
     var body models.Service
-    errBody := json.Unmarshal([]byte(`{"addresses":["string"],"app_categories":["string"],"apps":["string"],"dscp":0,"failover_policy":"revertable","hostnames":["string"],"max_jitter":0,"max_latency":0,"max_loss":0,"name":"string","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`), &body)
+    errBody := json.Unmarshal([]byte(`{"addresses":["string"],"app_categories":["string"],"apps":["string"],"dscp":0,"failover_policy":"revertible","hostnames":["string"],"max_jitter":0,"max_latency":0,"max_loss":0,"name":"string","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }
@@ -123,6 +123,6 @@ func TestOrgsServicesTestUpdateOrgService(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertable","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
+    expected := `{"addresses":["string"],"app_categories":["string"],"apps":["string"],"created_time":0,"dscp":0,"failover_policy":"revertible","hostnames":["string"],"id":"497f6eca-6276-5004-bfeb-53cbbbba6f16","max_jitter":0,"max_latency":0,"max_loss":0,"modified_time":0,"name":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","sle_enabled":false,"specs":[{"port_range":"0","protocol":"any"}],"traffic_class":"best_effort","traffic_type":"data_best_effort","type":"custom","vpn_name":"addresses"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

@@ -66,6 +66,7 @@ Device Profile
     "enabled": false,
     "host": "host6",
     "locate_connected": false,
+    "port": 86,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

@@ -7,9 +7,9 @@ import (
 
 // RemoteSyslogArchive represents a RemoteSyslogArchive struct.
 type RemoteSyslogArchive struct {
-    Files                *int                   `json:"files,omitempty"`
-    Size                 *string                `json:"size,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Files                *RemoteSyslogArchiveFiles `json:"files,omitempty"`
+    Size                 *string                   `json:"size,omitempty"`
+    AdditionalProperties map[string]interface{}    `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for RemoteSyslogArchive,
@@ -37,7 +37,7 @@ func (r RemoteSyslogArchive) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
     if r.Files != nil {
-        structMap["files"] = r.Files
+        structMap["files"] = r.Files.toMap()
     }
     if r.Size != nil {
         structMap["size"] = r.Size
@@ -66,6 +66,6 @@ func (r *RemoteSyslogArchive) UnmarshalJSON(input []byte) error {
 
 // tempRemoteSyslogArchive is a temporary struct used for validating the fields of RemoteSyslogArchive.
 type tempRemoteSyslogArchive  struct {
-    Files *int    `json:"files,omitempty"`
-    Size  *string `json:"size,omitempty"`
+    Files *RemoteSyslogArchiveFiles `json:"files,omitempty"`
+    Size  *string                   `json:"size,omitempty"`
 }

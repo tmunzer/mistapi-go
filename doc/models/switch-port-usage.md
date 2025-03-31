@@ -31,9 +31,9 @@ Junos port usages
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br>**Default**: `"eap-md5"` |
-| `MacLimit` | `*int` | Optional | Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform<br>**Default**: `0`<br>**Constraints**: `>= 0` |
+| `MacLimit` | [`*models.SwitchPortUsageMacLimit`](../../doc/models/containers/switch-port-usage-mac-limit.md) | Optional | Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform) |
 | `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
-| `Mtu` | `*int` | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
+| `Mtu` | [`*models.SwitchPortUsageMtu`](../../doc/models/containers/switch-port-usage-mtu.md) | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses<br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port<br>**Default**: `false` |
@@ -51,7 +51,7 @@ Junos port usages
 | `StpP2p` | `*bool` | Optional | **Default**: `false` |
 | `UiEvpntopoId` | `*uuid.UUID` | Optional | Optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches |
 | `UseVstp` | `*bool` | Optional | If this is connected to a vstp network<br>**Default**: `false` |
-| `VoipNetwork` | `*string` | Optional | Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
+| `VoipNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -74,7 +74,6 @@ Junos port usages
   "inter_isolation_network_link": false,
   "inter_switch_link": false,
   "mac_auth_protocol": "eap-md5",
-  "mac_limit": 0,
   "persist_mac": false,
   "poe_disabled": false,
   "reset_default_when": "link_down",

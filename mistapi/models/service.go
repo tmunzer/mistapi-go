@@ -20,16 +20,16 @@ type Service struct {
     // * [List Gateway Applications]($e/Constants%20Definitions/listGatewayApplications)
     // * /insight/top_app_by-bytes?wired=true
     Apps                          []string                   `json:"apps,omitempty"`
-    // 0 means unlimited
+    // 0 means unlimited, value from 0 to 107374182
     ClientLimitDown               *int                       `json:"client_limit_down,omitempty"`
-    // 0 means unlimited
+    // 0 means unlimited, value from 0 to 107374182
     ClientLimitUp                 *int                       `json:"client_limit_up,omitempty"`
     // When the object has been created, in epoch
     CreatedTime                   *float64                   `json:"created_time,omitempty"`
     Description                   *string                    `json:"description,omitempty"`
     // For SSR only, when `traffic_type`==`custom`. 0-63 or variable
     Dscp                          *ServiceDscp               `json:"dscp,omitempty"`
-    // enum: `non_revertable`, `none`, `revertable`
+    // enum: `non_revertible`, `none`, `revertible`
     FailoverPolicy                *ServiceFailoverPolicyEnum `json:"failover_policy,omitempty"`
     // If `type`==`custom`, web filtering
     Hostnames                     []string                   `json:"hostnames,omitempty"`
@@ -45,9 +45,9 @@ type Service struct {
     ModifiedTime                  *float64                   `json:"modified_time,omitempty"`
     Name                          *string                    `json:"name,omitempty"`
     OrgId                         *uuid.UUID                 `json:"org_id,omitempty"`
-    // 0 means unlimited
+    // 0 means unlimited, value from 0 to 107374182
     ServiceLimitDown              *int                       `json:"service_limit_down,omitempty"`
-    // 0 means unlimited
+    // 0 means unlimited, value from 0 to 107374182
     ServiceLimitUp                *int                       `json:"service_limit_up,omitempty"`
     // Whether to enable measure SLE
     SleEnabled                    *bool                      `json:"sle_enabled,omitempty"`

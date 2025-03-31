@@ -91,7 +91,7 @@ if err != nil {
   },
   "is_static": true,
   "modified_time": 0,
-  "mtu": 0,
+  "mtu": 1500,
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "peers": [
@@ -247,7 +247,7 @@ if err != nil {
   },
   "is_static": true,
   "modified_time": 0,
-  "mtu": 0,
+  "mtu": 1500,
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "peers": [
@@ -473,7 +473,7 @@ if err != nil {
   },
   "is_static": true,
   "modified_time": 0,
-  "mtu": 0,
+  "mtu": 1500,
   "name": "string",
   "org_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "peers": [

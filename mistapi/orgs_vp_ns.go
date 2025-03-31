@@ -22,11 +22,11 @@ func NewOrgsVPNs(baseController baseController) *OrgsVPNs {
     return &orgsVPNs
 }
 
-// ListOrgsVpns takes context, orgId, limit, page as parameters and
+// ListOrgVpns takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Vpn data and
 // an error if there was an issue with the request or response.
 // Get List of Org VPNs
-func (o *OrgsVPNs) ListOrgsVpns(
+func (o *OrgsVPNs) ListOrgVpns(
     ctx context.Context,
     orgId uuid.UUID,
     limit *int,
