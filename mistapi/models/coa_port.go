@@ -7,7 +7,7 @@ import (
 )
 
 // CoaPort represents a CoaPort struct.
-// CoA Port, value from 1 to 65535
+// CoA Port, value from 1 to 65535, default is 3799
 type CoaPort struct {
     value    any
     isNumber bool
@@ -73,7 +73,7 @@ func (c *CoaPort) AsString() (
 }
 
 // internalCoaPort represents a coaPort struct.
-// CoA Port, value from 1 to 65535
+// CoA Port, value from 1 to 65535, default is 3799
 type internalCoaPort struct {}
 
 var CoaPortContainer internalCoaPort

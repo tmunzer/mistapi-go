@@ -14,7 +14,8 @@ type CoaServer struct {
     DisableEventTimestampCheck *bool                  `json:"disable_event_timestamp_check,omitempty"`
     Enabled                    *bool                  `json:"enabled,omitempty"`
     Ip                         string                 `json:"ip"`
-    Port                       *int                   `json:"port,omitempty"`
+    // CoA Port, value from 1 to 65535, default is 3799
+    Port                       *CoaPort               `json:"port,omitempty"`
     Secret                     string                 `json:"secret"`
     AdditionalProperties       map[string]interface{} `json:"_"`
 }
@@ -51,7 +52,7 @@ func (c CoaServer) toMap() map[string]any {
     }
     structMap["ip"] = c.Ip
     if c.Port != nil {
-        structMap["port"] = c.Port
+        structMap["port"] = c.Port.toMap()
     }
     structMap["secret"] = c.Secret
     return structMap
@@ -85,11 +86,11 @@ func (c *CoaServer) UnmarshalJSON(input []byte) error {
 
 // tempCoaServer is a temporary struct used for validating the fields of CoaServer.
 type tempCoaServer  struct {
-    DisableEventTimestampCheck *bool   `json:"disable_event_timestamp_check,omitempty"`
-    Enabled                    *bool   `json:"enabled,omitempty"`
-    Ip                         *string `json:"ip"`
-    Port                       *int    `json:"port,omitempty"`
-    Secret                     *string `json:"secret"`
+    DisableEventTimestampCheck *bool    `json:"disable_event_timestamp_check,omitempty"`
+    Enabled                    *bool    `json:"enabled,omitempty"`
+    Ip                         *string  `json:"ip"`
+    Port                       *CoaPort `json:"port,omitempty"`
+    Secret                     *string  `json:"secret"`
 }
 
 func (c *tempCoaServer) validate() error {

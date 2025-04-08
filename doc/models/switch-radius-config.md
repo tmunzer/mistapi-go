@@ -21,7 +21,7 @@ Junos Radius config
 | `AuthServersRetries` | `*int` | Optional | Radius auth session retries<br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout<br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
-| `CoaPort` | [`*models.CoaPort`](../../doc/models/containers/coa-port.md) | Optional | CoA Port, value from 1 to 65535 |
+| `CoaPort` | [`*models.CoaPort`](../../doc/models/containers/coa-port.md) | Optional | CoA Port, value from 1 to 65535, default is 3799 |
 | `FastDot1xTimers` | `*bool` | Optional | **Default**: `false` |
 | `Network` | `*string` | Optional | Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | Use `network`or `source_ip` |

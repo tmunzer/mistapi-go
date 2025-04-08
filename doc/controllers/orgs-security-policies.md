@@ -151,7 +151,7 @@ body := models.Secpolicy{
             },
             BlockBlacklistClients:                models.ToPointer(false),
             Bonjour:                              models.ToPointer(models.WlanBonjour{
-                AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
+                AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIdsContainer.FromString("10,20")),
                 Enabled:              models.ToPointer(false),
                 Services:             map[string]models.WlanBonjourServiceProperties{
                     "airplay": models.WlanBonjourServiceProperties{
@@ -174,16 +174,16 @@ body := models.Secpolicy{
                 },
                 Enabled:              models.ToPointer(false),
             }),
-            ClientLimitDown:                      models.ToPointer(0),
+            ClientLimitDown:                      models.ToPointer(1000),
             ClientLimitDownEnabled:               models.ToPointer(false),
-            ClientLimitUp:                        models.ToPointer(0),
+            ClientLimitUp:                        models.ToPointer(512),
             ClientLimitUpEnabled:                 models.ToPointer(false),
             CoaServers:                           []models.CoaServer{
                 models.CoaServer{
                     DisableEventTimestampCheck: models.ToPointer(false),
                     Enabled:                    models.ToPointer(false),
                     Ip:                         "1.2.3.4",
-                    Port:                       models.ToPointer(3799),
+                    Port:                       models.ToPointer(models.CoaPortContainer.FromNumber(3799)),
                     Secret:                     "testing456",
                 },
             },
@@ -315,7 +315,7 @@ body := models.Secpolicy{
                     "reserved.org",
                 },
                 SponsorEnabled:              models.ToPointer(false),
-                SponsorLinkValidityDuration: models.ToPointer("30"),
+                SponsorLinkValidityDuration: models.ToPointer(models.SponsorLinkValidityDurationContainer.FromString("30")),
                 SponsorNotifyAll:            models.ToPointer(false),
                 SponsorStatusNotify:         models.ToPointer(false),
                 Sponsors:                    models.ToPointer(models.WlanPortalSponsorsContainer.FromMapOfString(map[string]string{
@@ -357,7 +357,7 @@ body := models.Secpolicy{
             }),
             Radsec:                               models.ToPointer(models.Radsec{
                 Enabled:              models.ToPointer(true),
-                IdleTimeout:          models.ToPointer(60),
+                IdleTimeout:          models.ToPointer(models.RadescIdleTimeoutContainer.FromNumber(60)),
                 MxclusterIds:         []uuid.UUID{
                     uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                 },
@@ -421,8 +421,8 @@ body := models.Secpolicy{
             TemplateId:                           models.NewOptional(models.ToPointer(uuid.MustParse("c6d67e98-83ea-49f0-8812-e4abae2b68bc"))),
             UseEapolV1:                           models.ToPointer(false),
             VlanEnabled:                          models.ToPointer(false),
-            VlanId:                               models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(1)),
-            VlanIds:                              models.ToPointer(models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable5([]models.VlanIdWithVariable{
+            VlanId:                               models.NewOptional(models.ToPointer(models.WlanVlanIdWithVariableContainer.FromNumber(1))),
+            VlanIds:                              models.ToPointer(models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable4([]models.VlanIdWithVariable{
                 models.VlanIdWithVariableContainer.FromNumber(3),
                 models.VlanIdWithVariableContainer.FromNumber(4),
                 models.VlanIdWithVariableContainer.FromNumber(5),

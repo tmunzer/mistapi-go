@@ -39,9 +39,9 @@
 | `BlockBlacklistClients` | `*bool` | Optional | Whether to block the clients in the blacklist (up to first 256 macs)<br>**Default**: `false` |
 | `Bonjour` | [`*models.WlanBonjour`](../../doc/models/wlan-bonjour.md) | Optional | Bonjour gateway wlan settings |
 | `CiscoCwa` | [`*models.WlanCiscoCwa`](../../doc/models/wlan-cisco-cwa.md) | Optional | Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html |
-| `ClientLimitDown` | `*int` | Optional | In kbps |
+| `ClientLimitDown` | `*int` | Optional | In kbps<br>**Constraints**: `>= 1`, `<= 999000` |
 | `ClientLimitDownEnabled` | `*bool` | Optional | If downlink limiting per-client is enabled<br>**Default**: `false` |
-| `ClientLimitUp` | `*int` | Optional | In kbps |
+| `ClientLimitUp` | `*int` | Optional | In kbps<br>**Constraints**: `>= 1`, `<= 999000` |
 | `ClientLimitUpEnabled` | `*bool` | Optional | If uplink limiting per-client is enabled<br>**Default**: `false` |
 | `CoaServers` | [`[]models.CoaServer`](../../doc/models/coa-server.md) | Optional | List of COA (change of authorization) servers, optional |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
@@ -107,7 +107,7 @@
 | `Thumbnail` | `models.Optional[string]` | Optional | Url of portal background image thumbnail |
 | `UseEapolV1` | `*bool` | Optional | If `auth.type`==`eap` or `auth.type`==`psk`, should only be set for legacy client, such as pre-2004, 802.11b devices<br>**Default**: `false` |
 | `VlanEnabled` | `*bool` | Optional | If vlan tagging is enabled<br>**Default**: `false` |
-| `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
+| `VlanId` | [`models.Optional[models.WlanVlanIdWithVariable]`](../../doc/models/containers/wlan-vlan-id-with-variable.md) | Optional | - |
 | `VlanIds` | [`*models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | - |
 | `VlanPooling` | `*bool` | Optional | Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
 | `WlanLimitDown` | `models.Optional[int]` | Optional | In kbps |

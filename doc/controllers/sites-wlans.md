@@ -152,7 +152,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
+        AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIdsContainer.FromString("10,20")),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
@@ -175,16 +175,16 @@ body := models.Wlan{
         },
         Enabled:              models.ToPointer(false),
     }),
-    ClientLimitDown:                      models.ToPointer(0),
+    ClientLimitDown:                      models.ToPointer(1000),
     ClientLimitDownEnabled:               models.ToPointer(false),
-    ClientLimitUp:                        models.ToPointer(0),
+    ClientLimitUp:                        models.ToPointer(512),
     ClientLimitUpEnabled:                 models.ToPointer(false),
     CoaServers:                           []models.CoaServer{
         models.CoaServer{
             DisableEventTimestampCheck: models.ToPointer(false),
             Enabled:                    models.ToPointer(false),
             Ip:                         "1.2.3.4",
-            Port:                       models.ToPointer(3799),
+            Port:                       models.ToPointer(models.CoaPortContainer.FromNumber(3799)),
             Secret:                     "testing456",
         },
     },
@@ -295,9 +295,9 @@ if err != nil {
       }
     }
   },
-  "client_limit_down": 0,
+  "client_limit_down": 1000,
   "client_limit_down_enabled": false,
-  "client_limit_up": 0,
+  "client_limit_up": 512,
   "client_limit_up_enabled": false,
   "disable_11ax": false,
   "disable_ht_vht_rates": false,
@@ -512,9 +512,9 @@ if err != nil {
       }
     }
   },
-  "client_limit_down": 0,
+  "client_limit_down": 1000,
   "client_limit_down_enabled": false,
-  "client_limit_up": 0,
+  "client_limit_up": 512,
   "client_limit_up_enabled": false,
   "disable_11ax": false,
   "disable_ht_vht_rates": false,
@@ -806,7 +806,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    models.AdditionalVlanIdsContainer.FromString("10,20"),
+        AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIdsContainer.FromString("10,20")),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
@@ -829,16 +829,16 @@ body := models.Wlan{
         },
         Enabled:              models.ToPointer(false),
     }),
-    ClientLimitDown:                      models.ToPointer(0),
+    ClientLimitDown:                      models.ToPointer(1000),
     ClientLimitDownEnabled:               models.ToPointer(false),
-    ClientLimitUp:                        models.ToPointer(0),
+    ClientLimitUp:                        models.ToPointer(512),
     ClientLimitUpEnabled:                 models.ToPointer(false),
     CoaServers:                           []models.CoaServer{
         models.CoaServer{
             DisableEventTimestampCheck: models.ToPointer(false),
             Enabled:                    models.ToPointer(false),
             Ip:                         "1.2.3.4",
-            Port:                       models.ToPointer(3799),
+            Port:                       models.ToPointer(models.CoaPortContainer.FromNumber(3799)),
             Secret:                     "testing456",
         },
     },
@@ -949,9 +949,9 @@ if err != nil {
       }
     }
   },
-  "client_limit_down": 0,
+  "client_limit_down": 1000,
   "client_limit_down_enabled": false,
-  "client_limit_up": 0,
+  "client_limit_up": 512,
   "client_limit_up_enabled": false,
   "disable_11ax": false,
   "disable_ht_vht_rates": false,

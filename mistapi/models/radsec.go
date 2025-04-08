@@ -11,7 +11,8 @@ import (
 type Radsec struct {
     CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
-    IdleTimeout          *int                   `json:"idle_timeout,omitempty"`
+    // Radsec Idle Timeout in seconds. Default is 60
+    IdleTimeout          *RadescIdleTimeout     `json:"idle_timeout,omitempty"`
     // To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids
     MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
     // Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge`
@@ -58,7 +59,7 @@ func (r Radsec) toMap() map[string]any {
         structMap["enabled"] = r.Enabled
     }
     if r.IdleTimeout != nil {
-        structMap["idle_timeout"] = r.IdleTimeout
+        structMap["idle_timeout"] = r.IdleTimeout.toMap()
     }
     if r.MxclusterIds != nil {
         structMap["mxcluster_ids"] = r.MxclusterIds
@@ -109,13 +110,13 @@ func (r *Radsec) UnmarshalJSON(input []byte) error {
 
 // tempRadsec is a temporary struct used for validating the fields of Radsec.
 type tempRadsec  struct {
-    CoaEnabled    *bool          `json:"coa_enabled,omitempty"`
-    Enabled       *bool          `json:"enabled,omitempty"`
-    IdleTimeout   *int           `json:"idle_timeout,omitempty"`
-    MxclusterIds  []uuid.UUID    `json:"mxcluster_ids,omitempty"`
-    ProxyHosts    []string       `json:"proxy_hosts,omitempty"`
-    ServerName    *string        `json:"server_name,omitempty"`
-    Servers       []RadsecServer `json:"servers,omitempty"`
-    UseMxedge     *bool          `json:"use_mxedge,omitempty"`
-    UseSiteMxedge *bool          `json:"use_site_mxedge,omitempty"`
+    CoaEnabled    *bool              `json:"coa_enabled,omitempty"`
+    Enabled       *bool              `json:"enabled,omitempty"`
+    IdleTimeout   *RadescIdleTimeout `json:"idle_timeout,omitempty"`
+    MxclusterIds  []uuid.UUID        `json:"mxcluster_ids,omitempty"`
+    ProxyHosts    []string           `json:"proxy_hosts,omitempty"`
+    ServerName    *string            `json:"server_name,omitempty"`
+    Servers       []RadsecServer     `json:"servers,omitempty"`
+    UseMxedge     *bool              `json:"use_mxedge,omitempty"`
+    UseSiteMxedge *bool              `json:"use_site_mxedge,omitempty"`
 }

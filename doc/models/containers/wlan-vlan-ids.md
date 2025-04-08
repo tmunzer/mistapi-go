@@ -10,5 +10,5 @@
 | Type | Factory Method |
 |  --- | --- |
 | `string` | models.WlanVlanIdsContainer.FromString(string mString) |
-| [`[]models.VlanIdWithVariable`](../../../doc/models/containers/vlan-id-with-variable.md) | models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable5([]models.VlanIdWithVariable arrayOfVlanIdWithVariable5) |
+| [`[]models.VlanIdWithVariable`](../../../doc/models/containers/vlan-id-with-variable.md) | models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable4([]models.VlanIdWithVariable arrayOfVlanIdWithVariable4) |
 

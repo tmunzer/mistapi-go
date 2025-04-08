@@ -10,7 +10,7 @@ Represents the result of an API call, including response metadata and the return
 | `Response` | `*http.Response` | Returns the complete response information. |
 | `Data` | `T` | Returns the response data. |
 
-## Example Usage
+## Usage Example
 
 ```go
 apiResponse, err := client.ExampleController().GetExampleType(ctx, body)

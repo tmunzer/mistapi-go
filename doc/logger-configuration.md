@@ -10,8 +10,8 @@ Represents the logging configurations for API calls.
 | logger | `LoggerInterface` | Takes in your custom implementation of the LoggerInterface. **Default: `ConsoleLogger`** | `WithLogger` |
 | level | `Level` | Defines the log message severity (e.g., DEBUG, INFO, etc). **Default : `Level_INFO`** | `WithLevel` |
 | maskSensitiveHeaders | `bool` | Toggles the global setting to mask sensitive HTTP headers in both requests and responses before logging, safeguarding confidential data. **Default : `true`** | `WithMaskSensitiveHeaders` |
-| request | [`RequestLoggerConfiguration`](request-logger-configuration.md) | The logging configurations for an API request. | `WithRequestConfiguration` |
-| response | [`ResponseLoggerConfiguration`](response-logger-configuration.md) | The logging configurations for an API response. | `WithResponseConfiguration` |
+| request | [`RequestLoggerConfiguration`](../doc/request-logger-configuration.md) | The logging configurations for an API request. | `WithRequestConfiguration` |
+| response | [`ResponseLoggerConfiguration`](../doc/response-logger-configuration.md) | The logging configurations for an API response. | `WithResponseConfiguration` |
 
 ## Usage Example
 

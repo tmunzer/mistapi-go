@@ -11,7 +11,7 @@ import (
 type AdditionalVlanIds struct {
     value                        any
     isString                     bool
-    isArrayOfVlanIdWithVariable8 bool
+    isArrayOfVlanIdWithVariable7 bool
 }
 
 // String implements the fmt.Stringer interface for AdditionalVlanIds,
@@ -47,7 +47,7 @@ func (a *AdditionalVlanIds) toMap() any {
 func (a *AdditionalVlanIds) UnmarshalJSON(input []byte) error {
     result, err := UnmarshallAnyOf(input,
         NewTypeHolder(new(string), false, &a.isString),
-        NewTypeHolder(&[]VlanIdWithVariable{}, false, &a.isArrayOfVlanIdWithVariable8),
+        NewTypeHolder(&[]VlanIdWithVariable{}, false, &a.isArrayOfVlanIdWithVariable7),
     )
     
     a.value = result
@@ -63,10 +63,10 @@ func (a *AdditionalVlanIds) AsString() (
     return a.value.(*string), true
 }
 
-func (a *AdditionalVlanIds) AsArrayOfVlanIdWithVariable8() (
+func (a *AdditionalVlanIds) AsArrayOfVlanIdWithVariable7() (
     *[]VlanIdWithVariable,
     bool) {
-    if !a.isArrayOfVlanIdWithVariable8 {
+    if !a.isArrayOfVlanIdWithVariable7 {
         return nil, false
     }
     return a.value.(*[]VlanIdWithVariable), true
@@ -84,6 +84,6 @@ func (a *internalAdditionalVlanIds) FromString(val string) AdditionalVlanIds {
 }
 
 // The internalAdditionalVlanIds instance, wrapping the provided []VlanIdWithVariable value.
-func (a *internalAdditionalVlanIds) FromArrayOfVlanIdWithVariable8(val []VlanIdWithVariable) AdditionalVlanIds {
+func (a *internalAdditionalVlanIds) FromArrayOfVlanIdWithVariable7(val []VlanIdWithVariable) AdditionalVlanIds {
     return AdditionalVlanIds{value: &val}
 }

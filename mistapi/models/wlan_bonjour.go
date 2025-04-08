@@ -2,21 +2,19 @@ package models
 
 import (
     "encoding/json"
-    "errors"
     "fmt"
-    "strings"
 )
 
 // WlanBonjour represents a WlanBonjour struct.
 // Bonjour gateway wlan settings
 type WlanBonjour struct {
     // List or Comma separated list of additional VLAN IDs (on the LAN side or from other WLANs) should we be forwarding bonjour queries/responses
-    AdditionalVlanIds    AdditionalVlanIds                       `json:"additional_vlan_ids"`
+    AdditionalVlanIds    *AdditionalVlanIds                      `json:"additional_vlan_ids,omitempty"`
     // Whether to enable bonjour for this WLAN. Once enabled, limit_bcast is assumed true, allow_mdns is assumed false
     Enabled              *bool                                   `json:"enabled,omitempty"`
     // What services are allowed.
     // Property key is the service name
-    Services             map[string]WlanBonjourServiceProperties `json:"services"`
+    Services             map[string]WlanBonjourServiceProperties `json:"services,omitempty"`
     AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
@@ -44,11 +42,15 @@ func (w WlanBonjour) MarshalJSON() (
 func (w WlanBonjour) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
-    structMap["additional_vlan_ids"] = w.AdditionalVlanIds.toMap()
+    if w.AdditionalVlanIds != nil {
+        structMap["additional_vlan_ids"] = w.AdditionalVlanIds.toMap()
+    }
     if w.Enabled != nil {
         structMap["enabled"] = w.Enabled
     }
-    structMap["services"] = w.Services
+    if w.Services != nil {
+        structMap["services"] = w.Services
+    }
     return structMap
 }
 
@@ -60,39 +62,21 @@ func (w *WlanBonjour) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    err = temp.validate()
-    if err != nil {
-    	return err
-    }
     additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_vlan_ids", "enabled", "services")
     if err != nil {
     	return err
     }
     w.AdditionalProperties = additionalProperties
     
-    w.AdditionalVlanIds = *temp.AdditionalVlanIds
+    w.AdditionalVlanIds = temp.AdditionalVlanIds
     w.Enabled = temp.Enabled
-    w.Services = *temp.Services
+    w.Services = temp.Services
     return nil
 }
 
 // tempWlanBonjour is a temporary struct used for validating the fields of WlanBonjour.
 type tempWlanBonjour  struct {
-    AdditionalVlanIds *AdditionalVlanIds                       `json:"additional_vlan_ids"`
-    Enabled           *bool                                    `json:"enabled,omitempty"`
-    Services          *map[string]WlanBonjourServiceProperties `json:"services"`
-}
-
-func (w *tempWlanBonjour) validate() error {
-    var errs []string
-    if w.AdditionalVlanIds == nil {
-        errs = append(errs, "required field `additional_vlan_ids` is missing for type `wlan_bonjour`")
-    }
-    if w.Services == nil {
-        errs = append(errs, "required field `services` is missing for type `wlan_bonjour`")
-    }
-    if len(errs) == 0 {
-        return nil
-    }
-    return errors.New(strings.Join (errs, "\n"))
+    AdditionalVlanIds *AdditionalVlanIds                      `json:"additional_vlan_ids,omitempty"`
+    Enabled           *bool                                   `json:"enabled,omitempty"`
+    Services          map[string]WlanBonjourServiceProperties `json:"services,omitempty"`
 }

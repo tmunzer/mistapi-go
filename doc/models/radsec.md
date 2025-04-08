@@ -15,7 +15,7 @@ RadSec settings
 |  --- | --- | --- | --- |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
 | `Enabled` | `*bool` | Optional | - |
-| `IdleTimeout` | `*int` | Optional | - |
+| `IdleTimeout` | [`*models.RadescIdleTimeout`](../../doc/models/containers/radesc-idle-timeout.md) | Optional | Radsec Idle Timeout in seconds. Default is 60 |
 | `MxclusterIds` | `[]uuid.UUID` | Optional | To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids |
 | `ProxyHosts` | `[]string` | Optional | Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge` |
 | `ServerName` | `*string` | Optional | Name of the server to verify (against the cacerts in Org Setting). Only if not Mist Edge. |
@@ -29,10 +29,10 @@ RadSec settings
 ```json
 {
   "coa_enabled": false,
-  "idle_timeout": 60,
   "server_name": "radsec.abc.com",
   "use_site_mxedge": false,
   "enabled": false,
+  "idle_timeout": 240,
   "mxcluster_ids": [
     "000007d5-0000-0000-0000-000000000000",
     "000007d6-0000-0000-0000-000000000000"

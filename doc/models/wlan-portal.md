@@ -19,7 +19,7 @@ Portal wlan settings
 | `AmazonEmailDomains` | `[]string` | Optional | Optional if `amazon_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `AmazonEnabled` | `*bool` | Optional | Whether amazon is enabled as a login method<br>**Default**: `false` |
 | `AmazonExpire` | `models.Optional[int]` | Optional | Optional if `amazon_enabled`==`true`. Interval for which guest remains authorized using amazon auth (in minutes), if not provided, uses expire` |
-| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`<br>**Default**: `"none"` |
+| `Auth` | [`*models.WlanPortalAuthEnum`](../../doc/models/wlan-portal-auth-enum.md) | Optional | authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sms`, `sponsor`, `sso`<br>**Default**: `"none"` |
 | `AzureClientId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`. Azure active directory app client id |
 | `AzureClientSecret` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`. Azure active directory app client secret |
 | `AzureEnabled` | `*bool` | Optional | Whether Azure Active Directory is enabled as a login method<br>**Default**: `false` |
@@ -71,7 +71,7 @@ Portal wlan settings
 | `SponsorEmailDomains` | `[]string` | Optional | List of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty. |
 | `SponsorEnabled` | `*bool` | Optional | Whether sponsor is enabled<br>**Default**: `false` |
 | `SponsorExpire` | `models.Optional[int]` | Optional | Optional if `sponsor_enabled`==`true`. Interval for which guest remains authorized using sponsor auth (in minutes), if not provided, uses expire` |
-| `SponsorLinkValidityDuration` | `*string` | Optional | Optional if `sponsor_enabled`==`true`. How long to remain valid sponsored guest request approve/deny link received in email, in minutes.<br>**Default**: `"60"` |
+| `SponsorLinkValidityDuration` | [`*models.SponsorLinkValidityDuration`](../../doc/models/containers/sponsor-link-validity-duration.md) | Optional | Optional if `sponsor_enabled`==`true`. How long to remain valid sponsored guest request approve/deny link received in email, in minutes. Value is between 5 and 60. |
 | `SponsorNotifyAll` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. whether to notify all sponsors that are mentioned in `sponsors` object. Both `sponsor_notify_all` and `predefined_sponsors_enabled` should be true in order to notify sponsors. If true, email sent to 10 sponsors in no particular order.<br>**Default**: `false` |
 | `SponsorStatusNotify` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. If enabled, guest will get email about sponsor's action (approve/deny)<br>**Default**: `false` |
 | `Sponsors` | [`*models.WlanPortalSponsors`](../../doc/models/containers/wlan-portal-sponsors.md) | Optional | Object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility |
@@ -135,7 +135,6 @@ Portal wlan settings
     "reserved.org"
   ],
   "sponsor_enabled": false,
-  "sponsor_link_validity_duration": "30",
   "sponsor_notify_all": false,
   "sponsor_status_notify": false,
   "sso_idp_sign_algo": "sha1",

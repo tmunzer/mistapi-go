@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2502.1.20**
+> Version: **2502.1.23**
 > 
-> Date: **March 31, 2025**
+> Date: **April 8, 2025**
 
 ---
 
@@ -71,12 +71,12 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `environment` | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
-| `httpConfiguration` | [`HttpConfiguration`](doc/http-configuration.md) | Configurable http client options like timeout and retries. |
-| `loggerConfiguration` | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
-| `apiTokenCredentials` | [`ApiTokenCredentials`](doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
-| `basicAuthCredentials` | [`BasicAuthCredentials`](doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
-| `csrfTokenCredentials` | [`CsrfTokenCredentials`](doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
+| environment | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
+| httpConfiguration | [`HttpConfiguration`](doc/http-configuration.md) | Configurable http client options like timeout and retries. |
+| loggerConfiguration | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
+| apiTokenCredentials | [`ApiTokenCredentials`](doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
+| basicAuthCredentials | [`BasicAuthCredentials`](doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
+| csrfTokenCredentials | [`CsrfTokenCredentials`](doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
 
@@ -339,12 +339,17 @@ This API uses the following authentication schemes.
 * [Utilities WAN](doc/controllers/utilities-wan.md)
 * [Utilities Wi-Fi](doc/controllers/utilities-wi-fi.md)
 
-## Classes Documentation
+## SDK Infrastructure
+
+### Configuration
 
 * [HttpConfiguration](doc/http-configuration.md)
-* [RetryConfiguration](doc/retry-configuration.md)
-* [ApiResponse](doc/api-response.md)
 * [LoggerConfiguration](doc/logger-configuration.md)
 * [RequestLoggerConfiguration](doc/request-logger-configuration.md)
 * [ResponseLoggerConfiguration](doc/response-logger-configuration.md)
+* [RetryConfiguration](doc/retry-configuration.md)
+
+### Utilities
+
+* [ApiResponse](doc/api-response.md)
 

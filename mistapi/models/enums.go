@@ -4005,12 +4005,12 @@ const (
 )
 
 // TunnelConfigProviderEnum is a string enum.
-// Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `customer-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
+// Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
 type TunnelConfigProviderEnum string
 
 const (
     TunnelConfigProviderEnum_CUSTOMIPSEC  TunnelConfigProviderEnum = "custom-ipsec"
-    TunnelConfigProviderEnum_CUSTOMERGRE  TunnelConfigProviderEnum = "customer-gre"
+    TunnelConfigProviderEnum_CUSTOMGRE    TunnelConfigProviderEnum = "custom-gre"
     TunnelConfigProviderEnum_JSEIPSEC     TunnelConfigProviderEnum = "jse-ipsec"
     TunnelConfigProviderEnum_ZSCALERGRE   TunnelConfigProviderEnum = "zscaler-gre"
     TunnelConfigProviderEnum_ZSCALERIPSEC TunnelConfigProviderEnum = "zscaler-ipsec"
@@ -4602,7 +4602,7 @@ const (
 )
 
 // WlanPortalAuthEnum is a string enum.
-// authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sponsor`, `sso`
+// authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`, `google`, `microsoft`, `multi`, `none`, `password`, `sms`, `sponsor`, `sso`
 type WlanPortalAuthEnum string
 
 const (
@@ -4616,6 +4616,7 @@ const (
     WlanPortalAuthEnum_MULTI     WlanPortalAuthEnum = "multi"
     WlanPortalAuthEnum_NONE      WlanPortalAuthEnum = "none"
     WlanPortalAuthEnum_PASSWORD  WlanPortalAuthEnum = "password"
+    WlanPortalAuthEnum_SMS       WlanPortalAuthEnum = "sms"
     WlanPortalAuthEnum_SPONSOR   WlanPortalAuthEnum = "sponsor"
     WlanPortalAuthEnum_SSO       WlanPortalAuthEnum = "sso"
 )
