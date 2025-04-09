@@ -20,8 +20,8 @@ type SwitchRadiusConfig struct {
     // Radius auth session timeout
     AuthServersTimeout   *int                                       `json:"auth_servers_timeout,omitempty"`
     CoaEnabled           *bool                                      `json:"coa_enabled,omitempty"`
-    // CoA Port, value from 1 to 65535, default is 3799
-    CoaPort              *CoaPort                                   `json:"coa_port,omitempty"`
+    // Radius CoA Port, value from 1 to 65535, default is 3799
+    CoaPort              *RadiusCoaPort                             `json:"coa_port,omitempty"`
     FastDot1xTimers      *bool                                      `json:"fast_dot1x_timers,omitempty"`
     // Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip
     Network              *string                                    `json:"network,omitempty"`
@@ -132,7 +132,7 @@ type tempSwitchRadiusConfig  struct {
     AuthServersRetries  *int                                       `json:"auth_servers_retries,omitempty"`
     AuthServersTimeout  *int                                       `json:"auth_servers_timeout,omitempty"`
     CoaEnabled          *bool                                      `json:"coa_enabled,omitempty"`
-    CoaPort             *CoaPort                                   `json:"coa_port,omitempty"`
+    CoaPort             *RadiusCoaPort                             `json:"coa_port,omitempty"`
     FastDot1xTimers     *bool                                      `json:"fast_dot1x_timers,omitempty"`
     Network             *string                                    `json:"network,omitempty"`
     SourceIp            *string                                    `json:"source_ip,omitempty"`

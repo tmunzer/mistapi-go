@@ -17,8 +17,8 @@ type RadiusAuthServer struct {
     KeywrapFormat               *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
     KeywrapKek                  *string                  `json:"keywrap_kek,omitempty"`
     KeywrapMack                 *string                  `json:"keywrap_mack,omitempty"`
-    // Auth port of RADIUS server
-    Port                        *int                     `json:"port,omitempty"`
+    // Radius Auth Port, value from 1 to 65535, default is 1812
+    Port                        *RadiusAuthPort          `json:"port,omitempty"`
     // Whether to require Message-Authenticator in requests
     RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
     // Secret of RADIUS server
@@ -64,7 +64,7 @@ func (r RadiusAuthServer) toMap() map[string]any {
         structMap["keywrap_mack"] = r.KeywrapMack
     }
     if r.Port != nil {
-        structMap["port"] = r.Port
+        structMap["port"] = r.Port.toMap()
     }
     if r.RequireMessageAuthenticator != nil {
         structMap["require_message_authenticator"] = r.RequireMessageAuthenticator
@@ -109,7 +109,7 @@ type tempRadiusAuthServer  struct {
     KeywrapFormat               *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
     KeywrapKek                  *string                  `json:"keywrap_kek,omitempty"`
     KeywrapMack                 *string                  `json:"keywrap_mack,omitempty"`
-    Port                        *int                     `json:"port,omitempty"`
+    Port                        *RadiusAuthPort          `json:"port,omitempty"`
     RequireMessageAuthenticator *bool                    `json:"require_message_authenticator,omitempty"`
     Secret                      *string                  `json:"secret"`
 }

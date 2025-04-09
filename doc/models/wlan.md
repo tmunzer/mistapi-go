@@ -39,9 +39,9 @@
 | `BlockBlacklistClients` | `*bool` | Optional | Whether to block the clients in the blacklist (up to first 256 macs)<br>**Default**: `false` |
 | `Bonjour` | [`*models.WlanBonjour`](../../doc/models/wlan-bonjour.md) | Optional | Bonjour gateway wlan settings |
 | `CiscoCwa` | [`*models.WlanCiscoCwa`](../../doc/models/wlan-cisco-cwa.md) | Optional | Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html |
-| `ClientLimitDown` | `*int` | Optional | In kbps<br>**Constraints**: `>= 1`, `<= 999000` |
+| `ClientLimitDown` | [`*models.WlanLimit`](../../doc/models/containers/wlan-limit.md) | Optional | In kbps, value from 1 to 999000 |
 | `ClientLimitDownEnabled` | `*bool` | Optional | If downlink limiting per-client is enabled<br>**Default**: `false` |
-| `ClientLimitUp` | `*int` | Optional | In kbps<br>**Constraints**: `>= 1`, `<= 999000` |
+| `ClientLimitUp` | [`*models.WlanLimit`](../../doc/models/containers/wlan-limit.md) | Optional | In kbps, value from 1 to 999000 |
 | `ClientLimitUpEnabled` | `*bool` | Optional | If uplink limiting per-client is enabled<br>**Default**: `false` |
 | `CoaServers` | [`[]models.CoaServer`](../../doc/models/coa-server.md) | Optional | List of COA (change of authorization) servers, optional |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
@@ -110,9 +110,9 @@
 | `VlanId` | [`models.Optional[models.WlanVlanIdWithVariable]`](../../doc/models/containers/wlan-vlan-id-with-variable.md) | Optional | - |
 | `VlanIds` | [`*models.WlanVlanIds`](../../doc/models/containers/wlan-vlan-ids.md) | Optional | - |
 | `VlanPooling` | `*bool` | Optional | Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm<br>**Default**: `false` |
-| `WlanLimitDown` | `models.Optional[int]` | Optional | In kbps |
+| `WlanLimitDown` | [`*models.WlanLimit`](../../doc/models/containers/wlan-limit.md) | Optional | In kbps, value from 1 to 999000 |
 | `WlanLimitDownEnabled` | `*bool` | Optional | If downlink limiting for whole wlan is enabled<br>**Default**: `false` |
-| `WlanLimitUp` | `models.Optional[int]` | Optional | In kbps |
+| `WlanLimitUp` | [`*models.WlanLimit`](../../doc/models/containers/wlan-limit.md) | Optional | In kbps, value from 1 to 999000 |
 | `WlanLimitUpEnabled` | `*bool` | Optional | If uplink limiting for whole wlan is enabled<br>**Default**: `false` |
 | `WxtagIds` | `models.Optional[[]uuid.UUID]` | Optional | List of wxtag_ids |
 | `WxtunnelId` | `models.Optional[string]` | Optional | When `interface`=`wxtunnel`, id of the WXLAN Tunnel |
@@ -198,7 +198,7 @@
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
-      "port": 254,
+      "port": 176,
       "secret": "secret0",
       "exampleAdditionalProperty": {
         "key1": "val1",

@@ -16,8 +16,8 @@ type RadiusAcctServer struct {
     KeywrapFormat        *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
     KeywrapKek           *string                  `json:"keywrap_kek,omitempty"`
     KeywrapMack          *string                  `json:"keywrap_mack,omitempty"`
-    // Acct port of RADIUS server
-    Port                 *int                     `json:"port,omitempty"`
+    // Radius Auth Port, value from 1 to 65535, default is 1813
+    Port                 *RadiusAcctPort          `json:"port,omitempty"`
     // Secret of RADIUS server
     Secret               string                   `json:"secret"`
     AdditionalProperties map[string]interface{}   `json:"_"`
@@ -61,7 +61,7 @@ func (r RadiusAcctServer) toMap() map[string]any {
         structMap["keywrap_mack"] = r.KeywrapMack
     }
     if r.Port != nil {
-        structMap["port"] = r.Port
+        structMap["port"] = r.Port.toMap()
     }
     structMap["secret"] = r.Secret
     return structMap
@@ -102,7 +102,7 @@ type tempRadiusAcctServer  struct {
     KeywrapFormat  *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
     KeywrapKek     *string                  `json:"keywrap_kek,omitempty"`
     KeywrapMack    *string                  `json:"keywrap_mack,omitempty"`
-    Port           *int                     `json:"port,omitempty"`
+    Port           *RadiusAcctPort          `json:"port,omitempty"`
     Secret         *string                  `json:"secret"`
 }
 

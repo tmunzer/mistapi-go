@@ -21,7 +21,7 @@ Junos Radius config
 | `AuthServersRetries` | `*int` | Optional | Radius auth session retries<br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout<br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
-| `CoaPort` | [`*models.CoaPort`](../../doc/models/containers/coa-port.md) | Optional | CoA Port, value from 1 to 65535, default is 3799 |
+| `CoaPort` | [`*models.RadiusCoaPort`](../../doc/models/containers/radius-coa-port.md) | Optional | Radius CoA Port, value from 1 to 65535, default is 3799 |
 | `FastDot1xTimers` | `*bool` | Optional | **Default**: `false` |
 | `Network` | `*string` | Optional | Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | Use `network`or `source_ip` |
@@ -45,7 +45,7 @@ Junos Radius config
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
-      "port": 254,
+      "port": 176,
       "secret": "secret0",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -60,7 +60,7 @@ Junos Radius config
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
-      "port": 114,
+      "port": 36,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",

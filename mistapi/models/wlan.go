@@ -63,12 +63,12 @@ type Wlan struct {
     Bonjour                              *WlanBonjour                     `json:"bonjour,omitempty"`
     // Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html
     CiscoCwa                             *WlanCiscoCwa                    `json:"cisco_cwa,omitempty"`
-    // In kbps
-    ClientLimitDown                      *int                             `json:"client_limit_down,omitempty"`
+    // In kbps, value from 1 to 999000
+    ClientLimitDown                      *WlanLimit                       `json:"client_limit_down,omitempty"`
     // If downlink limiting per-client is enabled
     ClientLimitDownEnabled               *bool                            `json:"client_limit_down_enabled,omitempty"`
-    // In kbps
-    ClientLimitUp                        *int                             `json:"client_limit_up,omitempty"`
+    // In kbps, value from 1 to 999000
+    ClientLimitUp                        *WlanLimit                       `json:"client_limit_up,omitempty"`
     // If uplink limiting per-client is enabled
     ClientLimitUpEnabled                 *bool                            `json:"client_limit_up_enabled,omitempty"`
     // List of COA (change of authorization) servers, optional
@@ -203,12 +203,12 @@ type Wlan struct {
     VlanIds                              *WlanVlanIds                     `json:"vlan_ids,omitempty"`
     // Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
     VlanPooling                          *bool                            `json:"vlan_pooling,omitempty"`
-    // In kbps
-    WlanLimitDown                        Optional[int]                    `json:"wlan_limit_down"`
+    // In kbps, value from 1 to 999000
+    WlanLimitDown                        *WlanLimit                       `json:"wlan_limit_down,omitempty"`
     // If downlink limiting for whole wlan is enabled
     WlanLimitDownEnabled                 *bool                            `json:"wlan_limit_down_enabled,omitempty"`
-    // In kbps
-    WlanLimitUp                          Optional[int]                    `json:"wlan_limit_up"`
+    // In kbps, value from 1 to 999000
+    WlanLimitUp                          *WlanLimit                       `json:"wlan_limit_up,omitempty"`
     // If uplink limiting for whole wlan is enabled
     WlanLimitUpEnabled                   *bool                            `json:"wlan_limit_up_enabled,omitempty"`
     // List of wxtag_ids
@@ -335,13 +335,13 @@ func (w Wlan) toMap() map[string]any {
         structMap["cisco_cwa"] = w.CiscoCwa.toMap()
     }
     if w.ClientLimitDown != nil {
-        structMap["client_limit_down"] = w.ClientLimitDown
+        structMap["client_limit_down"] = w.ClientLimitDown.toMap()
     }
     if w.ClientLimitDownEnabled != nil {
         structMap["client_limit_down_enabled"] = w.ClientLimitDownEnabled
     }
     if w.ClientLimitUp != nil {
-        structMap["client_limit_up"] = w.ClientLimitUp
+        structMap["client_limit_up"] = w.ClientLimitUp.toMap()
     }
     if w.ClientLimitUpEnabled != nil {
         structMap["client_limit_up_enabled"] = w.ClientLimitUpEnabled
@@ -585,22 +585,14 @@ func (w Wlan) toMap() map[string]any {
     if w.VlanPooling != nil {
         structMap["vlan_pooling"] = w.VlanPooling
     }
-    if w.WlanLimitDown.IsValueSet() {
-        if w.WlanLimitDown.Value() != nil {
-            structMap["wlan_limit_down"] = w.WlanLimitDown.Value()
-        } else {
-            structMap["wlan_limit_down"] = nil
-        }
+    if w.WlanLimitDown != nil {
+        structMap["wlan_limit_down"] = w.WlanLimitDown.toMap()
     }
     if w.WlanLimitDownEnabled != nil {
         structMap["wlan_limit_down_enabled"] = w.WlanLimitDownEnabled
     }
-    if w.WlanLimitUp.IsValueSet() {
-        if w.WlanLimitUp.Value() != nil {
-            structMap["wlan_limit_up"] = w.WlanLimitUp.Value()
-        } else {
-            structMap["wlan_limit_up"] = nil
-        }
+    if w.WlanLimitUp != nil {
+        structMap["wlan_limit_up"] = w.WlanLimitUp.toMap()
     }
     if w.WlanLimitUpEnabled != nil {
         structMap["wlan_limit_up_enabled"] = w.WlanLimitUpEnabled
@@ -782,9 +774,9 @@ type tempWlan  struct {
     BlockBlacklistClients                *bool                            `json:"block_blacklist_clients,omitempty"`
     Bonjour                              *WlanBonjour                     `json:"bonjour,omitempty"`
     CiscoCwa                             *WlanCiscoCwa                    `json:"cisco_cwa,omitempty"`
-    ClientLimitDown                      *int                             `json:"client_limit_down,omitempty"`
+    ClientLimitDown                      *WlanLimit                       `json:"client_limit_down,omitempty"`
     ClientLimitDownEnabled               *bool                            `json:"client_limit_down_enabled,omitempty"`
-    ClientLimitUp                        *int                             `json:"client_limit_up,omitempty"`
+    ClientLimitUp                        *WlanLimit                       `json:"client_limit_up,omitempty"`
     ClientLimitUpEnabled                 *bool                            `json:"client_limit_up_enabled,omitempty"`
     CoaServers                           []CoaServer                      `json:"coa_servers,omitempty"`
     CreatedTime                          *float64                         `json:"created_time,omitempty"`
@@ -853,9 +845,9 @@ type tempWlan  struct {
     VlanId                               Optional[WlanVlanIdWithVariable] `json:"vlan_id"`
     VlanIds                              *WlanVlanIds                     `json:"vlan_ids,omitempty"`
     VlanPooling                          *bool                            `json:"vlan_pooling,omitempty"`
-    WlanLimitDown                        Optional[int]                    `json:"wlan_limit_down"`
+    WlanLimitDown                        *WlanLimit                       `json:"wlan_limit_down,omitempty"`
     WlanLimitDownEnabled                 *bool                            `json:"wlan_limit_down_enabled,omitempty"`
-    WlanLimitUp                          Optional[int]                    `json:"wlan_limit_up"`
+    WlanLimitUp                          *WlanLimit                       `json:"wlan_limit_up,omitempty"`
     WlanLimitUpEnabled                   *bool                            `json:"wlan_limit_up_enabled,omitempty"`
     WxtagIds                             Optional[[]uuid.UUID]            `json:"wxtag_ids"`
     WxtunnelId                           Optional[string]                 `json:"wxtunnel_id"`

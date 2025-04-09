@@ -29,7 +29,7 @@
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
-      "port": 254,
+      "port": 176,
       "secret": "secret0",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -42,7 +42,7 @@
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
-      "port": 254,
+      "port": 176,
       "secret": "secret0",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -57,7 +57,7 @@
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
-      "port": 114,
+      "port": 36,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -70,7 +70,7 @@
       "keywrap_format": "ascii",
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
-      "port": 114,
+      "port": 36,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",

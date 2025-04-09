@@ -16,7 +16,7 @@ CoA Server
 | `DisableEventTimestampCheck` | `*bool` | Optional | Whether to disable Event-Timestamp Check<br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Ip` | `string` | Required | - |
-| `Port` | [`*models.CoaPort`](../../doc/models/containers/coa-port.md) | Optional | CoA Port, value from 1 to 65535, default is 3799 |
+| `Port` | [`*models.RadiusCoaPort`](../../doc/models/containers/radius-coa-port.md) | Optional | Radius CoA Port, value from 1 to 65535, default is 3799 |
 | `Secret` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
