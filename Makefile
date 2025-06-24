@@ -72,3 +72,14 @@ fmt-check:
 
 fmt:
 	gofmt -w $$(find . -name '*.go' |grep -v vendor)
+
+# Trigger Go proxy and pkg.go.dev to index a new version
+index-version:
+	@if [ -z "$(VERSION)" ]; then \
+		echo "Usage: make index-version VERSION=v0.4.73"; \
+		exit 1; \
+	fi
+	@echo "Triggering indexing for version $(VERSION)..."
+	@GOPROXY=https://proxy.golang.org,direct go list -m github.com/tmunzer/mistapi-go@$(VERSION) || echo "Proxy indexing may take time"
+	@curl -s "https://pkg.go.dev/github.com/tmunzer/mistapi-go@$(VERSION)" > /dev/null && echo "pkg.go.dev page exists for $(VERSION)" || echo "pkg.go.dev may take time to index"
+	@echo "Module should be available at: https://pkg.go.dev/github.com/tmunzer/mistapi-go@$(VERSION)"
