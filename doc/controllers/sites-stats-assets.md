@@ -21,13 +21,14 @@ sitesStatsAssets := client.SitesStatsAssets()
 
 # Count Site Assets
 
-Count Asset by distinct field
+Count by Distinct Attributes of Site Asset
 
 ```go
 CountSiteAssets(
     ctx context.Context,
     siteId uuid.UUID,
-    distinct *models.SiteAssetsCountDistinctEnum) (
+    distinct *models.SiteAssetsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -38,6 +39,7 @@ CountSiteAssets(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteAssetsCountDistinctEnum`](../../doc/models/site-assets-count-distinct-enum.md) | Query, Optional | **Default**: `"map_id"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -52,7 +54,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteAssetsCountDistinctEnum_MAPID
 
-apiResponse, err := sitesStatsAssets.CountSiteAssets(ctx, siteId, &distinct)
+limit := 100
+
+apiResponse, err := sitesStatsAssets.CountSiteAssets(ctx, siteId, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -115,7 +119,7 @@ GetSiteAssetStats(
 | `assetId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -211,11 +215,11 @@ GetSiteAssetsOfInterest(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -358,9 +362,9 @@ ListSiteAssetsStats(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -462,9 +466,9 @@ ListSiteDiscoveredAssets(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -557,10 +561,10 @@ SearchSiteAssets(
 | `apMac` | `*string` | Query, Optional | - |
 | `beam` | `*string` | Query, Optional | - |
 | `rssi` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -573,31 +577,31 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "001122334455"
 
+mapId := "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
 
+ibeaconUuid := "3ce2ef69-4414-469d-9d55-3ec7fcc38520"
 
+ibeaconMajor := 1
 
+ibeaconMinor := 1
 
+eddystoneUidNamespace := "1234567890abcdef1234567890abcdef"
 
+eddystoneUidInstance := "1234567890abcdef1234567890abcdef"
 
+eddystoneUrl := "https://example.com"
 
+deviceName := "Device Name"
 
+by := "mac"
 
+name := "Asset Name"
 
+apMac := "001122334455"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+beam := "0"
 
 
 
@@ -609,7 +613,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, &mac, &mapId, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, &eddystoneUidNamespace, &eddystoneUidInstance, &eddystoneUrl, &deviceName, &by, &name, &apMac, &beam, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

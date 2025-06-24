@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `PortRange` | `*string` | Optional | Port number, port range, or variable |
-| `Protocol` | `*string` | Optional | `https`/ `tcp` / `udp` / `icmp` / `gre` / `any` / `:protocol_number`, `protocol_number` is between 1-254<br>**Default**: `"any"` |
+| `Protocol` | `*string` | Optional | `https`/ `tcp` / `udp` / `icmp` / `gre` / `any` / `:protocol_number`, `protocol_number` is between 1-254<br><br>**Default**: `"any"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

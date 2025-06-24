@@ -24,6 +24,8 @@ Junos VRRP config
   "enabled": false,
   "groups": {
     "key0": {
+      "accept_data": false,
+      "preempt": false,
       "priority": 102,
       "exampleAdditionalProperty": {
         "key1": "val1",

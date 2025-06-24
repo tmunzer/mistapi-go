@@ -15,6 +15,7 @@ sitesMapsAutoPlacement := client.SitesMapsAutoPlacement()
 * [Confirm Site Ap Localization Data](../../doc/controllers/sites-maps-auto-placement.md#confirm-site-ap-localization-data)
 * [Delete Site Ap Auto Orientation](../../doc/controllers/sites-maps-auto-placement.md#delete-site-ap-auto-orientation)
 * [Delete Site Ap Autoplacement](../../doc/controllers/sites-maps-auto-placement.md#delete-site-ap-autoplacement)
+* [Get Site Ap Auto Orientation](../../doc/controllers/sites-maps-auto-placement.md#get-site-ap-auto-orientation)
 * [Get Site Ap Auto Placement](../../doc/controllers/sites-maps-auto-placement.md#get-site-ap-auto-placement)
 * [Run Site Ap Autoplacement](../../doc/controllers/sites-maps-auto-placement.md#run-site-ap-autoplacement)
 * [Start Site Ap Auto Orientation](../../doc/controllers/sites-maps-auto-placement.md#start-site-ap-auto-orientation)
@@ -313,6 +314,70 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Get Site Ap Auto Orientation
+
+This API is called to view the current status of auto orient for a given map.
+
+```go
+GetSiteApAutoOrientation(
+    ctx context.Context,
+    mapId uuid.UUID,
+    siteId uuid.UUID) (
+    models.ApiResponse[models.ResponseAutoOrientationInfo],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `mapId` | `uuid.UUID` | Template, Required | - |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAutoOrientationInfo](../../doc/models/response-auto-orientation-info.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := sitesMapsAutoPlacement.GetSiteApAutoOrientation(ctx, mapId, siteId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "start_time": 1678900062,
+  "status": "done",
+  "stop_time": 1678900362
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Autoplacement was not triggered | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Get Site Ap Auto Placement
 
 This API is called to view the current status of auto placement for a given map.
@@ -397,6 +462,8 @@ This scan is disruptive, and users must be notified of service disruption during
 `force_collection` is set to `false` by default. If `force_collection` is set to `false`, the API attempts to start localization with existing data. If no data exists, the API attempts to start orchestration.  
 If `force_collection` is set to `true`, the API attempts to start orchestration.
 
+If the flag `uwb_only` is set to `true`, the service shall be using UWB ranging and placement without invoking the Maintenance Mode. BLE-based orientation is disabled if `uwb_only`==`true`
+
 Providing a list of devices is optional. If provided, autoplacement suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 
 ```go
@@ -434,6 +501,7 @@ body := models.AutoPlacement{
     Dryrun:               models.ToPointer(false),
     ForceCollection:      models.ToPointer(false),
     Override:             models.ToPointer(false),
+    UwbOnly:              models.ToPointer(false),
 }
 
 apiResponse, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, &body)
@@ -481,9 +549,11 @@ if err != nil {
 
 # Start Site Ap Auto Orientation
 
-This API is called to trigger a map for auto orientation. For auto orient feature to work, BLE data needs to be collected from the APs on the map. This precess is not disruptive unlike FTM collection. Repeated POST to this endpoint while a map is still running will be rejected.
+This API is called to trigger a map for auto orient. For auto orient feature to work, BLE data needs to be collected from the APs on the map. This precess is not disruptive unlike FTM collection. Repeated POST requests to this endpoint while a map is still running will be rejected.
 
-List of devices to provide suggestions for is an optional parameter that can be given to this API. This will provide auto orient suggestions only for the devices specified. If no list of devices is provided, all APs associated with that map are considered by default
+`force_collection` is set to `false` by default. If `force_collection`==`false`, the API attempts to start orientation with existing data. If no data exists, the API attempts to start collecting orientation data. If `force_collection`==`true`, the API attempts to start collecting orientation data.
+
+Providing a list of device macs is optional. If provided, auto orientation suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 
 ```go
 StartSiteApAutoOrientation(
@@ -534,8 +604,23 @@ if err != nil {
 
 ```json
 {
-  "state": "Not Started",
-  "time_queued": 1675414259
+  "devices": {
+    "00000000001": {
+      "reason": "Device meets the minimum requirements for auto orient",
+      "valid": true
+    },
+    "00000000002": {
+      "reason": "Device meets the minimum requirements for auto orient",
+      "valid": true
+    },
+    "00000000003": {
+      "reason": "Device meets the minimum requirements for auto orient",
+      "valid": true
+    }
+  },
+  "estimated_runtime": 300,
+  "reason": "Map has met the minimum requirements for auto orient",
+  "valid": true
 }
 ```
 

@@ -32,7 +32,7 @@
 | `Ports` | [`*models.ConstDeviceGatewayPorts`](../../doc/models/const-device-gateway-ports.md) | Optional | Object Key is the interface name (e.g. "ge-0/0/1", ...) |
 | `SubRequired` | `*string` | Optional | - |
 | `T128Device` | `*bool` | Optional | **Default**: `false` |
-| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

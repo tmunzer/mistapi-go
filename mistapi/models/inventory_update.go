@@ -10,11 +10,11 @@ import (
 
 // InventoryUpdate represents a InventoryUpdate struct.
 type InventoryUpdate struct {
-    // If `op`==`assign`, a **cloud-ready** switch/gateway will be managed/configured by Mist by default, this disabled the behavior
+    // If `op`==`assign`, this disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.
     DisableAutoConfig    *bool                        `json:"disable_auto_config,omitempty"`
     // If `op`==`assign`, `op`==`unassign`, `op`==`upgrade_to_mist`or `op`==`downgrade_to_jsi` , list of MAC, e.g. ["5c5b350e0001"]
     Macs                 []string                     `json:"macs,omitempty"`
-    // If `op`==`assign`, an **adopted** switch/gateway will not be managed/configured by Mist by default, this enables the behavior
+    // If `op`==`assign`. An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.
     Managed              *bool                        `json:"managed,omitempty"`
     // If `op`==`assign`, if true, treat site assignment against an already assigned AP as error
     NoReassign           *bool                        `json:"no_reassign,omitempty"`

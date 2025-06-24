@@ -24,7 +24,7 @@ func NewSitesServicePolicies(baseController baseController) *SitesServicePolicie
 // ListSiteServicePoliciesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.OrgServicePolicy data and
 // an error if there was an issue with the request or response.
-// Retrieves the list of Service Policies available for the Site
+// Get the list of derived Service Policies for a Site
 func (s *SitesServicePolicies) ListSiteServicePoliciesDerived(
     ctx context.Context,
     siteId uuid.UUID,

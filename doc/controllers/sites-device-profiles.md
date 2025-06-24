@@ -11,7 +11,7 @@ sitesDeviceProfiles := client.SitesDeviceProfiles()
 
 # List Site Device Profiles Derived
 
-Retrieves the list of Device Profiles available for the Site
+Get the list of derived Device Profiles for a Site
 
 ```go
 ListSiteDeviceProfilesDerived(
@@ -27,7 +27,7 @@ ListSiteDeviceProfilesDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br>**Default**: `false` |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br><br>**Default**: `false` |
 
 ## Response Type
 

@@ -12,8 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Default` | `*bool` | Optional | - |
-| `Package` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Version` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `Package` | `string` | Required | - |
+| `Version` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

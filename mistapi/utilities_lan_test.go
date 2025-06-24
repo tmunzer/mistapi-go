@@ -30,6 +30,27 @@ func TestUtilitiesLANTestReauthOrgDot1xWiredClient(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesLANTestReauthOrgDot1xWiredClient1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestReauthOrgDot1xWiredClient1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    clientMac := "0000000000ab"
+    apiResponse, err := utilitiesLan.ReauthOrgDot1xWiredClient(ctx, orgId, clientMac)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"device_mac":"5c5b35000002","port_id":"ge-0/0/0","session":"0a2a11b8-4b30-40d8-a6d1-e91ea540d86f"}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesLANTestUpgradeSiteDevicesBios tests the behavior of the UtilitiesLAN
 func TestUtilitiesLANTestUpgradeSiteDevicesBios(t *testing.T) {
     ctx := context.Background()
@@ -83,6 +104,33 @@ func TestUtilitiesLANTestCableTestFromSwitch(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesLANTestCableTestFromSwitch1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestCableTestFromSwitch1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.UtilsCableTests
+    errBody := json.Unmarshal([]byte(`{"port":"ge-0/0/0"}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := utilitiesLan.CableTestFromSwitch(ctx, siteId, deviceId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -171,6 +219,30 @@ func TestUtilitiesLANTestCreateSiteDeviceSnapshot(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesLANTestCreateSiteDeviceSnapshot1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestCreateSiteDeviceSnapshot1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := utilitiesLan.CreateSiteDeviceSnapshot(ctx, siteId, deviceId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"status":"starting","status_id":"string","timestamp":0}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesLANTestUpgradeDeviceBios tests the behavior of the UtilitiesLAN
 func TestUtilitiesLANTestUpgradeDeviceBios(t *testing.T) {
     ctx := context.Background()
@@ -190,6 +262,31 @@ func TestUtilitiesLANTestUpgradeDeviceBios(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"status":"inprogress","timestamp":1428949501}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesLANTestUpgradeDeviceBios1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestUpgradeDeviceBios1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesLan.UpgradeDeviceBios(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"status":"inprogress","timestamp":1428949501}`
@@ -221,6 +318,31 @@ func TestUtilitiesLANTestUpgradeDeviceFPGA(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesLANTestUpgradeDeviceFPGA1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestUpgradeDeviceFPGA1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesLan.UpgradeDeviceFPGA(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"status":"inprogress","timestamp":1428949501}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesLANTestReauthSiteDot1xWiredClient tests the behavior of the UtilitiesLAN
 func TestUtilitiesLANTestReauthSiteDot1xWiredClient(t *testing.T) {
     ctx := context.Background()
@@ -236,6 +358,27 @@ func TestUtilitiesLANTestReauthSiteDot1xWiredClient(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"device_mac":"5c5b35000002","port_id":"ge-0/0/0","session":"0a2a11b8-4b30-40d8-a6d1-e91ea540d86f"}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesLANTestReauthSiteDot1xWiredClient1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestReauthSiteDot1xWiredClient1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    clientMac := "0000000000ab"
+    apiResponse, err := utilitiesLan.ReauthSiteDot1xWiredClient(ctx, siteId, clientMac)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"device_mac":"5c5b35000002","port_id":"ge-0/0/0","session":"0a2a11b8-4b30-40d8-a6d1-e91ea540d86f"}`

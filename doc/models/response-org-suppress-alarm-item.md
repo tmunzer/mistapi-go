@@ -14,7 +14,7 @@
 | `Duration` | `*int` | Optional | Duration, in seconds. Maximum duration is 86400 * 14 (14 days). 0 is to un-suppress alarms. |
 | `ExpireTime` | `*int` | Optional | - |
 | `ScheduledTime` | `*int` | Optional | - |
-| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br>**Default**: `"site"` |
+| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br><br>**Default**: `"site"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

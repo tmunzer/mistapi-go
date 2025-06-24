@@ -102,6 +102,38 @@ func (r ResponseHttp400) String() string {
     	prefixTrimmed, r.Detail)
 }
 
+// ResponseHttp400Webhook is a custom error.
+type ResponseHttp400Webhook struct {
+    https.ApiError
+    Detail         *string `json:"detail,omitempty"`
+    Reason         *string `json:"reason,omitempty"`
+}
+
+// NewResponseHttp400Webhook is a constructor for ResponseHttp400Webhook.
+// It creates and returns a pointer to a new ResponseHttp400Webhook instance with the given statusCode and body.
+func NewResponseHttp400Webhook(apiError https.ApiError) error {
+    return &ResponseHttp400Webhook{
+		ApiError: apiError,
+    }
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp400Webhook.
+func (r ResponseHttp400Webhook) Error() string {
+    return fmt.Sprintf("ResponseHttp400Webhook occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp400Webhook,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp400Webhook) String() string {
+    suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+    prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+    
+    return fmt.Sprintf(
+    	"ResponseHttp400Webhook[%v, Detail=%v, Reason=%v]",
+    	prefixTrimmed, r.Detail, r.Reason)
+}
+
 // ResponseHttp404 is a custom error.
 type ResponseHttp404 struct {
     https.ApiError

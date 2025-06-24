@@ -14,7 +14,7 @@ Required for preprovisioned Virtual Chassis
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Members` | [`[]models.SwitchVirtualChassisMember`](../../doc/models/switch-virtual-chassis-member.md) | Optional | List of Virtual Chassis members |
-| `Preprovisioned` | `*bool` | Optional | To configure whether the VC is preprovisioned or nonprovisioned<br>**Default**: `false` |
+| `Preprovisioned` | `*bool` | Optional | To configure whether the VC is preprovisioned or nonprovisioned<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -21,8 +21,8 @@
 | `RebootAt` | `*int` | Optional | reboot start time in epoch |
 | `StartTime` | `*int` | Optional | Firmware download start time in epoch |
 | `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued` |
-| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br>**Default**: `"big_bang"` |
-| `TargetVersion` | `*string` | Optional | Version to upgrade to<br>**Constraints**: *Minimum Length*: `1` |
+| `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br><br>**Default**: `"big_bang"` |
+| `TargetVersion` | `*string` | Optional | Version to upgrade to<br><br>**Constraints**: *Minimum Length*: `1` |
 | `UpgradePlan` | `*interface{}` | Optional | a dictionary of rrm phase number to devices part of that phase |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

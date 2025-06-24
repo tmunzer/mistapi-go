@@ -17,7 +17,7 @@ sitesServices := client.SitesServices()
 
 # Count Site Service Path Events
 
-Count Service Path Events
+Count by Distinct Attributes of Service Path Events
 
 ```go
 CountSiteServicePathEvents(
@@ -60,8 +60,8 @@ CountSiteServicePathEvents(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -145,7 +145,7 @@ if err != nil {
 
 # List Site Services Derived
 
-Retrieves the list of Services available for the Site
+Get the list of derived Services for a Site
 
 ```go
 ListSiteServicesDerived(
@@ -161,7 +161,7 @@ ListSiteServicesDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br>**Default**: `false` |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br><br>**Default**: `false` |
 
 ## Response Type
 
@@ -276,8 +276,8 @@ SearchSiteServicePathEvents(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 

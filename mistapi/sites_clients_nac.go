@@ -21,7 +21,7 @@ func NewSitesClientsNAC(baseController baseController) *SitesClientsNAC {
     return &sitesClientsNAC
 }
 
-// CountSiteNacClients takes context, siteId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit, page as parameters and
+// CountSiteNacClients takes context, siteId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of NAC Clients
@@ -47,8 +47,7 @@ func (s *SitesClientsNAC) CountSiteNacClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/nac_clients/count")
@@ -130,9 +129,6 @@ func (s *SitesClientsNAC) CountSiteNacClients(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount
@@ -361,7 +357,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mxedgeId, nacruleName, status, mType, mdmCompliance, mdmProvider, sort, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mdmManaged, mxedgeId, nacruleName, status, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -379,6 +375,7 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     timestamp *float64,
     ap *string,
     mac *string,
+    mdmManaged *bool,
     mxedgeId *string,
     nacruleName *string,
     status *string,
@@ -386,6 +383,7 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     mdmCompliance *string,
     mdmProvider *string,
     sort *string,
+    usermacLabel []string,
     ingressVlan *string,
     start *int,
     end *int,
@@ -447,6 +445,9 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     if mac != nil {
         req.QueryParam("mac", *mac)
     }
+    if mdmManaged != nil {
+        req.QueryParam("mdm_managed", *mdmManaged)
+    }
     if mxedgeId != nil {
         req.QueryParam("mxedge_id", *mxedgeId)
     }
@@ -467,6 +468,9 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     }
     if sort != nil {
         req.QueryParam("sort", *sort)
+    }
+    if usermacLabel != nil {
+        req.QueryParam("usermac_label", usermacLabel)
     }
     if ingressVlan != nil {
         req.QueryParam("ingress_vlan", *ingressVlan)

@@ -14,8 +14,8 @@ sitesWlans := client.SitesWlans()
 * [Delete Site Wlan](../../doc/controllers/sites-wlans.md#delete-site-wlan)
 * [Delete Site Wlan Portal Image](../../doc/controllers/sites-wlans.md#delete-site-wlan-portal-image)
 * [Get Site Wlan](../../doc/controllers/sites-wlans.md#get-site-wlan)
-* [List Site Wlan Derived](../../doc/controllers/sites-wlans.md#list-site-wlan-derived)
 * [List Site Wlans](../../doc/controllers/sites-wlans.md#list-site-wlans)
+* [List Site Wlans Derived](../../doc/controllers/sites-wlans.md#list-site-wlans-derived)
 * [Update Site Wlan](../../doc/controllers/sites-wlans.md#update-site-wlan)
 * [Update Site Wlan Portal Template](../../doc/controllers/sites-wlans.md#update-site-wlan-portal-template)
 * [Upload Site Wlan Portal Image](../../doc/controllers/sites-wlans.md#upload-site-wlan-portal-image)
@@ -555,16 +555,16 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Site Wlan Derived
+# List Site Wlans
 
-Get Wlans Derived
+Get List of Site WLANs
 
 ```go
-ListSiteWlanDerived(
+ListSiteWlans(
     ctx context.Context,
     siteId uuid.UUID,
-    resolve *bool,
-    wlanId *string) (
+    limit *int,
+    page *int) (
     models.ApiResponse[[]models.Wlan],
     error)
 ```
@@ -574,8 +574,8 @@ ListSiteWlanDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | Whether to resolve SITE_VARS<br>**Default**: `false` |
-| `wlanId` | `*string` | Query, Optional | Filter by WLAN ID |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -588,11 +588,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resolve := true
+limit := 100
 
+page := 1
 
-
-apiResponse, err := sitesWlans.ListSiteWlanDerived(ctx, siteId, &resolve, nil)
+apiResponse, err := sitesWlans.ListSiteWlans(ctx, siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -613,16 +613,16 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# List Site Wlans
+# List Site Wlans Derived
 
-Get List of Site WLANs
+Get the list of derived Wlans for a Site
 
 ```go
-ListSiteWlans(
+ListSiteWlansDerived(
     ctx context.Context,
     siteId uuid.UUID,
-    limit *int,
-    page *int) (
+    resolve *bool,
+    wlanId *string) (
     models.ApiResponse[[]models.Wlan],
     error)
 ```
@@ -632,8 +632,8 @@ ListSiteWlans(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `resolve` | `*bool` | Query, Optional | Whether to resolve SITE_VARS<br><br>**Default**: `false` |
+| `wlanId` | `*string` | Query, Optional | Filter by WLAN ID |
 
 ## Response Type
 
@@ -646,11 +646,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-limit := 100
+resolve := true
 
-page := 1
+wlanId := "8bfc2490-d726-3587-038d-cb2e71bd2330"
 
-apiResponse, err := sitesWlans.ListSiteWlans(ctx, siteId, &limit, &page)
+apiResponse, err := sitesWlans.ListSiteWlansDerived(ctx, siteId, &resolve, &wlanId)
 if err != nil {
     log.Fatalln(err)
 } else {

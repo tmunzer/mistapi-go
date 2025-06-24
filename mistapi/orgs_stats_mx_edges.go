@@ -28,7 +28,7 @@ func NewOrgsStatsMxEdges(baseController baseController) *OrgsStatsMxEdges {
 func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
     ctx context.Context,
     orgId uuid.UUID,
-    forSite *bool,
+    forSite *models.ForSiteEnum,
     start *int,
     end *int,
     duration *string,

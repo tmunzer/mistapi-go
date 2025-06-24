@@ -11,11 +11,13 @@ import (
 // LicenseUsageOrg represents a LicenseUsageOrg struct.
 type LicenseUsageOrg struct {
     ForSite              *bool                  `json:"for_site,omitempty"`
-    // Property key is the service name (e.g. "SUB-MAN")
+    // Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN").
     FullyLoaded          map[string]int         `json:"fully_loaded,omitempty"`
     NumDevices           int                    `json:"num_devices"`
     SiteId               uuid.UUID              `json:"site_id"`
-    // Subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN")
+    // Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN).
+    Summary              map[string]int         `json:"summary,omitempty"`
+    // Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN")
     Usages               map[string]int         `json:"usages"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -24,8 +26,8 @@ type LicenseUsageOrg struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (l LicenseUsageOrg) String() string {
     return fmt.Sprintf(
-    	"LicenseUsageOrg[ForSite=%v, FullyLoaded=%v, NumDevices=%v, SiteId=%v, Usages=%v, AdditionalProperties=%v]",
-    	l.ForSite, l.FullyLoaded, l.NumDevices, l.SiteId, l.Usages, l.AdditionalProperties)
+    	"LicenseUsageOrg[ForSite=%v, FullyLoaded=%v, NumDevices=%v, SiteId=%v, Summary=%v, Usages=%v, AdditionalProperties=%v]",
+    	l.ForSite, l.FullyLoaded, l.NumDevices, l.SiteId, l.Summary, l.Usages, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LicenseUsageOrg.
@@ -34,7 +36,7 @@ func (l LicenseUsageOrg) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(l.AdditionalProperties,
-        "for_site", "fully_loaded", "num_devices", "site_id", "usages"); err != nil {
+        "for_site", "fully_loaded", "num_devices", "site_id", "summary", "usages"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(l.toMap())
@@ -52,6 +54,9 @@ func (l LicenseUsageOrg) toMap() map[string]any {
     }
     structMap["num_devices"] = l.NumDevices
     structMap["site_id"] = l.SiteId
+    if l.Summary != nil {
+        structMap["summary"] = l.Summary
+    }
     structMap["usages"] = l.Usages
     return structMap
 }
@@ -68,7 +73,7 @@ func (l *LicenseUsageOrg) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "for_site", "fully_loaded", "num_devices", "site_id", "usages")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "for_site", "fully_loaded", "num_devices", "site_id", "summary", "usages")
     if err != nil {
     	return err
     }
@@ -78,6 +83,7 @@ func (l *LicenseUsageOrg) UnmarshalJSON(input []byte) error {
     l.FullyLoaded = temp.FullyLoaded
     l.NumDevices = *temp.NumDevices
     l.SiteId = *temp.SiteId
+    l.Summary = temp.Summary
     l.Usages = *temp.Usages
     return nil
 }
@@ -88,6 +94,7 @@ type tempLicenseUsageOrg  struct {
     FullyLoaded map[string]int  `json:"fully_loaded,omitempty"`
     NumDevices  *int            `json:"num_devices"`
     SiteId      *uuid.UUID      `json:"site_id"`
+    Summary     map[string]int  `json:"summary,omitempty"`
     Usages      *map[string]int `json:"usages"`
 }
 

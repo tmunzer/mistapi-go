@@ -21,13 +21,14 @@ func NewOrgsDevicesSSR(baseController baseController) *OrgsDevicesSSR {
     return &orgsDevicesSSR
 }
 
-// GetOrg128TRegistrationCommands takes context, orgId as parameters and
+// GetOrg128TRegistrationCommands takes context, orgId, ttl as parameters and
 // returns an models.ApiResponse with models.ResponseRouter128tRegisterCmd data and
 // an error if there was an issue with the request or response.
 // 128T devices can be managed/adopted by Mist.
 func (o *OrgsDevicesSSR) GetOrg128TRegistrationCommands(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    ttl *int) (
     models.ApiResponse[models.ResponseRouter128tRegisterCmd],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/128routers/register_cmd")
@@ -50,6 +51,9 @@ func (o *OrgsDevicesSSR) GetOrg128TRegistrationCommands(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if ttl != nil {
+        req.QueryParam("ttl", *ttl)
+    }
     
     var result models.ResponseRouter128tRegisterCmd
     decoder, resp, err := req.CallAsJson()

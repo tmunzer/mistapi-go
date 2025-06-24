@@ -13,14 +13,14 @@ Initiate a Switch (Junos) Packet Capture
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
-| `Format` | [`*models.CaptureSwitchFormatEnum`](../../doc/models/capture-switch-format-enum.md) | Optional | enum: `stream`<br>**Default**: `"stream"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
-| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
+| `Format` | [`*models.CaptureSwitchFormatEnum`](../../doc/models/capture-switch-format-enum.md) | Optional | enum: `stream`<br><br>**Default**: `"stream"` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ports` | [`map[string]models.CaptureSwitchPortsTcpdumpExpression`](../../doc/models/capture-switch-ports-tcpdump-expression.md) | Optional | Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request |
 | `Switches` | [`map[string]models.CaptureSwitchSwitches`](../../doc/models/capture-switch-switches.md) | Required | Property key is the switch mac |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
-| `Type` | `string` | Required, Constant | enum: `switch`<br>**Value**: `"switch"` |
+| `Type` | `string` | Required, Constant | enum: `switch`<br><br>**Value**: `"switch"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

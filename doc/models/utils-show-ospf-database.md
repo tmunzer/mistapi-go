@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
-| `SelfOriginate` | `*bool` | Optional | Show originating info, default is false<br>**Default**: `false` |
+| `SelfOriginate` | `*bool` | Optional | Show originating info, default is false<br><br>**Default**: `false` |
 | `Vrf` | `*string` | Optional | VRF name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

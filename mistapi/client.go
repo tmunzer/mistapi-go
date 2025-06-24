@@ -44,6 +44,7 @@ type ClientInterface interface {
     OrgsCert() *OrgsCert
     OrgsAntivirusProfiles() *OrgsAntivirusProfiles
     OrgsClientsMarvis() *OrgsClientsMarvis
+    OrgsMarvisInvites() *OrgsMarvisInvites
     OrgsClientsNAC() *OrgsClientsNAC
     OrgsClientsWan() *OrgsClientsWan
     OrgsClientsWired() *OrgsClientsWired
@@ -138,9 +139,13 @@ type ClientInterface interface {
     SitesDevicesWiredVirtualChassis() *SitesDevicesWiredVirtualChassis
     SitesDevicesWANCluster() *SitesDevicesWANCluster
     SitesDeviceProfiles() *SitesDeviceProfiles
+    OrgsEvents() *OrgsEvents
     SitesEvents() *SitesEvents
     SitesEVPNTopologies() *SitesEVPNTopologies
     SitesGatewayTemplates() *SitesGatewayTemplates
+    SitesIDPProfiles() *SitesIDPProfiles
+    SitesAdvancedAntiMalwareProfiles() *SitesAdvancedAntiMalwareProfiles
+    SitesAntivirusProfiles() *SitesAntivirusProfiles
     SitesGuests() *SitesGuests
     SitesInsights() *SitesInsights
     SitesJSE() *SitesJSE
@@ -211,204 +216,209 @@ type ClientInterface interface {
 
 // client is an implementation of the Client interface.
 type client struct {
-    callBuilderFactory              https.CallBuilderFactory
-    configuration                   Configuration
-    userAgent                       string
-    admins                          Admins
-    adminsLogin                     AdminsLogin
-    adminsLogout                    AdminsLogout
-    adminsRecoverPassword           AdminsRecoverPassword
-    adminsLookup                    AdminsLookup
-    adminsLoginOAuth2               AdminsLoginOAuth2
-    installer                       Installer
-    mSPs                            MSPs
-    mSPsAdmins                      MSPsAdmins
-    orgsSecIntelProfiles            OrgsSecIntelProfiles
-    sitesSecIntelProfiles           SitesSecIntelProfiles
-    mSPsInventory                   MSPsInventory
-    mSPsLogo                        MSPsLogo
-    mSPsLogs                        MSPsLogs
-    mSPsLicenses                    MSPsLicenses
-    mSPsMarvis                      MSPsMarvis
-    mSPsOrgGroups                   MSPsOrgGroups
-    mSPsOrgs                        MSPsOrgs
-    mSPsSLEs                        MSPsSLEs
-    mSPsSSORoles                    MSPsSSORoles
-    mSPsSSO                         MSPsSSO
-    mSPsTickets                     MSPsTickets
-    orgs                            Orgs
-    orgsAdmins                      OrgsAdmins
-    orgsAlarms                      OrgsAlarms
-    orgsAlarmTemplates              OrgsAlarmTemplates
-    orgsAPTemplates                 OrgsAPTemplates
-    orgsAPITokens                   OrgsAPITokens
-    orgsAssets                      OrgsAssets
-    orgsAssetFilters                OrgsAssetFilters
-    orgsCert                        OrgsCert
-    orgsAntivirusProfiles           OrgsAntivirusProfiles
-    orgsClientsMarvis               OrgsClientsMarvis
-    orgsClientsNAC                  OrgsClientsNAC
-    orgsClientsWan                  OrgsClientsWan
-    orgsClientsWired                OrgsClientsWired
-    orgsClientsWireless             OrgsClientsWireless
-    orgsClientsSDK                  OrgsClientsSDK
-    orgsIntegrationCradlepoint      OrgsIntegrationCradlepoint
-    orgsCRL                         OrgsCRL
-    orgsDeviceProfiles              OrgsDeviceProfiles
-    orgsDevices                     OrgsDevices
-    orgsDevicesSSR                  OrgsDevicesSSR
-    orgsEVPNTopologies              OrgsEVPNTopologies
-    orgsIntegrationJuniper          OrgsIntegrationJuniper
-    orgsDevicesOthers               OrgsDevicesOthers
-    orgsIntegrationZscaler          OrgsIntegrationZscaler
-    orgsSCEP                        OrgsSCEP
-    orgsGatewayTemplates            OrgsGatewayTemplates
-    orgsGuests                      OrgsGuests
-    orgsIDPProfiles                 OrgsIDPProfiles
-    orgsInventory                   OrgsInventory
-    orgsIntegrationJSE              OrgsIntegrationJSE
-    orgsAdvancedAntiMalwareProfiles OrgsAdvancedAntiMalwareProfiles
-    orgsIntegrationSkyATP           OrgsIntegrationSkyATP
-    orgsJSI                         OrgsJSI
-    orgsLicenses                    OrgsLicenses
-    orgsLinkedApplications          OrgsLinkedApplications
-    orgsLogs                        OrgsLogs
-    orgsMarvis                      OrgsMarvis
-    orgsMaps                        OrgsMaps
-    orgsMxClusters                  OrgsMxClusters
-    orgsMxEdges                     OrgsMxEdges
-    orgsMxTunnels                   OrgsMxTunnels
-    orgsNACIDP                      OrgsNACIDP
-    orgsNACFingerprints             OrgsNACFingerprints
-    orgsNACTags                     OrgsNACTags
-    orgsNACPortals                  OrgsNACPortals
-    orgsNACCRL                      OrgsNACCRL
-    orgsStats                       OrgsStats
-    orgsStatsAssets                 OrgsStatsAssets
-    orgsStatsBGPPeers               OrgsStatsBGPPeers
-    orgsStatsDevices                OrgsStatsDevices
-    orgsStatsMxEdges                OrgsStatsMxEdges
-    orgsStatsOtherDevices           OrgsStatsOtherDevices
-    orgsStatsPorts                  OrgsStatsPorts
-    orgsStatsSites                  OrgsStatsSites
-    orgsStatsTunnels                OrgsStatsTunnels
-    orgsStatsVPNPeers               OrgsStatsVPNPeers
-    orgsNACRules                    OrgsNACRules
-    orgsNetworkTemplates            OrgsNetworkTemplates
-    orgsNetworks                    OrgsNetworks
-    orgsPremiumAnalytics            OrgsPremiumAnalytics
-    orgsPsks                        OrgsPsks
-    orgsPskPortals                  OrgsPskPortals
-    orgsRFTemplates                 OrgsRFTemplates
-    orgsSDKInvites                  OrgsSDKInvites
-    orgsSDKTemplates                OrgsSDKTemplates
-    orgsSecurityPolicies            OrgsSecurityPolicies
-    orgsServices                    OrgsServices
-    orgsServicePolicies             OrgsServicePolicies
-    orgsSetting                     OrgsSetting
-    orgsSitegroups                  OrgsSitegroups
-    orgsSites                       OrgsSites
-    orgsSiteTemplates               OrgsSiteTemplates
-    orgsSLEs                        OrgsSLEs
-    orgsSSORoles                    OrgsSSORoles
-    orgsSSO                         OrgsSSO
-    orgsWLANTemplates               OrgsWLANTemplates
-    orgsTickets                     OrgsTickets
-    orgsUserMACs                    OrgsUserMACs
-    orgsVars                        OrgsVars
-    orgsVPNs                        OrgsVPNs
-    orgsWebhooks                    OrgsWebhooks
-    orgsWlans                       OrgsWlans
-    orgsWxRules                     OrgsWxRules
-    orgsWxTags                      OrgsWxTags
-    orgsWxTunnels                   OrgsWxTunnels
-    sites                           Sites
-    sitesAlarms                     SitesAlarms
-    sitesAPTemplates                SitesAPTemplates
-    sitesApplications               SitesApplications
-    sitesAnomaly                    SitesAnomaly
-    sitesAssetFilters               SitesAssetFilters
-    sitesAssets                     SitesAssets
-    sitesBeacons                    SitesBeacons
-    sitesClientsNAC                 SitesClientsNAC
-    sitesClientsWan                 SitesClientsWan
-    sitesClientsWired               SitesClientsWired
-    sitesClientsWireless            SitesClientsWireless
-    sitesDevices                    SitesDevices
-    sitesDevicesWireless            SitesDevicesWireless
-    sitesDevicesOthers              SitesDevicesOthers
-    sitesDevicesWired               SitesDevicesWired
-    sitesDevicesWiredVirtualChassis SitesDevicesWiredVirtualChassis
-    sitesDevicesWANCluster          SitesDevicesWANCluster
-    sitesDeviceProfiles             SitesDeviceProfiles
-    sitesEvents                     SitesEvents
-    sitesEVPNTopologies             SitesEVPNTopologies
-    sitesGatewayTemplates           SitesGatewayTemplates
-    sitesGuests                     SitesGuests
-    sitesInsights                   SitesInsights
-    sitesJSE                        SitesJSE
-    sitesLicenses                   SitesLicenses
-    sitesLocation                   SitesLocation
-    sitesMaps                       SitesMaps
-    sitesMapsAutoPlacement          SitesMapsAutoPlacement
-    sitesMapsAutoZone               SitesMapsAutoZone
-    sitesMxEdges                    SitesMxEdges
-    sitesNetworkTemplates           SitesNetworkTemplates
-    sitesNetworks                   SitesNetworks
-    sitesPsks                       SitesPsks
-    sitesRFTemplates                SitesRFTemplates
-    sitesRfdiags                    SitesRfdiags
-    sitesRogues                     SitesRogues
-    sitesRRM                        SitesRRM
-    sitesRSSIZones                  SitesRSSIZones
-    sitesServices                   SitesServices
-    sitesServicePolicies            SitesServicePolicies
-    sitesSetting                    SitesSetting
-    sitesSiteTemplates              SitesSiteTemplates
-    sitesSkyatp                     SitesSkyatp
-    sitesSLEs                       SitesSLEs
-    sitesSyntheticTests             SitesSyntheticTests
-    sitesUISettings                 SitesUISettings
-    sitesVBeacons                   SitesVBeacons
-    sitesVPNs                       SitesVPNs
-    sitesWANUsages                  SitesWANUsages
-    sitesWebhooks                   SitesWebhooks
-    sitesWlans                      SitesWlans
-    sitesWxRules                    SitesWxRules
-    sitesWxTags                     SitesWxTags
-    sitesWxTunnels                  SitesWxTunnels
-    sitesZones                      SitesZones
-    sitesStats                      SitesStats
-    sitesStatsApps                  SitesStatsApps
-    sitesStatsAssets                SitesStatsAssets
-    sitesStatsBeacons               SitesStatsBeacons
-    sitesStatsBGPPeers              SitesStatsBGPPeers
-    sitesStatsCalls                 SitesStatsCalls
-    sitesStatsClientsWireless       SitesStatsClientsWireless
-    sitesStatsClientsSDK            SitesStatsClientsSDK
-    sitesStatsDevices               SitesStatsDevices
-    sitesStatsMxEdges               SitesStatsMxEdges
-    sitesStatsPorts                 SitesStatsPorts
-    sitesStatsWxRules               SitesStatsWxRules
-    sitesStatsZones                 SitesStatsZones
-    sitesStatsDiscoveredSwitches    SitesStatsDiscoveredSwitches
-    constantsDefinitions            ConstantsDefinitions
-    constantsEvents                 ConstantsEvents
-    constantsModels                 ConstantsModels
-    selfAccount                     SelfAccount
-    selfAPIToken                    SelfAPIToken
-    selfOAuth2                      SelfOAuth2
-    selfMFA                         SelfMFA
-    selfAlarms                      SelfAlarms
-    selfAuditLogs                   SelfAuditLogs
-    utilitiesCommon                 UtilitiesCommon
-    utilitiesWAN                    UtilitiesWAN
-    utilitiesLAN                    UtilitiesLAN
-    utilitiesWiFi                   UtilitiesWiFi
-    utilitiesPCAPs                  UtilitiesPCAPs
-    utilitiesLocation               UtilitiesLocation
-    utilitiesMxEdge                 UtilitiesMxEdge
-    utilitiesUpgrade                UtilitiesUpgrade
+    callBuilderFactory               https.CallBuilderFactory
+    configuration                    Configuration
+    userAgent                        string
+    admins                           Admins
+    adminsLogin                      AdminsLogin
+    adminsLogout                     AdminsLogout
+    adminsRecoverPassword            AdminsRecoverPassword
+    adminsLookup                     AdminsLookup
+    adminsLoginOAuth2                AdminsLoginOAuth2
+    installer                        Installer
+    mSPs                             MSPs
+    mSPsAdmins                       MSPsAdmins
+    orgsSecIntelProfiles             OrgsSecIntelProfiles
+    sitesSecIntelProfiles            SitesSecIntelProfiles
+    mSPsInventory                    MSPsInventory
+    mSPsLogo                         MSPsLogo
+    mSPsLogs                         MSPsLogs
+    mSPsLicenses                     MSPsLicenses
+    mSPsMarvis                       MSPsMarvis
+    mSPsOrgGroups                    MSPsOrgGroups
+    mSPsOrgs                         MSPsOrgs
+    mSPsSLEs                         MSPsSLEs
+    mSPsSSORoles                     MSPsSSORoles
+    mSPsSSO                          MSPsSSO
+    mSPsTickets                      MSPsTickets
+    orgs                             Orgs
+    orgsAdmins                       OrgsAdmins
+    orgsAlarms                       OrgsAlarms
+    orgsAlarmTemplates               OrgsAlarmTemplates
+    orgsAPTemplates                  OrgsAPTemplates
+    orgsAPITokens                    OrgsAPITokens
+    orgsAssets                       OrgsAssets
+    orgsAssetFilters                 OrgsAssetFilters
+    orgsCert                         OrgsCert
+    orgsAntivirusProfiles            OrgsAntivirusProfiles
+    orgsClientsMarvis                OrgsClientsMarvis
+    orgsMarvisInvites                OrgsMarvisInvites
+    orgsClientsNAC                   OrgsClientsNAC
+    orgsClientsWan                   OrgsClientsWan
+    orgsClientsWired                 OrgsClientsWired
+    orgsClientsWireless              OrgsClientsWireless
+    orgsClientsSDK                   OrgsClientsSDK
+    orgsIntegrationCradlepoint       OrgsIntegrationCradlepoint
+    orgsCRL                          OrgsCRL
+    orgsDeviceProfiles               OrgsDeviceProfiles
+    orgsDevices                      OrgsDevices
+    orgsDevicesSSR                   OrgsDevicesSSR
+    orgsEVPNTopologies               OrgsEVPNTopologies
+    orgsIntegrationJuniper           OrgsIntegrationJuniper
+    orgsDevicesOthers                OrgsDevicesOthers
+    orgsIntegrationZscaler           OrgsIntegrationZscaler
+    orgsSCEP                         OrgsSCEP
+    orgsGatewayTemplates             OrgsGatewayTemplates
+    orgsGuests                       OrgsGuests
+    orgsIDPProfiles                  OrgsIDPProfiles
+    orgsInventory                    OrgsInventory
+    orgsIntegrationJSE               OrgsIntegrationJSE
+    orgsAdvancedAntiMalwareProfiles  OrgsAdvancedAntiMalwareProfiles
+    orgsIntegrationSkyATP            OrgsIntegrationSkyATP
+    orgsJSI                          OrgsJSI
+    orgsLicenses                     OrgsLicenses
+    orgsLinkedApplications           OrgsLinkedApplications
+    orgsLogs                         OrgsLogs
+    orgsMarvis                       OrgsMarvis
+    orgsMaps                         OrgsMaps
+    orgsMxClusters                   OrgsMxClusters
+    orgsMxEdges                      OrgsMxEdges
+    orgsMxTunnels                    OrgsMxTunnels
+    orgsNACIDP                       OrgsNACIDP
+    orgsNACFingerprints              OrgsNACFingerprints
+    orgsNACTags                      OrgsNACTags
+    orgsNACPortals                   OrgsNACPortals
+    orgsNACCRL                       OrgsNACCRL
+    orgsStats                        OrgsStats
+    orgsStatsAssets                  OrgsStatsAssets
+    orgsStatsBGPPeers                OrgsStatsBGPPeers
+    orgsStatsDevices                 OrgsStatsDevices
+    orgsStatsMxEdges                 OrgsStatsMxEdges
+    orgsStatsOtherDevices            OrgsStatsOtherDevices
+    orgsStatsPorts                   OrgsStatsPorts
+    orgsStatsSites                   OrgsStatsSites
+    orgsStatsTunnels                 OrgsStatsTunnels
+    orgsStatsVPNPeers                OrgsStatsVPNPeers
+    orgsNACRules                     OrgsNACRules
+    orgsNetworkTemplates             OrgsNetworkTemplates
+    orgsNetworks                     OrgsNetworks
+    orgsPremiumAnalytics             OrgsPremiumAnalytics
+    orgsPsks                         OrgsPsks
+    orgsPskPortals                   OrgsPskPortals
+    orgsRFTemplates                  OrgsRFTemplates
+    orgsSDKInvites                   OrgsSDKInvites
+    orgsSDKTemplates                 OrgsSDKTemplates
+    orgsSecurityPolicies             OrgsSecurityPolicies
+    orgsServices                     OrgsServices
+    orgsServicePolicies              OrgsServicePolicies
+    orgsSetting                      OrgsSetting
+    orgsSitegroups                   OrgsSitegroups
+    orgsSites                        OrgsSites
+    orgsSiteTemplates                OrgsSiteTemplates
+    orgsSLEs                         OrgsSLEs
+    orgsSSORoles                     OrgsSSORoles
+    orgsSSO                          OrgsSSO
+    orgsWLANTemplates                OrgsWLANTemplates
+    orgsTickets                      OrgsTickets
+    orgsUserMACs                     OrgsUserMACs
+    orgsVars                         OrgsVars
+    orgsVPNs                         OrgsVPNs
+    orgsWebhooks                     OrgsWebhooks
+    orgsWlans                        OrgsWlans
+    orgsWxRules                      OrgsWxRules
+    orgsWxTags                       OrgsWxTags
+    orgsWxTunnels                    OrgsWxTunnels
+    sites                            Sites
+    sitesAlarms                      SitesAlarms
+    sitesAPTemplates                 SitesAPTemplates
+    sitesApplications                SitesApplications
+    sitesAnomaly                     SitesAnomaly
+    sitesAssetFilters                SitesAssetFilters
+    sitesAssets                      SitesAssets
+    sitesBeacons                     SitesBeacons
+    sitesClientsNAC                  SitesClientsNAC
+    sitesClientsWan                  SitesClientsWan
+    sitesClientsWired                SitesClientsWired
+    sitesClientsWireless             SitesClientsWireless
+    sitesDevices                     SitesDevices
+    sitesDevicesWireless             SitesDevicesWireless
+    sitesDevicesOthers               SitesDevicesOthers
+    sitesDevicesWired                SitesDevicesWired
+    sitesDevicesWiredVirtualChassis  SitesDevicesWiredVirtualChassis
+    sitesDevicesWANCluster           SitesDevicesWANCluster
+    sitesDeviceProfiles              SitesDeviceProfiles
+    orgsEvents                       OrgsEvents
+    sitesEvents                      SitesEvents
+    sitesEVPNTopologies              SitesEVPNTopologies
+    sitesGatewayTemplates            SitesGatewayTemplates
+    sitesIDPProfiles                 SitesIDPProfiles
+    sitesAdvancedAntiMalwareProfiles SitesAdvancedAntiMalwareProfiles
+    sitesAntivirusProfiles           SitesAntivirusProfiles
+    sitesGuests                      SitesGuests
+    sitesInsights                    SitesInsights
+    sitesJSE                         SitesJSE
+    sitesLicenses                    SitesLicenses
+    sitesLocation                    SitesLocation
+    sitesMaps                        SitesMaps
+    sitesMapsAutoPlacement           SitesMapsAutoPlacement
+    sitesMapsAutoZone                SitesMapsAutoZone
+    sitesMxEdges                     SitesMxEdges
+    sitesNetworkTemplates            SitesNetworkTemplates
+    sitesNetworks                    SitesNetworks
+    sitesPsks                        SitesPsks
+    sitesRFTemplates                 SitesRFTemplates
+    sitesRfdiags                     SitesRfdiags
+    sitesRogues                      SitesRogues
+    sitesRRM                         SitesRRM
+    sitesRSSIZones                   SitesRSSIZones
+    sitesServices                    SitesServices
+    sitesServicePolicies             SitesServicePolicies
+    sitesSetting                     SitesSetting
+    sitesSiteTemplates               SitesSiteTemplates
+    sitesSkyatp                      SitesSkyatp
+    sitesSLEs                        SitesSLEs
+    sitesSyntheticTests              SitesSyntheticTests
+    sitesUISettings                  SitesUISettings
+    sitesVBeacons                    SitesVBeacons
+    sitesVPNs                        SitesVPNs
+    sitesWANUsages                   SitesWANUsages
+    sitesWebhooks                    SitesWebhooks
+    sitesWlans                       SitesWlans
+    sitesWxRules                     SitesWxRules
+    sitesWxTags                      SitesWxTags
+    sitesWxTunnels                   SitesWxTunnels
+    sitesZones                       SitesZones
+    sitesStats                       SitesStats
+    sitesStatsApps                   SitesStatsApps
+    sitesStatsAssets                 SitesStatsAssets
+    sitesStatsBeacons                SitesStatsBeacons
+    sitesStatsBGPPeers               SitesStatsBGPPeers
+    sitesStatsCalls                  SitesStatsCalls
+    sitesStatsClientsWireless        SitesStatsClientsWireless
+    sitesStatsClientsSDK             SitesStatsClientsSDK
+    sitesStatsDevices                SitesStatsDevices
+    sitesStatsMxEdges                SitesStatsMxEdges
+    sitesStatsPorts                  SitesStatsPorts
+    sitesStatsWxRules                SitesStatsWxRules
+    sitesStatsZones                  SitesStatsZones
+    sitesStatsDiscoveredSwitches     SitesStatsDiscoveredSwitches
+    constantsDefinitions             ConstantsDefinitions
+    constantsEvents                  ConstantsEvents
+    constantsModels                  ConstantsModels
+    selfAccount                      SelfAccount
+    selfAPIToken                     SelfAPIToken
+    selfOAuth2                       SelfOAuth2
+    selfMFA                          SelfMFA
+    selfAlarms                       SelfAlarms
+    selfAuditLogs                    SelfAuditLogs
+    utilitiesCommon                  UtilitiesCommon
+    utilitiesWAN                     UtilitiesWAN
+    utilitiesLAN                     UtilitiesLAN
+    utilitiesWiFi                    UtilitiesWiFi
+    utilitiesPCAPs                   UtilitiesPCAPs
+    utilitiesLocation                UtilitiesLocation
+    utilitiesMxEdge                  UtilitiesMxEdge
+    utilitiesUpgrade                 UtilitiesUpgrade
 }
 
 // NewClient is the constructor for creating a new client instance.
@@ -418,7 +428,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("SDK 2502.1.24")
+    client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2505.1.9")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -430,6 +440,7 @@ func NewClient(configuration Configuration) ClientInterface {
     	https.NewHttpClient(configuration.HttpConfiguration()),
     	configuration.httpConfiguration.RetryConfiguration(),
     	https.Indexed,
+        withAccept(configuration.Accept()),
         withUserAgent(client.userAgent),
         withLogger(configuration.loggerConfiguration),
     )
@@ -468,6 +479,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsCert = *NewOrgsCert(*baseController)
     client.orgsAntivirusProfiles = *NewOrgsAntivirusProfiles(*baseController)
     client.orgsClientsMarvis = *NewOrgsClientsMarvis(*baseController)
+    client.orgsMarvisInvites = *NewOrgsMarvisInvites(*baseController)
     client.orgsClientsNAC = *NewOrgsClientsNAC(*baseController)
     client.orgsClientsWan = *NewOrgsClientsWan(*baseController)
     client.orgsClientsWired = *NewOrgsClientsWired(*baseController)
@@ -562,9 +574,13 @@ func NewClient(configuration Configuration) ClientInterface {
     client.sitesDevicesWiredVirtualChassis = *NewSitesDevicesWiredVirtualChassis(*baseController)
     client.sitesDevicesWANCluster = *NewSitesDevicesWANCluster(*baseController)
     client.sitesDeviceProfiles = *NewSitesDeviceProfiles(*baseController)
+    client.orgsEvents = *NewOrgsEvents(*baseController)
     client.sitesEvents = *NewSitesEvents(*baseController)
     client.sitesEVPNTopologies = *NewSitesEVPNTopologies(*baseController)
     client.sitesGatewayTemplates = *NewSitesGatewayTemplates(*baseController)
+    client.sitesIDPProfiles = *NewSitesIDPProfiles(*baseController)
+    client.sitesAdvancedAntiMalwareProfiles = *NewSitesAdvancedAntiMalwareProfiles(*baseController)
+    client.sitesAntivirusProfiles = *NewSitesAntivirusProfiles(*baseController)
     client.sitesGuests = *NewSitesGuests(*baseController)
     client.sitesInsights = *NewSitesInsights(*baseController)
     client.sitesJSE = *NewSitesJSE(*baseController)
@@ -806,6 +822,11 @@ func (c *client) OrgsAntivirusProfiles() *OrgsAntivirusProfiles {
 // OrgsClientsMarvis returns the orgsClientsMarvis instance of the client.
 func (c *client) OrgsClientsMarvis() *OrgsClientsMarvis {
     return &c.orgsClientsMarvis
+}
+
+// OrgsMarvisInvites returns the orgsMarvisInvites instance of the client.
+func (c *client) OrgsMarvisInvites() *OrgsMarvisInvites {
+    return &c.orgsMarvisInvites
 }
 
 // OrgsClientsNAC returns the orgsClientsNAC instance of the client.
@@ -1278,6 +1299,11 @@ func (c *client) SitesDeviceProfiles() *SitesDeviceProfiles {
     return &c.sitesDeviceProfiles
 }
 
+// OrgsEvents returns the orgsEvents instance of the client.
+func (c *client) OrgsEvents() *OrgsEvents {
+    return &c.orgsEvents
+}
+
 // SitesEvents returns the sitesEvents instance of the client.
 func (c *client) SitesEvents() *SitesEvents {
     return &c.sitesEvents
@@ -1291,6 +1317,21 @@ func (c *client) SitesEVPNTopologies() *SitesEVPNTopologies {
 // SitesGatewayTemplates returns the sitesGatewayTemplates instance of the client.
 func (c *client) SitesGatewayTemplates() *SitesGatewayTemplates {
     return &c.sitesGatewayTemplates
+}
+
+// SitesIDPProfiles returns the sitesIDPProfiles instance of the client.
+func (c *client) SitesIDPProfiles() *SitesIDPProfiles {
+    return &c.sitesIDPProfiles
+}
+
+// SitesAdvancedAntiMalwareProfiles returns the sitesAdvancedAntiMalwareProfiles instance of the client.
+func (c *client) SitesAdvancedAntiMalwareProfiles() *SitesAdvancedAntiMalwareProfiles {
+    return &c.sitesAdvancedAntiMalwareProfiles
+}
+
+// SitesAntivirusProfiles returns the sitesAntivirusProfiles instance of the client.
+func (c *client) SitesAntivirusProfiles() *SitesAntivirusProfiles {
+    return &c.sitesAntivirusProfiles
 }
 
 // SitesGuests returns the sitesGuests instance of the client.
@@ -1683,9 +1724,19 @@ func getBaseUri(
             return "https://api.ac6.mist.com"
         }
     }
+    if configuration.Environment() == Environment(MIST_EMEA_04) {
+        if server == Server(APIHOST) {
+            return "https://api.gc6.mist.com"
+        }
+    }
     if configuration.Environment() == Environment(MIST_APAC_01) {
         if server == Server(APIHOST) {
             return "https://api.ac5.mist.com"
+        }
+    }
+    if configuration.Environment() == Environment(MIST_APAC_03) {
+        if server == Server(APIHOST) {
+            return "https://api.gc7.mist.com"
         }
     }
     return "TODO: Select a valid server."
@@ -1716,6 +1767,17 @@ func tap(
     		opt(callBuilder)
     	}
     	return callBuilder
+    }
+}
+
+// withAccept is an option to add Accept to the HTTP request.
+func withAccept(accept string) clientOptions {
+    f := func(request *http.Request) *http.Request {
+    	request.Header.Set("Accept", accept)
+    	return request
+    }
+    return func(cb https.CallBuilder) {
+    	cb.InterceptRequest(f)
     }
 }
 

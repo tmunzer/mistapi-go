@@ -10,7 +10,7 @@ import (
 type WebhookNacAccountingEvent struct {
     // MAC address of the AP the client roamed or disconnected from
     Ap                   *string                `json:"ap,omitempty"`
-    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
     AuthType             *NacAuthTypeEnum       `json:"auth_type,omitempty"`
     // MAC physical address of the access point
     Bssid                *string                `json:"bssid,omitempty"`

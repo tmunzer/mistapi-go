@@ -22,7 +22,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DhcpdConfig` | [`*models.SwitchDhcpdConfig`](../../doc/models/switch-dhcpd-config.md) | Optional | - |
-| `DisableAutoConfig` | `*bool` | Optional | For a claimed switch, we control the configs by default. This option (disables the behavior)<br>**Default**: `false` |
+| `DisableAutoConfig` | `*bool` | Optional | This disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.<br><br>**Default**: `false` |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `DnsSuffix` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
 | `EvpnConfig` | [`*models.EvpnConfig`](../../doc/models/evpn-config.md) | Optional | EVPN Junos settings |
@@ -32,10 +32,11 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |
 | `Image3Url` | `models.Optional[string]` | Optional | - |
+| `IotConfig` | [`map[string]models.SwitchIotPort`](../../doc/models/switch-iot-port.md) | Optional | Property Key is the IOT port name, e.g.:<br><br>* `IN0` or `IN1` for the FPC0 input port with 5V triggered inputs<br>* `OUT1` for the FPC0 output port (can only be triggered by either IN0 or IN1)<br>* "X/IN0`,`X/IN1`and`X/OUT` are used to define IOT ports on VC members |
 | `IpConfig` | [`*models.JunosIpConfig`](../../doc/models/junos-ip-config.md) | Optional | Junos IP Config |
 | `LocalPortConfig` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Optional | Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `Mac` | `*string` | Optional | Device MAC address |
-| `Managed` | `*bool` | Optional | For an adopted switch, we don’t overwrite their existing configs automatically<br>**Default**: `false` |
+| `Managed` | `*bool` | Optional | An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.<br><br>**Default**: `false` |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `Model` | `*string` | Optional | Device Model |
@@ -60,8 +61,8 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
-| `UseRouterIdAsSourceIp` | `*bool` | Optional | Whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
+| `UseRouterIdAsSourceIp` | `*bool` | Optional | Whether to use it for snmp / syslog / tacplus / radius<br><br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VirtualChassis` | [`*models.SwitchVirtualChassis`](../../doc/models/switch-virtual-chassis.md) | Optional | Required for preprovisioned Virtual Chassis |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
@@ -185,18 +186,9 @@ You can configure `port_usages` and `networks` settings at the device level, but
         "macs1"
       ],
       "network": "network2",
+      "port_usage": "port_usage0",
       "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "type": "dynamic_gbp",
+      "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

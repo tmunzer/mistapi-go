@@ -13,7 +13,7 @@ Only if `type`==`hub_spoke`
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Strategy` | [`*models.VpnPathSelectionStrategyEnum`](../../doc/models/vpn-path-selection-strategy-enum.md) | Optional | enum: `disabled`, `simple`, `manual`<br>**Default**: `"disabled"` |
+| `Strategy` | [`*models.VpnPathSelectionStrategyEnum`](../../doc/models/vpn-path-selection-strategy-enum.md) | Optional | enum: `disabled`, `simple`, `manual`<br><br>**Default**: `"disabled"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

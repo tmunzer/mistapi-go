@@ -78,7 +78,7 @@ func (s *SitesDevices) ListSiteDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDeviceConfigHistory takes context, siteId, distinct, mac, start, end, duration, limit, page as parameters and
+// CountSiteDeviceConfigHistory takes context, siteId, distinct, mac, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in device config history for distinct field with given filters
@@ -90,8 +90,7 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(
@@ -135,9 +134,6 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount
@@ -218,7 +214,7 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDevices takes context, siteId, distinct, hostname, model, mac, version, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mapId, start, end, duration, limit, page as parameters and
+// CountSiteDevices takes context, siteId, distinct, hostname, model, mac, version, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mapId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in ap events history for distinct field with given filters
@@ -240,8 +236,7 @@ func (s *SitesDevices) CountSiteDevices(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/count")
@@ -312,9 +307,6 @@ func (s *SitesDevices) CountSiteDevices(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -326,7 +318,7 @@ func (s *SitesDevices) CountSiteDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDeviceEvents takes context, siteId, distinct, model, mType, typeCode, limit, start, end, duration as parameters and
+// CountSiteDeviceEvents takes context, siteId, distinct, model, mType, typeCode, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in ap events history for distinct field with given filters
@@ -337,10 +329,10 @@ func (s *SitesDevices) CountSiteDeviceEvents(
     model *string,
     mType *string,
     typeCode *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/events/count")
@@ -375,9 +367,6 @@ func (s *SitesDevices) CountSiteDeviceEvents(
     if typeCode != nil {
         req.QueryParam("type_code", *typeCode)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -386,6 +375,9 @@ func (s *SitesDevices) CountSiteDeviceEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount
@@ -565,7 +557,7 @@ func (s *SitesDevices) ImportSiteDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDeviceLastConfig takes context, siteId, distinct, start, end, duration, limit, page as parameters and
+// CountSiteDeviceLastConfig takes context, siteId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in device config history for distinct field with given filters
@@ -576,8 +568,7 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/last_config/count")
@@ -614,9 +605,6 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount
@@ -1020,6 +1008,49 @@ func (s *SitesDevices) AddSiteDeviceImage(
         formFields = append(formFields, jsonParam)
     }
     req.FormData(formFields)
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
+// SetSiteApAntennaMode takes context, siteId, deviceId, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Set AP Antenna Mode
+func (s *SitesDevices) SetSiteApAntennaMode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.ApAntennaMode) (
+    *http.Response,
+    error) {
+    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/set_ant_mode")
+    req.AppendTemplateParams(siteId, deviceId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
     
     httpCtx, err := req.Call()
     if err != nil {

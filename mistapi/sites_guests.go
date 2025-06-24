@@ -66,10 +66,10 @@ func (s *SitesGuests) ListSiteAllGuestAuthorizations(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteGuestAuthorizations takes context, siteId, distinct, start, end, duration, limit, page as parameters and
+// CountSiteGuestAuthorizations takes context, siteId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Authorized Guest
+// Count by Distinct Attributes of Authorized Guest
 func (s *SitesGuests) CountSiteGuestAuthorizations(
     ctx context.Context,
     siteId uuid.UUID,
@@ -77,8 +77,7 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/count")
@@ -116,9 +115,6 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -133,7 +129,7 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
 // ListSiteAllGuestAuthorizationsDerived takes context, siteId, wlanId, crossSite as parameters and
 // returns an models.ApiResponse with []models.Guest data and
 // an error if there was an issue with the request or response.
-// Get List of Site Guest Authorizations
+// Get the list of derived Guest Authorizations for a site
 func (s *SitesGuests) ListSiteAllGuestAuthorizationsDerived(
     ctx context.Context,
     siteId uuid.UUID,

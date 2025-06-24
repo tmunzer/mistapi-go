@@ -7,7 +7,12 @@ import (
 
 // OrgSettingScep represents a OrgSettingScep struct.
 type OrgSettingScep struct {
+    CertProviders        []string               `json:"cert_providers,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
+    IntuneScepUrl        *string                `json:"intune_scep_url,omitempty"`
+    JamfAccessToken      *string                `json:"jamf_access_token,omitempty"`
+    JamfScepUrl          *string                `json:"jamf_scep_url,omitempty"`
+    JamfWebhookUrl       *string                `json:"jamf_webhook_url,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -15,8 +20,8 @@ type OrgSettingScep struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingScep) String() string {
     return fmt.Sprintf(
-    	"OrgSettingScep[Enabled=%v, AdditionalProperties=%v]",
-    	o.Enabled, o.AdditionalProperties)
+    	"OrgSettingScep[CertProviders=%v, Enabled=%v, IntuneScepUrl=%v, JamfAccessToken=%v, JamfScepUrl=%v, JamfWebhookUrl=%v, AdditionalProperties=%v]",
+    	o.CertProviders, o.Enabled, o.IntuneScepUrl, o.JamfAccessToken, o.JamfScepUrl, o.JamfWebhookUrl, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingScep.
@@ -25,7 +30,7 @@ func (o OrgSettingScep) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "enabled"); err != nil {
+        "cert_providers", "enabled", "intune_scep_url", "jamf_access_token", "jamf_scep_url", "jamf_webhook_url"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -35,8 +40,23 @@ func (o OrgSettingScep) MarshalJSON() (
 func (o OrgSettingScep) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, o.AdditionalProperties)
+    if o.CertProviders != nil {
+        structMap["cert_providers"] = o.CertProviders
+    }
     if o.Enabled != nil {
         structMap["enabled"] = o.Enabled
+    }
+    if o.IntuneScepUrl != nil {
+        structMap["intune_scep_url"] = o.IntuneScepUrl
+    }
+    if o.JamfAccessToken != nil {
+        structMap["jamf_access_token"] = o.JamfAccessToken
+    }
+    if o.JamfScepUrl != nil {
+        structMap["jamf_scep_url"] = o.JamfScepUrl
+    }
+    if o.JamfWebhookUrl != nil {
+        structMap["jamf_webhook_url"] = o.JamfWebhookUrl
     }
     return structMap
 }
@@ -49,17 +69,27 @@ func (o *OrgSettingScep) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert_providers", "enabled", "intune_scep_url", "jamf_access_token", "jamf_scep_url", "jamf_webhook_url")
     if err != nil {
     	return err
     }
     o.AdditionalProperties = additionalProperties
     
+    o.CertProviders = temp.CertProviders
     o.Enabled = temp.Enabled
+    o.IntuneScepUrl = temp.IntuneScepUrl
+    o.JamfAccessToken = temp.JamfAccessToken
+    o.JamfScepUrl = temp.JamfScepUrl
+    o.JamfWebhookUrl = temp.JamfWebhookUrl
     return nil
 }
 
 // tempOrgSettingScep is a temporary struct used for validating the fields of OrgSettingScep.
 type tempOrgSettingScep  struct {
-    Enabled *bool `json:"enabled,omitempty"`
+    CertProviders   []string `json:"cert_providers,omitempty"`
+    Enabled         *bool    `json:"enabled,omitempty"`
+    IntuneScepUrl   *string  `json:"intune_scep_url,omitempty"`
+    JamfAccessToken *string  `json:"jamf_access_token,omitempty"`
+    JamfScepUrl     *string  `json:"jamf_scep_url,omitempty"`
+    JamfWebhookUrl  *string  `json:"jamf_webhook_url,omitempty"`
 }

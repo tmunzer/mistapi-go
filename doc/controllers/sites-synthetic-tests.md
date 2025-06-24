@@ -129,6 +129,15 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "5c5b350e0410"
+
+portId := "ge-1/0/1"
+
+vlanId := "100"
+
+by := "user"
+
+reason := "test failed"
 
 
 
@@ -136,16 +145,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-
-
-
-
-
-
-
-
-
-apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil)
+apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -315,6 +315,7 @@ body := models.SynthetictestDevice{
     PortId:               models.ToPointer("wan0"),
     Protocol:             models.ToPointer(models.SynthetictestDeviceProtocolEnum_ENUMPINGTRACEROUTE),
     Tenant:               models.ToPointer("lan_network1"),
+    Timeout:              models.ToPointer(60),
     TracerouteUdpPort:    models.ToPointer(33434),
     Type:                 models.SynthetictestTypeEnum_RADIUS,
     Url:                  models.ToPointer("https://www.example.com"),

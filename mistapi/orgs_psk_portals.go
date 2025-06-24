@@ -175,7 +175,7 @@ func (o *OrgsPskPortals) ListOrgPskPortalLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgPskPortalLogs takes context, orgId, distinct, start, end, duration, limit, page as parameters and
+// CountOrgPskPortalLogs takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of PskPortal Logs
@@ -186,8 +186,7 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/pskportals/logs/count")
@@ -224,9 +223,6 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

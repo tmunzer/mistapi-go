@@ -26,12 +26,14 @@ type AclTag struct {
     // * `type`==`resource` (optional. default is `any`)
     // * `type`==`static_gbp` if from matching network (vlan)
     Network              *string                `json:"network,omitempty"`
+    // Required if `type`==`port_usage`
+    PortUsage            *string                `json:"port_usage,omitempty"`
     // Required if:
     // * `type`==`radius_group`
     // * `type`==`static_gbp`
     // if from matching radius_group
     RadiusGroup          *string                `json:"radius_group,omitempty"`
-    // If `type`==`resource` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
+    // If `type`==`resource`, `type`==`radius_group`, `type`==`port_usage` or `type`==`gbp_resource`. Empty means unrestricted, i.e. any
     Specs                []AclTagSpec           `json:"specs,omitempty"`
     // If
     // - `type`==`subnet`
@@ -44,6 +46,7 @@ type AclTag struct {
     // * `gbp_resource`: can only be used in `dst_tags`
     // * `mac`
     // * `network`
+    // * `port_usage`
     // * `radius_group`
     // * `resource`: can only be used in `dst_tags`
     // * `static_gbp`: applying gbp tag against matching conditions
@@ -56,8 +59,8 @@ type AclTag struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AclTag) String() string {
     return fmt.Sprintf(
-    	"AclTag[GbpTag=%v, Macs=%v, Network=%v, RadiusGroup=%v, Specs=%v, Subnets=%v, Type=%v, AdditionalProperties=%v]",
-    	a.GbpTag, a.Macs, a.Network, a.RadiusGroup, a.Specs, a.Subnets, a.Type, a.AdditionalProperties)
+    	"AclTag[GbpTag=%v, Macs=%v, Network=%v, PortUsage=%v, RadiusGroup=%v, Specs=%v, Subnets=%v, Type=%v, AdditionalProperties=%v]",
+    	a.GbpTag, a.Macs, a.Network, a.PortUsage, a.RadiusGroup, a.Specs, a.Subnets, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclTag.
@@ -66,7 +69,7 @@ func (a AclTag) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "gbp_tag", "macs", "network", "radius_group", "specs", "subnets", "type"); err != nil {
+        "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -84,6 +87,9 @@ func (a AclTag) toMap() map[string]any {
     }
     if a.Network != nil {
         structMap["network"] = a.Network
+    }
+    if a.PortUsage != nil {
+        structMap["port_usage"] = a.PortUsage
     }
     if a.RadiusGroup != nil {
         structMap["radius_group"] = a.RadiusGroup
@@ -110,7 +116,7 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gbp_tag", "macs", "network", "radius_group", "specs", "subnets", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type")
     if err != nil {
     	return err
     }
@@ -119,6 +125,7 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
     a.GbpTag = temp.GbpTag
     a.Macs = temp.Macs
     a.Network = temp.Network
+    a.PortUsage = temp.PortUsage
     a.RadiusGroup = temp.RadiusGroup
     a.Specs = temp.Specs
     a.Subnets = temp.Subnets
@@ -131,6 +138,7 @@ type tempAclTag  struct {
     GbpTag      *int            `json:"gbp_tag,omitempty"`
     Macs        []string        `json:"macs,omitempty"`
     Network     *string         `json:"network,omitempty"`
+    PortUsage   *string         `json:"port_usage,omitempty"`
     RadiusGroup *string         `json:"radius_group,omitempty"`
     Specs       []AclTagSpec    `json:"specs,omitempty"`
     Subnets     []string        `json:"subnets,omitempty"`

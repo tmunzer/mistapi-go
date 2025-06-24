@@ -99,14 +99,14 @@ func TestUtilitiesWiFiTestUnauthorizeSiteWirelessClient(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestUtilitiesWiFiTestReprovisionSiteAllAps tests the behavior of the UtilitiesWiFi
-func TestUtilitiesWiFiTestReprovisionSiteAllAps(t *testing.T) {
+// TestUtilitiesWiFiTestReprovisionSiteAllDevices tests the behavior of the UtilitiesWiFi
+func TestUtilitiesWiFiTestReprovisionSiteAllDevices(t *testing.T) {
     ctx := context.Background()
     siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
     if errUUID != nil {
         t.Error(errUUID)
     }
-    resp, err := utilitiesWiFi.ReprovisionSiteAllAps(ctx, siteId)
+    resp, err := utilitiesWiFi.ReprovisionSiteAllDevices(ctx, siteId)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -179,6 +179,21 @@ func TestUtilitiesWiFiTestOptimizeSiteRrm(t *testing.T) {
         t.Errorf("Cannot parse the model object.")
     }
     resp, err := utilitiesWiFi.OptimizeSiteRrm(ctx, siteId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestUtilitiesWiFiTestTestSiteWlanSmsGlobal tests the behavior of the UtilitiesWiFi
+func TestUtilitiesWiFiTestTestSiteWlanSmsGlobal(t *testing.T) {
+    ctx := context.Background()
+    var body models.TestSmsGlobal
+    errBody := json.Unmarshal([]byte(`{"smsglobal_api_key":"123456","smsglobal_api_secret":"abcdef","to":"+911122334455"}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    resp, err := utilitiesWiFi.TestSiteWlanSmsGlobal(ctx, &body)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

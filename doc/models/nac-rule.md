@@ -14,13 +14,13 @@
 | `Action` | [`models.NacRuleActionEnum`](../../doc/models/nac-rule-action-enum.md) | Required | enum: `allow`, `block` |
 | `ApplyTags` | `[]string` | Optional | All optional, this goes into Access-Accept |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Enabled` | `*bool` | Optional | Enabled or not<br>**Default**: `true` |
+| `Enabled` | `*bool` | Optional | Enabled or not<br><br>**Default**: `true` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Matching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NotMatching` | [`*models.NacRuleMatching`](../../doc/models/nac-rule-matching.md) | Optional | - |
-| `Order` | `*int` | Optional | Order of the rule, lower value implies higher priority<br>**Constraints**: `>= 0` |
+| `Order` | `*int` | Optional | Order of the rule, lower value implies higher priority<br><br>**Constraints**: `>= 0` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -39,7 +39,7 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "created_time": 238.9,
   "matching": {
-    "auth_type": "cert",
+    "auth_type": "mab",
     "family": [
       "family1"
     ],

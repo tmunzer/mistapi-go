@@ -11,9 +11,9 @@ orgsLicenses := client.OrgsLicenses()
 ## Methods
 
 * [Claim Org License](../../doc/controllers/orgs-licenses.md#claim-org-license)
-* [Get Org Licences by Site](../../doc/controllers/orgs-licenses.md#get-org-licences-by-site)
-* [Get Org Licences Summary](../../doc/controllers/orgs-licenses.md#get-org-licences-summary)
 * [Get Org License Async Claim Status](../../doc/controllers/orgs-licenses.md#get-org-license-async-claim-status)
+* [Get Org Licenses by Site](../../doc/controllers/orgs-licenses.md#get-org-licenses-by-site)
+* [Get Org Licenses Summary](../../doc/controllers/orgs-licenses.md#get-org-licenses-summary)
 * [Move or Delete Org License to Another Org](../../doc/controllers/orgs-licenses.md#move-or-delete-org-license-to-another-org)
 
 
@@ -85,6 +85,11 @@ if err != nil {
       "type": "ap"
     }
   ],
+  "inventory_pending": [
+    {
+      "mac": "5c5b35000012"
+    }
+  ],
   "license_added": [
     {
       "end": 1520380800,
@@ -127,13 +132,93 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Licences by Site
+# Get Org License Async Claim Status
+
+Get Processing Status for Async Claim
+
+```go
+GetOrgLicenseAsyncClaimStatus(
+    ctx context.Context,
+    orgId uuid.UUID,
+    detail *bool) (
+    models.ApiResponse[models.ResponseAsyncLicense],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `detail` | `*bool` | Query, Optional | Request license details |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAsyncLicense](../../doc/models/response-async-license.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+detail := true
+
+apiResponse, err := orgsLicenses.GetOrgLicenseAsyncClaimStatus(ctx, orgId, &detail)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "completed": [
+    "000000000022",
+    "000000000011"
+  ],
+  "details": [
+    {
+      "mac": "000000000022",
+      "status": "added",
+      "timestamp": 1709598053
+    }
+  ],
+  "failed": 0,
+  "incompleted": [],
+  "processed": 2,
+  "scheduled_at": 1709598052,
+  "status": "done",
+  "succeed": 2,
+  "timestamp": 1709598053,
+  "total": 2
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Org Licenses by Site
 
 Get Licenses Usage by Sites
 This shows license usage (i.e. needed) based on the features enabled for the site.
 
 ```go
-GetOrgLicencesBySite(
+GetOrgLicensesBySite(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[[]models.LicenseUsageOrg],
@@ -157,7 +242,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsLicenses.GetOrgLicencesBySite(ctx, orgId)
+apiResponse, err := orgsLicenses.GetOrgLicensesBySite(ctx, orgId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -197,12 +282,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Org Licences Summary
+# Get Org Licenses Summary
 
 Get the list of licenses
 
 ```go
-GetOrgLicencesSummary(
+GetOrgLicensesSummary(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[models.License],
@@ -226,7 +311,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsLicenses.GetOrgLicencesSummary(ctx, orgId)
+apiResponse, err := orgsLicenses.GetOrgLicensesSummary(ctx, orgId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -429,86 +514,6 @@ if err != nil {
     "SUB-MAN": 22,
     "SUB-VNA": 20
   }
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Get Org License Async Claim Status
-
-Get Processing Status for Async Claim
-
-```go
-GetOrgLicenseAsyncClaimStatus(
-    ctx context.Context,
-    orgId uuid.UUID,
-    detail *bool) (
-    models.ApiResponse[models.ResponseAsyncLicense],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `orgId` | `uuid.UUID` | Template, Required | - |
-| `detail` | `*bool` | Query, Optional | Request license details |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseAsyncLicense](../../doc/models/response-async-license.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-apiResponse, err := orgsLicenses.GetOrgLicenseAsyncClaimStatus(ctx, orgId, nil)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "completed": [
-    "000000000022",
-    "000000000011"
-  ],
-  "details": [
-    {
-      "mac": "000000000022",
-      "status": "added",
-      "timestamp": 1709598053
-    }
-  ],
-  "failed": 0,
-  "incompleted": [],
-  "processed": 2,
-  "scheduled_at": 1709598052,
-  "status": "done",
-  "succeed": 2,
-  "timestamp": 1709598053,
-  "total": 2
 }
 ```
 

@@ -16,13 +16,14 @@ mSPsTickets := client.MSPsTickets()
 
 # Count Msp Tickets
 
-Count tickets
+Count by Distinct Attributes of tickets
 
 ```go
 CountMspTickets(
     ctx context.Context,
     mspId uuid.UUID,
-    distinct *models.MspTicketsCountDistinctEnum) (
+    distinct *models.MspTicketsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -33,6 +34,7 @@ CountMspTickets(
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.MspTicketsCountDistinctEnum`](../../doc/models/msp-tickets-count-distinct-enum.md) | Query, Optional | **Default**: `"status"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -47,7 +49,9 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.MspTicketsCountDistinctEnum_STATUS
 
-apiResponse, err := mSPsTickets.CountMspTickets(ctx, mspId, &distinct)
+limit := 100
+
+apiResponse, err := mSPsTickets.CountMspTickets(ctx, mspId, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -108,7 +112,7 @@ ListMspTickets(
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

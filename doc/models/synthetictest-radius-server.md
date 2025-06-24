@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Password` | `string` | Required | Specify the password associated with the username |
-| `Profile` | `*string` | Optional | Specify the access profile associated with the subscriber<br>**Default**: `"dot1x"` |
+| `Profile` | `*string` | Optional | Specify the access profile associated with the subscriber<br><br>**Default**: `"dot1x"` |
 | `User` | `string` | Required | Specify the subscriber username to test |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -23,7 +23,7 @@
   "events": [
     {
       "ap": "ap6",
-      "auth_type": "eap-teap",
+      "auth_type": "cert",
       "bssid": "bssid4",
       "client_type": "wireless",
       "device_mac": "device_mac4",
@@ -34,7 +34,7 @@
     },
     {
       "ap": "ap6",
-      "auth_type": "eap-teap",
+      "auth_type": "cert",
       "bssid": "bssid4",
       "client_type": "wireless",
       "device_mac": "device_mac4",

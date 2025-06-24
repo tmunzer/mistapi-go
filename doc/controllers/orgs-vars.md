@@ -36,8 +36,8 @@ SearchOrgVars(
 | `siteId` | `*string` | Query, Optional | - |
 | `mVar` | `*string` | Query, Optional | - |
 | `src` | [`*models.VarSourceEnum`](../../doc/models/var-source-enum.md) | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 

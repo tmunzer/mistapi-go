@@ -13,13 +13,13 @@ Junos Radius config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 65535` |
+| `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `AuthServersRetries` | `*int` | Optional | radius auth session retries<br>**Default**: `3` |
-| `AuthServersTimeout` | `*int` | Optional | radius auth session timeout<br>**Default**: `5` |
+| `AuthServersRetries` | `*int` | Optional | radius auth session retries<br><br>**Default**: `3` |
+| `AuthServersTimeout` | `*int` | Optional | radius auth session timeout<br><br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
-| `CoaPort` | `*int` | Optional | **Default**: `3799`<br>**Constraints**: `>= 1`, `<= 65535` |
+| `CoaPort` | `*int` | Optional | **Default**: `3799`<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `Network` | `*string` | Optional | use `network`or `source_ip`, which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | use `network`or `source_ip` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

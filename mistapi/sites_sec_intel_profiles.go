@@ -24,7 +24,7 @@ func NewSitesSecIntelProfiles(baseController baseController) *SitesSecIntelProfi
 // ListSiteSecIntelProfilesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.SecintelProfile data and
 // an error if there was an issue with the request or response.
-// Get derived Sky-ATP secintel profiles for Site
+// Get the list of derived Sky-ATP secintel profiles a Site
 func (s *SitesSecIntelProfiles) ListSiteSecIntelProfilesDerived(
     ctx context.Context,
     siteId uuid.UUID,

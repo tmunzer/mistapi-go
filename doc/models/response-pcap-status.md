@@ -16,7 +16,7 @@
 | `ClientMac` | `models.Optional[string]` | Optional | - |
 | `Duration` | `*int` | Optional | - |
 | `Failed` | `[]string` | Optional | List of APs where configuration attempt failed |
-| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
+| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br><br>**Default**: `"stream"` |
 | `Gateways` | `[]string` | Optional | Information on gateways to capture packets on if a gateway capture type is specified |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `IncludesMcast` | `*bool` | Optional | - |
@@ -34,7 +34,7 @@
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression provided by the user (common) |
 | `Type` | [`models.PcapTypeEnum`](../../doc/models/pcap-type-enum.md) | Required | enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless` |
 | `TzspHost` | `*string` | Optional | Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets. |
-| `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br>**Constraints**: `>= 1`, `<= 65535` |
+| `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `WiredTcpdumpExpression` | `*string` | Optional | When `type`==`wired`, wired_tcpdump_expression provided by the user |
 | `WirelessTcpdumpExpression` | `*string` | Optional | When `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

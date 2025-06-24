@@ -11,7 +11,7 @@ sitesNetworks := client.SitesNetworks()
 
 # List Site Networks Derived
 
-Retrieves the list of Networks available for the Site
+Get the list of derived Networks for a Site
 
 ```go
 ListSiteNetworksDerived(
@@ -27,7 +27,7 @@ ListSiteNetworksDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br>**Default**: `false` |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br><br>**Default**: `false` |
 
 ## Response Type
 

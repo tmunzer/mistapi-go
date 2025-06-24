@@ -33,7 +33,7 @@ type Sso struct {
     IdpSsoUrl               *string                      `json:"idp_sso_url,omitempty"`
     // SSO IDP Type:
     // * For Admin SSO, enum: `saml`
-    // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`
+    // * For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`, `openroaming`
     IdpType                 *SsoIdpTypeEnum              `json:"idp_type,omitempty"`
     // If `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role
     IgnoreUnmatchedRoles    *bool                        `json:"ignore_unmatched_roles,omitempty"`
@@ -90,6 +90,8 @@ type Sso struct {
     OauthTenantId           *string                      `json:"oauth_tenant_id,omitempty"`
     // if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
     OauthType               *SsoOauthTypeEnum            `json:"oauth_type,omitempty"`
+    // if `idp_type`==`openroaming`
+    Openroaming             *SsoOpenroaming              `json:"openroaming,omitempty"`
     OrgId                   *uuid.UUID                   `json:"org_id,omitempty"`
     // If `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is "CN=cn,OU=ou1,OU=ou2,…"</li><li>CN (the key) is case-insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is "CN=cn,OU=ou1,OU=ou2" then parsed role value is "cn"</td></tr></table>
     RoleAttrExtraction      *string                      `json:"role_attr_extraction,omitempty"`
@@ -107,8 +109,8 @@ type Sso struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s Sso) String() string {
     return fmt.Sprintf(
-    	"Sso[CreatedTime=%v, CustomLogoutUrl=%v, DefaultRole=%v, Domain=%v, GroupFilter=%v, Id=%v, IdpCert=%v, IdpSignAlgo=%v, IdpSsoUrl=%v, IdpType=%v, IgnoreUnmatchedRoles=%v, Issuer=%v, LdapBaseDn=%v, LdapBindDn=%v, LdapBindPassword=%v, LdapCacerts=%v, LdapClientCert=%v, LdapClientKey=%v, LdapGroupAttr=%v, LdapGroupDn=%v, LdapResolveGroups=%v, LdapServerHosts=%v, LdapType=%v, LdapUserFilter=%v, MemberFilter=%v, ModifiedTime=%v, MspId=%v, MxedgeProxy=%v, Name=%v, NameidFormat=%v, OauthCcClientId=%v, OauthCcClientSecret=%v, OauthDiscoveryUrl=%v, OauthPingIdentityRegion=%v, OauthRopcClientId=%v, OauthRopcClientSecret=%v, OauthTenantId=%v, OauthType=%v, OrgId=%v, RoleAttrExtraction=%v, RoleAttrFrom=%v, ScimEnabled=%v, ScimSecretToken=%v, SiteId=%v, AdditionalProperties=%v]",
-    	s.CreatedTime, s.CustomLogoutUrl, s.DefaultRole, s.Domain, s.GroupFilter, s.Id, s.IdpCert, s.IdpSignAlgo, s.IdpSsoUrl, s.IdpType, s.IgnoreUnmatchedRoles, s.Issuer, s.LdapBaseDn, s.LdapBindDn, s.LdapBindPassword, s.LdapCacerts, s.LdapClientCert, s.LdapClientKey, s.LdapGroupAttr, s.LdapGroupDn, s.LdapResolveGroups, s.LdapServerHosts, s.LdapType, s.LdapUserFilter, s.MemberFilter, s.ModifiedTime, s.MspId, s.MxedgeProxy, s.Name, s.NameidFormat, s.OauthCcClientId, s.OauthCcClientSecret, s.OauthDiscoveryUrl, s.OauthPingIdentityRegion, s.OauthRopcClientId, s.OauthRopcClientSecret, s.OauthTenantId, s.OauthType, s.OrgId, s.RoleAttrExtraction, s.RoleAttrFrom, s.ScimEnabled, s.ScimSecretToken, s.SiteId, s.AdditionalProperties)
+    	"Sso[CreatedTime=%v, CustomLogoutUrl=%v, DefaultRole=%v, Domain=%v, GroupFilter=%v, Id=%v, IdpCert=%v, IdpSignAlgo=%v, IdpSsoUrl=%v, IdpType=%v, IgnoreUnmatchedRoles=%v, Issuer=%v, LdapBaseDn=%v, LdapBindDn=%v, LdapBindPassword=%v, LdapCacerts=%v, LdapClientCert=%v, LdapClientKey=%v, LdapGroupAttr=%v, LdapGroupDn=%v, LdapResolveGroups=%v, LdapServerHosts=%v, LdapType=%v, LdapUserFilter=%v, MemberFilter=%v, ModifiedTime=%v, MspId=%v, MxedgeProxy=%v, Name=%v, NameidFormat=%v, OauthCcClientId=%v, OauthCcClientSecret=%v, OauthDiscoveryUrl=%v, OauthPingIdentityRegion=%v, OauthRopcClientId=%v, OauthRopcClientSecret=%v, OauthTenantId=%v, OauthType=%v, Openroaming=%v, OrgId=%v, RoleAttrExtraction=%v, RoleAttrFrom=%v, ScimEnabled=%v, ScimSecretToken=%v, SiteId=%v, AdditionalProperties=%v]",
+    	s.CreatedTime, s.CustomLogoutUrl, s.DefaultRole, s.Domain, s.GroupFilter, s.Id, s.IdpCert, s.IdpSignAlgo, s.IdpSsoUrl, s.IdpType, s.IgnoreUnmatchedRoles, s.Issuer, s.LdapBaseDn, s.LdapBindDn, s.LdapBindPassword, s.LdapCacerts, s.LdapClientCert, s.LdapClientKey, s.LdapGroupAttr, s.LdapGroupDn, s.LdapResolveGroups, s.LdapServerHosts, s.LdapType, s.LdapUserFilter, s.MemberFilter, s.ModifiedTime, s.MspId, s.MxedgeProxy, s.Name, s.NameidFormat, s.OauthCcClientId, s.OauthCcClientSecret, s.OauthDiscoveryUrl, s.OauthPingIdentityRegion, s.OauthRopcClientId, s.OauthRopcClientSecret, s.OauthTenantId, s.OauthType, s.Openroaming, s.OrgId, s.RoleAttrExtraction, s.RoleAttrFrom, s.ScimEnabled, s.ScimSecretToken, s.SiteId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Sso.
@@ -117,7 +119,7 @@ func (s Sso) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id"); err != nil {
+        "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "openroaming", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -239,6 +241,9 @@ func (s Sso) toMap() map[string]any {
     if s.OauthType != nil {
         structMap["oauth_type"] = s.OauthType
     }
+    if s.Openroaming != nil {
+        structMap["openroaming"] = s.Openroaming.toMap()
+    }
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
@@ -272,7 +277,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "custom_logout_url", "default_role", "domain", "group_filter", "id", "idp_cert", "idp_sign_algo", "idp_sso_url", "idp_type", "ignore_unmatched_roles", "issuer", "ldap_base_dn", "ldap_bind_dn", "ldap_bind_password", "ldap_cacerts", "ldap_client_cert", "ldap_client_key", "ldap_group_attr", "ldap_group_dn", "ldap_resolve_groups", "ldap_server_hosts", "ldap_type", "ldap_user_filter", "member_filter", "modified_time", "msp_id", "mxedge_proxy", "name", "nameid_format", "oauth_cc_client_id", "oauth_cc_client_secret", "oauth_discovery_url", "oauth_ping_identity_region", "oauth_ropc_client_id", "oauth_ropc_client_secret", "oauth_tenant_id", "oauth_type", "openroaming", "org_id", "role_attr_extraction", "role_attr_from", "scim_enabled", "scim_secret_token", "site_id")
     if err != nil {
     	return err
     }
@@ -316,6 +321,7 @@ func (s *Sso) UnmarshalJSON(input []byte) error {
     s.OauthRopcClientSecret = temp.OauthRopcClientSecret
     s.OauthTenantId = temp.OauthTenantId
     s.OauthType = temp.OauthType
+    s.Openroaming = temp.Openroaming
     s.OrgId = temp.OrgId
     s.RoleAttrExtraction = temp.RoleAttrExtraction
     s.RoleAttrFrom = temp.RoleAttrFrom
@@ -365,6 +371,7 @@ type tempSso  struct {
     OauthRopcClientSecret   *string                      `json:"oauth_ropc_client_secret,omitempty"`
     OauthTenantId           *string                      `json:"oauth_tenant_id,omitempty"`
     OauthType               *SsoOauthTypeEnum            `json:"oauth_type,omitempty"`
+    Openroaming             *SsoOpenroaming              `json:"openroaming,omitempty"`
     OrgId                   *uuid.UUID                   `json:"org_id,omitempty"`
     RoleAttrExtraction      *string                      `json:"role_attr_extraction,omitempty"`
     RoleAttrFrom            *string                      `json:"role_attr_from,omitempty"`

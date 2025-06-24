@@ -14,7 +14,7 @@
 | `MaxResponseTime` | `*int` | Optional | Querier's query response interval, in tenths-of-seconds |
 | `Mtu` | `*int` | Optional | The MTU we use (needed when forming large IGMPv3 Reports) |
 | `QueryInterval` | `*int` | Optional | Querier's query interval, in seconds |
-| `Robustness` | `*int` | Optional | Querier's robustness<br>**Constraints**: `>= 1`, `<= 7` |
+| `Robustness` | `*int` | Optional | Querier's robustness<br><br>**Constraints**: `>= 1`, `<= 7` |
 | `Version` | `*int` | Optional | Querier's maximum protocol version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

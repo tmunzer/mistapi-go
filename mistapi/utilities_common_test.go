@@ -55,6 +55,33 @@ func TestUtilitiesCommonTestArpFromDevice(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestArpFromDevice1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestArpFromDevice1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.HaClusterNode
+    errBody := json.Unmarshal([]byte(`{"node":"node0"}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := utilitiesCommon.ArpFromDevice(ctx, siteId, deviceId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestBounceDevicePort tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestBounceDevicePort(t *testing.T) {
     ctx := context.Background()
@@ -101,6 +128,29 @@ func TestUtilitiesCommonTestClearSiteDeviceMacTable(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestClearSiteDeviceMacTable1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestClearSiteDeviceMacTable1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ClearSiteDeviceMacTable(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestClearSiteDevicePolicyHitCount tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestClearSiteDevicePolicyHitCount(t *testing.T) {
     ctx := context.Background()
@@ -119,6 +169,28 @@ func TestUtilitiesCommonTestClearSiteDevicePolicyHitCount(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestClearSiteDevicePolicyHitCount1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestClearSiteDevicePolicyHitCount1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := utilitiesCommon.ClearSiteDevicePolicyHitCount(ctx, siteId, deviceId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -142,6 +214,31 @@ func TestUtilitiesCommonTestGetSiteDeviceConfigCmd(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"cli":["set system hostname corp-a135"]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesCommonTestGetSiteDeviceConfigCmd1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestGetSiteDeviceConfigCmd1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    sort := bool(false)
+    apiResponse, err := utilitiesCommon.GetSiteDeviceConfigCmd(ctx, siteId, deviceId, &sort)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"cli":["set system hostname corp-a135"]}`
@@ -190,6 +287,29 @@ func TestUtilitiesCommonTestMonitorSiteDeviceTraffic(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestMonitorSiteDeviceTraffic1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestMonitorSiteDeviceTraffic1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.MonitorSiteDeviceTraffic(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestPingFromDevice tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestPingFromDevice(t *testing.T) {
     ctx := context.Background()
@@ -213,6 +333,33 @@ func TestUtilitiesCommonTestPingFromDevice(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestPingFromDevice1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestPingFromDevice1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.UtilsPing
+    errBody := json.Unmarshal([]byte(`{"count":10,"host":"1.1.1.1"}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := utilitiesCommon.PingFromDevice(ctx, siteId, deviceId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -330,13 +477,37 @@ func TestUtilitiesCommonTestCreateSiteDeviceShellSession(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId)
+    
+    apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId, nil)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestCreateSiteDeviceShellSession1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestCreateSiteDeviceShellSession1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -364,6 +535,29 @@ func TestUtilitiesCommonTestShowSiteDeviceArpTable(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestShowSiteDeviceArpTable1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceArpTable1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceArpTable(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestShowSiteDeviceBgpSummary tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestShowSiteDeviceBgpSummary(t *testing.T) {
     ctx := context.Background()
@@ -383,6 +577,29 @@ func TestUtilitiesCommonTestShowSiteDeviceBgpSummary(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestShowSiteDeviceBgpSummary1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceBgpSummary1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -410,6 +627,29 @@ func TestUtilitiesCommonTestShowSiteDeviceDhcpLeases(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestShowSiteDeviceDhcpLeases1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceDhcpLeases1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceDhcpLeases(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase(t *testing.T) {
     ctx := context.Background()
@@ -429,6 +669,29 @@ func TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceEvpnDatabase1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceEvpnDatabase(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -456,6 +719,29 @@ func TestUtilitiesCommonTestShowSiteDeviceForwardingTable(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesCommonTestShowSiteDeviceForwardingTable1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceForwardingTable1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceForwardingTable(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestUtilitiesCommonTestShowSiteDeviceMacTable tests the behavior of the UtilitiesCommon
 func TestUtilitiesCommonTestShowSiteDeviceMacTable(t *testing.T) {
     ctx := context.Background()
@@ -475,6 +761,29 @@ func TestUtilitiesCommonTestShowSiteDeviceMacTable(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestShowSiteDeviceMacTable1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestShowSiteDeviceMacTable1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := utilitiesCommon.ShowSiteDeviceMacTable(ctx, siteId, deviceId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -525,6 +834,33 @@ func TestUtilitiesCommonTestTracerouteFromDevice(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesCommonTestTracerouteFromDevice1 tests the behavior of the UtilitiesCommon
+func TestUtilitiesCommonTestTracerouteFromDevice1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.UtilsTraceroute
+    errBody := json.Unmarshal([]byte(`{"host":"string","port":33434,"protocol":"udp"}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := utilitiesCommon.TracerouteFromDevice(ctx, siteId, deviceId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }

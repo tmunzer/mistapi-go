@@ -21,7 +21,7 @@ func NewOrgsClientsNAC(baseController baseController) *OrgsClientsNAC {
     return &orgsClientsNAC
 }
 
-// CountOrgNacClients takes context, orgId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, siteId, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit, page as parameters and
+// CountOrgNacClients takes context, orgId, distinct, lastNacruleId, nacruleMatched, authType, lastVlanId, lastNasVendor, idpId, lastSsid, lastUsername, timestamp, siteId, lastAp, mac, lastStatus, mType, mdmComplianceStatus, mdmProvider, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of NAC Clients
@@ -48,8 +48,7 @@ func (o *OrgsClientsNAC) CountOrgNacClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nac_clients/count")
@@ -134,9 +133,6 @@ func (o *OrgsClientsNAC) CountOrgNacClients(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount
@@ -369,7 +365,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, siteId, ap, mac, status, mType, mdmCompliance, mdmProvider, sort, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -388,11 +384,13 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     siteId *string,
     ap *string,
     mac *string,
+    mdmManaged *bool,
     status *string,
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
     sort *string,
+    usermacLabel []string,
     ingressVlan *string,
     start *int,
     end *int,
@@ -457,6 +455,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     if mac != nil {
         req.QueryParam("mac", *mac)
     }
+    if mdmManaged != nil {
+        req.QueryParam("mdm_managed", *mdmManaged)
+    }
     if status != nil {
         req.QueryParam("status", *status)
     }
@@ -471,6 +472,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     }
     if sort != nil {
         req.QueryParam("sort", *sort)
+    }
+    if usermacLabel != nil {
+        req.QueryParam("usermac_label", usermacLabel)
     }
     if ingressVlan != nil {
         req.QueryParam("ingress_vlan", *ingressVlan)

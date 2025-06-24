@@ -16,11 +16,11 @@ type SiteSettingGatewayMgmt struct {
     AutoSignatureUpdate        *SiteSettingGatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
     // Rollback timer for commit confirmed
     ConfigRevertTimer          *int                                       `json:"config_revert_timer,omitempty"`
-    // For both SSR and SRX disable console port
+    // For SSR and SRX, disable console port
     DisableConsole             *bool                                      `json:"disable_console,omitempty"`
-    // For both SSR and SRX disable management interface
+    // For SSR and SRX, disable management interface
     DisableOob                 *bool                                      `json:"disable_oob,omitempty"`
-    // For SSR disable usb interface
+    // For SSR and SRX, disable usb interface
     DisableUsb                 *bool                                      `json:"disable_usb,omitempty"`
     FipsEnabled                *bool                                      `json:"fips_enabled,omitempty"`
     ProbeHosts                 []string                                   `json:"probe_hosts,omitempty"`

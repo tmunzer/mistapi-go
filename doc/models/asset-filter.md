@@ -16,7 +16,7 @@ Asset Filter
 | `ApMac` | `*string` | Optional | - |
 | `Beam` | `*int` | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Disabled` | `*bool` | Optional | Whether the asset filter is disabled<br>**Default**: `false` |
+| `Disabled` | `*bool` | Optional | Whether the asset filter is disabled<br><br>**Default**: `false` |
 | `EddystoneUidNamespace` | `*string` | Optional | Eddystone uid namespace used to filter assets |
 | `EddystoneUrl` | `*string` | Optional | Eddystone url used to filter assets |
 | `ForSite` | `*bool` | Optional | - |

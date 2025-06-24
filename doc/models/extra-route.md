@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Discard` | `*bool` | Optional | This takes precedence<br>**Default**: `false` |
+| `Discard` | `*bool` | Optional | This takes precedence<br><br>**Default**: `false` |
 | `Metric` | `models.Optional[int]` | Optional | **Constraints**: `>= 0`, `<= 2147483647` |
 | `NextQualified` | [`map[string]models.ExtraRouteNextQualifiedProperties`](../../doc/models/extra-route-next-qualified-properties.md) | Optional | - |
 | `NoResolve` | `*bool` | Optional | **Default**: `false` |

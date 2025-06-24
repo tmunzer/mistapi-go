@@ -48,9 +48,9 @@ ListOrgDevicesStats(
 | `fields` | `*string` | Query, Optional | List of additional fields requests, comma separated, or `fields=*` for all of them |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -169,6 +169,10 @@ if err != nil {
       "pressure": 968,
       "vcore_voltage": 0
     },
+    "expiring_certs": {
+      "375895068012951219417723061830777179121567314483": 1535534392,
+      "483412046338348876283259475264040058183366677871": 1534534392
+    },
     "ext_ip": "66.129.234.28",
     "hw_rev": "C02",
     "id": "00000000-0000-0000-1000-5c5b35d0077b",
@@ -198,7 +202,8 @@ if err != nil {
       "lldp_med_supported": false,
       "mgmt_addr": "100.123.105.1",
       "mgmt_addrs": [
-        "100.123.105.1"
+        "10.1.5.2",
+        "2002:A01:203:0:0:0:0:0"
       ],
       "port_desc": "ge-0/0/4",
       "port_id": "ge-0/0/4",
@@ -208,6 +213,41 @@ if err != nil {
       "power_requested": 0,
       "system_desc": "Juniper Networks, Inc. ex4300-48t internet router, kernel JUNOS 20.4R3-S7.2, Build date: 2023-04-21 19:47:18 UTC Copyright (c) 1996-2023 Juniper Networks, Inc.",
       "system_name": "Phoenix-Switch"
+    },
+    "lldp_stats": {
+      "eth0": {
+        "chassis_id": "63:68:61:73:73:69",
+        "lldp_med_supported": false,
+        "mgmt_addr": "10.1.5.2",
+        "mgmt_addrs": [
+          "10.1.5.2",
+          "2002:A01:203:0:0:0:0:0"
+        ],
+        "port_desc": "2/26",
+        "port_id": "port1",
+        "power_allocated": 15500,
+        "power_draw": 15000,
+        "power_request_count": 3,
+        "power_requested": 25500,
+        "system_desc": "HP J9729A 2920-48G-POE+ Switch",
+        "system_name": "TC2-OWL-Stack-01"
+      },
+      "eth1": {
+        "chassis_id": "chassis2",
+        "lldp_med_supported": true,
+        "mgmt_addr": "10.1.5.3",
+        "mgmt_addrs": [
+          "10.1.5.3"
+        ],
+        "port_desc": "1/12",
+        "port_id": "port2",
+        "power_allocated": 15400,
+        "power_draw": 14000,
+        "power_request_count": 2,
+        "power_requested": 15400,
+        "system_desc": "HP J9728A 2920-24G-POE+ Switch",
+        "system_name": "TC2-OWL-Stack-02"
+      }
     },
     "mac": "5c5b35d0077b",
     "mem_total_kb": 505468,
@@ -247,7 +287,11 @@ if err != nil {
     },
     "power_budget": 8400,
     "power_constrained": false,
-    "power_src": "DC Input",
+    "power_src": "PoE 802.3at",
+    "power_srcs": [
+      "PoE 802.3at",
+      "PoE 802.3af"
+    ],
     "radio_config": {},
     "radio_stat": {
       "band_24": {

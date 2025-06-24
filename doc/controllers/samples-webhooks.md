@@ -54,7 +54,7 @@ Alarms(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions), under "fields" array of /alarm_defs response object. |
+| `body` | [`*models.WebhookAlarms`](../../doc/models/webhook-alarms.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions]($e/Events%20Definitions/listAlarmDefinitions), under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
@@ -797,7 +797,7 @@ LocationCentrak(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions), under "fields" array of /alarm_defs response object. |
+| `body` | [`*models.WebhookLocationCentrak`](../../doc/models/webhook-location-centrak.md) | Body, Optional | **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.<br><br>Events specific fields for other alarm event type can be found with API [List Alarm Definitions]($e/Events%20Definitions/listAlarmDefinitions), under "fields" array of /alarm_defs response object. |
 
 ## Response Type
 
@@ -1367,11 +1367,10 @@ body := models.WebhookZone{
     Events:               []models.WebhookZoneEvent{
         models.WebhookZoneEvent{
             AssetId:              models.ToPointer(uuid.MustParse("b4695157-0d1d-4da0-8f9e-5c53149389e4")),
-            Mac:                  models.ToPointer("string"),
             MapId:                uuid.MustParse("09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1"),
-            Name:                 models.ToPointer("string"),
+            Name:                 models.ToPointer("asset_name"),
             Trigger:              models.WebhookZoneEventTriggerEnum_ENTER,
-            Type:                 "string",
+            Type:                 models.WebhookZoneEventTypeEnum_ASSET,
             ZoneId:               uuid.MustParse("4495020a-236f-46e0-9453-e3f9cc6476f4"),
         },
     },

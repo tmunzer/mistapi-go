@@ -14,8 +14,8 @@
 | `ConfigAutoRevert` | `*bool` | Optional | **Default**: `false` |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `MistPassword` | `*string` | Optional | - |
-| `OobIpType` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | enum: `dhcp`, `disabled`, `static`<br>**Default**: `"dhcp"` |
-| `OobIpType6` | [`*models.MxedgeMgmtOobIpType6Enum`](../../doc/models/mxedge-mgmt-oob-ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"autoconf"` |
+| `OobIpType` | [`*models.MxedgeMgmtOobIpTypeEnum`](../../doc/models/mxedge-mgmt-oob-ip-type-enum.md) | Optional | enum: `dhcp`, `disabled`, `static`<br><br>**Default**: `"dhcp"` |
+| `OobIpType6` | [`*models.MxedgeMgmtOobIpType6Enum`](../../doc/models/mxedge-mgmt-oob-ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br><br>**Default**: `"autoconf"` |
 | `RootPassword` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

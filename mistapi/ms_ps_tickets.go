@@ -73,14 +73,15 @@ func (m *MSPsTickets) ListMspTickets(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountMspTickets takes context, mspId, distinct as parameters and
+// CountMspTickets takes context, mspId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count tickets
+// Count by Distinct Attributes of tickets
 func (m *MSPsTickets) CountMspTickets(
     ctx context.Context,
     mspId uuid.UUID,
-    distinct *models.MspTicketsCountDistinctEnum) (
+    distinct *models.MspTicketsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/tickets/count")
@@ -105,6 +106,9 @@ func (m *MSPsTickets) CountMspTickets(
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

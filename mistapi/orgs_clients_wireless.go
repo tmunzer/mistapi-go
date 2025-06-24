@@ -21,10 +21,10 @@ func NewOrgsClientsWireless(baseController baseController) *OrgsClientsWireless 
     return &orgsClientsWireless
 }
 
-// CountOrgWirelessClients takes context, orgId, distinct, mac, hostname, device, os, model, ap, vlan, ssid, ipAddress, start, end, duration, limit, page as parameters and
+// CountOrgWirelessClients takes context, orgId, distinct, mac, hostname, device, os, model, ap, vlan, ssid, ipAddress, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Wireless Clients
+// Count by Distinct Attributes of Org Wireless Clients
 func (o *OrgsClientsWireless) CountOrgWirelessClients(
     ctx context.Context,
     orgId uuid.UUID,
@@ -41,8 +41,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/count")
@@ -107,8 +106,97 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
+    
+    var result models.ResponseCount
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// CountOrgWirelessClientEvents takes context, orgId, distinct, mType, reasonCode, ssid, ap, proto, band, wlanId, siteId, start, end, duration, limit as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
+// an error if there was an issue with the request or response.
+// Count by Distinct Attributes of Client-Events
+func (o *OrgsClientsWireless) CountOrgWirelessClientEvents(
+    ctx context.Context,
+    orgId uuid.UUID,
+    distinct *models.SiteClientEventsCountDistinctEnum,
+    mType *string,
+    reasonCode *int,
+    ssid *string,
+    ap *string,
+    proto *models.Dot11ProtoEnum,
+    band *models.Dot11BandEnum,
+    wlanId *string,
+    siteId *uuid.UUID,
+    start *int,
+    end *int,
+    duration *string,
+    limit *int) (
+    models.ApiResponse[models.ResponseCount],
+    error) {
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/events/count")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if distinct != nil {
+        req.QueryParam("distinct", *distinct)
+    }
+    if mType != nil {
+        req.QueryParam("type", *mType)
+    }
+    if reasonCode != nil {
+        req.QueryParam("reason_code", *reasonCode)
+    }
+    if ssid != nil {
+        req.QueryParam("ssid", *ssid)
+    }
+    if ap != nil {
+        req.QueryParam("ap", *ap)
+    }
+    if proto != nil {
+        req.QueryParam("proto", *proto)
+    }
+    if band != nil {
+        req.QueryParam("band", *band)
+    }
+    if wlanId != nil {
+        req.QueryParam("wlan_id", *wlanId)
+    }
+    if siteId != nil {
+        req.QueryParam("site_id", *siteId)
+    }
+    if start != nil {
+        req.QueryParam("start", *start)
+    }
+    if end != nil {
+        req.QueryParam("end", *end)
+    }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount
@@ -121,7 +209,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, proto, band, wlanId, nacruleId, limit, start, end, duration as parameters and
+// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, proto, band, wlanId, nacruleId, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSearch data and
 // an error if there was an issue with the request or response.
 // Get Org Clients Events
@@ -134,9 +222,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     ap *string,
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
-    wlanId *string,
-    nacruleId *string,
-    limit *int,
+    wlanId *uuid.UUID,
+    nacruleId *uuid.UUID,
     start *int,
     end *int,
     duration *string) (
@@ -186,9 +273,6 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     if nacruleId != nil {
         req.QueryParam("nacrule_id", *nacruleId)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -216,7 +300,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
 func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *string,
+    siteId *uuid.UUID,
     mac *string,
     ipAddress *string,
     hostname *string,
@@ -325,10 +409,10 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgWirelessClientsSessions takes context, orgId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
+// CountOrgWirelessClientsSessions takes context, orgId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Wireless Clients Sessions
+// Count by Distinct Attributes of Org Wireless Clients Sessions
 func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     ctx context.Context,
     orgId uuid.UUID,
@@ -340,12 +424,11 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     clientModel *string,
     clientOs *string,
     ssid *string,
-    wlanId *string,
+    wlanId *uuid.UUID,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/sessions/count")
@@ -407,9 +490,6 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -436,7 +516,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
     clientUsername *string,
     clientOs *string,
     ssid *string,
-    wlanId *string,
+    wlanId *uuid.UUID,
     pskId *string,
     pskName *string,
     limit *int,

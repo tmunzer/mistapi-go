@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Bands` | `[]string` | Required | List of bands |
 | `Macs` | `[]string` | Optional | Targeting AP (neighbor APs may get changed, too), default is empty for ALL APs |
-| `TxpowerOnly` | `*bool` | Optional | Only changing TX Power (will not disconnect clients)<br>**Default**: `false` |
+| `TxpowerOnly` | `*bool` | Optional | Only changing TX Power (will not disconnect clients)<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -9,12 +9,12 @@ sitesAPTemplates := client.SitesAPTemplates()
 `SitesAPTemplates`
 
 
-# List Site Ap Template Derived
+# List Site Ap Templates Derived
 
-Get derived AP Templates for Site
+Get the list of derived AP Templates for a site
 
 ```go
-ListSiteApTemplateDerived(
+ListSiteApTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesAPTemplates.ListSiteApTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesAPTemplates.ListSiteApTemplatesDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

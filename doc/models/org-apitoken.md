@@ -24,7 +24,7 @@ returned in the POST API Response (only in the afterward GET)
 | `LastUsed` | `models.Optional[float64]` | Optional | - |
 | `Name` | `string` | Required | Name of the token |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Optional | List of privileges the token has on the orgs/sites<br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10`, *Unique Items Required* |
+| `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Optional | List of privileges the token has on the orgs/sites<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10`, *Unique Items Required* |
 | `SrcIps` | `[]string` | Optional | List of allowed IP addresses from where the token can be used from. At most 10 IP addresses can be specified, cannot be changed once the API Token is created. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

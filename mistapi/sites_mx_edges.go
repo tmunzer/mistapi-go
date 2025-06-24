@@ -73,7 +73,7 @@ func (s *SitesMxEdges) ListSiteMxEdges(
 // CountSiteMxEdgeEvents takes context, siteId, distinct, mxedgeId, mxclusterId, mType, service, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Mist Edge Events
+// Count by Distinct Attributes of Mist Edge Events
 func (s *SitesMxEdges) CountSiteMxEdgeEvents(
     ctx context.Context,
     siteId uuid.UUID,

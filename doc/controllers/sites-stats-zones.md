@@ -293,7 +293,8 @@ Get List of Site Zones Stats
 ListSiteZonesStats(
     ctx context.Context,
     siteId uuid.UUID,
-    mapId *string) (
+    mapId *string,
+    minDuration *int) (
     models.ApiResponse[[]models.StatsZone],
     error)
 ```
@@ -304,6 +305,7 @@ ListSiteZonesStats(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mapId` | `*string` | Query, Optional | - |
+| `minDuration` | `*int` | Query, Optional | - |
 
 ## Response Type
 
@@ -318,7 +320,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mapId := "00000000-0000-0000-0000-000000000000"
 
-apiResponse, err := sitesStatsZones.ListSiteZonesStats(ctx, siteId, &mapId)
+minDuration := 120
+
+apiResponse, err := sitesStatsZones.ListSiteZonesStats(ctx, siteId, &mapId, &minDuration)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -24,7 +24,7 @@
 | `Hostname` | `string` | Required | Hostname that we learned from sniffing DHCP |
 | `IdleTime` | `*float64` | Optional | How long, in seconds, has the client been idle (since the last RX packet) |
 | `Ip` | `string` | Required | - |
-| `IsGuest` | `bool` | Required | Whether this is a guest<br>**Default**: `false` |
+| `IsGuest` | `bool` | Required | Whether this is a guest<br><br>**Default**: `false` |
 | `KeyMgmt` | `string` | Required | E.g. WPA2-PSK/CCMP |
 | `LastSeen` | `*float64` | Required | Last seen timestamp |
 | `Mac` | `string` | Required | Client mac |

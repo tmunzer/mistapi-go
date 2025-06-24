@@ -14,7 +14,7 @@ Location Asset sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationAssetEvent`](../../doc/models/webhook-location-asset-event.md) | Required | List of events |
-| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"location_asset"` |
+| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"location_asset"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

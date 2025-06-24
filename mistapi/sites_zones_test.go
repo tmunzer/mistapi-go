@@ -31,6 +31,28 @@ func TestSitesZonesTestListSiteZones(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestSitesZonesTestListSiteZones1 tests the behavior of the SitesZones
+func TestSitesZonesTestListSiteZones1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    limit := int(100)
+    page := int(1)
+    apiResponse, err := sitesZones.ListSiteZones(ctx, siteId, &limit, &page)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesZonesTestCreateSiteZone tests the behavior of the SitesZones
 func TestSitesZonesTestCreateSiteZone(t *testing.T) {
     ctx := context.Background()
@@ -50,6 +72,31 @@ func TestSitesZonesTestCreateSiteZone(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesZonesTestCreateSiteZone1 tests the behavior of the SitesZones
+func TestSitesZonesTestCreateSiteZone1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.Zone
+    errBody := json.Unmarshal([]byte(`{"name":"string","vertices":[{"x":0,"y":0}]}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := sitesZones.CreateSiteZone(ctx, siteId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}`
@@ -98,6 +145,30 @@ func TestSitesZonesTestGetSiteZone(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestSitesZonesTestGetSiteZone1 tests the behavior of the SitesZones
+func TestSitesZonesTestGetSiteZone1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    zoneId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := sitesZones.GetSiteZone(ctx, siteId, zoneId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesZonesTestUpdateSiteZone tests the behavior of the SitesZones
 func TestSitesZonesTestUpdateSiteZone(t *testing.T) {
     ctx := context.Background()
@@ -121,6 +192,35 @@ func TestSitesZonesTestUpdateSiteZone(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesZonesTestUpdateSiteZone1 tests the behavior of the SitesZones
+func TestSitesZonesTestUpdateSiteZone1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    zoneId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.Zone
+    errBody := json.Unmarshal([]byte(`{"name":"string","vertices":[{"x":0,"y":0}]}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := sitesZones.UpdateSiteZone(ctx, siteId, zoneId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","vertices":[{"x":0,"y":0}]}`

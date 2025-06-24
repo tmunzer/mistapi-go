@@ -14,6 +14,15 @@ type PskPortalTemplate struct {
     Logo                 Optional[string]             `json:"logo"`
     // Whether to hide "Powered by Juniper Mist" and email footers
     PoweredBy            *bool                        `json:"poweredBy,omitempty"`
+    // Whether to show Terms of Service
+    Tos                  *bool                        `json:"tos,omitempty"`
+    // Terms of Service accept button label
+    TosAcceptLabel       *string                      `json:"tosAcceptLabel,omitempty"`
+    // Terror message for not accepting tos
+    TosError             *string                      `json:"tosError,omitempty"`
+    TosLink              *string                      `json:"tosLink,omitempty"`
+    // terms and service text displayed in footer if tos is enabled
+    TosText              *string                      `json:"tosText,omitempty"`
     AdditionalProperties map[string]interface{}       `json:"_"`
 }
 
@@ -21,8 +30,8 @@ type PskPortalTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PskPortalTemplate) String() string {
     return fmt.Sprintf(
-    	"PskPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, AdditionalProperties=%v]",
-    	p.Alignment, p.Color, p.Logo, p.PoweredBy, p.AdditionalProperties)
+    	"PskPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, Tos=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, AdditionalProperties=%v]",
+    	p.Alignment, p.Color, p.Logo, p.PoweredBy, p.Tos, p.TosAcceptLabel, p.TosError, p.TosLink, p.TosText, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalTemplate.
@@ -31,7 +40,7 @@ func (p PskPortalTemplate) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(p.AdditionalProperties,
-        "alignment", "color", "logo", "poweredBy"); err != nil {
+        "alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(p.toMap())
@@ -57,6 +66,21 @@ func (p PskPortalTemplate) toMap() map[string]any {
     if p.PoweredBy != nil {
         structMap["poweredBy"] = p.PoweredBy
     }
+    if p.Tos != nil {
+        structMap["tos"] = p.Tos
+    }
+    if p.TosAcceptLabel != nil {
+        structMap["tosAcceptLabel"] = p.TosAcceptLabel
+    }
+    if p.TosError != nil {
+        structMap["tosError"] = p.TosError
+    }
+    if p.TosLink != nil {
+        structMap["tosLink"] = p.TosLink
+    }
+    if p.TosText != nil {
+        structMap["tosText"] = p.TosText
+    }
     return structMap
 }
 
@@ -68,7 +92,7 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText")
     if err != nil {
     	return err
     }
@@ -78,13 +102,23 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
     p.Color = temp.Color
     p.Logo = temp.Logo
     p.PoweredBy = temp.PoweredBy
+    p.Tos = temp.Tos
+    p.TosAcceptLabel = temp.TosAcceptLabel
+    p.TosError = temp.TosError
+    p.TosLink = temp.TosLink
+    p.TosText = temp.TosText
     return nil
 }
 
 // tempPskPortalTemplate is a temporary struct used for validating the fields of PskPortalTemplate.
 type tempPskPortalTemplate  struct {
-    Alignment *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
-    Color     *string                      `json:"color,omitempty"`
-    Logo      Optional[string]             `json:"logo"`
-    PoweredBy *bool                        `json:"poweredBy,omitempty"`
+    Alignment      *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
+    Color          *string                      `json:"color,omitempty"`
+    Logo           Optional[string]             `json:"logo"`
+    PoweredBy      *bool                        `json:"poweredBy,omitempty"`
+    Tos            *bool                        `json:"tos,omitempty"`
+    TosAcceptLabel *string                      `json:"tosAcceptLabel,omitempty"`
+    TosError       *string                      `json:"tosError,omitempty"`
+    TosLink        *string                      `json:"tosLink,omitempty"`
+    TosText        *string                      `json:"tosText,omitempty"`
 }

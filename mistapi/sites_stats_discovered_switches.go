@@ -89,7 +89,7 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitchesMetrics(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteDiscoveredSwitches takes context, siteId, distinct, start, end, duration, limit, page as parameters and
+// CountSiteDiscoveredSwitches takes context, siteId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Discovered Switches
@@ -100,8 +100,7 @@ func (s *SitesStatsDiscoveredSwitches) CountSiteDiscoveredSwitches(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(
@@ -142,9 +141,6 @@ func (s *SitesStatsDiscoveredSwitches) CountSiteDiscoveredSwitches(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

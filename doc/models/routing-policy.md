@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Terms` | [`[]models.RoutingPolicyTerm`](../../doc/models/routing-policy-term.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met<br>**Constraints**: *Unique Items Required* |
+| `Terms` | [`[]models.RoutingPolicyTerm`](../../doc/models/routing-policy-term.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met<br><br>**Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

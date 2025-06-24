@@ -25,6 +25,7 @@ sitesDevices := client.SitesDevices()
 * [Search Site Device Events](../../doc/controllers/sites-devices.md#search-site-device-events)
 * [Search Site Device Last Configs](../../doc/controllers/sites-devices.md#search-site-device-last-configs)
 * [Search Site Devices](../../doc/controllers/sites-devices.md#search-site-devices)
+* [Set Site Ap Antenna Mode](../../doc/controllers/sites-devices.md#set-site-ap-antenna-mode)
 * [Update Site Device](../../doc/controllers/sites-devices.md#update-site-device)
 
 
@@ -165,8 +166,7 @@ CountSiteDeviceConfigHistory(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -180,9 +180,8 @@ CountSiteDeviceConfigHistory(
 | `mac` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -207,9 +206,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesDevices.CountSiteDeviceConfigHistory(ctx, siteId, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesDevices.CountSiteDeviceConfigHistory(ctx, siteId, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -260,10 +257,10 @@ CountSiteDeviceEvents(
     model *string,
     mType *string,
     typeCode *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -277,10 +274,10 @@ CountSiteDeviceEvents(
 | `model` | `*string` | Query, Optional | - |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `typeCode` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -301,15 +298,15 @@ distinct := models.SiteDeviceEventsCountDistinctEnum_MODEL
 
 
 
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.CountSiteDeviceEvents(ctx, siteId, &distinct, nil, nil, nil, &limit, nil, nil, &duration)
+limit := 100
+
+apiResponse, err := sitesDevices.CountSiteDeviceEvents(ctx, siteId, &distinct, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -360,8 +357,7 @@ CountSiteDeviceLastConfig(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -374,9 +370,8 @@ CountSiteDeviceLastConfig(
 | `distinct` | [`*models.SiteDeviceLastConfigCountDistinctEnum`](../../doc/models/site-device-last-config-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -399,9 +394,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesDevices.CountSiteDeviceLastConfig(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesDevices.CountSiteDeviceLastConfig(ctx, siteId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -463,8 +456,7 @@ CountSiteDevices(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -488,9 +480,8 @@ CountSiteDevices(
 | `mapId` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -535,9 +526,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesDevices.CountSiteDevices(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesDevices.CountSiteDevices(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1029,8 +1018,8 @@ ListSiteDevices(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `name` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1107,10 +1096,10 @@ SearchSiteDeviceConfigHistory(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1258,10 +1247,10 @@ SearchSiteDeviceEvents(
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1369,10 +1358,10 @@ SearchSiteDeviceLastConfigs(
 | `mac` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1555,13 +1544,13 @@ SearchSiteDevices(
 | `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
 | `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
-| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br>**Default**: `"timestamp"` |
+| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br><br>**Default**: `"timestamp"` |
 | `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
-| `stats` | `*bool` | Query, Optional | Whether to return device stats<br>**Default**: `false` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `stats` | `*bool` | Query, Optional | Whether to return device stats<br><br>**Default**: `false` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1686,6 +1675,64 @@ if err != nil {
   ],
   "start": 0,
   "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Set Site Ap Antenna Mode
+
+Set AP Antenna Mode
+
+```go
+SetSiteApAntennaMode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.ApAntennaMode) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.ApAntennaMode`](../../doc/models/ap-antenna-mode.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.ApAntennaMode{
+    AntMode:              models.ToPointer(models.AntModeEnum_EXTERNAL),
+}
+
+resp, err := sitesDevices.SetSiteApAntennaMode(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 

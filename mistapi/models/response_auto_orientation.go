@@ -7,19 +7,25 @@ import (
 
 // ResponseAutoOrientation represents a ResponseAutoOrientation struct.
 type ResponseAutoOrientation struct {
-    // The state of auto orient for a given map derived from an Enum. enum: `Enqueued`, `Not Started`, `Oriented`
-    State                *AutoOrientationStateEnum `json:"state,omitempty"`
-    // Time when auto orient process was last queued for this map
-    TimeQueued           *float64                  `json:"time_queued,omitempty"`
-    AdditionalProperties map[string]interface{}    `json:"_"`
+    // Contains the validation status of each device. The Property Key is the device MAC Address.
+    Devices              map[string]ResponseAutoOrientationDevice `json:"devices,omitempty"`
+    // Estimated runtime for the process in seconds
+    EstimatedRuntime     *int                                     `json:"estimated_runtime,omitempty"`
+    // Provides the reason for the status.
+    Reason               *string                                  `json:"reason,omitempty"`
+    // Indicates whether the auto orient process has started.
+    Started              *bool                                    `json:"started,omitempty"`
+    // Indicates whether the auto orient request is valid.
+    Valid                *bool                                    `json:"valid,omitempty"`
+    AdditionalProperties map[string]interface{}                   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseAutoOrientation,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseAutoOrientation) String() string {
     return fmt.Sprintf(
-    	"ResponseAutoOrientation[State=%v, TimeQueued=%v, AdditionalProperties=%v]",
-    	r.State, r.TimeQueued, r.AdditionalProperties)
+    	"ResponseAutoOrientation[Devices=%v, EstimatedRuntime=%v, Reason=%v, Started=%v, Valid=%v, AdditionalProperties=%v]",
+    	r.Devices, r.EstimatedRuntime, r.Reason, r.Started, r.Valid, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoOrientation.
@@ -28,7 +34,7 @@ func (r ResponseAutoOrientation) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "state", "time_queued"); err != nil {
+        "devices", "estimated_runtime", "reason", "started", "valid"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -38,11 +44,20 @@ func (r ResponseAutoOrientation) MarshalJSON() (
 func (r ResponseAutoOrientation) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.State != nil {
-        structMap["state"] = r.State
+    if r.Devices != nil {
+        structMap["devices"] = r.Devices
     }
-    if r.TimeQueued != nil {
-        structMap["time_queued"] = r.TimeQueued
+    if r.EstimatedRuntime != nil {
+        structMap["estimated_runtime"] = r.EstimatedRuntime
+    }
+    if r.Reason != nil {
+        structMap["reason"] = r.Reason
+    }
+    if r.Started != nil {
+        structMap["started"] = r.Started
+    }
+    if r.Valid != nil {
+        structMap["valid"] = r.Valid
     }
     return structMap
 }
@@ -55,19 +70,25 @@ func (r *ResponseAutoOrientation) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "state", "time_queued")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "devices", "estimated_runtime", "reason", "started", "valid")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
-    r.State = temp.State
-    r.TimeQueued = temp.TimeQueued
+    r.Devices = temp.Devices
+    r.EstimatedRuntime = temp.EstimatedRuntime
+    r.Reason = temp.Reason
+    r.Started = temp.Started
+    r.Valid = temp.Valid
     return nil
 }
 
 // tempResponseAutoOrientation is a temporary struct used for validating the fields of ResponseAutoOrientation.
 type tempResponseAutoOrientation  struct {
-    State      *AutoOrientationStateEnum `json:"state,omitempty"`
-    TimeQueued *float64                  `json:"time_queued,omitempty"`
+    Devices          map[string]ResponseAutoOrientationDevice `json:"devices,omitempty"`
+    EstimatedRuntime *int                                     `json:"estimated_runtime,omitempty"`
+    Reason           *string                                  `json:"reason,omitempty"`
+    Started          *bool                                    `json:"started,omitempty"`
+    Valid            *bool                                    `json:"valid,omitempty"`
 }

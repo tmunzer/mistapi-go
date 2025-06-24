@@ -257,11 +257,11 @@ func (u *UtilitiesWiFi) UnauthorizeSiteWirelessClient(
     return httpCtx.Response, err
 }
 
-// ReprovisionSiteAllAps takes context, siteId as parameters and
+// ReprovisionSiteAllDevices takes context, siteId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// To force all APs to reprovision itself again.
-func (u *UtilitiesWiFi) ReprovisionSiteAllAps(
+// To force all Devices to reprovision itself again.
+func (u *UtilitiesWiFi) ReprovisionSiteAllDevices(
     ctx context.Context,
     siteId uuid.UUID) (
     *http.Response,
@@ -455,6 +455,47 @@ func (u *UtilitiesWiFi) OptimizeSiteRrm(
         req.Json(body)
     }
     
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
+// TestSiteWlanSmsGlobal takes context, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Allows validation of Global sms gateway credentials.
+// In case of success, a text message confirming successful setup should be received. In case of error, smsglobal error message are returned.
+func (u *UtilitiesWiFi) TestSiteWlanSmsGlobal(
+    ctx context.Context,
+    body *models.TestSmsGlobal) (
+    *http.Response,
+    error) {
+    req := u.prepareRequest(ctx, "POST", "/api/v1/utils/test_smsglobal")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
     httpCtx, err := req.Call()
     if err != nil {
         return httpCtx.Response, err

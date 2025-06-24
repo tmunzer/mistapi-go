@@ -16,6 +16,7 @@ orgsDevices := client.OrgsDevices()
 * [Get Org Juniper Devices Command](../../doc/controllers/orgs-devices.md#get-org-juniper-devices-command)
 * [List Org Aps Macs](../../doc/controllers/orgs-devices.md#list-org-aps-macs)
 * [List Org Devices](../../doc/controllers/orgs-devices.md#list-org-devices)
+* [List Org Devices Summary](../../doc/controllers/orgs-devices.md#list-org-devices-summary)
 * [Search Org Device Events](../../doc/controllers/orgs-devices.md#search-org-device-events)
 * [Search Org Device Last Configs](../../doc/controllers/orgs-devices.md#search-org-device-last-configs)
 * [Search Org Devices](../../doc/controllers/orgs-devices.md#search-org-devices)
@@ -23,24 +24,24 @@ orgsDevices := client.OrgsDevices()
 
 # Count Org Device Events
 
-Count Org Devices Events
+Count by Distinct Attributes of Org Devices Events
 
 ```go
 CountOrgDeviceEvents(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgDevicesEventsCountDistinctEnum,
-    siteId *string,
+    siteId *uuid.UUID,
     ap *string,
     apfw *string,
     model *string,
     text *string,
     timestamp *string,
     mType *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -51,17 +52,17 @@ CountOrgDeviceEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgDevicesEventsCountDistinctEnum`](../../doc/models/org-devices-events-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `siteId` | `*string` | Query, Optional | Site id |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site id |
 | `ap` | `*string` | Query, Optional | AP mac |
 | `apfw` | `*string` | Query, Optional | AP Firmware |
 | `model` | `*string` | Query, Optional | Device model |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -76,21 +77,19 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgDevicesEventsCountDistinctEnum_MODEL
 
+siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
+
+ap := "5c5b53010101"
+
+apfw := "10.0.0"
+
+model := "AP43"
+
+text := "Device connected"
+
+timestamp := "1703003296"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-limit := 100
 
 
 
@@ -98,7 +97,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+limit := 100
+
+apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, &timestamp, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -149,6 +150,7 @@ CountOrgDeviceLastConfigs(
     distinct *models.OrgDevicesLastConfigsCountDistinctEnum,
     start *int,
     end *int,
+    duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
@@ -163,7 +165,8 @@ CountOrgDeviceLastConfigs(
 | `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -184,9 +187,11 @@ mType := models.DeviceTypeDefaultApEnum_AP
 
 
 
+duration := "10m"
+
 limit := 100
 
-apiResponse, err := orgsDevices.CountOrgDeviceLastConfigs(ctx, orgId, &mType, nil, nil, nil, &limit)
+apiResponse, err := orgsDevices.CountOrgDeviceLastConfigs(ctx, orgId, &mType, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -227,7 +232,7 @@ if err != nil {
 
 # Count Org Devices
 
-Count Org Devices
+Count by Distinct Attributes of Org Devices
 
 ```go
 CountOrgDevices(
@@ -235,14 +240,14 @@ CountOrgDevices(
     orgId uuid.UUID,
     distinct *models.OrgDevicesCountDistinctEnum,
     hostname *string,
-    siteId *string,
+    siteId *uuid.UUID,
     model *string,
     managed *string,
     mac *string,
     version *string,
     ipAddress *string,
     mxtunnelStatus *models.CountOrgDevicesMxtunnelStatusEnum,
-    mxedgeId *string,
+    mxedgeId *uuid.UUID,
     lldpSystemName *string,
     lldpSystemDesc *string,
     lldpPortId *string,
@@ -251,8 +256,7 @@ CountOrgDevices(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -264,14 +268,14 @@ CountOrgDevices(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgDevicesCountDistinctEnum`](../../doc/models/org-devices-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `siteId` | `*string` | Query, Optional | Site id |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site id |
 | `model` | `*string` | Query, Optional | Device model |
 | `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. enum: `true`, `false` |
 | `mac` | `*string` | Query, Optional | AP mac |
 | `version` | `*string` | Query, Optional | Version |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.CountOrgDevicesMxtunnelStatusEnum`](../../doc/models/count-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, enum: `up`, `down` |
-| `mxedgeId` | `*string` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxedgeId` | `*uuid.UUID` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
 | `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
 | `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
@@ -279,9 +283,8 @@ CountOrgDevices(
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -296,31 +299,31 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgDevicesCountDistinctEnum_MODEL
 
+hostname := "my-hostname"
 
+siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
+model := "MR84"
 
+managed := "true"
 
+mac := "5c5b53010101"
 
-
-
-
-
-
-
+version := "10.0.0"
 
 ipAddress := "192.168.1.1"
 
 
 
+mxedgeId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
+lldpSystemName := "my-lldp-system"
 
+lldpSystemDesc := "my-lldp-system-description"
 
+lldpPortId := "ge-0/0/1"
 
-
-
-
-
-
+lldpMgmtAddr := "10.4.2.3"
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
@@ -332,9 +335,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &mType, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ipAddress, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -459,8 +460,8 @@ ListOrgApsMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -584,6 +585,70 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# List Org Devices Summary
+
+Get Org Devices Summary
+
+```go
+ListOrgDevicesSummary(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    models.ApiResponse[models.ResponseOrgDevicesSummary],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseOrgDevicesSummary](../../doc/models/response-org-devices-summary.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := orgsDevices.ListOrgDevicesSummary(ctx, orgId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "num_aps": 630,
+  "num_gateways": 6,
+  "num_mxedges": 1,
+  "num_switches": 30,
+  "num_unassigned_aps": 5,
+  "num_unassigned_gateways": 0,
+  "num_unassigned_switches": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Search Org Device Events
 
 Search Org Devices Events
@@ -619,10 +684,10 @@ SearchOrgDeviceEvents(
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -635,15 +700,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "5c5b53010101"
 
-
-
+model := "AP43"
 
 deviceType := models.DeviceTypeWithAllEnum_AP
 
+text := "Device connected"
 
-
-
+timestamp := "1703003296"
 
 
 
@@ -657,7 +722,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, nil, nil, &deviceType, nil, nil, nil, &lastBy, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -733,8 +798,8 @@ SearchOrgDeviceLastConfigs(
 | `version` | `*string` | Query, Optional | Device Version |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -749,11 +814,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
+mac := "5c5b53010101"
 
+name := "My AP"
 
-
-
-
+version := "10.0.0"
 
 
 
@@ -763,7 +828,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, nil, nil, nil, nil, nil, &limit, &duration)
+apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -947,11 +1012,11 @@ SearchOrgDevices(
 | `siteId` | `*string` | Query, Optional | Site id |
 | `t128agentVersion` | `*string` | Query, Optional | If `type`==`gateway`,version of 128T agent |
 | `version` | `*string` | Query, Optional | Version |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -964,77 +1029,77 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+band24Bandwidth := 20
 
+band24Channel := 6
 
+band24Power := 8
 
+band5Bandwidth := 20
 
+band5Channel := 50
 
+band5Power := 8
 
+band6Bandwidth := 20
 
+band6Channel := 100
 
+band6Power := 8
 
+cpu := "50"
 
+clustered := "true"
 
+eth0PortSpeed := 1000
 
+evpntopoId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 
+extIp := "83.42.53.1"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+hostname := "my-hostname"
 
 ipAddress := "192.168.1.1"
 
+lastConfigStatus := "success"
+
+lastHostname := "my-last-hostname"
+
+lldpMgmtAddr := "10.4.2.3"
+
+lldpPortId := "ge-0/0/1"
+
+lldpPowerAllocated := 15
+
+lldpPowerDraw := 12
+
+lldpSystemDesc := "my-lldp-system-description"
+
+lldpSystemName := "my-lldp-system"
+
+mac := "5c5b53010101"
+
+model := "AP43"
+
+mxedgeId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
+
+mxedgeIds := "7dae216d-7c98-a51b-e068-dd7d477b7216,7dae216d-7c98-a51b-e068-dd7d477b7217"
 
 
 
+node := "node0"
 
+node0Mac := "5c5b350e0001"
 
+node1Mac := "5c5b350e0002"
 
+powerConstrained := true
 
+siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 
+t128agentVersion := "1.2.3"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+version := "10.0.0"
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
@@ -1046,7 +1111,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | Enable Advanced Analytic feature (using SUB-ANA license)<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Enable Advanced Analytic feature (using SUB-ANA license)<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

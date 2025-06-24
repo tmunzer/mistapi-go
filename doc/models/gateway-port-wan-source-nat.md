@@ -13,7 +13,7 @@ Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Disabled` | `*bool` | Optional | Or to disable the source-nat<br>**Default**: `false` |
+| `Disabled` | `*bool` | Optional | Or to disable the source-nat<br><br>**Default**: `false` |
 | `NatPool` | `*string` | Optional | If alternative nat_pool is desired |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

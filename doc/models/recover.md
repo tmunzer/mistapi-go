@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Email` | `string` | Required | **Constraints**: *Maximum Length*: `64` |
 | `Recaptcha` | `*string` | Optional | See  https://www.google.com/recaptcha/ |
-| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha. enum: `google`, `hcaptcha`<br>**Default**: `"google"` |
+| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha. enum: `google`, `hcaptcha`<br><br>**Default**: `"google"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Type` | [`*models.TuntermDhcpdTypeEnum`](../../doc/models/tunterm-dhcpd-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
+| `Type` | [`*models.TuntermDhcpdTypeEnum`](../../doc/models/tunterm-dhcpd-type-enum.md) | Optional | enum: `relay`<br><br>**Default**: `"relay"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -1,29 +1,27 @@
 
-# Site Setting Ssr
+# Usermacs Id
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`SiteSettingSsr`
+`UsermacsId`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ConductorHosts` | `[]string` | Optional | - |
-| `DisableStats` | `*bool` | Optional | - |
+| `UsermacIds` | `[]uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "conductor_hosts": [
-    "1.1.1.1",
-    "2.2.2.2"
+  "usermac_ids": [
+    "000017db-0000-0000-0000-000000000000",
+    "000017da-0000-0000-0000-000000000000"
   ],
-  "disable_stats": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

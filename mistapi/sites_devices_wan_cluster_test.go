@@ -51,6 +51,30 @@ func TestSitesDevicesWANClusterTestGetSiteDeviceHaClusterNode(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestSitesDevicesWANClusterTestGetSiteDeviceHaClusterNode1 tests the behavior of the SitesDevicesWANCluster
+func TestSitesDevicesWANClusterTestGetSiteDeviceHaClusterNode1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := sitesDevicesWanCluster.GetSiteDeviceHaClusterNode(ctx, siteId, deviceId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesDevicesWANClusterTestCreateSiteDeviceHaCluster tests the behavior of the SitesDevicesWANCluster
 func TestSitesDevicesWANClusterTestCreateSiteDeviceHaCluster(t *testing.T) {
     ctx := context.Background()
@@ -74,6 +98,35 @@ func TestSitesDevicesWANClusterTestCreateSiteDeviceHaCluster(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}]}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWANClusterTestCreateSiteDeviceHaCluster1 tests the behavior of the SitesDevicesWANCluster
+func TestSitesDevicesWANClusterTestCreateSiteDeviceHaCluster1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body models.GatewayCluster
+    errBody := json.Unmarshal([]byte(`{"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}]}`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := sitesDevicesWanCluster.CreateSiteDeviceHaCluster(ctx, siteId, deviceId, &body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}]}`

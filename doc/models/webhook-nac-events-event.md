@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | AP mac |
-| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
+| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap` |
 | `Bssid` | `*string` | Optional | BSSID |
 | `ClientType` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Optional | Type of network access. enum: `wireless`, `wired` |
 | `DeviceMac` | `*string` | Optional | MAC Address of the device (AP, Switch) the client is connected to |
@@ -28,7 +28,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortId` | `[]string` | Optional | Port-ids the client was connected to  for the specified duration |
 | `RandomMac` | `*bool` | Optional | Whether the client is using randomized MAC Address or not |
-| `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br>**Constraints**: *Unique Items Required* |
+| `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | SSIDs the client was connecting to |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |

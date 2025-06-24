@@ -243,8 +243,8 @@ ListMspOrgStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -436,8 +436,8 @@ SearchMspOrgs(
 | `orgId` | `*uuid.UUID` | Query, Optional | Org id |
 | `subInsufficient` | `*bool` | Query, Optional | If this org has sufficient subscription |
 | `trialEnabled` | `*bool` | Query, Optional | If this org is under trial period |
-| `usageTypes` | `[]string` | Query, Optional | List of types that enabled by usage<br>**Constraints**: *Unique Items Required* |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `usageTypes` | `[]string` | Query, Optional | List of types that enabled by usage<br><br>**Constraints**: *Unique Items Required* |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -452,17 +452,17 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+orgId := uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")
 
+subInsufficient := false
 
-
-
-
+trialEnabled := false
 
 
 
 limit := 100
 
-apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, nil, nil, nil, nil, &limit)
+apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

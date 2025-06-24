@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `DeviceIds` | `[]uuid.UUID` | Optional | List of device id to upgrade bios |
 | `Models` | `[]string` | Optional | List of device model to upgrade bios |
-| `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br>**Default**: `false` |
+| `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br><br>**Default**: `false` |
 | `Version` | `*string` | Optional | Specific bios version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableAutoConfig` | `*bool` | Optional | If the device is claimed |
-| `Managed` | `*bool` | Optional | If the device is adopted |
+| `DisableAutoConfig` | `*bool` | Optional | This disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed. |
+| `Managed` | `*bool` | Optional | An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist. |
 | `Nodes` | [`[]models.HaClusterConfigNode`](../../doc/models/ha-cluster-config-node.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

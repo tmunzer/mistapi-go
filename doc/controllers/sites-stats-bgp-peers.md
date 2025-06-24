@@ -16,14 +16,15 @@ sitesStatsBGPPeers := client.SitesStatsBGPPeers()
 
 # Count Site Bgp Stats
 
-Count BGP Stats
+Count by Distinct Attributes of BGP Stats
 
 ```go
 CountSiteBgpStats(
     ctx context.Context,
     siteId uuid.UUID,
     state *string,
-    distinct *string) (
+    distinct *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -35,6 +36,7 @@ CountSiteBgpStats(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `state` | `*string` | Query, Optional | - |
 | `distinct` | `*string` | Query, Optional | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -47,11 +49,13 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+state := "established"
 
+distinct := "site_id"
 
+limit := 100
 
-
-apiResponse, err := sitesStatsBGPPeers.CountSiteBgpStats(ctx, siteId, nil, nil)
+apiResponse, err := sitesStatsBGPPeers.CountSiteBgpStats(ctx, siteId, &state, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

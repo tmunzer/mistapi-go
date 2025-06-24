@@ -26,8 +26,7 @@ CountOrgClientFingerprints(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -40,9 +39,8 @@ CountOrgClientFingerprints(
 | `distinct` | [`*models.FingerprintsCountDistinctEnum`](../../doc/models/fingerprints-count-distinct-enum.md) | Query, Optional | **Default**: `"family"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -65,9 +63,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsNACFingerprints.CountOrgClientFingerprints(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsNACFingerprints.CountOrgClientFingerprints(ctx, siteId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -115,6 +111,7 @@ SearchOrgClientFingerprints(
     ctx context.Context,
     siteId uuid.UUID,
     family *string,
+    clientType *models.NacAccessTypeEnum,
     model *string,
     mfg *string,
     os *string,
@@ -136,16 +133,17 @@ SearchOrgClientFingerprints(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `family` | `*string` | Query, Optional | Device Category  of the client device |
+| `clientType` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Query, Optional | Whether client is wired or wireless |
 | `model` | `*string` | Query, Optional | Model name of the client device |
 | `mfg` | `*string` | Query, Optional | Manufacturer name of the client device |
 | `os` | `*string` | Query, Optional | Operating System name and version of the client device |
 | `osType` | `*string` | Query, Optional | Operating system name of the client device |
 | `mac` | `*string` | Query, Optional | MAC address of the client device |
 | `sort` | `*string` | Query, Optional | sort options, '-' prefix represents DESC order, default is wcid in ASC order |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 
 ## Response Type
@@ -160,6 +158,8 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 family := "EX Series Switch"
+
+clientType := models.NacAccessTypeEnum_WIRED
 
 model := "ex4100-f-12p"
 
@@ -183,7 +183,7 @@ duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &model, &mfg, &os, &osType, &mac, &sort, &limit, nil, nil, &duration, &interval)
+apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &sort, &limit, nil, nil, &duration, &interval)
 if err != nil {
     log.Fatalln(err)
 } else {

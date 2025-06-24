@@ -39,3 +39,20 @@ func TestAdminsTestGetAdminRegistrationInfo(t *testing.T) {
     expected := `{"flavor":"google","required":true,"sitekey":"6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
+
+// TestAdminsTestGetAdminRegistrationInfo1 tests the behavior of the Admins
+func TestAdminsTestGetAdminRegistrationInfo1(t *testing.T) {
+    ctx := context.Background()
+    recaptchaFlavor := models.RecaptchaFlavorEnum("google")
+    apiResponse, err := admins.GetAdminRegistrationInfo(ctx, &recaptchaFlavor)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"flavor":"google","required":true,"sitekey":"6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}

@@ -60,11 +60,53 @@ func (s *SitesMapsAutoPlacement) DeleteSiteApAutoOrientation(
     return httpCtx.Response, err
 }
 
+// GetSiteApAutoOrientation takes context, mapId, siteId as parameters and
+// returns an models.ApiResponse with models.ResponseAutoOrientationInfo data and
+// an error if there was an issue with the request or response.
+// This API is called to view the current status of auto orient for a given map.
+func (s *SitesMapsAutoPlacement) GetSiteApAutoOrientation(
+    ctx context.Context,
+    mapId uuid.UUID,
+    siteId uuid.UUID) (
+    models.ApiResponse[models.ResponseAutoOrientationInfo],
+    error) {
+    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/maps/%v/auto_orient")
+    req.AppendTemplateParams(siteId, mapId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Autoplacement was not triggered"},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    var result models.ResponseAutoOrientationInfo
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseAutoOrientationInfo](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // StartSiteApAutoOrientation takes context, mapId, siteId, body as parameters and
 // returns an models.ApiResponse with models.ResponseAutoOrientation data and
 // an error if there was an issue with the request or response.
-// This API is called to trigger a map for auto orientation. For auto orient feature to work, BLE data needs to be collected from the APs on the map. This precess is not disruptive unlike FTM collection. Repeated POST to this endpoint while a map is still running will be rejected.
-// List of devices to provide suggestions for is an optional parameter that can be given to this API. This will provide auto orient suggestions only for the devices specified. If no list of devices is provided, all APs associated with that map are considered by default
+// This API is called to trigger a map for auto orient. For auto orient feature to work, BLE data needs to be collected from the APs on the map. This precess is not disruptive unlike FTM collection. Repeated POST requests to this endpoint while a map is still running will be rejected.
+// `force_collection` is set to `false` by default. If `force_collection`==`false`, the API attempts to start orientation with existing data. If no data exists, the API attempts to start collecting orientation data. If `force_collection`==`true`, the API attempts to start collecting orientation data.
+// Providing a list of device macs is optional. If provided, auto orientation suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 func (s *SitesMapsAutoPlacement) StartSiteApAutoOrientation(
     ctx context.Context,
     mapId uuid.UUID,
@@ -203,6 +245,7 @@ func (s *SitesMapsAutoPlacement) GetSiteApAutoPlacement(
 // This scan is disruptive, and users must be notified of service disruption during the auto placement process. Repeated POST requests to this endpoint while a map is still running will be rejected.
 // `force_collection` is set to `false` by default. If `force_collection` is set to `false`, the API attempts to start localization with existing data. If no data exists, the API attempts to start orchestration.  
 // If `force_collection` is set to `true`, the API attempts to start orchestration.
+// If the flag `uwb_only` is set to `true`, the service shall be using UWB ranging and placement without invoking the Maintenance Mode. BLE-based orientation is disabled if `uwb_only`==`true`
 // Providing a list of devices is optional. If provided, autoplacement suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 func (s *SitesMapsAutoPlacement) RunSiteApAutoplacement(
     ctx context.Context,

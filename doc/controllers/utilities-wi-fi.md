@@ -16,8 +16,9 @@ utilitiesWiFi := client.UtilitiesWiFi()
 * [Optimize Site Rrm](../../doc/controllers/utilities-wi-fi.md#optimize-site-rrm)
 * [Reauth Org Dot 1 X Wireless Client](../../doc/controllers/utilities-wi-fi.md#reauth-org-dot-1-x-wireless-client)
 * [Reauth Site Dot 1 X Wireless Client](../../doc/controllers/utilities-wi-fi.md#reauth-site-dot-1-x-wireless-client)
-* [Reprovision Site All Aps](../../doc/controllers/utilities-wi-fi.md#reprovision-site-all-aps)
+* [Reprovision Site All Devices](../../doc/controllers/utilities-wi-fi.md#reprovision-site-all-devices)
 * [Reset Site All Aps to Use Rrm](../../doc/controllers/utilities-wi-fi.md#reset-site-all-aps-to-use-rrm)
+* [Test Site Wlan Sms Global](../../doc/controllers/utilities-wi-fi.md#test-site-wlan-sms-global)
 * [Test Site Wlan Telstra Setup](../../doc/controllers/utilities-wi-fi.md#test-site-wlan-telstra-setup)
 * [Test Site Wlan Twilio Setup](../../doc/controllers/utilities-wi-fi.md#test-site-wlan-twilio-setup)
 * [Unauthorize Site Multiple Clients](../../doc/controllers/utilities-wi-fi.md#unauthorize-site-multiple-clients)
@@ -95,7 +96,7 @@ DisconnectSiteMultipleClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
+| `body` | `[]string` | Body, Optional | Request Body<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -346,12 +347,12 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Reprovision Site All Aps
+# Reprovision Site All Devices
 
-To force all APs to reprovision itself again.
+To force all Devices to reprovision itself again.
 
 ```go
-ReprovisionSiteAllAps(
+ReprovisionSiteAllDevices(
     ctx context.Context,
     siteId uuid.UUID) (
     http.Response,
@@ -375,7 +376,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := utilitiesWiFi.ReprovisionSiteAllAps(ctx, siteId)
+resp, err := utilitiesWiFi.ReprovisionSiteAllDevices(ctx, siteId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -435,6 +436,60 @@ body := models.UtilsResetRadioConfig{
 }
 
 resp, err := utilitiesWiFi.ResetSiteAllApsToUseRrm(ctx, siteId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Test Site Wlan Sms Global
+
+Allows validation of Global sms gateway credentials.
+
+In case of success, a text message confirming successful setup should be received. In case of error, smsglobal error message are returned.
+
+```go
+TestSiteWlanSmsGlobal(
+    ctx context.Context,
+    body *models.TestSmsGlobal) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`*models.TestSmsGlobal`](../../doc/models/test-sms-global.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+body := models.TestSmsGlobal{
+    SmsglobalApiKey:      "123456",
+    SmsglobalApiSecret:   "abcdef",
+    To:                   "+911122334455",
+}
+
+resp, err := utilitiesWiFi.TestSiteWlanSmsGlobal(ctx, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

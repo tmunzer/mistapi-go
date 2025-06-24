@@ -10,6 +10,10 @@ import (
 type Inventory struct {
     // Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
     Adopted              *bool                    `json:"adopted,omitempty"`
+    // For Virtual Chassis only, the MAC Address of the FPC0
+    ChassisMac           *string                  `json:"chassis_mac,omitempty"`
+    // For Virtual Chassis only, the Serial Number of the FPC0
+    ChassisSerial        *string                  `json:"chassis_serial,omitempty"`
     // Whether the device is connected
     Connected            *bool                    `json:"connected,omitempty"`
     // When the object has been created, in epoch
@@ -50,8 +54,8 @@ type Inventory struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i Inventory) String() string {
     return fmt.Sprintf(
-    	"Inventory[Adopted=%v, Connected=%v, CreatedTime=%v, DeviceprofileId=%v, Hostname=%v, HwRev=%v, Id=%v, Jsi=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
-    	i.Adopted, i.Connected, i.CreatedTime, i.DeviceprofileId, i.Hostname, i.HwRev, i.Id, i.Jsi, i.Mac, i.Magic, i.Model, i.ModifiedTime, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Type, i.VcMac, i.AdditionalProperties)
+    	"Inventory[Adopted=%v, ChassisMac=%v, ChassisSerial=%v, Connected=%v, CreatedTime=%v, DeviceprofileId=%v, Hostname=%v, HwRev=%v, Id=%v, Jsi=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
+    	i.Adopted, i.ChassisMac, i.ChassisSerial, i.Connected, i.CreatedTime, i.DeviceprofileId, i.Hostname, i.HwRev, i.Id, i.Jsi, i.Mac, i.Magic, i.Model, i.ModifiedTime, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Type, i.VcMac, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Inventory.
@@ -60,7 +64,7 @@ func (i Inventory) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(i.AdditionalProperties,
-        "adopted", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac"); err != nil {
+        "adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(i.toMap())
@@ -72,6 +76,12 @@ func (i Inventory) toMap() map[string]any {
     MergeAdditionalProperties(structMap, i.AdditionalProperties)
     if i.Adopted != nil {
         structMap["adopted"] = i.Adopted
+    }
+    if i.ChassisMac != nil {
+        structMap["chassis_mac"] = i.ChassisMac
+    }
+    if i.ChassisSerial != nil {
+        structMap["chassis_serial"] = i.ChassisSerial
     }
     if i.Connected != nil {
         structMap["connected"] = i.Connected
@@ -142,13 +152,15 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
     if err != nil {
     	return err
     }
     i.AdditionalProperties = additionalProperties
     
     i.Adopted = temp.Adopted
+    i.ChassisMac = temp.ChassisMac
+    i.ChassisSerial = temp.ChassisSerial
     i.Connected = temp.Connected
     i.CreatedTime = temp.CreatedTime
     i.DeviceprofileId = temp.DeviceprofileId
@@ -173,6 +185,8 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 // tempInventory is a temporary struct used for validating the fields of Inventory.
 type tempInventory  struct {
     Adopted         *bool                    `json:"adopted,omitempty"`
+    ChassisMac      *string                  `json:"chassis_mac,omitempty"`
+    ChassisSerial   *string                  `json:"chassis_serial,omitempty"`
     Connected       *bool                    `json:"connected,omitempty"`
     CreatedTime     *float64                 `json:"created_time,omitempty"`
     DeviceprofileId Optional[string]         `json:"deviceprofile_id"`

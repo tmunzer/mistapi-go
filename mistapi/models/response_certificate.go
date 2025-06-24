@@ -8,8 +8,11 @@ import (
 )
 
 // ResponseCertificate represents a ResponseCertificate struct.
+// If the current Org CA certificate is set to expire within 30 days, a pending certificate will be returned along with the expected auto-renewal timestamp.
 type ResponseCertificate struct {
     Cert                 string                 `json:"cert"`
+    PendingCert          *string                `json:"pending_cert,omitempty"`
+    PendingCertExpiry    *int                   `json:"pending_cert_expiry,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -17,8 +20,8 @@ type ResponseCertificate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseCertificate) String() string {
     return fmt.Sprintf(
-    	"ResponseCertificate[Cert=%v, AdditionalProperties=%v]",
-    	r.Cert, r.AdditionalProperties)
+    	"ResponseCertificate[Cert=%v, PendingCert=%v, PendingCertExpiry=%v, AdditionalProperties=%v]",
+    	r.Cert, r.PendingCert, r.PendingCertExpiry, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseCertificate.
@@ -27,7 +30,7 @@ func (r ResponseCertificate) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "cert"); err != nil {
+        "cert", "pending_cert", "pending_cert_expiry"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -38,6 +41,12 @@ func (r ResponseCertificate) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
     structMap["cert"] = r.Cert
+    if r.PendingCert != nil {
+        structMap["pending_cert"] = r.PendingCert
+    }
+    if r.PendingCertExpiry != nil {
+        structMap["pending_cert_expiry"] = r.PendingCertExpiry
+    }
     return structMap
 }
 
@@ -53,19 +62,23 @@ func (r *ResponseCertificate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert", "pending_cert", "pending_cert_expiry")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
     r.Cert = *temp.Cert
+    r.PendingCert = temp.PendingCert
+    r.PendingCertExpiry = temp.PendingCertExpiry
     return nil
 }
 
 // tempResponseCertificate is a temporary struct used for validating the fields of ResponseCertificate.
 type tempResponseCertificate  struct {
-    Cert *string `json:"cert"`
+    Cert              *string `json:"cert"`
+    PendingCert       *string `json:"pending_cert,omitempty"`
+    PendingCertExpiry *int    `json:"pending_cert_expiry,omitempty"`
 }
 
 func (r *tempResponseCertificate) validate() error {

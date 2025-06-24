@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br>**Default**: `false` |
+| `Reboot` | `*bool` | Optional | Reboot device immediately after upgrade is completed<br><br>**Default**: `false` |
 | `Version` | `*string` | Optional | Specific fpga version |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

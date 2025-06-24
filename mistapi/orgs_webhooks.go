@@ -73,8 +73,13 @@ func (o *OrgsWebhooks) ListOrgWebhooks(
 // CreateOrgWebhook takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Webhook data and
 // an error if there was an issue with the request or response.
-// Create Org Webhook
 // **N.B**. For org webhooks, only alarms/audits/client-info/client-join/client-sessions/device_events/device-updowns/mxedge_events Infrastructure topics are supported.
+// Webhook defines a webhook, modeled after [github\u2019s model](https://developer.github.com/webhooks/).
+// There is two types of webhooks:
+// * webhooks ([examples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace/folder/224925-be01e694-7253-4195-8563-78e2a745e114))        
+// * raw data webhooks ([examples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace/folder/224925-e2d5d5f8-4bdb-4efc-93e4-90f4b33d0b2b))
+// ##### Webhooks
+// Webhooks can be configured at the org level (subset of topics only) and at the site level. It is possible to have multiple topics in the same webhook configuration and/or to have multiple webhooks configured at the same time.
 func (o *OrgsWebhooks) CreateOrgWebhook(
     ctx context.Context,
     orgId uuid.UUID,
@@ -95,7 +100,7 @@ func (o *OrgsWebhooks) CreateOrgWebhook(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400Webhook},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},

@@ -246,11 +246,11 @@ ListOrgNacTags(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Query, Optional | Type of NAC Tag. enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`<br>**Constraints**: *Minimum Length*: `1` |
+| `mType` | [`*models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Query, Optional | Type of NAC Tag. enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `name` | `*string` | Query, Optional | Name of NAC Tag |
-| `match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Query, Optional | if `type`==`match`, Type of NAC Tag. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br>**Constraints**: *Minimum Length*: `1` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Query, Optional | if `type`==`match`, Type of NAC Tag. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br><br>**Constraints**: *Minimum Length*: `1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 

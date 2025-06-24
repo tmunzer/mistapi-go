@@ -13,8 +13,8 @@ Asset raw webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookAssetRawEvent`](../../doc/models/webhook-asset-raw-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"asset-raw"` |
+| `Events` | [`[]models.WebhookAssetRawEvent`](../../doc/models/webhook-asset-raw-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"asset-raw"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

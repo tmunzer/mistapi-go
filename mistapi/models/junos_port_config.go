@@ -32,9 +32,11 @@ type JunosPortConfig struct {
     // Prevent helpdesk to override the port config
     NoLocalOverwrite     *bool                      `json:"no_local_overwrite,omitempty"`
     PoeDisabled          *bool                      `json:"poe_disabled,omitempty"`
+    // Required if `usage`==`vlan_tunnel`. Q-in-Q tunneling using All-in-one bundling. This also enables standard L2PT for interfaces that are not encapsulation tunnel interfaces and uses MAC rewrite operation. [View more information](https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/topic-map/q-in-q.html#id-understanding-qinq-tunneling-and-vlan-translation)
+    PortNetwork          *string                    `json:"port_network,omitempty"`
     // enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
     Speed                *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
-    // Port usage name. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
+    // Port usage name. For Q-in-Q, use `vlan_tunnel`. If EVPN is used, use `evpn_uplink`or `evpn_downlink`
     Usage                string                     `json:"usage"`
     AdditionalProperties map[string]interface{}     `json:"_"`
 }
@@ -43,8 +45,8 @@ type JunosPortConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JunosPortConfig) String() string {
     return fmt.Sprintf(
-    	"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, NoLocalOverwrite=%v, PoeDisabled=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
-    	j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.NoLocalOverwrite, j.PoeDisabled, j.Speed, j.Usage, j.AdditionalProperties)
+    	"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, NoLocalOverwrite=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
+    	j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.NoLocalOverwrite, j.PoeDisabled, j.PortNetwork, j.Speed, j.Usage, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosPortConfig.
@@ -53,7 +55,7 @@ func (j JunosPortConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(j.AdditionalProperties,
-        "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "speed", "usage"); err != nil {
+        "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(j.toMap())
@@ -106,6 +108,9 @@ func (j JunosPortConfig) toMap() map[string]any {
     if j.PoeDisabled != nil {
         structMap["poe_disabled"] = j.PoeDisabled
     }
+    if j.PortNetwork != nil {
+        structMap["port_network"] = j.PortNetwork
+    }
     if j.Speed != nil {
         structMap["speed"] = j.Speed
     }
@@ -125,7 +130,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "speed", "usage")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage")
     if err != nil {
     	return err
     }
@@ -144,6 +149,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
     j.Mtu = temp.Mtu
     j.NoLocalOverwrite = temp.NoLocalOverwrite
     j.PoeDisabled = temp.PoeDisabled
+    j.PortNetwork = temp.PortNetwork
     j.Speed = temp.Speed
     j.Usage = *temp.Usage
     return nil
@@ -164,6 +170,7 @@ type tempJunosPortConfig  struct {
     Mtu              *int                       `json:"mtu,omitempty"`
     NoLocalOverwrite *bool                      `json:"no_local_overwrite,omitempty"`
     PoeDisabled      *bool                      `json:"poe_disabled,omitempty"`
+    PortNetwork      *string                    `json:"port_network,omitempty"`
     Speed            *JunosPortConfigSpeedEnum  `json:"speed,omitempty"`
     Usage            *string                    `json:"usage"`
 }

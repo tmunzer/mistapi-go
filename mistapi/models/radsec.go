@@ -12,7 +12,7 @@ type Radsec struct {
     CoaEnabled           *bool                  `json:"coa_enabled,omitempty"`
     Enabled              *bool                  `json:"enabled,omitempty"`
     // Radsec Idle Timeout in seconds. Default is 60
-    IdleTimeout          *RadescIdleTimeout     `json:"idle_timeout,omitempty"`
+    IdleTimeout          *RadsecIdleTimeout     `json:"idle_timeout,omitempty"`
     // To use Org mxedges when this WLAN does not use mxtunnel, specify their mxcluster_ids. Org mxedge(s) identified by mxcluster_ids
     MxclusterIds         []uuid.UUID            `json:"mxcluster_ids,omitempty"`
     // Default is site.mxedge.radsec.proxy_hosts which must be a superset of all `wlans[*].radsec.proxy_hosts`. When `radsec.proxy_hosts` are not used, tunnel peers (org or site mxedges) are used irrespective of `use_site_mxedge`
@@ -112,7 +112,7 @@ func (r *Radsec) UnmarshalJSON(input []byte) error {
 type tempRadsec  struct {
     CoaEnabled    *bool              `json:"coa_enabled,omitempty"`
     Enabled       *bool              `json:"enabled,omitempty"`
-    IdleTimeout   *RadescIdleTimeout `json:"idle_timeout,omitempty"`
+    IdleTimeout   *RadsecIdleTimeout `json:"idle_timeout,omitempty"`
     MxclusterIds  []uuid.UUID        `json:"mxcluster_ids,omitempty"`
     ProxyHosts    []string           `json:"proxy_hosts,omitempty"`
     ServerName    *string            `json:"server_name,omitempty"`

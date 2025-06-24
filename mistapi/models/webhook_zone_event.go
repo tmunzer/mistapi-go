@@ -10,11 +10,11 @@ import (
 
 // WebhookZoneEvent represents a WebhookZoneEvent struct.
 type WebhookZoneEvent struct {
-    // UUID of named asset
+    // Only if `type`==`asset`. UUID of named asset
     AssetId              *uuid.UUID                  `json:"asset_id,omitempty"`
-    // Unique ID of the object instance in the Mist Organization
-    Id                   uuid.UUID                   `json:"id"`
-    // MAC address of Wi-Fi client or asset
+    // Only if `type`==`sdk`. UUID of the SDK Client
+    Id                   *uuid.UUID                  `json:"id,omitempty"`
+    // MAC address of Wi-Fi client, SDK Client or Asset
     Mac                  *string                     `json:"mac,omitempty"`
     // Map id
     MapId                uuid.UUID                   `json:"map_id"`
@@ -25,7 +25,8 @@ type WebhookZoneEvent struct {
     Timestamp            float64                     `json:"timestamp"`
     // enum: `enter`, `exit`
     Trigger              WebhookZoneEventTriggerEnum `json:"trigger"`
-    Type                 string                      `json:"type"`
+    // Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi`
+    Type                 WebhookZoneEventTypeEnum    `json:"type"`
     // Zone id
     ZoneId               uuid.UUID                   `json:"zone_id"`
     AdditionalProperties map[string]interface{}      `json:"_"`
@@ -58,7 +59,9 @@ func (w WebhookZoneEvent) toMap() map[string]any {
     if w.AssetId != nil {
         structMap["asset_id"] = w.AssetId
     }
-    structMap["id"] = w.Id
+    if w.Id != nil {
+        structMap["id"] = w.Id
+    }
     if w.Mac != nil {
         structMap["mac"] = w.Mac
     }
@@ -93,7 +96,7 @@ func (w *WebhookZoneEvent) UnmarshalJSON(input []byte) error {
     w.AdditionalProperties = additionalProperties
     
     w.AssetId = temp.AssetId
-    w.Id = *temp.Id
+    w.Id = temp.Id
     w.Mac = temp.Mac
     w.MapId = *temp.MapId
     w.Name = temp.Name
@@ -108,22 +111,19 @@ func (w *WebhookZoneEvent) UnmarshalJSON(input []byte) error {
 // tempWebhookZoneEvent is a temporary struct used for validating the fields of WebhookZoneEvent.
 type tempWebhookZoneEvent  struct {
     AssetId   *uuid.UUID                   `json:"asset_id,omitempty"`
-    Id        *uuid.UUID                   `json:"id"`
+    Id        *uuid.UUID                   `json:"id,omitempty"`
     Mac       *string                      `json:"mac,omitempty"`
     MapId     *uuid.UUID                   `json:"map_id"`
     Name      *string                      `json:"name,omitempty"`
     SiteId    *uuid.UUID                   `json:"site_id"`
     Timestamp *float64                     `json:"timestamp"`
     Trigger   *WebhookZoneEventTriggerEnum `json:"trigger"`
-    Type      *string                      `json:"type"`
+    Type      *WebhookZoneEventTypeEnum    `json:"type"`
     ZoneId    *uuid.UUID                   `json:"zone_id"`
 }
 
 func (w *tempWebhookZoneEvent) validate() error {
     var errs []string
-    if w.Id == nil {
-        errs = append(errs, "required field `id` is missing for type `webhook_zone_event`")
-    }
     if w.MapId == nil {
         errs = append(errs, "required field `map_id` is missing for type `webhook_zone_event`")
     }

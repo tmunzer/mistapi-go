@@ -33,8 +33,7 @@ CountSiteWanUsage(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -54,9 +53,8 @@ CountSiteWanUsage(
 | `distinct` | [`*models.WanUsagesCountDistinctEnum`](../../doc/models/wan-usages-count-distinct-enum.md) | Query, Optional | **Default**: `"policy"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -69,19 +67,19 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "001122334455"
+
+peerMac := "001122334455"
+
+portId := "ge-0/0/0"
+
+peerPortId := "ge-0/0/0"
 
 
 
 
 
-
-
-
-
-
-
-
-
+pathType := "primary"
 
 distinct := models.WanUsagesCountDistinctEnum_POLICY
 
@@ -93,9 +91,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesWANUsages.CountSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesWANUsages.CountSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, nil, nil, &pathType, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -172,9 +168,9 @@ SearchSiteWanUsage(
 | `pathType` | `*string` | Query, Optional | path_type of the port |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -187,19 +183,19 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "001122334455"
+
+peerMac := "001122334455"
+
+portId := "ge-0/0/0"
+
+peerPortId := "ge-0/0/0"
+
+policy := "primary"
 
 
 
-
-
-
-
-
-
-
-
-
-
+pathType := "primary"
 
 
 
@@ -211,7 +207,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

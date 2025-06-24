@@ -143,9 +143,7 @@ body := models.Admin{
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
             MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Name:                 models.ToPointer("string"),
             OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgName:              models.ToPointer("string"),
             OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },
@@ -544,9 +542,7 @@ body := models.Admin{
     Privileges:           []models.AdminPrivilege{
         models.AdminPrivilege{
             MspId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            Name:                 models.ToPointer("string"),
             OrgId:                models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            OrgName:              models.ToPointer("string"),
             OrggroupIds:          []uuid.UUID{
                 uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
             },

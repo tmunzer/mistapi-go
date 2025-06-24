@@ -12,9 +12,9 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Applies` | [`*models.SuppressedAlarmApplies`](../../doc/models/suppressed-alarm-applies.md) | Optional | If `scope`==`site`. Object defines the scope (within the org e.g. whole org, and/or some site_groups, and/or some sites) for which the alarm service has to be suppressed for some `duration` |
-| `Duration` | `*float64` | Optional | Duration, in seconds. Maximum duration is 86400 * 180 (180 days). 0 is to un-suppress alarms<br>**Default**: `3600`<br>**Constraints**: `>= 0`, `<= 15552000` |
+| `Duration` | `*float64` | Optional | Duration, in seconds. Maximum duration is 86400 * 180 (180 days). 0 is to un-suppress alarms<br><br>**Default**: `3600`<br><br>**Constraints**: `>= 0`, `<= 15552000` |
 | `ScheduledTime` | `*int` | Optional | Epoch_time in seconds, Default as now, accepted time range is from now to now + 7 days |
-| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br>**Default**: `"site"` |
+| `Scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Optional | level of scope. enum: `org`, `site`<br><br>**Default**: `"site"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

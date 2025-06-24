@@ -12,6 +12,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Adopted` | `*bool` | Optional | Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted |
+| `ChassisMac` | `*string` | Optional | For Virtual Chassis only, the MAC Address of the FPC0 |
+| `ChassisSerial` | `*string` | Optional | For Virtual Chassis only, the Serial Number of the FPC0 |
 | `Connected` | `*bool` | Optional | Whether the device is connected |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[string]` | Optional | Deviceprofile id if assigned, null if not assigned |
@@ -28,7 +30,7 @@
 | `Serial` | `*string` | Optional | Device serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Sku` | `*string` | Optional | Device stock keeping unit |
-| `Type` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
+| `Type` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
 | `VcMac` | `*string` | Optional | If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Cluster, MAC Address of the Cluster |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -41,10 +43,10 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "ap",
   "adopted": false,
+  "chassis_mac": "chassis_mac6",
+  "chassis_serial": "chassis_serial6",
   "connected": false,
   "created_time": 98.34,
-  "deviceprofile_id": "deviceprofile_id4",
-  "hostname": "hostname0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

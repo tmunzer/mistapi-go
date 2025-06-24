@@ -21,19 +21,19 @@ PSK
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | If `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding` |
 | `Macs` | `[]string` | Optional | If `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(1122*) or both. This list is capped at 5000 |
-| `MaxUsage` | `*int` | Optional | For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)<br>**Default**: `0` |
+| `MaxUsage` | `*int` | Optional | For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)<br><br>**Default**: `0` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `Note` | `*string` | Optional | - |
-| `NotifyExpiry` | `*bool` | Optional | If set to true, reminder notification will be sent when psk is about to expire<br>**Default**: `false` |
+| `NotifyExpiry` | `*bool` | Optional | If set to true, reminder notification will be sent when psk is about to expire<br><br>**Default**: `false` |
 | `NotifyOnCreateOrEdit` | `*bool` | Optional | If set to true, notification will be sent when psk is created or edited |
 | `OldPassphrase` | `*string` | Optional | previous passphrase of the PSK if it has been rotated |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Passphrase` | `string` | Required | passphrase of the PSK (8-63 character or 64 in hex)<br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `64` |
+| `Passphrase` | `string` | Required | passphrase of the PSK (8-63 character or 64 in hex)<br><br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `64` |
 | `Role` | `*string` | Optional | **Constraints**: *Minimum Length*: `0`, *Maximum Length*: `32` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `string` | Required | SSID this PSK should be applicable to |
-| `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br>**Default**: `"multi"` |
+| `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br><br>**Default**: `"multi"` |
 | `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | VLAN for this PSK key |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

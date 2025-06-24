@@ -111,11 +111,11 @@ func (o *OrgsLicenses) GetOrgLicenseAsyncClaimStatus(
     return models.NewApiResponse(result, resp), err
 }
 
-// GetOrgLicencesSummary takes context, orgId as parameters and
+// GetOrgLicensesSummary takes context, orgId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.
 // Get the list of licenses
-func (o *OrgsLicenses) GetOrgLicencesSummary(
+func (o *OrgsLicenses) GetOrgLicensesSummary(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[models.License],
@@ -197,12 +197,12 @@ func (o *OrgsLicenses) MoveOrDeleteOrgLicenseToAnotherOrg(
     return httpCtx.Response, err
 }
 
-// GetOrgLicencesBySite takes context, orgId as parameters and
+// GetOrgLicensesBySite takes context, orgId as parameters and
 // returns an models.ApiResponse with []models.LicenseUsageOrg data and
 // an error if there was an issue with the request or response.
 // Get Licenses Usage by Sites
 // This shows license usage (i.e. needed) based on the features enabled for the site.
-func (o *OrgsLicenses) GetOrgLicencesBySite(
+func (o *OrgsLicenses) GetOrgLicensesBySite(
     ctx context.Context,
     orgId uuid.UUID) (
     models.ApiResponse[[]models.LicenseUsageOrg],

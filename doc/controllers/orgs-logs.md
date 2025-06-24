@@ -23,15 +23,14 @@ CountOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgLogsCountDistinctEnum,
-    adminId *string,
+    adminId *uuid.UUID,
     adminName *string,
-    siteId *string,
+    siteId *uuid.UUID,
     message *string,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -42,15 +41,14 @@ CountOrgAuditLogs(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgLogsCountDistinctEnum`](../../doc/models/org-logs-count-distinct-enum.md) | Query, Optional | **Default**: `"admin_name"` |
-| `adminId` | `*string` | Query, Optional | - |
+| `adminId` | `*uuid.UUID` | Query, Optional | - |
 | `adminName` | `*string` | Query, Optional | - |
-| `siteId` | `*string` | Query, Optional | - |
+| `siteId` | `*uuid.UUID` | Query, Optional | - |
 | `message` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -65,13 +63,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgLogsCountDistinctEnum_ADMINNAME
 
+adminId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
+adminName := "John Doe"
 
+siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
-
-
-
-
+message := "Created a new site"
 
 
 
@@ -81,9 +79,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsLogs.CountOrgAuditLogs(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsLogs.CountOrgAuditLogs(ctx, orgId, &distinct, &adminId, &adminName, &siteId, &message, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -130,7 +126,7 @@ Get List of change logs for the current Org
 ListOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *string,
+    siteId *uuid.UUID,
     adminName *string,
     message *string,
     sort *models.ListOrgLogsSortEnum,
@@ -148,15 +144,15 @@ ListOrgAuditLogs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | Site id |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site id |
 | `adminName` | `*string` | Query, Optional | Admin name or email |
 | `message` | `*string` | Query, Optional | Message |
 | `sort` | [`*models.ListOrgLogsSortEnum`](../../doc/models/list-org-logs-sort-enum.md) | Query, Optional | Sort order |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -169,11 +165,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
+adminName := "John Doe"
 
-
-
-
+message := "Created a new site"
 
 
 
@@ -187,7 +183,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsLogs.ListOrgAuditLogs(ctx, orgId, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsLogs.ListOrgAuditLogs(ctx, orgId, &siteId, &adminName, &message, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

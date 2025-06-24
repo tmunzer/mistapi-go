@@ -18,7 +18,7 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathSelection` | [`*models.VpnPathSelection`](../../doc/models/vpn-path-selection.md) | Optional | Only if `type`==`hub_spoke` |
 | `Paths` | [`map[string]models.VpnPath`](../../doc/models/vpn-path.md) | Required | For `type`==`hub_spoke`, Property key is the VPN name. For `type`==`mesh`, Property key is the Interface name |
-| `Type` | [`*models.VpnModeEnum`](../../doc/models/vpn-mode-enum.md) | Optional | enum: `hub_spoke`, `mesh`<br>**Default**: `"hub_spoke"` |
+| `Type` | [`*models.VpnModeEnum`](../../doc/models/vpn-mode-enum.md) | Optional | enum: `hub_spoke`, `mesh`<br><br>**Default**: `"hub_spoke"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

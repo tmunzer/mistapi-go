@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`<br>**Default**: `"wireless"` |
+| `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`<br><br>**Default**: `"wireless"` |
 | `BgImageUrl` | `*string` | Optional | Background image |
 | `CertExpireTime` | `*int` | Optional | In days |
-| `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | enum: `wpa2`, `wpa3`<br>**Default**: `"wpa2"` |
+| `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | enum: `wpa2`, `wpa3`<br><br>**Default**: `"wpa2"` |
 | `EnableTelemetry` | `*bool` | Optional | Model, version, fingering, events (connecting, disconnect, roaming), which ap |
 | `ExpiryNotificationTime` | `*int` | Optional | In days |
 | `GuestPortalConfig` | [`*models.WlanPortal`](../../doc/models/wlan-portal.md) | Optional | Portal wlan settings |

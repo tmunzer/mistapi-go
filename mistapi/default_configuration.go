@@ -31,6 +31,7 @@ func DefaultHttpConfiguration() HttpConfiguration {
 // DefaultConfiguration returns the default Configuration.
 func DefaultConfiguration() Configuration {
     return newConfiguration(
+        WithAccept("application/json, application/vnd.api+json"),
         WithEnvironment(MIST_GLOBAL_01),
         WithHttpConfiguration(DefaultHttpConfiguration()),
     )

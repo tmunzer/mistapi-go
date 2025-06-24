@@ -13,6 +13,9 @@ orgsIntegrationSkyATP := client.OrgsIntegrationSkyATP()
 * [Delete Org Sky Atp Integration](../../doc/controllers/orgs-integration-sky-atp.md#delete-org-sky-atp-integration)
 * [Get Org Sky Atp Integration](../../doc/controllers/orgs-integration-sky-atp.md#get-org-sky-atp-integration)
 * [Setup Org Atp Integration](../../doc/controllers/orgs-integration-sky-atp.md#setup-org-atp-integration)
+* [Udpate Org Atp Allowed List](../../doc/controllers/orgs-integration-sky-atp.md#udpate-org-atp-allowed-list)
+* [Udpate Org Atp Blocked List](../../doc/controllers/orgs-integration-sky-atp.md#udpate-org-atp-blocked-list)
+* [Udpate Org Atp Integration](../../doc/controllers/orgs-integration-sky-atp.md#udpate-org-atp-integration)
 
 
 # Delete Org Sky Atp Integration
@@ -125,7 +128,7 @@ SetupOrgAtpIntegration(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.AccountSkyatpConfig) (
-    models.ApiResponse[models.AccountSkyatpInfo],
+    models.ApiResponse[models.AccountSkyatpData],
     error)
 ```
 
@@ -138,7 +141,7 @@ SetupOrgAtpIntegration(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountSkyatpInfo](../../doc/models/account-skyatp-info.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountSkyatpData](../../doc/models/account-skyatp-data.md).
 
 ## Example Usage
 
@@ -154,6 +157,256 @@ body := models.AccountSkyatpConfig{
 }
 
 apiResponse, err := orgsIntegrationSkyATP.SetupOrgAtpIntegration(ctx, orgId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "Example": {
+    "value": {
+      "secintel": {
+        "third_party_threat_feeds": [
+          "block_list"
+        ]
+      },
+      "secintel_allowlist_url": "https://papi.s3.amazonaws.com/secintel_allowlist/xxx...",
+      "secintel_blocklist_url": "https://papi.s3.amazonaws.com/secintel_blocklist/xxx..."
+    }
+  }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Udpate Org Atp Allowed List
+
+Update Sky ATP Allowed List
+
+```go
+UdpateOrgAtpAllowedList(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.SkyatpList) (
+    models.ApiResponse[models.SkyatpList],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.SkyatpList`](../../doc/models/skyatp-list.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SkyatpList](../../doc/models/skyatp-list.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.SkyatpList{
+    Domains:              []models.SkyatpListDomain{
+        models.SkyatpListDomain{
+            Comment:              models.ToPointer("restricted"),
+            Domain:               "unsafe.xxx",
+        },
+    },
+    Ips:                  []models.SkyatpListIp{
+        models.SkyatpListIp{
+            Comment:              models.ToPointer("nas"),
+            Ip:                   "10.1.3.5",
+        },
+    },
+}
+
+apiResponse, err := orgsIntegrationSkyATP.UdpateOrgAtpAllowedList(ctx, orgId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "domains": [
+    {
+      "comment": "restricted",
+      "domain": "unsafe.xxx"
+    }
+  ],
+  "ips": [
+    {
+      "comment": "nas",
+      "ip": "10.1.3.5"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Udpate Org Atp Blocked List
+
+Update Sky ATP Blocked List
+
+```go
+UdpateOrgAtpBlockedList(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.SkyatpList) (
+    models.ApiResponse[models.SkyatpList],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.SkyatpList`](../../doc/models/skyatp-list.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SkyatpList](../../doc/models/skyatp-list.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.SkyatpList{
+    Domains:              []models.SkyatpListDomain{
+        models.SkyatpListDomain{
+            Comment:              models.ToPointer("restricted"),
+            Domain:               "unsafe.xxx",
+        },
+    },
+    Ips:                  []models.SkyatpListIp{
+        models.SkyatpListIp{
+            Comment:              models.ToPointer("nas"),
+            Ip:                   "10.1.3.5",
+        },
+    },
+}
+
+apiResponse, err := orgsIntegrationSkyATP.UdpateOrgAtpBlockedList(ctx, orgId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "domains": [
+    {
+      "comment": "restricted",
+      "domain": "unsafe.xxx"
+    }
+  ],
+  "ips": [
+    {
+      "comment": "nas",
+      "ip": "10.1.3.5"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Udpate Org Atp Integration
+
+Update Sky ATP config
+
+```go
+UdpateOrgAtpIntegration(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.AccountSkyatpData) (
+    models.ApiResponse[models.AccountSkyatpInfo],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.AccountSkyatpData`](../../doc/models/account-skyatp-data.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountSkyatpInfo](../../doc/models/account-skyatp-info.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.AccountSkyatpData{
+    Secintel:             models.ToPointer(models.AccountSkyatpDataSecintel{
+        ThirdPartyThreatFeeds: []string{
+            "block_list",
+        },
+    }),
+}
+
+apiResponse, err := orgsIntegrationSkyATP.UdpateOrgAtpIntegration(ctx, orgId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

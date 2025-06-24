@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableLocal` | `*bool` | Optional | Whether to prevent wireless clients to discover bonjour devices on the same WLAN<br>**Default**: `false` |
+| `DisableLocal` | `*bool` | Optional | Whether to prevent wireless clients to discover bonjour devices on the same WLAN<br><br>**Default**: `false` |
 | `RadiusGroups` | `[]string` | Optional | Optional, if the service is further restricted for certain RADIUS groups |
-| `Scope` | [`*models.WlanBonjourServicePropertiesScopeEnum`](../../doc/models/wlan-bonjour-service-properties-scope-enum.md) | Optional | how bonjour services should be discovered for the same WLAN. enum: `same_ap`, `same_map`, `same_site`<br>**Default**: `"same_site"` |
+| `Scope` | [`*models.WlanBonjourServicePropertiesScopeEnum`](../../doc/models/wlan-bonjour-service-properties-scope-enum.md) | Optional | how bonjour services should be discovered for the same WLAN. enum: `same_ap`, `same_map`, `same_site`<br><br>**Default**: `"same_site"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

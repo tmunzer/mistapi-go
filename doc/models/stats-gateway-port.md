@@ -25,7 +25,7 @@ Port statistics
 | `LteImei` | `models.Optional[string]` | Optional | LTE IMEI value, Check for null/empty |
 | `LteImsi` | `models.Optional[string]` | Optional | LTE IMSI value, Check for null/empty |
 | `MacCount` | `*int` | Optional | Number of mac addresses in the forwarding table |
-| `MacLimit` | `*int` | Optional | Limit on number of dynamically learned macs<br>**Constraints**: `>= 0` |
+| `MacLimit` | `*int` | Optional | Limit on number of dynamically learned macs<br><br>**Constraints**: `>= 0` |
 | `NeighborMac` | `string` | Required | chassis identifier of the chassis type listed |
 | `NeighborPortDesc` | `*string` | Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
 | `NeighborSystemName` | `*string` | Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |

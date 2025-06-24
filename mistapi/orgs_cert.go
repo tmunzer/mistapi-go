@@ -62,6 +62,43 @@ func (o *OrgsCert) ListOrgCertificates(
     return models.NewApiResponse(result, resp), err
 }
 
+// RotateOrgCertificate takes context, orgId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Replace the current org cert with the pending cert generated previously
+func (o *OrgsCert) RotateOrgCertificate(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    *http.Response,
+    error) {
+    req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/cert/apply_pending")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
 // ClearOrgCertificates takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

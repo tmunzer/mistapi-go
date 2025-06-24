@@ -17,7 +17,7 @@
 | `EnableTwoFactor` | `*bool` | Optional | If admin account is not an Org API Token |
 | `ExpireTime` | `*int` | Optional | - |
 | `FirstName` | `*string` | Optional | If admin account is not an Org API Token. For an invite, this is the original first name used |
-| `Hours` | `*int` | Optional | If admin account is not an Org API Token, how long the invite should be valid<br>**Default**: `24`<br>**Constraints**: `>= 1`, `<= 168` |
+| `Hours` | `*int` | Optional | If admin account is not an Org API Token, how long the invite should be valid<br><br>**Default**: `24`<br><br>**Constraints**: `>= 1`, `<= 168` |
 | `LastName` | `*string` | Optional | If admin account is not an Org API Token. For an invite, this is the original last name used |
 | `Name` | `*string` | Optional | For Org API Token Only |
 | `NoTracking` | `models.Optional[bool]` | Optional | Optional, whether to store privacy-consent information. When it doesn’t exist, it’s assumed true on EU (i.e. no tracking, the user has to opt-in); otherwise, the user would have to opt-out |
@@ -25,7 +25,7 @@
 | `PasswordModifiedTime` | `*float64` | Optional | Password last modified time, in epoch |
 | `Phone` | `*string` | Optional | If admin account is not an Org API Token. Phone number (numbers only, including country code) |
 | `Phone2` | `*string` | Optional | If admin account is not an Org API Token. Secondary phone number (numbers only, including country code) |
-| `Privileges` | [`[]models.AdminPrivilege`](../../doc/models/admin-privilege.md) | Optional | List of privileges the admin has<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Privileges` | [`[]models.AdminPrivilege`](../../doc/models/admin-privilege.md) | Optional | List of privileges the admin has<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SessionExpiry` | `*int64` | Optional | **Constraints**: `>= 10`, `<= 20160` |
 | `Tags` | `[]string` | Optional | - |
 | `TwoFactorVerified` | `*bool` | Optional | If admin account is not an Org API Token. Two factor status |

@@ -24,7 +24,7 @@ func NewSitesVPNs(baseController baseController) *SitesVPNs {
 // ListSiteVpnsDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.Vpn data and
 // an error if there was an issue with the request or response.
-// VPN object represents an overlay network where gateways can participate in and optionally expose routes to.
+// Get the list of derived VPNs for a site
 func (s *SitesVPNs) ListSiteVpnsDerived(
     ctx context.Context,
     siteId uuid.UUID,

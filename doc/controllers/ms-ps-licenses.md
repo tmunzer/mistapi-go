@@ -10,18 +10,18 @@ mSPsLicenses := client.MSPsLicenses()
 
 ## Methods
 
-* [Claim Msp Licence](../../doc/controllers/ms-ps-licenses.md#claim-msp-licence)
+* [Claim Msp License](../../doc/controllers/ms-ps-licenses.md#claim-msp-license)
 * [List Msp Licenses](../../doc/controllers/ms-ps-licenses.md#list-msp-licenses)
 * [List Msp Org Licenses](../../doc/controllers/ms-ps-licenses.md#list-msp-org-licenses)
 * [Move or Delete Msp License to Another Org](../../doc/controllers/ms-ps-licenses.md#move-or-delete-msp-license-to-another-org)
 
 
-# Claim Msp Licence
+# Claim Msp License
 
 Claim an Order by Activation Code
 
 ```go
-ClaimMspLicence(
+ClaimMspLicense(
     ctx context.Context,
     mspId uuid.UUID,
     body *models.CodeString) (
@@ -51,7 +51,7 @@ body := models.CodeString{
     Code:                 "ZHT3K-H36DT-MG85D-M61AC",
 }
 
-apiResponse, err := mSPsLicenses.ClaimMspLicence(ctx, mspId, &body)
+apiResponse, err := mSPsLicenses.ClaimMspLicense(ctx, mspId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -81,6 +81,11 @@ if err != nil {
       "model": "AP41",
       "serial": "FXLH2015150027",
       "type": "ap"
+    }
+  ],
+  "inventory_pending": [
+    {
+      "mac": "5c5b35000012"
     }
   ],
   "license_added": [
@@ -373,7 +378,7 @@ if err != nil {
 
 # List Msp Org Licenses
 
-Get List of MSP Licences
+Get List of MSP Licenses
 
 ```go
 ListMspOrgLicenses(

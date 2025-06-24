@@ -13,9 +13,9 @@ IoT Input AP settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | Whether to enable a pin<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether to enable a pin<br><br>**Default**: `false` |
 | `Name` | `*string` | Optional | Optional; descriptive pin name |
-| `Pullup` | [`*models.ApIotPullupEnum`](../../doc/models/ap-iot-pullup-enum.md) | Optional | the type of pull-up the pin uses. enum: `external`, `internal`, `none`<br>**Default**: `"none"` |
+| `Pullup` | [`*models.ApIotPullupEnum`](../../doc/models/ap-iot-pullup-enum.md) | Optional | the type of pull-up the pin uses. enum: `external`, `internal`, `none`<br><br>**Default**: `"none"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -23,8 +23,8 @@ IoT Input AP settings
 ```json
 {
   "enabled": false,
+  "name": "motion",
   "pullup": "none",
-  "name": "name8",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

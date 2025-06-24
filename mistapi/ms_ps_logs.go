@@ -97,14 +97,15 @@ func (m *MSPsLogs) ListMspAuditLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountMspAuditLogs takes context, mspId, distinct as parameters and
+// CountMspAuditLogs takes context, mspId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Audit Logs
+// Count by Distinct Attributes of Audit Logs.
 func (m *MSPsLogs) CountMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
-    distinct *models.MspLogsCountDistinctEnum) (
+    distinct *models.MspLogsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/logs/count")
@@ -129,6 +130,9 @@ func (m *MSPsLogs) CountMspAuditLogs(
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

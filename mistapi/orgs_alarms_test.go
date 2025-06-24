@@ -54,19 +54,43 @@ func TestOrgsAlarmsTestCountOrgAlarms(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    
+    distinct := "site_id"
     
     
     duration := "1d"
     limit := int(100)
-    page := int(1)
-    apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, nil, nil, nil, &duration, &limit, &page)
+    apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, &distinct, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsAlarmsTestCountOrgAlarms1 tests the behavior of the OrgsAlarms
+func TestOrgsAlarmsTestCountOrgAlarms1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    distinct := "site_id"
+    
+    
+    duration := "1d"
+    limit := int(100)
+    apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, &distinct, nil, nil, &duration, &limit)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
@@ -80,20 +104,51 @@ func TestOrgsAlarmsTestSearchOrgAlarms(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    
-    
-    
+    siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mType := "marvis"
+    status := "open"
     
     
     duration := "1d"
     limit := int(100)
-    apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
+    apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsAlarmsTestSearchOrgAlarms1 tests the behavior of the OrgsAlarms
+func TestOrgsAlarmsTestSearchOrgAlarms1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mType := "marvis"
+    status := "open"
+    
+    
+    duration := "1d"
+    limit := int(100)
+    apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }

@@ -16,13 +16,14 @@ mSPsLogs := client.MSPsLogs()
 
 # Count Msp Audit Logs
 
-Count by Distinct Attributes of Audit Logs
+Count by Distinct Attributes of Audit Logs.
 
 ```go
 CountMspAuditLogs(
     ctx context.Context,
     mspId uuid.UUID,
-    distinct *models.MspLogsCountDistinctEnum) (
+    distinct *models.MspLogsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -33,6 +34,7 @@ CountMspAuditLogs(
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.MspLogsCountDistinctEnum`](../../doc/models/msp-logs-count-distinct-enum.md) | Query, Optional | **Default**: `"admin_name"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -47,7 +49,9 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.MspLogsCountDistinctEnum_ADMINNAME
 
-apiResponse, err := mSPsLogs.CountMspAuditLogs(ctx, mspId, &distinct)
+limit := 100
+
+apiResponse, err := mSPsLogs.CountMspAuditLogs(ctx, mspId, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -118,9 +122,9 @@ ListMspAuditLogs(
 | `sort` | [`*models.ListMspLogsSortEnum`](../../doc/models/list-msp-logs-sort-enum.md) | Query, Optional | Sort order |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -133,11 +137,11 @@ ctx := context.Background()
 
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+siteId := "b069b358-4c97-5319-1f8c-7c5ca64d6ab1"
 
+adminName := "jsnow"
 
-
-
-
+message := "Added new site"
 
 
 
@@ -151,7 +155,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := mSPsLogs.ListMspAuditLogs(ctx, mspId, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := mSPsLogs.ListMspAuditLogs(ctx, mspId, &siteId, &adminName, &message, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

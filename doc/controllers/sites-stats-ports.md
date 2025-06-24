@@ -51,8 +51,7 @@ CountSiteSwOrGwPorts(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -90,9 +89,8 @@ CountSiteSwOrGwPorts(
 | `up` | `*bool` | Query, Optional | Indicates if interface is up |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -107,6 +105,47 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SitePortsCountDistinctEnum_MAC
 
+fullDuplex := true
+
+mac := "5c5b350e0410"
+
+neighborMac := "5c5b350e0410"
+
+neighborPortDesc := "ge-2/0/39"
+
+neighborSystemName := "Kumar-Acc-SW.mist.local"
+
+poeDisabled := false
+
+poeMode := "802.3at"
+
+poeOn := true
+
+portId := "ge-2/0/39"
+
+portMac := "5c5b350e0410"
+
+powerDraw := float64(15.4)
+
+txPkts := 1000000
+
+rxPkts := 1000000
+
+rxBytes := 1000000
+
+txBps := 1000000
+
+rxBps := 1000000
+
+txMcastPkts := 1000000
+
+txBcastPkts := 1000000
+
+rxMcastPkts := 1000000
+
+rxBcastPkts := 1000000
+
+speed := 1000000000
 
 
 
@@ -114,48 +153,7 @@ distinct := models.SitePortsCountDistinctEnum_MAC
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+up := true
 
 
 
@@ -165,9 +163,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesStatsPorts.CountSiteSwOrGwPorts(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesStatsPorts.CountSiteSwOrGwPorts(ctx, siteId, &distinct, &fullDuplex, &mac, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, nil, nil, nil, &up, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -305,10 +301,10 @@ SearchSiteSwOrGwPorts(
 | `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
 | `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
 | `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -321,83 +317,83 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+fullDuplex := true
 
+disabled := false
 
+mac := "5c5b350e0410"
 
 
 
+neighborMac := "5c5b350e0410"
 
+neighborPortDesc := "ge-2/0/39"
 
+neighborSystemName := "Kumar-Acc-SW.mist.local"
 
+poeDisabled := false
 
+poeMode := "802.3at"
 
+poeOn := true
 
+portId := "ge-2/0/39"
 
+portMac := "5c5b350e0410"
 
+powerDraw := float64(15.4)
 
+txPkts := 1000000
 
+rxPkts := 1000000
 
+rxBytes := 1000000
 
+txBps := 1000000
 
+rxBps := 1000000
 
+txErrors := 0
 
+rxErrors := 0
 
+txMcastPkts := 100
 
+txBcastPkts := 100
 
+rxMcastPkts := 100
 
+rxBcastPkts := 100
 
+speed := 1000
 
+macLimit := 1000
 
+macCount := 10
 
+up := true
 
+active := true
 
+jitter := float64(0.456)
 
+loss := float64(0.01)
 
+latency := float64(0.123)
 
 
 
 
 
+xcvrPartNumber := "SFP-10G-SR"
 
 
 
+lteImsi := "310260000000001"
 
+lteIccid := "89014103211118510720"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+lteImei := "123456789012345"
 
 limit := 100
 
@@ -407,7 +403,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

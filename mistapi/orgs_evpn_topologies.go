@@ -84,7 +84,7 @@ func (o *OrgsEVPNTopologies) ListOrgEvpnTopologies(
 // #### ESI-Lag
 // If the access switches does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
 // #### Leaf / Access / Collapsed-Core
-// For leaf nodes in a EVPN topology, you’d have to configure the IPs for networks that would participate in EVPN. Optionally, VRFs to isolate traffic from one tenant verus another
+// For leaf nodes in a EVPN topology, you’d have to configure the IPs for networks that would participate in EVPN. Optionally, VRFs to isolate traffic from one tenant versus another
 func (o *OrgsEVPNTopologies) CreateOrgEvpnTopology(
     ctx context.Context,
     orgId uuid.UUID,

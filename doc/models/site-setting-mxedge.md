@@ -62,7 +62,7 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki",
+        "vendor": "cisco-aironet",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"
@@ -72,7 +72,7 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki",
+        "vendor": "cisco-aironet",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"
@@ -82,7 +82,7 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-meraki",
+        "vendor": "cisco-aironet",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"

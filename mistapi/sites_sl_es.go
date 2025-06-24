@@ -323,7 +323,7 @@ func (s *SitesSLEs) ListSiteSleImpactedApplications(
 // ListSiteSleImpactedAps takes context, siteId, scope, scopeId, metric, start, end, duration, classifier as parameters and
 // returns an models.ApiResponse with models.SleImpactedAps data and
 // an error if there was an issue with the request or response.
-// For Wireless SLEs. Listimpacted APs optionally filtered by classifier and failure type
+// For Wireless SLEs. List the impacted APs optionally filtered by classifier and failure type
 func (s *SitesSLEs) ListSiteSleImpactedAps(
     ctx context.Context,
     siteId uuid.UUID,

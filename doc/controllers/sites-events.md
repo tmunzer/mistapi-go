@@ -17,7 +17,7 @@ sitesEvents := client.SitesEvents()
 
 # Count Site System Events
 
-Count System Events
+Count by Distinct Attributes of System Events
 
 ```go
 CountSiteSystemEvents(
@@ -25,10 +25,10 @@ CountSiteSystemEvents(
     siteId uuid.UUID,
     distinct *models.SiteSystemEventsCountDistinctEnum,
     mType *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -40,10 +40,10 @@ CountSiteSystemEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteSystemEventsCountDistinctEnum`](../../doc/models/site-system-events-count-distinct-enum.md) | Query, Optional | **Default**: `"type"` |
 | `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -60,15 +60,15 @@ distinct := models.SiteSystemEventsCountDistinctEnum_ENUMTYPE
 
 
 
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesEvents.CountSiteSystemEvents(ctx, siteId, &distinct, nil, &limit, nil, nil, &duration)
+limit := 100
+
+apiResponse, err := sitesEvents.CountSiteSystemEvents(ctx, siteId, &distinct, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -130,10 +130,10 @@ ListSiteRoamingEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.FastRoamResultEnum`](../../doc/models/fast-roam-result-enum.md) | Query, Optional | Event type |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -201,7 +201,7 @@ if err != nil {
 
 # Search Site System Events
 
-Search System Events
+Search Site System Events
 
 ```go
 SearchSiteSystemEvents(
@@ -222,10 +222,10 @@ SearchSiteSystemEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

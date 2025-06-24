@@ -10,7 +10,7 @@ import (
 type WebhookNacEventsEvent struct {
     // AP mac
     Ap                   *string                `json:"ap,omitempty"`
-    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
     AuthType             *NacAuthTypeEnum       `json:"auth_type,omitempty"`
     // BSSID
     Bssid                *string                `json:"bssid,omitempty"`

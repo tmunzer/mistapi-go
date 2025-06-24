@@ -106,7 +106,7 @@ body := models.ApTemplate{
                         }),
                         Radsec:               models.ToPointer(models.Radsec{
                             Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadescIdleTimeoutContainer.FromNumber(60)),
+                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
                             MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
@@ -186,7 +186,7 @@ body := models.ApTemplate{
                         }),
                         Radsec:               models.ToPointer(models.Radsec{
                             Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadescIdleTimeoutContainer.FromNumber(60)),
+                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
                             MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
@@ -782,8 +782,8 @@ ListOrgAptemplates(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1116,7 +1116,7 @@ body := models.ApTemplate{
                         }),
                         Radsec:               models.ToPointer(models.Radsec{
                             Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadescIdleTimeoutContainer.FromNumber(60)),
+                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
                             MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },
@@ -1196,7 +1196,7 @@ body := models.ApTemplate{
                         }),
                         Radsec:               models.ToPointer(models.Radsec{
                             Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadescIdleTimeoutContainer.FromNumber(60)),
+                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
                             MxclusterIds:         []uuid.UUID{
                                 uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
                             },

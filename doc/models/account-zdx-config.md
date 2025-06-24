@@ -13,7 +13,7 @@ OAuth linked ZDX apps account details
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CloudName` | `*string` | Optional | ZDX cloud name. Refer https://help.zscaler.com/zdx/getting-started-zdx-api for ZDX cloud name<br>**Default**: `"zdxcloud.net"` |
+| `CloudName` | `*string` | Optional | ZDX cloud name. Refer https://help.zscaler.com/zdx/getting-started-zdx-api for ZDX cloud name<br><br>**Default**: `"zdxcloud.net"` |
 | `KeyId` | `string` | Required | Customer account API key ID |
 | `KeySecret` | `string` | Required | Customer account API key Secret |
 | `ZdxOrgId` | `string` | Required | ZDX organization id |

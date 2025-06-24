@@ -145,10 +145,10 @@ func (s *SitesRogues) ListSiteRogueClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteRogueEvents takes context, siteId, distinct, mType, ssid, bssid, apMac, channel, seenOnLan, limit, start, end, duration as parameters and
+// CountSiteRogueEvents takes context, siteId, distinct, mType, ssid, bssid, apMac, channel, seenOnLan, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Rogue Events
+// Count by Distinct Attributes of Rogue Events
 func (s *SitesRogues) CountSiteRogueEvents(
     ctx context.Context,
     siteId uuid.UUID,
@@ -159,10 +159,10 @@ func (s *SitesRogues) CountSiteRogueEvents(
     apMac *string,
     channel *string,
     seenOnLan *bool,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rogues/events/count")
@@ -206,9 +206,6 @@ func (s *SitesRogues) CountSiteRogueEvents(
     if seenOnLan != nil {
         req.QueryParam("seen_on_lan", *seenOnLan)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -217,6 +214,9 @@ func (s *SitesRogues) CountSiteRogueEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

@@ -40,7 +40,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `TunnelConfigs` | [`map[string]models.TunnelConfig`](../../doc/models/tunnel-config.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
-| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

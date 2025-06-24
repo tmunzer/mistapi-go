@@ -96,7 +96,7 @@ func (s *SitesStatsCalls) TroubleshootSiteCall(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteCalls takes context, siteId, distinct, rating, app, start, end as parameters and
+// CountSiteCalls takes context, siteId, distinct, rating, app, start, end, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Calls
@@ -106,8 +106,9 @@ func (s *SitesStatsCalls) CountSiteCalls(
     distinct *models.CountSiteCallsDistinctEnum,
     rating *int,
     app *string,
-    start *string,
-    end *string) (
+    start *int,
+    end *int,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/count")
@@ -144,6 +145,9 @@ func (s *SitesStatsCalls) CountSiteCalls(
     }
     if end != nil {
         req.QueryParam("end", *end)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

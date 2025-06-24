@@ -14,7 +14,7 @@
 | `Ip` | `*string` | Optional | - |
 | `Netmask` | `*string` | Optional | - |
 | `SecondaryIps` | `[]string` | Optional | Optional list of secondary IPs in CIDR format |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -21,7 +21,7 @@ func NewSitesClientsWired(baseController baseController) *SitesClientsWired {
     return &sitesClientsWired
 }
 
-// CountSiteWiredClients takes context, siteId, distinct, mac, deviceMac, portId, vlan, start, end, duration, limit, page as parameters and
+// CountSiteWiredClients takes context, siteId, distinct, mac, deviceMac, portId, vlan, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -36,8 +36,7 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wired_clients/count")
@@ -86,9 +85,6 @@ func (s *SitesClientsWired) CountSiteWiredClients(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

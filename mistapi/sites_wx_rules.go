@@ -118,7 +118,7 @@ func (s *SitesWxRules) CreateSiteWxRule(
 // ListSiteWxRulesDerived takes context, siteId as parameters and
 // returns an models.ApiResponse with []models.WxlanRule data and
 // an error if there was an issue with the request or response.
-// Get Site WxLan Rule Derived
+// Get the list of derived WxLan Rule for a site
 func (s *SitesWxRules) ListSiteWxRulesDerived(
     ctx context.Context,
     siteId uuid.UUID) (

@@ -17,16 +17,16 @@ MxTunnel
 | `AutoPreemption` | [`*models.AutoPreemption`](../../doc/models/auto-preemption.md) | Optional | Schedule to preempt ap’s which are not connected to preferred peer |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
-| `HelloInterval` | `models.Optional[int]` | Optional | In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.<br>**Default**: `60`<br>**Constraints**: `>= 1`, `<= 300` |
-| `HelloRetries` | `models.Optional[int]` | Optional | **Default**: `7`<br>**Constraints**: `>= 2`, `<= 30` |
+| `HelloInterval` | `models.Optional[int]` | Optional | In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by `hello_retries`.<br><br>**Default**: `60`<br><br>**Constraints**: `>= 1`, `<= 300` |
+| `HelloRetries` | `models.Optional[int]` | Optional | **Default**: `7`<br><br>**Constraints**: `>= 2`, `<= 30` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Ipsec` | [`*models.MxtunnelIpsec`](../../doc/models/mxtunnel-ipsec.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 1500` |
+| `Mtu` | `*int` | Optional | 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 1500` |
 | `MxclusterIds` | `[]uuid.UUID` | Optional | List of mxclusters to deploy this tunnel to |
 | `Name` | `models.Optional[string]` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br>**Default**: `"udp"` |
+| `Protocol` | [`*models.MxtunnelProtocolEnum`](../../doc/models/mxtunnel-protocol-enum.md) | Optional | enum: `ip`, `udp`<br><br>**Default**: `"udp"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `VlanIds` | `[]int` | Optional | List of vlan_ids that will be used |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

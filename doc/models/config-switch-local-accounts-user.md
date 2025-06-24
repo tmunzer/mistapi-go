@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Password` | `*string` | Optional | - |
-| `Role` | [`*models.ConfigSwitchLocalAccountsUserRoleEnum`](../../doc/models/config-switch-local-accounts-user-role-enum.md) | Optional | enum: `admin`, `helpdesk`, `none`, `read`<br>**Default**: `"none"` |
+| `Role` | [`*models.ConfigSwitchLocalAccountsUserRoleEnum`](../../doc/models/config-switch-local-accounts-user-role-enum.md) | Optional | enum: `admin`, `helpdesk`, `none`, `read`<br><br>**Default**: `"none"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

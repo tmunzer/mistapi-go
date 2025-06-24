@@ -5,6 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
+| accept | `string` | *Default*: `"application/json, application/vnd.api+json"` |
 | environment | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
 | httpConfiguration | [`HttpConfiguration`](../doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](../doc/logger-configuration.md) | Represents the logger configurations for API calls |
@@ -35,6 +36,7 @@ client := mistapi.NewClient(
         mistapi.WithCsrfTokenCredentials(
             mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
         ),
+        mistapi.WithAccept("application/json, application/vnd.api+json"),
         mistapi.WithLoggerConfiguration(
             mistapi.WithLevel("info"),
             mistapi.WithRequestConfiguration(
@@ -89,6 +91,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsCert() | Gets OrgsCert |
 | OrgsAntivirusProfiles() | Gets OrgsAntivirusProfiles |
 | OrgsClientsMarvis() | Gets OrgsClientsMarvis |
+| OrgsMarvisInvites() | Gets OrgsMarvisInvites |
 | OrgsClientsNAC() | Gets OrgsClientsNAC |
 | OrgsClientsWan() | Gets OrgsClientsWan |
 | OrgsClientsWired() | Gets OrgsClientsWired |
@@ -183,9 +186,13 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesDevicesWiredVirtualChassis() | Gets SitesDevicesWiredVirtualChassis |
 | SitesDevicesWANCluster() | Gets SitesDevicesWANCluster |
 | SitesDeviceProfiles() | Gets SitesDeviceProfiles |
+| OrgsEvents() | Gets OrgsEvents |
 | SitesEvents() | Gets SitesEvents |
 | SitesEVPNTopologies() | Gets SitesEVPNTopologies |
 | SitesGatewayTemplates() | Gets SitesGatewayTemplates |
+| SitesIDPProfiles() | Gets SitesIDPProfiles |
+| SitesAdvancedAntiMalwareProfiles() | Gets SitesAdvancedAntiMalwareProfiles |
+| SitesAntivirusProfiles() | Gets SitesAntivirusProfiles |
 | SitesGuests() | Gets SitesGuests |
 | SitesInsights() | Gets SitesInsights |
 | SitesJSE() | Gets SitesJSE |

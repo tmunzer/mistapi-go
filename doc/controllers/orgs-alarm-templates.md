@@ -22,7 +22,7 @@ orgsAlarmTemplates := client.OrgsAlarmTemplates()
 
 # Create Org Alarm Template
 
-Available rules can be found in [List Alarm Definitions#](../../doc/controllers/constants-definitions.md#list-alarm-definitions)
+Available rules can be found in [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions)
 
 The delivery dict is only required if different from the template delivery settings.
 
@@ -232,8 +232,8 @@ ListOrgAlarmTemplates(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -289,7 +289,7 @@ ListOrgSuppressedAlarms(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | Returns both scopes if not specified<br>**Default**: `"site"` |
+| `scope` | [`*models.SuppressedAlarmScopeEnum`](../../doc/models/suppressed-alarm-scope-enum.md) | Query, Optional | Returns both scopes if not specified<br><br>**Default**: `"site"` |
 
 ## Response Type
 

@@ -16,6 +16,8 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
+| `AggregateRoutes` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "172.16.3.0/24") |
+| `AggregateRoutes6` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64") |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DhcpdConfig` | [`*models.SwitchDhcpdConfig`](../../doc/models/switch-dhcpd-config.md) | Optional | - |
@@ -25,8 +27,8 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
 | `ExtraRoutes` | [`map[string]models.ExtraRoute`](../../doc/models/extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.ExtraRoute6`](../../doc/models/extra-route-6.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
+| `IotConfig` | [`map[string]models.SwitchIotPort`](../../doc/models/switch-iot-port.md) | Optional | Property Key is the IOT port name, e.g.:<br><br>* `IN0` or `IN1` for the FPC0 input port with 5V triggered inputs<br>* `OUT1` for the FPC0 output port (can only be triggered by either IN0 or IN1)<br>* "X/IN0`,`X/IN1`and`X/OUT` are used to define IOT ports on VC members |
 | `IpConfig` | [`*models.JunosIpConfig`](../../doc/models/junos-ip-config.md) | Optional | Junos IP Config |
-| `LocalPortConfig` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Optional | Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
@@ -37,6 +39,7 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
 | `OspfAreas` | [`map[string]models.OspfArea`](../../doc/models/ospf-area.md) | Optional | Junos OSPF areas |
 | `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Property key is the network name. Defines the additional IP Addresses configured on the device. |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
+| `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
@@ -44,8 +47,8 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
-| `UseRouterIdAsSourceIp` | `*bool` | Optional | Whether to use it for snmp / syslog / tacplus / radius<br>**Default**: `false` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
+| `UseRouterIdAsSourceIp` | `*bool` | Optional | Whether to use it for snmp / syslog / tacplus / radius<br><br>**Default**: `false` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 | `VrrpConfig` | [`*models.VrrpConfig`](../../doc/models/vrrp-config.md) | Optional | Junos VRRP config |
@@ -55,6 +58,28 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
 
 ```json
 {
+  "aggregate_routes": {
+    "172.16.3.0/24": {
+      "discard": false,
+      "metric": 28,
+      "preference": 30,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "aggregate_routes6": {
+    "2a02:1234:420a:10c9::/64": {
+      "discard": false,
+      "metric": 126,
+      "preference": 30,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
   "extra_routes": {
     "0.0.0.0/0": {
       "via": "192.168.1.10"
@@ -134,18 +159,9 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
         "macs1"
       ],
       "network": "network2",
+      "port_usage": "port_usage0",
       "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "type": "dynamic_gbp",
+      "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -157,21 +173,6 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
     "additional_config_cmds3",
     "additional_config_cmds2"
   ],
-  "created_time": 31.94,
-  "dhcp_snooping": {
-    "all_networks": false,
-    "enable_arp_spoof_check": false,
-    "enable_ip_source_guard": false,
-    "enabled": false,
-    "networks": [
-      "networks8",
-      "networks9"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

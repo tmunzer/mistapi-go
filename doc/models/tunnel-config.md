@@ -13,12 +13,12 @@
 |  --- | --- | --- | --- |
 | `AutoProvision` | [`*models.TunnelConfigAutoProvision`](../../doc/models/tunnel-config-auto-provision.md) | Optional | - |
 | `IkeLifetime` | `*int` | Optional | Only if `provider`==`custom-ipsec` |
-| `IkeMode` | [`*models.TunnelConfigIkeModeEnum`](../../doc/models/tunnel-config-ike-mode-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`<br>**Default**: `"main"` |
+| `IkeMode` | [`*models.TunnelConfigIkeModeEnum`](../../doc/models/tunnel-config-ike-mode-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`<br><br>**Default**: `"main"` |
 | `IkeProposals` | [`[]models.TunnelConfigIkeProposal`](../../doc/models/tunnel-config-ike-proposal.md) | Optional | If `provider`==`custom-ipsec` |
 | `IpsecLifetime` | `*int` | Optional | If `provider`==`custom-ipsec` |
 | `IpsecProposals` | [`[]models.TunnelConfigIpsecProposal`](../../doc/models/tunnel-config-ipsec-proposal.md) | Optional | Only if  `provider`==`custom-ipsec` |
 | `LocalId` | `*string` | Optional | Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
-| `Mode` | [`*models.TunnelConfigTunnelModeEnum`](../../doc/models/tunnel-config-tunnel-mode-enum.md) | Optional | Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`<br>**Default**: `"active-standby"` |
+| `Mode` | [`*models.TunnelConfigTunnelModeEnum`](../../doc/models/tunnel-config-tunnel-mode-enum.md) | Optional | Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`<br><br>**Default**: `"active-standby"` |
 | `Networks` | `[]string` | Optional | If `provider`==`custom-ipsec`, networks reachable via this tunnel |
 | `Primary` | [`*models.TunnelConfigNode`](../../doc/models/tunnel-config-node.md) | Optional | Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `Probe` | [`*models.TunnelConfigProbe`](../../doc/models/tunnel-config-probe.md) | Optional | Only if `provider`==`custom-ipsec` |
@@ -26,7 +26,7 @@
 | `Provider` | [`*models.TunnelConfigProviderEnum`](../../doc/models/tunnel-config-provider-enum.md) | Optional | Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec` |
 | `Psk` | `*string` | Optional | Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `Secondary` | [`*models.TunnelConfigNode`](../../doc/models/tunnel-config-node.md) | Optional | Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
-| `Version` | [`*models.TunnelConfigVersionEnum`](../../doc/models/tunnel-config-version-enum.md) | Optional | Only if `provider`==`custom-gre` or `provider`==`custom-ipsec`. enum: `1`, `2`<br>**Default**: `"2"` |
+| `Version` | [`*models.TunnelConfigVersionEnum`](../../doc/models/tunnel-config-version-enum.md) | Optional | Only if `provider`==`custom-gre` or `provider`==`custom-ipsec`. enum: `1`, `2`<br><br>**Default**: `"2"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

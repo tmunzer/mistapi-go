@@ -16,10 +16,10 @@ Device Profile
 | `Aeroscout` | [`*models.ApAeroscout`](../../doc/models/ap-aeroscout.md) | Optional | Aeroscout AP settings |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `DisableEth1` | `*bool` | Optional | Whether to disable eth1 port<br>**Default**: `false` |
-| `DisableEth2` | `*bool` | Optional | Whether to disable eth2 port<br>**Default**: `false` |
-| `DisableEth3` | `*bool` | Optional | Whether to disable eth3 port<br>**Default**: `false` |
-| `DisableModule` | `*bool` | Optional | Whether to disable module port<br>**Default**: `false` |
+| `DisableEth1` | `*bool` | Optional | Whether to disable eth1 port<br><br>**Default**: `false` |
+| `DisableEth2` | `*bool` | Optional | Whether to disable eth2 port<br><br>**Default**: `false` |
+| `DisableEth3` | `*bool` | Optional | Whether to disable eth3 port<br><br>**Default**: `false` |
+| `DisableModule` | `*bool` | Optional | Whether to disable module port<br><br>**Default**: `false` |
 | `EslConfig` | [`*models.ApEslConfig`](../../doc/models/ap-esl-config.md) | Optional | - |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
@@ -32,13 +32,13 @@ Device Profile
 | `Name` | `*string` | Required | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br>**Default**: `false` |
-| `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | Property key is the interface(s) name (e.g. "eth1,eth2") |
+| `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br><br>**Default**: `false` |
+| `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If spcified, this takes predecence over switch_config (deprecated) |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | Power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SwitchConfig` | [`*models.ApSwitch`](../../doc/models/ap-switch.md) | Optional | For people who want to fully control the vlans (advanced) |
-| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br><br>**Value**: `"ap"` |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsbConfig` | [`*models.ApUsb`](../../doc/models/ap-usb.md) | Optional | USB AP settings<br><br>- Note: if native imagotag is enabled, BLE will be disabled automatically<br>- Note: legacy, new config moved to ESL Config. |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |

@@ -23,6 +23,7 @@
   "accounts": [
     {
       "account_id": "iojzXIJWEuiD73ZvydOfg",
+      "cloud_name": "Tapi.sase.paloaltonetworks.com",
       "company": "Test Company1 Ltd",
       "error": "OAuth token refresh failed, please re-link your account",
       "errors": [
@@ -35,7 +36,10 @@
       "linked_timestamp": 1665465339000,
       "max_daily_api_requests": 5000,
       "name": "Test Compay1 Ltd",
+      "region": "americas",
+      "service_account_name": "Corp SA",
       "smartgroup_name": "CompliantGroup1",
+      "tsg_id": "189953456",
       "client_id": "client_id2",
       "exampleAdditionalProperty": {
         "key1": "val1",

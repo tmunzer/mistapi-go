@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Servers` | `[]string` | Optional | List of DHCP servers; required if `type`==`relay` |
-| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | enum: `relay`<br>**Default**: `"relay"` |
+| `Type` | [`*models.MxedgeTuntermDhcpdConfigTypeEnum`](../../doc/models/mxedge-tunterm-dhcpd-config-type-enum.md) | Optional | enum: `relay`<br><br>**Default**: `"relay"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -21,11 +21,11 @@ func NewSitesSiteTemplates(baseController baseController) *SitesSiteTemplates {
     return &sitesSiteTemplates
 }
 
-// ListSiteSiteTemplateDerived takes context, siteId, resolve as parameters and
+// ListSiteSiteTemplatesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.SiteTemplate data and
 // an error if there was an issue with the request or response.
-// Get derived Site Templates for Site
-func (s *SitesSiteTemplates) ListSiteSiteTemplateDerived(
+// Get the list of derived Site Templates for Site
+func (s *SitesSiteTemplates) ListSiteSiteTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (

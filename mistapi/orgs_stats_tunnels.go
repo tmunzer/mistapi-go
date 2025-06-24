@@ -21,15 +21,16 @@ func NewOrgsStatsTunnels(baseController baseController) *OrgsStatsTunnels {
     return &orgsStatsTunnels
 }
 
-// CountOrgTunnelsStats takes context, orgId, distinct, mType as parameters and
+// CountOrgTunnelsStats takes context, orgId, distinct, mType, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Mist Tunnels Stats
+// Count by Distinct Attributes of Mist Tunnels Stats
 func (o *OrgsStatsTunnels) CountOrgTunnelsStats(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgTunnelCountDistinctEnum,
-    mType *models.OrgTunnelTypeCountEnum) (
+    mType *models.OrgTunnelTypeCountEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/tunnels/count")
@@ -57,6 +58,9 @@ func (o *OrgsStatsTunnels) CountOrgTunnelsStats(
     }
     if mType != nil {
         req.QueryParam("type", *mType)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

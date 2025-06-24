@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AssetId` | `*uuid.UUID` | Optional | UUID of named asset |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
-| `Mac` | `*string` | Optional | MAC address of Wi-Fi client or asset |
+| `AssetId` | `*uuid.UUID` | Optional | Only if `type`==`asset`. UUID of named asset |
+| `Id` | `*uuid.UUID` | Optional | Only if `type`==`sdk`. UUID of the SDK Client |
+| `Mac` | `*string` | Optional | MAC address of Wi-Fi client, SDK Client or Asset |
 | `MapId` | `uuid.UUID` | Required | Map id |
 | `Name` | `*string` | Optional | Name of the client, may be empty |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enum: `enter`, `exit` |
-| `Type` | `string` | Required | - |
+| `Type` | [`models.WebhookZoneEventTypeEnum`](../../doc/models/webhook-zone-event-type-enum.md) | Required | Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi` |
 | `ZoneId` | `uuid.UUID` | Required | Zone id |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -27,14 +27,14 @@
 
 ```json
 {
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "map_id": "00000996-0000-0000-0000-000000000000",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "timestamp": 207.88,
   "trigger": "enter",
-  "type": "type0",
+  "type": "asset",
   "zone_id": "00001712-0000-0000-0000-000000000000",
   "asset_id": "00002608-0000-0000-0000-000000000000",
+  "id": "00001496-0000-0000-0000-000000000000",
   "mac": "mac4",
   "name": "name0",
   "exampleAdditionalProperty": {

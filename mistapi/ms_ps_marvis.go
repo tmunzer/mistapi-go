@@ -21,16 +21,15 @@ func NewMSPsMarvis(baseController baseController) *MSPsMarvis {
     return &mSPsMarvis
 }
 
-// CountMspsMarvisActions takes context, mspId, distinct, limit, page as parameters and
+// CountMspsMarvisActions takes context, mspId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCountMarvisActions data and
 // an error if there was an issue with the request or response.
-// Count Marvis actions
+// Count by Distinct Attributes of Marvis actions
 func (m *MSPsMarvis) CountMspsMarvisActions(
     ctx context.Context,
     mspId uuid.UUID,
     distinct *models.MspMarvisSuggestionsCountDistinctEnum,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCountMarvisActions],
     error) {
     req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/suggestion/count")
@@ -58,9 +57,6 @@ func (m *MSPsMarvis) CountMspsMarvisActions(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCountMarvisActions

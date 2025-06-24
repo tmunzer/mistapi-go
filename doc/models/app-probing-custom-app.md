@@ -17,8 +17,8 @@
 | `Key` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | - |
-| `PacketSize` | `*int` | Optional | If `protocol`==`icmp`<br>**Constraints**: `>= 0`, `<= 65400` |
-| `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `icmp`<br>**Default**: `"http"` |
+| `PacketSize` | `*int` | Optional | If `protocol`==`icmp`<br><br>**Constraints**: `>= 0`, `<= 65400` |
+| `Protocol` | [`*models.AppProbingCustomAppProtocolEnum`](../../doc/models/app-probing-custom-app-protocol-enum.md) | Optional | enum: `http`, `icmp`<br><br>**Default**: `"http"` |
 | `Url` | `*string` | Optional | If `protocol`==`http` |
 | `Vrf` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

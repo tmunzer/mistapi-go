@@ -19,10 +19,10 @@
 
 ```json
 {
-  "mac": "mac4",
+  "mac": "5c5b350001a0",
   "radio_macs": [
-    "radio_macs7",
-    "radio_macs8"
+    "5c5b350001a0",
+    "5c5b350001a1"
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

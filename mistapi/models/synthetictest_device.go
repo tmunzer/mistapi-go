@@ -27,8 +27,10 @@ type SynthetictestDevice struct {
     PortId               *string                          `json:"port_id,omitempty"`
     // if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
     Protocol             *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
-    // If `type`==`lan_connectivity`
+    // If `type`==`curl` or `type`==`lan_connectivity`
     Tenant               *string                          `json:"tenant,omitempty"`
+    // If `type`==`curl`
+    Timeout              *int                             `json:"timeout,omitempty"`
     // SRX only, traceroute udp port
     TracerouteUdpPort    *int                             `json:"traceroute_udp_port,omitempty"`
     // enum: `arp`, `curl`, `dhcp`, `dhcp6`, `dns`, `lan_connectivity`, `radius`, `speedtest`
@@ -46,8 +48,8 @@ type SynthetictestDevice struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SynthetictestDevice) String() string {
     return fmt.Sprintf(
-    	"SynthetictestDevice[Host=%v, Hostname=%v, Ip=%v, Password=%v, PingCount=%v, PingDetails=%v, PingSize=%v, PortId=%v, Protocol=%v, Tenant=%v, TracerouteUdpPort=%v, Type=%v, Url=%v, Username=%v, VlanId=%v, AdditionalProperties=%v]",
-    	s.Host, s.Hostname, s.Ip, s.Password, s.PingCount, s.PingDetails, s.PingSize, s.PortId, s.Protocol, s.Tenant, s.TracerouteUdpPort, s.Type, s.Url, s.Username, s.VlanId, s.AdditionalProperties)
+    	"SynthetictestDevice[Host=%v, Hostname=%v, Ip=%v, Password=%v, PingCount=%v, PingDetails=%v, PingSize=%v, PortId=%v, Protocol=%v, Tenant=%v, Timeout=%v, TracerouteUdpPort=%v, Type=%v, Url=%v, Username=%v, VlanId=%v, AdditionalProperties=%v]",
+    	s.Host, s.Hostname, s.Ip, s.Password, s.PingCount, s.PingDetails, s.PingSize, s.PortId, s.Protocol, s.Tenant, s.Timeout, s.TracerouteUdpPort, s.Type, s.Url, s.Username, s.VlanId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SynthetictestDevice.
@@ -56,7 +58,7 @@ func (s SynthetictestDevice) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id"); err != nil {
+        "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "timeout", "traceroute_udp_port", "type", "url", "username", "vlan_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -96,6 +98,9 @@ func (s SynthetictestDevice) toMap() map[string]any {
     if s.Tenant != nil {
         structMap["tenant"] = s.Tenant
     }
+    if s.Timeout != nil {
+        structMap["timeout"] = s.Timeout
+    }
     if s.TracerouteUdpPort != nil {
         structMap["traceroute_udp_port"] = s.TracerouteUdpPort
     }
@@ -124,7 +129,7 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "traceroute_udp_port", "type", "url", "username", "vlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "hostname", "ip", "password", "ping_count", "ping_details", "ping_size", "port_id", "protocol", "tenant", "timeout", "traceroute_udp_port", "type", "url", "username", "vlan_id")
     if err != nil {
     	return err
     }
@@ -140,6 +145,7 @@ func (s *SynthetictestDevice) UnmarshalJSON(input []byte) error {
     s.PortId = temp.PortId
     s.Protocol = temp.Protocol
     s.Tenant = temp.Tenant
+    s.Timeout = temp.Timeout
     s.TracerouteUdpPort = temp.TracerouteUdpPort
     s.Type = *temp.Type
     s.Url = temp.Url
@@ -160,6 +166,7 @@ type tempSynthetictestDevice  struct {
     PortId            *string                          `json:"port_id,omitempty"`
     Protocol          *SynthetictestDeviceProtocolEnum `json:"protocol,omitempty"`
     Tenant            *string                          `json:"tenant,omitempty"`
+    Timeout           *int                             `json:"timeout,omitempty"`
     TracerouteUdpPort *int                             `json:"traceroute_udp_port,omitempty"`
     Type              *SynthetictestTypeEnum           `json:"type"`
     Url               *string                          `json:"url,omitempty"`

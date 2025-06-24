@@ -63,8 +63,8 @@ CountSiteWebhooksDeliveries(
 | `distinct` | [`*models.WebhookDeliveryDistinctEnum`](../../doc/models/webhook-delivery-distinct-enum.md) | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -79,9 +79,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mError := "Webhook delivery failed"
 
-
-
+statusCode := 200
 
 status := models.WebhookDeliveryStatusEnum_FAILURE
 
@@ -97,7 +97,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesWebhooks.CountSiteWebhooksDeliveries(ctx, siteId, webhookId, nil, nil, &status, &topic, &distinct, nil, nil, &duration, &limit)
+apiResponse, err := sitesWebhooks.CountSiteWebhooksDeliveries(ctx, siteId, webhookId, &mError, &statusCode, &status, &topic, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -138,7 +138,7 @@ if err != nil {
 
 # Create Site Webhook
 
-Webhook defines a webhook, modeled after [github’s model](https://developer.github.com/webhooks/).
+Webhook defines a webhook, modeled after [github\u2019s model](https://developer.github.com/webhooks/).
 
 There is two types of webhooks:
 
@@ -162,10 +162,17 @@ Topics that correspond to client raw data for different client types.
 * `wifi-conn-raw` - Raw data from packets emitted by connected devices
 * `wifi-unconn-raw` - Raw data from packets emitted by unconnected devices (passive)
 
-###### Rules for configuring client raw data webhooks
+### Asset Filtering for Client Raw Data Webhooks
 
-1. Only one instance of a webhook object containing a client raw data webhook topic is allowed. (a site level entry will override an org level entry for the client raw data webhook topic in question)
-2. Only one client raw data webhook topic is allowed per `http-post` message to webhooks api
+The `asset-raw-rssi` webhook topic supports filtering of raw data by incorporating asset filters in the webhook payload.  
+The filter topic allows multiple Webhooks to receive a subset of the a`asset-raw-rssi` data by assigning asset filters to a given webhook. The `asset-raw-rssi` filter topic is filtered-asset-rssi.
+
+A webhook assigned to a filter topic can take a list of AssetFilter IDs, which act as inclusive filters to determine which named asset and filtered asset data is sent to the assigned filter topic. Filters can be applied to multiple webhooks, and the same data can be sent to multiple filter topics.
+
+### Rules for Configuring Client Raw Data Webhooks
+
+1. Only four instances of a webhook object can contain a specific filter topic. - A site-level entry will override an org-level entry for the same client raw data webhook topic.
+2. An assigned asset filter must exist and belong to the same site as the webhook it is assigned to.
 
 ```go
 CreateSiteWebhook(
@@ -246,7 +253,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Bad request | [`ResponseDetailStringException`](../../doc/models/response-detail-string-exception.md) |
+| 400 | Bad Syntax | [`ResponseHttp400WebhookException`](../../doc/models/response-http-400-webhook-exception.md) |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -401,8 +408,8 @@ ListSiteWebhooks(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -558,8 +565,8 @@ SearchSiteWebhooksDeliveries(
 | `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | Webhook topic |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -574,9 +581,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mError := "Webhook delivery failed"
 
-
-
+statusCode := 200
 
 status := models.WebhookDeliveryStatusEnum_FAILURE
 
@@ -590,7 +597,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesWebhooks.SearchSiteWebhooksDeliveries(ctx, siteId, webhookId, nil, nil, &status, &topic, nil, nil, &duration, &limit)
+apiResponse, err := sitesWebhooks.SearchSiteWebhooksDeliveries(ctx, siteId, webhookId, &mError, &statusCode, &status, &topic, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

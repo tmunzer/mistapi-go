@@ -11,15 +11,14 @@ mSPsMarvis := client.MSPsMarvis()
 
 # Count Msps Marvis Actions
 
-Count Marvis actions
+Count by Distinct Attributes of Marvis actions
 
 ```go
 CountMspsMarvisActions(
     ctx context.Context,
     mspId uuid.UUID,
     distinct *models.MspMarvisSuggestionsCountDistinctEnum,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCountMarvisActions],
     error)
 ```
@@ -30,8 +29,7 @@ CountMspsMarvisActions(
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.MspMarvisSuggestionsCountDistinctEnum`](../../doc/models/msp-marvis-suggestions-count-distinct-enum.md) | Query, Optional | **Default**: `"org_id"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -48,9 +46,7 @@ distinct := models.MspMarvisSuggestionsCountDistinctEnum_ORGID
 
 limit := 100
 
-page := 1
-
-apiResponse, err := mSPsMarvis.CountMspsMarvisActions(ctx, mspId, &distinct, &limit, &page)
+apiResponse, err := mSPsMarvis.CountMspsMarvisActions(ctx, mspId, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

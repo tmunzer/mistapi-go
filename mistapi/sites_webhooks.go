@@ -73,9 +73,9 @@ func (s *SitesWebhooks) ListSiteWebhooks(
 // CreateSiteWebhook takes context, siteId, body as parameters and
 // returns an models.ApiResponse with models.Webhook data and
 // an error if there was an issue with the request or response.
-// Webhook defines a webhook, modeled after [github’s model](https://developer.github.com/webhooks/).
+// Webhook defines a webhook, modeled after [github\u2019s model](https://developer.github.com/webhooks/).
 // There is two types of webhooks:
-// * webhooks ([examples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace/folder/224925-be01e694-7253-4195-8563-78e2a745e114))
+// * webhooks ([examples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace/folder/224925-be01e694-7253-4195-8563-78e2a745e114))        
 // * raw data webhooks ([examples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace/folder/224925-e2d5d5f8-4bdb-4efc-93e4-90f4b33d0b2b))
 // ##### Webhooks
 // Webhooks can be configured at the org level (subset of topics only) and at the site level. It is possible to have multiple topics in the same webhook configuration and/or to have multiple webhooks configured at the same time.
@@ -87,9 +87,13 @@ func (s *SitesWebhooks) ListSiteWebhooks(
 // * `discovered-raw-rssi` - Raw data from packets emitted by passive BLE devices 
 // * `wifi-conn-raw` - Raw data from packets emitted by connected devices 
 // * `wifi-unconn-raw` - Raw data from packets emitted by unconnected devices (passive)
-// ###### Rules for configuring client raw data webhooks
-// 1. Only one instance of a webhook object containing a client raw data webhook topic is allowed. (a site level entry will override an org level entry for the client raw data webhook topic in question)
-// 2. Only one client raw data webhook topic is allowed per `http-post` message to webhooks api
+// ### Asset Filtering for Client Raw Data Webhooks
+// The `asset-raw-rssi` webhook topic supports filtering of raw data by incorporating asset filters in the webhook payload.  
+// The filter topic allows multiple Webhooks to receive a subset of the a`asset-raw-rssi` data by assigning asset filters to a given webhook. The `asset-raw-rssi` filter topic is filtered-asset-rssi.
+// A webhook assigned to a filter topic can take a list of AssetFilter IDs, which act as inclusive filters to determine which named asset and filtered asset data is sent to the assigned filter topic. Filters can be applied to multiple webhooks, and the same data can be sent to multiple filter topics.
+// ### Rules for Configuring Client Raw Data Webhooks
+// 1. Only four instances of a webhook object can contain a specific filter topic. - A site-level entry will override an org-level entry for the same client raw data webhook topic.
+// 2. An assigned asset filter must exist and belong to the same site as the webhook it is assigned to.
 func (s *SitesWebhooks) CreateSiteWebhook(
     ctx context.Context,
     siteId uuid.UUID,
@@ -110,7 +114,7 @@ func (s *SitesWebhooks) CreateSiteWebhook(
         ),
     )
     req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad request", Unmarshaller: errors.NewResponseDetailString},
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400Webhook},
         "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
         "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},

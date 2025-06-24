@@ -39,7 +39,7 @@ AddOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
+| `body` | `[]string` | Body, Optional | Request Body<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -117,7 +117,7 @@ if err != nil {
 
 # Count Org Inventory
 
-Count in the Org Inventory
+Count by Distinct Attributes of in the Org Inventory
 
 ```go
 CountOrgInventory(
@@ -125,8 +125,7 @@ CountOrgInventory(
     orgId uuid.UUID,
     mType *models.DeviceTypeDefaultApEnum,
     distinct *models.InventoryCountDistinctEnum,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -138,8 +137,7 @@ CountOrgInventory(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.InventoryCountDistinctEnum`](../../doc/models/inventory-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -158,9 +156,7 @@ distinct := models.InventoryCountDistinctEnum_MODEL
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit, &page)
+apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -325,17 +321,26 @@ Get Org Inventory
 
 ### VC (Virtual-Chassis) Management
 
-Ideally VC should be managed as a single device - where - one managed entity where config / monitoring is anchored against (with a stable identify MAC) - all members appears in the inventory
+Starting with the April release, Virtual Chassis devices in Mist will now use
+a cloud-assigned virtual MAC address as the device ID, instead of the physical
+MAC address of the FPC0 member.
 
-In our implementation, we strive to achieve that without manual user configurations by
+**Retrieving the device ID or Site ID of a Virtual Chassis:**
 
-1. during claim or adoption a VC, we require FPC0 to exist and will use its MAC as identify for the entire chassis
-2. other VC members will be automatically populated when they’re all present
+1. Use this API call with the query parameters `vc=true` and `mac` set to the MAC address of the VC member.
 
-The perceivable result is
-
-1. from `/sites/{site_id}/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members
-2. from `/orgs/{org_id}/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
+2. In the response, check the `vc_mac` and `mac` fields:
+   
+   - If `vc_mac` is empty or not present, the device is not part of a Virtual Chassis.
+     The `device_id` and `site_id` will be available in the device information.
+   
+   - If `vc_mac` differs from the `mac` field, the device is part of a Virtual Chassis
+     but is not the device used to generate the Virtual Chassis ID. Use the `vc_mac` value with the [Get Org Inventory](../../doc/controllers/orgs-inventory.md#get-org-inventory)
+     API call to retrieve the `device_id` and `site_id`.
+   
+   - If `vc_mac` matches the `mac` field, the device is the device used to generate the Virtual Chassis ID and he `device_id` and `site_id` will be available
+     in the device information.  
+     This is the case if the device is the Virtual Chassis "virtual device" (MAC starting with `020003`) or if the device is the Virtual Chassis FPC0 and the Virtual Chassis is still using the FPC0 MAC address to generate the device ID.
 
 ```go
 GetOrgInventory(
@@ -345,7 +350,7 @@ GetOrgInventory(
     model *string,
     mType *models.DeviceTypeEnum,
     mac *string,
-    siteId *string,
+    siteId *uuid.UUID,
     vcMac *string,
     vc *bool,
     unassigned *bool,
@@ -365,13 +370,13 @@ GetOrgInventory(
 | `model` | `*string` | Query, Optional | Device model |
 | `mType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | MAC address |
-| `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site id if assigned, null if not assigned |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
-| `vc` | `*bool` | Query, Optional | To display Virtual Chassis members<br>**Default**: `false` |
-| `unassigned` | `*bool` | Query, Optional | To display Unassigned devices<br>**Default**: `true` |
+| `vc` | `*bool` | Query, Optional | To display Virtual Chassis members<br><br>**Default**: `false` |
+| `unassigned` | `*bool` | Query, Optional | To display Unassigned devices<br><br>**Default**: `true` |
 | `modifiedAfter` | `*int` | Query, Optional | Filter on inventory last modified time, in epoch |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -384,29 +389,29 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+serial := "FXLH2015150025"
+
+model := "AP43"
 
 
 
+mac := "5c5b350e0001"
 
+siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
-
-
-
-
-
-
+vcMac := "5c5b350e0001"
 
 vc := false
 
 unassigned := true
 
-
+modifiedAfter := 1703003296
 
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, nil, nil, nil, nil, nil, nil, &vc, &unassigned, nil, &limit, &page)
+apiResponse, err := orgsInventory.GetOrgInventory(ctx, orgId, &serial, &model, nil, &mac, &siteId, &vcMac, &vc, &unassigned, &modifiedAfter, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -503,7 +508,7 @@ This API also supports replacement of Mist Edges. This API copies device agnosti
 Mist manufactured Mist Edges will be reset to factory settings but will still be in Inventory.Brownfield or VM’s will be
 deleted from Inventory
 
-**Note:** For Gateway devices only like-for-like replacements (can only replace a SRX320 with a SRX320 and not some otehr model) are allowed.
+**Note:** For Gateway devices only like-for-like replacements (can only replace a SRX320 with a SRX320 and not some other model) are allowed.
 
 ```go
 ReplaceOrgDevices(
@@ -586,7 +591,7 @@ SearchOrgInventory(
     mac *string,
     vcMac *string,
     masterMac *string,
-    siteId *string,
+    siteId *uuid.UUID,
     serial *string,
     master *string,
     sku *string,
@@ -608,15 +613,15 @@ SearchOrgInventory(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
 | `masterMac` | `*string` | Query, Optional | Master device mac for virtual mac cluster |
-| `siteId` | `*string` | Query, Optional | Site id if assigned, null if not assigned |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site id if assigned, null if not assigned |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `master` | `*string` | Query, Optional | true / false |
 | `sku` | `*string` | Query, Optional | Device sku |
 | `version` | `*string` | Query, Optional | Device version |
 | `status` | `*string` | Query, Optional | Device status |
 | `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -631,23 +636,23 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
+mac := "5c5b350e0001"
 
+vcMac := "5c5b350e0001"
 
+masterMac := "5c5b350e0001"
 
+siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
+serial := "FXLH2015150025"
 
+master := "true"
 
+sku := "AP43-WW"
 
+version := "1.0.0"
 
-
-
-
-
-
-
-
-
-
+status := "connected"
 
 
 
@@ -655,7 +660,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page)
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

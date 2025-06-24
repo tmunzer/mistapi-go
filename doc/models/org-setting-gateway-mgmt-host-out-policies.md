@@ -13,10 +13,9 @@ optional, for some of the host-out traffic, the path preference can be specified
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Dns` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
-| `Mist` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
-| `Ntp` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
-| `Pim` | [`*models.OrgSettingGatewayMgmtHostOutPolicy`](../../doc/models/org-setting-gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Dns` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Ntp` | [`*models.GatewayMgmtHostOutPolicy`](../../doc/models/gateway-mgmt-host-out-policy.md) | Optional | - |
+| `Syslog` | [`*models.GatewayMgmtHostOutPolicySyslog`](../../doc/models/gateway-mgmt-host-out-policy-syslog.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -30,13 +29,6 @@ optional, for some of the host-out traffic, the path preference can be specified
       "key2": "val2"
     }
   },
-  "mist": {
-    "path_preference": "path_preference6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
   "ntp": {
     "path_preference": "path_preference4",
     "exampleAdditionalProperty": {
@@ -44,8 +36,19 @@ optional, for some of the host-out traffic, the path preference can be specified
       "key2": "val2"
     }
   },
-  "pim": {
-    "path_preference": "path_preference0",
+  "syslog": {
+    "path_preference": "path_preference2",
+    "servers": [
+      {
+        "host": "host4",
+        "name": "name2",
+        "path_preference": "path_preference8",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
+      }
+    ],
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

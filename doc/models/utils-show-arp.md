@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 300` |
-| `Interval` | `*int` | Optional | Rate at which output will refresh<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 10` |
+| `Duration` | `*int` | Optional | Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 300` |
+| `Interval` | `*int` | Optional | Rate at which output will refresh<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 10` |
 | `Ip` | `*string` | Optional | IP Address |
 | `PortId` | `*string` | Optional | Device Port ID |
 | `Vrf` | `*string` | Optional | VRF Name |

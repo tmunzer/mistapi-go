@@ -8,6 +8,7 @@ enum:
 * `gbp_resource`: can only be used in `dst_tags`
 * `mac`
 * `network`
+* `port_usage`
 * `radius_group`
 * `resource`: can only be used in `dst_tags`
 * `static_gbp`: applying gbp tag against matching conditions
@@ -26,6 +27,7 @@ enum:
 | `gbp_resource` |
 | `mac` |
 | `network` |
+| `port_usage` |
 | `radius_group` |
 | `resource` |
 | `static_gbp` |

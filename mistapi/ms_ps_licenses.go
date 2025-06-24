@@ -22,11 +22,11 @@ func NewMSPsLicenses(baseController baseController) *MSPsLicenses {
     return &mSPsLicenses
 }
 
-// ClaimMspLicence takes context, mspId, body as parameters and
+// ClaimMspLicense takes context, mspId, body as parameters and
 // returns an models.ApiResponse with models.ResponseClaimLicense data and
 // an error if there was an issue with the request or response.
 // Claim an Order by Activation Code
-func (m *MSPsLicenses) ClaimMspLicence(
+func (m *MSPsLicenses) ClaimMspLicense(
     ctx context.Context,
     mspId uuid.UUID,
     body *models.CodeString) (
@@ -152,7 +152,7 @@ func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
 // ListMspOrgLicenses takes context, mspId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.
-// Get List of MSP Licences
+// Get List of MSP Licenses
 func (m *MSPsLicenses) ListMspOrgLicenses(
     ctx context.Context,
     mspId uuid.UUID) (

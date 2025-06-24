@@ -78,13 +78,6 @@ func (s *SitesEVPNTopologies) ListSiteEvpnTopologies(
 // 1. You can use `core` / `distribution` / `access` to create a CLOS topology
 // 2. You can also use `core` / `distribution` to form a 2-tier EVPN topology where ESI-Lag is configured distribution to connect to access switches
 // 3. In a small/medium campus, `collapsed-core` can be used where core switches are the inter-connected to do EVPN
-// 4. The API uses a few pre-defined parameters and best-practices to generate the configs. It can be customized by using `evpn_options` in Site Setting / Network Template. (e.g. a different subnet for the underlay)
-// #### Collapsed Core
-// In a small-medium campus, EVPN can also be enabled only at the core switches (up to 4) by assigning all participating switches with `collapsed-core role`. When there are more than 2 switches, a ring-like topology will be formed.
-// #### ESI-Lag
-// If the access switches does not have EVPN support, you can take advantage of EVPN by setting up ESI-Lag on distribution switches
-// #### Leaf / Access / Collapsed-Core
-// For leaf nodes in a EVPN topology, you’d have to configure the IPs for networks that would participate in EVPN. Optionally, VRFs to isolate traffic from one tenant verus another
 func (s *SitesEVPNTopologies) CreateSiteEvpnTopology(
     ctx context.Context,
     siteId uuid.UUID,

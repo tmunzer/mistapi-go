@@ -21,11 +21,11 @@ func NewSitesNetworkTemplates(baseController baseController) *SitesNetworkTempla
     return &sitesNetworkTemplates
 }
 
-// ListSiteNetworkTemplateDerived takes context, siteId, resolve as parameters and
+// ListSiteNetworkTemplatesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with models.NetworkTemplate data and
 // an error if there was an issue with the request or response.
-// Get derived Network Templates for Site
-func (s *SitesNetworkTemplates) ListSiteNetworkTemplateDerived(
+// Get the list of derived Network Templates a Site
+func (s *SitesNetworkTemplates) ListSiteNetworkTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (

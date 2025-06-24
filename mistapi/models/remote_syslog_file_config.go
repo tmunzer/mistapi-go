@@ -9,6 +9,8 @@ import (
 type RemoteSyslogFileConfig struct {
     Archive              *RemoteSyslogArchive   `json:"archive,omitempty"`
     Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
+    // Only if `protocol`==`tcp`
+    EnableTls            *bool                  `json:"enable_tls,omitempty"`
     ExplicitPriority     *bool                  `json:"explicit_priority,omitempty"`
     File                 *string                `json:"file,omitempty"`
     Match                *string                `json:"match,omitempty"`
@@ -20,8 +22,8 @@ type RemoteSyslogFileConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RemoteSyslogFileConfig) String() string {
     return fmt.Sprintf(
-    	"RemoteSyslogFileConfig[Archive=%v, Contents=%v, ExplicitPriority=%v, File=%v, Match=%v, StructuredData=%v, AdditionalProperties=%v]",
-    	r.Archive, r.Contents, r.ExplicitPriority, r.File, r.Match, r.StructuredData, r.AdditionalProperties)
+    	"RemoteSyslogFileConfig[Archive=%v, Contents=%v, EnableTls=%v, ExplicitPriority=%v, File=%v, Match=%v, StructuredData=%v, AdditionalProperties=%v]",
+    	r.Archive, r.Contents, r.EnableTls, r.ExplicitPriority, r.File, r.Match, r.StructuredData, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogFileConfig.
@@ -30,7 +32,7 @@ func (r RemoteSyslogFileConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "archive", "contents", "explicit_priority", "file", "match", "structured_data"); err != nil {
+        "archive", "contents", "enable_tls", "explicit_priority", "file", "match", "structured_data"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -45,6 +47,9 @@ func (r RemoteSyslogFileConfig) toMap() map[string]any {
     }
     if r.Contents != nil {
         structMap["contents"] = r.Contents
+    }
+    if r.EnableTls != nil {
+        structMap["enable_tls"] = r.EnableTls
     }
     if r.ExplicitPriority != nil {
         structMap["explicit_priority"] = r.ExplicitPriority
@@ -69,7 +74,7 @@ func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "archive", "contents", "explicit_priority", "file", "match", "structured_data")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "archive", "contents", "enable_tls", "explicit_priority", "file", "match", "structured_data")
     if err != nil {
     	return err
     }
@@ -77,6 +82,7 @@ func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
     
     r.Archive = temp.Archive
     r.Contents = temp.Contents
+    r.EnableTls = temp.EnableTls
     r.ExplicitPriority = temp.ExplicitPriority
     r.File = temp.File
     r.Match = temp.Match
@@ -88,6 +94,7 @@ func (r *RemoteSyslogFileConfig) UnmarshalJSON(input []byte) error {
 type tempRemoteSyslogFileConfig  struct {
     Archive          *RemoteSyslogArchive  `json:"archive,omitempty"`
     Contents         []RemoteSyslogContent `json:"contents,omitempty"`
+    EnableTls        *bool                 `json:"enable_tls,omitempty"`
     ExplicitPriority *bool                 `json:"explicit_priority,omitempty"`
     File             *string               `json:"file,omitempty"`
     Match            *string               `json:"match,omitempty"`

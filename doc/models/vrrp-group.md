@@ -15,7 +15,7 @@ Junos VRRP group
 |  --- | --- | --- | --- |
 | `AuthKey` | `*string` | Optional | If `auth_type`==`md5` |
 | `AuthPassword` | `*string` | Optional | If `auth_type`==`simple` |
-| `AuthType` | [`*models.VrrpGroupAuthTypeEnum`](../../doc/models/vrrp-group-auth-type-enum.md) | Optional | enum: `md5`, `simple`<br>**Default**: `"md5"` |
+| `AuthType` | [`*models.VrrpGroupAuthTypeEnum`](../../doc/models/vrrp-group-auth-type-enum.md) | Optional | enum: `md5`, `simple`<br><br>**Default**: `"md5"` |
 | `Networks` | [`map[string]models.VrrpGroupNetwork`](../../doc/models/vrrp-group-network.md) | Optional | Property key is the network name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

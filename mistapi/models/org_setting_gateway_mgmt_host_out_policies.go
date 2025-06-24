@@ -8,19 +8,18 @@ import (
 // OrgSettingGatewayMgmtHostOutPolicies represents a OrgSettingGatewayMgmtHostOutPolicies struct.
 // optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
 type OrgSettingGatewayMgmtHostOutPolicies struct {
-    Dns                  *OrgSettingGatewayMgmtHostOutPolicy `json:"dns,omitempty"`
-    Mist                 *OrgSettingGatewayMgmtHostOutPolicy `json:"mist,omitempty"`
-    Ntp                  *OrgSettingGatewayMgmtHostOutPolicy `json:"ntp,omitempty"`
-    Pim                  *OrgSettingGatewayMgmtHostOutPolicy `json:"pim,omitempty"`
-    AdditionalProperties map[string]interface{}              `json:"_"`
+    Dns                  *GatewayMgmtHostOutPolicy       `json:"dns,omitempty"`
+    Ntp                  *GatewayMgmtHostOutPolicy       `json:"ntp,omitempty"`
+    Syslog               *GatewayMgmtHostOutPolicySyslog `json:"syslog,omitempty"`
+    AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingGatewayMgmtHostOutPolicies,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingGatewayMgmtHostOutPolicies) String() string {
     return fmt.Sprintf(
-    	"OrgSettingGatewayMgmtHostOutPolicies[Dns=%v, Mist=%v, Ntp=%v, Pim=%v, AdditionalProperties=%v]",
-    	o.Dns, o.Mist, o.Ntp, o.Pim, o.AdditionalProperties)
+    	"OrgSettingGatewayMgmtHostOutPolicies[Dns=%v, Ntp=%v, Syslog=%v, AdditionalProperties=%v]",
+    	o.Dns, o.Ntp, o.Syslog, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtHostOutPolicies.
@@ -29,7 +28,7 @@ func (o OrgSettingGatewayMgmtHostOutPolicies) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "dns", "mist", "ntp", "pim"); err != nil {
+        "dns", "ntp", "syslog"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -42,14 +41,11 @@ func (o OrgSettingGatewayMgmtHostOutPolicies) toMap() map[string]any {
     if o.Dns != nil {
         structMap["dns"] = o.Dns.toMap()
     }
-    if o.Mist != nil {
-        structMap["mist"] = o.Mist.toMap()
-    }
     if o.Ntp != nil {
         structMap["ntp"] = o.Ntp.toMap()
     }
-    if o.Pim != nil {
-        structMap["pim"] = o.Pim.toMap()
+    if o.Syslog != nil {
+        structMap["syslog"] = o.Syslog.toMap()
     }
     return structMap
 }
@@ -62,23 +58,21 @@ func (o *OrgSettingGatewayMgmtHostOutPolicies) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "mist", "ntp", "pim")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "ntp", "syslog")
     if err != nil {
     	return err
     }
     o.AdditionalProperties = additionalProperties
     
     o.Dns = temp.Dns
-    o.Mist = temp.Mist
     o.Ntp = temp.Ntp
-    o.Pim = temp.Pim
+    o.Syslog = temp.Syslog
     return nil
 }
 
 // tempOrgSettingGatewayMgmtHostOutPolicies is a temporary struct used for validating the fields of OrgSettingGatewayMgmtHostOutPolicies.
 type tempOrgSettingGatewayMgmtHostOutPolicies  struct {
-    Dns  *OrgSettingGatewayMgmtHostOutPolicy `json:"dns,omitempty"`
-    Mist *OrgSettingGatewayMgmtHostOutPolicy `json:"mist,omitempty"`
-    Ntp  *OrgSettingGatewayMgmtHostOutPolicy `json:"ntp,omitempty"`
-    Pim  *OrgSettingGatewayMgmtHostOutPolicy `json:"pim,omitempty"`
+    Dns    *GatewayMgmtHostOutPolicy       `json:"dns,omitempty"`
+    Ntp    *GatewayMgmtHostOutPolicy       `json:"ntp,omitempty"`
+    Syslog *GatewayMgmtHostOutPolicySyslog `json:"syslog,omitempty"`
 }

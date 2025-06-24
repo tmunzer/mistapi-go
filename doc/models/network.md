@@ -14,7 +14,7 @@ Networks are usually subnets that have cross-site significance. `networks`in Org
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `DisallowMistServices` | `*bool` | Optional | Whether to disallow Mist Devices in the network<br>**Default**: `false` |
+| `DisallowMistServices` | `*bool` | Optional | Whether to disallow Mist Devices in the network<br><br>**Default**: `false` |
 | `Gateway` | `*string` | Optional | - |
 | `Gateway6` | `*string` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |

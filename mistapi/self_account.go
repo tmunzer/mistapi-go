@@ -138,6 +138,43 @@ func (s *SelfAccount) UpdateSelf(
     return models.NewApiResponse(result, resp), err
 }
 
+// GetSelfLoginFailures takes context as parameters and
+// returns an models.ApiResponse with models.LoginFailures data and
+// an error if there was an issue with the request or response.
+// Get a list of failed login attempts across all Orgs for the current admin
+func (s *SelfAccount) GetSelfLoginFailures(ctx context.Context) (
+    models.ApiResponse[models.LoginFailures],
+    error) {
+    req := s.prepareRequest(ctx, "GET", "/api/v1/self/login_failures")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    var result models.LoginFailures
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.LoginFailures](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // UpdateSelfEmail takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

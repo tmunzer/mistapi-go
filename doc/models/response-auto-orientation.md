@@ -11,16 +11,47 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `State` | [`*models.AutoOrientationStateEnum`](../../doc/models/auto-orientation-state-enum.md) | Optional | The state of auto orient for a given map derived from an Enum. enum: `Enqueued`, `Not Started`, `Oriented` |
-| `TimeQueued` | `*float64` | Optional | Time when auto orient process was last queued for this map |
+| `Devices` | [`map[string]models.ResponseAutoOrientationDevice`](../../doc/models/response-auto-orientation-device.md) | Optional | Contains the validation status of each device. The Property Key is the device MAC Address. |
+| `EstimatedRuntime` | `*int` | Optional | Estimated runtime for the process in seconds |
+| `Reason` | `*string` | Optional | Provides the reason for the status. |
+| `Started` | `*bool` | Optional | Indicates whether the auto orient process has started. |
+| `Valid` | `*bool` | Optional | Indicates whether the auto orient request is valid. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "state": "Oriented",
-  "time_queued": 82.0,
+  "devices": {
+    "key0": {
+      "reason": "reason0",
+      "valid": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key1": {
+      "reason": "reason0",
+      "valid": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    "key2": {
+      "reason": "reason0",
+      "valid": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  },
+  "estimated_runtime": 142,
+  "reason": "reason4",
+  "started": false,
+  "valid": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

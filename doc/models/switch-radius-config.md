@@ -14,12 +14,12 @@ Junos Radius config
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AcctImmediateUpdate` | `*bool` | Optional | - |
-| `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 65535` |
+| `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | **Constraints**: *Unique Items Required* |
-| `AuthServerSelection` | [`*models.SwitchRadiusConfigAuthServerSelectionEnum`](../../doc/models/switch-radius-config-auth-server-selection-enum.md) | Optional | enum: `ordered`, `unordered`<br>**Default**: `"ordered"` |
+| `AuthServerSelection` | [`*models.SwitchRadiusConfigAuthServerSelectionEnum`](../../doc/models/switch-radius-config-auth-server-selection-enum.md) | Optional | enum: `ordered`, `unordered`<br><br>**Default**: `"ordered"` |
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `AuthServersRetries` | `*int` | Optional | Radius auth session retries<br>**Default**: `3` |
-| `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout<br>**Default**: `5` |
+| `AuthServersRetries` | `*int` | Optional | Radius auth session retries<br><br>**Default**: `3` |
+| `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout<br><br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |
 | `CoaPort` | [`*models.RadiusCoaPort`](../../doc/models/containers/radius-coa-port.md) | Optional | Radius CoA Port, value from 1 to 65535, default is 3799 |
 | `FastDot1xTimers` | `*bool` | Optional | **Default**: `false` |

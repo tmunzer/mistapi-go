@@ -3,7 +3,7 @@
 
 **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.
 
-Events specific fields for other alarm event type can be found with API [List Alarm Definitions#](../../doc/controllers/constants-definitions.md#list-alarm-definitions), under "fields" array of /alarm_defs response object.
+Events specific fields for other alarm event type can be found with API [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions), under "fields" array of /alarm_defs response object.
 
 *This model accepts additional fields of type interface{}.*
 
@@ -15,8 +15,8 @@ Events specific fields for other alarm event type can be found with API [List Al
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookAlarmEvent`](../../doc/models/webhook-alarm-event.md) | Required | List of events<br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | Topic subscribed to<br>**Default**: `"alarms"` |
+| `Events` | [`[]models.WebhookAlarmEvent`](../../doc/models/webhook-alarm-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"alarms"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

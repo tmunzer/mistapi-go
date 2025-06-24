@@ -357,7 +357,7 @@ func TestSamplesWebhooksTestSiteSle(t *testing.T) {
 func TestSamplesWebhooksTestZone(t *testing.T) {
     ctx := context.Background()
     var body models.WebhookZone
-    errBody := json.Unmarshal([]byte(`{"events":[{"asset_id":"b4695157-0d1d-4da0-8f9e-5c53149389e4","id":"485f6eca-6276-4993-bfeb-54cbbbba5f08","mac":"string","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","name":"string","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0,"trigger":"enter","type":"string","zone_id":"4495020a-236f-46e0-9453-e3f9cc6476f4"}],"topic":"zone"}`), &body)
+    errBody := json.Unmarshal([]byte(`{"events":[{"asset_id":"b4695157-0d1d-4da0-8f9e-5c53149389e4","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","name":"asset_name","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0,"trigger":"enter","type":"asset","zone_id":"4495020a-236f-46e0-9453-e3f9cc6476f4"}],"topic":"zone"}`), &body)
     if errBody != nil {
         t.Errorf("Cannot parse the model object.")
     }

@@ -15,9 +15,9 @@ Auto Upgrade Settings
 |  --- | --- | --- | --- |
 | `CustomVersions` | `map[string]string` | Optional | Custom versions for different models. Property key is the model name (e.g. "AP41") |
 | `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
-| `Enabled` | `*bool` | Optional | Whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)<br><br>**Default**: `false` |
 | `TimeOfDay` | `*string` | Optional | `any` / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time |
-| `Version` | [`*models.SiteAutoUpgradeVersionEnum`](../../doc/models/site-auto-upgrade-version-enum.md) | Optional | desired version. enum: `beta`, `custom`, `stable`<br>**Default**: `"stable"` |
+| `Version` | [`*models.SiteAutoUpgradeVersionEnum`](../../doc/models/site-auto-upgrade-version-enum.md) | Optional | desired version. enum: `beta`, `custom`, `stable`<br><br>**Default**: `"stable"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

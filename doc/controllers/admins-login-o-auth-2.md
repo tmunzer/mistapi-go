@@ -44,7 +44,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-provider := "provider8"
+provider := "google"
 
 forward := "https://manage.mist.com/oauth/callback.html"
 
@@ -107,7 +107,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```go
 ctx := context.Background()
 
-provider := "provider8"
+provider := "google"
 
 body := models.CodeString{
     Code:                 "4/S9tegDeLkrYg0L9pWNXV4cgMVbbr3SR9t693A2kSHzw",
@@ -159,7 +159,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```go
 ctx := context.Background()
 
-provider := "provider8"
+provider := "google"
 
 resp, err := adminsLoginOAuth2.UnlinkOauth2Provider(ctx, provider)
 if err != nil {

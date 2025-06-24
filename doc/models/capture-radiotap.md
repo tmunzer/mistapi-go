@@ -14,15 +14,15 @@ Initiate a Radiotap Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `*string` | Optional | - |
-| `Band` | [`*models.CaptureRadiotapBandEnum`](../../doc/models/capture-radiotap-band-enum.md) | Optional | enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
+| `Band` | [`*models.CaptureRadiotapBandEnum`](../../doc/models/capture-radiotap-band-enum.md) | Optional | enum: `24`, `24,5,6`, `5`, `6`<br><br>**Default**: `"24"` |
 | `ClientMac` | `*string` | Optional | - |
-| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
-| `Format` | [`*models.CaptureRadiotapFormatEnum`](../../doc/models/capture-radiotap-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
-| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
+| `Format` | [`*models.CaptureRadiotapFormatEnum`](../../doc/models/capture-radiotap-format-enum.md) | Optional | enum: `pcap`, `stream`<br><br>**Default**: `"pcap"` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ssid` | `*string` | Optional | - |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
-| `Type` | `string` | Required, Constant | enum: `radiotap`<br>**Value**: `"radiotap"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap`<br><br>**Value**: `"radiotap"` |
 | `WlanId` | `*uuid.UUID` | Optional | WLAN id associated with the respective ssid. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

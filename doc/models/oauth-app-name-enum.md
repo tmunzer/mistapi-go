@@ -1,7 +1,7 @@
 
 # Oauth App Name Enum
 
-enum: `crowdstrike`, `intune`, `jamf`, `mobicontrol`, `teams`, `vmware`, `zdx`, `zoom`
+enum: `crowdstrike`, `intune`, `jamf`, `mobicontrol`, `prisma`, `sentinelone`, `teams`, `vmware`, `zdx`, `zoom`
 
 ## Enumeration
 
@@ -15,6 +15,8 @@ enum: `crowdstrike`, `intune`, `jamf`, `mobicontrol`, `teams`, `vmware`, `zdx`, 
 | `intune` |
 | `jamf` |
 | `mobicontrol` |
+| `prisma` |
+| `sentinelone` |
 | `teams` |
 | `vmware` |
 | `zdx` |

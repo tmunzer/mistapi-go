@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `SendIpMacMapping` | `*bool` | Optional | Whether to send IP-MAC mapping to SkyATP<br>**Default**: `false` |
+| `SendIpMacMapping` | `*bool` | Optional | Whether to send IP-MAC mapping to SkyATP<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

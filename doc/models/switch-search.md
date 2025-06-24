@@ -30,7 +30,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TimeDrifted` | `*bool` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br>**Value**: `"switch"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

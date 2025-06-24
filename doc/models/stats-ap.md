@@ -13,6 +13,7 @@ AP statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AntMode` | [`*models.AntModeEnum`](../../doc/models/ant-mode-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
 | `AutoPlacement` | [`*models.StatsApAutoPlacement`](../../doc/models/stats-ap-auto-placement.md) | Optional | - |
 | `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
 | `BleStat` | [`*models.StatsApBle`](../../doc/models/stats-ap-ble.md) | Optional | - |
@@ -25,6 +26,7 @@ AP statistics
 | `EnvStat` | [`*models.StatsApEnvStat`](../../doc/models/stats-ap-env-stat.md) | Optional | Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage |
 | `EslStat` | [`models.Optional[models.StatsApEslStat]`](../../doc/models/stats-ap-esl-stat.md) | Optional | - |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `ExpiringCerts` | `map[string]int` | Optional | Map of certificate serial numbers to their expiry timestamps (in epoch) for certificates expiring within 30 days. Property key is the certificate serial number |
 | `ExtIp` | `models.Optional[string]` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `Gps` | [`*models.StatsApGpsStat`](../../doc/models/stats-ap-gps-stat.md) | Optional | - |
@@ -73,7 +75,7 @@ AP statistics
 | `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
 | `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
 | `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
-| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br>**Value**: `"ap"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `ap`<br><br>**Value**: `"ap"` |
 | `Uptime` | `models.Optional[float64]` | Optional | How long, in seconds, has the device been up (or rebooted) |
 | `UsbStat` | [`*models.StatsApUsbStat`](../../doc/models/stats-ap-usb-stat.md) | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
@@ -85,6 +87,7 @@ AP statistics
 
 ```json
 {
+  "ant_mode": "external",
   "cert_expiry": 1534534392.0,
   "ext_ip": "73.92.124.103",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
@@ -165,7 +168,6 @@ AP statistics
       "key2": "val2"
     }
   },
-  "config_reverted": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

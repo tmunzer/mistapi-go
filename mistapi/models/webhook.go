@@ -8,6 +8,8 @@ import (
 
 // Webhook represents a Webhook struct.
 type Webhook struct {
+    // Only if `type`==`asset-raw-rssi`. List of ids to associated asset filters. These filters will be applied to messages routed to a filtered-asset-rssi webhook
+    AssetfilterIds        []uuid.UUID                 `json:"assetfilter_ids,omitempty"`
     // When the object has been created, in epoch
     CreatedTime           *float64                    `json:"created_time,omitempty"`
     // Whether webhook is enabled
@@ -60,8 +62,8 @@ type Webhook struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w Webhook) String() string {
     return fmt.Sprintf(
-    	"Webhook[CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SingleEventPerMessage=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
-    	w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SingleEventPerMessage, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
+    	"Webhook[AssetfilterIds=%v, CreatedTime=%v, Enabled=%v, ForSite=%v, Headers=%v, Id=%v, ModifiedTime=%v, Name=%v, Oauth2ClientId=%v, Oauth2ClientSecret=%v, Oauth2GrantType=%v, Oauth2Password=%v, Oauth2Scopes=%v, Oauth2TokenUrl=%v, Oauth2Username=%v, OrgId=%v, Secret=%v, SingleEventPerMessage=%v, SiteId=%v, SplunkToken=%v, Topics=%v, Type=%v, Url=%v, VerifyCert=%v, AdditionalProperties=%v]",
+    	w.AssetfilterIds, w.CreatedTime, w.Enabled, w.ForSite, w.Headers, w.Id, w.ModifiedTime, w.Name, w.Oauth2ClientId, w.Oauth2ClientSecret, w.Oauth2GrantType, w.Oauth2Password, w.Oauth2Scopes, w.Oauth2TokenUrl, w.Oauth2Username, w.OrgId, w.Secret, w.SingleEventPerMessage, w.SiteId, w.SplunkToken, w.Topics, w.Type, w.Url, w.VerifyCert, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Webhook.
@@ -70,7 +72,7 @@ func (w Webhook) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(w.AdditionalProperties,
-        "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
+        "assetfilter_ids", "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(w.toMap())
@@ -80,6 +82,9 @@ func (w Webhook) MarshalJSON() (
 func (w Webhook) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, w.AdditionalProperties)
+    if w.AssetfilterIds != nil {
+        structMap["assetfilter_ids"] = w.AssetfilterIds
+    }
     if w.CreatedTime != nil {
         structMap["created_time"] = w.CreatedTime
     }
@@ -176,12 +181,13 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "assetfilter_ids", "created_time", "enabled", "for_site", "headers", "id", "modified_time", "name", "oauth2_client_id", "oauth2_client_secret", "oauth2_grant_type", "oauth2_password", "oauth2_scopes", "oauth2_token_url", "oauth2_username", "org_id", "secret", "single_event_per_message", "site_id", "splunk_token", "topics", "type", "url", "verify_cert")
     if err != nil {
     	return err
     }
     w.AdditionalProperties = additionalProperties
     
+    w.AssetfilterIds = temp.AssetfilterIds
     w.CreatedTime = temp.CreatedTime
     w.Enabled = temp.Enabled
     w.ForSite = temp.ForSite
@@ -210,6 +216,7 @@ func (w *Webhook) UnmarshalJSON(input []byte) error {
 
 // tempWebhook is a temporary struct used for validating the fields of Webhook.
 type tempWebhook  struct {
+    AssetfilterIds        []uuid.UUID                 `json:"assetfilter_ids,omitempty"`
     CreatedTime           *float64                    `json:"created_time,omitempty"`
     Enabled               *bool                       `json:"enabled,omitempty"`
     ForSite               *bool                       `json:"for_site,omitempty"`

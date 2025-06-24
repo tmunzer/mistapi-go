@@ -15,7 +15,7 @@ Property key is the OSPF Area (Area should be a number (0-255) / IP address)
 |  --- | --- | --- | --- |
 | `IncludeLoopback` | `*bool` | Optional | **Default**: `false` |
 | `Networks` | [`map[string]models.OspfAreasNetwork`](../../doc/models/ospf-areas-network.md) | Optional | - |
-| `Type` | [`*models.OspfAreaTypeEnum`](../../doc/models/ospf-area-type-enum.md) | Optional | OSPF type. enum: `default`, `nssa`, `stub`<br>**Default**: `"default"` |
+| `Type` | [`*models.OspfAreaTypeEnum`](../../doc/models/ospf-area-type-enum.md) | Optional | OSPF type. enum: `default`, `nssa`, `stub`<br><br>**Default**: `"default"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

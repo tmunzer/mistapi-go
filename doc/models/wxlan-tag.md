@@ -34,7 +34,7 @@ WxLAN Tag
 | `Match` | [`*models.WxlanTagMatchEnum`](../../doc/models/wxlan-tag-match-enum.md) | Optional | required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | The name |
-| `Op` | [`*models.WxlanTagOperationEnum`](../../doc/models/wxlan-tag-operation-enum.md) | Optional | required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not_in`<br>**Default**: `"in"` |
+| `Op` | [`*models.WxlanTagOperationEnum`](../../doc/models/wxlan-tag-operation-enum.md) | Optional | required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not_in`<br><br>**Default**: `"in"` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `ResourceMac` | `models.Optional[string]` | Optional | - |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

@@ -723,14 +723,15 @@ func (u *UtilitiesCommon) RestartSiteDevice(
     return httpCtx.Response, err
 }
 
-// CreateSiteDeviceShellSession takes context, siteId, deviceId as parameters and
+// CreateSiteDeviceShellSession takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSessionWithUrl data and
 // an error if there was an issue with the request or response.
 // Create Shell Session
 func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
+    deviceId uuid.UUID,
+    body *models.ShellNode) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error) {
     req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/shell")
@@ -753,6 +754,10 @@ func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
     
     var result models.WebsocketSessionWithUrl
     decoder, resp, err := req.CallAsJson()

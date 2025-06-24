@@ -21,11 +21,11 @@ func NewSitesGatewayTemplates(baseController baseController) *SitesGatewayTempla
     return &sitesGatewayTemplates
 }
 
-// ListSiteGatewayTemplateDerived takes context, siteId, resolve as parameters and
+// ListSiteGatewayTemplatesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.GatewayTemplate data and
 // an error if there was an issue with the request or response.
-// Get derived Gateway Templates for Site
-func (s *SitesGatewayTemplates) ListSiteGatewayTemplateDerived(
+// Get the list of derived Gateway Templates a Site
+func (s *SitesGatewayTemplates) ListSiteGatewayTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (

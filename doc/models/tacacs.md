@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AcctServers` | [`[]models.TacacsAcctServer`](../../doc/models/tacacs-acct-server.md) | Optional | - |
-| `DefaultRole` | [`*models.TacacsDefaultRoleEnum`](../../doc/models/tacacs-default-role-enum.md) | Optional | enum: `admin`, `helpdesk`, `none`, `read`<br>**Default**: `"none"` |
+| `DefaultRole` | [`*models.TacacsDefaultRoleEnum`](../../doc/models/tacacs-default-role-enum.md) | Optional | enum: `admin`, `helpdesk`, `none`, `read`<br><br>**Default**: `"none"` |
 | `Enabled` | `*bool` | Optional | - |
 | `Network` | `*string` | Optional | Which network the TACACS server resides |
 | `TacplusServers` | [`[]models.TacacsAuthServer`](../../doc/models/tacacs-auth-server.md) | Optional | - |

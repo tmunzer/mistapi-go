@@ -18,7 +18,7 @@
 | `MapId` | `uuid.UUID` | Required | Jibestream map id |
 | `Mmpp` | `int` | Required | Millimeter per pixel |
 | `Ppm` | `float64` | Required | Pixel per meter, same as the map JSON value. |
-| `VendorName` | `string` | Required, Constant | The vendor ‘jibestream’. enum: `jibestream`<br>**Value**: `"jibestream"` |
+| `VendorName` | `string` | Required, Constant | The vendor ‘jibestream’. enum: `jibestream`<br><br>**Value**: `"jibestream"` |
 | `VenueId` | `int` | Required | Venue or organization id |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -30,7 +30,7 @@ Site
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | SecPolicy ID |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | Sitegroups this site belongs to |
 | `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | Site Template ID |
-| `Timezone` | `*string` | Optional | Timezone the site is at<br>**Default**: `"UTC"` |
+| `Timezone` | `*string` | Optional | Timezone the site is at<br><br>**Default**: `"UTC"` |
 | `Tzoffset` | `*int` | Optional | **Default**: `0` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

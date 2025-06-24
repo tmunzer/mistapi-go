@@ -13,6 +13,7 @@ orgsIntegrationCradlepoint := client.OrgsIntegrationCradlepoint()
 * [Delete Org Cradlepoint Connection](../../doc/controllers/orgs-integration-cradlepoint.md#delete-org-cradlepoint-connection)
 * [Setup Org Cradlepoint Connection to Mist](../../doc/controllers/orgs-integration-cradlepoint.md#setup-org-cradlepoint-connection-to-mist)
 * [Sync Org Cradlepoint Routers](../../doc/controllers/orgs-integration-cradlepoint.md#sync-org-cradlepoint-routers)
+* [Test Org Cradlepoint Connection](../../doc/controllers/orgs-integration-cradlepoint.md#test-org-cradlepoint-connection)
 * [Update Org Cradlepoint Connection to Mist](../../doc/controllers/orgs-integration-cradlepoint.md#update-org-cradlepoint-connection-to-mist)
 
 
@@ -155,6 +156,65 @@ if err != nil {
     log.Fatalln(err)
 } else {
     fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Test Org Cradlepoint Connection
+
+This tests the Cradlepoint integration in Mist
+
+```go
+TestOrgCradlepointConnection(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    models.ApiResponse[models.TestCradlepoint],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.TestCradlepoint](../../doc/models/test-cradlepoint.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := orgsIntegrationCradlepoint.TestOrgCradlepointConnection(ctx, orgId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "error": "Cradlepoint API keys are no longer valid, please verify and update the keys under organization settings.",
+  "last_status": "inactive"
 }
 ```
 

@@ -22,7 +22,7 @@ SSO
 | `IdpCert` | `*string` | Optional | If `idp_type`==`saml`. IDP Cert (used to verify the signed response) |
 | `IdpSignAlgo` | [`*models.SsoIdpSignAlgoEnum`](../../doc/models/sso-idp-sign-algo-enum.md) | Optional | Required if `idp_type`==`saml`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512` |
 | `IdpSsoUrl` | `*string` | Optional | Required if `idp_type`==`saml`, IDP Single-Sign-On URL |
-| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | SSO IDP Type:<br><br>* For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`<br>**Default**: `"saml"` |
+| `IdpType` | [`*models.SsoIdpTypeEnum`](../../doc/models/sso-idp-type-enum.md) | Optional | SSO IDP Type:<br><br>* For Admin SSO, enum: `saml`<br>* For NAC SSO, enum: `ldap`, `mxedge_proxy`, `oauth`, `openroaming`<br><br>**Default**: `"saml"` |
 | `IgnoreUnmatchedRoles` | `*bool` | Optional | If `idp_type`==`saml`, ignore any unmatched roles provided in assertion. By default, an assertion is treated as invalid for any unmatched role |
 | `Issuer` | `*string` | Optional | If `idp_type`==`saml`. IDP issuer URL |
 | `LdapBaseDn` | `*string` | Optional | Required if `idp_type`==`ldap`, whole domain or a specific organization unit (container) in Search base to specify where users and groups are found in the LDAP tree |
@@ -31,30 +31,31 @@ SSO
 | `LdapCacerts` | `[]string` | Optional | Required if `idp_type`==`ldap`, list of CA certificates to validate the LDAP certificate |
 | `LdapClientCert` | `*string` | Optional | If `idp_type`==`ldap`, LDAPS Client certificate |
 | `LdapClientKey` | `*string` | Optional | If `idp_type`==`ldap`, Key for the `ldap_client_cert` |
-| `LdapGroupAttr` | `*string` | Optional | If `ldap_type`==`custom`<br>**Default**: `"memberOf"` |
-| `LdapGroupDn` | `*string` | Optional | If `ldap_type`==`custom`<br>**Default**: `"base_dn"` |
-| `LdapResolveGroups` | `*bool` | Optional | If `idp_type`==`ldap`, whether to recursively resolve LDAP groups<br>**Default**: `false` |
+| `LdapGroupAttr` | `*string` | Optional | If `ldap_type`==`custom`<br><br>**Default**: `"memberOf"` |
+| `LdapGroupDn` | `*string` | Optional | If `ldap_type`==`custom`<br><br>**Default**: `"base_dn"` |
+| `LdapResolveGroups` | `*bool` | Optional | If `idp_type`==`ldap`, whether to recursively resolve LDAP groups<br><br>**Default**: `false` |
 | `LdapServerHosts` | `[]string` | Optional | If `idp_type`==`ldap`, list of LDAP/LDAPS server IP Addresses or Hostnames |
-| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
+| `LdapType` | [`*models.SsoLdapTypeEnum`](../../doc/models/sso-ldap-type-enum.md) | Optional | if `idp_type`==`ldap`. enum: `azure`, `custom`, `google`, `okta`, `ping_identity`<br><br>**Default**: `"azure"` |
 | `LdapUserFilter` | `*string` | Optional | Required if `ldap_type`==`custom`, LDAP filter that will identify the type of user |
 | `MemberFilter` | `*string` | Optional | Required if `ldap_type`==`custom`,LDAP filter that will identify the type of member |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `MxedgeProxy` | [`*models.SsoMxedgeProxy`](../../doc/models/sso-mxedge-proxy.md) | Optional | If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster |
 | `Name` | `string` | Required | Name |
-| `NameidFormat` | [`*models.SsoNameidFormatEnum`](../../doc/models/sso-nameid-format-enum.md) | Optional | if `idp_type`==`saml`. enum: `email`, `unspecified`<br>**Default**: `"email"` |
+| `NameidFormat` | [`*models.SsoNameidFormatEnum`](../../doc/models/sso-nameid-format-enum.md) | Optional | if `idp_type`==`saml`. enum: `email`, `unspecified`<br><br>**Default**: `"email"` |
 | `OauthCcClientId` | `*string` | Optional | Required if `idp_type`==`oauth`, Client Credentials |
 | `OauthCcClientSecret` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
 | `OauthDiscoveryUrl` | `*string` | Optional | If `idp_type`==`oauth` |
-| `OauthPingIdentityRegion` | [`*models.OauthPingIdentityRegionEnum`](../../doc/models/oauth-ping-identity-region-enum.md) | Optional | enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)<br>**Default**: `"us"` |
+| `OauthPingIdentityRegion` | [`*models.OauthPingIdentityRegionEnum`](../../doc/models/oauth-ping-identity-region-enum.md) | Optional | enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)<br><br>**Default**: `"us"` |
 | `OauthRopcClientId` | `*string` | Optional | If `idp_type`==`oauth`, ropc = Resource Owner Password Credentials |
 | `OauthRopcClientSecret` | `*string` | Optional | If `oauth_type`==`azure` or `oauth_type`==`azure-gov`. oauth_ropc_client_secret can be empty |
 | `OauthTenantId` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_tenant_id |
-| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`<br>**Default**: `"azure"` |
+| `OauthType` | [`*models.SsoOauthTypeEnum`](../../doc/models/sso-oauth-type-enum.md) | Optional | if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`<br><br>**Default**: `"azure"` |
+| `Openroaming` | [`*models.SsoOpenroaming`](../../doc/models/sso-openroaming.md) | Optional | if `idp_type`==`openroaming` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RoleAttrExtraction` | `*string` | Optional | If `idp_type`==`saml`, custom role attribute parsing scheme. Supported Role Parsing Schemes <table><tr><th>Name</th><th>Scheme</th></tr><tr><td>`cn`</td><td><ul><li>The expected role attribute format in SAML Assertion is "CN=cn,OU=ou1,OU=ou2,…"</li><li>CN (the key) is case-insensitive and exactly 1 CN is expected (or the entire entry will be ignored)</li></ul>E.g. if role attribute is "CN=cn,OU=ou1,OU=ou2" then parsed role value is "cn"</td></tr></table> |
-| `RoleAttrFrom` | `*string` | Optional | If `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from<br>**Default**: `"Role"` |
-| `ScimEnabled` | `*bool` | Optional | If `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP<br>**Default**: `false` |
+| `RoleAttrFrom` | `*string` | Optional | If `idp_type`==`saml`, name of the attribute in SAML Assertion to extract role from<br><br>**Default**: `"Role"` |
+| `ScimEnabled` | `*bool` | Optional | If `idp_type`==`oauth`, indicates if SCIM provisioning is enabled for the OAuth IDP<br><br>**Default**: `false` |
 | `ScimSecretToken` | `*string` | Optional | If `idp_type`==`oauth`, scim_secret_token (auto-generated when not provided by caller and `scim_enabled`==`true`, empty string when `scim_enabled`==`false`) is used as the Bearer token in the Authorization header of SCIM provisioning requests by the IDP |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

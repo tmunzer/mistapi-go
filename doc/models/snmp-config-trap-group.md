@@ -14,7 +14,7 @@
 | `Categories` | `[]string` | Optional | - |
 | `GroupName` | `*string` | Optional | Categories list can refer to https://www.juniper.net/documentation/software/topics/task/configuration/snmp_trap-groups-configuring-junos-nm.html |
 | `Targets` | `[]string` | Optional | - |
-| `Version` | [`*models.SnmpConfigTrapVersionEnum`](../../doc/models/snmp-config-trap-version-enum.md) | Optional | enum: `all`, `v1`, `v2`<br>**Default**: `"v2"` |
+| `Version` | [`*models.SnmpConfigTrapVersionEnum`](../../doc/models/snmp-config-trap-version-enum.md) | Optional | enum: `all`, `v1`, `v2`<br><br>**Default**: `"v2"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

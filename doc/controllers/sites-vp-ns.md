@@ -11,7 +11,7 @@ sitesVPNs := client.SitesVPNs()
 
 # List Site Vpns Derived
 
-VPN object represents an overlay network where gateways can participate in and optionally expose routes to.
+Get the list of derived VPNs for a site
 
 ```go
 ListSiteVpnsDerived(
@@ -27,7 +27,7 @@ ListSiteVpnsDerived(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br>**Default**: `false` |
+| `resolve` | `*bool` | Query, Optional | Whether resolve the site variables<br><br>**Default**: `false` |
 
 ## Response Type
 
@@ -40,7 +40,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resolve := false
+resolve := true
 
 apiResponse, err := sitesVPNs.ListSiteVpnsDerived(ctx, siteId, &resolve)
 if err != nil {

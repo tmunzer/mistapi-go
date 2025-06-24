@@ -12,13 +12,13 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | IP / hostname of RADIUS server |
-| `InbandStatusCheck` | `*bool` | Optional | Whether to enable inband status check<br>**Default**: `false` |
-| `InbandStatusInterval` | `*int` | Optional | Inband status interval, in seconds<br>**Default**: `300`<br>**Constraints**: `>= 0` |
+| `InbandStatusCheck` | `*bool` | Optional | Whether to enable inband status check<br><br>**Default**: `false` |
+| `InbandStatusInterval` | `*int` | Optional | Inband status interval, in seconds<br><br>**Default**: `300`<br><br>**Constraints**: `>= 0` |
 | `KeywrapEnabled` | `*bool` | Optional | If used for Mist APs, enable keywrap algorithm. Default is false |
-| `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs. enum: `ascii`, `hex`<br>**Default**: `"ascii"` |
+| `KeywrapFormat` | [`models.Optional[models.MxclusterRadAuthServerKeywrapFormatEnum]`](../../doc/models/mxcluster-rad-auth-server-keywrap-format-enum.md) | Optional | if used for Mist APs. enum: `ascii`, `hex`<br><br>**Default**: `"ascii"` |
 | `KeywrapKek` | `*string` | Optional | If used for Mist APs, encryption key |
 | `KeywrapMack` | `*string` | Optional | If used for Mist APs, Message Authentication Code Key |
-| `Port` | `*int` | Optional | Auth port of RADIUS server<br>**Default**: `1812` |
+| `Port` | `*int` | Optional | Auth port of RADIUS server<br><br>**Default**: `1812` |
 | `Secret` | `*string` | Optional | Secret of RADIUS server |
 | `Ssids` | `[]string` | Optional | List of ssids that will use this server if match_ssid is true and match is found |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

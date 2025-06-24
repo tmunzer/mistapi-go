@@ -14,12 +14,12 @@
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `FallbackAction` | [`*models.AvprofileFallbackActionEnum`](../../doc/models/avprofile-fallback-action-enum.md) | Optional | enum: `block`, `log-and-permit`, `permit` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `MaxFilesize` | `*int` | Optional | In KB<br>**Default**: `10000`<br>**Constraints**: `>= 20`, `<= 40000` |
+| `MaxFilesize` | `*int` | Optional | In KB<br><br>**Default**: `10000`<br><br>**Constraints**: `>= 20`, `<= 40000` |
 | `MimeWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Protocols` | [`[]models.AvprofileProtocolEnum`](../../doc/models/avprofile-protocol-enum.md) | Optional | List of protocols to monitor. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`<br>**Constraints**: *Minimum Items*: `1` |
+| `Protocols` | [`[]models.AvprofileProtocolEnum`](../../doc/models/avprofile-protocol-enum.md) | Optional | List of protocols to monitor. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`<br><br>**Constraints**: *Minimum Items*: `1` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `UrlWhitelist` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -20,6 +20,7 @@
 | `Overwrite` | `*bool` | Optional | - |
 | `PodNames` | `map[string]string` | Optional | Property key is the pod number |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `SwitchConfigs` | [`map[string]models.EvpnTopologySwitchConfig`](../../doc/models/evpn-topology-switch-config.md) | Optional | Property key is the switch mac |
 | `Switches` | [`[]models.EvpnTopologySwitch`](../../doc/models/evpn-topology-switch.md) | Required | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `DisableLocalSsh` | `*bool` | Optional | Whether to disable local SSH (by default, local SSH is enabled with allow_mist in Org is enabled |
 | `FipsZeroizePassword` | `*string` | Optional | password required to zeroize devices (FIPS) on site level |
-| `LimitSshAccess` | `*bool` | Optional | Whether to allow certain SSH keys to SSH into the AP (see Site:Setting)<br>**Default**: `false` |
+| `LimitSshAccess` | `*bool` | Optional | Whether to allow certain SSH keys to SSH into the AP (see Site:Setting)<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

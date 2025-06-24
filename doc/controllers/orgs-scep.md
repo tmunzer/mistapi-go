@@ -60,7 +60,16 @@ if err != nil {
 
 ```json
 {
-  "enabled": true
+  "cert_providers": [
+    "jamf",
+    "intune",
+    "byod"
+  ],
+  "enabled": false,
+  "intune_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_access_token": "1Z4QqEnCt05Jjt3TV5LgPJ4V_WL_RWnJ7dqVMLYHj81=",
+  "jamf_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_webhook_url": "https://scep.mistsys.com/api/v1/webhook/jamf/:org_id/scep"
 }
 ```
 
@@ -118,7 +127,16 @@ if err != nil {
 
 ```json
 {
-  "enabled": true
+  "cert_providers": [
+    "jamf",
+    "intune",
+    "byod"
+  ],
+  "enabled": false,
+  "intune_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_access_token": "1Z4QqEnCt05Jjt3TV5LgPJ4V_WL_RWnJ7dqVMLYHj81=",
+  "jamf_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_webhook_url": "https://scep.mistsys.com/api/v1/webhook/jamf/:org_id/scep"
 }
 ```
 
@@ -316,7 +334,16 @@ if err != nil {
 
 ```json
 {
-  "enabled": true
+  "cert_providers": [
+    "jamf",
+    "intune",
+    "byod"
+  ],
+  "enabled": false,
+  "intune_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_access_token": "1Z4QqEnCt05Jjt3TV5LgPJ4V_WL_RWnJ7dqVMLYHj81=",
+  "jamf_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
+  "jamf_webhook_url": "https://scep.mistsys.com/api/v1/webhook/jamf/:org_id/scep"
 }
 ```
 

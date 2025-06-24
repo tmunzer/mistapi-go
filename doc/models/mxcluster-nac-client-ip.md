@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br><br>**Default**: `false` |
 | `Secret` | `*string` | Optional | If different from above |
 | `SiteId` | `*uuid.UUID` | Optional | Present only for 3rd party clients |
-| `Vendor` | [`*models.MxclusterNacClientVendorEnum`](../../doc/models/mxcluster-nac-client-vendor-enum.md) | Optional | convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, aironet) etc. enum: `aruba`, `cisco-aironet`, `cisco-ios`, `cisco-meraki`, `generic`, `juniper`, `paloalto` |
+| `Vendor` | [`*models.MxclusterNacClientVendorEnum`](../../doc/models/mxcluster-nac-client-vendor-enum.md) | Optional | convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, aironet) etc. enum: `aruba`, `cisco-aironet`, `cisco-dnac`, `cisco-ios`, `cisco-meraki`, `brocade`, `generic`, `juniper`, `paloalto` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

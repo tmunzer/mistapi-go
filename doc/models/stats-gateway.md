@@ -63,7 +63,7 @@ Gateway statistics
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
 | `Tunnels` | [`[]models.StatsGatewayWanTunnel`](../../doc/models/stats-gateway-wan-tunnel.md) | Optional | Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
-| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br>**Value**: `"gateway"` |
+| `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
 | `Uptime` | `models.Optional[float64]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
 | `VpnPeers` | [`[]models.StatsGatewayVpnPeer`](../../doc/models/stats-gateway-vpn-peer.md) | Optional | Only present when `vpn_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/vpn_peers/search` result object, except that org_id, site_id, mac, model are removed |

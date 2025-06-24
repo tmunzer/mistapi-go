@@ -19,6 +19,7 @@
 | `Ip` | `*string` | Optional | - |
 | `Link` | `*bool` | Optional | - |
 | `Mode` | `*string` | Optional | - |
+| `Mtu` | `*int` | Optional | - |
 | `Rsrp` | `*float64` | Optional | - |
 | `Rsrq` | `*float64` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
@@ -41,6 +42,7 @@
   "ip": "10.134.237.57",
   "link": true,
   "mode": "wan",
+  "mtu": 1500,
   "rsrp": -108,
   "rsrq": -14,
   "rssi": -74,

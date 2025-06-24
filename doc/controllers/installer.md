@@ -149,7 +149,7 @@ ClaimInstallerDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | `[]string` | Body, Optional | Request Body<br>**Constraints**: *Unique Items Required* |
+| `body` | `[]string` | Body, Optional | Request Body<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -403,7 +403,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-fpc0Mac := "fpc0_mac6"
+fpc0Mac := "aff827549235"
 
 body := models.VirtualChassisConfig{
     Members:              []models.VirtualChassisConfigMember{
@@ -885,7 +885,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-fpc0Mac := "fpc0_mac6"
+fpc0Mac := "aff827549235"
 
 apiResponse, err := installer.GetInstallerDeviceVirtualChassis(ctx, orgId, fpc0Mac)
 if err != nil {
@@ -1380,8 +1380,8 @@ ListInstallerListOfRecentlyClaimedDevices(
 | `model` | `*string` | Query, Optional | Device Model |
 | `siteName` | `*string` | Query, Optional | Site Name |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1394,17 +1394,17 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+model := "AP43"
 
+siteName := "SJ1"
 
-
-
-
+siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 
 limit := 100
 
 page := 1
 
-apiResponse, err := installer.ListInstallerListOfRecentlyClaimedDevices(ctx, orgId, nil, nil, nil, &limit, &page)
+apiResponse, err := installer.ListInstallerListOfRecentlyClaimedDevices(ctx, orgId, &model, &siteName, &siteId, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -2224,7 +2224,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-fpc0Mac := "fpc0_mac6"
+fpc0Mac := "aff827549235"
 
 body := models.VirtualChassisUpdate{
     Members:              []models.VirtualChassisMemberUpdate{

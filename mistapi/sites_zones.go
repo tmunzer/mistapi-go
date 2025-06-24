@@ -240,10 +240,10 @@ func (s *SitesZones) UpdateSiteZone(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteZoneSessions takes context, siteId, zoneType, distinct, userType, user, scopeId, scope, start, end, duration, limit, page as parameters and
+// CountSiteZoneSessions takes context, siteId, zoneType, distinct, userType, user, scopeId, scope, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Site Zone Sessions
+// Count by Distinct Attributes of Site Zone Sessions
 func (s *SitesZones) CountSiteZoneSessions(
     ctx context.Context,
     siteId uuid.UUID,
@@ -256,8 +256,7 @@ func (s *SitesZones) CountSiteZoneSessions(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/%v/count")
@@ -306,9 +305,6 @@ func (s *SitesZones) CountSiteZoneSessions(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

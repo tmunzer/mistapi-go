@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `IdpCert` | `*string` | Optional | - |
-| `IdpSignAlgo` | [`*models.NacPortalSsoIdpSignAlgoEnum`](../../doc/models/nac-portal-sso-idp-sign-algo-enum.md) | Optional | Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.<br>**Default**: `"sha256"` |
+| `IdpSignAlgo` | [`*models.NacPortalSsoIdpSignAlgoEnum`](../../doc/models/nac-portal-sso-idp-sign-algo-enum.md) | Optional | Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.<br><br>**Default**: `"sha256"` |
 | `IdpSsoUrl` | `*string` | Optional | - |
 | `Issuer` | `*string` | Optional | - |
 | `NameidFormat` | `*string` | Optional | - |

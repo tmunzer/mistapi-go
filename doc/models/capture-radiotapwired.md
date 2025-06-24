@@ -14,16 +14,16 @@ Initiate a Radiotap Packet Capture and Wired Packet Capture
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `models.Optional[string]` | Optional | - |
-| `Band` | [`*models.CaptureRadiotapwiredBandEnum`](../../doc/models/capture-radiotapwired-band-enum.md) | Optional | only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`<br>**Default**: `"24"` |
+| `Band` | [`*models.CaptureRadiotapwiredBandEnum`](../../doc/models/capture-radiotapwired-band-enum.md) | Optional | only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`<br><br>**Default**: `"24"` |
 | `ClientMac` | `models.Optional[string]` | Optional | - |
-| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
-| `Format` | [`*models.CaptureRadiotapwiredFormatEnum`](../../doc/models/capture-radiotapwired-format-enum.md) | Optional | enum: `pcap`, `stream`<br>**Default**: `"pcap"` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
-| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
+| `Format` | [`*models.CaptureRadiotapwiredFormatEnum`](../../doc/models/capture-radiotapwired-format-enum.md) | Optional | enum: `pcap`, `stream`<br><br>**Default**: `"pcap"` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `RadiotapTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11 + radio headers) |
 | `Ssid` | `models.Optional[string]` | Optional | - |
 | `TcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
-| `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br>**Value**: `"radiotap,wired"` |
+| `Type` | `string` | Required, Constant | enum: `radiotap,wired`<br><br>**Value**: `"radiotap,wired"` |
 | `WiredTcpdumpExpression` | `models.Optional[string]` | Optional | tcpdump expression |
 | `WirelessTcpdumpExpression` | `*string` | Optional | tcpdump expression for radiotap interface (802.11) |
 | `WlanId` | `models.Optional[string]` | Optional | WLAN id associated with the respective ssid. |

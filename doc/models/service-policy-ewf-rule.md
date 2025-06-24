@@ -14,7 +14,7 @@
 | `AlertOnly` | `*bool` | Optional | - |
 | `BlockMessage` | `*string` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Profile` | [`*models.ServicePolicyEwfRuleProfileEnum`](../../doc/models/service-policy-ewf-rule-profile-enum.md) | Optional | enum: `critical`, `standard`, `strict`<br>**Default**: `"strict"` |
+| `Profile` | [`*models.ServicePolicyEwfRuleProfileEnum`](../../doc/models/service-policy-ewf-rule-profile-enum.md) | Optional | enum: `critical`, `standard`, `strict`<br><br>**Default**: `"strict"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

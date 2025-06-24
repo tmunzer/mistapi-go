@@ -11,11 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthState` | `*string` | Optional | Client authorization status<br>**Constraints**: *Minimum Length*: `1` |
-| `DeviceId` | `*string` | Optional | Device ID the client is connected to<br>**Constraints**: *Minimum Length*: `1` |
-| `EthPort` | `*string` | Optional | Port on AP where the wired client is connected<br>**Constraints**: *Minimum Length*: `1` |
+| `AuthState` | `*string` | Optional | Client authorization status<br><br>**Constraints**: *Minimum Length*: `1` |
+| `DeviceId` | `*string` | Optional | Device ID the client is connected to<br><br>**Constraints**: *Minimum Length*: `1` |
+| `EthPort` | `*string` | Optional | Port on AP where the wired client is connected<br><br>**Constraints**: *Minimum Length*: `1` |
 | `LastSeen` | `*float64` | Optional | Time when last Tx/Rx observed |
-| `Mac` | `string` | Required | Client mac<br>**Constraints**: *Minimum Length*: `1` |
+| `Mac` | `string` | Required | Client mac<br><br>**Constraints**: *Minimum Length*: `1` |
 | `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `SiteId` | `*uuid.UUID` | Optional | - |

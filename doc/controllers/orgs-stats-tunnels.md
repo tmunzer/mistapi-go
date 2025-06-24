@@ -16,14 +16,15 @@ orgsStatsTunnels := client.OrgsStatsTunnels()
 
 # Count Org Tunnels Stats
 
-Count Mist Tunnels Stats
+Count by Distinct Attributes of Mist Tunnels Stats
 
 ```go
 CountOrgTunnelsStats(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgTunnelCountDistinctEnum,
-    mType *models.OrgTunnelTypeCountEnum) (
+    mType *models.OrgTunnelTypeCountEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -33,8 +34,9 @@ CountOrgTunnelsStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.OrgTunnelCountDistinctEnum`](../../doc/models/org-tunnel-count-distinct-enum.md) | Query, Optional | - If `type`==`wxtunnel`: wxtunnel_id / ap / remote_ip / remote_port / state / mxedge_id / mxcluster_id / site_id / peer_mxedge_id; default is wxtunnel_id<br>- If `type`==`wan`: mac / site_id / node / peer_ip / peer_host/ ip / tunnel_name / protocol / auth_algo / encrypt_algo / ike_version / last_event / up<br>**Default**: `"wxtunnel_id"` |
+| `distinct` | [`*models.OrgTunnelCountDistinctEnum`](../../doc/models/org-tunnel-count-distinct-enum.md) | Query, Optional | - If `type`==`wxtunnel`: wxtunnel_id / ap / remote_ip / remote_port / state / mxedge_id / mxcluster_id / site_id / peer_mxedge_id; default is wxtunnel_id<br>- If `type`==`wan`: mac / site_id / node / peer_ip / peer_host/ ip / tunnel_name / protocol / auth_algo / encrypt_algo / ike_version / last_event / up<br><br>**Default**: `"wxtunnel_id"` |
 | `mType` | [`*models.OrgTunnelTypeCountEnum`](../../doc/models/org-tunnel-type-count-enum.md) | Query, Optional | **Default**: `"wxtunnel"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -51,7 +53,9 @@ distinct := models.OrgTunnelCountDistinctEnum_WXTUNNELID
 
 mType := models.OrgTunnelTypeCountEnum_WXTUNNEL
 
-apiResponse, err := orgsStatsTunnels.CountOrgTunnelsStats(ctx, orgId, &distinct, &mType)
+limit := 100
+
+apiResponse, err := orgsStatsTunnels.CountOrgTunnelsStats(ctx, orgId, &distinct, &mType, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -143,10 +147,10 @@ SearchOrgTunnelsStats(
 | `ikeVersion` | `*string` | Query, Optional | If `type`==`wan` |
 | `up` | `*string` | Query, Optional | If `type`==`wan` |
 | `mType` | [`*models.TunnelTypeEnum`](../../doc/models/tunnel-type-enum.md) | Query, Optional | **Default**: `"wxtunnel"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

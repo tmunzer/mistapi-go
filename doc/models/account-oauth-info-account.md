@@ -13,8 +13,9 @@ OAuth linked apps account info
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccountId` | `*string` | Optional | Linked app(zoom/teams/intune) account id |
+| `AccountId` | `*string` | Optional | Linked app account id |
 | `ClientId` | `*string` | Optional | Customer account Client ID |
+| `CloudName` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Company` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Error` | `*string` | Optional | This error is provided when the account fails to fetch token/data |
 | `Errors` | `[]string` | Optional | - |
@@ -26,7 +27,10 @@ OAuth linked apps account info
 | `MaxDailyApiRequests` | `*int` | Optional | Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/ |
 | `Name` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Password` | `*string` | Optional | Customer account password instance URL |
+| `Region` | `*string` | Optional | For Prisma accounts only |
+| `ServiceAccountName` | `*string` | Optional | For Prisma accounts only |
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
+| `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -35,6 +39,7 @@ OAuth linked apps account info
 ```json
 {
   "account_id": "iojzXIJWEuiD73ZvydOfg",
+  "cloud_name": "Tapi.sase.paloaltonetworks.com",
   "company": "Test Company1 Ltd",
   "error": "OAuth token refresh failed, please re-link your account",
   "errors": [
@@ -47,7 +52,10 @@ OAuth linked apps account info
   "linked_timestamp": 1665465339000,
   "max_daily_api_requests": 5000,
   "name": "Test Compay1 Ltd",
+  "region": "americas",
+  "service_account_name": "Corp SA",
   "smartgroup_name": "CompliantGroup1",
+  "tsg_id": "189953456",
   "client_id": "client_id6",
   "exampleAdditionalProperty": {
     "key1": "val1",

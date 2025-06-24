@@ -17,7 +17,7 @@ Managed mobility
 | `DisableDeadReckoning` | `*bool` | Optional | - |
 | `DisablePressureSensor` | `*bool` | Optional | **Default**: `false` |
 | `Enabled` | `*bool` | Optional | - |
-| `TrackAsset` | `*bool` | Optional | Asset tracking related<br>**Default**: `false` |
+| `TrackAsset` | `*bool` | Optional | Asset tracking related<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

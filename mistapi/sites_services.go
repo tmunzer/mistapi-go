@@ -24,7 +24,7 @@ func NewSitesServices(baseController baseController) *SitesServices {
 // ListSiteServicesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.Service data and
 // an error if there was an issue with the request or response.
-// Retrieves the list of Services available for the Site
+// Get the list of derived Services for a Site
 func (s *SitesServices) ListSiteServicesDerived(
     ctx context.Context,
     siteId uuid.UUID,
@@ -68,7 +68,7 @@ func (s *SitesServices) ListSiteServicesDerived(
 // CountSiteServicePathEvents takes context, siteId, distinct, mType, text, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Service Path Events
+// Count by Distinct Attributes of Service Path Events
 func (s *SitesServices) CountSiteServicePathEvents(
     ctx context.Context,
     siteId uuid.UUID,

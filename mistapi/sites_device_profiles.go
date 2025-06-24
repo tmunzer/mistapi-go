@@ -24,7 +24,7 @@ func NewSitesDeviceProfiles(baseController baseController) *SitesDeviceProfiles 
 // ListSiteDeviceProfilesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.Deviceprofile data and
 // an error if there was an issue with the request or response.
-// Retrieves the list of Device Profiles available for the Site
+// Get the list of derived Device Profiles for a Site
 func (s *SitesDeviceProfiles) ListSiteDeviceProfilesDerived(
     ctx context.Context,
     siteId uuid.UUID,

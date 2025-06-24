@@ -30,7 +30,7 @@ GenerateSecretFor2faVerification(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `by` | [`*models.MfaSecretTypeEnum`](../../doc/models/mfa-secret-type-enum.md) | Query, Optional | If `by`==`qrcode`, returns the secret as a qrcode image<br>**Default**: `"qrcode"` |
+| `by` | [`*models.MfaSecretTypeEnum`](../../doc/models/mfa-secret-type-enum.md) | Query, Optional | If `by`==`qrcode`, returns the secret as a qrcode image<br><br>**Default**: `"qrcode"` |
 
 ## Response Type
 

@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `InventoryAdded` | [`[]models.ResponseClaimLicenseInventoryItem`](../../doc/models/response-claim-license-inventory-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `InventoryDuplicated` | [`[]models.ResponseClaimLicenseInventoryItem`](../../doc/models/response-claim-license-inventory-item.md) | Required | **Constraints**: *Unique Items Required* |
+| `InventoryPending` | [`[]models.ResponseClaimLicenseInventoryPendingItem`](../../doc/models/response-claim-license-inventory-pending-item.md) | Optional | for async claim<br><br>**Constraints**: *Unique Items Required* |
 | `LicenseAdded` | [`[]models.ResponseClaimLicenseLicenseItem`](../../doc/models/response-claim-license-license-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `LicenseDuplicated` | [`[]models.ResponseClaimLicenseLicenseItem`](../../doc/models/response-claim-license-license-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `LicenseError` | [`[]models.ResponseClaimLicenseLicenseErrorItem`](../../doc/models/response-claim-license-license-error-item.md) | Required | **Constraints**: *Unique Items Required* |
@@ -76,6 +77,29 @@
     {
       "order": "order2",
       "reason": "reason0",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    }
+  ],
+  "inventory_pending": [
+    {
+      "mac": "mac6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "mac": "mac6",
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
+    },
+    {
+      "mac": "mac6",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

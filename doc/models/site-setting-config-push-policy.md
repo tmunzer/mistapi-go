@@ -13,7 +13,7 @@ Mist also uses some heuristic rules to prevent destructive configs from being pu
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NoPush` | `*bool` | Optional | Stop any new config from being pushed to the device<br>**Default**: `false` |
+| `NoPush` | `*bool` | Optional | Stop any new config from being pushed to the device<br><br>**Default**: `false` |
 | `PushWindow` | [`*models.PushPolicyPushWindow`](../../doc/models/push-policy-push-window.md) | Optional | If enabled, new config will only be pushed to device within the specified time window |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

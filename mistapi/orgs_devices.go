@@ -61,23 +61,23 @@ func (o *OrgsDevices) ListOrgDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mType, start, end, duration, limit, page as parameters and
+// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Devices
+// Count by Distinct Attributes of Org Devices
 func (o *OrgsDevices) CountOrgDevices(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgDevicesCountDistinctEnum,
     hostname *string,
-    siteId *string,
+    siteId *uuid.UUID,
     model *string,
     managed *string,
     mac *string,
     version *string,
     ipAddress *string,
     mxtunnelStatus *models.CountOrgDevicesMxtunnelStatusEnum,
-    mxedgeId *string,
+    mxedgeId *uuid.UUID,
     lldpSystemName *string,
     lldpSystemDesc *string,
     lldpPortId *string,
@@ -86,8 +86,7 @@ func (o *OrgsDevices) CountOrgDevices(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/count")
@@ -167,9 +166,6 @@ func (o *OrgsDevices) CountOrgDevices(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -181,25 +177,25 @@ func (o *OrgsDevices) CountOrgDevices(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDeviceEvents takes context, orgId, distinct, siteId, ap, apfw, model, text, timestamp, mType, limit, start, end, duration as parameters and
+// CountOrgDeviceEvents takes context, orgId, distinct, siteId, ap, apfw, model, text, timestamp, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Devices Events
+// Count by Distinct Attributes of Org Devices Events
 func (o *OrgsDevices) CountOrgDeviceEvents(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgDevicesEventsCountDistinctEnum,
-    siteId *string,
+    siteId *uuid.UUID,
     ap *string,
     apfw *string,
     model *string,
     text *string,
     timestamp *string,
     mType *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/events/count")
@@ -246,9 +242,6 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
     if mType != nil {
         req.QueryParam("type", *mType)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -257,6 +250,9 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount
@@ -353,7 +349,7 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDeviceLastConfigs takes context, orgId, mType, distinct, start, end, limit as parameters and
+// CountOrgDeviceLastConfigs takes context, orgId, mType, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Counts the number of entries in device config history for distinct field with given filters
@@ -364,6 +360,7 @@ func (o *OrgsDevices) CountOrgDeviceLastConfigs(
     distinct *models.OrgDevicesLastConfigsCountDistinctEnum,
     start *int,
     end *int,
+    duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
@@ -398,6 +395,9 @@ func (o *OrgsDevices) CountOrgDeviceLastConfigs(
     }
     if end != nil {
         req.QueryParam("end", *end)
+    }
+    if duration != nil {
+        req.QueryParam("duration", *duration)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
@@ -735,6 +735,46 @@ func (o *OrgsDevices) SearchOrgDevices(
     }
     
     result, err = utilities.DecodeResults[models.ResponseDeviceSearch](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// ListOrgDevicesSummary takes context, orgId as parameters and
+// returns an models.ApiResponse with models.ResponseOrgDevicesSummary data and
+// an error if there was an issue with the request or response.
+// Get Org Devices Summary
+func (o *OrgsDevices) ListOrgDevicesSummary(
+    ctx context.Context,
+    orgId uuid.UUID) (
+    models.ApiResponse[models.ResponseOrgDevicesSummary],
+    error) {
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/summary")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    var result models.ResponseOrgDevicesSummary
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseOrgDevicesSummary](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

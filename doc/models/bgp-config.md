@@ -14,14 +14,14 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AuthKey` | `*string` | Optional | - |
-| `BfdMinimumInterval` | `models.Optional[int]` | Optional | When bfd_multiplier is configured alone. Default:<br><br>* 1000 if `type`==`external`<br>* 350 `type`==`internal`<br>**Default**: `350`<br>**Constraints**: `>= 1`, `<= 255000` |
-| `BfdMultiplier` | `models.Optional[int]` | Optional | When bfd_minimum_interval_is_configured alone<br>**Default**: `3`<br>**Constraints**: `>= 1`, `<= 255` |
-| `DisableBfd` | `*bool` | Optional | BFD provides faster path failure detection and is enabled by default<br>**Default**: `false` |
+| `BfdMinimumInterval` | `models.Optional[int]` | Optional | When bfd_multiplier is configured alone. Default:<br><br>* 1000 if `type`==`external`<br>* 350 `type`==`internal`<br><br>**Default**: `350`<br><br>**Constraints**: `>= 1`, `<= 255000` |
+| `BfdMultiplier` | `models.Optional[int]` | Optional | When bfd_minimum_interval_is_configured alone<br><br>**Default**: `3`<br><br>**Constraints**: `>= 1`, `<= 255` |
+| `DisableBfd` | `*bool` | Optional | BFD provides faster path failure detection and is enabled by default<br><br>**Default**: `false` |
 | `Export` | `*string` | Optional | - |
 | `ExportPolicy` | `*string` | Optional | Default export policies if no per-neighbor policies defined |
 | `ExtendedV4Nexthop` | `*bool` | Optional | By default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this |
-| `GracefulRestartTime` | `*int` | Optional | `0` means disable<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 4095` |
-| `HoldTime` | `*int` | Optional | **Default**: `90`<br>**Constraints**: `>= 0`, `<= 65535` |
+| `GracefulRestartTime` | `*int` | Optional | `0` means disable<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 4095` |
+| `HoldTime` | `*int` | Optional | **Default**: `90`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `Import` | `*string` | Optional | - |
 | `ImportPolicy` | `*string` | Optional | Default import policies if no per-neighbor policies defined |
 | `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
@@ -29,10 +29,10 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `Neighbors` | [`map[string]models.BgpConfigNeighbors`](../../doc/models/bgp-config-neighbors.md) | Optional | If per-neighbor as is desired. Property key is the neighbor address |
 | `Networks` | `[]string` | Optional | If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from |
 | `NoPrivateAs` | `*bool` | Optional | **Default**: `false` |
-| `NoReadvertiseToOverlay` | `*bool` | Optional | By default, we'll re-advertise all learned BGP routers toward overlay<br>**Default**: `false` |
+| `NoReadvertiseToOverlay` | `*bool` | Optional | By default, we'll re-advertise all learned BGP routers toward overlay<br><br>**Default**: `false` |
 | `TunnelName` | `*string` | Optional | If `type`==`tunnel` |
-| `Type` | [`*models.BgpConfigTypeEnum`](../../doc/models/bgp-config-type-enum.md) | Optional | enum: `external`, `internal`<br>**Constraints**: *Minimum Length*: `1` |
-| `Via` | [`*models.BgpConfigViaEnum`](../../doc/models/bgp-config-via-enum.md) | Optional | network name. enum: `lan`, `tunnel`, `vpn`, `wan`<br>**Default**: `"lan"` |
+| `Type` | [`*models.BgpConfigTypeEnum`](../../doc/models/bgp-config-type-enum.md) | Optional | enum: `external`, `internal`<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Via` | [`*models.BgpConfigViaEnum`](../../doc/models/bgp-config-via-enum.md) | Optional | network name. enum: `lan`, `tunnel`, `vpn`, `wan`<br><br>**Default**: `"lan"` |
 | `VpnName` | `*string` | Optional | - |
 | `WanName` | `*string` | Optional | If `via`==`wan` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

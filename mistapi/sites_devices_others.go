@@ -92,7 +92,7 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
 // CountSiteOtherDeviceEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Site OtherDevices Events
+// Count by Distinct Attributes of Site OtherDevices Events
 func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
     ctx context.Context,
     siteId uuid.UUID,

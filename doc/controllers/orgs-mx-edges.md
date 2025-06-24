@@ -350,7 +350,7 @@ if err != nil {
 
 # Count Org Mx Edges
 
-Count Org Mist Edges
+Count by Distinct Attributes of Org Mist Edges
 
 ```go
 CountOrgMxEdges(
@@ -368,8 +368,7 @@ CountOrgMxEdges(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -390,9 +389,8 @@ CountOrgMxEdges(
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -431,9 +429,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsMxEdges.CountOrgMxEdges(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsMxEdges.CountOrgMxEdges(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -474,7 +470,7 @@ if err != nil {
 
 # Count Org Site Mx Edge Events
 
-Count Org Mist Edge Events
+Count by Distinct Attributes of Org Mist Edge Events
 
 ```go
 CountOrgSiteMxEdgeEvents(
@@ -505,8 +501,8 @@ CountOrgSiteMxEdgeEvents(
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -1031,7 +1027,7 @@ GetOrgMxEdgeUpgradeInfo(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel to follow, stable (default) / beta / alpha<br>**Default**: `"stable"` |
+| `channel` | [`*models.GetOrgMxedgeUpgradeInfoChannelEnum`](../../doc/models/get-org-mxedge-upgrade-info-channel-enum.md) | Query, Optional | Upgrade channel to follow, stable (default) / beta / alpha<br><br>**Default**: `"stable"` |
 | `distro` | `*string` | Query, Optional | Distro code name (e.g. `buster`, `bullseye`, ...) |
 
 ## Response Type
@@ -1108,9 +1104,9 @@ ListOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br>**Default**: `"any"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br><br>**Default**: `"any"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -1336,8 +1332,8 @@ SearchOrgMistEdgeEvents(
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -1450,9 +1446,9 @@ SearchOrgMxEdges(
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 

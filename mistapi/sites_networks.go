@@ -24,7 +24,7 @@ func NewSitesNetworks(baseController baseController) *SitesNetworks {
 // ListSiteNetworksDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.Network data and
 // an error if there was an issue with the request or response.
-// Retrieves the list of Networks available for the Site
+// Get the list of derived Networks for a Site
 func (s *SitesNetworks) ListSiteNetworksDerived(
     ctx context.Context,
     siteId uuid.UUID,

@@ -9,12 +9,12 @@ sitesNetworkTemplates := client.SitesNetworkTemplates()
 `SitesNetworkTemplates`
 
 
-# List Site Network Template Derived
+# List Site Network Templates Derived
 
-Get derived Network Templates for Site
+Get the list of derived Network Templates a Site
 
 ```go
-ListSiteNetworkTemplateDerived(
+ListSiteNetworkTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesNetworkTemplates.ListSiteNetworkTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesNetworkTemplates.ListSiteNetworkTemplatesDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -138,8 +138,6 @@ if err != nil {
       "guest_network": "string",
       "mac_auth_only": true,
       "mac_limit": 0,
-      "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -174,7 +172,6 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],

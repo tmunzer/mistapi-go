@@ -21,11 +21,11 @@ func NewSitesRFTemplates(baseController baseController) *SitesRFTemplates {
     return &sitesRFTemplates
 }
 
-// ListSiteRfTemplateDerived takes context, siteId, resolve as parameters and
+// ListSiteRfTemplatesDerived takes context, siteId, resolve as parameters and
 // returns an models.ApiResponse with []models.RfTemplate data and
 // an error if there was an issue with the request or response.
-// Get derived RF Templates for Site
-func (s *SitesRFTemplates) ListSiteRfTemplateDerived(
+// Get the list of derived RF Templates a Site
+func (s *SitesRFTemplates) ListSiteRfTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (

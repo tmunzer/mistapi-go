@@ -21,7 +21,7 @@ func NewOrgsNACFingerprints(baseController baseController) *OrgsNACFingerprints 
     return &orgsNACFingerprints
 }
 
-// CountOrgClientFingerprints takes context, siteId, distinct, start, end, duration, limit, page as parameters and
+// CountOrgClientFingerprints takes context, siteId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count Client Fingerprints
@@ -32,8 +32,7 @@ func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(
@@ -75,9 +74,6 @@ func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -89,7 +85,7 @@ func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgClientFingerprints takes context, siteId, family, model, mfg, os, osType, mac, sort, limit, start, end, duration, interval as parameters and
+// SearchOrgClientFingerprints takes context, siteId, family, clientType, model, mfg, os, osType, mac, sort, limit, start, end, duration, interval as parameters and
 // returns an models.ApiResponse with models.FingerprintSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Client Fingerprints
@@ -97,6 +93,7 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
     ctx context.Context,
     siteId uuid.UUID,
     family *string,
+    clientType *models.NacAccessTypeEnum,
     model *string,
     mfg *string,
     os *string,
@@ -136,6 +133,9 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
     })
     if family != nil {
         req.QueryParam("family", *family)
+    }
+    if clientType != nil {
+        req.QueryParam("client_type", *clientType)
     }
     if model != nil {
         req.QueryParam("model", *model)

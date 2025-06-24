@@ -14,7 +14,7 @@ type SwitchNetwork struct {
     Gateway              *string                `json:"gateway,omitempty"`
     // Only required for EVPN-VXLAN networks, IPv6 Virtual Gateway
     Gateway6             *string                `json:"gateway6,omitempty"`
-    // whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required). NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set
+    // whether to stop clients to talk to each other, default is false (when enabled, a unique isolation_vlan_id is required). NOTE: this features requires uplink device to also a be Juniper device and `inter_switch_link` to be set. See also `inter_isolation_network_link` and `community_vlan_id` in port_usage
     Isolation            *bool                  `json:"isolation,omitempty"`
     IsolationVlanId      *string                `json:"isolation_vlan_id,omitempty"`
     // Optional for pure switching, required when L3 / routing features are used

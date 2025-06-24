@@ -235,6 +235,55 @@ func (s *SitesDevicesWiredVirtualChassis) UpdateSiteVirtualChassisMember(
     return httpCtx.Response, err
 }
 
+// ConvertSiteVirtualChassisToVirtualMac takes context, siteId, deviceId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Converts an FPC0-based VC to a Virtualmac VC, removing the limitation where the device ID must change whenever FPC0 is renumbered or removed.
+// HTTP400 Error possible reasons:
+// - The device is not an OC device
+// - Virtualmac VC is disabled in the Org Knob settings
+// - The VC is already a Virtualmac VC
+// - The VC is currently disconnected
+// - The device is standalone
+// - A new FPC0 exists with its own device config, causing ambiguity.
+func (s *SitesDevicesWiredVirtualChassis) ConvertSiteVirtualChassisToVirtualMac(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    *http.Response,
+    error) {
+    req := s.prepareRequest(
+      ctx,
+      "POST",
+      "/api/v1/sites/%v/devices/%v/vc/convert_to_virtualmac",
+    )
+    req.AppendTemplateParams(siteId, deviceId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    httpCtx, err := req.Call()
+    if err != nil {
+        return httpCtx.Response, err
+    }
+    return httpCtx.Response, err
+}
+
 // SetSiteVcPort takes context, siteId, deviceId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

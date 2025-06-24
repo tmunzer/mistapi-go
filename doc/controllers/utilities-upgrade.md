@@ -543,9 +543,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
+model := "AP43"
 
-
-apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, nil)
+apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, &model)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -590,7 +590,8 @@ Get available version for SSR
 ListOrgAvailableSsrVersions(
     ctx context.Context,
     orgId uuid.UUID,
-    channel *string) (
+    channel *models.SsrVersionChannelEnum,
+    mac *string) (
     models.ApiResponse[[]models.SsrVersion],
     error)
 ```
@@ -600,7 +601,8 @@ ListOrgAvailableSsrVersions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `channel` | `*string` | Query, Optional | - |
+| `channel` | [`*models.SsrVersionChannelEnum`](../../doc/models/ssr-version-channel-enum.md) | Query, Optional | SSR version channel<br><br>**Default**: `"stable"` |
+| `mac` | `*string` | Query, Optional | Optional. MAC address, or comma separated MAC address list. |
 
 ## Response Type
 
@@ -613,9 +615,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+channel := models.SsrVersionChannelEnum_STABLE
 
 
-apiResponse, err := utilitiesUpgrade.ListOrgAvailableSsrVersions(ctx, orgId, nil)
+
+apiResponse, err := utilitiesUpgrade.ListOrgAvailableSsrVersions(ctx, orgId, &channel, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -630,8 +634,9 @@ if err != nil {
 ```json
 [
   {
-    "package": "128T-wheeljack",
-    "version": "128T-wheeljack-0.1.0-1212.x86_64"
+    "default": true,
+    "package": "SSR",
+    "version": "5.3.1-17"
   }
 ]
 ```

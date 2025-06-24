@@ -13,11 +13,11 @@ Auto_rules in org settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreateNewSiteIfNeeded` | `*bool` | Optional | If `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this<br>**Default**: `false` |
+| `CreateNewSiteIfNeeded` | `*bool` | Optional | If `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this<br><br>**Default**: `false` |
 | `Expression` | `models.Optional[string]` | Optional | If `src`==`name`, `src`==`lldp_system_name`,  `src`==`dns_suffix`  <br>"[0:3]"            // "abcdef" -> "abc"  <br>"split(.)[1]"      // "a.b.c" -> "b"  <br>"split(-)[1][0:3]" // "a1234-b5678-c90" -> "b56"' |
 | `GatewaytemplateId` | `*string` | Optional | If `src`==`geoip` and `create_new_site_if_needed`==`true`. If a gateway template is desired for this newly created site |
 | `MatchCountry` | `*string` | Optional | If `src`==`geoip` |
-| `MatchDeviceType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br>**Default**: `"ap"` |
+| `MatchDeviceType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Optional | enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
 | `MatchModel` | `*string` | Optional | Optional/additional filter |
 | `Model` | `*string` | Optional | If `src`==`model` |
 | `Prefix` | `models.Optional[string]` | Optional | If `src`==`name` |

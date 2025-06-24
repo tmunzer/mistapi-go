@@ -8,9 +8,9 @@ import (
 
 // HaClusterConfig represents a HaClusterConfig struct.
 type HaClusterConfig struct {
-    // If the device is claimed
+    // This disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.
     DisableAutoConfig    *bool                  `json:"disable_auto_config,omitempty"`
-    // If the device is adopted
+    // An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.
     Managed              *bool                  `json:"managed,omitempty"`
     Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
     SiteId               *uuid.UUID             `json:"site_id,omitempty"`

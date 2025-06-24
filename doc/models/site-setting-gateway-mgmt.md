@@ -17,10 +17,10 @@ Gateway Site settings
 | `AppProbing` | [`*models.AppProbing`](../../doc/models/app-probing.md) | Optional | - |
 | `AppUsage` | `*bool` | Optional | Consumes uplink bandwidth, requires WA license |
 | `AutoSignatureUpdate` | [`*models.SiteSettingGatewayMgmtAutoSignatureUpdate`](../../doc/models/site-setting-gateway-mgmt-auto-signature-update.md) | Optional | - |
-| `ConfigRevertTimer` | `*int` | Optional | Rollback timer for commit confirmed<br>**Default**: `10`<br>**Constraints**: `>= 1`, `<= 30` |
-| `DisableConsole` | `*bool` | Optional | For both SSR and SRX disable console port<br>**Default**: `false` |
-| `DisableOob` | `*bool` | Optional | For both SSR and SRX disable management interface<br>**Default**: `false` |
-| `DisableUsb` | `*bool` | Optional | For SSR disable usb interface<br>**Default**: `false` |
+| `ConfigRevertTimer` | `*int` | Optional | Rollback timer for commit confirmed<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 30` |
+| `DisableConsole` | `*bool` | Optional | For SSR and SRX, disable console port<br><br>**Default**: `false` |
+| `DisableOob` | `*bool` | Optional | For SSR and SRX, disable management interface<br><br>**Default**: `false` |
+| `DisableUsb` | `*bool` | Optional | For SSR and SRX, disable usb interface<br><br>**Default**: `false` |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `ProbeHosts` | `[]string` | Optional | - |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | Restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |

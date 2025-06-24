@@ -150,8 +150,8 @@ ListOrgJsiDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `model` | `*string` | Query, Optional | Device model |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
@@ -171,13 +171,13 @@ limit := 100
 
 page := 1
 
+model := "AP43"
 
+serial := "FXLH2015150025"
 
+mac := "5c5b350e0001"
 
-
-
-
-apiResponse, err := orgsJSI.ListOrgJsiDevices(ctx, orgId, &limit, &page, nil, nil, nil)
+apiResponse, err := orgsJSI.ListOrgJsiDevices(ctx, orgId, &limit, &page, &model, &serial, &mac)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -237,8 +237,8 @@ ListOrgJsiPastPurchases(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `model` | `*string` | Query, Optional | - |
 | `serial` | `*string` | Query, Optional | - |
 
@@ -257,11 +257,11 @@ limit := 100
 
 page := 1
 
+model := "AP43"
 
+serial := "FXLH2015150025"
 
-
-
-apiResponse, err := orgsJSI.ListOrgJsiPastPurchases(ctx, orgId, &limit, &page, nil, nil)
+apiResponse, err := orgsJSI.ListOrgJsiPastPurchases(ctx, orgId, &limit, &page, &model, &serial)
 if err != nil {
     log.Fatalln(err)
 } else {

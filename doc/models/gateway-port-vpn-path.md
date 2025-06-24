@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `BfdProfile` | [`*models.GatewayPortVpnPathBfdProfileEnum`](../../doc/models/gateway-port-vpn-path-bfd-profile-enum.md) | Optional | Only if the VPN `type`==`hub_spoke`. enum: `broadband`, `lte`<br>**Default**: `"broadband"` |
-| `BfdUseTunnelMode` | `*bool` | Optional | Only if the VPN `type`==`hub_spoke`. Whether to use tunnel mode. SSR only<br>**Default**: `false` |
+| `BfdProfile` | [`*models.GatewayPortVpnPathBfdProfileEnum`](../../doc/models/gateway-port-vpn-path-bfd-profile-enum.md) | Optional | Only if the VPN `type`==`hub_spoke`. enum: `broadband`, `lte`<br><br>**Default**: `"broadband"` |
+| `BfdUseTunnelMode` | `*bool` | Optional | Only if the VPN `type`==`hub_spoke`. Whether to use tunnel mode. SSR only<br><br>**Default**: `false` |
 | `Preference` | `*int` | Optional | Only if the VPN `type`==`hub_spoke`. For a given VPN, when `path_selection.strategy`==`simple`, the preference for a path (lower is preferred) |
-| `Role` | [`*models.GatewayPortVpnPathRoleEnum`](../../doc/models/gateway-port-vpn-path-role-enum.md) | Optional | If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`<br>**Default**: `"spoke"` |
+| `Role` | [`*models.GatewayPortVpnPathRoleEnum`](../../doc/models/gateway-port-vpn-path-role-enum.md) | Optional | If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`<br><br>**Default**: `"spoke"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

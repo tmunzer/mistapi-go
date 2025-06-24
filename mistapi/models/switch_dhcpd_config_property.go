@@ -6,6 +6,7 @@ import (
 )
 
 // SwitchDhcpdConfigProperty represents a SwitchDhcpdConfigProperty struct.
+// the Property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2")
 type SwitchDhcpdConfigProperty struct {
     // If `type`==`server` or `type6`==`server` - optional, if not defined, system one will be used
     DnsServers           []string                           `json:"dns_servers,omitempty"`

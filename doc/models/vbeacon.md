@@ -23,8 +23,8 @@ vBeacon
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | Name / label of the device |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Power` | `*int` | Optional | Required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.<br>**Default**: `4`<br>**Constraints**: `>= -30`, `<= 100` |
-| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br>**Default**: `"default"` |
+| `Power` | `*int` | Optional | Required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.<br><br>**Default**: `4`<br><br>**Constraints**: `>= -30`, `<= 100` |
+| `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br><br>**Default**: `"default"` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Url` | `*string` | Optional | URL to show, optional |
 | `Uuid` | `*uuid.UUID` | Optional | Bluetooth tag UUID |

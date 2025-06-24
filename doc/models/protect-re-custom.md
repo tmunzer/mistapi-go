@@ -13,8 +13,8 @@ Custom acls
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `PortRange` | `*string` | Optional | Matched dst port, "0" means any<br>**Default**: `"0"` |
-| `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | enum: `any`, `icmp`, `tcp`, `udp`<br>**Default**: `"any"` |
+| `PortRange` | `*string` | Optional | Matched dst port, "0" means any<br><br>**Default**: `"0"` |
+| `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | enum: `any`, `icmp`, `tcp`, `udp`<br><br>**Default**: `"any"` |
 | `Subnets` | `[]string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

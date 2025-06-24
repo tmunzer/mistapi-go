@@ -21,7 +21,7 @@
 | `MspName` | `*string` | Optional | Name of the msp the org belongs to |
 | `Name` | `string` | Required | - |
 | `OrggroupIds` | `[]uuid.UUID` | Optional | - |
-| `SessionExpiry` | `*int` | Optional | **Default**: `1440`<br>**Constraints**: `>= 10`, `<= 20160` |
+| `SessionExpiry` | `*int` | Optional | **Default**: `1440`<br><br>**Constraints**: `>= 10`, `<= 20160` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

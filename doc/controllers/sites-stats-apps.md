@@ -20,7 +20,8 @@ CountSiteApps(
     distinct *models.SiteAppsCountDistinctEnum,
     deviceMac *string,
     app *string,
-    wired *string) (
+    wired *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -34,6 +35,7 @@ CountSiteApps(
 | `deviceMac` | `*string` | Query, Optional | MAC of the device |
 | `app` | `*string` | Query, Optional | Application name |
 | `wired` | `*string` | Query, Optional | If a device is wired or wireless. Default is False. |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -48,13 +50,15 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+deviceMac := "001122334455"
 
+app := "Example App"
 
+wired := "False"
 
+limit := 100
 
-
-
-apiResponse, err := sitesStatsApps.CountSiteApps(ctx, siteId, nil, nil, nil, nil)
+apiResponse, err := sitesStatsApps.CountSiteApps(ctx, siteId, nil, &deviceMac, &app, &wired, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -81,19 +81,19 @@ func (s *SitesEvents) ListSiteRoamingEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteSystemEvents takes context, siteId, distinct, mType, limit, start, end, duration as parameters and
+// CountSiteSystemEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count System Events
+// Count by Distinct Attributes of System Events
 func (s *SitesEvents) CountSiteSystemEvents(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteSystemEventsCountDistinctEnum,
     mType *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/events/system/count")
@@ -122,9 +122,6 @@ func (s *SitesEvents) CountSiteSystemEvents(
     if mType != nil {
         req.QueryParam("type", *mType)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -133,6 +130,9 @@ func (s *SitesEvents) CountSiteSystemEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount
@@ -148,7 +148,7 @@ func (s *SitesEvents) CountSiteSystemEvents(
 // SearchSiteSystemEvents takes context, siteId, mType, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceEventsSearch data and
 // an error if there was an issue with the request or response.
-// Search System Events
+// Search Site System Events
 func (s *SitesEvents) SearchSiteSystemEvents(
     ctx context.Context,
     siteId uuid.UUID,

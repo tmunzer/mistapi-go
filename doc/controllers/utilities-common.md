@@ -344,7 +344,8 @@ Create Shell Session
 CreateSiteDeviceShellSession(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
+    deviceId uuid.UUID,
+    body *models.ShellNode) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error)
 ```
@@ -355,6 +356,7 @@ CreateSiteDeviceShellSession(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.ShellNode`](../../doc/models/shell-node.md) | Body, Optional | - |
 
 ## Response Type
 
@@ -369,7 +371,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId)
+
+
+apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -413,7 +417,7 @@ GetSiteDeviceConfigCmd(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
-| `sort` | `*bool` | Query, Optional | Make output cmds sorted (for better readability) or not.<br>**Default**: `false` |
+| `sort` | `*bool` | Query, Optional | Make output cmds sorted (for better readability) or not.<br><br>**Default**: `false` |
 
 ## Response Type
 

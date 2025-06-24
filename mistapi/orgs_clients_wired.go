@@ -21,7 +21,7 @@ func NewOrgsClientsWired(baseController baseController) *OrgsClientsWired {
     return &orgsClientsWired
 }
 
-// CountOrgWiredClients takes context, orgId, distinct, start, end, duration, limit, page as parameters and
+// CountOrgWiredClients takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -33,8 +33,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wired_clients/count")
@@ -72,9 +71,6 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -86,7 +82,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWiredClients takes context, orgId, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, authState, authMethod, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
+// SearchOrgWiredClients takes context, orgId, authState, authMethod, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
@@ -94,6 +90,8 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
 func (o *OrgsClientsWired) SearchOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
+    authState *string,
+    authMethod *string,
     siteId *string,
     deviceMac *string,
     mac *string,
@@ -102,8 +100,6 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     ipAddress *string,
     manufacture *string,
     text *string,
-    authState *string,
-    authMethod *string,
     nacruleId *string,
     dhcpHostname *string,
     dhcpFqdn *string,
@@ -136,6 +132,12 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if authState != nil {
+        req.QueryParam("auth_state", *authState)
+    }
+    if authMethod != nil {
+        req.QueryParam("auth_method", *authMethod)
+    }
     if siteId != nil {
         req.QueryParam("site_id", *siteId)
     }
@@ -159,12 +161,6 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     }
     if text != nil {
         req.QueryParam("text", *text)
-    }
-    if authState != nil {
-        req.QueryParam("auth_state", *authState)
-    }
-    if authMethod != nil {
-        req.QueryParam("auth_method", *authMethod)
     }
     if nacruleId != nil {
         req.QueryParam("nacrule_id", *nacruleId)

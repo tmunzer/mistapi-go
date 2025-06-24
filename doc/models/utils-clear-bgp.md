@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Neighbor` | `string` | Required | Neighbor ip-address or 'all' |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
-| `Type` | [`models.UtilsClearBgpTypeEnum`](../../doc/models/utils-clear-bgp-type-enum.md) | Required | enum: `hard`, `in`, `out`, `soft`<br>**Default**: `"hard"` |
+| `Type` | [`models.UtilsClearBgpTypeEnum`](../../doc/models/utils-clear-bgp-type-enum.md) | Required | enum: `hard`, `in`, `out`, `soft`<br><br>**Default**: `"hard"` |
 | `Vrf` | `*string` | Optional | VRF name |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

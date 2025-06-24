@@ -15,11 +15,11 @@
 | `Comment` | `*string` | Optional | Optional, user-specified string for display purpose |
 | `EnableCookie` | `*bool` | Optional | - |
 | `Ethertype` | [`*models.WxlanTunnelSessionEthertypeEnum`](../../doc/models/wxlan-tunnel-session-ethertype-enum.md) | Optional | enum: `ethernet`, `vlan` |
-| `LocalSessionId` | `*int` | Optional | 1-2147483647<br>**Constraints**: `>= 1`, `<= 2147483647` |
-| `Pseudo8021adEnabled` | `*bool` | Optional | Optional. Enables the pseudo 802.1ad QinQ mode where the AP device drops the outer vlan tag (QinQ). This mode is useful when tunneling Mist AP’s to some aggregation routers.<br>**Default**: `false` |
+| `LocalSessionId` | `*int` | Optional | 1-2147483647<br><br>**Constraints**: `>= 1`, `<= 2147483647` |
+| `Pseudo8021adEnabled` | `*bool` | Optional | Optional. Enables the pseudo 802.1ad QinQ mode where the AP device drops the outer vlan tag (QinQ). This mode is useful when tunneling Mist AP’s to some aggregation routers.<br><br>**Default**: `false` |
 | `RemoteId` | `*string` | Optional | Remote-id of the session, has to be unique in the same tunnel |
-| `RemoteSessionId` | `*int` | Optional | 1-2147483647<br>**Constraints**: `>= 1`, `<= 2147483647` |
-| `UseApAsSessionIds` | `*bool` | Optional | Whether to use AP (last 4 bytes of MAC currently) as session ids<br>**Default**: `false` |
+| `RemoteSessionId` | `*int` | Optional | 1-2147483647<br><br>**Constraints**: `>= 1`, `<= 2147483647` |
+| `UseApAsSessionIds` | `*bool` | Optional | Whether to use AP (last 4 bytes of MAC currently) as session ids<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

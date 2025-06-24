@@ -28,10 +28,10 @@ CountSiteSkyatpEvents(
     deviceMac *string,
     threatLevel *int,
     ipAddress *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -47,10 +47,10 @@ CountSiteSkyatpEvents(
 | `deviceMac` | `*string` | Query, Optional | Device MAC |
 | `threatLevel` | `*int` | Query, Optional | Threat level |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -75,15 +75,15 @@ distinct := models.SiteSkyAtpEventsCountDistinctEnum_ENUMTYPE
 
 ipAddress := "192.168.1.1"
 
-limit := 100
-
 
 
 
 
 duration := "10m"
 
-apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ipAddress, &limit, nil, nil, &duration)
+limit := 100
+
+apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ipAddress, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -153,10 +153,10 @@ SearchSiteSkyatpEvents(
 | `deviceMac` | `*string` | Query, Optional | Device MAC |
 | `threatLevel` | `*int` | Query, Optional | Threat level |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

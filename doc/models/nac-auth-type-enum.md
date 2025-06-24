@@ -1,7 +1,7 @@
 
 # Nac Auth Type Enum
 
-enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 
 ## Enumeration
 
@@ -18,8 +18,7 @@ enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `p
 | `eap-ttls` |
 | `idp` |
 | `mab` |
-| `peap-tls` |
-| `psk` |
+| `eap-peap` |
 
 ## Example
 

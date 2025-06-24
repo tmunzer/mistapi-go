@@ -8,7 +8,7 @@ import (
 
 // NacRuleMatching represents a NacRuleMatching struct.
 type NacRuleMatching struct {
-    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk`
+    // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
     AuthType             *NacAuthTypeEnum              `json:"auth_type,omitempty"`
     // List of client device families to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed family values
     Family               []string                      `json:"family,omitempty"`

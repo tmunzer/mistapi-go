@@ -13,14 +13,14 @@
 |  --- | --- | --- | --- |
 | `Categories` | [`[]models.AamwProfileCategory`](../../doc/models/aamw-profile-category.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `FallbackAction` | [`*models.AamwProfileActionEnum`](../../doc/models/aamw-profile-action-enum.md) | Optional | enum: `block`, `permit`<br>**Default**: `"block"` |
-| `FileAction` | [`*models.AamwProfileActionEnum`](../../doc/models/aamw-profile-action-enum.md) | Optional | enum: `block`, `permit`<br>**Default**: `"block"` |
+| `FallbackAction` | [`*models.AamwProfileActionEnum`](../../doc/models/aamw-profile-action-enum.md) | Optional | enum: `block`, `permit`<br><br>**Default**: `"block"` |
+| `FileAction` | [`*models.AamwProfileActionEnum`](../../doc/models/aamw-profile-action-enum.md) | Optional | enum: `block`, `permit`<br><br>**Default**: `"block"` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `VerdictThreshold` | `*int` | Optional | **Default**: `8`<br>**Constraints**: `>= 1`, `<= 10` |
+| `VerdictThreshold` | `*int` | Optional | **Default**: `8`<br><br>**Constraints**: `>= 1`, `<= 10` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

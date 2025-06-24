@@ -1,6 +1,8 @@
 
 # Switch Dhcpd Config Property
 
+the Property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2")
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -19,13 +21,13 @@
 | `IpEnd6` | `*string` | Optional | If `type6`==`server` |
 | `IpStart` | `*string` | Optional | If `type`==`server` |
 | `IpStart6` | `*string` | Optional | If `type6`==`server` |
-| `LeaseTime` | `*int` | Optional | In seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]<br>**Default**: `86400`<br>**Constraints**: `>= 3600`, `<= 604800` |
+| `LeaseTime` | `*int` | Optional | In seconds, lease time has to be between 3600 [1hr] - 604800 [1 week], default is 86400 [1 day]<br><br>**Default**: `86400`<br><br>**Constraints**: `>= 3600`, `<= 604800` |
 | `Options` | [`map[string]models.DhcpdConfigOption`](../../doc/models/dhcpd-config-option.md) | Optional | If `type`==`server` or `type6`==`server`. Property key is the DHCP option number |
-| `ServerIdOverride` | `*bool` | Optional | `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,<br>should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.<br>**Default**: `false` |
+| `ServerIdOverride` | `*bool` | Optional | `server_id_override`==`true` means the device, when acts as DHCP relay and forwards DHCP responses from DHCP server to clients,<br>should overwrite the Sever Identifier option (i.e. DHCP option 54) in DHCP responses with its own IP address.<br><br>**Default**: `false` |
 | `Servers` | `[]string` | Optional | If `type`==`relay` |
 | `Servers6` | `[]string` | Optional | If `type6`==`relay` |
 | `Type` | [`*models.SwitchDhcpdConfigTypeEnum`](../../doc/models/switch-dhcpd-config-type-enum.md) | Optional | enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server) |
-| `Type6` | [`*models.SwitchDhcpdConfigTypeEnum`](../../doc/models/switch-dhcpd-config-type-enum.md) | Optional | enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)<br>**Default**: `"none"` |
+| `Type6` | [`*models.SwitchDhcpdConfigTypeEnum`](../../doc/models/switch-dhcpd-config-type-enum.md) | Optional | enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)<br><br>**Default**: `"none"` |
 | `VendorEncapsulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | If `type`==`server` or `type6`==`server`. Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code' |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

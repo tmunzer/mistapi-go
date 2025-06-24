@@ -13,6 +13,7 @@ selfAccount := client.SelfAccount()
 * [Delete Self](../../doc/controllers/self-account.md#delete-self)
 * [Get Self](../../doc/controllers/self-account.md#get-self)
 * [Get Self Api Usage](../../doc/controllers/self-account.md#get-self-api-usage)
+* [Get Self Login Failures](../../doc/controllers/self-account.md#get-self-login-failures)
 * [Update Self](../../doc/controllers/self-account.md#update-self)
 * [Update Self Email](../../doc/controllers/self-account.md#update-self-email)
 * [Verify Self Email](../../doc/controllers/self-account.md#verify-self-email)
@@ -168,6 +169,67 @@ if err != nil {
 {
   "request_limit": 5000,
   "requests": 5
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Self Login Failures
+
+Get a list of failed login attempts across all Orgs for the current admin
+
+```go
+GetSelfLoginFailures(
+    ctx context.Context) (
+    models.ApiResponse[models.LoginFailures],
+    error)
+```
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.LoginFailures](../../doc/models/login-failures.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := selfAccount.GetSelfLoginFailures(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "email": "admin@test.com",
+  "last_failure_at": 1509161968,
+  "num_attempts": 40,
+  "src_ips": [
+    "192.168.1.39",
+    "192.168.1.38",
+    "192.168.1.37"
+  ],
+  "user_agents": [
+    "Test UA 39",
+    "Test UA 38",
+    "Test UA 37"
+  ]
 }
 ```
 

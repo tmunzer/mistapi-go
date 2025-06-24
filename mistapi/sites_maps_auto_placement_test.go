@@ -27,6 +27,54 @@ func TestSitesMapsAutoPlacementTestDeleteSiteApAutoOrientation(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
+// TestSitesMapsAutoPlacementTestGetSiteApAutoOrientation tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestGetSiteApAutoOrientation(t *testing.T) {
+    ctx := context.Background()
+    mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := sitesMapsAutoPlacement.GetSiteApAutoOrientation(ctx, mapId, siteId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"start_time":1678900062,"status":"done","stop_time":1678900362}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesMapsAutoPlacementTestGetSiteApAutoOrientation1 tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestGetSiteApAutoOrientation1(t *testing.T) {
+    ctx := context.Background()
+    mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := sitesMapsAutoPlacement.GetSiteApAutoOrientation(ctx, mapId, siteId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"start_time":1678900062,"status":"done","stop_time":1678900362}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation tests the behavior of the SitesMapsAutoPlacement
 func TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation(t *testing.T) {
     ctx := context.Background()
@@ -48,7 +96,32 @@ func TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"state":"Not Started","time_queued":1675414259}`
+    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation1 tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation1(t *testing.T) {
+    ctx := context.Background()
+    mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := sitesMapsAutoPlacement.StartSiteApAutoOrientation(ctx, mapId, siteId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -94,6 +167,30 @@ func TestSitesMapsAutoPlacementTestGetSiteApAutoPlacement(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestSitesMapsAutoPlacementTestGetSiteApAutoPlacement1 tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestGetSiteApAutoPlacement1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := sitesMapsAutoPlacement.GetSiteApAutoPlacement(ctx, siteId, mapId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"end_time":1678900362,"start_time":1678900062,"status":"done"}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesMapsAutoPlacementTestRunSiteApAutoplacement tests the behavior of the SitesMapsAutoPlacement
 func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement(t *testing.T) {
     ctx := context.Background()
@@ -113,6 +210,31 @@ func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesMapsAutoPlacementTestRunSiteApAutoplacement1 tests the behavior of the SitesMapsAutoPlacement
+func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement1(t *testing.T) {
+    ctx := context.Background()
+    siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true}`

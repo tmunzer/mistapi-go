@@ -12,10 +12,11 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ForSite` | `*bool` | Optional | - |
-| `FullyLoaded` | `map[string]int` | Optional | Property key is the service name (e.g. "SUB-MAN") |
+| `FullyLoaded` | `map[string]int` | Optional | Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN"). |
 | `NumDevices` | `int` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
-| `Usages` | `map[string]int` | Required | Subscriptions and their quantities. Property key is the service name (e.g. "SUB-MAN") |
+| `Summary` | `map[string]int` | Optional | Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN). |
+| `Usages` | `map[string]int` | Required | Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN") |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -30,6 +31,10 @@
   "for_site": false,
   "fully_loaded": {
     "key0": 56
+  },
+  "summary": {
+    "key0": 120,
+    "key1": 121
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

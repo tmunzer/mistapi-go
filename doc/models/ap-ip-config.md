@@ -22,9 +22,9 @@ IP AP settings
 | `Mtu` | `*int` | Optional | - |
 | `Netmask` | `*string` | Optional | Required if `type`==`static` |
 | `Netmask6` | `*string` | Optional | - |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
-| `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br>**Default**: `"disabled"` |
-| `VlanId` | `*int` | Optional | Management VLAN id, default is 1 (untagged)<br>**Default**: `1` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
+| `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br><br>**Default**: `"disabled"` |
+| `VlanId` | `*int` | Optional | Management VLAN id, default is 1 (untagged)<br><br>**Default**: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

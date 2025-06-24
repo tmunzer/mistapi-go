@@ -118,7 +118,6 @@ body := models.NetworkTemplate{
             MacAuthOnly:                              models.ToPointer(true),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -151,7 +150,6 @@ body := models.NetworkTemplate{
             MacAuthOnly:                              models.ToPointer(true),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -171,11 +169,11 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
-        ProtectRe:            models.ToPointer(models.ProtectRe{
+        ProtectRe:             models.ToPointer(models.ProtectRe{
             Enabled:              models.ToPointer(false),
         }),
-        RootPassword:         models.ToPointer("string"),
-        Tacacs:               models.ToPointer(models.Tacacs{
+        RootPassword:          models.ToPointer("string"),
+        Tacacs:                models.ToPointer(models.Tacacs{
             AcctServers:          []models.TacacsAcctServer{
                 models.TacacsAcctServer{
                     Host:                 models.ToPointer("198.51.100.1"),
@@ -195,7 +193,7 @@ body := models.NetworkTemplate{
                 },
             },
         }),
-        AdditionalProperties: map[string]interface{}{
+        AdditionalProperties:  map[string]interface{}{
             "config_revert": interface{}("10"),
         },
     }),
@@ -328,8 +326,6 @@ if err != nil {
       "guest_network": "string",
       "mac_auth_only": true,
       "mac_limit": 0,
-      "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -364,7 +360,6 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -581,8 +576,8 @@ ListOrgNetworkTemplates(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -685,7 +680,6 @@ if err != nil {
         "mac_auth_only": false,
         "mac_limit": 0,
         "mode": "trunk",
-        "mtu": 9192,
         "networks": [
           "guest",
           "corp"
@@ -1039,7 +1033,6 @@ body := models.NetworkTemplate{
             MacAuthOnly:                              models.ToPointer(true),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -1072,7 +1065,6 @@ body := models.NetworkTemplate{
             MacAuthOnly:                              models.ToPointer(true),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
-            Mtu:                                      models.ToPointer(models.SwitchPortUsageMtuContainer.FromNumber(1500)),
             Networks:                                 []string{
                 "string",
             },
@@ -1092,11 +1084,11 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
-        ProtectRe:            models.ToPointer(models.ProtectRe{
+        ProtectRe:             models.ToPointer(models.ProtectRe{
             Enabled:              models.ToPointer(false),
         }),
-        RootPassword:         models.ToPointer("string"),
-        Tacacs:               models.ToPointer(models.Tacacs{
+        RootPassword:          models.ToPointer("string"),
+        Tacacs:                models.ToPointer(models.Tacacs{
             AcctServers:          []models.TacacsAcctServer{
                 models.TacacsAcctServer{
                     Host:                 models.ToPointer("198.51.100.1"),
@@ -1116,7 +1108,7 @@ body := models.NetworkTemplate{
                 },
             },
         }),
-        AdditionalProperties: map[string]interface{}{
+        AdditionalProperties:  map[string]interface{}{
             "config_revert": interface{}("10"),
         },
     }),
@@ -1248,7 +1240,6 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],
@@ -1283,7 +1274,6 @@ if err != nil {
       "mac_auth_only": true,
       "mac_limit": 0,
       "mode": "access",
-      "mtu": 1500,
       "networks": [
         "string"
       ],

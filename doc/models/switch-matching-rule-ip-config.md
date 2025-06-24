@@ -14,7 +14,7 @@ In-Band Management interface configuration
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Network` | `*string` | Optional | VLAN Name for the management interface |
-| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br>**Default**: `"dhcp"` |
+| `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

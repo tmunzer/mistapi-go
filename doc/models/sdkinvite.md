@@ -21,7 +21,7 @@ SDK invite
 | `Name` | `string` | Required | Name, will show up in mobile |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Quota` | `*int` | Optional | Number of time this invite can be used |
-| `QuotaLimited` | `*bool` | Optional | Whether quota limiting is enabled<br>**Default**: `false` |
+| `QuotaLimited` | `*bool` | Optional | Whether quota limiting is enabled<br><br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

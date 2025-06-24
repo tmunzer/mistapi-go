@@ -15,8 +15,10 @@ License
 |  --- | --- | --- | --- |
 | `Amendments` | [`[]models.LicenseAmendment`](../../doc/models/license-amendment.md) | Optional | **Constraints**: *Unique Items Required* |
 | `Entitled` | `map[string]int` | Optional | Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses entitled. |
+| `FullyLoaded` | `map[string]int` | Optional | Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN"). |
 | `Licenses` | [`[]models.LicenseSub`](../../doc/models/license-sub.md) | Optional | - |
-| `Summary` | `map[string]int` | Optional | Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses consumed. |
+| `Summary` | `map[string]int` | Optional | Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN). |
+| `Usages` | `map[string]int` | Optional | Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN") |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -50,6 +52,11 @@ License
   "entitled": {
     "key0": 120,
     "key1": 119
+  },
+  "fully_loaded": {
+    "key0": 214,
+    "key1": 215,
+    "key2": 216
   },
   "licenses": [
     {

@@ -290,8 +290,8 @@ ListSiteWxRules(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -368,7 +368,7 @@ if err != nil {
 
 # List Site Wx Rules Derived
 
-Get Site WxLan Rule Derived
+Get the list of derived WxLan Rule for a site
 
 ```go
 ListSiteWxRulesDerived(

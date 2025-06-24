@@ -81,14 +81,15 @@ func (o *OrgsStatsAssets) ListOrgAssetsStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgAssetsByDistanceField takes context, orgId, distinct as parameters and
+// CountOrgAssetsByDistanceField takes context, orgId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Assets
+// Count by Distinct Attributes of Org Assets
 func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct *models.OrgAssetCountDistinctEnum) (
+    distinct *models.OrgAssetCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/assets/count")
@@ -113,6 +114,9 @@ func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

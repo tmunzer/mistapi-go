@@ -13,11 +13,11 @@ password policy
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | Whether the policy is enabled<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether the policy is enabled<br><br>**Default**: `false` |
 | `ExpiryInDays` | `*int` | Optional | password expiry in days |
-| `MinLength` | `*int` | Optional | Required password length<br>**Default**: `8` |
-| `RequiresSpecialChar` | `*bool` | Optional | Whether to require special character<br>**Default**: `false` |
-| `RequiresTwoFactorAuth` | `*bool` | Optional | Whether to require two-factor auth<br>**Default**: `false` |
+| `MinLength` | `*int` | Optional | Required password length<br><br>**Default**: `8` |
+| `RequiresSpecialChar` | `*bool` | Optional | Whether to require special character<br><br>**Default**: `false` |
+| `RequiresTwoFactorAuth` | `*bool` | Optional | Whether to require two-factor auth<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

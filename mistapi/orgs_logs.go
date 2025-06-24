@@ -28,7 +28,7 @@ func NewOrgsLogs(baseController baseController) *OrgsLogs {
 func (o *OrgsLogs) ListOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *string,
+    siteId *uuid.UUID,
     adminName *string,
     message *string,
     sort *models.ListOrgLogsSortEnum,
@@ -97,7 +97,7 @@ func (o *OrgsLogs) ListOrgAuditLogs(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgAuditLogs takes context, orgId, distinct, adminId, adminName, siteId, message, start, end, duration, limit, page as parameters and
+// CountOrgAuditLogs takes context, orgId, distinct, adminId, adminName, siteId, message, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Audit Logs
@@ -105,15 +105,14 @@ func (o *OrgsLogs) CountOrgAuditLogs(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgLogsCountDistinctEnum,
-    adminId *string,
+    adminId *uuid.UUID,
     adminName *string,
-    siteId *string,
+    siteId *uuid.UUID,
     message *string,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/logs/count")
@@ -162,9 +161,6 @@ func (o *OrgsLogs) CountOrgAuditLogs(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

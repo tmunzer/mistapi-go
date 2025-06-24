@@ -55,11 +55,11 @@ GetSiteSleClassifierDetails(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SleSummaryScopeEnum`](../../doc/models/sle-summary-scope-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `classifier` | `string` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -241,10 +241,10 @@ GetSiteSleHistogram(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleHistogramScopeParametersEnum`](../../doc/models/site-sle-histogram-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -419,10 +419,10 @@ GetSiteSleImpactSummary(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactSummaryScopeParametersEnum`](../../doc/models/site-sle-impact-summary-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `fields` | [`*models.SiteSleImpactSummaryFieldsParameterEnum`](../../doc/models/site-sle-impact-summary-fields-parameter-enum.md) | Query, Optional | - |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -640,10 +640,10 @@ GetSiteSleSummary(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleMetricSummaryScopeParametersEnum`](../../doc/models/site-sle-metric-summary-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -1183,7 +1183,7 @@ GetSiteSleThreshold(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleThresholdScopeParameterEnum`](../../doc/models/site-sle-threshold-scope-parameter-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 
 ## Response Type
 
@@ -1198,9 +1198,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
-scopeId := "scope_id0"
+scopeId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-metric := "metric8"
+metric := "asymmetry-uplink"
 
 apiResponse, err := sitesSLEs.GetSiteSleThreshold(ctx, siteId, scope, scopeId, metric)
 if err != nil {
@@ -1263,10 +1263,10 @@ ListSiteSleImpactedApplications(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleScopeEnum`](../../doc/models/site-sle-scope-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1342,7 +1342,7 @@ if err != nil {
 
 # List Site Sle Impacted Aps
 
-For Wireless SLEs. Listimpacted APs optionally filtered by classifier and failure type
+For Wireless SLEs. List the impacted APs optionally filtered by classifier and failure type
 
 ```go
 ListSiteSleImpactedAps(
@@ -1366,10 +1366,10 @@ ListSiteSleImpactedAps(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedApsScopeParametersEnum`](../../doc/models/site-sle-impacted-aps-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1475,10 +1475,10 @@ ListSiteSleImpactedChassis(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedChassisScopeParametersEnum`](../../doc/models/site-sle-impacted-chassis-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1579,10 +1579,10 @@ ListSiteSleImpactedGateways(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedGatewaysScopeParametersEnum`](../../doc/models/site-sle-impacted-gateways-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1683,10 +1683,10 @@ ListSiteSleImpactedInterfaces(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedInterfacesScopeParametersEnum`](../../doc/models/site-sle-impacted-interfaces-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1794,10 +1794,10 @@ ListSiteSleImpactedSwitches(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedSwitchesScopeParametersEnum`](../../doc/models/site-sle-impacted-switches-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -1902,10 +1902,10 @@ ListSiteSleImpactedWiredClients(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedClientsScopeParametersEnum`](../../doc/models/site-sle-impacted-clients-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -2013,10 +2013,10 @@ ListSiteSleImpactedWirelessClients(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleImpactedUsersScopeParameterEnum`](../../doc/models/site-sle-impacted-users-scope-parameter-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
 ## Response Type
@@ -2156,7 +2156,7 @@ ListSiteSleMetricClassifiers(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleMetricClassifiersScopeParametersEnum`](../../doc/models/site-sle-metric-classifiers-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 
 ## Response Type
 
@@ -2331,7 +2331,7 @@ ReplaceSiteSleThreshold(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleThresholdScopeParameterEnum`](../../doc/models/site-sle-threshold-scope-parameter-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `body` | [`*models.SleThreshold`](../../doc/models/sle-threshold.md) | Body, Optional | - |
 
 ## Response Type
@@ -2347,9 +2347,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
-scopeId := "scope_id0"
+scopeId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-metric := "metric8"
+metric := "asymmetry-uplink"
 
 body := models.SleThreshold{
     Maximum:              models.ToPointer(float64(-60)),
@@ -2414,7 +2414,7 @@ UpdateSiteSleThreshold(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `scope` | [`models.SiteSleThresholdScopeParameterEnum`](../../doc/models/site-sle-threshold-scope-parameter-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
-| `metric` | `string` | Template, Required | Values from /api/v1/sites/{site_id}/sle/{scope}/{scope_id}/metrics |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `body` | [`*models.SleThreshold`](../../doc/models/sle-threshold.md) | Body, Optional | - |
 
 ## Response Type
@@ -2430,9 +2430,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 scope := models.SiteSleThresholdScopeParameterEnum_GATEWAY
 
-scopeId := "scope_id0"
+scopeId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-metric := "metric8"
+metric := "asymmetry-uplink"
 
 body := models.SleThreshold{
     Maximum:              models.ToPointer(float64(-60)),

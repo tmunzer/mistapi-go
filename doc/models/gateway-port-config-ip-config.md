@@ -20,9 +20,9 @@ Junos IP Config
 | `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}") |
 | `Network` | `*string` | Optional | Optional, the network to be used for mgmt |
 | `PoserPassword` | `*string` | Optional | If `type`==`pppoe` |
-| `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`. enum: `chap`, `none`, `pap`<br>**Default**: `"none"` |
+| `PppoeAuth` | [`*models.GatewayWanPpoeAuthEnum`](../../doc/models/gateway-wan-ppoe-auth-enum.md) | Optional | if `type`==`pppoe`. enum: `chap`, `none`, `pap`<br><br>**Default**: `"none"` |
 | `PppoeUsername` | `*string` | Optional | If `type`==`pppoe` |
-| `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | enum: `dhcp`, `pppoe`, `static`<br>**Default**: `"dhcp"` |
+| `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | enum: `dhcp`, `pppoe`, `static`<br><br>**Default**: `"dhcp"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

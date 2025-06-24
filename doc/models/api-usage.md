@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `RequestLimit` | `int` | Required | max number of request permitted<br>**Default**: `5000` |
+| `RequestLimit` | `int` | Required | max number of request permitted<br><br>**Default**: `5000` |
 | `Requests` | `int` | Required | num of request made in the current hour |
 | `Seconds` | `*float64` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

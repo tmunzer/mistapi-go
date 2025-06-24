@@ -13,7 +13,7 @@ CoA Server
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DisableEventTimestampCheck` | `*bool` | Optional | Whether to disable Event-Timestamp Check<br>**Default**: `false` |
+| `DisableEventTimestampCheck` | `*bool` | Optional | Whether to disable Event-Timestamp Check<br><br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Ip` | `string` | Required | - |
 | `Port` | [`*models.RadiusCoaPort`](../../doc/models/containers/radius-coa-port.md) | Optional | Radius CoA Port, value from 1 to 65535, default is 3799 |

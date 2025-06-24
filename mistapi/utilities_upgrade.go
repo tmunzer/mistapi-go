@@ -523,14 +523,15 @@ func (u *UtilitiesUpgrade) CancelOrgSsrUpgrade(
     return httpCtx.Response, err
 }
 
-// ListOrgAvailableSsrVersions takes context, orgId, channel as parameters and
+// ListOrgAvailableSsrVersions takes context, orgId, channel, mac as parameters and
 // returns an models.ApiResponse with []models.SsrVersion data and
 // an error if there was an issue with the request or response.
 // Get available version for SSR
 func (u *UtilitiesUpgrade) ListOrgAvailableSsrVersions(
     ctx context.Context,
     orgId uuid.UUID,
-    channel *string) (
+    channel *models.SsrVersionChannelEnum,
+    mac *string) (
     models.ApiResponse[[]models.SsrVersion],
     error) {
     req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssr/versions")
@@ -555,6 +556,9 @@ func (u *UtilitiesUpgrade) ListOrgAvailableSsrVersions(
     })
     if channel != nil {
         req.QueryParam("channel", *channel)
+    }
+    if mac != nil {
+        req.QueryParam("mac", *mac)
     }
     
     var result []models.SsrVersion

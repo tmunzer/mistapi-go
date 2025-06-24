@@ -10,6 +10,7 @@ orgsClientsWireless := client.OrgsClientsWireless()
 
 ## Methods
 
+* [Count Org Wireless Client Events](../../doc/controllers/orgs-clients-wireless.md#count-org-wireless-client-events)
 * [Count Org Wireless Clients](../../doc/controllers/orgs-clients-wireless.md#count-org-wireless-clients)
 * [Count Org Wireless Clients Sessions](../../doc/controllers/orgs-clients-wireless.md#count-org-wireless-clients-sessions)
 * [Search Org Wireless Client Events](../../doc/controllers/orgs-clients-wireless.md#search-org-wireless-client-events)
@@ -17,9 +18,129 @@ orgsClientsWireless := client.OrgsClientsWireless()
 * [Search Org Wireless Clients](../../doc/controllers/orgs-clients-wireless.md#search-org-wireless-clients)
 
 
+# Count Org Wireless Client Events
+
+Count by Distinct Attributes of Client-Events
+
+```go
+CountOrgWirelessClientEvents(
+    ctx context.Context,
+    orgId uuid.UUID,
+    distinct *models.SiteClientEventsCountDistinctEnum,
+    mType *string,
+    reasonCode *int,
+    ssid *string,
+    ap *string,
+    proto *models.Dot11ProtoEnum,
+    band *models.Dot11BandEnum,
+    wlanId *string,
+    siteId *uuid.UUID,
+    start *int,
+    end *int,
+    duration *string,
+    limit *int) (
+    models.ApiResponse[models.ResponseCount],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `distinct` | [`*models.SiteClientEventsCountDistinctEnum`](../../doc/models/site-client-events-count-distinct-enum.md) | Query, Optional | - |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
+| `ssid` | `*string` | Query, Optional | SSID Name |
+| `ap` | `*string` | Query, Optional | AP MAC |
+| `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
+| `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
+| `wlanId` | `*string` | Query, Optional | WLAN ID |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
+| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
+| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseCount](../../doc/models/response-count.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+distinct := models.SiteClientEventsCountDistinctEnum_ENUMTYPE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+
+
+
+
+
+duration := "10m"
+
+limit := 100
+
+apiResponse, err := orgsClientsWireless.CountOrgWirelessClientEvents(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, &siteId, nil, nil, &duration, &limit)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "distinct": "string",
+  "end": 0,
+  "limit": 0,
+  "results": [
+    {
+      "count": 0,
+      "property": "string"
+    }
+  ],
+  "start": 0,
+  "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Count Org Wireless Clients
 
-Count Org Wireless Clients
+Count by Distinct Attributes of Org Wireless Clients
 
 ```go
 CountOrgWirelessClients(
@@ -38,8 +159,7 @@ CountOrgWirelessClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -61,9 +181,8 @@ CountOrgWirelessClients(
 | `ipAddress` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -78,21 +197,21 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgClientsCountDistinctEnum_DEVICE
 
+mac := "5c5b53010101"
 
+hostname := "my-hostname"
 
+device := "iPhone"
 
+os := "Windows 10"
 
+model := "iPhone 8"
 
+ap := "5c5b53010101"
 
+vlan := "10"
 
-
-
-
-
-
-
-
-
+ssid := "MySSID"
 
 ipAddress := "192.168.1.1"
 
@@ -104,9 +223,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ipAddress, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -147,7 +264,7 @@ if err != nil {
 
 # Count Org Wireless Clients Sessions
 
-Count Org Wireless Clients Sessions
+Count by Distinct Attributes of Org Wireless Clients Sessions
 
 ```go
 CountOrgWirelessClientsSessions(
@@ -161,12 +278,11 @@ CountOrgWirelessClientsSessions(
     clientModel *string,
     clientOs *string,
     ssid *string,
-    wlanId *string,
+    wlanId *uuid.UUID,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -184,12 +300,11 @@ CountOrgWirelessClientsSessions(
 | `clientModel` | `*string` | Query, Optional | E.g. "8+", "XS" |
 | `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*string` | Query, Optional | WLAN_id |
+| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -204,21 +319,21 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgClientSessionsCountDistinctEnum_DEVICE
 
+ap := "5c5b53010101"
 
 
 
+clientFamily := "iPhone"
 
+clientManufacture := "Apple"
 
+clientModel := "iPhone 8"
 
+clientOs := "Windows 10"
 
+ssid := "MySSID"
 
-
-
-
-
-
-
-
+wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 
 
@@ -228,9 +343,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsClientsWireless.CountOrgWirelessClientsSessions(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsClientsWireless.CountOrgWirelessClientsSessions(ctx, orgId, &distinct, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientOs, &ssid, &wlanId, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -283,9 +396,8 @@ SearchOrgWirelessClientEvents(
     ap *string,
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
-    wlanId *string,
-    nacruleId *string,
-    limit *int,
+    wlanId *uuid.UUID,
+    nacruleId *uuid.UUID,
     start *int,
     end *int,
     duration *string) (
@@ -304,12 +416,11 @@ SearchOrgWirelessClientEvents(
 | `ap` | `*string` | Query, Optional | AP MAC |
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
-| `wlanId` | `*string` | Query, Optional | WLAN_id |
-| `nacruleId` | `*string` | Query, Optional | Nacrule_id |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
+| `nacruleId` | `*uuid.UUID` | Query, Optional | Nacrule_id |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -324,21 +435,19 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+reasonCode := 7
+
+ssid := "MySSID"
+
+ap := "5c5b53010101"
 
 
 
 
 
+wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 
-
-
-
-
-
-
-
-limit := 100
 
 
 
@@ -346,7 +455,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, nil, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -409,7 +518,7 @@ SearchOrgWirelessClientSessions(
     clientUsername *string,
     clientOs *string,
     ssid *string,
-    wlanId *string,
+    wlanId *uuid.UUID,
     pskId *string,
     pskName *string,
     limit *int,
@@ -433,13 +542,13 @@ SearchOrgWirelessClientSessions(
 | `clientUsername` | `*string` | Query, Optional | Username |
 | `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `wlanId` | `*string` | Query, Optional | WLAN_id |
+| `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
 | `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -452,27 +561,27 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+ap := "5c5b53010101"
 
 
 
+clientFamily := "iPhone"
 
+clientManufacture := "Apple"
 
+clientModel := "iPhone 8"
 
+clientUsername := "john.doe"
 
+clientOs := "Windows 10"
 
+ssid := "MySSID"
 
-
-
-
-
-
-
-
-
+wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-
+pskName := "MyPPSK"
 
 limit := 100
 
@@ -482,7 +591,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &pskId, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -541,7 +650,7 @@ Search Org Wireless Clients
 SearchOrgWirelessClients(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *string,
+    siteId *uuid.UUID,
     mac *string,
     ipAddress *string,
     hostname *string,
@@ -569,7 +678,7 @@ SearchOrgWirelessClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | Site ID |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
 | `ipAddress` | `*string` | Query, Optional | - |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
@@ -584,10 +693,10 @@ SearchOrgWirelessClients(
 | `vlan` | `*string` | Query, Optional | VLAN |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -600,35 +709,35 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
-
-
+mac := "5c5b53010101"
 
 ipAddress := "192.168.1.1"
 
+hostname := "my-hostname"
 
+band := "5"
 
+device := "iPhone"
 
+os := "Windows 10"
 
+model := "iPhone 8"
 
-
-
-
-
-
-
+ap := "5c5b53010101"
 
 pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
+pskName := "MyPPSK"
 
+username := "john.doe"
 
+vlan := "10"
 
+ssid := "MySSID"
 
-
-
-
-
-
+text := "5c5b530"
 
 limit := 100
 
@@ -638,7 +747,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, &pskId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ipAddress, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

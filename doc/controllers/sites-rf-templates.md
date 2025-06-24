@@ -9,12 +9,12 @@ sitesRFTemplates := client.SitesRFTemplates()
 `SitesRFTemplates`
 
 
-# List Site Rf Template Derived
+# List Site Rf Templates Derived
 
-Get derived RF Templates for Site
+Get the list of derived RF Templates a Site
 
 ```go
-ListSiteRfTemplateDerived(
+ListSiteRfTemplatesDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool) (
@@ -42,7 +42,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
-apiResponse, err := sitesRFTemplates.ListSiteRfTemplateDerived(ctx, siteId, nil)
+apiResponse, err := sitesRFTemplates.ListSiteRfTemplatesDerived(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

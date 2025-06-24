@@ -10,6 +10,8 @@ var adminsRecoverPassword AdminsRecoverPassword
 
 var adminsLookup AdminsLookup
 
+var adminsLoginOAuth2 AdminsLoginOAuth2
+
 var installer Installer
 
 var msPs MSPs
@@ -61,6 +63,8 @@ var orgsCert OrgsCert
 var orgsAntivirusProfiles OrgsAntivirusProfiles
 
 var orgsClientsMarvis OrgsClientsMarvis
+
+var orgsMarvisInvites OrgsMarvisInvites
 
 var orgsClientsNac OrgsClientsNAC
 
@@ -246,11 +250,19 @@ var sitesDevicesWanCluster SitesDevicesWANCluster
 
 var sitesDeviceProfiles SitesDeviceProfiles
 
+var orgsEvents OrgsEvents
+
 var sitesEvents SitesEvents
 
 var sitesEvpnTopologies SitesEVPNTopologies
 
 var sitesGatewayTemplates SitesGatewayTemplates
+
+var sitesIdpProfiles SitesIDPProfiles
+
+var sitesAdvancedAntiMalwareProfiles SitesAdvancedAntiMalwareProfiles
+
+var sitesAntivirusProfiles SitesAntivirusProfiles
 
 var sitesGuests SitesGuests
 
@@ -398,6 +410,7 @@ func init() {
     adminsLogout = *client.AdminsLogout()
     adminsRecoverPassword = *client.AdminsRecoverPassword()
     adminsLookup = *client.AdminsLookup()
+    adminsLoginOAuth2 = *client.AdminsLoginOAuth2()
     installer = *client.Installer()
     msPs = *client.MSPs()
     msPsAdmins = *client.MSPsAdmins()
@@ -424,6 +437,7 @@ func init() {
     orgsCert = *client.OrgsCert()
     orgsAntivirusProfiles = *client.OrgsAntivirusProfiles()
     orgsClientsMarvis = *client.OrgsClientsMarvis()
+    orgsMarvisInvites = *client.OrgsMarvisInvites()
     orgsClientsNac = *client.OrgsClientsNAC()
     orgsClientsWan = *client.OrgsClientsWan()
     orgsClientsWired = *client.OrgsClientsWired()
@@ -516,9 +530,13 @@ func init() {
     sitesDevicesWiredVirtualChassis = *client.SitesDevicesWiredVirtualChassis()
     sitesDevicesWanCluster = *client.SitesDevicesWANCluster()
     sitesDeviceProfiles = *client.SitesDeviceProfiles()
+    orgsEvents = *client.OrgsEvents()
     sitesEvents = *client.SitesEvents()
     sitesEvpnTopologies = *client.SitesEVPNTopologies()
     sitesGatewayTemplates = *client.SitesGatewayTemplates()
+    sitesIdpProfiles = *client.SitesIDPProfiles()
+    sitesAdvancedAntiMalwareProfiles = *client.SitesAdvancedAntiMalwareProfiles()
+    sitesAntivirusProfiles = *client.SitesAntivirusProfiles()
     sitesGuests = *client.SitesGuests()
     sitesJse = *client.SitesJSE()
     sitesLicenses = *client.SitesLicenses()

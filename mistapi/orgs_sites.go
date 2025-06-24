@@ -114,10 +114,10 @@ func (o *OrgsSites) CreateOrgSite(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgSites takes context, orgId, distinct, start, end, duration, limit, page as parameters and
+// CountOrgSites takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Sites
+// Count by Distinct Attributes of Sites
 func (o *OrgsSites) CountOrgSites(
     ctx context.Context,
     orgId uuid.UUID,
@@ -125,8 +125,7 @@ func (o *OrgsSites) CountOrgSites(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sites/count")
@@ -163,9 +162,6 @@ func (o *OrgsSites) CountOrgSites(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

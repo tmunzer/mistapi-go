@@ -28,8 +28,7 @@ CountSiteDiscoveredSwitches(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -42,9 +41,8 @@ CountSiteDiscoveredSwitches(
 | `distinct` | [`*models.SiteDiscoveredSwitchesCountDistinctEnum`](../../doc/models/site-discovered-switches-count-distinct-enum.md) | Query, Optional | **Default**: `"system_name"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -67,9 +65,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesStatsDiscoveredSwitches.CountSiteDiscoveredSwitches(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesStatsDiscoveredSwitches.CountSiteDiscoveredSwitches(ctx, siteId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -141,11 +137,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+threshold := "12"
 
+systemName := "switch1.example.com"
 
-
-
-apiResponse, err := sitesStatsDiscoveredSwitches.ListSiteDiscoveredSwitchesMetrics(ctx, siteId, nil, nil)
+apiResponse, err := sitesStatsDiscoveredSwitches.ListSiteDiscoveredSwitchesMetrics(ctx, siteId, &threshold, &systemName)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -248,10 +244,10 @@ SearchSiteDiscoveredSwitches(
 | `vendor` | `*string` | Query, Optional | - |
 | `model` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -264,17 +260,17 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+adopted := true
 
+systemName := "switch1.example.com"
 
+hostname := "switch1"
 
+vendor := "Cisco"
 
+model := "WS-C3850-24P"
 
-
-
-
-
-
-
+version := "1.0.0"
 
 limit := 100
 
@@ -284,7 +280,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -361,12 +357,12 @@ SearchSiteDiscoveredSwitchesMetrics(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `scope` | [`*models.DiscoveredSwitchesMetricScopeEnum`](../../doc/models/discovered-switches-metric-scope-enum.md) | Query, Optional | Metric scope<br>**Default**: `"site"` |
+| `scope` | [`*models.DiscoveredSwitchesMetricScopeEnum`](../../doc/models/discovered-switches-metric-scope-enum.md) | Query, Optional | Metric scope<br><br>**Default**: `"site"` |
 | `mType` | [`*models.DiscoveredSwitchMetricTypeEnum`](../../doc/models/discovered-switch-metric-type-enum.md) | Query, Optional | Metric type |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

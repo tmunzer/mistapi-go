@@ -21,7 +21,7 @@ func NewSitesStatsApps(baseController baseController) *SitesStatsApps {
     return &sitesStatsApps
 }
 
-// CountSiteApps takes context, siteId, distinct, deviceMac, app, wired as parameters and
+// CountSiteApps takes context, siteId, distinct, deviceMac, app, wired, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Applications
@@ -31,7 +31,8 @@ func (s *SitesStatsApps) CountSiteApps(
     distinct *models.SiteAppsCountDistinctEnum,
     deviceMac *string,
     app *string,
-    wired *string) (
+    wired *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/apps/count")
@@ -65,6 +66,9 @@ func (s *SitesStatsApps) CountSiteApps(
     }
     if wired != nil {
         req.QueryParam("wired", *wired)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

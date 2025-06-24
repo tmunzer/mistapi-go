@@ -209,10 +209,10 @@ func (o *OrgsMxEdges) ClaimOrgMxEdge(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgMxEdges takes context, orgId, distinct, mxedgeId, siteId, mxclusterId, model, distro, tuntermVersion, sort, stats, start, end, duration, limit, page as parameters and
+// CountOrgMxEdges takes context, orgId, distinct, mxedgeId, siteId, mxclusterId, model, distro, tuntermVersion, sort, stats, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Mist Edges
+// Count by Distinct Attributes of Org Mist Edges
 func (o *OrgsMxEdges) CountOrgMxEdges(
     ctx context.Context,
     orgId uuid.UUID,
@@ -228,8 +228,7 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/count")
@@ -291,9 +290,6 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -308,7 +304,7 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
 // CountOrgSiteMxEdgeEvents takes context, orgId, distinct, mxedgeId, mxclusterId, mType, service, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Mist Edge Events
+// Count by Distinct Attributes of Org Mist Edge Events
 func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
     ctx context.Context,
     orgId uuid.UUID,

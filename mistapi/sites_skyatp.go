@@ -21,7 +21,7 @@ func NewSitesSkyatp(baseController baseController) *SitesSkyatp {
     return &sitesSkyatp
 }
 
-// CountSiteSkyatpEvents takes context, siteId, distinct, mType, mac, deviceMac, threatLevel, ipAddress, limit, start, end, duration as parameters and
+// CountSiteSkyatpEvents takes context, siteId, distinct, mType, mac, deviceMac, threatLevel, ipAddress, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Skyatp Events (WIP)
@@ -34,10 +34,10 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
     deviceMac *string,
     threatLevel *int,
     ipAddress *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/skyatp/events/count")
@@ -78,9 +78,6 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
     if ipAddress != nil {
         req.QueryParam("ip_address", *ipAddress)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -89,6 +86,9 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

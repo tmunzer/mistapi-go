@@ -17,7 +17,7 @@ Guest
 | `AllowWlanIdRoam` | `*bool` | Optional | Based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication |
 | `ApMac` | `*string` | Optional | MAC Address of the AP the guest was connected to during the registration process |
 | `AuthMethod` | `*string` | Optional | Type of guest authorization |
-| `Authorized` | `*bool` | Optional | Whether the guest is current authorized<br>**Default**: `true` |
+| `Authorized` | `*bool` | Optional | Whether the guest is current authorized<br><br>**Default**: `true` |
 | `AuthorizedExpiringTime` | `*float64` | Optional | When the authorization would expire |
 | `AuthorizedTime` | `*float64` | Optional | When the guest was authorized |
 | `Company` | `*string` | Optional | Optional, the info provided by user |
@@ -28,7 +28,7 @@ Guest
 | `Field3` | `*string` | Optional | - |
 | `Field4` | `*string` | Optional | - |
 | `Mac` | `*string` | Optional | MAC |
-| `Minutes` | `*int` | Optional | Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)<br>**Default**: `1440`<br>**Constraints**: `>= 0`, `<= 259200` |
+| `Minutes` | `*int` | Optional | Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)<br><br>**Default**: `1440`<br><br>**Constraints**: `>= 0`, `<= 259200` |
 | `Name` | `*string` | Optional | Optional, the info provided by user |
 | `RandomMac` | `*bool` | Optional | If the client is using a randomized MAC Address to connect the SSID |
 | `Ssid` | `*string` | Optional | Name of the SSID |

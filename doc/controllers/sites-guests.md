@@ -21,7 +21,7 @@ sitesGuests := client.SitesGuests()
 
 # Count Site Guest Authorizations
 
-Count Authorized Guest
+Count by Distinct Attributes of Authorized Guest
 
 ```go
 CountSiteGuestAuthorizations(
@@ -31,8 +31,7 @@ CountSiteGuestAuthorizations(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -45,9 +44,8 @@ CountSiteGuestAuthorizations(
 | `distinct` | [`*models.SiteGuestsCountDistinctEnum`](../../doc/models/site-guests-count-distinct-enum.md) | Query, Optional | **Default**: `"auth_method"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -70,9 +68,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesGuests.CountSiteGuestAuthorizations(ctx, siteId, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesGuests.CountSiteGuestAuthorizations(ctx, siteId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -313,7 +309,7 @@ if err != nil {
 
 # List Site All Guest Authorizations Derived
 
-Get List of Site Guest Authorizations
+Get the list of derived Guest Authorizations for a site
 
 ```go
 ListSiteAllGuestAuthorizationsDerived(
@@ -331,7 +327,7 @@ ListSiteAllGuestAuthorizationsDerived(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `*string` | Query, Optional | UUID of single or multiple (Comma separated) WLAN under Site `site_id` (to filter by WLAN) |
-| `crossSite` | `*bool` | Query, Optional | Whether to get org level guests, default is false i.e get site level guests<br>**Default**: `false` |
+| `crossSite` | `*bool` | Query, Optional | Whether to get org level guests, default is false i.e get site level guests<br><br>**Default**: `false` |
 
 ## Response Type
 
@@ -417,10 +413,10 @@ SearchSiteGuestAuthorization(
 | `wlanId` | `*string` | Query, Optional | - |
 | `authMethod` | `*string` | Query, Optional | - |
 | `ssid` | `*string` | Query, Optional | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

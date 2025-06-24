@@ -107,10 +107,10 @@ func (s *SitesAlarms) AckSiteAllAlarms(
     return httpCtx.Response, err
 }
 
-// CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit, page as parameters and
+// CountSiteAlarms takes context, siteId, distinct, ackAdminName, acked, mType, severity, group, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Site Alarms
+// Count by Distinct Attributes of Site Alarms
 func (s *SitesAlarms) CountSiteAlarms(
     ctx context.Context,
     siteId uuid.UUID,
@@ -123,8 +123,7 @@ func (s *SitesAlarms) CountSiteAlarms(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/alarms/count")
@@ -176,9 +175,6 @@ func (s *SitesAlarms) CountSiteAlarms(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

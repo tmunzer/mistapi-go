@@ -195,7 +195,7 @@ if err != nil {
 
 # Count Org Alarms
 
-Count Org Alarms
+Count by Distinct Attributes of Org Alarms
 
 ```go
 CountOrgAlarms(
@@ -205,8 +205,7 @@ CountOrgAlarms(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -219,9 +218,8 @@ CountOrgAlarms(
 | `distinct` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -234,7 +232,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
+distinct := "site_id"
 
 
 
@@ -244,9 +242,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -314,8 +310,8 @@ SearchOrgAlarms(
 | `status` | `*string` | Query, Optional | Alarm status. Accepts multiple values separated by comma. enum: `open`, `resolved` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -328,11 +324,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 
+mType := "marvis"
 
-
-
-
+status := "open"
 
 
 
@@ -342,7 +338,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -13,14 +13,14 @@ Initiate a Wireless Packet Capture
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `<= 86400` |
-| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br>**Default**: `"stream"` |
-| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br>**Default**: `128`<br>**Constraints**: `<= 2048` |
+| `Duration` | `*int` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `<= 86400` |
+| `Format` | [`*models.CaptureMxedgeFormatEnum`](../../doc/models/capture-mxedge-format-enum.md) | Optional | PCAP format. enum:<br><br>* `stream`: to Mist cloud<br>* `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)<br><br>**Default**: `"stream"` |
+| `MaxPktLen` | `*int` | Optional | Max_len of each packet to capture<br><br>**Default**: `128`<br><br>**Constraints**: `<= 2048` |
 | `Mxedges` | [`map[string]models.CaptureMxedgeMxedges`](../../doc/models/capture-mxedge-mxedges.md) | Optional | - |
-| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br>**Default**: `1024`<br>**Constraints**: `<= 10000` |
-| `Type` | `string` | Required, Constant | enum: `mxedge`<br>**Value**: `"mxedge"` |
+| `NumPackets` | `*int` | Optional | Number of packets to capture, 0 for unlimited<br><br>**Default**: `1024`<br><br>**Constraints**: `<= 10000` |
+| `Type` | `string` | Required, Constant | enum: `mxedge`<br><br>**Value**: `"mxedge"` |
 | `TzspHost` | `*string` | Optional | Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets. |
-| `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br>**Default**: `37008`<br>**Constraints**: `>= 1`, `<= 65535` |
+| `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br><br>**Default**: `37008`<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

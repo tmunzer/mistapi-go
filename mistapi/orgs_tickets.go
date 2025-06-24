@@ -119,14 +119,15 @@ func (o *OrgsTickets) CreateOrgTicket(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgTickets takes context, orgId, distinct as parameters and
+// CountOrgTickets takes context, orgId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org Tickets
+// Count by Distinct Attributes of Org Tickets
 func (o *OrgsTickets) CountOrgTickets(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct *models.OrgTicketsCountDistinctEnum) (
+    distinct *models.OrgTicketsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/tickets/count")
@@ -151,6 +152,9 @@ func (o *OrgsTickets) CountOrgTickets(
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

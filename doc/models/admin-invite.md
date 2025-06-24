@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccountOnly` | `*bool` | Optional | Skip creating initial setup if true<br>**Default**: `false` |
-| `AllowMist` | `*bool` | Optional | Whether to allow Mist to look at this org<br>**Default**: `false` |
+| `AccountOnly` | `*bool` | Optional | Skip creating initial setup if true<br><br>**Default**: `false` |
+| `AllowMist` | `*bool` | Optional | Whether to allow Mist to look at this org<br><br>**Default**: `false` |
 | `City` | `*string` | Optional | City of registering user |
 | `Country` | `*string` | Optional | Country/region name or ISO code of registering user |
 | `Email` | `string` | Required | **Constraints**: *Maximum Length*: `64` |
@@ -22,7 +22,7 @@
 | `OrgName` | `string` | Required | - |
 | `Password` | `string` | Required | - |
 | `Recaptcha` | `string` | Required | reCAPTCHA , see https://www.google.com/recaptcha/ |
-| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha. enum: `google`, `hcaptcha`<br>**Default**: `"google"` |
+| `RecaptchaFlavor` | [`*models.RecaptchaFlavorEnum`](../../doc/models/recaptcha-flavor-enum.md) | Optional | flavor of the captcha. enum: `google`, `hcaptcha`<br><br>**Default**: `"google"` |
 | `RefererInviteToken` | `*string` | Optional | Invite token to apply after account creation |
 | `ReturnTo` | `*string` | Optional | URL the user should be redirected back to |
 | `State` | `*string` | Optional | State name or ISO code of registering user, optional (depends on country/region) |

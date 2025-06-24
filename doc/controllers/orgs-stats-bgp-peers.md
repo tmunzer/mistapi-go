@@ -16,12 +16,13 @@ orgsStatsBGPPeers := client.OrgsStatsBGPPeers()
 
 # Count Org Bgp Stats
 
-Count Org BGP Stats
+Count by Distinct Attributes of Org BGP Stats
 
 ```go
 CountOrgBgpStats(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -31,6 +32,7 @@ CountOrgBgpStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -43,7 +45,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := orgsStatsBGPPeers.CountOrgBgpStats(ctx, orgId)
+limit := 100
+
+apiResponse, err := orgsStatsBGPPeers.CountOrgBgpStats(ctx, orgId, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -111,8 +115,8 @@ SearchOrgBgpStats(
 | `siteId` | `*string` | Query, Optional | - |
 | `vrfName` | `*string` | Query, Optional | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 

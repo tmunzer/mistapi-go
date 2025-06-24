@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `[]string` | Optional | - |
-| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
+| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap` |
 | `CertCn` | `[]string` | Optional | When certificate based authentication is used, the CN from the certificates used for the specified duration |
 | `CertIssuer` | `[]string` | Optional | When certificate based authentication is used, the Issuer from the certificates used for the specified duration |
 | `CertSerial` | `[]string` | Optional | When certificate based authentication is used, the Serial from the certificates used for the specified duration |
@@ -45,11 +45,12 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortId` | `[]string` | Optional | Port-ids the client was connected to  for the specified duration |
 | `RandomMac` | `*bool` | Optional | Whether the client is using randomized MAC Address or not |
-| `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br>**Constraints**: *Unique Items Required* |
+| `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `[]string` | Optional | SSIDs the client was connected to  for the specified duration |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Optional | Type of network access. enum: `wireless`, `wired` |
+| `UsermacLabel` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Username` | `[]string` | Optional | List of usernames that have been assigned to the client |
 | `Vlan` | `[]string` | Optional | List of vlans that have been assigned to the client |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

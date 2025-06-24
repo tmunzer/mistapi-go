@@ -11,8 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | If set to `true`, enable the DHCP server<br>**Default**: `false` |
-| `AdditionalProperties` | [`map[string]models.SwitchDhcpdConfigProperty`](../../doc/models/switch-dhcpd-config-property.md) | Optional | - |
+| `Enabled` | `*bool` | Optional | If set to `true`, enable the DHCP server<br><br>**Default**: `false` |
+| `AdditionalProperties` | [`map[string]models.SwitchDhcpdConfigProperty`](../../doc/models/switch-dhcpd-config-property.md) | Optional | the Property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2") |
 
 ## Example (as JSON)
 

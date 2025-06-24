@@ -27,6 +27,8 @@ type ApRadio struct {
     Band5On24Radio       *ApRadioBand5           `json:"band_5_on_24_radio,omitempty"`
     // Radio Band AP settings
     Band6                *ApRadioBand6           `json:"band_6,omitempty"`
+    // Let RRM control everything, only the `channels` and `ant_gain` will be honored (i.e. disabled/bandwidth/power/band_24_usage are all controlled by RRM)
+    FullAutomaticRrm     *bool                   `json:"full_automatic_rrm,omitempty"`
     // To make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap
     IndoorUse            *bool                   `json:"indoor_use,omitempty"`
     // Whether scanning radio is enabled
@@ -38,8 +40,8 @@ type ApRadio struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApRadio) String() string {
     return fmt.Sprintf(
-    	"ApRadio[AllowRrmDisable=%v, AntGain24=%v, AntGain5=%v, AntGain6=%v, AntennaMode=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, IndoorUse=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
-    	a.AllowRrmDisable, a.AntGain24, a.AntGain5, a.AntGain6, a.AntennaMode, a.Band24, a.Band24Usage, a.Band5, a.Band5On24Radio, a.Band6, a.IndoorUse, a.ScanningEnabled, a.AdditionalProperties)
+    	"ApRadio[AllowRrmDisable=%v, AntGain24=%v, AntGain5=%v, AntGain6=%v, AntennaMode=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, FullAutomaticRrm=%v, IndoorUse=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
+    	a.AllowRrmDisable, a.AntGain24, a.AntGain5, a.AntGain6, a.AntennaMode, a.Band24, a.Band24Usage, a.Band5, a.Band5On24Radio, a.Band6, a.FullAutomaticRrm, a.IndoorUse, a.ScanningEnabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadio.
@@ -48,7 +50,7 @@ func (a ApRadio) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "indoor_use", "scanning_enabled"); err != nil {
+        "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -88,6 +90,9 @@ func (a ApRadio) toMap() map[string]any {
     if a.Band6 != nil {
         structMap["band_6"] = a.Band6.toMap()
     }
+    if a.FullAutomaticRrm != nil {
+        structMap["full_automatic_rrm"] = a.FullAutomaticRrm
+    }
     if a.IndoorUse != nil {
         structMap["indoor_use"] = a.IndoorUse
     }
@@ -105,7 +110,7 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "indoor_use", "scanning_enabled")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled")
     if err != nil {
     	return err
     }
@@ -121,6 +126,7 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
     a.Band5 = temp.Band5
     a.Band5On24Radio = temp.Band5On24Radio
     a.Band6 = temp.Band6
+    a.FullAutomaticRrm = temp.FullAutomaticRrm
     a.IndoorUse = temp.IndoorUse
     a.ScanningEnabled = temp.ScanningEnabled
     return nil
@@ -128,16 +134,17 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
 
 // tempApRadio is a temporary struct used for validating the fields of ApRadio.
 type tempApRadio  struct {
-    AllowRrmDisable *bool                   `json:"allow_rrm_disable,omitempty"`
-    AntGain24       *int                    `json:"ant_gain_24,omitempty"`
-    AntGain5        *int                    `json:"ant_gain_5,omitempty"`
-    AntGain6        *int                    `json:"ant_gain_6,omitempty"`
-    AntennaMode     *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
-    Band24          *ApRadioBand24          `json:"band_24,omitempty"`
-    Band24Usage     *RadioBand24UsageEnum   `json:"band_24_usage,omitempty"`
-    Band5           *ApRadioBand5           `json:"band_5,omitempty"`
-    Band5On24Radio  *ApRadioBand5           `json:"band_5_on_24_radio,omitempty"`
-    Band6           *ApRadioBand6           `json:"band_6,omitempty"`
-    IndoorUse       *bool                   `json:"indoor_use,omitempty"`
-    ScanningEnabled *bool                   `json:"scanning_enabled,omitempty"`
+    AllowRrmDisable  *bool                   `json:"allow_rrm_disable,omitempty"`
+    AntGain24        *int                    `json:"ant_gain_24,omitempty"`
+    AntGain5         *int                    `json:"ant_gain_5,omitempty"`
+    AntGain6         *int                    `json:"ant_gain_6,omitempty"`
+    AntennaMode      *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
+    Band24           *ApRadioBand24          `json:"band_24,omitempty"`
+    Band24Usage      *RadioBand24UsageEnum   `json:"band_24_usage,omitempty"`
+    Band5            *ApRadioBand5           `json:"band_5,omitempty"`
+    Band5On24Radio   *ApRadioBand5           `json:"band_5_on_24_radio,omitempty"`
+    Band6            *ApRadioBand6           `json:"band_6,omitempty"`
+    FullAutomaticRrm *bool                   `json:"full_automatic_rrm,omitempty"`
+    IndoorUse        *bool                   `json:"indoor_use,omitempty"`
+    ScanningEnabled  *bool                   `json:"scanning_enabled,omitempty"`
 }

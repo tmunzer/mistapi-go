@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Paths` | [`[]models.GatewayPathPreferencesPath`](../../doc/models/gateway-path-preferences-path.md) | Optional | - |
-| `Strategy` | [`*models.GatewayPathStrategyEnum`](../../doc/models/gateway-path-strategy-enum.md) | Optional | enum: `ecmp`, `ordered`, `weighted`<br>**Default**: `"ordered"` |
+| `Strategy` | [`*models.GatewayPathStrategyEnum`](../../doc/models/gateway-path-strategy-enum.md) | Optional | enum: `ecmp`, `ordered`, `weighted`<br><br>**Default**: `"ordered"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -19,7 +19,7 @@ Authentication Server
 | `KeywrapKek` | `*string` | Optional | - |
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | [`*models.RadiusAuthPort`](../../doc/models/containers/radius-auth-port.md) | Optional | Radius Auth Port, value from 1 to 65535, default is 1812 |
-| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br>**Default**: `false` |
+| `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br><br>**Default**: `false` |
 | `Secret` | `string` | Required | Secret of RADIUS server |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

@@ -14,6 +14,8 @@ type AccountOauthAdd struct {
     isAccountMobicontrolConfig bool
     isAccountZdxConfig         bool
     isAccountCrowdstrikeConfig bool
+    isAccountPrismaConfig      bool
+    isAccountSentineloneConfig bool
 }
 
 // String implements the fmt.Stringer interface for AccountOauthAdd,
@@ -46,6 +48,10 @@ func (a *AccountOauthAdd) toMap() any {
         return obj.toMap()
     case *AccountCrowdstrikeConfig:
         return obj.toMap()
+    case *AccountPrismaConfig:
+        return obj.toMap()
+    case *AccountSentineloneConfig:
+        return obj.toMap()
     }
     return nil
 }
@@ -59,6 +65,8 @@ func (a *AccountOauthAdd) UnmarshalJSON(input []byte) error {
         NewTypeHolder(&AccountMobicontrolConfig{}, false, &a.isAccountMobicontrolConfig),
         NewTypeHolder(&AccountZdxConfig{}, false, &a.isAccountZdxConfig),
         NewTypeHolder(&AccountCrowdstrikeConfig{}, false, &a.isAccountCrowdstrikeConfig),
+        NewTypeHolder(&AccountPrismaConfig{}, false, &a.isAccountPrismaConfig),
+        NewTypeHolder(&AccountSentineloneConfig{}, false, &a.isAccountSentineloneConfig),
     )
     
     a.value = result
@@ -110,6 +118,24 @@ func (a *AccountOauthAdd) AsAccountCrowdstrikeConfig() (
     return a.value.(*AccountCrowdstrikeConfig), true
 }
 
+func (a *AccountOauthAdd) AsAccountPrismaConfig() (
+    *AccountPrismaConfig,
+    bool) {
+    if !a.isAccountPrismaConfig {
+        return nil, false
+    }
+    return a.value.(*AccountPrismaConfig), true
+}
+
+func (a *AccountOauthAdd) AsAccountSentineloneConfig() (
+    *AccountSentineloneConfig,
+    bool) {
+    if !a.isAccountSentineloneConfig {
+        return nil, false
+    }
+    return a.value.(*AccountSentineloneConfig), true
+}
+
 // internalAccountOauthAdd represents a accountOauthAdd struct.
 type internalAccountOauthAdd struct {}
 
@@ -137,5 +163,15 @@ func (a *internalAccountOauthAdd) FromAccountZdxConfig(val AccountZdxConfig) Acc
 
 // The internalAccountOauthAdd instance, wrapping the provided AccountCrowdstrikeConfig value.
 func (a *internalAccountOauthAdd) FromAccountCrowdstrikeConfig(val AccountCrowdstrikeConfig) AccountOauthAdd {
+    return AccountOauthAdd{value: &val}
+}
+
+// The internalAccountOauthAdd instance, wrapping the provided AccountPrismaConfig value.
+func (a *internalAccountOauthAdd) FromAccountPrismaConfig(val AccountPrismaConfig) AccountOauthAdd {
+    return AccountOauthAdd{value: &val}
+}
+
+// The internalAccountOauthAdd instance, wrapping the provided AccountSentineloneConfig value.
+func (a *internalAccountOauthAdd) FromAccountSentineloneConfig(val AccountSentineloneConfig) AccountOauthAdd {
     return AccountOauthAdd{value: &val}
 }

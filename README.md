@@ -3,9 +3,12 @@
 
 ## Introduction
 
-> Version: **2502.1.24**
+> Version: **2505.1.9**
 > 
-> Date: **April 9, 2025**
+> Date: **June 23, 2025**
+
+<div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
+
 
 ---
 
@@ -13,18 +16,21 @@
 ### Additional Documentation
 
 * [Mist Automation Guide](https://www.juniper.net/documentation/us/en/software/mist/automation-integration/index.html)
-* [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location_services/topics/concept/mist-how-get-mist-sdk.html)
+* [Mist Location SDK](https://www.juniper.net/documentation/us/en/software/mist/location-services/topics/concept/mist-how-get-mist-sdk.html)
 * [Mist Product Updates](https://www.juniper.net/documentation/us/en/software/mist/product-updates/)
-
----
-
 
 ### Helpful Resources
 
 * [API Sandbox and Exercises](https://api-class.mist.com/)
 * [Postman Collection, Runners and Webhook Samples](https://www.postman.com/juniper-mist/workspace/mist-systems-s-public-workspace)
+* [Python Script Examples](https://github.com/tmunzer/mist_library)
 * [API Demo Apps](https://apps.mist-lab.fr/)
 * [Juniper Blog](https://blogs.juniper.net/)
+
+### Mist Web Browser Extension:
+
+* Google Chrome, Microsoft Edge and other Chromium-based browser: [Chrome Web Store](https://chromewebstore.google.com/detail/mist-extension/ejhpdcljeamillfhdihkkmoakanpbplh)
+* Firefox: [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/mist-extension/)
 
 ---
 
@@ -71,6 +77,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
+| accept | `string` | *Default*: `"application/json, application/vnd.api+json"` |
 | environment | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
 | httpConfiguration | [`HttpConfiguration`](doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
@@ -101,6 +108,7 @@ client := mistapi.NewClient(
         mistapi.WithCsrfTokenCredentials(
             mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
         ),
+        mistapi.WithAccept("application/json, application/vnd.api+json"),
         mistapi.WithLoggerConfiguration(
             mistapi.WithLevel("info"),
             mistapi.WithRequestConfiguration(
@@ -130,7 +138,9 @@ The SDK can be configured to use a different environment for making API calls. A
 | Mist EMEA 01 | - |
 | Mist EMEA 02 | - |
 | Mist EMEA 03 | - |
+| Mist EMEA 04 | - |
 | Mist APAC 01 | - |
+| Mist APAC 03 | - |
 
 ## Authorization
 
@@ -187,6 +197,7 @@ This API uses the following authentication schemes.
 * [Orgs Devices](doc/controllers/orgs-devices.md)
 * [Orgs Devices-Others](doc/controllers/orgs-devices-others.md)
 * [Orgs Devices-SSR](doc/controllers/orgs-devices-ssr.md)
+* [Orgs Events](doc/controllers/orgs-events.md)
 * [Orgs EVPN Topologies](doc/controllers/orgs-evpn-topologies.md)
 * [Orgs Gateway Templates](doc/controllers/orgs-gateway-templates.md)
 * [Orgs Guests](doc/controllers/orgs-guests.md)
@@ -203,6 +214,7 @@ This API uses the following authentication schemes.
 * [Orgs Logs](doc/controllers/orgs-logs.md)
 * [Orgs Maps](doc/controllers/orgs-maps.md)
 * [Orgs Marvis](doc/controllers/orgs-marvis.md)
+* [Orgs Marvis Invites](doc/controllers/orgs-marvis-invites.md)
 * [Orgs Mx Clusters](doc/controllers/orgs-mx-clusters.md)
 * [Orgs Mx Edges](doc/controllers/orgs-mx-edges.md)
 * [Orgs Mx Tunnels](doc/controllers/orgs-mx-tunnels.md)
@@ -260,8 +272,10 @@ This API uses the following authentication schemes.
 * [Self MFA](doc/controllers/self-mfa.md)
 * [Self O Auth 2](doc/controllers/self-o-auth-2.md)
 * [Sites](doc/controllers/sites.md)
+* [Sites Advanced Anti Malware Profiles](doc/controllers/sites-advanced-anti-malware-profiles.md)
 * [Sites Alarms](doc/controllers/sites-alarms.md)
 * [Sites Anomaly](doc/controllers/sites-anomaly.md)
+* [Sites Antivirus Profiles](doc/controllers/sites-antivirus-profiles.md)
 * [Sites Applications](doc/controllers/sites-applications.md)
 * [Sites AP Templates](doc/controllers/sites-ap-templates.md)
 * [Sites Asset Filters](doc/controllers/sites-asset-filters.md)
@@ -282,6 +296,7 @@ This API uses the following authentication schemes.
 * [Sites EVPN Topologies](doc/controllers/sites-evpn-topologies.md)
 * [Sites Gateway Templates](doc/controllers/sites-gateway-templates.md)
 * [Sites Guests](doc/controllers/sites-guests.md)
+* [Sites IDP Profiles](doc/controllers/sites-idp-profiles.md)
 * [Sites Insights](doc/controllers/sites-insights.md)
 * [Sites JSE](doc/controllers/sites-jse.md)
 * [Sites Licenses](doc/controllers/sites-licenses.md)

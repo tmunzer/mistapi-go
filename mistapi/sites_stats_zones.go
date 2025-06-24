@@ -102,14 +102,15 @@ func (s *SitesStatsZones) GetSiteRssiZoneStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListSiteZonesStats takes context, siteId, mapId as parameters and
+// ListSiteZonesStats takes context, siteId, mapId, minDuration as parameters and
 // returns an models.ApiResponse with []models.StatsZone data and
 // an error if there was an issue with the request or response.
 // Get List of Site Zones Stats
 func (s *SitesStatsZones) ListSiteZonesStats(
     ctx context.Context,
     siteId uuid.UUID,
-    mapId *string) (
+    mapId *string,
+    minDuration *int) (
     models.ApiResponse[[]models.StatsZone],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/zones")
@@ -134,6 +135,9 @@ func (s *SitesStatsZones) ListSiteZonesStats(
     })
     if mapId != nil {
         req.QueryParam("map_id", *mapId)
+    }
+    if minDuration != nil {
+        req.QueryParam("min_duration", *minDuration)
     }
     
     var result []models.StatsZone

@@ -43,8 +43,8 @@ CountSiteNacClientEvents(
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -135,8 +135,7 @@ CountSiteNacClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -146,10 +145,10 @@ CountSiteNacClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`*models.SiteNacClientsCountDistinctEnum`](../../doc/models/site-nac-clients-count-distinct-enum.md) | Query, Optional | NAC Policy Rule ID, if matched<br>**Default**: `"type"` |
+| `distinct` | [`*models.SiteNacClientsCountDistinctEnum`](../../doc/models/site-nac-clients-count-distinct-enum.md) | Query, Optional | NAC Policy Rule ID, if matched<br><br>**Default**: `"type"` |
 | `lastNacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
-| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `lastVlanId` | `*string` | Query, Optional | Vlan ID |
 | `lastNasVendor` | `*string` | Query, Optional | Vendor of NAS device |
 | `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
@@ -164,9 +163,8 @@ CountSiteNacClients(
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -219,9 +217,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := sitesClientsNAC.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesClientsNAC.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -310,14 +306,14 @@ SearchSiteNacClientEvents(
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
 | `dryrunNacruleId` | `*string` | Query, Optional | NAC Policy Dry Run Rule ID, if present and matched |
 | `dryrunNacruleMatched` | `*bool` | Query, Optional | True - if dryrun rule present and matched with priority, False - if not matched or not present |
-| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `vlan` | `*int` | Query, Optional | Vlan ID |
 | `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
 | `bssid` | `*string` | Query, Optional | BSSID |
 | `idpId` | `*uuid.UUID` | Query, Optional | SSO ID, if present and used |
 | `idpRole` | `*string` | Query, Optional | IDP returned roles/groups for the user |
 | `idpUsername` | `*string` | Query, Optional | Username presented to the Identity Provider |
-| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive<br>**Constraints**: *Unique Items Required* |
+| `respAttrs` | `[]string` | Query, Optional | Radius attributes returned by NAC to NAS Devive<br><br>**Constraints**: *Unique Items Required* |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `username` | `*string` | Query, Optional | Username presented by the client |
 | `ap` | `*string` | Query, Optional | AP MAC |
@@ -331,8 +327,8 @@ SearchSiteNacClientEvents(
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -489,6 +485,7 @@ SearchSiteNacClients(
     timestamp *float64,
     ap *string,
     mac *string,
+    mdmManaged *bool,
     mxedgeId *string,
     nacruleName *string,
     status *string,
@@ -496,6 +493,7 @@ SearchSiteNacClients(
     mdmCompliance *string,
     mdmProvider *string,
     sort *string,
+    usermacLabel []string,
     ingressVlan *string,
     start *int,
     end *int,
@@ -513,7 +511,7 @@ SearchSiteNacClients(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `nacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
-| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "peap-tls", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `vlan` | `*string` | Query, Optional | Vlan name or ID assigned to the client |
 | `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
 | `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
@@ -522,6 +520,7 @@ SearchSiteNacClients(
 | `timestamp` | `*float64` | Query, Optional | Start time, in epoch |
 | `ap` | `*string` | Query, Optional | AP MAC connected to by client |
 | `mac` | `*string` | Query, Optional | MAC address |
+| `mdmManaged` | `*bool` | Query, Optional | Filters NAC clients that are managed by MDM providers |
 | `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
 | `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
 | `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
@@ -529,12 +528,13 @@ SearchSiteNacClients(
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
 | `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
+| `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -589,13 +589,17 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
 duration := "10m"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -624,6 +628,9 @@ if err != nil {
       "cert_issuer": [
         "/C=US/ST=CA/CN=MyCorp"
       ],
+      "client_ip": [
+        "10.7.51.74"
+      ],
       "idp_id": "string",
       "idp_role": [
         "string"
@@ -634,6 +641,7 @@ if err != nil {
       "last_cert_issuer": "/C=US/ST=CA/CN=MyCorp",
       "last_cert_serial": "2c63510123456789",
       "last_cert_subject": "/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net",
+      "last_client_ip": "10.7.51.74",
       "last_nacrule_id": "603b62db-d839-4152-9f7f-f2578443de8d",
       "last_nacrule_name": "Wireless Cert Auth",
       "last_nas_vendor": "juniper-mist",
@@ -657,7 +665,12 @@ if err != nil {
         "string"
       ],
       "timestamp": 1694689718.612,
-      "type": "wireless"
+      "type": "wireless",
+      "usermac_label": [
+        "non-compliant",
+        "building26",
+        "floor52"
+      ]
     }
   ],
   "start": 1513276353,

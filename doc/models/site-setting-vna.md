@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | Enable Virtual Network Assistant (using SUB-VNA license). This applied to AP / Switch / Gateway<br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Enable Virtual Network Assistant (using SUB-VNA license). This applied to AP / Switch / Gateway<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

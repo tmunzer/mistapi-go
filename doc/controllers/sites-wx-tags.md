@@ -13,7 +13,6 @@ sitesWxTags := client.SitesWxTags()
 * [Create Site Wx Tag](../../doc/controllers/sites-wx-tags.md#create-site-wx-tag)
 * [Delete Site Wx Tag](../../doc/controllers/sites-wx-tags.md#delete-site-wx-tag)
 * [Get Site Application List](../../doc/controllers/sites-wx-tags.md#get-site-application-list)
-* [Get Site Current Matching Clients of a Wx Tag](../../doc/controllers/sites-wx-tags.md#get-site-current-matching-clients-of-a-wx-tag)
 * [Get Site Wx Tag](../../doc/controllers/sites-wx-tags.md#get-site-wx-tag)
 * [List Site Wx Tags](../../doc/controllers/sites-wx-tags.md#list-site-wx-tags)
 * [Update Site Wx Tag](../../doc/controllers/sites-wx-tags.md#update-site-wx-tag)
@@ -232,71 +231,6 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Get Site Current Matching Clients of a Wx Tag
-
-Get Current Matching Clients of a WXLAN Tag
-
-```go
-GetSiteCurrentMatchingClientsOfAWxTag(
-    ctx context.Context,
-    siteId uuid.UUID,
-    wxtagId uuid.UUID) (
-    models.ApiResponse[[]models.WxtagMatching],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `wxtagId` | `uuid.UUID` | Template, Required | - |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.WxtagMatching](../../doc/models/wxtag-matching.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-wxtagId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-apiResponse, err := sitesWxTags.GetSiteCurrentMatchingClientsOfAWxTag(ctx, siteId, wxtagId)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "mac": "5684dae9ac8b",
-    "since": 1428939600
-  }
-]
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
 # Get Site Wx Tag
 
 Get Site WxTag Details
@@ -407,8 +341,8 @@ ListSiteWxTags(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 

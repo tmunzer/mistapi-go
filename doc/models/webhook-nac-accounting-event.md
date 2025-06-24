@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | MAC address of the AP the client roamed or disconnected from |
-| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `peap-tls`, `psk` |
+| `AuthType` | [`*models.NacAuthTypeEnum`](../../doc/models/nac-auth-type-enum.md) | Optional | enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap` |
 | `Bssid` | `*string` | Optional | MAC physical address of the access point |
 | `ClientIp` | `*string` | Optional | IP Address of client |
 | `ClientType` | `*string` | Optional | Client type E.g. "wired", "wireless", "vty" |

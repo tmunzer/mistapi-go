@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Archive` | [`*models.RemoteSyslogArchive`](../../doc/models/remote-syslog-archive.md) | Optional | - |
 | `Contents` | [`[]models.RemoteSyslogContent`](../../doc/models/remote-syslog-content.md) | Optional | - |
+| `EnableTls` | `*bool` | Optional | Only if `protocol`==`tcp` |
 | `ExplicitPriority` | `*bool` | Optional | - |
 | `File` | `*string` | Optional | - |
 | `Match` | `*string` | Optional | - |
@@ -51,6 +52,7 @@
       }
     }
   ],
+  "enable_tls": false,
   "explicit_priority": false,
   "exampleAdditionalProperty": {
     "key1": "val1",

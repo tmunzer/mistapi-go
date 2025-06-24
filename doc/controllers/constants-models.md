@@ -45,11 +45,11 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-model := "model2"
+model := "srx550"
 
+ha := "false"
 
-
-apiResponse, err := constantsModels.GetGatewayDefaultConfig(ctx, model, nil)
+apiResponse, err := constantsModels.GetGatewayDefaultConfig(ctx, model, &ha)
 if err != nil {
     log.Fatalln(err)
 } else {

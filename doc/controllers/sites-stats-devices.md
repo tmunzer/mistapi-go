@@ -445,9 +445,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+switchMac := "5c5b350e0410"
 
-
-apiResponse, err := sitesStatsDevices.GetSiteSwitchesMetrics(ctx, siteId, nil, nil, nil)
+apiResponse, err := sitesStatsDevices.GetSiteSwitchesMetrics(ctx, siteId, nil, nil, &switchMac)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -533,8 +533,8 @@ ListSiteDevicesStats(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `status` | [`*models.StatDeviceStatusFilterEnum`](../../doc/models/stat-device-status-filter-enum.md) | Query, Optional | **Default**: `"all"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 

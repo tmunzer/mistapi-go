@@ -11,10 +11,12 @@ orgsUserMACs := client.OrgsUserMACs()
 ## Methods
 
 * [Create Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#create-org-user-mac)
+* [Delete Org Multiple User Macs](../../doc/controllers/orgs-user-ma-cs.md#delete-org-multiple-user-macs)
 * [Delete Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#delete-org-user-mac)
 * [Get Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#get-org-user-mac)
 * [Import Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#import-org-user-macs)
 * [Search Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#search-org-user-macs)
+* [Update Org Multiple User Macs](../../doc/controllers/orgs-user-ma-cs.md#update-org-multiple-user-macs)
 * [Update Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#update-org-user-mac)
 
 
@@ -92,6 +94,58 @@ if err != nil {
   "mac": "921b638445cd",
   "notes": "mac address refers to Canon printers",
   "vlan": "30"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Delete Org Multiple User Macs
+
+Delete Multiple Org User MACs
+
+```go
+DeleteOrgMultipleUserMacs(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.UsermacsId) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UsermacsId`](../../doc/models/usermacs-id.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+resp, err := orgsUserMACs.DeleteOrgMultipleUserMacs(ctx, orgId, nil)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 
@@ -333,8 +387,8 @@ SearchOrgUserMacs(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | Partial/full MAC address |
 | `labels` | `[]string` | Query, Optional | Optional, array of strings of labels |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -380,6 +434,86 @@ if err != nil {
     "vlan": "30"
   }
 ]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Update Org Multiple User Macs
+
+Update Multiple Org User MACs
+
+```go
+UpdateOrgMultipleUserMacs(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body []models.UserMac) (
+    models.ApiResponse[models.UserMacsUpdate],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`[]models.UserMac`](../../doc/models/user-mac.md) | Body, Optional | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMacsUpdate](../../doc/models/user-macs-update.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := []models.UserMac{
+    models.UserMac{
+        Labels:               []string{
+            "byod",
+            "flr1",
+        },
+        Mac:                  "5684dae9ac8b",
+        Name:                 models.ToPointer("Printer2"),
+        Notes:                models.ToPointer("mac address refers to Canon printers"),
+        RadiusGroup:          models.ToPointer("VIP"),
+        Vlan:                 models.ToPointer("30"),
+    },
+}
+
+apiResponse, err := orgsUserMACs.UpdateOrgMultipleUserMacs(ctx, orgId, body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "errors": [
+    "2feacc8e-5893-418a-acaa-4d7c1afd01fe - invalid id"
+  ],
+  "updated": [
+    "1041c16c-ca87-4d3f-bb94-b97c5819fc09",
+    "a016cc8e-5893-418a-acaa-4d7c1af6ac0f"
+  ]
+}
 ```
 
 ## Errors

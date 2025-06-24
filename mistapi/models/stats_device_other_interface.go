@@ -15,6 +15,7 @@ type StatsDeviceOtherInterface struct {
     Ip                   *string                `json:"ip,omitempty"`
     Link                 *bool                  `json:"link,omitempty"`
     Mode                 *string                `json:"mode,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
     Rsrp                 *float64               `json:"rsrp,omitempty"`
     Rsrq                 *float64               `json:"rsrq,omitempty"`
     Rssi                 *int                   `json:"rssi,omitempty"`
@@ -30,8 +31,8 @@ type StatsDeviceOtherInterface struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsDeviceOtherInterface) String() string {
     return fmt.Sprintf(
-    	"StatsDeviceOtherInterface[BytesIn=%v, BytesOut=%v, Carrier=%v, Imei=%v, Imsi=%v, Ip=%v, Link=%v, Mode=%v, Rsrp=%v, Rsrq=%v, Rssi=%v, ServiceMode=%v, Sinr=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
-    	s.BytesIn, s.BytesOut, s.Carrier, s.Imei, s.Imsi, s.Ip, s.Link, s.Mode, s.Rsrp, s.Rsrq, s.Rssi, s.ServiceMode, s.Sinr, s.State, s.Type, s.Uptime, s.AdditionalProperties)
+    	"StatsDeviceOtherInterface[BytesIn=%v, BytesOut=%v, Carrier=%v, Imei=%v, Imsi=%v, Ip=%v, Link=%v, Mode=%v, Mtu=%v, Rsrp=%v, Rsrq=%v, Rssi=%v, ServiceMode=%v, Sinr=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.BytesIn, s.BytesOut, s.Carrier, s.Imei, s.Imsi, s.Ip, s.Link, s.Mode, s.Mtu, s.Rsrp, s.Rsrq, s.Rssi, s.ServiceMode, s.Sinr, s.State, s.Type, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherInterface.
@@ -40,7 +41,7 @@ func (s StatsDeviceOtherInterface) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime"); err != nil {
+        "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "mtu", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -73,6 +74,9 @@ func (s StatsDeviceOtherInterface) toMap() map[string]any {
     }
     if s.Mode != nil {
         structMap["mode"] = s.Mode
+    }
+    if s.Mtu != nil {
+        structMap["mtu"] = s.Mtu
     }
     if s.Rsrp != nil {
         structMap["rsrp"] = s.Rsrp
@@ -109,7 +113,7 @@ func (s *StatsDeviceOtherInterface) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "mtu", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime")
     if err != nil {
     	return err
     }
@@ -123,6 +127,7 @@ func (s *StatsDeviceOtherInterface) UnmarshalJSON(input []byte) error {
     s.Ip = temp.Ip
     s.Link = temp.Link
     s.Mode = temp.Mode
+    s.Mtu = temp.Mtu
     s.Rsrp = temp.Rsrp
     s.Rsrq = temp.Rsrq
     s.Rssi = temp.Rssi
@@ -144,6 +149,7 @@ type tempStatsDeviceOtherInterface  struct {
     Ip          *string  `json:"ip,omitempty"`
     Link        *bool    `json:"link,omitempty"`
     Mode        *string  `json:"mode,omitempty"`
+    Mtu         *int     `json:"mtu,omitempty"`
     Rsrp        *float64 `json:"rsrp,omitempty"`
     Rsrq        *float64 `json:"rsrq,omitempty"`
     Rssi        *int     `json:"rssi,omitempty"`

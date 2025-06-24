@@ -14,7 +14,7 @@
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

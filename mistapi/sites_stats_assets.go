@@ -81,14 +81,15 @@ func (s *SitesStatsAssets) ListSiteAssetsStats(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteAssets takes context, siteId, distinct as parameters and
+// CountSiteAssets takes context, siteId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Asset by distinct field
+// Count by Distinct Attributes of Site Asset
 func (s *SitesStatsAssets) CountSiteAssets(
     ctx context.Context,
     siteId uuid.UUID,
-    distinct *models.SiteAssetsCountDistinctEnum) (
+    distinct *models.SiteAssetsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/count")
@@ -113,6 +114,9 @@ func (s *SitesStatsAssets) CountSiteAssets(
     })
     if distinct != nil {
         req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount

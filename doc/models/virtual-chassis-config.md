@@ -15,7 +15,7 @@ Virtual Chassis
 |  --- | --- | --- | --- |
 | `Locating` | `*bool` | Optional | - |
 | `Members` | [`[]models.VirtualChassisConfigMember`](../../doc/models/virtual-chassis-config-member.md) | Optional | - |
-| `Preprovisioned` | `*bool` | Optional | To create the Virtual Chassis in Pre-Provisioned mode<br>**Default**: `false` |
+| `Preprovisioned` | `*bool` | Optional | To create the Virtual Chassis in Pre-Provisioned mode<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

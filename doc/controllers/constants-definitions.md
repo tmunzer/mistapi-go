@@ -10,8 +10,8 @@ constantsDefinitions := client.ConstantsDefinitions()
 
 ## Methods
 
-* [List Alarm Definitions](../../doc/controllers/constants-definitions.md#list-alarm-definitions)
 * [List Ap Channels](../../doc/controllers/constants-definitions.md#list-ap-channels)
+* [List Ap L Esl Versions](../../doc/controllers/constants-definitions.md#list-ap-l-esl-versions)
 * [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition)
 * [List App Category Definitions](../../doc/controllers/constants-definitions.md#list-app-category-definitions)
 * [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions)
@@ -26,86 +26,6 @@ constantsDefinitions := client.ConstantsDefinitions()
 * [List States](../../doc/controllers/constants-definitions.md#list-states)
 * [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)
 * [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics)
-
-
-# List Alarm Definitions
-
-Get List of brief definitions of all the supported alarm types.
-
-The example field contains an example payload as you would receive in the alarm webhook output.
-
-HA cluster node names will be specified in the `node` field, if applicable.'
-
-```go
-ListAlarmDefinitions(
-    ctx context.Context) (
-    models.ApiResponse[[]models.ConstAlarmDefinition],
-    error)
-```
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstAlarmDefinition](../../doc/models/const-alarm-definition.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-apiResponse, err := constantsDefinitions.ListAlarmDefinitions(ctx)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "display": "Device offline",
-    "example": {
-      "aps": [
-        "d420b02000fa"
-      ],
-      "count": 1,
-      "group": "infrastructure",
-      "hostnames": [
-        "Vendor_AP2"
-      ],
-      "id": "e70c308f-7007-4866-9ecd-0d01842979ea",
-      "last_seen": 1629753888,
-      "org_id": "09dac91f-6e73-4100-89f7-698e0fafbb1b",
-      "severity": "warn",
-      "site_id": "dcfb31a1-d615-4361-8c95-b9dde05aa704",
-      "timestamp": 1629753888,
-      "type": "device_down"
-    },
-    "fields": [
-      "aps",
-      "hostnames"
-    ],
-    "group": "infrastructure",
-    "key": "device_down",
-    "marvis_suggestion_category": "string",
-    "severity": "warn"
-  }
-]
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # List Ap Channels
@@ -124,7 +44,7 @@ ListApChannels(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `*string` | Query, Optional | Country code, in two-character<br>**Constraints**: *Pattern*: `^[a-zA-Z]{2}$` |
+| `countryCode` | `*string` | Query, Optional | Country code, in two-character<br><br>**Constraints**: *Pattern*: `^[a-zA-Z]{2}$` |
 
 ## Response Type
 
@@ -585,6 +505,62 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# List Ap L Esl Versions
+
+Get Available AP ESL Versions
+
+```go
+ListApLEslVersions(
+    ctx context.Context) (
+    models.ApiResponse[[]models.ConstApEslVersion],
+    error)
+```
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ConstApEslVersion](../../doc/models/const-ap-esl-version.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+apiResponse, err := constantsDefinitions.ListApLEslVersions(ctx)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "esl_version": "2.5.1",
+    "model": "AP34"
+  },
+  {
+    "esl_version": "2.5.0",
+    "model": "AP43"
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # List Ap Led Definition
 
 Get List of AP LED definition
@@ -844,7 +820,7 @@ ListCountryCodes(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `extend` | `*bool` | Query, Optional | Will include more country codes if true<br>**Default**: `false` |
+| `extend` | `*bool` | Query, Optional | Will include more country codes if true<br><br>**Default**: `false` |
 
 ## Response Type
 
@@ -1367,7 +1343,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-countryCode := "country_code0"
+countryCode := "US"
 
 apiResponse, err := constantsDefinitions.ListStates(ctx, countryCode)
 if err != nil {

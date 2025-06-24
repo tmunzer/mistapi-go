@@ -28,8 +28,7 @@ CountOrgWiredClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -42,9 +41,8 @@ CountOrgWiredClients(
 | `distinct` | [`*models.OrgWiredClientsCountDistinctEnum`](../../doc/models/org-wired-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br>**Constraints**: `>= 1` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -67,9 +65,7 @@ duration := "10m"
 
 limit := 100
 
-page := 1
-
-apiResponse, err := orgsClientsWired.CountOrgWiredClients(ctx, orgId, &distinct, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsClientsWired.CountOrgWiredClients(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -118,6 +114,8 @@ Note: For list of available `type` values, please refer to [List Client Events D
 SearchOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
+    authState *string,
+    authMethod *string,
     siteId *string,
     deviceMac *string,
     mac *string,
@@ -126,8 +124,6 @@ SearchOrgWiredClients(
     ipAddress *string,
     manufacture *string,
     text *string,
-    authState *string,
-    authMethod *string,
     nacruleId *string,
     dhcpHostname *string,
     dhcpFqdn *string,
@@ -147,6 +143,8 @@ SearchOrgWiredClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `authState` | `*string` | Query, Optional | Authentication state |
+| `authMethod` | `*string` | Query, Optional | Authentication method |
 | `siteId` | `*string` | Query, Optional | Site ID |
 | `deviceMac` | `*string` | Query, Optional | Device mac (Gateway/Switch) where the client has connected to |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
@@ -155,18 +153,16 @@ SearchOrgWiredClients(
 | `ipAddress` | `*string` | Query, Optional | - |
 | `manufacture` | `*string` | Query, Optional | Client manufacturer |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname or username |
-| `authState` | `*string` | Query, Optional | authentication state |
-| `authMethod` | `*string` | Query, Optional | authentication method |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
 | `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
 | `dhcpClientIdentifier` | `*string` | Query, Optional | DHCP Client Identifier |
 | `dhcpVendorClassIdentifier` | `*string` | Query, Optional | DHCP Vendor Class Identifier |
 | `dhcpRequestParams` | `*string` | Query, Optional | DHCP Request Parameters |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br>**Constraints**: `>= 0` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -178,6 +174,10 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+
+
+
 
 
 
@@ -207,10 +207,6 @@ ipAddress := "192.168.1.1"
 
 
 
-
-
-
-
 limit := 100
 
 
@@ -219,7 +215,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

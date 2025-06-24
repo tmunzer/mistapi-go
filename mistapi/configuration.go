@@ -9,6 +9,7 @@ type ConfigurationOptions func(*Configuration)
 
 // Configuration holds configuration settings.
 type Configuration struct {
+    accept               string
     environment          Environment
     httpConfiguration    HttpConfiguration
     apiTokenCredentials  ApiTokenCredentials
@@ -33,6 +34,13 @@ func (config Configuration) cloneWithOptions(options ...ConfigurationOptions) Co
         option(&config)
     }
     return config
+}
+
+// WithAccept is an option that sets the Accept in the Configuration.
+func WithAccept(accept string) ConfigurationOptions {
+    return func(c *Configuration) {
+        c.accept = accept
+    }
 }
 
 // WithEnvironment is an option that sets the Environment in the Configuration.
@@ -77,6 +85,11 @@ func WithLoggerConfiguration(options ...LoggerOptions) ConfigurationOptions {
     }
 }
 
+// Accept returns the accept from the Configuration.
+func (c Configuration) Accept() string {
+    return c.accept
+}
+
 // Environment returns the environment from the Configuration.
 func (c Configuration) Environment() Environment {
     return c.environment
@@ -107,6 +120,10 @@ func (c Configuration) CsrfTokenCredentials() CsrfTokenCredentials {
 func CreateConfigurationFromEnvironment(options ...ConfigurationOptions) Configuration {
     config := DefaultConfiguration()
     
+    accept := os.Getenv("MISTAPI_ACCEPT")
+    if accept != "" {
+        config.accept = accept
+    }
     environment := os.Getenv("MISTAPI_ENVIRONMENT")
     if environment != "" {
         config.environment = Environment(environment)
@@ -152,9 +169,11 @@ const (
     MIST_EMEA_01   Environment = "Mist EMEA 01"
     MIST_EMEA_02   Environment = "Mist EMEA 02"
     MIST_EMEA_03   Environment = "Mist EMEA 03"
+    MIST_EMEA_04   Environment = "Mist EMEA 04"
     MIST_APAC_01   Environment = "Mist APAC 01"
     AWS_STAGING    Environment = "AWS Staging"
     GOV_CLOUD      Environment = "GOV CLOUD"
+    MIST_APAC_03   Environment = "Mist APAC 03"
 )
 
 // CreateRetryConfiguration creates a new RetryConfiguration with the provided options.

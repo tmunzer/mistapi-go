@@ -112,13 +112,14 @@ if err != nil {
 
 # Count Org Tickets
 
-Count Org Tickets
+Count by Distinct Attributes of Org Tickets
 
 ```go
 CountOrgTickets(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct *models.OrgTicketsCountDistinctEnum) (
+    distinct *models.OrgTicketsCountDistinctEnum,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
 ```
@@ -129,6 +130,7 @@ CountOrgTickets(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgTicketsCountDistinctEnum`](../../doc/models/org-tickets-count-distinct-enum.md) | Query, Optional | **Default**: `"status"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -143,7 +145,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgTicketsCountDistinctEnum_STATUS
 
-apiResponse, err := orgsTickets.CountOrgTickets(ctx, orgId, &distinct)
+limit := 100
+
+apiResponse, err := orgsTickets.CountOrgTickets(ctx, orgId, &distinct, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -294,7 +298,7 @@ GetOrgTicket(
 | `ticketId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -390,7 +394,7 @@ GetOrgTicketAttachment(
 | `attachmentId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 
@@ -464,7 +468,7 @@ ListOrgTickets(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br>**Default**: `"1d"` |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
 

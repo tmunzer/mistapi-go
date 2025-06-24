@@ -20,45 +20,6 @@ func NewConstantsDefinitions(baseController baseController) *ConstantsDefinition
     return &constantsDefinitions
 }
 
-// ListAlarmDefinitions takes context as parameters and
-// returns an models.ApiResponse with []models.ConstAlarmDefinition data and
-// an error if there was an issue with the request or response.
-// Get List of brief definitions of all the supported alarm types.
-// The example field contains an example payload as you would receive in the alarm webhook output.
-// HA cluster node names will be specified in the `node` field, if applicable.'
-func (c *ConstantsDefinitions) ListAlarmDefinitions(ctx context.Context) (
-    models.ApiResponse[[]models.ConstAlarmDefinition],
-    error) {
-    req := c.prepareRequest(ctx, "GET", "/api/v1/const/alarm_defs")
-    
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    var result []models.ConstAlarmDefinition
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[[]models.ConstAlarmDefinition](decoder)
-    return models.NewApiResponse(result, resp), err
-}
-
 // ListApChannels takes context, countryCode as parameters and
 // returns an models.ApiResponse with models.ConstApChannel data and
 // an error if there was an issue with the request or response.
@@ -98,6 +59,43 @@ func (c *ConstantsDefinitions) ListApChannels(
     }
     
     result, err = utilities.DecodeResults[models.ConstApChannel](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// ListApLEslVersions takes context as parameters and
+// returns an models.ApiResponse with []models.ConstApEslVersion data and
+// an error if there was an issue with the request or response.
+// Get Available AP ESL Versions
+func (c *ConstantsDefinitions) ListApLEslVersions(ctx context.Context) (
+    models.ApiResponse[[]models.ConstApEslVersion],
+    error) {
+    req := c.prepareRequest(ctx, "GET", "/api/v1/const/ap_esl_versions")
+    
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    var result []models.ConstApEslVersion
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[[]models.ConstApEslVersion](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

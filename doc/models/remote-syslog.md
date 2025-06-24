@@ -12,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Archive` | [`*models.RemoteSyslogArchive`](../../doc/models/remote-syslog-archive.md) | Optional | - |
+| `Cacerts` | `[]string` | Optional | - |
 | `Console` | [`*models.RemoteSyslogConsole`](../../doc/models/remote-syslog-console.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Files` | [`[]models.RemoteSyslogFileConfig`](../../doc/models/remote-syslog-file-config.md) | Optional | - |
@@ -26,6 +27,10 @@
 
 ```json
 {
+  "cacerts": [
+    "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+    "-----BEGIN CERTIFICATE-----\\nBhMCRVMxFDASBgNVBAoMC1N0YXJ0Q29tIENBMSwwKgYDVn-----END CERTIFICATE-----"
+  ],
   "enabled": false,
   "network": "default",
   "send_to_all_servers": false,
@@ -108,9 +113,9 @@
           }
         }
       ],
+      "enable_tls": false,
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -143,9 +148,9 @@
           }
         }
       ],
+      "enable_tls": false,
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -178,9 +183,9 @@
           }
         }
       ],
+      "enable_tls": false,
       "explicit_priority": false,
       "file": "file4",
-      "match": "match4",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

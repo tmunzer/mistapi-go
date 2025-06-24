@@ -15,12 +15,12 @@ Initiate a packet Capture for New Wireless Client Associations
 |  --- | --- | --- | --- |
 | `ApMac` | `*string` | Optional | - |
 | `ClientMac` | `*string` | Optional | Client mac, required if `type`==`client`; optional otherwise |
-| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br>**Default**: `600`<br>**Constraints**: `>= 60`, `<= 86400` |
+| `Duration` | `models.Optional[int]` | Optional | Duration of the capture, in seconds<br><br>**Default**: `600`<br><br>**Constraints**: `>= 60`, `<= 86400` |
 | `IncludesMcast` | `*bool` | Optional | **Default**: `false` |
-| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br>**Constraints**: `>= 64`, `<= 2048` |
-| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br>**Default**: `1024`<br>**Constraints**: `>= 0`, `<= 10000` |
+| `MaxPktLen` | `models.Optional[int]` | Optional | **Default**: `512`<br><br>**Constraints**: `>= 64`, `<= 2048` |
+| `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ssid` | `*string` | Optional | Optional filter by ssid |
-| `Type` | `string` | Required, Constant | enum: `new_assoc`<br>**Value**: `"new_assoc"` |
+| `Type` | `string` | Required, Constant | enum: `new_assoc`<br><br>**Value**: `"new_assoc"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

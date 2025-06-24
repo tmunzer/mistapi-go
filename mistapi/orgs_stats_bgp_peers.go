@@ -21,13 +21,14 @@ func NewOrgsStatsBGPPeers(baseController baseController) *OrgsStatsBGPPeers {
     return &orgsStatsBGPPeers
 }
 
-// CountOrgBgpStats takes context, orgId as parameters and
+// CountOrgBgpStats takes context, orgId, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org BGP Stats
+// Count by Distinct Attributes of Org BGP Stats
 func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
     ctx context.Context,
-    orgId uuid.UUID) (
+    orgId uuid.UUID,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/bgp_peers/count")
@@ -50,6 +51,9 @@ func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()

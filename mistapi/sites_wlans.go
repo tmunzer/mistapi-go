@@ -115,11 +115,11 @@ func (s *SitesWlans) CreateSiteWlan(
     return models.NewApiResponse(result, resp), err
 }
 
-// ListSiteWlanDerived takes context, siteId, resolve, wlanId as parameters and
+// ListSiteWlansDerived takes context, siteId, resolve, wlanId as parameters and
 // returns an models.ApiResponse with []models.Wlan data and
 // an error if there was an issue with the request or response.
-// Get Wlans Derived
-func (s *SitesWlans) ListSiteWlanDerived(
+// Get the list of derived Wlans for a Site
+func (s *SitesWlans) ListSiteWlansDerived(
     ctx context.Context,
     siteId uuid.UUID,
     resolve *bool,

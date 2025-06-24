@@ -11,7 +11,7 @@ sitesSecIntelProfiles := client.SitesSecIntelProfiles()
 
 # List Site Sec Intel Profiles Derived
 
-Get derived Sky-ATP secintel profiles for Site
+Get the list of derived Sky-ATP secintel profiles a Site
 
 ```go
 ListSiteSecIntelProfilesDerived(

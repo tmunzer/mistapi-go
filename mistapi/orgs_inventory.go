@@ -26,14 +26,21 @@ func NewOrgsInventory(baseController baseController) *OrgsInventory {
 // returns an models.ApiResponse with []models.Inventory data and
 // an error if there was an issue with the request or response.
 // Get Org Inventory
-// ### VC (Virtual-Chassis) Management
-// Ideally VC should be managed as a single device - where - one managed entity where config / monitoring is anchored against (with a stable identify MAC) - all members appears in the inventory
-// In our implementation, we strive to achieve that without manual user configurations by 
-// 1. during claim or adoption a VC, we require FPC0 to exist and will use its MAC as identify for the entire chassis
-// 2. other VC members will be automatically populated when they’re all present
-// The perceivable result is 
-// 1. from `/sites/{site_id}/stats/devices/:fpc0_mac` API, you’d see the VC where module_stat contains the VC members 
-// 2. from `/orgs/{org_id}/inventory?vc=true` API, you’d see all VC members with vc_mac pointing to the FPC0
+// ### VC (Virtual-Chassis) Management 
+// Starting with the April release, Virtual Chassis devices in Mist will now use
+// a cloud-assigned virtual MAC address as the device ID, instead of the physical
+// MAC address of the FPC0 member.
+// **Retrieving the device ID or Site ID of a Virtual Chassis:**
+// 1. Use this API call with the query parameters `vc=true` and `mac` set to the MAC address of the VC member.
+// 2. In the response, check the `vc_mac` and `mac` fields:
+// - If `vc_mac` is empty or not present, the device is not part of a Virtual Chassis.
+// The `device_id` and `site_id` will be available in the device information.
+// - If `vc_mac` differs from the `mac` field, the device is part of a Virtual Chassis
+// but is not the device used to generate the Virtual Chassis ID. Use the `vc_mac` value with the [Get Org Inventory]($e/Orgs%20Inventory/getOrgInventory)
+// API call to retrieve the `device_id` and `site_id`.
+// - If `vc_mac` matches the `mac` field, the device is the device used to generate the Virtual Chassis ID and he `device_id` and `site_id` will be available
+// in the device information.  
+// This is the case if the device is the Virtual Chassis "virtual device" (MAC starting with `020003`) or if the device is the Virtual Chassis FPC0 and the Virtual Chassis is still using the FPC0 MAC address to generate the device ID.
 func (o *OrgsInventory) GetOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
@@ -41,7 +48,7 @@ func (o *OrgsInventory) GetOrgInventory(
     model *string,
     mType *models.DeviceTypeEnum,
     mac *string,
-    siteId *string,
+    siteId *uuid.UUID,
     vcMac *string,
     vc *bool,
     unassigned *bool,
@@ -204,17 +211,16 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgInventory takes context, orgId, mType, distinct, limit, page as parameters and
+// CountOrgInventory takes context, orgId, mType, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count in the Org Inventory
+// Count by Distinct Attributes of in the Org Inventory
 func (o *OrgsInventory) CountOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
     mType *models.DeviceTypeDefaultApEnum,
     distinct *models.InventoryCountDistinctEnum,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory/count")
@@ -245,9 +251,6 @@ func (o *OrgsInventory) CountOrgInventory(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount
@@ -401,7 +404,7 @@ func (o *OrgsInventory) ReevaluateOrgAutoAssignment(
 // This API also supports replacement of Mist Edges. This API copies device agnostic attributes from old Mist edge to new one.
 // Mist manufactured Mist Edges will be reset to factory settings but will still be in Inventory.Brownfield or VM’s will be
 // deleted from Inventory
-// **Note:** For Gateway devices only like-for-like replacements (can only replace a SRX320 with a SRX320 and not some otehr model) are allowed.
+// **Note:** For Gateway devices only like-for-like replacements (can only replace a SRX320 with a SRX320 and not some other model) are allowed.
 func (o *OrgsInventory) ReplaceOrgDevices(
     ctx context.Context,
     orgId uuid.UUID,
@@ -454,7 +457,7 @@ func (o *OrgsInventory) SearchOrgInventory(
     mac *string,
     vcMac *string,
     masterMac *string,
-    siteId *string,
+    siteId *uuid.UUID,
     serial *string,
     master *string,
     sku *string,

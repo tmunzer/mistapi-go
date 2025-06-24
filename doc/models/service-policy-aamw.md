@@ -15,7 +15,7 @@ For SRX Only
 |  --- | --- | --- | --- |
 | `AamwprofileId` | `*uuid.UUID` | Optional | org-level Advanced Advance Anti Malware Profile (SkyAtp) Profile can be used, this takes precedence over 'profile' |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Profile` | [`*models.ServicePolicyAamwProfileEnum`](../../doc/models/service-policy-aamw-profile-enum.md) | Optional | enum: `docsonly`, `executables`, `standard`<br>**Default**: `"standard"` |
+| `Profile` | [`*models.ServicePolicyAamwProfileEnum`](../../doc/models/service-policy-aamw-profile-enum.md) | Optional | enum: `docsonly`, `executables`, `standard`<br><br>**Default**: `"standard"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

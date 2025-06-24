@@ -13,7 +13,7 @@ RF Diag
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | recording length in seconds, max is 180. Default value is also 180.<br>**Default**: `180`<br>**Constraints**: `<= 180` |
+| `Duration` | `*int` | Optional | recording length in seconds, max is 180. Default value is also 180.<br><br>**Default**: `180`<br><br>**Constraints**: `<= 180` |
 | `Mac` | `*string` | Optional | If `type`==`client` or `asset`, mac of the device |
 | `Name` | `string` | Required | Name of the recording, the name of the sdk client would be a good default choice |
 | `SdkclientId` | `*uuid.UUID` | Optional | If `type`==`sdkclient`, sdkclient_id of this recording |

@@ -18,8 +18,8 @@ type LicenseAmendment struct {
     Quantity             *int                   `json:"quantity,omitempty"`
     StartTime            *int                   `json:"start_time,omitempty"`
     SubscriptionId       *string                `json:"subscription_id,omitempty"`
-    // enum: `SUB-AST`, `SUB-DATA`, `SUB-ENG`, `SUB-EX12`, `SUB-EX24`, `SUB-EX48`, `SUB-MAN`, `SUB-ME`, `SUB-PMA`, `SUB-SRX1`, `SUB-SRX2`, `SUB-SVNA`, `SUB-VNA`, `SUB-WAN1`, `SUB-WAN2`, `SUB-WVNA1`, `SUB-WVNA2`
-    Type                 *LicenseTypeEnum       `json:"type,omitempty"`
+    // Type of license. The list of supported license type can be retrieve with the [List License Type]($e/Constants%20Definitions/listLicenseTypes) API request.
+    Type                 *string                `json:"type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -101,12 +101,12 @@ func (l *LicenseAmendment) UnmarshalJSON(input []byte) error {
 
 // tempLicenseAmendment is a temporary struct used for validating the fields of LicenseAmendment.
 type tempLicenseAmendment  struct {
-    CreatedTime    *float64         `json:"created_time,omitempty"`
-    EndTime        *int             `json:"end_time,omitempty"`
-    Id             *uuid.UUID       `json:"id,omitempty"`
-    ModifiedTime   *float64         `json:"modified_time,omitempty"`
-    Quantity       *int             `json:"quantity,omitempty"`
-    StartTime      *int             `json:"start_time,omitempty"`
-    SubscriptionId *string          `json:"subscription_id,omitempty"`
-    Type           *LicenseTypeEnum `json:"type,omitempty"`
+    CreatedTime    *float64   `json:"created_time,omitempty"`
+    EndTime        *int       `json:"end_time,omitempty"`
+    Id             *uuid.UUID `json:"id,omitempty"`
+    ModifiedTime   *float64   `json:"modified_time,omitempty"`
+    Quantity       *int       `json:"quantity,omitempty"`
+    StartTime      *int       `json:"start_time,omitempty"`
+    SubscriptionId *string    `json:"subscription_id,omitempty"`
+    Type           *string    `json:"type,omitempty"`
 }

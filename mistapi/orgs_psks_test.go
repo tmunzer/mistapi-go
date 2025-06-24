@@ -34,6 +34,31 @@ func TestOrgsPsksTestListOrgPsks(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestOrgsPsksTestListOrgPsks1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestListOrgPsks1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    name := "psk_name"
+    
+    
+    limit := int(100)
+    page := int(1)
+    apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, nil, nil, &limit, &page)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestOrgsPsksTestCreateOrgPsk tests the behavior of the OrgsPsks
 func TestOrgsPsksTestCreateOrgPsk(t *testing.T) {
     ctx := context.Background()
@@ -50,6 +75,26 @@ func TestOrgsPsksTestCreateOrgPsk(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsPsksTestCreateOrgPsk1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestCreateOrgPsk1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    
+    apiResponse, err := orgsPsks.CreateOrgPsk(ctx, orgId, nil, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
@@ -73,6 +118,31 @@ func TestOrgsPsksTestUpdateOrgMultiplePsks(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsPsksTestUpdateOrgMultiplePsks1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestUpdateOrgMultiplePsks1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    var body []models.Psk
+    errBody := json.Unmarshal([]byte(`[{"expire_time":1614990263,"mac":"string","max_usage":0,"name":"string","passphrase":"secretpsk","ssid":"string","usage":"multi","vlan_id":10}]`), &body)
+    if errBody != nil {
+        t.Errorf("Cannot parse the model object.")
+    }
+    apiResponse, err := orgsPsks.UpdateOrgMultiplePsks(ctx, orgId, body)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
@@ -109,6 +179,27 @@ func TestOrgsPsksTestImportOrgPsks(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsPsksTestImportOrgPsks1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestImportOrgPsks1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := orgsPsks.ImportOrgPsks(ctx, orgId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","passphrase":"secretpsk","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","ssid":"string","usage":"multi","vlan_id":1}]`
@@ -155,6 +246,28 @@ func TestOrgsPsksTestGetOrgPsk(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestOrgsPsksTestGetOrgPsk1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestGetOrgPsk1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    pskId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := orgsPsks.GetOrgPsk(ctx, orgId, pskId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestOrgsPsksTestUpdateOrgPsk tests the behavior of the OrgsPsks
 func TestOrgsPsksTestUpdateOrgPsk(t *testing.T) {
     ctx := context.Background()
@@ -178,6 +291,29 @@ func TestOrgsPsksTestUpdateOrgPsk(t *testing.T) {
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestOrgsPsksTestUpdateOrgPsk1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestUpdateOrgPsk1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    pskId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    apiResponse, err := orgsPsks.UpdateOrgPsk(ctx, orgId, pskId, nil)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestOrgsPsksTestDeleteOrgPskOldPassphrase tests the behavior of the OrgsPsks
 func TestOrgsPsksTestDeleteOrgPskOldPassphrase(t *testing.T) {
     ctx := context.Background()
@@ -196,6 +332,28 @@ func TestOrgsPsksTestDeleteOrgPskOldPassphrase(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
     expectedHeaders:= []testHelper.TestHeader{
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsPsksTestDeleteOrgPskOldPassphrase1 tests the behavior of the OrgsPsks
+func TestOrgsPsksTestDeleteOrgPskOldPassphrase1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    pskId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := orgsPsks.DeleteOrgPskOldPassphrase(ctx, orgId, pskId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }

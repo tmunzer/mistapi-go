@@ -135,7 +135,7 @@ func (o *OrgsDevicesOthers) UpdateOrgOtherDevices(
 // CountOrgOtherDeviceEvents takes context, orgId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org OtherDevices Events
+// Count by Distinct Attributes of Org OtherDevices Events
 func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
     ctx context.Context,
     orgId uuid.UUID,

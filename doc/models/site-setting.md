@@ -19,17 +19,18 @@ Site Settings
 | `Analytic` | [`*models.SiteSettingAnalytic`](../../doc/models/site-setting-analytic.md) | Optional | - |
 | `ApMatching` | [`*models.SiteSettingApMatching`](../../doc/models/site-setting-ap-matching.md) | Optional | - |
 | `ApPortConfig` | [`*models.SiteSettingApPortConfig`](../../doc/models/site-setting-ap-port-config.md) | Optional | - |
-| `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
+| `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | If we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
 | `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `false` |
 | `BlacklistUrl` | `*string` | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
-| `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br>**Default**: `false` |
+| `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br><br>**Default**: `false` |
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | Mist also uses some heuristic rules to prevent destructive configs from being pushed |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | You can define some URLs that's critical to site operations the latency will be captured and considered for site health |
-| `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
+| `DefaultPortUsage` | `*string` | Optional | Port usage to assign to switch ports without any port usage assngied. Default: `default` to preserve default behavior<br><br>**Default**: `"default"` |
+| `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DisabledSystemDefinedPortUsages` | [`[]models.SystemDefinedPortUsagesEnum`](../../doc/models/system-defined-port-usages-enum.md) | Optional | If some system-default port usages are not desired - namely, ap / iot / uplink |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -44,10 +45,11 @@ Site Settings
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |
 | `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
-| `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
+| `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `JuniperSrx` | [`*models.SiteSettingJuniperSrx`](../../doc/models/site-setting-juniper-srx.md) | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
+| `Marvis` | [`*models.Marvis`](../../doc/models/marvis.md) | Optional | - |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Mxedge` | [`*models.SiteSettingMxedge`](../../doc/models/site-setting-mxedge.md) | Optional | Site Mist Edges form a cluster of RadSec Proxy servers |
@@ -59,31 +61,32 @@ Site Settings
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `OspfAreas` | [`map[string]models.OspfArea`](../../doc/models/ospf-area.md) | Optional | Junos OSPF areas |
 | `PaloaltoNetworks` | [`*models.SiteSettingPaloaltoNetworks`](../../doc/models/site-setting-paloalto-networks.md) | Optional | - |
-| `PersistConfigOnDevice` | `*bool` | Optional | Whether to store the config on AP<br>**Default**: `false` |
+| `PersistConfigOnDevice` | `*bool` | Optional | Whether to store the config on AP<br><br>**Default**: `false` |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
 | `Proxy` | [`*models.Proxy`](../../doc/models/proxy.md) | Optional | Proxy Configuration to talk to Mist |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
-| `RemoveExistingConfigs` | `*bool` | Optional | By default, when we configure a device, we only clean up config we generate. Remove existing configs if enabled<br>**Default**: `false` |
-| `ReportGatt` | `*bool` | Optional | Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)<br>**Default**: `false` |
+| `RemoveExistingConfigs` | `*bool` | Optional | By default, only the configuration generated by Mist is cleaned up during the configuration process. If `true`, all the existing configuration will be removed.<br><br>**Default**: `false` |
+| `ReportGatt` | `*bool` | Optional | Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)<br><br>**Default**: `false` |
 | `Rogue` | [`*models.SiteRogue`](../../doc/models/site-rogue.md) | Optional | Rogue site settings |
 | `Rtsa` | [`*models.SiteSettingRtsa`](../../doc/models/site-setting-rtsa.md) | Optional | Managed mobility |
 | `SimpleAlert` | [`*models.SimpleAlert`](../../doc/models/simple-alert.md) | Optional | Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Skyatp` | [`*models.SiteSettingSkyatp`](../../doc/models/site-setting-skyatp.md) | Optional | - |
+| `SleThresholds` | [`*models.SleThresholds`](../../doc/models/sle-thresholds.md) | Optional | - |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |
 | `SrxApp` | [`*models.SiteSettingSrxApp`](../../doc/models/site-setting-srx-app.md) | Optional | - |
 | `SshKeys` | `[]string` | Optional | When limit_ssh_access = true in Org Setting, list of SSH public keys provided by Mist Support to install onto APs (see Org:Setting) |
-| `Ssr` | [`*models.SiteSettingSsr`](../../doc/models/site-setting-ssr.md) | Optional | - |
+| `Ssr` | [`*models.SettingSsr`](../../doc/models/setting-ssr.md) | Optional | - |
 | `StatusPortal` | [`*models.SiteSettingStatusPortal`](../../doc/models/site-setting-status-portal.md) | Optional | - |
-| `Switch` | [`*models.NetworkTemplate`](../../doc/models/network-template.md) | Optional | Network Template |
+| `Switch` | [`*models.SiteSettingSwitch`](../../doc/models/site-setting-switch.md) | Optional | - |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Defines custom switch configuration based on different criteria |
 | `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
-| `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br>**Default**: `0`<br>**Constraints**: `>= 0`, `<= 240` |
+| `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
-| `TrackAnonymousDevices` | `*bool` | Optional | Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br>**Default**: `false` |
+| `TrackAnonymousDevices` | `*bool` | Optional | Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br><br>**Default**: `false` |
 | `TuntermMonitoring` | [`[]models.TuntermMonitoringItem`](../../doc/models/tunterm-monitoring-item.md) | Optional | - |
 | `TuntermMonitoringDisabled` | `*bool` | Optional | **Default**: `false` |
 | `TuntermMulticastConfig` | [`*models.SiteSettingTuntermMulticastConfig`](../../doc/models/site-setting-tunterm-multicast-config.md) | Optional | - |
@@ -111,6 +114,7 @@ Site Settings
   "auto_upgrade_linecard": false,
   "blacklist_url": "https://papi.s3.amazonaws.com/blacklist/xxx...",
   "config_auto_revert": false,
+  "default_port_usage": "default",
   "device_updown_threshold": 0,
   "enable_unii_4": false,
   "extra_routes": {
@@ -181,18 +185,9 @@ Site Settings
         "macs1"
       ],
       "network": "network2",
+      "port_usage": "port_usage0",
       "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "type": "dynamic_gbp",
+      "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -204,18 +199,9 @@ Site Settings
         "macs1"
       ],
       "network": "network2",
+      "port_usage": "port_usage0",
       "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "type": "dynamic_gbp",
+      "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -227,18 +213,9 @@ Site Settings
         "macs1"
       ],
       "network": "network2",
+      "port_usage": "port_usage0",
       "radius_group": "radius_group8",
-      "specs": [
-        {
-          "port_range": "port_range8",
-          "protocol": "protocol6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "type": "dynamic_gbp",
+      "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

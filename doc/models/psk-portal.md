@@ -11,15 +11,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | enum: `sponsor`, `sso`<br>**Default**: `"sso"` |
+| `Auth` | [`*models.PskPortalAuthEnum`](../../doc/models/psk-portal-auth-enum.md) | Optional | enum: `sponsor`, `sso`<br><br>**Default**: `"sso"` |
 | `BgImageUrl` | `*string` | Optional | - |
-| `CleanupPsk` | `*bool` | Optional | Used to cleanup exited psk when portal delete or ssid changed<br>**Default**: `false` |
+| `CleanupPsk` | `*bool` | Optional | Used to cleanup exited psk when portal delete or ssid changed<br><br>**Default**: `false` |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ExpireTime` | `*int` | Optional | unit min |
 | `ExpiryNotificationTime` | `*int` | Optional | Number of days before psk is expired. Used as to when to start sending reminder notification when the psk is about to expire |
-| `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | Only if `type`==`admin`<br>**Default**: `false` |
+| `HidePsksCreatedByOtherAdmins` | `*bool` | Optional | Only if `type`==`admin`<br><br>**Default**: `false` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `MaxUsage` | `*int` | Optional | `max_usage`==`0` means unlimited<br>**Default**: `0` |
+| `MaxUsage` | `*int` | Optional | `max_usage`==`0` means unlimited<br><br>**Default**: `0` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NotificationRenewUrl` | `*string` | Optional | Optional, will include the link in the notification email the customer can either provide their own url or use the one generate from mist, or do a url shorterner against either |

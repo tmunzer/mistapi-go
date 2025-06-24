@@ -16,6 +16,8 @@ type AutoPlacement struct {
     Macs                 []string               `json:"macs,omitempty"`
     // Set to `true` to run auto placement even if there are invalid APs in the selected APs.
     Override             *bool                  `json:"override,omitempty"`
+    // If set to `true`, the service shall be using UWB ranging without invoking Maintenance Mode.
+    UwbOnly              *bool                  `json:"uwb_only,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -23,8 +25,8 @@ type AutoPlacement struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AutoPlacement) String() string {
     return fmt.Sprintf(
-    	"AutoPlacement[Dryrun=%v, ForceCollection=%v, Macs=%v, Override=%v, AdditionalProperties=%v]",
-    	a.Dryrun, a.ForceCollection, a.Macs, a.Override, a.AdditionalProperties)
+    	"AutoPlacement[Dryrun=%v, ForceCollection=%v, Macs=%v, Override=%v, UwbOnly=%v, AdditionalProperties=%v]",
+    	a.Dryrun, a.ForceCollection, a.Macs, a.Override, a.UwbOnly, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AutoPlacement.
@@ -33,7 +35,7 @@ func (a AutoPlacement) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "dryrun", "force_collection", "macs", "override"); err != nil {
+        "dryrun", "force_collection", "macs", "override", "uwb_only"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -55,6 +57,9 @@ func (a AutoPlacement) toMap() map[string]any {
     if a.Override != nil {
         structMap["override"] = a.Override
     }
+    if a.UwbOnly != nil {
+        structMap["uwb_only"] = a.UwbOnly
+    }
     return structMap
 }
 
@@ -66,7 +71,7 @@ func (a *AutoPlacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dryrun", "force_collection", "macs", "override")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dryrun", "force_collection", "macs", "override", "uwb_only")
     if err != nil {
     	return err
     }
@@ -76,6 +81,7 @@ func (a *AutoPlacement) UnmarshalJSON(input []byte) error {
     a.ForceCollection = temp.ForceCollection
     a.Macs = temp.Macs
     a.Override = temp.Override
+    a.UwbOnly = temp.UwbOnly
     return nil
 }
 
@@ -85,4 +91,5 @@ type tempAutoPlacement  struct {
     ForceCollection *bool    `json:"force_collection,omitempty"`
     Macs            []string `json:"macs,omitempty"`
     Override        *bool    `json:"override,omitempty"`
+    UwbOnly         *bool    `json:"uwb_only,omitempty"`
 }

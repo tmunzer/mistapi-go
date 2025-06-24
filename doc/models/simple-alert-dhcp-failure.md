@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ClientCount` | `*int` | Optional | **Default**: `10` |
-| `Duration` | `*int` | Optional | failing within minutes<br>**Default**: `10`<br>**Constraints**: `>= 5`, `<= 60` |
+| `Duration` | `*int` | Optional | failing within minutes<br><br>**Default**: `10`<br><br>**Constraints**: `>= 5`, `<= 60` |
 | `IncidentCount` | `*int` | Optional | **Default**: `20` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

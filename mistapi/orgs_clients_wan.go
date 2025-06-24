@@ -85,10 +85,10 @@ func (o *OrgsClientsWan) CountOrgWanClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgWanClients takes context, orgId, distinct, start, end, duration, limit, page as parameters and
+// CountOrgWanClients takes context, orgId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count Org WAN Clients
+// Count by Distinct Attributes of Org WAN Clients
 func (o *OrgsClientsWan) CountOrgWanClients(
     ctx context.Context,
     orgId uuid.UUID,
@@ -96,8 +96,7 @@ func (o *OrgsClientsWan) CountOrgWanClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wan_clients/count")
@@ -134,9 +133,6 @@ func (o *OrgsClientsWan) CountOrgWanClients(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

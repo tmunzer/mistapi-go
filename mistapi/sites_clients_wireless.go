@@ -21,7 +21,7 @@ func NewSitesClientsWireless(baseController baseController) *SitesClientsWireles
     return &sitesClientsWireless
 }
 
-// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, start, end, duration, limit, page as parameters and
+// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -40,8 +40,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/count")
@@ -103,9 +102,6 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     if limit != nil {
         req.QueryParam("limit", *limit)
     }
-    if page != nil {
-        req.QueryParam("page", *page)
-    }
     
     var result models.ResponseCount
     decoder, resp, err := req.CallAsJson()
@@ -117,7 +113,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteWirelessClientEvents takes context, siteId, distinct, mType, reasonCode, ssid, ap, proto, band, wlanId, limit, start, end, duration as parameters and
+// CountSiteWirelessClientEvents takes context, siteId, distinct, mType, reasonCode, ssid, ap, proto, band, wlanId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Client-Events
@@ -132,10 +128,10 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
     wlanId *string,
-    limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/events/count")
@@ -182,9 +178,6 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
     if wlanId != nil {
         req.QueryParam("wlan_id", *wlanId)
     }
-    if limit != nil {
-        req.QueryParam("limit", *limit)
-    }
     if start != nil {
         req.QueryParam("start", *start)
     }
@@ -193,6 +186,9 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
     }
     if duration != nil {
         req.QueryParam("duration", *duration)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
     }
     
     var result models.ResponseCount
@@ -390,7 +386,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit, page as parameters and
+// CountSiteWirelessClientSessions takes context, siteId, distinct, ap, band, clientFamily, clientManufacture, clientModel, clientOs, ssid, wlanId, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Client Sessions
@@ -409,8 +405,7 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    limit *int) (
     models.ApiResponse[models.ResponseCount],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/clients/sessions/count")
@@ -471,9 +466,6 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
     }
     if limit != nil {
         req.QueryParam("limit", *limit)
-    }
-    if page != nil {
-        req.QueryParam("page", *page)
     }
     
     var result models.ResponseCount

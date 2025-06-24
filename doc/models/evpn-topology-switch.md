@@ -19,9 +19,9 @@
 | `EvpnId` | `*int` | Optional | **Constraints**: `>= 1` |
 | `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Model` | `*string` | Optional | - |
-| `Pod` | `*int` | Optional | Optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.<br><br>* for CLOS, to group dist / access switches into pods<br>* for ERB/CRB, to group dist / esilag-access into pods<br>**Default**: `1`<br>**Constraints**: `>= 1`, `<= 255` |
+| `Pod` | `*int` | Optional | Optionally, for distribution / access / esilag-access, they can be placed into different pods. e.g.<br><br>* for CLOS, to group dist / access switches into pods<br>* for ERB/CRB, to group dist / esilag-access into pods<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 255` |
 | `Pods` | `[]int` | Optional | By default, core switches are assumed to be connecting all pods.<br>if you want to limit the pods, you can specify pods. |
-| `Role` | [`models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Required | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br>**Constraints**: *Minimum Length*: `1` |
+| `Role` | [`models.EvpnTopologySwitchRoleEnum`](../../doc/models/evpn-topology-switch-role-enum.md) | Required | use `role`==`none` to remove a switch from the topology. enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `RouterId` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SuggestedDownlinks` | `[]string` | Optional | - |
