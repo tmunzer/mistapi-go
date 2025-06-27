@@ -34,7 +34,7 @@ type SiteSettingDerived struct {
     CreatedTime                     *float64                               `json:"created_time,omitempty"`
     // You can define some URLs that's critical to site operations the latency will be captured and considered for site health
     CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    // Port usage to assign to switch ports without any port usage assngied. Default: `default` to preserve default behavior
+    // Port usage to assign to switch ports without any port usage assigned. Default: `default` to preserve default behavior
     DefaultPortUsage                *string                                `json:"default_port_usage,omitempty"`
     // By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following
     DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`

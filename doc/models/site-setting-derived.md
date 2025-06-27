@@ -27,7 +27,7 @@
 | `ConfigPushPolicy` | [`*models.SiteSettingConfigPushPolicy`](../../doc/models/site-setting-config-push-policy.md) | Optional | Mist also uses some heuristic rules to prevent destructive configs from being pushed |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `CriticalUrlMonitoring` | [`*models.SiteSettingCriticalUrlMonitoring`](../../doc/models/site-setting-critical-url-monitoring.md) | Optional | You can define some URLs that's critical to site operations the latency will be captured and considered for site health |
-| `DefaultPortUsage` | `*string` | Optional | Port usage to assign to switch ports without any port usage assngied. Default: `default` to preserve default behavior<br><br>**Default**: `"default"` |
+| `DefaultPortUsage` | `*string` | Optional | Port usage to assign to switch ports without any port usage assigned. Default: `default` to preserve default behavior<br><br>**Default**: `"default"` |
 | `DeviceUpdownThreshold` | `models.Optional[int]` | Optional | By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DisabledSystemDefinedPortUsages` | [`[]models.SystemDefinedPortUsagesEnum`](../../doc/models/system-defined-port-usages-enum.md) | Optional | If some system-default port usages are not desired - namely, ap / iot / uplink |
