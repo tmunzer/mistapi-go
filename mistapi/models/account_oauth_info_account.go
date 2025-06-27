@@ -10,12 +10,16 @@ import (
 type AccountOauthInfoAccount struct {
     // Linked app account id
     AccountId            *string                `json:"account_id,omitempty"`
+    // For Prisma accounts only, tunnel auto probe subnet
+    AutoProbeSubnet      *string                `json:"auto_probe_subnet,omitempty"`
     // Customer account Client ID
     ClientId             *string                `json:"client_id,omitempty"`
     // Name of the company whose account mist has subscribed to
     CloudName            *string                `json:"cloud_name,omitempty"`
     // Name of the company whose account mist has subscribed to
     Company              *string                `json:"company,omitempty"`
+    // For Prisma accounts only, tunnel probe enable/disable
+    EnableProbe          *bool                  `json:"enable_probe,omitempty"`
     // This error is provided when the account fails to fetch token/data
     Error                *string                `json:"error,omitempty"`
     Errors               []string               `json:"errors,omitempty"`
@@ -38,6 +42,8 @@ type AccountOauthInfoAccount struct {
     Region               *string                `json:"region,omitempty"`
     // For Prisma accounts only
     ServiceAccountName   *string                `json:"service_account_name,omitempty"`
+    // For Prisma accounts only
+    ServiceConnections   []string               `json:"service_connections,omitempty"`
     // Smart group membership for determining compliance status
     SmartgroupName       *string                `json:"smartgroup_name,omitempty"`
     // For Prisma accounts only, Prisma Tenant Service Group id
@@ -51,8 +57,8 @@ type AccountOauthInfoAccount struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthInfoAccount) String() string {
     return fmt.Sprintf(
-    	"AccountOauthInfoAccount[AccountId=%v, ClientId=%v, CloudName=%v, Company=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, ServiceAccountName=%v, SmartgroupName=%v, TsgId=%v, Username=%v, AdditionalProperties=%v]",
-    	a.AccountId, a.ClientId, a.CloudName, a.Company, a.Error, a.Errors, a.InstanceUrl, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.ServiceAccountName, a.SmartgroupName, a.TsgId, a.Username, a.AdditionalProperties)
+    	"AccountOauthInfoAccount[AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, AdditionalProperties=%v]",
+    	a.AccountId, a.AutoProbeSubnet, a.ClientId, a.CloudName, a.Company, a.EnableProbe, a.Error, a.Errors, a.InstanceUrl, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.ServiceAccountName, a.ServiceConnections, a.SmartgroupName, a.TsgId, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfoAccount.
@@ -61,7 +67,7 @@ func (a AccountOauthInfoAccount) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "account_id", "client_id", "cloud_name", "company", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "smartgroup_name", "tsg_id", "username"); err != nil {
+        "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -74,6 +80,9 @@ func (a AccountOauthInfoAccount) toMap() map[string]any {
     if a.AccountId != nil {
         structMap["account_id"] = a.AccountId
     }
+    if a.AutoProbeSubnet != nil {
+        structMap["auto_probe_subnet"] = a.AutoProbeSubnet
+    }
     if a.ClientId != nil {
         structMap["client_id"] = a.ClientId
     }
@@ -82,6 +91,9 @@ func (a AccountOauthInfoAccount) toMap() map[string]any {
     }
     if a.Company != nil {
         structMap["company"] = a.Company
+    }
+    if a.EnableProbe != nil {
+        structMap["enable_probe"] = a.EnableProbe
     }
     if a.Error != nil {
         structMap["error"] = a.Error
@@ -119,6 +131,9 @@ func (a AccountOauthInfoAccount) toMap() map[string]any {
     if a.ServiceAccountName != nil {
         structMap["service_account_name"] = a.ServiceAccountName
     }
+    if a.ServiceConnections != nil {
+        structMap["service_connections"] = a.ServiceConnections
+    }
     if a.SmartgroupName != nil {
         structMap["smartgroup_name"] = a.SmartgroupName
     }
@@ -139,16 +154,18 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "client_id", "cloud_name", "company", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "smartgroup_name", "tsg_id", "username")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username")
     if err != nil {
     	return err
     }
     a.AdditionalProperties = additionalProperties
     
     a.AccountId = temp.AccountId
+    a.AutoProbeSubnet = temp.AutoProbeSubnet
     a.ClientId = temp.ClientId
     a.CloudName = temp.CloudName
     a.Company = temp.Company
+    a.EnableProbe = temp.EnableProbe
     a.Error = temp.Error
     a.Errors = temp.Errors
     a.InstanceUrl = temp.InstanceUrl
@@ -161,6 +178,7 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
     a.Password = temp.Password
     a.Region = temp.Region
     a.ServiceAccountName = temp.ServiceAccountName
+    a.ServiceConnections = temp.ServiceConnections
     a.SmartgroupName = temp.SmartgroupName
     a.TsgId = temp.TsgId
     a.Username = temp.Username
@@ -170,9 +188,11 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
 // tempAccountOauthInfoAccount is a temporary struct used for validating the fields of AccountOauthInfoAccount.
 type tempAccountOauthInfoAccount  struct {
     AccountId           *string  `json:"account_id,omitempty"`
+    AutoProbeSubnet     *string  `json:"auto_probe_subnet,omitempty"`
     ClientId            *string  `json:"client_id,omitempty"`
     CloudName           *string  `json:"cloud_name,omitempty"`
     Company             *string  `json:"company,omitempty"`
+    EnableProbe         *bool    `json:"enable_probe,omitempty"`
     Error               *string  `json:"error,omitempty"`
     Errors              []string `json:"errors,omitempty"`
     InstanceUrl         *string  `json:"instance_url,omitempty"`
@@ -185,6 +205,7 @@ type tempAccountOauthInfoAccount  struct {
     Password            *string  `json:"password,omitempty"`
     Region              *string  `json:"region,omitempty"`
     ServiceAccountName  *string  `json:"service_account_name,omitempty"`
+    ServiceConnections  []string `json:"service_connections,omitempty"`
     SmartgroupName      *string  `json:"smartgroup_name,omitempty"`
     TsgId               *string  `json:"tsg_id,omitempty"`
     Username            *string  `json:"username,omitempty"`

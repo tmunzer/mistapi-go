@@ -357,7 +357,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mdmManaged, mxedgeId, nacruleName, status, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mdmManaged, mxedgeId, nacruleName, status, family, model, os, hostname, mfg, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -379,6 +379,11 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     mxedgeId *string,
     nacruleName *string,
     status *string,
+    family *string,
+    model *string,
+    os *string,
+    hostname *string,
+    mfg *string,
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
@@ -456,6 +461,21 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     }
     if status != nil {
         req.QueryParam("status", *status)
+    }
+    if family != nil {
+        req.QueryParam("family", *family)
+    }
+    if model != nil {
+        req.QueryParam("model", *model)
+    }
+    if os != nil {
+        req.QueryParam("os", *os)
+    }
+    if hostname != nil {
+        req.QueryParam("hostname", *hostname)
+    }
+    if mfg != nil {
+        req.QueryParam("mfg", *mfg)
     }
     if mType != nil {
         req.QueryParam("type", *mType)

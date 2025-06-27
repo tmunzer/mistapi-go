@@ -298,11 +298,12 @@ func TestSitesDevicesTestSearchSiteDeviceEvents(t *testing.T) {
     
     
     lastBy := "port_id"
+    includes := "ext_tunnel"
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &limit, nil, nil, &duration)
+    apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -328,11 +329,12 @@ func TestSitesDevicesTestSearchSiteDeviceEvents1(t *testing.T) {
     
     
     lastBy := "port_id"
+    includes := "ext_tunnel"
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &limit, nil, nil, &duration)
+    apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

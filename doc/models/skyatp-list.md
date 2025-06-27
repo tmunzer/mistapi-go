@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Domains` | [`[]models.SkyatpListDomain`](../../doc/models/skyatp-list-domain.md) | Optional | - |
-| `Ips` | [`[]models.SkyatpListIp`](../../doc/models/skyatp-list-ip.md) | Optional | - |
+| `Ip` | [`[]models.SkyatpListIp`](../../doc/models/skyatp-list-ip.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -22,17 +22,17 @@
   "domains": [
     {
       "comment": "comment6",
-      "domain": "domain6",
+      "value": "value2",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
       }
     }
   ],
-  "ips": [
+  "ip": [
     {
-      "comment": "comment0",
-      "ip": "ip0",
+      "comment": "comment8",
+      "value": "value6",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

@@ -17,6 +17,8 @@ type ProtectRe struct {
     // e.g. ntp / dns / traffic to mist will be allowed by default
     // if dhcpd is enabled, we'll make sure it works
     Enabled              *bool                         `json:"enabled,omitempty"`
+    // Whether to enable hit count for Protect_RE policy
+    HitCount             *bool                         `json:"hit_count,omitempty"`
     // host/subnets we'll allow traffic to/from
     TrustedHosts         []string                      `json:"trusted_hosts,omitempty"`
     AdditionalProperties map[string]interface{}        `json:"_"`
@@ -26,8 +28,8 @@ type ProtectRe struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p ProtectRe) String() string {
     return fmt.Sprintf(
-    	"ProtectRe[AllowedServices=%v, Custom=%v, Enabled=%v, TrustedHosts=%v, AdditionalProperties=%v]",
-    	p.AllowedServices, p.Custom, p.Enabled, p.TrustedHosts, p.AdditionalProperties)
+    	"ProtectRe[AllowedServices=%v, Custom=%v, Enabled=%v, HitCount=%v, TrustedHosts=%v, AdditionalProperties=%v]",
+    	p.AllowedServices, p.Custom, p.Enabled, p.HitCount, p.TrustedHosts, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ProtectRe.
@@ -36,7 +38,7 @@ func (p ProtectRe) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(p.AdditionalProperties,
-        "allowed_services", "custom", "enabled", "trusted_hosts"); err != nil {
+        "allowed_services", "custom", "enabled", "hit_count", "trusted_hosts"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(p.toMap())
@@ -55,6 +57,9 @@ func (p ProtectRe) toMap() map[string]any {
     if p.Enabled != nil {
         structMap["enabled"] = p.Enabled
     }
+    if p.HitCount != nil {
+        structMap["hit_count"] = p.HitCount
+    }
     if p.TrustedHosts != nil {
         structMap["trusted_hosts"] = p.TrustedHosts
     }
@@ -69,7 +74,7 @@ func (p *ProtectRe) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allowed_services", "custom", "enabled", "trusted_hosts")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allowed_services", "custom", "enabled", "hit_count", "trusted_hosts")
     if err != nil {
     	return err
     }
@@ -78,6 +83,7 @@ func (p *ProtectRe) UnmarshalJSON(input []byte) error {
     p.AllowedServices = temp.AllowedServices
     p.Custom = temp.Custom
     p.Enabled = temp.Enabled
+    p.HitCount = temp.HitCount
     p.TrustedHosts = temp.TrustedHosts
     return nil
 }
@@ -87,5 +93,6 @@ type tempProtectRe  struct {
     AllowedServices []ProtectReAllowedServiceEnum `json:"allowed_services,omitempty"`
     Custom          []ProtectReCustom             `json:"custom,omitempty"`
     Enabled         *bool                         `json:"enabled,omitempty"`
+    HitCount        *bool                         `json:"hit_count,omitempty"`
     TrustedHosts    []string                      `json:"trusted_hosts,omitempty"`
 }

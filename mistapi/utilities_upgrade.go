@@ -485,6 +485,47 @@ func (u *UtilitiesUpgrade) UpgradeOrgSsrs(
     return models.NewApiResponse(result, resp), err
 }
 
+// GetOrgSsrUpgrade takes context, orgId, upgradeId as parameters and
+// returns an models.ApiResponse with models.ResponseSsrUpgradeStatus data and
+// an error if there was an issue with the request or response.
+// Get Specific Org SSR Upgrade
+func (u *UtilitiesUpgrade) GetOrgSsrUpgrade(
+    ctx context.Context,
+    orgId uuid.UUID,
+    upgradeId uuid.UUID) (
+    models.ApiResponse[models.ResponseSsrUpgradeStatus],
+    error) {
+    req := u.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssr/upgrade/%v/cancel")
+    req.AppendTemplateParams(orgId, upgradeId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    
+    var result models.ResponseSsrUpgradeStatus
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseSsrUpgradeStatus](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // CancelOrgSsrUpgrade takes context, orgId, upgradeId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

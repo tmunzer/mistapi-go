@@ -130,6 +130,7 @@ SearchSiteWiredClients(
     mac *string,
     ip *string,
     portId *string,
+    source *models.ClientInfoSourceEnum,
     vlan *string,
     manufacture *string,
     text *string,
@@ -156,6 +157,7 @@ SearchSiteWiredClients(
 | `mac` | `*string` | Query, Optional | Client mac |
 | `ip` | `*string` | Query, Optional | Client ip |
 | `portId` | `*string` | Query, Optional | Port id |
+| `source` | [`*models.ClientInfoSourceEnum`](../../doc/models/client-info-source-enum.md) | Query, Optional | source from where the client was learned (lldp, mac) |
 | `vlan` | `*string` | Query, Optional | VLAN |
 | `manufacture` | `*string` | Query, Optional | Manufacture |
 | `text` | `*string` | Query, Optional | Single entry of hostname/mac |
@@ -189,6 +191,8 @@ ip := "10.3.5.12"
 
 portId := "ge-1/1/1"
 
+
+
 vlan := "10"
 
 manufacture := "Juniper-Mist"
@@ -215,7 +219,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
+apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, nil, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

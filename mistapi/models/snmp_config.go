@@ -7,27 +7,29 @@ import (
 
 // SnmpConfig represents a SnmpConfig struct.
 type SnmpConfig struct {
-    ClientList           []SnmpConfigClientList `json:"client_list,omitempty"`
-    Contact              *string                `json:"contact,omitempty"`
-    Description          *string                `json:"description,omitempty"`
-    Enabled              *bool                  `json:"enabled,omitempty"`
-    EngineId             *string                `json:"engine_id,omitempty"`
-    Location             *string                `json:"location,omitempty"`
-    Name                 *string                `json:"name,omitempty"`
-    Network              *string                `json:"network,omitempty"`
-    TrapGroups           []SnmpConfigTrapGroup  `json:"trap_groups,omitempty"`
-    V2cConfig            []SnmpConfigV2cConfig  `json:"v2c_config,omitempty"`
-    V3Config             *Snmpv3Config          `json:"v3_config,omitempty"`
-    Views                []SnmpConfigView       `json:"views,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    ClientList           []SnmpConfigClientList      `json:"client_list,omitempty"`
+    Contact              *string                     `json:"contact,omitempty"`
+    Description          *string                     `json:"description,omitempty"`
+    Enabled              *bool                       `json:"enabled,omitempty"`
+    EngineId             *string                     `json:"engine_id,omitempty"`
+    // enum: `local`, `use_mac_address`
+    EngineIdType         *SnmpConfigEngineIdTypeEnum `json:"engine_id_type,omitempty"`
+    Location             *string                     `json:"location,omitempty"`
+    Name                 *string                     `json:"name,omitempty"`
+    Network              *string                     `json:"network,omitempty"`
+    TrapGroups           []SnmpConfigTrapGroup       `json:"trap_groups,omitempty"`
+    V2cConfig            []SnmpConfigV2cConfig       `json:"v2c_config,omitempty"`
+    V3Config             *Snmpv3Config               `json:"v3_config,omitempty"`
+    Views                []SnmpConfigView            `json:"views,omitempty"`
+    AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SnmpConfig,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SnmpConfig) String() string {
     return fmt.Sprintf(
-    	"SnmpConfig[ClientList=%v, Contact=%v, Description=%v, Enabled=%v, EngineId=%v, Location=%v, Name=%v, Network=%v, TrapGroups=%v, V2cConfig=%v, V3Config=%v, Views=%v, AdditionalProperties=%v]",
-    	s.ClientList, s.Contact, s.Description, s.Enabled, s.EngineId, s.Location, s.Name, s.Network, s.TrapGroups, s.V2cConfig, s.V3Config, s.Views, s.AdditionalProperties)
+    	"SnmpConfig[ClientList=%v, Contact=%v, Description=%v, Enabled=%v, EngineId=%v, EngineIdType=%v, Location=%v, Name=%v, Network=%v, TrapGroups=%v, V2cConfig=%v, V3Config=%v, Views=%v, AdditionalProperties=%v]",
+    	s.ClientList, s.Contact, s.Description, s.Enabled, s.EngineId, s.EngineIdType, s.Location, s.Name, s.Network, s.TrapGroups, s.V2cConfig, s.V3Config, s.Views, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SnmpConfig.
@@ -36,7 +38,7 @@ func (s SnmpConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "client_list", "contact", "description", "enabled", "engine_id", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views"); err != nil {
+        "client_list", "contact", "description", "enabled", "engine_id", "engine_id_type", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -60,6 +62,9 @@ func (s SnmpConfig) toMap() map[string]any {
     }
     if s.EngineId != nil {
         structMap["engine_id"] = s.EngineId
+    }
+    if s.EngineIdType != nil {
+        structMap["engine_id_type"] = s.EngineIdType
     }
     if s.Location != nil {
         structMap["location"] = s.Location
@@ -93,7 +98,7 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_list", "contact", "description", "enabled", "engine_id", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "client_list", "contact", "description", "enabled", "engine_id", "engine_id_type", "location", "name", "network", "trap_groups", "v2c_config", "v3_config", "views")
     if err != nil {
     	return err
     }
@@ -104,6 +109,7 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
     s.Description = temp.Description
     s.Enabled = temp.Enabled
     s.EngineId = temp.EngineId
+    s.EngineIdType = temp.EngineIdType
     s.Location = temp.Location
     s.Name = temp.Name
     s.Network = temp.Network
@@ -116,16 +122,17 @@ func (s *SnmpConfig) UnmarshalJSON(input []byte) error {
 
 // tempSnmpConfig is a temporary struct used for validating the fields of SnmpConfig.
 type tempSnmpConfig  struct {
-    ClientList  []SnmpConfigClientList `json:"client_list,omitempty"`
-    Contact     *string                `json:"contact,omitempty"`
-    Description *string                `json:"description,omitempty"`
-    Enabled     *bool                  `json:"enabled,omitempty"`
-    EngineId    *string                `json:"engine_id,omitempty"`
-    Location    *string                `json:"location,omitempty"`
-    Name        *string                `json:"name,omitempty"`
-    Network     *string                `json:"network,omitempty"`
-    TrapGroups  []SnmpConfigTrapGroup  `json:"trap_groups,omitempty"`
-    V2cConfig   []SnmpConfigV2cConfig  `json:"v2c_config,omitempty"`
-    V3Config    *Snmpv3Config          `json:"v3_config,omitempty"`
-    Views       []SnmpConfigView       `json:"views,omitempty"`
+    ClientList   []SnmpConfigClientList      `json:"client_list,omitempty"`
+    Contact      *string                     `json:"contact,omitempty"`
+    Description  *string                     `json:"description,omitempty"`
+    Enabled      *bool                       `json:"enabled,omitempty"`
+    EngineId     *string                     `json:"engine_id,omitempty"`
+    EngineIdType *SnmpConfigEngineIdTypeEnum `json:"engine_id_type,omitempty"`
+    Location     *string                     `json:"location,omitempty"`
+    Name         *string                     `json:"name,omitempty"`
+    Network      *string                     `json:"network,omitempty"`
+    TrapGroups   []SnmpConfigTrapGroup       `json:"trap_groups,omitempty"`
+    V2cConfig    []SnmpConfigV2cConfig       `json:"v2c_config,omitempty"`
+    V3Config     *Snmpv3Config               `json:"v3_config,omitempty"`
+    Views        []SnmpConfigView            `json:"views,omitempty"`
 }

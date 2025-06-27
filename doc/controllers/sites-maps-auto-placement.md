@@ -462,8 +462,6 @@ This scan is disruptive, and users must be notified of service disruption during
 `force_collection` is set to `false` by default. If `force_collection` is set to `false`, the API attempts to start localization with existing data. If no data exists, the API attempts to start orchestration.  
 If `force_collection` is set to `true`, the API attempts to start orchestration.
 
-If the flag `uwb_only` is set to `true`, the service shall be using UWB ranging and placement without invoking the Maintenance Mode. BLE-based orientation is disabled if `uwb_only`==`true`
-
 Providing a list of devices is optional. If provided, autoplacement suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 
 ```go
@@ -501,7 +499,6 @@ body := models.AutoPlacement{
     Dryrun:               models.ToPointer(false),
     ForceCollection:      models.ToPointer(false),
     Override:             models.ToPointer(false),
-    UwbOnly:              models.ToPointer(false),
 }
 
 apiResponse, err := sitesMapsAutoPlacement.RunSiteApAutoplacement(ctx, siteId, mapId, &body)
@@ -532,7 +529,8 @@ if err != nil {
   "estimated_runtime": 30,
   "reason": "Map Already Enqueued",
   "started": false,
-  "valid": true
+  "valid": true,
+  "wifi_interrupting": true
 }
 ```
 
@@ -620,7 +618,8 @@ if err != nil {
   },
   "estimated_runtime": 300,
   "reason": "Map has met the minimum requirements for auto orient",
-  "valid": true
+  "valid": true,
+  "wifi_interrupting": true
 }
 ```
 

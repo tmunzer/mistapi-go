@@ -20,7 +20,7 @@
 | `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | If we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
-| `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `false` |
+| `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `true` |
 | `BlacklistUrl` | `*string` | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br><br>**Default**: `false` |
@@ -103,9 +103,11 @@
 | `WiredVna` | [`*models.SiteSettingWiredVna`](../../doc/models/site-setting-wired-vna.md) | Optional | - |
 | `ZoneOccupancyAlert` | [`*models.SiteZoneOccupancyAlert`](../../doc/models/site-zone-occupancy-alert.md) | Optional | Zone Occupancy alert site settings |
 | `AccountId` | `*string` | Optional | Linked app account id |
+| `AutoProbeSubnet` | `*string` | Optional | For Prisma accounts only, tunnel auto probe subnet |
 | `ClientId` | `*string` | Optional | Customer account Client ID |
 | `CloudName` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Company` | `*string` | Optional | Name of the company whose account mist has subscribed to |
+| `EnableProbe` | `*bool` | Optional | For Prisma accounts only, tunnel probe enable/disable |
 | `Error` | `*string` | Optional | This error is provided when the account fails to fetch token/data |
 | `Errors` | `[]string` | Optional | - |
 | `InstanceUrl` | `*string` | Optional | Customer account instance URL |
@@ -118,6 +120,7 @@
 | `Password` | `*string` | Optional | Customer account password instance URL |
 | `Region` | `*string` | Optional | For Prisma accounts only |
 | `ServiceAccountName` | `*string` | Optional | For Prisma accounts only |
+| `ServiceConnections` | `[]string` | Optional | For Prisma accounts only |
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
@@ -128,7 +131,7 @@
 ```json
 {
   "ap_updown_threshold": 0,
-  "auto_upgrade_linecard": false,
+  "auto_upgrade_linecard": true,
   "blacklist_url": "https://papi.s3.amazonaws.com/blacklist/xxx...",
   "config_auto_revert": false,
   "default_port_usage": "default",
@@ -173,8 +176,10 @@
   "watched_station_url": "https://papi.s3.amazonaws.com/watched_station/xxx...",
   "whitelist_url": "https://papi.s3.amazonaws.com/whitelist/xxx...",
   "account_id": "iojzXIJWEuiD73ZvydOfg",
+  "auto_probe_subnet": "11.0.0.0/8",
   "cloud_name": "Tapi.sase.paloaltonetworks.com",
   "company": "Test Company1 Ltd",
+  "enable_probe": false,
   "error": "OAuth token refresh failed, please re-link your account",
   "errors": [
     "OAuth token refresh failed, please re-link your account",
@@ -188,6 +193,10 @@
   "name": "Test Compay1 Ltd",
   "region": "americas",
   "service_account_name": "Corp SA",
+  "service_connections": [
+    "sc1",
+    "sc2"
+  ],
   "smartgroup_name": "CompliantGroup1",
   "tsg_id": "189953456",
   "acl_policies": [
@@ -257,13 +266,16 @@
   ],
   "acl_tags": {
     "key0": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -271,13 +283,16 @@
       }
     },
     "key1": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -468,10 +483,10 @@
   },
   "exampleAdditionalProperty": {
     "account_id": "account_id8",
+    "auto_probe_subnet": "auto_probe_subnet4",
     "client_id": "client_id8",
     "cloud_name": "cloud_name8",
     "company": "company6",
-    "error": "error0",
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

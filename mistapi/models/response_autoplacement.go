@@ -17,6 +17,8 @@ type ResponseAutoplacement struct {
     Started              *bool                                  `json:"started,omitempty"`
     // Indicates whether the autoplacement request is valid.
     Valid                *bool                                  `json:"valid,omitempty"`
+    // Indicates whether the auto placement process will interrupt WiFi traffic.
+    WifiInterrupting     *bool                                  `json:"wifi_interrupting,omitempty"`
     AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
@@ -24,8 +26,8 @@ type ResponseAutoplacement struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseAutoplacement) String() string {
     return fmt.Sprintf(
-    	"ResponseAutoplacement[Devices=%v, EstimatedRuntime=%v, Reason=%v, Started=%v, Valid=%v, AdditionalProperties=%v]",
-    	r.Devices, r.EstimatedRuntime, r.Reason, r.Started, r.Valid, r.AdditionalProperties)
+    	"ResponseAutoplacement[Devices=%v, EstimatedRuntime=%v, Reason=%v, Started=%v, Valid=%v, WifiInterrupting=%v, AdditionalProperties=%v]",
+    	r.Devices, r.EstimatedRuntime, r.Reason, r.Started, r.Valid, r.WifiInterrupting, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAutoplacement.
@@ -34,7 +36,7 @@ func (r ResponseAutoplacement) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "devices", "estimated_runtime", "reason", "started", "valid"); err != nil {
+        "devices", "estimated_runtime", "reason", "started", "valid", "wifi_interrupting"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -59,6 +61,9 @@ func (r ResponseAutoplacement) toMap() map[string]any {
     if r.Valid != nil {
         structMap["valid"] = r.Valid
     }
+    if r.WifiInterrupting != nil {
+        structMap["wifi_interrupting"] = r.WifiInterrupting
+    }
     return structMap
 }
 
@@ -70,7 +75,7 @@ func (r *ResponseAutoplacement) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "devices", "estimated_runtime", "reason", "started", "valid")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "devices", "estimated_runtime", "reason", "started", "valid", "wifi_interrupting")
     if err != nil {
     	return err
     }
@@ -81,6 +86,7 @@ func (r *ResponseAutoplacement) UnmarshalJSON(input []byte) error {
     r.Reason = temp.Reason
     r.Started = temp.Started
     r.Valid = temp.Valid
+    r.WifiInterrupting = temp.WifiInterrupting
     return nil
 }
 
@@ -91,4 +97,5 @@ type tempResponseAutoplacement  struct {
     Reason           *string                                `json:"reason,omitempty"`
     Started          *bool                                  `json:"started,omitempty"`
     Valid            *bool                                  `json:"valid,omitempty"`
+    WifiInterrupting *bool                                  `json:"wifi_interrupting,omitempty"`
 }

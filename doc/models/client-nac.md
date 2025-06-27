@@ -34,7 +34,7 @@
 | `LastNasVendor` | `*string` | Optional | Vendor name of the NAS for the latest authentication |
 | `LastPortId` | `*string` | Optional | If Wired authentication, the latest Port-id the client was connected to |
 | `LastSsid` | `*string` | Optional | If Wireless authentication, the latest SSID the client was connected to |
-| `LastStatus` | [`*models.LastStatusEnum`](../../doc/models/last-status-enum.md) | Optional | Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped` |
+| `LastStatus` | [`*models.NacClientLastStatusEnum`](../../doc/models/nac-client-last-status-enum.md) | Optional | Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped` |
 | `LastUsername` | `*string` | Optional | If dot1x authentication, the username used during the latest authentication. Otherwise, the MAC address of the client |
 | `LastVlan` | `*int` | Optional | Latest VLAN ID assigned to the client |
 | `Mac` | `*string` | Optional | Client MAC address |

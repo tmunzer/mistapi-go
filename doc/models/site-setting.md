@@ -22,7 +22,7 @@ Site Settings
 | `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | If we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
-| `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `false` |
+| `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `true` |
 | `BlacklistUrl` | `*string` | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br><br>**Default**: `false` |
@@ -111,7 +111,7 @@ Site Settings
 ```json
 {
   "ap_updown_threshold": 0,
-  "auto_upgrade_linecard": false,
+  "auto_upgrade_linecard": true,
   "blacklist_url": "https://papi.s3.amazonaws.com/blacklist/xxx...",
   "config_auto_revert": false,
   "default_port_usage": "default",
@@ -180,13 +180,16 @@ Site Settings
   ],
   "acl_tags": {
     "key0": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -194,13 +197,16 @@ Site Settings
       }
     },
     "key1": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -208,13 +214,16 @@ Site Settings
       }
     },
     "key2": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",

@@ -447,7 +447,7 @@ ap := "5c5b53010101"
 
 wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
-
+nacruleId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 
 
@@ -455,7 +455,7 @@ wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, nil, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

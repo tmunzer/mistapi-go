@@ -265,7 +265,7 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDeviceEvents takes context, orgId, mac, model, deviceType, text, timestamp, mType, lastBy, limit, start, end, duration as parameters and
+// SearchOrgDeviceEvents takes context, orgId, mac, model, deviceType, text, timestamp, mType, lastBy, includes, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices Events
@@ -279,6 +279,7 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
     timestamp *string,
     mType *string,
     lastBy *string,
+    includes *string,
     limit *int,
     start *int,
     end *int,
@@ -325,6 +326,9 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
     }
     if lastBy != nil {
         req.QueryParam("last_by", *lastBy)
+    }
+    if includes != nil {
+        req.QueryParam("includes", *includes)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

@@ -410,6 +410,54 @@ func TestUtilitiesUpgradeTestUpgradeOrgSsrs1(t *testing.T) {
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestUtilitiesUpgradeTestGetOrgSsrUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestGetOrgSsrUpgrade(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := utilitiesUpgrade.GetOrgSsrUpgrade(ctx, orgId, upgradeId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"channel":"stable","device_type":"gateway","id":"5cbcee0a-c620-4bb4-a25e-15000934e9d8","status":"upgrading","targets":{"failed":[],"queued":[],"success":[],"upgrading":["8e525f1d-4178-4ae1-a988-2b0176855e55"]},"versions":{}}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesUpgradeTestGetOrgSsrUpgrade1 tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestGetOrgSsrUpgrade1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    apiResponse, err := utilitiesUpgrade.GetOrgSsrUpgrade(ctx, orgId, upgradeId)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"channel":"stable","device_type":"gateway","id":"5cbcee0a-c620-4bb4-a25e-15000934e9d8","status":"upgrading","targets":{"failed":[],"queued":[],"success":[],"upgrading":["8e525f1d-4178-4ae1-a988-2b0176855e55"]},"versions":{}}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestUtilitiesUpgradeTestCancelOrgSsrUpgrade tests the behavior of the UtilitiesUpgrade
 func TestUtilitiesUpgradeTestCancelOrgSsrUpgrade(t *testing.T) {
     ctx := context.Background()

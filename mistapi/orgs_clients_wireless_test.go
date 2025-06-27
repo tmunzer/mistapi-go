@@ -165,11 +165,14 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    
+    nacruleId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
     
     
     duration := "1d"
-    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, nil, nil, nil, &duration)
+    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -199,11 +202,14 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    
+    nacruleId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
     
     
     duration := "1d"
-    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, nil, nil, nil, &duration)
+    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

@@ -365,7 +365,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -385,9 +385,14 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     ap *string,
     mac *string,
     mdmManaged *bool,
-    status *string,
+    status *models.NacClientLastStatusEnum,
     mType *string,
     mdmCompliance *string,
+    family *string,
+    model *string,
+    os *string,
+    hostname *string,
+    mfg *string,
     mdmProvider *string,
     sort *string,
     usermacLabel []string,
@@ -466,6 +471,21 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     }
     if mdmCompliance != nil {
         req.QueryParam("mdm_compliance", *mdmCompliance)
+    }
+    if family != nil {
+        req.QueryParam("family", *family)
+    }
+    if model != nil {
+        req.QueryParam("model", *model)
+    }
+    if os != nil {
+        req.QueryParam("os", *os)
+    }
+    if hostname != nil {
+        req.QueryParam("hostname", *hostname)
+    }
+    if mfg != nil {
+        req.QueryParam("mfg", *mfg)
     }
     if mdmProvider != nil {
         req.QueryParam("mdm_provider", *mdmProvider)

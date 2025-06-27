@@ -116,6 +116,7 @@ SearchOrgWiredClients(
     orgId uuid.UUID,
     authState *string,
     authMethod *string,
+    source *models.ClientInfoSourceEnum,
     siteId *string,
     deviceMac *string,
     mac *string,
@@ -145,6 +146,7 @@ SearchOrgWiredClients(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `authState` | `*string` | Query, Optional | Authentication state |
 | `authMethod` | `*string` | Query, Optional | Authentication method |
+| `source` | [`*models.ClientInfoSourceEnum`](../../doc/models/client-info-source-enum.md) | Query, Optional | source from where the client was learned (lldp, mac) |
 | `siteId` | `*string` | Query, Optional | Site ID |
 | `deviceMac` | `*string` | Query, Optional | Device mac (Gateway/Switch) where the client has connected to |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
@@ -189,6 +191,8 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
 ipAddress := "192.168.1.1"
 
 
@@ -215,7 +219,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

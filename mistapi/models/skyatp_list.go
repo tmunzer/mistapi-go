@@ -8,7 +8,7 @@ import (
 // SkyatpList represents a SkyatpList struct.
 type SkyatpList struct {
     Domains              []SkyatpListDomain     `json:"domains,omitempty"`
-    Ips                  []SkyatpListIp         `json:"ips,omitempty"`
+    Ip                   []SkyatpListIp         `json:"ip,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -16,8 +16,8 @@ type SkyatpList struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SkyatpList) String() string {
     return fmt.Sprintf(
-    	"SkyatpList[Domains=%v, Ips=%v, AdditionalProperties=%v]",
-    	s.Domains, s.Ips, s.AdditionalProperties)
+    	"SkyatpList[Domains=%v, Ip=%v, AdditionalProperties=%v]",
+    	s.Domains, s.Ip, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SkyatpList.
@@ -26,7 +26,7 @@ func (s SkyatpList) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "domains", "ips"); err != nil {
+        "domains", "ip"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -39,8 +39,8 @@ func (s SkyatpList) toMap() map[string]any {
     if s.Domains != nil {
         structMap["domains"] = s.Domains
     }
-    if s.Ips != nil {
-        structMap["ips"] = s.Ips
+    if s.Ip != nil {
+        structMap["ip"] = s.Ip
     }
     return structMap
 }
@@ -53,19 +53,19 @@ func (s *SkyatpList) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "domains", "ips")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "domains", "ip")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.Domains = temp.Domains
-    s.Ips = temp.Ips
+    s.Ip = temp.Ip
     return nil
 }
 
 // tempSkyatpList is a temporary struct used for validating the fields of SkyatpList.
 type tempSkyatpList  struct {
     Domains []SkyatpListDomain `json:"domains,omitempty"`
-    Ips     []SkyatpListIp     `json:"ips,omitempty"`
+    Ip      []SkyatpListIp     `json:"ip,omitempty"`
 }

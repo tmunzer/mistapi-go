@@ -82,7 +82,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWiredClients takes context, orgId, authState, authMethod, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
+// SearchOrgWiredClients takes context, orgId, authState, authMethod, source, siteId, deviceMac, mac, portId, vlan, ipAddress, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
@@ -92,6 +92,7 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     orgId uuid.UUID,
     authState *string,
     authMethod *string,
+    source *models.ClientInfoSourceEnum,
     siteId *string,
     deviceMac *string,
     mac *string,
@@ -137,6 +138,9 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
     }
     if authMethod != nil {
         req.QueryParam("auth_method", *authMethod)
+    }
+    if source != nil {
+        req.QueryParam("source", *source)
     }
     if siteId != nil {
         req.QueryParam("site_id", *siteId)

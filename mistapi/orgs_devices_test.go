@@ -222,11 +222,12 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
     timestamp := "1703003296"
     
     lastBy := "port_id"
+    includes := "ext_tunnel"
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &limit, nil, nil, &duration)
+    apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -253,11 +254,12 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents1(t *testing.T) {
     timestamp := "1703003296"
     
     lastBy := "port_id"
+    includes := "ext_tunnel"
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &limit, nil, nil, &duration)
+    apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

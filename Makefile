@@ -79,6 +79,11 @@ index-version:
 		echo "Usage: make index-version VERSION=v0.4.73"; \
 		exit 1; \
 	fi
+    
+	@echo "Tagging version $(VERSION)..."
+	@git tag -a $(VERSION) -m "Release version $(VERSION)" || exit 1
+	@echo "Pushing tag $(VERSION) to remote..."
+	@git push origin $(VERSION) || exit 1
 	@echo "Triggering indexing for version $(VERSION)..."
 	@GOPROXY=https://proxy.golang.org,direct go list -m github.com/tmunzer/mistapi-go@$(VERSION) || echo "Proxy indexing may take time"
 	@curl -s "https://pkg.go.dev/github.com/tmunzer/mistapi-go@$(VERSION)" > /dev/null && echo "pkg.go.dev page exists for $(VERSION)" || echo "pkg.go.dev may take time to index"

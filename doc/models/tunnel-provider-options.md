@@ -12,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Jse` | [`*models.TunnelProviderOptionsJse`](../../doc/models/tunnel-provider-options-jse.md) | Optional | For jse-ipsec, this allows provisioning of adequate resource on JSE. Make sure adequate licenses are added |
+| `Prisma` | [`*models.TunnelProviderOptionsPrisma`](../../doc/models/tunnel-provider-options-prisma.md) | Optional | - |
 | `Zscaler` | [`*models.TunnelProviderOptionsZscaler`](../../doc/models/tunnel-provider-options-zscaler.md) | Optional | For zscaler-ipsec and zscaler-gre |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -22,6 +23,13 @@
   "jse": {
     "num_users": 186,
     "org_name": "org_name6",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "prisma": {
+    "service_account_name": "service_account_name6",
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

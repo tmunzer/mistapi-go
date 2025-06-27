@@ -14,9 +14,11 @@ OAuth linked apps account info
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AccountId` | `*string` | Optional | Linked app account id |
+| `AutoProbeSubnet` | `*string` | Optional | For Prisma accounts only, tunnel auto probe subnet |
 | `ClientId` | `*string` | Optional | Customer account Client ID |
 | `CloudName` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Company` | `*string` | Optional | Name of the company whose account mist has subscribed to |
+| `EnableProbe` | `*bool` | Optional | For Prisma accounts only, tunnel probe enable/disable |
 | `Error` | `*string` | Optional | This error is provided when the account fails to fetch token/data |
 | `Errors` | `[]string` | Optional | - |
 | `InstanceUrl` | `*string` | Optional | Customer account instance URL |
@@ -29,6 +31,7 @@ OAuth linked apps account info
 | `Password` | `*string` | Optional | Customer account password instance URL |
 | `Region` | `*string` | Optional | For Prisma accounts only |
 | `ServiceAccountName` | `*string` | Optional | For Prisma accounts only |
+| `ServiceConnections` | `[]string` | Optional | For Prisma accounts only |
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
@@ -39,8 +42,10 @@ OAuth linked apps account info
 ```json
 {
   "account_id": "iojzXIJWEuiD73ZvydOfg",
+  "auto_probe_subnet": "11.0.0.0/8",
   "cloud_name": "Tapi.sase.paloaltonetworks.com",
   "company": "Test Company1 Ltd",
+  "enable_probe": false,
   "error": "OAuth token refresh failed, please re-link your account",
   "errors": [
     "OAuth token refresh failed, please re-link your account",
@@ -54,6 +59,10 @@ OAuth linked apps account info
   "name": "Test Compay1 Ltd",
   "region": "americas",
   "service_account_name": "Corp SA",
+  "service_connections": [
+    "sc1",
+    "sc2"
+  ],
   "smartgroup_name": "CompliantGroup1",
   "tsg_id": "189953456",
   "client_id": "client_id6",

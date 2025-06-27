@@ -154,13 +154,16 @@ Switch Device Profiles can be applied to one or multiple switches. The settings 
   ],
   "acl_tags": {
     "key0": {
+      "ether_types": [
+        "ether_types8",
+        "ether_types9"
+      ],
       "gbp_tag": 14,
       "macs": [
         "macs1"
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "radius_group": "radius_group8",
       "type": "network",
       "exampleAdditionalProperty": {
         "key1": "val1",

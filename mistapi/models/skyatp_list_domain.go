@@ -10,7 +10,7 @@ import (
 // SkyatpListDomain represents a SkyatpListDomain struct.
 type SkyatpListDomain struct {
     Comment              *string                `json:"comment,omitempty"`
-    Domain               string                 `json:"domain"`
+    Value                string                 `json:"value"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type SkyatpListDomain struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SkyatpListDomain) String() string {
     return fmt.Sprintf(
-    	"SkyatpListDomain[Comment=%v, Domain=%v, AdditionalProperties=%v]",
-    	s.Comment, s.Domain, s.AdditionalProperties)
+    	"SkyatpListDomain[Comment=%v, Value=%v, AdditionalProperties=%v]",
+    	s.Comment, s.Value, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SkyatpListDomain.
@@ -28,7 +28,7 @@ func (s SkyatpListDomain) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "comment", "domain"); err != nil {
+        "comment", "value"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -41,7 +41,7 @@ func (s SkyatpListDomain) toMap() map[string]any {
     if s.Comment != nil {
         structMap["comment"] = s.Comment
     }
-    structMap["domain"] = s.Domain
+    structMap["value"] = s.Value
     return structMap
 }
 
@@ -57,27 +57,27 @@ func (s *SkyatpListDomain) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "comment", "domain")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "comment", "value")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.Comment = temp.Comment
-    s.Domain = *temp.Domain
+    s.Value = *temp.Value
     return nil
 }
 
 // tempSkyatpListDomain is a temporary struct used for validating the fields of SkyatpListDomain.
 type tempSkyatpListDomain  struct {
     Comment *string `json:"comment,omitempty"`
-    Domain  *string `json:"domain"`
+    Value   *string `json:"value"`
 }
 
 func (s *tempSkyatpListDomain) validate() error {
     var errs []string
-    if s.Domain == nil {
-        errs = append(errs, "required field `domain` is missing for type `skyatp_list_domain`")
+    if s.Value == nil {
+        errs = append(errs, "required field `value` is missing for type `skyatp_list_domain`")
     }
     if len(errs) == 0 {
         return nil

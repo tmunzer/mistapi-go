@@ -8,83 +8,83 @@ import (
 
 // ClientNac represents a ClientNac struct.
 type ClientNac struct {
-    Ap                   []string               `json:"ap,omitempty"`
+    Ap                   []string                 `json:"ap,omitempty"`
     // enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
-    AuthType             *NacAuthTypeEnum       `json:"auth_type,omitempty"`
+    AuthType             *NacAuthTypeEnum         `json:"auth_type,omitempty"`
     // When certificate based authentication is used, the CN from the certificates used for the specified duration
-    CertCn               []string               `json:"cert_cn,omitempty"`
+    CertCn               []string                 `json:"cert_cn,omitempty"`
     // When certificate based authentication is used, the Issuer from the certificates used for the specified duration
-    CertIssuer           []string               `json:"cert_issuer,omitempty"`
+    CertIssuer           []string                 `json:"cert_issuer,omitempty"`
     // When certificate based authentication is used, the Serial from the certificates used for the specified duration
-    CertSerial           []string               `json:"cert_serial,omitempty"`
+    CertSerial           []string                 `json:"cert_serial,omitempty"`
     // When certificate based authentication is used, the Subject from the certificates used for the specified duration
-    CertSubject          []string               `json:"cert_subject,omitempty"`
+    CertSubject          []string                 `json:"cert_subject,omitempty"`
     // The known IP Addresses used by the client for the specified duration
-    ClientIp             []string               `json:"client_ip,omitempty"`
+    ClientIp             []string                 `json:"client_ip,omitempty"`
     // MAC Address of the device (AP, Switch) the client is connected to
-    DeviceMac            *string                `json:"device_mac,omitempty"`
-    Group                *string                `json:"group,omitempty"`
-    IdpId                *string                `json:"idp_id,omitempty"`
-    IdpRole              []string               `json:"idp_role,omitempty"`
+    DeviceMac            *string                  `json:"device_mac,omitempty"`
+    Group                *string                  `json:"group,omitempty"`
+    IdpId                *string                  `json:"idp_id,omitempty"`
+    IdpRole              []string                 `json:"idp_role,omitempty"`
     // Latest AP where the client is/was connected to
-    LastAp               *string                `json:"last_ap,omitempty"`
+    LastAp               *string                  `json:"last_ap,omitempty"`
     // When certificate based authentication is used, the CN from the latest certificate used
-    LastCertCn           *string                `json:"last_cert_cn,omitempty"`
+    LastCertCn           *string                  `json:"last_cert_cn,omitempty"`
     // When certificate based authentication is used, the expiration date from the latest certificate used
-    LastCertExpiry       *float64               `json:"last_cert_expiry,omitempty"`
+    LastCertExpiry       *float64                 `json:"last_cert_expiry,omitempty"`
     // When certificate based authentication is used, the Issuer from the latest certificate used
-    LastCertIssuer       *string                `json:"last_cert_issuer,omitempty"`
+    LastCertIssuer       *string                  `json:"last_cert_issuer,omitempty"`
     // When certificate based authentication is used, the Serial from the latest certificate used
-    LastCertSerial       *string                `json:"last_cert_serial,omitempty"`
+    LastCertSerial       *string                  `json:"last_cert_serial,omitempty"`
     // When certificate based authentication is used, the Subject from the latest certificate used
-    LastCertSubject      *string                `json:"last_cert_subject,omitempty"`
+    LastCertSubject      *string                  `json:"last_cert_subject,omitempty"`
     // The last known IP Address for the client
-    LastClientIp         *string                `json:"last_client_ip,omitempty"`
+    LastClientIp         *string                  `json:"last_client_ip,omitempty"`
     // ID of the latest NAC Rule used to authenticate the client
-    LastNacruleId        *string                `json:"last_nacrule_id,omitempty"`
+    LastNacruleId        *string                  `json:"last_nacrule_id,omitempty"`
     // Name of the latest NAC Rule used to authenticate the client
-    LastNacruleName      *string                `json:"last_nacrule_name,omitempty"`
+    LastNacruleName      *string                  `json:"last_nacrule_name,omitempty"`
     // Vendor name of the NAS for the latest authentication
-    LastNasVendor        *string                `json:"last_nas_vendor,omitempty"`
+    LastNasVendor        *string                  `json:"last_nas_vendor,omitempty"`
     // If Wired authentication, the latest Port-id the client was connected to
-    LastPortId           *string                `json:"last_port_id,omitempty"`
+    LastPortId           *string                  `json:"last_port_id,omitempty"`
     // If Wireless authentication, the latest SSID the client was connected to
-    LastSsid             *string                `json:"last_ssid,omitempty"`
+    LastSsid             *string                  `json:"last_ssid,omitempty"`
     // Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped`
-    LastStatus           *LastStatusEnum        `json:"last_status,omitempty"`
+    LastStatus           *NacClientLastStatusEnum `json:"last_status,omitempty"`
     // If dot1x authentication, the username used during the latest authentication. Otherwise, the MAC address of the client
-    LastUsername         *string                `json:"last_username,omitempty"`
+    LastUsername         *string                  `json:"last_username,omitempty"`
     // Latest VLAN ID assigned to the client
-    LastVlan             *int                   `json:"last_vlan,omitempty"`
+    LastVlan             *int                     `json:"last_vlan,omitempty"`
     // Client MAC address
-    Mac                  *string                `json:"mac,omitempty"`
+    Mac                  *string                  `json:"mac,omitempty"`
     // IDs of the NAC Rules used to authenticate the client for the specified duration
-    NacruleId            []string               `json:"nacrule_id,omitempty"`
-    NacruleMatched       *bool                  `json:"nacrule_matched,omitempty"`
+    NacruleId            []string                 `json:"nacrule_id,omitempty"`
+    NacruleMatched       *bool                    `json:"nacrule_matched,omitempty"`
     // Name of the NAC Rules used to authenticate the client for the specified duration
-    NacruleName          []string               `json:"nacrule_name,omitempty"`
+    NacruleName          []string                 `json:"nacrule_name,omitempty"`
     // Vendor name of the NAS for the specified duration
-    NasVendor            []string               `json:"nas_vendor,omitempty"`
-    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+    NasVendor            []string                 `json:"nas_vendor,omitempty"`
+    OrgId                *uuid.UUID               `json:"org_id,omitempty"`
     // Port-ids the client was connected to  for the specified duration
-    PortId               []string               `json:"port_id,omitempty"`
+    PortId               []string                 `json:"port_id,omitempty"`
     // Whether the client is using randomized MAC Address or not
-    RandomMac            *bool                  `json:"random_mac,omitempty"`
+    RandomMac            *bool                    `json:"random_mac,omitempty"`
     // List of Radius AVP returned by the Authentication Server
-    RespAttrs            []string               `json:"resp_attrs,omitempty"`
-    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+    RespAttrs            []string                 `json:"resp_attrs,omitempty"`
+    SiteId               *uuid.UUID               `json:"site_id,omitempty"`
     // SSIDs the client was connected to  for the specified duration
-    Ssid                 []string               `json:"ssid,omitempty"`
+    Ssid                 []string                 `json:"ssid,omitempty"`
     // Epoch (seconds)
-    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Timestamp            *float64                 `json:"timestamp,omitempty"`
     // Type of network access. enum: `wireless`, `wired`
-    Type                 *NacAccessTypeEnum     `json:"type,omitempty"`
-    UsermacLabel         []string               `json:"usermac_label,omitempty"`
+    Type                 *NacAccessTypeEnum       `json:"type,omitempty"`
+    UsermacLabel         []string                 `json:"usermac_label,omitempty"`
     // List of usernames that have been assigned to the client
-    Username             []string               `json:"username,omitempty"`
+    Username             []string                 `json:"username,omitempty"`
     // List of vlans that have been assigned to the client
-    Vlan                 []string               `json:"vlan,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Vlan                 []string                 `json:"vlan,omitempty"`
+    AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ClientNac,
@@ -301,46 +301,46 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
 
 // tempClientNac is a temporary struct used for validating the fields of ClientNac.
 type tempClientNac  struct {
-    Ap              []string           `json:"ap,omitempty"`
-    AuthType        *NacAuthTypeEnum   `json:"auth_type,omitempty"`
-    CertCn          []string           `json:"cert_cn,omitempty"`
-    CertIssuer      []string           `json:"cert_issuer,omitempty"`
-    CertSerial      []string           `json:"cert_serial,omitempty"`
-    CertSubject     []string           `json:"cert_subject,omitempty"`
-    ClientIp        []string           `json:"client_ip,omitempty"`
-    DeviceMac       *string            `json:"device_mac,omitempty"`
-    Group           *string            `json:"group,omitempty"`
-    IdpId           *string            `json:"idp_id,omitempty"`
-    IdpRole         []string           `json:"idp_role,omitempty"`
-    LastAp          *string            `json:"last_ap,omitempty"`
-    LastCertCn      *string            `json:"last_cert_cn,omitempty"`
-    LastCertExpiry  *float64           `json:"last_cert_expiry,omitempty"`
-    LastCertIssuer  *string            `json:"last_cert_issuer,omitempty"`
-    LastCertSerial  *string            `json:"last_cert_serial,omitempty"`
-    LastCertSubject *string            `json:"last_cert_subject,omitempty"`
-    LastClientIp    *string            `json:"last_client_ip,omitempty"`
-    LastNacruleId   *string            `json:"last_nacrule_id,omitempty"`
-    LastNacruleName *string            `json:"last_nacrule_name,omitempty"`
-    LastNasVendor   *string            `json:"last_nas_vendor,omitempty"`
-    LastPortId      *string            `json:"last_port_id,omitempty"`
-    LastSsid        *string            `json:"last_ssid,omitempty"`
-    LastStatus      *LastStatusEnum    `json:"last_status,omitempty"`
-    LastUsername    *string            `json:"last_username,omitempty"`
-    LastVlan        *int               `json:"last_vlan,omitempty"`
-    Mac             *string            `json:"mac,omitempty"`
-    NacruleId       []string           `json:"nacrule_id,omitempty"`
-    NacruleMatched  *bool              `json:"nacrule_matched,omitempty"`
-    NacruleName     []string           `json:"nacrule_name,omitempty"`
-    NasVendor       []string           `json:"nas_vendor,omitempty"`
-    OrgId           *uuid.UUID         `json:"org_id,omitempty"`
-    PortId          []string           `json:"port_id,omitempty"`
-    RandomMac       *bool              `json:"random_mac,omitempty"`
-    RespAttrs       []string           `json:"resp_attrs,omitempty"`
-    SiteId          *uuid.UUID         `json:"site_id,omitempty"`
-    Ssid            []string           `json:"ssid,omitempty"`
-    Timestamp       *float64           `json:"timestamp,omitempty"`
-    Type            *NacAccessTypeEnum `json:"type,omitempty"`
-    UsermacLabel    []string           `json:"usermac_label,omitempty"`
-    Username        []string           `json:"username,omitempty"`
-    Vlan            []string           `json:"vlan,omitempty"`
+    Ap              []string                 `json:"ap,omitempty"`
+    AuthType        *NacAuthTypeEnum         `json:"auth_type,omitempty"`
+    CertCn          []string                 `json:"cert_cn,omitempty"`
+    CertIssuer      []string                 `json:"cert_issuer,omitempty"`
+    CertSerial      []string                 `json:"cert_serial,omitempty"`
+    CertSubject     []string                 `json:"cert_subject,omitempty"`
+    ClientIp        []string                 `json:"client_ip,omitempty"`
+    DeviceMac       *string                  `json:"device_mac,omitempty"`
+    Group           *string                  `json:"group,omitempty"`
+    IdpId           *string                  `json:"idp_id,omitempty"`
+    IdpRole         []string                 `json:"idp_role,omitempty"`
+    LastAp          *string                  `json:"last_ap,omitempty"`
+    LastCertCn      *string                  `json:"last_cert_cn,omitempty"`
+    LastCertExpiry  *float64                 `json:"last_cert_expiry,omitempty"`
+    LastCertIssuer  *string                  `json:"last_cert_issuer,omitempty"`
+    LastCertSerial  *string                  `json:"last_cert_serial,omitempty"`
+    LastCertSubject *string                  `json:"last_cert_subject,omitempty"`
+    LastClientIp    *string                  `json:"last_client_ip,omitempty"`
+    LastNacruleId   *string                  `json:"last_nacrule_id,omitempty"`
+    LastNacruleName *string                  `json:"last_nacrule_name,omitempty"`
+    LastNasVendor   *string                  `json:"last_nas_vendor,omitempty"`
+    LastPortId      *string                  `json:"last_port_id,omitempty"`
+    LastSsid        *string                  `json:"last_ssid,omitempty"`
+    LastStatus      *NacClientLastStatusEnum `json:"last_status,omitempty"`
+    LastUsername    *string                  `json:"last_username,omitempty"`
+    LastVlan        *int                     `json:"last_vlan,omitempty"`
+    Mac             *string                  `json:"mac,omitempty"`
+    NacruleId       []string                 `json:"nacrule_id,omitempty"`
+    NacruleMatched  *bool                    `json:"nacrule_matched,omitempty"`
+    NacruleName     []string                 `json:"nacrule_name,omitempty"`
+    NasVendor       []string                 `json:"nas_vendor,omitempty"`
+    OrgId           *uuid.UUID               `json:"org_id,omitempty"`
+    PortId          []string                 `json:"port_id,omitempty"`
+    RandomMac       *bool                    `json:"random_mac,omitempty"`
+    RespAttrs       []string                 `json:"resp_attrs,omitempty"`
+    SiteId          *uuid.UUID               `json:"site_id,omitempty"`
+    Ssid            []string                 `json:"ssid,omitempty"`
+    Timestamp       *float64                 `json:"timestamp,omitempty"`
+    Type            *NacAccessTypeEnum       `json:"type,omitempty"`
+    UsermacLabel    []string                 `json:"usermac_label,omitempty"`
+    Username        []string                 `json:"username,omitempty"`
+    Vlan            []string                 `json:"vlan,omitempty"`
 }

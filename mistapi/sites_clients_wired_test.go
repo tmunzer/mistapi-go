@@ -77,6 +77,7 @@ func TestSitesClientsWiredTestSearchSiteWiredClients(t *testing.T) {
     mac := "0123456789ab"
     ip := "10.3.5.12"
     portId := "ge-1/1/1"
+    
     vlan := "10"
     manufacture := "Juniper-Mist"
     text := "client-hostname"
@@ -90,7 +91,7 @@ func TestSitesClientsWiredTestSearchSiteWiredClients(t *testing.T) {
     
     
     duration := "1d"
-    apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
+    apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, nil, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -114,6 +115,7 @@ func TestSitesClientsWiredTestSearchSiteWiredClients1(t *testing.T) {
     mac := "0123456789ab"
     ip := "10.3.5.12"
     portId := "ge-1/1/1"
+    
     vlan := "10"
     manufacture := "Juniper-Mist"
     text := "client-hostname"
@@ -127,7 +129,7 @@ func TestSitesClientsWiredTestSearchSiteWiredClients1(t *testing.T) {
     
     
     duration := "1d"
-    apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
+    apiResponse, err := sitesClientsWired.SearchSiteWiredClients(ctx, siteId, &deviceMac, &mac, &ip, &portId, nil, &vlan, &manufacture, &text, &nacruleId, &dhcpHostname, &dhcpFqdn, &dhcpClientIdentifier, &dhcpVendorClassIdentifier, &dhcpRequestParams, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

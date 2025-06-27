@@ -15,6 +15,7 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 * [Cancel Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-site-device-upgrade)
 * [Get Org Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-device-upgrade)
 * [Get Org Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-mx-edge-upgrade)
+* [Get Org Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-ssr-upgrade)
 * [Get Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-device-upgrade)
 * [Get Site Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-ssr-upgrade)
 * [List Org Available Device Versions](../../doc/controllers/utilities-upgrade.md#list-org-available-device-versions)
@@ -318,6 +319,80 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Org Ssr Upgrade
+
+Get Specific Org SSR Upgrade
+
+```go
+GetOrgSsrUpgrade(
+    ctx context.Context,
+    orgId uuid.UUID,
+    upgradeId uuid.UUID) (
+    models.ApiResponse[models.ResponseSsrUpgradeStatus],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseSsrUpgradeStatus](../../doc/models/response-ssr-upgrade-status.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := utilitiesUpgrade.GetOrgSsrUpgrade(ctx, orgId, upgradeId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "channel": "stable",
+  "device_type": "gateway",
+  "id": "5cbcee0a-c620-4bb4-a25e-15000934e9d8",
+  "status": "upgrading",
+  "targets": {
+    "failed": [],
+    "queued": [],
+    "success": [],
+    "upgrading": [
+      "8e525f1d-4178-4ae1-a988-2b0176855e55"
+    ]
+  },
+  "versions": {}
 }
 ```
 

@@ -245,7 +245,6 @@ func (s *SitesMapsAutoPlacement) GetSiteApAutoPlacement(
 // This scan is disruptive, and users must be notified of service disruption during the auto placement process. Repeated POST requests to this endpoint while a map is still running will be rejected.
 // `force_collection` is set to `false` by default. If `force_collection` is set to `false`, the API attempts to start localization with existing data. If no data exists, the API attempts to start orchestration.  
 // If `force_collection` is set to `true`, the API attempts to start orchestration.
-// If the flag `uwb_only` is set to `true`, the service shall be using UWB ranging and placement without invoking the Maintenance Mode. BLE-based orientation is disabled if `uwb_only`==`true`
 // Providing a list of devices is optional. If provided, autoplacement suggestions will be made only for the specified devices. If no list is provided, all APs associated with the map are considered by default.
 func (s *SitesMapsAutoPlacement) RunSiteApAutoplacement(
     ctx context.Context,

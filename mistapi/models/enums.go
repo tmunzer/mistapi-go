@@ -562,6 +562,15 @@ const (
     ClaimTypeEnum_LICENSE   ClaimTypeEnum = "license"
 )
 
+// ClientInfoSourceEnum is a string enum.
+// source from where the client was learned (lldp, mac). enum: `lldp`, `mac`
+type ClientInfoSourceEnum string
+
+const (
+    ClientInfoSourceEnum_LLDP ClientInfoSourceEnum = "lldp"
+    ClientInfoSourceEnum_MAC  ClientInfoSourceEnum = "mac"
+)
+
 // ConfigSwitchLocalAccountsUserRoleEnum is a string enum.
 // enum: `admin`, `helpdesk`, `none`, `read`
 type ConfigSwitchLocalAccountsUserRoleEnum string
@@ -1282,17 +1291,6 @@ const (
     L2tpStateEnum_WAITCTRLREPLY          L2tpStateEnum = "wait-ctrl-reply"
 )
 
-// LastStatusEnum is a string enum.
-// Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped`
-type LastStatusEnum string
-
-const (
-    LastStatusEnum_PERMITTED      LastStatusEnum = "permitted"
-    LastStatusEnum_SESSIONSTARTED LastStatusEnum = "session_started"
-    LastStatusEnum_SESSIONSTOPPED LastStatusEnum = "session_stopped"
-    LastStatusEnum_DENIED         LastStatusEnum = "denied"
-)
-
 // ListMspLogsSortEnum is a string enum.
 // enum: `-timestamp`, `admin_id`, `site_id`, `timestamp`
 type ListMspLogsSortEnum string
@@ -1639,6 +1637,17 @@ const (
     NacAuthTypeEnum_IDP        NacAuthTypeEnum = "idp"
     NacAuthTypeEnum_MAB        NacAuthTypeEnum = "mab"
     NacAuthTypeEnum_EAPPEAP    NacAuthTypeEnum = "eap-peap"
+)
+
+// NacClientLastStatusEnum is a string enum.
+// Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped`
+type NacClientLastStatusEnum string
+
+const (
+    NacClientLastStatusEnum_PERMITTED      NacClientLastStatusEnum = "permitted"
+    NacClientLastStatusEnum_SESSIONSTARTED NacClientLastStatusEnum = "session_started"
+    NacClientLastStatusEnum_SESSIONENDED   NacClientLastStatusEnum = "session_ended"
+    NacClientLastStatusEnum_DENIED         NacClientLastStatusEnum = "denied"
 )
 
 // NacPortalAccessTypeEnum is a string enum.
@@ -3335,6 +3344,15 @@ const (
     SleSummaryScopeEnum_ENUMSWITCH SleSummaryScopeEnum = "switch"
 )
 
+// SnmpConfigEngineIdTypeEnum is a string enum.
+// enum: `local`, `use_mac_address`
+type SnmpConfigEngineIdTypeEnum string
+
+const (
+    SnmpConfigEngineIdTypeEnum_LOCAL         SnmpConfigEngineIdTypeEnum = "local"
+    SnmpConfigEngineIdTypeEnum_USEMACADDRESS SnmpConfigEngineIdTypeEnum = "use_mac_address"
+)
+
 // SnmpConfigTrapVersionEnum is a string enum.
 // enum: `all`, `v1`, `v2`
 type SnmpConfigTrapVersionEnum string
@@ -3866,6 +3884,27 @@ const (
     SwitchVirtualChassisMemberVcRoleEnum_MASTER   SwitchVirtualChassisMemberVcRoleEnum = "master"
 )
 
+// SynthetictestConfigAggressivenessEnum is a string enum.
+// enum: `auto`, `high`, `low`
+type SynthetictestConfigAggressivenessEnum string
+
+const (
+    SynthetictestConfigAggressivenessEnum_AUTO SynthetictestConfigAggressivenessEnum = "auto"
+    SynthetictestConfigAggressivenessEnum_HIGH SynthetictestConfigAggressivenessEnum = "high"
+    SynthetictestConfigAggressivenessEnum_MED  SynthetictestConfigAggressivenessEnum = "med"
+    SynthetictestConfigAggressivenessEnum_LOW  SynthetictestConfigAggressivenessEnum = "low"
+)
+
+// SynthetictestConfigCustomProbeTypeEnum is a string enum.
+// enum: `curl`, `icmp`, `tcp`
+type SynthetictestConfigCustomProbeTypeEnum string
+
+const (
+    SynthetictestConfigCustomProbeTypeEnum_CURL SynthetictestConfigCustomProbeTypeEnum = "curl"
+    SynthetictestConfigCustomProbeTypeEnum_ICMP SynthetictestConfigCustomProbeTypeEnum = "icmp"
+    SynthetictestConfigCustomProbeTypeEnum_TCP  SynthetictestConfigCustomProbeTypeEnum = "tcp"
+)
+
 // SynthetictestDeviceProtocolEnum is a string enum.
 // if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
 type SynthetictestDeviceProtocolEnum string
@@ -4058,13 +4097,14 @@ const (
 )
 
 // TunnelConfigProviderEnum is a string enum.
-// Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
+// Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `prisma-ipsec`, `zscaler-gre`, `zscaler-ipsec`
 type TunnelConfigProviderEnum string
 
 const (
     TunnelConfigProviderEnum_CUSTOMIPSEC  TunnelConfigProviderEnum = "custom-ipsec"
     TunnelConfigProviderEnum_CUSTOMGRE    TunnelConfigProviderEnum = "custom-gre"
     TunnelConfigProviderEnum_JSEIPSEC     TunnelConfigProviderEnum = "jse-ipsec"
+    TunnelConfigProviderEnum_PRISMAIPSEC  TunnelConfigProviderEnum = "prisma-ipsec"
     TunnelConfigProviderEnum_ZSCALERGRE   TunnelConfigProviderEnum = "zscaler-gre"
     TunnelConfigProviderEnum_ZSCALERIPSEC TunnelConfigProviderEnum = "zscaler-ipsec"
 )

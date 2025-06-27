@@ -74,7 +74,7 @@ Get Org SkyATP Integration
 GetOrgSkyAtpIntegration(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.AccountSkyatpInfo],
+    models.ApiResponse[models.AccountSkyatpData],
     error)
 ```
 
@@ -86,7 +86,7 @@ GetOrgSkyAtpIntegration(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountSkyatpInfo](../../doc/models/account-skyatp-info.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.AccountSkyatpData](../../doc/models/account-skyatp-data.md).
 
 ## Example Usage
 
@@ -102,6 +102,24 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "Example": {
+    "value": {
+      "secintel": {
+        "third_party_threat_feeds": [
+          "block_list"
+        ]
+      },
+      "secintel_allowlist_url": "https://papi.s3.amazonaws.com/secintel_allowlist/xxx...",
+      "secintel_blocklist_url": "https://papi.s3.amazonaws.com/secintel_blocklist/xxx..."
+    }
+  }
 }
 ```
 
@@ -230,14 +248,11 @@ body := models.SkyatpList{
     Domains:              []models.SkyatpListDomain{
         models.SkyatpListDomain{
             Comment:              models.ToPointer("restricted"),
-            Domain:               "unsafe.xxx",
+            Value:                "unsafe.xxx",
         },
     },
-    Ips:                  []models.SkyatpListIp{
-        models.SkyatpListIp{
-            Comment:              models.ToPointer("nas"),
-            Ip:                   "10.1.3.5",
-        },
+    AdditionalProperties: map[string]interface{}{
+        "ips": interface{}("System.Collections.Generic.Dictionary`2[System.String,System.Object]"),
     },
 }
 
@@ -258,13 +273,13 @@ if err != nil {
   "domains": [
     {
       "comment": "restricted",
-      "domain": "unsafe.xxx"
+      "value": "unsafe.xxx"
     }
   ],
   "ips": [
     {
       "comment": "nas",
-      "ip": "10.1.3.5"
+      "value": "10.1.3.5"
     }
   ]
 }
@@ -316,14 +331,11 @@ body := models.SkyatpList{
     Domains:              []models.SkyatpListDomain{
         models.SkyatpListDomain{
             Comment:              models.ToPointer("restricted"),
-            Domain:               "unsafe.xxx",
+            Value:                "unsafe.xxx",
         },
     },
-    Ips:                  []models.SkyatpListIp{
-        models.SkyatpListIp{
-            Comment:              models.ToPointer("nas"),
-            Ip:                   "10.1.3.5",
-        },
+    AdditionalProperties: map[string]interface{}{
+        "ips": interface{}("System.Collections.Generic.Dictionary`2[System.String,System.Object]"),
     },
 }
 
@@ -344,13 +356,13 @@ if err != nil {
   "domains": [
     {
       "comment": "restricted",
-      "domain": "unsafe.xxx"
+      "value": "unsafe.xxx"
     }
   ],
   "ips": [
     {
       "comment": "nas",
-      "ip": "10.1.3.5"
+      "value": "10.1.3.5"
     }
   ]
 }

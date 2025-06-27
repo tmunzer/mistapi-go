@@ -16,6 +16,7 @@
 | `Reason` | `*string` | Optional | Provides the reason for the status. |
 | `Started` | `*bool` | Optional | Indicates whether the auto orient process has started. |
 | `Valid` | `*bool` | Optional | Indicates whether the auto orient request is valid. |
+| `WifiInterrupting` | `*bool` | Optional | Indicates whether the auto orient process will interrupt WiFi traffic. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -19,7 +19,7 @@ Org Settings
 | `AutoDeviceprofileAssignment` | [`*models.OrgSettingAutoDeviceprofileAssignment`](../../doc/models/org-setting-auto-deviceprofile-assignment.md) | Optional | - |
 | `AutoSiteAssignment` | [`*models.OrgSettingAutoSiteAssignment`](../../doc/models/org-setting-auto-site-assignment.md) | Optional | - |
 | `BlacklistUrl` | `*string` | Optional | - |
-| `Cacerts` | `[]string` | Optional | List of PEM-encoded ca certs |
+| `Cacerts` | `[]string` | Optional | RADSec certificates for AP |
 | `Celona` | [`*models.OrgSettingCelona`](../../doc/models/org-setting-celona.md) | Optional | - |
 | `Cloudshark` | [`*models.OrgSettingCloudshark`](../../doc/models/org-setting-cloudshark.md) | Optional | - |
 | `Cradlepoint` | [`*models.OrgSettingCradlepoint`](../../doc/models/org-setting-cradlepoint.md) | Optional | - |

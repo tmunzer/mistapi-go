@@ -1,7 +1,7 @@
 
 # Tunnel Config Provider Enum
 
-Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `zscaler-gre`, `zscaler-ipsec`
+Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `jse-ipsec`, `prisma-ipsec`, `zscaler-gre`, `zscaler-ipsec`
 
 ## Enumeration
 
@@ -14,6 +14,7 @@ Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `
 | `custom-ipsec` |
 | `custom-gre` |
 | `jse-ipsec` |
+| `prisma-ipsec` |
 | `zscaler-gre` |
 | `zscaler-ipsec` |
 

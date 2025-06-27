@@ -489,6 +489,11 @@ SearchSiteNacClients(
     mxedgeId *string,
     nacruleName *string,
     status *string,
+    family *string,
+    model *string,
+    os *string,
+    hostname *string,
+    mfg *string,
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
@@ -524,6 +529,11 @@ SearchSiteNacClients(
 | `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
 | `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
 | `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
+| `family` | `*string` | Query, Optional | Client family, e.g. "Phone/Tablet/Wearable", "Access Point" |
+| `model` | `*string` | Query, Optional | Client model, e.g. "iPhone 12", "MX100" |
+| `os` | `*string` | Query, Optional | Client OS, e.g. "iOS 18.1", "Android", "Windows", "Linux" |
+| `hostname` | `*string` | Query, Optional | Client hostname, e.g. "my-laptop", "my-phone" |
+| `mfg` | `*string` | Query, Optional | Client manufacturer, e.g. "apple", "cisco", "juniper" |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
@@ -593,13 +603,23 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+
+
+
+
+
+
+
+
+
+
 duration := "10m"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

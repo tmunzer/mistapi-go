@@ -664,6 +664,7 @@ SearchOrgDeviceEvents(
     timestamp *string,
     mType *string,
     lastBy *string,
+    includes *string,
     limit *int,
     start *int,
     end *int,
@@ -684,6 +685,7 @@ SearchOrgDeviceEvents(
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
+| `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -714,6 +716,8 @@ timestamp := "1703003296"
 
 lastBy := "port_id"
 
+includes := "ext_tunnel"
+
 limit := 100
 
 
@@ -722,7 +726,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &limit, nil, nil, &duration)
+apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

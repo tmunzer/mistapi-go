@@ -22,6 +22,104 @@ func NewOrgsIntegrationSkyATP(baseController baseController) *OrgsIntegrationSky
     return &orgsIntegrationSkyATP
 }
 
+// UdpateOrgAtpAllowedList takes context, orgId, body as parameters and
+// returns an models.ApiResponse with models.SkyatpList data and
+// an error if there was an issue with the request or response.
+// Update Sky ATP Allowed List
+func (o *OrgsIntegrationSkyATP) UdpateOrgAtpAllowedList(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.SkyatpList) (
+    models.ApiResponse[models.SkyatpList],
+    error) {
+    req := o.prepareRequest(
+      ctx,
+      "PUT",
+      "/api/v1/orgs/%v/setting/skyatp/secintel_allowlist",
+    )
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.SkyatpList
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.SkyatpList](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// UdpateOrgAtpBlockedList takes context, orgId, body as parameters and
+// returns an models.ApiResponse with models.SkyatpList data and
+// an error if there was an issue with the request or response.
+// Update Sky ATP Blocked List
+func (o *OrgsIntegrationSkyATP) UdpateOrgAtpBlockedList(
+    ctx context.Context,
+    orgId uuid.UUID,
+    body *models.SkyatpList) (
+    models.ApiResponse[models.SkyatpList],
+    error) {
+    req := o.prepareRequest(
+      ctx,
+      "PUT",
+      "/api/v1/orgs/%v/setting/skyatp/secintel_blocklist",
+    )
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    req.Header("Content-Type", "application/json")
+    if body != nil {
+        req.Json(body)
+    }
+    
+    var result models.SkyatpList
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.SkyatpList](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
 // DeleteOrgSkyAtpIntegration takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
@@ -60,13 +158,13 @@ func (o *OrgsIntegrationSkyATP) DeleteOrgSkyAtpIntegration(
 }
 
 // GetOrgSkyAtpIntegration takes context, orgId as parameters and
-// returns an models.ApiResponse with models.AccountSkyatpInfo data and
+// returns an models.ApiResponse with models.AccountSkyatpData data and
 // an error if there was an issue with the request or response.
 // Get Org SkyATP Integration
 func (o *OrgsIntegrationSkyATP) GetOrgSkyAtpIntegration(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.AccountSkyatpInfo],
+    models.ApiResponse[models.AccountSkyatpData],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting/skyatp/setup")
     req.AppendTemplateParams(orgId)
@@ -89,13 +187,13 @@ func (o *OrgsIntegrationSkyATP) GetOrgSkyAtpIntegration(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.AccountSkyatpInfo
+    var result models.AccountSkyatpData
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.AccountSkyatpInfo](decoder)
+    result, err = utilities.DecodeResults[models.AccountSkyatpData](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
@@ -189,103 +287,5 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpIntegration(
     }
     
     result, err = utilities.DecodeResults[models.AccountSkyatpInfo](decoder)
-    return models.NewApiResponse(result, resp), err
-}
-
-// UdpateOrgAtpAllowedList takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.SkyatpList data and
-// an error if there was an issue with the request or response.
-// Update Sky ATP Allowed List
-func (o *OrgsIntegrationSkyATP) UdpateOrgAtpAllowedList(
-    ctx context.Context,
-    orgId uuid.UUID,
-    body *models.SkyatpList) (
-    models.ApiResponse[models.SkyatpList],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      "/api/v1/orgs/%v/setting/skyatp/setup/secintel_allowlist",
-    )
-    req.AppendTemplateParams(orgId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.SkyatpList
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.SkyatpList](decoder)
-    return models.NewApiResponse(result, resp), err
-}
-
-// UdpateOrgAtpBlockedList takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.SkyatpList data and
-// an error if there was an issue with the request or response.
-// Update Sky ATP Blocked List
-func (o *OrgsIntegrationSkyATP) UdpateOrgAtpBlockedList(
-    ctx context.Context,
-    orgId uuid.UUID,
-    body *models.SkyatpList) (
-    models.ApiResponse[models.SkyatpList],
-    error) {
-    req := o.prepareRequest(
-      ctx,
-      "PUT",
-      "/api/v1/orgs/%v/setting/skyatp/setup/secintel_blocklist",
-    )
-    req.AppendTemplateParams(orgId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.SkyatpList
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.SkyatpList](decoder)
     return models.NewApiResponse(result, resp), err
 }

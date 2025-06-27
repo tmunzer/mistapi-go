@@ -1,11 +1,11 @@
 
-# Last Status Enum
+# Nac Client Last Status Enum
 
 Latest Authentication status of the client. enum: `denied`, `permitted`, `session_started`, `session_stopped`
 
 ## Enumeration
 
-`LastStatusEnum`
+`NacClientLastStatusEnum`
 
 ## Fields
 
@@ -13,7 +13,7 @@ Latest Authentication status of the client. enum: `denied`, `permitted`, `sessio
 |  --- |
 | `permitted` |
 | `session_started` |
-| `session_stopped` |
+| `session_ended` |
 | `denied` |
 
 ## Example

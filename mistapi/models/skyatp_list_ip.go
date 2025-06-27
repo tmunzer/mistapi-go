@@ -10,7 +10,7 @@ import (
 // SkyatpListIp represents a SkyatpListIp struct.
 type SkyatpListIp struct {
     Comment              *string                `json:"comment,omitempty"`
-    Ip                   string                 `json:"ip"`
+    Value                string                 `json:"value"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type SkyatpListIp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SkyatpListIp) String() string {
     return fmt.Sprintf(
-    	"SkyatpListIp[Comment=%v, Ip=%v, AdditionalProperties=%v]",
-    	s.Comment, s.Ip, s.AdditionalProperties)
+    	"SkyatpListIp[Comment=%v, Value=%v, AdditionalProperties=%v]",
+    	s.Comment, s.Value, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SkyatpListIp.
@@ -28,7 +28,7 @@ func (s SkyatpListIp) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "comment", "ip"); err != nil {
+        "comment", "value"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -41,7 +41,7 @@ func (s SkyatpListIp) toMap() map[string]any {
     if s.Comment != nil {
         structMap["comment"] = s.Comment
     }
-    structMap["ip"] = s.Ip
+    structMap["value"] = s.Value
     return structMap
 }
 
@@ -57,27 +57,27 @@ func (s *SkyatpListIp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "comment", "ip")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "comment", "value")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.Comment = temp.Comment
-    s.Ip = *temp.Ip
+    s.Value = *temp.Value
     return nil
 }
 
 // tempSkyatpListIp is a temporary struct used for validating the fields of SkyatpListIp.
 type tempSkyatpListIp  struct {
     Comment *string `json:"comment,omitempty"`
-    Ip      *string `json:"ip"`
+    Value   *string `json:"value"`
 }
 
 func (s *tempSkyatpListIp) validate() error {
     var errs []string
-    if s.Ip == nil {
-        errs = append(errs, "required field `ip` is missing for type `skyatp_list_ip`")
+    if s.Value == nil {
+        errs = append(errs, "required field `value` is missing for type `skyatp_list_ip`")
     }
     if len(errs) == 0 {
         return nil

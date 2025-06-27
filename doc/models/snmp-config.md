@@ -16,6 +16,7 @@
 | `Description` | `*string` | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `EngineId` | `*string` | Optional | **Constraints**: *Maximum Length*: `27` |
+| `EngineIdType` | [`*models.SnmpConfigEngineIdTypeEnum`](../../doc/models/snmp-config-engine-id-type-enum.md) | Optional | enum: `local`, `use_mac_address`<br><br>**Default**: `"local"` |
 | `Location` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `Network` | `*string` | Optional | **Default**: `"default"` |
@@ -32,6 +33,7 @@
   "contact": "cns@juniper.net",
   "description": "Juniper QFX Series Switch - 1K_5LA",
   "enabled": true,
+  "engine_id_type": "local",
   "location": "Las Vegas, NV",
   "name": "TGH-1K-QFX10K",
   "network": "default",

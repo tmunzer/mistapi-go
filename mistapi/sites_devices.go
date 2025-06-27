@@ -390,7 +390,7 @@ func (s *SitesDevices) CountSiteDeviceEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, limit, start, end, duration as parameters and
+// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, includes, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseEventsDevices data and
 // an error if there was an issue with the request or response.
 // Search Devices Events
@@ -403,6 +403,7 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
     timestamp *string,
     mType *string,
     lastBy *string,
+    includes *string,
     limit *int,
     start *int,
     end *int,
@@ -446,6 +447,9 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
     }
     if lastBy != nil {
         req.QueryParam("last_by", *lastBy)
+    }
+    if includes != nil {
+        req.QueryParam("includes", *includes)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

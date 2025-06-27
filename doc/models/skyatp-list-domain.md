@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Comment` | `*string` | Optional | - |
-| `Domain` | `string` | Required | - |
+| `Value` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -20,7 +20,7 @@
 ```json
 {
   "comment": "restricted",
-  "domain": "unsafe.com",
+  "value": "unsafe.com",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

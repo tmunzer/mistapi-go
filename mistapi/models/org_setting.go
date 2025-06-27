@@ -16,7 +16,7 @@ type OrgSetting struct {
     AutoDeviceprofileAssignment *OrgSettingAutoDeviceprofileAssignment `json:"auto_deviceprofile_assignment,omitempty"`
     AutoSiteAssignment          *OrgSettingAutoSiteAssignment          `json:"auto_site_assignment,omitempty"`
     BlacklistUrl                *string                                `json:"blacklist_url,omitempty"`
-    // List of PEM-encoded ca certs
+    // RADSec certificates for AP
     Cacerts                     []string                               `json:"cacerts,omitempty"`
     Celona                      *OrgSettingCelona                      `json:"celona,omitempty"`
     Cloudshark                  *OrgSettingCloudshark                  `json:"cloudshark,omitempty"`

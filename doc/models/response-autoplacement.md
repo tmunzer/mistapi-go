@@ -16,6 +16,7 @@
 | `Reason` | `*string` | Optional | Provides the reason for the status. |
 | `Started` | `*bool` | Optional | Indicates whether the autoplacement process has started. |
 | `Valid` | `*bool` | Optional | Indicates whether the autoplacement request is valid. |
+| `WifiInterrupting` | `*bool` | Optional | Indicates whether the auto placement process will interrupt WiFi traffic. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

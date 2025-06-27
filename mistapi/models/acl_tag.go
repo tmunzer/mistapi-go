@@ -10,6 +10,8 @@ import (
 // AclTag represents a AclTag struct.
 // Resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
 type AclTag struct {
+    // Can only be used under dst tags.
+    EtherTypes           []string               `json:"ether_types,omitempty"`
     // Required if
     // - `type`==`dynamic_gbp` (gbp_tag received from RADIUS)
     // - `type`==`gbp_resource`
@@ -59,8 +61,8 @@ type AclTag struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AclTag) String() string {
     return fmt.Sprintf(
-    	"AclTag[GbpTag=%v, Macs=%v, Network=%v, PortUsage=%v, RadiusGroup=%v, Specs=%v, Subnets=%v, Type=%v, AdditionalProperties=%v]",
-    	a.GbpTag, a.Macs, a.Network, a.PortUsage, a.RadiusGroup, a.Specs, a.Subnets, a.Type, a.AdditionalProperties)
+    	"AclTag[EtherTypes=%v, GbpTag=%v, Macs=%v, Network=%v, PortUsage=%v, RadiusGroup=%v, Specs=%v, Subnets=%v, Type=%v, AdditionalProperties=%v]",
+    	a.EtherTypes, a.GbpTag, a.Macs, a.Network, a.PortUsage, a.RadiusGroup, a.Specs, a.Subnets, a.Type, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AclTag.
@@ -69,7 +71,7 @@ func (a AclTag) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(a.AdditionalProperties,
-        "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type"); err != nil {
+        "ether_types", "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(a.toMap())
@@ -79,6 +81,9 @@ func (a AclTag) MarshalJSON() (
 func (a AclTag) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, a.AdditionalProperties)
+    if a.EtherTypes != nil {
+        structMap["ether_types"] = a.EtherTypes
+    }
     if a.GbpTag != nil {
         structMap["gbp_tag"] = a.GbpTag
     }
@@ -116,12 +121,13 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ether_types", "gbp_tag", "macs", "network", "port_usage", "radius_group", "specs", "subnets", "type")
     if err != nil {
     	return err
     }
     a.AdditionalProperties = additionalProperties
     
+    a.EtherTypes = temp.EtherTypes
     a.GbpTag = temp.GbpTag
     a.Macs = temp.Macs
     a.Network = temp.Network
@@ -135,6 +141,7 @@ func (a *AclTag) UnmarshalJSON(input []byte) error {
 
 // tempAclTag is a temporary struct used for validating the fields of AclTag.
 type tempAclTag  struct {
+    EtherTypes  []string        `json:"ether_types,omitempty"`
     GbpTag      *int            `json:"gbp_tag,omitempty"`
     Macs        []string        `json:"macs,omitempty"`
     Network     *string         `json:"network,omitempty"`

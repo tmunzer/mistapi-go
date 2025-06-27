@@ -96,7 +96,7 @@ func TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true}`
+    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true,"wifi_interrupting":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -121,7 +121,7 @@ func TestSitesMapsAutoPlacementTestStartSiteApAutoOrientation1(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true}`
+    expected := `{"devices":{"00000000001":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000002":{"reason":"Device meets the minimum requirements for auto orient","valid":true},"00000000003":{"reason":"Device meets the minimum requirements for auto orient","valid":true}},"estimated_runtime":300,"reason":"Map has met the minimum requirements for auto orient","valid":true,"wifi_interrupting":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -212,7 +212,7 @@ func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true}`
+    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true,"wifi_interrupting":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -237,7 +237,7 @@ func TestSitesMapsAutoPlacementTestRunSiteApAutoplacement1(t *testing.T) {
         testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true}`
+    expected := `{"devices":{"00000000001":{"valid":true},"00000000002":{"valid":true},"00000000003":{"valid":true}},"estimated_runtime":30,"reason":"Map Already Enqueued","started":false,"valid":true,"wifi_interrupting":true}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

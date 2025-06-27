@@ -495,9 +495,14 @@ SearchOrgNacClients(
     ap *string,
     mac *string,
     mdmManaged *bool,
-    status *string,
+    status *models.NacClientLastStatusEnum,
     mType *string,
     mdmCompliance *string,
+    family *string,
+    model *string,
+    os *string,
+    hostname *string,
+    mfg *string,
     mdmProvider *string,
     sort *string,
     usermacLabel []string,
@@ -529,9 +534,14 @@ SearchOrgNacClients(
 | `ap` | `*string` | Query, Optional | AP MAC connected to by client |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `mdmManaged` | `*bool` | Query, Optional | Filters NAC clients that are managed by MDM providers |
-| `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
+| `status` | [`*models.NacClientLastStatusEnum`](../../doc/models/nac-client-last-status-enum.md) | Query, Optional | Connection status of client i.e "permitted", "denied, "session_stared", "session_ended" |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
+| `family` | `*string` | Query, Optional | Client family, e.g. "Phone/Tablet/Wearable", "Access Point" |
+| `model` | `*string` | Query, Optional | Client model, e.g. "iPhone 12", "MX100" |
+| `os` | `*string` | Query, Optional | Client OS, e.g. "iOS 18.1", "Android", "Windows", "Linux" |
+| `hostname` | `*string` | Query, Optional | Client hostname, e.g. "my-laptop", "my-phone" |
+| `mfg` | `*string` | Query, Optional | Client manufacturer, e.g. "apple", "cisco", "juniper" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organization eg "intune", "jamf" |
 | `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
 | `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
@@ -579,6 +589,16 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 
 
+status := models.NacClientLastStatusEnum_PERMITTED
+
+
+
+
+
+
+
+
+
 
 
 
@@ -603,7 +623,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
