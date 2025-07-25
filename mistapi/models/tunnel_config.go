@@ -9,6 +9,7 @@ import (
 
 // TunnelConfig represents a TunnelConfig struct.
 type TunnelConfig struct {
+    // Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
     AutoProvision        *TunnelConfigAutoProvision  `json:"auto_provision,omitempty"`
     // Only if `provider`==`custom-ipsec`
     IkeLifetime          *int                        `json:"ike_lifetime,omitempty"`

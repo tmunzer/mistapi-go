@@ -1,6 +1,8 @@
 
 # Tunnel Config Auto Provision
 
+Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,7 +13,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enable` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Enable auto provisioning for the tunnel. If enabled, the `primary` and `secondary` nodes will be ignored. |
 | `Latlng` | [`*models.TunnelConfigAutoProvisionLatLng`](../../doc/models/tunnel-config-auto-provision-lat-lng.md) | Optional | API override for POP selection |
 | `Primary` | [`*models.TunnelConfigAutoProvisionNode`](../../doc/models/tunnel-config-auto-provision-node.md) | Optional | - |
 | `Provider` | [`models.TunnelConfigAutoProvisionProviderEnum`](../../doc/models/tunnel-config-auto-provision-provider-enum.md) | Required | enum: `jse-ipsec`, `zscaler-ipsec` |
@@ -26,7 +28,7 @@
 {
   "provider": "jse-ipsec",
   "service_connection": "Juniper-Lab-SC-1",
-  "enable": false,
+  "enabled": false,
   "latlng": {
     "lat": 144.64,
     "lng": 22.82,

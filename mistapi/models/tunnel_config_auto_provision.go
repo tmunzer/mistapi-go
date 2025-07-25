@@ -10,8 +10,10 @@ import (
 )
 
 // TunnelConfigAutoProvision represents a TunnelConfigAutoProvision struct.
+// Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
 type TunnelConfigAutoProvision struct {
-    Enable               *bool                                 `json:"enable,omitempty"`
+    // Enable auto provisioning for the tunnel. If enabled, the `primary` and `secondary` nodes will be ignored.
+    Enabled              *bool                                 `json:"enabled,omitempty"`
     // API override for POP selection
     Latlng               *TunnelConfigAutoProvisionLatLng      `json:"latlng,omitempty"`
     Primary              *TunnelConfigAutoProvisionNode        `json:"primary,omitempty"`
@@ -29,8 +31,8 @@ type TunnelConfigAutoProvision struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (t TunnelConfigAutoProvision) String() string {
     return fmt.Sprintf(
-    	"TunnelConfigAutoProvision[Enable=%v, Latlng=%v, Primary=%v, Provider=%v, Region=%v, Secondary=%v, ServiceConnection=%v, AdditionalProperties=%v]",
-    	t.Enable, t.Latlng, t.Primary, t.Provider, t.Region, t.Secondary, t.ServiceConnection, t.AdditionalProperties)
+    	"TunnelConfigAutoProvision[Enabled=%v, Latlng=%v, Primary=%v, Provider=%v, Region=%v, Secondary=%v, ServiceConnection=%v, AdditionalProperties=%v]",
+    	t.Enabled, t.Latlng, t.Primary, t.Provider, t.Region, t.Secondary, t.ServiceConnection, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfigAutoProvision.
@@ -39,7 +41,7 @@ func (t TunnelConfigAutoProvision) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(t.AdditionalProperties,
-        "enable", "latlng", "primary", "provider", "region", "secondary", "service_connection"); err != nil {
+        "enabled", "latlng", "primary", "provider", "region", "secondary", "service_connection"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(t.toMap())
@@ -49,8 +51,8 @@ func (t TunnelConfigAutoProvision) MarshalJSON() (
 func (t TunnelConfigAutoProvision) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, t.AdditionalProperties)
-    if t.Enable != nil {
-        structMap["enable"] = t.Enable
+    if t.Enabled != nil {
+        structMap["enabled"] = t.Enabled
     }
     if t.Latlng != nil {
         structMap["latlng"] = t.Latlng.toMap()
@@ -83,13 +85,13 @@ func (t *TunnelConfigAutoProvision) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enable", "latlng", "primary", "provider", "region", "secondary", "service_connection")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "latlng", "primary", "provider", "region", "secondary", "service_connection")
     if err != nil {
     	return err
     }
     t.AdditionalProperties = additionalProperties
     
-    t.Enable = temp.Enable
+    t.Enabled = temp.Enabled
     t.Latlng = temp.Latlng
     t.Primary = temp.Primary
     t.Provider = *temp.Provider
@@ -101,7 +103,7 @@ func (t *TunnelConfigAutoProvision) UnmarshalJSON(input []byte) error {
 
 // tempTunnelConfigAutoProvision is a temporary struct used for validating the fields of TunnelConfigAutoProvision.
 type tempTunnelConfigAutoProvision  struct {
-    Enable            *bool                                  `json:"enable,omitempty"`
+    Enabled           *bool                                  `json:"enabled,omitempty"`
     Latlng            *TunnelConfigAutoProvisionLatLng       `json:"latlng,omitempty"`
     Primary           *TunnelConfigAutoProvisionNode         `json:"primary,omitempty"`
     Provider          *TunnelConfigAutoProvisionProviderEnum `json:"provider"`

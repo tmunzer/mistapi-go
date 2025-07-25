@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AutoProvision` | [`*models.TunnelConfigAutoProvision`](../../doc/models/tunnel-config-auto-provision.md) | Optional | - |
+| `AutoProvision` | [`*models.TunnelConfigAutoProvision`](../../doc/models/tunnel-config-auto-provision.md) | Optional | Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes. |
 | `IkeLifetime` | `*int` | Optional | Only if `provider`==`custom-ipsec` |
 | `IkeMode` | [`*models.TunnelConfigIkeModeEnum`](../../doc/models/tunnel-config-ike-mode-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`<br><br>**Default**: `"main"` |
 | `IkeProposals` | [`[]models.TunnelConfigIkeProposal`](../../doc/models/tunnel-config-ike-proposal.md) | Optional | If `provider`==`custom-ipsec` |
@@ -37,7 +37,7 @@
   "mode": "active-standby",
   "version": "2",
   "auto_provision": {
-    "enable": false,
+    "enabled": false,
     "latlng": {
       "lat": 144.64,
       "lng": 22.82,
