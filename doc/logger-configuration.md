@@ -29,7 +29,7 @@ import (
 
 type Logrus struct{}
 
-func (c Logrus) Log(level Level, message string, params map[string]any) {
+func (c Logrus) Log(level log.Level, message string, params map[string]any) {
 
 	log.SetFormatter(&log.JSONFormatter{})
 	log.SetOutput(os.Stdout)

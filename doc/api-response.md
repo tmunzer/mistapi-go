@@ -13,13 +13,22 @@ Represents the result of an API call, including response metadata and the return
 ## Usage Example
 
 ```go
-apiResponse, err := client.ExampleController().GetExampleType(ctx, body)
+package main
 
-if err != nil {
-    log.Fatalln("Error: ", err)
-} else {
-    fmt.Println("Success! Result: ", apiResponse.Data)
-    fmt.Println("Status Code: ", apiResponse.Response.StatusCode)
+import (
+    "fmt"
+    "log"
+)
+
+func main() {
+    apiResponse, err := client.ExampleController().GetExampleType(ctx, body)
+
+    if err != nil {
+        log.Fatalln("Error: ", err)
+    } else {
+        fmt.Println("Success! Result: ", apiResponse.Data)
+        fmt.Println("Status Code: ", apiResponse.Response.StatusCode)
+    }
 }
 ```
 

@@ -42,10 +42,7 @@
 ```json
 {
   "all_sites": false,
-  "canary_phases": [
-    139,
-    138
-  ],
+  "canary_phases": null,
   "download_strategy": "big_bang",
   "max_failure_percentage": 5,
   "p2p_cluster_size": 0,

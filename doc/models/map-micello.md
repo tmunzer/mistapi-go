@@ -21,7 +21,7 @@
 
 ```json
 {
-  "account_key": "account_key6",
+  "account_key": null,
   "default_level_id": 5,
   "map_id": "6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9",
   "vendor_name": "micello",

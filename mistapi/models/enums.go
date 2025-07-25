@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 // AamwProfileActionEnum is a string enum.
@@ -4725,7 +4727,7 @@ const (
 )
 
 // WlanPortalIdpSignAlgoEnum is a string enum.
-// Optioanl if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
+// Optional if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
 type WlanPortalIdpSignAlgoEnum string
 
 const (
@@ -4736,7 +4738,7 @@ const (
 )
 
 // WlanPortalSmsProviderEnum is a string enum.
-// Optioanl if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`
+// Optional if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`
 type WlanPortalSmsProviderEnum string
 
 const (

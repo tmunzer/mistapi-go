@@ -57,7 +57,7 @@ Portal wlan settings
 | `PassphraseEnabled` | `*bool` | Optional | Whether password is enabled<br><br>**Default**: `false` |
 | `PassphraseExpire` | `models.Optional[int]` | Optional | Optional if `passphrase_enabled`==`true`. Interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
 | `Password` | `models.Optional[string]` | Optional | Required if `passphrase_enabled`==`true`. |
-| `PredefinedSponsorsEnabled` | `*bool` | Optional | Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`<br><br>**Default**: `true` |
+| `PredefinedSponsorsEnabled` | `*bool` | Optional | Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behavior is acc to `sponsor_email_domains`<br><br>**Default**: `true` |
 | `PredefinedSponsorsHideEmail` | `*bool` | Optional | Whether to hide sponsor’s email from list of sponsors<br><br>**Default**: `false` |
 | `Privacy` | `*bool` | Optional | **Default**: `false` |
 | `PuzzelPassword` | `*string` | Optional | Required if `sms_provider`==`puzzel` |
@@ -66,7 +66,7 @@ Portal wlan settings
 | `SmsMessageFormat` | `*string` | Optional | Optional if `sms_enabled`==`true`. SMS Message format<br><br>**Default**: `"Code {{code}} expires in {{duration}} minutes."` |
 | `SmsEnabled` | `*bool` | Optional | Whether sms is enabled as a login method<br><br>**Default**: `false` |
 | `SmsExpire` | `models.Optional[int]` | Optional | Optional if `sms_enabled`==`true`. Interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
-| `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | Optioanl if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`<br><br>**Default**: `"manual"` |
+| `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | Optional if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`<br><br>**Default**: `"manual"` |
 | `SmsglobalApiKey` | `*string` | Optional | Required if `sms_provider`==`smsglobal`, Client API Key |
 | `SmsglobalApiSecret` | `*string` | Optional | Required if `sms_provider`==`smsglobal`, Client secret |
 | `SponsorAutoApprove` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. Whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled<br><br>**Default**: `false` |
@@ -80,7 +80,7 @@ Portal wlan settings
 | `SsoDefaultRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
 | `SsoForcedRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso` |
 | `SsoIdpCert` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response) |
-| `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | Optioanl if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`<br><br>**Default**: `"sha1"` |
+| `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | Optional if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`<br><br>**Default**: `"sha1"` |
 | `SsoIdpSsoUrl` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL |
 | `SsoIssuer` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`, IDP issuer URL |
 | `SsoNameidFormat` | [`*models.WlanPortalSsoNameidFormatEnum`](../../doc/models/wlan-portal-sso-nameid-format-enum.md) | Optional | Optional if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`<br><br>**Default**: `"email"` |
@@ -96,11 +96,7 @@ Portal wlan settings
 ```json
 {
   "allow_wlan_id_roam": false,
-  "amazon_email_domains": [
-    "amazon_email_domains4",
-    "amazon_email_domains5",
-    "amazon_email_domains6"
-  ],
+  "amazon_email_domains": null,
   "amazon_enabled": false,
   "auth": "none",
   "azure_enabled": false,

@@ -22,13 +22,21 @@ Documentation for accessing and setting credentials for csrfToken.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```go
-client := mistapi.NewClient(
-    mistapi.CreateConfiguration(
-        mistapi.WithCsrfTokenCredentials(
-            mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
-        ),
-    ),
+package main
+
+import (
+    "mistapi"
 )
+
+func main() {
+    client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+            mistapi.WithCsrfTokenCredentials(
+                mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
+            ),
+        ),
+    )
+}
 ```
 
 

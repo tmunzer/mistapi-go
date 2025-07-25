@@ -23,7 +23,7 @@ BLE AP settings
 | `EddystoneUidAdvPower` | `*int` | Optional | Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default<br><br>**Default**: `0`<br><br>**Constraints**: `>= -100`, `<= 20` |
 | `EddystoneUidBeams` | `*string` | Optional | - |
 | `EddystoneUidEnabled` | `*bool` | Optional | Only if `beacon_enabled`==`false`, Whether Eddystone-UID beacon is enabled<br><br>**Default**: `false` |
-| `EddystoneUidFreqMsec` | `*int` | Optional | Frequency (msec) of data emmit by Eddystone-UID beacon<br><br>**Default**: `0` |
+| `EddystoneUidFreqMsec` | `*int` | Optional | Frequency (msec) of data emit by Eddystone-UID beacon<br><br>**Default**: `0` |
 | `EddystoneUidInstance` | `*string` | Optional | Eddystone-UID instance for the device |
 | `EddystoneUidNamespace` | `*string` | Optional | Eddystone-UID namespace |
 | `EddystoneUrlAdvPower` | `*int` | Optional | Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default<br><br>**Default**: `0`<br><br>**Constraints**: `>= -100`, `<= 20` |
@@ -34,7 +34,7 @@ BLE AP settings
 | `IbeaconAdvPower` | `*int` | Optional | Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default<br><br>**Default**: `0`<br><br>**Constraints**: `>= -100`, `<= 20` |
 | `IbeaconBeams` | `*string` | Optional | - |
 | `IbeaconEnabled` | `*bool` | Optional | Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon<br><br>**Default**: `false` |
-| `IbeaconFreqMsec` | `*int` | Optional | Frequency (msec) of data emmit for iBeacon<br><br>**Default**: `0` |
+| `IbeaconFreqMsec` | `*int` | Optional | Frequency (msec) of data emit for iBeacon<br><br>**Default**: `0` |
 | `IbeaconMajor` | `*int` | Optional | Major number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconMinor` | `*int` | Optional | Minor number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | Optional, if not specified, the same UUID as the beacon will be used |

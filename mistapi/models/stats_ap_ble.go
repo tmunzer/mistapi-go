@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -15,7 +17,7 @@ type StatsApBle struct {
     EddystoneUidInstance  Optional[string]       `json:"eddystone_uid_instance"`
     EddystoneUidNamespace Optional[string]       `json:"eddystone_uid_namespace"`
     EddystoneUrlEnabled   Optional[bool]         `json:"eddystone_url_enabled"`
-    // Frequency (msec) of data emmit by Eddystone-UID beacon
+    // Frequency (msec) of data emit by Eddystone-UID beacon
     EddystoneUrlFreqMsec  Optional[int]          `json:"eddystone_url_freq_msec"`
     EddystoneUrlUrl       Optional[string]       `json:"eddystone_url_url"`
     IbeaconEnabled        Optional[bool]         `json:"ibeacon_enabled"`

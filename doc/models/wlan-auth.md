@@ -35,9 +35,7 @@ Authentication wlan settings
   "eap_reauth": false,
   "enable_mac_auth": false,
   "key_idx": 1,
-  "keys": [
-    "keys8"
-  ],
+  "keys": null,
   "multi_psk_only": false,
   "owe": "disabled",
   "private_wlan": false,

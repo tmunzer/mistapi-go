@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -38,7 +40,7 @@ type SiteSettingSwitch struct {
     // List of NTP servers specific to this device. By default, those in Site Settings will be used
     NtpServers            []string                               `json:"ntp_servers,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
-    // Junos OSPF areas
+    // Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
     OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`

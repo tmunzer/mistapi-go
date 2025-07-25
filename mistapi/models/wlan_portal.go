@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -96,7 +98,7 @@ type WlanPortal struct {
     PassphraseExpire            Optional[int]                  `json:"passphrase_expire"`
     // Required if `passphrase_enabled`==`true`.
     Password                    Optional[string]               `json:"password"`
-    // Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behaviour is acc to `sponsor_email_domains`
+    // Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behavior is acc to `sponsor_email_domains`
     PredefinedSponsorsEnabled   *bool                          `json:"predefined_sponsors_enabled,omitempty"`
     // Whether to hide sponsor’s email from list of sponsors
     PredefinedSponsorsHideEmail *bool                          `json:"predefined_sponsors_hide_email,omitempty"`
@@ -113,7 +115,7 @@ type WlanPortal struct {
     SmsEnabled                  *bool                          `json:"sms_enabled,omitempty"`
     // Optional if `sms_enabled`==`true`. Interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire`
     SmsExpire                   Optional[int]                  `json:"sms_expire"`
-    // Optioanl if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`
+    // Optional if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`
     SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
     // Required if `sms_provider`==`smsglobal`, Client API Key
     SmsglobalApiKey             *string                        `json:"smsglobal_api_key,omitempty"`
@@ -141,7 +143,7 @@ type WlanPortal struct {
     SsoForcedRole               *string                        `json:"sso_forced_role,omitempty"`
     // Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response)
     SsoIdpCert                  *string                        `json:"sso_idp_cert,omitempty"`
-    // Optioanl if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
+    // Optional if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
     SsoIdpSignAlgo              *WlanPortalIdpSignAlgoEnum     `json:"sso_idp_sign_algo,omitempty"`
     // Required if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL
     SsoIdpSsoUrl                *string                        `json:"sso_idp_sso_url,omitempty"`

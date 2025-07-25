@@ -18,7 +18,7 @@
 | `EddystoneUidInstance` | `models.Optional[string]` | Optional | - |
 | `EddystoneUidNamespace` | `models.Optional[string]` | Optional | - |
 | `EddystoneUrlEnabled` | `models.Optional[bool]` | Optional | - |
-| `EddystoneUrlFreqMsec` | `models.Optional[int]` | Optional | Frequency (msec) of data emmit by Eddystone-UID beacon |
+| `EddystoneUrlFreqMsec` | `models.Optional[int]` | Optional | Frequency (msec) of data emit by Eddystone-UID beacon |
 | `EddystoneUrlUrl` | `models.Optional[string]` | Optional | - |
 | `IbeaconEnabled` | `models.Optional[bool]` | Optional | - |
 | `IbeaconFreqMsec` | `models.Optional[int]` | Optional | - |

@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package errors
 
 import (

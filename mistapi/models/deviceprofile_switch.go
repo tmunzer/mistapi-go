@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -57,7 +59,7 @@ type DeviceprofileSwitch struct {
     // - If there are 2 routing engines, re1 mgmt IP has to be set separately (if desired): key parameter = `re1`
     OobIpConfig           *SwitchOobIpConfig                     `json:"oob_ip_config,omitempty"`
     OrgId                 *uuid.UUID                             `json:"org_id,omitempty"`
-    // Junos OSPF areas
+    // Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
     OspfAreas             map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     // Property key is the network name. Defines the additional IP Addresses configured on the device.
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`

@@ -188,13 +188,7 @@ RRM
     "cochannel_neighbors": 154.0,
     "density": 1.0,
     "interferences": {
-      "key0": {
-        "radar": 1.76,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      }
+      "key0": null
     },
     "neighbors": 4.62,
     "noise": 10.68,

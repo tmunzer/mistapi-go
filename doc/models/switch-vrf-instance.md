@@ -37,53 +37,13 @@
     "guest"
   ],
   "aggregate_routes": {
-    "key0": {
-      "discard": false,
-      "metric": 28,
-      "preference": 148,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "key1": {
-      "discard": false,
-      "metric": 28,
-      "preference": 148,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
+    "key0": null,
+    "key1": {}
   },
   "aggregate_routes6": {
-    "key0": {
-      "discard": false,
-      "metric": 126,
-      "preference": 50,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "key1": {
-      "discard": false,
-      "metric": 126,
-      "preference": 50,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "key2": {
-      "discard": false,
-      "metric": 126,
-      "preference": 50,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
+    "key0": null,
+    "key1": {},
+    "key2": {}
   },
   "evpn_auto_loopback_subnet": "evpn_auto_loopback_subnet2",
   "evpn_auto_loopback_subnet6": "evpn_auto_loopback_subnet66",

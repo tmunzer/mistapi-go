@@ -23,16 +23,24 @@ Documentation for accessing and setting credentials for basicAuth.
 You must provide credentials in the client as shown in the following code snippet.
 
 ```go
-client := mistapi.NewClient(
+package main
+
+import (
+    "mistapi"
+)
+
+func main() {
+    client := mistapi.NewClient(
     mistapi.CreateConfiguration(
-        mistapi.WithBasicAuthCredentials(
-            mistapi.NewBasicAuthCredentials(
-                "Username",
-                "Password",
+            mistapi.WithBasicAuthCredentials(
+                mistapi.NewBasicAuthCredentials(
+                    "Username",
+                    "Password",
+                ),
             ),
         ),
-    ),
-)
+    )
+}
 ```
 
 

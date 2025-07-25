@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -45,7 +47,7 @@ type DeviceprofileAp struct {
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough       *bool                   `json:"poe_passthrough,omitempty"`
-    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If spcified, this takes predecence over switch_config (deprecated)
+    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If specified, this takes precedence over switch_config (deprecated)
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
     // Power related configs
     PwrConfig            *ApPwrConfig            `json:"pwr_config,omitempty"`

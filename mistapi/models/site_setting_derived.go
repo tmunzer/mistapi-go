@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -87,7 +89,7 @@ type SiteSettingDerived struct {
     // Occupancy Analytics settings
     Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
     OrgId                           *uuid.UUID                             `json:"org_id,omitempty"`
-    // Junos OSPF areas
+    // Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
     OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
     PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
     // Whether to store the config on AP

@@ -25,8 +25,8 @@ Optional dynamic vlan
 {
   "default_vlan_id": 999,
   "vlans": {
-    "1-10": "vlans3",
-    "user": "vlans4"
+    "1-10": null,
+    "user": null
   },
   "enabled": false,
   "type": "type2",

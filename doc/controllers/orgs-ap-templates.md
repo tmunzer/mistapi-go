@@ -63,8 +63,6 @@ body := models.ApTemplate{
                             Enabled:              models.ToPointer(true),
                             Type:                 models.ToPointer("string"),
                             Vlans:                map[string]string{
-                                "1-10": "vlans1",
-                                "user": "vlans2",
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
@@ -143,8 +141,6 @@ body := models.ApTemplate{
                             Enabled:              models.ToPointer(true),
                             Type:                 models.ToPointer("string"),
                             Vlans:                map[string]string{
-                                "1-10": "vlans1",
-                                "user": "vlans2",
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
@@ -1073,8 +1069,6 @@ body := models.ApTemplate{
                             Enabled:              models.ToPointer(true),
                             Type:                 models.ToPointer("string"),
                             Vlans:                map[string]string{
-                                "1-10": "vlans1",
-                                "user": "vlans2",
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),
@@ -1153,8 +1147,6 @@ body := models.ApTemplate{
                             Enabled:              models.ToPointer(true),
                             Type:                 models.ToPointer("string"),
                             Vlans:                map[string]string{
-                                "1-10": "vlans1",
-                                "user": "vlans2",
                             },
                         }),
                         EnableMacAuth:        models.ToPointer(false),

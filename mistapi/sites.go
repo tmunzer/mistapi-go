@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package mistapi
 
 import (
@@ -62,7 +64,9 @@ func (s *Sites) DeleteSite(
 // GetSiteInfo takes context, siteId as parameters and
 // returns an models.ApiResponse with models.Site data and
 // an error if there was an issue with the request or response.
-// Get Site Info
+// Provides information about the site, including its name, address,
+// timezone, and associated templates. This endpoint is useful for retrieving
+// the current configuration and details of a specific site.
 func (s *Sites) GetSiteInfo(
     ctx context.Context,
     siteId uuid.UUID) (
@@ -102,7 +106,9 @@ func (s *Sites) GetSiteInfo(
 // UpdateSiteInfo takes context, siteId, body as parameters and
 // returns an models.ApiResponse with models.Site data and
 // an error if there was an issue with the request or response.
-// Update Site Info
+// Updates the configuration and metadata for an existing site. 
+// This endpoint allows modification of site properties including location details (address, coordinates, timezone), template associations (alarm, network, RF, security policy templates), site group memberships, and general information (name, notes).
+// All fields are optional and only provided fields will be updated.
 func (s *Sites) UpdateSiteInfo(
     ctx context.Context,
     siteId uuid.UUID,

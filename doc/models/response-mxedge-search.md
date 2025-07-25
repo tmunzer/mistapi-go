@@ -30,19 +30,7 @@
     {
       "cpu_stat": {
         "cpus": {
-          "key0": {
-            "idle": 4.8,
-            "interrupt": 118.56,
-            "load_avg": [
-              8.63
-            ],
-            "system": 110.88,
-            "user": 107.24,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
-          }
+          "key0": null
         },
         "idle": 224,
         "interrupt": 80,
@@ -75,19 +63,7 @@
     {
       "cpu_stat": {
         "cpus": {
-          "key0": {
-            "idle": 4.8,
-            "interrupt": 118.56,
-            "load_avg": [
-              8.63
-            ],
-            "system": 110.88,
-            "user": 107.24,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
-          }
+          "key0": null
         },
         "idle": 224,
         "interrupt": 80,
@@ -120,19 +96,7 @@
     {
       "cpu_stat": {
         "cpus": {
-          "key0": {
-            "idle": 4.8,
-            "interrupt": 118.56,
-            "load_avg": [
-              8.63
-            ],
-            "system": 110.88,
-            "user": 107.24,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
-          }
+          "key0": null
         },
         "idle": 224,
         "interrupt": 80,

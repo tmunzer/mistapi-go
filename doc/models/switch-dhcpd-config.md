@@ -29,22 +29,8 @@
       "dns_suffix6"
     ],
     "fixed_bindings": {
-      "key0": {
-        "ip": "ip0",
-        "name": "name6",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "key1": {
-        "ip": "ip0",
-        "name": "name6",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      }
+      "key0": null,
+      "key1": {}
     },
     "gateway": "gateway2",
     "ip_end": "ip_end2",

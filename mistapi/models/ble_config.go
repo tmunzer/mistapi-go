@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -28,7 +30,7 @@ type BleConfig struct {
     EddystoneUidBeams       *string                      `json:"eddystone_uid_beams,omitempty"`
     // Only if `beacon_enabled`==`false`, Whether Eddystone-UID beacon is enabled
     EddystoneUidEnabled     *bool                        `json:"eddystone_uid_enabled,omitempty"`
-    // Frequency (msec) of data emmit by Eddystone-UID beacon
+    // Frequency (msec) of data emit by Eddystone-UID beacon
     EddystoneUidFreqMsec    *int                         `json:"eddystone_uid_freq_msec,omitempty"`
     // Eddystone-UID instance for the device
     EddystoneUidInstance    *string                      `json:"eddystone_uid_instance,omitempty"`
@@ -48,7 +50,7 @@ type BleConfig struct {
     IbeaconBeams            *string                      `json:"ibeacon_beams,omitempty"`
     // Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon
     IbeaconEnabled          *bool                        `json:"ibeacon_enabled,omitempty"`
-    // Frequency (msec) of data emmit for iBeacon
+    // Frequency (msec) of data emit for iBeacon
     IbeaconFreqMsec         *int                         `json:"ibeacon_freq_msec,omitempty"`
     // Major number for iBeacon
     IbeaconMajor            *int                         `json:"ibeacon_major,omitempty"`

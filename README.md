@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2506.1.1**
+> Version: **2506.1.3**
 > 
-> Date: **June 27, 2025**
+> Date: **July 25, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -88,38 +88,46 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```go
-client := mistapi.NewClient(
-    mistapi.CreateConfiguration(
-        mistapi.WithHttpConfiguration(
-            mistapi.CreateHttpConfiguration(
-                mistapi.WithTimeout(0),
-            ),
-        ),
-        mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
-        mistapi.WithApiTokenCredentials(
-            mistapi.NewApiTokenCredentials("Authorization"),
-        ),
-        mistapi.WithBasicAuthCredentials(
-            mistapi.NewBasicAuthCredentials(
-                "Username",
-                "Password",
-            ),
-        ),
-        mistapi.WithCsrfTokenCredentials(
-            mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
-        ),
-        mistapi.WithAccept("application/json, application/vnd.api+json"),
-        mistapi.WithLoggerConfiguration(
-            mistapi.WithLevel("info"),
-            mistapi.WithRequestConfiguration(
-                mistapi.WithRequestBody(true),
-            ),
-            mistapi.WithResponseConfiguration(
-                mistapi.WithResponseHeaders(true),
-            ),
-        ),
-    ),
+package main
+
+import (
+    "mistapi"
 )
+
+func main() {
+    client := mistapi.NewClient(
+    mistapi.CreateConfiguration(
+            mistapi.WithHttpConfiguration(
+                mistapi.CreateHttpConfiguration(
+                    mistapi.WithTimeout(0),
+                ),
+            ),
+            mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
+            mistapi.WithApiTokenCredentials(
+                mistapi.NewApiTokenCredentials("Authorization"),
+            ),
+            mistapi.WithBasicAuthCredentials(
+                mistapi.NewBasicAuthCredentials(
+                    "Username",
+                    "Password",
+                ),
+            ),
+            mistapi.WithCsrfTokenCredentials(
+                mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
+            ),
+            mistapi.WithAccept("application/json, application/vnd.api+json"),
+            mistapi.WithLoggerConfiguration(
+                mistapi.WithLevel("info"),
+                mistapi.WithRequestConfiguration(
+                    mistapi.WithRequestBody(true),
+                ),
+                mistapi.WithResponseConfiguration(
+                    mistapi.WithResponseHeaders(true),
+                ),
+            ),
+        ),
+    )
+}
 ```
 
 ## Environments

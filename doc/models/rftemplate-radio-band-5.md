@@ -33,9 +33,7 @@ Radio Band AP settings
   "ant_gain": 0,
   "antenna_mode": "default",
   "bandwidth": 40,
-  "channels": [
-    73
-  ],
+  "channels": null,
   "disabled": false,
   "power": 6,
   "power_max": 17,

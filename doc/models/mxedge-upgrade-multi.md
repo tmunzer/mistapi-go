@@ -26,10 +26,7 @@
 
 ```json
 {
-  "canary_phases": [
-    241,
-    242
-  ],
+  "canary_phases": null,
   "channel": "stable",
   "max_failure_percentage": 5,
   "mxedge_ids": [

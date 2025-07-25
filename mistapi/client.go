@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package mistapi
 
 import (
@@ -428,7 +430,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2506.1.1")
+    client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2506.1.3")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {

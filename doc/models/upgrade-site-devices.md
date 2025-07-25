@@ -38,10 +38,7 @@
 
 ```json
 {
-  "canary_phases": [
-    135,
-    136
-  ],
+  "canary_phases": null,
   "force": false,
   "max_failure_percentage": 5,
   "p2p_cluster_size": 0,

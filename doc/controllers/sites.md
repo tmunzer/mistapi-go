@@ -67,7 +67,9 @@ if err != nil {
 
 # Get Site Info
 
-Get Site Info
+Provides information about the site, including its name, address,
+timezone, and associated templates. This endpoint is useful for retrieving
+the current configuration and details of a specific site.
 
 ```go
 GetSiteInfo(
@@ -147,7 +149,11 @@ if err != nil {
 
 # Update Site Info
 
-Update Site Info
+Updates the configuration and metadata for an existing site.
+
+This endpoint allows modification of site properties including location details (address, coordinates, timezone), template associations (alarm, network, RF, security policy templates), site group memberships, and general information (name, notes).
+
+All fields are optional and only provided fields will be updated.
 
 ```go
 UpdateSiteInfo(

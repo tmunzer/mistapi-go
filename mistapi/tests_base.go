@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package mistapi
 
 var admins Admins
@@ -49,8 +51,6 @@ var orgsAdmins OrgsAdmins
 var orgsAlarms OrgsAlarms
 
 var orgsAlarmTemplates OrgsAlarmTemplates
-
-var orgsApTemplates OrgsAPTemplates
 
 var orgsApiTokens OrgsAPITokens
 
@@ -217,8 +217,6 @@ var orgsWxTunnels OrgsWxTunnels
 var sites Sites
 
 var sitesAlarms SitesAlarms
-
-var sitesApTemplates SitesAPTemplates
 
 var sitesApplications SitesApplications
 
@@ -430,7 +428,6 @@ func init() {
     orgsAdmins = *client.OrgsAdmins()
     orgsAlarms = *client.OrgsAlarms()
     orgsAlarmTemplates = *client.OrgsAlarmTemplates()
-    orgsApTemplates = *client.OrgsAPTemplates()
     orgsApiTokens = *client.OrgsAPITokens()
     orgsAssets = *client.OrgsAssets()
     orgsAssetFilters = *client.OrgsAssetFilters()
@@ -514,7 +511,6 @@ func init() {
     orgsWxTunnels = *client.OrgsWxTunnels()
     sites = *client.Sites()
     sitesAlarms = *client.SitesAlarms()
-    sitesApTemplates = *client.SitesAPTemplates()
     sitesApplications = *client.SitesApplications()
     sitesAssetFilters = *client.SitesAssetFilters()
     sitesAssets = *client.SitesAssets()

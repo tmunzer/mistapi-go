@@ -1,3 +1,5 @@
+// Package mistapi
+// Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
 package models
 
 import (
@@ -9,7 +11,7 @@ import (
 type SleThresholds struct {
     // Capacity, in %
     Capacity             *int                   `json:"capacity,omitempty"`
-    // Covrage, in dBm
+    // Coverage, in dBm
     Coverage             *int                   `json:"coverage,omitempty"`
     // Throughput, in Mbps
     Throughput           *int                   `json:"throughput,omitempty"`
