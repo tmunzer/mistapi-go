@@ -4,51 +4,57 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
+    "strings"
 )
 
 // BgpConfig represents a BgpConfig struct.
 // BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 type BgpConfig struct {
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`
     AuthKey                *string                       `json:"auth_key,omitempty"`
-    // When bfd_multiplier is configured alone. Default:
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`, when bfd_multiplier is configured alone. Default:
     // * 1000 if `type`==`external`
     // * 350 `type`==`internal`
     BfdMinimumInterval     Optional[int]                 `json:"bfd_minimum_interval"`
-    // When bfd_minimum_interval_is_configured alone
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`, when bfd_minimum_interval_is_configured alone
     BfdMultiplier          Optional[int]                 `json:"bfd_multiplier"`
-    // BFD provides faster path failure detection and is enabled by default
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BFD provides faster path failure detection and is enabled by default
     DisableBfd             *bool                         `json:"disable_bfd,omitempty"`
     Export                 *string                       `json:"export,omitempty"`
     // Default export policies if no per-neighbor policies defined
     ExportPolicy           *string                       `json:"export_policy,omitempty"`
-    // By default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. By default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
     ExtendedV4Nexthop      *bool                         `json:"extended_v4_nexthop,omitempty"`
-    // `0` means disable
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. `0` means disable
     GracefulRestartTime    *int                          `json:"graceful_restart_time,omitempty"`
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. Default is 90.
     HoldTime               *int                          `json:"hold_time,omitempty"`
     Import                 *string                       `json:"import,omitempty"`
-    // Default import policies if no per-neighbor policies defined
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. Default import policies if no per-neighbor policies defined
     ImportPolicy           *string                       `json:"import_policy,omitempty"`
-    // BGP AS, value in range 1-4294967295
-    LocalAs                *BgpAs                        `json:"local_as,omitempty"`
+    // Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BGP AS, value in range 1-4294967295
+    LocalAs                *BgpLocalAs                   `json:"local_as,omitempty"`
     // BGP AS, value in range 1-4294967295
     NeighborAs             *BgpAs                        `json:"neighbor_as,omitempty"`
-    // If per-neighbor as is desired. Property key is the neighbor address
+    // Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. If per-neighbor as is desired. Property key is the neighbor address
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
-    // If `type`!=`external`or `via`==`wan`networks where we expect BGP neighbor to connect to/from
+    // Optional if `via`==`lan`. List of networks where we expect BGP neighbor to connect to/from
     Networks               []string                      `json:"networks,omitempty"`
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. If true, we will not advertise private ASNs (AS 64512-65534) to this neighbor
     NoPrivateAs            *bool                         `json:"no_private_as,omitempty"`
-    // By default, we'll re-advertise all learned BGP routers toward overlay
+    // Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. By default, we'll re-advertise all learned BGP routers toward overlay
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
-    // If `type`==`tunnel`
+    // Optional if `via`==`tunnel`
     TunnelName             *string                       `json:"tunnel_name,omitempty"`
-    // enum: `external`, `internal`
+    // Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. enum: `external`, `internal`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
-    // network name. enum: `lan`, `tunnel`, `vpn`, `wan`
-    Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
+    // enum: `lan`, `tunnel`, `vpn`, `wan`
+    Via                    BgpConfigViaEnum              `json:"via"`
+    // Optional if `via`==`vpn`
     VpnName                *string                       `json:"vpn_name,omitempty"`
-    // If `via`==`wan`
+    // Optional if `via`==`wan`
     WanName                *string                       `json:"wan_name,omitempty"`
     AdditionalProperties   map[string]interface{}        `json:"_"`
 }
@@ -142,9 +148,7 @@ func (b BgpConfig) toMap() map[string]any {
     if b.Type != nil {
         structMap["type"] = b.Type
     }
-    if b.Via != nil {
-        structMap["via"] = b.Via
-    }
+    structMap["via"] = b.Via
     if b.VpnName != nil {
         structMap["vpn_name"] = b.VpnName
     }
@@ -159,6 +163,10 @@ func (b BgpConfig) toMap() map[string]any {
 func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     var temp tempBgpConfig
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -187,7 +195,7 @@ func (b *BgpConfig) UnmarshalJSON(input []byte) error {
     b.NoReadvertiseToOverlay = temp.NoReadvertiseToOverlay
     b.TunnelName = temp.TunnelName
     b.Type = temp.Type
-    b.Via = temp.Via
+    b.Via = *temp.Via
     b.VpnName = temp.VpnName
     b.WanName = temp.WanName
     return nil
@@ -206,7 +214,7 @@ type tempBgpConfig  struct {
     HoldTime               *int                          `json:"hold_time,omitempty"`
     Import                 *string                       `json:"import,omitempty"`
     ImportPolicy           *string                       `json:"import_policy,omitempty"`
-    LocalAs                *BgpAs                        `json:"local_as,omitempty"`
+    LocalAs                *BgpLocalAs                   `json:"local_as,omitempty"`
     NeighborAs             *BgpAs                        `json:"neighbor_as,omitempty"`
     Neighbors              map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`
     Networks               []string                      `json:"networks,omitempty"`
@@ -214,7 +222,18 @@ type tempBgpConfig  struct {
     NoReadvertiseToOverlay *bool                         `json:"no_readvertise_to_overlay,omitempty"`
     TunnelName             *string                       `json:"tunnel_name,omitempty"`
     Type                   *BgpConfigTypeEnum            `json:"type,omitempty"`
-    Via                    *BgpConfigViaEnum             `json:"via,omitempty"`
+    Via                    *BgpConfigViaEnum             `json:"via"`
     VpnName                *string                       `json:"vpn_name,omitempty"`
     WanName                *string                       `json:"wan_name,omitempty"`
+}
+
+func (b *tempBgpConfig) validate() error {
+    var errs []string
+    if b.Via == nil {
+        errs = append(errs, "required field `via` is missing for type `bgp_config`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

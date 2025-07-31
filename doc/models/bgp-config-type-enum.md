@@ -1,7 +1,7 @@
 
 # Bgp Config Type Enum
 
-enum: `external`, `internal`
+Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. enum: `external`, `internal`
 
 ## Enumeration
 

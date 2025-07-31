@@ -10,7 +10,7 @@ import (
 // RoutingPolicyTerm represents a RoutingPolicyTerm struct.
 type RoutingPolicyTerm struct {
     // When used as import policy
-    Action               *RoutingPolicyTermAction   `json:"action,omitempty"`
+    Actions              *RoutingPolicyTermAction   `json:"actions,omitempty"`
     // zero or more criteria/filter can be specified to match the term, all criteria have to be met
     Matching             *RoutingPolicyTermMatching `json:"matching,omitempty"`
     AdditionalProperties map[string]interface{}     `json:"_"`
@@ -20,8 +20,8 @@ type RoutingPolicyTerm struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RoutingPolicyTerm) String() string {
     return fmt.Sprintf(
-    	"RoutingPolicyTerm[Action=%v, Matching=%v, AdditionalProperties=%v]",
-    	r.Action, r.Matching, r.AdditionalProperties)
+    	"RoutingPolicyTerm[Actions=%v, Matching=%v, AdditionalProperties=%v]",
+    	r.Actions, r.Matching, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RoutingPolicyTerm.
@@ -30,7 +30,7 @@ func (r RoutingPolicyTerm) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "action", "matching"); err != nil {
+        "actions", "matching"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -40,8 +40,8 @@ func (r RoutingPolicyTerm) MarshalJSON() (
 func (r RoutingPolicyTerm) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, r.AdditionalProperties)
-    if r.Action != nil {
-        structMap["action"] = r.Action.toMap()
+    if r.Actions != nil {
+        structMap["actions"] = r.Actions.toMap()
     }
     if r.Matching != nil {
         structMap["matching"] = r.Matching.toMap()
@@ -57,19 +57,19 @@ func (r *RoutingPolicyTerm) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "matching")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "actions", "matching")
     if err != nil {
     	return err
     }
     r.AdditionalProperties = additionalProperties
     
-    r.Action = temp.Action
+    r.Actions = temp.Actions
     r.Matching = temp.Matching
     return nil
 }
 
 // tempRoutingPolicyTerm is a temporary struct used for validating the fields of RoutingPolicyTerm.
 type tempRoutingPolicyTerm  struct {
-    Action   *RoutingPolicyTermAction   `json:"action,omitempty"`
+    Actions  *RoutingPolicyTermAction   `json:"actions,omitempty"`
     Matching *RoutingPolicyTermMatching `json:"matching,omitempty"`
 }

@@ -4,7 +4,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
+    "strings"
 )
 
 // BgpConfigNeighbors represents a BgpConfigNeighbors struct.
@@ -17,7 +19,7 @@ type BgpConfigNeighbors struct {
     // Assuming BGP neighbor is directly connected
     MultihopTtl          *int                   `json:"multihop_ttl,omitempty"`
     // BGP AS, value in range 1-4294967295
-    NeighborAs           *BgpAs                 `json:"neighbor_as,omitempty"`
+    NeighborAs           BgpAs                  `json:"neighbor_as"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -60,9 +62,7 @@ func (b BgpConfigNeighbors) toMap() map[string]any {
     if b.MultihopTtl != nil {
         structMap["multihop_ttl"] = b.MultihopTtl
     }
-    if b.NeighborAs != nil {
-        structMap["neighbor_as"] = b.NeighborAs.toMap()
-    }
+    structMap["neighbor_as"] = b.NeighborAs.toMap()
     return structMap
 }
 
@@ -71,6 +71,10 @@ func (b BgpConfigNeighbors) toMap() map[string]any {
 func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
     var temp tempBgpConfigNeighbors
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -85,7 +89,7 @@ func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
     b.HoldTime = temp.HoldTime
     b.ImportPolicy = temp.ImportPolicy
     b.MultihopTtl = temp.MultihopTtl
-    b.NeighborAs = temp.NeighborAs
+    b.NeighborAs = *temp.NeighborAs
     return nil
 }
 
@@ -96,5 +100,16 @@ type tempBgpConfigNeighbors  struct {
     HoldTime     *int    `json:"hold_time,omitempty"`
     ImportPolicy *string `json:"import_policy,omitempty"`
     MultihopTtl  *int    `json:"multihop_ttl,omitempty"`
-    NeighborAs   *BgpAs  `json:"neighbor_as,omitempty"`
+    NeighborAs   *BgpAs  `json:"neighbor_as"`
+}
+
+func (b *tempBgpConfigNeighbors) validate() error {
+    var errs []string
+    if b.NeighborAs == nil {
+        errs = append(errs, "required field `neighbor_as` is missing for type `bgp_config_neighbors`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

@@ -120,7 +120,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-Core",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -131,7 +131,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-lan",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -142,7 +142,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-Mgmt",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -151,7 +151,7 @@ body := models.GatewayTemplate{
             Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
                     Name:                 models.ToPointer("wan"),
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_WAN),
+                    Type:                 models.GatewayPathTypeEnum_WAN,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -513,7 +513,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-Core",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -524,7 +524,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-lan",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -535,7 +535,7 @@ body := models.GatewayTemplate{
                     Networks:             []string{
                         "Corp-Mgmt",
                     },
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_LOCAL),
+                    Type:                 models.GatewayPathTypeEnum_LOCAL,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
@@ -544,7 +544,7 @@ body := models.GatewayTemplate{
             Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
                     Name:                 models.ToPointer("wan"),
-                    Type:                 models.ToPointer(models.GatewayPathTypeEnum_WAN),
+                    Type:                 models.GatewayPathTypeEnum_WAN,
                 },
             },
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),

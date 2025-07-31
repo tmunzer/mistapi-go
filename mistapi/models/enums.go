@@ -300,7 +300,7 @@ const (
 )
 
 // BgpConfigTypeEnum is a string enum.
-// enum: `external`, `internal`
+// Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. enum: `external`, `internal`
 type BgpConfigTypeEnum string
 
 const (
@@ -309,7 +309,7 @@ const (
 )
 
 // BgpConfigViaEnum is a string enum.
-// network name. enum: `lan`, `tunnel`, `vpn`, `wan`
+// enum: `lan`, `tunnel`, `vpn`, `wan`
 type BgpConfigViaEnum string
 
 const (

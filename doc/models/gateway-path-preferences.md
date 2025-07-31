@@ -27,6 +27,7 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
+      "type": "local",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -38,6 +39,7 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
+      "type": "local",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -49,6 +51,7 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
+      "type": "local",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

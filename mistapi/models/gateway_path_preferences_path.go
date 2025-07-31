@@ -4,7 +4,9 @@ package models
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
+    "strings"
 )
 
 // GatewayPathPreferencesPath represents a GatewayPathPreferencesPath struct.
@@ -25,7 +27,7 @@ type GatewayPathPreferencesPath struct {
     // If `type`==`local`, if destination IP is to be replaced
     TargetIps            []string               `json:"target_ips,omitempty"`
     // enum: `local`, `tunnel`, `vpn`, `wan`
-    Type                 *GatewayPathTypeEnum   `json:"type,omitempty"`
+    Type                 GatewayPathTypeEnum    `json:"type"`
     // Optional if `type`==`vpn`
     WanName              *string                `json:"wan_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
@@ -76,9 +78,7 @@ func (g GatewayPathPreferencesPath) toMap() map[string]any {
     if g.TargetIps != nil {
         structMap["target_ips"] = g.TargetIps
     }
-    if g.Type != nil {
-        structMap["type"] = g.Type
-    }
+    structMap["type"] = g.Type
     if g.WanName != nil {
         structMap["wan_name"] = g.WanName
     }
@@ -90,6 +90,10 @@ func (g GatewayPathPreferencesPath) toMap() map[string]any {
 func (g *GatewayPathPreferencesPath) UnmarshalJSON(input []byte) error {
     var temp tempGatewayPathPreferencesPath
     err := json.Unmarshal(input, &temp)
+    if err != nil {
+    	return err
+    }
+    err = temp.validate()
     if err != nil {
     	return err
     }
@@ -106,7 +110,7 @@ func (g *GatewayPathPreferencesPath) UnmarshalJSON(input []byte) error {
     g.Name = temp.Name
     g.Networks = temp.Networks
     g.TargetIps = temp.TargetIps
-    g.Type = temp.Type
+    g.Type = *temp.Type
     g.WanName = temp.WanName
     return nil
 }
@@ -120,6 +124,17 @@ type tempGatewayPathPreferencesPath  struct {
     Name           *string              `json:"name,omitempty"`
     Networks       []string             `json:"networks,omitempty"`
     TargetIps      []string             `json:"target_ips,omitempty"`
-    Type           *GatewayPathTypeEnum `json:"type,omitempty"`
+    Type           *GatewayPathTypeEnum `json:"type"`
     WanName        *string              `json:"wan_name,omitempty"`
+}
+
+func (g *tempGatewayPathPreferencesPath) validate() error {
+    var errs []string
+    if g.Type == nil {
+        errs = append(errs, "required field `type` is missing for type `gateway_path_preferences_path`")
+    }
+    if len(errs) == 0 {
+        return nil
+    }
+    return errors.New(strings.Join (errs, "\n"))
 }

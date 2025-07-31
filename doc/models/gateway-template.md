@@ -80,6 +80,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
+      "via": "vpn",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
@@ -91,6 +92,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
+      "via": "vpn",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
