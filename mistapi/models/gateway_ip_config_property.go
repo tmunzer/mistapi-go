@@ -16,7 +16,9 @@ type GatewayIpConfigProperty struct {
 	// Optional list of secondary IPs in CIDR format
 	SecondaryIps []string `json:"secondary_ips,omitempty"`
 	// enum: `dhcp`, `static`
-	Type                 *IpTypeEnum            `json:"type,omitempty"`
+	Type *IpTypeEnum `json:"type,omitempty"`
+	// enum: `autoconf`, `dhcp`, `disabled`, `static`
+	Type6                *IpType6Enum           `json:"type6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -24,8 +26,8 @@ type GatewayIpConfigProperty struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayIpConfigProperty) String() string {
 	return fmt.Sprintf(
-		"GatewayIpConfigProperty[Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, SecondaryIps=%v, Type=%v, AdditionalProperties=%v]",
-		g.Ip, g.Ip6, g.Netmask, g.Netmask6, g.SecondaryIps, g.Type, g.AdditionalProperties)
+		"GatewayIpConfigProperty[Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, SecondaryIps=%v, Type=%v, Type6=%v, AdditionalProperties=%v]",
+		g.Ip, g.Ip6, g.Netmask, g.Netmask6, g.SecondaryIps, g.Type, g.Type6, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayIpConfigProperty.
@@ -34,7 +36,7 @@ func (g GatewayIpConfigProperty) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"ip", "ip6", "netmask", "netmask6", "secondary_ips", "type"); err != nil {
+		"ip", "ip6", "netmask", "netmask6", "secondary_ips", "type", "type6"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -62,6 +64,9 @@ func (g GatewayIpConfigProperty) toMap() map[string]any {
 	if g.Type != nil {
 		structMap["type"] = g.Type
 	}
+	if g.Type6 != nil {
+		structMap["type6"] = g.Type6
+	}
 	return structMap
 }
 
@@ -73,7 +78,7 @@ func (g *GatewayIpConfigProperty) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "ip6", "netmask", "netmask6", "secondary_ips", "type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ip", "ip6", "netmask", "netmask6", "secondary_ips", "type", "type6")
 	if err != nil {
 		return err
 	}
@@ -85,15 +90,17 @@ func (g *GatewayIpConfigProperty) UnmarshalJSON(input []byte) error {
 	g.Netmask6 = temp.Netmask6
 	g.SecondaryIps = temp.SecondaryIps
 	g.Type = temp.Type
+	g.Type6 = temp.Type6
 	return nil
 }
 
 // tempGatewayIpConfigProperty is a temporary struct used for validating the fields of GatewayIpConfigProperty.
 type tempGatewayIpConfigProperty struct {
-	Ip           *string     `json:"ip,omitempty"`
-	Ip6          *string     `json:"ip6,omitempty"`
-	Netmask      *string     `json:"netmask,omitempty"`
-	Netmask6     *string     `json:"netmask6,omitempty"`
-	SecondaryIps []string    `json:"secondary_ips,omitempty"`
-	Type         *IpTypeEnum `json:"type,omitempty"`
+	Ip           *string      `json:"ip,omitempty"`
+	Ip6          *string      `json:"ip6,omitempty"`
+	Netmask      *string      `json:"netmask,omitempty"`
+	Netmask6     *string      `json:"netmask6,omitempty"`
+	SecondaryIps []string     `json:"secondary_ips,omitempty"`
+	Type         *IpTypeEnum  `json:"type,omitempty"`
+	Type6        *IpType6Enum `json:"type6,omitempty"`
 }

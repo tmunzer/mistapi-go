@@ -6,9 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"strings"
-
 	"github.com/google/uuid"
+	"strings"
 )
 
 // DeviceAp represents a DeviceAp struct.

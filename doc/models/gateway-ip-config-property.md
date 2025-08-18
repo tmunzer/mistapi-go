@@ -17,6 +17,7 @@
 | `Netmask6` | `*string` | Optional | - |
 | `SecondaryIps` | `[]string` | Optional | Optional list of secondary IPs in CIDR format |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
+| `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br><br>**Default**: `"disabled"` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -30,6 +31,7 @@
     "192.168.60.1/26"
   ],
   "type": "static",
+  "type6": "static",
   "ip": "ip6",
   "ip6": "ip62",
   "exampleAdditionalProperty": {
