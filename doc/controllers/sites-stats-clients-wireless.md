@@ -174,10 +174,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -370,10 +366,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wired := false
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

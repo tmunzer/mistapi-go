@@ -13,7 +13,7 @@ Applications used for the Gateway configurations
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Addresses` | `[]string` | Optional | If `type`==`custom`, ip subnets (e.g. 10.0.0.0/8) |
+| `Addresses` | `[]string` | Optional | If `type`==`custom`, IPv4 and/or IPv6 subnets (e.g. 10.0.0.0/8, fd28::/128) |
 | `AppCategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Category Definitions](../../doc/controllers/constants-definitions.md#list-app-category-definitions) |
 | `AppSubcategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions) |
 | `Apps` | `[]string` | Optional | When `type`==`apps`, list of applications are available through:<br><br>* [List Applications](../../doc/controllers/constants-definitions.md#list-applications)<br>* [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)<br>* /insight/top_app_by-bytes?wired=true |
@@ -46,6 +46,12 @@ Applications used for the Gateway configurations
 
 ```json
 {
+  "addresses": [
+    "10.0.0.0/8",
+    "172.21.0.0/16",
+    "2001:db8:abcd:12::/64",
+    "fd28::/128"
+  ],
   "app_categories": [
     "Sports"
   ],
@@ -68,11 +74,6 @@ Applications used for the Gateway configurations
   "traffic_class": "best_effort",
   "traffic_type": "data_best_effort",
   "type": "custom",
-  "addresses": [
-    "addresses6",
-    "addresses7",
-    "addresses8"
-  ],
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

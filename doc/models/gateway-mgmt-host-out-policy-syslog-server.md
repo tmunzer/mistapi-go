@@ -14,8 +14,8 @@ Allows to define the host_out_policy per Syslog Server. The Property key is the 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Host` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | - |
 | `PathPreference` | `*string` | Optional | - |
+| `ServerName` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -23,8 +23,8 @@ Allows to define the host_out_policy per Syslog Server. The Property key is the 
 ```json
 {
   "host": "103.35.3.5",
-  "name": "server1",
   "path_preference": "dc_only",
+  "server_name": "dc_syslog_server",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

@@ -18,10 +18,10 @@ func TestOrgsMxEdgesTestListOrgMxEdges(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    forSites := models.MxedgeForSiteEnum("any")
+    forSite := models.MxedgeForSiteEnum("any")
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSites, &limit, &page)
+    apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSite, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -41,10 +41,10 @@ func TestOrgsMxEdgesTestListOrgMxEdges1(t *testing.T) {
     if errUUID != nil {
         t.Error(errUUID)
     }
-    forSites := models.MxedgeForSiteEnum("any")
+    forSite := models.MxedgeForSiteEnum("any")
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSites, &limit, &page)
+    apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSite, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

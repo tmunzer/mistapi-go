@@ -51,6 +51,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RssiZone{
     Devices:              []models.RssiZoneDevice{
         models.RssiZoneDevice{
+            DeviceId:             uuid.MustParse(""),
             Rssi:                 0,
         },
     },
@@ -316,6 +317,7 @@ rssizoneId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.RssiZone{
     Devices:              []models.RssiZoneDevice{
         models.RssiZoneDevice{
+            DeviceId:             uuid.MustParse(""),
             Rssi:                 0,
         },
     },

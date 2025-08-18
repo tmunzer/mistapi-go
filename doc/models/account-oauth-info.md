@@ -40,10 +40,6 @@
       "name": "Test Compay1 Ltd",
       "region": "americas",
       "service_account_name": "Corp SA",
-      "service_connections": [
-        "sc1",
-        "sc2"
-      ],
       "smartgroup_name": "CompliantGroup1",
       "tsg_id": "189953456",
       "client_id": "client_id2",

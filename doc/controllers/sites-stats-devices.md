@@ -441,10 +441,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 switchMac := "5c5b350e0410"
 
 apiResponse, err := sitesStatsDevices.GetSiteSwitchesMetrics(ctx, siteId, nil, nil, &switchMac)

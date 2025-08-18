@@ -64,10 +64,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgPskPortalLogsCountDistinctEnum_PSKPORTALID
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -391,10 +387,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -556,29 +548,11 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 limit := 100
 
 page := 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 apiResponse, err := orgsPskPortals.SearchOrgPskPortalLogs(ctx, orgId, nil, nil, &duration, &limit, &page, nil, nil, nil, nil, nil, nil, nil)
 if err != nil {
@@ -809,10 +783,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
 
 resp, err := orgsPskPortals.UploadOrgPskPortalImage(ctx, orgId, pskportalId, nil, nil)
 if err != nil {

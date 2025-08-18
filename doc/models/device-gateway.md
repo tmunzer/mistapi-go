@@ -125,7 +125,7 @@ Device gateway
         "key0": null
       },
       "gateway": "gateway8",
-      "ip_end": "ip_end4",
+      "ip6_end": "ip6_end8",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

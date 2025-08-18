@@ -20,7 +20,6 @@
 ```json
 {
   "icmp": {
-    "name": "name2",
     "tenants": [
       "tenants3"
     ],
@@ -30,7 +29,6 @@
     }
   },
   "snmp": {
-    "name": "name4",
     "tenants": [
       "tenants5"
     ],

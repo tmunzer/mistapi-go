@@ -122,6 +122,7 @@ type ClientInterface interface {
     OrgsWxRules() *OrgsWxRules
     OrgsWxTags() *OrgsWxTags
     OrgsWxTunnels() *OrgsWxTunnels
+    SitesSprectrumAnalysis() *SitesSprectrumAnalysis
     Sites() *Sites
     SitesAlarms() *SitesAlarms
     SitesAPTemplates() *SitesAPTemplates
@@ -173,6 +174,7 @@ type ClientInterface interface {
     SitesSLEs() *SitesSLEs
     SitesSyntheticTests() *SitesSyntheticTests
     SitesUISettings() *SitesUISettings
+    OrgsUISettings() *OrgsUISettings
     SitesVBeacons() *SitesVBeacons
     SitesVPNs() *SitesVPNs
     SitesWANUsages() *SitesWANUsages
@@ -330,6 +332,7 @@ type client struct {
     orgsWxRules                      OrgsWxRules
     orgsWxTags                       OrgsWxTags
     orgsWxTunnels                    OrgsWxTunnels
+    sitesSprectrumAnalysis           SitesSprectrumAnalysis
     sites                            Sites
     sitesAlarms                      SitesAlarms
     sitesAPTemplates                 SitesAPTemplates
@@ -381,6 +384,7 @@ type client struct {
     sitesSLEs                        SitesSLEs
     sitesSyntheticTests              SitesSyntheticTests
     sitesUISettings                  SitesUISettings
+    orgsUISettings                   OrgsUISettings
     sitesVBeacons                    SitesVBeacons
     sitesVPNs                        SitesVPNs
     sitesWANUsages                   SitesWANUsages
@@ -430,7 +434,7 @@ func NewClient(configuration Configuration) ClientInterface {
         configuration: configuration,
     }
     
-    client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2506.1.6")
+    client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2508.1.3")
     client.callBuilderFactory = callBuilderHandler(
     	func(server string) string {
     		if server == "" {
@@ -557,6 +561,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.orgsWxRules = *NewOrgsWxRules(*baseController)
     client.orgsWxTags = *NewOrgsWxTags(*baseController)
     client.orgsWxTunnels = *NewOrgsWxTunnels(*baseController)
+    client.sitesSprectrumAnalysis = *NewSitesSprectrumAnalysis(*baseController)
     client.sites = *NewSites(*baseController)
     client.sitesAlarms = *NewSitesAlarms(*baseController)
     client.sitesAPTemplates = *NewSitesAPTemplates(*baseController)
@@ -608,6 +613,7 @@ func NewClient(configuration Configuration) ClientInterface {
     client.sitesSLEs = *NewSitesSLEs(*baseController)
     client.sitesSyntheticTests = *NewSitesSyntheticTests(*baseController)
     client.sitesUISettings = *NewSitesUISettings(*baseController)
+    client.orgsUISettings = *NewOrgsUISettings(*baseController)
     client.sitesVBeacons = *NewSitesVBeacons(*baseController)
     client.sitesVPNs = *NewSitesVPNs(*baseController)
     client.sitesWANUsages = *NewSitesWANUsages(*baseController)
@@ -1206,6 +1212,11 @@ func (c *client) OrgsWxTunnels() *OrgsWxTunnels {
     return &c.orgsWxTunnels
 }
 
+// SitesSprectrumAnalysis returns the sitesSprectrumAnalysis instance of the client.
+func (c *client) SitesSprectrumAnalysis() *SitesSprectrumAnalysis {
+    return &c.sitesSprectrumAnalysis
+}
+
 // Sites returns the sites instance of the client.
 func (c *client) Sites() *Sites {
     return &c.sites
@@ -1459,6 +1470,11 @@ func (c *client) SitesSyntheticTests() *SitesSyntheticTests {
 // SitesUISettings returns the sitesUISettings instance of the client.
 func (c *client) SitesUISettings() *SitesUISettings {
     return &c.sitesUISettings
+}
+
+// OrgsUISettings returns the orgsUISettings instance of the client.
+func (c *client) OrgsUISettings() *OrgsUISettings {
+    return &c.orgsUISettings
 }
 
 // SitesVBeacons returns the sitesVBeacons instance of the client.

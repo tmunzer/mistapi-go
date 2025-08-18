@@ -60,10 +60,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteGuestsCountDistinctEnum_AUTHMETHOD
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -263,8 +259,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 apiResponse, err := sitesGuests.ListSiteAllGuestAuthorizations(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
@@ -339,8 +333,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 crossSite := false
 
@@ -431,15 +423,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 wlanId := "00000000-0000-0000-0000-000000000000"
 
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

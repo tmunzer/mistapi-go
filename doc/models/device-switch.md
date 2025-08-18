@@ -2,6 +2,7 @@
 # Device Switch
 
 You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template
+In addition it is possible to use the `port_config_overwrite` to overwrite some attributes of the port_usage without having to create a new port_usage.
 
 *This model accepts additional fields of type interface{}.*
 
@@ -32,7 +33,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `Image1Url` | `models.Optional[string]` | Optional | - |
 | `Image2Url` | `models.Optional[string]` | Optional | - |
 | `Image3Url` | `models.Optional[string]` | Optional | - |
-| `IotConfig` | [`map[string]models.SwitchIotPort`](../../doc/models/switch-iot-port.md) | Optional | Property Key is the IOT port name, e.g.:<br><br>* `IN0` or `IN1` for the FPC0 input port with 5V triggered inputs<br>* `OUT1` for the FPC0 output port (can only be triggered by either IN0 or IN1)<br>* "X/IN0`,`X/IN1`and`X/OUT` are used to define IOT ports on VC members |
+| `IotConfig` | [`map[string]models.SwitchIotPort`](../../doc/models/switch-iot-port.md) | Optional | Property Key is the IOT port name, e.g.:<br><br>* `IN0` or `IN1` for the FPC0 input port with 5V triggered inputs<br>* `OUT1` for the FPC0 output port (can only be triggered by either IN0 or IN1)<br>* "X/IN0`, `X/IN1`and`X/OUT` are used to define IOT ports on VC members |
 | `IpConfig` | [`*models.JunosIpConfig`](../../doc/models/junos-ip-config.md) | Optional | Junos IP Config |
 | `LocalPortConfig` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Optional | Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `Mac` | `*string` | Optional | Device MAC address |
@@ -51,6 +52,7 @@ You can configure `port_usages` and `networks` settings at the device level, but
 | `OspfConfig` | [`*models.SwitchOspfConfig`](../../doc/models/switch-ospf-config.md) | Optional | - |
 | `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Property key is the network name. Defines the additional IP Addresses configured on the device. |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
+| `PortConfigOverwrite` | [`map[string]models.SwitchPortConfigOverwrite`](../../doc/models/switch-port-config-overwrite.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10"). This can be used to override some attributes of the port_usage without having to create a new port_usage. |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
 | `RadiusConfig` | [`*models.SwitchRadiusConfig`](../../doc/models/switch-radius-config.md) | Optional | Junos Radius config |

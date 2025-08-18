@@ -48,8 +48,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 deviceMac := "001122334455"
 
 app := "Example App"

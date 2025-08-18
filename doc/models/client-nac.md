@@ -41,6 +41,7 @@
 | `NacruleId` | `[]string` | Optional | IDs of the NAC Rules used to authenticate the client for the specified duration |
 | `NacruleMatched` | `*bool` | Optional | - |
 | `NacruleName` | `[]string` | Optional | Name of the NAC Rules used to authenticate the client for the specified duration |
+| `NasIp` | `*string` | Optional | - |
 | `NasVendor` | `[]string` | Optional | Vendor name of the NAS for the specified duration |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PortId` | `[]string` | Optional | Port-ids the client was connected to  for the specified duration |

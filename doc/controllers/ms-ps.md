@@ -238,10 +238,6 @@ q := "search"
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := mSPs.SearchMspOrgGroup(ctx, mspId, mType, &q, &limit, nil, nil, &duration)

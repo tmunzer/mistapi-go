@@ -72,8 +72,6 @@ imageNumber := 110
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-
-
 resp, err := sitesDevices.AddSiteDeviceImage(ctx, siteId, deviceId, imageNumber, file, nil)
 if err != nil {
     log.Fatalln(err)
@@ -194,14 +192,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -292,16 +282,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDeviceEventsCountDistinctEnum_MODEL
 
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -385,10 +365,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDeviceLastConfigCountDistinctEnum_MAC
-
-
-
-
 
 duration := "10m"
 
@@ -495,32 +471,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDevicesCountDistinctEnum_MODEL
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -730,6 +680,9 @@ if err != nil {
     "enabled": false,
     "host": "aero.pvt.net",
     "locate_connected": true
+  },
+  "airista": {
+    "enabled": false
   },
   "ble_config": {
     "beacon_enabled": false,
@@ -1034,8 +987,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeWithAllEnum_AP
 
-
-
 limit := 100
 
 page := 1
@@ -1114,13 +1065,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -1265,25 +1210,11 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
 lastBy := "port_id"
 
 includes := "ext_tunnel"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -1380,17 +1311,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -1495,12 +1416,25 @@ SearchSiteDevices(
     hostname *string,
     mType *models.DeviceTypeDefaultApEnum,
     model *string,
+    ip *string,
     mac *string,
+    extIp *string,
     version *string,
     powerConstrained *bool,
     ipAddress *string,
     mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
     mxedgeId *uuid.UUID,
+    mxedgeIds []uuid.UUID,
+    lastHostname *string,
+    lastConfigStatus *string,
+    radiusStats map[string]models.DeviceSearchRadiusStat,
+    cpu *string,
+    node0Mac *string,
+    clustered *bool,
+    t128agentVersion *string,
+    node1Mac *string,
+    node *models.HaClusterNodeEnum,
+    evpntopoId *string,
     lldpSystemName *string,
     lldpSystemDesc *string,
     lldpPortId *string,
@@ -1531,16 +1465,29 @@ SearchSiteDevices(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | Device model |
+| `ip` | `*string` | Query, Optional | Device IP Address |
 | `mac` | `*string` | Query, Optional | Device MAC |
+| `extIp` | `*string` | Query, Optional | Device external ip |
 | `version` | `*string` | Query, Optional | Version |
 | `powerConstrained` | `*bool` | Query, Optional | power_constrained |
 | `ipAddress` | `*string` | Query, Optional | - |
-| `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, up / down |
-| `mxedgeId` | `*uuid.UUID` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
-| `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
-| `lldpSystemDesc` | `*string` | Query, Optional | LLDP system description |
-| `lldpPortId` | `*string` | Query, Optional | LLDP port id |
-| `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
+| `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | For APs only, MxTunnel status, up / down. |
+| `mxedgeId` | `*uuid.UUID` | Query, Optional | For APs only, Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxedgeIds` | `[]uuid.UUID` | Query, Optional | For APs only, list of Mist Edge id, if AP is connecting to a Mist Edge |
+| `lastHostname` | `*string` | Query, Optional | For Switches and Gateways only, last hostname |
+| `lastConfigStatus` | `*string` | Query, Optional | For Switches and Gateways only, last configuration status of the switch/gateway |
+| `radiusStats` | [`map[string]models.DeviceSearchRadiusStat`](../../doc/models/device-search-radius-stat.md) | Query, Optional | For Switches and Gateways only, Key-value pairs where the key is the RADIUS server address and the value contains authentication statistics |
+| `cpu` | `*string` | Query, Optional | For Switches and Gateways only, max cpu usage |
+| `node0Mac` | `*string` | Query, Optional | For Gateways only, node0 MAC Address |
+| `clustered` | `*bool` | Query, Optional | For Gateways only |
+| `t128agentVersion` | `*string` | Query, Optional | For Gateways (SSR) only, version of 128T agent |
+| `node1Mac` | `*string` | Query, Optional | For Gateways only, node1 MAC Address |
+| `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | For Gateways only. enum: `node0`, `node1` |
+| `evpntopoId` | `*string` | Query, Optional | For Switches only, EVPN topology id |
+| `lldpSystemName` | `*string` | Query, Optional | For APs only, LLDP system name |
+| `lldpSystemDesc` | `*string` | Query, Optional | For APs only, LLDP system description |
+| `lldpPortId` | `*string` | Query, Optional | For APs only, LLDP port id |
+| `lldpMgmtAddr` | `*string` | Query, Optional | For APs only, LLDP management ip address |
 | `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
 | `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
 | `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
@@ -1567,61 +1514,19 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 mType := models.DeviceTypeDefaultApEnum_AP
-
-
-
-
-
-
-
-
 
 ipAddress := "192.168.1.1"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
-
-
 
 stats := false
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
-apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &sort, nil, &stats, &limit, nil, nil, &duration)
+apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &sort, nil, &stats, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1799,6 +1704,7 @@ body := models.MistDeviceContainer.FromDeviceAp(models.DeviceAp{
     Notes:                models.ToPointer("slightly off center"),
     Orientation:          models.ToPointer(45),
     PoePassthrough:       models.ToPointer(false),
+    Type:                 "",
     Vars:                 map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
@@ -1833,6 +1739,9 @@ if err != nil {
     "enabled": false,
     "host": "aero.pvt.net",
     "locate_connected": true
+  },
+  "airista": {
+    "enabled": false
   },
   "ble_config": {
     "beacon_enabled": false,

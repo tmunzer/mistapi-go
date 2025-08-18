@@ -23,6 +23,7 @@ Gateway Site settings
 | `DisableUsb` | `*bool` | Optional | For SSR and SRX, disable usb interface<br><br>**Default**: `false` |
 | `FipsEnabled` | `*bool` | Optional | **Default**: `false` |
 | `ProbeHosts` | `[]string` | Optional | - |
+| `ProbeHostsv6` | `[]string` | Optional | - |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | Restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
 | `RootPassword` | `*string` | Optional | For SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
@@ -43,6 +44,9 @@ Gateway Site settings
   "fips_enabled": false,
   "probe_hosts": [
     "8.8.8.8"
+  ],
+  "probe_hostsv6": [
+    "2001:4860:4860::8888"
   ],
   "security_log_source_address": "192.168.1.1",
   "security_log_source_interface": "ge-0/0/1.0",

@@ -139,12 +139,6 @@ by := "user"
 
 reason := "test failed"
 
-
-
-
-
-
-
 apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)

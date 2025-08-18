@@ -25,13 +25,13 @@ func NewOrgsSCEP(baseController baseController) *OrgsSCEP {
 }
 
 // DisableOrgMistScep takes context, orgId as parameters and
-// returns an models.ApiResponse with models.OrgSettingScep data and
+// returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
 // Disable Mist SCEP Org setting
 func (o *OrgsSCEP) DisableOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error) {
     req := o.prepareRequest(ctx, "DELETE", "/api/v1/orgs/%v/setting/mist_scep")
     req.AppendTemplateParams(orgId)
@@ -54,24 +54,24 @@ func (o *OrgsSCEP) DisableOrgMistScep(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.OrgSettingScep
+    var result models.OrgSettingScepResponse
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.OrgSettingScep](decoder)
+    result, err = utilities.DecodeResults[models.OrgSettingScepResponse](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // GetOrgMistScep takes context, orgId as parameters and
-// returns an models.ApiResponse with models.OrgSettingScep data and
+// returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
 // Get Mist SCEP Org setting
 func (o *OrgsSCEP) GetOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error) {
     req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/setting/mist_scep")
     req.AppendTemplateParams(orgId)
@@ -94,25 +94,25 @@ func (o *OrgsSCEP) GetOrgMistScep(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result models.OrgSettingScep
+    var result models.OrgSettingScepResponse
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.OrgSettingScep](decoder)
+    result, err = utilities.DecodeResults[models.OrgSettingScepResponse](decoder)
     return models.NewApiResponse(result, resp), err
 }
 
 // UpdateOrgMistScep takes context, orgId, body as parameters and
-// returns an models.ApiResponse with models.OrgSettingScep data and
+// returns an models.ApiResponse with models.OrgSettingScepResponse data and
 // an error if there was an issue with the request or response.
 // Update Mist SCEP Org setting
 func (o *OrgsSCEP) UpdateOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.OrgSettingScep) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error) {
     req := o.prepareRequest(ctx, "PUT", "/api/v1/orgs/%v/setting/mist_scep")
     req.AppendTemplateParams(orgId)
@@ -139,13 +139,13 @@ func (o *OrgsSCEP) UpdateOrgMistScep(
         req.Json(body)
     }
     
-    var result models.OrgSettingScep
+    var result models.OrgSettingScepResponse
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[models.OrgSettingScep](decoder)
+    result, err = utilities.DecodeResults[models.OrgSettingScepResponse](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

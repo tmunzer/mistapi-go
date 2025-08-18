@@ -367,7 +367,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, nasIp, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -379,6 +379,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     authType *string,
     vlan *string,
     nasVendor *string,
+    nasIp *string,
     idpId *string,
     ssid *string,
     username *string,
@@ -440,6 +441,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
     }
     if nasVendor != nil {
         req.QueryParam("nas_vendor", *nasVendor)
+    }
+    if nasIp != nil {
+        req.QueryParam("nas_ip", *nasIp)
     }
     if idpId != nil {
         req.QueryParam("idp_id", *idpId)

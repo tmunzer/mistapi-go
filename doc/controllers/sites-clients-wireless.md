@@ -74,24 +74,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientEventsCountDistinctEnum_ENUMTYPE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -191,26 +173,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientSessionsCountDistinctEnum_MAC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -312,25 +274,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientsCountDistinctEnum_HOSTNAME
 
-
-
-
-
 ipAddress := "192.168.1.1"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -429,22 +373,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 clientMac := "0000000000ab"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -552,27 +480,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -682,33 +590,9 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -822,31 +706,9 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 ipAddress := "192.168.1.1"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

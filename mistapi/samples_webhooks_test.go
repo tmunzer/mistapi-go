@@ -25,21 +25,6 @@ func TestSamplesWebhooksTestAlarms(t *testing.T) {
     testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
-// TestSamplesWebhooksTestAssetRaw tests the behavior of the SamplesWebhooks
-func TestSamplesWebhooksTestAssetRaw(t *testing.T) {
-    ctx := context.Background()
-    var body models.WebhookAssetRaw
-    errBody := json.Unmarshal([]byte(`{"events":[{"asset_id":"b4695157-0d1d-4da0-8f9e-5c53149389e4","beam":0,"device_id":"3bafab7b-4400-4bcf-8e6e-09f954699940","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","mac":"string","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","mfg_company_id":0,"mfg_data":"string","rssi":0,"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0}],"topic":"asset-raw"}`), &body)
-    if errBody != nil {
-        t.Errorf("Cannot parse the model object.")
-    }
-    resp, err := samplesWebhooks.AssetRaw(ctx, &body)
-    if err != nil {
-        t.Errorf("Endpoint call failed: %v", err)
-    }
-    testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
-}
-
 // TestSamplesWebhooksTestAudits tests the behavior of the SamplesWebhooks
 func TestSamplesWebhooksTestAudits(t *testing.T) {
     ctx := context.Background()

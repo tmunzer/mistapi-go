@@ -692,8 +692,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 channel := models.SsrVersionChannelEnum_STABLE
 
-
-
 apiResponse, err := utilitiesUpgrade.ListOrgAvailableSsrVersions(ctx, orgId, &channel, nil)
 if err != nil {
     log.Fatalln(err)
@@ -949,8 +947,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
-
-
 apiResponse, err := utilitiesUpgrade.ListSiteAvailableDeviceVersions(ctx, siteId, &mType, nil)
 if err != nil {
     log.Fatalln(err)
@@ -1018,8 +1014,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 apiResponse, err := utilitiesUpgrade.ListSiteDeviceUpgrades(ctx, siteId, nil)
 if err != nil {
@@ -1169,6 +1163,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeOrgDevices{
     AllSites:                models.ToPointer(false),
+    CanaryPhases:            nil,
     DownloadStrategy:        models.ToPointer(models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG),
     MaxFailurePercentage:    models.ToPointer(5),
     P2pClusterSize:          models.ToPointer(0),
@@ -1504,6 +1499,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.UpgradeSiteDevices{
+    CanaryPhases:            nil,
     Force:                   models.ToPointer(false),
     MaxFailurePercentage:    models.ToPointer(5),
     P2pClusterSize:          models.ToPointer(0),

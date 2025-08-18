@@ -52,15 +52,9 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 metric := "metric8"
 
-
-
 duration := "10m"
 
 interval := "10m"
-
-
-
-
 
 apiResponse, err := mSPsSLEs.GetMspSle(ctx, mspId, metric, nil, &duration, &interval, nil, nil)
 if err != nil {

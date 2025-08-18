@@ -64,10 +64,6 @@ rating := 5
 
 app := "zoom"
 
-
-
-
-
 limit := 100
 
 apiResponse, err := sitesStatsCalls.CountSiteCalls(ctx, siteId, &distinct, &rating, &app, nil, nil, &limit)
@@ -149,10 +145,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 apMac := "001122334455"
 
 app := "zoom"
-
-
-
-
 
 apiResponse, err := sitesStatsCalls.GetSiteCallsSummary(ctx, siteId, &apMac, &app, nil, nil)
 if err != nil {
@@ -243,10 +235,6 @@ meetingId := "1234567890abcdef"
 mac := "001122334455"
 
 app := "zoom"
-
-
-
-
 
 duration := "10m"
 
@@ -420,10 +408,6 @@ app := "zoom"
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration)
@@ -501,10 +485,6 @@ meetingId := "1234567890abcdef"
 mac := "001122334455"
 
 app := "zoom"
-
-
-
-
 
 duration := "10m"
 

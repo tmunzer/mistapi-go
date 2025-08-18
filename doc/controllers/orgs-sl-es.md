@@ -57,12 +57,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
 duration := "10m"
 
 interval := "10m"
@@ -166,15 +160,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 metric := "metric8"
 
-
-
 duration := "10m"
 
 interval := "10m"
-
-
-
-
 
 apiResponse, err := orgsSLEs.GetOrgSle(ctx, orgId, metric, nil, &duration, &interval, nil, nil)
 if err != nil {

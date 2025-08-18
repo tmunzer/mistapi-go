@@ -32,9 +32,9 @@
       "peer_site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "is_active": false,
+      "jitter": 27.56,
       "latency": 250.14,
-      "mac": "mac0",
-      "mos": 27.76,
+      "loss": 36.76,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

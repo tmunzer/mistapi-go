@@ -150,10 +150,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 apiResponse, err := orgsNACCRL.ImportOrgNacCrl(ctx, orgId, nil, nil)
 if err != nil {
     log.Fatalln(err)

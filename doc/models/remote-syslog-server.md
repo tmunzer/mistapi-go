@@ -19,6 +19,7 @@
 | `Port` | [`*models.RemoteSyslogServerPort`](../../doc/models/containers/remote-syslog-server-port.md) | Optional | Syslog Service Port, value from 1 to 65535 |
 | `Protocol` | [`*models.RemoteSyslogServerProtocolEnum`](../../doc/models/remote-syslog-server-protocol-enum.md) | Optional | enum: `tcp`, `udp`<br><br>**Default**: `"udp"` |
 | `RoutingInstance` | `*string` | Optional | - |
+| `ServerName` | `*string` | Optional | Name of the server |
 | `Severity` | [`*models.RemoteSyslogSeverityEnum`](../../doc/models/remote-syslog-severity-enum.md) | Optional | enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`<br><br>**Default**: `"any"` |
 | `SourceAddress` | `*string` | Optional | If source_address is configured, will use the vlan firstly otherwise use source_ip |
 | `StructuredData` | `*bool` | Optional | - |
@@ -34,6 +35,7 @@
   "match": "!alarm|ntp|errors.crc_error[chan]",
   "protocol": "udp",
   "routing_instance": "routing-instance-name",
+  "server_name": "syslogd.internal",
   "severity": "any",
   "contents": [
     {

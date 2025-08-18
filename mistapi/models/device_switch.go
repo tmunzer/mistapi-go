@@ -12,6 +12,7 @@ import (
 
 // DeviceSwitch represents a DeviceSwitch struct.
 // You can configure `port_usages` and `networks` settings at the device level, but most of the time it's better use the Site Setting to achieve better consistency and be able to re-use the same settings across switches entries defined here will "replace" those defined in Site Setting/Network Template
+// In addition it is possible to use the `port_config_overwrite` to overwrite some attributes of the port_usage without having to create a new port_usage.
 type DeviceSwitch struct {
     AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
     // ACL Tags to identify traffic source or destination. Key name is the tag name
@@ -83,6 +84,8 @@ type DeviceSwitch struct {
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     // Property key is the port name or range (e.g. "ge-0/0/0-10")
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
+    // Property key is the port name or range (e.g. "ge-0/0/0-10"). This can be used to override some attributes of the port_usage without having to create a new port_usage.
+    PortConfigOverwrite   map[string]SwitchPortConfigOverwrite   `json:"port_config_overwrite,omitempty"`
     // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
@@ -124,8 +127,8 @@ type DeviceSwitch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceSwitch) String() string {
     return fmt.Sprintf(
-    	"DeviceSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AggregateRoutes=%v, AggregateRoutes6=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpSnooping=%v, DhcpdConfig=%v, DisableAutoConfig=%v, DnsServers=%v, DnsSuffix=%v, EvpnConfig=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LocalPortConfig=%v, Mac=%v, Managed=%v, MapId=%v, MistNac=%v, Model=%v, ModifiedTime=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, OspfAreas=%v, OspfConfig=%v, OtherIpConfigs=%v, PortConfig=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, Role=%v, RouterId=%v, Serial=%v, SiteId=%v, SnmpConfig=%v, StpConfig=%v, SwitchMgmt=%v, Type=%v, UseRouterIdAsSourceIp=%v, Vars=%v, VirtualChassis=%v, VrfConfig=%v, VrfInstances=%v, VrrpConfig=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-    	d.AclPolicies, d.AclTags, d.AdditionalConfigCmds, d.AggregateRoutes, d.AggregateRoutes6, d.CreatedTime, d.DeviceprofileId, d.DhcpSnooping, d.DhcpdConfig, d.DisableAutoConfig, d.DnsServers, d.DnsSuffix, d.EvpnConfig, d.ExtraRoutes, d.ExtraRoutes6, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LocalPortConfig, d.Mac, d.Managed, d.MapId, d.MistNac, d.Model, d.ModifiedTime, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.OspfAreas, d.OspfConfig, d.OtherIpConfigs, d.PortConfig, d.PortMirroring, d.PortUsages, d.RadiusConfig, d.RemoteSyslog, d.Role, d.RouterId, d.Serial, d.SiteId, d.SnmpConfig, d.StpConfig, d.SwitchMgmt, d.Type, d.UseRouterIdAsSourceIp, d.Vars, d.VirtualChassis, d.VrfConfig, d.VrfInstances, d.VrrpConfig, d.X, d.Y, d.AdditionalProperties)
+    	"DeviceSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AggregateRoutes=%v, AggregateRoutes6=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpSnooping=%v, DhcpdConfig=%v, DisableAutoConfig=%v, DnsServers=%v, DnsSuffix=%v, EvpnConfig=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LocalPortConfig=%v, Mac=%v, Managed=%v, MapId=%v, MistNac=%v, Model=%v, ModifiedTime=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, OspfAreas=%v, OspfConfig=%v, OtherIpConfigs=%v, PortConfig=%v, PortConfigOverwrite=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, Role=%v, RouterId=%v, Serial=%v, SiteId=%v, SnmpConfig=%v, StpConfig=%v, SwitchMgmt=%v, Type=%v, UseRouterIdAsSourceIp=%v, Vars=%v, VirtualChassis=%v, VrfConfig=%v, VrfInstances=%v, VrrpConfig=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	d.AclPolicies, d.AclTags, d.AdditionalConfigCmds, d.AggregateRoutes, d.AggregateRoutes6, d.CreatedTime, d.DeviceprofileId, d.DhcpSnooping, d.DhcpdConfig, d.DisableAutoConfig, d.DnsServers, d.DnsSuffix, d.EvpnConfig, d.ExtraRoutes, d.ExtraRoutes6, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LocalPortConfig, d.Mac, d.Managed, d.MapId, d.MistNac, d.Model, d.ModifiedTime, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.OspfAreas, d.OspfConfig, d.OtherIpConfigs, d.PortConfig, d.PortConfigOverwrite, d.PortMirroring, d.PortUsages, d.RadiusConfig, d.RemoteSyslog, d.Role, d.RouterId, d.Serial, d.SiteId, d.SnmpConfig, d.StpConfig, d.SwitchMgmt, d.Type, d.UseRouterIdAsSourceIp, d.Vars, d.VirtualChassis, d.VrfConfig, d.VrfInstances, d.VrrpConfig, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceSwitch.
@@ -134,7 +137,7 @@ func (d DeviceSwitch) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(d.AdditionalProperties,
-        "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y"); err != nil {
+        "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(d.toMap())
@@ -270,6 +273,9 @@ func (d DeviceSwitch) toMap() map[string]any {
     if d.PortConfig != nil {
         structMap["port_config"] = d.PortConfig
     }
+    if d.PortConfigOverwrite != nil {
+        structMap["port_config_overwrite"] = d.PortConfigOverwrite
+    }
     if d.PortMirroring != nil {
         structMap["port_mirroring"] = d.PortMirroring
     }
@@ -343,7 +349,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
     if err != nil {
     	return err
     }
@@ -387,6 +393,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
     d.OspfConfig = temp.OspfConfig
     d.OtherIpConfigs = temp.OtherIpConfigs
     d.PortConfig = temp.PortConfig
+    d.PortConfigOverwrite = temp.PortConfigOverwrite
     d.PortMirroring = temp.PortMirroring
     d.PortUsages = temp.PortUsages
     d.RadiusConfig = temp.RadiusConfig
@@ -450,6 +457,7 @@ type tempDeviceSwitch  struct {
     OspfConfig            *SwitchOspfConfig                      `json:"ospf_config,omitempty"`
     OtherIpConfigs        map[string]JunosOtherIpConfig          `json:"other_ip_configs,omitempty"`
     PortConfig            map[string]JunosPortConfig             `json:"port_config,omitempty"`
+    PortConfigOverwrite   map[string]SwitchPortConfigOverwrite   `json:"port_config_overwrite,omitempty"`
     PortMirroring         map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
     PortUsages            map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
     RadiusConfig          *SwitchRadiusConfig                    `json:"radius_config,omitempty"`

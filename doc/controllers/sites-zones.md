@@ -72,17 +72,11 @@ zoneType := models.ZoneTypeEnum_RSSIZONES
 
 distinct := models.SiteZoneCountDistinctEnum_SCOPEID
 
-
-
 user := "b0c4e7001543"
 
 scopeId := "8bfc2490-d726-3587-038d-cb2e71bd2330"
 
 scope := models.ZoneScopeEnum_SITE
-
-
-
-
 
 duration := "10m"
 
@@ -466,17 +460,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 zoneType := models.ZoneTypeEnum_RSSIZONES
 
-
-
 user := "b0c4e7001543"
 
 scopeId := "8bfc2490-d726-3587-038d-cb2e71bd2330"
 
 scope := models.VisitsScopeEnum_SITE
-
-
-
-
 
 duration := "10m"
 

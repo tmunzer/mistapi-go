@@ -175,6 +175,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsWxRules() | Gets OrgsWxRules |
 | OrgsWxTags() | Gets OrgsWxTags |
 | OrgsWxTunnels() | Gets OrgsWxTunnels |
+| SitesSprectrumAnalysis() | Gets SitesSprectrumAnalysis |
 | Sites() | Gets Sites |
 | SitesAlarms() | Gets SitesAlarms |
 | SitesAPTemplates() | Gets SitesAPTemplates |
@@ -226,6 +227,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesSLEs() | Gets SitesSLEs |
 | SitesSyntheticTests() | Gets SitesSyntheticTests |
 | SitesUISettings() | Gets SitesUISettings |
+| OrgsUISettings() | Gets OrgsUISettings |
 | SitesVBeacons() | Gets SitesVBeacons |
 | SitesVPNs() | Gets SitesVPNs |
 | SitesWANUsages() | Gets SitesWANUsages |

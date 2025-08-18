@@ -12,11 +12,17 @@ import (
 type VpnPeerStat struct {
     // Redundancy status of the associated interface
     IsActive             *bool                  `json:"is_active,omitempty"`
+    // Jitter in milliseconds
+    Jitter               *float64               `json:"jitter,omitempty"`
     // Last seen timestamp
     LastSeen             Optional[float64]      `json:"last_seen"`
+    // Latency in milliseconds
     Latency              *float64               `json:"latency,omitempty"`
+    // Packet loss in percentage
+    Loss                 *float64               `json:"loss,omitempty"`
     // Router mac address
     Mac                  *string                `json:"mac,omitempty"`
+    // Mean Opinion Score, a measure of the quality of the VPN link
     Mos                  *float64               `json:"mos,omitempty"`
     Mtu                  *int                   `json:"mtu,omitempty"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
@@ -41,8 +47,8 @@ type VpnPeerStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v VpnPeerStat) String() string {
     return fmt.Sprintf(
-    	"VpnPeerStat[IsActive=%v, LastSeen=%v, Latency=%v, Mac=%v, Mos=%v, Mtu=%v, OrgId=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, SiteId=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
-    	v.IsActive, v.LastSeen, v.Latency, v.Mac, v.Mos, v.Mtu, v.OrgId, v.PeerMac, v.PeerPortId, v.PeerRouterName, v.PeerSiteId, v.PortId, v.RouterName, v.SiteId, v.Type, v.Up, v.Uptime, v.AdditionalProperties)
+    	"VpnPeerStat[IsActive=%v, Jitter=%v, LastSeen=%v, Latency=%v, Loss=%v, Mac=%v, Mos=%v, Mtu=%v, OrgId=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, SiteId=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
+    	v.IsActive, v.Jitter, v.LastSeen, v.Latency, v.Loss, v.Mac, v.Mos, v.Mtu, v.OrgId, v.PeerMac, v.PeerPortId, v.PeerRouterName, v.PeerSiteId, v.PortId, v.RouterName, v.SiteId, v.Type, v.Up, v.Uptime, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VpnPeerStat.
@@ -51,7 +57,7 @@ func (v VpnPeerStat) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(v.AdditionalProperties,
-        "is_active", "last_seen", "latency", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime"); err != nil {
+        "is_active", "jitter", "last_seen", "latency", "loss", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(v.toMap())
@@ -64,6 +70,9 @@ func (v VpnPeerStat) toMap() map[string]any {
     if v.IsActive != nil {
         structMap["is_active"] = v.IsActive
     }
+    if v.Jitter != nil {
+        structMap["jitter"] = v.Jitter
+    }
     if v.LastSeen.IsValueSet() {
         if v.LastSeen.Value() != nil {
             structMap["last_seen"] = v.LastSeen.Value()
@@ -73,6 +82,9 @@ func (v VpnPeerStat) toMap() map[string]any {
     }
     if v.Latency != nil {
         structMap["latency"] = v.Latency
+    }
+    if v.Loss != nil {
+        structMap["loss"] = v.Loss
     }
     if v.Mac != nil {
         structMap["mac"] = v.Mac
@@ -127,15 +139,17 @@ func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "last_seen", "latency", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "jitter", "last_seen", "latency", "loss", "mac", "mos", "mtu", "org_id", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "site_id", "type", "up", "uptime")
     if err != nil {
     	return err
     }
     v.AdditionalProperties = additionalProperties
     
     v.IsActive = temp.IsActive
+    v.Jitter = temp.Jitter
     v.LastSeen = temp.LastSeen
     v.Latency = temp.Latency
+    v.Loss = temp.Loss
     v.Mac = temp.Mac
     v.Mos = temp.Mos
     v.Mtu = temp.Mtu
@@ -156,8 +170,10 @@ func (v *VpnPeerStat) UnmarshalJSON(input []byte) error {
 // tempVpnPeerStat is a temporary struct used for validating the fields of VpnPeerStat.
 type tempVpnPeerStat  struct {
     IsActive       *bool             `json:"is_active,omitempty"`
+    Jitter         *float64          `json:"jitter,omitempty"`
     LastSeen       Optional[float64] `json:"last_seen"`
     Latency        *float64          `json:"latency,omitempty"`
+    Loss           *float64          `json:"loss,omitempty"`
     Mac            *string           `json:"mac,omitempty"`
     Mos            *float64          `json:"mos,omitempty"`
     Mtu            *int              `json:"mtu,omitempty"`

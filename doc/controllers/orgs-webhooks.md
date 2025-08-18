@@ -79,19 +79,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 status := models.WebhookDeliveryStatusEnum_FAILURE
 
 topic := models.WebhookDeliveryTopicEnum_AUDITS
 
 distinct := models.WebhookDeliveryDistinctEnum_WEBHOOKID
-
-
-
-
 
 duration := "10m"
 
@@ -554,17 +546,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 webhookId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 status := models.WebhookDeliveryStatusEnum_FAILURE
 
 topic := models.WebhookDeliveryTopicEnum_AUDITS
-
-
-
-
 
 duration := "10m"
 

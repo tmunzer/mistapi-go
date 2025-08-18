@@ -65,6 +65,7 @@ type ClientNac struct {
     NacruleMatched       *bool                    `json:"nacrule_matched,omitempty"`
     // Name of the NAC Rules used to authenticate the client for the specified duration
     NacruleName          []string                 `json:"nacrule_name,omitempty"`
+    NasIp                *string                  `json:"nas_ip,omitempty"`
     // Vendor name of the NAS for the specified duration
     NasVendor            []string                 `json:"nas_vendor,omitempty"`
     OrgId                *uuid.UUID               `json:"org_id,omitempty"`
@@ -93,8 +94,8 @@ type ClientNac struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ClientNac) String() string {
     return fmt.Sprintf(
-    	"ClientNac[Ap=%v, AuthType=%v, CertCn=%v, CertIssuer=%v, CertSerial=%v, CertSubject=%v, ClientIp=%v, DeviceMac=%v, Group=%v, IdpId=%v, IdpRole=%v, LastAp=%v, LastCertCn=%v, LastCertExpiry=%v, LastCertIssuer=%v, LastCertSerial=%v, LastCertSubject=%v, LastClientIp=%v, LastNacruleId=%v, LastNacruleName=%v, LastNasVendor=%v, LastPortId=%v, LastSsid=%v, LastStatus=%v, LastUsername=%v, LastVlan=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NacruleName=%v, NasVendor=%v, OrgId=%v, PortId=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, UsermacLabel=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
-    	c.Ap, c.AuthType, c.CertCn, c.CertIssuer, c.CertSerial, c.CertSubject, c.ClientIp, c.DeviceMac, c.Group, c.IdpId, c.IdpRole, c.LastAp, c.LastCertCn, c.LastCertExpiry, c.LastCertIssuer, c.LastCertSerial, c.LastCertSubject, c.LastClientIp, c.LastNacruleId, c.LastNacruleName, c.LastNasVendor, c.LastPortId, c.LastSsid, c.LastStatus, c.LastUsername, c.LastVlan, c.Mac, c.NacruleId, c.NacruleMatched, c.NacruleName, c.NasVendor, c.OrgId, c.PortId, c.RandomMac, c.RespAttrs, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.UsermacLabel, c.Username, c.Vlan, c.AdditionalProperties)
+    	"ClientNac[Ap=%v, AuthType=%v, CertCn=%v, CertIssuer=%v, CertSerial=%v, CertSubject=%v, ClientIp=%v, DeviceMac=%v, Group=%v, IdpId=%v, IdpRole=%v, LastAp=%v, LastCertCn=%v, LastCertExpiry=%v, LastCertIssuer=%v, LastCertSerial=%v, LastCertSubject=%v, LastClientIp=%v, LastNacruleId=%v, LastNacruleName=%v, LastNasVendor=%v, LastPortId=%v, LastSsid=%v, LastStatus=%v, LastUsername=%v, LastVlan=%v, Mac=%v, NacruleId=%v, NacruleMatched=%v, NacruleName=%v, NasIp=%v, NasVendor=%v, OrgId=%v, PortId=%v, RandomMac=%v, RespAttrs=%v, SiteId=%v, Ssid=%v, Timestamp=%v, Type=%v, UsermacLabel=%v, Username=%v, Vlan=%v, AdditionalProperties=%v]",
+    	c.Ap, c.AuthType, c.CertCn, c.CertIssuer, c.CertSerial, c.CertSubject, c.ClientIp, c.DeviceMac, c.Group, c.IdpId, c.IdpRole, c.LastAp, c.LastCertCn, c.LastCertExpiry, c.LastCertIssuer, c.LastCertSerial, c.LastCertSubject, c.LastClientIp, c.LastNacruleId, c.LastNacruleName, c.LastNasVendor, c.LastPortId, c.LastSsid, c.LastStatus, c.LastUsername, c.LastVlan, c.Mac, c.NacruleId, c.NacruleMatched, c.NacruleName, c.NasIp, c.NasVendor, c.OrgId, c.PortId, c.RandomMac, c.RespAttrs, c.SiteId, c.Ssid, c.Timestamp, c.Type, c.UsermacLabel, c.Username, c.Vlan, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClientNac.
@@ -103,7 +104,7 @@ func (c ClientNac) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(c.AdditionalProperties,
-        "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan"); err != nil {
+        "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(c.toMap())
@@ -203,6 +204,9 @@ func (c ClientNac) toMap() map[string]any {
     if c.NacruleName != nil {
         structMap["nacrule_name"] = c.NacruleName
     }
+    if c.NasIp != nil {
+        structMap["nas_ip"] = c.NasIp
+    }
     if c.NasVendor != nil {
         structMap["nas_vendor"] = c.NasVendor
     }
@@ -250,7 +254,7 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "auth_type", "cert_cn", "cert_issuer", "cert_serial", "cert_subject", "client_ip", "device_mac", "group", "idp_id", "idp_role", "last_ap", "last_cert_cn", "last_cert_expiry", "last_cert_issuer", "last_cert_serial", "last_cert_subject", "last_client_ip", "last_nacrule_id", "last_nacrule_name", "last_nas_vendor", "last_port_id", "last_ssid", "last_status", "last_username", "last_vlan", "mac", "nacrule_id", "nacrule_matched", "nacrule_name", "nas_ip", "nas_vendor", "org_id", "port_id", "random_mac", "resp_attrs", "site_id", "ssid", "timestamp", "type", "usermac_label", "username", "vlan")
     if err != nil {
     	return err
     }
@@ -286,6 +290,7 @@ func (c *ClientNac) UnmarshalJSON(input []byte) error {
     c.NacruleId = temp.NacruleId
     c.NacruleMatched = temp.NacruleMatched
     c.NacruleName = temp.NacruleName
+    c.NasIp = temp.NasIp
     c.NasVendor = temp.NasVendor
     c.OrgId = temp.OrgId
     c.PortId = temp.PortId
@@ -333,6 +338,7 @@ type tempClientNac  struct {
     NacruleId       []string                 `json:"nacrule_id,omitempty"`
     NacruleMatched  *bool                    `json:"nacrule_matched,omitempty"`
     NacruleName     []string                 `json:"nacrule_name,omitempty"`
+    NasIp           *string                  `json:"nas_ip,omitempty"`
     NasVendor       []string                 `json:"nas_vendor,omitempty"`
     OrgId           *uuid.UUID               `json:"org_id,omitempty"`
     PortId          []string                 `json:"port_id,omitempty"`

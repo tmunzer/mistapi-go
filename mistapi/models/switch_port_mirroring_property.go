@@ -15,9 +15,11 @@ type SwitchPortMirroringProperty struct {
     InputPortIdsEgress   []string               `json:"input_port_ids_egress,omitempty"`
     // At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
     InputPortIdsIngress  []string               `json:"input_port_ids_ingress,omitempty"`
-    // Exactly one of the `output_port_id` or `output_network` should be provided
+    // Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided
+    OutputIpAddress      *string                `json:"output_ip_address,omitempty"`
+    // Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided
     OutputNetwork        *string                `json:"output_network,omitempty"`
-    // Exactly one of the `output_port_id` or `output_network` should be provided
+    // Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided
     OutputPortId         *string                `json:"output_port_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -26,8 +28,8 @@ type SwitchPortMirroringProperty struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchPortMirroringProperty) String() string {
     return fmt.Sprintf(
-    	"SwitchPortMirroringProperty[InputNetworksIngress=%v, InputPortIdsEgress=%v, InputPortIdsIngress=%v, OutputNetwork=%v, OutputPortId=%v, AdditionalProperties=%v]",
-    	s.InputNetworksIngress, s.InputPortIdsEgress, s.InputPortIdsIngress, s.OutputNetwork, s.OutputPortId, s.AdditionalProperties)
+    	"SwitchPortMirroringProperty[InputNetworksIngress=%v, InputPortIdsEgress=%v, InputPortIdsIngress=%v, OutputIpAddress=%v, OutputNetwork=%v, OutputPortId=%v, AdditionalProperties=%v]",
+    	s.InputNetworksIngress, s.InputPortIdsEgress, s.InputPortIdsIngress, s.OutputIpAddress, s.OutputNetwork, s.OutputPortId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortMirroringProperty.
@@ -36,7 +38,7 @@ func (s SwitchPortMirroringProperty) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "input_networks_ingress", "input_port_ids_egress", "input_port_ids_ingress", "output_network", "output_port_id"); err != nil {
+        "input_networks_ingress", "input_port_ids_egress", "input_port_ids_ingress", "output_ip_address", "output_network", "output_port_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -55,6 +57,9 @@ func (s SwitchPortMirroringProperty) toMap() map[string]any {
     if s.InputPortIdsIngress != nil {
         structMap["input_port_ids_ingress"] = s.InputPortIdsIngress
     }
+    if s.OutputIpAddress != nil {
+        structMap["output_ip_address"] = s.OutputIpAddress
+    }
     if s.OutputNetwork != nil {
         structMap["output_network"] = s.OutputNetwork
     }
@@ -72,7 +77,7 @@ func (s *SwitchPortMirroringProperty) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "input_networks_ingress", "input_port_ids_egress", "input_port_ids_ingress", "output_network", "output_port_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "input_networks_ingress", "input_port_ids_egress", "input_port_ids_ingress", "output_ip_address", "output_network", "output_port_id")
     if err != nil {
     	return err
     }
@@ -81,6 +86,7 @@ func (s *SwitchPortMirroringProperty) UnmarshalJSON(input []byte) error {
     s.InputNetworksIngress = temp.InputNetworksIngress
     s.InputPortIdsEgress = temp.InputPortIdsEgress
     s.InputPortIdsIngress = temp.InputPortIdsIngress
+    s.OutputIpAddress = temp.OutputIpAddress
     s.OutputNetwork = temp.OutputNetwork
     s.OutputPortId = temp.OutputPortId
     return nil
@@ -91,6 +97,7 @@ type tempSwitchPortMirroringProperty  struct {
     InputNetworksIngress []string `json:"input_networks_ingress,omitempty"`
     InputPortIdsEgress   []string `json:"input_port_ids_egress,omitempty"`
     InputPortIdsIngress  []string `json:"input_port_ids_ingress,omitempty"`
+    OutputIpAddress      *string  `json:"output_ip_address,omitempty"`
     OutputNetwork        *string  `json:"output_network,omitempty"`
     OutputPortId         *string  `json:"output_port_id,omitempty"`
 }

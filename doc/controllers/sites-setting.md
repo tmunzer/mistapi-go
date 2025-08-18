@@ -1251,7 +1251,9 @@ body := models.SiteSetting{
             Stationed:            models.ToPointer("Stationed"),
         }),
         DwellTags:            models.ToPointer(models.SiteEngagementDwellTags{
+            Bounce:               models.NewOptional[string](nil),
             Engaged:              models.NewOptional(models.ToPointer("300-14400")),
+            Passerby:             models.NewOptional[string](nil),
             Stationed:            models.NewOptional(models.ToPointer("14400-43200")),
         }),
         Hours:                models.ToPointer(models.Hours{

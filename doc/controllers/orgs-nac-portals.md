@@ -55,11 +55,11 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
-    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
-    CertExpireTime:         models.ToPointer(365),
-    EapType:                models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
-    Name:                   models.ToPointer("get-wifi"),
-    Ssid:                   models.ToPointer("Corp"),
+    AccessType:               models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
+    CertExpireTime:           models.ToPointer(365),
+    EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
+    Name:                     models.ToPointer("get-wifi"),
+    Ssid:                     models.ToPointer("Corp"),
 }
 
 apiResponse, err := orgsNACPortals.CreateOrgNacPortal(ctx, orgId, &body)
@@ -479,10 +479,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -648,11 +644,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
-    AccessType:             models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
-    CertExpireTime:         models.ToPointer(365),
-    EapType:                models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
-    Name:                   models.ToPointer("get-wifi"),
-    Ssid:                   models.ToPointer("Corp"),
+    AccessType:               models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
+    CertExpireTime:           models.ToPointer(365),
+    EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
+    Name:                     models.ToPointer("get-wifi"),
+    Ssid:                     models.ToPointer("Corp"),
 }
 
 apiResponse, err := orgsNACPortals.UpdateOrgNacPortal(ctx, orgId, nacportalId, &body)
@@ -800,10 +796,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
 
 resp, err := orgsNACPortals.UploadOrgNacPortalImage(ctx, orgId, nacportalId, nil, nil)
 if err != nil {

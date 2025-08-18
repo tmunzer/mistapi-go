@@ -20,7 +20,7 @@ sitesUISettings := client.SitesUISettings()
 
 # Create Site Ui Settings
 
-Site UI settings
+Create a Site UI settings/databoard
 
 ```go
 CreateSiteUiSettings(
@@ -245,7 +245,7 @@ GetSiteUiSetting(
     ctx context.Context,
     siteId uuid.UUID,
     uisettingId uuid.UUID) (
-    models.ApiResponse[[]models.UiSettings],
+    models.ApiResponse[models.UiSettings],
     error)
 ```
 
@@ -258,7 +258,7 @@ GetSiteUiSetting(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.UiSettings](../../doc/models/ui-settings.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UiSettings](../../doc/models/ui-settings.md).
 
 ## Example Usage
 
@@ -282,66 +282,64 @@ if err != nil {
 ## Example Response *(as JSON)*
 
 ```json
-[
-  {
-    "created_time": 1508823803,
-    "defaultScopeId": "67970e46-4e12-11e6-9188-0242ad112847",
-    "defaultScopeType": "site",
-    "defaultTimeRange": {
-      "end": 1508828400,
-      "endDate": "10/23/2017",
-      "interval": "1d",
-      "name": "This Week",
-      "shortName": "thisWeek",
-      "start": 1508655600,
-      "usePreset": true
-    },
-    "description": "Description of the databoard",
-    "for_site": true,
-    "id": "3bdcc7e8-c04d-4512-b4fc-093da9057eb0",
-    "isCustomDataboard": true,
-    "isScopeLinked": true,
-    "isTimeRangeLinked": true,
-    "modified_time": 0,
-    "name": "New Databoard",
-    "org_id": "cc079380-5029-4d4a-9125-858de85731ff",
-    "purpose": "databoard",
-    "site_id": "67970e46-4e12-11e6-9188-0242ad112847",
-    "tiles": [
-      {
-        "chartBand": "2.4 ghz",
-        "chartColor": "#00B4AD",
-        "chartDirection": "tx + rx",
-        "chartRankBy": "string",
-        "chartType": "timeSeries",
-        "colspan": 5,
-        "column": 1,
-        "hideEmptyRows": true,
-        "id": "7a9ab38c-cfc3-483d-b51a-0aec571fadc0",
-        "metric": {
-          "apiName": "client_dhcp_latency"
-        },
-        "name": "New Analysis",
-        "row": 1,
-        "rowspan": 2,
-        "scopeId": "e0c767834b4c",
-        "scopeType": "client",
-        "sortedColumns": null,
-        "timeRange": {
-          "end": 1508823743,
-          "endDate": "10/23/2017",
-          "interval": "1d",
-          "name": "Past 7 Days",
-          "shortName": "7d",
-          "start": 1508223600,
-          "usePreset": true
-        },
-        "trendType": "line",
-        "vizType": "averageTimeSeriesChart"
-      }
-    ]
-  }
-]
+{
+  "created_time": 1508823803,
+  "defaultScopeId": "67970e46-4e12-11e6-9188-0242ad112847",
+  "defaultScopeType": "site",
+  "defaultTimeRange": {
+    "end": 1508828400,
+    "endDate": "10/23/2017",
+    "interval": "1d",
+    "name": "This Week",
+    "shortName": "thisWeek",
+    "start": 1508655600,
+    "usePreset": true
+  },
+  "description": "Description of the databoard",
+  "for_site": true,
+  "id": "3bdcc7e8-c04d-4512-b4fc-093da9057eb0",
+  "isCustomDataboard": true,
+  "isScopeLinked": true,
+  "isTimeRangeLinked": true,
+  "modified_time": 0,
+  "name": "New Databoard",
+  "org_id": "cc079380-5029-4d4a-9125-858de85731ff",
+  "purpose": "databoard",
+  "site_id": "67970e46-4e12-11e6-9188-0242ad112847",
+  "tiles": [
+    {
+      "chartBand": "2.4 ghz",
+      "chartColor": "#00B4AD",
+      "chartDirection": "tx + rx",
+      "chartRankBy": "string",
+      "chartType": "timeSeries",
+      "colspan": 5,
+      "column": 1,
+      "hideEmptyRows": true,
+      "id": "7a9ab38c-cfc3-483d-b51a-0aec571fadc0",
+      "metric": {
+        "apiName": "client_dhcp_latency"
+      },
+      "name": "New Analysis",
+      "row": 1,
+      "rowspan": 2,
+      "scopeId": "e0c767834b4c",
+      "scopeType": "client",
+      "sortedColumns": null,
+      "timeRange": {
+        "end": 1508823743,
+        "endDate": "10/23/2017",
+        "interval": "1d",
+        "name": "Past 7 Days",
+        "shortName": "7d",
+        "start": 1508223600,
+        "usePreset": true
+      },
+      "trendType": "line",
+      "vizType": "averageTimeSeriesChart"
+    }
+  ]
+}
 ```
 
 ## Errors
@@ -470,7 +468,7 @@ if err != nil {
 
 # List Site Ui Settings
 
-Site UI settings
+List the Site UI settings/databoard
 
 ```go
 ListSiteUiSettings(

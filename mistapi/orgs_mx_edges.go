@@ -24,14 +24,14 @@ func NewOrgsMxEdges(baseController baseController) *OrgsMxEdges {
     return &orgsMxEdges
 }
 
-// ListOrgMxEdges takes context, orgId, forSites, limit, page as parameters and
+// ListOrgMxEdges takes context, orgId, forSite, limit, page as parameters and
 // returns an models.ApiResponse with []models.Mxedge data and
 // an error if there was an issue with the request or response.
 // Get List of Org MxEdges
 func (o *OrgsMxEdges) ListOrgMxEdges(
     ctx context.Context,
     orgId uuid.UUID,
-    forSites *models.MxedgeForSiteEnum,
+    forSite *models.MxedgeForSiteEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Mxedge],
@@ -56,8 +56,8 @@ func (o *OrgsMxEdges) ListOrgMxEdges(
         "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
-    if forSites != nil {
-        req.QueryParam("for_sites", *forSites)
+    if forSite != nil {
+        req.QueryParam("for_site", *forSite)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

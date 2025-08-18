@@ -26,6 +26,7 @@
 | `Model` | `*string` | Optional | - |
 | `NumMembers` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
+| `RadiusStats` | [`map[string]models.DeviceSearchRadiusStat`](../../doc/models/device-search-radius-stat.md) | Optional | Property key is the RADIUS server IP Address |
 | `Role` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `TimeDrifted` | `*bool` | Optional | - |

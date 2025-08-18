@@ -96,7 +96,34 @@ if err != nil {
 
 # Search Org Tunnels Stats
 
-Search Org Tunnels Stats
+By default the endpoint returns only `wxtunnel` type stats, to get `wan` type stats
+you need to specify `type=wan` in the query parameters.
+
+Tunnel types:
+
+- `wxtunnel` (default) - A WxLan Tunnel (WxTunnel) are used to create a secure connection between Juniper Mist Access Points and third-party VPN concentrators using protocols such as L2TPv3 or dmvpn.
+- `wan` - A WAN Tunnel is a secure connection between two Gateways, typically used for site-to-site or mesh connectivity. It can be configured with various protocols and encryption methods.
+
+If `type` is not specified or `type`==`wxtunnel`, the following parameters are supported:
+
+- `mxcluster_id` - the MX cluster ID
+- `site_id` - the site ID
+- `wxtunnel_id` - the WX tunnel ID
+- `ap` - the AP MAC address
+
+If `type`==`wan`, the following parameters are supported:
+
+- `mac` - the MAC address of the WAN device
+- `node` - the node ID
+- `peer_ip` - the peer IP address
+- `peer_host` - the peer host name
+- `ip` - the IP address of the WAN device
+- `tunnel_name` - the name of the tunnel
+- `protocol` - the protocol used for the tunnel
+- `auth_algo` - the authentication algorithm used for the tunnel
+- `encrypt_algo` - the encryption algorithm used for the tunnel
+- `ike_version` - the IKE version used for the tunnel
+- `up` - the status of the tunnel (up or down)
 
 ```go
 SearchOrgTunnelsStats(
@@ -163,43 +190,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 mType := models.TunnelTypeEnum_WXTUNNEL
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

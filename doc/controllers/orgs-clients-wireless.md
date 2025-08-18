@@ -75,25 +75,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientEventsCountDistinctEnum_ENUMTYPE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
-
-
-
-
 
 duration := "10m"
 
@@ -215,10 +197,6 @@ ssid := "MySSID"
 
 ipAddress := "192.168.1.1"
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -321,8 +299,6 @@ distinct := models.OrgClientSessionsCountDistinctEnum_DEVICE
 
 ap := "5c5b53010101"
 
-
-
 clientFamily := "iPhone"
 
 clientManufacture := "Apple"
@@ -334,10 +310,6 @@ clientOs := "Windows 10"
 ssid := "MySSID"
 
 wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
-
-
-
-
 
 duration := "10m"
 
@@ -394,6 +366,7 @@ SearchOrgWirelessClientEvents(
     reasonCode *int,
     ssid *string,
     ap *string,
+    keyMgmt *models.ClientKeyMgmtEnum,
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
     wlanId *uuid.UUID,
@@ -414,6 +387,7 @@ SearchOrgWirelessClientEvents(
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
+| `keyMgmt` | [`*models.ClientKeyMgmtEnum`](../../doc/models/client-key-mgmt-enum.md) | Query, Optional | Key Management Protocol, e.g. WPA2-PSK, WPA3-SAE, WPA2-Enterprise |
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
@@ -433,29 +407,21 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 reasonCode := 7
 
 ssid := "MySSID"
 
 ap := "5c5b53010101"
 
-
-
-
+keyMgmt := models.ClientKeyMgmtEnum_WPA2PSK
 
 wlanId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 nacruleId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
-
-
-
-
 duration := "10m"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -563,8 +529,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 ap := "5c5b53010101"
 
-
-
 clientFamily := "iPhone"
 
 clientManufacture := "Apple"
@@ -584,10 +548,6 @@ pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
 pskName := "MyPPSK"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -740,10 +700,6 @@ ssid := "MySSID"
 text := "5c5b530"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

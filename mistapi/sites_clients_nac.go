@@ -359,7 +359,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, idpId, ssid, username, timestamp, ap, mac, mdmManaged, mxedgeId, nacruleName, status, family, model, os, hostname, mfg, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchSiteNacClients takes context, siteId, nacruleId, nacruleMatched, authType, vlan, nasVendor, nasIp, idpId, ssid, username, timestamp, ap, mac, mdmManaged, mxedgeId, nacruleName, status, family, model, os, hostname, mfg, mType, mdmCompliance, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -371,6 +371,7 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     authType *string,
     vlan *string,
     nasVendor *string,
+    nasIp *string,
     idpId *string,
     ssid *string,
     username *string,
@@ -433,6 +434,9 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
     }
     if nasVendor != nil {
         req.QueryParam("nas_vendor", *nasVendor)
+    }
+    if nasIp != nil {
+        req.QueryParam("nas_ip", *nasIp)
     }
     if idpId != nil {
         req.QueryParam("idp_id", *idpId)

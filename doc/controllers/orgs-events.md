@@ -58,10 +58,6 @@ distinct := "site_id"
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := orgsEvents.CountOrgSystemEvents(ctx, orgId, &distinct, &limit, nil, nil, &duration)
@@ -148,12 +144,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -217,10 +207,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

@@ -12,40 +12,42 @@ import (
 
 // SwitchSearch represents a SwitchSearch struct.
 type SwitchSearch struct {
-    Clustered            *bool                  `json:"clustered,omitempty"`
-    EvpnMissingLinks     *bool                  `json:"evpn_missing_links,omitempty"`
-    EvpntopoId           *string                `json:"evpntopo_id,omitempty"`
-    ExtIp                *string                `json:"ext_ip,omitempty"`
-    Hostname             []string               `json:"hostname,omitempty"`
-    Ip                   *string                `json:"ip,omitempty"`
-    LastConfigStatus     *string                `json:"last_config_status,omitempty"`
-    LastHostname         *string                `json:"last_hostname,omitempty"`
-    LastTroubleCode      *string                `json:"last_trouble_code,omitempty"`
+    Clustered            *bool                             `json:"clustered,omitempty"`
+    EvpnMissingLinks     *bool                             `json:"evpn_missing_links,omitempty"`
+    EvpntopoId           *string                           `json:"evpntopo_id,omitempty"`
+    ExtIp                *string                           `json:"ext_ip,omitempty"`
+    Hostname             []string                          `json:"hostname,omitempty"`
+    Ip                   *string                           `json:"ip,omitempty"`
+    LastConfigStatus     *string                           `json:"last_config_status,omitempty"`
+    LastHostname         *string                           `json:"last_hostname,omitempty"`
+    LastTroubleCode      *string                           `json:"last_trouble_code,omitempty"`
     // Epoch (seconds)
-    LastTroubleTimestamp *float64               `json:"last_trouble_timestamp,omitempty"`
-    Mac                  *string                `json:"mac,omitempty"`
-    Managed              *bool                  `json:"managed,omitempty"`
-    Model                *string                `json:"model,omitempty"`
-    NumMembers           *int                   `json:"num_members,omitempty"`
-    OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-    Role                 *string                `json:"role,omitempty"`
-    SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-    TimeDrifted          *bool                  `json:"time_drifted,omitempty"`
+    LastTroubleTimestamp *float64                          `json:"last_trouble_timestamp,omitempty"`
+    Mac                  *string                           `json:"mac,omitempty"`
+    Managed              *bool                             `json:"managed,omitempty"`
+    Model                *string                           `json:"model,omitempty"`
+    NumMembers           *int                              `json:"num_members,omitempty"`
+    OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
+    // Property key is the RADIUS server IP Address
+    RadiusStats          map[string]DeviceSearchRadiusStat `json:"radius_stats,omitempty"`
+    Role                 *string                           `json:"role,omitempty"`
+    SiteId               *uuid.UUID                        `json:"site_id,omitempty"`
+    TimeDrifted          *bool                             `json:"time_drifted,omitempty"`
     // Epoch (seconds)
-    Timestamp            *float64               `json:"timestamp,omitempty"`
+    Timestamp            *float64                          `json:"timestamp,omitempty"`
     // Device Type. enum: `switch`
-    Type                 string                 `json:"type"`
-    Uptime               *int                   `json:"uptime,omitempty"`
-    Version              *string                `json:"version,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+    Type                 string                            `json:"type"`
+    Uptime               *int                              `json:"uptime,omitempty"`
+    Version              *string                           `json:"version,omitempty"`
+    AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchSearch,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchSearch) String() string {
     return fmt.Sprintf(
-    	"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
-    	s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastConfigStatus, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
+    	"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, RadiusStats=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+    	s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastConfigStatus, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.RadiusStats, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchSearch.
@@ -54,7 +56,7 @@ func (s SwitchSearch) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
+        "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -109,6 +111,9 @@ func (s SwitchSearch) toMap() map[string]any {
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
     }
+    if s.RadiusStats != nil {
+        structMap["radius_stats"] = s.RadiusStats
+    }
     if s.Role != nil {
         structMap["role"] = s.Role
     }
@@ -143,7 +148,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
     if err != nil {
     	return err
     }
@@ -164,6 +169,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
     s.Model = temp.Model
     s.NumMembers = temp.NumMembers
     s.OrgId = temp.OrgId
+    s.RadiusStats = temp.RadiusStats
     s.Role = temp.Role
     s.SiteId = temp.SiteId
     s.TimeDrifted = temp.TimeDrifted
@@ -176,28 +182,29 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
 
 // tempSwitchSearch is a temporary struct used for validating the fields of SwitchSearch.
 type tempSwitchSearch  struct {
-    Clustered            *bool      `json:"clustered,omitempty"`
-    EvpnMissingLinks     *bool      `json:"evpn_missing_links,omitempty"`
-    EvpntopoId           *string    `json:"evpntopo_id,omitempty"`
-    ExtIp                *string    `json:"ext_ip,omitempty"`
-    Hostname             []string   `json:"hostname,omitempty"`
-    Ip                   *string    `json:"ip,omitempty"`
-    LastConfigStatus     *string    `json:"last_config_status,omitempty"`
-    LastHostname         *string    `json:"last_hostname,omitempty"`
-    LastTroubleCode      *string    `json:"last_trouble_code,omitempty"`
-    LastTroubleTimestamp *float64   `json:"last_trouble_timestamp,omitempty"`
-    Mac                  *string    `json:"mac,omitempty"`
-    Managed              *bool      `json:"managed,omitempty"`
-    Model                *string    `json:"model,omitempty"`
-    NumMembers           *int       `json:"num_members,omitempty"`
-    OrgId                *uuid.UUID `json:"org_id,omitempty"`
-    Role                 *string    `json:"role,omitempty"`
-    SiteId               *uuid.UUID `json:"site_id,omitempty"`
-    TimeDrifted          *bool      `json:"time_drifted,omitempty"`
-    Timestamp            *float64   `json:"timestamp,omitempty"`
-    Type                 *string    `json:"type"`
-    Uptime               *int       `json:"uptime,omitempty"`
-    Version              *string    `json:"version,omitempty"`
+    Clustered            *bool                             `json:"clustered,omitempty"`
+    EvpnMissingLinks     *bool                             `json:"evpn_missing_links,omitempty"`
+    EvpntopoId           *string                           `json:"evpntopo_id,omitempty"`
+    ExtIp                *string                           `json:"ext_ip,omitempty"`
+    Hostname             []string                          `json:"hostname,omitempty"`
+    Ip                   *string                           `json:"ip,omitempty"`
+    LastConfigStatus     *string                           `json:"last_config_status,omitempty"`
+    LastHostname         *string                           `json:"last_hostname,omitempty"`
+    LastTroubleCode      *string                           `json:"last_trouble_code,omitempty"`
+    LastTroubleTimestamp *float64                          `json:"last_trouble_timestamp,omitempty"`
+    Mac                  *string                           `json:"mac,omitempty"`
+    Managed              *bool                             `json:"managed,omitempty"`
+    Model                *string                           `json:"model,omitempty"`
+    NumMembers           *int                              `json:"num_members,omitempty"`
+    OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
+    RadiusStats          map[string]DeviceSearchRadiusStat `json:"radius_stats,omitempty"`
+    Role                 *string                           `json:"role,omitempty"`
+    SiteId               *uuid.UUID                        `json:"site_id,omitempty"`
+    TimeDrifted          *bool                             `json:"time_drifted,omitempty"`
+    Timestamp            *float64                          `json:"timestamp,omitempty"`
+    Type                 *string                           `json:"type"`
+    Uptime               *int                              `json:"uptime,omitempty"`
+    Version              *string                           `json:"version,omitempty"`
 }
 
 func (s *tempSwitchSearch) validate() error {

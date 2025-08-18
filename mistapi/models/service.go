@@ -11,7 +11,7 @@ import (
 // Service represents a Service struct.
 // Applications used for the Gateway configurations
 type Service struct {
-    // If `type`==`custom`, ip subnets (e.g. 10.0.0.0/8)
+    // If `type`==`custom`, IPv4 and/or IPv6 subnets (e.g. 10.0.0.0/8, fd28::/128)
     Addresses                     []string                   `json:"addresses,omitempty"`
     // When `type`==`app_categories`, list of application categories are available through [List App Category Definitions]($e/Constants%20Definitions/listAppCategoryDefinitions)
     AppCategories                 []string                   `json:"app_categories,omitempty"`

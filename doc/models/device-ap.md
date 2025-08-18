@@ -14,6 +14,7 @@ AP
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Aeroscout` | [`*models.ApAeroscout`](../../doc/models/ap-aeroscout.md) | Optional | Aeroscout AP settings |
+| `Airista` | [`*models.ApAirista`](../../doc/models/ap-airista.md) | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `Centrak` | [`*models.ApCentrak`](../../doc/models/ap-centrak.md) | Optional | - |
 | `ClientBridge` | [`*models.ApClientBridge`](../../doc/models/ap-client-bridge.md) | Optional | - |
@@ -47,7 +48,7 @@ AP
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Orientation` | `*int` | Optional | Orientation, 0-359, in degrees, up is 0, right is 90.<br><br>**Constraints**: `>= 0`, `<= 359` |
 | `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br><br>**Default**: `false` |
-| `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If specified, this takes precedence over switch_config (deprecated) |
+| `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If spcified, this takes predecence over switch_config (switch_config requires user to configure all vlans manually, which is error-prone. thus deprecated) |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | Power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |
 | `Serial` | `*string` | Optional | Device Serial |
@@ -96,6 +97,15 @@ AP
       "key2": "val2"
     }
   },
+  "airista": {
+    "enabled": false,
+    "host": "host8",
+    "port": 218,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
   "ble_config": {
     "beacon_enabled": false,
     "beacon_rate": 110,
@@ -134,7 +144,6 @@ AP
       "key2": "val2"
     }
   },
-  "created_time": 87.82,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

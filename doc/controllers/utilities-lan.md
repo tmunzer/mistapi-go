@@ -201,8 +201,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 resp, err := utilitiesLAN.ClearBpduErrorsFromPortsOnSwitch(ctx, siteId, deviceId, nil)
 if err != nil {
     log.Fatalln(err)

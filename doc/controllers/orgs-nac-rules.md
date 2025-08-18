@@ -352,6 +352,7 @@ body := models.NacRule{
         "c049dfcd-0c73-5014-1c64-062e9903f1e5",
     },
     Enabled:              models.ToPointer(true),
+    GuestAuthState:       models.ToPointer(models.NacRuleGuestAuthStateEnum_AUTHORIZED),
     Name:                 "name6",
     Order:                models.ToPointer(1),
 }

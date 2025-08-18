@@ -30,8 +30,9 @@ OAuth linked apps account info
 | `Name` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Password` | `*string` | Optional | Customer account password instance URL |
 | `Region` | `*string` | Optional | For Prisma accounts only |
+| `Regions` | [`map[string]models.AccountOauthInfoAccountRegion`](../../doc/models/account-oauth-info-account-region.md) | Optional | For Prisma accounts only, property key is the region name. Regions with allocated bandwidth |
 | `ServiceAccountName` | `*string` | Optional | For Prisma accounts only |
-| `ServiceConnections` | `[]string` | Optional | For Prisma accounts only |
+| `ServiceConnections` | [`map[string]models.AccountOauthInfoAccountServiceConnection`](../../doc/models/account-oauth-info-account-service-connection.md) | Optional | For Prisma accounts only, property key is the service connection name |
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
@@ -59,10 +60,6 @@ OAuth linked apps account info
   "name": "Test Compay1 Ltd",
   "region": "americas",
   "service_account_name": "Corp SA",
-  "service_connections": [
-    "sc1",
-    "sc2"
-  ],
   "smartgroup_name": "CompliantGroup1",
   "tsg_id": "189953456",
   "client_id": "client_id6",

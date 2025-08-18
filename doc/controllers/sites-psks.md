@@ -228,8 +228,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 apiResponse, err := sitesPsks.ImportSitePsks(ctx, siteId, nil)
 if err != nil {
     log.Fatalln(err)
@@ -309,12 +307,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
 
 limit := 100
 

@@ -45,10 +45,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-
-
-
-
 duration := "10m"
 
 limit := 100

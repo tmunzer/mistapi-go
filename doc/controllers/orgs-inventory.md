@@ -393,8 +393,6 @@ serial := "FXLH2015150025"
 
 model := "AP43"
 
-
-
 mac := "5c5b350e0001"
 
 siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
@@ -653,8 +651,6 @@ sku := "AP43-WW"
 version := "1.0.0"
 
 status := "connected"
-
-
 
 limit := 100
 

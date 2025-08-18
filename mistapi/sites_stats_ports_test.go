@@ -156,11 +156,16 @@ func TestSitesStatsPortsTestSearchSiteSwOrGwPorts(t *testing.T) {
     lteImsi := "310260000000001"
     lteIccid := "89014103211118510720"
     lteImei := "123456789012345"
+    
+    
+    
+    
+    
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, &limit, nil, nil, &duration)
+    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -219,11 +224,16 @@ func TestSitesStatsPortsTestSearchSiteSwOrGwPorts1(t *testing.T) {
     lteImsi := "310260000000001"
     lteIccid := "89014103211118510720"
     lteImei := "123456789012345"
+    
+    
+    
+    
+    
     limit := int(100)
     
     
     duration := "1d"
-    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, &limit, nil, nil, &duration)
+    apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

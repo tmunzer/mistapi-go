@@ -169,17 +169,9 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mapId := "00000000-0000-0000-0000-000000000000"
 
-
-
-
-
 duration := "10m"
 
 resolution := models.ResolutionEnum_ENUMDEFAULT
-
-
-
-
 
 apiResponse, err := sitesLocation.GetSiteBeamCoverageOverview(ctx, siteId, &mapId, nil, nil, &duration, &resolution, nil, nil)
 if err != nil {

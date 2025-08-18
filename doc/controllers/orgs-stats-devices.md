@@ -67,19 +67,7 @@ mType := models.DeviceTypeWithAllEnum_AP
 
 status := models.DeviceStatusEnum_ALL
 
-
-
-
-
-
-
-
-
 fields := "field1,field2"
-
-
-
-
 
 duration := "10m"
 

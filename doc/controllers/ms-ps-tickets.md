@@ -125,10 +125,6 @@ ctx := context.Background()
 
 mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := mSPsTickets.ListMspTickets(ctx, mspId, nil, nil, &duration)

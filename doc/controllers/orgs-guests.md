@@ -59,10 +59,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgGuestsCountDistinctEnum_AUTHMETHOD
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -352,10 +348,6 @@ authMethod := "psk"
 ssid := "Guest"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

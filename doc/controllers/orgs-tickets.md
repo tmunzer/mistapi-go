@@ -59,8 +59,6 @@ ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 comment := "this is urgent"
 
-
-
 apiResponse, err := orgsTickets.AddOrgTicketComment(ctx, orgId, ticketId, &comment, nil)
 if err != nil {
     log.Fatalln(err)
@@ -313,10 +311,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := orgsTickets.GetOrgTicket(ctx, orgId, ticketId, nil, nil, &duration)
@@ -411,10 +405,6 @@ ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 attachmentId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := orgsTickets.GetOrgTicketAttachment(ctx, orgId, ticketId, attachmentId, nil, nil, &duration)
@@ -480,10 +470,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
 
 duration := "10m"
 
@@ -664,8 +650,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 ticketId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 resp, err := orgsTickets.UploadOrgTicketAttachment(ctx, orgId, ticketId, nil)
 if err != nil {

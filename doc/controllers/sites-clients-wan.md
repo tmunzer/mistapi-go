@@ -59,12 +59,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteWanClientEventsDistinctEnum_ENUMTYPE
 
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -148,10 +142,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteWanClientsCountDistinctEnum_MAC
-
-
-
-
 
 duration := "10m"
 
@@ -245,8 +235,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 mac := "0011223"
 
 hostname := "test-hostname"
@@ -256,10 +244,6 @@ ip := "10.4.2.4"
 mfg := "Juniper"
 
 nacruleId := "00000000-0000-0000-0000-000000000000"
-
-
-
-
 
 duration := "10m"
 
@@ -361,10 +345,6 @@ hostname := "test-hostname"
 ip := "10.2.52.4"
 
 mfg := "Cisco"
-
-
-
-
 
 duration := "10m"
 

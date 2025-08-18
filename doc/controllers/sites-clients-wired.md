@@ -71,10 +71,6 @@ portId := "ge-1/1/1"
 
 vlan := "10"
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -191,8 +187,6 @@ ip := "10.3.5.12"
 
 portId := "ge-1/1/1"
 
-
-
 vlan := "10"
 
 manufacture := "Juniper-Mist"
@@ -212,10 +206,6 @@ dhcpVendorClassIdentifier := "Juniper-Mist-AP,Juniper-Mist-Client"
 dhcpRequestParams := "hostname,domain-name,domain-name-servers"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

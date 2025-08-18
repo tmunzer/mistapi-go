@@ -20,11 +20,11 @@
 {
   "results": [
     {
+      "common_name": "common_name4",
       "created_time": 73.76,
       "device_id": "00001510-0000-0000-0000-000000000000",
       "modified_time": 5.2,
       "serial_number": "serial_number0",
-      "sso_name_id": "sso_name_id0",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

@@ -13,6 +13,7 @@ Switch storm control
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `DisablePort` | `*bool` | Optional | Whether to disable the port when storm control is triggered<br><br>**Default**: `false` |
 | `NoBroadcast` | `*bool` | Optional | Whether to disable storm control on broadcast traffic<br><br>**Default**: `false` |
 | `NoMulticast` | `*bool` | Optional | Whether to disable storm control on multicast traffic<br><br>**Default**: `false` |
 | `NoRegisteredMulticast` | `*bool` | Optional | Whether to disable storm control on registered multicast traffic<br><br>**Default**: `false` |
@@ -24,6 +25,7 @@ Switch storm control
 
 ```json
 {
+  "disable_port": false,
   "no_broadcast": false,
   "no_multicast": false,
   "no_registered_multicast": false,

@@ -53,12 +53,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -143,14 +137,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -194,7 +180,7 @@ if err != nil {
       "last_seen": 1619518709.222,
       "latency": 91,
       "mac": "020001c04668",
-      "mos": 436,
+      "mos": 4,
       "mtu": 1500,
       "org_id": "0c160b7f-1027-4cd1-923b-744534c4b070",
       "peer_mac": "020001367edd",

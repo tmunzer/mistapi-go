@@ -56,6 +56,7 @@ body := models.NacTag{
         "2-vlan10",
     },
     MatchAll:             models.ToPointer(false),
+    NacportalId:          models.ToPointer(uuid.MustParse("1e970fec-0a7a-4d73-a472-3ef3b6a456aa")),
     Name:                 "name6",
     RadiusAttrs:          []string{
         "Idle-Timeout=600",
@@ -66,7 +67,7 @@ body := models.NacTag{
         "PaloAlto-Panorama-Admin-Role=administrator",
     },
     SessionTimeout:       models.ToPointer(86000),
-    Type:                 models.NacTagTypeEnum_USERNAMEATTR,
+    Type:                 models.NacTagTypeEnum_RADIUSGROUP,
 }
 
 apiResponse, err := orgsNACTags.CreateOrgNacTag(ctx, orgId, &body)
@@ -263,12 +264,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
 limit := 100
 
 page := 1
@@ -337,6 +332,7 @@ body := models.NacTag{
         "2-vlan10",
     },
     MatchAll:             models.ToPointer(false),
+    NacportalId:          models.ToPointer(uuid.MustParse("1e970fec-0a7a-4d73-a472-3ef3b6a456aa")),
     Name:                 "name6",
     RadiusAttrs:          []string{
         "Idle-Timeout=600",
@@ -347,7 +343,7 @@ body := models.NacTag{
         "PaloAlto-Panorama-Admin-Role=administrator",
     },
     SessionTimeout:       models.ToPointer(86000),
-    Type:                 models.NacTagTypeEnum_USERNAMEATTR,
+    Type:                 models.NacTagTypeEnum_RADIUSGROUP,
 }
 
 apiResponse, err := orgsNACTags.UpdateOrgNacTag(ctx, orgId, nactagId, &body)

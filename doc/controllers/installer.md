@@ -101,10 +101,6 @@ deviceMac := "0000000000ab"
 
 autoDeviceprofileAssignment := true
 
-
-
-
-
 json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
@@ -1165,10 +1161,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 siteName := "site_name8"
 
 autoDeviceprofileAssignment := true
-
-
-
-
 
 json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),

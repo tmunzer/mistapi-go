@@ -143,12 +143,6 @@ adminName := "jsnow"
 
 message := "Added new site"
 
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100

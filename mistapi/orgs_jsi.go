@@ -226,3 +226,134 @@ func (o *OrgsJSI) ListOrgJsiPastPurchases(
     result, err = utilities.DecodeResults[[]models.JsInventoryItem](decoder)
     return models.NewApiResponse(result, resp), err
 }
+
+// CountOrgJsiAssetsAndContracts takes context, orgId, distinct, limit as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
+// an error if there was an issue with the request or response.
+// Count devices purchased from the accounts associated with the Org
+func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
+    ctx context.Context,
+    orgId uuid.UUID,
+    distinct *models.JsiInventoryCountDistinctEnum,
+    limit *int) (
+    models.ApiResponse[models.ResponseCount],
+    error) {
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory/count")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Request - no Juniper Account Linked", Unmarshaller: errors.NewResponseDetailString},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if distinct != nil {
+        req.QueryParam("distinct", *distinct)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    
+    var result models.ResponseCount
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+    return models.NewApiResponse(result, resp), err
+}
+
+// SearchOrgJsiAssetsAndContracts takes context, orgId, model, serial, status, warrantyType, eolDuration, eosDuration, text, sort, limit, page as parameters and
+// returns an models.ApiResponse with models.JsInventorySearch data and
+// an error if there was an issue with the request or response.
+// This gets all devices purchased from the accounts associated with the Org 
+// * Fetch Install base devices for all linked accounts and associated account of the linked accounts. 
+// * The primary and the associated account ids will be queries from SFDC by passing the linked account 
+// * Returns only the device centric details of the Install base device. No customer specific information will be returned.
+func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
+    ctx context.Context,
+    orgId uuid.UUID,
+    model *string,
+    serial *string,
+    status *models.DeviceStatusEnum,
+    warrantyType *models.JsiWarrantyTypeEnum,
+    eolDuration *string,
+    eosDuration *string,
+    text *string,
+    sort *string,
+    limit *int,
+    page *int) (
+    models.ApiResponse[models.JsInventorySearch],
+    error) {
+    req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory/search")
+    req.AppendTemplateParams(orgId)
+    req.Authenticate(
+        NewOrAuth(
+            NewAuth("apiToken"),
+            NewAuth("basicAuth"),
+            NewAndAuth(
+                NewAuth("basicAuth"),
+                NewAuth("csrfToken"),
+            ),
+
+        ),
+    )
+    req.AppendErrors(map[string]https.ErrorBuilder[error]{
+        "400": {Message: "Bad Request - no Juniper Account Linked", Unmarshaller: errors.NewResponseDetailString},
+        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+    })
+    if model != nil {
+        req.QueryParam("model", *model)
+    }
+    if serial != nil {
+        req.QueryParam("serial", *serial)
+    }
+    if status != nil {
+        req.QueryParam("status", *status)
+    }
+    if warrantyType != nil {
+        req.QueryParam("warranty_type", *warrantyType)
+    }
+    if eolDuration != nil {
+        req.QueryParam("eol_duration", *eolDuration)
+    }
+    if eosDuration != nil {
+        req.QueryParam("eos_duration", *eosDuration)
+    }
+    if text != nil {
+        req.QueryParam("text", *text)
+    }
+    if sort != nil {
+        req.QueryParam("sort", *sort)
+    }
+    if limit != nil {
+        req.QueryParam("limit", *limit)
+    }
+    if page != nil {
+        req.QueryParam("page", *page)
+    }
+    
+    var result models.JsInventorySearch
+    decoder, resp, err := req.CallAsJson()
+    if err != nil {
+        return models.NewApiResponse(result, resp), err
+    }
+    
+    result, err = utilities.DecodeResults[models.JsInventorySearch](decoder)
+    return models.NewApiResponse(result, resp), err
+}

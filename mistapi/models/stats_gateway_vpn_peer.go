@@ -12,9 +12,15 @@ import (
 type StatsGatewayVpnPeer struct {
     // Redundancy status of the associated interface
     IsActive             *bool                  `json:"is_active,omitempty"`
+    // Jitter in milliseconds
+    Jitter               *float64               `json:"jitter,omitempty"`
     // Last seen timestamp
     LastSeen             Optional[float64]      `json:"last_seen"`
+    // Latency in milliseconds
     Latency              *float64               `json:"latency,omitempty"`
+    // Packet loss in percentage
+    Loss                 *float64               `json:"loss,omitempty"`
+    // Mean Opinion Score, a measure of the quality of the VPN link
     Mos                  *float64               `json:"mos,omitempty"`
     Mtu                  *int                   `json:"mtu,omitempty"`
     // Peer router mac address
@@ -37,8 +43,8 @@ type StatsGatewayVpnPeer struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsGatewayVpnPeer) String() string {
     return fmt.Sprintf(
-    	"StatsGatewayVpnPeer[IsActive=%v, LastSeen=%v, Latency=%v, Mos=%v, Mtu=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
-    	s.IsActive, s.LastSeen, s.Latency, s.Mos, s.Mtu, s.PeerMac, s.PeerPortId, s.PeerRouterName, s.PeerSiteId, s.PortId, s.RouterName, s.Type, s.Up, s.Uptime, s.AdditionalProperties)
+    	"StatsGatewayVpnPeer[IsActive=%v, Jitter=%v, LastSeen=%v, Latency=%v, Loss=%v, Mos=%v, Mtu=%v, PeerMac=%v, PeerPortId=%v, PeerRouterName=%v, PeerSiteId=%v, PortId=%v, RouterName=%v, Type=%v, Up=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.IsActive, s.Jitter, s.LastSeen, s.Latency, s.Loss, s.Mos, s.Mtu, s.PeerMac, s.PeerPortId, s.PeerRouterName, s.PeerSiteId, s.PortId, s.RouterName, s.Type, s.Up, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayVpnPeer.
@@ -47,7 +53,7 @@ func (s StatsGatewayVpnPeer) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "is_active", "last_seen", "latency", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime"); err != nil {
+        "is_active", "jitter", "last_seen", "latency", "loss", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -60,6 +66,9 @@ func (s StatsGatewayVpnPeer) toMap() map[string]any {
     if s.IsActive != nil {
         structMap["is_active"] = s.IsActive
     }
+    if s.Jitter != nil {
+        structMap["jitter"] = s.Jitter
+    }
     if s.LastSeen.IsValueSet() {
         if s.LastSeen.Value() != nil {
             structMap["last_seen"] = s.LastSeen.Value()
@@ -69,6 +78,9 @@ func (s StatsGatewayVpnPeer) toMap() map[string]any {
     }
     if s.Latency != nil {
         structMap["latency"] = s.Latency
+    }
+    if s.Loss != nil {
+        structMap["loss"] = s.Loss
     }
     if s.Mos != nil {
         structMap["mos"] = s.Mos
@@ -114,15 +126,17 @@ func (s *StatsGatewayVpnPeer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "last_seen", "latency", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "is_active", "jitter", "last_seen", "latency", "loss", "mos", "mtu", "peer_mac", "peer_port_id", "peer_router_name", "peer_site_id", "port_id", "router_name", "type", "up", "uptime")
     if err != nil {
     	return err
     }
     s.AdditionalProperties = additionalProperties
     
     s.IsActive = temp.IsActive
+    s.Jitter = temp.Jitter
     s.LastSeen = temp.LastSeen
     s.Latency = temp.Latency
+    s.Loss = temp.Loss
     s.Mos = temp.Mos
     s.Mtu = temp.Mtu
     s.PeerMac = temp.PeerMac
@@ -140,8 +154,10 @@ func (s *StatsGatewayVpnPeer) UnmarshalJSON(input []byte) error {
 // tempStatsGatewayVpnPeer is a temporary struct used for validating the fields of StatsGatewayVpnPeer.
 type tempStatsGatewayVpnPeer  struct {
     IsActive       *bool             `json:"is_active,omitempty"`
+    Jitter         *float64          `json:"jitter,omitempty"`
     LastSeen       Optional[float64] `json:"last_seen"`
     Latency        *float64          `json:"latency,omitempty"`
+    Loss           *float64          `json:"loss,omitempty"`
     Mos            *float64          `json:"mos,omitempty"`
     Mtu            *int              `json:"mtu,omitempty"`
     PeerMac        *string           `json:"peer_mac,omitempty"`

@@ -10,206 +10,216 @@ import (
 
 // SiteSettingDerived represents a SiteSettingDerived struct.
 type SiteSettingDerived struct {
-    AclPolicies                     []AclPolicy                            `json:"acl_policies,omitempty"`
+    AclPolicies                     []AclPolicy                                         `json:"acl_policies,omitempty"`
     // ACL Tags to identify traffic source or destination. Key name is the tag name
-    AclTags                         map[string]AclTag                      `json:"acl_tags,omitempty"`
+    AclTags                         map[string]AclTag                                   `json:"acl_tags,omitempty"`
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
-    AdditionalConfigCmds            []string                               `json:"additional_config_cmds,omitempty"`
-    Analytic                        *SiteSettingAnalytic                   `json:"analytic,omitempty"`
-    ApMatching                      *SiteSettingApMatching                 `json:"ap_matching,omitempty"`
-    ApPortConfig                    *SiteSettingApPortConfig               `json:"ap_port_config,omitempty"`
+    AdditionalConfigCmds            []string                                            `json:"additional_config_cmds,omitempty"`
+    Analytic                        *SiteSettingAnalytic                                `json:"analytic,omitempty"`
+    ApMatching                      *SiteSettingApMatching                              `json:"ap_matching,omitempty"`
+    ApPortConfig                    *SiteSettingApPortConfig                            `json:"ap_port_config,omitempty"`
     // Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
-    ApUpdownThreshold               Optional[int]                          `json:"ap_updown_threshold"`
+    ApUpdownThreshold               Optional[int]                                       `json:"ap_updown_threshold"`
     // If we're able to determine its x/y/orientation, this will be populated
-    AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
+    AutoPlacement                   *SiteSettingAutoPlacement                           `json:"auto_placement,omitempty"`
     // Auto Upgrade Settings
-    AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
-    AutoUpgradeLinecard             *bool                                  `json:"auto_upgrade_linecard,omitempty"`
-    BlacklistUrl                    *string                                `json:"blacklist_url,omitempty"`
+    AutoUpgrade                     *SiteSettingAutoUpgrade                             `json:"auto_upgrade,omitempty"`
+    // auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
+    AutoUpgradeEsl                  *SiteSettingAutoUpgradeEsl                          `json:"auto_upgrade_esl,omitempty"`
+    AutoUpgradeLinecard             *bool                                               `json:"auto_upgrade_linecard,omitempty"`
+    // enable threshold-based bgp neighbor down delivery.
+    BgpNeighborUpdownThreshold      Optional[int]                                       `json:"bgp_neighbor_updown_threshold"`
+    BlacklistUrl                    *string                                             `json:"blacklist_url,omitempty"`
     // BLE AP settings
-    BleConfig                       *BleConfig                             `json:"ble_config,omitempty"`
+    BleConfig                       *BleConfig                                          `json:"ble_config,omitempty"`
     // Whether to enable ap auto config revert
-    ConfigAutoRevert                *bool                                  `json:"config_auto_revert,omitempty"`
+    ConfigAutoRevert                *bool                                               `json:"config_auto_revert,omitempty"`
     // Mist also uses some heuristic rules to prevent destructive configs from being pushed
-    ConfigPushPolicy                *SiteSettingConfigPushPolicy           `json:"config_push_policy,omitempty"`
+    ConfigPushPolicy                *SiteSettingConfigPushPolicy                        `json:"config_push_policy,omitempty"`
     // When the object has been created, in epoch
-    CreatedTime                     *float64                               `json:"created_time,omitempty"`
+    CreatedTime                     *float64                                            `json:"created_time,omitempty"`
     // You can define some URLs that's critical to site operations the latency will be captured and considered for site health
-    CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
+    CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring                   `json:"critical_url_monitoring,omitempty"`
     // Port usage to assign to switch ports without any port usage assigned. Default: `default` to preserve default behavior
-    DefaultPortUsage                *string                                `json:"default_port_usage,omitempty"`
+    DefaultPortUsage                *string                                             `json:"default_port_usage,omitempty"`
     // By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following
-    DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
-    DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
+    DeviceUpdownThreshold           Optional[int]                                       `json:"device_updown_threshold"`
+    DhcpSnooping                    *DhcpSnooping                                       `json:"dhcp_snooping,omitempty"`
     // If some system-default port usages are not desired - namely, ap / iot / uplink
-    DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum          `json:"disabled_system_defined_port_usages,omitempty"`
+    DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum                       `json:"disabled_system_defined_port_usages,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
-    DnsServers                      []string                               `json:"dns_servers,omitempty"`
+    DnsServers                      []string                                            `json:"dns_servers,omitempty"`
     // Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
-    DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
-    EnableUnii4                     *bool                                  `json:"enable_unii_4,omitempty"`
+    DnsSuffix                       []string                                            `json:"dns_suffix,omitempty"`
+    EnableUnii4                     *bool                                               `json:"enable_unii_4,omitempty"`
     // **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
-    Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
+    Engagement                      *SiteEngagement                                     `json:"engagement,omitempty"`
     // EVPN Options
-    EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
+    EvpnOptions                     *EvpnOptions                                        `json:"evpn_options,omitempty"`
     // Property key is the destination CIDR (e.g. "10.0.0.0/8")
-    ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
+    ExtraRoutes                     map[string]ExtraRoute                               `json:"extra_routes,omitempty"`
     // Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-    ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
+    ExtraRoutes6                    map[string]ExtraRoute6                              `json:"extra_routes6,omitempty"`
     // Name/val pair objects for location engine to use
-    Flags                           map[string]string                      `json:"flags,omitempty"`
-    ForSite                         *bool                                  `json:"for_site,omitempty"`
+    Flags                           map[string]string                                   `json:"flags,omitempty"`
+    ForSite                         *bool                                               `json:"for_site,omitempty"`
     // Gateway Template is applied to a site for gateway(s) in a site.
-    Gateway                         *GatewayTemplate                       `json:"gateway,omitempty"`
+    Gateway                         *GatewayTemplate                                    `json:"gateway,omitempty"`
     // additional CLI commands to append to the generated Junos config. **Note**: no check is done
-    GatewayAdditionalConfigCmds     []string                               `json:"gateway_additional_config_cmds,omitempty"`
+    GatewayAdditionalConfigCmds     []string                                            `json:"gateway_additional_config_cmds,omitempty"`
     // Gateway Site settings
-    GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
+    GatewayMgmt                     *SiteSettingGatewayMgmt                             `json:"gateway_mgmt,omitempty"`
     // Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
-    GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
+    GatewayUpdownThreshold          Optional[int]                                       `json:"gateway_updown_threshold"`
     // Unique ID of the object instance in the Mist Organization
-    Id                              *uuid.UUID                             `json:"id,omitempty"`
-    JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
+    Id                              *uuid.UUID                                          `json:"id,omitempty"`
+    JuniperSrx                      *SiteSettingJuniperSrx                              `json:"juniper_srx,omitempty"`
     // LED AP settings
-    Led                             *ApLed                                 `json:"led,omitempty"`
-    Marvis                          *Marvis                                `json:"marvis,omitempty"`
+    Led                             *ApLed                                              `json:"led,omitempty"`
+    Marvis                          *Marvis                                             `json:"marvis,omitempty"`
     // Enable mist_nac to use RadSec
-    MistNac                         *SwitchMistNac                         `json:"mist_nac,omitempty"`
+    MistNac                         *SwitchMistNac                                      `json:"mist_nac,omitempty"`
     // When the object has been modified for the last time, in epoch
-    ModifiedTime                    *float64                               `json:"modified_time,omitempty"`
+    ModifiedTime                    *float64                                            `json:"modified_time,omitempty"`
     // Site Mist Edges form a cluster of RadSec Proxy servers
-    Mxedge                          *SiteSettingMxedge                     `json:"mxedge,omitempty"`
-    MxedgeMgmt                      *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
+    Mxedge                          *SiteSettingMxedge                                  `json:"mxedge,omitempty"`
+    MxedgeMgmt                      *MxedgeMgmt                                         `json:"mxedge_mgmt,omitempty"`
     // Site MxTunnel
-    Mxtunnels                       *SiteMxtunnel                          `json:"mxtunnels,omitempty"`
+    Mxtunnels                       *SiteMxtunnel                                       `json:"mxtunnels,omitempty"`
     // Property key is network name
-    Networks                        map[string]SwitchNetwork               `json:"networks,omitempty"`
+    Networks                        map[string]SwitchNetwork                            `json:"networks,omitempty"`
     // List of NTP servers
-    NtpServers                      []string                               `json:"ntp_servers,omitempty"`
+    NtpServers                      []string                                            `json:"ntp_servers,omitempty"`
     // Occupancy Analytics settings
-    Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
-    OrgId                           *uuid.UUID                             `json:"org_id,omitempty"`
+    Occupancy                       *SiteOccupancyAnalytics                             `json:"occupancy,omitempty"`
+    OrgId                           *uuid.UUID                                          `json:"org_id,omitempty"`
     // Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
-    OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
-    PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
+    OspfAreas                       map[string]OspfArea                                 `json:"ospf_areas,omitempty"`
+    PaloaltoNetworks                *SiteSettingPaloaltoNetworks                        `json:"paloalto_networks,omitempty"`
     // Whether to store the config on AP
-    PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
+    PersistConfigOnDevice           *bool                                               `json:"persist_config_on_device,omitempty"`
     // Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
-    PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
+    PortMirroring                   map[string]SwitchPortMirroringProperty              `json:"port_mirroring,omitempty"`
     // Property key is the port usage name. Defines the profiles of port configuration configured on the switch
-    PortUsages                      map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
+    PortUsages                      map[string]SwitchPortUsage                          `json:"port_usages,omitempty"`
     // Proxy Configuration to talk to Mist
-    Proxy                           *Proxy                                 `json:"proxy,omitempty"`
+    Proxy                           *Proxy                                              `json:"proxy,omitempty"`
     // Radio AP settings
-    RadioConfig                     *ApRadio                               `json:"radio_config,omitempty"`
+    RadioConfig                     *ApRadio                                            `json:"radio_config,omitempty"`
     // Junos Radius config
-    RadiusConfig                    *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
-    RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
+    RadiusConfig                    *SwitchRadiusConfig                                 `json:"radius_config,omitempty"`
+    RemoteSyslog                    *RemoteSyslog                                       `json:"remote_syslog,omitempty"`
     // By default, only the configuration generated by Mist is cleaned up during the configuration process. If `true`, all the existing configuration will be removed.
-    RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
+    RemoveExistingConfigs           *bool                                               `json:"remove_existing_configs,omitempty"`
     // Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
-    ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`
+    ReportGatt                      *bool                                               `json:"report_gatt,omitempty"`
     // Rogue site settings
-    Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
+    Rogue                           *SiteRogue                                          `json:"rogue,omitempty"`
     // Managed mobility
-    Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`
+    Rtsa                            *SiteSettingRtsa                                    `json:"rtsa,omitempty"`
     // Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures
-    SimpleAlert                     *SimpleAlert                           `json:"simple_alert,omitempty"`
-    SiteId                          *uuid.UUID                             `json:"site_id,omitempty"`
-    Skyatp                          *SiteSettingSkyatp                     `json:"skyatp,omitempty"`
-    SleThresholds                   *SleThresholds                         `json:"sle_thresholds,omitempty"`
-    SnmpConfig                      *SnmpConfig                            `json:"snmp_config,omitempty"`
-    SrxApp                          *SiteSettingSrxApp                     `json:"srx_app,omitempty"`
+    SimpleAlert                     *SimpleAlert                                        `json:"simple_alert,omitempty"`
+    SiteId                          *uuid.UUID                                          `json:"site_id,omitempty"`
+    Skyatp                          *SiteSettingSkyatp                                  `json:"skyatp,omitempty"`
+    SleThresholds                   *SleThresholds                                      `json:"sle_thresholds,omitempty"`
+    SnmpConfig                      *SnmpConfig                                         `json:"snmp_config,omitempty"`
+    SrxApp                          *SiteSettingSrxApp                                  `json:"srx_app,omitempty"`
     // When limit_ssh_access = true in Org Setting, list of SSH public keys provided by Mist Support to install onto APs (see Org:Setting)
-    SshKeys                         []string                               `json:"ssh_keys,omitempty"`
-    Ssr                             *SettingSsr                            `json:"ssr,omitempty"`
-    StatusPortal                    *SiteSettingStatusPortal               `json:"status_portal,omitempty"`
-    Switch                          *SiteSettingSwitch                     `json:"switch,omitempty"`
+    SshKeys                         []string                                            `json:"ssh_keys,omitempty"`
+    Ssr                             *SettingSsr                                         `json:"ssr,omitempty"`
+    StatusPortal                    *SiteSettingStatusPortal                            `json:"status_portal,omitempty"`
+    Switch                          *SiteSettingSwitch                                  `json:"switch,omitempty"`
     // Defines custom switch configuration based on different criteria
-    SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
+    SwitchMatching                  *SwitchMatching                                     `json:"switch_matching,omitempty"`
     // Switch settings
-    SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
+    SwitchMgmt                      *SwitchMgmt                                         `json:"switch_mgmt,omitempty"`
     // Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
-    SwitchUpdownThreshold           Optional[int]                          `json:"switch_updown_threshold"`
-    SyntheticTest                   *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
+    SwitchUpdownThreshold           Optional[int]                                       `json:"switch_updown_threshold"`
+    SyntheticTest                   *SynthetictestConfig                                `json:"synthetic_test,omitempty"`
     // Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)
-    TrackAnonymousDevices           *bool                                  `json:"track_anonymous_devices,omitempty"`
-    TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
-    TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
-    TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
+    TrackAnonymousDevices           *bool                                               `json:"track_anonymous_devices,omitempty"`
+    TuntermMonitoring               []TuntermMonitoringItem                             `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoringDisabled       *bool                                               `json:"tunterm_monitoring_disabled,omitempty"`
+    TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig                  `json:"tunterm_multicast_config,omitempty"`
     // AP Uplink port configuration
-    UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
+    UplinkPortConfig                *ApUplinkPortConfig                                 `json:"uplink_port_config,omitempty"`
     // Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
-    Vars                            map[string]string                      `json:"vars,omitempty"`
-    Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
-    VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
+    Vars                            map[string]string                                   `json:"vars,omitempty"`
+    Vna                             *SiteSettingVna                                     `json:"vna,omitempty"`
+    // enable threshold-based vpn path down delivery.
+    VpnPathUpdownThreshold          Optional[int]                                       `json:"vpn_path_updown_threshold"`
+    // enable threshold-based vpn peer down delivery.
+    VpnPeerUpdownThreshold          Optional[int]                                       `json:"vpn_peer_updown_threshold"`
+    VrfConfig                       *VrfConfig                                          `json:"vrf_config,omitempty"`
     // Property key is the network name
-    VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
+    VrfInstances                    map[string]SwitchVrfInstance                        `json:"vrf_instances,omitempty"`
     // Property key is the vrrp group
-    VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
+    VrrpGroups                      map[string]VrrpGroup                                `json:"vrrp_groups,omitempty"`
     // Optional, for EX9200 only to segregate virtual-switches. Property key is the instance name
-    VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
-    WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
-    WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`
-    WhitelistUrl                    *string                                `json:"whitelist_url,omitempty"`
+    VsInstance                      map[string]VsInstanceProperty                       `json:"vs_instance,omitempty"`
+    WanVna                          *SiteSettingWanVna                                  `json:"wan_vna,omitempty"`
+    WatchedStationUrl               *string                                             `json:"watched_station_url,omitempty"`
+    WhitelistUrl                    *string                                             `json:"whitelist_url,omitempty"`
     // WIDS site settings
-    Wids                            *SiteWids                              `json:"wids,omitempty"`
+    Wids                            *SiteWids                                           `json:"wids,omitempty"`
     // Wi-Fi site settings
-    Wifi                            *SiteWifi                              `json:"wifi,omitempty"`
-    WiredVna                        *SiteSettingWiredVna                   `json:"wired_vna,omitempty"`
+    Wifi                            *SiteWifi                                           `json:"wifi,omitempty"`
+    WiredVna                        *SiteSettingWiredVna                                `json:"wired_vna,omitempty"`
     // Zone Occupancy alert site settings
-    ZoneOccupancyAlert              *SiteZoneOccupancyAlert                `json:"zone_occupancy_alert,omitempty"`
+    ZoneOccupancyAlert              *SiteZoneOccupancyAlert                             `json:"zone_occupancy_alert,omitempty"`
     // Linked app account id
-    AccountId                       *string                                `json:"account_id,omitempty"`
+    AccountId                       *string                                             `json:"account_id,omitempty"`
     // For Prisma accounts only, tunnel auto probe subnet
-    AutoProbeSubnet                 *string                                `json:"auto_probe_subnet,omitempty"`
+    AutoProbeSubnet                 *string                                             `json:"auto_probe_subnet,omitempty"`
     // Customer account Client ID
-    ClientId                        *string                                `json:"client_id,omitempty"`
+    ClientId                        *string                                             `json:"client_id,omitempty"`
     // Name of the company whose account mist has subscribed to
-    CloudName                       *string                                `json:"cloud_name,omitempty"`
+    CloudName                       *string                                             `json:"cloud_name,omitempty"`
     // Name of the company whose account mist has subscribed to
-    Company                         *string                                `json:"company,omitempty"`
+    Company                         *string                                             `json:"company,omitempty"`
     // For Prisma accounts only, tunnel probe enable/disable
-    EnableProbe                     *bool                                  `json:"enable_probe,omitempty"`
+    EnableProbe                     *bool                                               `json:"enable_probe,omitempty"`
     // This error is provided when the account fails to fetch token/data
-    Error                           *string                                `json:"error,omitempty"`
-    Errors                          []string                               `json:"errors,omitempty"`
+    Error                           *string                                             `json:"error,omitempty"`
+    Errors                          []string                                            `json:"errors,omitempty"`
     // Customer account instance URL
-    InstanceUrl                     *string                                `json:"instance_url,omitempty"`
+    InstanceUrl                     *string                                             `json:"instance_url,omitempty"`
     // Is the last data pull for account is successful or not
-    LastStatus                      *string                                `json:"last_status,omitempty"`
+    LastStatus                      *string                                             `json:"last_status,omitempty"`
     // Last data pull timestamp, background jobs that pull account data
-    LastSync                        *int64                                 `json:"last_sync,omitempty"`
+    LastSync                        *int64                                              `json:"last_sync,omitempty"`
     // First name of the user who linked the account
-    LinkedBy                        *string                                `json:"linked_by,omitempty"`
-    LinkedTimestamp                 *float64                               `json:"linked_timestamp,omitempty"`
+    LinkedBy                        *string                                             `json:"linked_by,omitempty"`
+    LinkedTimestamp                 *float64                                            `json:"linked_timestamp,omitempty"`
     // Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
-    MaxDailyApiRequests             *int                                   `json:"max_daily_api_requests,omitempty"`
+    MaxDailyApiRequests             *int                                                `json:"max_daily_api_requests,omitempty"`
     // Name of the company whose account mist has subscribed to
-    Name                            *string                                `json:"name,omitempty"`
+    Name                            *string                                             `json:"name,omitempty"`
     // Customer account password instance URL
-    Password                        *string                                `json:"password,omitempty"`
+    Password                        *string                                             `json:"password,omitempty"`
     // For Prisma accounts only
-    Region                          *string                                `json:"region,omitempty"`
+    Region                          *string                                             `json:"region,omitempty"`
+    // For Prisma accounts only, property key is the region name. Regions with allocated bandwidth
+    Regions                         map[string]AccountOauthInfoAccountRegion            `json:"regions,omitempty"`
     // For Prisma accounts only
-    ServiceAccountName              *string                                `json:"service_account_name,omitempty"`
-    // For Prisma accounts only
-    ServiceConnections              []string                               `json:"service_connections,omitempty"`
+    ServiceAccountName              *string                                             `json:"service_account_name,omitempty"`
+    // For Prisma accounts only, property key is the service connection name
+    ServiceConnections              map[string]AccountOauthInfoAccountServiceConnection `json:"service_connections,omitempty"`
     // Smart group membership for determining compliance status
-    SmartgroupName                  *string                                `json:"smartgroup_name,omitempty"`
+    SmartgroupName                  *string                                             `json:"smartgroup_name,omitempty"`
     // For Prisma accounts only, Prisma Tenant Service Group id
-    TsgId                           *string                                `json:"tsg_id,omitempty"`
+    TsgId                           *string                                             `json:"tsg_id,omitempty"`
     // Customer account username
-    Username                        *string                                `json:"username,omitempty"`
-    AdditionalProperties            map[string]AccountOauthInfoAccount     `json:"_"`
+    Username                        *string                                             `json:"username,omitempty"`
+    AdditionalProperties            map[string]AccountOauthInfoAccount                  `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SiteSettingDerived,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingDerived) String() string {
     return fmt.Sprintf(
-    	"SiteSettingDerived[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeLinecard=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DefaultPortUsage=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, Vars=%v, Vna=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, AdditionalProperties=%v]",
-    	s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeLinecard, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DefaultPortUsage, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.Vars, s.Vna, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AccountId, s.AutoProbeSubnet, s.ClientId, s.CloudName, s.Company, s.EnableProbe, s.Error, s.Errors, s.InstanceUrl, s.LastStatus, s.LastSync, s.LinkedBy, s.LinkedTimestamp, s.MaxDailyApiRequests, s.Name, s.Password, s.Region, s.ServiceAccountName, s.ServiceConnections, s.SmartgroupName, s.TsgId, s.Username, s.AdditionalProperties)
+    	"SiteSettingDerived[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeEsl=%v, AutoUpgradeLinecard=%v, BgpNeighborUpdownThreshold=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DefaultPortUsage=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, Vars=%v, Vna=%v, VpnPathUpdownThreshold=%v, VpnPeerUpdownThreshold=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, AdditionalProperties=%v]",
+    	s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeEsl, s.AutoUpgradeLinecard, s.BgpNeighborUpdownThreshold, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DefaultPortUsage, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.Vars, s.Vna, s.VpnPathUpdownThreshold, s.VpnPeerUpdownThreshold, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AccountId, s.AutoProbeSubnet, s.ClientId, s.CloudName, s.Company, s.EnableProbe, s.Error, s.Errors, s.InstanceUrl, s.LastStatus, s.LastSync, s.LinkedBy, s.LinkedTimestamp, s.MaxDailyApiRequests, s.Name, s.Password, s.Region, s.Regions, s.ServiceAccountName, s.ServiceConnections, s.SmartgroupName, s.TsgId, s.Username, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingDerived.
@@ -218,7 +228,7 @@ func (s SiteSettingDerived) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_linecard", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "default_port_usage", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username"); err != nil {
+        "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "default_port_usage", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -259,8 +269,18 @@ func (s SiteSettingDerived) toMap() map[string]any {
     if s.AutoUpgrade != nil {
         structMap["auto_upgrade"] = s.AutoUpgrade.toMap()
     }
+    if s.AutoUpgradeEsl != nil {
+        structMap["auto_upgrade_esl"] = s.AutoUpgradeEsl.toMap()
+    }
     if s.AutoUpgradeLinecard != nil {
         structMap["auto_upgrade_linecard"] = s.AutoUpgradeLinecard
+    }
+    if s.BgpNeighborUpdownThreshold.IsValueSet() {
+        if s.BgpNeighborUpdownThreshold.Value() != nil {
+            structMap["bgp_neighbor_updown_threshold"] = s.BgpNeighborUpdownThreshold.Value()
+        } else {
+            structMap["bgp_neighbor_updown_threshold"] = nil
+        }
     }
     if s.BlacklistUrl != nil {
         structMap["blacklist_url"] = s.BlacklistUrl
@@ -484,6 +504,20 @@ func (s SiteSettingDerived) toMap() map[string]any {
     if s.Vna != nil {
         structMap["vna"] = s.Vna.toMap()
     }
+    if s.VpnPathUpdownThreshold.IsValueSet() {
+        if s.VpnPathUpdownThreshold.Value() != nil {
+            structMap["vpn_path_updown_threshold"] = s.VpnPathUpdownThreshold.Value()
+        } else {
+            structMap["vpn_path_updown_threshold"] = nil
+        }
+    }
+    if s.VpnPeerUpdownThreshold.IsValueSet() {
+        if s.VpnPeerUpdownThreshold.Value() != nil {
+            structMap["vpn_peer_updown_threshold"] = s.VpnPeerUpdownThreshold.Value()
+        } else {
+            structMap["vpn_peer_updown_threshold"] = nil
+        }
+    }
     if s.VrfConfig != nil {
         structMap["vrf_config"] = s.VrfConfig.toMap()
     }
@@ -568,6 +602,9 @@ func (s SiteSettingDerived) toMap() map[string]any {
     if s.Region != nil {
         structMap["region"] = s.Region
     }
+    if s.Regions != nil {
+        structMap["regions"] = s.Regions
+    }
     if s.ServiceAccountName != nil {
         structMap["service_account_name"] = s.ServiceAccountName
     }
@@ -594,7 +631,7 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[AccountOauthInfoAccount](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_linecard", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "default_port_usage", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username")
+    additionalProperties, err := ExtractAdditionalProperties[AccountOauthInfoAccount](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "default_port_usage", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username")
     if err != nil {
     	return err
     }
@@ -609,7 +646,9 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
     s.ApUpdownThreshold = temp.ApUpdownThreshold
     s.AutoPlacement = temp.AutoPlacement
     s.AutoUpgrade = temp.AutoUpgrade
+    s.AutoUpgradeEsl = temp.AutoUpgradeEsl
     s.AutoUpgradeLinecard = temp.AutoUpgradeLinecard
+    s.BgpNeighborUpdownThreshold = temp.BgpNeighborUpdownThreshold
     s.BlacklistUrl = temp.BlacklistUrl
     s.BleConfig = temp.BleConfig
     s.ConfigAutoRevert = temp.ConfigAutoRevert
@@ -680,6 +719,8 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
     s.UplinkPortConfig = temp.UplinkPortConfig
     s.Vars = temp.Vars
     s.Vna = temp.Vna
+    s.VpnPathUpdownThreshold = temp.VpnPathUpdownThreshold
+    s.VpnPeerUpdownThreshold = temp.VpnPeerUpdownThreshold
     s.VrfConfig = temp.VrfConfig
     s.VrfInstances = temp.VrfInstances
     s.VrrpGroups = temp.VrrpGroups
@@ -708,6 +749,7 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
     s.Name = temp.Name
     s.Password = temp.Password
     s.Region = temp.Region
+    s.Regions = temp.Regions
     s.ServiceAccountName = temp.ServiceAccountName
     s.ServiceConnections = temp.ServiceConnections
     s.SmartgroupName = temp.SmartgroupName
@@ -718,117 +760,122 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
 
 // tempSiteSettingDerived is a temporary struct used for validating the fields of SiteSettingDerived.
 type tempSiteSettingDerived  struct {
-    AclPolicies                     []AclPolicy                            `json:"acl_policies,omitempty"`
-    AclTags                         map[string]AclTag                      `json:"acl_tags,omitempty"`
-    AdditionalConfigCmds            []string                               `json:"additional_config_cmds,omitempty"`
-    Analytic                        *SiteSettingAnalytic                   `json:"analytic,omitempty"`
-    ApMatching                      *SiteSettingApMatching                 `json:"ap_matching,omitempty"`
-    ApPortConfig                    *SiteSettingApPortConfig               `json:"ap_port_config,omitempty"`
-    ApUpdownThreshold               Optional[int]                          `json:"ap_updown_threshold"`
-    AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
-    AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
-    AutoUpgradeLinecard             *bool                                  `json:"auto_upgrade_linecard,omitempty"`
-    BlacklistUrl                    *string                                `json:"blacklist_url,omitempty"`
-    BleConfig                       *BleConfig                             `json:"ble_config,omitempty"`
-    ConfigAutoRevert                *bool                                  `json:"config_auto_revert,omitempty"`
-    ConfigPushPolicy                *SiteSettingConfigPushPolicy           `json:"config_push_policy,omitempty"`
-    CreatedTime                     *float64                               `json:"created_time,omitempty"`
-    CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring      `json:"critical_url_monitoring,omitempty"`
-    DefaultPortUsage                *string                                `json:"default_port_usage,omitempty"`
-    DeviceUpdownThreshold           Optional[int]                          `json:"device_updown_threshold"`
-    DhcpSnooping                    *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
-    DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum          `json:"disabled_system_defined_port_usages,omitempty"`
-    DnsServers                      []string                               `json:"dns_servers,omitempty"`
-    DnsSuffix                       []string                               `json:"dns_suffix,omitempty"`
-    EnableUnii4                     *bool                                  `json:"enable_unii_4,omitempty"`
-    Engagement                      *SiteEngagement                        `json:"engagement,omitempty"`
-    EvpnOptions                     *EvpnOptions                           `json:"evpn_options,omitempty"`
-    ExtraRoutes                     map[string]ExtraRoute                  `json:"extra_routes,omitempty"`
-    ExtraRoutes6                    map[string]ExtraRoute6                 `json:"extra_routes6,omitempty"`
-    Flags                           map[string]string                      `json:"flags,omitempty"`
-    ForSite                         *bool                                  `json:"for_site,omitempty"`
-    Gateway                         *GatewayTemplate                       `json:"gateway,omitempty"`
-    GatewayAdditionalConfigCmds     []string                               `json:"gateway_additional_config_cmds,omitempty"`
-    GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
-    GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
-    Id                              *uuid.UUID                             `json:"id,omitempty"`
-    JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`
-    Led                             *ApLed                                 `json:"led,omitempty"`
-    Marvis                          *Marvis                                `json:"marvis,omitempty"`
-    MistNac                         *SwitchMistNac                         `json:"mist_nac,omitempty"`
-    ModifiedTime                    *float64                               `json:"modified_time,omitempty"`
-    Mxedge                          *SiteSettingMxedge                     `json:"mxedge,omitempty"`
-    MxedgeMgmt                      *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
-    Mxtunnels                       *SiteMxtunnel                          `json:"mxtunnels,omitempty"`
-    Networks                        map[string]SwitchNetwork               `json:"networks,omitempty"`
-    NtpServers                      []string                               `json:"ntp_servers,omitempty"`
-    Occupancy                       *SiteOccupancyAnalytics                `json:"occupancy,omitempty"`
-    OrgId                           *uuid.UUID                             `json:"org_id,omitempty"`
-    OspfAreas                       map[string]OspfArea                    `json:"ospf_areas,omitempty"`
-    PaloaltoNetworks                *SiteSettingPaloaltoNetworks           `json:"paloalto_networks,omitempty"`
-    PersistConfigOnDevice           *bool                                  `json:"persist_config_on_device,omitempty"`
-    PortMirroring                   map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
-    PortUsages                      map[string]SwitchPortUsage             `json:"port_usages,omitempty"`
-    Proxy                           *Proxy                                 `json:"proxy,omitempty"`
-    RadioConfig                     *ApRadio                               `json:"radio_config,omitempty"`
-    RadiusConfig                    *SwitchRadiusConfig                    `json:"radius_config,omitempty"`
-    RemoteSyslog                    *RemoteSyslog                          `json:"remote_syslog,omitempty"`
-    RemoveExistingConfigs           *bool                                  `json:"remove_existing_configs,omitempty"`
-    ReportGatt                      *bool                                  `json:"report_gatt,omitempty"`
-    Rogue                           *SiteRogue                             `json:"rogue,omitempty"`
-    Rtsa                            *SiteSettingRtsa                       `json:"rtsa,omitempty"`
-    SimpleAlert                     *SimpleAlert                           `json:"simple_alert,omitempty"`
-    SiteId                          *uuid.UUID                             `json:"site_id,omitempty"`
-    Skyatp                          *SiteSettingSkyatp                     `json:"skyatp,omitempty"`
-    SleThresholds                   *SleThresholds                         `json:"sle_thresholds,omitempty"`
-    SnmpConfig                      *SnmpConfig                            `json:"snmp_config,omitempty"`
-    SrxApp                          *SiteSettingSrxApp                     `json:"srx_app,omitempty"`
-    SshKeys                         []string                               `json:"ssh_keys,omitempty"`
-    Ssr                             *SettingSsr                            `json:"ssr,omitempty"`
-    StatusPortal                    *SiteSettingStatusPortal               `json:"status_portal,omitempty"`
-    Switch                          *SiteSettingSwitch                     `json:"switch,omitempty"`
-    SwitchMatching                  *SwitchMatching                        `json:"switch_matching,omitempty"`
-    SwitchMgmt                      *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
-    SwitchUpdownThreshold           Optional[int]                          `json:"switch_updown_threshold"`
-    SyntheticTest                   *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
-    TrackAnonymousDevices           *bool                                  `json:"track_anonymous_devices,omitempty"`
-    TuntermMonitoring               []TuntermMonitoringItem                `json:"tunterm_monitoring,omitempty"`
-    TuntermMonitoringDisabled       *bool                                  `json:"tunterm_monitoring_disabled,omitempty"`
-    TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig     `json:"tunterm_multicast_config,omitempty"`
-    UplinkPortConfig                *ApUplinkPortConfig                    `json:"uplink_port_config,omitempty"`
-    Vars                            map[string]string                      `json:"vars,omitempty"`
-    Vna                             *SiteSettingVna                        `json:"vna,omitempty"`
-    VrfConfig                       *VrfConfig                             `json:"vrf_config,omitempty"`
-    VrfInstances                    map[string]SwitchVrfInstance           `json:"vrf_instances,omitempty"`
-    VrrpGroups                      map[string]VrrpGroup                   `json:"vrrp_groups,omitempty"`
-    VsInstance                      map[string]VsInstanceProperty          `json:"vs_instance,omitempty"`
-    WanVna                          *SiteSettingWanVna                     `json:"wan_vna,omitempty"`
-    WatchedStationUrl               *string                                `json:"watched_station_url,omitempty"`
-    WhitelistUrl                    *string                                `json:"whitelist_url,omitempty"`
-    Wids                            *SiteWids                              `json:"wids,omitempty"`
-    Wifi                            *SiteWifi                              `json:"wifi,omitempty"`
-    WiredVna                        *SiteSettingWiredVna                   `json:"wired_vna,omitempty"`
-    ZoneOccupancyAlert              *SiteZoneOccupancyAlert                `json:"zone_occupancy_alert,omitempty"`
-    AccountId                       *string                                `json:"account_id,omitempty"`
-    AutoProbeSubnet                 *string                                `json:"auto_probe_subnet,omitempty"`
-    ClientId                        *string                                `json:"client_id,omitempty"`
-    CloudName                       *string                                `json:"cloud_name,omitempty"`
-    Company                         *string                                `json:"company,omitempty"`
-    EnableProbe                     *bool                                  `json:"enable_probe,omitempty"`
-    Error                           *string                                `json:"error,omitempty"`
-    Errors                          []string                               `json:"errors,omitempty"`
-    InstanceUrl                     *string                                `json:"instance_url,omitempty"`
-    LastStatus                      *string                                `json:"last_status,omitempty"`
-    LastSync                        *int64                                 `json:"last_sync,omitempty"`
-    LinkedBy                        *string                                `json:"linked_by,omitempty"`
-    LinkedTimestamp                 *float64                               `json:"linked_timestamp,omitempty"`
-    MaxDailyApiRequests             *int                                   `json:"max_daily_api_requests,omitempty"`
-    Name                            *string                                `json:"name,omitempty"`
-    Password                        *string                                `json:"password,omitempty"`
-    Region                          *string                                `json:"region,omitempty"`
-    ServiceAccountName              *string                                `json:"service_account_name,omitempty"`
-    ServiceConnections              []string                               `json:"service_connections,omitempty"`
-    SmartgroupName                  *string                                `json:"smartgroup_name,omitempty"`
-    TsgId                           *string                                `json:"tsg_id,omitempty"`
-    Username                        *string                                `json:"username,omitempty"`
+    AclPolicies                     []AclPolicy                                         `json:"acl_policies,omitempty"`
+    AclTags                         map[string]AclTag                                   `json:"acl_tags,omitempty"`
+    AdditionalConfigCmds            []string                                            `json:"additional_config_cmds,omitempty"`
+    Analytic                        *SiteSettingAnalytic                                `json:"analytic,omitempty"`
+    ApMatching                      *SiteSettingApMatching                              `json:"ap_matching,omitempty"`
+    ApPortConfig                    *SiteSettingApPortConfig                            `json:"ap_port_config,omitempty"`
+    ApUpdownThreshold               Optional[int]                                       `json:"ap_updown_threshold"`
+    AutoPlacement                   *SiteSettingAutoPlacement                           `json:"auto_placement,omitempty"`
+    AutoUpgrade                     *SiteSettingAutoUpgrade                             `json:"auto_upgrade,omitempty"`
+    AutoUpgradeEsl                  *SiteSettingAutoUpgradeEsl                          `json:"auto_upgrade_esl,omitempty"`
+    AutoUpgradeLinecard             *bool                                               `json:"auto_upgrade_linecard,omitempty"`
+    BgpNeighborUpdownThreshold      Optional[int]                                       `json:"bgp_neighbor_updown_threshold"`
+    BlacklistUrl                    *string                                             `json:"blacklist_url,omitempty"`
+    BleConfig                       *BleConfig                                          `json:"ble_config,omitempty"`
+    ConfigAutoRevert                *bool                                               `json:"config_auto_revert,omitempty"`
+    ConfigPushPolicy                *SiteSettingConfigPushPolicy                        `json:"config_push_policy,omitempty"`
+    CreatedTime                     *float64                                            `json:"created_time,omitempty"`
+    CriticalUrlMonitoring           *SiteSettingCriticalUrlMonitoring                   `json:"critical_url_monitoring,omitempty"`
+    DefaultPortUsage                *string                                             `json:"default_port_usage,omitempty"`
+    DeviceUpdownThreshold           Optional[int]                                       `json:"device_updown_threshold"`
+    DhcpSnooping                    *DhcpSnooping                                       `json:"dhcp_snooping,omitempty"`
+    DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum                       `json:"disabled_system_defined_port_usages,omitempty"`
+    DnsServers                      []string                                            `json:"dns_servers,omitempty"`
+    DnsSuffix                       []string                                            `json:"dns_suffix,omitempty"`
+    EnableUnii4                     *bool                                               `json:"enable_unii_4,omitempty"`
+    Engagement                      *SiteEngagement                                     `json:"engagement,omitempty"`
+    EvpnOptions                     *EvpnOptions                                        `json:"evpn_options,omitempty"`
+    ExtraRoutes                     map[string]ExtraRoute                               `json:"extra_routes,omitempty"`
+    ExtraRoutes6                    map[string]ExtraRoute6                              `json:"extra_routes6,omitempty"`
+    Flags                           map[string]string                                   `json:"flags,omitempty"`
+    ForSite                         *bool                                               `json:"for_site,omitempty"`
+    Gateway                         *GatewayTemplate                                    `json:"gateway,omitempty"`
+    GatewayAdditionalConfigCmds     []string                                            `json:"gateway_additional_config_cmds,omitempty"`
+    GatewayMgmt                     *SiteSettingGatewayMgmt                             `json:"gateway_mgmt,omitempty"`
+    GatewayUpdownThreshold          Optional[int]                                       `json:"gateway_updown_threshold"`
+    Id                              *uuid.UUID                                          `json:"id,omitempty"`
+    JuniperSrx                      *SiteSettingJuniperSrx                              `json:"juniper_srx,omitempty"`
+    Led                             *ApLed                                              `json:"led,omitempty"`
+    Marvis                          *Marvis                                             `json:"marvis,omitempty"`
+    MistNac                         *SwitchMistNac                                      `json:"mist_nac,omitempty"`
+    ModifiedTime                    *float64                                            `json:"modified_time,omitempty"`
+    Mxedge                          *SiteSettingMxedge                                  `json:"mxedge,omitempty"`
+    MxedgeMgmt                      *MxedgeMgmt                                         `json:"mxedge_mgmt,omitempty"`
+    Mxtunnels                       *SiteMxtunnel                                       `json:"mxtunnels,omitempty"`
+    Networks                        map[string]SwitchNetwork                            `json:"networks,omitempty"`
+    NtpServers                      []string                                            `json:"ntp_servers,omitempty"`
+    Occupancy                       *SiteOccupancyAnalytics                             `json:"occupancy,omitempty"`
+    OrgId                           *uuid.UUID                                          `json:"org_id,omitempty"`
+    OspfAreas                       map[string]OspfArea                                 `json:"ospf_areas,omitempty"`
+    PaloaltoNetworks                *SiteSettingPaloaltoNetworks                        `json:"paloalto_networks,omitempty"`
+    PersistConfigOnDevice           *bool                                               `json:"persist_config_on_device,omitempty"`
+    PortMirroring                   map[string]SwitchPortMirroringProperty              `json:"port_mirroring,omitempty"`
+    PortUsages                      map[string]SwitchPortUsage                          `json:"port_usages,omitempty"`
+    Proxy                           *Proxy                                              `json:"proxy,omitempty"`
+    RadioConfig                     *ApRadio                                            `json:"radio_config,omitempty"`
+    RadiusConfig                    *SwitchRadiusConfig                                 `json:"radius_config,omitempty"`
+    RemoteSyslog                    *RemoteSyslog                                       `json:"remote_syslog,omitempty"`
+    RemoveExistingConfigs           *bool                                               `json:"remove_existing_configs,omitempty"`
+    ReportGatt                      *bool                                               `json:"report_gatt,omitempty"`
+    Rogue                           *SiteRogue                                          `json:"rogue,omitempty"`
+    Rtsa                            *SiteSettingRtsa                                    `json:"rtsa,omitempty"`
+    SimpleAlert                     *SimpleAlert                                        `json:"simple_alert,omitempty"`
+    SiteId                          *uuid.UUID                                          `json:"site_id,omitempty"`
+    Skyatp                          *SiteSettingSkyatp                                  `json:"skyatp,omitempty"`
+    SleThresholds                   *SleThresholds                                      `json:"sle_thresholds,omitempty"`
+    SnmpConfig                      *SnmpConfig                                         `json:"snmp_config,omitempty"`
+    SrxApp                          *SiteSettingSrxApp                                  `json:"srx_app,omitempty"`
+    SshKeys                         []string                                            `json:"ssh_keys,omitempty"`
+    Ssr                             *SettingSsr                                         `json:"ssr,omitempty"`
+    StatusPortal                    *SiteSettingStatusPortal                            `json:"status_portal,omitempty"`
+    Switch                          *SiteSettingSwitch                                  `json:"switch,omitempty"`
+    SwitchMatching                  *SwitchMatching                                     `json:"switch_matching,omitempty"`
+    SwitchMgmt                      *SwitchMgmt                                         `json:"switch_mgmt,omitempty"`
+    SwitchUpdownThreshold           Optional[int]                                       `json:"switch_updown_threshold"`
+    SyntheticTest                   *SynthetictestConfig                                `json:"synthetic_test,omitempty"`
+    TrackAnonymousDevices           *bool                                               `json:"track_anonymous_devices,omitempty"`
+    TuntermMonitoring               []TuntermMonitoringItem                             `json:"tunterm_monitoring,omitempty"`
+    TuntermMonitoringDisabled       *bool                                               `json:"tunterm_monitoring_disabled,omitempty"`
+    TuntermMulticastConfig          *SiteSettingTuntermMulticastConfig                  `json:"tunterm_multicast_config,omitempty"`
+    UplinkPortConfig                *ApUplinkPortConfig                                 `json:"uplink_port_config,omitempty"`
+    Vars                            map[string]string                                   `json:"vars,omitempty"`
+    Vna                             *SiteSettingVna                                     `json:"vna,omitempty"`
+    VpnPathUpdownThreshold          Optional[int]                                       `json:"vpn_path_updown_threshold"`
+    VpnPeerUpdownThreshold          Optional[int]                                       `json:"vpn_peer_updown_threshold"`
+    VrfConfig                       *VrfConfig                                          `json:"vrf_config,omitempty"`
+    VrfInstances                    map[string]SwitchVrfInstance                        `json:"vrf_instances,omitempty"`
+    VrrpGroups                      map[string]VrrpGroup                                `json:"vrrp_groups,omitempty"`
+    VsInstance                      map[string]VsInstanceProperty                       `json:"vs_instance,omitempty"`
+    WanVna                          *SiteSettingWanVna                                  `json:"wan_vna,omitempty"`
+    WatchedStationUrl               *string                                             `json:"watched_station_url,omitempty"`
+    WhitelistUrl                    *string                                             `json:"whitelist_url,omitempty"`
+    Wids                            *SiteWids                                           `json:"wids,omitempty"`
+    Wifi                            *SiteWifi                                           `json:"wifi,omitempty"`
+    WiredVna                        *SiteSettingWiredVna                                `json:"wired_vna,omitempty"`
+    ZoneOccupancyAlert              *SiteZoneOccupancyAlert                             `json:"zone_occupancy_alert,omitempty"`
+    AccountId                       *string                                             `json:"account_id,omitempty"`
+    AutoProbeSubnet                 *string                                             `json:"auto_probe_subnet,omitempty"`
+    ClientId                        *string                                             `json:"client_id,omitempty"`
+    CloudName                       *string                                             `json:"cloud_name,omitempty"`
+    Company                         *string                                             `json:"company,omitempty"`
+    EnableProbe                     *bool                                               `json:"enable_probe,omitempty"`
+    Error                           *string                                             `json:"error,omitempty"`
+    Errors                          []string                                            `json:"errors,omitempty"`
+    InstanceUrl                     *string                                             `json:"instance_url,omitempty"`
+    LastStatus                      *string                                             `json:"last_status,omitempty"`
+    LastSync                        *int64                                              `json:"last_sync,omitempty"`
+    LinkedBy                        *string                                             `json:"linked_by,omitempty"`
+    LinkedTimestamp                 *float64                                            `json:"linked_timestamp,omitempty"`
+    MaxDailyApiRequests             *int                                                `json:"max_daily_api_requests,omitempty"`
+    Name                            *string                                             `json:"name,omitempty"`
+    Password                        *string                                             `json:"password,omitempty"`
+    Region                          *string                                             `json:"region,omitempty"`
+    Regions                         map[string]AccountOauthInfoAccountRegion            `json:"regions,omitempty"`
+    ServiceAccountName              *string                                             `json:"service_account_name,omitempty"`
+    ServiceConnections              map[string]AccountOauthInfoAccountServiceConnection `json:"service_connections,omitempty"`
+    SmartgroupName                  *string                                             `json:"smartgroup_name,omitempty"`
+    TsgId                           *string                                             `json:"tsg_id,omitempty"`
+    Username                        *string                                             `json:"username,omitempty"`
 }

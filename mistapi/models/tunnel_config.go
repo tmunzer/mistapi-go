@@ -23,6 +23,8 @@ type TunnelConfig struct {
     IpsecProposals       []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
     // Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     LocalId              *string                     `json:"local_id,omitempty"`
+    // List of Local protected subnet for policy-based IPSec negotiation
+    LocalSubnets         []string                    `json:"local_subnets,omitempty"`
     // Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`
     Mode                 *TunnelConfigTunnelModeEnum `json:"mode,omitempty"`
     // If `provider`==`custom-ipsec` or `provider`==`prisma-ipsec`, networks reachable via this tunnel
@@ -37,6 +39,8 @@ type TunnelConfig struct {
     Provider             *TunnelConfigProviderEnum   `json:"provider,omitempty"`
     // Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     Psk                  *string                     `json:"psk,omitempty"`
+    // List of Remote protected subnet for policy-based IPSec negotiation
+    RemoteSubnets        []string                    `json:"remote_subnets,omitempty"`
     // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
     Secondary            *TunnelConfigNode           `json:"secondary,omitempty"`
     // Only if `provider`==`custom-gre` or `provider`==`custom-ipsec`. enum: `1`, `2`
@@ -48,8 +52,8 @@ type TunnelConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (t TunnelConfig) String() string {
     return fmt.Sprintf(
-    	"TunnelConfig[AutoProvision=%v, IkeLifetime=%v, IkeMode=%v, IkeProposals=%v, IpsecLifetime=%v, IpsecProposals=%v, LocalId=%v, Mode=%v, Networks=%v, Primary=%v, Probe=%v, Protocol=%v, Provider=%v, Psk=%v, Secondary=%v, Version=%v, AdditionalProperties=%v]",
-    	t.AutoProvision, t.IkeLifetime, t.IkeMode, t.IkeProposals, t.IpsecLifetime, t.IpsecProposals, t.LocalId, t.Mode, t.Networks, t.Primary, t.Probe, t.Protocol, t.Provider, t.Psk, t.Secondary, t.Version, t.AdditionalProperties)
+    	"TunnelConfig[AutoProvision=%v, IkeLifetime=%v, IkeMode=%v, IkeProposals=%v, IpsecLifetime=%v, IpsecProposals=%v, LocalId=%v, LocalSubnets=%v, Mode=%v, Networks=%v, Primary=%v, Probe=%v, Protocol=%v, Provider=%v, Psk=%v, RemoteSubnets=%v, Secondary=%v, Version=%v, AdditionalProperties=%v]",
+    	t.AutoProvision, t.IkeLifetime, t.IkeMode, t.IkeProposals, t.IpsecLifetime, t.IpsecProposals, t.LocalId, t.LocalSubnets, t.Mode, t.Networks, t.Primary, t.Probe, t.Protocol, t.Provider, t.Psk, t.RemoteSubnets, t.Secondary, t.Version, t.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for TunnelConfig.
@@ -58,7 +62,7 @@ func (t TunnelConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(t.AdditionalProperties,
-        "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version"); err != nil {
+        "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "local_subnets", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "remote_subnets", "secondary", "version"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(t.toMap())
@@ -89,6 +93,9 @@ func (t TunnelConfig) toMap() map[string]any {
     if t.LocalId != nil {
         structMap["local_id"] = t.LocalId
     }
+    if t.LocalSubnets != nil {
+        structMap["local_subnets"] = t.LocalSubnets
+    }
     if t.Mode != nil {
         structMap["mode"] = t.Mode
     }
@@ -110,6 +117,9 @@ func (t TunnelConfig) toMap() map[string]any {
     if t.Psk != nil {
         structMap["psk"] = t.Psk
     }
+    if t.RemoteSubnets != nil {
+        structMap["remote_subnets"] = t.RemoteSubnets
+    }
     if t.Secondary != nil {
         structMap["secondary"] = t.Secondary.toMap()
     }
@@ -127,7 +137,7 @@ func (t *TunnelConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "secondary", "version")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_provision", "ike_lifetime", "ike_mode", "ike_proposals", "ipsec_lifetime", "ipsec_proposals", "local_id", "local_subnets", "mode", "networks", "primary", "probe", "protocol", "provider", "psk", "remote_subnets", "secondary", "version")
     if err != nil {
     	return err
     }
@@ -140,6 +150,7 @@ func (t *TunnelConfig) UnmarshalJSON(input []byte) error {
     t.IpsecLifetime = temp.IpsecLifetime
     t.IpsecProposals = temp.IpsecProposals
     t.LocalId = temp.LocalId
+    t.LocalSubnets = temp.LocalSubnets
     t.Mode = temp.Mode
     t.Networks = temp.Networks
     t.Primary = temp.Primary
@@ -147,6 +158,7 @@ func (t *TunnelConfig) UnmarshalJSON(input []byte) error {
     t.Protocol = temp.Protocol
     t.Provider = temp.Provider
     t.Psk = temp.Psk
+    t.RemoteSubnets = temp.RemoteSubnets
     t.Secondary = temp.Secondary
     t.Version = temp.Version
     return nil
@@ -161,6 +173,7 @@ type tempTunnelConfig  struct {
     IpsecLifetime  *int                        `json:"ipsec_lifetime,omitempty"`
     IpsecProposals []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
     LocalId        *string                     `json:"local_id,omitempty"`
+    LocalSubnets   []string                    `json:"local_subnets,omitempty"`
     Mode           *TunnelConfigTunnelModeEnum `json:"mode,omitempty"`
     Networks       []string                    `json:"networks,omitempty"`
     Primary        *TunnelConfigNode           `json:"primary,omitempty"`
@@ -168,6 +181,7 @@ type tempTunnelConfig  struct {
     Protocol       *TunnelConfigProtocolEnum   `json:"protocol,omitempty"`
     Provider       *TunnelConfigProviderEnum   `json:"provider,omitempty"`
     Psk            *string                     `json:"psk,omitempty"`
+    RemoteSubnets  []string                    `json:"remote_subnets,omitempty"`
     Secondary      *TunnelConfigNode           `json:"secondary,omitempty"`
     Version        *TunnelConfigVersionEnum    `json:"version,omitempty"`
 }

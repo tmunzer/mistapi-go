@@ -9,7 +9,7 @@ import (
 )
 
 // SwitchPortUsageMacLimit represents a SwitchPortUsageMacLimit struct.
-// Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+// Only if `mode`!=`dynamic`, max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
 type SwitchPortUsageMacLimit struct {
     value    any
     isNumber bool
@@ -75,7 +75,7 @@ func (s *SwitchPortUsageMacLimit) AsString() (
 }
 
 // internalSwitchPortUsageMacLimit represents a switchPortUsageMacLimit struct.
-// Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+// Only if `mode`!=`dynamic`, max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
 type internalSwitchPortUsageMacLimit struct {}
 
 var SwitchPortUsageMacLimitContainer internalSwitchPortUsageMacLimit

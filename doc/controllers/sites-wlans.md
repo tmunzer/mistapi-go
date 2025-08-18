@@ -1323,8 +1323,6 @@ wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-
-
 resp, err := sitesWlans.UploadSiteWlanPortalImage(ctx, siteId, wlanId, file, nil)
 if err != nil {
     log.Fatalln(err)

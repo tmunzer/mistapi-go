@@ -57,10 +57,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgWiredClientsCountDistinctEnum_MAC
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -177,45 +173,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ipAddress := "192.168.1.1"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

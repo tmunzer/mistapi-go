@@ -56,41 +56,6 @@ func (s *SamplesWebhooks) Alarms(
     return httpCtx.Response, err
 }
 
-// AssetRaw takes context, body as parameters and
-// returns an *Response and
-// an error if there was an issue with the request or response.
-// Webhook sample for `asset_raw` topic
-// **Note**: The server host will be your own server FQDN where the Mist Cloud is sending the webhook messages
-// **will be deprecated after 06/30/2024**
-func (s *SamplesWebhooks) AssetRaw(
-    ctx context.Context,
-    body *models.WebhookAssetRaw) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(ctx, "POST", "/webhook_example/_asset_raw_")
-    
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
-
-        ),
-    )
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
-}
-
 // Audits takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.

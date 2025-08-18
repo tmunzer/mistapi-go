@@ -71,10 +71,6 @@ siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
 message := "Created a new site"
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -170,12 +166,6 @@ siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 adminName := "John Doe"
 
 message := "Created a new site"
-
-
-
-
-
-
 
 duration := "10m"
 

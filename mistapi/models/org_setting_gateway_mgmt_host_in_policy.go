@@ -9,7 +9,6 @@ import (
 
 // OrgSettingGatewayMgmtHostInPolicy represents a OrgSettingGatewayMgmtHostInPolicy struct.
 type OrgSettingGatewayMgmtHostInPolicy struct {
-    Name                 *string                `json:"name,omitempty"`
     Tenants              []string               `json:"tenants,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -18,8 +17,8 @@ type OrgSettingGatewayMgmtHostInPolicy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingGatewayMgmtHostInPolicy) String() string {
     return fmt.Sprintf(
-    	"OrgSettingGatewayMgmtHostInPolicy[Name=%v, Tenants=%v, AdditionalProperties=%v]",
-    	o.Name, o.Tenants, o.AdditionalProperties)
+    	"OrgSettingGatewayMgmtHostInPolicy[Tenants=%v, AdditionalProperties=%v]",
+    	o.Tenants, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingGatewayMgmtHostInPolicy.
@@ -28,7 +27,7 @@ func (o OrgSettingGatewayMgmtHostInPolicy) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(o.AdditionalProperties,
-        "name", "tenants"); err != nil {
+        "tenants"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(o.toMap())
@@ -38,9 +37,6 @@ func (o OrgSettingGatewayMgmtHostInPolicy) MarshalJSON() (
 func (o OrgSettingGatewayMgmtHostInPolicy) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, o.AdditionalProperties)
-    if o.Name != nil {
-        structMap["name"] = o.Name
-    }
     if o.Tenants != nil {
         structMap["tenants"] = o.Tenants
     }
@@ -55,19 +51,17 @@ func (o *OrgSettingGatewayMgmtHostInPolicy) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "name", "tenants")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "tenants")
     if err != nil {
     	return err
     }
     o.AdditionalProperties = additionalProperties
     
-    o.Name = temp.Name
     o.Tenants = temp.Tenants
     return nil
 }
 
 // tempOrgSettingGatewayMgmtHostInPolicy is a temporary struct used for validating the fields of OrgSettingGatewayMgmtHostInPolicy.
 type tempOrgSettingGatewayMgmtHostInPolicy  struct {
-    Name    *string  `json:"name,omitempty"`
     Tenants []string `json:"tenants,omitempty"`
 }

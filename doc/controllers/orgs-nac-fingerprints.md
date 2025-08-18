@@ -55,10 +55,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.FingerprintsCountDistinctEnum_FAMILY
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -174,10 +170,6 @@ mac := "d420b080516d"
 sort := "-family"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

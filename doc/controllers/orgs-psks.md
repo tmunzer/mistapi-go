@@ -56,8 +56,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 body := models.Psk{
     ExpireTime:             models.NewOptional(models.ToPointer(1614990263)),
     Macs:                   []string{
@@ -354,8 +352,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 apiResponse, err := orgsPsks.ImportOrgPsks(ctx, orgId, nil)
 if err != nil {
     log.Fatalln(err)
@@ -437,10 +433,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 name := "psk_name"
-
-
-
-
 
 limit := 100
 

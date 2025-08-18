@@ -10,13 +10,13 @@ import (
 
 // IssuedClientCertificate represents a IssuedClientCertificate struct.
 type IssuedClientCertificate struct {
+    CommonName           *string                `json:"common_name,omitempty"`
     // When the object has been created, in epoch
     CreatedTime          *float64               `json:"created_time,omitempty"`
     DeviceId             *uuid.UUID             `json:"device_id,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64               `json:"modified_time,omitempty"`
     SerialNumber         *string                `json:"serial_number,omitempty"`
-    SsoNameId            *string                `json:"sso_name_id,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -24,8 +24,8 @@ type IssuedClientCertificate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i IssuedClientCertificate) String() string {
     return fmt.Sprintf(
-    	"IssuedClientCertificate[CreatedTime=%v, DeviceId=%v, ModifiedTime=%v, SerialNumber=%v, SsoNameId=%v, AdditionalProperties=%v]",
-    	i.CreatedTime, i.DeviceId, i.ModifiedTime, i.SerialNumber, i.SsoNameId, i.AdditionalProperties)
+    	"IssuedClientCertificate[CommonName=%v, CreatedTime=%v, DeviceId=%v, ModifiedTime=%v, SerialNumber=%v, AdditionalProperties=%v]",
+    	i.CommonName, i.CreatedTime, i.DeviceId, i.ModifiedTime, i.SerialNumber, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificate.
@@ -34,7 +34,7 @@ func (i IssuedClientCertificate) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(i.AdditionalProperties,
-        "created_time", "device_id", "modified_time", "serial_number", "sso_name_id"); err != nil {
+        "common_name", "created_time", "device_id", "modified_time", "serial_number"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(i.toMap())
@@ -44,6 +44,9 @@ func (i IssuedClientCertificate) MarshalJSON() (
 func (i IssuedClientCertificate) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, i.AdditionalProperties)
+    if i.CommonName != nil {
+        structMap["common_name"] = i.CommonName
+    }
     if i.CreatedTime != nil {
         structMap["created_time"] = i.CreatedTime
     }
@@ -56,9 +59,6 @@ func (i IssuedClientCertificate) toMap() map[string]any {
     if i.SerialNumber != nil {
         structMap["serial_number"] = i.SerialNumber
     }
-    if i.SsoNameId != nil {
-        structMap["sso_name_id"] = i.SsoNameId
-    }
     return structMap
 }
 
@@ -70,25 +70,25 @@ func (i *IssuedClientCertificate) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "device_id", "modified_time", "serial_number", "sso_name_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "common_name", "created_time", "device_id", "modified_time", "serial_number")
     if err != nil {
     	return err
     }
     i.AdditionalProperties = additionalProperties
     
+    i.CommonName = temp.CommonName
     i.CreatedTime = temp.CreatedTime
     i.DeviceId = temp.DeviceId
     i.ModifiedTime = temp.ModifiedTime
     i.SerialNumber = temp.SerialNumber
-    i.SsoNameId = temp.SsoNameId
     return nil
 }
 
 // tempIssuedClientCertificate is a temporary struct used for validating the fields of IssuedClientCertificate.
 type tempIssuedClientCertificate  struct {
+    CommonName   *string    `json:"common_name,omitempty"`
     CreatedTime  *float64   `json:"created_time,omitempty"`
     DeviceId     *uuid.UUID `json:"device_id,omitempty"`
     ModifiedTime *float64   `json:"modified_time,omitempty"`
     SerialNumber *string    `json:"serial_number,omitempty"`
-    SsoNameId    *string    `json:"sso_name_id,omitempty"`
 }

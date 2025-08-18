@@ -147,17 +147,7 @@ rxBcastPkts := 1000000
 
 speed := 1000000000
 
-
-
-
-
-
-
 up := true
-
-
-
-
 
 duration := "10m"
 
@@ -249,6 +239,11 @@ SearchSiteSwOrGwPorts(
     lteImsi *string,
     lteIccid *string,
     lteImei *string,
+    opticsBiasCurrent *float64,
+    opticsTxPower *float64,
+    opticsRxPower *float64,
+    opticsModuleTemperature *float64,
+    opticsModuleVoltage *float64,
     limit *int,
     start *int,
     end *int,
@@ -301,6 +296,11 @@ SearchSiteSwOrGwPorts(
 | `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
 | `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
 | `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
+| `opticsBiasCurrent` | `*float64` | Query, Optional | Bias current of the optics in mA |
+| `opticsTxPower` | `*float64` | Query, Optional | Transmit power of the optics in dBm |
+| `opticsRxPower` | `*float64` | Query, Optional | Receive power of the optics in dBm |
+| `opticsModuleTemperature` | `*float64` | Query, Optional | Temperature of the optics module in Celsius |
+| `opticsModuleVoltage` | `*float64` | Query, Optional | Voltage of the optics module in mV |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
@@ -322,8 +322,6 @@ fullDuplex := true
 disabled := false
 
 mac := "5c5b350e0410"
-
-
 
 neighborMac := "5c5b350e0410"
 
@@ -381,13 +379,7 @@ loss := float64(0.01)
 
 latency := float64(0.123)
 
-
-
-
-
 xcvrPartNumber := "SFP-10G-SR"
-
-
 
 lteImsi := "310260000000001"
 
@@ -397,13 +389,9 @@ lteImei := "123456789012345"
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
-apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, &limit, nil, nil, &duration)
+apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

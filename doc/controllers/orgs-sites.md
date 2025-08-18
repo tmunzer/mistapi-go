@@ -57,10 +57,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgSitesCountDistinctEnum_ID
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -136,7 +132,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Site{
-    Address:              models.ToPointer("1601 S. Deanza Blvd., Cupertino, CA, 95014"),
+    Address:              models.NewOptional(models.ToPointer("1601 S. Deanza Blvd., Cupertino, CA, 95014")),
     AlarmtemplateId:      models.NewOptional(models.ToPointer(uuid.MustParse("684dfc5c-fe77-2290-eb1d-ef3d677fe168"))),
     AptemplateId:         models.NewOptional(models.ToPointer(uuid.MustParse("16bdf952-ade2-4491-80b0-85ce506c760b"))),
     CountryCode:          models.ToPointer("US"),
@@ -147,7 +143,7 @@ body := models.Site{
     }),
     Name:                 "Mist Office",
     NetworktemplateId:    models.NewOptional(models.ToPointer(uuid.MustParse("12ae9bd2-e0ab-107b-72e8-a7a005565ec2"))),
-    Notes:                models.ToPointer("string"),
+    Notes:                models.NewOptional(models.ToPointer("string")),
     RftemplateId:         models.NewOptional(models.ToPointer(uuid.MustParse("bb8a9017-1e36-5d6c-6f2b-551abe8a76a2"))),
     SecpolicyId:          models.NewOptional(models.ToPointer(uuid.MustParse("3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef"))),
     SitegroupIds:         []uuid.UUID{
@@ -369,43 +365,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

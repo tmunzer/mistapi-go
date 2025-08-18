@@ -13,6 +13,8 @@
 |  --- | --- | --- | --- |
 | `Areas` | [`map[string]models.SwitchOspfConfigArea`](../../doc/models/switch-ospf-config-area.md) | Optional | Property key is the area name. Defines the OSPF areas configured on the switch. |
 | `Enabled` | `*bool` | Optional | Enable OSPF on the switch<br><br>**Default**: `false` |
+| `ExportPolicy` | `*string` | Optional | optional, for basic scenario, `import_policy` can be specified and can be applied to all networks in all areas if not explicitly specified |
+| `ImportPolicy` | `*string` | Optional | optional, for basic scenario, `import_policy` can be specified and can be applied to all networks in all areas if not explicitly specified |
 | `ReferenceBandwidth` | [`*models.SwitchOspfConfigReferenceBandwidth`](../../doc/models/containers/switch-ospf-config-reference-bandwidth.md) | Optional | Reference bandwidth. Integer(100000) or String (10g) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -45,6 +47,8 @@
       }
     }
   },
+  "export_policy": "export_policy0",
+  "import_policy": "import_policy4",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

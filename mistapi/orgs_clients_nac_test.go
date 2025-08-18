@@ -262,6 +262,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
     
     
     
+    
     status := models.NacClientLastStatusEnum("permitted")
     
     
@@ -279,7 +280,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
     duration := "1d"
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+    apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -312,6 +313,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
     
     
     
+    
     status := models.NacClientLastStatusEnum("permitted")
     
     
@@ -329,7 +331,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
     duration := "1d"
     limit := int(100)
     page := int(1)
-    apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+    apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

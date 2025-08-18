@@ -75,17 +75,9 @@ portId := "ge-0/0/0"
 
 peerPortId := "ge-0/0/0"
 
-
-
-
-
 pathType := "primary"
 
 distinct := models.WanUsagesCountDistinctEnum_POLICY
-
-
-
-
 
 duration := "10m"
 
@@ -193,13 +185,7 @@ peerPortId := "ge-0/0/0"
 
 policy := "primary"
 
-
-
 pathType := "primary"
-
-
-
-
 
 duration := "10m"
 

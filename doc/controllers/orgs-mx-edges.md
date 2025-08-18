@@ -72,8 +72,6 @@ mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 imageNumber := 3
 
-
-
 resp, err := orgsMxEdges.AddOrgMxEdgeImage(ctx, orgId, mxedgeId, imageNumber, nil)
 if err != nil {
     log.Fatalln(err)
@@ -405,26 +403,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgMxedgeCountDistinctEnum_MODEL
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -516,18 +494,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgMxedgeEventsCountDistinctEnum_MXEDGEID
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -1043,8 +1009,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 channel := models.GetOrgMxedgeUpgradeInfoChannelEnum_STABLE
 
-
-
 apiResponse, err := orgsMxEdges.GetOrgMxEdgeUpgradeInfo(ctx, orgId, &channel, nil)
 if err != nil {
     log.Fatalln(err)
@@ -1092,7 +1056,7 @@ Get List of Org MxEdges
 ListOrgMxEdges(
     ctx context.Context,
     orgId uuid.UUID,
-    forSites *models.MxedgeForSiteEnum,
+    forSite *models.MxedgeForSiteEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.Mxedge],
@@ -1104,7 +1068,7 @@ ListOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSites` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br><br>**Default**: `"any"` |
+| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br><br>**Default**: `"any"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
@@ -1119,13 +1083,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-forSites := models.MxedgeForSiteEnum_ANY
+forSite := models.MxedgeForSiteEnum_ANY
 
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSites, &limit, &page)
+apiResponse, err := orgsMxEdges.ListOrgMxEdges(ctx, orgId, &forSite, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1346,20 +1310,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -1460,26 +1410,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 

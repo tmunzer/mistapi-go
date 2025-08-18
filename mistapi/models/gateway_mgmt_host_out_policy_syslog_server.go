@@ -11,8 +11,8 @@ import (
 // Allows to define the host_out_policy per Syslog Server. The Property key is the Syslog name
 type GatewayMgmtHostOutPolicySyslogServer struct {
     Host                 *string                `json:"host,omitempty"`
-    Name                 *string                `json:"name,omitempty"`
     PathPreference       *string                `json:"path_preference,omitempty"`
+    ServerName           *string                `json:"server_name,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -20,8 +20,8 @@ type GatewayMgmtHostOutPolicySyslogServer struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayMgmtHostOutPolicySyslogServer) String() string {
     return fmt.Sprintf(
-    	"GatewayMgmtHostOutPolicySyslogServer[Host=%v, Name=%v, PathPreference=%v, AdditionalProperties=%v]",
-    	g.Host, g.Name, g.PathPreference, g.AdditionalProperties)
+    	"GatewayMgmtHostOutPolicySyslogServer[Host=%v, PathPreference=%v, ServerName=%v, AdditionalProperties=%v]",
+    	g.Host, g.PathPreference, g.ServerName, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayMgmtHostOutPolicySyslogServer.
@@ -30,7 +30,7 @@ func (g GatewayMgmtHostOutPolicySyslogServer) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(g.AdditionalProperties,
-        "host", "name", "path_preference"); err != nil {
+        "host", "path_preference", "server_name"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(g.toMap())
@@ -43,11 +43,11 @@ func (g GatewayMgmtHostOutPolicySyslogServer) toMap() map[string]any {
     if g.Host != nil {
         structMap["host"] = g.Host
     }
-    if g.Name != nil {
-        structMap["name"] = g.Name
-    }
     if g.PathPreference != nil {
         structMap["path_preference"] = g.PathPreference
+    }
+    if g.ServerName != nil {
+        structMap["server_name"] = g.ServerName
     }
     return structMap
 }
@@ -60,21 +60,21 @@ func (g *GatewayMgmtHostOutPolicySyslogServer) UnmarshalJSON(input []byte) error
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "name", "path_preference")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "path_preference", "server_name")
     if err != nil {
     	return err
     }
     g.AdditionalProperties = additionalProperties
     
     g.Host = temp.Host
-    g.Name = temp.Name
     g.PathPreference = temp.PathPreference
+    g.ServerName = temp.ServerName
     return nil
 }
 
 // tempGatewayMgmtHostOutPolicySyslogServer is a temporary struct used for validating the fields of GatewayMgmtHostOutPolicySyslogServer.
 type tempGatewayMgmtHostOutPolicySyslogServer  struct {
     Host           *string `json:"host,omitempty"`
-    Name           *string `json:"name,omitempty"`
     PathPreference *string `json:"path_preference,omitempty"`
+    ServerName     *string `json:"server_name,omitempty"`
 }

@@ -11,12 +11,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CertProviders` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Enabled` | `*bool` | Optional | - |
-| `IntuneScepUrl` | `*string` | Optional | - |
-| `JamfAccessToken` | `*string` | Optional | - |
-| `JamfScepUrl` | `*string` | Optional | - |
-| `JamfWebhookUrl` | `*string` | Optional | - |
+| `CertProviders` | [`[]models.OrgSettingScepCertProviderEnum`](../../doc/models/org-setting-scep-cert-provider-enum.md) | Optional | List of SCEP cert providers, e.g. `intune`, `jamf`, `byod` |
+| `Enable` | `*bool` | Optional | Whether SCEP is enabled for this org |
 | `Suspended` | `*bool` | Optional | Whether SCEP is suspended for this org<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -24,15 +20,11 @@
 
 ```json
 {
-  "intune_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
-  "jamf_access_token": "1Z4QqEnCt05Jjt3TV5LgPJ4V_WL_RWnJ7dqVMLYHj81=",
-  "jamf_scep_url": "https://scep.mistsys.com/api/v1/incoming/intune/:org_id/scep",
-  "jamf_webhook_url": "https://scep.mistsys.com/api/v1/webhook/jamf/:org_id/scep",
   "suspended": false,
   "cert_providers": [
-    "cert_providers4"
+    "intune"
   ],
-  "enabled": false,
+  "enable": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

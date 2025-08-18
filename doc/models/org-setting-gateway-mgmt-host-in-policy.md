@@ -11,7 +11,6 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `*string` | Optional | - |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -19,7 +18,6 @@
 
 ```json
 {
-  "name": "name2",
   "tenants": [
     "tenants3"
   ],

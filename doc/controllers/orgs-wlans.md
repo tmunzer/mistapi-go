@@ -693,8 +693,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 apiResponse, err := orgsWlans.UpdateOrgWlanPortalTemplate(ctx, orgId, wlanId, nil)
 if err != nil {
     log.Fatalln(err)
@@ -866,8 +864,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
-
-
 
 resp, err := orgsWlans.UploadOrgWlanPortalImage(ctx, orgId, wlanId, file, nil)
 if err != nil {

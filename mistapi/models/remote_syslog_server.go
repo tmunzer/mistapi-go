@@ -20,6 +20,8 @@ type RemoteSyslogServer struct {
     // enum: `tcp`, `udp`
     Protocol             *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
     RoutingInstance      *string                         `json:"routing_instance,omitempty"`
+    // Name of the server
+    ServerName           *string                         `json:"server_name,omitempty"`
     // enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
     Severity             *RemoteSyslogSeverityEnum       `json:"severity,omitempty"`
     // If source_address is configured, will use the vlan firstly otherwise use source_ip
@@ -33,8 +35,8 @@ type RemoteSyslogServer struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RemoteSyslogServer) String() string {
     return fmt.Sprintf(
-    	"RemoteSyslogServer[Contents=%v, ExplicitPriority=%v, Facility=%v, Host=%v, Match=%v, Port=%v, Protocol=%v, RoutingInstance=%v, Severity=%v, SourceAddress=%v, StructuredData=%v, Tag=%v, AdditionalProperties=%v]",
-    	r.Contents, r.ExplicitPriority, r.Facility, r.Host, r.Match, r.Port, r.Protocol, r.RoutingInstance, r.Severity, r.SourceAddress, r.StructuredData, r.Tag, r.AdditionalProperties)
+    	"RemoteSyslogServer[Contents=%v, ExplicitPriority=%v, Facility=%v, Host=%v, Match=%v, Port=%v, Protocol=%v, RoutingInstance=%v, ServerName=%v, Severity=%v, SourceAddress=%v, StructuredData=%v, Tag=%v, AdditionalProperties=%v]",
+    	r.Contents, r.ExplicitPriority, r.Facility, r.Host, r.Match, r.Port, r.Protocol, r.RoutingInstance, r.ServerName, r.Severity, r.SourceAddress, r.StructuredData, r.Tag, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RemoteSyslogServer.
@@ -43,7 +45,7 @@ func (r RemoteSyslogServer) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(r.AdditionalProperties,
-        "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "severity", "source_address", "structured_data", "tag"); err != nil {
+        "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "server_name", "severity", "source_address", "structured_data", "tag"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(r.toMap())
@@ -77,6 +79,9 @@ func (r RemoteSyslogServer) toMap() map[string]any {
     if r.RoutingInstance != nil {
         structMap["routing_instance"] = r.RoutingInstance
     }
+    if r.ServerName != nil {
+        structMap["server_name"] = r.ServerName
+    }
     if r.Severity != nil {
         structMap["severity"] = r.Severity
     }
@@ -100,7 +105,7 @@ func (r *RemoteSyslogServer) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "severity", "source_address", "structured_data", "tag")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "contents", "explicit_priority", "facility", "host", "match", "port", "protocol", "routing_instance", "server_name", "severity", "source_address", "structured_data", "tag")
     if err != nil {
     	return err
     }
@@ -114,6 +119,7 @@ func (r *RemoteSyslogServer) UnmarshalJSON(input []byte) error {
     r.Port = temp.Port
     r.Protocol = temp.Protocol
     r.RoutingInstance = temp.RoutingInstance
+    r.ServerName = temp.ServerName
     r.Severity = temp.Severity
     r.SourceAddress = temp.SourceAddress
     r.StructuredData = temp.StructuredData
@@ -131,6 +137,7 @@ type tempRemoteSyslogServer  struct {
     Port             *RemoteSyslogServerPort         `json:"port,omitempty"`
     Protocol         *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
     RoutingInstance  *string                         `json:"routing_instance,omitempty"`
+    ServerName       *string                         `json:"server_name,omitempty"`
     Severity         *RemoteSyslogSeverityEnum       `json:"severity,omitempty"`
     SourceAddress    *string                         `json:"source_address,omitempty"`
     StructuredData   *bool                           `json:"structured_data,omitempty"`

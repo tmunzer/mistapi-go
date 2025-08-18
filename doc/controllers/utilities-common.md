@@ -27,6 +27,7 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Show Site Device Arp Table](../../doc/controllers/utilities-common.md#show-site-device-arp-table)
 * [Show Site Device Bgp Summary](../../doc/controllers/utilities-common.md#show-site-device-bgp-summary)
 * [Show Site Device Dhcp Leases](../../doc/controllers/utilities-common.md#show-site-device-dhcp-leases)
+* [Show Site Device Dot 1 X Table](../../doc/controllers/utilities-common.md#show-site-device-dot-1-x-table)
 * [Show Site Device Evpn Database](../../doc/controllers/utilities-common.md#show-site-device-evpn-database)
 * [Show Site Device Forwarding Table](../../doc/controllers/utilities-common.md#show-site-device-forwarding-table)
 * [Show Site Device Mac Table](../../doc/controllers/utilities-common.md#show-site-device-mac-table)
@@ -370,8 +371,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 apiResponse, err := utilitiesCommon.CreateSiteDeviceShellSession(ctx, siteId, deviceId, nil)
 if err != nil {
@@ -779,7 +778,7 @@ if err != nil {
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | Parameter `port` absent | `ApiError` |
+| 400 | Parameter `port ` absent | `ApiError` |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
@@ -872,8 +871,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 resp, err := utilitiesCommon.RestartSiteDevice(ctx, siteId, deviceId, nil)
 if err != nil {
@@ -1046,7 +1043,7 @@ The output will be available through websocket. As there can be multiple command
 
 ##### Example output from ws stream
 
-```
+
 Tue 2024-04-23 16:36:06 UTC
 Retrieving bgp entries...
 BGP table version is 354, local router ID is 10.224.8.16, vrf id 0
@@ -1060,7 +1057,7 @@ RPKI validation codes: V valid, I invalid, N Not found
   Network                                      Next Hop                                  Metric LocPrf Weight Path
 *> 161.161.161.0/24
 ```"
-```
+
 
 ```go
 ShowSiteDeviceBgpSummary(
@@ -1092,8 +1089,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceBgpSummary(ctx, siteId, deviceId, nil)
 if err != nil {
@@ -1156,6 +1151,80 @@ body := models.UtilsShowDhcpLeases{
 }
 
 apiResponse, err := utilitiesCommon.ShowSiteDeviceDhcpLeases(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Show Site Device Dot 1 X Table
+
+Get Dot1X Table from the Device.
+
+The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+```go
+ShowSiteDeviceDot1xTable(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.UtilsShowDot1x) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.UtilsShowDot1x`](../../doc/models/utils-show-dot-1-x.md) | Body, Optional | All attributes are optional |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.UtilsShowDot1x{
+    Duration:             models.ToPointer(0),
+    Interval:             models.ToPointer(0),
+    PortId:               models.ToPointer("ge-0/0/0.0"),
+}
+
+apiResponse, err := utilitiesCommon.ShowSiteDeviceDot1xTable(ctx, siteId, deviceId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

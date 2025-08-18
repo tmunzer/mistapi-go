@@ -13,7 +13,7 @@ Site
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Address` | `*string` | Optional | full address of the site |
+| `Address` | `models.Optional[string]` | Optional | full address of the site |
 | `AlarmtemplateId` | `models.Optional[uuid.UUID]` | Optional | Alarm Template ID, this takes precedence over the Org-level alarmtemplate_id |
 | `AptemplateId` | `models.Optional[uuid.UUID]` | Optional | AP Template ID, used by APs |
 | `CountryCode` | `*string` | Optional | Country code for the site (for AP config generation), in two-character |
@@ -24,7 +24,7 @@ Site
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `models.Optional[uuid.UUID]` | Optional | Network Template ID, this takes precedence over Site Settings |
-| `Notes` | `*string` | Optional | Optional, any notes about the site |
+| `Notes` | `models.Optional[string]` | Optional | Optional, any notes about the site |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RftemplateId` | `models.Optional[uuid.UUID]` | Optional | RF Template ID, this takes precedence over Site Settings |
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | SecPolicy ID |

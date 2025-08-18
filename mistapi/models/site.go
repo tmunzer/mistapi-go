@@ -14,7 +14,7 @@ import (
 // Site
 type Site struct {
     // full address of the site
-    Address              *string                `json:"address,omitempty"`
+    Address              Optional[string]       `json:"address"`
     // Alarm Template ID, this takes precedence over the Org-level alarmtemplate_id
     AlarmtemplateId      Optional[uuid.UUID]    `json:"alarmtemplate_id"`
     // AP Template ID, used by APs
@@ -34,7 +34,7 @@ type Site struct {
     // Network Template ID, this takes precedence over Site Settings
     NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
     // Optional, any notes about the site
-    Notes                *string                `json:"notes,omitempty"`
+    Notes                Optional[string]       `json:"notes"`
     OrgId                *uuid.UUID             `json:"org_id,omitempty"`
     // RF Template ID, this takes precedence over Site Settings
     RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
@@ -74,8 +74,12 @@ func (s Site) MarshalJSON() (
 func (s Site) toMap() map[string]any {
     structMap := make(map[string]any)
     MergeAdditionalProperties(structMap, s.AdditionalProperties)
-    if s.Address != nil {
-        structMap["address"] = s.Address
+    if s.Address.IsValueSet() {
+        if s.Address.Value() != nil {
+            structMap["address"] = s.Address.Value()
+        } else {
+            structMap["address"] = nil
+        }
     }
     if s.AlarmtemplateId.IsValueSet() {
         if s.AlarmtemplateId.Value() != nil {
@@ -121,8 +125,12 @@ func (s Site) toMap() map[string]any {
             structMap["networktemplate_id"] = nil
         }
     }
-    if s.Notes != nil {
-        structMap["notes"] = s.Notes
+    if s.Notes.IsValueSet() {
+        if s.Notes.Value() != nil {
+            structMap["notes"] = s.Notes.Value()
+        } else {
+            structMap["notes"] = nil
+        }
     }
     if s.OrgId != nil {
         structMap["org_id"] = s.OrgId
@@ -202,7 +210,7 @@ func (s *Site) UnmarshalJSON(input []byte) error {
 
 // tempSite is a temporary struct used for validating the fields of Site.
 type tempSite  struct {
-    Address           *string             `json:"address,omitempty"`
+    Address           Optional[string]    `json:"address"`
     AlarmtemplateId   Optional[uuid.UUID] `json:"alarmtemplate_id"`
     AptemplateId      Optional[uuid.UUID] `json:"aptemplate_id"`
     CountryCode       *string             `json:"country_code,omitempty"`
@@ -213,7 +221,7 @@ type tempSite  struct {
     ModifiedTime      *float64            `json:"modified_time,omitempty"`
     Name              *string             `json:"name"`
     NetworktemplateId Optional[uuid.UUID] `json:"networktemplate_id"`
-    Notes             *string             `json:"notes,omitempty"`
+    Notes             Optional[string]    `json:"notes"`
     OrgId             *uuid.UUID          `json:"org_id,omitempty"`
     RftemplateId      Optional[uuid.UUID] `json:"rftemplate_id"`
     SecpolicyId       Optional[uuid.UUID] `json:"secpolicy_id"`

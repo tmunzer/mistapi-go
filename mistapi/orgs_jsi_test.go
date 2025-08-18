@@ -6,6 +6,7 @@ import (
     "context"
     "github.com/apimatic/go-core-runtime/testHelper"
     "github.com/google/uuid"
+    "github.com/tmunzer/mistapi-go/mistapi/models"
     "testing"
 )
 
@@ -182,5 +183,109 @@ func TestOrgsJSITestListOrgJsiPastPurchases1(t *testing.T) {
     }
     testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
     expected := `[{"eol_time":1671062400,"eos_time":1828828800,"model":"EX4300-48T","serial":"PE3721050223","sku":"EX4300-48T-AFI","type":"switch","warranty_type":"Enhanced Hardware Warranty"}]`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsJSITestCountOrgJsiAssetsAndContracts tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiAssetsAndContracts(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    limit := int(100)
+    apiResponse, err := orgsJsi.CountOrgJsiAssetsAndContracts(ctx, orgId, nil, &limit)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsJSITestCountOrgJsiAssetsAndContracts1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiAssetsAndContracts1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    
+    limit := int(100)
+    apiResponse, err := orgsJsi.CountOrgJsiAssetsAndContracts(ctx, orgId, nil, &limit)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"distinct":"string","end":0,"limit":0,"results":[{"count":0,"property":"string"}],"start":0,"total":0}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsJSITestSearchOrgJsiAssetsAndContracts tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    model := "AP43"
+    serial := "FXLH2015150025"
+    status := models.DeviceStatusEnum("all")
+    
+    eolDuration := "30d"
+    eosDuration := "30d"
+    
+    sort := "serial"
+    limit := int(100)
+    page := int(1)
+    apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &sort, &limit, &page)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"end":1748023308,"limit":1000,"results":[{"eol_time":1671062400,"eos_time":1828828800,"model":"EX4300-48T","serial":"PE3721050223","sku":"EX4300-48T-AFI","type":"switch","warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
+    testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsJSITestSearchOrgJsiAssetsAndContracts1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
+    ctx := context.Background()
+    orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+    if errUUID != nil {
+        t.Error(errUUID)
+    }
+    model := "AP43"
+    serial := "FXLH2015150025"
+    status := models.DeviceStatusEnum("all")
+    
+    eolDuration := "30d"
+    eosDuration := "30d"
+    
+    sort := "serial"
+    limit := int(100)
+    page := int(1)
+    apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &sort, &limit, &page)
+    if err != nil {
+        t.Errorf("Endpoint call failed: %v", err)
+    }
+    testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+    expectedHeaders:= []testHelper.TestHeader{
+        testHelper.NewTestHeader(true,"Content-Type","application/vnd.api+json"),
+    }
+    testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+    expected := `{"end":1748023308,"limit":1000,"results":[{"eol_time":1671062400,"eos_time":1828828800,"model":"EX4300-48T","serial":"PE3721050223","sku":"EX4300-48T-AFI","type":"switch","warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
     testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

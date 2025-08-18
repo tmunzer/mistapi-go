@@ -57,10 +57,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteDiscoveredSwitchesCountDistinctEnum_SYSTEMNAME
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -274,10 +270,6 @@ version := "1.0.0"
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration)
@@ -377,13 +369,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 scope := models.DiscoveredSwitchesMetricScopeEnum_SITE
 
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

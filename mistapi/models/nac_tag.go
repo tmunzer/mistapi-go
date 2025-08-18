@@ -31,6 +31,8 @@ type NacTag struct {
     MatchAll             *bool                   `json:"match_all,omitempty"`
     // When the object has been modified for the last time, in epoch
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
+    // If `type`==`redirect_guest_portal`, the ID of the guest portal to redirect to
+    NacportalId          *uuid.UUID              `json:"nacportal_id,omitempty"`
     Name                 string                  `json:"name"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     // If `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".
@@ -45,7 +47,7 @@ type NacTag struct {
     RadiusVendorAttrs    []string                `json:"radius_vendor_attrs,omitempty"`
     // If `type`==`session_timeout, in seconds
     SessionTimeout       *int                    `json:"session_timeout,omitempty"`
-    // enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`
+    // enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`
     Type                 NacTagTypeEnum          `json:"type"`
     // enum: `automatic`, `cn`, `dns`, `email`, `upn`
     UsernameAttr         *NacTagUsernameAttrEnum `json:"username_attr,omitempty"`
@@ -60,8 +62,8 @@ type NacTag struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacTag) String() string {
     return fmt.Sprintf(
-    	"NacTag[AllowUsermacOverride=%v, CreatedTime=%v, EgressVlanNames=%v, GbpTag=%v, Id=%v, Match=%v, MatchAll=%v, ModifiedTime=%v, Name=%v, OrgId=%v, RadiusAttrs=%v, RadiusGroup=%v, RadiusVendorAttrs=%v, SessionTimeout=%v, Type=%v, UsernameAttr=%v, Values=%v, Vlan=%v, AdditionalProperties=%v]",
-    	n.AllowUsermacOverride, n.CreatedTime, n.EgressVlanNames, n.GbpTag, n.Id, n.Match, n.MatchAll, n.ModifiedTime, n.Name, n.OrgId, n.RadiusAttrs, n.RadiusGroup, n.RadiusVendorAttrs, n.SessionTimeout, n.Type, n.UsernameAttr, n.Values, n.Vlan, n.AdditionalProperties)
+    	"NacTag[AllowUsermacOverride=%v, CreatedTime=%v, EgressVlanNames=%v, GbpTag=%v, Id=%v, Match=%v, MatchAll=%v, ModifiedTime=%v, NacportalId=%v, Name=%v, OrgId=%v, RadiusAttrs=%v, RadiusGroup=%v, RadiusVendorAttrs=%v, SessionTimeout=%v, Type=%v, UsernameAttr=%v, Values=%v, Vlan=%v, AdditionalProperties=%v]",
+    	n.AllowUsermacOverride, n.CreatedTime, n.EgressVlanNames, n.GbpTag, n.Id, n.Match, n.MatchAll, n.ModifiedTime, n.NacportalId, n.Name, n.OrgId, n.RadiusAttrs, n.RadiusGroup, n.RadiusVendorAttrs, n.SessionTimeout, n.Type, n.UsernameAttr, n.Values, n.Vlan, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacTag.
@@ -70,7 +72,7 @@ func (n NacTag) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(n.AdditionalProperties,
-        "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan"); err != nil {
+        "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "nacportal_id", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(n.toMap())
@@ -103,6 +105,9 @@ func (n NacTag) toMap() map[string]any {
     }
     if n.ModifiedTime != nil {
         structMap["modified_time"] = n.ModifiedTime
+    }
+    if n.NacportalId != nil {
+        structMap["nacportal_id"] = n.NacportalId
     }
     structMap["name"] = n.Name
     if n.OrgId != nil {
@@ -145,7 +150,7 @@ func (n *NacTag) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_usermac_override", "created_time", "egress_vlan_names", "gbp_tag", "id", "match", "match_all", "modified_time", "nacportal_id", "name", "org_id", "radius_attrs", "radius_group", "radius_vendor_attrs", "session_timeout", "type", "username_attr", "values", "vlan")
     if err != nil {
     	return err
     }
@@ -159,6 +164,7 @@ func (n *NacTag) UnmarshalJSON(input []byte) error {
     n.Match = temp.Match
     n.MatchAll = temp.MatchAll
     n.ModifiedTime = temp.ModifiedTime
+    n.NacportalId = temp.NacportalId
     n.Name = *temp.Name
     n.OrgId = temp.OrgId
     n.RadiusAttrs = temp.RadiusAttrs
@@ -182,6 +188,7 @@ type tempNacTag  struct {
     Match                *NacTagMatchEnum        `json:"match,omitempty"`
     MatchAll             *bool                   `json:"match_all,omitempty"`
     ModifiedTime         *float64                `json:"modified_time,omitempty"`
+    NacportalId          *uuid.UUID              `json:"nacportal_id,omitempty"`
     Name                 *string                 `json:"name"`
     OrgId                *uuid.UUID              `json:"org_id,omitempty"`
     RadiusAttrs          []string                `json:"radius_attrs,omitempty"`

@@ -20,7 +20,9 @@
 | `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | If we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
+| `AutoUpgradeEsl` | [`*models.SiteSettingAutoUpgradeEsl`](../../doc/models/site-setting-auto-upgrade-esl.md) | Optional | auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade |
 | `AutoUpgradeLinecard` | `*bool` | Optional | **Default**: `true` |
+| `BgpNeighborUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based bgp neighbor down delivery.<br><br>**Constraints**: `>= 0` |
 | `BlacklistUrl` | `*string` | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `ConfigAutoRevert` | `*bool` | Optional | Whether to enable ap auto config revert<br><br>**Default**: `false` |
@@ -91,6 +93,8 @@
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | - |
+| `VpnPathUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn path down delivery.<br><br>**Constraints**: `>= 0` |
+| `VpnPeerUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn peer down delivery.<br><br>**Constraints**: `>= 0` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.SwitchVrfInstance`](../../doc/models/switch-vrf-instance.md) | Optional | Property key is the network name |
 | `VrrpGroups` | [`map[string]models.VrrpGroup`](../../doc/models/vrrp-group.md) | Optional | Property key is the vrrp group |
@@ -119,8 +123,9 @@
 | `Name` | `*string` | Optional | Name of the company whose account mist has subscribed to |
 | `Password` | `*string` | Optional | Customer account password instance URL |
 | `Region` | `*string` | Optional | For Prisma accounts only |
+| `Regions` | [`map[string]models.AccountOauthInfoAccountRegion`](../../doc/models/account-oauth-info-account-region.md) | Optional | For Prisma accounts only, property key is the region name. Regions with allocated bandwidth |
 | `ServiceAccountName` | `*string` | Optional | For Prisma accounts only |
-| `ServiceConnections` | `[]string` | Optional | For Prisma accounts only |
+| `ServiceConnections` | [`map[string]models.AccountOauthInfoAccountServiceConnection`](../../doc/models/account-oauth-info-account-service-connection.md) | Optional | For Prisma accounts only, property key is the service connection name |
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
@@ -193,10 +198,6 @@
   "name": "Test Compay1 Ltd",
   "region": "americas",
   "service_account_name": "Corp SA",
-  "service_connections": [
-    "sc1",
-    "sc2"
-  ],
   "smartgroup_name": "CompliantGroup1",
   "tsg_id": "189953456",
   "acl_policies": [

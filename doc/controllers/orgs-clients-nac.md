@@ -57,14 +57,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -180,42 +172,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.OrgNacClientsCountDistinctEnum_ENUMTYPE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -347,64 +303,12 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 respAttrs := []string{
     "Tunnel-Type=VLAN",
     "Tunnel-Medium-Type=IEEE-802",
     "Tunnel-Private-Group-Id=750",
     "User-Name=anonymous",
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -487,6 +391,7 @@ SearchOrgNacClients(
     authType *string,
     vlan *string,
     nasVendor *string,
+    nasIp *string,
     idpId *string,
     ssid *string,
     username *string,
@@ -526,6 +431,7 @@ SearchOrgNacClients(
 | `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
 | `vlan` | `*string` | Query, Optional | Vlan name or ID assigned to the client |
 | `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
+| `nasIp` | `*string` | Query, Optional | IP address of NAS device |
 | `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `username` | `*string` | Query, Optional | Username presented by the client |
@@ -563,59 +469,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 status := models.NacClientLastStatusEnum_PERMITTED
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -623,7 +477,7 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

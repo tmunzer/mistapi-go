@@ -89,10 +89,6 @@ topic := models.WebhookDeliveryTopicEnum_AUDITS
 
 distinct := models.WebhookDeliveryDistinctEnum_WEBHOOKID
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -588,10 +584,6 @@ statusCode := 200
 status := models.WebhookDeliveryStatusEnum_FAILURE
 
 topic := models.WebhookDeliveryTopicEnum_AUDITS
-
-
-
-
 
 duration := "10m"
 

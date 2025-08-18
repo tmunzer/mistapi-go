@@ -15,6 +15,7 @@ import (
 type DeviceAp struct {
     // Aeroscout AP settings
     Aeroscout            *ApAeroscout            `json:"aeroscout,omitempty"`
+    Airista              *ApAirista              `json:"airista,omitempty"`
     // BLE AP settings
     BleConfig            *BleConfig              `json:"ble_config,omitempty"`
     Centrak              *ApCentrak              `json:"centrak,omitempty"`
@@ -69,7 +70,7 @@ type DeviceAp struct {
     Orientation          *int                    `json:"orientation,omitempty"`
     // Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
     PoePassthrough       *bool                   `json:"poe_passthrough,omitempty"`
-    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If specified, this takes precedence over switch_config (deprecated)
+    // eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If spcified, this takes predecence over switch_config (switch_config requires user to configure all vlans manually, which is error-prone. thus deprecated)
     PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
     // Power related configs
     PwrConfig            *ApPwrConfig            `json:"pwr_config,omitempty"`
@@ -99,8 +100,8 @@ type DeviceAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceAp) String() string {
     return fmt.Sprintf(
-    	"DeviceAp[Aeroscout=%v, BleConfig=%v, Centrak=%v, ClientBridge=%v, CreatedTime=%v, DeviceprofileId=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, FlowControl=%v, ForSite=%v, Height=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Locked=%v, Mac=%v, MapId=%v, Mesh=%v, Model=%v, ModifiedTime=%v, Name=%v, Notes=%v, NtpServers=%v, OrgId=%v, Orientation=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, Serial=%v, SiteId=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-    	d.Aeroscout, d.BleConfig, d.Centrak, d.ClientBridge, d.CreatedTime, d.DeviceprofileId, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.FlowControl, d.ForSite, d.Height, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Locked, d.Mac, d.MapId, d.Mesh, d.Model, d.ModifiedTime, d.Name, d.Notes, d.NtpServers, d.OrgId, d.Orientation, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.Serial, d.SiteId, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.X, d.Y, d.AdditionalProperties)
+    	"DeviceAp[Aeroscout=%v, Airista=%v, BleConfig=%v, Centrak=%v, ClientBridge=%v, CreatedTime=%v, DeviceprofileId=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, FlowControl=%v, ForSite=%v, Height=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Locked=%v, Mac=%v, MapId=%v, Mesh=%v, Model=%v, ModifiedTime=%v, Name=%v, Notes=%v, NtpServers=%v, OrgId=%v, Orientation=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, Serial=%v, SiteId=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+    	d.Aeroscout, d.Airista, d.BleConfig, d.Centrak, d.ClientBridge, d.CreatedTime, d.DeviceprofileId, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.FlowControl, d.ForSite, d.Height, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Locked, d.Mac, d.MapId, d.Mesh, d.Model, d.ModifiedTime, d.Name, d.Notes, d.NtpServers, d.OrgId, d.Orientation, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.Serial, d.SiteId, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceAp.
@@ -109,7 +110,7 @@ func (d DeviceAp) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(d.AdditionalProperties,
-        "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y"); err != nil {
+        "aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(d.toMap())
@@ -121,6 +122,9 @@ func (d DeviceAp) toMap() map[string]any {
     MergeAdditionalProperties(structMap, d.AdditionalProperties)
     if d.Aeroscout != nil {
         structMap["aeroscout"] = d.Aeroscout.toMap()
+    }
+    if d.Airista != nil {
+        structMap["airista"] = d.Airista.toMap()
     }
     if d.BleConfig != nil {
         structMap["ble_config"] = d.BleConfig.toMap()
@@ -283,13 +287,14 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "centrak", "client_bridge", "created_time", "deviceprofile_id", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "flow_control", "for_site", "height", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "lacp_config", "led", "locked", "mac", "map_id", "mesh", "model", "modified_time", "name", "notes", "ntp_servers", "org_id", "orientation", "poe_passthrough", "port_config", "pwr_config", "radio_config", "serial", "site_id", "type", "uplink_port_config", "usb_config", "vars", "x", "y")
     if err != nil {
     	return err
     }
     d.AdditionalProperties = additionalProperties
     
     d.Aeroscout = temp.Aeroscout
+    d.Airista = temp.Airista
     d.BleConfig = temp.BleConfig
     d.Centrak = temp.Centrak
     d.ClientBridge = temp.ClientBridge
@@ -340,6 +345,7 @@ func (d *DeviceAp) UnmarshalJSON(input []byte) error {
 // tempDeviceAp is a temporary struct used for validating the fields of DeviceAp.
 type tempDeviceAp  struct {
     Aeroscout        *ApAeroscout            `json:"aeroscout,omitempty"`
+    Airista          *ApAirista              `json:"airista,omitempty"`
     BleConfig        *BleConfig              `json:"ble_config,omitempty"`
     Centrak          *ApCentrak              `json:"centrak,omitempty"`
     ClientBridge     *ApClientBridge         `json:"client_bridge,omitempty"`

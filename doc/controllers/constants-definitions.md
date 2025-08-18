@@ -1491,9 +1491,6 @@ if err != nil {
     "key": "alarms"
   },
   {
-    "key": "asset-raw"
-  },
-  {
     "key": "asset-raw-rssi"
   },
   {

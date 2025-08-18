@@ -21,7 +21,20 @@ type JsInventoryItem struct {
     Sku                  *string                `json:"sku,omitempty"`
     // enum: `ap`, `gateway`, `switch`
     Type                 *DeviceTypeEnum        `json:"type,omitempty"`
-    WarrantyType         *string                `json:"warranty_type,omitempty"`
+    // Warranty type for Juniper Support Insight (JSI) devices. The warranty type
+    // is used to determine the support level and duration of the warranty for the
+    // device. enum:
+    // * WTY00001: Standard Hardware Warranty
+    // * WTY00002: Enhanced Hardware Warranty
+    // * WTY00003: Dead On Arrival Warranty
+    // * WTY00004: Limited Lifetime Warranty
+    // * WTY00005: Software Warranty
+    // * WTY00006: Limited Lifetime Warranty for WLA
+    // * WTY00007: Warranty-JCPO EOL (DOA Not Included)
+    // * WTY00008: MIST Enhanced Hardware Warranty
+    // * WTY00009: MIST Standard Warranty
+    // * WTY00099: Determine Lifetime warranty
+    WarrantyType         *JsiWarrantyTypeEnum   `json:"warranty_type,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -99,11 +112,11 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 
 // tempJsInventoryItem is a temporary struct used for validating the fields of JsInventoryItem.
 type tempJsInventoryItem  struct {
-    EolTime      *int            `json:"eol_time,omitempty"`
-    EosTime      *int            `json:"eos_time,omitempty"`
-    Model        *string         `json:"model,omitempty"`
-    Serial       *string         `json:"serial,omitempty"`
-    Sku          *string         `json:"sku,omitempty"`
-    Type         *DeviceTypeEnum `json:"type,omitempty"`
-    WarrantyType *string         `json:"warranty_type,omitempty"`
+    EolTime      *int                 `json:"eol_time,omitempty"`
+    EosTime      *int                 `json:"eos_time,omitempty"`
+    Model        *string              `json:"model,omitempty"`
+    Serial       *string              `json:"serial,omitempty"`
+    Sku          *string              `json:"sku,omitempty"`
+    Type         *DeviceTypeEnum      `json:"type,omitempty"`
+    WarrantyType *JsiWarrantyTypeEnum `json:"warranty_type,omitempty"`
 }

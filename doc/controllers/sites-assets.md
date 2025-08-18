@@ -257,8 +257,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 upsert := models.ImportSiteAssetsUpsertEnum_FALSE
 
-
-
 resp, err := sitesAssets.ImportSiteAssets(ctx, siteId, &upsert, nil)
 if err != nil {
     log.Fatalln(err)

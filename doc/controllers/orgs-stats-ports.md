@@ -149,19 +149,9 @@ rxBcastPkts := 1000000
 
 speed := 1000000000
 
-
-
-
-
-
-
 up := true
 
 siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
-
-
-
-
 
 duration := "10m"
 
@@ -243,6 +233,11 @@ SearchOrgSwOrGwPorts(
     stpState *models.SearchOrgSwOrGwPortsStpStateEnum,
     stpRole *models.SearchOrgSwOrGwPortsStpRoleEnum,
     authState *models.SearchOrgSwOrGwPortsAuthStateEnum,
+    opticsBiasCurrent *float64,
+    opticsTxPower *float64,
+    opticsRxPower *float64,
+    opticsModuleTemperature *float64,
+    opticsModuleVoltage *float64,
     mType *models.SearchOrgSwOrGwPortsTypeEnum,
     limit *int,
     start *int,
@@ -286,6 +281,11 @@ SearchOrgSwOrGwPorts(
 | `stpState` | [`*models.SearchOrgSwOrGwPortsStpStateEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
 | `stpRole` | [`*models.SearchOrgSwOrGwPortsStpRoleEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
 | `authState` | [`*models.SearchOrgSwOrGwPortsAuthStateEnum`](../../doc/models/search-org-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `opticsBiasCurrent` | `*float64` | Query, Optional | Bias current of the optics in mA |
+| `opticsTxPower` | `*float64` | Query, Optional | Transmit power of the optics in dBm |
+| `opticsRxPower` | `*float64` | Query, Optional | Receive power of the optics in dBm |
+| `opticsModuleTemperature` | `*float64` | Query, Optional | Temperature of the optics module in Celsius |
+| `opticsModuleVoltage` | `*float64` | Query, Optional | Voltage of the optics module in mV |
 | `mType` | [`*models.SearchOrgSwOrGwPortsTypeEnum`](../../doc/models/search-org-sw-or-gw-ports-type-enum.md) | Query, Optional | Type of device. enum: `switch`, `gateway`, `all`<br><br>**Default**: `"all"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
@@ -303,75 +303,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 mType := models.SearchOrgSwOrGwPortsTypeEnum_ALL
 
 limit := 100
 
-
-
-
-
 duration := "10m"
 
-apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
+apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

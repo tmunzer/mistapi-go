@@ -187,7 +187,7 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, mType, limit, start, end, duration as parameters and
+// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, mType, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponsePortStatsSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -223,6 +223,11 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
     stpState *models.SearchOrgSwOrGwPortsStpStateEnum,
     stpRole *models.SearchOrgSwOrGwPortsStpRoleEnum,
     authState *models.SearchOrgSwOrGwPortsAuthStateEnum,
+    opticsBiasCurrent *float64,
+    opticsTxPower *float64,
+    opticsRxPower *float64,
+    opticsModuleTemperature *float64,
+    opticsModuleVoltage *float64,
     mType *models.SearchOrgSwOrGwPortsTypeEnum,
     limit *int,
     start *int,
@@ -336,6 +341,21 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
     }
     if authState != nil {
         req.QueryParam("auth_state", *authState)
+    }
+    if opticsBiasCurrent != nil {
+        req.QueryParam("optics_bias_current", *opticsBiasCurrent)
+    }
+    if opticsTxPower != nil {
+        req.QueryParam("optics_tx_power", *opticsTxPower)
+    }
+    if opticsRxPower != nil {
+        req.QueryParam("optics_rx_power", *opticsRxPower)
+    }
+    if opticsModuleTemperature != nil {
+        req.QueryParam("optics_module_temperature", *opticsModuleTemperature)
+    }
+    if opticsModuleVoltage != nil {
+        req.QueryParam("optics_module_voltage", *opticsModuleVoltage)
     }
     if mType != nil {
         req.QueryParam("type", *mType)

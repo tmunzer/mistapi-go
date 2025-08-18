@@ -41,8 +41,8 @@ optional, for some of the host-out traffic, the path preference can be specified
     "servers": [
       {
         "host": "host4",
-        "name": "name2",
         "path_preference": "path_preference8",
+        "server_name": "server_name8",
         "exampleAdditionalProperty": {
           "key1": "val1",
           "key2": "val2"

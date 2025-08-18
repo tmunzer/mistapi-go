@@ -13,6 +13,10 @@ type SwitchOspfConfig struct {
     Areas                map[string]SwitchOspfConfigArea     `json:"areas,omitempty"`
     // Enable OSPF on the switch
     Enabled              *bool                               `json:"enabled,omitempty"`
+    // optional, for basic scenario, `import_policy` can be specified and can be applied to all networks in all areas if not explicitly specified
+    ExportPolicy         *string                             `json:"export_policy,omitempty"`
+    // optional, for basic scenario, `import_policy` can be specified and can be applied to all networks in all areas if not explicitly specified
+    ImportPolicy         *string                             `json:"import_policy,omitempty"`
     // Reference bandwidth. Integer(100000) or String (10g)
     ReferenceBandwidth   *SwitchOspfConfigReferenceBandwidth `json:"reference_bandwidth,omitempty"`
     AdditionalProperties map[string]interface{}              `json:"_"`
@@ -22,8 +26,8 @@ type SwitchOspfConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchOspfConfig) String() string {
     return fmt.Sprintf(
-    	"SwitchOspfConfig[Areas=%v, Enabled=%v, ReferenceBandwidth=%v, AdditionalProperties=%v]",
-    	s.Areas, s.Enabled, s.ReferenceBandwidth, s.AdditionalProperties)
+    	"SwitchOspfConfig[Areas=%v, Enabled=%v, ExportPolicy=%v, ImportPolicy=%v, ReferenceBandwidth=%v, AdditionalProperties=%v]",
+    	s.Areas, s.Enabled, s.ExportPolicy, s.ImportPolicy, s.ReferenceBandwidth, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchOspfConfig.
@@ -32,7 +36,7 @@ func (s SwitchOspfConfig) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "areas", "enabled", "reference_bandwidth"); err != nil {
+        "areas", "enabled", "export_policy", "import_policy", "reference_bandwidth"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -48,6 +52,12 @@ func (s SwitchOspfConfig) toMap() map[string]any {
     if s.Enabled != nil {
         structMap["enabled"] = s.Enabled
     }
+    if s.ExportPolicy != nil {
+        structMap["export_policy"] = s.ExportPolicy
+    }
+    if s.ImportPolicy != nil {
+        structMap["import_policy"] = s.ImportPolicy
+    }
     if s.ReferenceBandwidth != nil {
         structMap["reference_bandwidth"] = s.ReferenceBandwidth.toMap()
     }
@@ -62,7 +72,7 @@ func (s *SwitchOspfConfig) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "areas", "enabled", "reference_bandwidth")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "areas", "enabled", "export_policy", "import_policy", "reference_bandwidth")
     if err != nil {
     	return err
     }
@@ -70,6 +80,8 @@ func (s *SwitchOspfConfig) UnmarshalJSON(input []byte) error {
     
     s.Areas = temp.Areas
     s.Enabled = temp.Enabled
+    s.ExportPolicy = temp.ExportPolicy
+    s.ImportPolicy = temp.ImportPolicy
     s.ReferenceBandwidth = temp.ReferenceBandwidth
     return nil
 }
@@ -78,5 +90,7 @@ func (s *SwitchOspfConfig) UnmarshalJSON(input []byte) error {
 type tempSwitchOspfConfig  struct {
     Areas              map[string]SwitchOspfConfigArea     `json:"areas,omitempty"`
     Enabled            *bool                               `json:"enabled,omitempty"`
+    ExportPolicy       *string                             `json:"export_policy,omitempty"`
+    ImportPolicy       *string                             `json:"import_policy,omitempty"`
     ReferenceBandwidth *SwitchOspfConfigReferenceBandwidth `json:"reference_bandwidth,omitempty"`
 }

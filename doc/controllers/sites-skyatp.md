@@ -65,19 +65,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteSkyAtpEventsCountDistinctEnum_ENUMTYPE
 
-
-
-
-
-
-
-
-
 ipAddress := "192.168.1.1"
-
-
-
-
 
 duration := "10m"
 
@@ -169,21 +157,9 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
 ipAddress := "192.168.1.1"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

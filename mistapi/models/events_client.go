@@ -18,6 +18,8 @@ type EventsClient struct {
     Band                 Dot11BandEnum          `json:"band"`
     Bssid                *string                `json:"bssid,omitempty"`
     Channel              *int                   `json:"channel,omitempty"`
+    // Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA3-EAP-SHA256`
+    KeyMgmt              *ClientKeyMgmtEnum     `json:"key_mgmt,omitempty"`
     // enum: `a`, `ac`, `ax`, `b`, `g`, `n`
     Proto                Dot11ProtoEnum         `json:"proto"`
     Ssid                 *string                `json:"ssid,omitempty"`
@@ -36,8 +38,8 @@ type EventsClient struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (e EventsClient) String() string {
     return fmt.Sprintf(
-    	"EventsClient[Ap=%v, Band=%v, Bssid=%v, Channel=%v, Proto=%v, Ssid=%v, Text=%v, Timestamp=%v, Type=%v, TypeCode=%v, WlanId=%v, AdditionalProperties=%v]",
-    	e.Ap, e.Band, e.Bssid, e.Channel, e.Proto, e.Ssid, e.Text, e.Timestamp, e.Type, e.TypeCode, e.WlanId, e.AdditionalProperties)
+    	"EventsClient[Ap=%v, Band=%v, Bssid=%v, Channel=%v, KeyMgmt=%v, Proto=%v, Ssid=%v, Text=%v, Timestamp=%v, Type=%v, TypeCode=%v, WlanId=%v, AdditionalProperties=%v]",
+    	e.Ap, e.Band, e.Bssid, e.Channel, e.KeyMgmt, e.Proto, e.Ssid, e.Text, e.Timestamp, e.Type, e.TypeCode, e.WlanId, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EventsClient.
@@ -46,7 +48,7 @@ func (e EventsClient) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(e.AdditionalProperties,
-        "ap", "band", "bssid", "channel", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id"); err != nil {
+        "ap", "band", "bssid", "channel", "key_mgmt", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(e.toMap())
@@ -65,6 +67,9 @@ func (e EventsClient) toMap() map[string]any {
     }
     if e.Channel != nil {
         structMap["channel"] = e.Channel
+    }
+    if e.KeyMgmt != nil {
+        structMap["key_mgmt"] = e.KeyMgmt
     }
     structMap["proto"] = e.Proto
     if e.Ssid != nil {
@@ -98,7 +103,7 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "bssid", "channel", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "bssid", "channel", "key_mgmt", "proto", "ssid", "text", "timestamp", "type", "type_code", "wlan_id")
     if err != nil {
     	return err
     }
@@ -108,6 +113,7 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
     e.Band = *temp.Band
     e.Bssid = temp.Bssid
     e.Channel = temp.Channel
+    e.KeyMgmt = temp.KeyMgmt
     e.Proto = *temp.Proto
     e.Ssid = temp.Ssid
     e.Text = temp.Text
@@ -120,17 +126,18 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
 
 // tempEventsClient is a temporary struct used for validating the fields of EventsClient.
 type tempEventsClient  struct {
-    Ap        *string         `json:"ap,omitempty"`
-    Band      *Dot11BandEnum  `json:"band"`
-    Bssid     *string         `json:"bssid,omitempty"`
-    Channel   *int            `json:"channel,omitempty"`
-    Proto     *Dot11ProtoEnum `json:"proto"`
-    Ssid      *string         `json:"ssid,omitempty"`
-    Text      *string         `json:"text,omitempty"`
-    Timestamp *float64        `json:"timestamp"`
-    Type      *string         `json:"type,omitempty"`
-    TypeCode  *int            `json:"type_code,omitempty"`
-    WlanId    *uuid.UUID      `json:"wlan_id,omitempty"`
+    Ap        *string            `json:"ap,omitempty"`
+    Band      *Dot11BandEnum     `json:"band"`
+    Bssid     *string            `json:"bssid,omitempty"`
+    Channel   *int               `json:"channel,omitempty"`
+    KeyMgmt   *ClientKeyMgmtEnum `json:"key_mgmt,omitempty"`
+    Proto     *Dot11ProtoEnum    `json:"proto"`
+    Ssid      *string            `json:"ssid,omitempty"`
+    Text      *string            `json:"text,omitempty"`
+    Timestamp *float64           `json:"timestamp"`
+    Type      *string            `json:"type,omitempty"`
+    TypeCode  *int               `json:"type_code,omitempty"`
+    WlanId    *uuid.UUID         `json:"wlan_id,omitempty"`
 }
 
 func (e *tempEventsClient) validate() error {

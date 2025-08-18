@@ -234,10 +234,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := "site_id"
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -329,10 +325,6 @@ siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 mType := "marvis"
 
 status := "open"
-
-
-
-
 
 duration := "10m"
 

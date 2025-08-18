@@ -27,7 +27,7 @@ func NewSitesUISettings(baseController baseController) *SitesUISettings {
 // ListSiteUiSettings takes context, siteId as parameters and
 // returns an models.ApiResponse with []models.UiSettings data and
 // an error if there was an issue with the request or response.
-// Site UI settings
+// List the Site UI settings/databoard
 func (s *SitesUISettings) ListSiteUiSettings(
     ctx context.Context,
     siteId uuid.UUID) (
@@ -67,7 +67,7 @@ func (s *SitesUISettings) ListSiteUiSettings(
 // CreateSiteUiSettings takes context, siteId, body as parameters and
 // returns an models.ApiResponse with models.UiSettings data and
 // an error if there was an issue with the request or response.
-// Site UI settings
+// Create a Site UI settings/databoard
 func (s *SitesUISettings) CreateSiteUiSettings(
     ctx context.Context,
     siteId uuid.UUID,
@@ -188,14 +188,14 @@ func (s *SitesUISettings) DeleteSiteUiSetting(
 }
 
 // GetSiteUiSetting takes context, siteId, uisettingId as parameters and
-// returns an models.ApiResponse with []models.UiSettings data and
+// returns an models.ApiResponse with models.UiSettings data and
 // an error if there was an issue with the request or response.
 // Site UI settings
 func (s *SitesUISettings) GetSiteUiSetting(
     ctx context.Context,
     siteId uuid.UUID,
     uisettingId uuid.UUID) (
-    models.ApiResponse[[]models.UiSettings],
+    models.ApiResponse[models.UiSettings],
     error) {
     req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/uisettings/%v")
     req.AppendTemplateParams(siteId, uisettingId)
@@ -218,13 +218,13 @@ func (s *SitesUISettings) GetSiteUiSetting(
         "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
     })
     
-    var result []models.UiSettings
+    var result models.UiSettings
     decoder, resp, err := req.CallAsJson()
     if err != nil {
         return models.NewApiResponse(result, resp), err
     }
     
-    result, err = utilities.DecodeResults[[]models.UiSettings](decoder)
+    result, err = utilities.DecodeResults[models.UiSettings](decoder)
     return models.NewApiResponse(result, resp), err
 }
 

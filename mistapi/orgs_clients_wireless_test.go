@@ -161,6 +161,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
     reasonCode := int(7)
     ssid := "MySSID"
     ap := "5c5b53010101"
+    keyMgmt := models.ClientKeyMgmtEnum("WPA2-PSK")
     
     
     wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
@@ -174,7 +175,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
     
     
     duration := "1d"
-    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
+    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }
@@ -198,6 +199,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
     reasonCode := int(7)
     ssid := "MySSID"
     ap := "5c5b53010101"
+    keyMgmt := models.ClientKeyMgmtEnum("WPA2-PSK")
     
     
     wlanId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
@@ -211,7 +213,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
     
     
     duration := "1d"
-    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
+    apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration)
     if err != nil {
         t.Errorf("Endpoint call failed: %v", err)
     }

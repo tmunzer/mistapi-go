@@ -27,14 +27,14 @@
   "limit": 134,
   "results": [
     {
-      "ap": "ap8",
       "band": "6",
+      "key_mgmt": "WPA2-PSK",
+      "proto": "a",
+      "timestamp": 2.64,
+      "ap": "ap8",
       "bssid": "bssid0",
       "channel": 30,
-      "proto": "a",
       "ssid": "ssid6",
-      "text": "text4",
-      "timestamp": 2.64,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

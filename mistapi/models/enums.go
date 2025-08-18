@@ -573,6 +573,16 @@ const (
     ClientInfoSourceEnum_MAC  ClientInfoSourceEnum = "mac"
 )
 
+// ClientKeyMgmtEnum is a string enum.
+// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA3-EAP-SHA256`
+type ClientKeyMgmtEnum string
+
+const (
+    ClientKeyMgmtEnum_WPA2PSK       ClientKeyMgmtEnum = "WPA2-PSK"
+    ClientKeyMgmtEnum_WPA2PSKFT     ClientKeyMgmtEnum = "WPA2-PSK-FT"
+    ClientKeyMgmtEnum_WPA3EAPSHA256 ClientKeyMgmtEnum = "WPA3-EAP-SHA256"
+)
+
 // ConfigSwitchLocalAccountsUserRoleEnum is a string enum.
 // enum: `admin`, `helpdesk`, `none`, `read`
 type ConfigSwitchLocalAccountsUserRoleEnum string
@@ -705,6 +715,16 @@ const (
     DayOfWeekEnum_THU DayOfWeekEnum = "thu"
     DayOfWeekEnum_TUE DayOfWeekEnum = "tue"
     DayOfWeekEnum_WED DayOfWeekEnum = "wed"
+)
+
+// DeviceSearchRadiusFilterStatusEnum is a string enum.
+// Status of the device search radius filter. enum: `up`, `down`, `unreachable`
+type DeviceSearchRadiusFilterStatusEnum string
+
+const (
+    DeviceSearchRadiusFilterStatusEnum_UP          DeviceSearchRadiusFilterStatusEnum = "up"
+    DeviceSearchRadiusFilterStatusEnum_DOWN        DeviceSearchRadiusFilterStatusEnum = "down"
+    DeviceSearchRadiusFilterStatusEnum_UNREACHABLE DeviceSearchRadiusFilterStatusEnum = "unreachable"
 )
 
 // DeviceStatusEnum is a string enum.
@@ -1122,6 +1142,16 @@ const (
     GatewayWanTypeEnum_STATIC GatewayWanTypeEnum = "static"
 )
 
+// GatewayWanType6Enum is a string enum.
+// enum: `autoconf`, `dhcp`, `static`
+type GatewayWanType6Enum string
+
+const (
+    GatewayWanType6Enum_AUTOCONF GatewayWanType6Enum = "autoconf"
+    GatewayWanType6Enum_DHCP     GatewayWanType6Enum = "dhcp"
+    GatewayWanType6Enum_STATIC   GatewayWanType6Enum = "static"
+)
+
 // GetOrgMxedgeUpgradeInfoChannelEnum is a string enum.
 // enum: `alpha`, `beta`, `stable`
 type GetOrgMxedgeUpgradeInfoChannelEnum string
@@ -1252,6 +1282,48 @@ const (
     IpType6Enum_DHCP     IpType6Enum = "dhcp"
     IpType6Enum_DISABLED IpType6Enum = "disabled"
     IpType6Enum_STATIC   IpType6Enum = "static"
+)
+
+// JsiInventoryCountDistinctEnum is a string enum.
+// enum: `model`, `account_id`, `type`, `version`, `warranty_type`, `status`
+type JsiInventoryCountDistinctEnum string
+
+const (
+    JsiInventoryCountDistinctEnum_MODEL        JsiInventoryCountDistinctEnum = "model"
+    JsiInventoryCountDistinctEnum_ACCOUNTID    JsiInventoryCountDistinctEnum = "account_id"
+    JsiInventoryCountDistinctEnum_ENUMTYPE     JsiInventoryCountDistinctEnum = "type"
+    JsiInventoryCountDistinctEnum_VERSION      JsiInventoryCountDistinctEnum = "version"
+    JsiInventoryCountDistinctEnum_WARRANTYTYPE JsiInventoryCountDistinctEnum = "warranty_type"
+    JsiInventoryCountDistinctEnum_STATUS       JsiInventoryCountDistinctEnum = "status"
+)
+
+// JsiWarrantyTypeEnum is a string enum.
+// Warranty type for Juniper Support Insight (JSI) devices. The warranty type
+// is used to determine the support level and duration of the warranty for the
+// device. enum:
+// * WTY00001: Standard Hardware Warranty
+// * WTY00002: Enhanced Hardware Warranty
+// * WTY00003: Dead On Arrival Warranty
+// * WTY00004: Limited Lifetime Warranty
+// * WTY00005: Software Warranty
+// * WTY00006: Limited Lifetime Warranty for WLA
+// * WTY00007: Warranty-JCPO EOL (DOA Not Included)
+// * WTY00008: MIST Enhanced Hardware Warranty
+// * WTY00009: MIST Standard Warranty
+// * WTY00099: Determine Lifetime warranty
+type JsiWarrantyTypeEnum string
+
+const (
+    JsiWarrantyTypeEnum_ENUMSTANDARDHARDWAREWARRANTY      JsiWarrantyTypeEnum = "Standard Hardware Warranty"
+    JsiWarrantyTypeEnum_ENUMENHANCEDHARDWAREWARRANTY      JsiWarrantyTypeEnum = "Enhanced Hardware Warranty"
+    JsiWarrantyTypeEnum_ENUMDEADONARRIVALWARRANTY         JsiWarrantyTypeEnum = "Dead On Arrival Warranty"
+    JsiWarrantyTypeEnum_ENUMLIMITEDLIFETIMEWARRANTY       JsiWarrantyTypeEnum = "Limited Lifetime Warranty"
+    JsiWarrantyTypeEnum_ENUMSOFTWAREWARRANTY              JsiWarrantyTypeEnum = "Software Warranty"
+    JsiWarrantyTypeEnum_ENUMLIMITEDLIFETIMEWARRANTYFORWLA JsiWarrantyTypeEnum = "Limited Lifetime Warranty for WLA"
+    JsiWarrantyTypeEnum_ENUMWARRANTYJCPOEOLDOANOTINCLUDED JsiWarrantyTypeEnum = "Warranty-JCPO EOL (DOA Not Included)"
+    JsiWarrantyTypeEnum_ENUMMISTENHANCEDHARDWAREWARRANTY  JsiWarrantyTypeEnum = "MIST Enhanced Hardware Warranty"
+    JsiWarrantyTypeEnum_ENUMMISTSTANDARDWARRANTY          JsiWarrantyTypeEnum = "MIST Standard Warranty"
+    JsiWarrantyTypeEnum_ENUMDETERMINELIFETIMEWARRANTY     JsiWarrantyTypeEnum = "Determine Lifetime warranty"
 )
 
 // JunosPortConfigDuplexEnum is a string enum.
@@ -1670,6 +1742,16 @@ const (
     NacPortalEapTypeEnum_WPA3 NacPortalEapTypeEnum = "wpa3"
 )
 
+// NacPortalGuestPortalAuthEnum is a string enum.
+// Guest portal authentication type. enum: `external`, `multi`, `none`
+type NacPortalGuestPortalAuthEnum string
+
+const (
+    NacPortalGuestPortalAuthEnum_EXTERNAL NacPortalGuestPortalAuthEnum = "external"
+    NacPortalGuestPortalAuthEnum_MULTI    NacPortalGuestPortalAuthEnum = "multi"
+    NacPortalGuestPortalAuthEnum_NONE     NacPortalGuestPortalAuthEnum = "none"
+)
+
 // NacPortalSsoIdpSignAlgoEnum is a string enum.
 // Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`.
 type NacPortalSsoIdpSignAlgoEnum string
@@ -1682,11 +1764,15 @@ const (
 )
 
 // NacPortalTypeEnum is a string enum.
-// enum: `guest`, `marvis_client`
+// enum: 
+// * `guest_admin`: NAC-Based Portal Admin for Pre Created Guest Authentication
+// * `guest_portal`: NAC-Based Guest Portal
+// * `marvis_client`
 type NacPortalTypeEnum string
 
 const (
-    NacPortalTypeEnum_GUEST        NacPortalTypeEnum = "guest"
+    NacPortalTypeEnum_GUESTADMIN   NacPortalTypeEnum = "guest_admin"
+    NacPortalTypeEnum_GUESTPORTAL  NacPortalTypeEnum = "guest_portal"
     NacPortalTypeEnum_MARVISCLIENT NacPortalTypeEnum = "marvis_client"
 )
 
@@ -1697,6 +1783,15 @@ type NacRuleActionEnum string
 const (
     NacRuleActionEnum_ALLOW NacRuleActionEnum = "allow"
     NacRuleActionEnum_BLOCK NacRuleActionEnum = "block"
+)
+
+// NacRuleGuestAuthStateEnum is a string enum.
+// Guest portal authorization state. enum: `authorized`, `unknown`
+type NacRuleGuestAuthStateEnum string
+
+const (
+    NacRuleGuestAuthStateEnum_AUTHORIZED NacRuleGuestAuthStateEnum = "authorized"
+    NacRuleGuestAuthStateEnum_UNKNOWN    NacRuleGuestAuthStateEnum = "unknown"
 )
 
 // NacRuleMatchingPortTypeEnum is a string enum.
@@ -1733,19 +1828,20 @@ const (
 )
 
 // NacTagTypeEnum is a string enum.
-// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `session_timeout`, `username_attr`, `vlan`
+// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`
 type NacTagTypeEnum string
 
 const (
-    NacTagTypeEnum_EGRESSVLANNAMES   NacTagTypeEnum = "egress_vlan_names"
-    NacTagTypeEnum_GBPTAG            NacTagTypeEnum = "gbp_tag"
-    NacTagTypeEnum_MATCH             NacTagTypeEnum = "match"
-    NacTagTypeEnum_RADIUSATTRS       NacTagTypeEnum = "radius_attrs"
-    NacTagTypeEnum_RADIUSGROUP       NacTagTypeEnum = "radius_group"
-    NacTagTypeEnum_RADIUSVENDORATTRS NacTagTypeEnum = "radius_vendor_attrs"
-    NacTagTypeEnum_SESSIONTIMEOUT    NacTagTypeEnum = "session_timeout"
-    NacTagTypeEnum_USERNAMEATTR      NacTagTypeEnum = "username_attr"
-    NacTagTypeEnum_VLAN              NacTagTypeEnum = "vlan"
+    NacTagTypeEnum_EGRESSVLANNAMES     NacTagTypeEnum = "egress_vlan_names"
+    NacTagTypeEnum_GBPTAG              NacTagTypeEnum = "gbp_tag"
+    NacTagTypeEnum_MATCH               NacTagTypeEnum = "match"
+    NacTagTypeEnum_RADIUSATTRS         NacTagTypeEnum = "radius_attrs"
+    NacTagTypeEnum_RADIUSGROUP         NacTagTypeEnum = "radius_group"
+    NacTagTypeEnum_RADIUSVENDORATTRS   NacTagTypeEnum = "radius_vendor_attrs"
+    NacTagTypeEnum_REDIRECTGUESTPORTAL NacTagTypeEnum = "redirect_guest_portal"
+    NacTagTypeEnum_SESSIONTIMEOUT      NacTagTypeEnum = "session_timeout"
+    NacTagTypeEnum_USERNAMEATTR        NacTagTypeEnum = "username_attr"
+    NacTagTypeEnum_VLAN                NacTagTypeEnum = "vlan"
 )
 
 // NacTagUsernameAttrEnum is a string enum.
@@ -2066,6 +2162,16 @@ const (
     OrgSettingMistNacIpVersionEnum_V6 OrgSettingMistNacIpVersionEnum = "v6"
 )
 
+// OrgSettingScepCertProviderEnum is a string enum.
+// enum: `intune`, `jamf`, `byod`
+type OrgSettingScepCertProviderEnum string
+
+const (
+    OrgSettingScepCertProviderEnum_INTUNE OrgSettingScepCertProviderEnum = "intune"
+    OrgSettingScepCertProviderEnum_JAMF   OrgSettingScepCertProviderEnum = "jamf"
+    OrgSettingScepCertProviderEnum_BYOD   OrgSettingScepCertProviderEnum = "byod"
+)
+
 // OrgSiteSleTypeEnum is a string enum.
 // enum: `wan`, `wifi`, `wired`
 type OrgSiteSleTypeEnum string
@@ -2143,6 +2249,14 @@ type OrgTunnelTypeCountEnum string
 const (
     OrgTunnelTypeCountEnum_WAN      OrgTunnelTypeCountEnum = "wan"
     OrgTunnelTypeCountEnum_WXTUNNEL OrgTunnelTypeCountEnum = "wxtunnel"
+)
+
+// OrgUiSettingsPurposeEnum is a string enum.
+// enum: `marvisdashboard`
+type OrgUiSettingsPurposeEnum string
+
+const (
+    OrgUiSettingsPurposeEnum_MARVISDASHBOARD OrgUiSettingsPurposeEnum = "marvisdashboard"
 )
 
 // OrgWanClientsCountDistinctEnum is a string enum.
@@ -3478,6 +3592,25 @@ const (
     Snmpv3ConfigTargetParamSecurityModelEnum_V2C Snmpv3ConfigTargetParamSecurityModelEnum = "v2c"
 )
 
+// SpectrumAnalysisBandEnum is a string enum.
+// Band for spectrum analysis. enum: `24`, `5`, `6`
+type SpectrumAnalysisBandEnum string
+
+const (
+    SpectrumAnalysisBandEnum_ENUM24 SpectrumAnalysisBandEnum = "24"
+    SpectrumAnalysisBandEnum_ENUM5  SpectrumAnalysisBandEnum = "5"
+    SpectrumAnalysisBandEnum_ENUM6  SpectrumAnalysisBandEnum = "6"
+)
+
+// SpectrumAnalysisFormatEnum is a string enum.
+// Format of the spectrum analysis data. enum: `json`, `stream`
+type SpectrumAnalysisFormatEnum string
+
+const (
+    SpectrumAnalysisFormatEnum_JSON   SpectrumAnalysisFormatEnum = "json"
+    SpectrumAnalysisFormatEnum_STREAM SpectrumAnalysisFormatEnum = "stream"
+)
+
 // SslProxyCiphersCategoryEnum is a string enum.
 // enum: `medium`, `strong`, `weak`
 type SslProxyCiphersCategoryEnum string
@@ -3794,13 +3927,23 @@ const (
 )
 
 // SwitchPortUsageDuplexEnum is a string enum.
-// Only if `mode`!=`dynamic` link connection mode. enum: `auto`, `full`, `half`
+// Only if `mode`!=`dynamic`, link connection mode. enum: `auto`, `full`, `half`
 type SwitchPortUsageDuplexEnum string
 
 const (
     SwitchPortUsageDuplexEnum_AUTO SwitchPortUsageDuplexEnum = "auto"
     SwitchPortUsageDuplexEnum_FULL SwitchPortUsageDuplexEnum = "full"
     SwitchPortUsageDuplexEnum_HALF SwitchPortUsageDuplexEnum = "half"
+)
+
+// SwitchPortUsageDuplexOverwriteEnum is a string enum.
+// Link connection mode. enum: `auto`, `full`, `half`
+type SwitchPortUsageDuplexOverwriteEnum string
+
+const (
+    SwitchPortUsageDuplexOverwriteEnum_AUTO SwitchPortUsageDuplexOverwriteEnum = "auto"
+    SwitchPortUsageDuplexOverwriteEnum_FULL SwitchPortUsageDuplexOverwriteEnum = "full"
+    SwitchPortUsageDuplexOverwriteEnum_HALF SwitchPortUsageDuplexOverwriteEnum = "half"
 )
 
 // SwitchPortUsageDynamicResetDefaultWhenEnum is a string enum.
@@ -3851,7 +3994,7 @@ const (
 )
 
 // SwitchPortUsageSpeedEnum is a string enum.
-// Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
+// Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
 type SwitchPortUsageSpeedEnum string
 
 const (
@@ -3865,6 +4008,23 @@ const (
     SwitchPortUsageSpeedEnum_ENUM40G  SwitchPortUsageSpeedEnum = "40g"
     SwitchPortUsageSpeedEnum_ENUM100G SwitchPortUsageSpeedEnum = "100g"
     SwitchPortUsageSpeedEnum_AUTO     SwitchPortUsageSpeedEnum = "auto"
+)
+
+// SwitchPortUsageSpeedOverwriteEnum is a string enum.
+// Port Speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
+type SwitchPortUsageSpeedOverwriteEnum string
+
+const (
+    SwitchPortUsageSpeedOverwriteEnum_ENUM10M  SwitchPortUsageSpeedOverwriteEnum = "10m"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM100M SwitchPortUsageSpeedOverwriteEnum = "100m"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM1G   SwitchPortUsageSpeedOverwriteEnum = "1g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM25G  SwitchPortUsageSpeedOverwriteEnum = "2.5g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM5G   SwitchPortUsageSpeedOverwriteEnum = "5g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM10G  SwitchPortUsageSpeedOverwriteEnum = "10g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM25G1 SwitchPortUsageSpeedOverwriteEnum = "25g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM40G  SwitchPortUsageSpeedOverwriteEnum = "40g"
+    SwitchPortUsageSpeedOverwriteEnum_ENUM100G SwitchPortUsageSpeedOverwriteEnum = "100g"
+    SwitchPortUsageSpeedOverwriteEnum_AUTO     SwitchPortUsageSpeedOverwriteEnum = "auto"
 )
 
 // SwitchRadiusConfigAuthServerSelectionEnum is a string enum.

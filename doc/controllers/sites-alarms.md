@@ -245,20 +245,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.AlarmCountDistinctEnum_ENUMTYPE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -349,21 +335,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
-
-
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 

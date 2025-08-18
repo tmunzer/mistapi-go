@@ -89,12 +89,6 @@ text := "Device connected"
 
 timestamp := "1703003296"
 
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -180,12 +174,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
-
-
-
-
-
-
 
 duration := "10m"
 
@@ -313,8 +301,6 @@ version := "10.0.0"
 
 ipAddress := "192.168.1.1"
 
-
-
 mxedgeId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 lldpSystemName := "my-lldp-system"
@@ -326,10 +312,6 @@ lldpPortId := "ge-0/0/1"
 lldpMgmtAddr := "10.4.2.3"
 
 mType := models.DeviceTypeDefaultApEnum_AP
-
-
-
-
 
 duration := "10m"
 
@@ -407,8 +389,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
 
 apiResponse, err := orgsDevices.GetOrgJuniperDevicesCommand(ctx, orgId, nil)
 if err != nil {
@@ -712,17 +692,11 @@ text := "Device connected"
 
 timestamp := "1703003296"
 
-
-
 lastBy := "port_id"
 
 includes := "ext_tunnel"
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 
@@ -823,10 +797,6 @@ mac := "5c5b53010101"
 name := "My AP"
 
 version := "10.0.0"
-
-
-
-
 
 limit := 100
 
@@ -1089,8 +1059,6 @@ mxedgeId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 
 mxedgeIds := "7dae216d-7c98-a51b-e068-dd7d477b7216,7dae216d-7c98-a51b-e068-dd7d477b7217"
 
-
-
 node := "node0"
 
 node0Mac := "5c5b350e0001"
@@ -1108,10 +1076,6 @@ version := "10.0.0"
 mType := models.DeviceTypeDefaultApEnum_AP
 
 limit := 100
-
-
-
-
 
 duration := "10m"
 

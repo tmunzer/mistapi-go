@@ -183,7 +183,7 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, disabled, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, limit, start, end, duration as parameters and
+// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, disabled, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseSwitchPortSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -229,6 +229,11 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
     lteImsi *string,
     lteIccid *string,
     lteImei *string,
+    opticsBiasCurrent *float64,
+    opticsTxPower *float64,
+    opticsRxPower *float64,
+    opticsModuleTemperature *float64,
+    opticsModuleVoltage *float64,
     limit *int,
     start *int,
     end *int,
@@ -371,6 +376,21 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
     }
     if lteImei != nil {
         req.QueryParam("lte_imei", *lteImei)
+    }
+    if opticsBiasCurrent != nil {
+        req.QueryParam("optics_bias_current", *opticsBiasCurrent)
+    }
+    if opticsTxPower != nil {
+        req.QueryParam("optics_tx_power", *opticsTxPower)
+    }
+    if opticsRxPower != nil {
+        req.QueryParam("optics_rx_power", *opticsRxPower)
+    }
+    if opticsModuleTemperature != nil {
+        req.QueryParam("optics_module_temperature", *opticsModuleTemperature)
+    }
+    if opticsModuleVoltage != nil {
+        req.QueryParam("optics_module_voltage", *opticsModuleVoltage)
     }
     if limit != nil {
         req.QueryParam("limit", *limit)

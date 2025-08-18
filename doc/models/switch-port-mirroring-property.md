@@ -11,17 +11,19 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `InputNetworksIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
-| `InputPortIdsEgress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
-| `InputPortIdsIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress` should be specified |
-| `OutputNetwork` | `*string` | Optional | Exactly one of the `output_port_id` or `output_network` should be provided |
-| `OutputPortId` | `*string` | Optional | Exactly one of the `output_port_id` or `output_network` should be provided |
+| `InputNetworksIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified |
+| `InputPortIdsEgress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified |
+| `InputPortIdsIngress` | `[]string` | Optional | At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified |
+| `OutputIpAddress` | `*string` | Optional | Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided |
+| `OutputNetwork` | `*string` | Optional | Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided |
+| `OutputPortId` | `*string` | Optional | Exactly one of the `output_ip_address`, `output_port_id` or `output_network` should be provided |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "output_ip_address": "1.2.3.4",
   "output_network": "analyze",
   "output_port_id": "ge-0/0/5",
   "input_networks_ingress": [

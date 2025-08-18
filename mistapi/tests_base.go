@@ -214,6 +214,8 @@ var orgsWxTags OrgsWxTags
 
 var orgsWxTunnels OrgsWxTunnels
 
+var sitesSprectrumAnalysis SitesSprectrumAnalysis
+
 var sites Sites
 
 var sitesAlarms SitesAlarms
@@ -307,6 +309,8 @@ var sitesSkyatp SitesSkyatp
 var sitesSyntheticTests SitesSyntheticTests
 
 var sitesUiSettings SitesUISettings
+
+var orgsUiSettings OrgsUISettings
 
 var sitesVBeacons SitesVBeacons
 
@@ -509,6 +513,7 @@ func init() {
     orgsWxRules = *client.OrgsWxRules()
     orgsWxTags = *client.OrgsWxTags()
     orgsWxTunnels = *client.OrgsWxTunnels()
+    sitesSprectrumAnalysis = *client.SitesSprectrumAnalysis()
     sites = *client.Sites()
     sitesAlarms = *client.SitesAlarms()
     sitesApplications = *client.SitesApplications()
@@ -556,6 +561,7 @@ func init() {
     sitesSkyatp = *client.SitesSkyatp()
     sitesSyntheticTests = *client.SitesSyntheticTests()
     sitesUiSettings = *client.SitesUISettings()
+    orgsUiSettings = *client.OrgsUISettings()
     sitesVBeacons = *client.SitesVBeacons()
     sitesVpNs = *client.SitesVPNs()
     sitesWanUsages = *client.SitesWANUsages()

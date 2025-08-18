@@ -62,8 +62,6 @@ mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-
-
 resp, err := sitesMaps.AddSiteMapImage(ctx, siteId, mapId, file, nil)
 if err != nil {
     log.Fatalln(err)
@@ -503,10 +501,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 autoDeviceprofileAssignment := true
 
-
-
-
-
 json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
@@ -825,8 +819,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
-
-
 
 resp, err := sitesMaps.ReplaceSiteMapImage(ctx, siteId, mapId, file, nil)
 if err != nil {

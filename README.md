@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2506.1.6**
+> Version: **2508.1.3**
 > 
-> Date: **July 31, 2025**
+> Date: **August 14, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -263,6 +263,7 @@ This API uses the following authentication schemes.
 * [Orgs Stats-Tunnels](doc/controllers/orgs-stats-tunnels.md)
 * [Orgs Stats-VPN Peers](doc/controllers/orgs-stats-vpn-peers.md)
 * [Orgs Tickets](doc/controllers/orgs-tickets.md)
+* [Orgs UI Settings](doc/controllers/orgs-ui-settings.md)
 * [Orgs User MA Cs](doc/controllers/orgs-user-ma-cs.md)
 * [Orgs Vars](doc/controllers/orgs-vars.md)
 * [Orgs VP Ns](doc/controllers/orgs-vp-ns.md)
@@ -328,6 +329,7 @@ This API uses the following authentication schemes.
 * [Sites Site Templates](doc/controllers/sites-site-templates.md)
 * [Sites Skyatp](doc/controllers/sites-skyatp.md)
 * [Sites SL Es](doc/controllers/sites-sl-es.md)
+* [Sites Sprectrum Analysis](doc/controllers/sites-sprectrum-analysis.md)
 * [Sites Stats](doc/controllers/sites-stats.md)
 * [Sites Stats-Apps](doc/controllers/sites-stats-apps.md)
 * [Sites Stats-Assets](doc/controllers/sites-stats-assets.md)

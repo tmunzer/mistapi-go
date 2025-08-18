@@ -61,10 +61,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
 
 interval := "10m"
@@ -157,10 +153,6 @@ clientMac := "0000000000ab"
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
 
 interval := "10m"
@@ -252,10 +244,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 metric := "metric8"
 
 deviceMac := "0000000000ab"
-
-
-
-
 
 duration := "10m"
 

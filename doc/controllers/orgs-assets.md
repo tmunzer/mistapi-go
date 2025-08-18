@@ -253,8 +253,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
 resp, err := orgsAssets.ImportOrgAssets(ctx, orgId, nil)
 if err != nil {
     log.Fatalln(err)

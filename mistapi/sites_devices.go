@@ -699,7 +699,7 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDevices takes context, siteId, hostname, mType, model, mac, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, sort, descSort, stats, limit, start, end, duration as parameters and
+// SearchSiteDevices takes context, siteId, hostname, mType, model, ip, mac, extIp, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, sort, descSort, stats, limit, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Device
@@ -709,12 +709,25 @@ func (s *SitesDevices) SearchSiteDevices(
     hostname *string,
     mType *models.DeviceTypeDefaultApEnum,
     model *string,
+    ip *string,
     mac *string,
+    extIp *string,
     version *string,
     powerConstrained *bool,
     ipAddress *string,
     mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
     mxedgeId *uuid.UUID,
+    mxedgeIds []uuid.UUID,
+    lastHostname *string,
+    lastConfigStatus *string,
+    radiusStats map[string]models.DeviceSearchRadiusStat,
+    cpu *string,
+    node0Mac *string,
+    clustered *bool,
+    t128agentVersion *string,
+    node1Mac *string,
+    node *models.HaClusterNodeEnum,
+    evpntopoId *string,
     lldpSystemName *string,
     lldpSystemDesc *string,
     lldpPortId *string,
@@ -764,8 +777,14 @@ func (s *SitesDevices) SearchSiteDevices(
     if model != nil {
         req.QueryParam("model", *model)
     }
+    if ip != nil {
+        req.QueryParam("ip", *ip)
+    }
     if mac != nil {
         req.QueryParam("mac", *mac)
+    }
+    if extIp != nil {
+        req.QueryParam("ext_ip", *extIp)
     }
     if version != nil {
         req.QueryParam("version", *version)
@@ -781,6 +800,39 @@ func (s *SitesDevices) SearchSiteDevices(
     }
     if mxedgeId != nil {
         req.QueryParam("mxedge_id", *mxedgeId)
+    }
+    if mxedgeIds != nil {
+        req.QueryParam("mxedge_ids", mxedgeIds)
+    }
+    if lastHostname != nil {
+        req.QueryParam("last_hostname", *lastHostname)
+    }
+    if lastConfigStatus != nil {
+        req.QueryParam("last_config_status", *lastConfigStatus)
+    }
+    if radiusStats != nil {
+        req.QueryParam("radius_stats", radiusStats)
+    }
+    if cpu != nil {
+        req.QueryParam("cpu", *cpu)
+    }
+    if node0Mac != nil {
+        req.QueryParam("node0_mac", *node0Mac)
+    }
+    if clustered != nil {
+        req.QueryParam("clustered", *clustered)
+    }
+    if t128agentVersion != nil {
+        req.QueryParam("t128agent_version", *t128agentVersion)
+    }
+    if node1Mac != nil {
+        req.QueryParam("node1_mac", *node1Mac)
+    }
+    if node != nil {
+        req.QueryParam("node", *node)
+    }
+    if evpntopoId != nil {
+        req.QueryParam("evpntopo_id", *evpntopoId)
     }
     if lldpSystemName != nil {
         req.QueryParam("lldp_system_name", *lldpSystemName)

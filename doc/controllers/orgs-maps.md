@@ -64,10 +64,6 @@ siteName := "site_name8"
 
 autoDeviceprofileAssignment := true
 
-
-
-
-
 json := models.MapImportJson{
     ImportAllFloorplans:  models.ToPointer(false),
     ImportHeight:         models.ToPointer(true),
@@ -172,10 +168,6 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 autoDeviceprofileAssignment := true
-
-
-
-
 
 json := models.MapOrgImportFileJson{
     ImportAllFloorplans:  models.ToPointer(false),

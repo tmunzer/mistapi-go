@@ -80,10 +80,6 @@ metric := "metric8"
 
 classifier := "classifier4"
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleClassifierDetails(ctx, siteId, scope, scopeId, metric, classifier, nil, nil, &duration)
@@ -263,10 +259,6 @@ scopeId := "scope_id0"
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleHistogram(ctx, siteId, scope, scopeId, metric, nil, nil, &duration)
@@ -443,15 +435,7 @@ scopeId := "scope_id0"
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
-
-
 
 apiResponse, err := sitesSLEs.GetSiteSleImpactSummary(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil, nil)
 if err != nil {
@@ -661,10 +645,6 @@ scope := models.SiteSleMetricSummaryScopeParametersEnum_GATEWAY
 scopeId := "scope_id0"
 
 metric := "metric8"
-
-
-
-
 
 duration := "10m"
 
@@ -1286,13 +1266,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedApplications(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1389,13 +1363,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedAps(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1498,13 +1466,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedChassis(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1602,13 +1564,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedGateways(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1706,13 +1662,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedInterfaces(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1817,13 +1767,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedSwitches(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -1925,13 +1869,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedWiredClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
@@ -2036,13 +1974,7 @@ scopeId := uuid.MustParse("000008e8-0000-0000-0000-000000000000")
 
 metric := "metric8"
 
-
-
-
-
 duration := "10m"
-
-
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedWirelessClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {

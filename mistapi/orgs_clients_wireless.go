@@ -211,7 +211,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientEvents(
     return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, proto, band, wlanId, nacruleId, start, end, duration as parameters and
+// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, keyMgmt, proto, band, wlanId, nacruleId, start, end, duration as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSearch data and
 // an error if there was an issue with the request or response.
 // Get Org Clients Events
@@ -222,6 +222,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     reasonCode *int,
     ssid *string,
     ap *string,
+    keyMgmt *models.ClientKeyMgmtEnum,
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
     wlanId *uuid.UUID,
@@ -262,6 +263,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
     }
     if ap != nil {
         req.QueryParam("ap", *ap)
+    }
+    if keyMgmt != nil {
+        req.QueryParam("key_mgmt", *keyMgmt)
     }
     if proto != nil {
         req.QueryParam("proto", *proto)

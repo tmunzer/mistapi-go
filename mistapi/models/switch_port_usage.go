@@ -29,7 +29,7 @@ type SwitchPortUsage struct {
     DisableAutoneg                           *bool                                       `json:"disable_autoneg,omitempty"`
     // Only if `mode`!=`dynamic` whether the port is disabled
     Disabled                                 *bool                                       `json:"disabled,omitempty"`
-    // Only if `mode`!=`dynamic` link connection mode. enum: `auto`, `full`, `half`
+    // Only if `mode`!=`dynamic`, link connection mode. enum: `auto`, `full`, `half`
     Duplex                                   *SwitchPortUsageDuplexEnum                  `json:"duplex,omitempty"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
     DynamicVlanNetworks                      []string                                    `json:"dynamic_vlan_networks,omitempty"`
@@ -49,7 +49,7 @@ type SwitchPortUsage struct {
     MacAuthPreferred                         *bool                                       `json:"mac_auth_preferred,omitempty"`
     // Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
     MacAuthProtocol                          *SwitchPortUsageMacAuthProtocolEnum         `json:"mac_auth_protocol,omitempty"`
-    // Only if `mode`!=`dynamic` max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+    // Only if `mode`!=`dynamic`, max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
     MacLimit                                 *SwitchPortUsageMacLimit                    `json:"mac_limit,omitempty"`
     // `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk`
     Mode                                     *SwitchPortUsageModeEnum                    `json:"mode,omitempty"`
@@ -75,7 +75,7 @@ type SwitchPortUsage struct {
     ServerFailNetwork                        Optional[string]                            `json:"server_fail_network"`
     // Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
     ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
-    // Only if `mode`!=`dynamic` speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
+    // Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
     Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
     // Switch storm control. Only if `mode`!=`dynamic`
     StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`

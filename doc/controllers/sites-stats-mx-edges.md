@@ -53,10 +53,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesStatsMxEdges.GetSiteMxEdgeStats(ctx, siteId, mxedgeId, nil, nil, &duration)
@@ -289,10 +285,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
 
 duration := "10m"
 

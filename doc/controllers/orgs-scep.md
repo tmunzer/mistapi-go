@@ -25,7 +25,7 @@ Disable Mist SCEP Org setting
 DisableOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error)
 ```
 
@@ -37,7 +37,7 @@ DisableOrgMistScep(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScepResponse](../../doc/models/org-setting-scep-response.md).
 
 ## Example Usage
 
@@ -92,7 +92,7 @@ Get Mist SCEP Org setting
 GetOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error)
 ```
 
@@ -104,7 +104,7 @@ GetOrgMistScep(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScepResponse](../../doc/models/org-setting-scep-response.md).
 
 ## Example Usage
 
@@ -186,12 +186,6 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
-
-
 apiResponse, err := orgsSCEP.ListOrgIssuedClientCertificates(ctx, orgId, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
@@ -208,11 +202,11 @@ if err != nil {
 {
   "results": [
     {
+      "common_name": "john@corp.com",
       "created_time": 1431382121,
       "device_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
       "expire_time": 1718921115,
-      "serial_number": "13 00 13 03 23 EE D5 84 01",
-      "sso_name_id": "john@corp.com"
+      "serial_number": "13 00 13 03 23 EE D5 84 01"
     }
   ]
 }
@@ -294,7 +288,7 @@ UpdateOrgMistScep(
     ctx context.Context,
     orgId uuid.UUID,
     body *models.OrgSettingScep) (
-    models.ApiResponse[models.OrgSettingScep],
+    models.ApiResponse[models.OrgSettingScepResponse],
     error)
 ```
 
@@ -307,7 +301,7 @@ UpdateOrgMistScep(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScep](../../doc/models/org-setting-scep.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.OrgSettingScepResponse](../../doc/models/org-setting-scep-response.md).
 
 ## Example Usage
 
@@ -317,7 +311,9 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgSettingScep{
-    Enabled:              models.ToPointer(true),
+    AdditionalProperties: map[string]interface{}{
+        "enabled": interface{}("true"),
+    },
 }
 
 apiResponse, err := orgsSCEP.UpdateOrgMistScep(ctx, orgId, &body)

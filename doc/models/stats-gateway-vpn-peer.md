@@ -12,9 +12,11 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `IsActive` | `*bool` | Optional | Redundancy status of the associated interface |
+| `Jitter` | `*float64` | Optional | Jitter in milliseconds<br><br>**Constraints**: `>= 0` |
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
-| `Latency` | `*float64` | Optional | - |
-| `Mos` | `*float64` | Optional | - |
+| `Latency` | `*float64` | Optional | Latency in milliseconds<br><br>**Constraints**: `>= 0` |
+| `Loss` | `*float64` | Optional | Packet loss in percentage<br><br>**Constraints**: `>= 0`, `<= 100` |
+| `Mos` | `*float64` | Optional | Mean Opinion Score, a measure of the quality of the VPN link<br><br>**Constraints**: `>= 0`, `<= 5` |
 | `Mtu` | `*int` | Optional | - |
 | `PeerMac` | `*string` | Optional | Peer router mac address<br><br>**Constraints**: *Minimum Length*: `1` |
 | `PeerPortId` | `*string` | Optional | Peer router device interface<br><br>**Constraints**: *Minimum Length*: `1` |
@@ -34,9 +36,9 @@
   "last_seen": 1470417522.0,
   "peer_site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "is_active": false,
+  "jitter": 234.76,
   "latency": 42.94,
-  "mos": 234.96,
-  "mtu": 22,
+  "loss": 100.0,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

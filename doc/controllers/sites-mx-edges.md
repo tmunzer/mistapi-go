@@ -68,18 +68,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteMxedgeEventsCountDistinctEnum_MXEDGEID
 
-
-
-
-
-
-
-
-
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -432,20 +420,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 duration := "10m"
 

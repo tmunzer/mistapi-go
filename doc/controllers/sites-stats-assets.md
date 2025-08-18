@@ -134,10 +134,6 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 apiResponse, err := sitesStatsAssets.GetSiteAssetStats(ctx, siteId, assetId, nil, nil, &duration)
@@ -233,10 +229,6 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 duration := "10m"
-
-
-
-
 
 limit := 100
 
@@ -377,10 +369,6 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-
-
-
-
 duration := "10m"
 
 limit := 100
@@ -480,10 +468,6 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-
-
-
 
 duration := "10m"
 
@@ -603,13 +587,7 @@ apMac := "001122334455"
 
 beam := "0"
 
-
-
 limit := 100
-
-
-
-
 
 duration := "10m"
 
