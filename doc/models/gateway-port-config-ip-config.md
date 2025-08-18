@@ -18,7 +18,7 @@ Junos IP Config
 | `Gateway` | `*string` | Optional | Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IP Address (i.e. "192.168.1.1") or a Variable (i.e. "{{myvar}}") |
 | `Gateway6` | `*string` | Optional | Except for out-of_band interface (vme/em0/fxp0). Interface Default Gateway IPv6 Address (i.e. "2001:db8::1") or a Variable (i.e. "{{myvar}}") |
 | `Ip` | `*string` | Optional | Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}") |
-| `Ipv6` | `*string` | Optional | Interface IPv6 Address (i.e. "2001:db8::123") or a Variable (i.e. "{{myvar}}") |
+| `Ip6` | `*string` | Optional | Interface IPv6 Address (i.e. "2001:db8::123") or a Variable (i.e. "{{myvar}}") |
 | `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}") |
 | `Netmask6` | `*string` | Optional | Used only if `subnet` is not specified in `networks`. Interface IPv6 Netmask (i.e. "/64") or a Variable (i.e. "{{myvar}}") |
 | `Network` | `*string` | Optional | Optional, the network to be used for mgmt |
@@ -36,7 +36,7 @@ Junos IP Config
   "gateway": "192.168.1.1",
   "gateway6": "2001:db8::1",
   "ip": "192.168.1.8",
-  "ipv6": "2001:db8::123",
+  "ip6": "2001:db8::123",
   "netmask": "/24",
   "netmask6": "/64",
   "pppoe_auth": "none",

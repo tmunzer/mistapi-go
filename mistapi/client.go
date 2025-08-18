@@ -434,7 +434,7 @@ func NewClient(configuration Configuration) ClientInterface {
 		configuration: configuration,
 	}
 
-	client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2508.1.5")
+	client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2508.1.6")
 	client.callBuilderFactory = callBuilderHandler(
 		func(server string) string {
 			if server == "" {

@@ -21,7 +21,7 @@ type GatewayPortConfigIpConfig struct {
 	// Interface IP Address (i.e. "192.168.1.8") or a Variable (i.e. "{{myvar}}")
 	Ip *string `json:"ip,omitempty"`
 	// Interface IPv6 Address (i.e. "2001:db8::123") or a Variable (i.e. "{{myvar}}")
-	Ipv6 *string `json:"ipv6,omitempty"`
+	Ip6 *string `json:"ip6,omitempty"`
 	// Used only if `subnet` is not specified in `networks`. Interface Netmask (i.e. "/24") or a Variable (i.e. "{{myvar}}")
 	Netmask *string `json:"netmask,omitempty"`
 	// Used only if `subnet` is not specified in `networks`. Interface IPv6 Netmask (i.e. "/64") or a Variable (i.e. "{{myvar}}")
@@ -45,8 +45,8 @@ type GatewayPortConfigIpConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayPortConfigIpConfig) String() string {
 	return fmt.Sprintf(
-		"GatewayPortConfigIpConfig[Dns=%v, DnsSuffix=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ipv6=%v, Netmask=%v, Netmask6=%v, Network=%v, PoserPassword=%v, PppoeAuth=%v, PppoeUsername=%v, Type=%v, Type6=%v, AdditionalProperties=%v]",
-		g.Dns, g.DnsSuffix, g.Gateway, g.Gateway6, g.Ip, g.Ipv6, g.Netmask, g.Netmask6, g.Network, g.PoserPassword, g.PppoeAuth, g.PppoeUsername, g.Type, g.Type6, g.AdditionalProperties)
+		"GatewayPortConfigIpConfig[Dns=%v, DnsSuffix=%v, Gateway=%v, Gateway6=%v, Ip=%v, Ip6=%v, Netmask=%v, Netmask6=%v, Network=%v, PoserPassword=%v, PppoeAuth=%v, PppoeUsername=%v, Type=%v, Type6=%v, AdditionalProperties=%v]",
+		g.Dns, g.DnsSuffix, g.Gateway, g.Gateway6, g.Ip, g.Ip6, g.Netmask, g.Netmask6, g.Network, g.PoserPassword, g.PppoeAuth, g.PppoeUsername, g.Type, g.Type6, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortConfigIpConfig.
@@ -55,7 +55,7 @@ func (g GatewayPortConfigIpConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"dns", "dns_suffix", "gateway", "gateway6", "ip", "ipv6", "netmask", "netmask6", "network", "poser_password", "pppoe_auth", "pppoe_username", "type", "type6"); err != nil {
+		"dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "network", "poser_password", "pppoe_auth", "pppoe_username", "type", "type6"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -80,8 +80,8 @@ func (g GatewayPortConfigIpConfig) toMap() map[string]any {
 	if g.Ip != nil {
 		structMap["ip"] = g.Ip
 	}
-	if g.Ipv6 != nil {
-		structMap["ipv6"] = g.Ipv6
+	if g.Ip6 != nil {
+		structMap["ip6"] = g.Ip6
 	}
 	if g.Netmask != nil {
 		structMap["netmask"] = g.Netmask
@@ -118,7 +118,7 @@ func (g *GatewayPortConfigIpConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "dns_suffix", "gateway", "gateway6", "ip", "ipv6", "netmask", "netmask6", "network", "poser_password", "pppoe_auth", "pppoe_username", "type", "type6")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "dns", "dns_suffix", "gateway", "gateway6", "ip", "ip6", "netmask", "netmask6", "network", "poser_password", "pppoe_auth", "pppoe_username", "type", "type6")
 	if err != nil {
 		return err
 	}
@@ -129,7 +129,7 @@ func (g *GatewayPortConfigIpConfig) UnmarshalJSON(input []byte) error {
 	g.Gateway = temp.Gateway
 	g.Gateway6 = temp.Gateway6
 	g.Ip = temp.Ip
-	g.Ipv6 = temp.Ipv6
+	g.Ip6 = temp.Ip6
 	g.Netmask = temp.Netmask
 	g.Netmask6 = temp.Netmask6
 	g.Network = temp.Network
@@ -148,7 +148,7 @@ type tempGatewayPortConfigIpConfig struct {
 	Gateway       *string                 `json:"gateway,omitempty"`
 	Gateway6      *string                 `json:"gateway6,omitempty"`
 	Ip            *string                 `json:"ip,omitempty"`
-	Ipv6          *string                 `json:"ipv6,omitempty"`
+	Ip6           *string                 `json:"ip6,omitempty"`
 	Netmask       *string                 `json:"netmask,omitempty"`
 	Netmask6      *string                 `json:"netmask6,omitempty"`
 	Network       *string                 `json:"network,omitempty"`
