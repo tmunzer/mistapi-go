@@ -10,6 +10,8 @@ import (
 // SwitchPortUsageStormControl represents a SwitchPortUsageStormControl struct.
 // Switch storm control. Only if `mode`!=`dynamic`
 type SwitchPortUsageStormControl struct {
+	// Whether to disable the port when storm control is triggered
+	DisablePort *bool `json:"disable_port,omitempty"`
 	// Whether to disable storm control on broadcast traffic
 	NoBroadcast *bool `json:"no_broadcast,omitempty"`
 	// Whether to disable storm control on multicast traffic
@@ -27,8 +29,8 @@ type SwitchPortUsageStormControl struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchPortUsageStormControl) String() string {
 	return fmt.Sprintf(
-		"SwitchPortUsageStormControl[NoBroadcast=%v, NoMulticast=%v, NoRegisteredMulticast=%v, NoUnknownUnicast=%v, Percentage=%v, AdditionalProperties=%v]",
-		s.NoBroadcast, s.NoMulticast, s.NoRegisteredMulticast, s.NoUnknownUnicast, s.Percentage, s.AdditionalProperties)
+		"SwitchPortUsageStormControl[DisablePort=%v, NoBroadcast=%v, NoMulticast=%v, NoRegisteredMulticast=%v, NoUnknownUnicast=%v, Percentage=%v, AdditionalProperties=%v]",
+		s.DisablePort, s.NoBroadcast, s.NoMulticast, s.NoRegisteredMulticast, s.NoUnknownUnicast, s.Percentage, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsageStormControl.
@@ -37,7 +39,7 @@ func (s SwitchPortUsageStormControl) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage"); err != nil {
+		"disable_port", "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -47,6 +49,9 @@ func (s SwitchPortUsageStormControl) MarshalJSON() (
 func (s SwitchPortUsageStormControl) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
+	if s.DisablePort != nil {
+		structMap["disable_port"] = s.DisablePort
+	}
 	if s.NoBroadcast != nil {
 		structMap["no_broadcast"] = s.NoBroadcast
 	}
@@ -73,12 +78,13 @@ func (s *SwitchPortUsageStormControl) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_port", "no_broadcast", "no_multicast", "no_registered_multicast", "no_unknown_unicast", "percentage")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
+	s.DisablePort = temp.DisablePort
 	s.NoBroadcast = temp.NoBroadcast
 	s.NoMulticast = temp.NoMulticast
 	s.NoRegisteredMulticast = temp.NoRegisteredMulticast
@@ -89,6 +95,7 @@ func (s *SwitchPortUsageStormControl) UnmarshalJSON(input []byte) error {
 
 // tempSwitchPortUsageStormControl is a temporary struct used for validating the fields of SwitchPortUsageStormControl.
 type tempSwitchPortUsageStormControl struct {
+	DisablePort           *bool `json:"disable_port,omitempty"`
 	NoBroadcast           *bool `json:"no_broadcast,omitempty"`
 	NoMulticast           *bool `json:"no_multicast,omitempty"`
 	NoRegisteredMulticast *bool `json:"no_registered_multicast,omitempty"`
