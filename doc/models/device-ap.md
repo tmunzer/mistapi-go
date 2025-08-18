@@ -47,7 +47,7 @@ AP
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Orientation` | `*int` | Optional | Orientation, 0-359, in degrees, up is 0, right is 90.<br><br>**Constraints**: `>= 0`, `<= 359` |
-| `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br><br>**Default**: `false` |
+| `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) aior eth1 (for APL/BT11)<br><br>**Default**: `false` |
 | `PortConfig` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If spcified, this takes predecence over switch_config (switch_config requires user to configure all vlans manually, which is error-prone. thus deprecated) |
 | `PwrConfig` | [`*models.ApPwrConfig`](../../doc/models/ap-pwr-config.md) | Optional | Power related configs |
 | `RadioConfig` | [`*models.ApRadio`](../../doc/models/ap-radio.md) | Optional | Radio AP settings |

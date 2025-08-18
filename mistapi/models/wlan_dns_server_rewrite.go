@@ -3,73 +3,73 @@
 package models
 
 import (
-    "encoding/json"
-    "fmt"
+	"encoding/json"
+	"fmt"
 )
 
 // WlanDnsServerRewrite represents a WlanDnsServerRewrite struct.
 // For radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
 type WlanDnsServerRewrite struct {
-    Enabled              *bool                  `json:"enabled,omitempty"`
-    // Map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server
-    RadiusGroups         map[string]string      `json:"radius_groups,omitempty"`
-    AdditionalProperties map[string]interface{} `json:"_"`
+	Enabled *bool `json:"enabled,omitempty"`
+	// Map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server
+	RadiusGroups         map[string]string      `json:"radius_groups,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WlanDnsServerRewrite,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanDnsServerRewrite) String() string {
-    return fmt.Sprintf(
-    	"WlanDnsServerRewrite[Enabled=%v, RadiusGroups=%v, AdditionalProperties=%v]",
-    	w.Enabled, w.RadiusGroups, w.AdditionalProperties)
+	return fmt.Sprintf(
+		"WlanDnsServerRewrite[Enabled=%v, RadiusGroups=%v, AdditionalProperties=%v]",
+		w.Enabled, w.RadiusGroups, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanDnsServerRewrite.
 // It customizes the JSON marshaling process for WlanDnsServerRewrite objects.
 func (w WlanDnsServerRewrite) MarshalJSON() (
-    []byte,
-    error) {
-    if err := DetectConflictingProperties(w.AdditionalProperties,
-        "enabled", "radius_groups"); err != nil {
-        return []byte{}, err
-    }
-    return json.Marshal(w.toMap())
+	[]byte,
+	error) {
+	if err := DetectConflictingProperties(w.AdditionalProperties,
+		"enabled", "radius_groups"); err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(w.toMap())
 }
 
 // toMap converts the WlanDnsServerRewrite object to a map representation for JSON marshaling.
 func (w WlanDnsServerRewrite) toMap() map[string]any {
-    structMap := make(map[string]any)
-    MergeAdditionalProperties(structMap, w.AdditionalProperties)
-    if w.Enabled != nil {
-        structMap["enabled"] = w.Enabled
-    }
-    if w.RadiusGroups != nil {
-        structMap["radius_groups"] = w.RadiusGroups
-    }
-    return structMap
+	structMap := make(map[string]any)
+	MergeAdditionalProperties(structMap, w.AdditionalProperties)
+	if w.Enabled != nil {
+		structMap["enabled"] = w.Enabled
+	}
+	if w.RadiusGroups != nil {
+		structMap["radius_groups"] = w.RadiusGroups
+	}
+	return structMap
 }
 
 // UnmarshalJSON implements the json.Unmarshaler interface for WlanDnsServerRewrite.
 // It customizes the JSON unmarshaling process for WlanDnsServerRewrite objects.
 func (w *WlanDnsServerRewrite) UnmarshalJSON(input []byte) error {
-    var temp tempWlanDnsServerRewrite
-    err := json.Unmarshal(input, &temp)
-    if err != nil {
-    	return err
-    }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "radius_groups")
-    if err != nil {
-    	return err
-    }
-    w.AdditionalProperties = additionalProperties
-    
-    w.Enabled = temp.Enabled
-    w.RadiusGroups = temp.RadiusGroups
-    return nil
+	var temp tempWlanDnsServerRewrite
+	err := json.Unmarshal(input, &temp)
+	if err != nil {
+		return err
+	}
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "enabled", "radius_groups")
+	if err != nil {
+		return err
+	}
+	w.AdditionalProperties = additionalProperties
+
+	w.Enabled = temp.Enabled
+	w.RadiusGroups = temp.RadiusGroups
+	return nil
 }
 
 // tempWlanDnsServerRewrite is a temporary struct used for validating the fields of WlanDnsServerRewrite.
-type tempWlanDnsServerRewrite  struct {
-    Enabled      *bool             `json:"enabled,omitempty"`
-    RadiusGroups map[string]string `json:"radius_groups,omitempty"`
+type tempWlanDnsServerRewrite struct {
+	Enabled      *bool             `json:"enabled,omitempty"`
+	RadiusGroups map[string]string `json:"radius_groups,omitempty"`
 }

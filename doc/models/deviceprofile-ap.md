@@ -14,6 +14,7 @@ Device Profile
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Aeroscout` | [`*models.ApAeroscout`](../../doc/models/ap-aeroscout.md) | Optional | Aeroscout AP settings |
+| `Airista` | [`*models.ApAirista`](../../doc/models/ap-airista.md) | Optional | - |
 | `BleConfig` | [`*models.BleConfig`](../../doc/models/ble-config.md) | Optional | BLE AP settings |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DisableEth1` | `*bool` | Optional | Whether to disable eth1 port<br><br>**Default**: `false` |
@@ -67,6 +68,15 @@ Device Profile
     "host": "host6",
     "locate_connected": false,
     "port": 86,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
+  "airista": {
+    "enabled": false,
+    "host": "host8",
+    "port": 218,
     "exampleAdditionalProperty": {
       "key1": "val1",
       "key2": "val2"

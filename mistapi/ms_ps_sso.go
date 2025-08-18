@@ -3,25 +3,25 @@
 package mistapi
 
 import (
-    "context"
-    "github.com/apimatic/go-core-runtime/https"
-    "github.com/apimatic/go-core-runtime/utilities"
-    "github.com/google/uuid"
-    "github.com/tmunzer/mistapi-go/mistapi/errors"
-    "github.com/tmunzer/mistapi-go/mistapi/models"
-    "net/http"
+	"context"
+	"github.com/apimatic/go-core-runtime/https"
+	"github.com/apimatic/go-core-runtime/utilities"
+	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/errors"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // MSPsSSO represents a controller struct.
 type MSPsSSO struct {
-    baseController
+	baseController
 }
 
 // NewMSPsSSO creates a new instance of MSPsSSO.
 // It takes a baseController as a parameter and returns a pointer to the MSPsSSO.
 func NewMSPsSSO(baseController baseController) *MSPsSSO {
-    mSPsSSO := MSPsSSO{baseController: baseController}
-    return &mSPsSSO
+	mSPsSSO := MSPsSSO{baseController: baseController}
+	return &mSPsSSO
 }
 
 // ListMspSsos takes context, mspId as parameters and
@@ -29,39 +29,38 @@ func NewMSPsSSO(baseController baseController) *MSPsSSO {
 // an error if there was an issue with the request or response.
 // List MSP SSO Configs
 func (m *MSPsSSO) ListMspSsos(
-    ctx context.Context,
-    mspId uuid.UUID) (
-    models.ApiResponse[[]models.Sso],
-    error) {
-    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos")
-    req.AppendTemplateParams(mspId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID) (
+	models.ApiResponse[[]models.Sso],
+	error) {
+	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos")
+	req.AppendTemplateParams(mspId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result []models.Sso
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[[]models.Sso](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result []models.Sso
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[[]models.Sso](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // CreateMspSso takes context, mspId, body as parameters and
@@ -69,44 +68,43 @@ func (m *MSPsSSO) ListMspSsos(
 // an error if there was an issue with the request or response.
 // Create MSP SSO profile
 func (m *MSPsSSO) CreateMspSso(
-    ctx context.Context,
-    mspId uuid.UUID,
-    body *models.Sso) (
-    models.ApiResponse[models.Sso],
-    error) {
-    req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/ssos")
-    req.AppendTemplateParams(mspId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	body *models.Sso) (
+	models.ApiResponse[models.Sso],
+	error) {
+	req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/ssos")
+	req.AppendTemplateParams(mspId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.Sso
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.Sso](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.Sso
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.Sso](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // DeleteMspSso takes context, mspId, ssoId as parameters and
@@ -114,37 +112,36 @@ func (m *MSPsSSO) CreateMspSso(
 // an error if there was an issue with the request or response.
 // Delete MSP SSO Config
 func (m *MSPsSSO) DeleteMspSso(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID) (
-    *http.Response,
-    error) {
-    req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/ssos/%v")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := m.prepareRequest(ctx, "DELETE", "/api/v1/msps/%v/ssos/%v")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // GetMspSso takes context, mspId, ssoId as parameters and
@@ -152,40 +149,39 @@ func (m *MSPsSSO) DeleteMspSso(
 // an error if there was an issue with the request or response.
 // Get MSP SSO Config
 func (m *MSPsSSO) GetMspSso(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID) (
-    models.ApiResponse[models.Sso],
-    error) {
-    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID) (
+	models.ApiResponse[models.Sso],
+	error) {
+	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.Sso
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.Sso](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.Sso
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.Sso](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // UpdateMspSso takes context, mspId, ssoId, body as parameters and
@@ -193,45 +189,44 @@ func (m *MSPsSSO) GetMspSso(
 // an error if there was an issue with the request or response.
 // Update MSP SSO config
 func (m *MSPsSSO) UpdateMspSso(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID,
-    body *models.Sso) (
-    models.ApiResponse[models.Sso],
-    error) {
-    req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/ssos/%v")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID,
+	body *models.Sso) (
+	models.ApiResponse[models.Sso],
+	error) {
+	req := m.prepareRequest(ctx, "PUT", "/api/v1/msps/%v/ssos/%v")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    var result models.Sso
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.Sso](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.Sso
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.Sso](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // ListMspSsoLatestFailures takes context, mspId, ssoId as parameters and
@@ -239,40 +234,39 @@ func (m *MSPsSSO) UpdateMspSso(
 // an error if there was an issue with the request or response.
 // Get List of MSP SSO Latest Failures
 func (m *MSPsSSO) ListMspSsoLatestFailures(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID) (
-    models.ApiResponse[models.ResponseSsoFailureSearch],
-    error) {
-    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/failures")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID) (
+	models.ApiResponse[models.ResponseSsoFailureSearch],
+	error) {
+	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/failures")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.ResponseSsoFailureSearch
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponseSsoFailureSearch](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.ResponseSsoFailureSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseSsoFailureSearch](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // GetMspSamlMetadata takes context, mspId, ssoId as parameters and
@@ -280,40 +274,39 @@ func (m *MSPsSSO) ListMspSsoLatestFailures(
 // an error if there was an issue with the request or response.
 // Get MSP SAML Metadata
 func (m *MSPsSSO) GetMspSamlMetadata(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID) (
-    models.ApiResponse[models.SamlMetadata],
-    error) {
-    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID) (
+	models.ApiResponse[models.SamlMetadata],
+	error) {
+	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.SamlMetadata
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.SamlMetadata](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.SamlMetadata
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SamlMetadata](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // DownloadMspSamlMetadata takes context, mspId, ssoId as parameters and
@@ -337,35 +330,34 @@ func (m *MSPsSSO) GetMspSamlMetadata(
 // </md:EntityDescriptor>
 // ```
 func (m *MSPsSSO) DownloadMspSamlMetadata(
-    ctx context.Context,
-    mspId uuid.UUID,
-    ssoId uuid.UUID) (
-    models.ApiResponse[[]byte],
-    error) {
-    req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata.xml")
-    req.AppendTemplateParams(mspId, ssoId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID) (
+	models.ApiResponse[[]byte],
+	error) {
+	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata.xml")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    stream, resp, err := req.CallAsStream()
-    if err != nil {
-        return models.NewApiResponse(stream, resp), err
-    }
-    return models.NewApiResponse(stream, resp), err
+	stream, resp, err := req.CallAsStream()
+	if err != nil {
+		return models.NewApiResponse(stream, resp), err
+	}
+	return models.NewApiResponse(stream, resp), err
 }

@@ -3,25 +3,25 @@
 package mistapi
 
 import (
-    "context"
-    "github.com/apimatic/go-core-runtime/https"
-    "github.com/apimatic/go-core-runtime/utilities"
-    "github.com/google/uuid"
-    "github.com/tmunzer/mistapi-go/mistapi/errors"
-    "github.com/tmunzer/mistapi-go/mistapi/models"
-    "net/http"
+	"context"
+	"github.com/apimatic/go-core-runtime/https"
+	"github.com/apimatic/go-core-runtime/utilities"
+	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/errors"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // SitesDevicesWiredVirtualChassis represents a controller struct.
 type SitesDevicesWiredVirtualChassis struct {
-    baseController
+	baseController
 }
 
 // NewSitesDevicesWiredVirtualChassis creates a new instance of SitesDevicesWiredVirtualChassis.
 // It takes a baseController as a parameter and returns a pointer to the SitesDevicesWiredVirtualChassis.
 func NewSitesDevicesWiredVirtualChassis(baseController baseController) *SitesDevicesWiredVirtualChassis {
-    sitesDevicesWiredVirtualChassis := SitesDevicesWiredVirtualChassis{baseController: baseController}
-    return &sitesDevicesWiredVirtualChassis
+	sitesDevicesWiredVirtualChassis := SitesDevicesWiredVirtualChassis{baseController: baseController}
+	return &sitesDevicesWiredVirtualChassis
 }
 
 // DeleteSiteVirtualChassis takes context, siteId, deviceId as parameters and
@@ -30,37 +30,36 @@ func NewSitesDevicesWiredVirtualChassis(baseController baseController) *SitesDev
 // When all the member switches of VC are removed and only member ID 0 is left, the cloud would detect this situation and automatically changes the single switch to non-VC role.
 // For some unexpected cases that the VC is gone and disconnected, the API below could be used to change the state of VC’s switches to be standalone. After it is executed, all the switches will be shown as standalone switches under Inventory.
 func (s *SitesDevicesWiredVirtualChassis) DeleteSiteVirtualChassis(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/vc")
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/vc")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // GetSiteDeviceVirtualChassis takes context, siteId, deviceId as parameters and
@@ -69,46 +68,45 @@ func (s *SitesDevicesWiredVirtualChassis) DeleteSiteVirtualChassis(
 // Get VC Status
 // The API returns a combined view of the VC status which includes topology and stats_
 func (s *SitesDevicesWiredVirtualChassis) GetSiteDeviceVirtualChassis(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID) (
-    models.ApiResponse[models.ResponseVirtualChassisConfig],
-    error) {
-    req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/vc")
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	models.ApiResponse[models.ResponseVirtualChassisConfig],
+	error) {
+	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/%v/vc")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    var result models.ResponseVirtualChassisConfig
-    decoder, resp, err := req.CallAsJson()
-    if err != nil {
-        return models.NewApiResponse(result, resp), err
-    }
-    
-    result, err = utilities.DecodeResults[models.ResponseVirtualChassisConfig](decoder)
-    return models.NewApiResponse(result, resp), err
+	var result models.ResponseVirtualChassisConfig
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseVirtualChassisConfig](decoder)
+	return models.NewApiResponse(result, resp), err
 }
 
 // CreateSiteVirtualChassis takes context, siteId, deviceId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.  
+// For models (e.g. EX3400 and up) having dedicated VC ports, it is easier to form a VC by just connecting cables with the dedicated VC ports. Cloud will detect the new VC and update the inventory.
 // In case that the user would like to choose the dedicated switch as a VC master or for EX2300-C-12P and EX2300-C-12T which doesn't have dedicated VC ports, below are procedures to automate the VC creation:
 // 1. Power on the switch that is chosen as the VC master first, and then powering on the other member switches.
 // 2. Claim or adopt all these switches under the same organization's Inventory
@@ -118,42 +116,41 @@ func (s *SitesDevicesWiredVirtualChassis) GetSiteDeviceVirtualChassis(
 // 6. Connect the cables to the VC ports for these switches
 // 7. Wait for the VC to be formed. The Org's inventory will be updated for the new VC.
 func (s *SitesDevicesWiredVirtualChassis) CreateSiteVirtualChassis(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.VirtualChassisConfig) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc")
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	body *models.VirtualChassisConfig) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // UpdateSiteVirtualChassisMember takes context, siteId, deviceId, body as parameters and
@@ -186,55 +183,54 @@ func (s *SitesDevicesWiredVirtualChassis) CreateSiteVirtualChassis(
 // When a member switch doesn' t work properly and needed to be replaced, the renumber API could be used. The following two types of renumber are supported:
 // 1. Replace a non-fpc0 member switch
 // 2. Replace fpc0. When fpc0 is replaced, PAPI device config and JUNOS config will be both updated.
-// For renumber to work, the following procedures are needed: 
-// 1. Ensuring the VC is connected to the cloud and the state of the member switch to be replaced must be non present. 
-// 2. Adding the new member switch to the VC 
-// 3. Waiting for the VC state (vc_state) of this VC to be updated to API server 
+// For renumber to work, the following procedures are needed:
+// 1. Ensuring the VC is connected to the cloud and the state of the member switch to be replaced must be non present.
+// 2. Adding the new member switch to the VC
+// 3. Waiting for the VC state (vc_state) of this VC to be updated to API server
 // 4. Invoke vc with renumber to replace\ the new member switch from fpc X to
 // ## Perprovision VC members
 // By specifying "preprovision" op, you can convert the current VC to pre-provisioned mode, update VC members as well as specify vc_ports when adding new members for device models without dedicated vc ports. Use renumber for fpc0 replacement which involves device_id change.
-// Note: 
-// 1. vc_ports is used for adding new members and not needed if 
-// * the device model has dedicated vc ports, or 
-// * no new member is added 
+// Note:
+// 1. vc_ports is used for adding new members and not needed if
+// * the device model has dedicated vc ports, or
+// * no new member is added
 // 2. New VC members to be added should exist in the same Site as the VC
 func (s *SitesDevicesWiredVirtualChassis) UpdateSiteVirtualChassisMember(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.VirtualChassisUpdate) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/vc")
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	body *models.VirtualChassisUpdate) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/vc")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // ConvertSiteVirtualChassisToVirtualMac takes context, siteId, deviceId as parameters and
@@ -249,41 +245,40 @@ func (s *SitesDevicesWiredVirtualChassis) UpdateSiteVirtualChassisMember(
 // - The device is standalone
 // - A new FPC0 exists with its own device config, causing ambiguity.
 func (s *SitesDevicesWiredVirtualChassis) ConvertSiteVirtualChassisToVirtualMac(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(
-      ctx,
-      "POST",
-      "/api/v1/sites/%v/devices/%v/vc/convert_to_virtualmac",
-    )
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/vc/convert_to_virtualmac",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // SetSiteVcPort takes context, siteId, deviceId, body as parameters and
@@ -291,40 +286,39 @@ func (s *SitesDevicesWiredVirtualChassis) ConvertSiteVirtualChassisToVirtualMac(
 // an error if there was an issue with the request or response.
 // Set VC port
 func (s *SitesDevicesWiredVirtualChassis) SetSiteVcPort(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.VirtualChassisPort) (
-    *http.Response,
-    error) {
-    req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc/vc_port")
-    req.AppendTemplateParams(siteId, deviceId)
-    req.Authenticate(
-        NewOrAuth(
-            NewAuth("apiToken"),
-            NewAuth("basicAuth"),
-            NewAndAuth(
-                NewAuth("basicAuth"),
-                NewAuth("csrfToken"),
-            ),
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	body *models.VirtualChassisPort) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/vc/vc_port")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
-        ),
-    )
-    req.AppendErrors(map[string]https.ErrorBuilder[error]{
-        "400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-        "401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-        "403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-        "404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-        "429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-    })
-    req.Header("Content-Type", "application/json")
-    if body != nil {
-        req.Json(body)
-    }
-    
-    httpCtx, err := req.Call()
-    if err != nil {
-        return httpCtx.Response, err
-    }
-    return httpCtx.Response, err
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
