@@ -173,7 +173,7 @@ func (s *SitesGuests) ListSiteAllGuestAuthorizationsDerived(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteGuestAuthorization takes context, siteId, wlanId, authMethod, ssid, limit, start, end, duration as parameters and
+// SearchSiteGuestAuthorization takes context, siteId, wlanId, authMethod, ssid, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseGuestSearch data and
 // an error if there was an issue with the request or response.
 // Search Authorized Guest
@@ -186,7 +186,8 @@ func (s *SitesGuests) SearchSiteGuestAuthorization(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseGuestSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/guests/search")
@@ -228,6 +229,9 @@ func (s *SitesGuests) SearchSiteGuestAuthorization(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseGuestSearch

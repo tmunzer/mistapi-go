@@ -108,9 +108,11 @@ func TestSitesServicesTestSearchSiteServicePathEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -131,9 +133,11 @@ func TestSitesServicesTestSearchSiteServicePathEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesServices.SearchSiteServicePathEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -26,7 +26,7 @@ MxTunnels statistics
 | `RemoteIp` | `string` | Required | - |
 | `RemotePort` | `*int` | Optional | - |
 | `RxControlPkts` | `*int` | Optional | - |
-| `Sessions` | [`[]models.StatsMxtunnelSession`](../../doc/models/stats-mxtunnel-session.md) | Optional | List of sessions<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Sessions` | [`[]models.StatsMxtunnelSession`](../../doc/models/stats-mxtunnel-session.md) | Optional | List of sessions<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `State` | [`*models.StatsMxtunnelStateEnum`](../../doc/models/stats-mxtunnel-state-enum.md) | Optional | enum: `established`, `established_with_sessions`, `idle`, `wait-ctrl-conn`, `wait-ctrl-reply` |
 | `TxControlPkts` | `*int` | Optional | - |
@@ -45,7 +45,7 @@ MxTunnels statistics
   "for_site": false,
   "fwupdate": {
     "progress": 100,
-    "status": "inprogress",
+    "status": "upgraded",
     "status_id": 70,
     "timestamp": 147.68,
     "will_retry": false,

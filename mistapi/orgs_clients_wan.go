@@ -145,7 +145,7 @@ func (o *OrgsClientsWan) CountOrgWanClients(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWanClientEvents takes context, orgId, mType, mac, hostname, ip, mfg, nacruleId, start, end, duration, limit as parameters and
+// SearchOrgWanClientEvents takes context, orgId, mType, mac, hostname, ip, mfg, nacruleId, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchEventsWanClient data and
 // an error if there was an issue with the request or response.
 // Search Org WAN Client Events
@@ -158,10 +158,11 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	ip *string,
 	mfg *string,
 	nacruleId *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.SearchEventsWanClient],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wan_clients/events/search")
@@ -201,6 +202,9 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	if nacruleId != nil {
 		req.QueryParam("nacrule_id", *nacruleId)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -210,8 +214,8 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchEventsWanClient
@@ -224,7 +228,7 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWanClients takes context, orgId, mac, hostname, ip, network, ipSrc, mfg, start, end, duration, limit, page as parameters and
+// SearchOrgWanClients takes context, orgId, mac, hostname, ip, network, ipSrc, mfg, limit, page, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Org WAN Clients
@@ -237,11 +241,12 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	network *string,
 	ipSrc *string,
 	mfg *string,
+	limit *int,
+	page *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int,
-	page *int) (
+	sort *string) (
 	models.ApiResponse[models.SearchWanClient],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wan_clients/search")
@@ -281,6 +286,12 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	if mfg != nil {
 		req.QueryParam("mfg", *mfg)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -290,11 +301,8 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchWanClient

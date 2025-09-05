@@ -100,7 +100,8 @@ func TestSitesAlarmsTestSearchSiteAlarms(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -122,7 +123,8 @@ func TestSitesAlarmsTestSearchSiteAlarms1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -1,7 +1,7 @@
 
 # Fwupdate Stat Status Enum
 
-enum: `inprogress`, `failed`, `upgraded`
+enum: `inprogress`, `failed`, `upgraded`, `success`
 
 ## Enumeration
 
@@ -14,4 +14,5 @@ enum: `inprogress`, `failed`, `upgraded`
 | `inprogress` |
 | `failed` |
 | `upgraded` |
+| `success` |
 

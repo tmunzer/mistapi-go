@@ -15,7 +15,7 @@ Junos Radius config
 |  --- | --- | --- | --- |
 | `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | **Constraints**: *Unique Items Required* |
-| `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AuthServersRetries` | `*int` | Optional | radius auth session retries<br><br>**Default**: `3` |
 | `AuthServersTimeout` | `*int` | Optional | radius auth session timeout<br><br>**Default**: `5` |
 | `CoaEnabled` | `*bool` | Optional | **Default**: `false` |

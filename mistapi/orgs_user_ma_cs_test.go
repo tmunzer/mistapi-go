@@ -118,7 +118,8 @@ func TestOrgsUserMACsTestSearchOrgUserMacs(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsUserMaCs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsUserMaCs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -141,7 +142,8 @@ func TestOrgsUserMACsTestSearchOrgUserMacs1(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsUserMaCs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsUserMaCs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

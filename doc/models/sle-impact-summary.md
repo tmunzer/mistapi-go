@@ -11,16 +11,16 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ap` | [`[]models.SleImpactSummaryApItem`](../../doc/models/sle-impact-summary-ap-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Band` | [`[]models.SleImpactSummaryBandItem`](../../doc/models/sle-impact-summary-band-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Ap` | [`[]models.SleImpactSummaryApItem`](../../doc/models/sle-impact-summary-ap-item.md) | Required | **Constraints**: *Unique Items Required* |
+| `Band` | [`[]models.SleImpactSummaryBandItem`](../../doc/models/sle-impact-summary-band-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Classifier` | `string` | Required | - |
-| `DeviceOs` | [`[]models.SleImpactSummaryDeviceOsItem`](../../doc/models/sle-impact-summary-device-os-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `DeviceType` | [`[]models.SleImpactSummaryDeviceTypeItem`](../../doc/models/sle-impact-summary-device-type-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `DeviceOs` | [`[]models.SleImpactSummaryDeviceOsItem`](../../doc/models/sle-impact-summary-device-os-item.md) | Required | **Constraints**: *Unique Items Required* |
+| `DeviceType` | [`[]models.SleImpactSummaryDeviceTypeItem`](../../doc/models/sle-impact-summary-device-type-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `End` | `float64` | Required | - |
 | `Failure` | `string` | Required | - |
 | `Metric` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Start` | `float64` | Required | - |
-| `Wlan` | [`[]models.SleImpactSummaryWlanItem`](../../doc/models/sle-impact-summary-wlan-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Wlan` | [`[]models.SleImpactSummaryWlanItem`](../../doc/models/sle-impact-summary-wlan-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

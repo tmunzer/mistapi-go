@@ -128,7 +128,8 @@ func TestSitesStatsCallsTestSearchSiteCalls(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -151,7 +152,8 @@ func TestSitesStatsCallsTestSearchSiteCalls1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

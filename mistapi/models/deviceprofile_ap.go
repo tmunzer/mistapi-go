@@ -42,10 +42,10 @@ type DeviceprofileAp struct {
 	// Mesh AP settings
 	Mesh *ApMesh `json:"mesh,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         *string    `json:"name"`
-	NtpServers   []string   `json:"ntp_servers,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
+	ModifiedTime *float64         `json:"modified_time,omitempty"`
+	Name         Optional[string] `json:"name"`
+	NtpServers   []string         `json:"ntp_servers,omitempty"`
+	OrgId        *uuid.UUID       `json:"org_id,omitempty"`
 	// Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
 	PoePassthrough *bool `json:"poe_passthrough,omitempty"`
 	// eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If specified, this takes precedence over switch_config (deprecated)
@@ -145,10 +145,12 @@ func (d DeviceprofileAp) toMap() map[string]any {
 	if d.ModifiedTime != nil {
 		structMap["modified_time"] = d.ModifiedTime
 	}
-	if d.Name != nil {
-		structMap["name"] = d.Name
-	} else {
-		structMap["name"] = nil
+	if d.Name.IsValueSet() {
+		if d.Name.Value() != nil {
+			structMap["name"] = d.Name.Value()
+		} else {
+			structMap["name"] = nil
+		}
 	}
 	if d.NtpServers != nil {
 		structMap["ntp_servers"] = d.NtpServers
@@ -257,7 +259,7 @@ type tempDeviceprofileAp struct {
 	Led              *ApLed                  `json:"led,omitempty"`
 	Mesh             *ApMesh                 `json:"mesh,omitempty"`
 	ModifiedTime     *float64                `json:"modified_time,omitempty"`
-	Name             *string                 `json:"name"`
+	Name             Optional[string]        `json:"name"`
 	NtpServers       []string                `json:"ntp_servers,omitempty"`
 	OrgId            *uuid.UUID              `json:"org_id,omitempty"`
 	PoePassthrough   *bool                   `json:"poe_passthrough,omitempty"`

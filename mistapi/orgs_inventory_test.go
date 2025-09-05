@@ -338,7 +338,8 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -374,7 +375,8 @@ func TestOrgsInventoryTestSearchOrgInventory1(t *testing.T) {
 
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

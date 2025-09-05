@@ -113,7 +113,8 @@ func TestOrgsAlarmsTestSearchOrgAlarms(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -140,7 +141,8 @@ func TestOrgsAlarmsTestSearchOrgAlarms1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

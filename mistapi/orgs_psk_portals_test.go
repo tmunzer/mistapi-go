@@ -200,12 +200,13 @@ func TestOrgsPskPortalsTestSearchOrgPskPortalLogs(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
 
-	apiResponse, err := orgsPskPortals.SearchOrgPskPortalLogs(ctx, orgId, nil, nil, &duration, &limit, &page, nil, nil, nil, nil, nil, nil, nil)
+	duration := "1d"
+	sort := "timestamp"
+
+	apiResponse, err := orgsPskPortals.SearchOrgPskPortalLogs(ctx, orgId, &limit, &page, nil, nil, &duration, &sort, nil, nil, nil, nil, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -225,12 +226,13 @@ func TestOrgsPskPortalsTestSearchOrgPskPortalLogs1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
 
-	apiResponse, err := orgsPskPortals.SearchOrgPskPortalLogs(ctx, orgId, nil, nil, &duration, &limit, &page, nil, nil, nil, nil, nil, nil, nil)
+	duration := "1d"
+	sort := "timestamp"
+
+	apiResponse, err := orgsPskPortals.SearchOrgPskPortalLogs(ctx, orgId, &limit, &page, nil, nil, &duration, &sort, nil, nil, nil, nil, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -28,7 +28,7 @@ UI Settings
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Purpose` | `string` | Required | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Tiles` | [`[]models.UiSettingsTile`](../../doc/models/ui-settings-tile.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Tiles` | [`[]models.UiSettingsTile`](../../doc/models/ui-settings-tile.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

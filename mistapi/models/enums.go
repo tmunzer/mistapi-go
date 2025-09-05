@@ -986,22 +986,24 @@ const (
 )
 
 // ForSiteEnum is a string enum.
+// enum: `any`, `true`, `false`
 type ForSiteEnum string
 
 const (
-	ForSiteEnum_ALL   ForSiteEnum = "all"
+	ForSiteEnum_ANY   ForSiteEnum = "any"
 	ForSiteEnum_TRUE  ForSiteEnum = "true"
 	ForSiteEnum_FALSE ForSiteEnum = "false"
 )
 
 // FwupdateStatStatusEnum is a string enum.
-// enum: `inprogress`, `failed`, `upgraded`
+// enum: `inprogress`, `failed`, `upgraded`, `success`
 type FwupdateStatStatusEnum string
 
 const (
 	FwupdateStatStatusEnum_INPROGRESS FwupdateStatStatusEnum = "inprogress"
 	FwupdateStatStatusEnum_FAILED     FwupdateStatStatusEnum = "failed"
 	FwupdateStatStatusEnum_UPGRADED   FwupdateStatStatusEnum = "upgraded"
+	FwupdateStatStatusEnum_SUCCESS    FwupdateStatStatusEnum = "success"
 )
 
 // GatewayPathStrategyEnum is a string enum.

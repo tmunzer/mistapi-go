@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `AutoUpgradeEnabled` | `bool` | Required | - |
 | `AutoUpgradeVersion` | `string` | Required | - |
-| `CountryCode` | `*string` | Required | - |
+| `CountryCode` | `models.Optional[string]` | Optional | - |
 | `HoneypotEnabled` | `bool` | Required | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Name` | `string` | Required | - |
@@ -31,7 +31,6 @@
 {
   "auto_upgrade_enabled": false,
   "auto_upgrade_version": "auto_upgrade_version4",
-  "country_code": "country_code6",
   "honeypot_enabled": false,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "name6",
@@ -41,6 +40,7 @@
   "timezone": "timezone6",
   "vna_enabled": false,
   "wifi_enabled": false,
+  "country_code": "country_code6",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

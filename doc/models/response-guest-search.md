@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `string` | Required | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.Guest`](../../doc/models/guest.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
@@ -25,7 +25,6 @@
 {
   "end": 166,
   "limit": 4,
-  "next": "next0",
   "results": [
     {
       "authorized": true,
@@ -48,6 +47,7 @@
   ],
   "start": 124,
   "total": 98,
+  "next": "next0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

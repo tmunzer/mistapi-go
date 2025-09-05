@@ -19,6 +19,7 @@ type StatsGatewayModuleStatItem struct {
 	Locating          *bool                            `json:"locating,omitempty"`
 	Mac               *string                          `json:"mac,omitempty"`
 	Model             Optional[string]                 `json:"model"`
+	NetworkResources  []ModuleStatItemNetworkResource  `json:"network_resources,omitempty"`
 	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
 	PendingVersion    Optional[string]                 `json:"pending_version"`
 	Poe               *ModuleStatItemPoe               `json:"poe,omitempty"`
@@ -46,8 +47,8 @@ type StatsGatewayModuleStatItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsGatewayModuleStatItem) String() string {
 	return fmt.Sprintf(
-		"StatsGatewayModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, Fans=%v, FpgaVersion=%v, LastSeen=%v, Locating=%v, Mac=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
-		s.BackupVersion, s.BiosVersion, s.CpldVersion, s.Fans, s.FpgaVersion, s.LastSeen, s.Locating, s.Mac, s.Model, s.OpticsCpldVersion, s.PendingVersion, s.Poe, s.PoeVersion, s.PowerCpldVersion, s.Psus, s.ReFpgaVersion, s.RecoveryVersion, s.Serial, s.Status, s.Temperatures, s.TmcFpgaVersion, s.UbootVersion, s.Uptime, s.VcLinks, s.VcMode, s.VcRole, s.VcState, s.Version, s.AdditionalProperties)
+		"StatsGatewayModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, Fans=%v, FpgaVersion=%v, LastSeen=%v, Locating=%v, Mac=%v, Model=%v, NetworkResources=%v, OpticsCpldVersion=%v, PendingVersion=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
+		s.BackupVersion, s.BiosVersion, s.CpldVersion, s.Fans, s.FpgaVersion, s.LastSeen, s.Locating, s.Mac, s.Model, s.NetworkResources, s.OpticsCpldVersion, s.PendingVersion, s.Poe, s.PoeVersion, s.PowerCpldVersion, s.Psus, s.ReFpgaVersion, s.RecoveryVersion, s.Serial, s.Status, s.Temperatures, s.TmcFpgaVersion, s.UbootVersion, s.Uptime, s.VcLinks, s.VcMode, s.VcRole, s.VcState, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewayModuleStatItem.
@@ -56,7 +57,7 @@ func (s StatsGatewayModuleStatItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"backup_version", "bios_version", "cpld_version", "fans", "fpga_version", "last_seen", "locating", "mac", "model", "optics_cpld_version", "pending_version", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
+		"backup_version", "bios_version", "cpld_version", "fans", "fpga_version", "last_seen", "locating", "mac", "model", "network_resources", "optics_cpld_version", "pending_version", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -116,6 +117,9 @@ func (s StatsGatewayModuleStatItem) toMap() map[string]any {
 		} else {
 			structMap["model"] = nil
 		}
+	}
+	if s.NetworkResources != nil {
+		structMap["network_resources"] = s.NetworkResources
 	}
 	if s.OpticsCpldVersion.IsValueSet() {
 		if s.OpticsCpldVersion.Value() != nil {
@@ -245,7 +249,7 @@ func (s *StatsGatewayModuleStatItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "fans", "fpga_version", "last_seen", "locating", "mac", "model", "optics_cpld_version", "pending_version", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "fans", "fpga_version", "last_seen", "locating", "mac", "model", "network_resources", "optics_cpld_version", "pending_version", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
 	if err != nil {
 		return err
 	}
@@ -260,6 +264,7 @@ func (s *StatsGatewayModuleStatItem) UnmarshalJSON(input []byte) error {
 	s.Locating = temp.Locating
 	s.Mac = temp.Mac
 	s.Model = temp.Model
+	s.NetworkResources = temp.NetworkResources
 	s.OpticsCpldVersion = temp.OpticsCpldVersion
 	s.PendingVersion = temp.PendingVersion
 	s.Poe = temp.Poe
@@ -293,6 +298,7 @@ type tempStatsGatewayModuleStatItem struct {
 	Locating          *bool                            `json:"locating,omitempty"`
 	Mac               *string                          `json:"mac,omitempty"`
 	Model             Optional[string]                 `json:"model"`
+	NetworkResources  []ModuleStatItemNetworkResource  `json:"network_resources,omitempty"`
 	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
 	PendingVersion    Optional[string]                 `json:"pending_version"`
 	Poe               *ModuleStatItemPoe               `json:"poe,omitempty"`

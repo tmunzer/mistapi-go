@@ -13,7 +13,7 @@ import (
 type ResponseInsightRogueClient struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
-	Next                 string                 `json:"next"`
+	Next                 *string                `json:"next,omitempty"`
 	Results              []InsightRogueClient   `json:"results"`
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -45,7 +45,9 @@ func (r ResponseInsightRogueClient) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	structMap["end"] = r.End
 	structMap["limit"] = r.Limit
-	structMap["next"] = r.Next
+	if r.Next != nil {
+		structMap["next"] = r.Next
+	}
 	structMap["results"] = r.Results
 	structMap["start"] = r.Start
 	return structMap
@@ -71,7 +73,7 @@ func (r *ResponseInsightRogueClient) UnmarshalJSON(input []byte) error {
 
 	r.End = *temp.End
 	r.Limit = *temp.Limit
-	r.Next = *temp.Next
+	r.Next = temp.Next
 	r.Results = *temp.Results
 	r.Start = *temp.Start
 	return nil
@@ -81,7 +83,7 @@ func (r *ResponseInsightRogueClient) UnmarshalJSON(input []byte) error {
 type tempResponseInsightRogueClient struct {
 	End     *int                  `json:"end"`
 	Limit   *int                  `json:"limit"`
-	Next    *string               `json:"next"`
+	Next    *string               `json:"next,omitempty"`
 	Results *[]InsightRogueClient `json:"results"`
 	Start   *int                  `json:"start"`
 }
@@ -93,9 +95,6 @@ func (r *tempResponseInsightRogueClient) validate() error {
 	}
 	if r.Limit == nil {
 		errs = append(errs, "required field `limit` is missing for type `response_insight_rogue_client`")
-	}
-	if r.Next == nil {
-		errs = append(errs, "required field `next` is missing for type `response_insight_rogue_client`")
 	}
 	if r.Results == nil {
 		errs = append(errs, "required field `results` is missing for type `response_insight_rogue_client`")

@@ -146,7 +146,7 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceConfigHistory takes context, siteId, mType, mac, limit, start, end, duration as parameters and
+// SearchSiteDeviceConfigHistory takes context, siteId, mType, mac, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search for entries in device config history
@@ -158,7 +158,8 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
 	error) {
 	req := s.prepareRequest(
@@ -201,6 +202,9 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseConfigHistorySearch
@@ -387,7 +391,7 @@ func (s *SitesDevices) CountSiteDeviceEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, includes, limit, start, end, duration as parameters and
+// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, includes, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsDevices data and
 // an error if there was an issue with the request or response.
 // Search Devices Events
@@ -404,7 +408,8 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsDevices],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/events/search")
@@ -458,6 +463,9 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsDevices
@@ -614,7 +622,7 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceLastConfigs takes context, siteId, mType, mac, version, name, limit, start, end, duration as parameters and
+// SearchSiteDeviceLastConfigs takes context, siteId, mType, mac, version, name, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search Device Last Configs
@@ -628,7 +636,8 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
 	error) {
 	req := s.prepareRequest(
@@ -678,6 +687,9 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
 
 	var result models.ResponseConfigHistorySearch
 	decoder, resp, err := req.CallAsJson()
@@ -689,7 +701,7 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDevices takes context, siteId, hostname, mType, model, ip, mac, extIp, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, sort, descSort, stats, limit, start, end, duration as parameters and
+// SearchSiteDevices takes context, siteId, hostname, mType, model, ip, mac, extIp, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Device
@@ -710,7 +722,7 @@ func (s *SitesDevices) SearchSiteDevices(
 	mxedgeIds []uuid.UUID,
 	lastHostname *string,
 	lastConfigStatus *string,
-	radiusStats map[string]models.DeviceSearchRadiusStat,
+	radiusStats *string,
 	cpu *string,
 	node0Mac *string,
 	clustered *bool,
@@ -729,13 +741,13 @@ func (s *SitesDevices) SearchSiteDevices(
 	band5Bandwidth *int,
 	band6Bandwidth *int,
 	eth0PortSpeed *int,
-	sort *models.SearchSiteDevicesSortEnum,
-	descSort *models.SearchSiteDevicesDescSortEnum,
 	stats *bool,
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *models.SearchSiteDevicesSortEnum,
+	descSort *models.SearchSiteDevicesDescSortEnum) (
 	models.ApiResponse[models.ResponseDeviceSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/search")
@@ -800,7 +812,7 @@ func (s *SitesDevices) SearchSiteDevices(
 		req.QueryParam("last_config_status", *lastConfigStatus)
 	}
 	if radiusStats != nil {
-		req.QueryParam("radius_stats", radiusStats)
+		req.QueryParam("radius_stats", *radiusStats)
 	}
 	if cpu != nil {
 		req.QueryParam("cpu", *cpu)
@@ -856,12 +868,6 @@ func (s *SitesDevices) SearchSiteDevices(
 	if eth0PortSpeed != nil {
 		req.QueryParam("eth0_port_speed", *eth0PortSpeed)
 	}
-	if sort != nil {
-		req.QueryParam("sort", *sort)
-	}
-	if descSort != nil {
-		req.QueryParam("desc_sort", *descSort)
-	}
 	if stats != nil {
 		req.QueryParam("stats", *stats)
 	}
@@ -876,6 +882,12 @@ func (s *SitesDevices) SearchSiteDevices(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
+	if descSort != nil {
+		req.QueryParam("desc_sort", *descSort)
 	}
 
 	var result models.ResponseDeviceSearch

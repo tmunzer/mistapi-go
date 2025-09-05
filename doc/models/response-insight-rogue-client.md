@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `string` | Required | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.InsightRogueClient`](../../doc/models/insight-rogue-client.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -24,7 +24,6 @@
 {
   "end": 226,
   "limit": 200,
-  "next": "next2",
   "results": [
     {
       "annotation": "annotation0",
@@ -41,6 +40,7 @@
     }
   ],
   "start": 184,
+  "next": "next2",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

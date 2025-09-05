@@ -122,7 +122,7 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgGuestAuthorization takes context, orgId, wlanId, authMethod, ssid, limit, start, end, duration as parameters and
+// SearchOrgGuestAuthorization takes context, orgId, wlanId, authMethod, ssid, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseGuestSearch data and
 // an error if there was an issue with the request or response.
 // Search Authorized Guest
@@ -135,7 +135,8 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseGuestSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/guests/search")
@@ -177,6 +178,9 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseGuestSearch

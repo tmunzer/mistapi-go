@@ -145,7 +145,7 @@ func (s *SitesClientsWan) CountSiteWanClients(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWanClientEvents takes context, siteId, mType, mac, hostname, ip, mfg, nacruleId, start, end, duration, limit as parameters and
+// SearchSiteWanClientEvents takes context, siteId, mType, mac, hostname, ip, mfg, nacruleId, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchEventsWanClient data and
 // an error if there was an issue with the request or response.
 // Search Site WAN Client Events
@@ -158,10 +158,11 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	ip *string,
 	mfg *string,
 	nacruleId *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.SearchEventsWanClient],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wan_clients/events/search")
@@ -201,6 +202,9 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	if nacruleId != nil {
 		req.QueryParam("nacrule_id", *nacruleId)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -210,8 +214,8 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchEventsWanClient
@@ -224,7 +228,7 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWanClients takes context, siteId, mac, hostname, ip, mfg, start, end, duration, limit, page as parameters and
+// SearchSiteWanClients takes context, siteId, mac, hostname, ip, mfg, limit, page, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Site WAN Clients
@@ -235,11 +239,12 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 	hostname *string,
 	ip *string,
 	mfg *string,
+	limit *int,
+	page *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int,
-	page *int) (
+	sort *string) (
 	models.ApiResponse[models.SearchWanClient],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wan_clients/search")
@@ -273,6 +278,12 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 	if mfg != nil {
 		req.QueryParam("mfg", *mfg)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -282,11 +293,8 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchWanClient

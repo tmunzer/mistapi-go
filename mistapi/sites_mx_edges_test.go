@@ -110,9 +110,11 @@ func TestSitesMxEdgesTestSearchSiteMistEdgeEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	limit := int(10)
+
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -133,9 +135,11 @@ func TestSitesMxEdgesTestSearchSiteMistEdgeEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	limit := int(10)
+
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

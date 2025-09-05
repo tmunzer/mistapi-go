@@ -182,7 +182,7 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, disabled, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, limit, start, end, duration as parameters and
+// SearchSiteSwOrGwPorts takes context, siteId, fullDuplex, disabled, mac, deviceType, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, active, jitter, loss, latency, stpState, stpRole, xcvrPartNumber, authState, lteImsi, lteIccid, lteImei, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseSwitchPortSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -236,7 +236,8 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseSwitchPortSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/ports/search")
@@ -401,6 +402,9 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseSwitchPortSearch

@@ -288,10 +288,11 @@ func TestOrgsWebhooksTestSearchOrgWebhooksDeliveries(t *testing.T) {
 
 	status := models.WebhookDeliveryStatusEnum("failure")
 	topic := models.WebhookDeliveryTopicEnum("audits")
+	limit := int(100)
 
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := orgsWebhooks.SearchOrgWebhooksDeliveries(ctx, orgId, webhookId, nil, nil, &status, &topic, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := orgsWebhooks.SearchOrgWebhooksDeliveries(ctx, orgId, webhookId, nil, nil, &status, &topic, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -318,10 +319,11 @@ func TestOrgsWebhooksTestSearchOrgWebhooksDeliveries1(t *testing.T) {
 
 	status := models.WebhookDeliveryStatusEnum("failure")
 	topic := models.WebhookDeliveryTopicEnum("audits")
+	limit := int(100)
 
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := orgsWebhooks.SearchOrgWebhooksDeliveries(ctx, orgId, webhookId, nil, nil, &status, &topic, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := orgsWebhooks.SearchOrgWebhooksDeliveries(ctx, orgId, webhookId, nil, nil, &status, &topic, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

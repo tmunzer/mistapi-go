@@ -122,7 +122,7 @@ type ClientInterface interface {
 	OrgsWxRules() *OrgsWxRules
 	OrgsWxTags() *OrgsWxTags
 	OrgsWxTunnels() *OrgsWxTunnels
-	SitesSprectrumAnalysis() *SitesSprectrumAnalysis
+	SitesSpectrumAnalysis() *SitesSpectrumAnalysis
 	Sites() *Sites
 	SitesAlarms() *SitesAlarms
 	SitesAPTemplates() *SitesAPTemplates
@@ -332,7 +332,7 @@ type client struct {
 	orgsWxRules                      OrgsWxRules
 	orgsWxTags                       OrgsWxTags
 	orgsWxTunnels                    OrgsWxTunnels
-	sitesSprectrumAnalysis           SitesSprectrumAnalysis
+	sitesSpectrumAnalysis            SitesSpectrumAnalysis
 	sites                            Sites
 	sitesAlarms                      SitesAlarms
 	sitesAPTemplates                 SitesAPTemplates
@@ -434,7 +434,7 @@ func NewClient(configuration Configuration) ClientInterface {
 		configuration: configuration,
 	}
 
-	client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK 2508.1.7")
+	client.userAgent = utilities.UpdateUserAgent("mistapi-go SDK ")
 	client.callBuilderFactory = callBuilderHandler(
 		func(server string) string {
 			if server == "" {
@@ -561,7 +561,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsWxRules = *NewOrgsWxRules(*baseController)
 	client.orgsWxTags = *NewOrgsWxTags(*baseController)
 	client.orgsWxTunnels = *NewOrgsWxTunnels(*baseController)
-	client.sitesSprectrumAnalysis = *NewSitesSprectrumAnalysis(*baseController)
+	client.sitesSpectrumAnalysis = *NewSitesSpectrumAnalysis(*baseController)
 	client.sites = *NewSites(*baseController)
 	client.sitesAlarms = *NewSitesAlarms(*baseController)
 	client.sitesAPTemplates = *NewSitesAPTemplates(*baseController)
@@ -1212,9 +1212,9 @@ func (c *client) OrgsWxTunnels() *OrgsWxTunnels {
 	return &c.orgsWxTunnels
 }
 
-// SitesSprectrumAnalysis returns the sitesSprectrumAnalysis instance of the client.
-func (c *client) SitesSprectrumAnalysis() *SitesSprectrumAnalysis {
-	return &c.sitesSprectrumAnalysis
+// SitesSpectrumAnalysis returns the sitesSpectrumAnalysis instance of the client.
+func (c *client) SitesSpectrumAnalysis() *SitesSpectrumAnalysis {
+	return &c.sitesSpectrumAnalysis
 }
 
 // Sites returns the sites instance of the client.

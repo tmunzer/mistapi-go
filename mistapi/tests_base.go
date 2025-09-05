@@ -214,7 +214,7 @@ var orgsWxTags OrgsWxTags
 
 var orgsWxTunnels OrgsWxTunnels
 
-var sitesSprectrumAnalysis SitesSprectrumAnalysis
+var sitesSpectrumAnalysis SitesSpectrumAnalysis
 
 var sites Sites
 
@@ -374,8 +374,6 @@ var selfAlarms SelfAlarms
 
 var selfAuditLogs SelfAuditLogs
 
-var samplesWebhooks SamplesWebhooks
-
 var utilitiesCommon UtilitiesCommon
 
 var utilitiesWan UtilitiesWAN
@@ -513,7 +511,7 @@ func init() {
 	orgsWxRules = *client.OrgsWxRules()
 	orgsWxTags = *client.OrgsWxTags()
 	orgsWxTunnels = *client.OrgsWxTunnels()
-	sitesSprectrumAnalysis = *client.SitesSprectrumAnalysis()
+	sitesSpectrumAnalysis = *client.SitesSpectrumAnalysis()
 	sites = *client.Sites()
 	sitesAlarms = *client.SitesAlarms()
 	sitesApplications = *client.SitesApplications()

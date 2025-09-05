@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Data` | [`[]models.SleHistogramDataItem`](../../doc/models/sle-histogram-data-item.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Data` | [`[]models.SleHistogramDataItem`](../../doc/models/sle-histogram-data-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `End` | `float64` | Required | - |
 | `Metric` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Start` | `float64` | Required | - |

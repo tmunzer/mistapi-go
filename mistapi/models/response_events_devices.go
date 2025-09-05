@@ -13,7 +13,7 @@ import (
 type ResponseEventsDevices struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
-	Next                 string                 `json:"next"`
+	Next                 *string                `json:"next,omitempty"`
 	Results              []EventsDeviceAp       `json:"results"`
 	Start                int                    `json:"start"`
 	Total                int                    `json:"total"`
@@ -46,7 +46,9 @@ func (r ResponseEventsDevices) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	structMap["end"] = r.End
 	structMap["limit"] = r.Limit
-	structMap["next"] = r.Next
+	if r.Next != nil {
+		structMap["next"] = r.Next
+	}
 	structMap["results"] = r.Results
 	structMap["start"] = r.Start
 	structMap["total"] = r.Total
@@ -73,7 +75,7 @@ func (r *ResponseEventsDevices) UnmarshalJSON(input []byte) error {
 
 	r.End = *temp.End
 	r.Limit = *temp.Limit
-	r.Next = *temp.Next
+	r.Next = temp.Next
 	r.Results = *temp.Results
 	r.Start = *temp.Start
 	r.Total = *temp.Total
@@ -84,7 +86,7 @@ func (r *ResponseEventsDevices) UnmarshalJSON(input []byte) error {
 type tempResponseEventsDevices struct {
 	End     *int              `json:"end"`
 	Limit   *int              `json:"limit"`
-	Next    *string           `json:"next"`
+	Next    *string           `json:"next,omitempty"`
 	Results *[]EventsDeviceAp `json:"results"`
 	Start   *int              `json:"start"`
 	Total   *int              `json:"total"`
@@ -97,9 +99,6 @@ func (r *tempResponseEventsDevices) validate() error {
 	}
 	if r.Limit == nil {
 		errs = append(errs, "required field `limit` is missing for type `response_events_devices`")
-	}
-	if r.Next == nil {
-		errs = append(errs, "required field `next` is missing for type `response_events_devices`")
 	}
 	if r.Results == nil {
 		errs = append(errs, "required field `results` is missing for type `response_events_devices`")

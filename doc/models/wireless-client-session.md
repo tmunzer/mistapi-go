@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `Ap` | `string` | Required | - |
 | `Band` | `string` | Required | - |
-| `ClientManufacture` | `*string` | Required | - |
+| `ClientManufacture` | `models.Optional[string]` | Optional | - |
 | `Connect` | `int` | Required | - |
 | `Disconnect` | `int` | Required | - |
 | `Duration` | `float64` | Required | - |
@@ -33,7 +33,6 @@
 {
   "ap": "ap0",
   "band": "band6",
-  "client_manufacture": "client_manufacture2",
   "connect": 174,
   "disconnect": 124,
   "duration": 173.3,
@@ -43,6 +42,7 @@
   "ssid": "ssid2",
   "timestamp": 71.52,
   "wlan_id": "000010fa-0000-0000-0000-000000000000",
+  "client_manufacture": "client_manufacture2",
   "for_site": false,
   "tags": [
     "tags9",

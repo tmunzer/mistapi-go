@@ -14,7 +14,7 @@
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Page` | `int` | Required | - |
-| `Results` | [`[]models.Anomaly`](../../doc/models/anomaly.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Results` | [`[]models.Anomaly`](../../doc/models/anomaly.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

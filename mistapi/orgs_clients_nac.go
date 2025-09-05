@@ -209,7 +209,7 @@ func (o *OrgsClientsNAC) CountOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClientEvents takes context, orgId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, siteId, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, sort, ingressVlan, start, end, duration, limit as parameters and
+// SearchOrgNacClientEvents takes context, orgId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, siteId, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC Client Events
@@ -239,12 +239,12 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	usermacLabel *string,
 	text *string,
 	nasIp *string,
-	sort *string,
 	ingressVlan *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsNacClientSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nac_clients/events/search")
@@ -335,11 +335,11 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	if nasIp != nil {
 		req.QueryParam("nas_ip", *nasIp)
 	}
-	if sort != nil {
-		req.QueryParam("sort", *sort)
-	}
 	if ingressVlan != nil {
 		req.QueryParam("ingress_vlan", *ingressVlan)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -350,8 +350,8 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsNacClientSearch
@@ -364,7 +364,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, nasIp, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, sort, usermacLabel, ingressVlan, start, end, duration, limit, page as parameters and
+// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, nasIp, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, usermacLabel, ingressVlan, limit, page, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -394,14 +394,14 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	hostname *string,
 	mfg *string,
 	mdmProvider *string,
-	sort *string,
 	usermacLabel []string,
 	ingressVlan *string,
+	limit *int,
+	page *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int,
-	page *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseClientNacSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nac_clients/search")
@@ -492,14 +492,17 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	if mdmProvider != nil {
 		req.QueryParam("mdm_provider", *mdmProvider)
 	}
-	if sort != nil {
-		req.QueryParam("sort", *sort)
-	}
 	if usermacLabel != nil {
 		req.QueryParam("usermac_label", usermacLabel)
 	}
 	if ingressVlan != nil {
 		req.QueryParam("ingress_vlan", *ingressVlan)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -510,11 +513,8 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseClientNacSearch

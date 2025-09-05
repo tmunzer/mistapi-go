@@ -200,10 +200,11 @@ SearchSiteWanClientEvents(
     ip *string,
     mfg *string,
     nacruleId *string,
+    limit *int,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    sort *string) (
     models.ApiResponse[models.SearchEventsWanClient],
     error)
 ```
@@ -219,10 +220,11 @@ SearchSiteWanClientEvents(
 | `ip` | `*string` | Query, Optional | Client IP |
 | `mfg` | `*string` | Query, Optional | Manufacture |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -245,11 +247,13 @@ mfg := "Juniper"
 
 nacruleId := "00000000-0000-0000-0000-000000000000"
 
-duration := "10m"
-
 limit := 100
 
-apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, nil, nil, &duration, &limit)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -303,11 +307,12 @@ SearchSiteWanClients(
     hostname *string,
     ip *string,
     mfg *string,
+    limit *int,
+    page *int,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    sort *string) (
     models.ApiResponse[models.SearchWanClient],
     error)
 ```
@@ -321,11 +326,12 @@ SearchSiteWanClients(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `ip` | `*string` | Query, Optional | Client IP |
 | `mfg` | `*string` | Query, Optional | Manufacture |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -346,13 +352,15 @@ ip := "10.2.52.4"
 
 mfg := "Cisco"
 
-duration := "10m"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, nil, nil, &duration, &limit, &page)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -16,8 +16,10 @@ func TestOrgsStatsBGPPeersTestCountOrgBgpStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	state := "established"
+	distinct := "site_id"
 	limit := int(100)
-	apiResponse, err := orgsStatsBgpPeers.CountOrgBgpStats(ctx, orgId, &limit)
+	apiResponse, err := orgsStatsBgpPeers.CountOrgBgpStats(ctx, orgId, &state, &distinct, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -37,8 +39,10 @@ func TestOrgsStatsBGPPeersTestCountOrgBgpStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	state := "established"
+	distinct := "site_id"
 	limit := int(100)
-	apiResponse, err := orgsStatsBgpPeers.CountOrgBgpStats(ctx, orgId, &limit)
+	apiResponse, err := orgsStatsBgpPeers.CountOrgBgpStats(ctx, orgId, &state, &distinct, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -59,9 +63,11 @@ func TestOrgsStatsBGPPeersTestSearchOrgBgpStats(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -82,9 +88,11 @@ func TestOrgsStatsBGPPeersTestSearchOrgBgpStats1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

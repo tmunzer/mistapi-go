@@ -59,14 +59,14 @@ type StatsAp struct {
 	// Whether this AP is considered locked (placement / orientation has been vetted)
 	Locked Optional[bool] `json:"locked"`
 	// Device mac
-	Mac       *string             `json:"mac"`
+	Mac       Optional[string]    `json:"mac"`
 	MapId     Optional[uuid.UUID] `json:"map_id"`
 	MemUsedKb Optional[int64]     `json:"mem_used_kb"`
 	// Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`)
 	MeshDownlinks map[string]ApStatMeshDownlink `json:"mesh_downlinks,omitempty"`
 	MeshUplink    *ApStatMeshUplink             `json:"mesh_uplink,omitempty"`
 	// Device model
-	Model *string `json:"model"`
+	Model Optional[string] `json:"model"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64         `json:"modified_time,omitempty"`
 	Mount        Optional[string] `json:"mount"`
@@ -289,10 +289,12 @@ func (s StatsAp) toMap() map[string]any {
 			structMap["locked"] = nil
 		}
 	}
-	if s.Mac != nil {
-		structMap["mac"] = s.Mac
-	} else {
-		structMap["mac"] = nil
+	if s.Mac.IsValueSet() {
+		if s.Mac.Value() != nil {
+			structMap["mac"] = s.Mac.Value()
+		} else {
+			structMap["mac"] = nil
+		}
 	}
 	if s.MapId.IsValueSet() {
 		if s.MapId.Value() != nil {
@@ -314,10 +316,12 @@ func (s StatsAp) toMap() map[string]any {
 	if s.MeshUplink != nil {
 		structMap["mesh_uplink"] = s.MeshUplink.toMap()
 	}
-	if s.Model != nil {
-		structMap["model"] = s.Model
-	} else {
-		structMap["model"] = nil
+	if s.Model.IsValueSet() {
+		if s.Model.Value() != nil {
+			structMap["model"] = s.Model.Value()
+		} else {
+			structMap["model"] = nil
+		}
 	}
 	if s.ModifiedTime != nil {
 		structMap["modified_time"] = s.ModifiedTime
@@ -617,12 +621,12 @@ type tempStatsAp struct {
 	LldpStats          map[string]StatsApLldpStat                    `json:"lldp_stats,omitempty"`
 	Locating           Optional[bool]                                `json:"locating"`
 	Locked             Optional[bool]                                `json:"locked"`
-	Mac                *string                                       `json:"mac"`
+	Mac                Optional[string]                              `json:"mac"`
 	MapId              Optional[uuid.UUID]                           `json:"map_id"`
 	MemUsedKb          Optional[int64]                               `json:"mem_used_kb"`
 	MeshDownlinks      map[string]ApStatMeshDownlink                 `json:"mesh_downlinks,omitempty"`
 	MeshUplink         *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`
-	Model              *string                                       `json:"model"`
+	Model              Optional[string]                              `json:"model"`
 	ModifiedTime       *float64                                      `json:"modified_time,omitempty"`
 	Mount              Optional[string]                              `json:"mount"`
 	Name               Optional[string]                              `json:"name"`

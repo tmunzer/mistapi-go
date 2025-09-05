@@ -173,7 +173,7 @@ func (o *OrgsSites) CountOrgSites(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSites takes context, orgId, analyticEnabled, appWaking, assetEnabled, autoUpgradeEnabled, autoUpgradeVersion, countryCode, honeypotEnabled, id, locateUnconnected, meshEnabled, name, rogueEnabled, remoteSyslogEnabled, rtsaEnabled, vnaEnabled, wifiEnabled, limit, start, end, duration as parameters and
+// SearchOrgSites takes context, orgId, analyticEnabled, appWaking, assetEnabled, autoUpgradeEnabled, autoUpgradeVersion, countryCode, honeypotEnabled, id, locateUnconnected, meshEnabled, name, rogueEnabled, remoteSyslogEnabled, rtsaEnabled, vnaEnabled, wifiEnabled, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseSiteSearch data and
 // an error if there was an issue with the request or response.
 // Search Sites
@@ -199,7 +199,8 @@ func (o *OrgsSites) SearchOrgSites(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseSiteSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sites/search")
@@ -280,6 +281,9 @@ func (o *OrgsSites) SearchOrgSites(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseSiteSearch

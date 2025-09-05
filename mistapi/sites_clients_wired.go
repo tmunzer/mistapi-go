@@ -98,7 +98,7 @@ func (s *SitesClientsWired) CountSiteWiredClients(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWiredClients takes context, siteId, deviceMac, mac, ip, portId, source, vlan, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration as parameters and
+// SearchSiteWiredClients takes context, siteId, deviceMac, mac, ip, portId, source, vlan, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search Wired Clients
@@ -122,7 +122,8 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.SearchWiredClient],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/wired_clients/search")
@@ -197,6 +198,9 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchWiredClient

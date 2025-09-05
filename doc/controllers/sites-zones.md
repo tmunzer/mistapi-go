@@ -422,11 +422,12 @@ SearchSiteZoneSessions(
     user *string,
     scopeId *string,
     scope *models.VisitsScopeEnum,
+    limit *int,
+    page *int,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseZoneSearch],
     error)
 ```
@@ -441,11 +442,12 @@ SearchSiteZoneSessions(
 | `user` | `*string` | Query, Optional | Client MAC / Asset MAC / SDK UUID |
 | `scopeId` | `*string` | Query, Optional | If `scope`==`map`/`zone`/`rssizone`, the scope id |
 | `scope` | [`*models.VisitsScopeEnum`](../../doc/models/visits-scope-enum.md) | Query, Optional | Scope<br><br>**Default**: `"site"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -466,13 +468,15 @@ scopeId := "8bfc2490-d726-3587-038d-cb2e71bd2330"
 
 scope := models.VisitsScopeEnum_SITE
 
-duration := "10m"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, &user, &scopeId, &scope, nil, nil, &duration, &limit, &page)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, &user, &scopeId, &scope, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -291,7 +291,8 @@ SearchOrgAlarms(
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    limit *int,
+    sort *string) (
     models.ApiResponse[models.AlarmSearchResult],
     error)
 ```
@@ -308,6 +309,7 @@ SearchOrgAlarms(
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -330,7 +332,9 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit)
+sort := "-site_id"
+
+apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -30,7 +30,7 @@ WxLAn Tunnel
 | `Peers` | `[]string` | Optional | List of remote peers’ IP or hostname |
 | `RouterId` | `*string` | Optional | Optional, overwrite the router-id in SCCRQ control message, default is "" or null, can also be an IPv4 address |
 | `Secret` | `*string` | Optional | Secret, ‘’ if no auth is used |
-| `Sessions` | [`[]models.WxlanTunnelSession`](../../doc/models/wxlan-tunnel-session.md) | Optional | Sessions to be established with the tunnel. Has to be >= 1 in order for this tunnel to be useful. For management tunnel, it can only have 1<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Sessions` | [`[]models.WxlanTunnelSession`](../../doc/models/wxlan-tunnel-session.md) | Optional | Sessions to be established with the tunnel. Has to be >= 1 in order for this tunnel to be useful. For management tunnel, it can only have 1<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `UdpPort` | `*int` | Optional | UDP port if `use_udp`==`true` |
 | `UseUdp` | `*bool` | Optional | Whether to use UDP instead of IP (proto=115, which is default of L2TPv3)<br><br>**Default**: `false` |

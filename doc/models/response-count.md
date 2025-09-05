@@ -14,7 +14,7 @@
 | `Distinct` | `string` | Required | - |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Results` | [`[]models.CountResult`](../../doc/models/count-result.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Results` | [`[]models.CountResult`](../../doc/models/count-result.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -153,7 +153,7 @@ func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteOtherDeviceEvents takes context, siteId, mac, deviceMac, vendor, mType, start, end, duration, limit as parameters and
+// SearchSiteOtherDeviceEvents takes context, siteId, mac, deviceMac, vendor, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsOtherDevicesSearch data and
 // an error if there was an issue with the request or response.
 // Search Site OtherDevices Events
@@ -164,10 +164,11 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	deviceMac *string,
 	vendor *string,
 	mType *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsOtherDevicesSearch],
 	error) {
 	req := s.prepareRequest(
@@ -205,6 +206,9 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -214,8 +218,8 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsOtherDevicesSearch

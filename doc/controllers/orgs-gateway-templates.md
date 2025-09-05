@@ -49,7 +49,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.GatewayTemplate{
-    DhcpdConfig:           models.ToPointer(models.DhcpdConfig{
+    DhcpdConfig:             models.ToPointer(models.DhcpdConfig{
         AdditionalProperties: map[string]models.DhcpdConfigProperty{
             "Corp-Mgmt": models.DhcpdConfigProperty{
                 DnsServers:           []string{
@@ -77,21 +77,21 @@ body := models.GatewayTemplate{
             },
         },
     }),
-    DnsOverride:           models.ToPointer(true),
-    DnsServers:            []string{
+    DnsOverride:             models.ToPointer(true),
+    DnsServers:              []string{
         "10.3.20.201",
         "10.3.51.222",
         "1.1.1.1",
     },
-    DnsSuffix:             []string{
+    DnsSuffix:               []string{
         "example.com",
     },
-    ExtraRoutes:           map[string]models.GatewayExtraRoute{
+    ExtraRoutes:             map[string]models.GatewayExtraRoute{
         "10.101.0.0/16": models.GatewayExtraRoute{
             Via:                  models.ToPointer("10.3.100.10"),
         },
     },
-    IpConfigs:             map[string]models.GatewayIpConfigProperty{
+    IpConfigs:               map[string]models.GatewayIpConfigProperty{
         "Corp-Core": models.GatewayIpConfigProperty{
             Ip:                   models.ToPointer("10.3.100.9"),
             Netmask:              models.ToPointer("/24"),
@@ -108,12 +108,12 @@ body := models.GatewayTemplate{
             Type:                 models.ToPointer(models.IpTypeEnum_STATIC),
         },
     },
-    Name:                  "ITParis",
-    NtpOverride:           models.ToPointer(true),
-    NtpServers:            []string{
+    Name:                    "ITParis",
+    NtpOverride:             models.ToPointer(true),
+    NtpServers:              []string{
         "10.3.51.222",
     },
-    PathPreferences:       map[string]models.GatewayPathPreferences{
+    PathPreferences:         map[string]models.GatewayPathPreferences{
         "core": models.GatewayPathPreferences{
             Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
@@ -157,7 +157,7 @@ body := models.GatewayTemplate{
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
         },
     },
-    PortConfig:            map[string]models.GatewayPortConfig{
+    PortConfig:              map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
             Aggregated:           models.ToPointer(false),
             IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
@@ -187,7 +187,7 @@ body := models.GatewayTemplate{
             Usage:                models.GatewayPortUsageEnum_LAN,
         },
     },
-    ServicePolicies:       []models.ServicePolicy{
+    ServicePolicies:         []models.ServicePolicy{
         models.ServicePolicy{
             Action:               models.ToPointer(models.AllowDenyEnum_ALLOW),
             Idp:                  models.ToPointer(models.IdpConfig{
@@ -218,7 +218,7 @@ body := models.GatewayTemplate{
             },
         },
     },
-    Type:                  models.ToPointer(models.GatewayTemplateTypeEnum_STANDALONE),
+    Type:                    models.ToPointer(models.GatewayTemplateTypeEnum_STANDALONE),
 }
 
 apiResponse, err := orgsGatewayTemplates.CreateOrgGatewayTemplate(ctx, orgId, &body)
@@ -442,7 +442,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 gatewaytemplateId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.GatewayTemplate{
-    DhcpdConfig:           models.ToPointer(models.DhcpdConfig{
+    DhcpdConfig:             models.ToPointer(models.DhcpdConfig{
         AdditionalProperties: map[string]models.DhcpdConfigProperty{
             "Corp-Mgmt": models.DhcpdConfigProperty{
                 DnsServers:           []string{
@@ -470,21 +470,21 @@ body := models.GatewayTemplate{
             },
         },
     }),
-    DnsOverride:           models.ToPointer(true),
-    DnsServers:            []string{
+    DnsOverride:             models.ToPointer(true),
+    DnsServers:              []string{
         "10.3.20.201",
         "10.3.51.222",
         "1.1.1.1",
     },
-    DnsSuffix:             []string{
+    DnsSuffix:               []string{
         "example.com",
     },
-    ExtraRoutes:           map[string]models.GatewayExtraRoute{
+    ExtraRoutes:             map[string]models.GatewayExtraRoute{
         "10.101.0.0/16": models.GatewayExtraRoute{
             Via:                  models.ToPointer("10.3.100.10"),
         },
     },
-    IpConfigs:             map[string]models.GatewayIpConfigProperty{
+    IpConfigs:               map[string]models.GatewayIpConfigProperty{
         "Corp-Core": models.GatewayIpConfigProperty{
             Ip:                   models.ToPointer("10.3.100.9"),
             Netmask:              models.ToPointer("/24"),
@@ -501,12 +501,12 @@ body := models.GatewayTemplate{
             Type:                 models.ToPointer(models.IpTypeEnum_STATIC),
         },
     },
-    Name:                  "ITParis",
-    NtpOverride:           models.ToPointer(true),
-    NtpServers:            []string{
+    Name:                    "ITParis",
+    NtpOverride:             models.ToPointer(true),
+    NtpServers:              []string{
         "10.3.51.222",
     },
-    PathPreferences:       map[string]models.GatewayPathPreferences{
+    PathPreferences:         map[string]models.GatewayPathPreferences{
         "core": models.GatewayPathPreferences{
             Paths:                []models.GatewayPathPreferencesPath{
                 models.GatewayPathPreferencesPath{
@@ -550,7 +550,7 @@ body := models.GatewayTemplate{
             Strategy:             models.ToPointer(models.GatewayPathStrategyEnum_ORDERED),
         },
     },
-    PortConfig:            map[string]models.GatewayPortConfig{
+    PortConfig:              map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
             Aggregated:           models.ToPointer(false),
             IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
@@ -580,7 +580,7 @@ body := models.GatewayTemplate{
             Usage:                models.GatewayPortUsageEnum_LAN,
         },
     },
-    ServicePolicies:       []models.ServicePolicy{
+    ServicePolicies:         []models.ServicePolicy{
         models.ServicePolicy{
             Action:               models.ToPointer(models.AllowDenyEnum_ALLOW),
             Idp:                  models.ToPointer(models.IdpConfig{
@@ -611,7 +611,7 @@ body := models.GatewayTemplate{
             },
         },
     },
-    Type:                  models.ToPointer(models.GatewayTemplateTypeEnum_STANDALONE),
+    Type:                    models.ToPointer(models.GatewayTemplateTypeEnum_STANDALONE),
 }
 
 apiResponse, err := orgsGatewayTemplates.UpdateOrgGatewayTemplate(ctx, orgId, gatewaytemplateId, &body)

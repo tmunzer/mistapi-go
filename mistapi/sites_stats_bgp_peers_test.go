@@ -62,7 +62,12 @@ func TestSitesStatsBGPPeersTestSearchSiteBgpStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := sitesStatsBgpPeers.SearchSiteBgpStats(ctx, siteId)
+
+	limit := int(100)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesStatsBgpPeers.SearchSiteBgpStats(ctx, siteId, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -82,7 +87,12 @@ func TestSitesStatsBGPPeersTestSearchSiteBgpStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := sitesStatsBgpPeers.SearchSiteBgpStats(ctx, siteId)
+
+	limit := int(100)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesStatsBgpPeers.SearchSiteBgpStats(ctx, siteId, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

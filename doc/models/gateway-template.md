@@ -43,6 +43,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `Type` | [`*models.GatewayTemplateTypeEnum`](../../doc/models/gateway-template-type-enum.md) | Optional | enum: `spoke`, `standalone`<br><br>**Default**: `"standalone"` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
+| `SsrAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated SSR config. **Note**: no check is done |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -422,7 +422,8 @@ SearchMspOrgs(
     subInsufficient *bool,
     trialEnabled *bool,
     usageTypes []string,
-    limit *int) (
+    limit *int,
+    sort *string) (
     models.ApiResponse[models.ResponseOrgSearch],
     error)
 ```
@@ -438,6 +439,7 @@ SearchMspOrgs(
 | `trialEnabled` | `*bool` | Query, Optional | If this org is under trial period |
 | `usageTypes` | `[]string` | Query, Optional | List of types that enabled by usage<br><br>**Constraints**: *Unique Items Required* |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -458,7 +460,9 @@ trialEnabled := false
 
 limit := 100
 
-apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit)
+sort := "-site_id"
+
+apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

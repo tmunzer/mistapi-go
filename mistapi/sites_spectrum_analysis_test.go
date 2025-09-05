@@ -11,14 +11,14 @@ import (
 	"testing"
 )
 
-// TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis(t *testing.T) {
+// TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := sitesSprectrumAnalysis.GetSiteRunningSprectrumAnalysis(ctx, siteId)
+	apiResponse, err := sitesSpectrumAnalysis.GetSiteRunningSpectrumAnalysis(ctx, siteId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -31,14 +31,14 @@ func TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis(t *testing.T)
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis1 tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis1(t *testing.T) {
+// TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis1 tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis1(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := sitesSprectrumAnalysis.GetSiteRunningSprectrumAnalysis(ctx, siteId)
+	apiResponse, err := sitesSpectrumAnalysis.GetSiteRunningSpectrumAnalysis(ctx, siteId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -51,8 +51,8 @@ func TestSitesSprectrumAnalysisTestGetSiteRunningSprectrumAnalysis1(t *testing.T
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum(t *testing.T) {
+// TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
@@ -63,7 +63,7 @@ func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum(t *testing.T) {
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
-	apiResponse, err := sitesSprectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
+	apiResponse, err := sitesSpectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -74,8 +74,8 @@ func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum1 tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum1(t *testing.T) {
+// TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum1 tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum1(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
@@ -86,7 +86,7 @@ func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum1(t *testing.T) {
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
-	apiResponse, err := sitesSprectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
+	apiResponse, err := sitesSpectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -97,8 +97,8 @@ func TestSitesSprectrumAnalysisTestInitiateSiteAnalyzeSpectrum1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
-// TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis(t *testing.T) {
+// TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
@@ -107,7 +107,7 @@ func TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesSprectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
+	apiResponse, err := sitesSpectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -120,8 +120,8 @@ func TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis1 tests the behavior of the SitesSprectrumAnalysis
-func TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis1(t *testing.T) {
+// TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis1 tests the behavior of the SitesSpectrumAnalysis
+func TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis1(t *testing.T) {
 	ctx := context.Background()
 	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
 	if errUUID != nil {
@@ -130,7 +130,7 @@ func TestSitesSprectrumAnalysisTestListSiteSpectrumAnalysis1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesSprectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
+	apiResponse, err := sitesSpectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

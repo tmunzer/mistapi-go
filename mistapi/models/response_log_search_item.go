@@ -13,9 +13,9 @@ import (
 // ResponseLogSearchItem represents a ResponseLogSearchItem struct.
 type ResponseLogSearchItem struct {
 	// admin id
-	AdminId *uuid.UUID `json:"admin_id"`
+	AdminId Optional[uuid.UUID] `json:"admin_id"`
 	// Name of the admin that performs the action
-	AdminName *string `json:"admin_name"`
+	AdminName Optional[string] `json:"admin_name"`
 	// field values after the change
 	After *interface{} `json:"after,omitempty"`
 	// field values prior to the change
@@ -24,9 +24,9 @@ type ResponseLogSearchItem struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// log message
-	Message string     `json:"message"`
-	OrgId   uuid.UUID  `json:"org_id"`
-	SiteId  *uuid.UUID `json:"site_id"`
+	Message string              `json:"message"`
+	OrgId   uuid.UUID           `json:"org_id"`
+	SiteId  Optional[uuid.UUID] `json:"site_id"`
 	// sender source ip address
 	SrcIp *string `json:"src_ip,omitempty"`
 	// Epoch (seconds)
@@ -58,15 +58,19 @@ func (r ResponseLogSearchItem) MarshalJSON() (
 func (r ResponseLogSearchItem) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
-	if r.AdminId != nil {
-		structMap["admin_id"] = r.AdminId
-	} else {
-		structMap["admin_id"] = nil
+	if r.AdminId.IsValueSet() {
+		if r.AdminId.Value() != nil {
+			structMap["admin_id"] = r.AdminId.Value()
+		} else {
+			structMap["admin_id"] = nil
+		}
 	}
-	if r.AdminName != nil {
-		structMap["admin_name"] = r.AdminName
-	} else {
-		structMap["admin_name"] = nil
+	if r.AdminName.IsValueSet() {
+		if r.AdminName.Value() != nil {
+			structMap["admin_name"] = r.AdminName.Value()
+		} else {
+			structMap["admin_name"] = nil
+		}
 	}
 	if r.After != nil {
 		structMap["after"] = r.After
@@ -82,10 +86,12 @@ func (r ResponseLogSearchItem) toMap() map[string]any {
 	}
 	structMap["message"] = r.Message
 	structMap["org_id"] = r.OrgId
-	if r.SiteId != nil {
-		structMap["site_id"] = r.SiteId
-	} else {
-		structMap["site_id"] = nil
+	if r.SiteId.IsValueSet() {
+		if r.SiteId.Value() != nil {
+			structMap["site_id"] = r.SiteId.Value()
+		} else {
+			structMap["site_id"] = nil
+		}
 	}
 	if r.SrcIp != nil {
 		structMap["src_ip"] = r.SrcIp
@@ -128,17 +134,17 @@ func (r *ResponseLogSearchItem) UnmarshalJSON(input []byte) error {
 
 // tempResponseLogSearchItem is a temporary struct used for validating the fields of ResponseLogSearchItem.
 type tempResponseLogSearchItem struct {
-	AdminId   *uuid.UUID   `json:"admin_id"`
-	AdminName *string      `json:"admin_name"`
-	After     *interface{} `json:"after,omitempty"`
-	Before    *interface{} `json:"before,omitempty"`
-	ForSite   *bool        `json:"for_site,omitempty"`
-	Id        *uuid.UUID   `json:"id,omitempty"`
-	Message   *string      `json:"message"`
-	OrgId     *uuid.UUID   `json:"org_id"`
-	SiteId    *uuid.UUID   `json:"site_id"`
-	SrcIp     *string      `json:"src_ip,omitempty"`
-	Timestamp *float64     `json:"timestamp"`
+	AdminId   Optional[uuid.UUID] `json:"admin_id"`
+	AdminName Optional[string]    `json:"admin_name"`
+	After     *interface{}        `json:"after,omitempty"`
+	Before    *interface{}        `json:"before,omitempty"`
+	ForSite   *bool               `json:"for_site,omitempty"`
+	Id        *uuid.UUID          `json:"id,omitempty"`
+	Message   *string             `json:"message"`
+	OrgId     *uuid.UUID          `json:"org_id"`
+	SiteId    Optional[uuid.UUID] `json:"site_id"`
+	SrcIp     *string             `json:"src_ip,omitempty"`
+	Timestamp *float64            `json:"timestamp"`
 }
 
 func (r *tempResponseLogSearchItem) validate() error {

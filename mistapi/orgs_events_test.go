@@ -17,9 +17,11 @@ func TestOrgsEventsTestSearchOrgEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -38,9 +40,11 @@ func TestOrgsEventsTestSearchOrgEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -109,7 +113,8 @@ func TestOrgsEventsTestSearchOrgSystemEvents(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -132,7 +137,8 @@ func TestOrgsEventsTestSearchOrgSystemEvents1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

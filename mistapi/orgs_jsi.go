@@ -270,7 +270,7 @@ func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiAssetsAndContracts takes context, orgId, model, serial, status, warrantyType, eolDuration, eosDuration, text, sort, limit, page as parameters and
+// SearchOrgJsiAssetsAndContracts takes context, orgId, model, serial, status, warrantyType, eolDuration, eosDuration, text, limit, page, sort as parameters and
 // returns an models.ApiResponse with models.JsInventorySearch data and
 // an error if there was an issue with the request or response.
 // This gets all devices purchased from the accounts associated with the Org
@@ -287,9 +287,9 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	eolDuration *string,
 	eosDuration *string,
 	text *string,
-	sort *string,
 	limit *int,
-	page *int) (
+	page *int,
+	sort *string) (
 	models.ApiResponse[models.JsInventorySearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory/search")
@@ -332,14 +332,14 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	if text != nil {
 		req.QueryParam("text", *text)
 	}
-	if sort != nil {
-		req.QueryParam("sort", *sort)
-	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
 	if page != nil {
 		req.QueryParam("page", *page)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.JsInventorySearch

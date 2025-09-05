@@ -113,12 +113,12 @@ SearchOrgClientFingerprints(
     os *string,
     osType *string,
     mac *string,
-    sort *string,
     limit *int,
     start *int,
     end *int,
     duration *string,
-    interval *string) (
+    interval *string,
+    sort *string) (
     models.ApiResponse[models.FingerprintSearchResult],
     error)
 ```
@@ -135,12 +135,12 @@ SearchOrgClientFingerprints(
 | `os` | `*string` | Query, Optional | Operating System name and version of the client device |
 | `osType` | `*string` | Query, Optional | Operating system name of the client device |
 | `mac` | `*string` | Query, Optional | MAC address of the client device |
-| `sort` | `*string` | Query, Optional | sort options, '-' prefix represents DESC order, default is wcid in ASC order |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
 
 ## Response Type
 
@@ -167,15 +167,15 @@ osType := "JUNOS"
 
 mac := "d420b080516d"
 
-sort := "-family"
-
 limit := 100
 
 duration := "10m"
 
 interval := "10m"
 
-apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &sort, &limit, nil, nil, &duration, &interval)
+sort := "-site_id"
+
+apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -31,7 +31,7 @@
       "for_site": false,
       "fwupdate": {
         "progress": 100,
-        "status": "inprogress",
+        "status": "upgraded",
         "status_id": 70,
         "timestamp": 147.68,
         "will_retry": false,
@@ -53,7 +53,7 @@
       "for_site": false,
       "fwupdate": {
         "progress": 100,
-        "status": "inprogress",
+        "status": "upgraded",
         "status_id": 70,
         "timestamp": 147.68,
         "will_retry": false,

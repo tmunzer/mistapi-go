@@ -11,23 +11,23 @@ import (
 	"github.com/tmunzer/mistapi-go/mistapi/models"
 )
 
-// SitesSprectrumAnalysis represents a controller struct.
-type SitesSprectrumAnalysis struct {
+// SitesSpectrumAnalysis represents a controller struct.
+type SitesSpectrumAnalysis struct {
 	baseController
 }
 
-// NewSitesSprectrumAnalysis creates a new instance of SitesSprectrumAnalysis.
-// It takes a baseController as a parameter and returns a pointer to the SitesSprectrumAnalysis.
-func NewSitesSprectrumAnalysis(baseController baseController) *SitesSprectrumAnalysis {
-	sitesSprectrumAnalysis := SitesSprectrumAnalysis{baseController: baseController}
-	return &sitesSprectrumAnalysis
+// NewSitesSpectrumAnalysis creates a new instance of SitesSpectrumAnalysis.
+// It takes a baseController as a parameter and returns a pointer to the SitesSpectrumAnalysis.
+func NewSitesSpectrumAnalysis(baseController baseController) *SitesSpectrumAnalysis {
+	sitesSpectrumAnalysis := SitesSpectrumAnalysis{baseController: baseController}
+	return &sitesSpectrumAnalysis
 }
 
-// GetSiteRunningSprectrumAnalysis takes context, siteId as parameters and
+// GetSiteRunningSpectrumAnalysis takes context, siteId as parameters and
 // returns an models.ApiResponse with models.ResponseRunningSpectrumAnalysis data and
 // an error if there was an issue with the request or response.
 // Get the running spectrum analysis for a site
-func (s *SitesSprectrumAnalysis) GetSiteRunningSprectrumAnalysis(
+func (s *SitesSpectrumAnalysis) GetSiteRunningSpectrumAnalysis(
 	ctx context.Context,
 	siteId uuid.UUID) (
 	models.ApiResponse[models.ResponseRunningSpectrumAnalysis],
@@ -98,7 +98,7 @@ func (s *SitesSprectrumAnalysis) GetSiteRunningSprectrumAnalysis(
 // }
 // }
 // ```
-func (s *SitesSprectrumAnalysis) InitiateSiteAnalyzeSpectrum(
+func (s *SitesSpectrumAnalysis) InitiateSiteAnalyzeSpectrum(
 	ctx context.Context,
 	siteId uuid.UUID,
 	body *models.SpectrumAnalysis) (
@@ -142,7 +142,7 @@ func (s *SitesSprectrumAnalysis) InitiateSiteAnalyzeSpectrum(
 // returns an models.ApiResponse with models.ResponsePastSpectrumAnalysis data and
 // an error if there was an issue with the request or response.
 // List the past spectrum analysis for a site
-func (s *SitesSprectrumAnalysis) ListSiteSpectrumAnalysis(
+func (s *SitesSpectrumAnalysis) ListSiteSpectrumAnalysis(
 	ctx context.Context,
 	siteId uuid.UUID,
 	limit *int,

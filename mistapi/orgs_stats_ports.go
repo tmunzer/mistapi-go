@@ -186,7 +186,7 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, mType, limit, start, end, duration as parameters and
+// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponsePortStatsSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -231,7 +231,8 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponsePortStatsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/ports/search")
@@ -369,6 +370,9 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponsePortStatsSearch

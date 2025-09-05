@@ -200,10 +200,11 @@ SearchOrgWanClientEvents(
     ip *string,
     mfg *string,
     nacruleId *string,
+    limit *int,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    sort *string) (
     models.ApiResponse[models.SearchEventsWanClient],
     error)
 ```
@@ -219,10 +220,11 @@ SearchOrgWanClientEvents(
 | `ip` | `*string` | Query, Optional | Client IP |
 | `mfg` | `*string` | Query, Optional | Manufacture |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -235,11 +237,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
-apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -295,11 +299,12 @@ SearchOrgWanClients(
     network *string,
     ipSrc *string,
     mfg *string,
+    limit *int,
+    page *int,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    sort *string) (
     models.ApiResponse[models.SearchWanClient],
     error)
 ```
@@ -315,11 +320,12 @@ SearchOrgWanClients(
 | `network` | `*string` | Query, Optional | Network |
 | `ipSrc` | `*string` | Query, Optional | IP source |
 | `mfg` | `*string` | Query, Optional | Manufacture |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -332,13 +338,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

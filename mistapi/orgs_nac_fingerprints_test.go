@@ -72,12 +72,12 @@ func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints(t *testing.T) {
 	os := "JUNOS 22.3R1.12"
 	osType := "JUNOS"
 	mac := "d420b080516d"
-	sort := "-family"
 	limit := int(100)
 
 	duration := "1d"
 	interval := "10m"
-	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &sort, &limit, nil, nil, &duration, &interval)
+	sort := "wxid"
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -104,12 +104,12 @@ func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints1(t *testing.T) {
 	os := "JUNOS 22.3R1.12"
 	osType := "JUNOS"
 	mac := "d420b080516d"
-	sort := "-family"
 	limit := int(100)
 
 	duration := "1d"
 	interval := "10m"
-	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &sort, &limit, nil, nil, &duration, &interval)
+	sort := "wxid"
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

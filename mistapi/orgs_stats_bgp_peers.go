@@ -23,13 +23,15 @@ func NewOrgsStatsBGPPeers(baseController baseController) *OrgsStatsBGPPeers {
 	return &orgsStatsBGPPeers
 }
 
-// CountOrgBgpStats takes context, orgId, limit as parameters and
+// CountOrgBgpStats takes context, orgId, state, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Org BGP Stats
 func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
 	ctx context.Context,
 	orgId uuid.UUID,
+	state *string,
+	distinct *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
 	error) {
@@ -52,6 +54,12 @@ func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if state != nil {
+		req.QueryParam("state", *state)
+	}
+	if distinct != nil {
+		req.QueryParam("distinct", *distinct)
+	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
@@ -66,7 +74,7 @@ func (o *OrgsStatsBGPPeers) CountOrgBgpStats(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgBgpStats takes context, orgId, mac, neighborMac, siteId, vrfName, start, duration, limit as parameters and
+// SearchOrgBgpStats takes context, orgId, mac, neighborMac, siteId, vrfName, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseSearchBgps data and
 // an error if there was an issue with the request or response.
 // Search Org BGP Stats
@@ -77,9 +85,11 @@ func (o *OrgsStatsBGPPeers) SearchOrgBgpStats(
 	neighborMac *string,
 	siteId *string,
 	vrfName *string,
+	limit *int,
 	start *int,
+	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseSearchBgps],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/bgp_peers/search")
@@ -113,14 +123,20 @@ func (o *OrgsStatsBGPPeers) SearchOrgBgpStats(
 	if vrfName != nil {
 		req.QueryParam("vrf_name", *vrfName)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseSearchBgps

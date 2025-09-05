@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2508.1.7**
+> Version: **2508.1.15**
 > 
-> Date: **August 18, 2025**
+> Date: **September 5, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -329,7 +329,7 @@ This API uses the following authentication schemes.
 * [Sites Site Templates](doc/controllers/sites-site-templates.md)
 * [Sites Skyatp](doc/controllers/sites-skyatp.md)
 * [Sites SL Es](doc/controllers/sites-sl-es.md)
-* [Sites Sprectrum Analysis](doc/controllers/sites-sprectrum-analysis.md)
+* [Sites Spectrum Analysis](doc/controllers/sites-spectrum-analysis.md)
 * [Sites Stats](doc/controllers/sites-stats.md)
 * [Sites Stats-Apps](doc/controllers/sites-stats-apps.md)
 * [Sites Stats-Assets](doc/controllers/sites-stats-assets.md)

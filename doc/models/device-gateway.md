@@ -57,6 +57,7 @@ Device gateway
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 | `X` | `*float64` | Optional | X in pixel |
 | `Y` | `*float64` | Optional | Y in pixel |
+| `SsrAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated SSR config. **Note**: no check is done |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

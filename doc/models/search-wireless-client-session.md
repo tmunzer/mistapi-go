@@ -29,7 +29,6 @@
     {
       "ap": "ap8",
       "band": "band8",
-      "client_manufacture": "client_manufacture0",
       "connect": 198,
       "disconnect": 148,
       "duration": 104.42,
@@ -39,6 +38,7 @@
       "ssid": "ssid6",
       "timestamp": 2.64,
       "wlan_id": "00000742-0000-0000-0000-000000000000",
+      "client_manufacture": "client_manufacture0",
       "for_site": false,
       "tags": [
         "tags1",

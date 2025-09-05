@@ -19,7 +19,7 @@
 | `Page` | `float64` | Required | - |
 | `Start` | `float64` | Required | - |
 | `TotalCount` | `float64` | Required | - |
-| `Users` | [`[]models.SleImpactedUsersUser`](../../doc/models/sle-impacted-users-user.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Users` | [`[]models.SleImpactedUsersUser`](../../doc/models/sle-impacted-users-user.md) | Required | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

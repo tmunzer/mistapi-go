@@ -325,7 +325,7 @@ func (o *OrgsWebhooks) CountOrgWebhooksDeliveries(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWebhooksDeliveries takes context, orgId, webhookId, mError, statusCode, status, topic, start, end, duration, limit as parameters and
+// SearchOrgWebhooksDeliveries takes context, orgId, webhookId, mError, statusCode, status, topic, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWebhookDelivery data and
 // an error if there was an issue with the request or response.
 // Search Org Webhooks deliveries
@@ -343,10 +343,11 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	statusCode *int,
 	status *models.WebhookDeliveryStatusEnum,
 	topic *models.WebhookDeliveryTopicEnum,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.SearchWebhookDelivery],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks/%v/events/search")
@@ -380,6 +381,9 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	if topic != nil {
 		req.QueryParam("topic", *topic)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -389,8 +393,8 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchWebhookDelivery

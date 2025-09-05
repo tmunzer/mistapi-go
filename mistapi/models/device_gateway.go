@@ -81,16 +81,18 @@ type DeviceGateway struct {
 	// X in pixel
 	X *float64 `json:"x,omitempty"`
 	// Y in pixel
-	Y                    *float64               `json:"y,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	Y *float64 `json:"y,omitempty"`
+	// additional CLI commands to append to the generated SSR config. **Note**: no check is done
+	SsrAdditionalConfigCmds []string               `json:"ssr_additional_config_cmds,omitempty"`
+	AdditionalProperties    map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for DeviceGateway,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceGateway) String() string {
 	return fmt.Sprintf(
-		"DeviceGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdConfig=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, ForSite=%v, Id=%v, IdpProfiles=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfigs=%v, Mac=%v, Managed=%v, MapId=%v, Model=%v, ModifiedTime=%v, MspId=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, PortMirroring=%v, RouterId=%v, RoutingPolicies=%v, Serial=%v, ServicePolicies=%v, SiteId=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, Vars=%v, VrfConfig=%v, VrfInstances=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-		d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpdConfig, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.ForSite, d.Id, d.IdpProfiles, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfigs, d.Mac, d.Managed, d.MapId, d.Model, d.ModifiedTime, d.MspId, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.PortMirroring, d.RouterId, d.RoutingPolicies, d.Serial, d.ServicePolicies, d.SiteId, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.Vars, d.VrfConfig, d.VrfInstances, d.X, d.Y, d.AdditionalProperties)
+		"DeviceGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdConfig=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, ForSite=%v, Id=%v, IdpProfiles=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfigs=%v, Mac=%v, Managed=%v, MapId=%v, Model=%v, ModifiedTime=%v, MspId=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, PortMirroring=%v, RouterId=%v, RoutingPolicies=%v, Serial=%v, ServicePolicies=%v, SiteId=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, Vars=%v, VrfConfig=%v, VrfInstances=%v, X=%v, Y=%v, SsrAdditionalConfigCmds=%v, AdditionalProperties=%v]",
+		d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpdConfig, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.ForSite, d.Id, d.IdpProfiles, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfigs, d.Mac, d.Managed, d.MapId, d.Model, d.ModifiedTime, d.MspId, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.PortMirroring, d.RouterId, d.RoutingPolicies, d.Serial, d.ServicePolicies, d.SiteId, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.Vars, d.VrfConfig, d.VrfInstances, d.X, d.Y, d.SsrAdditionalConfigCmds, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceGateway.
@@ -99,7 +101,7 @@ func (d DeviceGateway) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y"); err != nil {
+		"additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -251,6 +253,9 @@ func (d DeviceGateway) toMap() map[string]any {
 	if d.Y != nil {
 		structMap["y"] = d.Y
 	}
+	if d.SsrAdditionalConfigCmds != nil {
+		structMap["ssr_additional_config_cmds"] = d.SsrAdditionalConfigCmds
+	}
 	return structMap
 }
 
@@ -266,7 +271,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds")
 	if err != nil {
 		return err
 	}
@@ -316,55 +321,57 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
 	d.VrfInstances = temp.VrfInstances
 	d.X = temp.X
 	d.Y = temp.Y
+	d.SsrAdditionalConfigCmds = temp.SsrAdditionalConfigCmds
 	return nil
 }
 
 // tempDeviceGateway is a temporary struct used for validating the fields of DeviceGateway.
 type tempDeviceGateway struct {
-	AdditionalConfigCmds  []string                           `json:"additional_config_cmds,omitempty"`
-	BgpConfig             map[string]BgpConfig               `json:"bgp_config,omitempty"`
-	CreatedTime           *float64                           `json:"created_time,omitempty"`
-	DeviceprofileId       *uuid.UUID                         `json:"deviceprofile_id,omitempty"`
-	DhcpdConfig           *DhcpdConfig                       `json:"dhcpd_config,omitempty"`
-	DnsServers            []string                           `json:"dns_servers,omitempty"`
-	DnsSuffix             []string                           `json:"dns_suffix,omitempty"`
-	ExtraRoutes           map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
-	ExtraRoutes6          map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
-	ForSite               *bool                              `json:"for_site,omitempty"`
-	Id                    *uuid.UUID                         `json:"id,omitempty"`
-	IdpProfiles           map[string]IdpProfile              `json:"idp_profiles,omitempty"`
-	Image1Url             Optional[string]                   `json:"image1_url"`
-	Image2Url             Optional[string]                   `json:"image2_url"`
-	Image3Url             Optional[string]                   `json:"image3_url"`
-	IpConfigs             map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
-	Mac                   *string                            `json:"mac,omitempty"`
-	Managed               *bool                              `json:"managed,omitempty"`
-	MapId                 *uuid.UUID                         `json:"map_id,omitempty"`
-	Model                 *string                            `json:"model,omitempty"`
-	ModifiedTime          *float64                           `json:"modified_time,omitempty"`
-	MspId                 *uuid.UUID                         `json:"msp_id,omitempty"`
-	Name                  *string                            `json:"name,omitempty"`
-	Networks              []Network                          `json:"networks,omitempty"`
-	Notes                 *string                            `json:"notes,omitempty"`
-	NtpServers            []string                           `json:"ntp_servers,omitempty"`
-	OobIpConfig           *GatewayOobIpConfig                `json:"oob_ip_config,omitempty"`
-	OrgId                 *uuid.UUID                         `json:"org_id,omitempty"`
-	PathPreferences       map[string]GatewayPathPreferences  `json:"path_preferences,omitempty"`
-	PortConfig            map[string]GatewayPortConfig       `json:"port_config,omitempty"`
-	PortMirroring         *GatewayPortMirroring              `json:"port_mirroring,omitempty"`
-	RouterId              *string                            `json:"router_id,omitempty"`
-	RoutingPolicies       map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
-	Serial                *string                            `json:"serial,omitempty"`
-	ServicePolicies       []ServicePolicy                    `json:"service_policies,omitempty"`
-	SiteId                *uuid.UUID                         `json:"site_id,omitempty"`
-	TunnelConfigs         map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
-	TunnelProviderOptions *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
-	Type                  *string                            `json:"type"`
-	Vars                  map[string]string                  `json:"vars,omitempty"`
-	VrfConfig             *VrfConfig                         `json:"vrf_config,omitempty"`
-	VrfInstances          map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
-	X                     *float64                           `json:"x,omitempty"`
-	Y                     *float64                           `json:"y,omitempty"`
+	AdditionalConfigCmds    []string                           `json:"additional_config_cmds,omitempty"`
+	BgpConfig               map[string]BgpConfig               `json:"bgp_config,omitempty"`
+	CreatedTime             *float64                           `json:"created_time,omitempty"`
+	DeviceprofileId         *uuid.UUID                         `json:"deviceprofile_id,omitempty"`
+	DhcpdConfig             *DhcpdConfig                       `json:"dhcpd_config,omitempty"`
+	DnsServers              []string                           `json:"dns_servers,omitempty"`
+	DnsSuffix               []string                           `json:"dns_suffix,omitempty"`
+	ExtraRoutes             map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
+	ExtraRoutes6            map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
+	ForSite                 *bool                              `json:"for_site,omitempty"`
+	Id                      *uuid.UUID                         `json:"id,omitempty"`
+	IdpProfiles             map[string]IdpProfile              `json:"idp_profiles,omitempty"`
+	Image1Url               Optional[string]                   `json:"image1_url"`
+	Image2Url               Optional[string]                   `json:"image2_url"`
+	Image3Url               Optional[string]                   `json:"image3_url"`
+	IpConfigs               map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
+	Mac                     *string                            `json:"mac,omitempty"`
+	Managed                 *bool                              `json:"managed,omitempty"`
+	MapId                   *uuid.UUID                         `json:"map_id,omitempty"`
+	Model                   *string                            `json:"model,omitempty"`
+	ModifiedTime            *float64                           `json:"modified_time,omitempty"`
+	MspId                   *uuid.UUID                         `json:"msp_id,omitempty"`
+	Name                    *string                            `json:"name,omitempty"`
+	Networks                []Network                          `json:"networks,omitempty"`
+	Notes                   *string                            `json:"notes,omitempty"`
+	NtpServers              []string                           `json:"ntp_servers,omitempty"`
+	OobIpConfig             *GatewayOobIpConfig                `json:"oob_ip_config,omitempty"`
+	OrgId                   *uuid.UUID                         `json:"org_id,omitempty"`
+	PathPreferences         map[string]GatewayPathPreferences  `json:"path_preferences,omitempty"`
+	PortConfig              map[string]GatewayPortConfig       `json:"port_config,omitempty"`
+	PortMirroring           *GatewayPortMirroring              `json:"port_mirroring,omitempty"`
+	RouterId                *string                            `json:"router_id,omitempty"`
+	RoutingPolicies         map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
+	Serial                  *string                            `json:"serial,omitempty"`
+	ServicePolicies         []ServicePolicy                    `json:"service_policies,omitempty"`
+	SiteId                  *uuid.UUID                         `json:"site_id,omitempty"`
+	TunnelConfigs           map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
+	TunnelProviderOptions   *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`
+	Type                    *string                            `json:"type"`
+	Vars                    map[string]string                  `json:"vars,omitempty"`
+	VrfConfig               *VrfConfig                         `json:"vrf_config,omitempty"`
+	VrfInstances            map[string]GatewayVrfInstance      `json:"vrf_instances,omitempty"`
+	X                       *float64                           `json:"x,omitempty"`
+	Y                       *float64                           `json:"y,omitempty"`
+	SsrAdditionalConfigCmds []string                           `json:"ssr_additional_config_cmds,omitempty"`
 }
 
 func (d *tempDeviceGateway) validate() error {

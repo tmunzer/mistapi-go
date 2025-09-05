@@ -209,7 +209,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, keyMgmt, proto, band, wlanId, nacruleId, start, end, duration as parameters and
+// SearchOrgWirelessClientEvents takes context, orgId, mType, reasonCode, ssid, ap, keyMgmt, proto, band, wlanId, nacruleId, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSearch data and
 // an error if there was an issue with the request or response.
 // Get Org Clients Events
@@ -227,7 +227,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
 	nacruleId *uuid.UUID,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/events/search")
@@ -285,6 +286,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
 
 	var result models.ResponseEventsSearch
 	decoder, resp, err := req.CallAsJson()
@@ -296,7 +300,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClients takes context, orgId, siteId, mac, ipAddress, hostname, band, device, os, model, ap, pskId, pskName, username, vlan, ssid, text, limit, start, end, duration as parameters and
+// SearchOrgWirelessClients takes context, orgId, siteId, mac, ipAddress, hostname, band, device, os, model, ap, pskId, pskName, username, vlan, ssid, text, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Wireless Clients
@@ -321,7 +325,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseClientSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/search")
@@ -399,6 +404,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseClientSearch
@@ -502,7 +510,7 @@ func (o *OrgsClientsWireless) CountOrgWirelessClientsSessions(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClientSessions takes context, orgId, ap, band, clientFamily, clientManufacture, clientModel, clientUsername, clientOs, ssid, wlanId, pskId, pskName, limit, start, end, duration as parameters and
+// SearchOrgWirelessClientSessions takes context, orgId, ap, band, clientFamily, clientManufacture, clientModel, clientUsername, clientOs, ssid, wlanId, pskId, pskName, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWirelessClientSession data and
 // an error if there was an issue with the request or response.
 // Search Org Wireless Clients Sessions
@@ -523,7 +531,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.SearchWirelessClientSession],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/clients/sessions/search")
@@ -589,6 +598,9 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientSessions(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.SearchWirelessClientSession

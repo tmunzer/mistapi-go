@@ -14,7 +14,7 @@
 | `End` | `float64` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.ClientWireless`](../../doc/models/client-wireless.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Results` | [`[]models.ClientWireless`](../../doc/models/client-wireless.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

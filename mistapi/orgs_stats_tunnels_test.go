@@ -67,8 +67,9 @@ func TestOrgsStatsTunnelsTestSearchOrgTunnelsStats(t *testing.T) {
 	mType := models.TunnelTypeEnum("wxtunnel")
 	limit := int(100)
 
-	duration := "1d"
-	apiResponse, err := orgsStatsTunnels.SearchOrgTunnelsStats(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
+	duration := "5m"
+	sort := "timestamp"
+	apiResponse, err := orgsStatsTunnels.SearchOrgTunnelsStats(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -92,8 +93,9 @@ func TestOrgsStatsTunnelsTestSearchOrgTunnelsStats1(t *testing.T) {
 	mType := models.TunnelTypeEnum("wxtunnel")
 	limit := int(100)
 
-	duration := "1d"
-	apiResponse, err := orgsStatsTunnels.SearchOrgTunnelsStats(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration)
+	duration := "5m"
+	sort := "timestamp"
+	apiResponse, err := orgsStatsTunnels.SearchOrgTunnelsStats(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

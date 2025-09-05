@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Aps` | [`[]models.SleImpactedApsAp`](../../doc/models/sle-impacted-aps-ap.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Aps` | [`[]models.SleImpactedApsAp`](../../doc/models/sle-impacted-aps-ap.md) | Required | **Constraints**: *Unique Items Required* |
 | `Classifier` | `string` | Required | - |
 | `End` | `float64` | Required | - |
 | `Failure` | `string` | Required | - |

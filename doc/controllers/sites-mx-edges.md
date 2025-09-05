@@ -387,10 +387,11 @@ SearchSiteMistEdgeEvents(
     mType *string,
     service *string,
     component *string,
+    limit *int,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseMxedgeEventsSearch],
     error)
 ```
@@ -405,10 +406,11 @@ SearchSiteMistEdgeEvents(
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
+| `limit` | `*int` | Query, Optional | **Default**: `10`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -421,11 +423,13 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+limit := 10
+
 duration := "10m"
 
-limit := 100
+sort := "-site_id"
 
-apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := sitesMxEdges.SearchSiteMistEdgeEvents(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -15,7 +15,7 @@
 | `Interval` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Page` | `int` | Required | - |
-| `Results` | [`[]models.OrgSiteSleWanResult`](../../doc/models/org-site-sle-wan-result.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Results` | [`[]models.OrgSiteSleWanResult`](../../doc/models/org-site-sle-wan-result.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

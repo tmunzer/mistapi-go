@@ -393,9 +393,9 @@ SearchOrgJsiAssetsAndContracts(
     eolDuration *string,
     eosDuration *string,
     text *string,
-    sort *string,
     limit *int,
-    page *int) (
+    page *int,
+    sort *string) (
     models.ApiResponse[models.JsInventorySearch],
     error)
 ```
@@ -412,9 +412,9 @@ SearchOrgJsiAssetsAndContracts(
 | `eolDuration` | `*string` | Query, Optional | Device EOL duration in days |
 | `eosDuration` | `*string` | Query, Optional | Device EOS duration in days |
 | `text` | `*string` | Query, Optional | Wildcards for `model`, `serial`, `account_id`, `status`, `warranty_type` |
-| `sort` | `*string` | Query, Optional | Sort by field |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -437,13 +437,13 @@ eolDuration := "30d"
 
 eosDuration := "30d"
 
-sort := "serial"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &sort, &limit, &page)
+sort := "-site_id"
+
+apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -102,7 +102,7 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSkyatpEvents takes context, siteId, mType, mac, deviceMac, threatLevel, ipAddress, limit, start, end, duration as parameters and
+// SearchSiteSkyatpEvents takes context, siteId, mType, mac, deviceMac, threatLevel, ipAddress, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSkyAtpSearch data and
 // an error if there was an issue with the request or response.
 // Search Skyatp Events (WIP)
@@ -117,7 +117,8 @@ func (s *SitesSkyatp) SearchSiteSkyatpEvents(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsSkyAtpSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/skyatp/events/search")
@@ -165,6 +166,9 @@ func (s *SitesSkyatp) SearchSiteSkyatpEvents(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsSkyAtpSearch

@@ -29,7 +29,6 @@
     {
       "auto_upgrade_enabled": false,
       "auto_upgrade_version": "auto_upgrade_version4",
-      "country_code": "country_code6",
       "honeypot_enabled": false,
       "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "name": "name6",
@@ -39,6 +38,7 @@
       "timezone": "timezone4",
       "vna_enabled": false,
       "wifi_enabled": false,
+      "country_code": "country_code6",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

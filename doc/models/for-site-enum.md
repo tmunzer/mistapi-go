@@ -1,6 +1,8 @@
 
 # For Site Enum
 
+enum: `any`, `true`, `false`
+
 ## Enumeration
 
 `ForSiteEnum`
@@ -9,7 +11,7 @@
 
 | Name |
 |  --- |
-| `all` |
+| `any` |
 | `true` |
 | `false` |
 

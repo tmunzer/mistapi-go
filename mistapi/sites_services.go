@@ -165,7 +165,7 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, start, end, duration, limit as parameters and
+// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsPathSearch data and
 // an error if there was an issue with the request or response.
 // Search Service Path Events
@@ -184,10 +184,11 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	version *string,
 	timestamp *float64,
 	mac *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsPathSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/services/events/search")
@@ -245,6 +246,9 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -254,8 +258,8 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsPathSearch

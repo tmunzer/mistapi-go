@@ -29,17 +29,17 @@
 | `Poe` | [`*models.ModuleStatItemPoe`](../../doc/models/module-stat-item-poe.md) | Optional | - |
 | `PoeVersion` | `models.Optional[string]` | Optional | - |
 | `PowerCpldVersion` | `models.Optional[string]` | Optional | - |
-| `Psus` | [`[]models.ModuleStatItemPsusItem`](../../doc/models/module-stat-item-psus-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Psus` | [`[]models.ModuleStatItemPsusItem`](../../doc/models/module-stat-item-psus-item.md) | Optional | **Constraints**: *Unique Items Required* |
 | `ReFpgaVersion` | `models.Optional[string]` | Optional | - |
 | `RecoveryVersion` | `models.Optional[string]` | Optional | - |
 | `Serial` | `models.Optional[string]` | Optional | - |
 | `Status` | `models.Optional[string]` | Optional | - |
-| `Temperatures` | [`[]models.ModuleStatItemTemperaturesItem`](../../doc/models/module-stat-item-temperatures-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Temperatures` | [`[]models.ModuleStatItemTemperaturesItem`](../../doc/models/module-stat-item-temperatures-item.md) | Optional | **Constraints**: *Unique Items Required* |
 | `TmcFpgaVersion` | `models.Optional[string]` | Optional | - |
 | `Type` | `models.Optional[string]` | Optional | - |
 | `UbootVersion` | `models.Optional[string]` | Optional | - |
 | `Uptime` | `models.Optional[int]` | Optional | - |
-| `VcLinks` | [`[]models.ModuleStatItemVcLinksItem`](../../doc/models/module-stat-item-vc-links-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `VcLinks` | [`[]models.ModuleStatItemVcLinksItem`](../../doc/models/module-stat-item-vc-links-item.md) | Optional | **Constraints**: *Unique Items Required* |
 | `VcMode` | `models.Optional[string]` | Optional | - |
 | `VcRole` | `models.Optional[string]` | Optional | enum: `master`, `backup`, `linecard` |
 | `VcState` | `models.Optional[string]` | Optional | - |

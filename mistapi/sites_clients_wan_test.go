@@ -119,10 +119,11 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents(t *testing.T) {
 	ip := "10.4.2.4"
 	mfg := "Juniper"
 	nacruleId := "00000000-0000-0000-0000-000000000000"
+	limit := int(100)
 
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -148,10 +149,11 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents1(t *testing.T) {
 	ip := "10.4.2.4"
 	mfg := "Juniper"
 	nacruleId := "00000000-0000-0000-0000-000000000000"
+	limit := int(100)
 
 	duration := "1d"
-	limit := int(100)
-	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, nil, nil, &duration, &limit)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -175,11 +177,12 @@ func TestSitesClientsWanTestSearchSiteWanClients(t *testing.T) {
 	hostname := "test-hostname"
 	ip := "10.2.52.4"
 	mfg := "Cisco"
-
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, nil, nil, &duration, &limit, &page)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -203,11 +206,12 @@ func TestSitesClientsWanTestSearchSiteWanClients1(t *testing.T) {
 	hostname := "test-hostname"
 	ip := "10.2.52.4"
 	mfg := "Cisco"
-
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, nil, nil, &duration, &limit, &page)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

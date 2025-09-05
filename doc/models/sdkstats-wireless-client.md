@@ -19,10 +19,10 @@ SDK Client Details statistics
 | `Name` | `*string` | Optional | Name of the sdk client (if provided) |
 | `NetworkConnection` | [`*models.StatsSdkclientNetworkConnection`](../../doc/models/stats-sdkclient-network-connection.md) | Optional | Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as |
 | `Uuid` | `uuid.UUID` | Required | UUID of the sdk client |
-| `Vbeacons` | [`[]models.SdkstatsWirelessClientVbeacon`](../../doc/models/sdkstats-wireless-client-vbeacon.md) | Optional | List of beacon_id’s of the sdk client is in and since when (if known)<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Vbeacons` | [`[]models.SdkstatsWirelessClientVbeacon`](../../doc/models/sdkstats-wireless-client-vbeacon.md) | Optional | List of beacon_id’s of the sdk client is in and since when (if known)<br><br>**Constraints**: *Unique Items Required* |
 | `X` | `*float64` | Optional | X (in pixels) of user location on the map (if known) |
 | `Y` | `*float64` | Optional | Y (in pixels) of user location on the map (if known) |
-| `Zones` | [`[]models.SdkstatsWirelessClientZone`](../../doc/models/sdkstats-wireless-client-zone.md) | Optional | List of zone_id’s of the sdk client is in and since when (if known)<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Zones` | [`[]models.SdkstatsWirelessClientZone`](../../doc/models/sdkstats-wireless-client-zone.md) | Optional | List of zone_id’s of the sdk client is in and since when (if known)<br><br>**Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

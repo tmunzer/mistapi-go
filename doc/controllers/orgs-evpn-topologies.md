@@ -298,6 +298,7 @@ Get List of the existing Org EVPN topologies
 ListOrgEvpnTopologies(
     ctx context.Context,
     orgId uuid.UUID,
+    forSite *models.MxedgeForSiteEnum,
     limit *int,
     page *int) (
     models.ApiResponse[[]models.EvpnTopologyResponse],
@@ -309,6 +310,7 @@ ListOrgEvpnTopologies(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for org/site level EVPN Toplogies<br><br>**Default**: `"any"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
@@ -323,11 +325,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+forSite := models.MxedgeForSiteEnum_ANY
+
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsEVPNTopologies.ListOrgEvpnTopologies(ctx, orgId, &limit, &page)
+apiResponse, err := orgsEVPNTopologies.ListOrgEvpnTopologies(ctx, orgId, &forSite, &limit, &page)
 if err != nil {
     log.Fatalln(err)
 } else {

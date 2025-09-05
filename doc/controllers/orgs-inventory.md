@@ -597,7 +597,8 @@ SearchOrgInventory(
     status *string,
     text *string,
     limit *int,
-    page *int) (
+    page *int,
+    sort *string) (
     models.ApiResponse[models.InventorySearch],
     error)
 ```
@@ -620,6 +621,7 @@ SearchOrgInventory(
 | `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -656,7 +658,9 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page)
+sort := "-site_id"
+
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

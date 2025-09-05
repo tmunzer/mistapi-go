@@ -14,7 +14,7 @@
 | `AuthMethod` | `*string` | Optional | - |
 | `AuthState` | `*string` | Optional | - |
 | `DeviceMac` | `[]string` | Optional | MAC Address of the switch the client is connected to |
-| `DeviceMacPort` | [`[]models.WiredClientResponseDeviceMacPortItem`](../../doc/models/wired-client-response-device-mac-port-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `DeviceMacPort` | [`[]models.WiredClientResponseDeviceMacPortItem`](../../doc/models/wired-client-response-device-mac-port-item.md) | Optional | **Constraints**: *Unique Items Required* |
 | `DhcpClientIdentifier` | `*string` | Optional | - |
 | `DhcpClientOptions` | [`[]models.DhcpClientOption`](../../doc/models/dhcp-client-option.md) | Optional | - |
 | `DhcpFqdn` | `*string` | Optional | - |

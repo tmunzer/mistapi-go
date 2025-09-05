@@ -222,7 +222,8 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -253,7 +254,8 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -328,7 +330,8 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs(t *testing.T) {
 
 	limit := int(100)
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -355,7 +358,8 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs1(t *testing.T) {
 
 	limit := int(100)
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -459,7 +463,8 @@ func TestOrgsDevicesTestSearchOrgDevices(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -519,7 +524,8 @@ func TestOrgsDevicesTestSearchOrgDevices1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

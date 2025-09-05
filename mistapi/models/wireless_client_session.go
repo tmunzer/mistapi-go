@@ -12,18 +12,18 @@ import (
 
 // WirelessClientSession represents a WirelessClientSession struct.
 type WirelessClientSession struct {
-	Ap                string    `json:"ap"`
-	Band              string    `json:"band"`
-	ClientManufacture *string   `json:"client_manufacture"`
-	Connect           int       `json:"connect"`
-	Disconnect        int       `json:"disconnect"`
-	Duration          float64   `json:"duration"`
-	ForSite           *bool     `json:"for_site,omitempty"`
-	Mac               string    `json:"mac"`
-	OrgId             uuid.UUID `json:"org_id"`
-	SiteId            uuid.UUID `json:"site_id"`
-	Ssid              string    `json:"ssid"`
-	Tags              []string  `json:"tags,omitempty"`
+	Ap                string           `json:"ap"`
+	Band              string           `json:"band"`
+	ClientManufacture Optional[string] `json:"client_manufacture"`
+	Connect           int              `json:"connect"`
+	Disconnect        int              `json:"disconnect"`
+	Duration          float64          `json:"duration"`
+	ForSite           *bool            `json:"for_site,omitempty"`
+	Mac               string           `json:"mac"`
+	OrgId             uuid.UUID        `json:"org_id"`
+	SiteId            uuid.UUID        `json:"site_id"`
+	Ssid              string           `json:"ssid"`
+	Tags              []string         `json:"tags,omitempty"`
 	// Epoch (seconds)
 	Timestamp            float64                `json:"timestamp"`
 	WlanId               uuid.UUID              `json:"wlan_id"`
@@ -56,10 +56,12 @@ func (w WirelessClientSession) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, w.AdditionalProperties)
 	structMap["ap"] = w.Ap
 	structMap["band"] = w.Band
-	if w.ClientManufacture != nil {
-		structMap["client_manufacture"] = w.ClientManufacture
-	} else {
-		structMap["client_manufacture"] = nil
+	if w.ClientManufacture.IsValueSet() {
+		if w.ClientManufacture.Value() != nil {
+			structMap["client_manufacture"] = w.ClientManufacture.Value()
+		} else {
+			structMap["client_manufacture"] = nil
+		}
 	}
 	structMap["connect"] = w.Connect
 	structMap["disconnect"] = w.Disconnect
@@ -116,20 +118,20 @@ func (w *WirelessClientSession) UnmarshalJSON(input []byte) error {
 
 // tempWirelessClientSession is a temporary struct used for validating the fields of WirelessClientSession.
 type tempWirelessClientSession struct {
-	Ap                *string    `json:"ap"`
-	Band              *string    `json:"band"`
-	ClientManufacture *string    `json:"client_manufacture"`
-	Connect           *int       `json:"connect"`
-	Disconnect        *int       `json:"disconnect"`
-	Duration          *float64   `json:"duration"`
-	ForSite           *bool      `json:"for_site,omitempty"`
-	Mac               *string    `json:"mac"`
-	OrgId             *uuid.UUID `json:"org_id"`
-	SiteId            *uuid.UUID `json:"site_id"`
-	Ssid              *string    `json:"ssid"`
-	Tags              []string   `json:"tags,omitempty"`
-	Timestamp         *float64   `json:"timestamp"`
-	WlanId            *uuid.UUID `json:"wlan_id"`
+	Ap                *string          `json:"ap"`
+	Band              *string          `json:"band"`
+	ClientManufacture Optional[string] `json:"client_manufacture"`
+	Connect           *int             `json:"connect"`
+	Disconnect        *int             `json:"disconnect"`
+	Duration          *float64         `json:"duration"`
+	ForSite           *bool            `json:"for_site,omitempty"`
+	Mac               *string          `json:"mac"`
+	OrgId             *uuid.UUID       `json:"org_id"`
+	SiteId            *uuid.UUID       `json:"site_id"`
+	Ssid              *string          `json:"ssid"`
+	Tags              []string         `json:"tags,omitempty"`
+	Timestamp         *float64         `json:"timestamp"`
+	WlanId            *uuid.UUID       `json:"wlan_id"`
 }
 
 func (w *tempWirelessClientSession) validate() error {

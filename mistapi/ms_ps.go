@@ -185,7 +185,7 @@ func (m *MSPs) UpdateMsp(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchMspOrgGroup takes context, mspId, mType, q, limit, start, end, duration as parameters and
+// SearchMspOrgGroup takes context, mspId, mType, q, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseSearch data and
 // an error if there was an issue with the request or response.
 // Search in MSP Orgs
@@ -197,7 +197,8 @@ func (m *MSPs) SearchMspOrgGroup(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseSearch],
 	error) {
 	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/search")
@@ -234,6 +235,9 @@ func (m *MSPs) SearchMspOrgGroup(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseSearch

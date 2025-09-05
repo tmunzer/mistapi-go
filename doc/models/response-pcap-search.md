@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `string` | Required | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.ResponsePcapSearchItem`](../../doc/models/response-pcap-search-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `*int` | Optional | - |
@@ -25,7 +25,6 @@
 {
   "end": 196,
   "limit": 230,
-  "next": "next6",
   "results": [
     {
       "duration": 600.0,
@@ -61,6 +60,7 @@
     }
   ],
   "start": 154,
+  "next": "next6",
   "total": 68,
   "exampleAdditionalProperty": {
     "key1": "val1",

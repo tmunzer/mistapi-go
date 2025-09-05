@@ -244,12 +244,12 @@ SearchSiteNacClientEvents(
     usermacLabel *string,
     text *string,
     nasIp *string,
-    sort *string,
     ingressVlan *string,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    limit *int,
+    sort *string) (
     models.ApiResponse[models.ResponseEventsNacClientSearch],
     error)
 ```
@@ -281,12 +281,12 @@ SearchSiteNacClientEvents(
 | `usermacLabel` | `*string` | Query, Optional | Labels derived from usermac entry |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, username, device_mac or ap |
 | `nasIp` | `*string` | Query, Optional | IP address of NAS device |
-| `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
 
 ## Response Type
 
@@ -310,7 +310,9 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+sort := "-site_id"
+
+apiResponse, err := sitesClientsNAC.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -406,14 +408,14 @@ SearchSiteNacClients(
     mType *string,
     mdmCompliance *string,
     mdmProvider *string,
-    sort *string,
     usermacLabel []string,
     ingressVlan *string,
+    limit *int,
+    page *int,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseClientNacSearch],
     error)
 ```
@@ -447,14 +449,14 @@ SearchSiteNacClients(
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
-| `sort` | `*string` | Query, Optional | Sort options, ‘-‘ prefix represents DESC order, default is wcid in ASC order |
 | `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
 
 ## Response Type
 
@@ -467,13 +469,15 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

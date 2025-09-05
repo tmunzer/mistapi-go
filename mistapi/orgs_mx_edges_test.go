@@ -311,9 +311,11 @@ func TestOrgsMxEdgesTestSearchOrgMistEdgeEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -334,9 +336,11 @@ func TestOrgsMxEdgesTestSearchOrgMistEdgeEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -357,10 +361,12 @@ func TestOrgsMxEdgesTestSearchOrgMxEdges(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -381,10 +387,12 @@ func TestOrgsMxEdgesTestSearchOrgMxEdges1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -30,7 +30,7 @@ Device Profile
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Mesh` | [`*models.ApMesh`](../../doc/models/ap-mesh.md) | Optional | Mesh AP settings |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Name` | `*string` | Required | - |
+| `Name` | `models.Optional[string]` | Optional | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PoePassthrough` | `*bool` | Optional | Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)<br><br>**Default**: `false` |
@@ -54,7 +54,6 @@ Device Profile
   "disable_eth3": false,
   "disable_module": false,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "name": "name0",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "poe_passthrough": false,
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",

@@ -1068,7 +1068,7 @@ ListOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for site level mist edges<br><br>**Default**: `"any"` |
+| `forSite` | [`*models.MxedgeForSiteEnum`](../../doc/models/mxedge-for-site-enum.md) | Query, Optional | Filter for org/site level mist edges<br><br>**Default**: `"any"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
@@ -1276,10 +1276,11 @@ SearchOrgMistEdgeEvents(
     mType *string,
     service *string,
     component *string,
+    limit *int,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseMxedgeEventsSearch],
     error)
 ```
@@ -1294,10 +1295,11 @@ SearchOrgMistEdgeEvents(
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -1310,11 +1312,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
-apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1370,13 +1374,13 @@ SearchOrgMxEdges(
     model *string,
     distro *string,
     tuntermVersion *string,
-    sort *string,
     stats *bool,
+    limit *int,
+    page *int,
     start *int,
     end *int,
     duration *string,
-    limit *int,
-    page *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseMxedgeSearch],
     error)
 ```
@@ -1392,13 +1396,13 @@ SearchOrgMxEdges(
 | `model` | `*string` | Query, Optional | Model name |
 | `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
 | `tuntermVersion` | `*string` | Query, Optional | tunterm version |
-| `sort` | `*string` | Query, Optional | Sort options, -prefix represents DESC order, default is -last_seen |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -1411,13 +1415,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &page)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

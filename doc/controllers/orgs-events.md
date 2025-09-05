@@ -114,10 +114,11 @@ SearchOrgEvents(
     ctx context.Context,
     orgId uuid.UUID,
     mType *string,
+    limit *int,
     start *int,
     end *int,
     duration *string,
-    limit *int) (
+    sort *string) (
     models.ApiResponse[models.ResponseEventsOrgsSearch],
     error)
 ```
@@ -128,10 +129,11 @@ SearchOrgEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | `*string` | Query, Optional | Event type |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -144,11 +146,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
 limit := 100
 
-apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, nil, nil, &duration, &limit)
+duration := "10m"
+
+sort := "-site_id"
+
+apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -180,7 +184,8 @@ SearchOrgSystemEvents(
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *string) (
     models.ApiResponse[models.ResponseOrgSystemEventsSearch],
     error)
 ```
@@ -194,6 +199,7 @@ SearchOrgSystemEvents(
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -210,7 +216,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration)
+sort := "-site_id"
+
+apiResponse, err := orgsEvents.SearchOrgSystemEvents(ctx, orgId, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

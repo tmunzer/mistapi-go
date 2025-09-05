@@ -86,7 +86,7 @@ func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgClientFingerprints takes context, siteId, family, clientType, model, mfg, os, osType, mac, sort, limit, start, end, duration, interval as parameters and
+// SearchOrgClientFingerprints takes context, siteId, family, clientType, model, mfg, os, osType, mac, limit, start, end, duration, interval, sort as parameters and
 // returns an models.ApiResponse with models.FingerprintSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Client Fingerprints
@@ -100,12 +100,12 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
 	os *string,
 	osType *string,
 	mac *string,
-	sort *string,
 	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	interval *string) (
+	interval *string,
+	sort *string) (
 	models.ApiResponse[models.FingerprintSearchResult],
 	error) {
 	req := o.prepareRequest(
@@ -152,9 +152,6 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
-	if sort != nil {
-		req.QueryParam("sort", *sort)
-	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
@@ -169,6 +166,9 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
 	}
 	if interval != nil {
 		req.QueryParam("interval", *interval)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.FingerprintSearchResult

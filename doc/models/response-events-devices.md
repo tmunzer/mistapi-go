@@ -13,8 +13,8 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Next` | `string` | Required | - |
-| `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Next` | `*string` | Optional | - |
+| `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -25,7 +25,6 @@
 {
   "end": 78,
   "limit": 92,
-  "next": "next4",
   "results": [
     {
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
@@ -44,6 +43,7 @@
   ],
   "start": 36,
   "total": 186,
+  "next": "next4",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

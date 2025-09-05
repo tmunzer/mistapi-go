@@ -14,7 +14,7 @@ Gateway matching
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
-| `Rules` | [`[]models.GatewayMatchingRule`](../../doc/models/gateway-matching-rule.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Rules` | [`[]models.GatewayMatchingRule`](../../doc/models/gateway-matching-rule.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

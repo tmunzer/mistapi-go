@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Members` | [`[]models.ConfigVcPortMember`](../../doc/models/config-vc-port-member.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Members` | [`[]models.ConfigVcPortMember`](../../doc/models/config-vc-port-member.md) | Required | **Constraints**: *Unique Items Required* |
 | `Op` | [`models.VirtualChassisPortOperationEnum`](../../doc/models/virtual-chassis-port-operation-enum.md) | Required | enum: `delete`, `set`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

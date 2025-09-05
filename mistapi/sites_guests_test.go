@@ -156,7 +156,8 @@ func TestSitesGuestsTestSearchSiteGuestAuthorization(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesGuests.SearchSiteGuestAuthorization(ctx, siteId, &wlanId, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesGuests.SearchSiteGuestAuthorization(ctx, siteId, &wlanId, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -181,7 +182,8 @@ func TestSitesGuestsTestSearchSiteGuestAuthorization1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesGuests.SearchSiteGuestAuthorization(ctx, siteId, &wlanId, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesGuests.SearchSiteGuestAuthorization(ctx, siteId, &wlanId, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

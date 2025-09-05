@@ -18,9 +18,10 @@ func TestOrgsEVPNTopologiesTestListOrgEvpnTopologies(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	forSite := models.MxedgeForSiteEnum("any")
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsEvpnTopologies.ListOrgEvpnTopologies(ctx, orgId, &limit, &page)
+	apiResponse, err := orgsEvpnTopologies.ListOrgEvpnTopologies(ctx, orgId, &forSite, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -40,9 +41,10 @@ func TestOrgsEVPNTopologiesTestListOrgEvpnTopologies1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	forSite := models.MxedgeForSiteEnum("any")
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsEvpnTopologies.ListOrgEvpnTopologies(ctx, orgId, &limit, &page)
+	apiResponse, err := orgsEvpnTopologies.ListOrgEvpnTopologies(ctx, orgId, &forSite, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

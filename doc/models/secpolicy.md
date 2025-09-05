@@ -19,7 +19,7 @@ Security Policy is designed to audit / catch discrepancies between "what’s int
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Wlans` | [`[]models.Wlan`](../../doc/models/wlan.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Wlans` | [`[]models.Wlan`](../../doc/models/wlan.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

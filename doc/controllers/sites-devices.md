@@ -1035,7 +1035,8 @@ SearchSiteDeviceConfigHistory(
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
     error)
 ```
@@ -1051,6 +1052,7 @@ SearchSiteDeviceConfigHistory(
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -1069,7 +1071,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration)
+sort := "-site_id"
+
+apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1177,7 +1181,8 @@ SearchSiteDeviceEvents(
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *string) (
     models.ApiResponse[models.ResponseEventsDevices],
     error)
 ```
@@ -1198,6 +1203,7 @@ SearchSiteDeviceEvents(
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -1218,7 +1224,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration)
+sort := "-site_id"
+
+apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1279,7 +1287,8 @@ SearchSiteDeviceLastConfigs(
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
     error)
 ```
@@ -1297,6 +1306,7 @@ SearchSiteDeviceLastConfigs(
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -1315,7 +1325,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &mType, nil, nil, nil, &limit, nil, nil, &duration)
+sort := "-site_id"
+
+apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &mType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1427,7 +1439,7 @@ SearchSiteDevices(
     mxedgeIds []uuid.UUID,
     lastHostname *string,
     lastConfigStatus *string,
-    radiusStats map[string]models.DeviceSearchRadiusStat,
+    radiusStats *string,
     cpu *string,
     node0Mac *string,
     clustered *bool,
@@ -1446,13 +1458,13 @@ SearchSiteDevices(
     band5Bandwidth *int,
     band6Bandwidth *int,
     eth0PortSpeed *int,
-    sort *models.SearchSiteDevicesSortEnum,
-    descSort *models.SearchSiteDevicesDescSortEnum,
     stats *bool,
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *models.SearchSiteDevicesSortEnum,
+    descSort *models.SearchSiteDevicesDescSortEnum) (
     models.ApiResponse[models.ResponseDeviceSearch],
     error)
 ```
@@ -1476,7 +1488,7 @@ SearchSiteDevices(
 | `mxedgeIds` | `[]uuid.UUID` | Query, Optional | For APs only, list of Mist Edge id, if AP is connecting to a Mist Edge |
 | `lastHostname` | `*string` | Query, Optional | For Switches and Gateways only, last hostname |
 | `lastConfigStatus` | `*string` | Query, Optional | For Switches and Gateways only, last configuration status of the switch/gateway |
-| `radiusStats` | [`map[string]models.DeviceSearchRadiusStat`](../../doc/models/device-search-radius-stat.md) | Query, Optional | For Switches and Gateways only, Key-value pairs where the key is the RADIUS server address and the value contains authentication statistics |
+| `radiusStats` | `*string` | Query, Optional | For Switches and Gateways only, Key-value pairs where the key<br>is the RADIUS server address and the value contains authentication statistics:<br><br>* <server_address> (string): IP address of the RADIUS server as the key<br>* `auth_accepts` (long): Number of accepted authentication requests<br>* `auth_rejects` (long): Number of rejected authentication requests<br>* `auth_timeouts` (long): Number of authentication timeouts<br>* `auth_server_status` (string): Status of the server. Possible values: `up`, `down`, `unreachable` |
 | `cpu` | `*string` | Query, Optional | For Switches and Gateways only, max cpu usage |
 | `node0Mac` | `*string` | Query, Optional | For Gateways only, node0 MAC Address |
 | `clustered` | `*bool` | Query, Optional | For Gateways only |
@@ -1495,13 +1507,13 @@ SearchSiteDevices(
 | `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
 | `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
-| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br><br>**Default**: `"timestamp"` |
-| `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats<br><br>**Default**: `false` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br><br>**Default**: `"timestamp"` |
+| `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
 
 ## Response Type
 
@@ -1518,15 +1530,15 @@ mType := models.DeviceTypeDefaultApEnum_AP
 
 ipAddress := "192.168.1.1"
 
-sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
-
 stats := false
 
 limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &sort, nil, &stats, &limit, nil, nil, &duration)
+sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
+
+apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

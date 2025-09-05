@@ -27,7 +27,7 @@ Org statistics
 | `NumSites` | `int` | Required | - |
 | `OrggroupIds` | `[]uuid.UUID` | Required | - |
 | `SessionExpiry` | `int64` | Required | - |
-| `Sle` | [`[]models.StatsOrgSle`](../../doc/models/stats-org-sle.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Sle` | [`[]models.StatsOrgSle`](../../doc/models/stats-org-sle.md) | Required | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

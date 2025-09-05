@@ -373,7 +373,8 @@ SearchOrgUserMacs(
     mac *string,
     labels []string,
     limit *int,
-    page *int) (
+    page *int,
+    sort *string) (
     models.ApiResponse[[]models.UserMac],
     error)
 ```
@@ -387,6 +388,7 @@ SearchOrgUserMacs(
 | `labels` | `[]string` | Query, Optional | Optional, array of strings of labels |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -403,7 +405,9 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page)
+sort := "-site_id"
+
+apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

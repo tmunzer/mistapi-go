@@ -121,7 +121,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClientEvents(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -145,7 +146,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClientEvents1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -171,7 +173,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -197,7 +200,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients1(t *testing.T) {
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -271,7 +275,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClientSessions(t *testing.T) 
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientSessions(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &pskId, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientSessions(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &pskId, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -297,7 +302,8 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClientSessions1(t *testing.T)
 	limit := int(100)
 
 	duration := "1d"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientSessions(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &pskId, nil, &limit, nil, nil, &duration)
+	sort := "timestamp"
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClientSessions(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, &pskId, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

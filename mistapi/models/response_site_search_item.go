@@ -12,10 +12,10 @@ import (
 
 // ResponseSiteSearchItem represents a ResponseSiteSearchItem struct.
 type ResponseSiteSearchItem struct {
-	AutoUpgradeEnabled bool    `json:"auto_upgrade_enabled"`
-	AutoUpgradeVersion string  `json:"auto_upgrade_version"`
-	CountryCode        *string `json:"country_code"`
-	HoneypotEnabled    bool    `json:"honeypot_enabled"`
+	AutoUpgradeEnabled bool             `json:"auto_upgrade_enabled"`
+	AutoUpgradeVersion string           `json:"auto_upgrade_version"`
+	CountryCode        Optional[string] `json:"country_code"`
+	HoneypotEnabled    bool             `json:"honeypot_enabled"`
 	// Unique ID of the object instance in the Mist Organization
 	Id     uuid.UUID `json:"id"`
 	Name   string    `json:"name"`
@@ -55,10 +55,12 @@ func (r ResponseSiteSearchItem) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	structMap["auto_upgrade_enabled"] = r.AutoUpgradeEnabled
 	structMap["auto_upgrade_version"] = r.AutoUpgradeVersion
-	if r.CountryCode != nil {
-		structMap["country_code"] = r.CountryCode
-	} else {
-		structMap["country_code"] = nil
+	if r.CountryCode.IsValueSet() {
+		if r.CountryCode.Value() != nil {
+			structMap["country_code"] = r.CountryCode.Value()
+		} else {
+			structMap["country_code"] = nil
+		}
 	}
 	structMap["honeypot_enabled"] = r.HoneypotEnabled
 	structMap["id"] = r.Id
@@ -107,18 +109,18 @@ func (r *ResponseSiteSearchItem) UnmarshalJSON(input []byte) error {
 
 // tempResponseSiteSearchItem is a temporary struct used for validating the fields of ResponseSiteSearchItem.
 type tempResponseSiteSearchItem struct {
-	AutoUpgradeEnabled *bool      `json:"auto_upgrade_enabled"`
-	AutoUpgradeVersion *string    `json:"auto_upgrade_version"`
-	CountryCode        *string    `json:"country_code"`
-	HoneypotEnabled    *bool      `json:"honeypot_enabled"`
-	Id                 *uuid.UUID `json:"id"`
-	Name               *string    `json:"name"`
-	OrgId              *uuid.UUID `json:"org_id"`
-	SiteId             *uuid.UUID `json:"site_id"`
-	Timestamp          *float64   `json:"timestamp"`
-	Timezone           *string    `json:"timezone"`
-	VnaEnabled         *bool      `json:"vna_enabled"`
-	WifiEnabled        *bool      `json:"wifi_enabled"`
+	AutoUpgradeEnabled *bool            `json:"auto_upgrade_enabled"`
+	AutoUpgradeVersion *string          `json:"auto_upgrade_version"`
+	CountryCode        Optional[string] `json:"country_code"`
+	HoneypotEnabled    *bool            `json:"honeypot_enabled"`
+	Id                 *uuid.UUID       `json:"id"`
+	Name               *string          `json:"name"`
+	OrgId              *uuid.UUID       `json:"org_id"`
+	SiteId             *uuid.UUID       `json:"site_id"`
+	Timestamp          *float64         `json:"timestamp"`
+	Timezone           *string          `json:"timezone"`
+	VnaEnabled         *bool            `json:"vna_enabled"`
+	WifiEnabled        *bool            `json:"wifi_enabled"`
 }
 
 func (r *tempResponseSiteSearchItem) validate() error {

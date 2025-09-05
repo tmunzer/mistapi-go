@@ -166,7 +166,7 @@ func (o *OrgsAlarms) CountOrgAlarms(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgAlarms takes context, orgId, siteId, mType, status, start, end, duration, limit as parameters and
+// SearchOrgAlarms takes context, orgId, siteId, mType, status, start, end, duration, limit, sort as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Org Alarms
@@ -179,7 +179,8 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	limit *int,
+	sort *string) (
 	models.ApiResponse[models.AlarmSearchResult],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/alarms/search")
@@ -221,6 +222,9 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.AlarmSearchResult

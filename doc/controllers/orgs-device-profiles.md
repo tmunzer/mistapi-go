@@ -133,7 +133,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
         Brightness:           models.ToPointer(255),
         Enabled:              models.ToPointer(true),
     }),
-    Name:                 models.ToPointer("string"),
+    Name:                 models.NewOptional(models.ToPointer("string")),
     NtpServers:           []string{
         "10.10.10.10",
     },
@@ -762,7 +762,7 @@ body := models.DeviceprofileContainer.FromDeviceprofileAp(models.DeviceprofileAp
         Group:                models.NewOptional(models.ToPointer(1)),
         Role:                 models.ToPointer(models.ApMeshRoleEnum_BASE),
     }),
-    Name:                 models.ToPointer("string"),
+    Name:                 models.NewOptional(models.ToPointer("string")),
     PoePassthrough:       models.ToPointer(true),
     RadioConfig:          models.ToPointer(models.ApRadio{
         AntGain24:            models.ToPointer(0),

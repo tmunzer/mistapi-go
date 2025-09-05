@@ -371,7 +371,8 @@ SearchSiteRogueEvents(
     limit *int,
     start *int,
     end *int,
-    duration *string) (
+    duration *string,
+    sort *string) (
     models.ApiResponse[models.ResponseEventsRogueSearch],
     error)
 ```
@@ -391,6 +392,7 @@ SearchSiteRogueEvents(
 | `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
 | `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -407,7 +409,9 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesRogues.SearchSiteRogueEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration)
+sort := "-site_id"
+
+apiResponse, err := sitesRogues.SearchSiteRogueEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

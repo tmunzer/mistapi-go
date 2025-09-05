@@ -1,26 +1,26 @@
-# Sites Sprectrum Analysis
+# Sites Spectrum Analysis
 
 ```go
-sitesSprectrumAnalysis := client.SitesSprectrumAnalysis()
+sitesSpectrumAnalysis := client.SitesSpectrumAnalysis()
 ```
 
 ## Class Name
 
-`SitesSprectrumAnalysis`
+`SitesSpectrumAnalysis`
 
 ## Methods
 
-* [Get Site Running Sprectrum Analysis](../../doc/controllers/sites-sprectrum-analysis.md#get-site-running-sprectrum-analysis)
-* [Initiate Site Analyze Spectrum](../../doc/controllers/sites-sprectrum-analysis.md#initiate-site-analyze-spectrum)
-* [List Site Spectrum Analysis](../../doc/controllers/sites-sprectrum-analysis.md#list-site-spectrum-analysis)
+* [Get Site Running Spectrum Analysis](../../doc/controllers/sites-spectrum-analysis.md#get-site-running-spectrum-analysis)
+* [Initiate Site Analyze Spectrum](../../doc/controllers/sites-spectrum-analysis.md#initiate-site-analyze-spectrum)
+* [List Site Spectrum Analysis](../../doc/controllers/sites-spectrum-analysis.md#list-site-spectrum-analysis)
 
 
-# Get Site Running Sprectrum Analysis
+# Get Site Running Spectrum Analysis
 
 Get the running spectrum analysis for a site
 
 ```go
-GetSiteRunningSprectrumAnalysis(
+GetSiteRunningSpectrumAnalysis(
     ctx context.Context,
     siteId uuid.UUID) (
     models.ApiResponse[models.ResponseRunningSpectrumAnalysis],
@@ -44,7 +44,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := sitesSprectrumAnalysis.GetSiteRunningSprectrumAnalysis(ctx, siteId)
+apiResponse, err := sitesSpectrumAnalysis.GetSiteRunningSpectrumAnalysis(ctx, siteId)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -156,7 +156,7 @@ body := models.SpectrumAnalysis{
     Format:               models.ToPointer(models.SpectrumAnalysisFormatEnum_STREAM),
 }
 
-apiResponse, err := sitesSprectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
+apiResponse, err := sitesSpectrumAnalysis.InitiateSiteAnalyzeSpectrum(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -218,7 +218,7 @@ limit := 100
 
 duration := "10m"
 
-apiResponse, err := sitesSprectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
+apiResponse, err := sitesSpectrumAnalysis.ListSiteSpectrumAnalysis(ctx, siteId, &limit, nil, nil, &duration)
 if err != nil {
     log.Fatalln(err)
 } else {

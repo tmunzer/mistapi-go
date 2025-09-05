@@ -112,9 +112,11 @@ func TestSitesDevicesOthersTestSearchSiteOtherDeviceEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesDevicesOthers.SearchSiteOtherDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesDevicesOthers.SearchSiteOtherDeviceEvents(ctx, siteId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -135,9 +137,11 @@ func TestSitesDevicesOthersTestSearchSiteOtherDeviceEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesDevicesOthers.SearchSiteOtherDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, &duration, &limit)
+
+	duration := "1d"
+	sort := "timestamp"
+	apiResponse, err := sitesDevicesOthers.SearchSiteOtherDeviceEvents(ctx, siteId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

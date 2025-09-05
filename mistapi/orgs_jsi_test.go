@@ -244,10 +244,10 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
 	eolDuration := "30d"
 	eosDuration := "30d"
 
-	sort := "serial"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &sort, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -274,10 +274,10 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
 	eolDuration := "30d"
 	eosDuration := "30d"
 
-	sort := "serial"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &sort, &limit, &page)
+	sort := "timestamp"
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `Rules` | [`[]models.ApTemplateMatchingRule`](../../doc/models/ap-template-matching-rule.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Rules` | [`[]models.ApTemplateMatchingRule`](../../doc/models/ap-template-matching-rule.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

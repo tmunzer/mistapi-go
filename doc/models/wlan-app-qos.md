@@ -15,7 +15,7 @@ APp qos wlan settings
 |  --- | --- | --- | --- |
 | `Apps` | [`map[string]models.WlanAppQosAppsProperties`](../../doc/models/wlan-app-qos-apps-properties.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `Others` | [`[]models.WlanAppQosOthersItem`](../../doc/models/wlan-app-qos-others-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Others` | [`[]models.WlanAppQosOthersItem`](../../doc/models/wlan-app-qos-others-item.md) | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

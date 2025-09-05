@@ -23,7 +23,8 @@ SearchOrgVars(
     mVar *string,
     src *models.VarSourceEnum,
     limit *int,
-    page *int) (
+    page *int,
+    sort *string) (
     models.ApiResponse[models.ResponseSearchVar],
     error)
 ```
@@ -38,6 +39,7 @@ SearchOrgVars(
 | `src` | [`*models.VarSourceEnum`](../../doc/models/var-source-enum.md) | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
 ## Response Type
 
@@ -54,7 +56,9 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, nil, nil, nil, &limit, &page)
+sort := "-site_id"
+
+apiResponse, err := orgsVars.SearchOrgVars(ctx, orgId, nil, nil, nil, &limit, &page, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

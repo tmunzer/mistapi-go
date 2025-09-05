@@ -23,7 +23,7 @@ func NewOrgsEvents(baseController baseController) *OrgsEvents {
 	return &orgsEvents
 }
 
-// SearchOrgEvents takes context, orgId, mType, start, end, duration, limit as parameters and
+// SearchOrgEvents takes context, orgId, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsOrgsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org events
@@ -35,10 +35,11 @@ func (o *OrgsEvents) SearchOrgEvents(
 	ctx context.Context,
 	orgId uuid.UUID,
 	mType *string,
+	limit *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int) (
+	sort *string) (
 	models.ApiResponse[models.ResponseEventsOrgsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/events/search")
@@ -63,6 +64,9 @@ func (o *OrgsEvents) SearchOrgEvents(
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -72,8 +76,8 @@ func (o *OrgsEvents) SearchOrgEvents(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseEventsOrgsSearch
@@ -145,7 +149,7 @@ func (o *OrgsEvents) CountOrgSystemEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSystemEvents takes context, orgId, limit, start, end, duration as parameters and
+// SearchOrgSystemEvents takes context, orgId, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSystemEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org System Events
@@ -155,7 +159,8 @@ func (o *OrgsEvents) SearchOrgSystemEvents(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseOrgSystemEventsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/events/system/search")
@@ -188,6 +193,9 @@ func (o *OrgsEvents) SearchOrgSystemEvents(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseOrgSystemEventsSearch

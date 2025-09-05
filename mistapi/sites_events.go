@@ -145,7 +145,7 @@ func (s *SitesEvents) CountSiteSystemEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSystemEvents takes context, siteId, mType, limit, start, end, duration as parameters and
+// SearchSiteSystemEvents takes context, siteId, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Site System Events
@@ -156,7 +156,8 @@ func (s *SitesEvents) SearchSiteSystemEvents(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseDeviceEventsSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/events/system/search")
@@ -192,6 +193,9 @@ func (s *SitesEvents) SearchSiteSystemEvents(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseDeviceEventsSearch

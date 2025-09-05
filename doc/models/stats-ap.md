@@ -45,12 +45,12 @@ AP statistics
 | `LldpStats` | [`map[string]models.StatsApLldpStat`](../../doc/models/stats-ap-lldp-stat.md) | Optional | Property key is the port name (e.g. "eth0", "eth1", ...). Map of ethernet ports to their respective LLDP neighbor information and power negotiations. Only present when multiple neighbors exist. |
 | `Locating` | `models.Optional[bool]` | Optional | - |
 | `Locked` | `models.Optional[bool]` | Optional | Whether this AP is considered locked (placement / orientation has been vetted) |
-| `Mac` | `*string` | Required | Device mac |
+| `Mac` | `models.Optional[string]` | Optional | Device mac |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `MemUsedKb` | `models.Optional[int64]` | Optional | - |
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
-| `Model` | `*string` | Required | Device model |
+| `Model` | `models.Optional[string]` | Optional | Device model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Mount` | `models.Optional[string]` | Optional | - |
 | `Name` | `models.Optional[string]` | Optional | - |

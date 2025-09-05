@@ -23,7 +23,7 @@ func NewSitesStatsDiscoveredSwitches(baseController baseController) *SitesStatsD
 	return &sitesStatsDiscoveredSwitches
 }
 
-// SearchSiteDiscoveredSwitchesMetrics takes context, siteId, scope, mType, limit, start, end, duration as parameters and
+// SearchSiteDiscoveredSwitchesMetrics takes context, siteId, scope, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseDiscoveredSwitchMetrics data and
 // an error if there was an issue with the request or response.
 // Search Discovered Switch Metrics
@@ -35,7 +35,8 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitchesMetrics(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseDiscoveredSwitchMetrics],
 	error) {
 	req := s.prepareRequest(
@@ -78,6 +79,9 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitchesMetrics(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseDiscoveredSwitchMetrics
@@ -204,7 +208,7 @@ func (s *SitesStatsDiscoveredSwitches) ListSiteDiscoveredSwitchesMetrics(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDiscoveredSwitches takes context, siteId, adopted, systemName, hostname, vendor, model, version, limit, start, end, duration as parameters and
+// SearchSiteDiscoveredSwitches takes context, siteId, adopted, systemName, hostname, vendor, model, version, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseDiscoveredSwitches data and
 // an error if there was an issue with the request or response.
 // Search Discovered Switches
@@ -220,7 +224,8 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitches(
 	limit *int,
 	start *int,
 	end *int,
-	duration *string) (
+	duration *string,
+	sort *string) (
 	models.ApiResponse[models.ResponseDiscoveredSwitches],
 	error) {
 	req := s.prepareRequest(
@@ -275,6 +280,9 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitches(
 	}
 	if duration != nil {
 		req.QueryParam("duration", *duration)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 
 	var result models.ResponseDiscoveredSwitches

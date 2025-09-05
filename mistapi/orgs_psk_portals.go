@@ -233,18 +233,19 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgPskPortalLogs takes context, orgId, start, end, duration, limit, page, pskName, pskId, pskportalId, id, adminName, adminId, nameId as parameters and
+// SearchOrgPskPortalLogs takes context, orgId, limit, page, start, end, duration, sort, pskName, pskId, pskportalId, id, adminName, adminId, nameId as parameters and
 // returns an models.ApiResponse with models.ResponsePskPortalLogsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org PSK Portal Logs
 func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
+	limit *int,
+	page *int,
 	start *int,
 	end *int,
 	duration *string,
-	limit *int,
-	page *int,
+	sort *string,
 	pskName *string,
 	pskId *string,
 	pskportalId *string,
@@ -273,6 +274,12 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -282,11 +289,8 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 	if duration != nil {
 		req.QueryParam("duration", *duration)
 	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 	if pskName != nil {
 		req.QueryParam("psk_name", *pskName)

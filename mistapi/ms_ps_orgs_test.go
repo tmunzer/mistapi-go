@@ -136,7 +136,8 @@ func TestMSPsOrgsTestSearchMspOrgs(t *testing.T) {
 	trialEnabled := bool(false)
 
 	limit := int(100)
-	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit)
+	sort := "timestamp"
+	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -165,7 +166,8 @@ func TestMSPsOrgsTestSearchMspOrgs1(t *testing.T) {
 	trialEnabled := bool(false)
 
 	limit := int(100)
-	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit)
+	sort := "timestamp"
+	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
