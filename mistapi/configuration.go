@@ -175,6 +175,7 @@ const (
 	MIST_APAC_01   Environment = "Mist APAC 01"
 	AWS_STAGING    Environment = "AWS Staging"
 	GOV_CLOUD      Environment = "GOV CLOUD"
+	MIST_APAC_02   Environment = "Mist APAC 02"
 	MIST_APAC_03   Environment = "Mist APAC 03"
 )
 

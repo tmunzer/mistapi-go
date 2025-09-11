@@ -1751,6 +1751,11 @@ func getBaseUri(
 			return "https://api.ac5.mist.com"
 		}
 	}
+	if configuration.Environment() == Environment(MIST_APAC_02) {
+		if server == Server(APIHOST) {
+			return "https://api.gc5.mist.com"
+		}
+	}
 	if configuration.Environment() == Environment(MIST_APAC_03) {
 		if server == Server(APIHOST) {
 			return "https://api.gc7.mist.com"

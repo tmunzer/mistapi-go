@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2508.1.15**
+> Version: **2508.1.17**
 > 
-> Date: **September 5, 2025**
+> Date: **September 10, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -148,6 +148,7 @@ The SDK can be configured to use a different environment for making API calls. A
 | Mist EMEA 03 | - |
 | Mist EMEA 04 | - |
 | Mist APAC 01 | - |
+| Mist APAC 02 | - |
 | Mist APAC 03 | - |
 
 ## Authorization

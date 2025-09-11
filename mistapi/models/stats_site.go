@@ -13,7 +13,7 @@ import (
 // StatsSite represents a StatsSite struct.
 // Site statistics
 type StatsSite struct {
-	Address         string              `json:"address"`
+	Address         *string             `json:"address,omitempty"`
 	AlarmtemplateId Optional[uuid.UUID] `json:"alarmtemplate_id"`
 	CountryCode     string              `json:"country_code"`
 	// When the object has been created, in epoch
@@ -25,7 +25,7 @@ type StatsSite struct {
 	Lng    *float64  `json:"lng,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime         float64                `json:"modified_time"`
-	MspId                uuid.UUID              `json:"msp_id"`
+	MspId                *uuid.UUID             `json:"msp_id,omitempty"`
 	Name                 string                 `json:"name"`
 	NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
 	NumAp                int                    `json:"num_ap"`
@@ -40,7 +40,7 @@ type StatsSite struct {
 	OrgId                uuid.UUID              `json:"org_id"`
 	RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
 	SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
-	SitegroupIds         []uuid.UUID            `json:"sitegroup_ids"`
+	SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
 	Timezone             string                 `json:"timezone"`
 	Tzoffset             int                    `json:"tzoffset"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -70,7 +70,9 @@ func (s StatsSite) MarshalJSON() (
 func (s StatsSite) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
-	structMap["address"] = s.Address
+	if s.Address != nil {
+		structMap["address"] = s.Address
+	}
 	if s.AlarmtemplateId.IsValueSet() {
 		if s.AlarmtemplateId.Value() != nil {
 			structMap["alarmtemplate_id"] = s.AlarmtemplateId.Value()
@@ -89,7 +91,9 @@ func (s StatsSite) toMap() map[string]any {
 		structMap["lng"] = s.Lng
 	}
 	structMap["modified_time"] = s.ModifiedTime
-	structMap["msp_id"] = s.MspId
+	if s.MspId != nil {
+		structMap["msp_id"] = s.MspId
+	}
 	structMap["name"] = s.Name
 	if s.NetworktemplateId.IsValueSet() {
 		if s.NetworktemplateId.Value() != nil {
@@ -122,7 +126,9 @@ func (s StatsSite) toMap() map[string]any {
 			structMap["secpolicy_id"] = nil
 		}
 	}
-	structMap["sitegroup_ids"] = s.SitegroupIds
+	if s.SitegroupIds != nil {
+		structMap["sitegroup_ids"] = s.SitegroupIds
+	}
 	structMap["timezone"] = s.Timezone
 	structMap["tzoffset"] = s.Tzoffset
 	return structMap
@@ -146,7 +152,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	}
 	s.AdditionalProperties = additionalProperties
 
-	s.Address = *temp.Address
+	s.Address = temp.Address
 	s.AlarmtemplateId = temp.AlarmtemplateId
 	s.CountryCode = *temp.CountryCode
 	s.CreatedTime = *temp.CreatedTime
@@ -155,7 +161,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	s.Latlng = *temp.Latlng
 	s.Lng = temp.Lng
 	s.ModifiedTime = *temp.ModifiedTime
-	s.MspId = *temp.MspId
+	s.MspId = temp.MspId
 	s.Name = *temp.Name
 	s.NetworktemplateId = temp.NetworktemplateId
 	s.NumAp = *temp.NumAp
@@ -170,7 +176,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	s.OrgId = *temp.OrgId
 	s.RftemplateId = temp.RftemplateId
 	s.SecpolicyId = temp.SecpolicyId
-	s.SitegroupIds = *temp.SitegroupIds
+	s.SitegroupIds = temp.SitegroupIds
 	s.Timezone = *temp.Timezone
 	s.Tzoffset = *temp.Tzoffset
 	return nil
@@ -178,7 +184,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 
 // tempStatsSite is a temporary struct used for validating the fields of StatsSite.
 type tempStatsSite struct {
-	Address             *string             `json:"address"`
+	Address             *string             `json:"address,omitempty"`
 	AlarmtemplateId     Optional[uuid.UUID] `json:"alarmtemplate_id"`
 	CountryCode         *string             `json:"country_code"`
 	CreatedTime         *float64            `json:"created_time"`
@@ -187,7 +193,7 @@ type tempStatsSite struct {
 	Latlng              *LatLng             `json:"latlng"`
 	Lng                 *float64            `json:"lng,omitempty"`
 	ModifiedTime        *float64            `json:"modified_time"`
-	MspId               *uuid.UUID          `json:"msp_id"`
+	MspId               *uuid.UUID          `json:"msp_id,omitempty"`
 	Name                *string             `json:"name"`
 	NetworktemplateId   Optional[uuid.UUID] `json:"networktemplate_id"`
 	NumAp               *int                `json:"num_ap"`
@@ -202,16 +208,13 @@ type tempStatsSite struct {
 	OrgId               *uuid.UUID          `json:"org_id"`
 	RftemplateId        Optional[uuid.UUID] `json:"rftemplate_id"`
 	SecpolicyId         Optional[uuid.UUID] `json:"secpolicy_id"`
-	SitegroupIds        *[]uuid.UUID        `json:"sitegroup_ids"`
+	SitegroupIds        []uuid.UUID         `json:"sitegroup_ids,omitempty"`
 	Timezone            *string             `json:"timezone"`
 	Tzoffset            *int                `json:"tzoffset"`
 }
 
 func (s *tempStatsSite) validate() error {
 	var errs []string
-	if s.Address == nil {
-		errs = append(errs, "required field `address` is missing for type `stats_site`")
-	}
 	if s.CountryCode == nil {
 		errs = append(errs, "required field `country_code` is missing for type `stats_site`")
 	}
@@ -226,9 +229,6 @@ func (s *tempStatsSite) validate() error {
 	}
 	if s.ModifiedTime == nil {
 		errs = append(errs, "required field `modified_time` is missing for type `stats_site`")
-	}
-	if s.MspId == nil {
-		errs = append(errs, "required field `msp_id` is missing for type `stats_site`")
 	}
 	if s.Name == nil {
 		errs = append(errs, "required field `name` is missing for type `stats_site`")
@@ -262,9 +262,6 @@ func (s *tempStatsSite) validate() error {
 	}
 	if s.OrgId == nil {
 		errs = append(errs, "required field `org_id` is missing for type `stats_site`")
-	}
-	if s.SitegroupIds == nil {
-		errs = append(errs, "required field `sitegroup_ids` is missing for type `stats_site`")
 	}
 	if s.Timezone == nil {
 		errs = append(errs, "required field `timezone` is missing for type `stats_site`")
