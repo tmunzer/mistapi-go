@@ -9,12 +9,16 @@ import (
 
 // SettingSsr represents a SettingSsr struct.
 type SettingSsr struct {
+	// auto_upgrade device first time it is onboarded
+	AutoUpgrade *SettingSsrAutoUpgrade `json:"auto_upgrade,omitempty"`
 	// List of Conductor IP Addresses or Hosts to be used by the SSR Devices
 	ConductorHosts []string `json:"conductor_hosts,omitempty"`
 	// Token to be used by the SSR Devices to connect to the Conductor
 	ConductorToken *string `json:"conductor_token,omitempty"`
 	// Disable stats collection on SSR devices
-	DisableStats         *bool                  `json:"disable_stats,omitempty"`
+	DisableStats *bool `json:"disable_stats,omitempty"`
+	// Proxy Configuration to talk to Mist
+	Proxy                *Proxy                 `json:"proxy,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -22,8 +26,8 @@ type SettingSsr struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SettingSsr) String() string {
 	return fmt.Sprintf(
-		"SettingSsr[ConductorHosts=%v, ConductorToken=%v, DisableStats=%v, AdditionalProperties=%v]",
-		s.ConductorHosts, s.ConductorToken, s.DisableStats, s.AdditionalProperties)
+		"SettingSsr[AutoUpgrade=%v, ConductorHosts=%v, ConductorToken=%v, DisableStats=%v, Proxy=%v, AdditionalProperties=%v]",
+		s.AutoUpgrade, s.ConductorHosts, s.ConductorToken, s.DisableStats, s.Proxy, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SettingSsr.
@@ -32,7 +36,7 @@ func (s SettingSsr) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"conductor_hosts", "conductor_token", "disable_stats"); err != nil {
+		"auto_upgrade", "conductor_hosts", "conductor_token", "disable_stats", "proxy"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -42,6 +46,9 @@ func (s SettingSsr) MarshalJSON() (
 func (s SettingSsr) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
+	if s.AutoUpgrade != nil {
+		structMap["auto_upgrade"] = s.AutoUpgrade.toMap()
+	}
 	if s.ConductorHosts != nil {
 		structMap["conductor_hosts"] = s.ConductorHosts
 	}
@@ -50,6 +57,9 @@ func (s SettingSsr) toMap() map[string]any {
 	}
 	if s.DisableStats != nil {
 		structMap["disable_stats"] = s.DisableStats
+	}
+	if s.Proxy != nil {
+		structMap["proxy"] = s.Proxy.toMap()
 	}
 	return structMap
 }
@@ -62,21 +72,25 @@ func (s *SettingSsr) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "conductor_hosts", "conductor_token", "disable_stats")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade", "conductor_hosts", "conductor_token", "disable_stats", "proxy")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
+	s.AutoUpgrade = temp.AutoUpgrade
 	s.ConductorHosts = temp.ConductorHosts
 	s.ConductorToken = temp.ConductorToken
 	s.DisableStats = temp.DisableStats
+	s.Proxy = temp.Proxy
 	return nil
 }
 
 // tempSettingSsr is a temporary struct used for validating the fields of SettingSsr.
 type tempSettingSsr struct {
-	ConductorHosts []string `json:"conductor_hosts,omitempty"`
-	ConductorToken *string  `json:"conductor_token,omitempty"`
-	DisableStats   *bool    `json:"disable_stats,omitempty"`
+	AutoUpgrade    *SettingSsrAutoUpgrade `json:"auto_upgrade,omitempty"`
+	ConductorHosts []string               `json:"conductor_hosts,omitempty"`
+	ConductorToken *string                `json:"conductor_token,omitempty"`
+	DisableStats   *bool                  `json:"disable_stats,omitempty"`
+	Proxy          *Proxy                 `json:"proxy,omitempty"`
 }

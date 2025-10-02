@@ -45,7 +45,7 @@ MxTunnels statistics
   "for_site": false,
   "fwupdate": {
     "progress": 100,
-    "status": "upgraded",
+    "status": "inprogress",
     "status_id": 70,
     "timestamp": 147.68,
     "will_retry": false,

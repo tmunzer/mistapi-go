@@ -32,7 +32,7 @@
     "allow_rrm_disable": false,
     "ant_gain": 0,
     "antenna_mode": "1x1",
-    "bandwidth": 20,
+    "bandwidth": 0,
     "channels": [
       221
     ],

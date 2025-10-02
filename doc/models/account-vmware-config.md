@@ -14,6 +14,7 @@
 | `ClientId` | `string` | Required | Customer account Client ID |
 | `ClientSecret` | `string` | Required | Customer account Client Secret |
 | `InstanceUrl` | `string` | Required | Customer account VMware instance URL |
+| `WebhookEnabled` | `bool` | Required | Enables or disables the webhook integration |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -23,6 +24,7 @@
   "client_id": "client_id8",
   "client_secret": "client_secret4",
   "instance_url": "instance_url4",
+  "webhook_enabled": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

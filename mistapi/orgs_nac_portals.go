@@ -245,8 +245,8 @@ func (o *OrgsNACPortals) ListOrgNacPortalSsoLatestFailures(
 	ctx context.Context,
 	orgId uuid.UUID,
 	nacportalId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

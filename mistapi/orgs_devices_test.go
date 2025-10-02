@@ -67,7 +67,7 @@ func TestOrgsDevicesTestCountOrgDevices(t *testing.T) {
 	managed := "true"
 	mac := "5c5b53010101"
 	version := "10.0.0"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	mxedgeId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
@@ -81,7 +81,7 @@ func TestOrgsDevicesTestCountOrgDevices(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ipAddress, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
+	apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ip, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -111,7 +111,7 @@ func TestOrgsDevicesTestCountOrgDevices1(t *testing.T) {
 	managed := "true"
 	mac := "5c5b53010101"
 	version := "10.0.0"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	mxedgeId, errUUID := uuid.Parse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 	if errUUID != nil {
@@ -125,7 +125,7 @@ func TestOrgsDevicesTestCountOrgDevices1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ipAddress, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
+	apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ip, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -323,7 +323,7 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeDefaultApEnum("ap")
+	deviceType := models.LastConfigDeviceTypeEnum("ap")
 	mac := "5c5b53010101"
 	name := "My AP"
 	version := "10.0.0"
@@ -331,7 +331,7 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs(t *testing.T) {
 	limit := int(100)
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
+	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &deviceType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -351,7 +351,7 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeDefaultApEnum("ap")
+	deviceType := models.LastConfigDeviceTypeEnum("ap")
 	mac := "5c5b53010101"
 	name := "My AP"
 	version := "10.0.0"
@@ -359,7 +359,7 @@ func TestOrgsDevicesTestSearchOrgDeviceLastConfigs1(t *testing.T) {
 	limit := int(100)
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
+	apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &deviceType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -438,7 +438,7 @@ func TestOrgsDevicesTestSearchOrgDevices(t *testing.T) {
 	evpntopoId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 	extIp := "83.42.53.1"
 	hostname := "my-hostname"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	lastConfigStatus := "success"
 	lastHostname := "my-last-hostname"
 	lldpMgmtAddr := "10.4.2.3"
@@ -464,7 +464,7 @@ func TestOrgsDevicesTestSearchOrgDevices(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -499,7 +499,7 @@ func TestOrgsDevicesTestSearchOrgDevices1(t *testing.T) {
 	evpntopoId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
 	extIp := "83.42.53.1"
 	hostname := "my-hostname"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	lastConfigStatus := "success"
 	lastHostname := "my-last-hostname"
 	lldpMgmtAddr := "10.4.2.3"
@@ -525,7 +525,7 @@ func TestOrgsDevicesTestSearchOrgDevices1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

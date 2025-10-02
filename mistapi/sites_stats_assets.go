@@ -30,8 +30,8 @@ func NewSitesStatsAssets(baseController baseController) *SitesStatsAssets {
 func (s *SitesStatsAssets) ListSiteAssetsStats(
 	ctx context.Context,
 	siteId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -151,8 +151,8 @@ func (s *SitesStatsAssets) SearchSiteAssets(
 	beam *string,
 	rssi *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseStatsAssets],
@@ -252,8 +252,8 @@ func (s *SitesStatsAssets) GetSiteAssetStats(
 	ctx context.Context,
 	siteId uuid.UUID,
 	assetId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.StatsAsset],
 	error) {
@@ -303,8 +303,8 @@ func (s *SitesStatsAssets) GetSiteAssetStats(
 func (s *SitesStatsAssets) ListSiteDiscoveredAssets(
 	ctx context.Context,
 	siteId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -363,8 +363,8 @@ func (s *SitesStatsAssets) GetSiteAssetsOfInterest(
 	ctx context.Context,
 	siteId uuid.UUID,
 	duration *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	limit *int,
 	page *int) (
 	models.ApiResponse[[]models.AssetOfInterest],

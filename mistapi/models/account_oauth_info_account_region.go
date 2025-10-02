@@ -9,8 +9,12 @@ import (
 
 // AccountOauthInfoAccountRegion represents a AccountOauthInfoAccountRegion struct.
 type AccountOauthInfoAccountRegion struct {
+	// Bandwidth Aggregate region for this region
+	AggregateRegion *string `json:"aggregate_region,omitempty"`
 	// Allocated bandwidth for the region, in Mbps
-	AllocatedBandwidth   *int                   `json:"allocated_bandwidth,omitempty"`
+	AllocatedBandwidth *int `json:"allocated_bandwidth,omitempty"`
+	// Display name for this region
+	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +22,8 @@ type AccountOauthInfoAccountRegion struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthInfoAccountRegion) String() string {
 	return fmt.Sprintf(
-		"AccountOauthInfoAccountRegion[AllocatedBandwidth=%v, AdditionalProperties=%v]",
-		a.AllocatedBandwidth, a.AdditionalProperties)
+		"AccountOauthInfoAccountRegion[AggregateRegion=%v, AllocatedBandwidth=%v, Name=%v, AdditionalProperties=%v]",
+		a.AggregateRegion, a.AllocatedBandwidth, a.Name, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfoAccountRegion.
@@ -28,7 +32,7 @@ func (a AccountOauthInfoAccountRegion) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"allocated_bandwidth"); err != nil {
+		"aggregate_region", "allocated_bandwidth", "name"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -38,8 +42,14 @@ func (a AccountOauthInfoAccountRegion) MarshalJSON() (
 func (a AccountOauthInfoAccountRegion) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
+	if a.AggregateRegion != nil {
+		structMap["aggregate_region"] = a.AggregateRegion
+	}
 	if a.AllocatedBandwidth != nil {
 		structMap["allocated_bandwidth"] = a.AllocatedBandwidth
+	}
+	if a.Name != nil {
+		structMap["name"] = a.Name
 	}
 	return structMap
 }
@@ -52,17 +62,21 @@ func (a *AccountOauthInfoAccountRegion) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allocated_bandwidth")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aggregate_region", "allocated_bandwidth", "name")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
+	a.AggregateRegion = temp.AggregateRegion
 	a.AllocatedBandwidth = temp.AllocatedBandwidth
+	a.Name = temp.Name
 	return nil
 }
 
 // tempAccountOauthInfoAccountRegion is a temporary struct used for validating the fields of AccountOauthInfoAccountRegion.
 type tempAccountOauthInfoAccountRegion struct {
-	AllocatedBandwidth *int `json:"allocated_bandwidth,omitempty"`
+	AggregateRegion    *string `json:"aggregate_region,omitempty"`
+	AllocatedBandwidth *int    `json:"allocated_bandwidth,omitempty"`
+	Name               *string `json:"name,omitempty"`
 }

@@ -45,6 +45,7 @@
     "5684dae9ac8b": {
       "ip": "192.168.70.35",
       "name": "John",
+      "ip6": "ip66",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

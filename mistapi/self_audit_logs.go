@@ -29,8 +29,8 @@ func NewSelfAuditLogs(baseController baseController) *SelfAuditLogs {
 // Audit logs records all administrative activities done by current admin across all orgs
 func (s *SelfAuditLogs) ListSelfAuditLogs(
 	ctx context.Context,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

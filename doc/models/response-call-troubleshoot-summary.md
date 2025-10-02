@@ -24,6 +24,8 @@
   "meeting_id": "b784d744-9a7c-4fad-9af0-f78858a319b1",
   "results": [
     {
+      "ap_num_clients": 15.88,
+      "ap_rtt": 252.92,
       "audio_in": {
         "ap_num_clients": 152.32,
         "ap_rtt": 133.36,
@@ -46,35 +48,15 @@
           "key2": "val2"
         }
       },
-      "timestamp": 2.64,
-      "video_in": {
-        "ap_num_clients": 44.64,
-        "ap_rtt": 25.68,
-        "client_cpu": 16.46,
-        "client_n_streams": 98.68,
-        "client_radio_band": 191.72,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "video_out": {
-        "ap_num_clients": 6.98,
-        "ap_rtt": 244.02,
-        "client_cpu": 201.88,
-        "client_n_streams": 61.02,
-        "client_radio_band": 154.06,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
+      "client_cpu": 45.22,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
       }
     },
     {
+      "ap_num_clients": 15.88,
+      "ap_rtt": 252.92,
       "audio_in": {
         "ap_num_clients": 152.32,
         "ap_rtt": 133.36,
@@ -97,35 +79,15 @@
           "key2": "val2"
         }
       },
-      "timestamp": 2.64,
-      "video_in": {
-        "ap_num_clients": 44.64,
-        "ap_rtt": 25.68,
-        "client_cpu": 16.46,
-        "client_n_streams": 98.68,
-        "client_radio_band": 191.72,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "video_out": {
-        "ap_num_clients": 6.98,
-        "ap_rtt": 244.02,
-        "client_cpu": 201.88,
-        "client_n_streams": 61.02,
-        "client_radio_band": 154.06,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
+      "client_cpu": 45.22,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"
       }
     },
     {
+      "ap_num_clients": 15.88,
+      "ap_rtt": 252.92,
       "audio_in": {
         "ap_num_clients": 152.32,
         "ap_rtt": 133.36,
@@ -148,29 +110,7 @@
           "key2": "val2"
         }
       },
-      "timestamp": 2.64,
-      "video_in": {
-        "ap_num_clients": 44.64,
-        "ap_rtt": 25.68,
-        "client_cpu": 16.46,
-        "client_n_streams": 98.68,
-        "client_radio_band": 191.72,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "video_out": {
-        "ap_num_clients": 6.98,
-        "ap_rtt": 244.02,
-        "client_cpu": 201.88,
-        "client_n_streams": 61.02,
-        "client_radio_band": 154.06,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
+      "client_cpu": 45.22,
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

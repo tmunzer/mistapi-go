@@ -347,22 +347,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-[
-  {
-    "eol_time": 1671062400,
-    "eos_time": 1828828800,
-    "model": "EX4300-48T",
-    "serial": "PE3721050223",
-    "sku": "EX4300-48T-AFI",
-    "type": "switch",
-    "warranty_type": "Enhanced Hardware Warranty"
-  }
-]
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -388,6 +372,7 @@ SearchOrgJsiAssetsAndContracts(
     orgId uuid.UUID,
     model *string,
     serial *string,
+    sku *string,
     status *models.DeviceStatusEnum,
     warrantyType *models.JsiWarrantyTypeEnum,
     eolDuration *string,
@@ -407,6 +392,7 @@ SearchOrgJsiAssetsAndContracts(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `model` | `*string` | Query, Optional | Device model |
 | `serial` | `*string` | Query, Optional | Device serial |
+| `sku` | `*string` | Query, Optional | SKU name of the device |
 | `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | Device status<br><br>**Default**: `"all"` |
 | `warrantyType` | [`*models.JsiWarrantyTypeEnum`](../../doc/models/jsi-warranty-type-enum.md) | Query, Optional | Device warranty type |
 | `eolDuration` | `*string` | Query, Optional | Device EOL duration in days |
@@ -431,6 +417,8 @@ model := "AP43"
 
 serial := "FXLH2015150025"
 
+sku := "EX2300"
+
 status := models.DeviceStatusEnum_ALL
 
 eolDuration := "30d"
@@ -443,35 +431,13 @@ page := 1
 
 sort := "-site_id"
 
-apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
+apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1748023308,
-  "limit": 1000,
-  "results": [
-    {
-      "eol_time": 1671062400,
-      "eos_time": 1828828800,
-      "model": "EX4300-48T",
-      "serial": "PE3721050223",
-      "sku": "EX4300-48T-AFI",
-      "type": "switch",
-      "warranty_type": "Enhanced Hardware Warranty"
-    }
-  ],
-  "start": 1748019708,
-  "total": 1
 }
 ```
 

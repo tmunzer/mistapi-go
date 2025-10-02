@@ -34,7 +34,7 @@
 | `NumLocatingAps` | `*int` | Optional | Number of APs used to locate this client |
 | `Os` | `string` | Required | Device os, through fingerprinting |
 | `PowerSaving` | `*bool` | Optional | If it’s currently in power-save mode |
-| `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | enum: `a`, `ac`, `ax`, `b`, `g`, `n` |
+| `Proto` | [`models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Required | enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n` |
 | `PskId` | `*uuid.UUID` | Optional | PSK id (if multi-psk is used) |
 | `Rssi` | `float64` | Required | Signal strength |
 | `Rssizones` | [`[]models.StatsWirelessClientRssiZone`](../../doc/models/stats-wireless-client-rssi-zone.md) | Optional | List of rssizone_id’s where client is in and since when (if known) |
@@ -83,7 +83,7 @@
   "manufacture": "manufacture4",
   "model": "model8",
   "os": "os8",
-  "proto": "g",
+  "proto": "b",
   "rssi": 66.02,
   "rx_bps": 60003,
   "rx_bytes": 8515104416,

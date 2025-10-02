@@ -41,8 +41,8 @@ GetSiteSleClassifierDetails(
     scopeId string,
     metric string,
     classifier string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[models.SleClassifierSummary],
     error)
@@ -57,8 +57,8 @@ GetSiteSleClassifierDetails(
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
 | `classifier` | `string` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
@@ -223,8 +223,8 @@ GetSiteSleHistogram(
     scope models.SiteSleHistogramScopeParametersEnum,
     scopeId string,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[models.SleHistogram],
     error)
@@ -238,8 +238,8 @@ GetSiteSleHistogram(
 | `scope` | [`models.SiteSleHistogramScopeParametersEnum`](../../doc/models/site-sle-histogram-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
@@ -395,8 +395,8 @@ GetSiteSleImpactSummary(
     scope models.SiteSleImpactSummaryScopeParametersEnum,
     scopeId string,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     fields *models.SiteSleImpactSummaryFieldsParameterEnum,
     classifier *string) (
@@ -412,8 +412,8 @@ GetSiteSleImpactSummary(
 | `scope` | [`models.SiteSleImpactSummaryScopeParametersEnum`](../../doc/models/site-sle-impact-summary-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `fields` | [`*models.SiteSleImpactSummaryFieldsParameterEnum`](../../doc/models/site-sle-impact-summary-fields-parameter-enum.md) | Query, Optional | - |
 | `classifier` | `*string` | Query, Optional | - |
@@ -610,8 +610,8 @@ GetSiteSleSummary(
     scope models.SiteSleMetricSummaryScopeParametersEnum,
     scopeId string,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[models.SleSummary],
     error)
@@ -625,8 +625,8 @@ GetSiteSleSummary(
 | `scope` | [`models.SiteSleMetricSummaryScopeParametersEnum`](../../doc/models/site-sle-metric-summary-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
@@ -1228,8 +1228,8 @@ ListSiteSleImpactedApplications(
     scope models.SiteSleScopeEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedApplications],
@@ -1244,8 +1244,8 @@ ListSiteSleImpactedApplications(
 | `scope` | [`models.SiteSleScopeEnum`](../../doc/models/site-sle-scope-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1325,8 +1325,8 @@ ListSiteSleImpactedAps(
     scope models.SiteSleImpactedApsScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedAps],
@@ -1341,8 +1341,8 @@ ListSiteSleImpactedAps(
 | `scope` | [`models.SiteSleImpactedApsScopeParametersEnum`](../../doc/models/site-sle-impacted-aps-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1428,8 +1428,8 @@ ListSiteSleImpactedChassis(
     scope models.SiteSleImpactedChassisScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedChassis],
@@ -1444,8 +1444,8 @@ ListSiteSleImpactedChassis(
 | `scope` | [`models.SiteSleImpactedChassisScopeParametersEnum`](../../doc/models/site-sle-impacted-chassis-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1526,8 +1526,8 @@ ListSiteSleImpactedGateways(
     scope models.SiteSleImpactedGatewaysScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedGateways],
@@ -1542,8 +1542,8 @@ ListSiteSleImpactedGateways(
 | `scope` | [`models.SiteSleImpactedGatewaysScopeParametersEnum`](../../doc/models/site-sle-impacted-gateways-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1624,8 +1624,8 @@ ListSiteSleImpactedInterfaces(
     scope models.SiteSleImpactedInterfacesScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedInterfaces],
@@ -1640,8 +1640,8 @@ ListSiteSleImpactedInterfaces(
 | `scope` | [`models.SiteSleImpactedInterfacesScopeParametersEnum`](../../doc/models/site-sle-impacted-interfaces-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1729,8 +1729,8 @@ ListSiteSleImpactedSwitches(
     scope models.SiteSleImpactedSwitchesScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedSwitches],
@@ -1745,8 +1745,8 @@ ListSiteSleImpactedSwitches(
 | `scope` | [`models.SiteSleImpactedSwitchesScopeParametersEnum`](../../doc/models/site-sle-impacted-switches-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1831,8 +1831,8 @@ ListSiteSleImpactedWiredClients(
     scope models.SiteSleImpactedClientsScopeParametersEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedClients],
@@ -1847,8 +1847,8 @@ ListSiteSleImpactedWiredClients(
 | `scope` | [`models.SiteSleImpactedClientsScopeParametersEnum`](../../doc/models/site-sle-impacted-clients-scope-parameters-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 
@@ -1936,8 +1936,8 @@ ListSiteSleImpactedWirelessClients(
     scope models.SiteSleImpactedUsersScopeParameterEnum,
     scopeId uuid.UUID,
     metric string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     classifier *string) (
     models.ApiResponse[models.SleImpactedUsers],
@@ -1952,8 +1952,8 @@ ListSiteSleImpactedWirelessClients(
 | `scope` | [`models.SiteSleImpactedUsersScopeParameterEnum`](../../doc/models/site-sle-impacted-users-scope-parameter-enum.md) | Template, Required | - |
 | `scopeId` | `uuid.UUID` | Template, Required | - |
 | `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `classifier` | `*string` | Query, Optional | - |
 

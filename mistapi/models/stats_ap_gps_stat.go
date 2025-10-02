@@ -17,9 +17,7 @@ type StatsApGpsStat struct {
 	Latitude *float64 `json:"latitude,omitempty"`
 	// The geographic longitude of the AP, measured in degrees.
 	Longitude *float64 `json:"longitude,omitempty"`
-	// The origin of the GPS data. enum:
-	// * `gps`: from this device’s GPS estimates
-	// * `other_ap` from neighboring device GPS estimates
+	// The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_ap` from neighboring device GPS estimates. Note: API responses may return `other_aps` which should be treated as `other_ap`
 	Src *StatsApGpsStatSrcEnum `json:"src,omitempty"`
 	// Epoch (seconds)
 	Timestamp            *float64               `json:"timestamp,omitempty"`

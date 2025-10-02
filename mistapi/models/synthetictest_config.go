@@ -16,7 +16,7 @@ type SynthetictestConfig struct {
 	Disabled     *bool                                     `json:"disabled,omitempty"`
 	// List of networks to be used for synthetic tests
 	LanNetworks          []SynthetictestConfigLanNetwork  `json:"lan_networks,omitempty"`
-	Vlans                []SynthetictestConfigVlan        `json:"vlans,omitempty"`
+	Vlans                []SynthetictestConfigVlan        `json:"vlans,omitempty"` // Deprecated
 	WanSpeedtest         *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`
 }

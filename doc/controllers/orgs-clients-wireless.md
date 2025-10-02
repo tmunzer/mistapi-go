@@ -35,8 +35,8 @@ CountOrgWirelessClientEvents(
     band *models.Dot11BandEnum,
     wlanId *string,
     siteId *uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -57,8 +57,8 @@ CountOrgWirelessClientEvents(
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*string` | Query, Optional | WLAN ID |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -137,9 +137,9 @@ CountOrgWirelessClients(
     ap *string,
     vlan *string,
     ssid *string,
-    ipAddress *string,
-    start *int,
-    end *int,
+    ip *string,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -160,9 +160,9 @@ CountOrgWirelessClients(
 | `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
 | `vlan` | `*string` | Query, Optional | VLAN |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `ipAddress` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `ip` | `*string` | Query, Optional | - |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -195,13 +195,13 @@ vlan := "10"
 
 ssid := "MySSID"
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ipAddress, nil, nil, &duration, &limit)
+apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ip, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -257,8 +257,8 @@ CountOrgWirelessClientsSessions(
     clientOs *string,
     ssid *string,
     wlanId *uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -279,8 +279,8 @@ CountOrgWirelessClientsSessions(
 | `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -371,10 +371,11 @@ SearchOrgWirelessClientEvents(
     band *models.Dot11BandEnum,
     wlanId *uuid.UUID,
     nacruleId *uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    limit *int) (
     models.ApiResponse[models.ResponseEventsSearch],
     error)
 ```
@@ -393,10 +394,11 @@ SearchOrgWirelessClientEvents(
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*uuid.UUID` | Query, Optional | WLAN_id |
 | `nacruleId` | `*uuid.UUID` | Query, Optional | Nacrule_id |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
 
@@ -425,7 +427,9 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort)
+limit := 100
+
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -492,8 +496,8 @@ SearchOrgWirelessClientSessions(
     pskId *string,
     pskName *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.SearchWirelessClientSession],
@@ -517,8 +521,8 @@ SearchOrgWirelessClientSessions(
 | `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -620,7 +624,7 @@ SearchOrgWirelessClients(
     orgId uuid.UUID,
     siteId *uuid.UUID,
     mac *string,
-    ipAddress *string,
+    ip *string,
     hostname *string,
     band *string,
     device *string,
@@ -634,8 +638,8 @@ SearchOrgWirelessClients(
     ssid *string,
     text *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseClientSearch],
@@ -649,7 +653,7 @@ SearchOrgWirelessClients(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `band` | `*string` | Query, Optional | Radio band. enum: `24`, `5`, `6` |
 | `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
@@ -663,8 +667,8 @@ SearchOrgWirelessClients(
 | `ssid` | `*string` | Query, Optional | SSID |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -683,7 +687,7 @@ siteId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
 mac := "5c5b53010101"
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 hostname := "my-hostname"
 
@@ -715,7 +719,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ipAddress, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ip, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

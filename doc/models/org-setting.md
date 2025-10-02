@@ -36,6 +36,7 @@ Org Settings
 | `Jcloud` | [`*models.OrgSettingJcloud`](../../doc/models/org-setting-jcloud.md) | Optional | - |
 | `JcloudRa` | [`*models.OrgSettingJcloudRa`](../../doc/models/org-setting-jcloud-ra.md) | Optional | JCloud Routing Assurance connexion |
 | `Juniper` | [`*models.AccountJuniperInfo`](../../doc/models/account-juniper-info.md) | Optional | - |
+| `JuniperSrx` | [`*models.OrgSettingJuniperSrx`](../../doc/models/org-setting-juniper-srx.md) | Optional | - |
 | `JunosShellAccess` | [`*models.OrgSettingJunosShellAccess`](../../doc/models/org-setting-junos-shell-access.md) | Optional | junos_shell_access: Manages role-based web-shell access.  <br>When junos_shell access is not defined (Default) - No additional users are configured and web-shell uses default `mist` user to login.  <br>When junos_shell_access is defined - Additional users mist-web-admin (admin permission), mist-web-viewer(viewer permission) are configured on the device and web-shell logs in with the mist-web-admin/mist-web-viewer user depending upon the shell access level. Setting the shell access level to "none", disables web-shell access for that specific role. |
 | `Marvis` | [`*models.Marvis`](../../doc/models/marvis.md) | Optional | - |
 | `Mgmt` | [`*models.OrgSettingMgmt`](../../doc/models/org-setting-mgmt.md) | Optional | management-related properties |
@@ -57,6 +58,7 @@ Org Settings
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
 | `Tags` | `[]string` | Optional | List of tags |
 | `UiIdleTimeout` | `*int` | Optional | Automatically logout the user when UI session is inactive. `0` means disabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 480` |
+| `UiNoTracking` | `*bool` | Optional | **Default**: `false` |
 | `VpnOptions` | [`*models.OrgSettingVpnOptions`](../../doc/models/org-setting-vpn-options.md) | Optional | - |
 | `WanPma` | [`*models.OrgSettingWanPma`](../../doc/models/org-setting-wan-pma.md) | Optional | - |
 | `WiredPma` | [`*models.OrgSettingWiredPma`](../../doc/models/org-setting-wired-pma.md) | Optional | - |
@@ -78,6 +80,7 @@ Org Settings
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "switch_updown_threshold": 0,
   "ui_idle_timeout": 10,
+  "ui_no_tracking": false,
   "api_policy": {
     "no_reveal": false,
     "exampleAdditionalProperty": {

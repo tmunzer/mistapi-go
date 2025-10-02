@@ -32,8 +32,8 @@ func (s *SitesEvents) ListSiteRoamingEvents(
 	siteId uuid.UUID,
 	mType *models.FastRoamResultEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.ResponseEventsFastroam],
 	error) {
@@ -91,8 +91,8 @@ func (s *SitesEvents) CountSiteSystemEvents(
 	siteId uuid.UUID,
 	distinct *models.SiteSystemEventsCountDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -154,8 +154,8 @@ func (s *SitesEvents) SearchSiteSystemEvents(
 	siteId uuid.UUID,
 	mType *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseDeviceEventsSearch],

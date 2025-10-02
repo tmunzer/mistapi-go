@@ -16,8 +16,9 @@ func TestOrgsDevicesSSRTestGetOrg128TRegistrationCommands(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	ttl := int(365)
-	apiResponse, err := orgsDevicesSsr.GetOrg128TRegistrationCommands(ctx, orgId, &ttl)
+	ttl := int(31536000)
+
+	apiResponse, err := orgsDevicesSsr.GetOrg128TRegistrationCommands(ctx, orgId, &ttl, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -37,8 +38,9 @@ func TestOrgsDevicesSSRTestGetOrg128TRegistrationCommands1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	ttl := int(365)
-	apiResponse, err := orgsDevicesSsr.GetOrg128TRegistrationCommands(ctx, orgId, &ttl)
+	ttl := int(31536000)
+
+	apiResponse, err := orgsDevicesSsr.GetOrg128TRegistrationCommands(ctx, orgId, &ttl, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

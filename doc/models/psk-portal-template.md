@@ -20,6 +20,7 @@
 | `TosError` | `*string` | Optional | Terror message for not accepting tos<br><br>**Default**: `"Please review and accept the Terms of Service"` |
 | `TosLink` | `*string` | Optional | **Default**: `"Terms of Service"` |
 | `TosText` | `*string` | Optional | terms and service text displayed in footer if tos is enabled<br><br>**Default**: `"<< provide your Terms of Service here >>"` |
+| `TosUrl` | `*string` | Optional | customized url for defining terms of service |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -33,6 +34,7 @@
   "tosError": "Please review and accept the Terms of Service",
   "tosLink": "Terms of Service",
   "tosText": "<< provide your Terms of Service here >>",
+  "tosUrl": "https://company.com/wifi-policy",
   "logo": "logo8",
   "tos": false,
   "exampleAdditionalProperty": {

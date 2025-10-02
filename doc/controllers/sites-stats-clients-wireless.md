@@ -140,8 +140,8 @@ GetSiteWirelessClientsStatsByMap(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int,
     page *int) (
@@ -155,8 +155,8 @@ GetSiteWirelessClientsStatsByMap(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mapId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
@@ -334,8 +334,8 @@ ListSiteWirelessClientsStats(
     siteId uuid.UUID,
     wired *bool,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[[]models.StatsClient],
     error)
@@ -348,8 +348,8 @@ ListSiteWirelessClientsStats(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `wired` | `*bool` | Query, Optional | **Default**: `false` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type

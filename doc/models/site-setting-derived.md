@@ -129,6 +129,11 @@
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
+| `WebhookAuthType` | `*string` | Optional | For VMWare accounts only |
+| `WebhookEnabled` | `*bool` | Optional | For VMWare accounts only |
+| `WebhookPassword` | `*string` | Optional | For VMWare accounts only |
+| `WebhookUrl` | `*string` | Optional | For VMWare accounts only |
+| `WebhookUsername` | `*string` | Optional | For VMWare accounts only |
 | `AdditionalProperties` | [`map[string]models.AccountOauthInfoAccount`](../../doc/models/account-oauth-info-account.md) | Optional | OAuth linked apps account info |
 
 ## Example (as JSON)
@@ -200,6 +205,10 @@
   "service_account_name": "Corp SA",
   "smartgroup_name": "CompliantGroup1",
   "tsg_id": "189953456",
+  "webhook_auth_type": "Basic",
+  "webhook_password": "password_1234",
+  "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
+  "webhook_username": "username_1234",
   "acl_policies": [
     {
       "actions": [

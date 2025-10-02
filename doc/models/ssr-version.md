@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `Default` | `*bool` | Optional | - |
 | `Package` | `string` | Required | - |
+| `Tags` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Version` | `string` | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -22,6 +23,11 @@
 {
   "default": false,
   "package": "package4",
+  "tags": [
+    "tags9",
+    "tags0",
+    "tags1"
+  ],
   "version": "version0",
   "exampleAdditionalProperty": {
     "key1": "val1",

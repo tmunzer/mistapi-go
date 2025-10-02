@@ -18,12 +18,12 @@ type EventsClient struct {
 	Band    Dot11BandEnum `json:"band"`
 	Bssid   *string       `json:"bssid,omitempty"`
 	Channel *int          `json:"channel,omitempty"`
-	// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA3-EAP-SHA256`
+	// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
 	KeyMgmt *ClientKeyMgmtEnum `json:"key_mgmt,omitempty"`
-	// enum: `a`, `ac`, `ax`, `b`, `g`, `n`
-	Proto Dot11ProtoEnum `json:"proto"`
-	Ssid  *string        `json:"ssid,omitempty"`
-	Text  *string        `json:"text,omitempty"`
+	// enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
+	Proto *Dot11ProtoEnum `json:"proto,omitempty"`
+	Ssid  *string         `json:"ssid,omitempty"`
+	Text  *string         `json:"text,omitempty"`
 	// Epoch (seconds)
 	Timestamp float64 `json:"timestamp"`
 	// Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE
@@ -71,7 +71,9 @@ func (e EventsClient) toMap() map[string]any {
 	if e.KeyMgmt != nil {
 		structMap["key_mgmt"] = e.KeyMgmt
 	}
-	structMap["proto"] = e.Proto
+	if e.Proto != nil {
+		structMap["proto"] = e.Proto
+	}
 	if e.Ssid != nil {
 		structMap["ssid"] = e.Ssid
 	}
@@ -114,7 +116,7 @@ func (e *EventsClient) UnmarshalJSON(input []byte) error {
 	e.Bssid = temp.Bssid
 	e.Channel = temp.Channel
 	e.KeyMgmt = temp.KeyMgmt
-	e.Proto = *temp.Proto
+	e.Proto = temp.Proto
 	e.Ssid = temp.Ssid
 	e.Text = temp.Text
 	e.Timestamp = *temp.Timestamp
@@ -131,7 +133,7 @@ type tempEventsClient struct {
 	Bssid     *string            `json:"bssid,omitempty"`
 	Channel   *int               `json:"channel,omitempty"`
 	KeyMgmt   *ClientKeyMgmtEnum `json:"key_mgmt,omitempty"`
-	Proto     *Dot11ProtoEnum    `json:"proto"`
+	Proto     *Dot11ProtoEnum    `json:"proto,omitempty"`
 	Ssid      *string            `json:"ssid,omitempty"`
 	Text      *string            `json:"text,omitempty"`
 	Timestamp *float64           `json:"timestamp"`
@@ -144,9 +146,6 @@ func (e *tempEventsClient) validate() error {
 	var errs []string
 	if e.Band == nil {
 		errs = append(errs, "required field `band` is missing for type `events_client`")
-	}
-	if e.Proto == nil {
-		errs = append(errs, "required field `proto` is missing for type `events_client`")
 	}
 	if e.Timestamp == nil {
 		errs = append(errs, "required field `timestamp` is missing for type `events_client`")

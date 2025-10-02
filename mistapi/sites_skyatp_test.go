@@ -19,11 +19,11 @@ func TestSitesSkyatpTestCountSiteSkyatpEvents(t *testing.T) {
 	}
 	distinct := models.SiteSkyAtpEventsCountDistinctEnum("type")
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ipAddress, nil, nil, &duration, &limit)
+	apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ip, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -45,11 +45,11 @@ func TestSitesSkyatpTestCountSiteSkyatpEvents1(t *testing.T) {
 	}
 	distinct := models.SiteSkyAtpEventsCountDistinctEnum("type")
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ipAddress, nil, nil, &duration, &limit)
+	apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ip, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -70,12 +70,12 @@ func TestSitesSkyatpTestSearchSiteSkyatpEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ipAddress, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -96,12 +96,12 @@ func TestSitesSkyatpTestSearchSiteSkyatpEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ipAddress, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

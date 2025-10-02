@@ -30,8 +30,8 @@ func NewOrgsStatsAssets(baseController baseController) *OrgsStatsAssets {
 func (o *OrgsStatsAssets) ListOrgAssetsStats(
 	ctx context.Context,
 	orgId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -151,8 +151,8 @@ func (o *OrgsStatsAssets) SearchOrgAssets(
 	beam *int,
 	rssi *int,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseStatsAssets],

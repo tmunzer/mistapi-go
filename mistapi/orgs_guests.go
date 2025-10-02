@@ -71,8 +71,8 @@ func (o *OrgsGuests) CountOrgGuestAuthorizations(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *models.OrgGuestsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -133,8 +133,8 @@ func (o *OrgsGuests) SearchOrgGuestAuthorization(
 	authMethod *string,
 	ssid *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseGuestSearch],

@@ -30,8 +30,8 @@ CountOrgOtherDeviceEvents(
     orgId uuid.UUID,
     distinct *models.OrgOtherdevicesEventsCountDistinctEnum,
     mType *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -45,8 +45,8 @@ CountOrgOtherDeviceEvents(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgOtherdevicesEventsCountDistinctEnum`](../../doc/models/org-otherdevices-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
 | `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -385,8 +385,8 @@ SearchOrgOtherDeviceEvents(
     vendor *string,
     mType *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseEventsOtherDevicesSearch],
@@ -405,8 +405,8 @@ SearchOrgOtherDeviceEvents(
 | `vendor` | `*string` | Query, Optional | Vendor name |
 | `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 

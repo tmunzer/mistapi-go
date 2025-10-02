@@ -14,7 +14,7 @@ type ApRadioBand6 struct {
 	AntGain         Optional[int] `json:"ant_gain"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 	AntennaMode *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
-	// channel width for the 6GHz band. enum: `20`, `40`, `80`, `160`
+	// channel width for the 6GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`, `160`
 	Bandwidth *Dot11Bandwidth6Enum `json:"bandwidth,omitempty"`
 	// For Device. (primary) channel for the band, 0 means using the Site Setting
 	Channel Optional[int] `json:"channel"`

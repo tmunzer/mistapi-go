@@ -9,11 +9,11 @@ import (
 
 // RrmBand represents a RrmBand struct.
 type RrmBand struct {
-	// channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
+	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
 	// proposed channel
 	Channel *int `json:"channel,omitempty"`
-	// channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
+	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	CurrBandwidth *Dot11BandwidthEnum `json:"curr_bandwidth,omitempty"`
 	// Current channel
 	CurrChannel *int `json:"curr_channel,omitempty"`

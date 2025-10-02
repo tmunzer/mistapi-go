@@ -26,6 +26,7 @@ type SwitchMatchingRule struct {
 	PortConfig map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
 	PortMirroring map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
+	StpConfig     *SwitchStpConfig                       `json:"stp_config,omitempty"`
 	// Switch settings
 	SwitchMgmt           *SwitchMgmt       `json:"switch_mgmt,omitempty"`
 	AdditionalProperties map[string]string `json:"_"`
@@ -35,8 +36,8 @@ type SwitchMatchingRule struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchMatchingRule) String() string {
 	return fmt.Sprintf(
-		"SwitchMatchingRule[AdditionalConfigCmds=%v, IpConfig=%v, Name=%v, OobIpConfig=%v, PortConfig=%v, PortMirroring=%v, SwitchMgmt=%v, AdditionalProperties=%v]",
-		s.AdditionalConfigCmds, s.IpConfig, s.Name, s.OobIpConfig, s.PortConfig, s.PortMirroring, s.SwitchMgmt, s.AdditionalProperties)
+		"SwitchMatchingRule[AdditionalConfigCmds=%v, IpConfig=%v, Name=%v, OobIpConfig=%v, PortConfig=%v, PortMirroring=%v, StpConfig=%v, SwitchMgmt=%v, AdditionalProperties=%v]",
+		s.AdditionalConfigCmds, s.IpConfig, s.Name, s.OobIpConfig, s.PortConfig, s.PortMirroring, s.StpConfig, s.SwitchMgmt, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchMatchingRule.
@@ -45,7 +46,7 @@ func (s SwitchMatchingRule) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt"); err != nil {
+		"additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "stp_config", "switch_mgmt"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -73,6 +74,9 @@ func (s SwitchMatchingRule) toMap() map[string]any {
 	if s.PortMirroring != nil {
 		structMap["port_mirroring"] = s.PortMirroring
 	}
+	if s.StpConfig != nil {
+		structMap["stp_config"] = s.StpConfig.toMap()
+	}
 	if s.SwitchMgmt != nil {
 		structMap["switch_mgmt"] = s.SwitchMgmt.toMap()
 	}
@@ -87,7 +91,7 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[string](input, "additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "switch_mgmt")
+	additionalProperties, err := ExtractAdditionalProperties[string](input, "additional_config_cmds", "ip_config", "name", "oob_ip_config", "port_config", "port_mirroring", "stp_config", "switch_mgmt")
 	if err != nil {
 		return err
 	}
@@ -99,6 +103,7 @@ func (s *SwitchMatchingRule) UnmarshalJSON(input []byte) error {
 	s.OobIpConfig = temp.OobIpConfig
 	s.PortConfig = temp.PortConfig
 	s.PortMirroring = temp.PortMirroring
+	s.StpConfig = temp.StpConfig
 	s.SwitchMgmt = temp.SwitchMgmt
 	return nil
 }
@@ -111,5 +116,6 @@ type tempSwitchMatchingRule struct {
 	OobIpConfig          *SwitchMatchingRuleOobIpConfig         `json:"oob_ip_config,omitempty"`
 	PortConfig           map[string]JunosPortConfig             `json:"port_config,omitempty"`
 	PortMirroring        map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
+	StpConfig            *SwitchStpConfig                       `json:"stp_config,omitempty"`
 	SwitchMgmt           *SwitchMgmt                            `json:"switch_mgmt,omitempty"`
 }

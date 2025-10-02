@@ -26,11 +26,11 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClients(t *testing.T) {
 	ap := "5c5b53010101"
 	vlan := "10"
 	ssid := "MySSID"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ipAddress, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ip, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -59,11 +59,11 @@ func TestOrgsClientsWirelessTestCountOrgWirelessClients1(t *testing.T) {
 	ap := "5c5b53010101"
 	vlan := "10"
 	ssid := "MySSID"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ipAddress, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsWireless.CountOrgWirelessClients(ctx, orgId, &distinct, &mac, &hostname, &device, &os, &model, &ap, &vlan, &ssid, &ip, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -158,7 +158,8 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort)
+	limit := int(100)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -195,7 +196,8 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClientEvents1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort)
+	limit := int(100)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -220,7 +222,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mac := "5c5b53010101"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	hostname := "my-hostname"
 	band := "5"
 	device := "iPhone"
@@ -237,7 +239,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ipAddress, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ip, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -262,7 +264,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mac := "5c5b53010101"
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 	hostname := "my-hostname"
 	band := "5"
 	device := "iPhone"
@@ -279,7 +281,7 @@ func TestOrgsClientsWirelessTestSearchOrgWirelessClients1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ipAddress, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ip, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

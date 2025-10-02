@@ -115,8 +115,8 @@ func (o *OrgsAlarms) CountOrgAlarms(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -176,8 +176,8 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 	siteId *uuid.UUID,
 	mType *string,
 	status *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	sort *string) (

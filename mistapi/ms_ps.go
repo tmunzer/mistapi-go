@@ -195,8 +195,8 @@ func (m *MSPs) SearchMspOrgGroup(
 	mType models.MspSearchTypeEnum,
 	q *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseSearch],

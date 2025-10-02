@@ -33,7 +33,7 @@ type StatsAp struct {
 	ExpiringCerts map[string]int   `json:"expiring_certs,omitempty"`
 	ExtIp         Optional[string] `json:"ext_ip"`
 	Fwupdate      *FwupdateStat    `json:"fwupdate,omitempty"`
-	Gps           *StatsApGpsStat  `json:"gps,omitempty"`
+	GpsStat       *StatsApGpsStat  `json:"gps_stat,omitempty"`
 	HwRev         Optional[string] `json:"hw_rev"`
 	// Unique ID of the object instance in the Mist Organization
 	Id                 *uuid.UUID                                    `json:"id,omitempty"`
@@ -121,8 +121,8 @@ type StatsAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsAp) String() string {
 	return fmt.Sprintf(
-		"StatsAp[AntMode=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, Gps=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-		s.AntMode, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.Gps, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
+		"StatsAp[AntMode=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, GpsStat=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+		s.AntMode, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.GpsStat, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAp.
@@ -131,7 +131,7 @@ func (s StatsAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"ant_mode", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y"); err != nil {
+		"ant_mode", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -221,8 +221,8 @@ func (s StatsAp) toMap() map[string]any {
 	if s.Fwupdate != nil {
 		structMap["fwupdate"] = s.Fwupdate.toMap()
 	}
-	if s.Gps != nil {
-		structMap["gps"] = s.Gps.toMap()
+	if s.GpsStat != nil {
+		structMap["gps_stat"] = s.GpsStat.toMap()
 	}
 	if s.HwRev.IsValueSet() {
 		if s.HwRev.Value() != nil {
@@ -510,7 +510,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_mode", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ant_mode", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
 	if err != nil {
 		return err
 	}
@@ -532,7 +532,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	s.ExpiringCerts = temp.ExpiringCerts
 	s.ExtIp = temp.ExtIp
 	s.Fwupdate = temp.Fwupdate
-	s.Gps = temp.Gps
+	s.GpsStat = temp.GpsStat
 	s.HwRev = temp.HwRev
 	s.Id = temp.Id
 	s.InactiveWiredVlans = temp.InactiveWiredVlans
@@ -605,7 +605,7 @@ type tempStatsAp struct {
 	ExpiringCerts      map[string]int                                `json:"expiring_certs,omitempty"`
 	ExtIp              Optional[string]                              `json:"ext_ip"`
 	Fwupdate           *FwupdateStat                                 `json:"fwupdate,omitempty"`
-	Gps                *StatsApGpsStat                               `json:"gps,omitempty"`
+	GpsStat            *StatsApGpsStat                               `json:"gps_stat,omitempty"`
 	HwRev              Optional[string]                              `json:"hw_rev"`
 	Id                 *uuid.UUID                                    `json:"id,omitempty"`
 	InactiveWiredVlans []int                                         `json:"inactive_wired_vlans,omitempty"`

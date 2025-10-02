@@ -31,8 +31,8 @@ func (o *OrgsStatsMxEdges) ListOrgMxEdgesStats(
 	ctx context.Context,
 	orgId uuid.UUID,
 	forSite *models.ForSiteEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

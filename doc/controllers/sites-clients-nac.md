@@ -26,8 +26,8 @@ CountSiteNacClientEvents(
     siteId uuid.UUID,
     distinct *models.SiteNacClientEventsCountDistinctEnum,
     mType *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -41,8 +41,8 @@ CountSiteNacClientEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteNacClientEventsCountDistinctEnum`](../../doc/models/site-nac-client-events-count-distinct-enum.md) | Query, Optional | - |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -124,8 +124,8 @@ CountSiteNacClients(
     mType *string,
     mdmComplianceStatus *string,
     mdmProvider *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -153,8 +153,8 @@ CountSiteNacClients(
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmComplianceStatus` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -245,8 +245,8 @@ SearchSiteNacClientEvents(
     text *string,
     nasIp *string,
     ingressVlan *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int,
     sort *string) (
@@ -282,8 +282,8 @@ SearchSiteNacClientEvents(
 | `text` | `*string` | Query, Optional | Partial / full MAC address, username, device_mac or ap |
 | `nasIp` | `*string` | Query, Optional | IP address of NAS device |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
@@ -384,36 +384,40 @@ Search Site NAC Clients
 SearchSiteNacClients(
     ctx context.Context,
     siteId uuid.UUID,
-    nacruleId *string,
-    nacruleMatched *bool,
-    authType *string,
-    vlan *string,
-    nasVendor *string,
-    nasIp *string,
-    idpId *string,
-    ssid *string,
-    username *string,
-    timestamp *float64,
     ap *string,
+    authType *string,
+    edrManaged *bool,
+    edrProvider *models.EdrProviderEnum,
+    edrStatus *models.EdrStatusEnum,
+    family *string,
+    hostname *string,
+    idpId *string,
     mac *string,
     mdmManaged *bool,
-    mxedgeId *string,
-    nacruleName *string,
-    status *string,
-    family *string,
-    model *string,
-    os *string,
-    hostname *string,
-    mfg *string,
-    mType *string,
     mdmCompliance *string,
     mdmProvider *string,
-    usermacLabel []string,
+    mfg *string,
+    model *string,
+    mxedgeId *string,
+    nacruleId *string,
+    nacruleMatched *bool,
+    nacruleName *string,
+    nasVendor *string,
+    nasIp *string,
     ingressVlan *string,
+    os *string,
+    ssid *string,
+    status *models.NacClientLastStatusEnum,
+    text *string,
+    timestamp *float64,
+    mType *string,
+    usermacLabel []string,
+    username *string,
+    vlan *string,
     limit *int,
     page *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseClientNacSearch],
@@ -425,36 +429,40 @@ SearchSiteNacClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `nacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
-| `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
-| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
-| `vlan` | `*string` | Query, Optional | Vlan name or ID assigned to the client |
-| `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
-| `nasIp` | `*string` | Query, Optional | IP address of NAS device |
-| `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
-| `ssid` | `*string` | Query, Optional | SSID |
-| `username` | `*string` | Query, Optional | Username presented by the client |
-| `timestamp` | `*float64` | Query, Optional | Start time, in epoch |
 | `ap` | `*string` | Query, Optional | AP MAC connected to by client |
+| `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `edrManaged` | `*bool` | Query, Optional | Filters NAC clients that are integrated with EDR providers |
+| `edrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Query, Optional | EDR provider of client's organization |
+| `edrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Query, Optional | EDR Status of the NAC client |
+| `family` | `*string` | Query, Optional | Client family, e.g. "Phone/Tablet/Wearable", "Access Point" |
+| `hostname` | `*string` | Query, Optional | Client hostname, e.g. "my-laptop", "my-phone" |
+| `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
 | `mac` | `*string` | Query, Optional | MAC address |
 | `mdmManaged` | `*bool` | Query, Optional | Filters NAC clients that are managed by MDM providers |
-| `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
-| `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
-| `status` | `*string` | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
-| `family` | `*string` | Query, Optional | Client family, e.g. "Phone/Tablet/Wearable", "Access Point" |
-| `model` | `*string` | Query, Optional | Client model, e.g. "iPhone 12", "MX100" |
-| `os` | `*string` | Query, Optional | Client OS, e.g. "iOS 18.1", "Android", "Windows", "Linux" |
-| `hostname` | `*string` | Query, Optional | Client hostname, e.g. "my-laptop", "my-phone" |
-| `mfg` | `*string` | Query, Optional | Client manufacturer, e.g. "apple", "cisco", "juniper" |
-| `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
 | `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
-| `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
+| `mfg` | `*string` | Query, Optional | Client manufacturer, e.g. "apple", "cisco", "juniper" |
+| `model` | `*string` | Query, Optional | Client model, e.g. "iPhone 12", "MX100" |
+| `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
+| `nacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
+| `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
+| `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
+| `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
+| `nasIp` | `*string` | Query, Optional | IP address of NAS device |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
+| `os` | `*string` | Query, Optional | Client OS, e.g. "iOS 18.1", "Android", "Windows", "Linux" |
+| `ssid` | `*string` | Query, Optional | SSID |
+| `status` | [`*models.NacClientLastStatusEnum`](../../doc/models/nac-client-last-status-enum.md) | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
+| `text` | `*string` | Query, Optional | partial / full MAC address, last_username, device_mac, nas_ip or last_ap |
+| `timestamp` | `*float64` | Query, Optional | Start time, in epoch |
+| `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
+| `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
+| `username` | `*string` | Query, Optional | Username presented by the client |
+| `vlan` | `*string` | Query, Optional | Vlan name or ID assigned to the client |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
 
@@ -469,6 +477,8 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+status := models.NacClientLastStatusEnum_PERMITTED
+
 limit := 100
 
 page := 1
@@ -477,7 +487,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -509,6 +519,9 @@ if err != nil {
       "client_ip": [
         "10.7.51.74"
       ],
+      "edr_managed": true,
+      "edr_provider": "sentinelone",
+      "edr_status": "sentinelone_healthy",
       "idp_id": "string",
       "idp_role": [
         "string"

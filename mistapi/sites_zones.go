@@ -250,8 +250,8 @@ func (s *SitesZones) CountSiteZoneSessions(
 	user *string,
 	scopeId *string,
 	scope *models.ZoneScopeEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -327,8 +327,8 @@ func (s *SitesZones) SearchSiteZoneSessions(
 	scope *models.VisitsScopeEnum,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseZoneSearch],

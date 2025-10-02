@@ -35,8 +35,8 @@ func (s *SitesClientsWired) CountSiteWiredClients(
 	deviceMac *string,
 	portId *string,
 	vlan *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -120,8 +120,8 @@ func (s *SitesClientsWired) SearchSiteWiredClients(
 	dhcpVendorClassIdentifier *string,
 	dhcpRequestParams *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchWiredClient],

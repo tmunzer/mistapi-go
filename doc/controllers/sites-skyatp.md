@@ -27,9 +27,9 @@ CountSiteSkyatpEvents(
     mac *string,
     deviceMac *string,
     threatLevel *int,
-    ipAddress *string,
-    start *int,
-    end *int,
+    ip *string,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -46,9 +46,9 @@ CountSiteSkyatpEvents(
 | `mac` | `*string` | Query, Optional | Client MAC |
 | `deviceMac` | `*string` | Query, Optional | Device MAC |
 | `threatLevel` | `*int` | Query, Optional | Threat level |
-| `ipAddress` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `ip` | `*string` | Query, Optional | - |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -65,13 +65,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteSkyAtpEventsCountDistinctEnum_ENUMTYPE
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ipAddress, nil, nil, &duration, &limit)
+apiResponse, err := sitesSkyatp.CountSiteSkyatpEvents(ctx, siteId, &distinct, nil, nil, nil, nil, &ip, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -122,10 +122,10 @@ SearchSiteSkyatpEvents(
     mac *string,
     deviceMac *string,
     threatLevel *int,
-    ipAddress *string,
+    ip *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseEventsSkyAtpSearch],
@@ -141,10 +141,10 @@ SearchSiteSkyatpEvents(
 | `mac` | `*string` | Query, Optional | Client MAC |
 | `deviceMac` | `*string` | Query, Optional | Device MAC |
 | `threatLevel` | `*int` | Query, Optional | Threat level |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -159,7 +159,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 limit := 100
 
@@ -167,7 +167,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ipAddress, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

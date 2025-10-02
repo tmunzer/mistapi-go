@@ -1,7 +1,7 @@
 
 # Jsi Inventory Count Distinct Enum
 
-enum: `model`, `account_id`, `type`, `version`, `warranty_type`, `status`
+enum: `account_id`, `eol_time`, `eos_time`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type
 
 ## Enumeration
 
@@ -11,10 +11,14 @@ enum: `model`, `account_id`, `type`, `version`, `warranty_type`, `status`
 
 | Name |
 |  --- |
-| `model` |
 | `account_id` |
+| `eol_time` |
+| `eos_time` |
+| `version_time` |
+| `model` |
+| `sku` |
+| `status` |
 | `type` |
 | `version` |
 | `warranty_type` |
-| `status` |
 

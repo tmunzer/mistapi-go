@@ -32,8 +32,8 @@ func (s *SitesClientsWan) CountSiteWanClientEvents(
 	siteId uuid.UUID,
 	distinct *models.SiteWanClientEventsDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -94,8 +94,8 @@ func (s *SitesClientsWan) CountSiteWanClients(
 	ctx context.Context,
 	siteId uuid.UUID,
 	distinct *models.SiteWanClientsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -159,8 +159,8 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	mfg *string,
 	nacruleId *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchEventsWanClient],
@@ -241,8 +241,8 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 	mfg *string,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchWanClient],

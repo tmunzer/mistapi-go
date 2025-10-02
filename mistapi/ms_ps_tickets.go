@@ -30,8 +30,8 @@ func NewMSPsTickets(baseController baseController) *MSPsTickets {
 func (m *MSPsTickets) ListMspTickets(
 	ctx context.Context,
 	mspId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[[]models.Ticket],
 	error) {

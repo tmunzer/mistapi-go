@@ -25,10 +25,14 @@ type MxclusterRadsecAuthServer struct {
 	KeywrapMack *string `json:"keywrap_mack,omitempty"`
 	// Auth port of RADIUS server
 	Port *int `json:"port,omitempty"`
+	// Authentication request retry
+	Retry *int `json:"retry,omitempty"`
 	// Secret of RADIUS server
 	Secret *string `json:"secret,omitempty"`
 	// List of ssids that will use this server if match_ssid is true and match is found
-	Ssids                []string               `json:"ssids,omitempty"`
+	Ssids []string `json:"ssids,omitempty"`
+	// Authentication request timeout, in seconds
+	Timeout              *int                   `json:"timeout,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -36,8 +40,8 @@ type MxclusterRadsecAuthServer struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MxclusterRadsecAuthServer) String() string {
 	return fmt.Sprintf(
-		"MxclusterRadsecAuthServer[Host=%v, InbandStatusCheck=%v, InbandStatusInterval=%v, KeywrapEnabled=%v, KeywrapFormat=%v, KeywrapKek=%v, KeywrapMack=%v, Port=%v, Secret=%v, Ssids=%v, AdditionalProperties=%v]",
-		m.Host, m.InbandStatusCheck, m.InbandStatusInterval, m.KeywrapEnabled, m.KeywrapFormat, m.KeywrapKek, m.KeywrapMack, m.Port, m.Secret, m.Ssids, m.AdditionalProperties)
+		"MxclusterRadsecAuthServer[Host=%v, InbandStatusCheck=%v, InbandStatusInterval=%v, KeywrapEnabled=%v, KeywrapFormat=%v, KeywrapKek=%v, KeywrapMack=%v, Port=%v, Retry=%v, Secret=%v, Ssids=%v, Timeout=%v, AdditionalProperties=%v]",
+		m.Host, m.InbandStatusCheck, m.InbandStatusInterval, m.KeywrapEnabled, m.KeywrapFormat, m.KeywrapKek, m.KeywrapMack, m.Port, m.Retry, m.Secret, m.Ssids, m.Timeout, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxclusterRadsecAuthServer.
@@ -46,7 +50,7 @@ func (m MxclusterRadsecAuthServer) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids"); err != nil {
+		"host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "retry", "secret", "ssids", "timeout"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -84,11 +88,17 @@ func (m MxclusterRadsecAuthServer) toMap() map[string]any {
 	if m.Port != nil {
 		structMap["port"] = m.Port
 	}
+	if m.Retry != nil {
+		structMap["retry"] = m.Retry
+	}
 	if m.Secret != nil {
 		structMap["secret"] = m.Secret
 	}
 	if m.Ssids != nil {
 		structMap["ssids"] = m.Ssids
+	}
+	if m.Timeout != nil {
+		structMap["timeout"] = m.Timeout
 	}
 	return structMap
 }
@@ -101,7 +111,7 @@ func (m *MxclusterRadsecAuthServer) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "secret", "ssids")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "inband_status_check", "inband_status_interval", "keywrap_enabled", "keywrap_format", "keywrap_kek", "keywrap_mack", "port", "retry", "secret", "ssids", "timeout")
 	if err != nil {
 		return err
 	}
@@ -115,8 +125,10 @@ func (m *MxclusterRadsecAuthServer) UnmarshalJSON(input []byte) error {
 	m.KeywrapKek = temp.KeywrapKek
 	m.KeywrapMack = temp.KeywrapMack
 	m.Port = temp.Port
+	m.Retry = temp.Retry
 	m.Secret = temp.Secret
 	m.Ssids = temp.Ssids
+	m.Timeout = temp.Timeout
 	return nil
 }
 
@@ -130,6 +142,8 @@ type tempMxclusterRadsecAuthServer struct {
 	KeywrapKek           *string                                           `json:"keywrap_kek,omitempty"`
 	KeywrapMack          *string                                           `json:"keywrap_mack,omitempty"`
 	Port                 *int                                              `json:"port,omitempty"`
+	Retry                *int                                              `json:"retry,omitempty"`
 	Secret               *string                                           `json:"secret,omitempty"`
 	Ssids                []string                                          `json:"ssids,omitempty"`
+	Timeout              *int                                              `json:"timeout,omitempty"`
 }

@@ -67,6 +67,7 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
+      "retry": 126,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -77,6 +78,7 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
+      "retry": 126,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -87,6 +89,7 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
+      "retry": 126,
       "secret": "secret4",
       "exampleAdditionalProperty": {
         "key1": "val1",

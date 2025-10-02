@@ -41,6 +41,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
 | `TunnelConfigs` | [`map[string]models.TunnelConfig`](../../doc/models/tunnel-config.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
 | `Type` | [`*models.GatewayTemplateTypeEnum`](../../doc/models/gateway-template-type-enum.md) | Optional | enum: `spoke`, `standalone`<br><br>**Default**: `"standalone"` |
+| `UrlFilteringDenyMsg` | `*string` | Optional | When a service policy denies a app_category, what message to show in user's browser<br><br>**Default**: `"Access to this URL Category has been blocked"` |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
 | `SsrAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated SSR config. **Note**: no check is done |
@@ -62,6 +63,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "router_id": "10.2.1.10",
   "type": "standalone",
+  "url_filtering_deny_msg": "Access to this URL Category has been blocked",
   "vrf_instances": {
     "CORP_VRF": {
       "networks": [

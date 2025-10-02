@@ -83,8 +83,8 @@ func (s *SitesMxEdges) CountSiteMxEdgeEvents(
 	mxclusterId *string,
 	mType *string,
 	service *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -159,8 +159,8 @@ func (s *SitesMxEdges) SearchSiteMistEdgeEvents(
 	service *string,
 	component *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseMxedgeEventsSearch],

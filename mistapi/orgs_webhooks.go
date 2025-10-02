@@ -262,8 +262,8 @@ func (o *OrgsWebhooks) CountOrgWebhooksDeliveries(
 	status *models.WebhookDeliveryStatusEnum,
 	topic *models.WebhookDeliveryTopicEnum,
 	distinct *models.WebhookDeliveryDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -344,8 +344,8 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	status *models.WebhookDeliveryStatusEnum,
 	topic *models.WebhookDeliveryTopicEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchWebhookDelivery],

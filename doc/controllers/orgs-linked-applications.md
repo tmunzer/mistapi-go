@@ -258,6 +258,7 @@ UpdateOrgOauthAppAccount(
     ctx context.Context,
     orgId uuid.UUID,
     appName models.OauthAppNameEnum,
+    accountId string,
     body *models.AccountOauthConfig) (
     http.Response,
     error)
@@ -269,6 +270,7 @@ UpdateOrgOauthAppAccount(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `appName` | [`models.OauthAppNameEnum`](../../doc/models/oauth-app-name-enum.md) | Template, Required | OAuth application name |
+| `accountId` | `string` | Template, Required | - |
 | `body` | [`*models.AccountOauthConfig`](../../doc/models/account-oauth-config.md) | Body, Optional | - |
 
 ## Response Type
@@ -284,12 +286,14 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 appName := models.OauthAppNameEnum_JAMF
 
+accountId := "iojzXIJWEuiD73ZvydOfg"
+
 body := models.AccountOauthConfig{
     AccountId:            "iojzXIJWEuiD73ZvydOfg",
     MaxDailyApiRequests:  models.ToPointer(5000),
 }
 
-resp, err := orgsLinkedApplications.UpdateOrgOauthAppAccount(ctx, orgId, appName, &body)
+resp, err := orgsLinkedApplications.UpdateOrgOauthAppAccount(ctx, orgId, appName, accountId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

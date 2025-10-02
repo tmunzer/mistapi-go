@@ -30,8 +30,8 @@ func NewSitesStatsMxEdges(baseController baseController) *SitesStatsMxEdges {
 func (s *SitesStatsMxEdges) ListSiteMxEdgesStats(
 	ctx context.Context,
 	siteId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -90,8 +90,8 @@ func (s *SitesStatsMxEdges) GetSiteMxEdgeStats(
 	ctx context.Context,
 	siteId uuid.UUID,
 	mxedgeId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.StatsMxedge],
 	error) {

@@ -10,7 +10,7 @@ import (
 // ApRadioStat represents a ApRadioStat struct.
 // Radio stat
 type ApRadioStat struct {
-	// channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
+	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
 	// Current channel the radio is running on
 	Channel Optional[int] `json:"channel"`

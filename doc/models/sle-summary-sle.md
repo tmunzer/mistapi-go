@@ -26,15 +26,15 @@
   "name": "name0",
   "samples": {
     "degraded": [
-      183.49
+      170.03
     ],
     "total": [
-      158.41
+      144.95
     ],
     "value": [
-      26.92,
-      26.93,
-      26.94
+      13.46,
+      13.47,
+      13.48
     ],
     "exampleAdditionalProperty": {
       "key1": "val1",

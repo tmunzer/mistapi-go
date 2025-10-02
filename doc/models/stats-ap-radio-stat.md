@@ -21,7 +21,7 @@
 ```json
 {
   "band_24": {
-    "bandwidth": 20,
+    "bandwidth": 160,
     "channel": 80,
     "dynamic_chaining_enabled": false,
     "mac": "mac4",
@@ -43,7 +43,7 @@
     }
   },
   "band_6": {
-    "bandwidth": 20,
+    "bandwidth": 80,
     "channel": 200,
     "dynamic_chaining_enabled": false,
     "mac": "mac8",

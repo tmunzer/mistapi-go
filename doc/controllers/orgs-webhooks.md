@@ -42,8 +42,8 @@ CountOrgWebhooksDeliveries(
     status *models.WebhookDeliveryStatusEnum,
     topic *models.WebhookDeliveryTopicEnum,
     distinct *models.WebhookDeliveryDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -61,8 +61,8 @@ CountOrgWebhooksDeliveries(
 | `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | Webhook delivery status |
 | `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | Webhook topic |
 | `distinct` | [`*models.WebhookDeliveryDistinctEnum`](../../doc/models/webhook-delivery-distinct-enum.md) | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -511,8 +511,8 @@ SearchOrgWebhooksDeliveries(
     status *models.WebhookDeliveryStatusEnum,
     topic *models.WebhookDeliveryTopicEnum,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.SearchWebhookDelivery],
@@ -530,8 +530,8 @@ SearchOrgWebhooksDeliveries(
 | `status` | [`*models.WebhookDeliveryStatusEnum`](../../doc/models/webhook-delivery-status-enum.md) | Query, Optional | Webhook delivery status |
 | `topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Query, Optional | Webhook topic |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 

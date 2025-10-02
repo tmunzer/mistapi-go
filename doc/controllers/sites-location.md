@@ -137,8 +137,8 @@ GetSiteBeamCoverageOverview(
     clientType *string,
     duration *string,
     resolution *models.ResolutionEnum,
-    start *int,
-    end *int) (
+    start *string,
+    end *string) (
     models.ApiResponse[models.ResponseLocationCoverage],
     error)
 ```
@@ -153,8 +153,8 @@ GetSiteBeamCoverageOverview(
 | `clientType` | `*string` | Query, Optional | Client_type (as filter. optional) |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `resolution` | [`*models.ResolutionEnum`](../../doc/models/resolution-enum.md) | Query, Optional | **Default**: `"default"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 
 ## Response Type
 

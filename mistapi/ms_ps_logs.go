@@ -34,8 +34,8 @@ func (m *MSPsLogs) ListMspAuditLogs(
 	adminName *string,
 	message *string,
 	sort *models.ListMspLogsSortEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

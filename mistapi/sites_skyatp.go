@@ -23,7 +23,7 @@ func NewSitesSkyatp(baseController baseController) *SitesSkyatp {
 	return &sitesSkyatp
 }
 
-// CountSiteSkyatpEvents takes context, siteId, distinct, mType, mac, deviceMac, threatLevel, ipAddress, start, end, duration, limit as parameters and
+// CountSiteSkyatpEvents takes context, siteId, distinct, mType, mac, deviceMac, threatLevel, ip, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Skyatp Events (WIP)
@@ -35,9 +35,9 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
 	mac *string,
 	deviceMac *string,
 	threatLevel *int,
-	ipAddress *string,
-	start *int,
-	end *int,
+	ip *string,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -76,8 +76,8 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
 	if threatLevel != nil {
 		req.QueryParam("threat_level", *threatLevel)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -102,7 +102,7 @@ func (s *SitesSkyatp) CountSiteSkyatpEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSkyatpEvents takes context, siteId, mType, mac, deviceMac, threatLevel, ipAddress, limit, start, end, duration, sort as parameters and
+// SearchSiteSkyatpEvents takes context, siteId, mType, mac, deviceMac, threatLevel, ip, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseEventsSkyAtpSearch data and
 // an error if there was an issue with the request or response.
 // Search Skyatp Events (WIP)
@@ -113,10 +113,10 @@ func (s *SitesSkyatp) SearchSiteSkyatpEvents(
 	mac *string,
 	deviceMac *string,
 	threatLevel *int,
-	ipAddress *string,
+	ip *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsSkyAtpSearch],
@@ -152,8 +152,8 @@ func (s *SitesSkyatp) SearchSiteSkyatpEvents(
 	if threatLevel != nil {
 		req.QueryParam("threat_level", *threatLevel)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

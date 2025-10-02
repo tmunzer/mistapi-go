@@ -10,7 +10,7 @@ import (
 // PskPortalSso represents a PskPortalSso struct.
 // If `auth`==`sso`
 type PskPortalSso struct {
-	// // allowed roles for accessing psk portal, if none, any role is permitted
+	// Allowed roles for accessing psk portal, if none, any role is permitted
 	AllowedRoles []string `json:"allowed_roles,omitempty"`
 	IdpCert      *string  `json:"idp_cert,omitempty"`
 	// Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`. enum: `sha1`, `sha256`, `sha384`, `sha512`

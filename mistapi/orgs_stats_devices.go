@@ -38,8 +38,8 @@ func (o *OrgsStatsDevices) ListOrgDevicesStats(
 	evpntopoId *string,
 	evpnUnused *string,
 	fields *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

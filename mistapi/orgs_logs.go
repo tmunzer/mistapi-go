@@ -34,8 +34,8 @@ func (o *OrgsLogs) ListOrgAuditLogs(
 	adminName *string,
 	message *string,
 	sort *models.ListOrgLogsSortEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -110,8 +110,8 @@ func (o *OrgsLogs) CountOrgAuditLogs(
 	adminName *string,
 	siteId *uuid.UUID,
 	message *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],

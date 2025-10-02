@@ -32,8 +32,8 @@ func (s *SitesStatsClientsWireless) ListSiteWirelessClientsStats(
 	siteId uuid.UUID,
 	wired *bool,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[[]models.StatsClient],
 	error) {
@@ -134,8 +134,8 @@ func (s *SitesStatsClientsWireless) GetSiteWirelessClientsStatsByMap(
 	ctx context.Context,
 	siteId uuid.UUID,
 	mapId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

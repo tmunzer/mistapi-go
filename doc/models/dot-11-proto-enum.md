@@ -1,7 +1,7 @@
 
 # Dot 11 Proto Enum
 
-enum: `a`, `ac`, `ax`, `b`, `g`, `n`
+enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
 
 ## Enumeration
 
@@ -15,6 +15,7 @@ enum: `a`, `ac`, `ax`, `b`, `g`, `n`
 | `ac` |
 | `ax` |
 | `b` |
+| `be` |
 | `g` |
 | `n` |
 

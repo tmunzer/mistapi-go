@@ -119,8 +119,8 @@ func (o *OrgsStatsTunnels) SearchOrgTunnelsStats(
 	up *string,
 	mType *models.TunnelTypeEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseTunnelSearch],

@@ -37,8 +37,8 @@ func (o *OrgsMarvis) TroubleshootOrg(
 	orgId uuid.UUID,
 	mac *string,
 	siteId *uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	mType *models.TroubleshootTypeEnum) (
 	models.ApiResponse[models.ResponseTroubleshoot],
 	error) {

@@ -4,24 +4,22 @@ package models
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
-	"strings"
 )
 
 // SleImpactedUsersUser represents a SleImpactedUsersUser struct.
 type SleImpactedUsersUser struct {
-	ApMac                string                 `json:"ap_mac"`
-	ApName               string                 `json:"ap_name"`
-	Degraded             float64                `json:"degraded"`
-	DeviceOs             string                 `json:"device_os"`
-	DeviceType           string                 `json:"device_type"`
-	Duration             float64                `json:"duration"`
-	Mac                  string                 `json:"mac"`
-	Name                 string                 `json:"name"`
-	Ssid                 string                 `json:"ssid"`
-	Total                float64                `json:"total"`
-	WlanId               string                 `json:"wlan_id"`
+	ApMac                *string                `json:"ap_mac,omitempty"`
+	ApName               *string                `json:"ap_name,omitempty"`
+	Degraded             *float64               `json:"degraded,omitempty"`
+	DeviceOs             *string                `json:"device_os,omitempty"`
+	DeviceType           *string                `json:"device_type,omitempty"`
+	Duration             *float64               `json:"duration,omitempty"`
+	Mac                  *string                `json:"mac,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	Ssid                 *string                `json:"ssid,omitempty"`
+	Total                *float64               `json:"total,omitempty"`
+	WlanId               *string                `json:"wlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -49,17 +47,39 @@ func (s SleImpactedUsersUser) MarshalJSON() (
 func (s SleImpactedUsersUser) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
-	structMap["ap_mac"] = s.ApMac
-	structMap["ap_name"] = s.ApName
-	structMap["degraded"] = s.Degraded
-	structMap["device_os"] = s.DeviceOs
-	structMap["device_type"] = s.DeviceType
-	structMap["duration"] = s.Duration
-	structMap["mac"] = s.Mac
-	structMap["name"] = s.Name
-	structMap["ssid"] = s.Ssid
-	structMap["total"] = s.Total
-	structMap["wlan_id"] = s.WlanId
+	if s.ApMac != nil {
+		structMap["ap_mac"] = s.ApMac
+	}
+	if s.ApName != nil {
+		structMap["ap_name"] = s.ApName
+	}
+	if s.Degraded != nil {
+		structMap["degraded"] = s.Degraded
+	}
+	if s.DeviceOs != nil {
+		structMap["device_os"] = s.DeviceOs
+	}
+	if s.DeviceType != nil {
+		structMap["device_type"] = s.DeviceType
+	}
+	if s.Duration != nil {
+		structMap["duration"] = s.Duration
+	}
+	if s.Mac != nil {
+		structMap["mac"] = s.Mac
+	}
+	if s.Name != nil {
+		structMap["name"] = s.Name
+	}
+	if s.Ssid != nil {
+		structMap["ssid"] = s.Ssid
+	}
+	if s.Total != nil {
+		structMap["total"] = s.Total
+	}
+	if s.WlanId != nil {
+		structMap["wlan_id"] = s.WlanId
+	}
 	return structMap
 }
 
@@ -71,82 +91,37 @@ func (s *SleImpactedUsersUser) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	err = temp.validate()
-	if err != nil {
-		return err
-	}
 	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "ap_name", "degraded", "device_os", "device_type", "duration", "mac", "name", "ssid", "total", "wlan_id")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
-	s.ApMac = *temp.ApMac
-	s.ApName = *temp.ApName
-	s.Degraded = *temp.Degraded
-	s.DeviceOs = *temp.DeviceOs
-	s.DeviceType = *temp.DeviceType
-	s.Duration = *temp.Duration
-	s.Mac = *temp.Mac
-	s.Name = *temp.Name
-	s.Ssid = *temp.Ssid
-	s.Total = *temp.Total
-	s.WlanId = *temp.WlanId
+	s.ApMac = temp.ApMac
+	s.ApName = temp.ApName
+	s.Degraded = temp.Degraded
+	s.DeviceOs = temp.DeviceOs
+	s.DeviceType = temp.DeviceType
+	s.Duration = temp.Duration
+	s.Mac = temp.Mac
+	s.Name = temp.Name
+	s.Ssid = temp.Ssid
+	s.Total = temp.Total
+	s.WlanId = temp.WlanId
 	return nil
 }
 
 // tempSleImpactedUsersUser is a temporary struct used for validating the fields of SleImpactedUsersUser.
 type tempSleImpactedUsersUser struct {
-	ApMac      *string  `json:"ap_mac"`
-	ApName     *string  `json:"ap_name"`
-	Degraded   *float64 `json:"degraded"`
-	DeviceOs   *string  `json:"device_os"`
-	DeviceType *string  `json:"device_type"`
-	Duration   *float64 `json:"duration"`
-	Mac        *string  `json:"mac"`
-	Name       *string  `json:"name"`
-	Ssid       *string  `json:"ssid"`
-	Total      *float64 `json:"total"`
-	WlanId     *string  `json:"wlan_id"`
-}
-
-func (s *tempSleImpactedUsersUser) validate() error {
-	var errs []string
-	if s.ApMac == nil {
-		errs = append(errs, "required field `ap_mac` is missing for type `sle_impacted_users_user`")
-	}
-	if s.ApName == nil {
-		errs = append(errs, "required field `ap_name` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Degraded == nil {
-		errs = append(errs, "required field `degraded` is missing for type `sle_impacted_users_user`")
-	}
-	if s.DeviceOs == nil {
-		errs = append(errs, "required field `device_os` is missing for type `sle_impacted_users_user`")
-	}
-	if s.DeviceType == nil {
-		errs = append(errs, "required field `device_type` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Duration == nil {
-		errs = append(errs, "required field `duration` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Mac == nil {
-		errs = append(errs, "required field `mac` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Name == nil {
-		errs = append(errs, "required field `name` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Ssid == nil {
-		errs = append(errs, "required field `ssid` is missing for type `sle_impacted_users_user`")
-	}
-	if s.Total == nil {
-		errs = append(errs, "required field `total` is missing for type `sle_impacted_users_user`")
-	}
-	if s.WlanId == nil {
-		errs = append(errs, "required field `wlan_id` is missing for type `sle_impacted_users_user`")
-	}
-	if len(errs) == 0 {
-		return nil
-	}
-	return errors.New(strings.Join(errs, "\n"))
+	ApMac      *string  `json:"ap_mac,omitempty"`
+	ApName     *string  `json:"ap_name,omitempty"`
+	Degraded   *float64 `json:"degraded,omitempty"`
+	DeviceOs   *string  `json:"device_os,omitempty"`
+	DeviceType *string  `json:"device_type,omitempty"`
+	Duration   *float64 `json:"duration,omitempty"`
+	Mac        *string  `json:"mac,omitempty"`
+	Name       *string  `json:"name,omitempty"`
+	Ssid       *string  `json:"ssid,omitempty"`
+	Total      *float64 `json:"total,omitempty"`
+	WlanId     *string  `json:"wlan_id,omitempty"`
 }

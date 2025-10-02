@@ -25,7 +25,6 @@ sitesDevices := client.SitesDevices()
 * [Search Site Device Events](../../doc/controllers/sites-devices.md#search-site-device-events)
 * [Search Site Device Last Configs](../../doc/controllers/sites-devices.md#search-site-device-last-configs)
 * [Search Site Devices](../../doc/controllers/sites-devices.md#search-site-devices)
-* [Set Site Ap Antenna Mode](../../doc/controllers/sites-devices.md#set-site-ap-antenna-mode)
 * [Update Site Device](../../doc/controllers/sites-devices.md#update-site-device)
 
 
@@ -161,8 +160,8 @@ CountSiteDeviceConfigHistory(
     siteId uuid.UUID,
     distinct *string,
     mac *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -176,8 +175,8 @@ CountSiteDeviceConfigHistory(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | `*string` | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -247,8 +246,8 @@ CountSiteDeviceEvents(
     model *string,
     mType *string,
     typeCode *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -264,8 +263,8 @@ CountSiteDeviceEvents(
 | `model` | `*string` | Query, Optional | - |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `typeCode` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -334,8 +333,8 @@ CountSiteDeviceLastConfig(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteDeviceLastConfigCountDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -348,8 +347,8 @@ CountSiteDeviceLastConfig(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDeviceLastConfigCountDistinctEnum`](../../doc/models/site-device-last-config-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -429,8 +428,8 @@ CountSiteDevices(
     lldpPortId *string,
     lldpMgmtAddr *string,
     mapId *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -454,8 +453,8 @@ CountSiteDevices(
 | `lldpPortId` | `*string` | Query, Optional | - |
 | `lldpMgmtAddr` | `*string` | Query, Optional | - |
 | `mapId` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -1033,8 +1032,8 @@ SearchSiteDeviceConfigHistory(
     mType *models.DeviceTypeDefaultApEnum,
     mac *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
@@ -1049,8 +1048,8 @@ SearchSiteDeviceConfigHistory(
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC Address |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -1179,8 +1178,8 @@ SearchSiteDeviceEvents(
     lastBy *string,
     includes *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseEventsDevices],
@@ -1200,8 +1199,8 @@ SearchSiteDeviceEvents(
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -1280,13 +1279,13 @@ Search Device Last Configs
 SearchSiteDeviceLastConfigs(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeDefaultApEnum,
+    deviceType *models.LastConfigDeviceTypeEnum,
     mac *string,
     version *string,
     name *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
@@ -1298,13 +1297,13 @@ SearchSiteDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `deviceType` | [`*models.LastConfigDeviceTypeEnum`](../../doc/models/last-config-device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
 | `name` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -1319,7 +1318,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeDefaultApEnum_AP
+deviceType := models.LastConfigDeviceTypeEnum_AP
 
 limit := 100
 
@@ -1327,7 +1326,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &mType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1428,12 +1427,11 @@ SearchSiteDevices(
     hostname *string,
     mType *models.DeviceTypeDefaultApEnum,
     model *string,
-    ip *string,
     mac *string,
     extIp *string,
     version *string,
     powerConstrained *bool,
-    ipAddress *string,
+    ip *string,
     mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
     mxedgeId *uuid.UUID,
     mxedgeIds []uuid.UUID,
@@ -1460,8 +1458,8 @@ SearchSiteDevices(
     eth0PortSpeed *int,
     stats *bool,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *models.SearchSiteDevicesSortEnum,
     descSort *models.SearchSiteDevicesDescSortEnum) (
@@ -1477,12 +1475,11 @@ SearchSiteDevices(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `model` | `*string` | Query, Optional | Device model |
-| `ip` | `*string` | Query, Optional | Device IP Address |
 | `mac` | `*string` | Query, Optional | Device MAC |
 | `extIp` | `*string` | Query, Optional | Device external ip |
 | `version` | `*string` | Query, Optional | Version |
 | `powerConstrained` | `*bool` | Query, Optional | power_constrained |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | For APs only, MxTunnel status, up / down. |
 | `mxedgeId` | `*uuid.UUID` | Query, Optional | For APs only, Mist Edge id, if AP is connecting to a Mist Edge |
 | `mxedgeIds` | `[]uuid.UUID` | Query, Optional | For APs only, list of Mist Edge id, if AP is connecting to a Mist Edge |
@@ -1509,8 +1506,8 @@ SearchSiteDevices(
 | `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats<br><br>**Default**: `false` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br><br>**Default**: `"timestamp"` |
 | `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
@@ -1528,7 +1525,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.DeviceTypeDefaultApEnum_AP
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 stats := false
 
@@ -1538,7 +1535,7 @@ duration := "10m"
 
 sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
 
-apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1596,64 +1593,6 @@ if err != nil {
   ],
   "start": 0,
   "total": 0
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
-# Set Site Ap Antenna Mode
-
-Set AP Antenna Mode
-
-```go
-SetSiteApAntennaMode(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.ApAntennaMode) (
-    http.Response,
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.ApAntennaMode`](../../doc/models/ap-antenna-mode.md) | Body, Optional | Request Body |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.ApAntennaMode{
-    AntMode:              models.ToPointer(models.AntModeEnum_EXTERNAL),
-}
-
-resp, err := sitesDevices.SetSiteApAntennaMode(ctx, siteId, deviceId, &body)
-if err != nil {
-    log.Fatalln(err)
-} else {
-    fmt.Println(resp.StatusCode)
 }
 ```
 

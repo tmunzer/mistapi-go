@@ -25,8 +25,8 @@ ListOrgDevicesStats(
     evpntopoId *string,
     evpnUnused *string,
     fields *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int,
     page *int) (
@@ -46,8 +46,8 @@ ListOrgDevicesStats(
 | `evpntopoId` | `*string` | Query, Optional | EVPN Topology ID |
 | `evpnUnused` | `*string` | Query, Optional | If `evpn_unused`==`true`, find EVPN eligible switches which don’t belong to any EVPN Topology yet |
 | `fields` | `*string` | Query, Optional | List of additional fields requests, comma separated, or `fields=*` for all of them |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |

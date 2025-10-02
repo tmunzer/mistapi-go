@@ -36,8 +36,8 @@ func (o *OrgsEvents) SearchOrgEvents(
 	orgId uuid.UUID,
 	mType *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsOrgsSearch],
@@ -99,8 +99,8 @@ func (o *OrgsEvents) CountOrgSystemEvents(
 	orgId uuid.UUID,
 	distinct *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.ResponseCount],
 	error) {
@@ -157,8 +157,8 @@ func (o *OrgsEvents) SearchOrgSystemEvents(
 	ctx context.Context,
 	orgId uuid.UUID,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseOrgSystemEventsSearch],

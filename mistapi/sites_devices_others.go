@@ -99,8 +99,8 @@ func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
 	siteId uuid.UUID,
 	distinct *models.SiteOtherDeviceEventsCountDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -165,8 +165,8 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	vendor *string,
 	mType *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsOtherDevicesSearch],

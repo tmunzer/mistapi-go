@@ -30,8 +30,8 @@ func NewOrgsStatsSites(baseController baseController) *OrgsStatsSites {
 func (o *OrgsStatsSites) ListOrgSiteStats(
 	ctx context.Context,
 	orgId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

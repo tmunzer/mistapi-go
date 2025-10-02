@@ -122,8 +122,8 @@ func (o *OrgsPskPortals) CreateOrgPskPortal(
 func (o *OrgsPskPortals) ListOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -182,8 +182,8 @@ func (o *OrgsPskPortals) CountOrgPskPortalLogs(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *models.OrgPskPortalLogsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -242,8 +242,8 @@ func (o *OrgsPskPortals) SearchOrgPskPortalLogs(
 	orgId uuid.UUID,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string,
 	pskName *string,

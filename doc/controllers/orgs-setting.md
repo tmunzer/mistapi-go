@@ -414,6 +414,7 @@ body := models.OrgSetting{
     GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),
     SwitchUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
     UiIdleTimeout:               models.ToPointer(10),
+    UiNoTracking:                models.ToPointer(false),
 }
 
 apiResponse, err := orgsSetting.UpdateOrgSettings(ctx, orgId, &body)

@@ -26,11 +26,11 @@
   "limit": 88,
   "results": [
     {
+      "device_name": "device_name6",
       "eol_time": 174,
       "eos_time": 220,
+      "master": false,
       "model": "model4",
-      "serial": "serial6",
-      "sku": "sku8",
       "exampleAdditionalProperty": {
         "key1": "val1",
         "key2": "val2"

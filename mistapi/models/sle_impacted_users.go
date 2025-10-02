@@ -11,24 +11,25 @@ import (
 
 // SleImpactedUsers represents a SleImpactedUsers struct.
 type SleImpactedUsers struct {
-	Classifier           string                 `json:"classifier"`
-	End                  float64                `json:"end"`
-	Failure              string                 `json:"failure"`
-	Limit                float64                `json:"limit"`
-	Metric               string                 `json:"metric"`
-	Page                 float64                `json:"page"`
-	Start                float64                `json:"start"`
-	TotalCount           float64                `json:"total_count"`
-	Users                []SleImpactedUsersUser `json:"users"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	Classifier           string                   `json:"classifier"`
+	Clients              []SleImpactedUsersClient `json:"clients,omitempty"`
+	End                  float64                  `json:"end"`
+	Failure              string                   `json:"failure"`
+	Limit                float64                  `json:"limit"`
+	Metric               string                   `json:"metric"`
+	Page                 float64                  `json:"page"`
+	Start                float64                  `json:"start"`
+	TotalCount           float64                  `json:"total_count"`
+	Users                []SleImpactedUsersUser   `json:"users,omitempty"`
+	AdditionalProperties map[string]interface{}   `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedUsers,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SleImpactedUsers) String() string {
 	return fmt.Sprintf(
-		"SleImpactedUsers[Classifier=%v, End=%v, Failure=%v, Limit=%v, Metric=%v, Page=%v, Start=%v, TotalCount=%v, Users=%v, AdditionalProperties=%v]",
-		s.Classifier, s.End, s.Failure, s.Limit, s.Metric, s.Page, s.Start, s.TotalCount, s.Users, s.AdditionalProperties)
+		"SleImpactedUsers[Classifier=%v, Clients=%v, End=%v, Failure=%v, Limit=%v, Metric=%v, Page=%v, Start=%v, TotalCount=%v, Users=%v, AdditionalProperties=%v]",
+		s.Classifier, s.Clients, s.End, s.Failure, s.Limit, s.Metric, s.Page, s.Start, s.TotalCount, s.Users, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SleImpactedUsers.
@@ -37,7 +38,7 @@ func (s SleImpactedUsers) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"classifier", "end", "failure", "limit", "metric", "page", "start", "total_count", "users"); err != nil {
+		"classifier", "clients", "end", "failure", "limit", "metric", "page", "start", "total_count", "users"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -48,6 +49,9 @@ func (s SleImpactedUsers) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	structMap["classifier"] = s.Classifier
+	if s.Clients != nil {
+		structMap["clients"] = s.Clients
+	}
 	structMap["end"] = s.End
 	structMap["failure"] = s.Failure
 	structMap["limit"] = s.Limit
@@ -55,7 +59,9 @@ func (s SleImpactedUsers) toMap() map[string]any {
 	structMap["page"] = s.Page
 	structMap["start"] = s.Start
 	structMap["total_count"] = s.TotalCount
-	structMap["users"] = s.Users
+	if s.Users != nil {
+		structMap["users"] = s.Users
+	}
 	return structMap
 }
 
@@ -71,13 +77,14 @@ func (s *SleImpactedUsers) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "classifier", "end", "failure", "limit", "metric", "page", "start", "total_count", "users")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "classifier", "clients", "end", "failure", "limit", "metric", "page", "start", "total_count", "users")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.Classifier = *temp.Classifier
+	s.Clients = temp.Clients
 	s.End = *temp.End
 	s.Failure = *temp.Failure
 	s.Limit = *temp.Limit
@@ -85,21 +92,22 @@ func (s *SleImpactedUsers) UnmarshalJSON(input []byte) error {
 	s.Page = *temp.Page
 	s.Start = *temp.Start
 	s.TotalCount = *temp.TotalCount
-	s.Users = *temp.Users
+	s.Users = temp.Users
 	return nil
 }
 
 // tempSleImpactedUsers is a temporary struct used for validating the fields of SleImpactedUsers.
 type tempSleImpactedUsers struct {
-	Classifier *string                 `json:"classifier"`
-	End        *float64                `json:"end"`
-	Failure    *string                 `json:"failure"`
-	Limit      *float64                `json:"limit"`
-	Metric     *string                 `json:"metric"`
-	Page       *float64                `json:"page"`
-	Start      *float64                `json:"start"`
-	TotalCount *float64                `json:"total_count"`
-	Users      *[]SleImpactedUsersUser `json:"users"`
+	Classifier *string                  `json:"classifier"`
+	Clients    []SleImpactedUsersClient `json:"clients,omitempty"`
+	End        *float64                 `json:"end"`
+	Failure    *string                  `json:"failure"`
+	Limit      *float64                 `json:"limit"`
+	Metric     *string                  `json:"metric"`
+	Page       *float64                 `json:"page"`
+	Start      *float64                 `json:"start"`
+	TotalCount *float64                 `json:"total_count"`
+	Users      []SleImpactedUsersUser   `json:"users,omitempty"`
 }
 
 func (s *tempSleImpactedUsers) validate() error {
@@ -127,9 +135,6 @@ func (s *tempSleImpactedUsers) validate() error {
 	}
 	if s.TotalCount == nil {
 		errs = append(errs, "required field `total_count` is missing for type `sle_impacted_users`")
-	}
-	if s.Users == nil {
-		errs = append(errs, "required field `users` is missing for type `sle_impacted_users`")
 	}
 	if len(errs) == 0 {
 		return nil

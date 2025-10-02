@@ -16,17 +16,17 @@
 | `EgressVlanNames` | `[]string` | Optional | If `type`==`egress_vlan_names`, list of egress vlans to return |
 | `GbpTag` | [`*models.NacTagGbpTag`](../../doc/models/containers/nac-tag-gbp-tag.md) | Optional | If `type`==`gbp_tag` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br><br>**Constraints**: *Minimum Length*: `1` |
-| `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`<br><br>**Default**: `false` |
+| `Match` | [`*models.NacTagMatchEnum`](../../doc/models/nac-tag-match-enum.md) | Optional | if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `edr_health`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`<br><br>**Constraints**: *Minimum Length*: `1` |
+| `MatchAll` | `*bool` | Optional | This field is applicable only when `type`==`match`<br><br>* `false`: means it is sufficient to match any of the values (i.e., match-any behavior)<br>* `true`: means all values should be matched (i.e., match-all behavior)<br><br>Currently it makes sense to set this field to `true` only if the `match`==`idp_role`, `match`==`usermac_label` and `edr_status`<br><br>**Default**: `false` |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `NacportalId` | `*uuid.UUID` | Optional | If `type`==`redirect_guest_portal`, the ID of the guest portal to redirect to |
+| `NacportalId` | `*uuid.UUID` | Optional | If `type`==`redirect_nacportal_id`, the ID of the NAC portal to redirect to |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RadiusAttrs` | `[]string` | Optional | If `type`==`radius_attrs`, user can specify a list of one or more standard attributes in the field "radius_attrs".<br>It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.<br>Note that it is allowed to have more than one radius_attrs in the result of a given rule. |
 | `RadiusGroup` | `*string` | Optional | If `type`==`radius_group` |
 | `RadiusVendorAttrs` | `[]string` | Optional | If `type`==`radius_vendor_attrs`, user can specify a list of one or more vendor-specific attributes in the field "radius_vendor_attrs".<br>It is the responsibility of the user to provide a syntactically correct string, otherwise it may not work as expected.<br>Note that it is allowed to have more than one radius_vendor_attrs in the result of a given rule. |
 | `SessionTimeout` | `*int` | Optional | If `type`==`session_timeout, in seconds |
-| `Type` | [`models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Required | enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Type` | [`models.NacTagTypeEnum`](../../doc/models/nac-tag-type-enum.md) | Required | enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_nacportal_id`, `session_timeout`, `username_attr`, `vlan`<br><br>**Constraints**: *Minimum Length*: `1` |
 | `UsernameAttr` | [`*models.NacTagUsernameAttrEnum`](../../doc/models/nac-tag-username-attr-enum.md) | Optional | enum: `automatic`, `cn`, `dns`, `email`, `upn` |
 | `Values` | `[]string` | Optional | If `type`==`match` |
 | `Vlan` | `*string` | Optional | If `type`==`vlan` |
@@ -56,7 +56,7 @@
     "PaloAlto-Panorama-Admin-Role=administrator"
   ],
   "session_timeout": 86000,
-  "type": "redirect_guest_portal",
+  "type": "redirect_nacportal_id",
   "created_time": 105.64,
   "gbp_tag": 84,
   "exampleAdditionalProperty": {

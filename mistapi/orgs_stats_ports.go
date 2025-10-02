@@ -57,8 +57,8 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
 	authState *models.CountPortsAuthStateEnum,
 	up *bool,
 	siteId *uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -229,8 +229,8 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	opticsModuleVoltage *float64,
 	mType *models.SearchOrgSwOrGwPortsTypeEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponsePortStatsSearch],

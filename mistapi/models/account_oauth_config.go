@@ -14,6 +14,8 @@ import (
 type AccountOauthConfig struct {
 	// Linked app(zoom/teams/intune) account id
 	AccountId string `json:"account_id"`
+	// Optional, for Zoom/Teams. Whether to redact identifying information for call participants that are not part of the Zoom/Teams account identified by `account_id`
+	DiscardGuestInfo *bool `json:"discard_guest_info,omitempty"`
 	// Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
 	MaxDailyApiRequests  *int                   `json:"max_daily_api_requests,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -23,8 +25,8 @@ type AccountOauthConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthConfig) String() string {
 	return fmt.Sprintf(
-		"AccountOauthConfig[AccountId=%v, MaxDailyApiRequests=%v, AdditionalProperties=%v]",
-		a.AccountId, a.MaxDailyApiRequests, a.AdditionalProperties)
+		"AccountOauthConfig[AccountId=%v, DiscardGuestInfo=%v, MaxDailyApiRequests=%v, AdditionalProperties=%v]",
+		a.AccountId, a.DiscardGuestInfo, a.MaxDailyApiRequests, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthConfig.
@@ -33,7 +35,7 @@ func (a AccountOauthConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"account_id", "max_daily_api_requests"); err != nil {
+		"account_id", "discard_guest_info", "max_daily_api_requests"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -44,6 +46,9 @@ func (a AccountOauthConfig) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
 	structMap["account_id"] = a.AccountId
+	if a.DiscardGuestInfo != nil {
+		structMap["discard_guest_info"] = a.DiscardGuestInfo
+	}
 	if a.MaxDailyApiRequests != nil {
 		structMap["max_daily_api_requests"] = a.MaxDailyApiRequests
 	}
@@ -62,13 +67,14 @@ func (a *AccountOauthConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "max_daily_api_requests")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "discard_guest_info", "max_daily_api_requests")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
 	a.AccountId = *temp.AccountId
+	a.DiscardGuestInfo = temp.DiscardGuestInfo
 	a.MaxDailyApiRequests = temp.MaxDailyApiRequests
 	return nil
 }
@@ -76,6 +82,7 @@ func (a *AccountOauthConfig) UnmarshalJSON(input []byte) error {
 // tempAccountOauthConfig is a temporary struct used for validating the fields of AccountOauthConfig.
 type tempAccountOauthConfig struct {
 	AccountId           *string `json:"account_id"`
+	DiscardGuestInfo    *bool   `json:"discard_guest_info,omitempty"`
 	MaxDailyApiRequests *int    `json:"max_daily_api_requests,omitempty"`
 }
 

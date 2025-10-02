@@ -66,13 +66,13 @@ func TestOrgsClientsWiredTestSearchOrgWiredClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -93,13 +93,13 @@ func TestOrgsClientsWiredTestSearchOrgWiredClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -1,7 +1,7 @@
 
 # Org Nac Clients Count Distinct Enum
 
-enum: `auth_type`, `last_ap`, `last_nacrule_id`, `last_nas_vendor`, `last_ssid`, `last_status`, `last_username`, `last_vlan`, `mac`, `mdm_compliance`, `mdm_provider`, `type`
+enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`
 
 ## Enumeration
 
@@ -11,16 +11,32 @@ enum: `auth_type`, `last_ap`, `last_nacrule_id`, `last_nas_vendor`, `last_ssid`,
 
 | Name |
 |  --- |
+| `ap` |
 | `auth_type` |
-| `last_ap` |
-| `last_nacrule_id` |
-| `last_nas_vendor` |
-| `last_ssid` |
-| `last_status` |
-| `last_username` |
-| `last_vlan` |
-| `mac` |
+| `device_mac` |
+| `edr_managed` |
+| `edr_provider` |
+| `edr_status` |
+| `family` |
+| `hostname` |
+| `idp_id` |
+| `mfg` |
 | `mdm_compliance` |
+| `mdm_managed` |
 | `mdm_provider` |
+| `model` |
+| `mxedge_id` |
+| `nacrule_matched` |
+| `nacrule_name` |
+| `nacrule_id` |
+| `nas_ip` |
+| `nas_vendor` |
+| `os` |
+| `site_id` |
+| `ssid` |
+| `status` |
 | `type` |
+| `usermac_label` |
+| `username` |
+| `vlan` |
 

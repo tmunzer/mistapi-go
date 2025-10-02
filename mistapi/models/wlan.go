@@ -169,12 +169,13 @@ type Wlan struct {
 	PortalAllowedHostnames []string `json:"portal_allowed_hostnames,omitempty"`
 	// List of CIDRs
 	PortalAllowedSubnets []string `json:"portal_allowed_subnets,omitempty"`
-	// APi secret (auto-generated) that can be used to sign guest authorization requests
+	// API secret (auto-generated) that can be used to sign guest authorization requests, only generated when auth is set to `external`
 	PortalApiSecret Optional[string] `json:"portal_api_secret"`
 	// List of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames
 	PortalDeniedHostnames []string `json:"portal_denied_hostnames,omitempty"`
 	// Url of portal background image
-	PortalImage  Optional[string] `json:"portal_image"`
+	PortalImage Optional[string] `json:"portal_image"`
+	// URL used in the SSO process, auto-generated when auth is set to `sso`
 	PortalSsoUrl Optional[string] `json:"portal_sso_url"`
 	// N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 	PortalTemplateUrl Optional[string] `json:"portal_template_url"`

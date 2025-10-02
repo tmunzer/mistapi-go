@@ -574,13 +574,19 @@ const (
 )
 
 // ClientKeyMgmtEnum is a string enum.
-// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA3-EAP-SHA256`
+// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
 type ClientKeyMgmtEnum string
 
 const (
-	ClientKeyMgmtEnum_WPA2PSK       ClientKeyMgmtEnum = "WPA2-PSK"
-	ClientKeyMgmtEnum_WPA2PSKFT     ClientKeyMgmtEnum = "WPA2-PSK-FT"
-	ClientKeyMgmtEnum_WPA3EAPSHA256 ClientKeyMgmtEnum = "WPA3-EAP-SHA256"
+	ClientKeyMgmtEnum_WPA2PSK               ClientKeyMgmtEnum = "WPA2-PSK"
+	ClientKeyMgmtEnum_ENUMWPA2PSKCCMP       ClientKeyMgmtEnum = "WPA2-PSK/CCMP"
+	ClientKeyMgmtEnum_WPA2PSKFT             ClientKeyMgmtEnum = "WPA2-PSK-FT"
+	ClientKeyMgmtEnum_WPA2PSKSHA256         ClientKeyMgmtEnum = "WPA2-PSK-SHA256"
+	ClientKeyMgmtEnum_WPA3EAPSHA256         ClientKeyMgmtEnum = "WPA3-EAP-SHA256"
+	ClientKeyMgmtEnum_ENUMWPA3EAPSHA256CCMP ClientKeyMgmtEnum = "WPA3-EAP-SHA256/CCMP"
+	ClientKeyMgmtEnum_ENUMWPA3EAPFTGCMP256  ClientKeyMgmtEnum = "WPA3-EAP-FT/GCMP256"
+	ClientKeyMgmtEnum_WPA3SAEFT             ClientKeyMgmtEnum = "WPA3-SAE-FT"
+	ClientKeyMgmtEnum_WPA3SAEPSK            ClientKeyMgmtEnum = "WPA3-SAE-PSK"
 )
 
 // ConfigSwitchLocalAccountsUserRoleEnum is a string enum.
@@ -853,10 +859,11 @@ const (
 )
 
 // Dot11BandwidthEnum is a int enum.
-// channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
+// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 type Dot11BandwidthEnum int
 
 const (
+	Dot11BandwidthEnum_ENUM0   Dot11BandwidthEnum = 0
 	Dot11BandwidthEnum_ENUM20  Dot11BandwidthEnum = 20
 	Dot11BandwidthEnum_ENUM40  Dot11BandwidthEnum = 40
 	Dot11BandwidthEnum_ENUM80  Dot11BandwidthEnum = 80
@@ -864,29 +871,32 @@ const (
 )
 
 // Dot11Bandwidth24Enum is a int enum.
-// channel width for the 2.4GHz band. enum: `20`, `40`
+// channel width for the 2.4GHz band. enum: `0`(disabled, response only), `20`, `40`
 type Dot11Bandwidth24Enum int
 
 const (
+	Dot11Bandwidth24Enum_ENUM0  Dot11Bandwidth24Enum = 0
 	Dot11Bandwidth24Enum_ENUM20 Dot11Bandwidth24Enum = 20
 	Dot11Bandwidth24Enum_ENUM40 Dot11Bandwidth24Enum = 40
 )
 
 // Dot11Bandwidth5Enum is a int enum.
-// channel width for the 5GHz band. enum: `20`, `40`, `80`
+// channel width for the 5GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`
 type Dot11Bandwidth5Enum int
 
 const (
+	Dot11Bandwidth5Enum_ENUM0  Dot11Bandwidth5Enum = 0
 	Dot11Bandwidth5Enum_ENUM20 Dot11Bandwidth5Enum = 20
 	Dot11Bandwidth5Enum_ENUM40 Dot11Bandwidth5Enum = 40
 	Dot11Bandwidth5Enum_ENUM80 Dot11Bandwidth5Enum = 80
 )
 
 // Dot11Bandwidth6Enum is a int enum.
-// channel width for the 6GHz band. enum: `20`, `40`, `80`, `160`
+// channel width for the 6GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`, `160`
 type Dot11Bandwidth6Enum int
 
 const (
+	Dot11Bandwidth6Enum_ENUM0   Dot11Bandwidth6Enum = 0
 	Dot11Bandwidth6Enum_ENUM20  Dot11Bandwidth6Enum = 20
 	Dot11Bandwidth6Enum_ENUM40  Dot11Bandwidth6Enum = 40
 	Dot11Bandwidth6Enum_ENUM80  Dot11Bandwidth6Enum = 80
@@ -894,7 +904,7 @@ const (
 )
 
 // Dot11ProtoEnum is a string enum.
-// enum: `a`, `ac`, `ax`, `b`, `g`, `n`
+// enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
 type Dot11ProtoEnum string
 
 const (
@@ -902,6 +912,7 @@ const (
 	Dot11ProtoEnum_AC Dot11ProtoEnum = "ac"
 	Dot11ProtoEnum_AX Dot11ProtoEnum = "ax"
 	Dot11ProtoEnum_B  Dot11ProtoEnum = "b"
+	Dot11ProtoEnum_BE Dot11ProtoEnum = "be"
 	Dot11ProtoEnum_G  Dot11ProtoEnum = "g"
 	Dot11ProtoEnum_N  Dot11ProtoEnum = "n"
 )
@@ -913,6 +924,29 @@ type DynamicPskSourceEnum string
 const (
 	DynamicPskSourceEnum_CLOUDPSKS DynamicPskSourceEnum = "cloud_psks"
 	DynamicPskSourceEnum_RADIUS    DynamicPskSourceEnum = "radius"
+)
+
+// EdrProviderEnum is a string enum.
+// `enum: `sentinelone`, `crowdstrike`
+type EdrProviderEnum string
+
+const (
+	EdrProviderEnum_CROWDSTRIKE EdrProviderEnum = "crowdstrike"
+	EdrProviderEnum_SENTINELONE EdrProviderEnum = "sentinelone"
+)
+
+// EdrStatusEnum is a string enum.
+// EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational`
+type EdrStatusEnum string
+
+const (
+	EdrStatusEnum_SENTINELONEHEALTHY       EdrStatusEnum = "sentinelone_healthy"
+	EdrStatusEnum_SENTINELONEINFECTED      EdrStatusEnum = "sentinelone_infected"
+	EdrStatusEnum_CROWDSTRIKELOW           EdrStatusEnum = "crowdstrike_low"
+	EdrStatusEnum_CROWDSTRIKEMEDIUM        EdrStatusEnum = "crowdstrike_medium"
+	EdrStatusEnum_CROWDSTRIKEHIGH          EdrStatusEnum = "crowdstrike_high"
+	EdrStatusEnum_CROWDSTRIKECRITICAL      EdrStatusEnum = "crowdstrike_critical"
+	EdrStatusEnum_CROWDSTRIKEINFORMATIONAL EdrStatusEnum = "crowdstrike_informational"
 )
 
 // EventFastroamTypeEnum is a string enum.
@@ -996,7 +1030,7 @@ const (
 )
 
 // FwupdateStatStatusEnum is a string enum.
-// enum: `inprogress`, `failed`, `upgraded`, `success`
+// enum: `inprogress`, `failed`, `upgraded`, `success`, `scheduled`, `error`
 type FwupdateStatStatusEnum string
 
 const (
@@ -1004,6 +1038,8 @@ const (
 	FwupdateStatStatusEnum_FAILED     FwupdateStatStatusEnum = "failed"
 	FwupdateStatStatusEnum_UPGRADED   FwupdateStatStatusEnum = "upgraded"
 	FwupdateStatStatusEnum_SUCCESS    FwupdateStatStatusEnum = "success"
+	FwupdateStatStatusEnum_SCHEDULED  FwupdateStatStatusEnum = "scheduled"
+	FwupdateStatStatusEnum_ENUMERROR  FwupdateStatStatusEnum = "error"
 )
 
 // GatewayPathStrategyEnum is a string enum.
@@ -1287,16 +1323,20 @@ const (
 )
 
 // JsiInventoryCountDistinctEnum is a string enum.
-// enum: `model`, `account_id`, `type`, `version`, `warranty_type`, `status`
+// enum: `account_id`, `eol_time`, `eos_time`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type
 type JsiInventoryCountDistinctEnum string
 
 const (
-	JsiInventoryCountDistinctEnum_MODEL        JsiInventoryCountDistinctEnum = "model"
 	JsiInventoryCountDistinctEnum_ACCOUNTID    JsiInventoryCountDistinctEnum = "account_id"
+	JsiInventoryCountDistinctEnum_EOLTIME      JsiInventoryCountDistinctEnum = "eol_time"
+	JsiInventoryCountDistinctEnum_EOSTIME      JsiInventoryCountDistinctEnum = "eos_time"
+	JsiInventoryCountDistinctEnum_VERSIONTIME  JsiInventoryCountDistinctEnum = "version_time"
+	JsiInventoryCountDistinctEnum_MODEL        JsiInventoryCountDistinctEnum = "model"
+	JsiInventoryCountDistinctEnum_SKU          JsiInventoryCountDistinctEnum = "sku"
+	JsiInventoryCountDistinctEnum_STATUS       JsiInventoryCountDistinctEnum = "status"
 	JsiInventoryCountDistinctEnum_ENUMTYPE     JsiInventoryCountDistinctEnum = "type"
 	JsiInventoryCountDistinctEnum_VERSION      JsiInventoryCountDistinctEnum = "version"
 	JsiInventoryCountDistinctEnum_WARRANTYTYPE JsiInventoryCountDistinctEnum = "warranty_type"
-	JsiInventoryCountDistinctEnum_STATUS       JsiInventoryCountDistinctEnum = "status"
 )
 
 // JsiWarrantyTypeEnum is a string enum.
@@ -1365,6 +1405,17 @@ const (
 	L2tpStateEnum_IDLE                   L2tpStateEnum = "idle"
 	L2tpStateEnum_WAITCTRLCONN           L2tpStateEnum = "wait-ctrl-conn"
 	L2tpStateEnum_WAITCTRLREPLY          L2tpStateEnum = "wait-ctrl-reply"
+)
+
+// LastConfigDeviceTypeEnum is a string enum.
+// enum: `ap`, `gateway`, `mxedge`, `switch`
+type LastConfigDeviceTypeEnum string
+
+const (
+	LastConfigDeviceTypeEnum_AP         LastConfigDeviceTypeEnum = "ap"
+	LastConfigDeviceTypeEnum_GATEWAY    LastConfigDeviceTypeEnum = "gateway"
+	LastConfigDeviceTypeEnum_ENUMSWITCH LastConfigDeviceTypeEnum = "switch"
+	LastConfigDeviceTypeEnum_MXEDGE     LastConfigDeviceTypeEnum = "mxedge"
 )
 
 // ListMspLogsSortEnum is a string enum.
@@ -1806,17 +1857,19 @@ const (
 )
 
 // NacTagMatchEnum is a string enum.
-// if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
+// if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `edr_health`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
 type NacTagMatchEnum string
 
 const (
 	NacTagMatchEnum_CERTCN       NacTagMatchEnum = "cert_cn"
+	NacTagMatchEnum_CERTEKU      NacTagMatchEnum = "cert_eku"
 	NacTagMatchEnum_CERTISSUER   NacTagMatchEnum = "cert_issuer"
 	NacTagMatchEnum_CERTSAN      NacTagMatchEnum = "cert_san"
 	NacTagMatchEnum_CERTSERIAL   NacTagMatchEnum = "cert_serial"
 	NacTagMatchEnum_CERTSUB      NacTagMatchEnum = "cert_sub"
 	NacTagMatchEnum_CERTTEMPLATE NacTagMatchEnum = "cert_template"
 	NacTagMatchEnum_CLIENTMAC    NacTagMatchEnum = "client_mac"
+	NacTagMatchEnum_EDRHEALTH    NacTagMatchEnum = "edr_health"
 	NacTagMatchEnum_HOSTNAME     NacTagMatchEnum = "hostname"
 	NacTagMatchEnum_IDPROLE      NacTagMatchEnum = "idp_role"
 	NacTagMatchEnum_INGRESSVLAN  NacTagMatchEnum = "ingress_vlan"
@@ -1830,7 +1883,7 @@ const (
 )
 
 // NacTagTypeEnum is a string enum.
-// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`
+// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_nacportal_id`, `session_timeout`, `username_attr`, `vlan`
 type NacTagTypeEnum string
 
 const (
@@ -1840,7 +1893,7 @@ const (
 	NacTagTypeEnum_RADIUSATTRS         NacTagTypeEnum = "radius_attrs"
 	NacTagTypeEnum_RADIUSGROUP         NacTagTypeEnum = "radius_group"
 	NacTagTypeEnum_RADIUSVENDORATTRS   NacTagTypeEnum = "radius_vendor_attrs"
-	NacTagTypeEnum_REDIRECTGUESTPORTAL NacTagTypeEnum = "redirect_guest_portal"
+	NacTagTypeEnum_REDIRECTNACPORTALID NacTagTypeEnum = "redirect_nacportal_id"
 	NacTagTypeEnum_SESSIONTIMEOUT      NacTagTypeEnum = "session_timeout"
 	NacTagTypeEnum_USERNAMEATTR        NacTagTypeEnum = "username_attr"
 	NacTagTypeEnum_VLAN                NacTagTypeEnum = "vlan"
@@ -2049,22 +2102,38 @@ const (
 )
 
 // OrgNacClientsCountDistinctEnum is a string enum.
-// enum: `auth_type`, `last_ap`, `last_nacrule_id`, `last_nas_vendor`, `last_ssid`, `last_status`, `last_username`, `last_vlan`, `mac`, `mdm_compliance`, `mdm_provider`, `type`
+// enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `site_id`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`
 type OrgNacClientsCountDistinctEnum string
 
 const (
-	OrgNacClientsCountDistinctEnum_AUTHTYPE      OrgNacClientsCountDistinctEnum = "auth_type"
-	OrgNacClientsCountDistinctEnum_LASTAP        OrgNacClientsCountDistinctEnum = "last_ap"
-	OrgNacClientsCountDistinctEnum_LASTNACRULEID OrgNacClientsCountDistinctEnum = "last_nacrule_id"
-	OrgNacClientsCountDistinctEnum_LASTNASVENDOR OrgNacClientsCountDistinctEnum = "last_nas_vendor"
-	OrgNacClientsCountDistinctEnum_LASTSSID      OrgNacClientsCountDistinctEnum = "last_ssid"
-	OrgNacClientsCountDistinctEnum_LASTSTATUS    OrgNacClientsCountDistinctEnum = "last_status"
-	OrgNacClientsCountDistinctEnum_LASTUSERNAME  OrgNacClientsCountDistinctEnum = "last_username"
-	OrgNacClientsCountDistinctEnum_LASTVLAN      OrgNacClientsCountDistinctEnum = "last_vlan"
-	OrgNacClientsCountDistinctEnum_MAC           OrgNacClientsCountDistinctEnum = "mac"
-	OrgNacClientsCountDistinctEnum_MDMCOMPLIANCE OrgNacClientsCountDistinctEnum = "mdm_compliance"
-	OrgNacClientsCountDistinctEnum_MDMPROVIDER   OrgNacClientsCountDistinctEnum = "mdm_provider"
-	OrgNacClientsCountDistinctEnum_ENUMTYPE      OrgNacClientsCountDistinctEnum = "type"
+	OrgNacClientsCountDistinctEnum_AP             OrgNacClientsCountDistinctEnum = "ap"
+	OrgNacClientsCountDistinctEnum_AUTHTYPE       OrgNacClientsCountDistinctEnum = "auth_type"
+	OrgNacClientsCountDistinctEnum_DEVICEMAC      OrgNacClientsCountDistinctEnum = "device_mac"
+	OrgNacClientsCountDistinctEnum_EDRMANAGED     OrgNacClientsCountDistinctEnum = "edr_managed"
+	OrgNacClientsCountDistinctEnum_EDRPROVIDER    OrgNacClientsCountDistinctEnum = "edr_provider"
+	OrgNacClientsCountDistinctEnum_EDRSTATUS      OrgNacClientsCountDistinctEnum = "edr_status"
+	OrgNacClientsCountDistinctEnum_FAMILY         OrgNacClientsCountDistinctEnum = "family"
+	OrgNacClientsCountDistinctEnum_HOSTNAME       OrgNacClientsCountDistinctEnum = "hostname"
+	OrgNacClientsCountDistinctEnum_IDPID          OrgNacClientsCountDistinctEnum = "idp_id"
+	OrgNacClientsCountDistinctEnum_MFG            OrgNacClientsCountDistinctEnum = "mfg"
+	OrgNacClientsCountDistinctEnum_MDMCOMPLIANCE  OrgNacClientsCountDistinctEnum = "mdm_compliance"
+	OrgNacClientsCountDistinctEnum_MDMMANAGED     OrgNacClientsCountDistinctEnum = "mdm_managed"
+	OrgNacClientsCountDistinctEnum_MDMPROVIDER    OrgNacClientsCountDistinctEnum = "mdm_provider"
+	OrgNacClientsCountDistinctEnum_MODEL          OrgNacClientsCountDistinctEnum = "model"
+	OrgNacClientsCountDistinctEnum_MXEDGEID       OrgNacClientsCountDistinctEnum = "mxedge_id"
+	OrgNacClientsCountDistinctEnum_NACRULEMATCHED OrgNacClientsCountDistinctEnum = "nacrule_matched"
+	OrgNacClientsCountDistinctEnum_NACRULENAME    OrgNacClientsCountDistinctEnum = "nacrule_name"
+	OrgNacClientsCountDistinctEnum_NACRULEID      OrgNacClientsCountDistinctEnum = "nacrule_id"
+	OrgNacClientsCountDistinctEnum_NASIP          OrgNacClientsCountDistinctEnum = "nas_ip"
+	OrgNacClientsCountDistinctEnum_NASVENDOR      OrgNacClientsCountDistinctEnum = "nas_vendor"
+	OrgNacClientsCountDistinctEnum_OS             OrgNacClientsCountDistinctEnum = "os"
+	OrgNacClientsCountDistinctEnum_SITEID         OrgNacClientsCountDistinctEnum = "site_id"
+	OrgNacClientsCountDistinctEnum_SSID           OrgNacClientsCountDistinctEnum = "ssid"
+	OrgNacClientsCountDistinctEnum_STATUS         OrgNacClientsCountDistinctEnum = "status"
+	OrgNacClientsCountDistinctEnum_ENUMTYPE       OrgNacClientsCountDistinctEnum = "type"
+	OrgNacClientsCountDistinctEnum_USERMACLABEL   OrgNacClientsCountDistinctEnum = "usermac_label"
+	OrgNacClientsCountDistinctEnum_USERNAME       OrgNacClientsCountDistinctEnum = "username"
+	OrgNacClientsCountDistinctEnum_VLAN           OrgNacClientsCountDistinctEnum = "vlan"
 )
 
 // OrgOtherdevicesEventsCountDistinctEnum is a string enum.
@@ -2622,18 +2691,6 @@ const (
 	ResponseAutoZoneStatusEnum_ENUMERROR      ResponseAutoZoneStatusEnum = "error"
 )
 
-// ResponseDeviceSnapshotStatusEnum is a string enum.
-// enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
-type ResponseDeviceSnapshotStatusEnum string
-
-const (
-	ResponseDeviceSnapshotStatusEnum_ENUMERROR  ResponseDeviceSnapshotStatusEnum = "error"
-	ResponseDeviceSnapshotStatusEnum_INPROGRESS ResponseDeviceSnapshotStatusEnum = "inprogress"
-	ResponseDeviceSnapshotStatusEnum_SCHEDULED  ResponseDeviceSnapshotStatusEnum = "scheduled"
-	ResponseDeviceSnapshotStatusEnum_STARTING   ResponseDeviceSnapshotStatusEnum = "starting"
-	ResponseDeviceSnapshotStatusEnum_SUCCESS    ResponseDeviceSnapshotStatusEnum = "success"
-)
-
 // ResponseMapImportApActionEnum is a string enum.
 // enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed`
 type ResponseMapImportApActionEnum string
@@ -3126,22 +3183,37 @@ const (
 )
 
 // SiteNacClientsCountDistinctEnum is a string enum.
-// enum: `auth_type`, `last_ap`, `last_nacrule_id`, `last_nas_vendor`, `last_ssid`, `last_status`, `last_username`, `last_vlan`, `mac`, `mdm_compliance`, `mdm_provider`, `type`
+// enum: `ap`, `auth_type`, `device_mac`, `edr_managed`, `edr_provider`, `edr_status`, `family`, `hostname`, `idp_id`, `mfg`, `mdm_compliance`, `mdm_managed`, `mdm_provider`, `model`, `mxedge_id`, `nacrule_matched`, `nacrule_name`, `nacrule_id`, `nas_ip`, `nas_vendor`, `os`, `ssid`, `status`, `type`, `usermac_label`, `username`, `vlan`
 type SiteNacClientsCountDistinctEnum string
 
 const (
-	SiteNacClientsCountDistinctEnum_AUTHTYPE      SiteNacClientsCountDistinctEnum = "auth_type"
-	SiteNacClientsCountDistinctEnum_LASTAP        SiteNacClientsCountDistinctEnum = "last_ap"
-	SiteNacClientsCountDistinctEnum_LASTNACRULEID SiteNacClientsCountDistinctEnum = "last_nacrule_id"
-	SiteNacClientsCountDistinctEnum_LASTNASVENDOR SiteNacClientsCountDistinctEnum = "last_nas_vendor"
-	SiteNacClientsCountDistinctEnum_LASTSSID      SiteNacClientsCountDistinctEnum = "last_ssid"
-	SiteNacClientsCountDistinctEnum_LASTSTATUS    SiteNacClientsCountDistinctEnum = "last_status"
-	SiteNacClientsCountDistinctEnum_LASTUSERNAME  SiteNacClientsCountDistinctEnum = "last_username"
-	SiteNacClientsCountDistinctEnum_LASTVLAN      SiteNacClientsCountDistinctEnum = "last_vlan"
-	SiteNacClientsCountDistinctEnum_MAC           SiteNacClientsCountDistinctEnum = "mac"
-	SiteNacClientsCountDistinctEnum_MDMCOMPLIANCE SiteNacClientsCountDistinctEnum = "mdm_compliance"
-	SiteNacClientsCountDistinctEnum_MDMPROVIDER   SiteNacClientsCountDistinctEnum = "mdm_provider"
-	SiteNacClientsCountDistinctEnum_ENUMTYPE      SiteNacClientsCountDistinctEnum = "type"
+	SiteNacClientsCountDistinctEnum_AP             SiteNacClientsCountDistinctEnum = "ap"
+	SiteNacClientsCountDistinctEnum_AUTHTYPE       SiteNacClientsCountDistinctEnum = "auth_type"
+	SiteNacClientsCountDistinctEnum_DEVICEMAC      SiteNacClientsCountDistinctEnum = "device_mac"
+	SiteNacClientsCountDistinctEnum_EDRMANAGED     SiteNacClientsCountDistinctEnum = "edr_managed"
+	SiteNacClientsCountDistinctEnum_EDRPROVIDER    SiteNacClientsCountDistinctEnum = "edr_provider"
+	SiteNacClientsCountDistinctEnum_EDRSTATUS      SiteNacClientsCountDistinctEnum = "edr_status"
+	SiteNacClientsCountDistinctEnum_FAMILY         SiteNacClientsCountDistinctEnum = "family"
+	SiteNacClientsCountDistinctEnum_HOSTNAME       SiteNacClientsCountDistinctEnum = "hostname"
+	SiteNacClientsCountDistinctEnum_IDPID          SiteNacClientsCountDistinctEnum = "idp_id"
+	SiteNacClientsCountDistinctEnum_MFG            SiteNacClientsCountDistinctEnum = "mfg"
+	SiteNacClientsCountDistinctEnum_MDMCOMPLIANCE  SiteNacClientsCountDistinctEnum = "mdm_compliance"
+	SiteNacClientsCountDistinctEnum_MDMMANAGED     SiteNacClientsCountDistinctEnum = "mdm_managed"
+	SiteNacClientsCountDistinctEnum_MDMPROVIDER    SiteNacClientsCountDistinctEnum = "mdm_provider"
+	SiteNacClientsCountDistinctEnum_MODEL          SiteNacClientsCountDistinctEnum = "model"
+	SiteNacClientsCountDistinctEnum_MXEDGEID       SiteNacClientsCountDistinctEnum = "mxedge_id"
+	SiteNacClientsCountDistinctEnum_NACRULEMATCHED SiteNacClientsCountDistinctEnum = "nacrule_matched"
+	SiteNacClientsCountDistinctEnum_NACRULENAME    SiteNacClientsCountDistinctEnum = "nacrule_name"
+	SiteNacClientsCountDistinctEnum_NACRULEID      SiteNacClientsCountDistinctEnum = "nacrule_id"
+	SiteNacClientsCountDistinctEnum_NASIP          SiteNacClientsCountDistinctEnum = "nas_ip"
+	SiteNacClientsCountDistinctEnum_NASVENDOR      SiteNacClientsCountDistinctEnum = "nas_vendor"
+	SiteNacClientsCountDistinctEnum_OS             SiteNacClientsCountDistinctEnum = "os"
+	SiteNacClientsCountDistinctEnum_SSID           SiteNacClientsCountDistinctEnum = "ssid"
+	SiteNacClientsCountDistinctEnum_STATUS         SiteNacClientsCountDistinctEnum = "status"
+	SiteNacClientsCountDistinctEnum_ENUMTYPE       SiteNacClientsCountDistinctEnum = "type"
+	SiteNacClientsCountDistinctEnum_USERMACLABEL   SiteNacClientsCountDistinctEnum = "usermac_label"
+	SiteNacClientsCountDistinctEnum_USERNAME       SiteNacClientsCountDistinctEnum = "username"
+	SiteNacClientsCountDistinctEnum_VLAN           SiteNacClientsCountDistinctEnum = "vlan"
 )
 
 // SiteOtherDeviceEventsCountDistinctEnum is a string enum.
@@ -3722,14 +3794,13 @@ const (
 )
 
 // StatsApGpsStatSrcEnum is a string enum.
-// The origin of the GPS data. enum:
-// * `gps`: from this device’s GPS estimates
-// * `other_ap` from neighboring device GPS estimates
+// The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_ap` from neighboring device GPS estimates. Note: API responses may return `other_aps` which should be treated as `other_ap`
 type StatsApGpsStatSrcEnum string
 
 const (
-	StatsApGpsStatSrcEnum_GPS     StatsApGpsStatSrcEnum = "gps"
-	StatsApGpsStatSrcEnum_OTHERAP StatsApGpsStatSrcEnum = "other_ap"
+	StatsApGpsStatSrcEnum_GPS      StatsApGpsStatSrcEnum = "gps"
+	StatsApGpsStatSrcEnum_OTHERAP  StatsApGpsStatSrcEnum = "other_ap"
+	StatsApGpsStatSrcEnum_OTHERAPS StatsApGpsStatSrcEnum = "other_aps"
 )
 
 // StatsMxtunnelStateEnum is a string enum.
@@ -3921,7 +3992,7 @@ const (
 )
 
 // SwitchPortUsageDot1xEnum is a string enum.
-// Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
+// Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x`
 type SwitchPortUsageDot1xEnum string
 
 const (
@@ -3929,7 +4000,7 @@ const (
 )
 
 // SwitchPortUsageDuplexEnum is a string enum.
-// Only if `mode`!=`dynamic`, link connection mode. enum: `auto`, `full`, `half`
+// Only if `mode`!=`dynamic`. Link connection mode. enum: `auto`, `full`, `half`
 type SwitchPortUsageDuplexEnum string
 
 const (

@@ -32,8 +32,8 @@ func (o *OrgsClientsWan) CountOrgWanClientEvents(
 	orgId uuid.UUID,
 	distinct *models.OrgWanClientsEventsCountDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -94,8 +94,8 @@ func (o *OrgsClientsWan) CountOrgWanClients(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *models.OrgWanClientsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -159,8 +159,8 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	mfg *string,
 	nacruleId *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchEventsWanClient],
@@ -243,8 +243,8 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	mfg *string,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchWanClient],

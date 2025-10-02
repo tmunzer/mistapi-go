@@ -56,7 +56,7 @@ type StatsWirelessClient struct {
 	Os string `json:"os"`
 	// If it’s currently in power-save mode
 	PowerSaving *bool `json:"power_saving,omitempty"`
-	// enum: `a`, `ac`, `ax`, `b`, `g`, `n`
+	// enum: `a`, `ac`, `ax`, `b`, `be`, `g`, `n`
 	Proto Dot11ProtoEnum `json:"proto"`
 	// PSK id (if multi-psk is used)
 	PskId *uuid.UUID `json:"psk_id,omitempty"`

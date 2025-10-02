@@ -53,6 +53,7 @@ Gateway port config
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br><br>**Default**: `"default"` |
 | `WanDisableSpeedtest` | `*bool` | Optional | If `wan_type`==`wan`, disable speedtest<br><br>**Default**: `false` |
 | `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |
+| `WanExtIp6` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IPv6 |
 | `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "100.100.100.0/24") |
 | `WanExtraRoutes6` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `WanNetworks` | `[]string` | Optional | Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined |
@@ -88,6 +89,8 @@ Gateway port config
   "usage": "lan",
   "wan_arp_policer": "default",
   "wan_disable_speedtest": false,
+  "wan_ext_ip": "64.2.4.3",
+  "wan_ext_ip6": "2601:1700:43c0:dc0::10",
   "wan_type": "broadband",
   "ae_idx": "ae_idx6",
   "exampleAdditionalProperty": {

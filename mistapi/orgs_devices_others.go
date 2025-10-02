@@ -141,8 +141,8 @@ func (o *OrgsDevicesOthers) CountOrgOtherDeviceEvents(
 	orgId uuid.UUID,
 	distinct *models.OrgOtherdevicesEventsCountDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -209,8 +209,8 @@ func (o *OrgsDevicesOthers) SearchOrgOtherDeviceEvents(
 	vendor *string,
 	mType *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsOtherDevicesSearch],

@@ -15,7 +15,7 @@ type RrmEvent struct {
 	ApId uuid.UUID `json:"ap_id"`
 	// enum: `24`, `5`, `6`
 	Band Dot11BandEnum `json:"band"`
-	// channel width for the band.enum: `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
+	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth Dot11BandwidthEnum `json:"bandwidth"`
 	// Channel for the band from rrm
 	Channel int `json:"channel"`

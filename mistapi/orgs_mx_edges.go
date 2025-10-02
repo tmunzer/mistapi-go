@@ -223,8 +223,8 @@ func (o *OrgsMxEdges) CountOrgMxEdges(
 	tuntermVersion *string,
 	sort *string,
 	stats *bool,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -310,8 +310,8 @@ func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
 	mxclusterId *string,
 	mType *string,
 	service *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -386,8 +386,8 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
 	service *string,
 	component *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseMxedgeEventsSearch],
@@ -468,8 +468,8 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 	stats *bool,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseMxedgeSearch],

@@ -38,8 +38,8 @@ CountOrgDeviceEvents(
     text *string,
     timestamp *string,
     mType *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -59,8 +59,8 @@ CountOrgDeviceEvents(
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -142,8 +142,8 @@ CountOrgDeviceLastConfigs(
     orgId uuid.UUID,
     mType *models.DeviceTypeDefaultApEnum,
     distinct *models.OrgDevicesLastConfigsCountDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -157,8 +157,8 @@ CountOrgDeviceLastConfigs(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.OrgDevicesLastConfigsCountDistinctEnum`](../../doc/models/org-devices-last-configs-count-distinct-enum.md) | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -233,7 +233,7 @@ CountOrgDevices(
     managed *string,
     mac *string,
     version *string,
-    ipAddress *string,
+    ip *string,
     mxtunnelStatus *models.CountOrgDevicesMxtunnelStatusEnum,
     mxedgeId *uuid.UUID,
     lldpSystemName *string,
@@ -241,8 +241,8 @@ CountOrgDevices(
     lldpPortId *string,
     lldpMgmtAddr *string,
     mType *models.DeviceTypeDefaultApEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -261,7 +261,7 @@ CountOrgDevices(
 | `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. enum: `true`, `false` |
 | `mac` | `*string` | Query, Optional | AP mac |
 | `version` | `*string` | Query, Optional | Version |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `mxtunnelStatus` | [`*models.CountOrgDevicesMxtunnelStatusEnum`](../../doc/models/count-org-devices-mxtunnel-status-enum.md) | Query, Optional | MxTunnel status, enum: `up`, `down` |
 | `mxedgeId` | `*uuid.UUID` | Query, Optional | Mist Edge id, if AP is connecting to a Mist Edge |
 | `lldpSystemName` | `*string` | Query, Optional | LLDP system name |
@@ -269,8 +269,8 @@ CountOrgDevices(
 | `lldpPortId` | `*string` | Query, Optional | LLDP port id |
 | `lldpMgmtAddr` | `*string` | Query, Optional | LLDP management ip address |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -299,7 +299,7 @@ mac := "5c5b53010101"
 
 version := "10.0.0"
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 mxedgeId := uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")
 
@@ -317,7 +317,7 @@ duration := "10m"
 
 limit := 100
 
-apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ipAddress, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
+apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ip, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -646,8 +646,8 @@ SearchOrgDeviceEvents(
     lastBy *string,
     includes *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseDeviceEventsSearch],
@@ -668,8 +668,8 @@ SearchOrgDeviceEvents(
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -757,12 +757,12 @@ Search Device Last Configs
 SearchOrgDeviceLastConfigs(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeDefaultApEnum,
+    deviceType *models.LastConfigDeviceTypeEnum,
     mac *string,
     name *string,
     version *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     limit *int,
     duration *string,
     sort *string) (
@@ -775,12 +775,12 @@ SearchOrgDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `deviceType` | [`*models.LastConfigDeviceTypeEnum`](../../doc/models/last-config-device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | Device MAC address |
 | `name` | `*string` | Query, Optional | Devices Name |
 | `version` | `*string` | Query, Optional | Device Version |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
@@ -796,7 +796,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeDefaultApEnum_AP
+deviceType := models.LastConfigDeviceTypeEnum_AP
 
 mac := "5c5b53010101"
 
@@ -810,7 +810,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &mType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
+apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &deviceType, &mac, &name, &version, nil, nil, &limit, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -923,7 +923,7 @@ SearchOrgDevices(
     evpntopoId *string,
     extIp *string,
     hostname *string,
-    ipAddress *string,
+    ip *string,
     lastConfigStatus *string,
     lastHostname *string,
     lldpMgmtAddr *string,
@@ -946,8 +946,8 @@ SearchOrgDevices(
     version *string,
     mType *models.DeviceTypeDefaultApEnum,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseDeviceSearch],
@@ -974,7 +974,7 @@ SearchOrgDevices(
 | `evpntopoId` | `*string` | Query, Optional | If `type`==`switch`, EVPN topology id |
 | `extIp` | `*string` | Query, Optional | External IP Address |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `lastConfigStatus` | `*string` | Query, Optional | If `type`==`switch` or `type`==`gateway`, last configuration status |
 | `lastHostname` | `*string` | Query, Optional | If `type`==`switch` or `type`==`gateway`, last hostname |
 | `lldpMgmtAddr` | `*string` | Query, Optional | If `type`==`ap`, LLDP management ip address |
@@ -997,8 +997,8 @@ SearchOrgDevices(
 | `version` | `*string` | Query, Optional | Version |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -1043,7 +1043,7 @@ extIp := "83.42.53.1"
 
 hostname := "my-hostname"
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 lastConfigStatus := "success"
 
@@ -1091,7 +1091,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ipAddress, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

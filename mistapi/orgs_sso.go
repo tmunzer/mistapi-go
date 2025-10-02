@@ -245,8 +245,8 @@ func (o *OrgsSSO) ListOrgSsoLatestFailures(
 	ctx context.Context,
 	orgId uuid.UUID,
 	ssoId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

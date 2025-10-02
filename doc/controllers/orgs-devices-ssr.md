@@ -17,7 +17,8 @@ orgsDevicesSSR := client.OrgsDevicesSSR()
 GetOrg128TRegistrationCommands(
     ctx context.Context,
     orgId uuid.UUID,
-    ttl *int) (
+    ttl *int,
+    assetIds []string) (
     models.ApiResponse[models.ResponseRouter128tRegisterCmd],
     error)
 ```
@@ -27,7 +28,8 @@ GetOrg128TRegistrationCommands(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `ttl` | `*int` | Query, Optional | duration for the token to stay valid. 1 - 365 in days, default is 365 |
+| `ttl` | `*int` | Query, Optional | duration for the token to stay valid,in seconds. Defaults to 1 year (31536000 seconds) if not specified. |
+| `assetIds` | `[]string` | Query, Optional | When specified, only specified assets are allowed for registration. This parameter can and is preferred to be set in HTTP body, especially when the list is long, so that HTTP header size will never exceed limit.<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -40,9 +42,9 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-ttl := 365
+ttl := 31536000
 
-apiResponse, err := orgsDevicesSSR.GetOrg128TRegistrationCommands(ctx, orgId, &ttl)
+apiResponse, err := orgsDevicesSSR.GetOrg128TRegistrationCommands(ctx, orgId, &ttl, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

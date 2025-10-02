@@ -120,8 +120,8 @@ func (s *SitesAlarms) CountSiteAlarms(
 	mType *string,
 	severity *string,
 	group *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -199,8 +199,8 @@ func (s *SitesAlarms) SearchSiteAlarms(
 	severity *string,
 	group *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.AlarmSearchResult],

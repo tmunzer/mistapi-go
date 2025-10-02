@@ -29,7 +29,7 @@ AP statistics
 | `ExpiringCerts` | `map[string]int` | Optional | Map of certificate serial numbers to their expiry timestamps (in epoch) for certificates expiring within 30 days. Property key is the certificate serial number |
 | `ExtIp` | `models.Optional[string]` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
-| `Gps` | [`*models.StatsApGpsStat`](../../doc/models/stats-ap-gps-stat.md) | Optional | - |
+| `GpsStat` | [`*models.StatsApGpsStat`](../../doc/models/stats-ap-gps-stat.md) | Optional | - |
 | `HwRev` | `models.Optional[string]` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `InactiveWiredVlans` | `[]int` | Optional | - |

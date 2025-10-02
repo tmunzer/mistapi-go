@@ -11,17 +11,17 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApMac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `ApName` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Degraded` | `float64` | Required | - |
-| `DeviceOs` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `DeviceType` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Duration` | `float64` | Required | - |
-| `Mac` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Ssid` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Total` | `float64` | Required | - |
-| `WlanId` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `ApMac` | `*string` | Optional | - |
+| `ApName` | `*string` | Optional | - |
+| `Degraded` | `*float64` | Optional | - |
+| `DeviceOs` | `*string` | Optional | - |
+| `DeviceType` | `*string` | Optional | - |
+| `Duration` | `*float64` | Optional | - |
+| `Mac` | `*string` | Optional | - |
+| `Name` | `*string` | Optional | - |
+| `Ssid` | `*string` | Optional | - |
+| `Total` | `*float64` | Optional | - |
+| `WlanId` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -33,12 +33,6 @@
   "degraded": 225.0,
   "device_os": "device_os0",
   "device_type": "device_type0",
-  "duration": 98.06,
-  "mac": "mac4",
-  "name": "name0",
-  "ssid": "ssid8",
-  "total": 3.0,
-  "wlan_id": "wlan_id2",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

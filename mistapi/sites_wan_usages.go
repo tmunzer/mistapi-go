@@ -38,8 +38,8 @@ func (s *SitesWANUsages) CountSiteWanUsage(
 	tenant *string,
 	pathType *string,
 	distinct *models.WanUsagesCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -126,8 +126,8 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
 	pathType *string,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.SearchWanUsage],

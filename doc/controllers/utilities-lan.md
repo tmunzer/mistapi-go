@@ -13,10 +13,16 @@ utilitiesLAN := client.UtilitiesLAN()
 * [Cable Test From Switch](../../doc/controllers/utilities-lan.md#cable-test-from-switch)
 * [Clear All Learned Macs From Port on Switch](../../doc/controllers/utilities-lan.md#clear-all-learned-macs-from-port-on-switch)
 * [Clear Bpdu Errors From Ports on Switch](../../doc/controllers/utilities-lan.md#clear-bpdu-errors-from-ports-on-switch)
+* [Clear Site Device Dot 1 X Session](../../doc/controllers/utilities-lan.md#clear-site-device-dot-1-x-session)
+* [Clear Site Device Pending Version](../../doc/controllers/utilities-lan.md#clear-site-device-pending-version)
+* [Clear Site Multiple Device Pending Version](../../doc/controllers/utilities-lan.md#clear-site-multiple-device-pending-version)
 * [Create Site Device Snapshot](../../doc/controllers/utilities-lan.md#create-site-device-snapshot)
 * [Poll Site Switch Stats](../../doc/controllers/utilities-lan.md#poll-site-switch-stats)
 * [Reauth Org Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-org-dot-1-x-wired-client)
 * [Reauth Site Dot 1 X Wired Client](../../doc/controllers/utilities-lan.md#reauth-site-dot-1-x-wired-client)
+* [Restore Site Device Backup Version](../../doc/controllers/utilities-lan.md#restore-site-device-backup-version)
+* [Restore Site Multiple Device Backup Version](../../doc/controllers/utilities-lan.md#restore-site-multiple-device-backup-version)
+* [Toogle Site Device Vc Routing Engines Role](../../doc/controllers/utilities-lan.md#toogle-site-device-vc-routing-engines-role)
 * [Upgrade Device Bios](../../doc/controllers/utilities-lan.md#upgrade-device-bios)
 * [Upgrade Device FPGA](../../doc/controllers/utilities-lan.md#upgrade-device-fpga)
 * [Upgrade Site Devices Bios](../../doc/controllers/utilities-lan.md#upgrade-site-devices-bios)
@@ -220,16 +226,76 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Create Site Device Snapshot
+# Clear Site Device Dot 1 X Session
 
-Create recovery device snapshot (Available on Junos OS EX2300-, EX3400-, EX4400- devices)
+Clear Dot1x Session. The output will be available through websocket.
 
 ```go
-CreateSiteDeviceSnapshot(
+ClearSiteDeviceDot1xSession(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.ClearDot1xSession) (
+    models.ApiResponse[models.WebsocketSession],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.ClearDot1xSession`](../../doc/models/clear-dot-1-x-session.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.ClearDot1xSession{
+    PortId:               models.ToPointer("ge-0/0/0"),
+}
+
+apiResponse, err := utilitiesLAN.ClearSiteDeviceDot1xSession(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Clear Site Device Pending Version
+
+Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+
+```go
+ClearSiteDevicePendingVersion(
     ctx context.Context,
     siteId uuid.UUID,
     deviceId uuid.UUID) (
-    models.ApiResponse[models.ResponseDeviceSnapshot],
+    http.Response,
     error)
 ```
 
@@ -242,7 +308,7 @@ CreateSiteDeviceSnapshot(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseDeviceSnapshot](../../doc/models/response-device-snapshot.md).
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -253,23 +319,111 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := utilitiesLAN.CreateSiteDeviceSnapshot(ctx, siteId, deviceId)
+resp, err := utilitiesLAN.ClearSiteDevicePendingVersion(ctx, siteId, deviceId)
 if err != nil {
     log.Fatalln(err)
 } else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
+    fmt.Println(resp.StatusCode)
 }
 ```
 
-## Example Response *(as JSON)*
+## Errors
 
-```json
-{
-  "status": "starting",
-  "status_id": "string",
-  "timestamp": 0
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Request | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Clear Site Multiple Device Pending Version
+
+Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+
+```go
+ClearSiteMultipleDevicePendingVersion(
+    ctx context.Context,
+    siteId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesLAN.ClearSiteMultipleDevicePendingVersion(ctx, siteId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Request | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Create Site Device Snapshot
+
+Create recovery device snapshot (Available on Junos OS EX2300-, EX3400-, EX4400- devices)
+
+```go
+CreateSiteDeviceSnapshot(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesLAN.CreateSiteDeviceSnapshot(ctx, siteId, deviceId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 
@@ -458,6 +612,158 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Restore Site Device Backup Version
+
+Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+
+```go
+RestoreSiteDeviceBackupVersion(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesLAN.RestoreSiteDeviceBackupVersion(ctx, siteId, deviceId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Request | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Restore Site Multiple Device Backup Version
+
+Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+
+```go
+RestoreSiteMultipleDeviceBackupVersion(
+    ctx context.Context,
+    siteId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesLAN.RestoreSiteMultipleDeviceBackupVersion(ctx, siteId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Request | `ApiError` |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Toogle Site Device Vc Routing Engines Role
+
+In a pre-provisioned VC, mastership is system-determined. This command allows manual toggling between primary and backup Routing Engines.
+
+```go
+ToogleSiteDeviceVcRoutingEnginesRole(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesLAN.ToogleSiteDeviceVcRoutingEnginesRole(ctx, siteId, deviceId)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Request | `ApiError` |
 | 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
 | 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |

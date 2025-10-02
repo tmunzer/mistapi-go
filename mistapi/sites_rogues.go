@@ -32,8 +32,8 @@ func (s *SitesRogues) ListSiteRogueAPs(
 	siteId uuid.UUID,
 	mType *models.RogueTypeEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	interval *string) (
 	models.ApiResponse[models.ResponseInsightRogue],
@@ -94,8 +94,8 @@ func (s *SitesRogues) ListSiteRogueClients(
 	ctx context.Context,
 	siteId uuid.UUID,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	interval *string) (
 	models.ApiResponse[models.ResponseInsightRogueClient],
@@ -159,8 +159,8 @@ func (s *SitesRogues) CountSiteRogueEvents(
 	apMac *string,
 	channel *string,
 	seenOnLan *bool,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -242,8 +242,8 @@ func (s *SitesRogues) SearchSiteRogueEvents(
 	channel *int,
 	seenOnLan *bool,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsRogueSearch],

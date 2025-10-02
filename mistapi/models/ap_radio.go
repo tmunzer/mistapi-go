@@ -17,6 +17,8 @@ type ApRadio struct {
 	AntGain5 *int `json:"ant_gain_5,omitempty"`
 	// Antenna gain for 6G - for models with external antenna only
 	AntGain6 *int `json:"ant_gain_6,omitempty"`
+	// Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
+	AntMode *AntModeEnum `json:"ant_mode,omitempty"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 	AntennaMode *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
 	// Radio Band AP settings
@@ -42,8 +44,8 @@ type ApRadio struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApRadio) String() string {
 	return fmt.Sprintf(
-		"ApRadio[AllowRrmDisable=%v, AntGain24=%v, AntGain5=%v, AntGain6=%v, AntennaMode=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, FullAutomaticRrm=%v, IndoorUse=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
-		a.AllowRrmDisable, a.AntGain24, a.AntGain5, a.AntGain6, a.AntennaMode, a.Band24, a.Band24Usage, a.Band5, a.Band5On24Radio, a.Band6, a.FullAutomaticRrm, a.IndoorUse, a.ScanningEnabled, a.AdditionalProperties)
+		"ApRadio[AllowRrmDisable=%v, AntGain24=%v, AntGain5=%v, AntGain6=%v, AntMode=%v, AntennaMode=%v, Band24=%v, Band24Usage=%v, Band5=%v, Band5On24Radio=%v, Band6=%v, FullAutomaticRrm=%v, IndoorUse=%v, ScanningEnabled=%v, AdditionalProperties=%v]",
+		a.AllowRrmDisable, a.AntGain24, a.AntGain5, a.AntGain6, a.AntMode, a.AntennaMode, a.Band24, a.Band24Usage, a.Band5, a.Band5On24Radio, a.Band6, a.FullAutomaticRrm, a.IndoorUse, a.ScanningEnabled, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadio.
@@ -52,7 +54,7 @@ func (a ApRadio) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled"); err != nil {
+		"allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "ant_mode", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -73,6 +75,9 @@ func (a ApRadio) toMap() map[string]any {
 	}
 	if a.AntGain6 != nil {
 		structMap["ant_gain_6"] = a.AntGain6
+	}
+	if a.AntMode != nil {
+		structMap["ant_mode"] = a.AntMode
 	}
 	if a.AntennaMode != nil {
 		structMap["antenna_mode"] = a.AntennaMode
@@ -112,7 +117,7 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain_24", "ant_gain_5", "ant_gain_6", "ant_mode", "antenna_mode", "band_24", "band_24_usage", "band_5", "band_5_on_24_radio", "band_6", "full_automatic_rrm", "indoor_use", "scanning_enabled")
 	if err != nil {
 		return err
 	}
@@ -122,6 +127,7 @@ func (a *ApRadio) UnmarshalJSON(input []byte) error {
 	a.AntGain24 = temp.AntGain24
 	a.AntGain5 = temp.AntGain5
 	a.AntGain6 = temp.AntGain6
+	a.AntMode = temp.AntMode
 	a.AntennaMode = temp.AntennaMode
 	a.Band24 = temp.Band24
 	a.Band24Usage = temp.Band24Usage
@@ -140,6 +146,7 @@ type tempApRadio struct {
 	AntGain24        *int                    `json:"ant_gain_24,omitempty"`
 	AntGain5         *int                    `json:"ant_gain_5,omitempty"`
 	AntGain6         *int                    `json:"ant_gain_6,omitempty"`
+	AntMode          *AntModeEnum            `json:"ant_mode,omitempty"`
 	AntennaMode      *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
 	Band24           *ApRadioBand24          `json:"band_24,omitempty"`
 	Band24Usage      *RadioBand24UsageEnum   `json:"band_24_usage,omitempty"`

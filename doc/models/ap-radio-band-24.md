@@ -16,7 +16,7 @@ Radio Band AP settings
 | `AllowRrmDisable` | `*bool` | Optional | **Default**: `false` |
 | `AntGain` | `models.Optional[int]` | Optional | **Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 10` |
 | `AntennaMode` | [`*models.RadioBandAntennaModeEnum`](../../doc/models/radio-band-antenna-mode-enum.md) | Optional | enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`<br><br>**Default**: `"default"` |
-| `Bandwidth` | [`*models.Dot11Bandwidth24Enum`](../../doc/models/dot-11-bandwidth-24-enum.md) | Optional | channel width for the 2.4GHz band. enum: `20`, `40`<br><br>**Default**: `20` |
+| `Bandwidth` | [`*models.Dot11Bandwidth24Enum`](../../doc/models/dot-11-bandwidth-24-enum.md) | Optional | channel width for the 2.4GHz band. enum: `0`(disabled, response only), `20`, `40`<br><br>**Default**: `20` |
 | `Channel` | `models.Optional[int]` | Optional | For Device. (primary) channel for the band, 0 means using the Site Setting<br><br>**Constraints**: `>= 1`, `<= 13` |
 | `Channels` | `models.Optional[[]int]` | Optional | For RFTemplates. List of channels, null or empty array means auto |
 | `Disabled` | `*bool` | Optional | Whether to disable the radio<br><br>**Default**: `false` |

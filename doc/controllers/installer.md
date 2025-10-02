@@ -646,6 +646,7 @@ if err != nil {
     }
   ],
   "model": "EX2300-48P",
+  "num_routing_engines": 1,
   "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
   "serial": "JW3619300157",
   "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
@@ -1099,6 +1100,7 @@ if err != nil {
     }
   ],
   "model": "EX2300-48P",
+  "num_routing_engines": 1,
   "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
   "serial": "JW3619300157",
   "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",
@@ -2458,6 +2460,7 @@ if err != nil {
     }
   ],
   "model": "EX2300-48P",
+  "num_routing_engines": 1,
   "org_id": "1e9a61a9-bc42-42ca-bf67-1ad87443d9b8",
   "serial": "JW3619300157",
   "site_id": "ab0aca7a-d45c-469b-b3bb-4fe240642d0b",

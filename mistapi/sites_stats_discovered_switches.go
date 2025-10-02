@@ -33,8 +33,8 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitchesMetrics(
 	scope *models.DiscoveredSwitchesMetricScopeEnum,
 	mType *models.DiscoveredSwitchMetricTypeEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseDiscoveredSwitchMetrics],
@@ -102,8 +102,8 @@ func (s *SitesStatsDiscoveredSwitches) CountSiteDiscoveredSwitches(
 	ctx context.Context,
 	siteId uuid.UUID,
 	distinct *models.SiteDiscoveredSwitchesCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -222,8 +222,8 @@ func (s *SitesStatsDiscoveredSwitches) SearchSiteDiscoveredSwitches(
 	model *string,
 	version *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseDiscoveredSwitches],

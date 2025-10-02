@@ -84,8 +84,8 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	version *string,
 	timestamp *float64,
 	mac *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -185,8 +185,8 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	timestamp *float64,
 	mac *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsPathSearch],

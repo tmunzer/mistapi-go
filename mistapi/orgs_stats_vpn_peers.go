@@ -31,8 +31,8 @@ func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -93,8 +93,8 @@ func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
 	siteId *string,
 	mType *models.VpnTypeEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.VpnPeerStatSearch],

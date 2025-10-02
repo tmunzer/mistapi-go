@@ -13,6 +13,8 @@ type GatewayPortWanSourceNat struct {
 	// Or to disable the source-nat
 	Disabled *bool `json:"disabled,omitempty"`
 	// If alternative nat_pool is desired
+	Nat6Pool *string `json:"nat6_pool,omitempty"`
+	// If alternative nat_pool is desired
 	NatPool              *string                `json:"nat_pool,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -21,8 +23,8 @@ type GatewayPortWanSourceNat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayPortWanSourceNat) String() string {
 	return fmt.Sprintf(
-		"GatewayPortWanSourceNat[Disabled=%v, NatPool=%v, AdditionalProperties=%v]",
-		g.Disabled, g.NatPool, g.AdditionalProperties)
+		"GatewayPortWanSourceNat[Disabled=%v, Nat6Pool=%v, NatPool=%v, AdditionalProperties=%v]",
+		g.Disabled, g.Nat6Pool, g.NatPool, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayPortWanSourceNat.
@@ -31,7 +33,7 @@ func (g GatewayPortWanSourceNat) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"disabled", "nat_pool"); err != nil {
+		"disabled", "nat6_pool", "nat_pool"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -43,6 +45,9 @@ func (g GatewayPortWanSourceNat) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, g.AdditionalProperties)
 	if g.Disabled != nil {
 		structMap["disabled"] = g.Disabled
+	}
+	if g.Nat6Pool != nil {
+		structMap["nat6_pool"] = g.Nat6Pool
 	}
 	if g.NatPool != nil {
 		structMap["nat_pool"] = g.NatPool
@@ -58,13 +63,14 @@ func (g *GatewayPortWanSourceNat) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "nat_pool")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "nat6_pool", "nat_pool")
 	if err != nil {
 		return err
 	}
 	g.AdditionalProperties = additionalProperties
 
 	g.Disabled = temp.Disabled
+	g.Nat6Pool = temp.Nat6Pool
 	g.NatPool = temp.NatPool
 	return nil
 }
@@ -72,5 +78,6 @@ func (g *GatewayPortWanSourceNat) UnmarshalJSON(input []byte) error {
 // tempGatewayPortWanSourceNat is a temporary struct used for validating the fields of GatewayPortWanSourceNat.
 type tempGatewayPortWanSourceNat struct {
 	Disabled *bool   `json:"disabled,omitempty"`
+	Nat6Pool *string `json:"nat6_pool,omitempty"`
 	NatPool  *string `json:"nat_pool,omitempty"`
 }

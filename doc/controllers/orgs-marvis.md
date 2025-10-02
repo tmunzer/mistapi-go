@@ -26,8 +26,8 @@ TroubleshootOrg(
     orgId uuid.UUID,
     mac *string,
     siteId *uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     mType *models.TroubleshootTypeEnum) (
     models.ApiResponse[models.ResponseTroubleshoot],
     error)
@@ -40,8 +40,8 @@ TroubleshootOrg(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | **required** when troubleshooting device or a client |
 | `siteId` | `*uuid.UUID` | Query, Optional | **required** when troubleshooting site |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `mType` | [`*models.TroubleshootTypeEnum`](../../doc/models/troubleshoot-type-enum.md) | Query, Optional | When troubleshooting site, type of network to troubleshoot |
 
 ## Response Type

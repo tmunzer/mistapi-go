@@ -75,8 +75,8 @@ func (s *SitesGuests) CountSiteGuestAuthorizations(
 	ctx context.Context,
 	siteId uuid.UUID,
 	distinct *models.SiteGuestsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -184,8 +184,8 @@ func (s *SitesGuests) SearchSiteGuestAuthorization(
 	authMethod *string,
 	ssid *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseGuestSearch],

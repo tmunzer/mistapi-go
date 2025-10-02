@@ -47,8 +47,8 @@ func (o *OrgsClientsNAC) CountOrgNacClients(
 	mType *string,
 	mdmComplianceStatus *string,
 	mdmProvider *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -155,8 +155,8 @@ func (o *OrgsClientsNAC) CountOrgNacClientEvents(
 	orgId uuid.UUID,
 	distinct *models.OrgNacClientEventsCountDistinctEnum,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -241,8 +241,8 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	nasIp *string,
 	ingressVlan *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsNacClientSearch],
@@ -364,42 +364,47 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, nacruleId, nacruleMatched, authType, vlan, nasVendor, nasIp, idpId, ssid, username, timestamp, siteId, ap, mac, mdmManaged, status, mType, mdmCompliance, family, model, os, hostname, mfg, mdmProvider, usermacLabel, ingressVlan, limit, page, start, end, duration, sort as parameters and
+// SearchOrgNacClients takes context, orgId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, siteId, limit, page, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
 func (o *OrgsClientsNAC) SearchOrgNacClients(
 	ctx context.Context,
 	orgId uuid.UUID,
+	ap *string,
+	authType *string,
+	edrManaged *bool,
+	edrProvider *models.EdrProviderEnum,
+	edrStatus *models.EdrStatusEnum,
+	family *string,
+	hostname *string,
+	idpId *string,
+	mac *string,
+	mdmCompliance *string,
+	mdmProvider *string,
+	mdmManaged *bool,
+	mfg *string,
+	model *string,
+	nacruleName *string,
 	nacruleId *string,
 	nacruleMatched *bool,
-	authType *string,
-	vlan *string,
 	nasVendor *string,
 	nasIp *string,
-	idpId *string,
-	ssid *string,
-	username *string,
-	timestamp *float64,
-	siteId *string,
-	ap *string,
-	mac *string,
-	mdmManaged *bool,
-	status *models.NacClientLastStatusEnum,
-	mType *string,
-	mdmCompliance *string,
-	family *string,
-	model *string,
-	os *string,
-	hostname *string,
-	mfg *string,
-	mdmProvider *string,
-	usermacLabel []string,
 	ingressVlan *string,
+	os *string,
+	ssid *string,
+	status *models.NacClientLastStatusEnum,
+	text *string,
+	timestamp *float64,
+	mType *string,
+	usermacLabel []string,
+	username *string,
+	vlan *string,
+	siteId *string,
 	limit *int,
 	page *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseClientNacSearch],
@@ -423,17 +428,56 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if ap != nil {
+		req.QueryParam("ap", *ap)
+	}
+	if authType != nil {
+		req.QueryParam("auth_type", *authType)
+	}
+	if edrManaged != nil {
+		req.QueryParam("edr_managed", *edrManaged)
+	}
+	if edrProvider != nil {
+		req.QueryParam("edr_provider", *edrProvider)
+	}
+	if edrStatus != nil {
+		req.QueryParam("edr_status", *edrStatus)
+	}
+	if family != nil {
+		req.QueryParam("family", *family)
+	}
+	if hostname != nil {
+		req.QueryParam("hostname", *hostname)
+	}
+	if idpId != nil {
+		req.QueryParam("idp_id", *idpId)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
+	if mdmCompliance != nil {
+		req.QueryParam("mdm_compliance", *mdmCompliance)
+	}
+	if mdmProvider != nil {
+		req.QueryParam("mdm_provider", *mdmProvider)
+	}
+	if mdmManaged != nil {
+		req.QueryParam("mdm_managed", *mdmManaged)
+	}
+	if mfg != nil {
+		req.QueryParam("mfg", *mfg)
+	}
+	if model != nil {
+		req.QueryParam("model", *model)
+	}
+	if nacruleName != nil {
+		req.QueryParam("nacrule_name", *nacruleName)
+	}
 	if nacruleId != nil {
 		req.QueryParam("nacrule_id", *nacruleId)
 	}
 	if nacruleMatched != nil {
 		req.QueryParam("nacrule_matched", *nacruleMatched)
-	}
-	if authType != nil {
-		req.QueryParam("auth_type", *authType)
-	}
-	if vlan != nil {
-		req.QueryParam("vlan", *vlan)
 	}
 	if nasVendor != nil {
 		req.QueryParam("nas_vendor", *nasVendor)
@@ -441,62 +485,38 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	if nasIp != nil {
 		req.QueryParam("nas_ip", *nasIp)
 	}
-	if idpId != nil {
-		req.QueryParam("idp_id", *idpId)
-	}
-	if ssid != nil {
-		req.QueryParam("ssid", *ssid)
-	}
-	if username != nil {
-		req.QueryParam("username", *username)
-	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
-	}
-	if siteId != nil {
-		req.QueryParam("site_id", *siteId)
-	}
-	if ap != nil {
-		req.QueryParam("ap", *ap)
-	}
-	if mac != nil {
-		req.QueryParam("mac", *mac)
-	}
-	if mdmManaged != nil {
-		req.QueryParam("mdm_managed", *mdmManaged)
-	}
-	if status != nil {
-		req.QueryParam("status", *status)
-	}
-	if mType != nil {
-		req.QueryParam("type", *mType)
-	}
-	if mdmCompliance != nil {
-		req.QueryParam("mdm_compliance", *mdmCompliance)
-	}
-	if family != nil {
-		req.QueryParam("family", *family)
-	}
-	if model != nil {
-		req.QueryParam("model", *model)
+	if ingressVlan != nil {
+		req.QueryParam("ingress_vlan", *ingressVlan)
 	}
 	if os != nil {
 		req.QueryParam("os", *os)
 	}
-	if hostname != nil {
-		req.QueryParam("hostname", *hostname)
+	if ssid != nil {
+		req.QueryParam("ssid", *ssid)
 	}
-	if mfg != nil {
-		req.QueryParam("mfg", *mfg)
+	if status != nil {
+		req.QueryParam("status", *status)
 	}
-	if mdmProvider != nil {
-		req.QueryParam("mdm_provider", *mdmProvider)
+	if text != nil {
+		req.QueryParam("text", *text)
+	}
+	if timestamp != nil {
+		req.QueryParam("timestamp", *timestamp)
+	}
+	if mType != nil {
+		req.QueryParam("type", *mType)
 	}
 	if usermacLabel != nil {
 		req.QueryParam("usermac_label", usermacLabel)
 	}
-	if ingressVlan != nil {
-		req.QueryParam("ingress_vlan", *ingressVlan)
+	if username != nil {
+		req.QueryParam("username", *username)
+	}
+	if vlan != nil {
+		req.QueryParam("vlan", *vlan)
+	}
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

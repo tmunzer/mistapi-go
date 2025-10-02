@@ -25,8 +25,8 @@ CountOrgWiredClients(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgWiredClientsCountDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -39,8 +39,8 @@ CountOrgWiredClients(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgWiredClientsCountDistinctEnum`](../../doc/models/org-wired-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -118,7 +118,7 @@ SearchOrgWiredClients(
     mac *string,
     portId *string,
     vlan *int,
-    ipAddress *string,
+    ip *string,
     manufacture *string,
     text *string,
     nacruleId *string,
@@ -128,8 +128,8 @@ SearchOrgWiredClients(
     dhcpVendorClassIdentifier *string,
     dhcpRequestParams *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.SearchWiredClient],
@@ -149,7 +149,7 @@ SearchOrgWiredClients(
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
 | `portId` | `*string` | Query, Optional | Port id where the client has connected to |
 | `vlan` | `*int` | Query, Optional | VLAN |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `manufacture` | `*string` | Query, Optional | Client manufacturer |
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname or username |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
@@ -159,8 +159,8 @@ SearchOrgWiredClients(
 | `dhcpVendorClassIdentifier` | `*string` | Query, Optional | DHCP Vendor Class Identifier |
 | `dhcpRequestParams` | `*string` | Query, Optional | DHCP Request Parameters |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -175,7 +175,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 limit := 100
 
@@ -183,7 +183,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

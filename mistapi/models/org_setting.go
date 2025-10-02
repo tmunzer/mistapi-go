@@ -44,8 +44,9 @@ type OrgSetting struct {
 	Installer *OrgSettingInstaller `json:"installer,omitempty"`
 	Jcloud    *OrgSettingJcloud    `json:"jcloud,omitempty"`
 	// JCloud Routing Assurance connexion
-	JcloudRa *OrgSettingJcloudRa `json:"jcloud_ra,omitempty"`
-	Juniper  *AccountJuniperInfo `json:"juniper,omitempty"`
+	JcloudRa   *OrgSettingJcloudRa   `json:"jcloud_ra,omitempty"`
+	Juniper    *AccountJuniperInfo   `json:"juniper,omitempty"`
+	JuniperSrx *OrgSettingJuniperSrx `json:"juniper_srx,omitempty"`
 	// junos_shell_access: Manages role-based web-shell access.
 	// When junos_shell access is not defined (Default) - No additional users are configured and web-shell uses default `mist` user to login.
 	// When junos_shell_access is defined - Additional users mist-web-admin (admin permission), mist-web-viewer(viewer permission) are configured on the device and web-shell logs in with the mist-web-admin/mist-web-viewer user depending upon the shell access level. Setting the shell access level to "none", disables web-shell access for that specific role.
@@ -78,6 +79,7 @@ type OrgSetting struct {
 	Tags []string `json:"tags,omitempty"`
 	// Automatically logout the user when UI session is inactive. `0` means disabled
 	UiIdleTimeout        *int                   `json:"ui_idle_timeout,omitempty"`
+	UiNoTracking         *bool                  `json:"ui_no_tracking,omitempty"`
 	VpnOptions           *OrgSettingVpnOptions  `json:"vpn_options,omitempty"`
 	WanPma               *OrgSettingWanPma      `json:"wan_pma,omitempty"`
 	WiredPma             *OrgSettingWiredPma    `json:"wired_pma,omitempty"`
@@ -89,8 +91,8 @@ type OrgSetting struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSetting) String() string {
 	return fmt.Sprintf(
-		"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JunosShellAccess=%v, Marvis=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, Ssr=%v, Switch=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
-		o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JunosShellAccess, o.Marvis, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.Ssr, o.Switch, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
+		"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JuniperSrx=%v, JunosShellAccess=%v, Marvis=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, Ssr=%v, Switch=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, UiNoTracking=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
+		o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JuniperSrx, o.JunosShellAccess, o.Marvis, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.Ssr, o.Switch, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.UiNoTracking, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSetting.
@@ -99,7 +101,7 @@ func (o OrgSetting) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
+		"ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -190,6 +192,9 @@ func (o OrgSetting) toMap() map[string]any {
 	if o.Juniper != nil {
 		structMap["juniper"] = o.Juniper.toMap()
 	}
+	if o.JuniperSrx != nil {
+		structMap["juniper_srx"] = o.JuniperSrx.toMap()
+	}
 	if o.JunosShellAccess != nil {
 		structMap["junos_shell_access"] = o.JunosShellAccess.toMap()
 	}
@@ -257,6 +262,9 @@ func (o OrgSetting) toMap() map[string]any {
 	if o.UiIdleTimeout != nil {
 		structMap["ui_idle_timeout"] = o.UiIdleTimeout
 	}
+	if o.UiNoTracking != nil {
+		structMap["ui_no_tracking"] = o.UiNoTracking
+	}
 	if o.VpnOptions != nil {
 		structMap["vpn_options"] = o.VpnOptions.toMap()
 	}
@@ -280,7 +288,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
 	if err != nil {
 		return err
 	}
@@ -309,6 +317,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 	o.Jcloud = temp.Jcloud
 	o.JcloudRa = temp.JcloudRa
 	o.Juniper = temp.Juniper
+	o.JuniperSrx = temp.JuniperSrx
 	o.JunosShellAccess = temp.JunosShellAccess
 	o.Marvis = temp.Marvis
 	o.Mgmt = temp.Mgmt
@@ -330,6 +339,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 	o.SyntheticTest = temp.SyntheticTest
 	o.Tags = temp.Tags
 	o.UiIdleTimeout = temp.UiIdleTimeout
+	o.UiNoTracking = temp.UiNoTracking
 	o.VpnOptions = temp.VpnOptions
 	o.WanPma = temp.WanPma
 	o.WiredPma = temp.WiredPma
@@ -362,6 +372,7 @@ type tempOrgSetting struct {
 	Jcloud                      *OrgSettingJcloud                      `json:"jcloud,omitempty"`
 	JcloudRa                    *OrgSettingJcloudRa                    `json:"jcloud_ra,omitempty"`
 	Juniper                     *AccountJuniperInfo                    `json:"juniper,omitempty"`
+	JuniperSrx                  *OrgSettingJuniperSrx                  `json:"juniper_srx,omitempty"`
 	JunosShellAccess            *OrgSettingJunosShellAccess            `json:"junos_shell_access,omitempty"`
 	Marvis                      *Marvis                                `json:"marvis,omitempty"`
 	Mgmt                        *OrgSettingMgmt                        `json:"mgmt,omitempty"`
@@ -383,6 +394,7 @@ type tempOrgSetting struct {
 	SyntheticTest               *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
 	Tags                        []string                               `json:"tags,omitempty"`
 	UiIdleTimeout               *int                                   `json:"ui_idle_timeout,omitempty"`
+	UiNoTracking                *bool                                  `json:"ui_no_tracking,omitempty"`
 	VpnOptions                  *OrgSettingVpnOptions                  `json:"vpn_options,omitempty"`
 	WanPma                      *OrgSettingWanPma                      `json:"wan_pma,omitempty"`
 	WiredPma                    *OrgSettingWiredPma                    `json:"wired_pma,omitempty"`

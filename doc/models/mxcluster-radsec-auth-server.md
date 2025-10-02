@@ -19,8 +19,10 @@
 | `KeywrapKek` | `*string` | Optional | If used for Mist APs, encryption key |
 | `KeywrapMack` | `*string` | Optional | If used for Mist APs, Message Authentication Code Key |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br><br>**Default**: `1812` |
+| `Retry` | `*int` | Optional | Authentication request retry<br><br>**Default**: `2` |
 | `Secret` | `*string` | Optional | Secret of RADIUS server |
 | `Ssids` | `[]string` | Optional | List of ssids that will use this server if match_ssid is true and match is found |
+| `Timeout` | `*int` | Optional | Authentication request timeout, in seconds<br><br>**Default**: `5` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -31,6 +33,8 @@
   "inband_status_interval": 300,
   "keywrap_format": "ascii",
   "port": 1812,
+  "retry": 2,
+  "timeout": 5,
   "host": "host6",
   "keywrap_enabled": false,
   "exampleAdditionalProperty": {

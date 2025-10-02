@@ -62,7 +62,7 @@ func (o *OrgsDevices) ListOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ipAddress, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mType, start, end, duration, limit as parameters and
+// CountOrgDevices takes context, orgId, distinct, hostname, siteId, model, managed, mac, version, ip, mxtunnelStatus, mxedgeId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Org Devices
@@ -76,7 +76,7 @@ func (o *OrgsDevices) CountOrgDevices(
 	managed *string,
 	mac *string,
 	version *string,
-	ipAddress *string,
+	ip *string,
 	mxtunnelStatus *models.CountOrgDevicesMxtunnelStatusEnum,
 	mxedgeId *uuid.UUID,
 	lldpSystemName *string,
@@ -84,8 +84,8 @@ func (o *OrgsDevices) CountOrgDevices(
 	lldpPortId *string,
 	lldpMgmtAddr *string,
 	mType *models.DeviceTypeDefaultApEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -130,8 +130,8 @@ func (o *OrgsDevices) CountOrgDevices(
 	if version != nil {
 		req.QueryParam("version", *version)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if mxtunnelStatus != nil {
 		req.QueryParam("mxtunnel_status", *mxtunnelStatus)
@@ -192,8 +192,8 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
 	text *string,
 	timestamp *string,
 	mType *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -280,8 +280,8 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
 	lastBy *string,
 	includes *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseDeviceEventsSearch],
@@ -364,8 +364,8 @@ func (o *OrgsDevices) CountOrgDeviceLastConfigs(
 	orgId uuid.UUID,
 	mType *models.DeviceTypeDefaultApEnum,
 	distinct *models.OrgDevicesLastConfigsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -418,19 +418,19 @@ func (o *OrgsDevices) CountOrgDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDeviceLastConfigs takes context, orgId, mType, mac, name, version, start, end, limit, duration, sort as parameters and
+// SearchOrgDeviceLastConfigs takes context, orgId, deviceType, mac, name, version, start, end, limit, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search Device Last Configs
 func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 	ctx context.Context,
 	orgId uuid.UUID,
-	mType *models.DeviceTypeDefaultApEnum,
+	deviceType *models.LastConfigDeviceTypeEnum,
 	mac *string,
 	name *string,
 	version *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	limit *int,
 	duration *string,
 	sort *string) (
@@ -455,8 +455,8 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if mType != nil {
-		req.QueryParam("type", *mType)
+	if deviceType != nil {
+		req.QueryParam("device_type", *deviceType)
 	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
@@ -541,7 +541,7 @@ func (o *OrgsDevices) ListOrgApsMacs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDevices takes context, orgId, band24Bandwidth, band24Channel, band24Power, band5Bandwidth, band5Channel, band5Power, band6Bandwidth, band6Channel, band6Power, cpu, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ipAddress, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpPowerAllocated, lldpPowerDraw, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, siteId, t128agentVersion, version, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgDevices takes context, orgId, band24Bandwidth, band24Channel, band24Power, band5Bandwidth, band5Channel, band5Power, band6Bandwidth, band6Channel, band6Power, cpu, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpPowerAllocated, lldpPowerDraw, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, siteId, t128agentVersion, version, mType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices
@@ -563,7 +563,7 @@ func (o *OrgsDevices) SearchOrgDevices(
 	evpntopoId *string,
 	extIp *string,
 	hostname *string,
-	ipAddress *string,
+	ip *string,
 	lastConfigStatus *string,
 	lastHostname *string,
 	lldpMgmtAddr *string,
@@ -586,8 +586,8 @@ func (o *OrgsDevices) SearchOrgDevices(
 	version *string,
 	mType *models.DeviceTypeDefaultApEnum,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseDeviceSearch],
@@ -656,8 +656,8 @@ func (o *OrgsDevices) SearchOrgDevices(
 	if hostname != nil {
 		req.QueryParam("hostname", *hostname)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if lastConfigStatus != nil {
 		req.QueryParam("last_config_status", *lastConfigStatus)

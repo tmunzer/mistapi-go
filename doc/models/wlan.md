@@ -89,10 +89,10 @@
 | `Portal` | [`*models.WlanPortal`](../../doc/models/wlan-portal.md) | Optional | Portal wlan settings |
 | `PortalAllowedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring) |
 | `PortalAllowedSubnets` | `[]string` | Optional | List of CIDRs |
-| `PortalApiSecret` | `models.Optional[string]` | Optional | APi secret (auto-generated) that can be used to sign guest authorization requests |
+| `PortalApiSecret` | `models.Optional[string]` | Optional | API secret (auto-generated) that can be used to sign guest authorization requests, only generated when auth is set to `external` |
 | `PortalDeniedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames |
 | `PortalImage` | `models.Optional[string]` | Optional | Url of portal background image |
-| `PortalSsoUrl` | `models.Optional[string]` | Optional | - |
+| `PortalSsoUrl` | `models.Optional[string]` | Optional | URL used in the SSO process, auto-generated when auth is set to `sso` |
 | `PortalTemplateUrl` | `models.Optional[string]` | Optional | N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template. |
 | `Qos` | [`*models.WlanQos`](../../doc/models/wlan-qos.md) | Optional | - |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | RadSec settings |

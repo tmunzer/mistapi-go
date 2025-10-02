@@ -23,7 +23,7 @@ func NewSitesClientsWireless(baseController baseController) *SitesClientsWireles
 	return &sitesClientsWireless
 }
 
-// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ipAddress, vlan, hostname, os, model, device, start, end, duration, limit as parameters and
+// CountSiteWirelessClients takes context, siteId, distinct, ssid, ap, ip, vlan, hostname, os, model, device, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
@@ -33,14 +33,14 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
 	distinct *models.SiteClientsCountDistinctEnum,
 	ssid *string,
 	ap *string,
-	ipAddress *string,
+	ip *string,
 	vlan *string,
 	hostname *string,
 	os *string,
 	model *string,
 	device *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -73,8 +73,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClients(
 	if ap != nil {
 		req.QueryParam("ap", *ap)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if vlan != nil {
 		req.QueryParam("vlan", *vlan)
@@ -129,8 +129,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClientEvents(
 	proto *models.Dot11ProtoEnum,
 	band *models.Dot11BandEnum,
 	wlanId *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -217,8 +217,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 	wlanId *string,
 	nacruleId *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsSearch],
@@ -292,7 +292,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWirelessClients takes context, siteId, mac, ipAddress, hostname, device, os, model, ap, ssid, text, nacruleId, limit, start, end, duration, sort as parameters and
+// SearchSiteWirelessClients takes context, siteId, mac, ip, hostname, device, os, model, ap, ssid, text, nacruleId, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
 // Search Wireless Clients
@@ -301,7 +301,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	ctx context.Context,
 	siteId uuid.UUID,
 	mac *string,
-	ipAddress *string,
+	ip *string,
 	hostname *string,
 	device *string,
 	os *string,
@@ -311,8 +311,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	text *string,
 	nacruleId *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseClientSearch],
@@ -339,8 +339,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if hostname != nil {
 		req.QueryParam("hostname", *hostname)
@@ -408,8 +408,8 @@ func (s *SitesClientsWireless) CountSiteWirelessClientSessions(
 	clientOs *string,
 	ssid *string,
 	wlanId *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -502,8 +502,8 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientSessions(
 	pskId *string,
 	pskName *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseClientSessionsSearch],
@@ -600,8 +600,8 @@ func (s *SitesClientsWireless) GetSiteEventsForClient(
 	channel *string,
 	wlanId *string,
 	ssid *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

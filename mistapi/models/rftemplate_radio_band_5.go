@@ -14,7 +14,7 @@ type RftemplateRadioBand5 struct {
 	AntGain         Optional[int] `json:"ant_gain"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 	AntennaMode *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
-	// channel width for the 5GHz band. enum: `20`, `40`, `80`
+	// channel width for the 5GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`
 	Bandwidth *Dot11Bandwidth5Enum `json:"bandwidth,omitempty"`
 	// For RFTemplates. List of channels, null or empty array means auto
 	Channels Optional[[]int] `json:"channels"`

@@ -11,37 +11,37 @@ import (
 // SwitchPortUsage represents a SwitchPortUsage struct.
 // Junos port usages
 type SwitchPortUsage struct {
-	// Only if `mode`==`trunk` whether to trunk all network/vlans
+	// Only if `mode`==`trunk`. Whether to trunk all network/vlans
 	AllNetworks *bool `json:"all_networks,omitempty"`
 	// Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port.
 	AllowDhcpd *bool `json:"allow_dhcpd,omitempty"`
 	// Only if `mode`!=`dynamic`
 	AllowMultipleSupplicants *bool `json:"allow_multiple_supplicants,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Bypass auth for known clients if set to true when RADIUS server is down
 	BypassAuthWhenServerDown *bool `json:"bypass_auth_when_server_down,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down
+	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x`. Bypass auth for all (including unknown clients) if set to true when RADIUS server is down
 	BypassAuthWhenServerDownForUnknownClient *bool `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
 	// Only if `mode`!=`dynamic`. To be used together with `isolation` under networks. Signaling that this port connects to the networks isolated but wired clients belong to the same community can talk to each other
 	CommunityVlanId *int `json:"community_vlan_id,omitempty"`
 	// Only if `mode`!=`dynamic`
 	Description *string `json:"description,omitempty"`
-	// Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation
+	// Only if `mode`!=`dynamic`. If speed and duplex are specified, whether to disable autonegotiation
 	DisableAutoneg *bool `json:"disable_autoneg,omitempty"`
-	// Only if `mode`!=`dynamic` whether the port is disabled
+	// Only if `mode`!=`dynamic`. Whether the port is disabled
 	Disabled *bool `json:"disabled,omitempty"`
-	// Only if `mode`!=`dynamic`, link connection mode. enum: `auto`, `full`, `half`
+	// Only if `mode`!=`dynamic`. Link connection mode. enum: `auto`, `full`, `half`
 	Duplex *SwitchPortUsageDuplexEnum `json:"duplex,omitempty"`
 	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`, if dynamic vlan is used, specify the possible networks/vlans RADIUS can return
 	DynamicVlanNetworks []string `json:"dynamic_vlan_networks,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x` whether to enable MAC Auth
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Whether to enable MAC Auth
 	EnableMacAuth *bool `json:"enable_mac_auth,omitempty"`
 	// Only if `mode`!=`dynamic`
 	EnableQos *bool `json:"enable_qos,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
 	GuestNetwork Optional[string] `json:"guest_network"`
-	// `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper device. This has to be applied to both ports connected together
+	// Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper device. This has to be applied to both ports connected together
 	InterIsolationNetworkLink *bool `json:"inter_isolation_network_link,omitempty"`
-	// Only if `mode`!=`dynamic` inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
+	// Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
 	InterSwitchLink *bool `json:"inter_switch_link,omitempty"`
 	// Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
 	MacAuthOnly *bool `json:"mac_auth_only,omitempty"`
@@ -57,13 +57,13 @@ type SwitchPortUsage struct {
 	Mtu *SwitchPortUsageMtu `json:"mtu,omitempty"`
 	// Only if `mode`==`trunk`, the list of network/vlans
 	Networks []string `json:"networks,omitempty"`
-	// Only if `mode`==`access` and `port_auth`!=`dot1x` whether the port should retain dynamically learned MAC addresses
+	// Only if `mode`==`access` and `port_auth`!=`dot1x`. Whether the port should retain dynamically learned MAC addresses
 	PersistMac *bool `json:"persist_mac,omitempty"`
-	// Only if `mode`!=`dynamic` whether PoE capabilities are disabled for a port
+	// Only if `mode`!=`dynamic`. Whether PoE capabilities are disabled for a port
 	PoeDisabled *bool `json:"poe_disabled,omitempty"`
-	// Only if `mode`!=`dynamic` if dot1x is desired, set to dot1x. enum: `dot1x`
+	// Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x`
 	PortAuth Optional[SwitchPortUsageDot1xEnum] `json:"port_auth"`
-	// Only if `mode`!=`dynamic` native network/vlan for untagged traffic
+	// Only if `mode`!=`dynamic`. Native network/vlan for untagged traffic
 	PortNetwork *string `json:"port_network,omitempty"`
 	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
 	ReauthInterval *SwitchPortUsageReauthInterval `json:"reauth_interval,omitempty"`
@@ -71,23 +71,29 @@ type SwitchPortUsage struct {
 	ResetDefaultWhen *SwitchPortUsageDynamicResetDefaultWhenEnum `json:"reset_default_when,omitempty"`
 	// Only if `mode`==`dynamic`
 	Rules []SwitchPortUsageDynamicRule `json:"rules,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x` sets server fail fallback vlan
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Sets server fail fallback vlan
 	ServerFailNetwork Optional[string] `json:"server_fail_network"`
-	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x` when radius server reject / fails
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. When radius server reject / fails
 	ServerRejectNetwork Optional[string] `json:"server_reject_network"`
 	// Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
 	Speed *SwitchPortUsageSpeedEnum `json:"speed,omitempty"`
 	// Switch storm control. Only if `mode`!=`dynamic`
 	StormControl *SwitchPortUsageStormControl `json:"storm_control,omitempty"`
-	// Only if `mode`!=`dynamic` when enabled, the port is not expected to receive BPDU frames
-	StpEdge       *bool `json:"stp_edge,omitempty"`
+	// Only if `mode`!=`dynamic` and `stp_required`==`false`. Drop bridge protocol data units (BPDUs ) that enter any interface or a specified interface
+	StpDisable *bool `json:"stp_disable,omitempty"`
+	// Only if `mode`!=`dynamic`. When enabled, the port is not expected to receive BPDU frames
+	StpEdge *bool `json:"stp_edge,omitempty"`
+	// Only if `mode`!=`dynamic`
 	StpNoRootPort *bool `json:"stp_no_root_port,omitempty"`
-	StpP2p        *bool `json:"stp_p2p,omitempty"`
+	// Only if `mode`!=`dynamic`
+	StpP2p *bool `json:"stp_p2p,omitempty"`
+	// Only if `mode`!=`dynamic`. Whether to remain in block state if no BPDU is received
+	StpRequired *bool `json:"stp_required,omitempty"`
 	// Optional for Campus Fabric Core-Distribution ESI-LAG profile. Helper used by the UI to select this port profile as the ESI-Lag between Distribution and Access switches
 	UiEvpntopoId *uuid.UUID `json:"ui_evpntopo_id,omitempty"`
 	// If this is connected to a vstp network
 	UseVstp *bool `json:"use_vstp,omitempty"`
-	// Only if `mode`!=`dynamic` network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
+	// Only if `mode`!=`dynamic`. Network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth
 	VoipNetwork          Optional[string]       `json:"voip_network"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -96,8 +102,8 @@ type SwitchPortUsage struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchPortUsage) String() string {
 	return fmt.Sprintf(
-		"SwitchPortUsage[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnknownClient=%v, CommunityVlanId=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterIsolationNetworkLink=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ResetDefaultWhen=%v, Rules=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, UiEvpntopoId=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
-		s.AllNetworks, s.AllowDhcpd, s.AllowMultipleSupplicants, s.BypassAuthWhenServerDown, s.BypassAuthWhenServerDownForUnknownClient, s.CommunityVlanId, s.Description, s.DisableAutoneg, s.Disabled, s.Duplex, s.DynamicVlanNetworks, s.EnableMacAuth, s.EnableQos, s.GuestNetwork, s.InterIsolationNetworkLink, s.InterSwitchLink, s.MacAuthOnly, s.MacAuthPreferred, s.MacAuthProtocol, s.MacLimit, s.Mode, s.Mtu, s.Networks, s.PersistMac, s.PoeDisabled, s.PortAuth, s.PortNetwork, s.ReauthInterval, s.ResetDefaultWhen, s.Rules, s.ServerFailNetwork, s.ServerRejectNetwork, s.Speed, s.StormControl, s.StpEdge, s.StpNoRootPort, s.StpP2p, s.UiEvpntopoId, s.UseVstp, s.VoipNetwork, s.AdditionalProperties)
+		"SwitchPortUsage[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnknownClient=%v, CommunityVlanId=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterIsolationNetworkLink=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ResetDefaultWhen=%v, Rules=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpDisable=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, StpRequired=%v, UiEvpntopoId=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
+		s.AllNetworks, s.AllowDhcpd, s.AllowMultipleSupplicants, s.BypassAuthWhenServerDown, s.BypassAuthWhenServerDownForUnknownClient, s.CommunityVlanId, s.Description, s.DisableAutoneg, s.Disabled, s.Duplex, s.DynamicVlanNetworks, s.EnableMacAuth, s.EnableQos, s.GuestNetwork, s.InterIsolationNetworkLink, s.InterSwitchLink, s.MacAuthOnly, s.MacAuthPreferred, s.MacAuthProtocol, s.MacLimit, s.Mode, s.Mtu, s.Networks, s.PersistMac, s.PoeDisabled, s.PortAuth, s.PortNetwork, s.ReauthInterval, s.ResetDefaultWhen, s.Rules, s.ServerFailNetwork, s.ServerRejectNetwork, s.Speed, s.StormControl, s.StpDisable, s.StpEdge, s.StpNoRootPort, s.StpP2p, s.StpRequired, s.UiEvpntopoId, s.UseVstp, s.VoipNetwork, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsage.
@@ -106,7 +112,7 @@ func (s SwitchPortUsage) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "ui_evpntopo_id", "use_vstp", "voip_network"); err != nil {
+		"all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -234,6 +240,9 @@ func (s SwitchPortUsage) toMap() map[string]any {
 	if s.StormControl != nil {
 		structMap["storm_control"] = s.StormControl.toMap()
 	}
+	if s.StpDisable != nil {
+		structMap["stp_disable"] = s.StpDisable
+	}
 	if s.StpEdge != nil {
 		structMap["stp_edge"] = s.StpEdge
 	}
@@ -242,6 +251,9 @@ func (s SwitchPortUsage) toMap() map[string]any {
 	}
 	if s.StpP2p != nil {
 		structMap["stp_p2p"] = s.StpP2p
+	}
+	if s.StpRequired != nil {
+		structMap["stp_required"] = s.StpRequired
 	}
 	if s.UiEvpntopoId != nil {
 		structMap["ui_evpntopo_id"] = s.UiEvpntopoId
@@ -267,7 +279,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_edge", "stp_no_root_port", "stp_p2p", "ui_evpntopo_id", "use_vstp", "voip_network")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network")
 	if err != nil {
 		return err
 	}
@@ -307,9 +319,11 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
 	s.ServerRejectNetwork = temp.ServerRejectNetwork
 	s.Speed = temp.Speed
 	s.StormControl = temp.StormControl
+	s.StpDisable = temp.StpDisable
 	s.StpEdge = temp.StpEdge
 	s.StpNoRootPort = temp.StpNoRootPort
 	s.StpP2p = temp.StpP2p
+	s.StpRequired = temp.StpRequired
 	s.UiEvpntopoId = temp.UiEvpntopoId
 	s.UseVstp = temp.UseVstp
 	s.VoipNetwork = temp.VoipNetwork
@@ -352,9 +366,11 @@ type tempSwitchPortUsage struct {
 	ServerRejectNetwork                      Optional[string]                            `json:"server_reject_network"`
 	Speed                                    *SwitchPortUsageSpeedEnum                   `json:"speed,omitempty"`
 	StormControl                             *SwitchPortUsageStormControl                `json:"storm_control,omitempty"`
+	StpDisable                               *bool                                       `json:"stp_disable,omitempty"`
 	StpEdge                                  *bool                                       `json:"stp_edge,omitempty"`
 	StpNoRootPort                            *bool                                       `json:"stp_no_root_port,omitempty"`
 	StpP2p                                   *bool                                       `json:"stp_p2p,omitempty"`
+	StpRequired                              *bool                                       `json:"stp_required,omitempty"`
 	UiEvpntopoId                             *uuid.UUID                                  `json:"ui_evpntopo_id,omitempty"`
 	UseVstp                                  *bool                                       `json:"use_vstp,omitempty"`
 	VoipNetwork                              Optional[string]                            `json:"voip_network"`

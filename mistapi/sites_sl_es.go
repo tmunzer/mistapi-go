@@ -34,8 +34,8 @@ func (s *SitesSLEs) GetSiteSleClassifierDetails(
 	scopeId string,
 	metric string,
 	classifier string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.SleClassifierSummary],
 	error) {
@@ -138,8 +138,8 @@ func (s *SitesSLEs) GetSiteSleHistogram(
 	scope models.SiteSleHistogramScopeParametersEnum,
 	scopeId string,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.SleHistogram],
 	error) {
@@ -199,8 +199,8 @@ func (s *SitesSLEs) GetSiteSleImpactSummary(
 	scope models.SiteSleImpactSummaryScopeParametersEnum,
 	scopeId string,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	fields *models.SiteSleImpactSummaryFieldsParameterEnum,
 	classifier *string) (
@@ -265,8 +265,8 @@ func (s *SitesSLEs) ListSiteSleImpactedApplications(
 	scope models.SiteSleScopeEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedApplications],
@@ -327,8 +327,8 @@ func (s *SitesSLEs) ListSiteSleImpactedAps(
 	scope models.SiteSleImpactedApsScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedAps],
@@ -389,8 +389,8 @@ func (s *SitesSLEs) ListSiteSleImpactedChassis(
 	scope models.SiteSleImpactedChassisScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedChassis],
@@ -451,8 +451,8 @@ func (s *SitesSLEs) ListSiteSleImpactedWiredClients(
 	scope models.SiteSleImpactedClientsScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedClients],
@@ -513,8 +513,8 @@ func (s *SitesSLEs) ListSiteSleImpactedGateways(
 	scope models.SiteSleImpactedGatewaysScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedGateways],
@@ -575,8 +575,8 @@ func (s *SitesSLEs) ListSiteSleImpactedInterfaces(
 	scope models.SiteSleImpactedInterfacesScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedInterfaces],
@@ -637,8 +637,8 @@ func (s *SitesSLEs) ListSiteSleImpactedSwitches(
 	scope models.SiteSleImpactedSwitchesScopeParametersEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedSwitches],
@@ -699,8 +699,8 @@ func (s *SitesSLEs) ListSiteSleImpactedWirelessClients(
 	scope models.SiteSleImpactedUsersScopeParameterEnum,
 	scopeId uuid.UUID,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	classifier *string) (
 	models.ApiResponse[models.SleImpactedUsers],
@@ -761,8 +761,8 @@ func (s *SitesSLEs) GetSiteSleSummary(
 	scope models.SiteSleMetricSummaryScopeParametersEnum,
 	scopeId string,
 	metric string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.SleSummary],
 	error) {

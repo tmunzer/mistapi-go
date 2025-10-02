@@ -1,7 +1,7 @@
 
 # Nac Tag Type Enum
 
-enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`
+enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_nacportal_id`, `session_timeout`, `username_attr`, `vlan`
 
 ## Enumeration
 
@@ -17,7 +17,7 @@ enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `
 | `radius_attrs` |
 | `radius_group` |
 | `radius_vendor_attrs` |
-| `redirect_guest_portal` |
+| `redirect_nacportal_id` |
 | `session_timeout` |
 | `username_attr` |
 | `vlan` |

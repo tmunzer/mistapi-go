@@ -146,8 +146,8 @@ func (s *SitesSpectrumAnalysis) ListSiteSpectrumAnalysis(
 	ctx context.Context,
 	siteId uuid.UUID,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.ResponsePastSpectrumAnalysis],
 	error) {

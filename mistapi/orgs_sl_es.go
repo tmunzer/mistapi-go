@@ -31,8 +31,8 @@ func (o *OrgsSLEs) GetOrgSitesSle(
 	ctx context.Context,
 	orgId uuid.UUID,
 	sle *models.OrgSiteSleTypeEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	interval *string,
 	limit *int,
@@ -101,8 +101,8 @@ func (o *OrgsSLEs) GetOrgSle(
 	sle *string,
 	duration *string,
 	interval *string,
-	start *int,
-	end *int) (
+	start *string,
+	end *string) (
 	models.ApiResponse[models.InsightMetrics],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/insights/%v")

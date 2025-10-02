@@ -31,8 +31,8 @@ func NewOrgsTickets(baseController baseController) *OrgsTickets {
 func (o *OrgsTickets) ListOrgTickets(
 	ctx context.Context,
 	orgId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[[]models.Ticket],
 	error) {
@@ -174,8 +174,8 @@ func (o *OrgsTickets) GetOrgTicket(
 	ctx context.Context,
 	orgId uuid.UUID,
 	ticketId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.Ticket],
 	error) {
@@ -316,8 +316,8 @@ func (o *OrgsTickets) GetOrgTicketAttachment(
 	orgId uuid.UUID,
 	ticketId uuid.UUID,
 	attachmentId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string) (
 	models.ApiResponse[models.TicketAttachment],
 	error) {

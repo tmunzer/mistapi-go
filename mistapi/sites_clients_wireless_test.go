@@ -19,11 +19,11 @@ func TestSitesClientsWirelessTestCountSiteWirelessClients(t *testing.T) {
 	}
 	distinct := models.SiteClientsCountDistinctEnum("device")
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -45,11 +45,11 @@ func TestSitesClientsWirelessTestCountSiteWirelessClients1(t *testing.T) {
 	}
 	distinct := models.SiteClientsCountDistinctEnum("device")
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -168,13 +168,13 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -195,13 +195,13 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	ipAddress := "192.168.1.1"
+	ip := "192.168.1.1"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -31,8 +31,8 @@ func (o *OrgsNACFingerprints) CountOrgClientFingerprints(
 	ctx context.Context,
 	siteId uuid.UUID,
 	distinct *models.FingerprintsCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -101,8 +101,8 @@ func (o *OrgsNACFingerprints) SearchOrgClientFingerprints(
 	osType *string,
 	mac *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	interval *string,
 	sort *string) (

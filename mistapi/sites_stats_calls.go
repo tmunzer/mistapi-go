@@ -34,8 +34,8 @@ func (s *SitesStatsCalls) TroubleshootSiteCall(
 	meetingId string,
 	mac *string,
 	app *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -107,8 +107,8 @@ func (s *SitesStatsCalls) CountSiteCalls(
 	distinct *models.CountSiteCallsDistinctEnum,
 	rating *int,
 	app *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
 	error) {
@@ -170,8 +170,8 @@ func (s *SitesStatsCalls) SearchSiteCalls(
 	mac *string,
 	app *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseStatsCalls],
@@ -236,8 +236,8 @@ func (s *SitesStatsCalls) GetSiteCallsSummary(
 	siteId uuid.UUID,
 	apMac *string,
 	app *string,
-	start *int,
-	end *int) (
+	start *string,
+	end *string) (
 	models.ApiResponse[models.ResponseStatsCallsSummary],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/summary")
@@ -293,8 +293,8 @@ func (s *SitesStatsCalls) ListSiteTroubleshootCalls(
 	meetingId *string,
 	mac *string,
 	app *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

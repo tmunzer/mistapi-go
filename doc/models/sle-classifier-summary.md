@@ -38,7 +38,7 @@
     "name": "name4",
     "samples": {
       "degraded": [
-        183.49
+        170.03
       ],
       "duration": [
         249.08,
@@ -46,7 +46,7 @@
         249.1
       ],
       "total": [
-        158.41
+        144.95
       ],
       "exampleAdditionalProperty": {
         "key1": "val1",

@@ -11,9 +11,9 @@ import (
 
 // SleSummarySleSamples represents a SleSummarySleSamples struct.
 type SleSummarySleSamples struct {
-	Degraded             []float64              `json:"degraded"`
-	Total                []float64              `json:"total"`
-	Value                []float64              `json:"value"`
+	Degraded             []NumberOrNull         `json:"degraded"`
+	Total                []NumberOrNull         `json:"total"`
+	Value                []NumberOrNull         `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -73,9 +73,9 @@ func (s *SleSummarySleSamples) UnmarshalJSON(input []byte) error {
 
 // tempSleSummarySleSamples is a temporary struct used for validating the fields of SleSummarySleSamples.
 type tempSleSummarySleSamples struct {
-	Degraded *[]float64 `json:"degraded"`
-	Total    *[]float64 `json:"total"`
-	Value    *[]float64 `json:"value"`
+	Degraded *[]NumberOrNull `json:"degraded"`
+	Total    *[]NumberOrNull `json:"total"`
+	Value    *[]NumberOrNull `json:"value"`
 }
 
 func (s *tempSleSummarySleSamples) validate() error {

@@ -173,7 +173,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
 
 	duration := "1d"
 	sort := "wxid"
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -182,7 +182,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["john@mycorp.net"],"cert_issuer":["/C=US/ST=CA/CN=MyCorp"],"client_ip":["10.7.51.74"],"idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"john@mycorp.net","last_cert_expiry":1746711240,"last_cert_issuer":"/C=US/ST=CA/CN=MyCorp","last_cert_serial":"2c63510123456789","last_cert_subject":"/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net","last_client_ip":"10.7.51.74","last_nacrule_id":"603b62db-d839-4152-9f7f-f2578443de8d","last_nacrule_name":"Wireless Cert Auth","last_nas_vendor":"juniper-mist","last_ssid":"string","last_status":"permitted","mac":"string","nacrule_id":["603b62db-d839-4152-9f7f-f2578443de8d"],"nacrule_matched":true,"nacrule_name":["Wireless Cert Auth"],"nas_vendor":["juniper-mist"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless","usermac_label":["non-compliant","building26","floor52"]}],"start":1513276353,"total":2}`
+	expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["john@mycorp.net"],"cert_issuer":["/C=US/ST=CA/CN=MyCorp"],"client_ip":["10.7.51.74"],"edr_managed":true,"edr_provider":"sentinelone","edr_status":"sentinelone_healthy","idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"john@mycorp.net","last_cert_expiry":1746711240,"last_cert_issuer":"/C=US/ST=CA/CN=MyCorp","last_cert_serial":"2c63510123456789","last_cert_subject":"/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net","last_client_ip":"10.7.51.74","last_nacrule_id":"603b62db-d839-4152-9f7f-f2578443de8d","last_nacrule_name":"Wireless Cert Auth","last_nas_vendor":"juniper-mist","last_ssid":"string","last_status":"permitted","mac":"string","nacrule_id":["603b62db-d839-4152-9f7f-f2578443de8d"],"nacrule_matched":true,"nacrule_name":["Wireless Cert Auth"],"nas_vendor":["juniper-mist"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless","usermac_label":["non-compliant","building26","floor52"]}],"start":1513276353,"total":2}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -201,7 +201,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
 
 	duration := "1d"
 	sort := "wxid"
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -210,6 +210,6 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["john@mycorp.net"],"cert_issuer":["/C=US/ST=CA/CN=MyCorp"],"client_ip":["10.7.51.74"],"idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"john@mycorp.net","last_cert_expiry":1746711240,"last_cert_issuer":"/C=US/ST=CA/CN=MyCorp","last_cert_serial":"2c63510123456789","last_cert_subject":"/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net","last_client_ip":"10.7.51.74","last_nacrule_id":"603b62db-d839-4152-9f7f-f2578443de8d","last_nacrule_name":"Wireless Cert Auth","last_nas_vendor":"juniper-mist","last_ssid":"string","last_status":"permitted","mac":"string","nacrule_id":["603b62db-d839-4152-9f7f-f2578443de8d"],"nacrule_matched":true,"nacrule_name":["Wireless Cert Auth"],"nas_vendor":["juniper-mist"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless","usermac_label":["non-compliant","building26","floor52"]}],"start":1513276353,"total":2}`
+	expected := `{"end":1513362753,"limit":3,"results":[{"ap":["5c5b35bf16bb","d4dc090041b4"],"auth_type":"eap-tls","cert_cn":["john@mycorp.net"],"cert_issuer":["/C=US/ST=CA/CN=MyCorp"],"client_ip":["10.7.51.74"],"edr_managed":true,"edr_provider":"sentinelone","edr_status":"sentinelone_healthy","idp_id":"string","idp_role":["string"],"last_ap":"string","last_cert_cn":"john@mycorp.net","last_cert_expiry":1746711240,"last_cert_issuer":"/C=US/ST=CA/CN=MyCorp","last_cert_serial":"2c63510123456789","last_cert_subject":"/C=US/O=MyCorp/CN=john@mycorp.net/emailAddress=john@mycorp.net","last_client_ip":"10.7.51.74","last_nacrule_id":"603b62db-d839-4152-9f7f-f2578443de8d","last_nacrule_name":"Wireless Cert Auth","last_nas_vendor":"juniper-mist","last_ssid":"string","last_status":"permitted","mac":"string","nacrule_id":["603b62db-d839-4152-9f7f-f2578443de8d"],"nacrule_matched":true,"nacrule_name":["Wireless Cert Auth"],"nas_vendor":["juniper-mist"],"org_id":"31f27122-68a9-47a4-b526-8fb8a62a8acb","random_mac":true,"site_id":"832b1d74-9531-409b-ae37-4d7f3edbde92","ssid":["string"],"timestamp":1694689718.612,"type":"wireless","usermac_label":["non-compliant","building26","floor52"]}],"start":1513276353,"total":2}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

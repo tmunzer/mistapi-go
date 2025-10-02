@@ -88,8 +88,8 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
 	siteId uuid.UUID,
 	distinct *string,
 	mac *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -156,8 +156,8 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
 	mType *models.DeviceTypeDefaultApEnum,
 	mac *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
@@ -236,8 +236,8 @@ func (s *SitesDevices) CountSiteDevices(
 	lldpPortId *string,
 	lldpMgmtAddr *string,
 	mapId *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -331,8 +331,8 @@ func (s *SitesDevices) CountSiteDeviceEvents(
 	model *string,
 	mType *string,
 	typeCode *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -406,8 +406,8 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 	lastBy *string,
 	includes *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseEventsDevices],
@@ -571,8 +571,8 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
 	ctx context.Context,
 	siteId uuid.UUID,
 	distinct *models.SiteDeviceLastConfigCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -622,20 +622,20 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceLastConfigs takes context, siteId, mType, mac, version, name, limit, start, end, duration, sort as parameters and
+// SearchSiteDeviceLastConfigs takes context, siteId, deviceType, mac, version, name, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search Device Last Configs
 func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	ctx context.Context,
 	siteId uuid.UUID,
-	mType *models.DeviceTypeDefaultApEnum,
+	deviceType *models.LastConfigDeviceTypeEnum,
 	mac *string,
 	version *string,
 	name *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
@@ -663,8 +663,8 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if mType != nil {
-		req.QueryParam("type", *mType)
+	if deviceType != nil {
+		req.QueryParam("device_type", *deviceType)
 	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
@@ -701,7 +701,7 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDevices takes context, siteId, hostname, mType, model, ip, mac, extIp, version, powerConstrained, ipAddress, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort as parameters and
+// SearchSiteDevices takes context, siteId, hostname, mType, model, mac, extIp, version, powerConstrained, ip, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Device
@@ -711,12 +711,11 @@ func (s *SitesDevices) SearchSiteDevices(
 	hostname *string,
 	mType *models.DeviceTypeDefaultApEnum,
 	model *string,
-	ip *string,
 	mac *string,
 	extIp *string,
 	version *string,
 	powerConstrained *bool,
-	ipAddress *string,
+	ip *string,
 	mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
 	mxedgeId *uuid.UUID,
 	mxedgeIds []uuid.UUID,
@@ -743,8 +742,8 @@ func (s *SitesDevices) SearchSiteDevices(
 	eth0PortSpeed *int,
 	stats *bool,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *models.SearchSiteDevicesSortEnum,
 	descSort *models.SearchSiteDevicesDescSortEnum) (
@@ -778,9 +777,6 @@ func (s *SitesDevices) SearchSiteDevices(
 	if model != nil {
 		req.QueryParam("model", *model)
 	}
-	if ip != nil {
-		req.QueryParam("ip", *ip)
-	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
@@ -793,8 +789,8 @@ func (s *SitesDevices) SearchSiteDevices(
 	if powerConstrained != nil {
 		req.QueryParam("power_constrained", *powerConstrained)
 	}
-	if ipAddress != nil {
-		req.QueryParam("ip_address", *ipAddress)
+	if ip != nil {
+		req.QueryParam("ip", *ip)
 	}
 	if mxtunnelStatus != nil {
 		req.QueryParam("mxtunnel_status", *mxtunnelStatus)
@@ -1063,48 +1059,6 @@ func (s *SitesDevices) AddSiteDeviceImage(
 		formFields = append(formFields, jsonParam)
 	}
 	req.FormData(formFields)
-
-	httpCtx, err := req.Call()
-	if err != nil {
-		return httpCtx.Response, err
-	}
-	return httpCtx.Response, err
-}
-
-// SetSiteApAntennaMode takes context, siteId, deviceId, body as parameters and
-// returns an *Response and
-// an error if there was an issue with the request or response.
-// Set AP Antenna Mode
-func (s *SitesDevices) SetSiteApAntennaMode(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.ApAntennaMode) (
-	*http.Response,
-	error) {
-	req := s.prepareRequest(ctx, "PUT", "/api/v1/sites/%v/devices/%v/set_ant_mode")
-	req.AppendTemplateParams(siteId, deviceId)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
 
 	httpCtx, err := req.Call()
 	if err != nil {

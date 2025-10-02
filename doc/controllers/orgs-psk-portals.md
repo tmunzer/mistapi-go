@@ -32,8 +32,8 @@ CountOrgPskPortalLogs(
     ctx context.Context,
     orgId uuid.UUID,
     distinct *models.OrgPskPortalLogsCountDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -46,8 +46,8 @@ CountOrgPskPortalLogs(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgPskPortalLogsCountDistinctEnum`](../../doc/models/org-psk-portal-logs-count-distinct-enum.md) | Query, Optional | **Default**: `"pskportal_id"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -140,31 +140,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
+    CleanupPsk:                   models.ToPointer(false),
+    HidePsksCreatedByOtherAdmins: models.ToPointer(false),
     MaxUsage:                     models.ToPointer(0),
-    Name:                         "string",
-    RequiredFields:               []string{
-        "string",
-    },
-    Role:                         models.ToPointer("string"),
-    Ssid:                         "string",
-    Sso:                          models.ToPointer(models.PskPortalSso{
-        IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum_SHA256),
-        IdpSsoUrl:            models.ToPointer("string"),
-        Issuer:               models.ToPointer("string"),
-        NameidFormat:         models.ToPointer("string"),
-        AdditionalProperties: map[string]interface{}{
-            "default_role": interface{}("string"),
-            "forced_role": interface{}("string"),
-        },
-    }),
-    TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
-    VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
-    AdditionalProperties:         map[string]interface{}{
-        "expire": interface{}("0"),
-        "sso_required_role": interface{}("string"),
-    },
+    Name:                         "name6",
+    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
+    NotifyOnCreateOrEdit:         models.ToPointer(false),
+    Ssid:                         "ssid6",
 }
 
 apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
@@ -356,8 +338,8 @@ Get the list of PSK Portals Logs
 ListOrgPskPortalLogs(
     ctx context.Context,
     orgId uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int,
     page *int) (
@@ -370,8 +352,8 @@ ListOrgPskPortalLogs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
@@ -505,8 +487,8 @@ SearchOrgPskPortalLogs(
     orgId uuid.UUID,
     limit *int,
     page *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string,
     pskName *string,
@@ -527,8 +509,8 @@ SearchOrgPskPortalLogs(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `pskName` | `*string` | Query, Optional | - |
@@ -639,31 +621,13 @@ pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
+    CleanupPsk:                   models.ToPointer(false),
+    HidePsksCreatedByOtherAdmins: models.ToPointer(false),
     MaxUsage:                     models.ToPointer(0),
-    Name:                         "string",
-    RequiredFields:               []string{
-        "string",
-    },
-    Role:                         models.ToPointer("string"),
-    Ssid:                         "string",
-    Sso:                          models.ToPointer(models.PskPortalSso{
-        IdpCert:              models.ToPointer("string"),
-        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum_SHA256),
-        IdpSsoUrl:            models.ToPointer("string"),
-        Issuer:               models.ToPointer("string"),
-        NameidFormat:         models.ToPointer("email"),
-        AdditionalProperties: map[string]interface{}{
-            "default_role": interface{}("string"),
-            "forced_role": interface{}("string"),
-        },
-    }),
-    TemplateUrl:                  models.ToPointer("string"),
-    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
-    VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(10)),
-    AdditionalProperties:         map[string]interface{}{
-        "expire": interface{}("0"),
-        "sso_required_role": interface{}("string"),
-    },
+    Name:                         "name6",
+    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
+    NotifyOnCreateOrEdit:         models.ToPointer(false),
+    Ssid:                         "ssid6",
 }
 
 apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)
@@ -730,6 +694,7 @@ body := models.PskPortalTemplate{
     TosError:             models.ToPointer("Please review and accept the Terms of Service"),
     TosLink:              models.ToPointer("Terms of Service"),
     TosText:              models.ToPointer("<< provide your Terms of Service here >>"),
+    TosUrl:               models.ToPointer("https://company.com/wifi-policy"),
 }
 
 resp, err := orgsPskPortals.UpdateOrgPskPortalTemplate(ctx, orgId, pskportalId, &body)

@@ -281,8 +281,8 @@ GetOrgTicket(
     ctx context.Context,
     orgId uuid.UUID,
     ticketId uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[models.Ticket],
     error)
@@ -294,8 +294,8 @@ GetOrgTicket(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
@@ -372,8 +372,8 @@ GetOrgTicketAttachment(
     orgId uuid.UUID,
     ticketId uuid.UUID,
     attachmentId uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[models.TicketAttachment],
     error)
@@ -386,8 +386,8 @@ GetOrgTicketAttachment(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
 | `attachmentId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type
@@ -444,8 +444,8 @@ Get List of Tickets of an Org
 ListOrgTickets(
     ctx context.Context,
     orgId uuid.UUID,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string) (
     models.ApiResponse[[]models.Ticket],
     error)
@@ -456,8 +456,8 @@ ListOrgTickets(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 
 ## Response Type

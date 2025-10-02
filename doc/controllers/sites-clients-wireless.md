@@ -35,8 +35,8 @@ CountSiteWirelessClientEvents(
     proto *models.Dot11ProtoEnum,
     band *models.Dot11BandEnum,
     wlanId *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -56,8 +56,8 @@ CountSiteWirelessClientEvents(
 | `proto` | [`*models.Dot11ProtoEnum`](../../doc/models/dot-11-proto-enum.md) | Query, Optional | a / b / g / n / ac / ax |
 | `band` | [`*models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Query, Optional | 802.11 Band |
 | `wlanId` | `*string` | Query, Optional | WLAN_id |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -134,8 +134,8 @@ CountSiteWirelessClientSessions(
     clientOs *string,
     ssid *string,
     wlanId *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -156,8 +156,8 @@ CountSiteWirelessClientSessions(
 | `clientOs` | `*string` | Query, Optional | E.g. "Mojave", "Windows 10", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
 | `wlanId` | `*string` | Query, Optional | WLAN_id |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -228,14 +228,14 @@ CountSiteWirelessClients(
     distinct *models.SiteClientsCountDistinctEnum,
     ssid *string,
     ap *string,
-    ipAddress *string,
+    ip *string,
     vlan *string,
     hostname *string,
     os *string,
     model *string,
     device *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -250,14 +250,14 @@ CountSiteWirelessClients(
 | `distinct` | [`*models.SiteClientsCountDistinctEnum`](../../doc/models/site-clients-count-distinct-enum.md) | Query, Optional | **Default**: `"device"` |
 | `ssid` | `*string` | Query, Optional | - |
 | `ap` | `*string` | Query, Optional | - |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `vlan` | `*string` | Query, Optional | - |
 | `hostname` | `*string` | Query, Optional | - |
 | `os` | `*string` | Query, Optional | - |
 | `model` | `*string` | Query, Optional | - |
 | `device` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -274,13 +274,13 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 distinct := models.SiteClientsCountDistinctEnum_HOSTNAME
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 duration := "10m"
 
 limit := 100
 
-apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+apiResponse, err := sitesClientsWireless.CountSiteWirelessClients(ctx, siteId, &distinct, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -334,8 +334,8 @@ GetSiteEventsForClient(
     channel *string,
     wlanId *string,
     ssid *string,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int,
     page *int) (
@@ -355,8 +355,8 @@ GetSiteEventsForClient(
 | `channel` | `*string` | Query, Optional | - |
 | `wlanId` | `*string` | Query, Optional | - |
 | `ssid` | `*string` | Query, Optional | - |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
@@ -444,8 +444,8 @@ SearchSiteWirelessClientEvents(
     wlanId *string,
     nacruleId *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseEventsSearch],
@@ -466,8 +466,8 @@ SearchSiteWirelessClientEvents(
 | `wlanId` | `*string` | Query, Optional | WLAN_id |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -555,8 +555,8 @@ SearchSiteWirelessClientSessions(
     pskId *string,
     pskName *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseClientSessionsSearch],
@@ -580,8 +580,8 @@ SearchSiteWirelessClientSessions(
 | `pskId` | `*string` | Query, Optional | PSK ID |
 | `pskName` | `*string` | Query, Optional | PSK Name |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -666,7 +666,7 @@ SearchSiteWirelessClients(
     ctx context.Context,
     siteId uuid.UUID,
     mac *string,
-    ipAddress *string,
+    ip *string,
     hostname *string,
     device *string,
     os *string,
@@ -676,8 +676,8 @@ SearchSiteWirelessClients(
     text *string,
     nacruleId *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseClientSearch],
@@ -690,7 +690,7 @@ SearchSiteWirelessClients(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `ipAddress` | `*string` | Query, Optional | - |
+| `ip` | `*string` | Query, Optional | - |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
 | `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
@@ -700,8 +700,8 @@ SearchSiteWirelessClients(
 | `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -716,7 +716,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-ipAddress := "192.168.1.1"
+ip := "192.168.1.1"
 
 limit := 100
 
@@ -724,7 +724,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ipAddress, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

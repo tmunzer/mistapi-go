@@ -13,6 +13,7 @@ import (
 type SsrVersion struct {
 	Default              *bool                  `json:"default,omitempty"`
 	Package              string                 `json:"package"`
+	Tags                 []string               `json:"tags,omitempty"`
 	Version              string                 `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -21,8 +22,8 @@ type SsrVersion struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SsrVersion) String() string {
 	return fmt.Sprintf(
-		"SsrVersion[Default=%v, Package=%v, Version=%v, AdditionalProperties=%v]",
-		s.Default, s.Package, s.Version, s.AdditionalProperties)
+		"SsrVersion[Default=%v, Package=%v, Tags=%v, Version=%v, AdditionalProperties=%v]",
+		s.Default, s.Package, s.Tags, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsrVersion.
@@ -31,7 +32,7 @@ func (s SsrVersion) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"default", "package", "version"); err != nil {
+		"default", "package", "tags", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -45,6 +46,9 @@ func (s SsrVersion) toMap() map[string]any {
 		structMap["default"] = s.Default
 	}
 	structMap["package"] = s.Package
+	if s.Tags != nil {
+		structMap["tags"] = s.Tags
+	}
 	structMap["version"] = s.Version
 	return structMap
 }
@@ -61,7 +65,7 @@ func (s *SsrVersion) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "package", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "default", "package", "tags", "version")
 	if err != nil {
 		return err
 	}
@@ -69,15 +73,17 @@ func (s *SsrVersion) UnmarshalJSON(input []byte) error {
 
 	s.Default = temp.Default
 	s.Package = *temp.Package
+	s.Tags = temp.Tags
 	s.Version = *temp.Version
 	return nil
 }
 
 // tempSsrVersion is a temporary struct used for validating the fields of SsrVersion.
 type tempSsrVersion struct {
-	Default *bool   `json:"default,omitempty"`
-	Package *string `json:"package"`
-	Version *string `json:"version"`
+	Default *bool    `json:"default,omitempty"`
+	Package *string  `json:"package"`
+	Tags    []string `json:"tags,omitempty"`
+	Version *string  `json:"version"`
 }
 
 func (s *tempSsrVersion) validate() error {

@@ -24,7 +24,9 @@ type PskPortalTemplate struct {
 	TosError *string `json:"tosError,omitempty"`
 	TosLink  *string `json:"tosLink,omitempty"`
 	// terms and service text displayed in footer if tos is enabled
-	TosText              *string                `json:"tosText,omitempty"`
+	TosText *string `json:"tosText,omitempty"`
+	// customized url for defining terms of service
+	TosUrl               *string                `json:"tosUrl,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -32,8 +34,8 @@ type PskPortalTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PskPortalTemplate) String() string {
 	return fmt.Sprintf(
-		"PskPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, Tos=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, AdditionalProperties=%v]",
-		p.Alignment, p.Color, p.Logo, p.PoweredBy, p.Tos, p.TosAcceptLabel, p.TosError, p.TosLink, p.TosText, p.AdditionalProperties)
+		"PskPortalTemplate[Alignment=%v, Color=%v, Logo=%v, PoweredBy=%v, Tos=%v, TosAcceptLabel=%v, TosError=%v, TosLink=%v, TosText=%v, TosUrl=%v, AdditionalProperties=%v]",
+		p.Alignment, p.Color, p.Logo, p.PoweredBy, p.Tos, p.TosAcceptLabel, p.TosError, p.TosLink, p.TosText, p.TosUrl, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalTemplate.
@@ -42,7 +44,7 @@ func (p PskPortalTemplate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText"); err != nil {
+		"alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tosUrl"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -83,6 +85,9 @@ func (p PskPortalTemplate) toMap() map[string]any {
 	if p.TosText != nil {
 		structMap["tosText"] = p.TosText
 	}
+	if p.TosUrl != nil {
+		structMap["tosUrl"] = p.TosUrl
+	}
 	return structMap
 }
 
@@ -94,7 +99,7 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alignment", "color", "logo", "poweredBy", "tos", "tosAcceptLabel", "tosError", "tosLink", "tosText", "tosUrl")
 	if err != nil {
 		return err
 	}
@@ -109,6 +114,7 @@ func (p *PskPortalTemplate) UnmarshalJSON(input []byte) error {
 	p.TosError = temp.TosError
 	p.TosLink = temp.TosLink
 	p.TosText = temp.TosText
+	p.TosUrl = temp.TosUrl
 	return nil
 }
 
@@ -123,4 +129,5 @@ type tempPskPortalTemplate struct {
 	TosError       *string                      `json:"tosError,omitempty"`
 	TosLink        *string                      `json:"tosLink,omitempty"`
 	TosText        *string                      `json:"tosText,omitempty"`
+	TosUrl         *string                      `json:"tosUrl,omitempty"`
 }

@@ -115,8 +115,8 @@ func (s *SitesRRM) ListSiteRrmEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
 	band *models.Dot11BandEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

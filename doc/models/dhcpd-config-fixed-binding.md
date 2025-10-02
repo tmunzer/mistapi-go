@@ -12,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ip` | `*string` | Optional | - |
+| `Ip6` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -19,7 +20,8 @@
 
 ```json
 {
-  "ip": "ip6",
+  "ip": "192.168.70.35",
+  "ip6": "2607:f8b0:4005:808::2",
   "name": "name2",
   "exampleAdditionalProperty": {
     "key1": "val1",

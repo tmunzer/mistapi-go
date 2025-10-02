@@ -26,6 +26,7 @@ Guest portal configuration when `type`==`guest_portal`. If
 | `Auth` | [`*models.NacPortalGuestPortalAuthEnum`](../../doc/models/nac-portal-guest-portal-auth-enum.md) | Optional | Guest portal authentication type. enum: `external`, `multi`, `none` |
 | `Expire` | `*int` | Optional | If `auth`==`none` or `auth`==`multi`, whether to expire the guest after a certain time |
 | `ExternalPortalUrl` | `*string` | Optional | If `auth`==`external`, the URL to redirect the user to for authentication |
+| `ForceReconnect` | `*bool` | Optional | - |
 | `Forward` | `*bool` | Optional | If `auth`==`none` or `auth`==`multi`, whether to forward the user to the guest portal after authentication |
 | `ForwardUrl` | `*string` | Optional | If `auth`==`none` or `auth`==`multi`, URL to forward the user to after authentication |
 | `PortalAllowedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring) |
@@ -54,6 +55,7 @@ Guest portal configuration when `type`==`guest_portal`. If
   ],
   "privacy": true,
   "auth": "external",
+  "force_reconnect": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

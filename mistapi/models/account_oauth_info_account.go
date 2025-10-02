@@ -53,7 +53,17 @@ type AccountOauthInfoAccount struct {
 	// For Prisma accounts only, Prisma Tenant Service Group id
 	TsgId *string `json:"tsg_id,omitempty"`
 	// Customer account username
-	Username             *string                `json:"username,omitempty"`
+	Username *string `json:"username,omitempty"`
+	// For VMWare accounts only
+	WebhookAuthType *string `json:"webhook_auth_type,omitempty"`
+	// For VMWare accounts only
+	WebhookEnabled *bool `json:"webhook_enabled,omitempty"`
+	// For VMWare accounts only
+	WebhookPassword *string `json:"webhook_password,omitempty"`
+	// For VMWare accounts only
+	WebhookUrl *string `json:"webhook_url,omitempty"`
+	// For VMWare accounts only
+	WebhookUsername      *string                `json:"webhook_username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -61,8 +71,8 @@ type AccountOauthInfoAccount struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthInfoAccount) String() string {
 	return fmt.Sprintf(
-		"AccountOauthInfoAccount[AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, AdditionalProperties=%v]",
-		a.AccountId, a.AutoProbeSubnet, a.ClientId, a.CloudName, a.Company, a.EnableProbe, a.Error, a.Errors, a.InstanceUrl, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.Regions, a.ServiceAccountName, a.ServiceConnections, a.SmartgroupName, a.TsgId, a.Username, a.AdditionalProperties)
+		"AccountOauthInfoAccount[AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, WebhookAuthType=%v, WebhookEnabled=%v, WebhookPassword=%v, WebhookUrl=%v, WebhookUsername=%v, AdditionalProperties=%v]",
+		a.AccountId, a.AutoProbeSubnet, a.ClientId, a.CloudName, a.Company, a.EnableProbe, a.Error, a.Errors, a.InstanceUrl, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.Regions, a.ServiceAccountName, a.ServiceConnections, a.SmartgroupName, a.TsgId, a.Username, a.WebhookAuthType, a.WebhookEnabled, a.WebhookPassword, a.WebhookUrl, a.WebhookUsername, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfoAccount.
@@ -71,7 +81,7 @@ func (a AccountOauthInfoAccount) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username"); err != nil {
+		"account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_url", "webhook_username"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -150,6 +160,21 @@ func (a AccountOauthInfoAccount) toMap() map[string]any {
 	if a.Username != nil {
 		structMap["username"] = a.Username
 	}
+	if a.WebhookAuthType != nil {
+		structMap["webhook_auth_type"] = a.WebhookAuthType
+	}
+	if a.WebhookEnabled != nil {
+		structMap["webhook_enabled"] = a.WebhookEnabled
+	}
+	if a.WebhookPassword != nil {
+		structMap["webhook_password"] = a.WebhookPassword
+	}
+	if a.WebhookUrl != nil {
+		structMap["webhook_url"] = a.WebhookUrl
+	}
+	if a.WebhookUsername != nil {
+		structMap["webhook_username"] = a.WebhookUsername
+	}
 	return structMap
 }
 
@@ -161,7 +186,7 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_url", "webhook_username")
 	if err != nil {
 		return err
 	}
@@ -190,6 +215,11 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
 	a.SmartgroupName = temp.SmartgroupName
 	a.TsgId = temp.TsgId
 	a.Username = temp.Username
+	a.WebhookAuthType = temp.WebhookAuthType
+	a.WebhookEnabled = temp.WebhookEnabled
+	a.WebhookPassword = temp.WebhookPassword
+	a.WebhookUrl = temp.WebhookUrl
+	a.WebhookUsername = temp.WebhookUsername
 	return nil
 }
 
@@ -218,4 +248,9 @@ type tempAccountOauthInfoAccount struct {
 	SmartgroupName      *string                                             `json:"smartgroup_name,omitempty"`
 	TsgId               *string                                             `json:"tsg_id,omitempty"`
 	Username            *string                                             `json:"username,omitempty"`
+	WebhookAuthType     *string                                             `json:"webhook_auth_type,omitempty"`
+	WebhookEnabled      *bool                                               `json:"webhook_enabled,omitempty"`
+	WebhookPassword     *string                                             `json:"webhook_password,omitempty"`
+	WebhookUrl          *string                                             `json:"webhook_url,omitempty"`
+	WebhookUsername     *string                                             `json:"webhook_username,omitempty"`
 }

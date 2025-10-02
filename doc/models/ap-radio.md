@@ -17,6 +17,7 @@ Radio AP settings
 | `AntGain24` | `*int` | Optional | Antenna gain for 2.4G - for models with external antenna only<br><br>**Constraints**: `>= 0` |
 | `AntGain5` | `*int` | Optional | Antenna gain for 5G - for models with external antenna only<br><br>**Constraints**: `>= 0` |
 | `AntGain6` | `*int` | Optional | Antenna gain for 6G - for models with external antenna only<br><br>**Constraints**: `>= 0` |
+| `AntMode` | [`*models.AntModeEnum`](../../doc/models/ant-mode-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
 | `AntennaMode` | [`*models.ApRadioAntennaModeEnum`](../../doc/models/ap-radio-antenna-mode-enum.md) | Optional | enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`<br><br>**Default**: `"default"` |
 | `Band24` | [`*models.ApRadioBand24`](../../doc/models/ap-radio-band-24.md) | Optional | Radio Band AP settings |
 | `Band24Usage` | [`*models.RadioBand24UsageEnum`](../../doc/models/radio-band-24-usage-enum.md) | Optional | enum: `24`, `5`, `6`, `auto` |
@@ -36,6 +37,7 @@ Radio AP settings
   "ant_gain_24": 4,
   "ant_gain_5": 5,
   "ant_gain_6": 5,
+  "ant_mode": "external",
   "antenna_mode": "default",
   "full_automatic_rrm": false,
   "indoor_use": false,

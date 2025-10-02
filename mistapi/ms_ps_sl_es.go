@@ -34,8 +34,8 @@ func (m *MSPsSLEs) GetMspSle(
 	sle *string,
 	duration *string,
 	interval *string,
-	start *int,
-	end *int) (
+	start *string,
+	end *string) (
 	models.ApiResponse[models.InsightMetrics],
 	error) {
 	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/insights/%v")

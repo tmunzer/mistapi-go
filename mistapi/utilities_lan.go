@@ -64,6 +64,86 @@ func (u *UtilitiesLAN) ReauthOrgDot1xWiredClient(
 	return models.NewApiResponse(result, resp), err
 }
 
+// ClearSiteMultipleDevicePendingVersion takes context, siteId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+func (u *UtilitiesLAN) ClearSiteMultipleDevicePendingVersion(
+	ctx context.Context,
+	siteId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/clear_pending_version",
+	)
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Request"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// RestoreSiteMultipleDeviceBackupVersion takes context, siteId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+func (u *UtilitiesLAN) RestoreSiteMultipleDeviceBackupVersion(
+	ctx context.Context,
+	siteId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/restore_backup_version",
+	)
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Request"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
 // UpgradeSiteDevicesBios takes context, siteId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
@@ -255,6 +335,51 @@ func (u *UtilitiesLAN) ClearBpduErrorsFromPortsOnSwitch(
 	return httpCtx.Response, err
 }
 
+// ClearSiteDeviceDot1xSession takes context, siteId, deviceId, body as parameters and
+// returns an models.ApiResponse with models.WebsocketSession data and
+// an error if there was an issue with the request or response.
+// Clear Dot1x Session. The output will be available through websocket.
+func (u *UtilitiesLAN) ClearSiteDeviceDot1xSession(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID,
+	body *models.ClearDot1xSession) (
+	models.ApiResponse[models.WebsocketSession],
+	error) {
+	req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/clear_dot1x")
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.WebsocketSession
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // ClearAllLearnedMacsFromPortOnSwitch takes context, siteId, deviceId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
@@ -289,6 +414,47 @@ func (u *UtilitiesLAN) ClearAllLearnedMacsFromPortOnSwitch(
 	if body != nil {
 		req.Json(body)
 	}
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// ClearSiteDevicePendingVersion takes context, siteId, deviceId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+func (u *UtilitiesLAN) ClearSiteDevicePendingVersion(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/clear_pending_version",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Request"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -334,15 +500,56 @@ func (u *UtilitiesLAN) PollSiteSwitchStats(
 	return httpCtx.Response, err
 }
 
+// RestoreSiteDeviceBackupVersion takes context, siteId, deviceId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+func (u *UtilitiesLAN) RestoreSiteDeviceBackupVersion(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/restore_backup_version",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Request"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
 // CreateSiteDeviceSnapshot takes context, siteId, deviceId as parameters and
-// returns an models.ApiResponse with models.ResponseDeviceSnapshot data and
+// returns an *Response and
 // an error if there was an issue with the request or response.
 // Create recovery device snapshot (Available on Junos OS EX2300-, EX3400-, EX4400- devices)
 func (u *UtilitiesLAN) CreateSiteDeviceSnapshot(
 	ctx context.Context,
 	siteId uuid.UUID,
 	deviceId uuid.UUID) (
-	models.ApiResponse[models.ResponseDeviceSnapshot],
+	*http.Response,
 	error) {
 	req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/snapshot")
 	req.AppendTemplateParams(siteId, deviceId)
@@ -364,14 +571,11 @@ func (u *UtilitiesLAN) CreateSiteDeviceSnapshot(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	var result models.ResponseDeviceSnapshot
-	decoder, resp, err := req.CallAsJson()
+	httpCtx, err := req.Call()
 	if err != nil {
-		return models.NewApiResponse(result, resp), err
+		return httpCtx.Response, err
 	}
-
-	result, err = utilities.DecodeResults[models.ResponseDeviceSnapshot](decoder)
-	return models.NewApiResponse(result, resp), err
+	return httpCtx.Response, err
 }
 
 // UpgradeDeviceBios takes context, siteId, deviceId, body as parameters and
@@ -462,6 +666,47 @@ func (u *UtilitiesLAN) UpgradeDeviceFPGA(
 
 	result, err = utilities.DecodeResults[models.ResponseDeviceBiosUpgrade](decoder)
 	return models.NewApiResponse(result, resp), err
+}
+
+// ToogleSiteDeviceVcRoutingEnginesRole takes context, siteId, deviceId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// In a pre-provisioned VC, mastership is system-determined. This command allows manual toggling between primary and backup Routing Engines.
+func (u *UtilitiesLAN) ToogleSiteDeviceVcRoutingEnginesRole(
+	ctx context.Context,
+	siteId uuid.UUID,
+	deviceId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := u.prepareRequest(
+		ctx,
+		"POST",
+		"/api/v1/sites/%v/devices/%v/vc/switch_master",
+	)
+	req.AppendTemplateParams(siteId, deviceId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Request"},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // ReauthSiteDot1xWiredClient takes context, siteId, clientMac as parameters and

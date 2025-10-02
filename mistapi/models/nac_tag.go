@@ -22,16 +22,16 @@ type NacTag struct {
 	GbpTag *NacTagGbpTag `json:"gbp_tag,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// if `type`==`match`. enum: `cert_cn`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
+	// if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `edr_health`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
 	Match *NacTagMatchEnum `json:"match,omitempty"`
 	// This field is applicable only when `type`==`match`
 	// * `false`: means it is sufficient to match any of the values (i.e., match-any behavior)
 	// * `true`: means all values should be matched (i.e., match-all behavior)
-	// Currently it makes sense to set this field to `true` only if the `match`==`idp_role` or `match`==`usermac_label`
+	// Currently it makes sense to set this field to `true` only if the `match`==`idp_role`, `match`==`usermac_label` and `edr_status`
 	MatchAll *bool `json:"match_all,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// If `type`==`redirect_guest_portal`, the ID of the guest portal to redirect to
+	// If `type`==`redirect_nacportal_id`, the ID of the NAC portal to redirect to
 	NacportalId *uuid.UUID `json:"nacportal_id,omitempty"`
 	Name        string     `json:"name"`
 	OrgId       *uuid.UUID `json:"org_id,omitempty"`
@@ -47,7 +47,7 @@ type NacTag struct {
 	RadiusVendorAttrs []string `json:"radius_vendor_attrs,omitempty"`
 	// If `type`==`session_timeout, in seconds
 	SessionTimeout *int `json:"session_timeout,omitempty"`
-	// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_guest_portal`, `session_timeout`, `username_attr`, `vlan`
+	// enum: `egress_vlan_names`, `gbp_tag`, `match`, `radius_attrs`, `radius_group`, `radius_vendor_attrs`, `redirect_nacportal_id`, `session_timeout`, `username_attr`, `vlan`
 	Type NacTagTypeEnum `json:"type"`
 	// enum: `automatic`, `cn`, `dns`, `email`, `upn`
 	UsernameAttr *NacTagUsernameAttrEnum `json:"username_attr,omitempty"`

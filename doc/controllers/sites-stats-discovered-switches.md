@@ -25,8 +25,8 @@ CountSiteDiscoveredSwitches(
     ctx context.Context,
     siteId uuid.UUID,
     distinct *models.SiteDiscoveredSwitchesCountDistinctEnum,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
@@ -39,8 +39,8 @@ CountSiteDiscoveredSwitches(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteDiscoveredSwitchesCountDistinctEnum`](../../doc/models/site-discovered-switches-count-distinct-enum.md) | Query, Optional | **Default**: `"system_name"` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
@@ -222,8 +222,8 @@ SearchSiteDiscoveredSwitches(
     model *string,
     version *string,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseDiscoveredSwitches],
@@ -242,8 +242,8 @@ SearchSiteDiscoveredSwitches(
 | `model` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 
@@ -341,8 +341,8 @@ SearchSiteDiscoveredSwitchesMetrics(
     scope *models.DiscoveredSwitchesMetricScopeEnum,
     mType *models.DiscoveredSwitchMetricTypeEnum,
     limit *int,
-    start *int,
-    end *int,
+    start *string,
+    end *string,
     duration *string,
     sort *string) (
     models.ApiResponse[models.ResponseDiscoveredSwitchMetrics],
@@ -357,8 +357,8 @@ SearchSiteDiscoveredSwitchesMetrics(
 | `scope` | [`*models.DiscoveredSwitchesMetricScopeEnum`](../../doc/models/discovered-switches-metric-scope-enum.md) | Query, Optional | Metric scope<br><br>**Default**: `"site"` |
 | `mType` | [`*models.DiscoveredSwitchMetricTypeEnum`](../../doc/models/discovered-switch-metric-type-enum.md) | Query, Optional | Metric type |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*int` | Query, Optional | Start datetime, can be epoch or relative time like -1d, -1w; -1d if not specified |
-| `end` | `*int` | Query, Optional | End datetime, can be epoch or relative time like -1d, -2h; now if not specified |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 

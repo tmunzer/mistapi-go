@@ -11,9 +11,9 @@ import (
 
 // SleClassifierSamples represents a SleClassifierSamples struct.
 type SleClassifierSamples struct {
-	Degraded             []float64              `json:"degraded"`
+	Degraded             []NumberOrNull         `json:"degraded"`
 	Duration             []float64              `json:"duration"`
-	Total                []float64              `json:"total"`
+	Total                []NumberOrNull         `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -73,9 +73,9 @@ func (s *SleClassifierSamples) UnmarshalJSON(input []byte) error {
 
 // tempSleClassifierSamples is a temporary struct used for validating the fields of SleClassifierSamples.
 type tempSleClassifierSamples struct {
-	Degraded *[]float64 `json:"degraded"`
-	Duration *[]float64 `json:"duration"`
-	Total    *[]float64 `json:"total"`
+	Degraded *[]NumberOrNull `json:"degraded"`
+	Duration *[]float64      `json:"duration"`
+	Total    *[]NumberOrNull `json:"total"`
 }
 
 func (s *tempSleClassifierSamples) validate() error {

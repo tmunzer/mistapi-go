@@ -30,8 +30,8 @@ func NewSitesStatsBeacons(baseController baseController) *SitesStatsBeacons {
 func (s *SitesStatsBeacons) ListSiteBeaconsStats(
 	ctx context.Context,
 	siteId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (

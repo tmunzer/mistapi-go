@@ -1,7 +1,7 @@
 
 # Dot 11 Bandwidth 24 Enum
 
-channel width for the 2.4GHz band. enum: `20`, `40`
+channel width for the 2.4GHz band. enum: `0`(disabled, response only), `20`, `40`
 
 ## Enumeration
 
@@ -11,6 +11,7 @@ channel width for the 2.4GHz band. enum: `20`, `40`
 
 | Name |
 |  --- |
+| `0` |
 | `20` |
 | `40` |
 

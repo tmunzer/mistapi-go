@@ -10,7 +10,7 @@ import (
 // FwupdateStat represents a FwupdateStat struct.
 type FwupdateStat struct {
 	Progress Optional[int] `json:"progress"`
-	// enum: `inprogress`, `failed`, `upgraded`, `success`
+	// enum: `inprogress`, `failed`, `upgraded`, `success`, `scheduled`, `error`
 	Status   Optional[FwupdateStatStatusEnum] `json:"status"`
 	StatusId Optional[int]                    `json:"status_id"`
 	// Epoch (seconds)

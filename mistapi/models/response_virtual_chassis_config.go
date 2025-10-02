@@ -12,24 +12,26 @@ import (
 type ResponseVirtualChassisConfig struct {
 	ConfigType *string `json:"config_type,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID                  `json:"id,omitempty"`
-	Locating             *bool                       `json:"locating,omitempty"`
-	Members              []StatsSwitchModuleStatItem `json:"members,omitempty"`
-	Model                *string                     `json:"model,omitempty"`
-	OrgId                *uuid.UUID                  `json:"org_id,omitempty"`
-	Serial               *string                     `json:"serial,omitempty"`
-	SiteId               *uuid.UUID                  `json:"site_id,omitempty"`
-	Status               *string                     `json:"status,omitempty"`
-	VcMac                *string                     `json:"vc_mac,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Id       *uuid.UUID                  `json:"id,omitempty"`
+	Locating *bool                       `json:"locating,omitempty"`
+	Members  []StatsSwitchModuleStatItem `json:"members,omitempty"`
+	Model    *string                     `json:"model,omitempty"`
+	// routing-engine count
+	NumRoutingEngines    *int                   `json:"num_routing_engines,omitempty"`
+	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+	Serial               *string                `json:"serial,omitempty"`
+	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	Status               *string                `json:"status,omitempty"`
+	VcMac                *string                `json:"vc_mac,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseVirtualChassisConfig,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseVirtualChassisConfig) String() string {
 	return fmt.Sprintf(
-		"ResponseVirtualChassisConfig[ConfigType=%v, Id=%v, Locating=%v, Members=%v, Model=%v, OrgId=%v, Serial=%v, SiteId=%v, Status=%v, VcMac=%v, AdditionalProperties=%v]",
-		r.ConfigType, r.Id, r.Locating, r.Members, r.Model, r.OrgId, r.Serial, r.SiteId, r.Status, r.VcMac, r.AdditionalProperties)
+		"ResponseVirtualChassisConfig[ConfigType=%v, Id=%v, Locating=%v, Members=%v, Model=%v, NumRoutingEngines=%v, OrgId=%v, Serial=%v, SiteId=%v, Status=%v, VcMac=%v, AdditionalProperties=%v]",
+		r.ConfigType, r.Id, r.Locating, r.Members, r.Model, r.NumRoutingEngines, r.OrgId, r.Serial, r.SiteId, r.Status, r.VcMac, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseVirtualChassisConfig.
@@ -38,7 +40,7 @@ func (r ResponseVirtualChassisConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"config_type", "id", "locating", "members", "model", "org_id", "serial", "site_id", "status", "vc_mac"); err != nil {
+		"config_type", "id", "locating", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "vc_mac"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -62,6 +64,9 @@ func (r ResponseVirtualChassisConfig) toMap() map[string]any {
 	}
 	if r.Model != nil {
 		structMap["model"] = r.Model
+	}
+	if r.NumRoutingEngines != nil {
+		structMap["num_routing_engines"] = r.NumRoutingEngines
 	}
 	if r.OrgId != nil {
 		structMap["org_id"] = r.OrgId
@@ -89,7 +94,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "id", "locating", "members", "model", "org_id", "serial", "site_id", "status", "vc_mac")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "id", "locating", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "vc_mac")
 	if err != nil {
 		return err
 	}
@@ -100,6 +105,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 	r.Locating = temp.Locating
 	r.Members = temp.Members
 	r.Model = temp.Model
+	r.NumRoutingEngines = temp.NumRoutingEngines
 	r.OrgId = temp.OrgId
 	r.Serial = temp.Serial
 	r.SiteId = temp.SiteId
@@ -110,14 +116,15 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 
 // tempResponseVirtualChassisConfig is a temporary struct used for validating the fields of ResponseVirtualChassisConfig.
 type tempResponseVirtualChassisConfig struct {
-	ConfigType *string                     `json:"config_type,omitempty"`
-	Id         *uuid.UUID                  `json:"id,omitempty"`
-	Locating   *bool                       `json:"locating,omitempty"`
-	Members    []StatsSwitchModuleStatItem `json:"members,omitempty"`
-	Model      *string                     `json:"model,omitempty"`
-	OrgId      *uuid.UUID                  `json:"org_id,omitempty"`
-	Serial     *string                     `json:"serial,omitempty"`
-	SiteId     *uuid.UUID                  `json:"site_id,omitempty"`
-	Status     *string                     `json:"status,omitempty"`
-	VcMac      *string                     `json:"vc_mac,omitempty"`
+	ConfigType        *string                     `json:"config_type,omitempty"`
+	Id                *uuid.UUID                  `json:"id,omitempty"`
+	Locating          *bool                       `json:"locating,omitempty"`
+	Members           []StatsSwitchModuleStatItem `json:"members,omitempty"`
+	Model             *string                     `json:"model,omitempty"`
+	NumRoutingEngines *int                        `json:"num_routing_engines,omitempty"`
+	OrgId             *uuid.UUID                  `json:"org_id,omitempty"`
+	Serial            *string                     `json:"serial,omitempty"`
+	SiteId            *uuid.UUID                  `json:"site_id,omitempty"`
+	Status            *string                     `json:"status,omitempty"`
+	VcMac             *string                     `json:"vc_mac,omitempty"`
 }

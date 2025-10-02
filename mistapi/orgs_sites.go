@@ -122,8 +122,8 @@ func (o *OrgsSites) CountOrgSites(
 	ctx context.Context,
 	orgId uuid.UUID,
 	distinct *models.OrgSitesCountDistinctEnum,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
@@ -197,8 +197,8 @@ func (o *OrgsSites) SearchOrgSites(
 	vnaEnabled *bool,
 	wifiEnabled *bool,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseSiteSearch],

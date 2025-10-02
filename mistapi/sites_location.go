@@ -36,8 +36,8 @@ func (s *SitesLocation) GetSiteBeamCoverageOverview(
 	clientType *string,
 	duration *string,
 	resolution *models.ResolutionEnum,
-	start *int,
-	end *int) (
+	start *string,
+	end *string) (
 	models.ApiResponse[models.ResponseLocationCoverage],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/location/coverage")

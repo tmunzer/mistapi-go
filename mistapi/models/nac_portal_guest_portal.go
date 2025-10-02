@@ -25,6 +25,7 @@ type NacPortalGuestPortal struct {
 	Expire *int `json:"expire,omitempty"`
 	// If `auth`==`external`, the URL to redirect the user to for authentication
 	ExternalPortalUrl *string `json:"external_portal_url,omitempty"`
+	ForceReconnect    *bool   `json:"force_reconnect,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, whether to forward the user to the guest portal after authentication
 	Forward *bool `json:"forward,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, URL to forward the user to after authentication
@@ -44,8 +45,8 @@ type NacPortalGuestPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacPortalGuestPortal) String() string {
 	return fmt.Sprintf(
-		"NacPortalGuestPortal[Auth=%v, Expire=%v, ExternalPortalUrl=%v, Forward=%v, ForwardUrl=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalDeniedHostnames=%v, Privacy=%v, AdditionalProperties=%v]",
-		n.Auth, n.Expire, n.ExternalPortalUrl, n.Forward, n.ForwardUrl, n.PortalAllowedHostnames, n.PortalAllowedSubnets, n.PortalDeniedHostnames, n.Privacy, n.AdditionalProperties)
+		"NacPortalGuestPortal[Auth=%v, Expire=%v, ExternalPortalUrl=%v, ForceReconnect=%v, Forward=%v, ForwardUrl=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalDeniedHostnames=%v, Privacy=%v, AdditionalProperties=%v]",
+		n.Auth, n.Expire, n.ExternalPortalUrl, n.ForceReconnect, n.Forward, n.ForwardUrl, n.PortalAllowedHostnames, n.PortalAllowedSubnets, n.PortalDeniedHostnames, n.Privacy, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalGuestPortal.
@@ -54,7 +55,7 @@ func (n NacPortalGuestPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"auth", "expire", "external_portal_url", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy"); err != nil {
+		"auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -72,6 +73,9 @@ func (n NacPortalGuestPortal) toMap() map[string]any {
 	}
 	if n.ExternalPortalUrl != nil {
 		structMap["external_portal_url"] = n.ExternalPortalUrl
+	}
+	if n.ForceReconnect != nil {
+		structMap["force_reconnect"] = n.ForceReconnect
 	}
 	if n.Forward != nil {
 		structMap["forward"] = n.Forward
@@ -102,7 +106,7 @@ func (n *NacPortalGuestPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "expire", "external_portal_url", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy")
 	if err != nil {
 		return err
 	}
@@ -111,6 +115,7 @@ func (n *NacPortalGuestPortal) UnmarshalJSON(input []byte) error {
 	n.Auth = temp.Auth
 	n.Expire = temp.Expire
 	n.ExternalPortalUrl = temp.ExternalPortalUrl
+	n.ForceReconnect = temp.ForceReconnect
 	n.Forward = temp.Forward
 	n.ForwardUrl = temp.ForwardUrl
 	n.PortalAllowedHostnames = temp.PortalAllowedHostnames
@@ -125,6 +130,7 @@ type tempNacPortalGuestPortal struct {
 	Auth                   *NacPortalGuestPortalAuthEnum `json:"auth,omitempty"`
 	Expire                 *int                          `json:"expire,omitempty"`
 	ExternalPortalUrl      *string                       `json:"external_portal_url,omitempty"`
+	ForceReconnect         *bool                         `json:"force_reconnect,omitempty"`
 	Forward                *bool                         `json:"forward,omitempty"`
 	ForwardUrl             *string                       `json:"forward_url,omitempty"`
 	PortalAllowedHostnames []string                      `json:"portal_allowed_hostnames,omitempty"`

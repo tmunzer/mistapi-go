@@ -19,6 +19,9 @@
 | `CertSubject` | `[]string` | Optional | When certificate based authentication is used, the Subject from the certificates used for the specified duration |
 | `ClientIp` | `[]string` | Optional | The known IP Addresses used by the client for the specified duration |
 | `DeviceMac` | `*string` | Optional | MAC Address of the device (AP, Switch) the client is connected to |
+| `EdrManaged` | `*bool` | Optional | - |
+| `EdrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Optional | `enum: `sentinelone`, `crowdstrike` |
+| `EdrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Optional | EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational` |
 | `Group` | `*string` | Optional | - |
 | `IdpId` | `*string` | Optional | - |
 | `IdpRole` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

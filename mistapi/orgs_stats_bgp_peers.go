@@ -86,8 +86,8 @@ func (o *OrgsStatsBGPPeers) SearchOrgBgpStats(
 	siteId *string,
 	vrfName *string,
 	limit *int,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	sort *string) (
 	models.ApiResponse[models.ResponseSearchBgps],

@@ -1,7 +1,7 @@
 
 # Switch Port Usage Duplex Enum
 
-Only if `mode`!=`dynamic`, link connection mode. enum: `auto`, `full`, `half`
+Only if `mode`!=`dynamic`. Link connection mode. enum: `auto`, `full`, `half`
 
 ## Enumeration
 

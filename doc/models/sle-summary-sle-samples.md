@@ -11,9 +11,9 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Degraded` | `[]float64` | Required | - |
-| `Total` | `[]float64` | Required | - |
-| `Value` | `[]float64` | Required | - |
+| `Degraded` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
+| `Total` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
+| `Value` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -21,17 +21,17 @@
 ```json
 {
   "degraded": [
-    92.75,
-    92.76,
-    92.77
+    79.29,
+    79.3,
+    79.31
   ],
   "total": [
-    6.85,
-    6.84
+    249.39,
+    249.38
   ],
   "value": [
-    192.18,
-    192.19
+    178.72,
+    178.73
   ],
   "exampleAdditionalProperty": {
     "key1": "val1",

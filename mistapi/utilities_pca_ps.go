@@ -31,8 +31,8 @@ func NewUtilitiesPCAPs(baseController baseController) *UtilitiesPCAPs {
 func (u *UtilitiesPCAPs) ListOrgPacketCaptures(
 	ctx context.Context,
 	orgId uuid.UUID,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
@@ -247,8 +247,8 @@ func (u *UtilitiesPCAPs) ListSitePacketCaptures(
 	ctx context.Context,
 	siteId uuid.UUID,
 	clientMac *string,
-	start *int,
-	end *int,
+	start *string,
+	end *string,
 	duration *string,
 	limit *int,
 	page *int) (
