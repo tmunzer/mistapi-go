@@ -17,7 +17,7 @@ type StatsBeacon struct {
 	EddystoneInstance  *string  `json:"eddystone_instance,omitempty"`
 	EddystoneNamespace *string  `json:"eddystone_namespace,omitempty"`
 	// Last seen timestamp
-	LastSeen             *float64               `json:"last_seen"`
+	LastSeen             Optional[float64]      `json:"last_seen"`
 	Mac                  string                 `json:"mac"`
 	MapId                uuid.UUID              `json:"map_id"`
 	Name                 string                 `json:"name"`
@@ -61,10 +61,12 @@ func (s StatsBeacon) toMap() map[string]any {
 	if s.EddystoneNamespace != nil {
 		structMap["eddystone_namespace"] = s.EddystoneNamespace
 	}
-	if s.LastSeen != nil {
-		structMap["last_seen"] = s.LastSeen
-	} else {
-		structMap["last_seen"] = nil
+	if s.LastSeen.IsValueSet() {
+		if s.LastSeen.Value() != nil {
+			structMap["last_seen"] = s.LastSeen.Value()
+		} else {
+			structMap["last_seen"] = nil
+		}
 	}
 	structMap["mac"] = s.Mac
 	structMap["map_id"] = s.MapId
@@ -110,17 +112,17 @@ func (s *StatsBeacon) UnmarshalJSON(input []byte) error {
 
 // tempStatsBeacon is a temporary struct used for validating the fields of StatsBeacon.
 type tempStatsBeacon struct {
-	BatteryVoltage     *float64   `json:"battery_voltage,omitempty"`
-	EddystoneInstance  *string    `json:"eddystone_instance,omitempty"`
-	EddystoneNamespace *string    `json:"eddystone_namespace,omitempty"`
-	LastSeen           *float64   `json:"last_seen"`
-	Mac                *string    `json:"mac"`
-	MapId              *uuid.UUID `json:"map_id"`
-	Name               *string    `json:"name"`
-	Power              *int       `json:"power"`
-	Type               *string    `json:"type"`
-	X                  *float64   `json:"x"`
-	Y                  *float64   `json:"y"`
+	BatteryVoltage     *float64          `json:"battery_voltage,omitempty"`
+	EddystoneInstance  *string           `json:"eddystone_instance,omitempty"`
+	EddystoneNamespace *string           `json:"eddystone_namespace,omitempty"`
+	LastSeen           Optional[float64] `json:"last_seen"`
+	Mac                *string           `json:"mac"`
+	MapId              *uuid.UUID        `json:"map_id"`
+	Name               *string           `json:"name"`
+	Power              *int              `json:"power"`
+	Type               *string           `json:"type"`
+	X                  *float64          `json:"x"`
+	Y                  *float64          `json:"y"`
 }
 
 func (s *tempStatsBeacon) validate() error {

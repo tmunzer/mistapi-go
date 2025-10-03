@@ -14,7 +14,7 @@ Unconnected clients statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ApMac` | `string` | Required | MAC address of the AP that heard the client |
-| `LastSeen` | `*float64` | Required | Last seen timestamp |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `string` | Required | MAC address of the (unconnected) client |
 | `Manufacture` | `string` | Required | Device manufacture, through fingerprinting or OUI |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Map_id of the client (if known), or null |

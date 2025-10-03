@@ -52,6 +52,7 @@ Device gateway
 | `TunnelConfigs` | [`map[string]models.TunnelConfig`](../../doc/models/tunnel-config.md) | Optional | Property key is the tunnel name |
 | `TunnelProviderOptions` | [`*models.TunnelProviderOptions`](../../doc/models/tunnel-provider-options.md) | Optional | - |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
+| `UrlFilteringDenyMsg` | `*string` | Optional | When a service policy denies a app_category, what message to show in user's browser<br><br>**Default**: `"Access to this URL Category has been blocked"` |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `VrfConfig` | [`*models.VrfConfig`](../../doc/models/vrf-config.md) | Optional | - |
 | `VrfInstances` | [`map[string]models.GatewayVrfInstance`](../../doc/models/gateway-vrf-instance.md) | Optional | Property key is the network name |
@@ -76,6 +77,7 @@ Device gateway
   "router_id": "10.2.1.10",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "gateway",
+  "url_filtering_deny_msg": "Access to this URL Category has been blocked",
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"

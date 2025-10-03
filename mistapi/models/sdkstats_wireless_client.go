@@ -16,7 +16,7 @@ type SdkstatsWirelessClient struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// Last seen timestamp
-	LastSeen *float64 `json:"last_seen"`
+	LastSeen Optional[float64] `json:"last_seen"`
 	// Map_id of the sdk client (if known), or null
 	MapId Optional[uuid.UUID] `json:"map_id"`
 	// Name of the sdk client (if provided)
@@ -61,10 +61,12 @@ func (s SdkstatsWirelessClient) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	structMap["id"] = s.Id
-	if s.LastSeen != nil {
-		structMap["last_seen"] = s.LastSeen
-	} else {
-		structMap["last_seen"] = nil
+	if s.LastSeen.IsValueSet() {
+		if s.LastSeen.Value() != nil {
+			structMap["last_seen"] = s.LastSeen.Value()
+		} else {
+			structMap["last_seen"] = nil
+		}
 	}
 	if s.MapId.IsValueSet() {
 		if s.MapId.Value() != nil {
@@ -129,7 +131,7 @@ func (s *SdkstatsWirelessClient) UnmarshalJSON(input []byte) error {
 // tempSdkstatsWirelessClient is a temporary struct used for validating the fields of SdkstatsWirelessClient.
 type tempSdkstatsWirelessClient struct {
 	Id                *uuid.UUID                       `json:"id"`
-	LastSeen          *float64                         `json:"last_seen"`
+	LastSeen          Optional[float64]                `json:"last_seen"`
 	MapId             Optional[uuid.UUID]              `json:"map_id"`
 	Name              *string                          `json:"name,omitempty"`
 	NetworkConnection *StatsSdkclientNetworkConnection `json:"network_connection,omitempty"`

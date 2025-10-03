@@ -16,7 +16,7 @@ type StatsUnconnectedClient struct {
 	// MAC address of the AP that heard the client
 	ApMac string `json:"ap_mac"`
 	// Last seen timestamp
-	LastSeen *float64 `json:"last_seen"`
+	LastSeen Optional[float64] `json:"last_seen"`
 	// MAC address of the (unconnected) client
 	Mac string `json:"mac"`
 	// Device manufacture, through fingerprinting or OUI
@@ -57,10 +57,12 @@ func (s StatsUnconnectedClient) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	structMap["ap_mac"] = s.ApMac
-	if s.LastSeen != nil {
-		structMap["last_seen"] = s.LastSeen
-	} else {
-		structMap["last_seen"] = nil
+	if s.LastSeen.IsValueSet() {
+		if s.LastSeen.Value() != nil {
+			structMap["last_seen"] = s.LastSeen.Value()
+		} else {
+			structMap["last_seen"] = nil
+		}
 	}
 	structMap["mac"] = s.Mac
 	structMap["manufacture"] = s.Manufacture
@@ -111,7 +113,7 @@ func (s *StatsUnconnectedClient) UnmarshalJSON(input []byte) error {
 // tempStatsUnconnectedClient is a temporary struct used for validating the fields of StatsUnconnectedClient.
 type tempStatsUnconnectedClient struct {
 	ApMac       *string             `json:"ap_mac"`
-	LastSeen    *float64            `json:"last_seen"`
+	LastSeen    Optional[float64]   `json:"last_seen"`
 	Mac         *string             `json:"mac"`
 	Manufacture *string             `json:"manufacture"`
 	MapId       Optional[uuid.UUID] `json:"map_id"`

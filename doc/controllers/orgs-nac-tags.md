@@ -84,13 +84,13 @@ if err != nil {
 
 ```json
 {
-  "match": "client_mac",
-  "name": "cameras",
-  "type": "match",
-  "values": [
-    "010203040506",
-    "abcdef*"
-  ]
+  "egress_vlan_names": [
+    "1vlan-30",
+    "1vlan-20",
+    "2vlan10"
+  ],
+  "name": "trunk_ap",
+  "type": "egress_vlan_names"
 }
 ```
 
@@ -204,13 +204,13 @@ if err != nil {
 
 ```json
 {
-  "match": "client_mac",
-  "name": "cameras",
-  "type": "match",
-  "values": [
-    "010203040506",
-    "abcdef*"
-  ]
+  "egress_vlan_names": [
+    "1vlan-30",
+    "1vlan-20",
+    "2vlan10"
+  ],
+  "name": "trunk_ap",
+  "type": "egress_vlan_names"
 }
 ```
 
@@ -360,13 +360,13 @@ if err != nil {
 
 ```json
 {
-  "match": "client_mac",
-  "name": "cameras",
-  "type": "match",
-  "values": [
-    "010203040506",
-    "abcdef*"
-  ]
+  "egress_vlan_names": [
+    "1vlan-30",
+    "1vlan-20",
+    "2vlan10"
+  ],
+  "name": "trunk_ap",
+  "type": "egress_vlan_names"
 }
 ```
 

@@ -17,7 +17,7 @@
 | `EventId` | `*uuid.UUID` | Optional | Event id |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
-| `LastSeen` | `*float64` | Required | Last seen timestamp |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
@@ -32,7 +32,7 @@
 ```json
 {
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "last_seen": 1470417522.0,
+  "last_seen": 1470417522,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "timestamp": 83.74,

@@ -68,7 +68,7 @@ func TestOrgsNACTagsTestCreateOrgNacTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -89,7 +89,7 @@ func TestOrgsNACTagsTestCreateOrgNacTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -131,7 +131,7 @@ func TestOrgsNACTagsTestGetOrgNacTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -155,7 +155,7 @@ func TestOrgsNACTagsTestGetOrgNacTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -180,7 +180,7 @@ func TestOrgsNACTagsTestUpdateOrgNacTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -205,6 +205,6 @@ func TestOrgsNACTagsTestUpdateOrgNacTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"match":"client_mac","name":"cameras","type":"match","values":["010203040506","abcdef*"]}`
+	expected := `{"egress_vlan_names":["1vlan-30","1vlan-20","2vlan10"],"name":"trunk_ap","type":"egress_vlan_names"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

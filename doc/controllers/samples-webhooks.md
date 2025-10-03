@@ -68,7 +68,6 @@ body := models.WebhookAlarms{
     Events:               []models.WebhookAlarmEvent{
         models.WebhookAlarmEvent{
             Id:                   uuid.MustParse(""),
-            LastSeen:             nil,
             OrgId:                uuid.MustParse(""),
             SiteId:               uuid.MustParse(""),
             Timestamp:            0.0,
@@ -1226,7 +1225,6 @@ body := models.WebhookSdkclientScanData{
             ConnectionBssid:      "5c5b352b51b4",
             ConnectionChannel:    11,
             ConnectionRssi:       float64(-87),
-            LastSeen:             nil,
             Mac:                  "70ef0071535f",
             ScanData:             []models.WebhookSdkclientScanDataEventScanDataItem{
                 models.WebhookSdkclientScanDataEventScanDataItem{
