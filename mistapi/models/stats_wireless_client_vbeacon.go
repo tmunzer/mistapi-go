@@ -12,7 +12,7 @@ import (
 type StatsWirelessClientVbeacon struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id                   *uuid.UUID             `json:"id,omitempty"`
-	Since                *int                   `json:"since,omitempty"`
+	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -71,5 +71,5 @@ func (s *StatsWirelessClientVbeacon) UnmarshalJSON(input []byte) error {
 // tempStatsWirelessClientVbeacon is a temporary struct used for validating the fields of StatsWirelessClientVbeacon.
 type tempStatsWirelessClientVbeacon struct {
 	Id    *uuid.UUID `json:"id,omitempty"`
-	Since *int       `json:"since,omitempty"`
+	Since *float64   `json:"since,omitempty"`
 }

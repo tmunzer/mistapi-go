@@ -22,7 +22,7 @@ type WebhookAlarmEvent struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
 	// Last seen timestamp
-	LastSeen *float64 `json:"last_seen"`
+	LastSeen Optional[float64] `json:"last_seen"`
 	// only for HA. enum: `node0`, `node1`
 	Node   *HaClusterNodeEnum `json:"node,omitempty"`
 	OrgId  uuid.UUID          `json:"org_id"`
@@ -77,10 +77,12 @@ func (w WebhookAlarmEvent) toMap() map[string]any {
 		structMap["for_site"] = w.ForSite
 	}
 	structMap["id"] = w.Id
-	if w.LastSeen != nil {
-		structMap["last_seen"] = w.LastSeen
-	} else {
-		structMap["last_seen"] = nil
+	if w.LastSeen.IsValueSet() {
+		if w.LastSeen.Value() != nil {
+			structMap["last_seen"] = w.LastSeen.Value()
+		} else {
+			structMap["last_seen"] = nil
+		}
 	}
 	if w.Node != nil {
 		structMap["node"] = w.Node
@@ -141,7 +143,7 @@ type tempWebhookAlarmEvent struct {
 	EventId   *uuid.UUID         `json:"event_id,omitempty"`
 	ForSite   *bool              `json:"for_site,omitempty"`
 	Id        *uuid.UUID         `json:"id"`
-	LastSeen  *float64           `json:"last_seen"`
+	LastSeen  Optional[float64]  `json:"last_seen"`
 	Node      *HaClusterNodeEnum `json:"node,omitempty"`
 	OrgId     *uuid.UUID         `json:"org_id"`
 	SiteId    *uuid.UUID         `json:"site_id"`

@@ -23,7 +23,7 @@ type WebhookSdkclientScanDataEvent struct {
 	// RSSI of the client’s connection to the AP/BSSID
 	ConnectionRssi float64 `json:"connection_rssi"`
 	// Last seen timestamp
-	LastSeen *float64 `json:"last_seen"`
+	LastSeen Optional[float64] `json:"last_seen"`
 	// Client's MAC Address
 	Mac                  string                                      `json:"mac"`
 	ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
@@ -60,10 +60,12 @@ func (w WebhookSdkclientScanDataEvent) toMap() map[string]any {
 	structMap["connection_bssid"] = w.ConnectionBssid
 	structMap["connection_channel"] = w.ConnectionChannel
 	structMap["connection_rssi"] = w.ConnectionRssi
-	if w.LastSeen != nil {
-		structMap["last_seen"] = w.LastSeen
-	} else {
-		structMap["last_seen"] = nil
+	if w.LastSeen.IsValueSet() {
+		if w.LastSeen.Value() != nil {
+			structMap["last_seen"] = w.LastSeen.Value()
+		} else {
+			structMap["last_seen"] = nil
+		}
 	}
 	structMap["mac"] = w.Mac
 	if w.ScanData != nil {
@@ -110,7 +112,7 @@ type tempWebhookSdkclientScanDataEvent struct {
 	ConnectionBssid   *string                                     `json:"connection_bssid"`
 	ConnectionChannel *int                                        `json:"connection_channel"`
 	ConnectionRssi    *float64                                    `json:"connection_rssi"`
-	LastSeen          *float64                                    `json:"last_seen"`
+	LastSeen          Optional[float64]                           `json:"last_seen"`
 	Mac               *string                                     `json:"mac"`
 	ScanData          []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
 	SiteId            *uuid.UUID                                  `json:"site_id"`

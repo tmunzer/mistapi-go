@@ -14,7 +14,7 @@
 | `BatteryVoltage` | `*float64` | Optional | Battery voltage, in mV |
 | `EddystoneInstance` | `*string` | Optional | - |
 | `EddystoneNamespace` | `*string` | Optional | - |
-| `LastSeen` | `*float64` | Required | Last seen timestamp |
+| `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `string` | Required | - |
 | `MapId` | `uuid.UUID` | Required | - |
 | `Name` | `string` | Required | - |

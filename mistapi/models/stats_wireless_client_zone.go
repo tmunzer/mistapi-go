@@ -12,7 +12,7 @@ import (
 type StatsWirelessClientZone struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id                   *uuid.UUID             `json:"id,omitempty"`
-	Since                *int                   `json:"since,omitempty"`
+	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -71,5 +71,5 @@ func (s *StatsWirelessClientZone) UnmarshalJSON(input []byte) error {
 // tempStatsWirelessClientZone is a temporary struct used for validating the fields of StatsWirelessClientZone.
 type tempStatsWirelessClientZone struct {
 	Id    *uuid.UUID `json:"id,omitempty"`
-	Since *int       `json:"since,omitempty"`
+	Since *float64   `json:"since,omitempty"`
 }
