@@ -18,7 +18,7 @@
 | `Quantity` | `*int` | Optional | - |
 | `StartTime` | `*int` | Optional | - |
 | `SubscriptionId` | `*string` | Optional | - |
-| `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](../../doc/controllers/constants-definitions.md#list-license-types) API request. |
+| `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](/#operations/listLicenseTypes) API request. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

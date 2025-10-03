@@ -17,8 +17,8 @@
 | `AcctInterimInterval` | `*int` | Optional | How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `AcctServers` | [`[]models.RadiusAcctServer`](../../doc/models/radius-acct-server.md) | Optional | List of RADIUS accounting servers, optional, order matters where the first one is treated as primary |
 | `Airwatch` | [`*models.WlanAirwatch`](../../doc/models/wlan-airwatch.md) | Optional | Airwatch wlan settings |
-| `AllowIpv6Ndp` | `*bool` | Optional | Only applicable when limit_bcast==true, which allows or disallows ipv6 Neighbor Discovery packets to go through<br><br>**Default**: `true` |
-| `AllowMdns` | `*bool` | Optional | Only applicable when limit_bcast==true, which allows mDNS / Bonjour packets to go through<br><br>**Default**: `false` |
+| `AllowIpv6Ndp` | `*bool` | Optional | Only applicable when `limit_bcast`==`true`, which allows or disallows ipv6 Neighbor Discovery packets to go through<br><br>**Default**: `true` |
+| `AllowMdns` | `*bool` | Optional | Only applicable when `limit_bcast`==`true`, which allows mDNS / Bonjour packets to go through<br><br>**Default**: `false` |
 | `AllowSsdp` | `*bool` | Optional | Only applicable when `limit_bcast`==`true`, which allows SSDP<br><br>**Default**: `false` |
 | `ApIds` | `models.Optional[[]uuid.UUID]` | Optional | List of device ids |
 | `AppLimit` | [`*models.WlanAppLimit`](../../doc/models/wlan-app-limit.md) | Optional | Bandwidth limiting for apps (applies to up/down) |

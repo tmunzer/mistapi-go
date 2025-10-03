@@ -22,7 +22,7 @@ orgsAlarmTemplates := client.OrgsAlarmTemplates()
 
 # Create Org Alarm Template
 
-Available rules can be found in [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions)
+Available rules can be found in [List Alarm Definitions#](/#operations/listAlarmDefinitions)
 
 The delivery dict is only required if different from the template delivery settings.
 

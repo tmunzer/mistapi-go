@@ -45,12 +45,12 @@ type Webhook struct {
 	// * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
 	// * X-Mist-Signature: HMAC_SHA1(secret, body)
 	Secret Optional[string] `json:"secret"`
-	// Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics))
+	// Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](/#operations/listWebhookTopics))
 	SingleEventPerMessage *bool      `json:"single_event_per_message,omitempty"`
 	SiteId                *uuid.UUID `json:"site_id,omitempty"`
 	// Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.
 	SplunkToken Optional[string] `json:"splunk_token"`
-	// List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
+	// List of supported webhook topics available with the API Call [List Webhook Topics](/#operations/listWebhookTopics)
 	Topics []string `json:"topics,omitempty"`
 	// enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
 	Type *WebhookTypeEnum `json:"type,omitempty"`

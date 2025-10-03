@@ -39,7 +39,7 @@ CountSiteOtherDeviceEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteOtherDeviceEventsCountDistinctEnum`](../../doc/models/site-other-device-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mac"` |
-| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](/#operations/listOtherDeviceEventsDefinitions) |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -218,7 +218,7 @@ SearchSiteOtherDeviceEvents(
 | `mac` | `*string` | Query, Optional | MAC |
 | `deviceMac` | `*string` | Query, Optional | MAC of attached device |
 | `vendor` | `*string` | Query, Optional | Vendor name |
-| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-other-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](/#operations/listOtherDeviceEventsDefinitions) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |

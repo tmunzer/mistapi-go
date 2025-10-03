@@ -18,7 +18,7 @@ orgsClientsWired := client.OrgsClientsWired()
 
 Count by Distinct Attributes of Clients
 
-Note: For list of available `type` values, please refer to [List Client Events Definitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
+Note: For list of available `type` values, please refer to [List Client Events Definitions](/#operations/listClientEventsDefinitions)
 
 ```go
 CountOrgWiredClients(
@@ -104,7 +104,7 @@ if err != nil {
 
 Search for Wired Clients in org
 
-Note: For list of available `type` values, please refer to [List Client Events Definitions](../../doc/controllers/constants-events.md#list-client-events-definitions)
+Note: For list of available `type` values, please refer to [List Client Events Definitions](/#operations/listClientEventsDefinitions)
 
 ```go
 SearchOrgWiredClients(

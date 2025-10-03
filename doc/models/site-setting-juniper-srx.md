@@ -11,6 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `AutoUpgrade` | [`*models.JuniperSrxAutoUpgrade`](../../doc/models/juniper-srx-auto-upgrade.md) | Optional | auto_upgrade device first time it is onboarded |
 | `Gateways` | [`[]models.SiteSettingJuniperSrxGateway`](../../doc/models/site-setting-juniper-srx-gateway.md) | Optional | - |
 | `SendMistNacUserInfo` | `*bool` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
@@ -19,6 +20,18 @@
 
 ```json
 {
+  "auto_upgrade": {
+    "custom_versions": {
+      "key0": "custom_versions3",
+      "key1": "custom_versions2"
+    },
+    "enabled": false,
+    "snapshot": false,
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
+  },
   "gateways": [
     {
       "api_key": "api_key8",

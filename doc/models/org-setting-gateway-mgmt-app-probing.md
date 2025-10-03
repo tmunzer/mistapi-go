@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Apps` | `[]string` | Optional | APp-keys from [List Applications](../../doc/controllers/constants-definitions.md#list-applications) |
+| `Apps` | `[]string` | Optional | APp-keys from [List Applications](/#operations/listApplications) |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

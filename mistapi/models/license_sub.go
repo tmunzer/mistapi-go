@@ -27,7 +27,7 @@ type LicenseSub struct {
 	// Start date of the license term
 	StartTime      *int    `json:"start_time,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
-	// Type of license. The list of supported license type can be retrieve with the [List License Type]($e/Constants%20Definitions/listLicenseTypes) API request.
+	// Type of license. The list of supported license type can be retrieve with the [List License Type](/#operations/listLicenseTypes) API request.
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

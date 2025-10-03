@@ -14,9 +14,9 @@ Applications used for the Gateway configurations
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Addresses` | `[]string` | Optional | If `type`==`custom`, IPv4 and/or IPv6 subnets (e.g. 10.0.0.0/8, fd28::/128) |
-| `AppCategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Category Definitions](../../doc/controllers/constants-definitions.md#list-app-category-definitions) |
-| `AppSubcategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions](../../doc/controllers/constants-definitions.md#list-app-sub-category-definitions) |
-| `Apps` | `[]string` | Optional | When `type`==`apps`, list of applications are available through:<br><br>* [List Applications](../../doc/controllers/constants-definitions.md#list-applications)<br>* [List Gateway Applications](../../doc/controllers/constants-definitions.md#list-gateway-applications)<br>* /insight/top_app_by-bytes?wired=true |
+| `AppCategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Category Definitions](/#operations/listAppCategoryDefinitions) |
+| `AppSubcategories` | `[]string` | Optional | When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions](/#operations/listAppSubCategoryDefinitions) |
+| `Apps` | `[]string` | Optional | When `type`==`apps`, list of applications are available through:<br><br>* [List Applications](/#operations/listApplications)<br>* [List Gateway Applications](/#operations/listGatewayApplications)<br>* /insight/top_app_by-bytes?wired=true |
 | `ClientLimitDown` | `*int` | Optional | 0 means unlimited, value from 0 to 107374182<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 107374182` |
 | `ClientLimitUp` | `*int` | Optional | 0 means unlimited, value from 0 to 107374182<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 107374182` |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
@@ -37,7 +37,7 @@ Applications used for the Gateway configurations
 | `Specs` | [`[]models.ServiceSpec`](../../doc/models/service-spec.md) | Optional | When `type`==`custom`, optional, if it doesn't exist, http and https is assumed |
 | `SsrRelaxedTcpStateEnforcement` | `*bool` | Optional | **Default**: `false` |
 | `TrafficClass` | [`*models.ServiceTrafficClassEnum`](../../doc/models/service-traffic-class-enum.md) | Optional | when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`<br><br>**Default**: `"best_effort"` |
-| `TrafficType` | `*string` | Optional | values from [List Traffic Types](../../doc/controllers/constants-definitions.md#list-traffic-types)<br><br>**Default**: `"data_best_effort"` |
+| `TrafficType` | `*string` | Optional | values from [List Traffic Types](/#operations/listTrafficTypes)<br><br>**Default**: `"data_best_effort"` |
 | `Type` | [`*models.ServiceTypeEnum`](../../doc/models/service-type-enum.md) | Optional | enum: `app_categories`, `apps`, `custom`, `urls`<br><br>**Default**: `"custom"` |
 | `Urls` | `[]string` | Optional | When `type`==`urls`, no need for spec as URL can encode the ports being used |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

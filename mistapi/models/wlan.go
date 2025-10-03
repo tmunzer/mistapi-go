@@ -21,9 +21,9 @@ type Wlan struct {
 	AcctServers []RadiusAcctServer `json:"acct_servers,omitempty"`
 	// Airwatch wlan settings
 	Airwatch *WlanAirwatch `json:"airwatch,omitempty"`
-	// Only applicable when limit_bcast==true, which allows or disallows ipv6 Neighbor Discovery packets to go through
+	// Only applicable when `limit_bcast`==`true`, which allows or disallows ipv6 Neighbor Discovery packets to go through
 	AllowIpv6Ndp *bool `json:"allow_ipv6_ndp,omitempty"`
-	// Only applicable when limit_bcast==true, which allows mDNS / Bonjour packets to go through
+	// Only applicable when `limit_bcast`==`true`, which allows mDNS / Bonjour packets to go through
 	AllowMdns *bool `json:"allow_mdns,omitempty"`
 	// Only applicable when `limit_bcast`==`true`, which allows SSDP
 	AllowSsdp *bool `json:"allow_ssdp,omitempty"`

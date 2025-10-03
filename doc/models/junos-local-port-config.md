@@ -26,7 +26,7 @@ Switch port config
 | `EnableMacAuth` | `*bool` | Optional | Only if `port_auth`==`dot1x` whether to enable MAC Auth<br><br>**Default**: `false` |
 | `EnableQos` | `*bool` | Optional | **Default**: `false` |
 | `GuestNetwork` | `models.Optional[string]` | Optional | Only if `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed) |
-| `InterSwitchLink` | `*bool` | Optional | inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper devices. This has to be applied to both ports connected together<br><br>**Default**: `false` |
+| `InterSwitchLink` | `*bool` | Optional | inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together<br><br>**Default**: `false` |
 | `MacAuthOnly` | `*bool` | Optional | Only if `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortLocalUsageMacAuthProtocolEnum`](../../doc/models/switch-port-local-usage-mac-auth-protocol-enum.md) | Optional | Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br><br>**Default**: `"eap-md5"` |

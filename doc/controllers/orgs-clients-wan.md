@@ -40,7 +40,7 @@ CountOrgWanClientEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.OrgWanClientsEventsCountDistinctEnum`](../../doc/models/org-wan-clients-events-count-distinct-enum.md) | Query, Optional | **Default**: `"type"` |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -214,7 +214,7 @@ SearchOrgWanClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `ip` | `*string` | Query, Optional | Client IP |

@@ -13,13 +13,13 @@ import (
 type Service struct {
 	// If `type`==`custom`, IPv4 and/or IPv6 subnets (e.g. 10.0.0.0/8, fd28::/128)
 	Addresses []string `json:"addresses,omitempty"`
-	// When `type`==`app_categories`, list of application categories are available through [List App Category Definitions]($e/Constants%20Definitions/listAppCategoryDefinitions)
+	// When `type`==`app_categories`, list of application categories are available through [List App Category Definitions](/#operations/listAppCategoryDefinitions)
 	AppCategories []string `json:"app_categories,omitempty"`
-	// When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions]($e/Constants%20Definitions/listAppSubCategoryDefinitions)
+	// When `type`==`app_categories`, list of application categories are available through [List App Sub Category Definitions](/#operations/listAppSubCategoryDefinitions)
 	AppSubcategories []string `json:"app_subcategories,omitempty"`
 	// When `type`==`apps`, list of applications are available through:
-	// * [List Applications]($e/Constants%20Definitions/listApplications)
-	// * [List Gateway Applications]($e/Constants%20Definitions/listGatewayApplications)
+	// * [List Applications](/#operations/listApplications)
+	// * [List Gateway Applications](/#operations/listGatewayApplications)
 	// * /insight/top_app_by-bytes?wired=true
 	Apps []string `json:"apps,omitempty"`
 	// 0 means unlimited, value from 0 to 107374182
@@ -58,7 +58,7 @@ type Service struct {
 	SsrRelaxedTcpStateEnforcement *bool         `json:"ssr_relaxed_tcp_state_enforcement,omitempty"`
 	// when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
 	TrafficClass *ServiceTrafficClassEnum `json:"traffic_class,omitempty"`
-	// values from [List Traffic Types]($e/Constants%20Definitions/listTrafficTypes)
+	// values from [List Traffic Types](/#operations/listTrafficTypes)
 	TrafficType *string `json:"traffic_type,omitempty"`
 	// enum: `app_categories`, `apps`, `custom`, `urls`
 	Type *ServiceTypeEnum `json:"type,omitempty"`

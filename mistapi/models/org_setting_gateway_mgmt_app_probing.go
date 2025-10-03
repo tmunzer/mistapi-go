@@ -9,7 +9,7 @@ import (
 
 // OrgSettingGatewayMgmtAppProbing represents a OrgSettingGatewayMgmtAppProbing struct.
 type OrgSettingGatewayMgmtAppProbing struct {
-	// APp-keys from [List Applications]($e/Constants%20Definitions/listApplications)
+	// APp-keys from [List Applications](/#operations/listApplications)
 	Apps                 []string               `json:"apps,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

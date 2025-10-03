@@ -9,6 +9,8 @@ import (
 
 // SiteSettingJuniperSrx represents a SiteSettingJuniperSrx struct.
 type SiteSettingJuniperSrx struct {
+	// auto_upgrade device first time it is onboarded
+	AutoUpgrade          *JuniperSrxAutoUpgrade         `json:"auto_upgrade,omitempty"`
 	Gateways             []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
 	SendMistNacUserInfo  *bool                          `json:"send_mist_nac_user_info,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"_"`
@@ -18,8 +20,8 @@ type SiteSettingJuniperSrx struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingJuniperSrx) String() string {
 	return fmt.Sprintf(
-		"SiteSettingJuniperSrx[Gateways=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
-		s.Gateways, s.SendMistNacUserInfo, s.AdditionalProperties)
+		"SiteSettingJuniperSrx[AutoUpgrade=%v, Gateways=%v, SendMistNacUserInfo=%v, AdditionalProperties=%v]",
+		s.AutoUpgrade, s.Gateways, s.SendMistNacUserInfo, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingJuniperSrx.
@@ -28,7 +30,7 @@ func (s SiteSettingJuniperSrx) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"gateways", "send_mist_nac_user_info"); err != nil {
+		"auto_upgrade", "gateways", "send_mist_nac_user_info"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -38,6 +40,9 @@ func (s SiteSettingJuniperSrx) MarshalJSON() (
 func (s SiteSettingJuniperSrx) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
+	if s.AutoUpgrade != nil {
+		structMap["auto_upgrade"] = s.AutoUpgrade.toMap()
+	}
 	if s.Gateways != nil {
 		structMap["gateways"] = s.Gateways
 	}
@@ -55,12 +60,13 @@ func (s *SiteSettingJuniperSrx) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "gateways", "send_mist_nac_user_info")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_upgrade", "gateways", "send_mist_nac_user_info")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
+	s.AutoUpgrade = temp.AutoUpgrade
 	s.Gateways = temp.Gateways
 	s.SendMistNacUserInfo = temp.SendMistNacUserInfo
 	return nil
@@ -68,6 +74,7 @@ func (s *SiteSettingJuniperSrx) UnmarshalJSON(input []byte) error {
 
 // tempSiteSettingJuniperSrx is a temporary struct used for validating the fields of SiteSettingJuniperSrx.
 type tempSiteSettingJuniperSrx struct {
+	AutoUpgrade         *JuniperSrxAutoUpgrade         `json:"auto_upgrade,omitempty"`
 	Gateways            []SiteSettingJuniperSrxGateway `json:"gateways,omitempty"`
 	SendMistNacUserInfo *bool                          `json:"send_mist_nac_user_info,omitempty"`
 }

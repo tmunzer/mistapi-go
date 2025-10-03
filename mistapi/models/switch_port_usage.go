@@ -39,9 +39,9 @@ type SwitchPortUsage struct {
 	EnableQos *bool `json:"enable_qos,omitempty"`
 	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
 	GuestNetwork Optional[string] `json:"guest_network"`
-	// Only if `mode`!=`dynamic`. `inter_isolation_network_link` is used together with `isolation` under networks, signaling that this port connects to isolated networks
+	// Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper device. This has to be applied to both ports connected together
 	InterIsolationNetworkLink *bool `json:"inter_isolation_network_link,omitempty"`
-	// Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: `inter_switch_link` works only between Juniper devices. This has to be applied to both ports connected together
+	// Only if `mode`!=`dynamic`. `inter_switch_link` is used together with `isolation` under networks. NOTE: inter_switch_link works only between Juniper device. This has to be applied to both ports connected together
 	InterSwitchLink *bool `json:"inter_switch_link,omitempty"`
 	// Only if `mode`!=`dynamic` and `enable_mac_auth`==`true`
 	MacAuthOnly *bool `json:"mac_auth_only,omitempty"`
