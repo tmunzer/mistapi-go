@@ -39,7 +39,7 @@ CountSiteSystemEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteSystemEventsCountDistinctEnum`](../../doc/models/site-system-events-count-distinct-enum.md) | Query, Optional | **Default**: `"type"` |
-| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -210,7 +210,7 @@ SearchSiteSystemEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See  [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |

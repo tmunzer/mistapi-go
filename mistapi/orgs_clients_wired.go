@@ -27,7 +27,7 @@ func NewOrgsClientsWired(baseController baseController) *OrgsClientsWired {
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Clients
-// Note: For list of available `type` values, please refer to [List Client Events Definitions](/#operations/listClientEventsDefinitions)
+// Note: For list of available `type` values, please refer to [List Client Events Definitions]($e/Constants%20Events/listClientEventsDefinitions)
 func (o *OrgsClientsWired) CountOrgWiredClients(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -87,7 +87,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
-// Note: For list of available `type` values, please refer to [List Client Events Definitions](/#operations/listClientEventsDefinitions)
+// Note: For list of available `type` values, please refer to [List Client Events Definitions]($e/Constants%20Events/listClientEventsDefinitions)
 func (o *OrgsClientsWired) SearchOrgWiredClients(
 	ctx context.Context,
 	orgId uuid.UUID,

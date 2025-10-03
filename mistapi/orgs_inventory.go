@@ -38,7 +38,7 @@ func NewOrgsInventory(baseController baseController) *OrgsInventory {
 // - If `vc_mac` is empty or not present, the device is not part of a Virtual Chassis.
 // The `device_id` and `site_id` will be available in the device information.
 // - If `vc_mac` differs from the `mac` field, the device is part of a Virtual Chassis
-// but is not the device used to generate the Virtual Chassis ID. Use the `vc_mac` value with the [Get Org Inventory](/#operations/getOrgInventory)
+// but is not the device used to generate the Virtual Chassis ID. Use the `vc_mac` value with the [Get Org Inventory]($e/Orgs%20Inventory/getOrgInventory)
 // API call to retrieve the `device_id` and `site_id`.
 // - If `vc_mac` matches the `mac` field, the device is the device used to generate the Virtual Chassis ID and he `device_id` and `site_id` will be available
 // in the device information.

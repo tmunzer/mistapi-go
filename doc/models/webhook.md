@@ -28,10 +28,10 @@
 | `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
-| `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](/#operations/listWebhookTopics))<br><br>**Default**: `false` |
+| `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics))<br><br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it. |
-| `Topics` | `[]string` | Optional | List of supported webhook topics available with the API Call [List Webhook Topics](/#operations/listWebhookTopics) |
+| `Topics` | `[]string` | Optional | List of supported webhook topics available with the API Call [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics) |
 | `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br><br>**Default**: `"http-post"` |
 | `Url` | `*string` | Optional | - |
 | `VerifyCert` | `*bool` | Optional | When url uses HTTPS, whether to verify the certificate<br><br>**Default**: `true` |

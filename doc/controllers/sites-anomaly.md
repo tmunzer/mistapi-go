@@ -35,7 +35,7 @@ GetSiteAnomalyEventsForClient(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 
 ## Response Type
 
@@ -92,7 +92,7 @@ GetSiteAnomalyEventsForDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 
 ## Response Type
@@ -149,7 +149,7 @@ ListSiteAnomalyEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 
 ## Response Type
 

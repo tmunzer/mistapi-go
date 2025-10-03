@@ -49,7 +49,7 @@ CountSiteWirelessClientEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `distinct` | [`*models.SiteClientEventsCountDistinctEnum`](../../doc/models/site-client-events-count-distinct-enum.md) | Query, Optional | - |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |
@@ -457,7 +457,7 @@ SearchSiteWirelessClientEvents(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `reasonCode` | `*int` | Query, Optional | For assoc/disassoc events |
 | `ssid` | `*string` | Query, Optional | SSID Name |
 | `ap` | `*string` | Query, Optional | AP MAC |

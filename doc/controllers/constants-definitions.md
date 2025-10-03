@@ -1332,7 +1332,7 @@ ListStates(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `countryCode` | `string` | Query, Required | Country code, in [two-character](/#operations/listCountryCodes) |
+| `countryCode` | `string` | Query, Required | Country code, in [two-character](../../doc/controllers/constants-definitions.md#list-country-codes) |
 
 ## Response Type
 

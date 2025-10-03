@@ -13,10 +13,10 @@ orgsMarvis := client.OrgsMarvis()
 
 Troubleshoot sites, devices, clients, and wired clients for maximum of last 7 days from current time. See search APIs for device information:
 
-- [search Device](/#operations/searchOrgDevices)
-- [search Wireless Client](/#operations/searchOrgWirelessClients)
-- [search Wired Client](/#operations/searchOrgWiredClients)
-- [search Wan Client](/#operations/searchOrgWanClients)
+- [search Device](../../doc/controllers/orgs-devices.md#search-org-devices)
+- [search Wireless Client](../../doc/controllers/orgs-clients-wireless.md#search-org-wireless-clients)
+- [search Wired Client](../../doc/controllers/orgs-clients-wired.md#search-org-wired-clients)
+- [search Wan Client](../../doc/controllers/orgs-clients-wan.md#search-org-wan-clients)
 
 **NOTE**: requires Marvis subscription license
 

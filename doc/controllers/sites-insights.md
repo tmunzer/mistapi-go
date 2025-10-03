@@ -18,7 +18,7 @@ sitesInsights := client.SitesInsights()
 # Get Site Insight Metrics
 
 Get Site Insight Metrics
-See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetrics(
@@ -40,7 +40,7 @@ GetSiteInsightMetrics(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -106,7 +106,7 @@ if err != nil {
 # Get Site Insight Metrics for Client
 
 Get Client Insight Metrics
-See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetricsForClient(
@@ -130,7 +130,7 @@ GetSiteInsightMetricsForClient(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -198,7 +198,7 @@ if err != nil {
 # Get Site Insight Metrics for Device
 
 Get AP Insight Metrics
-See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+See metrics possibilities at [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics)
 
 ```go
 GetSiteInsightMetricsForDevice(
@@ -221,7 +221,7 @@ GetSiteInsightMetricsForDevice(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |

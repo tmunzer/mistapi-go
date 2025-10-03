@@ -12,14 +12,14 @@ import (
 type NacRuleMatching struct {
 	// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
-	// List of client device families to match. Refer to [List Fingerprint Types]](/#operations/listFingerprintTypes) for allowed family values
+	// List of client device families to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed family values
 	Family []string `json:"family,omitempty"`
-	// List of client device models to match. Refer to [List Fingerprint Types]](/#operations/listFingerprintTypes) for allowed model values
+	// List of client device models to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed model values
 	Mfg []string `json:"mfg,omitempty"`
-	// List of client device manufacturers to match. Refer to [List Fingerprint Types]](/#operations/listFingerprintTypes) for allowed mfg values
+	// List of client device manufacturers to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed mfg values
 	Model   []string `json:"model,omitempty"`
 	Nactags []string `json:"nactags,omitempty"`
-	// List of client device os types to match. Refer to [List Fingerprint Types]](/#operations/listFingerprintTypes) for allowed os_type values
+	// List of client device os types to match. Refer to [List Fingerprint Types]]($e/Constants%20Definitions/listFingerprintTypes) for allowed os_type values
 	OsType    []string                      `json:"os_type,omitempty"`
 	PortTypes []NacRuleMatchingPortTypeEnum `json:"port_types,omitempty"`
 	// List of site ids to match

@@ -32,8 +32,8 @@ GetMspSle(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
-| `metric` | `string` | Template, Required | See [List Insight Metrics](/#operations/listInsightMetrics) for available metrics |
-| `sle` | `*string` | Query, Optional | See [List Insight Metrics](/#operations/listInsightMetrics) for more details |
+| `metric` | `string` | Template, Required | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for available metrics |
+| `sle` | `*string` | Query, Optional | See [List Insight Metrics](../../doc/controllers/constants-definitions.md#list-insight-metrics) for more details |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |

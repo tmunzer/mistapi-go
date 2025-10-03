@@ -32,7 +32,7 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Ssid` | `*string` | Optional | SSIDs the client was connecting to |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `Type` | `*string` | Optional | Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions](/#operations/listNacEventsDefinitions) endpoint to get the full list of available values. |
+| `Type` | `*string` | Optional | Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions](../../doc/controllers/constants-events.md#list-nac-events-definitions) endpoint to get the full list of available values. |
 | `Username` | `*string` | Optional | username assigned to the client |
 | `Vlan` | `*string` | Optional | vlan that assigned to the client |
 | `VlanSource` | `*string` | Optional | Vlan source, e.g. "nactag", "usermac" |

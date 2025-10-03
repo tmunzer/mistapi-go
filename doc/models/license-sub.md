@@ -21,7 +21,7 @@
 | `RemainingQuantity` | `*int` | Optional | Number of licenses left in this subscription |
 | `StartTime` | `*int` | Optional | Start date of the license term |
 | `SubscriptionId` | `*string` | Optional | - |
-| `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](/#operations/listLicenseTypes) API request. |
+| `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](../../doc/controllers/constants-definitions.md#list-license-types) API request. |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

@@ -48,7 +48,7 @@ CountSiteMxEdgeEvents(
 | `distinct` | [`*models.SiteMxedgeEventsCountDistinctEnum`](../../doc/models/site-mxedge-events-count-distinct-enum.md) | Query, Optional | **Default**: `"mxedge_id"` |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -403,7 +403,7 @@ SearchSiteMistEdgeEvents(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `service` | `*string` | Query, Optional | Service running on mist edge(mxagent, tunterm etc) |
 | `component` | `*string` | Query, Optional | Component like PS1, PS2 |
 | `limit` | `*int` | Query, Optional | **Default**: `10`<br><br>**Constraints**: `>= 0` |

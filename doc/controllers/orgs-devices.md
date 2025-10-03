@@ -58,7 +58,7 @@ CountOrgDeviceEvents(
 | `model` | `*string` | Query, Optional | Device model |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -664,7 +664,7 @@ SearchOrgDeviceEvents(
 | `deviceType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
-| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](/#operations/listDeviceEventsDefinitions) |
+| `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
 | `lastBy` | `*string` | Query, Optional | Return last/recent event for passed in field |
 | `includes` | `*string` | Query, Optional | Keyword to include events from additional indices (e.g. ext_tunnel for prisma events) |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |

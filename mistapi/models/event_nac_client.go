@@ -50,7 +50,7 @@ type EventNacClient struct {
 	Ssid *string `json:"ssid,omitempty"`
 	// Epoch (seconds)
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	// Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions](/#operations/listNacEventsDefinitions) endpoint to get the full list of available values.
+	// Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions]($e/Constants%20Events/listNacEventsDefinitions) endpoint to get the full list of available values.
 	Type *string `json:"type,omitempty"`
 	// Labels derived from usermac entry
 	UsermacLabel []string `json:"usermac_label,omitempty"`

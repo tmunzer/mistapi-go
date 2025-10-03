@@ -50,7 +50,7 @@ type WebhookNacEventsEvent struct {
 	Ssid *string `json:"ssid,omitempty"`
 	// Epoch (seconds)
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	// Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions](/#operations/listNacEventsDefinitions) endpoint to get the full list of available values.
+	// Event type, e.g. NAC_CLIENT_PERMIT. Use the [List NAC Events Definitions]($e/Constants%20Events/listNacEventsDefinitions) endpoint to get the full list of available values.
 	Type *string `json:"type,omitempty"`
 	// username assigned to the client
 	Username *string `json:"username,omitempty"`
