@@ -29,6 +29,8 @@ type DeviceGateway struct {
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64"), the destination Network name or a variable (e.g. "{{myvar}}")
 	ExtraRoutes6 map[string]GatewayExtraRoute `json:"extra_routes6,omitempty"`
 	ForSite      *bool                        `json:"for_site,omitempty"`
+	// Gateway settings
+	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Property key is the profile name
@@ -93,8 +95,8 @@ type DeviceGateway struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceGateway) String() string {
 	return fmt.Sprintf(
-		"DeviceGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdConfig=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, ForSite=%v, Id=%v, IdpProfiles=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfigs=%v, Mac=%v, Managed=%v, MapId=%v, Model=%v, ModifiedTime=%v, MspId=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, PortMirroring=%v, RouterId=%v, RoutingPolicies=%v, Serial=%v, ServicePolicies=%v, SiteId=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, UrlFilteringDenyMsg=%v, Vars=%v, VrfConfig=%v, VrfInstances=%v, X=%v, Y=%v, SsrAdditionalConfigCmds=%v, AdditionalProperties=%v]",
-		d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpdConfig, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.ForSite, d.Id, d.IdpProfiles, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfigs, d.Mac, d.Managed, d.MapId, d.Model, d.ModifiedTime, d.MspId, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.PortMirroring, d.RouterId, d.RoutingPolicies, d.Serial, d.ServicePolicies, d.SiteId, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.UrlFilteringDenyMsg, d.Vars, d.VrfConfig, d.VrfInstances, d.X, d.Y, d.SsrAdditionalConfigCmds, d.AdditionalProperties)
+		"DeviceGateway[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdConfig=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, ForSite=%v, GatewayMgmt=%v, Id=%v, IdpProfiles=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IpConfigs=%v, Mac=%v, Managed=%v, MapId=%v, Model=%v, ModifiedTime=%v, MspId=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, PortMirroring=%v, RouterId=%v, RoutingPolicies=%v, Serial=%v, ServicePolicies=%v, SiteId=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, UrlFilteringDenyMsg=%v, Vars=%v, VrfConfig=%v, VrfInstances=%v, X=%v, Y=%v, SsrAdditionalConfigCmds=%v, AdditionalProperties=%v]",
+		d.AdditionalConfigCmds, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpdConfig, d.DnsServers, d.DnsSuffix, d.ExtraRoutes, d.ExtraRoutes6, d.ForSite, d.GatewayMgmt, d.Id, d.IdpProfiles, d.Image1Url, d.Image2Url, d.Image3Url, d.IpConfigs, d.Mac, d.Managed, d.MapId, d.Model, d.ModifiedTime, d.MspId, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.PathPreferences, d.PortConfig, d.PortMirroring, d.RouterId, d.RoutingPolicies, d.Serial, d.ServicePolicies, d.SiteId, d.TunnelConfigs, d.TunnelProviderOptions, d.Type, d.UrlFilteringDenyMsg, d.Vars, d.VrfConfig, d.VrfInstances, d.X, d.Y, d.SsrAdditionalConfigCmds, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceGateway.
@@ -103,7 +105,7 @@ func (d DeviceGateway) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds"); err != nil {
+		"additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "gateway_mgmt", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -142,6 +144,9 @@ func (d DeviceGateway) toMap() map[string]any {
 	}
 	if d.ForSite != nil {
 		structMap["for_site"] = d.ForSite
+	}
+	if d.GatewayMgmt != nil {
+		structMap["gateway_mgmt"] = d.GatewayMgmt.toMap()
 	}
 	if d.Id != nil {
 		structMap["id"] = d.Id
@@ -276,7 +281,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "deviceprofile_id", "dhcpd_config", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "for_site", "gateway_mgmt", "id", "idp_profiles", "image1_url", "image2_url", "image3_url", "ip_configs", "mac", "managed", "map_id", "model", "modified_time", "msp_id", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "port_mirroring", "router_id", "routing_policies", "serial", "service_policies", "site_id", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vars", "vrf_config", "vrf_instances", "x", "y", "ssr_additional_config_cmds")
 	if err != nil {
 		return err
 	}
@@ -292,6 +297,7 @@ func (d *DeviceGateway) UnmarshalJSON(input []byte) error {
 	d.ExtraRoutes = temp.ExtraRoutes
 	d.ExtraRoutes6 = temp.ExtraRoutes6
 	d.ForSite = temp.ForSite
+	d.GatewayMgmt = temp.GatewayMgmt
 	d.Id = temp.Id
 	d.IdpProfiles = temp.IdpProfiles
 	d.Image1Url = temp.Image1Url
@@ -343,6 +349,7 @@ type tempDeviceGateway struct {
 	ExtraRoutes             map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
 	ExtraRoutes6            map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
 	ForSite                 *bool                              `json:"for_site,omitempty"`
+	GatewayMgmt             *GatewayMgmt                       `json:"gateway_mgmt,omitempty"`
 	Id                      *uuid.UUID                         `json:"id,omitempty"`
 	IdpProfiles             map[string]IdpProfile              `json:"idp_profiles,omitempty"`
 	Image1Url               Optional[string]                   `json:"image1_url"`
