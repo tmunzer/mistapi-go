@@ -375,7 +375,8 @@ SearchOrgWirelessClientEvents(
     end *string,
     duration *string,
     sort *string,
-    limit *int) (
+    limit *int,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseEventsSearch],
     error)
 ```
@@ -399,6 +400,7 @@ SearchOrgWirelessClientEvents(
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -429,7 +431,7 @@ sort := "-site_id"
 
 limit := 100
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientEvents(ctx, orgId, nil, &reasonCode, &ssid, &ap, &keyMgmt, nil, nil, &wlanId, &nacruleId, nil, nil, &duration, &sort, &limit, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -499,7 +501,8 @@ SearchOrgWirelessClientSessions(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.SearchWirelessClientSession],
     error)
 ```
@@ -525,6 +528,7 @@ SearchOrgWirelessClientSessions(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -563,7 +567,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClientSessions(ctx, orgId, &ap, nil, &clientFamily, &clientManufacture, &clientModel, &clientUsername, &clientOs, &ssid, &wlanId, &pskId, &pskName, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -641,7 +645,8 @@ SearchOrgWirelessClients(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseClientSearch],
     error)
 ```
@@ -671,6 +676,7 @@ SearchOrgWirelessClients(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -719,7 +725,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ip, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsClientsWireless.SearchOrgWirelessClients(ctx, orgId, &siteId, &mac, &ip, &hostname, &band, &device, &os, &model, &ap, &pskId, &pskName, &username, &vlan, &ssid, &text, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

@@ -423,7 +423,10 @@ SearchMspOrgs(
     trialEnabled *bool,
     usageTypes []string,
     limit *int,
-    sort *string) (
+    sort *string,
+    start *string,
+    end *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseOrgSearch],
     error)
 ```
@@ -440,6 +443,9 @@ SearchMspOrgs(
 | `usageTypes` | `[]string` | Query, Optional | List of types that enabled by usage<br><br>**Constraints**: *Unique Items Required* |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -462,7 +468,7 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
+apiResponse, err := mSPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort, nil, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -478,6 +484,7 @@ if err != nil {
 {
   "end": 1614383378.4365287,
   "limit": 10,
+  "next": "/api/v1/msps/43e96c5a-6ef6-11e6-9909-9596d1d1534f/orgs/search?end=1760601621&limit=1&search_after=%5B1760599794477%5D&start=1759996821",
   "results": [
     {
       "msp_id": "d287e62f-0000-0000-0000-f2b9ba0a531f",

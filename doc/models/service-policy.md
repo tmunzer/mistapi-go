@@ -13,16 +13,18 @@
 |  --- | --- | --- | --- |
 | `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny` |
 | `Antivirus` | [`*models.ServicePolicyAntivirus`](../../doc/models/service-policy-antivirus.md) | Optional | For SRX-only |
-| `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
+| `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | SRX only |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
 | `Idp` | [`*models.IdpConfig`](../../doc/models/idp-config.md) | Optional | - |
 | `LocalRouting` | `*bool` | Optional | access within the same VRF |
 | `Name` | `*string` | Optional | - |
 | `PathPreference` | `*string` | Optional | By default, we derive all paths available and use them. Optionally, you can customize by using `path_preference` |
-| `Secintel` | [`*models.ServicePolicySecintel`](../../doc/models/service-policy-secintel.md) | Optional | For SRX Only |
+| `Secintel` | [`*models.ServicePolicySecintel`](../../doc/models/service-policy-secintel.md) | Optional | SRX only |
 | `ServicepolicyId` | `*uuid.UUID` | Optional | Used to link servicepolicy defined at org level and overwrite some attributes |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Skyatp` | [`*models.ServicePolicySkyatp`](../../doc/models/service-policy-skyatp.md) | Optional | SRX only |
 | `SslProxy` | [`*models.ServicePolicySslProxy`](../../doc/models/service-policy-ssl-proxy.md) | Optional | For SRX-only |
+| `Syslog` | [`*models.ServicePolicySyslog`](../../doc/models/service-policy-syslog.md) | Optional | Required for syslog logging |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

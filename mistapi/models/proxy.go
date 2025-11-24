@@ -10,6 +10,7 @@ import (
 // Proxy represents a Proxy struct.
 // Proxy Configuration to talk to Mist
 type Proxy struct {
+	Disabled             *bool                  `json:"disabled,omitempty"`
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -18,8 +19,8 @@ type Proxy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p Proxy) String() string {
 	return fmt.Sprintf(
-		"Proxy[Url=%v, AdditionalProperties=%v]",
-		p.Url, p.AdditionalProperties)
+		"Proxy[Disabled=%v, Url=%v, AdditionalProperties=%v]",
+		p.Disabled, p.Url, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Proxy.
@@ -28,7 +29,7 @@ func (p Proxy) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"url"); err != nil {
+		"disabled", "url"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -38,6 +39,9 @@ func (p Proxy) MarshalJSON() (
 func (p Proxy) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, p.AdditionalProperties)
+	if p.Disabled != nil {
+		structMap["disabled"] = p.Disabled
+	}
 	if p.Url != nil {
 		structMap["url"] = p.Url
 	}
@@ -52,17 +56,19 @@ func (p *Proxy) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "url")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "url")
 	if err != nil {
 		return err
 	}
 	p.AdditionalProperties = additionalProperties
 
+	p.Disabled = temp.Disabled
 	p.Url = temp.Url
 	return nil
 }
 
 // tempProxy is a temporary struct used for validating the fields of Proxy.
 type tempProxy struct {
-	Url *string `json:"url,omitempty"`
+	Disabled *bool   `json:"disabled,omitempty"`
+	Url      *string `json:"url,omitempty"`
 }

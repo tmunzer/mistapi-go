@@ -597,8 +597,8 @@ SearchOrgInventory(
     status *string,
     text *string,
     limit *int,
-    page *int,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.InventorySearch],
     error)
 ```
@@ -620,8 +620,8 @@ SearchOrgInventory(
 | `status` | `*string` | Query, Optional | Device status |
 | `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -656,11 +656,9 @@ status := "connected"
 
 limit := 100
 
-page := 1
-
 sort := "-site_id"
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &page, &sort)
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

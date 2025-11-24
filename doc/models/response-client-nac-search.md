@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.ClientNac`](../../doc/models/client-nac.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 3,
   "start": 1513276353,
   "total": 2,
+  "next": "next0",
   "results": [
     {
       "ap": [

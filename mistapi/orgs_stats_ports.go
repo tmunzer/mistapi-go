@@ -186,7 +186,7 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgSwOrGwPorts takes context, orgId, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poePriority, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txErrors, rxErrors, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, macLimit, macCount, up, stpState, stpRole, authState, opticsBiasCurrent, opticsTxPower, opticsRxPower, opticsModuleTemperature, opticsModuleVoltage, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponsePortStatsSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports
@@ -199,6 +199,7 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	neighborPortDesc *string,
 	neighborSystemName *string,
 	poeDisabled *bool,
+	poePriority *models.PoePriorityEnum,
 	poeMode *string,
 	poeOn *bool,
 	portId *string,
@@ -232,7 +233,8 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponsePortStatsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/ports/search")
@@ -271,6 +273,9 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	}
 	if poeDisabled != nil {
 		req.QueryParam("poe_disabled", *poeDisabled)
+	}
+	if poePriority != nil {
+		req.QueryParam("poe_priority", *poePriority)
 	}
 	if poeMode != nil {
 		req.QueryParam("poe_mode", *poeMode)
@@ -373,6 +378,9 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponsePortStatsSearch

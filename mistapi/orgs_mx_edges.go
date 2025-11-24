@@ -373,7 +373,7 @@ func (o *OrgsMxEdges) CountOrgSiteMxEdgeEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgMistEdgeEvents takes context, orgId, mxedgeId, mxclusterId, mType, service, component, limit, start, end, duration, sort as parameters and
+// SearchOrgMistEdgeEvents takes context, orgId, mxedgeId, mxclusterId, mType, service, component, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseMxedgeEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Mist Edge Events
@@ -389,7 +389,8 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseMxedgeEventsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/events/search")
@@ -441,6 +442,9 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
 	if sort != nil {
 		req.QueryParam("sort", *sort)
 	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
 
 	var result models.ResponseMxedgeEventsSearch
 	decoder, resp, err := req.CallAsJson()
@@ -452,7 +456,7 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgMxEdges takes context, orgId, mxedgeId, siteId, mxclusterId, model, distro, tuntermVersion, stats, limit, page, start, end, duration, sort as parameters and
+// SearchOrgMxEdges takes context, orgId, mxedgeId, siteId, mxclusterId, model, distro, tuntermVersion, stats, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseMxedgeSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Mist Edges
@@ -467,11 +471,11 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 	tuntermVersion *string,
 	stats *bool,
 	limit *int,
-	page *int,
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseMxedgeSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/search")
@@ -517,9 +521,6 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -531,6 +532,9 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseMxedgeSearch

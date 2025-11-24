@@ -16,7 +16,7 @@ type GatewayPortConfig struct {
 	AeDisableLacp *bool `json:"ae_disable_lacp,omitempty"`
 	// If `aggregated`==`true`. Users could force to use the designated AE name (must be an integer between 0 and 127)
 	AeIdx Optional[string] `json:"ae_idx"`
-	// For SRX Only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
+	// For SRX only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
 	AeLacpForceUp *bool `json:"ae_lacp_force_up,omitempty"`
 	Aggregated    *bool `json:"aggregated,omitempty"`
 	// To generate port up/down alarm, set it to true

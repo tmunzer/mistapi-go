@@ -75,7 +75,8 @@ func TestSitesSkyatpTestSearchSiteSkyatpEvents(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -101,7 +102,8 @@ func TestSitesSkyatpTestSearchSiteSkyatpEvents1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesSkyatp.SearchSiteSkyatpEvents(ctx, siteId, nil, nil, nil, nil, &ip, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

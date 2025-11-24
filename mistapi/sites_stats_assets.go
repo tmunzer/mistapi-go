@@ -129,7 +129,7 @@ func (s *SitesStatsAssets) CountSiteAssets(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteAssets takes context, siteId, mac, mapId, ibeaconUuid, ibeaconMajor, ibeaconMinor, eddystoneUidNamespace, eddystoneUidInstance, eddystoneUrl, deviceName, by, name, apMac, beam, rssi, limit, start, end, duration, sort as parameters and
+// SearchSiteAssets takes context, siteId, mac, mapId, ibeaconUuid, ibeaconMajor, ibeaconMinor, eddystoneUidNamespace, eddystoneUidInstance, eddystoneUrl, deviceName, by, name, apMac, beam, rssi, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseStatsAssets data and
 // an error if there was an issue with the request or response.
 // Assets Search
@@ -154,7 +154,8 @@ func (s *SitesStatsAssets) SearchSiteAssets(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseStatsAssets],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/assets/search")
@@ -232,6 +233,9 @@ func (s *SitesStatsAssets) SearchSiteAssets(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseStatsAssets

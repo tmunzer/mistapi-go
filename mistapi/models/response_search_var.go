@@ -11,6 +11,7 @@ import (
 type ResponseSearchVar struct {
 	End                  *int                    `json:"end,omitempty"`
 	Limit                *int                    `json:"limit,omitempty"`
+	Next                 *string                 `json:"next,omitempty"`
 	Results              []ResponseSearchVarItem `json:"results,omitempty"`
 	Start                *int                    `json:"start,omitempty"`
 	Total                *int                    `json:"total,omitempty"`
@@ -21,8 +22,8 @@ type ResponseSearchVar struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSearchVar) String() string {
 	return fmt.Sprintf(
-		"ResponseSearchVar[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
-		r.End, r.Limit, r.Results, r.Start, r.Total, r.AdditionalProperties)
+		"ResponseSearchVar[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSearchVar.
@@ -31,7 +32,7 @@ func (r ResponseSearchVar) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"end", "limit", "results", "start", "total"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -46,6 +47,9 @@ func (r ResponseSearchVar) toMap() map[string]any {
 	}
 	if r.Limit != nil {
 		structMap["limit"] = r.Limit
+	}
+	if r.Next != nil {
+		structMap["next"] = r.Next
 	}
 	if r.Results != nil {
 		structMap["results"] = r.Results
@@ -67,7 +71,7 @@ func (r *ResponseSearchVar) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
@@ -75,6 +79,7 @@ func (r *ResponseSearchVar) UnmarshalJSON(input []byte) error {
 
 	r.End = temp.End
 	r.Limit = temp.Limit
+	r.Next = temp.Next
 	r.Results = temp.Results
 	r.Start = temp.Start
 	r.Total = temp.Total
@@ -85,6 +90,7 @@ func (r *ResponseSearchVar) UnmarshalJSON(input []byte) error {
 type tempResponseSearchVar struct {
 	End     *int                    `json:"end,omitempty"`
 	Limit   *int                    `json:"limit,omitempty"`
+	Next    *string                 `json:"next,omitempty"`
 	Results []ResponseSearchVarItem `json:"results,omitempty"`
 	Start   *int                    `json:"start,omitempty"`
 	Total   *int                    `json:"total,omitempty"`

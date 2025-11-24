@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`*models.EventsClientWan`](../../doc/models/events-client-wan.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -24,6 +25,7 @@
 {
   "end": 60,
   "limit": 146,
+  "next": "next2",
   "results": {
     "When": "When8",
     "ev_type": "ev_type4",
@@ -39,7 +41,6 @@
     }
   },
   "start": 18,
-  "total": 52,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

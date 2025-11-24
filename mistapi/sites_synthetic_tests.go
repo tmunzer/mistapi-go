@@ -203,7 +203,7 @@ func (s *SitesSyntheticTests) TriggerSiteSyntheticTest(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteSyntheticTest takes context, siteId, mac, portId, vlanId, by, reason, mType, protocol, tenant as parameters and
+// SearchSiteSyntheticTest takes context, siteId, mac, portId, vlanId, by, reason, mType, protocol, tenant, limit, start, end, duration, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSynthetictestSearch data and
 // an error if there was an issue with the request or response.
 // Search Site Synthetic Testing
@@ -217,7 +217,12 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
 	reason *string,
 	mType *models.SynthetictestTypeEnum,
 	protocol *models.SynthetictestProtocolEnum,
-	tenant *string) (
+	tenant *string,
+	limit *int,
+	start *string,
+	end *string,
+	duration *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseSynthetictestSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/synthetic_test/search")
@@ -262,6 +267,21 @@ func (s *SitesSyntheticTests) SearchSiteSyntheticTest(
 	}
 	if tenant != nil {
 		req.QueryParam("tenant", *tenant)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseSynthetictestSearch

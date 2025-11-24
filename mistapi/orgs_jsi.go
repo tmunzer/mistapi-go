@@ -270,7 +270,7 @@ func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiAssetsAndContracts takes context, orgId, model, serial, sku, status, warrantyType, eolDuration, eosDuration, text, limit, page, sort as parameters and
+// SearchOrgJsiAssetsAndContracts takes context, orgId, claimed, model, serial, sku, status, warrantyType, eolDuration, eosDuration, hasSupport, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.JsInventorySearch data and
 // an error if there was an issue with the request or response.
 // This gets all devices purchased from the accounts associated with the Org
@@ -280,6 +280,7 @@ func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
 func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	ctx context.Context,
 	orgId uuid.UUID,
+	claimed *bool,
 	model *string,
 	serial *string,
 	sku *string,
@@ -287,10 +288,11 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	warrantyType *models.JsiWarrantyTypeEnum,
 	eolDuration *string,
 	eosDuration *string,
+	hasSupport *bool,
 	text *string,
 	limit *int,
-	page *int,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.JsInventorySearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/inventory/search")
@@ -312,6 +314,9 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if claimed != nil {
+		req.QueryParam("claimed", *claimed)
+	}
 	if model != nil {
 		req.QueryParam("model", *model)
 	}
@@ -333,17 +338,20 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	if eosDuration != nil {
 		req.QueryParam("eos_duration", *eosDuration)
 	}
+	if hasSupport != nil {
+		req.QueryParam("has_support", *hasSupport)
+	}
 	if text != nil {
 		req.QueryParam("text", *text)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.JsInventorySearch

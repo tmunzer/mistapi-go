@@ -370,6 +370,7 @@ This gets all devices purchased from the accounts associated with the Org
 SearchOrgJsiAssetsAndContracts(
     ctx context.Context,
     orgId uuid.UUID,
+    claimed *bool,
     model *string,
     serial *string,
     sku *string,
@@ -377,10 +378,11 @@ SearchOrgJsiAssetsAndContracts(
     warrantyType *models.JsiWarrantyTypeEnum,
     eolDuration *string,
     eosDuration *string,
+    hasSupport *bool,
     text *string,
     limit *int,
-    page *int,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.JsInventorySearch],
     error)
 ```
@@ -390,6 +392,7 @@ SearchOrgJsiAssetsAndContracts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `claimed` | `*bool` | Query, Optional | Device claim status, `true` for claimed devices, `false` for all devices |
 | `model` | `*string` | Query, Optional | Device model |
 | `serial` | `*string` | Query, Optional | Device serial |
 | `sku` | `*string` | Query, Optional | SKU name of the device |
@@ -397,10 +400,11 @@ SearchOrgJsiAssetsAndContracts(
 | `warrantyType` | [`*models.JsiWarrantyTypeEnum`](../../doc/models/jsi-warranty-type-enum.md) | Query, Optional | Device warranty type |
 | `eolDuration` | `*string` | Query, Optional | Device EOL duration in days |
 | `eosDuration` | `*string` | Query, Optional | Device EOS duration in days |
+| `hasSupport` | `*bool` | Query, Optional | Indicates if the device is covered under active support contract |
 | `text` | `*string` | Query, Optional | Wildcards for `model`, `serial`, `account_id`, `status`, `warranty_type` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -412,6 +416,8 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+claimed := true
 
 model := "AP43"
 
@@ -425,13 +431,13 @@ eolDuration := "30d"
 
 eosDuration := "30d"
 
-limit := 100
+hasSupport := true
 
-page := 1
+limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, nil, &limit, &page, &sort)
+apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, &hasSupport, nil, &limit, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

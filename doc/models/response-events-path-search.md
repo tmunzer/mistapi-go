@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.ServicePathEvent`](../../doc/models/service-path-event.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 10,
   "start": 1697009979,
   "total": 2,
+  "next": "next4",
   "results": [
     {
       "mac": "mac0",

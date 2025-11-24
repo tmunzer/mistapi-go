@@ -440,7 +440,7 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgInventory takes context, orgId, mType, mac, vcMac, masterMac, siteId, serial, master, sku, version, status, text, limit, page, sort as parameters and
+// SearchOrgInventory takes context, orgId, mType, mac, vcMac, masterMac, siteId, serial, master, sku, version, status, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.InventorySearch data and
 // an error if there was an issue with the request or response.
 // Search in the Org Inventory
@@ -459,8 +459,8 @@ func (o *OrgsInventory) SearchOrgInventory(
 	status *string,
 	text *string,
 	limit *int,
-	page *int,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.InventorySearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/inventory/search")
@@ -518,11 +518,11 @@ func (o *OrgsInventory) SearchOrgInventory(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.InventorySearch

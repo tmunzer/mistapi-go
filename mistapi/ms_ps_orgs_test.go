@@ -137,7 +137,8 @@ func TestMSPsOrgsTestSearchMspOrgs(t *testing.T) {
 
 	limit := int(100)
 	sort := "timestamp"
-	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
+
+	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -146,7 +147,7 @@ func TestMSPsOrgsTestSearchMspOrgs(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1614383378.4365287,"limit":10,"results":[{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Test Org","num_aps":9,"num_sites":5,"num_switches":1,"num_unassigned_aps":1,"org_id":"bb1a8bf6-0000-0000-0000-8053a663cf65","sub_ana_required":9,"sub_ast_entitled":5,"sub_ast_required":3,"sub_eng_required":3,"sub_ex12_required":1,"sub_insufficient":true,"sub_man_required":9,"sub_vna_entitled":1,"timestamp":1614322563.513937,"trial_enabled":false,"usage_types":["sub_eng"]},{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Rogue Test1","num_aps":1,"num_sites":1,"org_id":"0fb81690-0000-0000-0000-9596d1d1534f","sub_ana_entitled":1,"sub_ana_required":1,"sub_insufficient":false,"sub_man_entitled":1,"sub_man_required":1,"timestamp":1614309876.500955}],"start":1613778578.4365668,"total":2}`
+	expected := `{"end":1614383378.4365287,"limit":10,"next":"/api/v1/msps/43e96c5a-6ef6-11e6-9909-9596d1d1534f/orgs/search?end=1760601621&limit=1&search_after=%5B1760599794477%5D&start=1759996821","results":[{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Test Org","num_aps":9,"num_sites":5,"num_switches":1,"num_unassigned_aps":1,"org_id":"bb1a8bf6-0000-0000-0000-8053a663cf65","sub_ana_required":9,"sub_ast_entitled":5,"sub_ast_required":3,"sub_eng_required":3,"sub_ex12_required":1,"sub_insufficient":true,"sub_man_required":9,"sub_vna_entitled":1,"timestamp":1614322563.513937,"trial_enabled":false,"usage_types":["sub_eng"]},{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Rogue Test1","num_aps":1,"num_sites":1,"org_id":"0fb81690-0000-0000-0000-9596d1d1534f","sub_ana_entitled":1,"sub_ana_required":1,"sub_insufficient":false,"sub_man_entitled":1,"sub_man_required":1,"timestamp":1614309876.500955}],"start":1613778578.4365668,"total":2}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -167,7 +168,8 @@ func TestMSPsOrgsTestSearchMspOrgs1(t *testing.T) {
 
 	limit := int(100)
 	sort := "timestamp"
-	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort)
+
+	apiResponse, err := msPsOrgs.SearchMspOrgs(ctx, mspId, nil, &orgId, &subInsufficient, &trialEnabled, nil, &limit, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -176,7 +178,7 @@ func TestMSPsOrgsTestSearchMspOrgs1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1614383378.4365287,"limit":10,"results":[{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Test Org","num_aps":9,"num_sites":5,"num_switches":1,"num_unassigned_aps":1,"org_id":"bb1a8bf6-0000-0000-0000-8053a663cf65","sub_ana_required":9,"sub_ast_entitled":5,"sub_ast_required":3,"sub_eng_required":3,"sub_ex12_required":1,"sub_insufficient":true,"sub_man_required":9,"sub_vna_entitled":1,"timestamp":1614322563.513937,"trial_enabled":false,"usage_types":["sub_eng"]},{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Rogue Test1","num_aps":1,"num_sites":1,"org_id":"0fb81690-0000-0000-0000-9596d1d1534f","sub_ana_entitled":1,"sub_ana_required":1,"sub_insufficient":false,"sub_man_entitled":1,"sub_man_required":1,"timestamp":1614309876.500955}],"start":1613778578.4365668,"total":2}`
+	expected := `{"end":1614383378.4365287,"limit":10,"next":"/api/v1/msps/43e96c5a-6ef6-11e6-9909-9596d1d1534f/orgs/search?end=1760601621&limit=1&search_after=%5B1760599794477%5D&start=1759996821","results":[{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Test Org","num_aps":9,"num_sites":5,"num_switches":1,"num_unassigned_aps":1,"org_id":"bb1a8bf6-0000-0000-0000-8053a663cf65","sub_ana_required":9,"sub_ast_entitled":5,"sub_ast_required":3,"sub_eng_required":3,"sub_ex12_required":1,"sub_insufficient":true,"sub_man_required":9,"sub_vna_entitled":1,"timestamp":1614322563.513937,"trial_enabled":false,"usage_types":["sub_eng"]},{"msp_id":"d287e62f-0000-0000-0000-f2b9ba0a531f","name":"Rogue Test1","num_aps":1,"num_sites":1,"org_id":"0fb81690-0000-0000-0000-9596d1d1534f","sub_ana_entitled":1,"sub_ana_required":1,"sub_insufficient":false,"sub_man_entitled":1,"sub_man_required":1,"timestamp":1614309876.500955}],"start":1613778578.4365668,"total":2}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

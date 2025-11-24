@@ -16,7 +16,7 @@ type WebhookNacEventsEvent struct {
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
 	// BSSID
 	Bssid *string `json:"bssid,omitempty"`
-	// Type of network access. enum: `wireless`, `wired`
+	// Type of network access. enum: `wireless`, `wired`, `vty`
 	ClientType *NacAccessTypeEnum `json:"client_type,omitempty"`
 	// MAC Address of the device (AP, Switch) the client is connected to
 	DeviceMac *string `json:"device_mac,omitempty"`
@@ -39,10 +39,10 @@ type WebhookNacEventsEvent struct {
 	// Vendor name of the NAS
 	NasVendor *string    `json:"nas_vendor,omitempty"`
 	OrgId     *uuid.UUID `json:"org_id,omitempty"`
-	// Port-ids the client was connected to  for the specified duration
-	PortId []string `json:"port_id,omitempty"`
+	// Port ID where the NAC client event occurred
+	PortId *string `json:"port_id,omitempty"`
 	// Whether the client is using randomized MAC Address or not
-	RandomMac *bool `json:"random_mac,omitempty"`
+	RandomMac *RandomMacEnum `json:"random_mac,omitempty"`
 	// List of Radius AVP returned by the Authentication Server
 	RespAttrs []string   `json:"resp_attrs,omitempty"`
 	SiteId    *uuid.UUID `json:"site_id,omitempty"`
@@ -222,8 +222,8 @@ type tempWebhookNacEventsEvent struct {
 	NacruleMatched       *bool              `json:"nacrule_matched,omitempty"`
 	NasVendor            *string            `json:"nas_vendor,omitempty"`
 	OrgId                *uuid.UUID         `json:"org_id,omitempty"`
-	PortId               []string           `json:"port_id,omitempty"`
-	RandomMac            *bool              `json:"random_mac,omitempty"`
+	PortId               *string            `json:"port_id,omitempty"`
+	RandomMac            *RandomMacEnum     `json:"random_mac,omitempty"`
 	RespAttrs            []string           `json:"resp_attrs,omitempty"`
 	SiteId               *uuid.UUID         `json:"site_id,omitempty"`
 	Ssid                 *string            `json:"ssid,omitempty"`

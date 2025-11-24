@@ -11,9 +11,12 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
-| `Page` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.InventorySearchResult`](../../doc/models/inventory-search-result.md) | Optional | - |
+| `Start` | `*int` | Optional | - |
+| `Total` | `*int` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -21,7 +24,9 @@
 ```json
 {
   "limit": 1000,
-  "page": 1,
+  "total": 1,
+  "end": 206,
+  "next": "next6",
   "results": [
     {
       "mac": "mac0",
@@ -54,6 +59,7 @@
       }
     }
   ],
+  "start": 164,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

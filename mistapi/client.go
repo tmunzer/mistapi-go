@@ -88,6 +88,7 @@ type ClientInterface interface {
 	OrgsStatsBGPPeers() *OrgsStatsBGPPeers
 	OrgsStatsDevices() *OrgsStatsDevices
 	OrgsStatsMxEdges() *OrgsStatsMxEdges
+	OrgsStatsOspf() *OrgsStatsOspf
 	OrgsStatsOtherDevices() *OrgsStatsOtherDevices
 	OrgsStatsPorts() *OrgsStatsPorts
 	OrgsStatsSites() *OrgsStatsSites
@@ -194,6 +195,7 @@ type ClientInterface interface {
 	SitesStatsClientsSDK() *SitesStatsClientsSDK
 	SitesStatsDevices() *SitesStatsDevices
 	SitesStatsMxEdges() *SitesStatsMxEdges
+	SitesStatsOspf() *SitesStatsOspf
 	SitesStatsPorts() *SitesStatsPorts
 	SitesStatsWxRules() *SitesStatsWxRules
 	SitesStatsZones() *SitesStatsZones
@@ -298,6 +300,7 @@ type client struct {
 	orgsStatsBGPPeers                OrgsStatsBGPPeers
 	orgsStatsDevices                 OrgsStatsDevices
 	orgsStatsMxEdges                 OrgsStatsMxEdges
+	orgsStatsOspf                    OrgsStatsOspf
 	orgsStatsOtherDevices            OrgsStatsOtherDevices
 	orgsStatsPorts                   OrgsStatsPorts
 	orgsStatsSites                   OrgsStatsSites
@@ -404,6 +407,7 @@ type client struct {
 	sitesStatsClientsSDK             SitesStatsClientsSDK
 	sitesStatsDevices                SitesStatsDevices
 	sitesStatsMxEdges                SitesStatsMxEdges
+	sitesStatsOspf                   SitesStatsOspf
 	sitesStatsPorts                  SitesStatsPorts
 	sitesStatsWxRules                SitesStatsWxRules
 	sitesStatsZones                  SitesStatsZones
@@ -527,6 +531,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsStatsBGPPeers = *NewOrgsStatsBGPPeers(*baseController)
 	client.orgsStatsDevices = *NewOrgsStatsDevices(*baseController)
 	client.orgsStatsMxEdges = *NewOrgsStatsMxEdges(*baseController)
+	client.orgsStatsOspf = *NewOrgsStatsOspf(*baseController)
 	client.orgsStatsOtherDevices = *NewOrgsStatsOtherDevices(*baseController)
 	client.orgsStatsPorts = *NewOrgsStatsPorts(*baseController)
 	client.orgsStatsSites = *NewOrgsStatsSites(*baseController)
@@ -633,6 +638,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.sitesStatsClientsSDK = *NewSitesStatsClientsSDK(*baseController)
 	client.sitesStatsDevices = *NewSitesStatsDevices(*baseController)
 	client.sitesStatsMxEdges = *NewSitesStatsMxEdges(*baseController)
+	client.sitesStatsOspf = *NewSitesStatsOspf(*baseController)
 	client.sitesStatsPorts = *NewSitesStatsPorts(*baseController)
 	client.sitesStatsWxRules = *NewSitesStatsWxRules(*baseController)
 	client.sitesStatsZones = *NewSitesStatsZones(*baseController)
@@ -1040,6 +1046,11 @@ func (c *client) OrgsStatsDevices() *OrgsStatsDevices {
 // OrgsStatsMxEdges returns the orgsStatsMxEdges instance of the client.
 func (c *client) OrgsStatsMxEdges() *OrgsStatsMxEdges {
 	return &c.orgsStatsMxEdges
+}
+
+// OrgsStatsOspf returns the orgsStatsOspf instance of the client.
+func (c *client) OrgsStatsOspf() *OrgsStatsOspf {
+	return &c.orgsStatsOspf
 }
 
 // OrgsStatsOtherDevices returns the orgsStatsOtherDevices instance of the client.
@@ -1570,6 +1581,11 @@ func (c *client) SitesStatsDevices() *SitesStatsDevices {
 // SitesStatsMxEdges returns the sitesStatsMxEdges instance of the client.
 func (c *client) SitesStatsMxEdges() *SitesStatsMxEdges {
 	return &c.sitesStatsMxEdges
+}
+
+// SitesStatsOspf returns the sitesStatsOspf instance of the client.
+func (c *client) SitesStatsOspf() *SitesStatsOspf {
+	return &c.sitesStatsOspf
 }
 
 // SitesStatsPorts returns the sitesStatsPorts instance of the client.

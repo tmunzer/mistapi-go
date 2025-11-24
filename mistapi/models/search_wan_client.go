@@ -11,6 +11,7 @@ import (
 type SearchWanClient struct {
 	End                  *int                   `json:"end,omitempty"`
 	Limit                *int                   `json:"limit,omitempty"`
+	Next                 *string                `json:"next,omitempty"`
 	Results              []StatsWanClient       `json:"results,omitempty"`
 	Start                *int                   `json:"start,omitempty"`
 	Total                *int                   `json:"total,omitempty"`
@@ -21,8 +22,8 @@ type SearchWanClient struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SearchWanClient) String() string {
 	return fmt.Sprintf(
-		"SearchWanClient[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
-		s.End, s.Limit, s.Results, s.Start, s.Total, s.AdditionalProperties)
+		"SearchWanClient[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		s.End, s.Limit, s.Next, s.Results, s.Start, s.Total, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SearchWanClient.
@@ -31,7 +32,7 @@ func (s SearchWanClient) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"end", "limit", "results", "start", "total"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -46,6 +47,9 @@ func (s SearchWanClient) toMap() map[string]any {
 	}
 	if s.Limit != nil {
 		structMap["limit"] = s.Limit
+	}
+	if s.Next != nil {
+		structMap["next"] = s.Next
 	}
 	if s.Results != nil {
 		structMap["results"] = s.Results
@@ -67,7 +71,7 @@ func (s *SearchWanClient) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
@@ -75,6 +79,7 @@ func (s *SearchWanClient) UnmarshalJSON(input []byte) error {
 
 	s.End = temp.End
 	s.Limit = temp.Limit
+	s.Next = temp.Next
 	s.Results = temp.Results
 	s.Start = temp.Start
 	s.Total = temp.Total
@@ -85,6 +90,7 @@ func (s *SearchWanClient) UnmarshalJSON(input []byte) error {
 type tempSearchWanClient struct {
 	End     *int             `json:"end,omitempty"`
 	Limit   *int             `json:"limit,omitempty"`
+	Next    *string          `json:"next,omitempty"`
 	Results []StatsWanClient `json:"results,omitempty"`
 	Start   *int             `json:"start,omitempty"`
 	Total   *int             `json:"total,omitempty"`

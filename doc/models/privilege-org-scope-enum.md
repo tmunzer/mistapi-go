@@ -1,7 +1,7 @@
 
 # Privilege Org Scope Enum
 
-enum: `org`, `site`, `sitegroup`
+enum: `org`, `site`, `sitegroup`, `orgsites`
 
 ## Enumeration
 
@@ -14,4 +14,5 @@ enum: `org`, `site`, `sitegroup`
 | `org` |
 | `site` |
 | `sitegroup` |
+| `orgsites` |
 

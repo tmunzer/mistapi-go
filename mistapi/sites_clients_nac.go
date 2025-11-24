@@ -205,7 +205,7 @@ func (s *SitesClientsNAC) CountSiteNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, start, end, duration, limit, sort as parameters and
+// SearchSiteNacClientEvents takes context, siteId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, start, end, duration, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC Client Events
@@ -239,7 +239,8 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	end *string,
 	duration *string,
 	limit *int,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsNacClientSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/nac_clients/events/search")
@@ -345,6 +346,9 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	if sort != nil {
 		req.QueryParam("sort", *sort)
 	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
 
 	var result models.ResponseEventsNacClientSearch
 	decoder, resp, err := req.CallAsJson()
@@ -356,7 +360,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmManaged, mdmCompliance, mdmProvider, mfg, model, mxedgeId, nacruleId, nacruleMatched, nacruleName, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, limit, page, start, end, duration, sort as parameters and
+// SearchSiteNacClients takes context, siteId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmManaged, mdmCompliance, mdmProvider, mfg, model, mxedgeId, nacruleId, nacruleMatched, nacruleName, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -394,11 +398,11 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	username *string,
 	vlan *string,
 	limit *int,
-	page *int,
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseClientNacSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/nac_clients/search")
@@ -513,9 +517,6 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -527,6 +528,9 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseClientNacSearch

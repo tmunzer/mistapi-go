@@ -141,6 +141,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsStatsBGPPeers() | Gets OrgsStatsBGPPeers |
 | OrgsStatsDevices() | Gets OrgsStatsDevices |
 | OrgsStatsMxEdges() | Gets OrgsStatsMxEdges |
+| OrgsStatsOspf() | Gets OrgsStatsOspf |
 | OrgsStatsOtherDevices() | Gets OrgsStatsOtherDevices |
 | OrgsStatsPorts() | Gets OrgsStatsPorts |
 | OrgsStatsSites() | Gets OrgsStatsSites |
@@ -247,6 +248,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesStatsClientsSDK() | Gets SitesStatsClientsSDK |
 | SitesStatsDevices() | Gets SitesStatsDevices |
 | SitesStatsMxEdges() | Gets SitesStatsMxEdges |
+| SitesStatsOspf() | Gets SitesStatsOspf |
 | SitesStatsPorts() | Gets SitesStatsPorts |
 | SitesStatsWxRules() | Gets SitesStatsWxRules |
 | SitesStatsZones() | Gets SitesStatsZones |

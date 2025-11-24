@@ -14,7 +14,7 @@ Switch port config
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllNetworks` | `*bool` | Optional | Only if `mode`==`trunk` whether to trunk all network/vlans<br><br>**Default**: `false` |
-| `AllowDhcpd` | `*bool` | Optional | If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port. |
+| `AllowDhcpd` | `*bool` | Optional | Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; true: ports become trusted ports allowing DHCP server traffic, false: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted). |
 | `AllowMultipleSupplicants` | `*bool` | Optional | **Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down<br><br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnknownClient` | `*bool` | Optional | Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br><br>**Default**: `false` |

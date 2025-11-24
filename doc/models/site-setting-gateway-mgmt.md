@@ -25,7 +25,7 @@ Gateway Site settings
 | `ProbeHosts` | `[]string` | Optional | - |
 | `ProbeHostsv6` | `[]string` | Optional | - |
 | `ProtectRe` | [`*models.ProtectRe`](../../doc/models/protect-re.md) | Optional | Restrict inbound-traffic to host<br>when enabled, all traffic that is not essential to our operation will be dropped<br>e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works |
-| `RootPassword` | `*string` | Optional | For SRX only |
+| `RootPassword` | `*string` | Optional | SRX only |
 | `SecurityLogSourceAddress` | `*string` | Optional | - |
 | `SecurityLogSourceInterface` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |

@@ -22,6 +22,8 @@ type StatsMxedge struct {
 	Id *uuid.UUID `json:"id,omitempty"`
 	// IDRAC version of the mist edge device
 	IdracVersion *string `json:"idrac_version,omitempty"`
+	// Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
+	InactiveVlanStrs *StatsMxedgeInactiveVlanStrs `json:"inactive_vlan_strs,omitempty"`
 	// IP stats
 	IpStat *StatsMxedgeIpStat `json:"ip_stat,omitempty"`
 	// Stat for LAG (Link Aggregation Group). Property key is the LAG name
@@ -64,8 +66,8 @@ type StatsMxedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsMxedge) String() string {
 	return fmt.Sprintf(
-		"StatsMxedge[CpuStat=%v, CreatedTime=%v, FipsEnabled=%v, ForSite=%v, Fwupdate=%v, Id=%v, IdracVersion=%v, IpStat=%v, LagStat=%v, LastSeen=%v, Mac=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, Name=%v, NumTunnels=%v, OobIpConfig=%v, OobIpStat=%v, OrgId=%v, PortStat=%v, Serial=%v, ServiceStat=%v, Services=%v, SiteId=%v, Status=%v, TuntermIpConfig=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermStat=%v, Uptime=%v, VirtualizationType=%v, AdditionalProperties=%v]",
-		s.CpuStat, s.CreatedTime, s.FipsEnabled, s.ForSite, s.Fwupdate, s.Id, s.IdracVersion, s.IpStat, s.LagStat, s.LastSeen, s.Mac, s.MemoryStat, s.Model, s.ModifiedTime, s.MxagentRegistered, s.MxclusterId, s.Name, s.NumTunnels, s.OobIpConfig, s.OobIpStat, s.OrgId, s.PortStat, s.Serial, s.ServiceStat, s.Services, s.SiteId, s.Status, s.TuntermIpConfig, s.TuntermPortConfig, s.TuntermRegistered, s.TuntermStat, s.Uptime, s.VirtualizationType, s.AdditionalProperties)
+		"StatsMxedge[CpuStat=%v, CreatedTime=%v, FipsEnabled=%v, ForSite=%v, Fwupdate=%v, Id=%v, IdracVersion=%v, InactiveVlanStrs=%v, IpStat=%v, LagStat=%v, LastSeen=%v, Mac=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, Name=%v, NumTunnels=%v, OobIpConfig=%v, OobIpStat=%v, OrgId=%v, PortStat=%v, Serial=%v, ServiceStat=%v, Services=%v, SiteId=%v, Status=%v, TuntermIpConfig=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermStat=%v, Uptime=%v, VirtualizationType=%v, AdditionalProperties=%v]",
+		s.CpuStat, s.CreatedTime, s.FipsEnabled, s.ForSite, s.Fwupdate, s.Id, s.IdracVersion, s.InactiveVlanStrs, s.IpStat, s.LagStat, s.LastSeen, s.Mac, s.MemoryStat, s.Model, s.ModifiedTime, s.MxagentRegistered, s.MxclusterId, s.Name, s.NumTunnels, s.OobIpConfig, s.OobIpStat, s.OrgId, s.PortStat, s.Serial, s.ServiceStat, s.Services, s.SiteId, s.Status, s.TuntermIpConfig, s.TuntermPortConfig, s.TuntermRegistered, s.TuntermStat, s.Uptime, s.VirtualizationType, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedge.
@@ -74,7 +76,7 @@ func (s StatsMxedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
+		"cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -104,6 +106,9 @@ func (s StatsMxedge) toMap() map[string]any {
 	}
 	if s.IdracVersion != nil {
 		structMap["idrac_version"] = s.IdracVersion
+	}
+	if s.InactiveVlanStrs != nil {
+		structMap["inactive_vlan_strs"] = s.InactiveVlanStrs.toMap()
 	}
 	if s.IpStat != nil {
 		structMap["ip_stat"] = s.IpStat.toMap()
@@ -202,7 +207,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
 	if err != nil {
 		return err
 	}
@@ -215,6 +220,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
 	s.Fwupdate = temp.Fwupdate
 	s.Id = temp.Id
 	s.IdracVersion = temp.IdracVersion
+	s.InactiveVlanStrs = temp.InactiveVlanStrs
 	s.IpStat = temp.IpStat
 	s.LagStat = temp.LagStat
 	s.LastSeen = temp.LastSeen
@@ -253,6 +259,7 @@ type tempStatsMxedge struct {
 	Fwupdate           *FwupdateStat                     `json:"fwupdate,omitempty"`
 	Id                 *uuid.UUID                        `json:"id,omitempty"`
 	IdracVersion       *string                           `json:"idrac_version,omitempty"`
+	InactiveVlanStrs   *StatsMxedgeInactiveVlanStrs      `json:"inactive_vlan_strs,omitempty"`
 	IpStat             *StatsMxedgeIpStat                `json:"ip_stat,omitempty"`
 	LagStat            map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
 	LastSeen           Optional[float64]                 `json:"last_seen"`

@@ -200,7 +200,7 @@ SearchMspOrgGroup(
     ctx context.Context,
     mspId uuid.UUID,
     mType models.MspSearchTypeEnum,
-    q *string,
+    q string,
     limit *int,
     start *string,
     end *string,
@@ -216,7 +216,7 @@ SearchMspOrgGroup(
 |  --- | --- | --- | --- |
 | `mspId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`models.MspSearchTypeEnum`](../../doc/models/msp-search-type-enum.md) | Query, Required | Orgs |
-| `q` | `*string` | Query, Optional | Search string |
+| `q` | `string` | Query, Required | Search string |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -236,7 +236,7 @@ mspId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mType := models.MspSearchTypeEnum_ORGS
 
-q := "search"
+q := "live"
 
 limit := 100
 
@@ -244,7 +244,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := mSPs.SearchMspOrgGroup(ctx, mspId, mType, &q, &limit, nil, nil, &duration, &sort)
+apiResponse, err := mSPs.SearchMspOrgGroup(ctx, mspId, mType, q, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

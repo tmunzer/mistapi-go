@@ -112,7 +112,6 @@ if err != nil {
 {
   "address": "1601 S. Deanza Blvd., Cupertino, CA, 95014",
   "alarmtemplate_id": "684dfc5c-fe77-2290-eb1d-ef3d677fe168",
-  "apporttemplate_id": "string",
   "aptemplate_id": "16bdf952-ade2-4491-80b0-85ce506c760b",
   "country_code": "US",
   "created_time": 0,
@@ -217,7 +216,6 @@ if err != nil {
 {
   "address": "1601 S. Deanza Blvd., Cupertino, CA, 95014",
   "alarmtemplate_id": "684dfc5c-fe77-2290-eb1d-ef3d677fe168",
-  "apporttemplate_id": "string",
   "aptemplate_id": "16bdf952-ade2-4491-80b0-85ce506c760b",
   "country_code": "US",
   "created_time": 0,

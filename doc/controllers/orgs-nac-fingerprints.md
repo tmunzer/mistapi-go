@@ -118,7 +118,8 @@ SearchOrgClientFingerprints(
     end *string,
     duration *string,
     interval *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.FingerprintSearchResult],
     error)
 ```
@@ -141,6 +142,7 @@ SearchOrgClientFingerprints(
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `interval` | `*string` | Query, Optional | Aggregation works by giving a time range plus interval (e.g. 1d, 1h, 10m) where aggregation function would be applied to. |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order.<br><br>**Default**: `"wxid"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -175,7 +177,7 @@ interval := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
+apiResponse, err := orgsNACFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

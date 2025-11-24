@@ -292,7 +292,8 @@ SearchOrgAlarms(
     end *string,
     duration *string,
     limit *int,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.AlarmSearchResult],
     error)
 ```
@@ -310,6 +311,7 @@ SearchOrgAlarms(
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -334,7 +336,7 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort)
+apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

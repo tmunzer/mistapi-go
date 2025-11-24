@@ -11,10 +11,10 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Aamw` | [`*models.ServicePolicyAamw`](../../doc/models/service-policy-aamw.md) | Optional | For SRX Only |
+| `Aamw` | [`*models.ServicePolicyAamw`](../../doc/models/service-policy-aamw.md) | Optional | SRX only |
 | `Action` | [`*models.AllowDenyEnum`](../../doc/models/allow-deny-enum.md) | Optional | enum: `allow`, `deny` |
 | `Antivirus` | [`*models.ServicePolicyAntivirus`](../../doc/models/service-policy-antivirus.md) | Optional | For SRX-only |
-| `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | For SRX Only |
+| `Appqoe` | [`*models.ServicePolicyAppqoe`](../../doc/models/service-policy-appqoe.md) | Optional | SRX only |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Ewf` | [`[]models.ServicePolicyEwfRule`](../../doc/models/service-policy-ewf-rule.md) | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
@@ -24,7 +24,7 @@
 | `Name` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `PathPreference` | `*string` | Optional | By default, we derive all paths available and use them, optionally, you can customize by using `path_preference` |
-| `Secintel` | [`*models.ServicePolicySecintel`](../../doc/models/service-policy-secintel.md) | Optional | For SRX Only |
+| `Secintel` | [`*models.ServicePolicySecintel`](../../doc/models/service-policy-secintel.md) | Optional | SRX only |
 | `Services` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `SslProxy` | [`*models.ServicePolicySslProxy`](../../doc/models/service-policy-ssl-proxy.md) | Optional | For SRX-only |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

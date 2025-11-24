@@ -83,7 +83,7 @@ func (o *OrgsClientsWired) CountOrgWiredClients(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWiredClients takes context, orgId, authState, authMethod, source, siteId, deviceMac, mac, portId, vlan, ip, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration, sort as parameters and
+// SearchOrgWiredClients takes context, orgId, authState, authMethod, source, siteId, deviceMac, mac, portId, vlan, ip, manufacture, text, nacruleId, dhcpHostname, dhcpFqdn, dhcpClientIdentifier, dhcpVendorClassIdentifier, dhcpRequestParams, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWiredClient data and
 // an error if there was an issue with the request or response.
 // Search for Wired Clients in org
@@ -112,7 +112,8 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.SearchWiredClient],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/wired_clients/search")
@@ -199,6 +200,9 @@ func (o *OrgsClientsWired) SearchOrgWiredClients(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.SearchWiredClient

@@ -146,7 +146,7 @@ func (s *SitesDevices) CountSiteDeviceConfigHistory(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceConfigHistory takes context, siteId, mType, mac, limit, start, end, duration, sort as parameters and
+// SearchSiteDeviceConfigHistory takes context, siteId, mType, mac, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search for entries in device config history
@@ -159,7 +159,8 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
 	error) {
 	req := s.prepareRequest(
@@ -205,6 +206,9 @@ func (s *SitesDevices) SearchSiteDeviceConfigHistory(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseConfigHistorySearch
@@ -391,7 +395,7 @@ func (s *SitesDevices) CountSiteDeviceEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, includes, limit, start, end, duration, sort as parameters and
+// SearchSiteDeviceEvents takes context, siteId, mac, model, text, timestamp, mType, lastBy, includes, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsDevices data and
 // an error if there was an issue with the request or response.
 // Search Devices Events
@@ -409,7 +413,8 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsDevices],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/events/search")
@@ -467,6 +472,9 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 	if sort != nil {
 		req.QueryParam("sort", *sort)
 	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
 
 	var result models.ResponseEventsDevices
 	decoder, resp, err := req.CallAsJson()
@@ -512,6 +520,47 @@ func (s *SitesDevices) ExportSiteDevices(
 		return models.NewApiResponse(stream, resp), err
 	}
 	return models.NewApiResponse(stream, resp), err
+}
+
+// SetSiteDevicesGbpTag takes context, siteId, body as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Set GBP Tag for multiple devices
+func (s *SitesDevices) SetSiteDevicesGbpTag(
+	ctx context.Context,
+	siteId uuid.UUID,
+	body *models.DevicesGbpTag) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/gbp_tag")
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // ImportSiteDevices takes context, siteId, file as parameters and
@@ -622,13 +671,14 @@ func (s *SitesDevices) CountSiteDeviceLastConfig(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDeviceLastConfigs takes context, siteId, deviceType, mac, version, name, limit, start, end, duration, sort as parameters and
+// SearchSiteDeviceLastConfigs takes context, siteId, certExpiryDuration, deviceType, mac, version, name, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search Device Last Configs
 func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	ctx context.Context,
 	siteId uuid.UUID,
+	certExpiryDuration *string,
 	deviceType *models.LastConfigDeviceTypeEnum,
 	mac *string,
 	version *string,
@@ -637,7 +687,8 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
 	error) {
 	req := s.prepareRequest(
@@ -663,6 +714,9 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if certExpiryDuration != nil {
+		req.QueryParam("cert_expiry_duration", *certExpiryDuration)
+	}
 	if deviceType != nil {
 		req.QueryParam("device_type", *deviceType)
 	}
@@ -690,6 +744,9 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	if sort != nil {
 		req.QueryParam("sort", *sort)
 	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
 
 	var result models.ResponseConfigHistorySearch
 	decoder, resp, err := req.CallAsJson()
@@ -701,7 +758,7 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDevices takes context, siteId, hostname, mType, model, mac, extIp, version, powerConstrained, ip, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort as parameters and
+// SearchSiteDevices takes context, siteId, hostname, mType, model, mac, extIp, version, powerConstrained, ip, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Device
@@ -746,7 +803,8 @@ func (s *SitesDevices) SearchSiteDevices(
 	end *string,
 	duration *string,
 	sort *models.SearchSiteDevicesSortEnum,
-	descSort *models.SearchSiteDevicesDescSortEnum) (
+	descSort *models.SearchSiteDevicesDescSortEnum,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseDeviceSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/search")
@@ -884,6 +942,9 @@ func (s *SitesDevices) SearchSiteDevices(
 	}
 	if descSort != nil {
 		req.QueryParam("desc_sort", *descSort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseDeviceSearch

@@ -27,7 +27,7 @@ func TestOrgsNACPortalsTestListOrgNacPortals(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"access_type":"wireless","cert_expire_time":365,"enable_telemetry":true,"expiry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","sso":{"idp_cert":"-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issuer":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert":true}}]`
+	expected := `[{"access_type":"wireless","additional_cacerts":["-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----"],"cert_expire_time":365,"enable_telemetry":true,"expiry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","sso":{"idp_cert":"-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issuer":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert":true}}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -49,7 +49,7 @@ func TestOrgsNACPortalsTestListOrgNacPortals1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"access_type":"wireless","cert_expire_time":365,"enable_telemetry":true,"expiry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","sso":{"idp_cert":"-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issuer":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert":true}}]`
+	expected := `[{"access_type":"wireless","additional_cacerts":["-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----"],"cert_expire_time":365,"enable_telemetry":true,"expiry_notification_time":2,"name":"get-wifi","notify_expiry":true,"ssid":"Corp","sso":{"idp_cert":"-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----","idp_sign_algo":"sha256","idp_sso_url":"https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130","issuer":"https://app.onelogin.com/saml/metadata/138130","nameid_format":"email","sso_role_matching":[{"assigned":"user","match":"Student"}],"use_sso_role_for_cert":true}}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

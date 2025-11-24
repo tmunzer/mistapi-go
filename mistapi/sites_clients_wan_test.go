@@ -123,7 +123,8 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -153,7 +154,8 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesClientsWan.SearchSiteWanClientEvents(ctx, siteId, nil, &mac, &hostname, &ip, &mfg, &nacruleId, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -178,11 +180,11 @@ func TestSitesClientsWanTestSearchSiteWanClients(t *testing.T) {
 	ip := "10.2.52.4"
 	mfg := "Cisco"
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, &page, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -207,11 +209,11 @@ func TestSitesClientsWanTestSearchSiteWanClients1(t *testing.T) {
 	ip := "10.2.52.4"
 	mfg := "Cisco"
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, &page, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

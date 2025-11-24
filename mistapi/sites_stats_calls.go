@@ -160,7 +160,7 @@ func (s *SitesStatsCalls) CountSiteCalls(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteCalls takes context, siteId, mac, app, limit, start, end, duration, sort as parameters and
+// SearchSiteCalls takes context, siteId, mac, app, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseStatsCalls data and
 // an error if there was an issue with the request or response.
 // Search Calls
@@ -173,7 +173,8 @@ func (s *SitesStatsCalls) SearchSiteCalls(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseStatsCalls],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/calls/search")
@@ -215,6 +216,9 @@ func (s *SitesStatsCalls) SearchSiteCalls(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseStatsCalls

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2509.1.5**
+> Version: **2511.1.0**
 > 
-> Date: **October 3, 2025**
+> Date: **November 17, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -258,6 +258,7 @@ This API uses the following authentication schemes.
 * [Orgs Stats-BGP Peers](doc/controllers/orgs-stats-bgp-peers.md)
 * [Orgs Stats-Devices](doc/controllers/orgs-stats-devices.md)
 * [Orgs Stats-Mx Edges](doc/controllers/orgs-stats-mx-edges.md)
+* [Orgs Stats-Ospf](doc/controllers/orgs-stats-ospf.md)
 * [Orgs Stats-Other Devices](doc/controllers/orgs-stats-other-devices.md)
 * [Orgs Stats-Ports](doc/controllers/orgs-stats-ports.md)
 * [Orgs Stats-Sites](doc/controllers/orgs-stats-sites.md)
@@ -342,6 +343,7 @@ This API uses the following authentication schemes.
 * [Sites Stats-Devices](doc/controllers/sites-stats-devices.md)
 * [Sites Stats-Discovered Switches](doc/controllers/sites-stats-discovered-switches.md)
 * [Sites Stats-Mx Edges](doc/controllers/sites-stats-mx-edges.md)
+* [Sites Stats-Ospf](doc/controllers/sites-stats-ospf.md)
 * [Sites Stats-Ports](doc/controllers/sites-stats-ports.md)
 * [Sites Stats-Wx Rules](doc/controllers/sites-stats-wx-rules.md)
 * [Sites Stats-Zones](doc/controllers/sites-stats-zones.md)

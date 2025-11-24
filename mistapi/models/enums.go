@@ -132,13 +132,13 @@ const (
 	AllowDenyEnum_DENY  AllowDenyEnum = "deny"
 )
 
-// AntModeEnum is a string enum.
+// AntennaSelectEnum is a string enum.
 // Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
-type AntModeEnum string
+type AntennaSelectEnum string
 
 const (
-	AntModeEnum_EXTERNAL AntModeEnum = "external"
-	AntModeEnum_INTERNAL AntModeEnum = "internal"
+	AntennaSelectEnum_EXTERNAL AntennaSelectEnum = "external"
+	AntennaSelectEnum_INTERNAL AntennaSelectEnum = "internal"
 )
 
 // ApClientBridgeAuthTypeEnum is a string enum.
@@ -1323,11 +1323,13 @@ const (
 )
 
 // JsiInventoryCountDistinctEnum is a string enum.
-// enum: `account_id`, `eol_time`, `eos_time`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type
+// enum: `account_id`, `claimed`, `eol_time`, `eos_time`, `has_support`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type
 type JsiInventoryCountDistinctEnum string
 
 const (
 	JsiInventoryCountDistinctEnum_ACCOUNTID    JsiInventoryCountDistinctEnum = "account_id"
+	JsiInventoryCountDistinctEnum_CLAIMED      JsiInventoryCountDistinctEnum = "claimed"
+	JsiInventoryCountDistinctEnum_HASSUPPORT   JsiInventoryCountDistinctEnum = "has_support"
 	JsiInventoryCountDistinctEnum_EOLTIME      JsiInventoryCountDistinctEnum = "eol_time"
 	JsiInventoryCountDistinctEnum_EOSTIME      JsiInventoryCountDistinctEnum = "eos_time"
 	JsiInventoryCountDistinctEnum_VERSIONTIME  JsiInventoryCountDistinctEnum = "version_time"
@@ -1743,12 +1745,13 @@ const (
 )
 
 // NacAccessTypeEnum is a string enum.
-// Type of network access. enum: `wireless`, `wired`
+// Type of network access. enum: `wireless`, `wired`, `vty`
 type NacAccessTypeEnum string
 
 const (
 	NacAccessTypeEnum_WIRELESS NacAccessTypeEnum = "wireless"
 	NacAccessTypeEnum_WIRED    NacAccessTypeEnum = "wired"
+	NacAccessTypeEnum_VTY      NacAccessTypeEnum = "vty"
 )
 
 // NacAuthTypeEnum is a string enum.
@@ -2398,6 +2401,20 @@ const (
 	OspfAreaTypeEnum_STUB        OspfAreaTypeEnum = "stub"
 )
 
+// OspfPeerStatsCountDistinctEnum is a string enum.
+// enum: `site_id`, `org_id`, `mac`, `peer_ip`, `port_id`, `state`, `vrf_name`
+type OspfPeerStatsCountDistinctEnum string
+
+const (
+	OspfPeerStatsCountDistinctEnum_SITEID  OspfPeerStatsCountDistinctEnum = "site_id"
+	OspfPeerStatsCountDistinctEnum_ORGID   OspfPeerStatsCountDistinctEnum = "org_id"
+	OspfPeerStatsCountDistinctEnum_MAC     OspfPeerStatsCountDistinctEnum = "mac"
+	OspfPeerStatsCountDistinctEnum_PEERIP  OspfPeerStatsCountDistinctEnum = "peer_ip"
+	OspfPeerStatsCountDistinctEnum_PORTID  OspfPeerStatsCountDistinctEnum = "port_id"
+	OspfPeerStatsCountDistinctEnum_STATE   OspfPeerStatsCountDistinctEnum = "state"
+	OspfPeerStatsCountDistinctEnum_VRFNAME OspfPeerStatsCountDistinctEnum = "vrf_name"
+)
+
 // OtherDeviceUpdateOperationEnum is a string enum.
 // The operation being performed. enum: `assign`, `unassign`
 type OtherDeviceUpdateOperationEnum string
@@ -2419,6 +2436,15 @@ const (
 	PcapTypeEnum_ENUMRADIOTAPWIRED PcapTypeEnum = "radiotap,wired"
 	PcapTypeEnum_WIRED             PcapTypeEnum = "wired"
 	PcapTypeEnum_WIRELESS          PcapTypeEnum = "wireless"
+)
+
+// PoePriorityEnum is a string enum.
+// PoE priority. enum: `low`, `high`
+type PoePriorityEnum string
+
+const (
+	PoePriorityEnum_LOW  PoePriorityEnum = "low"
+	PoePriorityEnum_HIGH PoePriorityEnum = "high"
 )
 
 // PortalTemplateAlignmentEnum is a string enum.
@@ -2466,13 +2492,14 @@ const (
 )
 
 // PrivilegeOrgScopeEnum is a string enum.
-// enum: `org`, `site`, `sitegroup`
+// enum: `org`, `site`, `sitegroup`, `orgsites`
 type PrivilegeOrgScopeEnum string
 
 const (
 	PrivilegeOrgScopeEnum_ORG       PrivilegeOrgScopeEnum = "org"
 	PrivilegeOrgScopeEnum_SITE      PrivilegeOrgScopeEnum = "site"
 	PrivilegeOrgScopeEnum_SITEGROUP PrivilegeOrgScopeEnum = "sitegroup"
+	PrivilegeOrgScopeEnum_ORGSITES  PrivilegeOrgScopeEnum = "orgsites"
 )
 
 // ProtectReAllowedServiceEnum is a string enum.
@@ -2545,6 +2572,16 @@ const (
 	RadioBand24UsageEnum_AUTO   RadioBand24UsageEnum = "auto"
 )
 
+// RadioBandAntennaBeamPatternEnum is a string enum.
+// enum: `narrow`, `medium`, `wide`
+type RadioBandAntennaBeamPatternEnum string
+
+const (
+	RadioBandAntennaBeamPatternEnum_NARROW RadioBandAntennaBeamPatternEnum = "narrow"
+	RadioBandAntennaBeamPatternEnum_MEDIUM RadioBandAntennaBeamPatternEnum = "medium"
+	RadioBandAntennaBeamPatternEnum_WIDE   RadioBandAntennaBeamPatternEnum = "wide"
+)
+
 // RadioBandAntennaModeEnum is a string enum.
 // enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 type RadioBandAntennaModeEnum string
@@ -2574,6 +2611,15 @@ type RadiusKeywrapFormatEnum string
 const (
 	RadiusKeywrapFormatEnum_ASCII RadiusKeywrapFormatEnum = "ascii"
 	RadiusKeywrapFormatEnum_HEX   RadiusKeywrapFormatEnum = "hex"
+)
+
+// RandomMacEnum is a string enum.
+// Whether the client is using randomized MAC Address or not
+type RandomMacEnum string
+
+const (
+	RandomMacEnum_TRUE  RandomMacEnum = "true"
+	RandomMacEnum_FALSE RandomMacEnum = "false"
 )
 
 // RecaptchaFlavorEnum is a string enum.
@@ -5095,4 +5141,45 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
+)
+
+// DnsDgaDetectionEnum is a string enum.
+// enum: `disabled`, `default`, `standard`, `strict`
+type DnsDgaDetectionEnum string
+
+const (
+	DnsDgaDetectionEnum_DISABLED    DnsDgaDetectionEnum = "disabled"
+	DnsDgaDetectionEnum_ENUMDEFAULT DnsDgaDetectionEnum = "default"
+	DnsDgaDetectionEnum_STANDARD    DnsDgaDetectionEnum = "standard"
+	DnsDgaDetectionEnum_STRICT      DnsDgaDetectionEnum = "strict"
+)
+
+// DnsTunnelDetectionEnum is a string enum.
+// enum: `disabled`, `default`, `standard`, `strict`
+type DnsTunnelDetectionEnum string
+
+const (
+	DnsTunnelDetectionEnum_DISABLED    DnsTunnelDetectionEnum = "disabled"
+	DnsTunnelDetectionEnum_ENUMDEFAULT DnsTunnelDetectionEnum = "default"
+	DnsTunnelDetectionEnum_STANDARD    DnsTunnelDetectionEnum = "standard"
+	DnsTunnelDetectionEnum_STRICT      DnsTunnelDetectionEnum = "strict"
+)
+
+// HttpInspectionEnum is a string enum.
+// enum: `disabled`, `standard`
+type HttpInspectionEnum string
+
+const (
+	HttpInspectionEnum_DISABLED HttpInspectionEnum = "disabled"
+	HttpInspectionEnum_STANDARD HttpInspectionEnum = "standard"
+	HttpInspectionEnum_STRICT   HttpInspectionEnum = "strict"
+)
+
+// IotDevicePolicyEnum is a string enum.
+// enum: `disabled`, `enabled`
+type IotDevicePolicyEnum string
+
+const (
+	IotDevicePolicyEnum_DISABLED IotDevicePolicyEnum = "disabled"
+	IotDevicePolicyEnum_ENABLED  IotDevicePolicyEnum = "enabled"
 )

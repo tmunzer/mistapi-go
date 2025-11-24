@@ -150,9 +150,6 @@ body := models.Site{
         uuid.MustParse("497f6eca-6276-4997-bfeb-53cbbbba6f3b"),
     },
     Timezone:             models.ToPointer("America/Los_Angeles"),
-    AdditionalProperties: map[string]interface{}{
-        "apporttemplate_id": interface{}("string"),
-    },
 }
 
 apiResponse, err := orgsSites.CreateOrgSite(ctx, orgId, &body)
@@ -171,7 +168,6 @@ if err != nil {
 {
   "address": "1601 S. Deanza Blvd., Cupertino, CA, 95014",
   "alarmtemplate_id": "684dfc5c-fe77-2290-eb1d-ef3d677fe168",
-  "apporttemplate_id": "string",
   "aptemplate_id": "16bdf952-ade2-4491-80b0-85ce506c760b",
   "country_code": "US",
   "created_time": 0,
@@ -260,7 +256,6 @@ if err != nil {
   {
     "address": "1601 S. Deanza Blvd., Cupertino, CA, 95014",
     "alarmtemplate_id": "684dfc5c-fe77-2290-eb1d-ef3d677fe168",
-    "apporttemplate_id": "string",
     "aptemplate_id": "16bdf952-ade2-4491-80b0-85ce506c760b",
     "country_code": "US",
     "created_time": 0,
@@ -324,7 +319,8 @@ SearchOrgSites(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseSiteSearch],
     error)
 ```
@@ -355,6 +351,7 @@ SearchOrgSites(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -373,7 +370,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

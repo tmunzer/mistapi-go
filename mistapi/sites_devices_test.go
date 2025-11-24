@@ -114,7 +114,8 @@ func TestSitesDevicesTestSearchSiteDeviceConfigHistory(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -140,7 +141,8 @@ func TestSitesDevicesTestSearchSiteDeviceConfigHistory1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -263,7 +265,8 @@ func TestSitesDevicesTestSearchSiteDeviceEvents(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -290,7 +293,8 @@ func TestSitesDevicesTestSearchSiteDeviceEvents1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -337,6 +341,21 @@ func TestSitesDevicesTestExportSiteDevices1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestSitesDevicesTestSetSiteDevicesGbpTag tests the behavior of the SitesDevices
+func TestSitesDevicesTestSetSiteDevicesGbpTag(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	resp, err := sitesDevices.SetSiteDevicesGbpTag(ctx, siteId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
 // TestSitesDevicesTestCountSiteDeviceLastConfig tests the behavior of the SitesDevices
@@ -394,13 +413,15 @@ func TestSitesDevicesTestSearchSiteDeviceLastConfigs(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	certExpiryDuration := "2d"
 	deviceType := models.LastConfigDeviceTypeEnum("ap")
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &certExpiryDuration, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -420,13 +441,15 @@ func TestSitesDevicesTestSearchSiteDeviceLastConfigs1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	certExpiryDuration := "2d"
 	deviceType := models.LastConfigDeviceTypeEnum("ap")
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &certExpiryDuration, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -457,7 +480,7 @@ func TestSitesDevicesTestSearchSiteDevices(t *testing.T) {
 	duration := "1d"
 	sort := models.SearchSiteDevicesSortEnum("timestamp")
 
-	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -488,7 +511,7 @@ func TestSitesDevicesTestSearchSiteDevices1(t *testing.T) {
 	duration := "1d"
 	sort := models.SearchSiteDevicesSortEnum("timestamp")
 
-	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -17,8 +17,8 @@ type SettingSsr struct {
 	ConductorToken *string `json:"conductor_token,omitempty"`
 	// Disable stats collection on SSR devices
 	DisableStats *bool `json:"disable_stats,omitempty"`
-	// Proxy Configuration to talk to Mist
-	Proxy                *Proxy                 `json:"proxy,omitempty"`
+	// SSR proxy configuration to talk to Mist
+	Proxy                *SsrProxy              `json:"proxy,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -92,5 +92,5 @@ type tempSettingSsr struct {
 	ConductorHosts []string               `json:"conductor_hosts,omitempty"`
 	ConductorToken *string                `json:"conductor_token,omitempty"`
 	DisableStats   *bool                  `json:"disable_stats,omitempty"`
-	Proxy          *Proxy                 `json:"proxy,omitempty"`
+	Proxy          *SsrProxy              `json:"proxy,omitempty"`
 }

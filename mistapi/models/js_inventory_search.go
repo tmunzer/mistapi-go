@@ -13,6 +13,7 @@ type JsInventorySearch struct {
 	End *int `json:"end,omitempty"`
 	// Number of results to return
 	Limit   *int              `json:"limit,omitempty"`
+	Next    *string           `json:"next,omitempty"`
 	Results []JsInventoryItem `json:"results,omitempty"`
 	// Offset to start from
 	Start *int `json:"start,omitempty"`
@@ -25,8 +26,8 @@ type JsInventorySearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JsInventorySearch) String() string {
 	return fmt.Sprintf(
-		"JsInventorySearch[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
-		j.End, j.Limit, j.Results, j.Start, j.Total, j.AdditionalProperties)
+		"JsInventorySearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		j.End, j.Limit, j.Next, j.Results, j.Start, j.Total, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JsInventorySearch.
@@ -35,7 +36,7 @@ func (j JsInventorySearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"end", "limit", "results", "start", "total"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -50,6 +51,9 @@ func (j JsInventorySearch) toMap() map[string]any {
 	}
 	if j.Limit != nil {
 		structMap["limit"] = j.Limit
+	}
+	if j.Next != nil {
+		structMap["next"] = j.Next
 	}
 	if j.Results != nil {
 		structMap["results"] = j.Results
@@ -71,7 +75,7 @@ func (j *JsInventorySearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
@@ -79,6 +83,7 @@ func (j *JsInventorySearch) UnmarshalJSON(input []byte) error {
 
 	j.End = temp.End
 	j.Limit = temp.Limit
+	j.Next = temp.Next
 	j.Results = temp.Results
 	j.Start = temp.Start
 	j.Total = temp.Total
@@ -89,6 +94,7 @@ func (j *JsInventorySearch) UnmarshalJSON(input []byte) error {
 type tempJsInventorySearch struct {
 	End     *int              `json:"end,omitempty"`
 	Limit   *int              `json:"limit,omitempty"`
+	Next    *string           `json:"next,omitempty"`
 	Results []JsInventoryItem `json:"results,omitempty"`
 	Start   *int              `json:"start,omitempty"`
 	Total   *int              `json:"total,omitempty"`

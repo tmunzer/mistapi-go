@@ -12,6 +12,8 @@ import (
 type ApRadioBand6 struct {
 	AllowRrmDisable *bool         `json:"allow_rrm_disable,omitempty"`
 	AntGain         Optional[int] `json:"ant_gain"`
+	// enum: `narrow`, `medium`, `wide`
+	AntennaBeamPattern *RadioBandAntennaBeamPatternEnum `json:"antenna_beam_pattern,omitempty"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 	AntennaMode *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
 	// channel width for the 6GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`, `160`
@@ -39,8 +41,8 @@ type ApRadioBand6 struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApRadioBand6) String() string {
 	return fmt.Sprintf(
-		"ApRadioBand6[AllowRrmDisable=%v, AntGain=%v, AntennaMode=%v, Bandwidth=%v, Channel=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, StandardPower=%v, AdditionalProperties=%v]",
-		a.AllowRrmDisable, a.AntGain, a.AntennaMode, a.Bandwidth, a.Channel, a.Channels, a.Disabled, a.Power, a.PowerMax, a.PowerMin, a.Preamble, a.StandardPower, a.AdditionalProperties)
+		"ApRadioBand6[AllowRrmDisable=%v, AntGain=%v, AntennaBeamPattern=%v, AntennaMode=%v, Bandwidth=%v, Channel=%v, Channels=%v, Disabled=%v, Power=%v, PowerMax=%v, PowerMin=%v, Preamble=%v, StandardPower=%v, AdditionalProperties=%v]",
+		a.AllowRrmDisable, a.AntGain, a.AntennaBeamPattern, a.AntennaMode, a.Bandwidth, a.Channel, a.Channels, a.Disabled, a.Power, a.PowerMax, a.PowerMin, a.Preamble, a.StandardPower, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApRadioBand6.
@@ -49,7 +51,7 @@ func (a ApRadioBand6) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power"); err != nil {
+		"allow_rrm_disable", "ant_gain", "antenna_beam_pattern", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -68,6 +70,9 @@ func (a ApRadioBand6) toMap() map[string]any {
 		} else {
 			structMap["ant_gain"] = nil
 		}
+	}
+	if a.AntennaBeamPattern != nil {
+		structMap["antenna_beam_pattern"] = a.AntennaBeamPattern
 	}
 	if a.AntennaMode != nil {
 		structMap["antenna_mode"] = a.AntennaMode
@@ -130,7 +135,7 @@ func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_rrm_disable", "ant_gain", "antenna_beam_pattern", "antenna_mode", "bandwidth", "channel", "channels", "disabled", "power", "power_max", "power_min", "preamble", "standard_power")
 	if err != nil {
 		return err
 	}
@@ -138,6 +143,7 @@ func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
 
 	a.AllowRrmDisable = temp.AllowRrmDisable
 	a.AntGain = temp.AntGain
+	a.AntennaBeamPattern = temp.AntennaBeamPattern
 	a.AntennaMode = temp.AntennaMode
 	a.Bandwidth = temp.Bandwidth
 	a.Channel = temp.Channel
@@ -153,16 +159,17 @@ func (a *ApRadioBand6) UnmarshalJSON(input []byte) error {
 
 // tempApRadioBand6 is a temporary struct used for validating the fields of ApRadioBand6.
 type tempApRadioBand6 struct {
-	AllowRrmDisable *bool                     `json:"allow_rrm_disable,omitempty"`
-	AntGain         Optional[int]             `json:"ant_gain"`
-	AntennaMode     *RadioBandAntennaModeEnum `json:"antenna_mode,omitempty"`
-	Bandwidth       *Dot11Bandwidth6Enum      `json:"bandwidth,omitempty"`
-	Channel         Optional[int]             `json:"channel"`
-	Channels        Optional[[]int]           `json:"channels"`
-	Disabled        *bool                     `json:"disabled,omitempty"`
-	Power           Optional[int]             `json:"power"`
-	PowerMax        Optional[int]             `json:"power_max"`
-	PowerMin        Optional[int]             `json:"power_min"`
-	Preamble        *RadioBandPreambleEnum    `json:"preamble,omitempty"`
-	StandardPower   *bool                     `json:"standard_power,omitempty"`
+	AllowRrmDisable    *bool                            `json:"allow_rrm_disable,omitempty"`
+	AntGain            Optional[int]                    `json:"ant_gain"`
+	AntennaBeamPattern *RadioBandAntennaBeamPatternEnum `json:"antenna_beam_pattern,omitempty"`
+	AntennaMode        *RadioBandAntennaModeEnum        `json:"antenna_mode,omitempty"`
+	Bandwidth          *Dot11Bandwidth6Enum             `json:"bandwidth,omitempty"`
+	Channel            Optional[int]                    `json:"channel"`
+	Channels           Optional[[]int]                  `json:"channels"`
+	Disabled           *bool                            `json:"disabled,omitempty"`
+	Power              Optional[int]                    `json:"power"`
+	PowerMax           Optional[int]                    `json:"power_max"`
+	PowerMin           Optional[int]                    `json:"power_min"`
+	Preamble           *RadioBandPreambleEnum           `json:"preamble,omitempty"`
+	StandardPower      *bool                            `json:"standard_power,omitempty"`
 }

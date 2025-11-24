@@ -423,11 +423,11 @@ SearchSiteZoneSessions(
     scopeId *string,
     scope *models.VisitsScopeEnum,
     limit *int,
-    page *int,
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseZoneSearch],
     error)
 ```
@@ -443,11 +443,11 @@ SearchSiteZoneSessions(
 | `scopeId` | `*string` | Query, Optional | If `scope`==`map`/`zone`/`rssizone`, the scope id |
 | `scope` | [`*models.VisitsScopeEnum`](../../doc/models/visits-scope-enum.md) | Query, Optional | Scope<br><br>**Default**: `"site"` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -470,13 +470,11 @@ scope := models.VisitsScopeEnum_SITE
 
 limit := 100
 
-page := 1
-
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, &user, &scopeId, &scope, &limit, &page, nil, nil, &duration, &sort)
+apiResponse, err := sitesZones.SearchSiteZoneSessions(ctx, siteId, zoneType, nil, &user, &scopeId, &scope, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

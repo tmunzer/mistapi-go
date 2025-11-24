@@ -110,7 +110,7 @@ func (s *SitesWANUsages) CountSiteWanUsage(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, limit, page, start, end, duration, sort as parameters and
+// SearchSiteWanUsage takes context, siteId, mac, peerMac, portId, peerPortId, policy, tenant, pathType, limit, start, end, duration, sort as parameters and
 // returns an models.ApiResponse with models.SearchWanUsage data and
 // an error if there was an issue with the request or response.
 // Search Site WAN Usages
@@ -125,7 +125,6 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
 	tenant *string,
 	pathType *string,
 	limit *int,
-	page *int,
 	start *string,
 	end *string,
 	duration *string,
@@ -174,9 +173,6 @@ func (s *SitesWANUsages) SearchSiteWanUsage(
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)

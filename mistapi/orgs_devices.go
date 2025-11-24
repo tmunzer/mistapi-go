@@ -264,7 +264,7 @@ func (o *OrgsDevices) CountOrgDeviceEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDeviceEvents takes context, orgId, mac, model, deviceType, text, timestamp, mType, lastBy, includes, limit, start, end, duration, sort as parameters and
+// SearchOrgDeviceEvents takes context, orgId, mac, model, deviceType, text, timestamp, mType, lastBy, includes, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices Events
@@ -283,7 +283,8 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseDeviceEventsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/events/search")
@@ -343,6 +344,9 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseDeviceEventsSearch
@@ -418,7 +422,7 @@ func (o *OrgsDevices) CountOrgDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDeviceLastConfigs takes context, orgId, deviceType, mac, name, version, start, end, limit, duration, sort as parameters and
+// SearchOrgDeviceLastConfigs takes context, orgId, deviceType, mac, name, version, certExpiryDuration, start, end, limit, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseConfigHistorySearch data and
 // an error if there was an issue with the request or response.
 // Search Device Last Configs
@@ -429,11 +433,13 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 	mac *string,
 	name *string,
 	version *string,
+	certExpiryDuration *string,
 	start *string,
 	end *string,
 	limit *int,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseConfigHistorySearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/last_config/search")
@@ -467,6 +473,9 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 	if version != nil {
 		req.QueryParam("version", *version)
 	}
+	if certExpiryDuration != nil {
+		req.QueryParam("cert_expiry_duration", *certExpiryDuration)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -481,6 +490,9 @@ func (o *OrgsDevices) SearchOrgDeviceLastConfigs(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseConfigHistorySearch
@@ -541,7 +553,7 @@ func (o *OrgsDevices) ListOrgApsMacs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDevices takes context, orgId, band24Bandwidth, band24Channel, band24Power, band5Bandwidth, band5Channel, band5Power, band6Bandwidth, band6Channel, band6Power, cpu, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpPowerAllocated, lldpPowerDraw, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, siteId, t128agentVersion, version, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgDevices takes context, orgId, band24Bandwidth, band24Channel, band24Power, band5Bandwidth, band5Channel, band5Power, band6Bandwidth, band6Channel, band6Power, cpu, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpPowerAllocated, lldpPowerDraw, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, siteId, t128agentVersion, version, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices
@@ -589,7 +601,8 @@ func (o *OrgsDevices) SearchOrgDevices(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseDeviceSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/devices/search")
@@ -736,6 +749,9 @@ func (o *OrgsDevices) SearchOrgDevices(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseDeviceSearch

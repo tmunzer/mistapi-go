@@ -127,7 +127,8 @@ func TestSitesStatsAssetsTestSearchSiteAssets(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, &mac, &mapId, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, &eddystoneUidNamespace, &eddystoneUidInstance, &eddystoneUrl, &deviceName, &by, &name, &apMac, &beam, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, &mac, &mapId, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, &eddystoneUidNamespace, &eddystoneUidInstance, &eddystoneUrl, &deviceName, &by, &name, &apMac, &beam, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -165,7 +166,8 @@ func TestSitesStatsAssetsTestSearchSiteAssets1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, &mac, &mapId, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, &eddystoneUidNamespace, &eddystoneUidInstance, &eddystoneUrl, &deviceName, &by, &name, &apMac, &beam, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsAssets.SearchSiteAssets(ctx, siteId, &mac, &mapId, &ibeaconUuid, &ibeaconMajor, &ibeaconMinor, &eddystoneUidNamespace, &eddystoneUidInstance, &eddystoneUrl, &deviceName, &by, &name, &apMac, &beam, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

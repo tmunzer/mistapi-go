@@ -13,6 +13,7 @@ Proxy Configuration to talk to Mist
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Disabled` | `*bool` | Optional | **Default**: `false` |
 | `Url` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -20,6 +21,7 @@ Proxy Configuration to talk to Mist
 
 ```json
 {
+  "disabled": true,
   "url": "https://proxy.corp.com:8080/",
   "exampleAdditionalProperty": {
     "key1": "val1",

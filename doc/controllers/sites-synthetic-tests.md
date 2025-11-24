@@ -99,7 +99,12 @@ SearchSiteSyntheticTest(
     reason *string,
     mType *models.SynthetictestTypeEnum,
     protocol *models.SynthetictestProtocolEnum,
-    tenant *string) (
+    tenant *string,
+    limit *int,
+    start *string,
+    end *string,
+    duration *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseSynthetictestSearch],
     error)
 ```
@@ -117,6 +122,11 @@ SearchSiteSyntheticTest(
 | `mType` | [`*models.SynthetictestTypeEnum`](../../doc/models/synthetictest-type-enum.md) | Query, Optional | Synthetic test type |
 | `protocol` | [`*models.SynthetictestProtocolEnum`](../../doc/models/synthetictest-protocol-enum.md) | Query, Optional | Connectivity protocol |
 | `tenant` | `*string` | Query, Optional | Tenant network in which lan_connectivity test was run |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -139,7 +149,11 @@ by := "user"
 
 reason := "test failed"
 
-apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil)
+limit := 100
+
+duration := "10m"
+
+apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil, &limit, nil, nil, &duration, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

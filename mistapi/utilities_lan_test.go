@@ -60,7 +60,12 @@ func TestUtilitiesLANTestClearSiteMultipleDevicePendingVersion(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	resp, err := utilitiesLan.ClearSiteMultipleDevicePendingVersion(ctx, siteId)
+	var body models.DevicesIds
+	errBody := json.Unmarshal([]byte(`{"device_ids":["00000000-0000-0000-1000-5c5b35584a6f","00000000-0000-0000-1000-5c5b350ea3b3"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := utilitiesLan.ClearSiteMultipleDevicePendingVersion(ctx, siteId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -74,7 +79,12 @@ func TestUtilitiesLANTestRestoreSiteMultipleDeviceBackupVersion(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	resp, err := utilitiesLan.RestoreSiteMultipleDeviceBackupVersion(ctx, siteId)
+	var body models.DevicesIds
+	errBody := json.Unmarshal([]byte(`{"device_ids":["00000000-0000-0000-1000-5c5b35584a6f","00000000-0000-0000-1000-5c5b350ea3b3"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := utilitiesLan.RestoreSiteMultipleDeviceBackupVersion(ctx, siteId, &body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

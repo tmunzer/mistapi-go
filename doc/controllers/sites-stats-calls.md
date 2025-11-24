@@ -404,7 +404,8 @@ SearchSiteCalls(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseStatsCalls],
     error)
 ```
@@ -421,6 +422,7 @@ SearchSiteCalls(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -443,7 +445,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesStatsCalls.SearchSiteCalls(ctx, siteId, &mac, &app, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

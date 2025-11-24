@@ -25,7 +25,7 @@
       "ap": "ap6",
       "auth_type": "cert",
       "bssid": "bssid4",
-      "client_type": "wireless",
+      "client_type": "wired",
       "device_mac": "device_mac4",
       "exampleAdditionalProperty": {
         "key1": "val1",
@@ -36,7 +36,7 @@
       "ap": "ap6",
       "auth_type": "cert",
       "bssid": "bssid4",
-      "client_type": "wireless",
+      "client_type": "wired",
       "device_mac": "device_mac4",
       "exampleAdditionalProperty": {
         "key1": "val1",

@@ -23,7 +23,7 @@ func NewOrgsVars(baseController baseController) *OrgsVars {
 	return &orgsVars
 }
 
-// SearchOrgVars takes context, orgId, siteId, mVar, src, limit, page, sort as parameters and
+// SearchOrgVars takes context, orgId, siteId, mVar, src, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSearchVar data and
 // an error if there was an issue with the request or response.
 // Search vars
@@ -35,8 +35,8 @@ func (o *OrgsVars) SearchOrgVars(
 	mVar *string,
 	src *models.VarSourceEnum,
 	limit *int,
-	page *int,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseSearchVar],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/vars/search")
@@ -70,11 +70,11 @@ func (o *OrgsVars) SearchOrgVars(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseSearchVar

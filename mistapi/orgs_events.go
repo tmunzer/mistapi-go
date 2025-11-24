@@ -23,7 +23,7 @@ func NewOrgsEvents(baseController baseController) *OrgsEvents {
 	return &orgsEvents
 }
 
-// SearchOrgEvents takes context, orgId, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgEvents takes context, orgId, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsOrgsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org events
@@ -39,7 +39,8 @@ func (o *OrgsEvents) SearchOrgEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsOrgsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/events/search")
@@ -78,6 +79,9 @@ func (o *OrgsEvents) SearchOrgEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseEventsOrgsSearch
@@ -149,7 +153,7 @@ func (o *OrgsEvents) CountOrgSystemEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSystemEvents takes context, orgId, limit, start, end, duration, sort as parameters and
+// SearchOrgSystemEvents takes context, orgId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSystemEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Org System Events
@@ -160,7 +164,8 @@ func (o *OrgsEvents) SearchOrgSystemEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseOrgSystemEventsSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/events/system/search")
@@ -196,6 +201,9 @@ func (o *OrgsEvents) SearchOrgSystemEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseOrgSystemEventsSearch

@@ -56,6 +56,9 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
     AccessType:               models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
+    AdditionalCacerts:        []string{
+        "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+    },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
     Name:                     models.ToPointer("get-wifi"),
@@ -573,6 +576,9 @@ if err != nil {
 [
   {
     "access_type": "wireless",
+    "additional_cacerts": [
+      "-----BEGIN CERTIFICATE-----\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\n-----END CERTIFICATE-----"
+    ],
     "cert_expire_time": 365,
     "enable_telemetry": true,
     "expiry_notification_time": 2,
@@ -645,6 +651,9 @@ nacportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.NacPortal{
     AccessType:               models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
+    AdditionalCacerts:        []string{
+        "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+    },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
     Name:                     models.ToPointer("get-wifi"),

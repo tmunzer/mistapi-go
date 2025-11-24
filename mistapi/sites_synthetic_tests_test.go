@@ -195,7 +195,11 @@ func TestSitesSyntheticTestsTestSearchSiteSyntheticTest(t *testing.T) {
 	by := "user"
 	reason := "test failed"
 
-	apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil)
+	limit := int(100)
+
+	duration := "1d"
+
+	apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil, &limit, nil, nil, &duration, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -221,7 +225,11 @@ func TestSitesSyntheticTestsTestSearchSiteSyntheticTest1(t *testing.T) {
 	by := "user"
 	reason := "test failed"
 
-	apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil)
+	limit := int(100)
+
+	duration := "1d"
+
+	apiResponse, err := sitesSyntheticTests.SearchSiteSyntheticTest(ctx, siteId, &mac, &portId, &vlanId, &by, &reason, nil, nil, nil, &limit, nil, nil, &duration, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

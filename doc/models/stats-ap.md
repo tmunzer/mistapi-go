@@ -13,7 +13,7 @@ AP statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AntMode` | [`*models.AntModeEnum`](../../doc/models/ant-mode-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
+| `AntennaSelect` | [`*models.AntennaSelectEnum`](../../doc/models/antenna-select-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
 | `AutoPlacement` | [`*models.StatsApAutoPlacement`](../../doc/models/stats-ap-auto-placement.md) | Optional | - |
 | `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
 | `BleStat` | [`*models.StatsApBle`](../../doc/models/stats-ap-ble.md) | Optional | - |
@@ -87,7 +87,7 @@ AP statistics
 
 ```json
 {
-  "ant_mode": "external",
+  "antenna_select": "external",
   "cert_expiry": 1534534392.0,
   "ext_ip": "73.92.124.103",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",

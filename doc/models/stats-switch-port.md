@@ -35,6 +35,7 @@ Switch port statistics
 | `PoeDisabled` | `*bool` | Optional | Is the POE disabled |
 | `PoeMode` | [`*models.StatsSwitchPortPoeModeEnum`](../../doc/models/stats-switch-port-poe-mode-enum.md) | Optional | enum: `802.3af`, `802.3at`, `802.3bt` |
 | `PoeOn` | `*bool` | Optional | Is the device attached to POE |
+| `PoePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Optional | PoE priority. enum: `low`, `high` |
 | `PortId` | `string` | Required | - |
 | `PortMac` | `string` | Required | Interface MAC address |
 | `PortUsage` | [`*models.StatsSwitchPortPortUsageEnum`](../../doc/models/stats-switch-port-port-usage-enum.md) | Optional | gateway port usage. enum: `lan` |

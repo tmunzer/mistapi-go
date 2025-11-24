@@ -36,9 +36,10 @@ SSO Role response
     {
       "org_id": "00000cc8-0000-0000-0000-000000000000",
       "role": "admin",
-      "scope": "site",
+      "scope": "sitegroup",
       "site_id": "00002366-0000-0000-0000-000000000000",
       "sitegroup_id": "000006ce-0000-0000-0000-000000000000",
+      "view": "view4",
       "views": [
         "location",
         "lobby_admin",

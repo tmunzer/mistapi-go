@@ -13,7 +13,7 @@ Resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EtherTypes` | `[]string` | Optional | Can only be used under dst tags. |
+| `EtherTypes` | `[]string` | Optional | ARP / IPv6. Default is `any` |
 | `GbpTag` | `*int` | Optional | Required if<br><br>- `type`==`dynamic_gbp` (gbp_tag received from RADIUS)<br>- `type`==`gbp_resource`<br>- `type`==`static_gbp` (applying gbp tag against matching conditions) |
 | `Macs` | `[]string` | Optional | Required if<br><br>- `type`==`mac`<br>- `type`==`static_gbp` if from matching mac |
 | `Network` | `*string` | Optional | If:<br><br>* `type`==`mac` (optional. default is `any`)<br>* `type`==`subnet` (optional. default is `any`)<br>* `type`==`network`<br>* `type`==`resource` (optional. default is `any`)<br>* `type`==`static_gbp` if from matching network (vlan) |
