@@ -37,7 +37,8 @@ the Property key is the network name. In case of DHCP relay, it's common for man
 {
   "dns_servers": [
     "8.8.8.8",
-    "4.4.4.4"
+    "4.4.4.4",
+    "2001:4860:4860::8888"
   ],
   "dns_suffix": [
     ".mist.local",

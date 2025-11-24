@@ -17,12 +17,14 @@ type PrivilegeOrg struct {
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 	Role PrivilegeOrgRoleEnum `json:"role"`
-	// enum: `org`, `site`, `sitegroup`
+	// enum: `org`, `site`, `sitegroup`, `orgsites`
 	Scope PrivilegeOrgScopeEnum `json:"scope"`
 	// If `scope`==`site`
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// If `scope`==`sitegroup`
 	SitegroupId *uuid.UUID `json:"sitegroup_id,omitempty"`
+	// Used for backward compatibility. Use `views` instead.
+	View *string `json:"view,omitempty"` // Deprecated
 	// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
 	// You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.
 	// Below are the list of supported UI views. Note that this is UI only feature.
@@ -44,8 +46,8 @@ type PrivilegeOrg struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PrivilegeOrg) String() string {
 	return fmt.Sprintf(
-		"PrivilegeOrg[OrgId=%v, Role=%v, Scope=%v, SiteId=%v, SitegroupId=%v, Views=%v, AdditionalProperties=%v]",
-		p.OrgId, p.Role, p.Scope, p.SiteId, p.SitegroupId, p.Views, p.AdditionalProperties)
+		"PrivilegeOrg[OrgId=%v, Role=%v, Scope=%v, SiteId=%v, SitegroupId=%v, View=%v, Views=%v, AdditionalProperties=%v]",
+		p.OrgId, p.Role, p.Scope, p.SiteId, p.SitegroupId, p.View, p.Views, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PrivilegeOrg.
@@ -54,7 +56,7 @@ func (p PrivilegeOrg) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"org_id", "role", "scope", "site_id", "sitegroup_id", "views"); err != nil {
+		"org_id", "role", "scope", "site_id", "sitegroup_id", "view", "views"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -75,6 +77,9 @@ func (p PrivilegeOrg) toMap() map[string]any {
 	if p.SitegroupId != nil {
 		structMap["sitegroup_id"] = p.SitegroupId
 	}
+	if p.View != nil {
+		structMap["view"] = p.View
+	}
 	if p.Views != nil {
 		structMap["views"] = p.Views
 	}
@@ -93,7 +98,7 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "role", "scope", "site_id", "sitegroup_id", "views")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "org_id", "role", "scope", "site_id", "sitegroup_id", "view", "views")
 	if err != nil {
 		return err
 	}
@@ -104,6 +109,7 @@ func (p *PrivilegeOrg) UnmarshalJSON(input []byte) error {
 	p.Scope = *temp.Scope
 	p.SiteId = temp.SiteId
 	p.SitegroupId = temp.SitegroupId
+	p.View = temp.View
 	p.Views = temp.Views
 	return nil
 }
@@ -115,6 +121,7 @@ type tempPrivilegeOrg struct {
 	Scope       *PrivilegeOrgScopeEnum   `json:"scope"`
 	SiteId      *uuid.UUID               `json:"site_id,omitempty"`
 	SitegroupId *uuid.UUID               `json:"sitegroup_id,omitempty"`
+	View        *string                  `json:"view,omitempty"`
 	Views       []AdminPrivilegeViewEnum `json:"views,omitempty"`
 }
 

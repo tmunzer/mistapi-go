@@ -12,7 +12,7 @@ import (
 // AclTag represents a AclTag struct.
 // Resource tags (`type`==`resource` or `type`==`gbp_resource`) can only be used in `dst_tags`
 type AclTag struct {
-	// Can only be used under dst tags.
+	// ARP / IPv6. Default is `any`
 	EtherTypes []string `json:"ether_types,omitempty"`
 	// Required if
 	// - `type`==`dynamic_gbp` (gbp_tag received from RADIUS)

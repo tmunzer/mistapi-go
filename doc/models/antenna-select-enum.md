@@ -1,11 +1,11 @@
 
-# Ant Mode Enum
+# Antenna Select Enum
 
 Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
 
 ## Enumeration
 
-`AntModeEnum`
+`AntennaSelectEnum`
 
 ## Fields
 

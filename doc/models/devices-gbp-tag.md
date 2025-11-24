@@ -1,28 +1,28 @@
 
-# Response Router 128 T Register Cmd
+# Devices Gbp Tag
 
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
 
-`ResponseRouter128tRegisterCmd`
+`DevicesGbpTag`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ConductorCmd` | `*string` | Optional | - |
-| `RegistrationCode` | `*string` | Optional | - |
-| `RouterShellCmd` | `*string` | Optional | - |
+| `GbpTag` | `int` | Required | - |
+| `Macs` | `[]string` | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "conductor_cmd": "conductor_cmd0",
-  "registration_code": "registration_code6",
-  "router_shell_cmd": "router_shell_cmd0",
+  "gbp_tag": 4,
+  "macs": [
+    "683b679ac024"
+  ],
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

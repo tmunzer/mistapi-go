@@ -1,7 +1,7 @@
 
 # Nac Access Type Enum
 
-Type of network access. enum: `wireless`, `wired`
+Type of network access. enum: `wireless`, `wired`, `vty`
 
 ## Enumeration
 
@@ -13,6 +13,7 @@ Type of network access. enum: `wireless`, `wired`
 |  --- |
 | `wireless` |
 | `wired` |
+| `vty` |
 
 ## Example
 

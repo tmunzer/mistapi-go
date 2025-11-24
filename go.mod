@@ -3,7 +3,7 @@ module github.com/tmunzer/mistapi-go
 go 1.24.0
 
 require (
-	github.com/apimatic/go-core-runtime v0.0.28
+	github.com/apimatic/go-core-runtime v0.0.29
 	github.com/google/uuid v1.6.0
 )
 

@@ -118,7 +118,8 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -143,7 +144,8 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -165,11 +167,11 @@ func TestOrgsClientsWanTestSearchOrgWanClients(t *testing.T) {
 	}
 
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -191,11 +193,11 @@ func TestOrgsClientsWanTestSearchOrgWanClients1(t *testing.T) {
 	}
 
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

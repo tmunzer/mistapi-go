@@ -31,7 +31,7 @@ type SiteSettingGatewayMgmt struct {
 	// when enabled, all traffic that is not essential to our operation will be dropped
 	// e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
 	ProtectRe *ProtectRe `json:"protect_re,omitempty"`
-	// For SRX only
+	// SRX only
 	RootPassword               *string                `json:"root_password,omitempty"`
 	SecurityLogSourceAddress   *string                `json:"security_log_source_address,omitempty"`
 	SecurityLogSourceInterface *string                `json:"security_log_source_interface,omitempty"`

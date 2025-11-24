@@ -146,6 +146,8 @@ var orgsStatsDevices OrgsStatsDevices
 
 var orgsStatsMxEdges OrgsStatsMxEdges
 
+var orgsStatsOspf OrgsStatsOspf
+
 var orgsStatsOtherDevices OrgsStatsOtherDevices
 
 var orgsStatsPorts OrgsStatsPorts
@@ -350,6 +352,8 @@ var sitesStatsDevices SitesStatsDevices
 
 var sitesStatsMxEdges SitesStatsMxEdges
 
+var sitesStatsOspf SitesStatsOspf
+
 var sitesStatsPorts SitesStatsPorts
 
 var sitesStatsWxRules SitesStatsWxRules
@@ -477,6 +481,7 @@ func init() {
 	orgsStatsBgpPeers = *client.OrgsStatsBGPPeers()
 	orgsStatsDevices = *client.OrgsStatsDevices()
 	orgsStatsMxEdges = *client.OrgsStatsMxEdges()
+	orgsStatsOspf = *client.OrgsStatsOspf()
 	orgsStatsOtherDevices = *client.OrgsStatsOtherDevices()
 	orgsStatsPorts = *client.OrgsStatsPorts()
 	orgsStatsSites = *client.OrgsStatsSites()
@@ -579,6 +584,7 @@ func init() {
 	sitesStatsClientsSdk = *client.SitesStatsClientsSDK()
 	sitesStatsDevices = *client.SitesStatsDevices()
 	sitesStatsMxEdges = *client.SitesStatsMxEdges()
+	sitesStatsOspf = *client.SitesStatsOspf()
 	sitesStatsPorts = *client.SitesStatsPorts()
 	sitesStatsWxRules = *client.SitesStatsWxRules()
 	sitesStatsZones = *client.SitesStatsZones()

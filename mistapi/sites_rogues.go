@@ -228,7 +228,7 @@ func (s *SitesRogues) CountSiteRogueEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteRogueEvents takes context, siteId, mType, ssid, bssid, apMac, channel, seenOnLan, limit, start, end, duration, sort as parameters and
+// SearchSiteRogueEvents takes context, siteId, mType, ssid, bssid, apMac, channel, seenOnLan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsRogueSearch data and
 // an error if there was an issue with the request or response.
 // Search Rogue Events
@@ -245,7 +245,8 @@ func (s *SitesRogues) SearchSiteRogueEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsRogueSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rogues/events/search")
@@ -299,6 +300,9 @@ func (s *SitesRogues) SearchSiteRogueEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseEventsRogueSearch

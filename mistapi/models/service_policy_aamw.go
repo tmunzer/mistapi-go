@@ -9,7 +9,7 @@ import (
 )
 
 // ServicePolicyAamw represents a ServicePolicyAamw struct.
-// For SRX Only
+// SRX only
 type ServicePolicyAamw struct {
 	// org-level Advanced Advance Anti Malware Profile (SkyAtp) Profile can be used, this takes precedence over 'profile'
 	AamwprofileId *uuid.UUID `json:"aamwprofile_id,omitempty"`

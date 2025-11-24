@@ -138,7 +138,6 @@ SearchSiteWanUsage(
     tenant *string,
     pathType *string,
     limit *int,
-    page *int,
     start *string,
     end *string,
     duration *string,
@@ -160,7 +159,6 @@ SearchSiteWanUsage(
 | `tenant` | `*string` | Query, Optional | Tenant network in which the packet is sent |
 | `pathType` | `*string` | Query, Optional | path_type of the port |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -191,13 +189,11 @@ pathType := "primary"
 
 limit := 100
 
-page := 1
-
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, &page, nil, nil, &duration, &sort)
+apiResponse, err := sitesWANUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, nil, nil, &duration, &sort)
 if err != nil {
     log.Fatalln(err)
 } else {

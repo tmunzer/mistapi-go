@@ -193,7 +193,7 @@ func (m *MSPs) SearchMspOrgGroup(
 	ctx context.Context,
 	mspId uuid.UUID,
 	mType models.MspSearchTypeEnum,
-	q *string,
+	q string,
 	limit *int,
 	start *string,
 	end *string,
@@ -221,9 +221,7 @@ func (m *MSPs) SearchMspOrgGroup(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 	req.QueryParam("type", mType)
-	if q != nil {
-		req.QueryParam("q", *q)
-	}
+	req.QueryParam("q", q)
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}

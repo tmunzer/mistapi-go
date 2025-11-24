@@ -10,13 +10,13 @@ import (
 
 // OrgServicePolicy represents a OrgServicePolicy struct.
 type OrgServicePolicy struct {
-	// For SRX Only
+	// SRX only
 	Aamw *ServicePolicyAamw `json:"aamw,omitempty"`
 	// enum: `allow`, `deny`
 	Action *AllowDenyEnum `json:"action,omitempty"`
 	// For SRX-only
 	Antivirus *ServicePolicyAntivirus `json:"antivirus,omitempty"`
-	// For SRX Only
+	// SRX only
 	Appqoe *ServicePolicyAppqoe `json:"appqoe,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64               `json:"created_time,omitempty"`
@@ -32,7 +32,7 @@ type OrgServicePolicy struct {
 	OrgId        *uuid.UUID `json:"org_id,omitempty"`
 	// By default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
 	PathPreference *string `json:"path_preference,omitempty"`
-	// For SRX Only
+	// SRX only
 	Secintel *ServicePolicySecintel `json:"secintel,omitempty"`
 	Services []string               `json:"services,omitempty"`
 	// For SRX-only

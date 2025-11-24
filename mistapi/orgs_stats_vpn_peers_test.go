@@ -67,7 +67,8 @@ func TestOrgsStatsVPNPeersTestSearchOrgPeerPathStats(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -92,7 +93,8 @@ func TestOrgsStatsVPNPeersTestSearchOrgPeerPathStats1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -1143,6 +1143,7 @@ body := models.WlanPortalTemplate{
         "sponsorStatusDenied": interface{}("string"),
         "sponsorStatusPending": interface{}("string"),
         "sponsorSubmit": interface{}("string"),
+        "sponsorsFieldLabel": interface{}("string"),
         "tos": interface{}("true"),
         "tosAcceptLabel": interface{}("string"),
         "tosError": interface{}("string"),

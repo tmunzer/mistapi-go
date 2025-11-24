@@ -10,12 +10,16 @@ import (
 
 // JsInventoryItem represents a JsInventoryItem struct.
 type JsInventoryItem struct {
+	// Indicates if the device is claimed by any org
+	Claimed *bool `json:"claimed,omitempty"`
 	// Name of the device
 	DeviceName *string `json:"device_name,omitempty"`
 	// End of life time
 	EolTime *int `json:"eol_time,omitempty"`
 	// End of support time
 	EosTime *int `json:"eos_time,omitempty"`
+	// Indicates if the device is covered under active support contract
+	HasSupport *bool `json:"has_support,omitempty"`
 	// Indicates whether it is Master
 	Master *bool `json:"master,omitempty"`
 	// Model of the install base inventory
@@ -62,8 +66,8 @@ type JsInventoryItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JsInventoryItem) String() string {
 	return fmt.Sprintf(
-		"JsInventoryItem[DeviceName=%v, EolTime=%v, EosTime=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, Sku=%v, Status=%v, SuggestedVersion=%v, Type=%v, Version=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
-		j.DeviceName, j.EolTime, j.EosTime, j.Master, j.Model, j.OrgId, j.Serial, j.Sku, j.Status, j.SuggestedVersion, j.Type, j.Version, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
+		"JsInventoryItem[Claimed=%v, DeviceName=%v, EolTime=%v, EosTime=%v, HasSupport=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, Sku=%v, Status=%v, SuggestedVersion=%v, Type=%v, Version=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
+		j.Claimed, j.DeviceName, j.EolTime, j.EosTime, j.HasSupport, j.Master, j.Model, j.OrgId, j.Serial, j.Sku, j.Status, j.SuggestedVersion, j.Type, j.Version, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JsInventoryItem.
@@ -72,7 +76,7 @@ func (j JsInventoryItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"device_name", "eol_time", "eos_time", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type"); err != nil {
+		"claimed", "device_name", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -82,6 +86,9 @@ func (j JsInventoryItem) MarshalJSON() (
 func (j JsInventoryItem) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, j.AdditionalProperties)
+	if j.Claimed != nil {
+		structMap["claimed"] = j.Claimed
+	}
 	if j.DeviceName != nil {
 		structMap["device_name"] = j.DeviceName
 	}
@@ -90,6 +97,9 @@ func (j JsInventoryItem) toMap() map[string]any {
 	}
 	if j.EosTime != nil {
 		structMap["eos_time"] = j.EosTime
+	}
+	if j.HasSupport != nil {
+		structMap["has_support"] = j.HasSupport
 	}
 	if j.Master != nil {
 		structMap["master"] = j.Master
@@ -144,15 +154,17 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "device_name", "eol_time", "eos_time", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "claimed", "device_name", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type")
 	if err != nil {
 		return err
 	}
 	j.AdditionalProperties = additionalProperties
 
+	j.Claimed = temp.Claimed
 	j.DeviceName = temp.DeviceName
 	j.EolTime = temp.EolTime
 	j.EosTime = temp.EosTime
+	j.HasSupport = temp.HasSupport
 	j.Master = temp.Master
 	j.Model = temp.Model
 	j.OrgId = temp.OrgId
@@ -172,9 +184,11 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 
 // tempJsInventoryItem is a temporary struct used for validating the fields of JsInventoryItem.
 type tempJsInventoryItem struct {
+	Claimed          *bool                `json:"claimed,omitempty"`
 	DeviceName       *string              `json:"device_name,omitempty"`
 	EolTime          *int                 `json:"eol_time,omitempty"`
 	EosTime          *int                 `json:"eos_time,omitempty"`
+	HasSupport       *bool                `json:"has_support,omitempty"`
 	Master           *bool                `json:"master,omitempty"`
 	Model            *string              `json:"model,omitempty"`
 	OrgId            *uuid.UUID           `json:"org_id,omitempty"`

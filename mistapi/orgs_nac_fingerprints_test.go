@@ -77,7 +77,8 @@ func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints(t *testing.T) {
 	duration := "1d"
 	interval := "10m"
 	sort := "wxid"
-	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
+
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -109,7 +110,8 @@ func TestOrgsNACFingerprintsTestSearchOrgClientFingerprints1(t *testing.T) {
 	duration := "1d"
 	interval := "10m"
 	sort := "wxid"
-	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort)
+
+	apiResponse, err := orgsNacFingerprints.SearchOrgClientFingerprints(ctx, siteId, &family, &clientType, &model, &mfg, &os, &osType, &mac, &limit, nil, nil, &duration, &interval, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

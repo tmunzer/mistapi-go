@@ -13,7 +13,7 @@ import (
 type SwitchPortUsage struct {
 	// Only if `mode`==`trunk`. Whether to trunk all network/vlans
 	AllNetworks *bool `json:"all_networks,omitempty"`
-	// Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port.
+	// Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; true: ports become trusted ports allowing DHCP server traffic, false: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted).
 	AllowDhcpd *bool `json:"allow_dhcpd,omitempty"`
 	// Only if `mode`!=`dynamic`
 	AllowMultipleSupplicants *bool `json:"allow_multiple_supplicants,omitempty"`
@@ -21,6 +21,8 @@ type SwitchPortUsage struct {
 	BypassAuthWhenServerDown *bool `json:"bypass_auth_when_server_down,omitempty"`
 	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x`. Bypass auth for all (including unknown clients) if set to true when RADIUS server is down
 	BypassAuthWhenServerDownForUnknownClient *bool `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
+	// Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Bypass auth for VOIP if set to true when RADIUS server is down
+	BypassAuthWhenServerDownForVoip *bool `json:"bypass_auth_when_server_down_for_voip,omitempty"`
 	// Only if `mode`!=`dynamic`. To be used together with `isolation` under networks. Signaling that this port connects to the networks isolated but wired clients belong to the same community can talk to each other
 	CommunityVlanId *int `json:"community_vlan_id,omitempty"`
 	// Only if `mode`!=`dynamic`
@@ -61,6 +63,8 @@ type SwitchPortUsage struct {
 	PersistMac *bool `json:"persist_mac,omitempty"`
 	// Only if `mode`!=`dynamic`. Whether PoE capabilities are disabled for a port
 	PoeDisabled *bool `json:"poe_disabled,omitempty"`
+	// PoE priority. enum: `low`, `high`
+	PoePriority *PoePriorityEnum `json:"poe_priority,omitempty"`
 	// Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x`
 	PortAuth Optional[SwitchPortUsageDot1xEnum] `json:"port_auth"`
 	// Only if `mode`!=`dynamic`. Native network/vlan for untagged traffic
@@ -102,8 +106,8 @@ type SwitchPortUsage struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchPortUsage) String() string {
 	return fmt.Sprintf(
-		"SwitchPortUsage[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnknownClient=%v, CommunityVlanId=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterIsolationNetworkLink=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, PersistMac=%v, PoeDisabled=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ResetDefaultWhen=%v, Rules=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpDisable=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, StpRequired=%v, UiEvpntopoId=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
-		s.AllNetworks, s.AllowDhcpd, s.AllowMultipleSupplicants, s.BypassAuthWhenServerDown, s.BypassAuthWhenServerDownForUnknownClient, s.CommunityVlanId, s.Description, s.DisableAutoneg, s.Disabled, s.Duplex, s.DynamicVlanNetworks, s.EnableMacAuth, s.EnableQos, s.GuestNetwork, s.InterIsolationNetworkLink, s.InterSwitchLink, s.MacAuthOnly, s.MacAuthPreferred, s.MacAuthProtocol, s.MacLimit, s.Mode, s.Mtu, s.Networks, s.PersistMac, s.PoeDisabled, s.PortAuth, s.PortNetwork, s.ReauthInterval, s.ResetDefaultWhen, s.Rules, s.ServerFailNetwork, s.ServerRejectNetwork, s.Speed, s.StormControl, s.StpDisable, s.StpEdge, s.StpNoRootPort, s.StpP2p, s.StpRequired, s.UiEvpntopoId, s.UseVstp, s.VoipNetwork, s.AdditionalProperties)
+		"SwitchPortUsage[AllNetworks=%v, AllowDhcpd=%v, AllowMultipleSupplicants=%v, BypassAuthWhenServerDown=%v, BypassAuthWhenServerDownForUnknownClient=%v, BypassAuthWhenServerDownForVoip=%v, CommunityVlanId=%v, Description=%v, DisableAutoneg=%v, Disabled=%v, Duplex=%v, DynamicVlanNetworks=%v, EnableMacAuth=%v, EnableQos=%v, GuestNetwork=%v, InterIsolationNetworkLink=%v, InterSwitchLink=%v, MacAuthOnly=%v, MacAuthPreferred=%v, MacAuthProtocol=%v, MacLimit=%v, Mode=%v, Mtu=%v, Networks=%v, PersistMac=%v, PoeDisabled=%v, PoePriority=%v, PortAuth=%v, PortNetwork=%v, ReauthInterval=%v, ResetDefaultWhen=%v, Rules=%v, ServerFailNetwork=%v, ServerRejectNetwork=%v, Speed=%v, StormControl=%v, StpDisable=%v, StpEdge=%v, StpNoRootPort=%v, StpP2p=%v, StpRequired=%v, UiEvpntopoId=%v, UseVstp=%v, VoipNetwork=%v, AdditionalProperties=%v]",
+		s.AllNetworks, s.AllowDhcpd, s.AllowMultipleSupplicants, s.BypassAuthWhenServerDown, s.BypassAuthWhenServerDownForUnknownClient, s.BypassAuthWhenServerDownForVoip, s.CommunityVlanId, s.Description, s.DisableAutoneg, s.Disabled, s.Duplex, s.DynamicVlanNetworks, s.EnableMacAuth, s.EnableQos, s.GuestNetwork, s.InterIsolationNetworkLink, s.InterSwitchLink, s.MacAuthOnly, s.MacAuthPreferred, s.MacAuthProtocol, s.MacLimit, s.Mode, s.Mtu, s.Networks, s.PersistMac, s.PoeDisabled, s.PoePriority, s.PortAuth, s.PortNetwork, s.ReauthInterval, s.ResetDefaultWhen, s.Rules, s.ServerFailNetwork, s.ServerRejectNetwork, s.Speed, s.StormControl, s.StpDisable, s.StpEdge, s.StpNoRootPort, s.StpP2p, s.StpRequired, s.UiEvpntopoId, s.UseVstp, s.VoipNetwork, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortUsage.
@@ -112,7 +116,7 @@ func (s SwitchPortUsage) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network"); err != nil {
+		"all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "bypass_auth_when_server_down_for_voip", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "poe_priority", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -136,6 +140,9 @@ func (s SwitchPortUsage) toMap() map[string]any {
 	}
 	if s.BypassAuthWhenServerDownForUnknownClient != nil {
 		structMap["bypass_auth_when_server_down_for_unknown_client"] = s.BypassAuthWhenServerDownForUnknownClient
+	}
+	if s.BypassAuthWhenServerDownForVoip != nil {
+		structMap["bypass_auth_when_server_down_for_voip"] = s.BypassAuthWhenServerDownForVoip
 	}
 	if s.CommunityVlanId != nil {
 		structMap["community_vlan_id"] = s.CommunityVlanId
@@ -200,6 +207,9 @@ func (s SwitchPortUsage) toMap() map[string]any {
 	}
 	if s.PoeDisabled != nil {
 		structMap["poe_disabled"] = s.PoeDisabled
+	}
+	if s.PoePriority != nil {
+		structMap["poe_priority"] = s.PoePriority
 	}
 	if s.PortAuth.IsValueSet() {
 		if s.PortAuth.Value() != nil {
@@ -279,7 +289,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "all_networks", "allow_dhcpd", "allow_multiple_supplicants", "bypass_auth_when_server_down", "bypass_auth_when_server_down_for_unknown_client", "bypass_auth_when_server_down_for_voip", "community_vlan_id", "description", "disable_autoneg", "disabled", "duplex", "dynamic_vlan_networks", "enable_mac_auth", "enable_qos", "guest_network", "inter_isolation_network_link", "inter_switch_link", "mac_auth_only", "mac_auth_preferred", "mac_auth_protocol", "mac_limit", "mode", "mtu", "networks", "persist_mac", "poe_disabled", "poe_priority", "port_auth", "port_network", "reauth_interval", "reset_default_when", "rules", "server_fail_network", "server_reject_network", "speed", "storm_control", "stp_disable", "stp_edge", "stp_no_root_port", "stp_p2p", "stp_required", "ui_evpntopo_id", "use_vstp", "voip_network")
 	if err != nil {
 		return err
 	}
@@ -290,6 +300,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
 	s.AllowMultipleSupplicants = temp.AllowMultipleSupplicants
 	s.BypassAuthWhenServerDown = temp.BypassAuthWhenServerDown
 	s.BypassAuthWhenServerDownForUnknownClient = temp.BypassAuthWhenServerDownForUnknownClient
+	s.BypassAuthWhenServerDownForVoip = temp.BypassAuthWhenServerDownForVoip
 	s.CommunityVlanId = temp.CommunityVlanId
 	s.Description = temp.Description
 	s.DisableAutoneg = temp.DisableAutoneg
@@ -310,6 +321,7 @@ func (s *SwitchPortUsage) UnmarshalJSON(input []byte) error {
 	s.Networks = temp.Networks
 	s.PersistMac = temp.PersistMac
 	s.PoeDisabled = temp.PoeDisabled
+	s.PoePriority = temp.PoePriority
 	s.PortAuth = temp.PortAuth
 	s.PortNetwork = temp.PortNetwork
 	s.ReauthInterval = temp.ReauthInterval
@@ -337,6 +349,7 @@ type tempSwitchPortUsage struct {
 	AllowMultipleSupplicants                 *bool                                       `json:"allow_multiple_supplicants,omitempty"`
 	BypassAuthWhenServerDown                 *bool                                       `json:"bypass_auth_when_server_down,omitempty"`
 	BypassAuthWhenServerDownForUnknownClient *bool                                       `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
+	BypassAuthWhenServerDownForVoip          *bool                                       `json:"bypass_auth_when_server_down_for_voip,omitempty"`
 	CommunityVlanId                          *int                                        `json:"community_vlan_id,omitempty"`
 	Description                              *string                                     `json:"description,omitempty"`
 	DisableAutoneg                           *bool                                       `json:"disable_autoneg,omitempty"`
@@ -357,6 +370,7 @@ type tempSwitchPortUsage struct {
 	Networks                                 []string                                    `json:"networks,omitempty"`
 	PersistMac                               *bool                                       `json:"persist_mac,omitempty"`
 	PoeDisabled                              *bool                                       `json:"poe_disabled,omitempty"`
+	PoePriority                              *PoePriorityEnum                            `json:"poe_priority,omitempty"`
 	PortAuth                                 Optional[SwitchPortUsageDot1xEnum]          `json:"port_auth"`
 	PortNetwork                              *string                                     `json:"port_network,omitempty"`
 	ReauthInterval                           *SwitchPortUsageReauthInterval              `json:"reauth_interval,omitempty"`

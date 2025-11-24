@@ -11,6 +11,8 @@ import (
 type NacPortal struct {
 	// if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`
 	AccessType *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
+	// Optional list of additional CA certificates to be used
+	AdditionalCacerts []string `json:"additional_cacerts,omitempty"`
 	// Background image
 	BgImageUrl *string `json:"bg_image_url,omitempty"`
 	// In days
@@ -60,8 +62,8 @@ type NacPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacPortal) String() string {
 	return fmt.Sprintf(
-		"NacPortal[AccessType=%v, BgImageUrl=%v, CertExpireTime=%v, EapType=%v, EnableTelemetry=%v, ExpiryNotificationTime=%v, Name=%v, NotifyExpiry=%v, Portal=%v, PortalAuthorizeJwtSecret=%v, PortalAuthorizeUrl=%v, PortalSsoUrl=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Tos=%v, Type=%v, UiUrl=%v, AdditionalProperties=%v]",
-		n.AccessType, n.BgImageUrl, n.CertExpireTime, n.EapType, n.EnableTelemetry, n.ExpiryNotificationTime, n.Name, n.NotifyExpiry, n.Portal, n.PortalAuthorizeJwtSecret, n.PortalAuthorizeUrl, n.PortalSsoUrl, n.Ssid, n.Sso, n.TemplateUrl, n.ThumbnailUrl, n.Tos, n.Type, n.UiUrl, n.AdditionalProperties)
+		"NacPortal[AccessType=%v, AdditionalCacerts=%v, BgImageUrl=%v, CertExpireTime=%v, EapType=%v, EnableTelemetry=%v, ExpiryNotificationTime=%v, Name=%v, NotifyExpiry=%v, Portal=%v, PortalAuthorizeJwtSecret=%v, PortalAuthorizeUrl=%v, PortalSsoUrl=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Tos=%v, Type=%v, UiUrl=%v, AdditionalProperties=%v]",
+		n.AccessType, n.AdditionalCacerts, n.BgImageUrl, n.CertExpireTime, n.EapType, n.EnableTelemetry, n.ExpiryNotificationTime, n.Name, n.NotifyExpiry, n.Portal, n.PortalAuthorizeJwtSecret, n.PortalAuthorizeUrl, n.PortalSsoUrl, n.Ssid, n.Sso, n.TemplateUrl, n.ThumbnailUrl, n.Tos, n.Type, n.UiUrl, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortal.
@@ -70,7 +72,7 @@ func (n NacPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "name", "notify_expiry", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url"); err != nil {
+		"access_type", "additional_cacerts", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "name", "notify_expiry", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -82,6 +84,9 @@ func (n NacPortal) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, n.AdditionalProperties)
 	if n.AccessType != nil {
 		structMap["access_type"] = n.AccessType
+	}
+	if n.AdditionalCacerts != nil {
+		structMap["additional_cacerts"] = n.AdditionalCacerts
 	}
 	if n.BgImageUrl != nil {
 		structMap["bg_image_url"] = n.BgImageUrl
@@ -148,13 +153,14 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_type", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "name", "notify_expiry", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "access_type", "additional_cacerts", "bg_image_url", "cert_expire_time", "eap_type", "enable_telemetry", "expiry_notification_time", "name", "notify_expiry", "portal", "portal_authorize_jwt_secret", "portal_authorize_url", "portal_sso_url", "ssid", "sso", "template_url", "thumbnail_url", "tos", "type", "ui_url")
 	if err != nil {
 		return err
 	}
 	n.AdditionalProperties = additionalProperties
 
 	n.AccessType = temp.AccessType
+	n.AdditionalCacerts = temp.AdditionalCacerts
 	n.BgImageUrl = temp.BgImageUrl
 	n.CertExpireTime = temp.CertExpireTime
 	n.EapType = temp.EapType
@@ -179,6 +185,7 @@ func (n *NacPortal) UnmarshalJSON(input []byte) error {
 // tempNacPortal is a temporary struct used for validating the fields of NacPortal.
 type tempNacPortal struct {
 	AccessType               *NacPortalAccessTypeEnum `json:"access_type,omitempty"`
+	AdditionalCacerts        []string                 `json:"additional_cacerts,omitempty"`
 	BgImageUrl               *string                  `json:"bg_image_url,omitempty"`
 	CertExpireTime           *int                     `json:"cert_expire_time,omitempty"`
 	EapType                  *NacPortalEapTypeEnum    `json:"eap_type,omitempty"`

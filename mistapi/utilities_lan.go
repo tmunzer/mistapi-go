@@ -64,13 +64,14 @@ func (u *UtilitiesLAN) ReauthOrgDot1xWiredClient(
 	return models.NewApiResponse(result, resp), err
 }
 
-// ClearSiteMultipleDevicePendingVersion takes context, siteId as parameters and
+// ClearSiteMultipleDevicePendingVersion takes context, siteId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
 func (u *UtilitiesLAN) ClearSiteMultipleDevicePendingVersion(
 	ctx context.Context,
-	siteId uuid.UUID) (
+	siteId uuid.UUID,
+	body *models.DevicesIds) (
 	*http.Response,
 	error) {
 	req := u.prepareRequest(
@@ -96,6 +97,10 @@ func (u *UtilitiesLAN) ClearSiteMultipleDevicePendingVersion(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -104,13 +109,14 @@ func (u *UtilitiesLAN) ClearSiteMultipleDevicePendingVersion(
 	return httpCtx.Response, err
 }
 
-// RestoreSiteMultipleDeviceBackupVersion takes context, siteId as parameters and
+// RestoreSiteMultipleDeviceBackupVersion takes context, siteId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+// Restore device backup fw version (Available on Junos OS EX4000-, EX4100-, EX4400- devices)
 func (u *UtilitiesLAN) RestoreSiteMultipleDeviceBackupVersion(
 	ctx context.Context,
-	siteId uuid.UUID) (
+	siteId uuid.UUID,
+	body *models.DevicesIds) (
 	*http.Response,
 	error) {
 	req := u.prepareRequest(
@@ -136,6 +142,10 @@ func (u *UtilitiesLAN) RestoreSiteMultipleDeviceBackupVersion(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -503,7 +513,7 @@ func (u *UtilitiesLAN) PollSiteSwitchStats(
 // RestoreSiteDeviceBackupVersion takes context, siteId, deviceId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+// Restore device backup fw version (Available on Junos OS EX4000-, EX4100-, EX4400- devices)
 func (u *UtilitiesLAN) RestoreSiteDeviceBackupVersion(
 	ctx context.Context,
 	siteId uuid.UUID,

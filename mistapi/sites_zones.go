@@ -313,7 +313,7 @@ func (s *SitesZones) CountSiteZoneSessions(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteZoneSessions takes context, siteId, zoneType, userType, user, scopeId, scope, limit, page, start, end, duration, sort as parameters and
+// SearchSiteZoneSessions takes context, siteId, zoneType, userType, user, scopeId, scope, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseZoneSearch data and
 // an error if there was an issue with the request or response.
 // Search Zone Sessions
@@ -326,11 +326,11 @@ func (s *SitesZones) SearchSiteZoneSessions(
 	scopeId *string,
 	scope *models.VisitsScopeEnum,
 	limit *int,
-	page *int,
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseZoneSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/%v/visits/search")
@@ -367,9 +367,6 @@ func (s *SitesZones) SearchSiteZoneSessions(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -381,6 +378,9 @@ func (s *SitesZones) SearchSiteZoneSessions(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseZoneSearch

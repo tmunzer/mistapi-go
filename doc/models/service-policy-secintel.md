@@ -1,7 +1,7 @@
 
 # Service Policy Secintel
 
-For SRX Only
+SRX only
 
 *This model accepts additional fields of type interface{}.*
 

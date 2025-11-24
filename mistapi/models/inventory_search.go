@@ -9,9 +9,12 @@ import (
 
 // InventorySearch represents a InventorySearch struct.
 type InventorySearch struct {
+	End                  *int                    `json:"end,omitempty"`
 	Limit                *int                    `json:"limit,omitempty"`
-	Page                 *int                    `json:"page,omitempty"`
+	Next                 *string                 `json:"next,omitempty"`
 	Results              []InventorySearchResult `json:"results,omitempty"`
+	Start                *int                    `json:"start,omitempty"`
+	Total                *int                    `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }
 
@@ -19,8 +22,8 @@ type InventorySearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i InventorySearch) String() string {
 	return fmt.Sprintf(
-		"InventorySearch[Limit=%v, Page=%v, Results=%v, AdditionalProperties=%v]",
-		i.Limit, i.Page, i.Results, i.AdditionalProperties)
+		"InventorySearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		i.End, i.Limit, i.Next, i.Results, i.Start, i.Total, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventorySearch.
@@ -29,7 +32,7 @@ func (i InventorySearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"limit", "page", "results"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -39,14 +42,23 @@ func (i InventorySearch) MarshalJSON() (
 func (i InventorySearch) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
+	if i.End != nil {
+		structMap["end"] = i.End
+	}
 	if i.Limit != nil {
 		structMap["limit"] = i.Limit
 	}
-	if i.Page != nil {
-		structMap["page"] = i.Page
+	if i.Next != nil {
+		structMap["next"] = i.Next
 	}
 	if i.Results != nil {
 		structMap["results"] = i.Results
+	}
+	if i.Start != nil {
+		structMap["start"] = i.Start
+	}
+	if i.Total != nil {
+		structMap["total"] = i.Total
 	}
 	return structMap
 }
@@ -59,21 +71,27 @@ func (i *InventorySearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "limit", "page", "results")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
 	i.AdditionalProperties = additionalProperties
 
+	i.End = temp.End
 	i.Limit = temp.Limit
-	i.Page = temp.Page
+	i.Next = temp.Next
 	i.Results = temp.Results
+	i.Start = temp.Start
+	i.Total = temp.Total
 	return nil
 }
 
 // tempInventorySearch is a temporary struct used for validating the fields of InventorySearch.
 type tempInventorySearch struct {
+	End     *int                    `json:"end,omitempty"`
 	Limit   *int                    `json:"limit,omitempty"`
-	Page    *int                    `json:"page,omitempty"`
+	Next    *string                 `json:"next,omitempty"`
 	Results []InventorySearchResult `json:"results,omitempty"`
+	Start   *int                    `json:"start,omitempty"`
+	Total   *int                    `json:"total,omitempty"`
 }

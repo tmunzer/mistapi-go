@@ -1061,24 +1061,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ctx := context.Background()
 
 body := models.WebhookNacEvents{
-    Events:               []models.WebhookNacEventsEvent{
-        models.WebhookNacEventsEvent{
-            AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
-            Bssid:                models.ToPointer("5c5b355fafcc"),
-            IdpRole:              []string{
-                "itsuperusers",
-                "vip",
-            },
-            RandomMac:            models.ToPointer(true),
-            RespAttrs:            []string{
-                "Tunnel-Type=VLAN",
-                "Tunnel-Medium-Type=IEEE-802",
-                "Tunnel-Private-Group-Id=750",
-                "User-Name=anonymous",
-            },
-        },
-    },
-    Topic:                models.ToPointer("string"),
+    Topic:                models.ToPointer("nac_events"),
 }
 
 resp, err := samplesWebhooks.NacEvents(ctx, &body)

@@ -8,7 +8,7 @@ import (
 )
 
 // ServicePolicySecintel represents a ServicePolicySecintel struct.
-// For SRX Only
+// SRX only
 type ServicePolicySecintel struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`

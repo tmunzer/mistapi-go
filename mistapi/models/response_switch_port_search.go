@@ -13,6 +13,7 @@ import (
 type ResponseSwitchPortSearch struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
+	Next                 *string                `json:"next,omitempty"`
 	Results              []StatsSwitchPort      `json:"results"`
 	Start                int                    `json:"start"`
 	Total                int                    `json:"total"`
@@ -23,8 +24,8 @@ type ResponseSwitchPortSearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSwitchPortSearch) String() string {
 	return fmt.Sprintf(
-		"ResponseSwitchPortSearch[End=%v, Limit=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
-		r.End, r.Limit, r.Results, r.Start, r.Total, r.AdditionalProperties)
+		"ResponseSwitchPortSearch[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		r.End, r.Limit, r.Next, r.Results, r.Start, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSwitchPortSearch.
@@ -33,7 +34,7 @@ func (r ResponseSwitchPortSearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"end", "limit", "results", "start", "total"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -45,6 +46,9 @@ func (r ResponseSwitchPortSearch) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	structMap["end"] = r.End
 	structMap["limit"] = r.Limit
+	if r.Next != nil {
+		structMap["next"] = r.Next
+	}
 	structMap["results"] = r.Results
 	structMap["start"] = r.Start
 	structMap["total"] = r.Total
@@ -63,7 +67,7 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "results", "start", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
@@ -71,6 +75,7 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
 
 	r.End = *temp.End
 	r.Limit = *temp.Limit
+	r.Next = temp.Next
 	r.Results = *temp.Results
 	r.Start = *temp.Start
 	r.Total = *temp.Total
@@ -81,6 +86,7 @@ func (r *ResponseSwitchPortSearch) UnmarshalJSON(input []byte) error {
 type tempResponseSwitchPortSearch struct {
 	End     *int               `json:"end"`
 	Limit   *int               `json:"limit"`
+	Next    *string            `json:"next,omitempty"`
 	Results *[]StatsSwitchPort `json:"results"`
 	Start   *int               `json:"start"`
 	Total   *int               `json:"total"`

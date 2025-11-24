@@ -148,7 +148,7 @@ func (m *MSPsOrgs) ManageMspOrgs(
 	return httpCtx.Response, err
 }
 
-// SearchMspOrgs takes context, mspId, name, orgId, subInsufficient, trialEnabled, usageTypes, limit, sort as parameters and
+// SearchMspOrgs takes context, mspId, name, orgId, subInsufficient, trialEnabled, usageTypes, limit, sort, start, end, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSearch data and
 // an error if there was an issue with the request or response.
 // Search Org in MSP
@@ -161,7 +161,10 @@ func (m *MSPsOrgs) SearchMspOrgs(
 	trialEnabled *bool,
 	usageTypes []string,
 	limit *int,
-	sort *string) (
+	sort *string,
+	start *string,
+	end *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseOrgSearch],
 	error) {
 	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/orgs/search")
@@ -203,6 +206,15 @@ func (m *MSPsOrgs) SearchMspOrgs(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseOrgSearch

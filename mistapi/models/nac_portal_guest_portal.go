@@ -25,7 +25,8 @@ type NacPortalGuestPortal struct {
 	Expire *int `json:"expire,omitempty"`
 	// If `auth`==`external`, the URL to redirect the user to for authentication
 	ExternalPortalUrl *string `json:"external_portal_url,omitempty"`
-	ForceReconnect    *bool   `json:"force_reconnect,omitempty"`
+	// Disconnect client (workaround for reauth issues)
+	ForceReconnect *bool `json:"force_reconnect,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, whether to forward the user to the guest portal after authentication
 	Forward *bool `json:"forward,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, URL to forward the user to after authentication

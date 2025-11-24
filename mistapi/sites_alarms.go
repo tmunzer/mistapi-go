@@ -186,7 +186,7 @@ func (s *SitesAlarms) CountSiteAlarms(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteAlarms takes context, siteId, mType, ackAdminName, acked, severity, group, limit, start, end, duration, sort as parameters and
+// SearchSiteAlarms takes context, siteId, mType, ackAdminName, acked, severity, group, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Site Alarms
@@ -202,7 +202,8 @@ func (s *SitesAlarms) SearchSiteAlarms(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.AlarmSearchResult],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/alarms/search")
@@ -253,6 +254,9 @@ func (s *SitesAlarms) SearchSiteAlarms(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.AlarmSearchResult

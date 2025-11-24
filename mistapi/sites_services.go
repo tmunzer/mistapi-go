@@ -165,7 +165,7 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, limit, start, end, duration, sort as parameters and
+// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsPathSearch data and
 // an error if there was an issue with the request or response.
 // Search Service Path Events
@@ -188,7 +188,8 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsPathSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/services/events/search")
@@ -260,6 +261,9 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseEventsPathSearch

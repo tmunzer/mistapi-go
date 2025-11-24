@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`*models.EventOtherdevice`](../../doc/models/event-otherdevice.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -24,6 +25,7 @@
 {
   "end": 206,
   "limit": 220,
+  "next": "next4",
   "results": {
     "device_mac": "device_mac0",
     "mac": "mac0",
@@ -36,7 +38,6 @@
     }
   },
   "start": 164,
-  "total": 58,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

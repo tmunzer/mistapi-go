@@ -209,7 +209,7 @@ func (o *OrgsClientsNAC) CountOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClientEvents takes context, orgId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, siteId, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, limit, start, end, duration, sort as parameters and
+// SearchOrgNacClientEvents takes context, orgId, mType, nacruleId, nacruleMatched, dryrunNacruleId, dryrunNacruleMatched, authType, vlan, nasVendor, bssid, idpId, idpRole, idpUsername, respAttrs, ssid, username, siteId, ap, randomMac, mac, timestamp, usermacLabel, text, nasIp, ingressVlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsNacClientSearch data and
 // an error if there was an issue with the request or response.
 // Search NAC Client Events
@@ -244,7 +244,8 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseEventsNacClientSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nac_clients/events/search")
@@ -353,6 +354,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	if sort != nil {
 		req.QueryParam("sort", *sort)
 	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
 
 	var result models.ResponseEventsNacClientSearch
 	decoder, resp, err := req.CallAsJson()
@@ -364,7 +368,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, siteId, limit, page, start, end, duration, sort as parameters and
+// SearchOrgNacClients takes context, orgId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, siteId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -402,11 +406,11 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	vlan *string,
 	siteId *string,
 	limit *int,
-	page *int,
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseClientNacSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/nac_clients/search")
@@ -521,9 +525,6 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}
@@ -535,6 +536,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseClientNacSearch

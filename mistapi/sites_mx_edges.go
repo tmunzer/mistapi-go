@@ -146,7 +146,7 @@ func (s *SitesMxEdges) CountSiteMxEdgeEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteMistEdgeEvents takes context, siteId, mxedgeId, mxclusterId, mType, service, component, limit, start, end, duration, sort as parameters and
+// SearchSiteMistEdgeEvents takes context, siteId, mxedgeId, mxclusterId, mType, service, component, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseMxedgeEventsSearch data and
 // an error if there was an issue with the request or response.
 // Search Site Mist Edge Events
@@ -162,7 +162,8 @@ func (s *SitesMxEdges) SearchSiteMistEdgeEvents(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseMxedgeEventsSearch],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/mxedges/events/search")
@@ -213,6 +214,9 @@ func (s *SitesMxEdges) SearchSiteMistEdgeEvents(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseMxedgeEventsSearch

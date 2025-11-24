@@ -16,8 +16,10 @@ type UtilsPing struct {
 	EgressInterface *string `json:"egress_interface,omitempty"`
 	Host            string  `json:"host"`
 	// only for HA. enum: `node0`, `node1`
-	Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
-	Size                 *int                   `json:"size,omitempty"`
+	Node *HaClusterNodeEnum `json:"node,omitempty"`
+	Size *int               `json:"size,omitempty"`
+	// VRF/Routing instance through which the packet needs to be sent
+	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -25,8 +27,8 @@ type UtilsPing struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UtilsPing) String() string {
 	return fmt.Sprintf(
-		"UtilsPing[Count=%v, EgressInterface=%v, Host=%v, Node=%v, Size=%v, AdditionalProperties=%v]",
-		u.Count, u.EgressInterface, u.Host, u.Node, u.Size, u.AdditionalProperties)
+		"UtilsPing[Count=%v, EgressInterface=%v, Host=%v, Node=%v, Size=%v, Vrf=%v, AdditionalProperties=%v]",
+		u.Count, u.EgressInterface, u.Host, u.Node, u.Size, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsPing.
@@ -35,7 +37,7 @@ func (u UtilsPing) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"count", "egress_interface", "host", "node", "size"); err != nil {
+		"count", "egress_interface", "host", "node", "size", "vrf"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -58,6 +60,9 @@ func (u UtilsPing) toMap() map[string]any {
 	if u.Size != nil {
 		structMap["size"] = u.Size
 	}
+	if u.Vrf != nil {
+		structMap["vrf"] = u.Vrf
+	}
 	return structMap
 }
 
@@ -73,7 +78,7 @@ func (u *UtilsPing) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "count", "egress_interface", "host", "node", "size")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "count", "egress_interface", "host", "node", "size", "vrf")
 	if err != nil {
 		return err
 	}
@@ -84,6 +89,7 @@ func (u *UtilsPing) UnmarshalJSON(input []byte) error {
 	u.Host = *temp.Host
 	u.Node = temp.Node
 	u.Size = temp.Size
+	u.Vrf = temp.Vrf
 	return nil
 }
 
@@ -94,6 +100,7 @@ type tempUtilsPing struct {
 	Host            *string            `json:"host"`
 	Node            *HaClusterNodeEnum `json:"node,omitempty"`
 	Size            *int               `json:"size,omitempty"`
+	Vrf             *string            `json:"vrf,omitempty"`
 }
 
 func (u *tempUtilsPing) validate() error {

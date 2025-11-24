@@ -339,7 +339,7 @@ func (s *SitesWebhooks) CountSiteWebhooksDeliveries(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWebhooksDeliveries takes context, siteId, webhookId, mError, statusCode, status, topic, limit, start, end, duration, sort as parameters and
+// SearchSiteWebhooksDeliveries takes context, siteId, webhookId, mError, statusCode, status, topic, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWebhookDelivery data and
 // an error if there was an issue with the request or response.
 // Search Site Webhooks deliveries
@@ -361,7 +361,8 @@ func (s *SitesWebhooks) SearchSiteWebhooksDeliveries(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.SearchWebhookDelivery],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/webhooks/%v/events/search")
@@ -409,6 +410,9 @@ func (s *SitesWebhooks) SearchSiteWebhooksDeliveries(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.SearchWebhookDelivery

@@ -325,7 +325,7 @@ func (o *OrgsWebhooks) CountOrgWebhooksDeliveries(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWebhooksDeliveries takes context, orgId, webhookId, mError, statusCode, status, topic, limit, start, end, duration, sort as parameters and
+// SearchOrgWebhooksDeliveries takes context, orgId, webhookId, mError, statusCode, status, topic, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWebhookDelivery data and
 // an error if there was an issue with the request or response.
 // Search Org Webhooks deliveries
@@ -347,7 +347,8 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.SearchWebhookDelivery],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/webhooks/%v/events/search")
@@ -395,6 +396,9 @@ func (o *OrgsWebhooks) SearchOrgWebhooksDeliveries(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.SearchWebhookDelivery

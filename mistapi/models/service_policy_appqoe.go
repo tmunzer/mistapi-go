@@ -8,7 +8,7 @@ import (
 )
 
 // ServicePolicyAppqoe represents a ServicePolicyAppqoe struct.
-// For SRX Only
+// SRX only
 type ServicePolicyAppqoe struct {
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

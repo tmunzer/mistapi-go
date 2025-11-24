@@ -16,6 +16,7 @@
 | `Host` | `string` | Required | - |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Size` | `*int` | Optional | **Default**: `56`<br><br>**Constraints**: `>= 56`, `<= 65535` |
+| `Vrf` | `*string` | Optional | VRF/Routing instance through which the packet needs to be sent |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -27,6 +28,7 @@
   "size": 56,
   "egress_interface": "egress_interface2",
   "node": "node0",
+  "vrf": "vrf2",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

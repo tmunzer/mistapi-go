@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.StatsMxedge`](../../doc/models/stats-mxedge.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 10,
   "start": 1694622179,
   "total": 2,
+  "next": "next0",
   "results": [
     {
       "cpu_stat": {

@@ -29,7 +29,7 @@ func TestOrgsSitesTestListOrgSites(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5007-bfeb-53cbbbba6f19","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5008-bfeb-53cbbbba6f1a"],"timezone":"America/Los_Angeles"}]`
+	expected := `[{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5007-bfeb-53cbbbba6f19","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5008-bfeb-53cbbbba6f1a"],"timezone":"America/Los_Angeles"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -51,7 +51,7 @@ func TestOrgsSitesTestListOrgSites1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5007-bfeb-53cbbbba6f19","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5008-bfeb-53cbbbba6f1a"],"timezone":"America/Los_Angeles"}]`
+	expected := `[{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5007-bfeb-53cbbbba6f19","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5008-bfeb-53cbbbba6f1a"],"timezone":"America/Los_Angeles"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -63,7 +63,7 @@ func TestOrgsSitesTestCreateOrgSite(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Site
-	errBody := json.Unmarshal([]byte(`{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","latlng":{"lat":37.295833,"lng":-122.032946},"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-4997-bfeb-53cbbbba6f3b"],"timezone":"America/Los_Angeles"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","latlng":{"lat":37.295833,"lng":-122.032946},"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-4997-bfeb-53cbbbba6f3b"],"timezone":"America/Los_Angeles"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -76,7 +76,7 @@ func TestOrgsSitesTestCreateOrgSite(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5005-bfeb-53cbbbba6f17","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5006-bfeb-53cbbbba6f18"],"timezone":"America/Los_Angeles"}`
+	expected := `{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5005-bfeb-53cbbbba6f17","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5006-bfeb-53cbbbba6f18"],"timezone":"America/Los_Angeles"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -88,7 +88,7 @@ func TestOrgsSitesTestCreateOrgSite1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Site
-	errBody := json.Unmarshal([]byte(`{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","latlng":{"lat":37.295833,"lng":-122.032946},"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-4997-bfeb-53cbbbba6f3b"],"timezone":"America/Los_Angeles"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","latlng":{"lat":37.295833,"lng":-122.032946},"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-4997-bfeb-53cbbbba6f3b"],"timezone":"America/Los_Angeles"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -101,7 +101,7 @@ func TestOrgsSitesTestCreateOrgSite1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","apporttemplate_id":"string","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5005-bfeb-53cbbbba6f17","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5006-bfeb-53cbbbba6f18"],"timezone":"America/Los_Angeles"}`
+	expected := `{"address":"1601 S. Deanza Blvd., Cupertino, CA, 95014","alarmtemplate_id":"684dfc5c-fe77-2290-eb1d-ef3d677fe168","aptemplate_id":"16bdf952-ade2-4491-80b0-85ce506c760b","country_code":"US","created_time":0,"gatewaytemplate_id":"6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f","id":"497f6eca-6276-5005-bfeb-53cbbbba6f17","latlng":{"lat":37.295833,"lng":-122.032946},"modified_time":0,"name":"Mist Office","networktemplate_id":"12ae9bd2-e0ab-107b-72e8-a7a005565ec2","notes":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rftemplate_id":"bb8a9017-1e36-5d6c-6f2b-551abe8a76a2","secpolicy_id":"3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef","sitegroup_ids":["497f6eca-6276-5006-bfeb-53cbbbba6f18"],"timezone":"America/Los_Angeles"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -165,7 +165,8 @@ func TestOrgsSitesTestSearchOrgSites(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -190,7 +191,8 @@ func TestOrgsSitesTestSearchOrgSites1(t *testing.T) {
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

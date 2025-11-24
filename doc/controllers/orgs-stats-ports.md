@@ -210,6 +210,7 @@ SearchOrgSwOrGwPorts(
     neighborPortDesc *string,
     neighborSystemName *string,
     poeDisabled *bool,
+    poePriority *models.PoePriorityEnum,
     poeMode *string,
     poeOn *bool,
     portId *string,
@@ -243,7 +244,8 @@ SearchOrgSwOrGwPorts(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponsePortStatsSearch],
     error)
 ```
@@ -259,6 +261,7 @@ SearchOrgSwOrGwPorts(
 | `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
 | `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |
 | `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
+| `poePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Query, Optional | PoE priority. |
 | `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. "802.3at" |
 | `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
 | `portId` | `*string` | Query, Optional | Interface name |
@@ -293,6 +296,7 @@ SearchOrgSwOrGwPorts(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -313,7 +317,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {

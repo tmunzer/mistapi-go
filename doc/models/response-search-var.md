@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.ResponseSearchVarItem`](../../doc/models/response-search-var-item.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -24,6 +25,7 @@
 {
   "end": 44,
   "limit": 126,
+  "next": "next4",
   "results": [
     {
       "created_time": 73.76,
@@ -38,7 +40,6 @@
     }
   ],
   "start": 2,
-  "total": 220,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

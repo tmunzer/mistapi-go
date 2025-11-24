@@ -13,7 +13,7 @@ import (
 type FingerprintSearchResult struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
-	Page                 *int                   `json:"page,omitempty"`
+	Next                 *string                `json:"next,omitempty"`
 	Results              []Fingerprint          `json:"results"`
 	Start                int                    `json:"start"`
 	Total                int                    `json:"total"`
@@ -24,8 +24,8 @@ type FingerprintSearchResult struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (f FingerprintSearchResult) String() string {
 	return fmt.Sprintf(
-		"FingerprintSearchResult[End=%v, Limit=%v, Page=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
-		f.End, f.Limit, f.Page, f.Results, f.Start, f.Total, f.AdditionalProperties)
+		"FingerprintSearchResult[End=%v, Limit=%v, Next=%v, Results=%v, Start=%v, Total=%v, AdditionalProperties=%v]",
+		f.End, f.Limit, f.Next, f.Results, f.Start, f.Total, f.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for FingerprintSearchResult.
@@ -34,7 +34,7 @@ func (f FingerprintSearchResult) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(f.AdditionalProperties,
-		"end", "limit", "page", "results", "start", "total"); err != nil {
+		"end", "limit", "next", "results", "start", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(f.toMap())
@@ -46,8 +46,8 @@ func (f FingerprintSearchResult) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, f.AdditionalProperties)
 	structMap["end"] = f.End
 	structMap["limit"] = f.Limit
-	if f.Page != nil {
-		structMap["page"] = f.Page
+	if f.Next != nil {
+		structMap["next"] = f.Next
 	}
 	structMap["results"] = f.Results
 	structMap["start"] = f.Start
@@ -67,7 +67,7 @@ func (f *FingerprintSearchResult) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "page", "results", "start", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "results", "start", "total")
 	if err != nil {
 		return err
 	}
@@ -75,7 +75,7 @@ func (f *FingerprintSearchResult) UnmarshalJSON(input []byte) error {
 
 	f.End = *temp.End
 	f.Limit = *temp.Limit
-	f.Page = temp.Page
+	f.Next = temp.Next
 	f.Results = *temp.Results
 	f.Start = *temp.Start
 	f.Total = *temp.Total
@@ -86,7 +86,7 @@ func (f *FingerprintSearchResult) UnmarshalJSON(input []byte) error {
 type tempFingerprintSearchResult struct {
 	End     *int           `json:"end"`
 	Limit   *int           `json:"limit"`
-	Page    *int           `json:"page,omitempty"`
+	Next    *string        `json:"next,omitempty"`
 	Results *[]Fingerprint `json:"results"`
 	Start   *int           `json:"start"`
 	Total   *int           `json:"total"`

@@ -11,6 +11,7 @@ import (
 type ResponseMxedgeEventsSearch struct {
 	End                  *int                   `json:"end,omitempty"`
 	Limit                *int                   `json:"limit,omitempty"`
+	Next                 *string                `json:"next,omitempty"`
 	Page                 *int                   `json:"page,omitempty"`
 	Results              []MxedgeEvent          `json:"results,omitempty"`
 	Start                *int                   `json:"start,omitempty"`
@@ -21,8 +22,8 @@ type ResponseMxedgeEventsSearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseMxedgeEventsSearch) String() string {
 	return fmt.Sprintf(
-		"ResponseMxedgeEventsSearch[End=%v, Limit=%v, Page=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
-		r.End, r.Limit, r.Page, r.Results, r.Start, r.AdditionalProperties)
+		"ResponseMxedgeEventsSearch[End=%v, Limit=%v, Next=%v, Page=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+		r.End, r.Limit, r.Next, r.Page, r.Results, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseMxedgeEventsSearch.
@@ -31,7 +32,7 @@ func (r ResponseMxedgeEventsSearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"end", "limit", "page", "results", "start"); err != nil {
+		"end", "limit", "next", "page", "results", "start"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -46,6 +47,9 @@ func (r ResponseMxedgeEventsSearch) toMap() map[string]any {
 	}
 	if r.Limit != nil {
 		structMap["limit"] = r.Limit
+	}
+	if r.Next != nil {
+		structMap["next"] = r.Next
 	}
 	if r.Page != nil {
 		structMap["page"] = r.Page
@@ -67,7 +71,7 @@ func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "page", "results", "start")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "limit", "next", "page", "results", "start")
 	if err != nil {
 		return err
 	}
@@ -75,6 +79,7 @@ func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
 
 	r.End = temp.End
 	r.Limit = temp.Limit
+	r.Next = temp.Next
 	r.Page = temp.Page
 	r.Results = temp.Results
 	r.Start = temp.Start
@@ -85,6 +90,7 @@ func (r *ResponseMxedgeEventsSearch) UnmarshalJSON(input []byte) error {
 type tempResponseMxedgeEventsSearch struct {
 	End     *int          `json:"end,omitempty"`
 	Limit   *int          `json:"limit,omitempty"`
+	Next    *string       `json:"next,omitempty"`
 	Page    *int          `json:"page,omitempty"`
 	Results []MxedgeEvent `json:"results,omitempty"`
 	Start   *int          `json:"start,omitempty"`

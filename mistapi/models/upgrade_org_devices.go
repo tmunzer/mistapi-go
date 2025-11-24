@@ -53,7 +53,11 @@ type UpgradeOrgDevices struct {
 	// * `match_name[0:3]`: Device name must match the first 3 letters of the property value
 	// * `match_name[2:6]`: Device name must match the property value from the 2nd to the 6th letter
 	// * `match_model`: Device model must match the property value
-	// * `match_model[1:3]`: Device model must match the property value from the 1nd to the 3rd letter
+	// * `match_model[1:3]`: Device model must match the property value from the 1st to the 3rd letter
+	// * `match_role`: Device role must match the property value
+	// * `match_role[0:3]`: Device role must match the property value from the 1st to the 3rd letter
+	// * `match_evpn_role`: Device EVPN topology role must match the property value
+	// * `match_evpn_role[0:3]`: Device EVPN topology role must match the property value from the 1st to the 3rd letter
 	Rules []map[string]string `json:"rules,omitempty"`
 	// Only devices belonging to these sites will be selected for upgrade. Will be ignored if `all_sites`==`true`
 	SiteIds []uuid.UUID `json:"site_ids,omitempty"`

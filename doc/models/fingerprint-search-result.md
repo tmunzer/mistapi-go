@@ -13,7 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
-| `Page` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.Fingerprint`](../../doc/models/fingerprint.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
@@ -25,7 +25,6 @@
 {
   "end": 1711035686,
   "limit": 10,
-  "page": 1,
   "results": [
     {
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
@@ -42,6 +41,7 @@
   ],
   "start": 1710949286,
   "total": 232,
+  "next": "next0",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

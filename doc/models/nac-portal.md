@@ -12,6 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`<br><br>**Default**: `"wireless"` |
+| `AdditionalCacerts` | `[]string` | Optional | Optional list of additional CA certificates to be used |
 | `BgImageUrl` | `*string` | Optional | Background image |
 | `CertExpireTime` | `*int` | Optional | In days |
 | `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | enum: `wpa2`, `wpa3`<br><br>**Default**: `"wpa2"` |
@@ -37,6 +38,9 @@
 ```json
 {
   "access_type": "wireless",
+  "additional_cacerts": [
+    "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----"
+  ],
   "cert_expire_time": 365,
   "eap_type": "wpa2",
   "name": "get-wifi",
@@ -46,7 +50,6 @@
   "ssid": "Corp",
   "ui_url": "https://guest-mistnac.mist.com/admin/51908ea7-dea7-4581-a578-f7320c4d5216/login",
   "bg_image_url": "bg_image_url2",
-  "enable_telemetry": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

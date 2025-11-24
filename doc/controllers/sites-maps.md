@@ -193,6 +193,8 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
+    GroupIdx:             models.ToPointer(0),
+    GroupName:            models.ToPointer("string"),
     Height:               models.ToPointer(0),
     HeightM:              models.ToPointer(float64(0)),
     LatlngBr:             models.ToPointer(models.LatlngBr{
@@ -680,6 +682,8 @@ if err != nil {
   {
     "created_time": 0,
     "flags": {},
+    "group_idx": 1,
+    "group_name": "East Wing",
     "height": 0,
     "height_m": 0,
     "id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",

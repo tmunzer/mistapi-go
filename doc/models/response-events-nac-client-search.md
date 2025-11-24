@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.EventNacClient`](../../doc/models/event-nac-client.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 10,
   "start": 1512572151,
   "total": 1,
+  "next": "next4",
   "results": [
     {
       "ap": "ap8",

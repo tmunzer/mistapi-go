@@ -14,10 +14,11 @@ Junos port usages
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllNetworks` | `*bool` | Optional | Only if `mode`==`trunk`. Whether to trunk all network/vlans<br><br>**Default**: `false` |
-| `AllowDhcpd` | `*bool` | Optional | Only if `mode`!=`dynamic`. If DHCP snooping is enabled, whether DHCP server is allowed on the interfaces with. All the interfaces from port configs using this port usage are effected. Please notice that allow_dhcpd is a tri_state. When it is not defined, it means using the system's default setting which depends on whether the port is an access or trunk port. |
+| `AllowDhcpd` | `*bool` | Optional | Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; true: ports become trusted ports allowing DHCP server traffic, false: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted). |
 | `AllowMultipleSupplicants` | `*bool` | Optional | Only if `mode`!=`dynamic`<br><br>**Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Bypass auth for known clients if set to true when RADIUS server is down<br><br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnknownClient` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x`. Bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br><br>**Default**: `false` |
+| `BypassAuthWhenServerDownForVoip` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Bypass auth for VOIP if set to true when RADIUS server is down<br><br>**Default**: `false` |
 | `CommunityVlanId` | `*int` | Optional | Only if `mode`!=`dynamic`. To be used together with `isolation` under networks. Signaling that this port connects to the networks isolated but wired clients belong to the same community can talk to each other |
 | `Description` | `*string` | Optional | Only if `mode`!=`dynamic` |
 | `DisableAutoneg` | `*bool` | Optional | Only if `mode`!=`dynamic`. If speed and duplex are specified, whether to disable autonegotiation<br><br>**Default**: `false` |
@@ -38,6 +39,7 @@ Junos port usages
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x`. Whether the port should retain dynamically learned MAC addresses<br><br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic`. Whether PoE capabilities are disabled for a port<br><br>**Default**: `false` |
+| `PoePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Optional | PoE priority. enum: `low`, `high` |
 | `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1xEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic`. Native network/vlan for untagged traffic |
 | `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600) |
@@ -65,6 +67,7 @@ Junos port usages
   "allow_multiple_supplicants": false,
   "bypass_auth_when_server_down": false,
   "bypass_auth_when_server_down_for_unknown_client": false,
+  "bypass_auth_when_server_down_for_voip": false,
   "disable_autoneg": false,
   "disabled": false,
   "duplex": "auto",

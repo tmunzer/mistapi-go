@@ -82,7 +82,7 @@ func (o *OrgsStatsVPNPeers) CountOrgPeerPathStats(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgPeerPathStats takes context, orgId, mac, siteId, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgPeerPathStats takes context, orgId, mac, siteId, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.VpnPeerStatSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Peer Path Stats
@@ -96,7 +96,8 @@ func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.VpnPeerStatSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/vpn_peers/search")
@@ -141,6 +142,9 @@ func (o *OrgsStatsVPNPeers) SearchOrgPeerPathStats(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.VpnPeerStatSearch

@@ -74,7 +74,7 @@ func (o *OrgsStatsTunnels) CountOrgTunnelsStats(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgTunnelsStats takes context, orgId, mxclusterId, siteId, wxtunnelId, ap, mac, node, peerIp, peerHost, ip, tunnelName, protocol, authAlgo, encryptAlgo, ikeVersion, up, mType, limit, start, end, duration, sort as parameters and
+// SearchOrgTunnelsStats takes context, orgId, mxclusterId, siteId, wxtunnelId, ap, mac, node, peerIp, peerHost, ip, tunnelName, protocol, authAlgo, encryptAlgo, ikeVersion, up, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseTunnelSearch data and
 // an error if there was an issue with the request or response.
 // By default the endpoint returns only `wxtunnel` type stats, to get `wan` type stats
@@ -122,7 +122,8 @@ func (o *OrgsStatsTunnels) SearchOrgTunnelsStats(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseTunnelSearch],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/tunnels/search")
@@ -206,6 +207,9 @@ func (o *OrgsStatsTunnels) SearchOrgTunnelsStats(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseTunnelSearch

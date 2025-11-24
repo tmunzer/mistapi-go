@@ -15,7 +15,7 @@
 | `ConductorHosts` | `[]string` | Optional | List of Conductor IP Addresses or Hosts to be used by the SSR Devices |
 | `ConductorToken` | `*string` | Optional | Token to be used by the SSR Devices to connect to the Conductor |
 | `DisableStats` | `*bool` | Optional | Disable stats collection on SSR devices |
-| `Proxy` | [`*models.Proxy`](../../doc/models/proxy.md) | Optional | Proxy Configuration to talk to Mist |
+| `Proxy` | [`*models.SsrProxy`](../../doc/models/ssr-proxy.md) | Optional | SSR proxy configuration to talk to Mist |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -41,6 +41,7 @@
   "conductor_token": "conductor_token6",
   "disable_stats": false,
   "proxy": {
+    "disabled": false,
     "url": "url6",
     "exampleAdditionalProperty": {
       "key1": "val1",

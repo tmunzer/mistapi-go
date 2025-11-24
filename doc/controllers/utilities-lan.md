@@ -345,7 +345,8 @@ Clear device pending fw version (Available on Junos OS EX2300-, EX3400-, EX4000-
 ```go
 ClearSiteMultipleDevicePendingVersion(
     ctx context.Context,
-    siteId uuid.UUID) (
+    siteId uuid.UUID,
+    body *models.DevicesIds) (
     http.Response,
     error)
 ```
@@ -355,6 +356,7 @@ ClearSiteMultipleDevicePendingVersion(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.DevicesIds`](../../doc/models/devices-ids.md) | Body, Optional | Request Body |
 
 ## Response Type
 
@@ -367,7 +369,14 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := utilitiesLAN.ClearSiteMultipleDevicePendingVersion(ctx, siteId)
+body := models.DevicesIds{
+    DeviceIds:            []uuid.UUID{
+        uuid.MustParse("00000000-0000-0000-1000-5c5b35584a6f"),
+        uuid.MustParse("00000000-0000-0000-1000-5c5b350ea3b3"),
+    },
+}
+
+resp, err := utilitiesLAN.ClearSiteMultipleDevicePendingVersion(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -620,7 +629,7 @@ if err != nil {
 
 # Restore Site Device Backup Version
 
-Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+Restore device backup fw version (Available on Junos OS EX4000-, EX4100-, EX4400- devices)
 
 ```go
 RestoreSiteDeviceBackupVersion(
@@ -672,12 +681,13 @@ if err != nil {
 
 # Restore Site Multiple Device Backup Version
 
-Restore device backup fw version (Available on Junos OS EX2300-, EX3400-, EX4000-, EX4100-, EX4400- devices)
+Restore device backup fw version (Available on Junos OS EX4000-, EX4100-, EX4400- devices)
 
 ```go
 RestoreSiteMultipleDeviceBackupVersion(
     ctx context.Context,
-    siteId uuid.UUID) (
+    siteId uuid.UUID,
+    body *models.DevicesIds) (
     http.Response,
     error)
 ```
@@ -687,6 +697,7 @@ RestoreSiteMultipleDeviceBackupVersion(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.DevicesIds`](../../doc/models/devices-ids.md) | Body, Optional | Request Body |
 
 ## Response Type
 
@@ -699,7 +710,14 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-resp, err := utilitiesLAN.RestoreSiteMultipleDeviceBackupVersion(ctx, siteId)
+body := models.DevicesIds{
+    DeviceIds:            []uuid.UUID{
+        uuid.MustParse("00000000-0000-0000-1000-5c5b35584a6f"),
+        uuid.MustParse("00000000-0000-0000-1000-5c5b350ea3b3"),
+    },
+}
+
+resp, err := utilitiesLAN.RestoreSiteMultipleDeviceBackupVersion(ctx, siteId, &body)
 if err != nil {
     log.Fatalln(err)
 } else {

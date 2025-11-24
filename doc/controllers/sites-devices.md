@@ -25,6 +25,7 @@ sitesDevices := client.SitesDevices()
 * [Search Site Device Events](../../doc/controllers/sites-devices.md#search-site-device-events)
 * [Search Site Device Last Configs](../../doc/controllers/sites-devices.md#search-site-device-last-configs)
 * [Search Site Devices](../../doc/controllers/sites-devices.md#search-site-devices)
+* [Set Site Devices Gbp Tag](../../doc/controllers/sites-devices.md#set-site-devices-gbp-tag)
 * [Update Site Device](../../doc/controllers/sites-devices.md#update-site-device)
 
 
@@ -1035,7 +1036,8 @@ SearchSiteDeviceConfigHistory(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
     error)
 ```
@@ -1052,6 +1054,7 @@ SearchSiteDeviceConfigHistory(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1072,7 +1075,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesDevices.SearchSiteDeviceConfigHistory(ctx, siteId, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1181,7 +1184,8 @@ SearchSiteDeviceEvents(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseEventsDevices],
     error)
 ```
@@ -1203,6 +1207,7 @@ SearchSiteDeviceEvents(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1225,7 +1230,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1279,6 +1284,7 @@ Search Device Last Configs
 SearchSiteDeviceLastConfigs(
     ctx context.Context,
     siteId uuid.UUID,
+    certExpiryDuration *string,
     deviceType *models.LastConfigDeviceTypeEnum,
     mac *string,
     version *string,
@@ -1287,7 +1293,8 @@ SearchSiteDeviceLastConfigs(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseConfigHistorySearch],
     error)
 ```
@@ -1297,6 +1304,7 @@ SearchSiteDeviceLastConfigs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
+| `certExpiryDuration` | `*string` | Query, Optional | Duration for expiring cert queries (format: 2d/3h/172800 seconds) |
 | `deviceType` | [`*models.LastConfigDeviceTypeEnum`](../../doc/models/last-config-device-type-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `mac` | `*string` | Query, Optional | - |
 | `version` | `*string` | Query, Optional | - |
@@ -1306,6 +1314,7 @@ SearchSiteDeviceLastConfigs(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1318,6 +1327,8 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+certExpiryDuration := "2d"
+
 deviceType := models.LastConfigDeviceTypeEnum_AP
 
 limit := 100
@@ -1326,7 +1337,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := sitesDevices.SearchSiteDeviceLastConfigs(ctx, siteId, &certExpiryDuration, &deviceType, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1462,7 +1473,8 @@ SearchSiteDevices(
     end *string,
     duration *string,
     sort *models.SearchSiteDevicesSortEnum,
-    descSort *models.SearchSiteDevicesDescSortEnum) (
+    descSort *models.SearchSiteDevicesDescSortEnum,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseDeviceSearch],
     error)
 ```
@@ -1511,6 +1523,7 @@ SearchSiteDevices(
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | [`*models.SearchSiteDevicesSortEnum`](../../doc/models/search-site-devices-sort-enum.md) | Query, Optional | Sort options<br><br>**Default**: `"timestamp"` |
 | `descSort` | [`*models.SearchSiteDevicesDescSortEnum`](../../doc/models/search-site-devices-desc-sort-enum.md) | Query, Optional | Sort options in reverse order |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1535,7 +1548,7 @@ duration := "10m"
 
 sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
 
-apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1593,6 +1606,63 @@ if err != nil {
   ],
   "start": 0,
   "total": 0
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Set Site Devices Gbp Tag
+
+Set GBP Tag for multiple devices
+
+```go
+SetSiteDevicesGbpTag(
+    ctx context.Context,
+    siteId uuid.UUID,
+    body *models.DevicesGbpTag) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.DevicesGbpTag`](../../doc/models/devices-gbp-tag.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.DevicesGbpTag{
+    GbpTag:               220,
+    Macs:                 []string{
+        "683b679ac024",
+    },
+}
+
+resp, err := sitesDevices.SetSiteDevicesGbpTag(ctx, siteId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 

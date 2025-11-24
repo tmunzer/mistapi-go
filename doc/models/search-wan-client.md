@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.StatsWanClient`](../../doc/models/stats-wan-client.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -24,6 +25,7 @@
 {
   "end": 206,
   "limit": 220,
+  "next": "next2",
   "results": [
     {
       "dhcp_expire_time": 124.26,
@@ -63,7 +65,6 @@
     }
   ],
   "start": 164,
-  "total": 58,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

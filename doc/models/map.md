@@ -16,6 +16,8 @@ Map
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Flags` | `map[string]int` | Optional | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
+| `GroupIdx` | `*int` | Optional | The group index of the map, typically used for floor |
+| `GroupName` | `*string` | Optional | The group name of the map |
 | `Height` | `*int` | Optional | When type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
@@ -51,6 +53,8 @@ Map
     "assetHoldTime": 5,
     "storeTime": 10
   },
+  "group_idx": 1,
+  "group_name": "East Wing",
   "height": 1500,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "locked": false,
@@ -67,7 +71,6 @@ Map
   "width": 1250,
   "created_time": 45.28,
   "for_site": false,
-  "height_m": 113.3,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

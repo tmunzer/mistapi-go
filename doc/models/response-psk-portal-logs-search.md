@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.ResponsePskPortalLogsSearchItem`](../../doc/models/response-psk-portal-logs-search-item.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 100,
   "start": 1428939600,
   "total": 135,
+  "next": "next2",
   "results": [
     {
       "id": "000023ba-0000-0000-0000-000000000000",

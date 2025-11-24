@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.OrgEvent`](../../doc/models/org-event.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
@@ -25,6 +26,7 @@
   "end": 1688035193,
   "limit": 10,
   "start": 1687948793,
+  "next": "next4",
   "results": [
     {
       "org_id": "00002492-0000-0000-0000-000000000000",
@@ -47,7 +49,6 @@
       }
     }
   ],
-  "total": 108,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

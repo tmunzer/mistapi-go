@@ -14,7 +14,7 @@ type ServicePolicy struct {
 	Action *AllowDenyEnum `json:"action,omitempty"`
 	// For SRX-only
 	Antivirus *ServicePolicyAntivirus `json:"antivirus,omitempty"`
-	// For SRX Only
+	// SRX only
 	Appqoe *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
 	Ewf    []ServicePolicyEwfRule `json:"ewf,omitempty"`
 	Idp    *IdpConfig             `json:"idp,omitempty"`
@@ -23,13 +23,17 @@ type ServicePolicy struct {
 	Name         *string `json:"name,omitempty"`
 	// By default, we derive all paths available and use them. Optionally, you can customize by using `path_preference`
 	PathPreference *string `json:"path_preference,omitempty"`
-	// For SRX Only
+	// SRX only
 	Secintel *ServicePolicySecintel `json:"secintel,omitempty"`
 	// Used to link servicepolicy defined at org level and overwrite some attributes
 	ServicepolicyId *uuid.UUID `json:"servicepolicy_id,omitempty"`
 	Services        []string   `json:"services,omitempty"`
+	// SRX only
+	Skyatp *ServicePolicySkyatp `json:"skyatp,omitempty"`
 	// For SRX-only
-	SslProxy             *ServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+	SslProxy *ServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+	// Required for syslog logging
+	Syslog               *ServicePolicySyslog   `json:"syslog,omitempty"`
 	Tenants              []string               `json:"tenants,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -38,8 +42,8 @@ type ServicePolicy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s ServicePolicy) String() string {
 	return fmt.Sprintf(
-		"ServicePolicy[Action=%v, Antivirus=%v, Appqoe=%v, Ewf=%v, Idp=%v, LocalRouting=%v, Name=%v, PathPreference=%v, Secintel=%v, ServicepolicyId=%v, Services=%v, SslProxy=%v, Tenants=%v, AdditionalProperties=%v]",
-		s.Action, s.Antivirus, s.Appqoe, s.Ewf, s.Idp, s.LocalRouting, s.Name, s.PathPreference, s.Secintel, s.ServicepolicyId, s.Services, s.SslProxy, s.Tenants, s.AdditionalProperties)
+		"ServicePolicy[Action=%v, Antivirus=%v, Appqoe=%v, Ewf=%v, Idp=%v, LocalRouting=%v, Name=%v, PathPreference=%v, Secintel=%v, ServicepolicyId=%v, Services=%v, Skyatp=%v, SslProxy=%v, Syslog=%v, Tenants=%v, AdditionalProperties=%v]",
+		s.Action, s.Antivirus, s.Appqoe, s.Ewf, s.Idp, s.LocalRouting, s.Name, s.PathPreference, s.Secintel, s.ServicepolicyId, s.Services, s.Skyatp, s.SslProxy, s.Syslog, s.Tenants, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ServicePolicy.
@@ -48,7 +52,7 @@ func (s ServicePolicy) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"action", "antivirus", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "secintel", "servicepolicy_id", "services", "ssl_proxy", "tenants"); err != nil {
+		"action", "antivirus", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "secintel", "servicepolicy_id", "services", "skyatp", "ssl_proxy", "syslog", "tenants"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -91,8 +95,14 @@ func (s ServicePolicy) toMap() map[string]any {
 	if s.Services != nil {
 		structMap["services"] = s.Services
 	}
+	if s.Skyatp != nil {
+		structMap["skyatp"] = s.Skyatp.toMap()
+	}
 	if s.SslProxy != nil {
 		structMap["ssl_proxy"] = s.SslProxy.toMap()
+	}
+	if s.Syslog != nil {
+		structMap["syslog"] = s.Syslog.toMap()
 	}
 	if s.Tenants != nil {
 		structMap["tenants"] = s.Tenants
@@ -108,7 +118,7 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "antivirus", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "secintel", "servicepolicy_id", "services", "ssl_proxy", "tenants")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "action", "antivirus", "appqoe", "ewf", "idp", "local_routing", "name", "path_preference", "secintel", "servicepolicy_id", "services", "skyatp", "ssl_proxy", "syslog", "tenants")
 	if err != nil {
 		return err
 	}
@@ -125,7 +135,9 @@ func (s *ServicePolicy) UnmarshalJSON(input []byte) error {
 	s.Secintel = temp.Secintel
 	s.ServicepolicyId = temp.ServicepolicyId
 	s.Services = temp.Services
+	s.Skyatp = temp.Skyatp
 	s.SslProxy = temp.SslProxy
+	s.Syslog = temp.Syslog
 	s.Tenants = temp.Tenants
 	return nil
 }
@@ -143,6 +155,8 @@ type tempServicePolicy struct {
 	Secintel        *ServicePolicySecintel  `json:"secintel,omitempty"`
 	ServicepolicyId *uuid.UUID              `json:"servicepolicy_id,omitempty"`
 	Services        []string                `json:"services,omitempty"`
+	Skyatp          *ServicePolicySkyatp    `json:"skyatp,omitempty"`
 	SslProxy        *ServicePolicySslProxy  `json:"ssl_proxy,omitempty"`
+	Syslog          *ServicePolicySyslog    `json:"syslog,omitempty"`
 	Tenants         []string                `json:"tenants,omitempty"`
 }

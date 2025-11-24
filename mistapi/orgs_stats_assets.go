@@ -129,7 +129,7 @@ func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgAssets takes context, orgId, siteId, mac, deviceName, name, mapId, ibeaconUuid, ibeaconMajor, ibeaconMinor, eddystoneUidNamespace, eddystoneUidInstance, eddystoneUrl, apMac, beam, rssi, limit, start, end, duration, sort as parameters and
+// SearchOrgAssets takes context, orgId, siteId, mac, deviceName, name, mapId, ibeaconUuid, ibeaconMajor, ibeaconMinor, eddystoneUidNamespace, eddystoneUidInstance, eddystoneUrl, apMac, beam, rssi, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseStatsAssets data and
 // an error if there was an issue with the request or response.
 // Search for Org Assets
@@ -154,7 +154,8 @@ func (o *OrgsStatsAssets) SearchOrgAssets(
 	start *string,
 	end *string,
 	duration *string,
-	sort *string) (
+	sort *string,
+	searchAfter *string) (
 	models.ApiResponse[models.ResponseStatsAssets],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats/assets/search")
@@ -232,6 +233,9 @@ func (o *OrgsStatsAssets) SearchOrgAssets(
 	}
 	if sort != nil {
 		req.QueryParam("sort", *sort)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
 	}
 
 	var result models.ResponseStatsAssets

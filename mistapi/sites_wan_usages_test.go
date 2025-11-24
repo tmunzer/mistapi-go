@@ -85,11 +85,10 @@ func TestSitesWANUsagesTestSearchSiteWanUsage(t *testing.T) {
 
 	pathType := "primary"
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesWanUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, &page, nil, nil, &duration, &sort)
+	apiResponse, err := sitesWanUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -115,11 +114,10 @@ func TestSitesWANUsagesTestSearchSiteWanUsage1(t *testing.T) {
 
 	pathType := "primary"
 	limit := int(100)
-	page := int(1)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesWanUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, &page, nil, nil, &duration, &sort)
+	apiResponse, err := sitesWanUsages.SearchSiteWanUsage(ctx, siteId, &mac, &peerMac, &portId, &peerPortId, &policy, nil, &pathType, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

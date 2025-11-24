@@ -53,8 +53,10 @@ type StatsSwitchPort struct {
 	// enum: `802.3af`, `802.3at`, `802.3bt`
 	PoeMode *StatsSwitchPortPoeModeEnum `json:"poe_mode,omitempty"`
 	// Is the device attached to POE
-	PoeOn  *bool  `json:"poe_on,omitempty"`
-	PortId string `json:"port_id"`
+	PoeOn *bool `json:"poe_on,omitempty"`
+	// PoE priority. enum: `low`, `high`
+	PoePriority *PoePriorityEnum `json:"poe_priority,omitempty"`
+	PortId      string           `json:"port_id"`
 	// Interface MAC address
 	PortMac string `json:"port_mac"`
 	// gateway port usage. enum: `lan`
@@ -111,8 +113,8 @@ type StatsSwitchPort struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitchPort) String() string {
 	return fmt.Sprintf(
-		"StatsSwitchPort[Active=%v, AuthState=%v, Disabled=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
-		s.Active, s.AuthState, s.Disabled, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
+		"StatsSwitchPort[Active=%v, AuthState=%v, Disabled=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PoePriority=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
+		s.Active, s.AuthState, s.Disabled, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PoePriority, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchPort.
@@ -121,7 +123,7 @@ func (s StatsSwitchPort) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
+		"active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -202,6 +204,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
 	}
 	if s.PoeOn != nil {
 		structMap["poe_on"] = s.PoeOn
+	}
+	if s.PoePriority != nil {
+		structMap["poe_priority"] = s.PoePriority
 	}
 	structMap["port_id"] = s.PortId
 	structMap["port_mac"] = s.PortMac
@@ -314,7 +319,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
 	if err != nil {
 		return err
 	}
@@ -342,6 +347,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	s.PoeDisabled = temp.PoeDisabled
 	s.PoeMode = temp.PoeMode
 	s.PoeOn = temp.PoeOn
+	s.PoePriority = temp.PoePriority
 	s.PortId = *temp.PortId
 	s.PortMac = *temp.PortMac
 	s.PortUsage = temp.PortUsage
@@ -395,6 +401,7 @@ type tempStatsSwitchPort struct {
 	PoeDisabled        *bool                         `json:"poe_disabled,omitempty"`
 	PoeMode            *StatsSwitchPortPoeModeEnum   `json:"poe_mode,omitempty"`
 	PoeOn              *bool                         `json:"poe_on,omitempty"`
+	PoePriority        *PoePriorityEnum              `json:"poe_priority,omitempty"`
 	PortId             *string                       `json:"port_id"`
 	PortMac            *string                       `json:"port_mac"`
 	PortUsage          *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`

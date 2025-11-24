@@ -23,7 +23,8 @@ func TestSitesStatsDiscoveredSwitchesTestSearchSiteDiscoveredSwitchesMetrics(t *
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitchesMetrics(ctx, siteId, &scope, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitchesMetrics(ctx, siteId, &scope, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -49,7 +50,8 @@ func TestSitesStatsDiscoveredSwitchesTestSearchSiteDiscoveredSwitchesMetrics1(t 
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitchesMetrics(ctx, siteId, &scope, nil, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitchesMetrics(ctx, siteId, &scope, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -171,7 +173,8 @@ func TestSitesStatsDiscoveredSwitchesTestSearchSiteDiscoveredSwitches(t *testing
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -201,7 +204,8 @@ func TestSitesStatsDiscoveredSwitchesTestSearchSiteDiscoveredSwitches1(t *testin
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration, &sort)
+
+	apiResponse, err := sitesStatsDiscoveredSwitches.SearchSiteDiscoveredSwitches(ctx, siteId, &adopted, &systemName, &hostname, &vendor, &model, &version, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -165,12 +165,12 @@ func TestMSPsTestSearchMspOrgGroup(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mType := models.MspSearchTypeEnum("orgs")
-	q := "search"
+	q := "live"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := msPs.SearchMspOrgGroup(ctx, mspId, mType, &q, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := msPs.SearchMspOrgGroup(ctx, mspId, mType, q, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -191,12 +191,12 @@ func TestMSPsTestSearchMspOrgGroup1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mType := models.MspSearchTypeEnum("orgs")
-	q := "search"
+	q := "live"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
-	apiResponse, err := msPs.SearchMspOrgGroup(ctx, mspId, mType, &q, &limit, nil, nil, &duration, &sort)
+	apiResponse, err := msPs.SearchMspOrgGroup(ctx, mspId, mType, q, &limit, nil, nil, &duration, &sort)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

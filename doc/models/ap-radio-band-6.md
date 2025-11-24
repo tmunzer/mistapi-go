@@ -15,6 +15,7 @@ Radio Band AP settings
 |  --- | --- | --- | --- |
 | `AllowRrmDisable` | `*bool` | Optional | **Default**: `false` |
 | `AntGain` | `models.Optional[int]` | Optional | **Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 10` |
+| `AntennaBeamPattern` | [`*models.RadioBandAntennaBeamPatternEnum`](../../doc/models/radio-band-antenna-beam-pattern-enum.md) | Optional | enum: `narrow`, `medium`, `wide` |
 | `AntennaMode` | [`*models.RadioBandAntennaModeEnum`](../../doc/models/radio-band-antenna-mode-enum.md) | Optional | enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`<br><br>**Default**: `"default"` |
 | `Bandwidth` | [`*models.Dot11Bandwidth6Enum`](../../doc/models/dot-11-bandwidth-6-enum.md) | Optional | channel width for the 6GHz band. enum: `0`(disabled, response only), `20`, `40`, `80`, `160`<br><br>**Default**: `80` |
 | `Channel` | `models.Optional[int]` | Optional | For Device. (primary) channel for the band, 0 means using the Site Setting |
@@ -43,6 +44,7 @@ Radio Band AP settings
   "power_min": 8,
   "preamble": "short",
   "standard_power": false,
+  "antenna_beam_pattern": "medium",
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

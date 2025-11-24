@@ -11,13 +11,18 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `End` | `*float64` | Optional | - |
+| `Limit` | `*int` | Optional | - |
 | `Results` | [`[]models.WanUsages`](../../doc/models/wan-usages.md) | Optional | - |
+| `Start` | `*float64` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "end": 173.0,
+  "limit": 22,
   "results": [
     {
       "mac": "mac0",
@@ -31,6 +36,7 @@
       }
     }
   ],
+  "start": 129.06,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

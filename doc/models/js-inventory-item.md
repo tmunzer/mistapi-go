@@ -11,9 +11,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `Claimed` | `*bool` | Optional | Indicates if the device is claimed by any org |
 | `DeviceName` | `*string` | Optional | Name of the device |
 | `EolTime` | `*int` | Optional | End of life time |
 | `EosTime` | `*int` | Optional | End of support time |
+| `HasSupport` | `*bool` | Optional | Indicates if the device is covered under active support contract |
 | `Master` | `*bool` | Optional | Indicates whether it is Master |
 | `Model` | `*string` | Optional | Model of the install base inventory |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -35,11 +37,11 @@
 ```json
 {
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "claimed": false,
   "device_name": "device_name8",
   "eol_time": 58,
   "eos_time": 104,
-  "master": false,
-  "model": "model8",
+  "has_support": false,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

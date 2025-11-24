@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
+| `Next` | `*string` | Optional | - |
 | `Page` | `*int` | Optional | - |
 | `Results` | [`[]models.MxedgeEvent`](../../doc/models/mxedge-event.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
@@ -26,6 +27,7 @@
   "limit": 10,
   "page": 3,
   "start": 1694622179,
+  "next": "next4",
   "results": [
     {
       "component": "component4",

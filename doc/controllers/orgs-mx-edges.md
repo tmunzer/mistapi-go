@@ -1280,7 +1280,8 @@ SearchOrgMistEdgeEvents(
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseMxedgeEventsSearch],
     error)
 ```
@@ -1300,6 +1301,7 @@ SearchOrgMistEdgeEvents(
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1318,7 +1320,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort)
+apiResponse, err := orgsMxEdges.SearchOrgMistEdgeEvents(ctx, orgId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -1376,11 +1378,11 @@ SearchOrgMxEdges(
     tuntermVersion *string,
     stats *bool,
     limit *int,
-    page *int,
     start *string,
     end *string,
     duration *string,
-    sort *string) (
+    sort *string,
+    searchAfter *string) (
     models.ApiResponse[models.ResponseMxedgeSearch],
     error)
 ```
@@ -1398,11 +1400,11 @@ SearchOrgMxEdges(
 | `tuntermVersion` | `*string` | Query, Optional | tunterm version |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
+| `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
 ## Response Type
 
@@ -1417,13 +1419,11 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 limit := 100
 
-page := 1
-
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, &page, nil, nil, &duration, &sort)
+apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     log.Fatalln(err)
 } else {
