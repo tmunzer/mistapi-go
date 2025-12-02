@@ -1,8 +1,6 @@
 
 # Nac Rule Matching
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `NacRuleMatching`
@@ -21,7 +19,6 @@
 | `SiteIds` | `[]uuid.UUID` | Optional | List of site ids to match |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | List of sitegroup ids to match |
 | `Vendor` | `[]string` | Optional | List of vendors to match |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -56,11 +53,7 @@
     "model6",
     "model7",
     "model8"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

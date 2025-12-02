@@ -26,11 +26,7 @@
         "vc_ports2",
         "vc_ports3",
         "vc_ports4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "op": "delete",

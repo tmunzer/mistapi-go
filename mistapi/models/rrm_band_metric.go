@@ -11,12 +11,20 @@ import (
 
 // RrmBandMetric represents a RrmBandMetric struct.
 type RrmBandMetric struct {
+	// Average number of APs per channel
+	AvgApsPerChannel *float64 `json:"avg_aps_per_channel,omitempty"`
+	// Distribution of channel across the Access Points
+	ChannelDistributionUniformity *float64 `json:"channel_distribution_uniformity,omitempty"`
 	// Average number of co-channel neighbors
 	CochannelNeighbors float64 `json:"cochannel_neighbors"`
 	// defined by how APs can hear from one and another, 0 - 1 (everyone can hear everyone)
 	Density float64 `json:"density"`
 	// Property key is the channel number
 	Interferences map[string]RrmBandMetricInterference `json:"interferences,omitempty"`
+	// Property key is the channel number, value is number of APs on that channel
+	NapsByChannel map[string]float64 `json:"naps_by_channel,omitempty"`
+	// Property key is the power level, value is number of APs on that power level
+	NapsByPower map[string]float64 `json:"naps_by_power,omitempty"`
 	// Average number of neighbors
 	Neighbors float64 `json:"neighbors"`
 	// Average noise in dBm
@@ -28,8 +36,8 @@ type RrmBandMetric struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RrmBandMetric) String() string {
 	return fmt.Sprintf(
-		"RrmBandMetric[CochannelNeighbors=%v, Density=%v, Interferences=%v, Neighbors=%v, Noise=%v, AdditionalProperties=%v]",
-		r.CochannelNeighbors, r.Density, r.Interferences, r.Neighbors, r.Noise, r.AdditionalProperties)
+		"RrmBandMetric[AvgApsPerChannel=%v, ChannelDistributionUniformity=%v, CochannelNeighbors=%v, Density=%v, Interferences=%v, NapsByChannel=%v, NapsByPower=%v, Neighbors=%v, Noise=%v, AdditionalProperties=%v]",
+		r.AvgApsPerChannel, r.ChannelDistributionUniformity, r.CochannelNeighbors, r.Density, r.Interferences, r.NapsByChannel, r.NapsByPower, r.Neighbors, r.Noise, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmBandMetric.
@@ -38,7 +46,7 @@ func (r RrmBandMetric) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"cochannel_neighbors", "density", "interferences", "neighbors", "noise"); err != nil {
+		"avg_aps_per_channel", "channel_distribution_uniformity", "cochannel_neighbors", "density", "interferences", "naps_by_channel", "naps_by_power", "neighbors", "noise"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -48,10 +56,22 @@ func (r RrmBandMetric) MarshalJSON() (
 func (r RrmBandMetric) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
+	if r.AvgApsPerChannel != nil {
+		structMap["avg_aps_per_channel"] = r.AvgApsPerChannel
+	}
+	if r.ChannelDistributionUniformity != nil {
+		structMap["channel_distribution_uniformity"] = r.ChannelDistributionUniformity
+	}
 	structMap["cochannel_neighbors"] = r.CochannelNeighbors
 	structMap["density"] = r.Density
 	if r.Interferences != nil {
 		structMap["interferences"] = r.Interferences
+	}
+	if r.NapsByChannel != nil {
+		structMap["naps_by_channel"] = r.NapsByChannel
+	}
+	if r.NapsByPower != nil {
+		structMap["naps_by_power"] = r.NapsByPower
 	}
 	structMap["neighbors"] = r.Neighbors
 	structMap["noise"] = r.Noise
@@ -70,15 +90,19 @@ func (r *RrmBandMetric) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cochannel_neighbors", "density", "interferences", "neighbors", "noise")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "avg_aps_per_channel", "channel_distribution_uniformity", "cochannel_neighbors", "density", "interferences", "naps_by_channel", "naps_by_power", "neighbors", "noise")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
+	r.AvgApsPerChannel = temp.AvgApsPerChannel
+	r.ChannelDistributionUniformity = temp.ChannelDistributionUniformity
 	r.CochannelNeighbors = *temp.CochannelNeighbors
 	r.Density = *temp.Density
 	r.Interferences = temp.Interferences
+	r.NapsByChannel = temp.NapsByChannel
+	r.NapsByPower = temp.NapsByPower
 	r.Neighbors = *temp.Neighbors
 	r.Noise = *temp.Noise
 	return nil
@@ -86,11 +110,15 @@ func (r *RrmBandMetric) UnmarshalJSON(input []byte) error {
 
 // tempRrmBandMetric is a temporary struct used for validating the fields of RrmBandMetric.
 type tempRrmBandMetric struct {
-	CochannelNeighbors *float64                             `json:"cochannel_neighbors"`
-	Density            *float64                             `json:"density"`
-	Interferences      map[string]RrmBandMetricInterference `json:"interferences,omitempty"`
-	Neighbors          *float64                             `json:"neighbors"`
-	Noise              *float64                             `json:"noise"`
+	AvgApsPerChannel              *float64                             `json:"avg_aps_per_channel,omitempty"`
+	ChannelDistributionUniformity *float64                             `json:"channel_distribution_uniformity,omitempty"`
+	CochannelNeighbors            *float64                             `json:"cochannel_neighbors"`
+	Density                       *float64                             `json:"density"`
+	Interferences                 map[string]RrmBandMetricInterference `json:"interferences,omitempty"`
+	NapsByChannel                 map[string]float64                   `json:"naps_by_channel,omitempty"`
+	NapsByPower                   map[string]float64                   `json:"naps_by_power,omitempty"`
+	Neighbors                     *float64                             `json:"neighbors"`
+	Noise                         *float64                             `json:"noise"`
 }
 
 func (r *tempRrmBandMetric) validate() error {

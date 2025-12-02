@@ -49,14 +49,14 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Service{
+    Addresses:                     []string{
+        "0.0.0.0/0",
+    },
     Name:                          models.ToPointer("string"),
     Specs:                         []models.ServiceSpec{
         models.ServiceSpec{
+            PortRange:            models.ToPointer("8080,8443"),
             Protocol:             models.ToPointer("any"),
-            AdditionalProperties: map[string]interface{}{
-                "address": interface{}("string"),
-                "port": interface{}("0"),
-            },
         },
     },
     Type:                          models.ToPointer(models.ServiceTypeEnum_CUSTOM),

@@ -3,8 +3,6 @@
 
 LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed.
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsApLldpStat`
@@ -32,7 +30,6 @@ LLDP neighbor information and power negotiations. For backward compatibility, wh
 | `PowerSrcs` | `[]string` | Optional | List of management IP addresses (IPv4 and IPv6) |
 | `SystemDesc` | `models.Optional[string]` | Optional | Description provided by switch |
 | `SystemName` | `models.Optional[string]` | Optional | Name of the switch |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,11 +45,7 @@ LLDP neighbor information and power negotiations. For backward compatibility, wh
   "mgmt_addrs": [
     "mgmt_addrs9",
     "mgmt_addrs0"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -3,8 +3,6 @@
 
 Initiate a Wireless Packet Capture
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CaptureMxedge`
@@ -21,7 +19,6 @@ Initiate a Wireless Packet Capture
 | `Type` | `string` | Required, Constant | enum: `mxedge`<br><br>**Value**: `"mxedge"` |
 | `TzspHost` | `*string` | Optional | Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets. |
 | `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br><br>**Default**: `37008`<br><br>**Constraints**: `>= 1`, `<= 65535` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,37 +35,17 @@ Initiate a Wireless Packet Capture
     "key0": {
       "interfaces": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression4"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     },
     "key1": {
       "interfaces": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression4"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

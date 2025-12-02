@@ -170,7 +170,7 @@ func (o *OrgsMxEdges) AssignOrgMxEdgeToSite(
 func (o *OrgsMxEdges) ClaimOrgMxEdge(
 	ctx context.Context,
 	orgId uuid.UUID,
-	body *models.CodeString) (
+	body []string) (
 	models.ApiResponse[models.ResponseClaimMxEdge],
 	error) {
 	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/claim")

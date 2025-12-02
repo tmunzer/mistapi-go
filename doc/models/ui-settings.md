@@ -50,11 +50,7 @@ UI Settings
     "endDate": "endDate8",
     "interval": "interval4",
     "name": "name6",
-    "shortName": "shortName4",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "shortName": "shortName4"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

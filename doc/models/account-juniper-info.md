@@ -21,19 +21,11 @@
   "accounts": [
     {
       "linked_by": "linked_by8",
-      "name": "name0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "name": "name0"
     },
     {
       "linked_by": "linked_by8",
-      "name": "name0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "name": "name0"
     }
   ],
   "exampleAdditionalProperty": {

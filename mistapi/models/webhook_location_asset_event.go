@@ -10,15 +10,15 @@ import (
 
 // WebhookLocationAssetEvent represents a WebhookLocationAssetEvent struct.
 type WebhookLocationAssetEvent struct {
-	BatteryVoltage        *int       `json:"battery_voltage,omitempty"`
-	EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string    `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor          *int       `json:"ibeacon_major,omitempty"`
-	IbeaconMinor          *int       `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid           *uuid.UUID `json:"ibeacon_uuid,omitempty"`
-	Mac                   *string    `json:"mac,omitempty"`
-	MapId                 *uuid.UUID `json:"map_id,omitempty"`
+	BatteryVoltage        *int                `json:"battery_voltage,omitempty"`
+	EddystoneUidInstance  *string             `json:"eddystone_uid_instance,omitempty"`
+	EddystoneUidNamespace *string             `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrlUrl       *string             `json:"eddystone_url_url,omitempty"`
+	IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor          Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	Mac                   *string             `json:"mac,omitempty"`
+	MapId                 *uuid.UUID          `json:"map_id,omitempty"`
 	// Optional, BLE manufacturing company ID
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// Optional, BLE manufacturing data in hex byte-string format (ie: "112233AABBCC")
@@ -70,14 +70,26 @@ func (w WebhookLocationAssetEvent) toMap() map[string]any {
 	if w.EddystoneUrlUrl != nil {
 		structMap["eddystone_url_url"] = w.EddystoneUrlUrl
 	}
-	if w.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = w.IbeaconMajor
+	if w.IbeaconMajor.IsValueSet() {
+		if w.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = w.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if w.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = w.IbeaconMinor
+	if w.IbeaconMinor.IsValueSet() {
+		if w.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = w.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
-	if w.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = w.IbeaconUuid
+	if w.IbeaconUuid.IsValueSet() {
+		if w.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = w.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	if w.Mac != nil {
 		structMap["mac"] = w.Mac
@@ -144,20 +156,20 @@ func (w *WebhookLocationAssetEvent) UnmarshalJSON(input []byte) error {
 
 // tempWebhookLocationAssetEvent is a temporary struct used for validating the fields of WebhookLocationAssetEvent.
 type tempWebhookLocationAssetEvent struct {
-	BatteryVoltage        *int       `json:"battery_voltage,omitempty"`
-	EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string    `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor          *int       `json:"ibeacon_major,omitempty"`
-	IbeaconMinor          *int       `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid           *uuid.UUID `json:"ibeacon_uuid,omitempty"`
-	Mac                   *string    `json:"mac,omitempty"`
-	MapId                 *uuid.UUID `json:"map_id,omitempty"`
-	MfgCompanyId          *int       `json:"mfg_company_id,omitempty"`
-	MfgData               *string    `json:"mfg_data,omitempty"`
-	SiteId                *uuid.UUID `json:"site_id,omitempty"`
-	Timestamp             *float64   `json:"timestamp,omitempty"`
-	Type                  *string    `json:"type,omitempty"`
-	X                     *float64   `json:"x,omitempty"`
-	Y                     *float64   `json:"y,omitempty"`
+	BatteryVoltage        *int                `json:"battery_voltage,omitempty"`
+	EddystoneUidInstance  *string             `json:"eddystone_uid_instance,omitempty"`
+	EddystoneUidNamespace *string             `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrlUrl       *string             `json:"eddystone_url_url,omitempty"`
+	IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor          Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	Mac                   *string             `json:"mac,omitempty"`
+	MapId                 *uuid.UUID          `json:"map_id,omitempty"`
+	MfgCompanyId          *int                `json:"mfg_company_id,omitempty"`
+	MfgData               *string             `json:"mfg_data,omitempty"`
+	SiteId                *uuid.UUID          `json:"site_id,omitempty"`
+	Timestamp             *float64            `json:"timestamp,omitempty"`
+	Type                  *string             `json:"type,omitempty"`
+	X                     *float64            `json:"x,omitempty"`
+	Y                     *float64            `json:"y,omitempty"`
 }

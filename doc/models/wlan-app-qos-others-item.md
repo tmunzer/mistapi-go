@@ -1,8 +1,6 @@
 
 # Wlan App Qos Others Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanAppQosOthersItem`
@@ -16,7 +14,6 @@
 | `PortRanges` | `*string` | Optional | - |
 | `Protocol` | `*string` | Optional | - |
 | `SrcSubnet` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
   "port_ranges": "80,1024-6553",
   "protocol": "udp",
   "src_subnet": "10.2.0.0/16",
-  "dscp": "String3",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "dscp": "String3"
 }
 ```
 

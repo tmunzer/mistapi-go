@@ -1,8 +1,6 @@
 
 # Mxcluster Radsec Auth Server
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxclusterRadsecAuthServer`
@@ -23,7 +21,6 @@
 | `Secret` | `*string` | Optional | Secret of RADIUS server |
 | `Ssids` | `[]string` | Optional | List of ssids that will use this server if match_ssid is true and match is found |
 | `Timeout` | `*int` | Optional | Authentication request timeout, in seconds<br><br>**Default**: `5` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@
   "retry": 2,
   "timeout": 5,
   "host": "host6",
-  "keywrap_enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "keywrap_enabled": false
 }
 ```
 

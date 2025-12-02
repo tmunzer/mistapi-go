@@ -1,8 +1,6 @@
 
 # Org Setting Auto Site Assignment
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSettingAutoSiteAssignment`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
 | `Rules` | [`models.Optional[[]models.OrgSettingAutoAssignmentRule]`](../../doc/models/org-setting-auto-assignment-rule.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
       "match_device_type": "switch",
-      "src": "name",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "src": "name"
     },
     {
       "create_new_site_if_needed": false,
@@ -39,17 +32,9 @@
       "gatewaytemplate_id": "gatewaytemplate_id0",
       "match_country": "match_country8",
       "match_device_type": "switch",
-      "src": "name",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "src": "name"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

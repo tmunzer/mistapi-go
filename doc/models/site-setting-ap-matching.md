@@ -1,8 +1,6 @@
 
 # Site Setting Ap Matching
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingApMatching`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
 | `Rules` | [`[]models.SiteSettingApMatchingRule`](../../doc/models/site-setting-ap-matching-rule.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,69 +18,34 @@
 {
   "rules": [
     {
-      "eth1,eth2": {
-        "port_vlan_id": 1,
-        "vlan_ids": [
-          1,
-          10,
-          50
-        ]
-      },
-      "match_model": "match_model0",
-      "name": "name8",
+      "match_model": "string",
+      "name": "string",
       "port_config": {
-        "key0": {
-          "disabled": false,
+        "eth1,eth2": {
+          "disabled": true,
           "dynamic_vlan": {
-            "default_vlan_id": 34,
-            "enabled": false,
+            "default_vlan_id": 999,
+            "enabled": true,
             "type": "type6",
             "vlans": {
               "key0": "vlans1"
-            },
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
             }
           },
+          "port_vlan_id": 1,
+          "vlan_id": 9,
+          "vlan_ids": [
+            1,
+            10,
+            50
+          ],
           "enable_mac_auth": false,
           "forwarding": "site_mxedge",
-          "mac_auth_preferred": false,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        },
-        "key1": {
-          "disabled": false,
-          "dynamic_vlan": {
-            "default_vlan_id": 34,
-            "enabled": false,
-            "type": "type6",
-            "vlans": {
-              "key0": "vlans1"
-            },
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
-          },
-          "enable_mac_auth": false,
-          "forwarding": "site_mxedge",
-          "mac_auth_preferred": false,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "mac_auth_preferred": false
         }
       }
     }
   ],
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

@@ -49,10 +49,10 @@ func (s *StatsDevice) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for StatsDevice.
 // It customizes the JSON unmarshaling process for StatsDevice objects.
 func (s *StatsDevice) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallOneOf(input,
-		NewTypeHolder(&StatsAp{}, false, &s.isStatsAp),
-		NewTypeHolder(&StatsSwitch{}, false, &s.isStatsSwitch),
-		NewTypeHolder(&StatsGateway{}, false, &s.isStatsGateway),
+	result, err := UnmarshallOneOfWithDiscriminator(input, "type",
+		NewTypeHolderDiscriminator(&StatsAp{}, false, &s.isStatsAp, "ap"),
+		NewTypeHolderDiscriminator(&StatsSwitch{}, false, &s.isStatsSwitch, "switch"),
+		NewTypeHolderDiscriminator(&StatsGateway{}, false, &s.isStatsGateway, "gateway"),
 	)
 
 	s.value = result

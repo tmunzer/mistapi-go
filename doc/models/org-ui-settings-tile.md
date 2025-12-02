@@ -1,8 +1,6 @@
 
 # Org Ui Settings Tile
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgUiSettingsTile`
@@ -17,7 +15,6 @@
 | `Name` | `*string` | Optional | Name of the tile |
 | `NlQuery` | `*string` | Optional | Natural Language query for the tile |
 | `Position` | [`*models.OrgUiSettingsTilePosition`](../../doc/models/org-ui-settings-tile-position.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "Top 10 APs by Bandwidth",
   "nl_query": "List top 10 APs by bandwidth",
-  "isAutoTitle": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "isAutoTitle": false
 }
 ```
 

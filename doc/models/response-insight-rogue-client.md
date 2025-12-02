@@ -1,8 +1,6 @@
 
 # Response Insight Rogue Client
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseInsightRogueClient`
@@ -16,7 +14,6 @@
 | `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.InsightRogueClient`](../../doc/models/insight-rogue-client.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,19 +29,11 @@
       "band": "band8",
       "bssid": "bssid0",
       "client_mac": "client_mac4",
-      "num_aps": 140,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "num_aps": 140
     }
   ],
   "start": 184,
-  "next": "next2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next2"
 }
 ```
 

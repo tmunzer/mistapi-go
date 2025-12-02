@@ -1,8 +1,6 @@
 
 # License Usage Org
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `LicenseUsageOrg`
@@ -17,7 +15,6 @@
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Summary` | `map[string]int` | Optional | Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN). |
 | `Usages` | `map[string]int` | Required | Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN") |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,10 +32,6 @@
   "summary": {
     "key0": 120,
     "key1": 121
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

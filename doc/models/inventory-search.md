@@ -1,8 +1,6 @@
 
 # Inventory Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `InventorySearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.InventorySearchResult`](../../doc/models/inventory-search-result.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,35 +32,19 @@
         {
           "mac": "mac2",
           "model": "model6",
-          "serial": "serial8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "serial": "serial8"
         },
         {
           "mac": "mac2",
           "model": "model6",
-          "serial": "serial8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "serial": "serial8"
         }
       ],
       "model": "model4",
-      "name": "name6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "name": "name6"
     }
   ],
-  "start": 164,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 164
 }
 ```
 

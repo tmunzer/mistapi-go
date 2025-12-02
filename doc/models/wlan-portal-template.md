@@ -26,19 +26,11 @@
       "authButtonAzure": "authButtonAzure4",
       "authButtonEmail": "authButtonEmail2",
       "authButtonFacebook": "authButtonFacebook6",
-      "authButtonGoogle": "authButtonGoogle2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "authButtonGoogle": "authButtonGoogle2"
     },
     "authButtonAmazon": "authButtonAmazon4",
     "authButtonAzure": "authButtonAzure4",
-    "pageTitle": "pageTitle0",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "pageTitle": "pageTitle0"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

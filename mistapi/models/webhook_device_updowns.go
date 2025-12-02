@@ -10,7 +10,7 @@ import (
 )
 
 // WebhookDeviceUpdowns represents a WebhookDeviceUpdowns struct.
-// Device up/down webhook sample
+// Sample of the `device-updowns` webhook payload.
 type WebhookDeviceUpdowns struct {
 	Events               []WebhookDeviceUpdownsEvent `json:"events"`
 	Topic                string                      `json:"topic"`

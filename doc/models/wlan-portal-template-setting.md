@@ -3,8 +3,6 @@
 
 Portal template wlan settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanPortalTemplateSetting`
@@ -175,7 +173,6 @@ Portal template wlan settings
 | `ViVN` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `ZhHans` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
 | `ZhHant` | [`*models.WlanPortalTemplateSettingLocale`](../../doc/models/wlan-portal-template-setting-locale.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -305,15 +302,7 @@ Portal template wlan settings
     "authButtonAzure": "authButtonAzure4",
     "authButtonEmail": "authButtonEmail2",
     "authButtonFacebook": "authButtonFacebook6",
-    "authButtonGoogle": "authButtonGoogle2",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "authButtonGoogle": "authButtonGoogle2"
   }
 }
 ```

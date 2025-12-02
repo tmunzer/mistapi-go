@@ -1,8 +1,6 @@
 
 # Upgrade Org Devices Upgrade
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `UpgradeOrgDevicesUpgrade`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Upgrade` | [`*models.UpgradeOrgDevicesUpgradeInfo`](../../doc/models/upgrade-org-devices-upgrade-info.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,20 +39,8 @@
       "reboot_in_progress": [
         "reboot_in_progress3",
         "reboot_in_progress4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
+      ]
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

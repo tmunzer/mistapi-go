@@ -10,7 +10,7 @@ import (
 // TicketUploadAttachmentsFile represents a TicketUploadAttachmentsFile struct.
 type TicketUploadAttachmentsFile struct {
 	// Ekahau or ibwave file
-	File                 *[]byte                `json:"file,omitempty"`
+	File                 *string                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -64,5 +64,5 @@ func (t *TicketUploadAttachmentsFile) UnmarshalJSON(input []byte) error {
 
 // tempTicketUploadAttachmentsFile is a temporary struct used for validating the fields of TicketUploadAttachmentsFile.
 type tempTicketUploadAttachmentsFile struct {
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 }

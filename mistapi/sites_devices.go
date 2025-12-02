@@ -487,13 +487,13 @@ func (s *SitesDevices) SearchSiteDeviceEvents(
 }
 
 // ExportSiteDevices takes context, siteId as parameters and
-// returns an models.ApiResponse with []byte data and
+// returns an models.ApiResponse with string data and
 // an error if there was an issue with the request or response.
 // To download the exported device information
 func (s *SitesDevices) ExportSiteDevices(
 	ctx context.Context,
 	siteId uuid.UUID) (
-	models.ApiResponse[[]byte],
+	models.ApiResponse[string],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/devices/export")
 	req.AppendTemplateParams(siteId)
@@ -515,11 +515,13 @@ func (s *SitesDevices) ExportSiteDevices(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	stream, resp, err := req.CallAsStream()
+	str, resp, err := req.CallAsText()
+	var result string = str
+
 	if err != nil {
-		return models.NewApiResponse(stream, resp), err
+		return models.NewApiResponse(result, resp), err
 	}
-	return models.NewApiResponse(stream, resp), err
+	return models.NewApiResponse(result, resp), err
 }
 
 // SetSiteDevicesGbpTag takes context, siteId, body as parameters and
@@ -575,7 +577,7 @@ func (s *SitesDevices) SetSiteDevicesGbpTag(
 func (s *SitesDevices) ImportSiteDevices(
 	ctx context.Context,
 	siteId uuid.UUID,
-	file models.FileWrapper) (
+	file string) (
 	models.ApiResponse[[]models.ConfigDevice],
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/import")
@@ -597,10 +599,7 @@ func (s *SitesDevices) ImportSiteDevices(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	formFields := []https.FormParam{}
-	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
-	formFields = append(formFields, fileParam)
-	req.FormData(formFields)
+	req.FormParam("file", file)
 
 	var result []models.ConfigDevice
 	decoder, resp, err := req.CallAsJson()
@@ -1089,7 +1088,7 @@ func (s *SitesDevices) AddSiteDeviceImage(
 	siteId uuid.UUID,
 	deviceId uuid.UUID,
 	imageNumber int,
-	file models.FileWrapper,
+	file string,
 	json *string) (
 	*http.Response,
 	error) {
@@ -1112,14 +1111,10 @@ func (s *SitesDevices) AddSiteDeviceImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	formFields := []https.FormParam{}
-	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
-	formFields = append(formFields, fileParam)
+	req.FormParam("file", file)
 	if json != nil {
-		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
-		formFields = append(formFields, jsonParam)
+		req.FormParam("json", *json)
 	}
-	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {

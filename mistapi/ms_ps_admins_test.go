@@ -182,12 +182,8 @@ func TestMSPsAdminsTestInviteMspAdmin(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.Admin
-	errBody := json.Unmarshal([]byte(`{"email":"user@example.com","first_name":"string","last_name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := msPsAdmins.InviteMspAdmin(ctx, mspId, &body)
+
+	apiResponse, err := msPsAdmins.InviteMspAdmin(ctx, mspId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -207,12 +203,8 @@ func TestMSPsAdminsTestInviteMspAdmin1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.Admin
-	errBody := json.Unmarshal([]byte(`{"email":"user@example.com","first_name":"string","last_name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := msPsAdmins.InviteMspAdmin(ctx, mspId, &body)
+
+	apiResponse, err := msPsAdmins.InviteMspAdmin(ctx, mspId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -254,12 +246,8 @@ func TestMSPsAdminsTestUpdateMspAdminInvite(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.Admin
-	errBody := json.Unmarshal([]byte(`{"email":"user@example.com","first_name":"string","last_name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := msPsAdmins.UpdateMspAdminInvite(ctx, mspId, inviteId, &body)
+
+	apiResponse, err := msPsAdmins.UpdateMspAdminInvite(ctx, mspId, inviteId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -283,12 +271,8 @@ func TestMSPsAdminsTestUpdateMspAdminInvite1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.Admin
-	errBody := json.Unmarshal([]byte(`{"email":"user@example.com","first_name":"string","last_name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := msPsAdmins.UpdateMspAdminInvite(ctx, mspId, inviteId, &body)
+
+	apiResponse, err := msPsAdmins.UpdateMspAdminInvite(ctx, mspId, inviteId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

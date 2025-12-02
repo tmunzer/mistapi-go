@@ -14,16 +14,16 @@ import (
 // Asset statistics
 type StatsAsset struct {
 	// Battery voltage, in mV
-	BatteryVoltage        *float64   `json:"battery_voltage,omitempty"`
-	Beam                  *int       `json:"beam,omitempty"`
-	DeviceName            *string    `json:"device_name,omitempty"`
-	Duration              *int       `json:"duration,omitempty"`
-	EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string    `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor          *int       `json:"ibeacon_major,omitempty"`
-	IbeaconMinor          *int       `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid           *uuid.UUID `json:"ibeacon_uuid,omitempty"`
+	BatteryVoltage        *float64            `json:"battery_voltage,omitempty"`
+	Beam                  *int                `json:"beam,omitempty"`
+	DeviceName            *string             `json:"device_name,omitempty"`
+	Duration              *int                `json:"duration,omitempty"`
+	EddystoneUidInstance  *string             `json:"eddystone_uid_instance,omitempty"`
+	EddystoneUidNamespace *string             `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrlUrl       *string             `json:"eddystone_url_url,omitempty"`
+	IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor          Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Last seen timestamp
 	LastSeen Optional[float64] `json:"last_seen"`
 	// Bluetooth MAC
@@ -90,14 +90,26 @@ func (s StatsAsset) toMap() map[string]any {
 	if s.EddystoneUrlUrl != nil {
 		structMap["eddystone_url_url"] = s.EddystoneUrlUrl
 	}
-	if s.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = s.IbeaconMajor
+	if s.IbeaconMajor.IsValueSet() {
+		if s.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = s.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if s.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = s.IbeaconMinor
+	if s.IbeaconMinor.IsValueSet() {
+		if s.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = s.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
-	if s.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = s.IbeaconUuid
+	if s.IbeaconUuid.IsValueSet() {
+		if s.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = s.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	if s.LastSeen.IsValueSet() {
 		if s.LastSeen.Value() != nil {
@@ -177,26 +189,26 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
 
 // tempStatsAsset is a temporary struct used for validating the fields of StatsAsset.
 type tempStatsAsset struct {
-	BatteryVoltage        *float64          `json:"battery_voltage,omitempty"`
-	Beam                  *int              `json:"beam,omitempty"`
-	DeviceName            *string           `json:"device_name,omitempty"`
-	Duration              *int              `json:"duration,omitempty"`
-	EddystoneUidInstance  *string           `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string           `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string           `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor          *int              `json:"ibeacon_major,omitempty"`
-	IbeaconMinor          *int              `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid           *uuid.UUID        `json:"ibeacon_uuid,omitempty"`
-	LastSeen              Optional[float64] `json:"last_seen"`
-	Mac                   *string           `json:"mac"`
-	MapId                 *uuid.UUID        `json:"map_id,omitempty"`
-	Name                  *string           `json:"name,omitempty"`
-	Rssi                  *int              `json:"rssi,omitempty"`
-	Rssizones             []AssetRssiZone   `json:"rssizones,omitempty"`
-	Temperature           *float64          `json:"temperature,omitempty"`
-	X                     *float64          `json:"x,omitempty"`
-	Y                     *float64          `json:"y,omitempty"`
-	Zones                 []AssetZone       `json:"zones,omitempty"`
+	BatteryVoltage        *float64            `json:"battery_voltage,omitempty"`
+	Beam                  *int                `json:"beam,omitempty"`
+	DeviceName            *string             `json:"device_name,omitempty"`
+	Duration              *int                `json:"duration,omitempty"`
+	EddystoneUidInstance  *string             `json:"eddystone_uid_instance,omitempty"`
+	EddystoneUidNamespace *string             `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrlUrl       *string             `json:"eddystone_url_url,omitempty"`
+	IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor          Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	LastSeen              Optional[float64]   `json:"last_seen"`
+	Mac                   *string             `json:"mac"`
+	MapId                 *uuid.UUID          `json:"map_id,omitempty"`
+	Name                  *string             `json:"name,omitempty"`
+	Rssi                  *int                `json:"rssi,omitempty"`
+	Rssizones             []AssetRssiZone     `json:"rssizones,omitempty"`
+	Temperature           *float64            `json:"temperature,omitempty"`
+	X                     *float64            `json:"x,omitempty"`
+	Y                     *float64            `json:"y,omitempty"`
+	Zones                 []AssetZone         `json:"zones,omitempty"`
 }
 
 func (s *tempStatsAsset) validate() error {

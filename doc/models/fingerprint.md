@@ -1,8 +1,6 @@
 
 # Fingerprint
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Fingerprint`
@@ -21,7 +19,6 @@
 | `RandomMac` | `*bool` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "family": "family8",
   "mac": "mac0",
   "mfg": "mfg4",
-  "model": "model4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "model": "model4"
 }
 ```
 

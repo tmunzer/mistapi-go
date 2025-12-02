@@ -1,8 +1,6 @@
 
 # Const Country
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstCountry`
@@ -15,7 +13,6 @@
 | `Certified` | `bool` | Required | - |
 | `Name` | `string` | Required | - |
 | `Numeric` | `float64` | Required | Country code, ISO 3166-1 numeric |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@
   "alpha2": "FR",
   "certified": true,
   "name": "France",
-  "numeric": 250.0,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "numeric": 250.0
 }
 ```
 

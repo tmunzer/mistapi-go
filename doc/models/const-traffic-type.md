@@ -1,8 +1,6 @@
 
 # Const Traffic Type
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstTrafficType`
@@ -19,7 +17,6 @@
 | `MaxLoss` | `*int` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `TrafficClass` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "max_latency": 1500,
   "max_loss": 35,
   "name": "voip_video",
-  "traffic_class": "medium",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "traffic_class": "medium"
 }
 ```
 

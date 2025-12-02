@@ -29,7 +29,7 @@ func TestOrgsTicketsTestListOrgTickets(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}]`
+	expected := `[{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -51,7 +51,7 @@ func TestOrgsTicketsTestListOrgTickets1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}]`
+	expected := `[{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -76,7 +76,7 @@ func TestOrgsTicketsTestCreateOrgTicket(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -101,7 +101,7 @@ func TestOrgsTicketsTestCreateOrgTicket1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -171,7 +171,7 @@ func TestOrgsTicketsTestGetOrgTicket(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -197,7 +197,7 @@ func TestOrgsTicketsTestGetOrgTicket1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -226,7 +226,7 @@ func TestOrgsTicketsTestUpdateOrgTicket(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -255,7 +255,7 @@ func TestOrgsTicketsTestUpdateOrgTicket1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -360,7 +360,7 @@ func TestOrgsTicketsTestAddOrgTicketComment(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -386,6 +386,6 @@ func TestOrgsTicketsTestAddOrgTicketComment1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string","size":0}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
+	expected := `{"comments":[{"attachments":[{"content_type":"string","content_url":"string"}],"author":"string","comment":"string","created_at":0}],"created_at":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","requester":"string","status":"open","subject":"string","type":"string","updated_at":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

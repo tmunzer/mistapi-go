@@ -35,18 +35,10 @@
       "ip": "ip8",
       "peer_paths": {
         "key0": {
-          "preference": 144,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "preference": 144
         }
       },
-      "pod": 128,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "pod": 128
     },
     "key1": {
       "bfd_profile": "broadband",
@@ -54,18 +46,10 @@
       "ip": "ip8",
       "peer_paths": {
         "key0": {
-          "preference": 144,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "preference": 144
         }
       },
-      "pod": 128,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "pod": 128
     },
     "key2": {
       "bfd_profile": "broadband",
@@ -73,29 +57,17 @@
       "ip": "ip8",
       "peer_paths": {
         "key0": {
-          "preference": 144,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "preference": 144
         }
       },
-      "pod": 128,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "pod": 128
     }
   },
   "type": "hub_spoke",
   "created_time": 229.0,
   "modified_time": 105.96,
   "path_selection": {
-    "strategy": "simple",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "strategy": "simple"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

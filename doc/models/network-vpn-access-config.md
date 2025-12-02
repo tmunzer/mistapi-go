@@ -1,8 +1,6 @@
 
 # Network Vpn Access Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `NetworkVpnAccessConfig`
@@ -25,7 +23,6 @@
 | `SummarizedSubnet` | `*string` | Optional | toward overlay, how HUB should deal with routes it received from Spokes |
 | `SummarizedSubnetToLanBgp` | `*string` | Optional | toward LAN-side BGP peers |
 | `SummarizedSubnetToLanOspf` | `*string` | Optional | toward LAN-side OSPF peers |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,25 +40,13 @@
     "key0": {
       "internal_ip": "internal_ip0",
       "name": "name4",
-      "port": "port4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port": "port4"
     },
     "key1": {
       "internal_ip": "internal_ip0",
       "name": "name4",
-      "port": "port4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port": "port4"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

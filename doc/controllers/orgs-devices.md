@@ -1142,7 +1142,6 @@ if err != nil {
       "site_id": "a8178443-ecb5-461c-b854-f16627619ab3",
       "sku": "AP41-US",
       "timestamp": 1596588619.007,
-      "type": "ap",
       "uptime": 85280,
       "version": "0.7.20216",
       "wlans": [

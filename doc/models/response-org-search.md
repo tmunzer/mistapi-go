@@ -1,8 +1,6 @@
 
 # Response Org Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseOrgSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.ResponseOrgSearchItem`](../../doc/models/response-org-search-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,20 +29,12 @@
       "name": "name6",
       "num_aps": 140,
       "num_gateways": 112,
-      "num_sites": 50,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "num_sites": 50
     }
   ],
   "start": 228.04,
   "total": 202,
-  "next": "next2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next2"
 }
 ```
 

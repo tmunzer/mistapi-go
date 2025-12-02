@@ -1,8 +1,6 @@
 
 # Ticket Comments Attachment
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TicketCommentsAttachment`
@@ -17,7 +15,6 @@
 | `FileName` | `*string` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `SizeInBytes` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "created_at": 1453908369,
   "file_name": "crash.png",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "size_in_bytes": 1943,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "size_in_bytes": 1943
 }
 ```
 

@@ -63,7 +63,7 @@ func TestOrgsMxClustersTestCreateOrgMxEdgeCluster(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxcluster
-	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"enabled":true,"server_name":"string","servers":[{"host":"string","port":0}]},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
+	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"auth_servers":[{"host":"string","port":0}],"enabled":true},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -88,7 +88,7 @@ func TestOrgsMxClustersTestCreateOrgMxEdgeCluster1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxcluster
-	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"enabled":true,"server_name":"string","servers":[{"host":"string","port":0}]},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
+	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"auth_servers":[{"host":"string","port":0}],"enabled":true},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -183,7 +183,7 @@ func TestOrgsMxClustersTestUpdateOrgMxEdgeCluster(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxcluster
-	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"enabled":true,"server_name":"string","servers":[{"host":"string","port":0}]},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
+	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"auth_servers":[{"host":"string","port":0}],"enabled":true},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -212,7 +212,7 @@ func TestOrgsMxClustersTestUpdateOrgMxEdgeCluster1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxcluster
-	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"enabled":true,"server_name":"string","servers":[{"host":"string","port":0}]},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
+	errBody := json.Unmarshal([]byte(`{"name":"string","radsec":{"auth_servers":[{"host":"string","port":0}],"enabled":true},"tunterm_ap_subnets":["string"],"tunterm_hosts":["string"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

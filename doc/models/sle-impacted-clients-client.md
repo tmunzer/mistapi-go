@@ -1,8 +1,6 @@
 
 # Sle Impacted Clients Client
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedClientsClient`
@@ -17,7 +15,6 @@
 | `Name` | `*string` | Optional | - |
 | `Switches` | [`[]models.SleImpactedClientsClientSwitch`](../../doc/models/sle-impacted-clients-client-switch.md) | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,17 +30,9 @@
         "interfaces9"
       ],
       "switch_mac": "switch_mac6",
-      "switch_name": "switch_name0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "switch_name": "switch_name0"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

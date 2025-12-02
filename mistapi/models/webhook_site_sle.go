@@ -4,13 +4,16 @@ package models
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"strings"
 )
 
 // WebhookSiteSle represents a WebhookSiteSle struct.
+// Sample of the `site-sle` webhook payload.
 type WebhookSiteSle struct {
-	Events               []WebhookSiteSleEvent  `json:"events,omitempty"`
-	Topic                *string                `json:"topic,omitempty"`
+	Events               []WebhookSiteSleEvent  `json:"events"`
+	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -38,12 +41,8 @@ func (w WebhookSiteSle) MarshalJSON() (
 func (w WebhookSiteSle) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, w.AdditionalProperties)
-	if w.Events != nil {
-		structMap["events"] = w.Events
-	}
-	if w.Topic != nil {
-		structMap["topic"] = w.Topic
-	}
+	structMap["events"] = w.Events
+	structMap["topic"] = w.Topic
 	return structMap
 }
 
@@ -55,19 +54,37 @@ func (w *WebhookSiteSle) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
+	err = temp.validate()
+	if err != nil {
+		return err
+	}
 	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "events", "topic")
 	if err != nil {
 		return err
 	}
 	w.AdditionalProperties = additionalProperties
 
-	w.Events = temp.Events
-	w.Topic = temp.Topic
+	w.Events = *temp.Events
+	w.Topic = *temp.Topic
 	return nil
 }
 
 // tempWebhookSiteSle is a temporary struct used for validating the fields of WebhookSiteSle.
 type tempWebhookSiteSle struct {
-	Events []WebhookSiteSleEvent `json:"events,omitempty"`
-	Topic  *string               `json:"topic,omitempty"`
+	Events *[]WebhookSiteSleEvent `json:"events"`
+	Topic  *string                `json:"topic"`
+}
+
+func (w *tempWebhookSiteSle) validate() error {
+	var errs []string
+	if w.Events == nil {
+		errs = append(errs, "required field `events` is missing for type `webhook_site_sle`")
+	}
+	if w.Topic == nil {
+		errs = append(errs, "required field `topic` is missing for type `webhook_site_sle`")
+	}
+	if len(errs) == 0 {
+		return nil
+	}
+	return errors.New(strings.Join(errs, "\n"))
 }

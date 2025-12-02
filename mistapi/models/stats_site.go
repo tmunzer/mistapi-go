@@ -15,9 +15,13 @@ import (
 type StatsSite struct {
 	Address         *string             `json:"address,omitempty"`
 	AlarmtemplateId Optional[uuid.UUID] `json:"alarmtemplate_id"`
+	AnalyticEnabled *bool               `json:"analyticEnabled,omitempty"`
+	AptemplateId    Optional[uuid.UUID] `json:"aptemplate_id"`
 	CountryCode     string              `json:"country_code"`
 	// When the object has been created, in epoch
-	CreatedTime float64 `json:"created_time"`
+	CreatedTime       float64             `json:"created_time"`
+	EngagementEnabled *bool               `json:"engagementEnabled,omitempty"`
+	GatewaytemplateId Optional[uuid.UUID] `json:"gatewaytemplate_id"`
 	// Unique ID of the object instance in the Mist Organization
 	Id     uuid.UUID `json:"id"`
 	Lat    *float64  `json:"lat,omitempty"`
@@ -28,6 +32,7 @@ type StatsSite struct {
 	MspId                *uuid.UUID             `json:"msp_id,omitempty"`
 	Name                 string                 `json:"name"`
 	NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
+	Notes                *string                `json:"notes,omitempty"`
 	NumAp                int                    `json:"num_ap"`
 	NumApConnected       int                    `json:"num_ap_connected"`
 	NumClients           int                    `json:"num_clients"`
@@ -41,6 +46,7 @@ type StatsSite struct {
 	RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
 	SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
 	SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
+	SitetemplateId       Optional[uuid.UUID]    `json:"sitetemplate_id"`
 	Timezone             string                 `json:"timezone"`
 	Tzoffset             int                    `json:"tzoffset"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -50,8 +56,8 @@ type StatsSite struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSite) String() string {
 	return fmt.Sprintf(
-		"StatsSite[Address=%v, AlarmtemplateId=%v, CountryCode=%v, CreatedTime=%v, Id=%v, Lat=%v, Latlng=%v, Lng=%v, ModifiedTime=%v, MspId=%v, Name=%v, NetworktemplateId=%v, NumAp=%v, NumApConnected=%v, NumClients=%v, NumDevices=%v, NumDevicesConnected=%v, NumGateway=%v, NumGatewayConnected=%v, NumSwitch=%v, NumSwitchConnected=%v, OrgId=%v, RftemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
-		s.Address, s.AlarmtemplateId, s.CountryCode, s.CreatedTime, s.Id, s.Lat, s.Latlng, s.Lng, s.ModifiedTime, s.MspId, s.Name, s.NetworktemplateId, s.NumAp, s.NumApConnected, s.NumClients, s.NumDevices, s.NumDevicesConnected, s.NumGateway, s.NumGatewayConnected, s.NumSwitch, s.NumSwitchConnected, s.OrgId, s.RftemplateId, s.SecpolicyId, s.SitegroupIds, s.Timezone, s.Tzoffset, s.AdditionalProperties)
+		"StatsSite[Address=%v, AlarmtemplateId=%v, AnalyticEnabled=%v, AptemplateId=%v, CountryCode=%v, CreatedTime=%v, EngagementEnabled=%v, GatewaytemplateId=%v, Id=%v, Lat=%v, Latlng=%v, Lng=%v, ModifiedTime=%v, MspId=%v, Name=%v, NetworktemplateId=%v, Notes=%v, NumAp=%v, NumApConnected=%v, NumClients=%v, NumDevices=%v, NumDevicesConnected=%v, NumGateway=%v, NumGatewayConnected=%v, NumSwitch=%v, NumSwitchConnected=%v, OrgId=%v, RftemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, SitetemplateId=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
+		s.Address, s.AlarmtemplateId, s.AnalyticEnabled, s.AptemplateId, s.CountryCode, s.CreatedTime, s.EngagementEnabled, s.GatewaytemplateId, s.Id, s.Lat, s.Latlng, s.Lng, s.ModifiedTime, s.MspId, s.Name, s.NetworktemplateId, s.Notes, s.NumAp, s.NumApConnected, s.NumClients, s.NumDevices, s.NumDevicesConnected, s.NumGateway, s.NumGatewayConnected, s.NumSwitch, s.NumSwitchConnected, s.OrgId, s.RftemplateId, s.SecpolicyId, s.SitegroupIds, s.SitetemplateId, s.Timezone, s.Tzoffset, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSite.
@@ -60,7 +66,7 @@ func (s StatsSite) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"address", "alarmtemplate_id", "country_code", "created_time", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "timezone", "tzoffset"); err != nil {
+		"address", "alarmtemplate_id", "analyticEnabled", "aptemplate_id", "country_code", "created_time", "engagementEnabled", "gatewaytemplate_id", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "notes", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -80,8 +86,28 @@ func (s StatsSite) toMap() map[string]any {
 			structMap["alarmtemplate_id"] = nil
 		}
 	}
+	if s.AnalyticEnabled != nil {
+		structMap["analyticEnabled"] = s.AnalyticEnabled
+	}
+	if s.AptemplateId.IsValueSet() {
+		if s.AptemplateId.Value() != nil {
+			structMap["aptemplate_id"] = s.AptemplateId.Value()
+		} else {
+			structMap["aptemplate_id"] = nil
+		}
+	}
 	structMap["country_code"] = s.CountryCode
 	structMap["created_time"] = s.CreatedTime
+	if s.EngagementEnabled != nil {
+		structMap["engagementEnabled"] = s.EngagementEnabled
+	}
+	if s.GatewaytemplateId.IsValueSet() {
+		if s.GatewaytemplateId.Value() != nil {
+			structMap["gatewaytemplate_id"] = s.GatewaytemplateId.Value()
+		} else {
+			structMap["gatewaytemplate_id"] = nil
+		}
+	}
 	structMap["id"] = s.Id
 	if s.Lat != nil {
 		structMap["lat"] = s.Lat
@@ -101,6 +127,9 @@ func (s StatsSite) toMap() map[string]any {
 		} else {
 			structMap["networktemplate_id"] = nil
 		}
+	}
+	if s.Notes != nil {
+		structMap["notes"] = s.Notes
 	}
 	structMap["num_ap"] = s.NumAp
 	structMap["num_ap_connected"] = s.NumApConnected
@@ -129,6 +158,13 @@ func (s StatsSite) toMap() map[string]any {
 	if s.SitegroupIds != nil {
 		structMap["sitegroup_ids"] = s.SitegroupIds
 	}
+	if s.SitetemplateId.IsValueSet() {
+		if s.SitetemplateId.Value() != nil {
+			structMap["sitetemplate_id"] = s.SitetemplateId.Value()
+		} else {
+			structMap["sitetemplate_id"] = nil
+		}
+	}
 	structMap["timezone"] = s.Timezone
 	structMap["tzoffset"] = s.Tzoffset
 	return structMap
@@ -146,7 +182,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "country_code", "created_time", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "timezone", "tzoffset")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "analyticEnabled", "aptemplate_id", "country_code", "created_time", "engagementEnabled", "gatewaytemplate_id", "id", "lat", "latlng", "lng", "modified_time", "msp_id", "name", "networktemplate_id", "notes", "num_ap", "num_ap_connected", "num_clients", "num_devices", "num_devices_connected", "num_gateway", "num_gateway_connected", "num_switch", "num_switch_connected", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset")
 	if err != nil {
 		return err
 	}
@@ -154,8 +190,12 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 
 	s.Address = temp.Address
 	s.AlarmtemplateId = temp.AlarmtemplateId
+	s.AnalyticEnabled = temp.AnalyticEnabled
+	s.AptemplateId = temp.AptemplateId
 	s.CountryCode = *temp.CountryCode
 	s.CreatedTime = *temp.CreatedTime
+	s.EngagementEnabled = temp.EngagementEnabled
+	s.GatewaytemplateId = temp.GatewaytemplateId
 	s.Id = *temp.Id
 	s.Lat = temp.Lat
 	s.Latlng = *temp.Latlng
@@ -164,6 +204,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	s.MspId = temp.MspId
 	s.Name = *temp.Name
 	s.NetworktemplateId = temp.NetworktemplateId
+	s.Notes = temp.Notes
 	s.NumAp = *temp.NumAp
 	s.NumApConnected = *temp.NumApConnected
 	s.NumClients = *temp.NumClients
@@ -177,6 +218,7 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 	s.RftemplateId = temp.RftemplateId
 	s.SecpolicyId = temp.SecpolicyId
 	s.SitegroupIds = temp.SitegroupIds
+	s.SitetemplateId = temp.SitetemplateId
 	s.Timezone = *temp.Timezone
 	s.Tzoffset = *temp.Tzoffset
 	return nil
@@ -186,8 +228,12 @@ func (s *StatsSite) UnmarshalJSON(input []byte) error {
 type tempStatsSite struct {
 	Address             *string             `json:"address,omitempty"`
 	AlarmtemplateId     Optional[uuid.UUID] `json:"alarmtemplate_id"`
+	AnalyticEnabled     *bool               `json:"analyticEnabled,omitempty"`
+	AptemplateId        Optional[uuid.UUID] `json:"aptemplate_id"`
 	CountryCode         *string             `json:"country_code"`
 	CreatedTime         *float64            `json:"created_time"`
+	EngagementEnabled   *bool               `json:"engagementEnabled,omitempty"`
+	GatewaytemplateId   Optional[uuid.UUID] `json:"gatewaytemplate_id"`
 	Id                  *uuid.UUID          `json:"id"`
 	Lat                 *float64            `json:"lat,omitempty"`
 	Latlng              *LatLng             `json:"latlng"`
@@ -196,6 +242,7 @@ type tempStatsSite struct {
 	MspId               *uuid.UUID          `json:"msp_id,omitempty"`
 	Name                *string             `json:"name"`
 	NetworktemplateId   Optional[uuid.UUID] `json:"networktemplate_id"`
+	Notes               *string             `json:"notes,omitempty"`
 	NumAp               *int                `json:"num_ap"`
 	NumApConnected      *int                `json:"num_ap_connected"`
 	NumClients          *int                `json:"num_clients"`
@@ -209,6 +256,7 @@ type tempStatsSite struct {
 	RftemplateId        Optional[uuid.UUID] `json:"rftemplate_id"`
 	SecpolicyId         Optional[uuid.UUID] `json:"secpolicy_id"`
 	SitegroupIds        []uuid.UUID         `json:"sitegroup_ids,omitempty"`
+	SitetemplateId      Optional[uuid.UUID] `json:"sitetemplate_id"`
 	Timezone            *string             `json:"timezone"`
 	Tzoffset            *int                `json:"tzoffset"`
 }

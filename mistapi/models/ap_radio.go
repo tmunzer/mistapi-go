@@ -19,7 +19,7 @@ type ApRadio struct {
 	AntGain6 *int `json:"ant_gain_6,omitempty"`
 	// enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`
 	AntennaMode *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
-	// Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
+	// Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal`
 	AntennaSelect *AntennaSelectEnum `json:"antenna_select,omitempty"`
 	// Radio Band AP settings
 	Band24 *ApRadioBand24 `json:"band_24,omitempty"`

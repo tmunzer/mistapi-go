@@ -29,7 +29,7 @@ func TestOrgsWxTagsTestListOrgWxTags(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}]`
+	expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -51,7 +51,7 @@ func TestOrgsWxTagsTestListOrgWxTags1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}]`
+	expected := `[{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -76,7 +76,7 @@ func TestOrgsWxTagsTestCreateOrgWxTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -101,7 +101,7 @@ func TestOrgsWxTagsTestCreateOrgWxTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -183,7 +183,7 @@ func TestOrgsWxTagsTestGetOrgWxTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -207,7 +207,7 @@ func TestOrgsWxTagsTestGetOrgWxTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -232,7 +232,7 @@ func TestOrgsWxTagsTestUpdateOrgWxTag(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -257,7 +257,7 @@ func TestOrgsWxTagsTestUpdateOrgWxTag1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnet":["string"]}],"subnet":"string","type":"match","values":["string"]}`
+	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","last_ips":["string"],"mac":"string","match":"wlan_id","modified_time":0,"name":"string","op":"in","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","resource_mac":"string","services":["string"],"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","specs":[{"port_range":"string","protocol":"tcp","subnets":["string"]}],"subnet":"string","type":"match","values":["string"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

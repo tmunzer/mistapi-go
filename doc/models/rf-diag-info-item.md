@@ -1,8 +1,6 @@
 
 # Rf Diag Info Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RfDiagInfoItem`
@@ -30,7 +28,6 @@
 | `StartTime` | `int` | Required | Timestamp of the recording (the start) |
 | `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | enum: `asset`, `client`, `sdkclient` |
 | `Url` | `string` | Required | URL to a JSON file that contains an array of frames, each frame is the same format |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,11 +47,7 @@
   "asset_id": "000016c0-0000-0000-0000-000000000000",
   "asset_name": "asset_name6",
   "client_name": "client_name8",
-  "mac": "mac2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "mac": "mac2"
 }
 ```
 

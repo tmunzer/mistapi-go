@@ -11,7 +11,7 @@ import (
 
 // MapSiteReplaceFile represents a MapSiteReplaceFile struct.
 type MapSiteReplaceFile struct {
-	File                 []byte                  `json:"file"`
+	File                 string                  `json:"file"`
 	Json                 *MapSiteReplaceFileJson `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }
@@ -72,7 +72,7 @@ func (m *MapSiteReplaceFile) UnmarshalJSON(input []byte) error {
 
 // tempMapSiteReplaceFile is a temporary struct used for validating the fields of MapSiteReplaceFile.
 type tempMapSiteReplaceFile struct {
-	File *[]byte                 `json:"file"`
+	File *string                 `json:"file"`
 	Json *MapSiteReplaceFileJson `json:"json,omitempty"`
 }
 

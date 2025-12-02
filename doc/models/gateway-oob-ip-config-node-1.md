@@ -3,8 +3,6 @@
 
 For HA Cluster, node1 can have different IP Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayOobIpConfigNode1`
@@ -20,7 +18,6 @@ For HA Cluster, node1 can have different IP Config
 | `UseMgmtVrf` | `*bool` | Optional | If supported on the platform. If enabled, DNS will be using this routing-instance, too<br><br>**Default**: `false` |
 | `UseMgmtVrfForHostOut` | `*bool` | Optional | Whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired<br><br>**Default**: `false` |
 | `VlanId` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@ For HA Cluster, node1 can have different IP Config
   "use_mgmt_vrf_for_host_out": false,
   "gateway": "gateway0",
   "ip": "ip4",
-  "netmask": "netmask0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "netmask": "netmask0"
 }
 ```
 

@@ -10,7 +10,7 @@ import (
 // OrgCrlImportFile represents a OrgCrlImportFile struct.
 type OrgCrlImportFile struct {
 	// a PEM or DER formatted CRL file
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 	// a JSON string with "name" field for CRL file issuer (optional)
 	Json                 *string                `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -70,6 +70,6 @@ func (o *OrgCrlImportFile) UnmarshalJSON(input []byte) error {
 
 // tempOrgCrlImportFile is a temporary struct used for validating the fields of OrgCrlImportFile.
 type tempOrgCrlImportFile struct {
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 	Json *string `json:"json,omitempty"`
 }

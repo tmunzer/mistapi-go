@@ -1,8 +1,6 @@
 
 # Ap Port Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApPortConfig`
@@ -28,7 +26,6 @@
 | `VlanIds` | `[]int` | Optional | If `forwarding`==`limited`<br><br>**Constraints**: `>= 1`, `<= 4094` |
 | `WxtunnelId` | `*uuid.UUID` | Optional | If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session |
 | `WxtunnelRemoteId` | `*string` | Optional | If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -56,15 +53,7 @@
     "type": "type6",
     "vlans": {
       "key0": "vlans1"
-    },
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

@@ -568,12 +568,6 @@ if err != nil {
     }
   },
   "tunterm_ip_config": {
-    "dns": [
-      "8.8.8.8"
-    ],
-    "dns_suffix": [
-      ".mist.local"
-    ],
     "gateway": "10.2.1.254",
     "ip": "10.2.1.1",
     "netmask": "255.255.255.0"

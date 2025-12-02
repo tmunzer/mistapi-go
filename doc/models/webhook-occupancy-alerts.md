@@ -1,9 +1,7 @@
 
 # Webhook Occupancy Alerts
 
-Occupancy alert webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `occupancy-alerts` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ Occupancy alert webhook sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookOccupancyAlertsEvent`](../../doc/models/webhook-occupancy-alerts-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | **Default**: `"occupancy-alerts"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"occupancy-alerts"` |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@ Occupancy alert webhook sample
           "timestamp": 148.24,
           "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
-          "zone_name": "zone_name6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "zone_name": "zone_name6"
         },
         {
           "current_occupancy": 30,
@@ -48,11 +41,7 @@ Occupancy alert webhook sample
           "timestamp": 148.24,
           "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
-          "zone_name": "zone_name6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "zone_name": "zone_name6"
         },
         {
           "current_occupancy": 30,
@@ -62,25 +51,13 @@ Occupancy alert webhook sample
           "timestamp": 148.24,
           "type": "COMPLIANCE-OK",
           "zone_id": "000010f6-0000-0000-0000-000000000000",
-          "zone_name": "zone_name6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "zone_name": "zone_name6"
         }
       ],
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
-  "topic": "occupancy-alerts",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "occupancy-alerts"
 }
 ```
 

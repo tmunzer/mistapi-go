@@ -4,10 +4,8 @@ package mistapi
 
 import (
 	"context"
-	"encoding/json"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
-	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
 
@@ -38,12 +36,8 @@ func TestSitesRSSIZonesTestCreateSiteRssiZone(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.RssiZone
-	errBody := json.Unmarshal([]byte(`{"devices":[{"device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","rssi":0}],"name":"string"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := sitesRssiZones.CreateSiteRssiZone(ctx, siteId, &body)
+
+	apiResponse, err := sitesRssiZones.CreateSiteRssiZone(ctx, siteId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -133,12 +127,8 @@ func TestSitesRSSIZonesTestUpdateSiteRssiZone(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.RssiZone
-	errBody := json.Unmarshal([]byte(`{"devices":[{"device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","rssi":0}],"name":"string"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := sitesRssiZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, &body)
+
+	apiResponse, err := sitesRssiZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -162,12 +152,8 @@ func TestSitesRSSIZonesTestUpdateSiteRssiZone1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.RssiZone
-	errBody := json.Unmarshal([]byte(`{"devices":[{"device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","rssi":0}],"name":"string"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := sitesRssiZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, &body)
+
+	apiResponse, err := sitesRssiZones.UpdateSiteRssiZone(ctx, siteId, rssizoneId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

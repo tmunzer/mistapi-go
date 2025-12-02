@@ -1,8 +1,6 @@
 
 # Upgrade Org Devices Upgrade Info
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `UpgradeOrgDevicesUpgradeInfo`
@@ -15,7 +13,6 @@
 | `StartTime` | `*int` | Optional | - |
 | `Status` | [`*models.UpgradeDeviceStatusEnum`](../../doc/models/upgrade-device-status-enum.md) | Optional | status upgrade is in. enum: `cancelled`, `completed`, `created`, `downloaded`, `downloading`, `failed`, `upgrading`, `queued` |
 | `Targets` | [`*models.UpgradeDevicesTargets`](../../doc/models/upgrade-devices-targets.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,15 +39,7 @@
     "reboot_in_progress": [
       "reboot_in_progress3",
       "reboot_in_progress4"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    ]
   }
 }
 ```

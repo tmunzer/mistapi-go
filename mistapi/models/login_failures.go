@@ -17,7 +17,7 @@ type LoginFailures struct {
 	// Number of failed login attempts
 	NumAttempts *int `json:"num_attempts,omitempty"`
 	// List of up to 32 unique source IP addresses, ordered with the most recent first
-	ScrIps []string `json:"scr_ips,omitempty"`
+	SrcIps []string `json:"src_ips,omitempty"`
 	// List of up to 32 unique User-Agent strings, ordered with the most recent first
 	UserAgents           []string               `json:"user_agents,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -27,8 +27,8 @@ type LoginFailures struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (l LoginFailures) String() string {
 	return fmt.Sprintf(
-		"LoginFailures[Email=%v, LastFailureAt=%v, NumAttempts=%v, ScrIps=%v, UserAgents=%v, AdditionalProperties=%v]",
-		l.Email, l.LastFailureAt, l.NumAttempts, l.ScrIps, l.UserAgents, l.AdditionalProperties)
+		"LoginFailures[Email=%v, LastFailureAt=%v, NumAttempts=%v, SrcIps=%v, UserAgents=%v, AdditionalProperties=%v]",
+		l.Email, l.LastFailureAt, l.NumAttempts, l.SrcIps, l.UserAgents, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LoginFailures.
@@ -37,7 +37,7 @@ func (l LoginFailures) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(l.AdditionalProperties,
-		"email", "last_failure_at", "num_attempts", "scr_ips", "user_agents"); err != nil {
+		"email", "last_failure_at", "num_attempts", "src_ips", "user_agents"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(l.toMap())
@@ -56,8 +56,8 @@ func (l LoginFailures) toMap() map[string]any {
 	if l.NumAttempts != nil {
 		structMap["num_attempts"] = l.NumAttempts
 	}
-	if l.ScrIps != nil {
-		structMap["scr_ips"] = l.ScrIps
+	if l.SrcIps != nil {
+		structMap["src_ips"] = l.SrcIps
 	}
 	if l.UserAgents != nil {
 		structMap["user_agents"] = l.UserAgents
@@ -73,7 +73,7 @@ func (l *LoginFailures) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email", "last_failure_at", "num_attempts", "scr_ips", "user_agents")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "email", "last_failure_at", "num_attempts", "src_ips", "user_agents")
 	if err != nil {
 		return err
 	}
@@ -82,7 +82,7 @@ func (l *LoginFailures) UnmarshalJSON(input []byte) error {
 	l.Email = temp.Email
 	l.LastFailureAt = temp.LastFailureAt
 	l.NumAttempts = temp.NumAttempts
-	l.ScrIps = temp.ScrIps
+	l.SrcIps = temp.SrcIps
 	l.UserAgents = temp.UserAgents
 	return nil
 }
@@ -92,6 +92,6 @@ type tempLoginFailures struct {
 	Email         *string  `json:"email,omitempty"`
 	LastFailureAt *int     `json:"last_failure_at,omitempty"`
 	NumAttempts   *int     `json:"num_attempts,omitempty"`
-	ScrIps        []string `json:"scr_ips,omitempty"`
+	SrcIps        []string `json:"src_ips,omitempty"`
 	UserAgents    []string `json:"user_agents,omitempty"`
 }

@@ -3,8 +3,6 @@
 
 Optional, if it's required to have switch's L3 presence on a network/vlan
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `JunosOtherIpConfig`
@@ -20,7 +18,6 @@ Optional, if it's required to have switch's L3 presence on a network/vlan
 | `Netmask6` | `*string` | Optional | Optional, `subnet` from `network` definition will be used if defined |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.IpType6Enum`](../../doc/models/ip-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `disabled`, `static`<br><br>**Default**: `"disabled"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@ Optional, if it's required to have switch's L3 presence on a network/vlan
   "netmask": "255.255.255.0",
   "netmask6": "/64",
   "type": "static",
-  "type6": "static",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "type6": "static"
 }
 ```
 

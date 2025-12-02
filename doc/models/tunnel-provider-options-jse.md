@@ -3,8 +3,6 @@
 
 For jse-ipsec, this allows provisioning of adequate resource on JSE. Make sure adequate licenses are added
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TunnelProviderOptionsJse`
@@ -15,18 +13,13 @@ For jse-ipsec, this allows provisioning of adequate resource on JSE. Make sure a
 |  --- | --- | --- | --- |
 | `NumUsers` | `*int` | Optional | - |
 | `OrgName` | `*string` | Optional | JSE Organization name. The list of available organizations can be retrieved with the [Get Org JSE Info]($e/Orgs%20JSE/getOrgJseInfo) API Call |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "num_users": 5,
-  "org_name": "JSE_ORG1",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "org_name": "JSE_ORG1"
 }
 ```
 

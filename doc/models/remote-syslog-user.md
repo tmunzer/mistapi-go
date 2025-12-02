@@ -1,8 +1,6 @@
 
 # Remote Syslog User
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RemoteSyslogUser`
@@ -14,7 +12,6 @@
 | `Contents` | [`[]models.RemoteSyslogContent`](../../doc/models/remote-syslog-content.md) | Optional | - |
 | `Match` | `*string` | Optional | - |
 | `User` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,17 +22,9 @@
   "contents": [
     {
       "facility": "ntp",
-      "severity": "error",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "severity": "error"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -86,19 +86,35 @@ if err != nil {
       "allow_rrm_disable": true,
       "antenna_mode": "default",
       "bandwidth": 20,
-      "channel": 6,
+      "channels": [
+        1,
+        6,
+        11
+      ],
       "disabled": true,
       "power": 5,
       "power_max": 3,
       "power_min": 18,
-      "preamble": "auto",
-      "usage": "24"
+      "preamble": "auto"
     },
     "band_5": {
       "allow_rrm_disable": true,
       "antenna_mode": "default",
       "bandwidth": 20,
-      "channel": 100,
+      "channels": [
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        100,
+        104,
+        108,
+        112
+      ],
       "disabled": true,
       "power": 9,
       "power_max": 6,
@@ -114,19 +130,35 @@ if err != nil {
           "allow_rrm_disable": true,
           "antenna_mode": "default",
           "bandwidth": 20,
-          "channel": 6,
+          "channels": [
+            1,
+            6,
+            11
+          ],
           "disabled": true,
           "power": 9,
           "power_max": 6,
           "power_min": 17,
-          "preamble": "auto",
-          "usage": "rrm"
+          "preamble": "auto"
         },
         "band_5": {
           "allow_rrm_disable": true,
           "antenna_mode": "default",
           "bandwidth": 20,
-          "channel": 112,
+          "channels": [
+            36,
+            40,
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            100,
+            104,
+            108,
+            112
+          ],
           "disabled": true,
           "power": 10,
           "power_max": 6,
@@ -213,14 +245,12 @@ if err != nil {
     {
       "channel": 36,
       "noise": -78,
-      "non_wifi": 0.08,
       "other_rssi": -66,
       "other_ssid": "Rivendell5G",
       "rssi": -48,
       "util_score": 0.1,
       "util_score_non_wifi": 0.01,
-      "util_score_other": 0.05,
-      "wifi": 0.13
+      "util_score_other": 0.05
     }
   ]
 }

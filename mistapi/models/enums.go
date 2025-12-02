@@ -133,7 +133,7 @@ const (
 )
 
 // AntennaSelectEnum is a string enum.
-// Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
+// Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal`
 type AntennaSelectEnum string
 
 const (
@@ -644,16 +644,26 @@ const (
 )
 
 // ConstInsightMetricsPropertyScopeEnum is a string enum.
-// enum: `ap`, `client`, `device`, `mxedge`, `site`, `switch`
+// enum: `ap`, `client`, `device`, `gateway`, `map`, `msp`, `mxcluster`, `mxedge`, `org`, `otherdevice`, `rssizone`, `sdkclient`, `site`, `switch`, `wlan`, `zone`
 type ConstInsightMetricsPropertyScopeEnum string
 
 const (
-	ConstInsightMetricsPropertyScopeEnum_AP         ConstInsightMetricsPropertyScopeEnum = "ap"
-	ConstInsightMetricsPropertyScopeEnum_CLIENT     ConstInsightMetricsPropertyScopeEnum = "client"
-	ConstInsightMetricsPropertyScopeEnum_DEVICE     ConstInsightMetricsPropertyScopeEnum = "device"
-	ConstInsightMetricsPropertyScopeEnum_MXEDGE     ConstInsightMetricsPropertyScopeEnum = "mxedge"
-	ConstInsightMetricsPropertyScopeEnum_SITE       ConstInsightMetricsPropertyScopeEnum = "site"
-	ConstInsightMetricsPropertyScopeEnum_ENUMSWITCH ConstInsightMetricsPropertyScopeEnum = "switch"
+	ConstInsightMetricsPropertyScopeEnum_AP          ConstInsightMetricsPropertyScopeEnum = "ap"
+	ConstInsightMetricsPropertyScopeEnum_CLIENT      ConstInsightMetricsPropertyScopeEnum = "client"
+	ConstInsightMetricsPropertyScopeEnum_DEVICE      ConstInsightMetricsPropertyScopeEnum = "device"
+	ConstInsightMetricsPropertyScopeEnum_GATEWAY     ConstInsightMetricsPropertyScopeEnum = "gateway"
+	ConstInsightMetricsPropertyScopeEnum_ENUMMAP     ConstInsightMetricsPropertyScopeEnum = "map"
+	ConstInsightMetricsPropertyScopeEnum_MSP         ConstInsightMetricsPropertyScopeEnum = "msp"
+	ConstInsightMetricsPropertyScopeEnum_MXCLUSTER   ConstInsightMetricsPropertyScopeEnum = "mxcluster"
+	ConstInsightMetricsPropertyScopeEnum_MXEDGE      ConstInsightMetricsPropertyScopeEnum = "mxedge"
+	ConstInsightMetricsPropertyScopeEnum_ORG         ConstInsightMetricsPropertyScopeEnum = "org"
+	ConstInsightMetricsPropertyScopeEnum_OTHERDEVICE ConstInsightMetricsPropertyScopeEnum = "otherdevice"
+	ConstInsightMetricsPropertyScopeEnum_RSSIZONE    ConstInsightMetricsPropertyScopeEnum = "rssizone"
+	ConstInsightMetricsPropertyScopeEnum_SDKCLIENT   ConstInsightMetricsPropertyScopeEnum = "sdkclient"
+	ConstInsightMetricsPropertyScopeEnum_SITE        ConstInsightMetricsPropertyScopeEnum = "site"
+	ConstInsightMetricsPropertyScopeEnum_ENUMSWITCH  ConstInsightMetricsPropertyScopeEnum = "switch"
+	ConstInsightMetricsPropertyScopeEnum_WLAN        ConstInsightMetricsPropertyScopeEnum = "wlan"
+	ConstInsightMetricsPropertyScopeEnum_ZONE        ConstInsightMetricsPropertyScopeEnum = "zone"
 )
 
 // CountOrgDevicesMxtunnelStatusEnum is a string enum.
@@ -960,6 +970,16 @@ const (
 	EventFastroamTypeEnum_POOR     EventFastroamTypeEnum = "poor"
 	EventFastroamTypeEnum_SLOW     EventFastroamTypeEnum = "slow"
 	EventFastroamTypeEnum_SUCCESS  EventFastroamTypeEnum = "success"
+)
+
+// EventSeverityEnum is a string enum.
+type EventSeverityEnum string
+
+const (
+	EventSeverityEnum_NORMAL   EventSeverityEnum = "normal"
+	EventSeverityEnum_CRITICAL EventSeverityEnum = "critical"
+	EventSeverityEnum_HIGH     EventSeverityEnum = "high"
+	EventSeverityEnum_WARNING  EventSeverityEnum = "warning"
 )
 
 // EvpnConfigRoleEnum is a string enum.
@@ -1860,7 +1880,7 @@ const (
 )
 
 // NacTagMatchEnum is a string enum.
-// if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `edr_health`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
+// if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cert_serial`, `cert_sub`, `cert_template`, `client_mac`, `edr_status`, `hostname`, `idp_role`, `ingress_vlan`, `mdm_status`, `nas_ip`, `radius_group`, `realm`, `ssid`, `user_name`, `usermac_label`
 type NacTagMatchEnum string
 
 const (
@@ -1872,7 +1892,7 @@ const (
 	NacTagMatchEnum_CERTSUB      NacTagMatchEnum = "cert_sub"
 	NacTagMatchEnum_CERTTEMPLATE NacTagMatchEnum = "cert_template"
 	NacTagMatchEnum_CLIENTMAC    NacTagMatchEnum = "client_mac"
-	NacTagMatchEnum_EDRHEALTH    NacTagMatchEnum = "edr_health"
+	NacTagMatchEnum_EDRSTATUS    NacTagMatchEnum = "edr_status"
 	NacTagMatchEnum_HOSTNAME     NacTagMatchEnum = "hostname"
 	NacTagMatchEnum_IDPROLE      NacTagMatchEnum = "idp_role"
 	NacTagMatchEnum_INGRESSVLAN  NacTagMatchEnum = "ingress_vlan"
@@ -3019,6 +3039,47 @@ const (
 	ServicePolicySecintelProfileEnum_ENUMDEFAULT ServicePolicySecintelProfileEnum = "default"
 	ServicePolicySecintelProfileEnum_STANDARD    ServicePolicySecintelProfileEnum = "standard"
 	ServicePolicySecintelProfileEnum_STRICT      ServicePolicySecintelProfileEnum = "strict"
+)
+
+// ServicePolicySkyatpDnsDgaDetectionEnum is a string enum.
+// enum: `disabled`, `default`, `standard`, `strict`
+type ServicePolicySkyatpDnsDgaDetectionEnum string
+
+const (
+	ServicePolicySkyatpDnsDgaDetectionEnum_DISABLED    ServicePolicySkyatpDnsDgaDetectionEnum = "disabled"
+	ServicePolicySkyatpDnsDgaDetectionEnum_ENUMDEFAULT ServicePolicySkyatpDnsDgaDetectionEnum = "default"
+	ServicePolicySkyatpDnsDgaDetectionEnum_STANDARD    ServicePolicySkyatpDnsDgaDetectionEnum = "standard"
+	ServicePolicySkyatpDnsDgaDetectionEnum_STRICT      ServicePolicySkyatpDnsDgaDetectionEnum = "strict"
+)
+
+// ServicePolicySkyatpDnsTunnelDetectionEnum is a string enum.
+// enum: `disabled`, `default`, `standard`, `strict`
+type ServicePolicySkyatpDnsTunnelDetectionEnum string
+
+const (
+	ServicePolicySkyatpDnsTunnelDetectionEnum_DISABLED    ServicePolicySkyatpDnsTunnelDetectionEnum = "disabled"
+	ServicePolicySkyatpDnsTunnelDetectionEnum_ENUMDEFAULT ServicePolicySkyatpDnsTunnelDetectionEnum = "default"
+	ServicePolicySkyatpDnsTunnelDetectionEnum_STANDARD    ServicePolicySkyatpDnsTunnelDetectionEnum = "standard"
+	ServicePolicySkyatpDnsTunnelDetectionEnum_STRICT      ServicePolicySkyatpDnsTunnelDetectionEnum = "strict"
+)
+
+// ServicePolicySkyatpHttpInspectionEnum is a string enum.
+// enum: `disabled`, `standard`
+type ServicePolicySkyatpHttpInspectionEnum string
+
+const (
+	ServicePolicySkyatpHttpInspectionEnum_DISABLED ServicePolicySkyatpHttpInspectionEnum = "disabled"
+	ServicePolicySkyatpHttpInspectionEnum_STANDARD ServicePolicySkyatpHttpInspectionEnum = "standard"
+	ServicePolicySkyatpHttpInspectionEnum_STRICT   ServicePolicySkyatpHttpInspectionEnum = "strict"
+)
+
+// ServicePolicySkyatpIotDevicePolicyEnum is a string enum.
+// enum: `disabled`, `enabled`
+type ServicePolicySkyatpIotDevicePolicyEnum string
+
+const (
+	ServicePolicySkyatpIotDevicePolicyEnum_DISABLED ServicePolicySkyatpIotDevicePolicyEnum = "disabled"
+	ServicePolicySkyatpIotDevicePolicyEnum_ENABLED  ServicePolicySkyatpIotDevicePolicyEnum = "enabled"
 )
 
 // ServiceTrafficClassEnum is a string enum.
@@ -4721,12 +4782,60 @@ const (
 	WanUsagesCountDistinctEnum_TENANT     WanUsagesCountDistinctEnum = "tenant"
 )
 
+// WebhookAlarmsTopicEnum is a string enum.
+// enum: `alarms`
+type WebhookAlarmsTopicEnum string
+
+const (
+	WebhookAlarmsTopicEnum_ALARMS WebhookAlarmsTopicEnum = "alarms"
+)
+
+// WebhookAssetRawRssiTopicEnum is a string enum.
+// enum: `asset-raw-rssi`
+type WebhookAssetRawRssiTopicEnum string
+
+const (
+	WebhookAssetRawRssiTopicEnum_ASSETRAWRSSI WebhookAssetRawRssiTopicEnum = "asset-raw-rssi"
+)
+
+// WebhookAuditsTopicEnum is a string enum.
+// enum: `audits`
+type WebhookAuditsTopicEnum string
+
+const (
+	WebhookAuditsTopicEnum_AUDITS WebhookAuditsTopicEnum = "audits"
+)
+
 // WebhookClientInfoTopicEnum is a string enum.
 // enum: `client-info`
 type WebhookClientInfoTopicEnum string
 
 const (
 	WebhookClientInfoTopicEnum_CLIENTINFO WebhookClientInfoTopicEnum = "client-info"
+)
+
+// WebhookClientJoinTopicEnum is a string enum.
+// enum: `client-join`
+type WebhookClientJoinTopicEnum string
+
+const (
+	WebhookClientJoinTopicEnum_CLIENTJOIN WebhookClientJoinTopicEnum = "client-join"
+)
+
+// WebhookClientLatencyTopicEnum is a string enum.
+// enum: `client-latency`
+type WebhookClientLatencyTopicEnum string
+
+const (
+	WebhookClientLatencyTopicEnum_CLIENTLATENCY WebhookClientLatencyTopicEnum = "client-latency"
+)
+
+// WebhookClientSessionsTopicEnum is a string enum.
+// enum: `client-sessions`
+type WebhookClientSessionsTopicEnum string
+
+const (
+	WebhookClientSessionsTopicEnum_CLIENTSESSIONS WebhookClientSessionsTopicEnum = "client-sessions"
 )
 
 // WebhookDeliveryDistinctEnum is a string enum.
@@ -4770,6 +4879,104 @@ const (
 	WebhookDeviceEventsEventEvTypeEnum_WARN   WebhookDeviceEventsEventEvTypeEnum = "warn"
 )
 
+// WebhookDeviceEventsTopicEnum is a string enum.
+type WebhookDeviceEventsTopicEnum string
+
+const (
+	WebhookDeviceEventsTopicEnum_DEVICEEVENTS WebhookDeviceEventsTopicEnum = "device-events"
+)
+
+// WebhookDeviceUpdownsTopicEnum is a string enum.
+type WebhookDeviceUpdownsTopicEnum string
+
+const (
+	WebhookDeviceUpdownsTopicEnum_DEVICEUPDOWNS WebhookDeviceUpdownsTopicEnum = "device-updowns"
+)
+
+// WebhookDiscoveredRawRssiTopicEnum is a string enum.
+type WebhookDiscoveredRawRssiTopicEnum string
+
+const (
+	WebhookDiscoveredRawRssiTopicEnum_ASSETRAWRSSI WebhookDiscoveredRawRssiTopicEnum = "asset-raw-rssi"
+)
+
+// WebhookGuestAuthorizationsTopicEnum is a string enum.
+type WebhookGuestAuthorizationsTopicEnum string
+
+const (
+	WebhookGuestAuthorizationsTopicEnum_GUESTAUTHORIZATIONS WebhookGuestAuthorizationsTopicEnum = "guest-authorizations"
+)
+
+// WebhookLocationAssetTopicEnum is a string enum.
+type WebhookLocationAssetTopicEnum string
+
+const (
+	WebhookLocationAssetTopicEnum_LOCATIONASSET WebhookLocationAssetTopicEnum = "location-asset"
+)
+
+// WebhookLocationCentrakEventTypeEnum is a string enum.
+type WebhookLocationCentrakEventTypeEnum string
+
+const (
+	WebhookLocationCentrakEventTypeEnum_WIFI WebhookLocationCentrakEventTypeEnum = "wifi"
+)
+
+// WebhookLocationCentrakTopicEnum is a string enum.
+type WebhookLocationCentrakTopicEnum string
+
+const (
+	WebhookLocationCentrakTopicEnum_LOCATIONCENTRAK WebhookLocationCentrakTopicEnum = "location-centrak"
+)
+
+// WebhookLocationClientTopicEnum is a string enum.
+type WebhookLocationClientTopicEnum string
+
+const (
+	WebhookLocationClientTopicEnum_LOCATIONCLIENT WebhookLocationClientTopicEnum = "location-client"
+)
+
+// WebhookLocationSdkTopicEnum is a string enum.
+type WebhookLocationSdkTopicEnum string
+
+const (
+	WebhookLocationSdkTopicEnum_LOCATIONSDK WebhookLocationSdkTopicEnum = "location-sdk"
+)
+
+// WebhookLocationTopicEnum is a string enum.
+type WebhookLocationTopicEnum string
+
+const (
+	WebhookLocationTopicEnum_LOCATION WebhookLocationTopicEnum = "location"
+)
+
+// WebhookLocationUnclientTopicEnum is a string enum.
+type WebhookLocationUnclientTopicEnum string
+
+const (
+	WebhookLocationUnclientTopicEnum_LOCATIONUNCLIENT WebhookLocationUnclientTopicEnum = "location-unclient"
+)
+
+// WebhookMxedgeEventTopicEnum is a string enum.
+type WebhookMxedgeEventTopicEnum string
+
+const (
+	WebhookMxedgeEventTopicEnum_MXEDGEEVENTS WebhookMxedgeEventTopicEnum = "mxedge-events"
+)
+
+// WebhookNacAccountingTopicEnum is a string enum.
+type WebhookNacAccountingTopicEnum string
+
+const (
+	WebhookNacAccountingTopicEnum_NACACCOUNTING WebhookNacAccountingTopicEnum = "nac-accounting"
+)
+
+// WebhookNacEventsTopicEnum is a string enum.
+type WebhookNacEventsTopicEnum string
+
+const (
+	WebhookNacEventsTopicEnum_NACEVENTS WebhookNacEventsTopicEnum = "nac-events"
+)
+
 // WebhookOauth2GrantTypeEnum is a string enum.
 // required when `type`==`oauth2`. enum: `client_credentials`, `password`
 type WebhookOauth2GrantTypeEnum string
@@ -4788,12 +4995,33 @@ const (
 	WebhookOccupancyAlertTypeEnum_COMPLIANCEVIOLATION WebhookOccupancyAlertTypeEnum = "COMPLIANCE-VIOLATION"
 )
 
+// WebhookOccupancyAlertsTopicEnum is a string enum.
+type WebhookOccupancyAlertsTopicEnum string
+
+const (
+	WebhookOccupancyAlertsTopicEnum_OCCUPANCYALERTS WebhookOccupancyAlertsTopicEnum = "occupancy-alerts"
+)
+
+// WebhookPingTopicEnum is a string enum.
+type WebhookPingTopicEnum string
+
+const (
+	WebhookPingTopicEnum_PING WebhookPingTopicEnum = "ping"
+)
+
 // WebhookSdkclientScanDataTopicEnum is a string enum.
-// enum: `sdkclient_scan_data`
+// enum: `sdkclient-scan-data`
 type WebhookSdkclientScanDataTopicEnum string
 
 const (
-	WebhookSdkclientScanDataTopicEnum_SDKCLIENTSCANDATA WebhookSdkclientScanDataTopicEnum = "sdkclient_scan_data"
+	WebhookSdkclientScanDataTopicEnum_SDKCLIENTSCANDATA WebhookSdkclientScanDataTopicEnum = "sdkclient-scan-data"
+)
+
+// WebhookSiteSleTopicEnum is a string enum.
+type WebhookSiteSleTopicEnum string
+
+const (
+	WebhookSiteSleTopicEnum_SITESLE WebhookSiteSleTopicEnum = "site-sle"
 )
 
 // WebhookTypeEnum is a string enum.
@@ -4806,6 +5034,22 @@ const (
 	WebhookTypeEnum_HTTPPOST     WebhookTypeEnum = "http-post"
 	WebhookTypeEnum_OAUTH2       WebhookTypeEnum = "oauth2"
 	WebhookTypeEnum_SPLUNK       WebhookTypeEnum = "splunk"
+)
+
+// WebhookWifiConnRawTopicEnum is a string enum.
+// enum: `wifi-conn-raw`
+type WebhookWifiConnRawTopicEnum string
+
+const (
+	WebhookWifiConnRawTopicEnum_WIFICONNRAW WebhookWifiConnRawTopicEnum = "wifi-conn-raw"
+)
+
+// WebhookWifiUnconnRawTopicEnum is a string enum.
+// enum: `wifi-unconn-raw`
+type WebhookWifiUnconnRawTopicEnum string
+
+const (
+	WebhookWifiUnconnRawTopicEnum_WIFIUNCONNRAW WebhookWifiUnconnRawTopicEnum = "wifi-unconn-raw"
 )
 
 // WebhookZoneEventTriggerEnum is a string enum.
@@ -4825,6 +5069,13 @@ const (
 	WebhookZoneEventTypeEnum_ASSET WebhookZoneEventTypeEnum = "asset"
 	WebhookZoneEventTypeEnum_SDK   WebhookZoneEventTypeEnum = "sdk"
 	WebhookZoneEventTypeEnum_WIFI  WebhookZoneEventTypeEnum = "wifi"
+)
+
+// WebhookZoneTopicEnum is a string enum.
+type WebhookZoneTopicEnum string
+
+const (
+	WebhookZoneTopicEnum_ZONE WebhookZoneTopicEnum = "zone"
 )
 
 // WlanApplyToEnum is a string enum.
@@ -5141,45 +5392,4 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
-)
-
-// DnsDgaDetectionEnum is a string enum.
-// enum: `disabled`, `default`, `standard`, `strict`
-type DnsDgaDetectionEnum string
-
-const (
-	DnsDgaDetectionEnum_DISABLED    DnsDgaDetectionEnum = "disabled"
-	DnsDgaDetectionEnum_ENUMDEFAULT DnsDgaDetectionEnum = "default"
-	DnsDgaDetectionEnum_STANDARD    DnsDgaDetectionEnum = "standard"
-	DnsDgaDetectionEnum_STRICT      DnsDgaDetectionEnum = "strict"
-)
-
-// DnsTunnelDetectionEnum is a string enum.
-// enum: `disabled`, `default`, `standard`, `strict`
-type DnsTunnelDetectionEnum string
-
-const (
-	DnsTunnelDetectionEnum_DISABLED    DnsTunnelDetectionEnum = "disabled"
-	DnsTunnelDetectionEnum_ENUMDEFAULT DnsTunnelDetectionEnum = "default"
-	DnsTunnelDetectionEnum_STANDARD    DnsTunnelDetectionEnum = "standard"
-	DnsTunnelDetectionEnum_STRICT      DnsTunnelDetectionEnum = "strict"
-)
-
-// HttpInspectionEnum is a string enum.
-// enum: `disabled`, `standard`
-type HttpInspectionEnum string
-
-const (
-	HttpInspectionEnum_DISABLED HttpInspectionEnum = "disabled"
-	HttpInspectionEnum_STANDARD HttpInspectionEnum = "standard"
-	HttpInspectionEnum_STRICT   HttpInspectionEnum = "strict"
-)
-
-// IotDevicePolicyEnum is a string enum.
-// enum: `disabled`, `enabled`
-type IotDevicePolicyEnum string
-
-const (
-	IotDevicePolicyEnum_DISABLED IotDevicePolicyEnum = "disabled"
-	IotDevicePolicyEnum_ENABLED  IotDevicePolicyEnum = "enabled"
 )

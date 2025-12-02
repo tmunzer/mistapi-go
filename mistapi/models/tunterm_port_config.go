@@ -15,7 +15,7 @@ type TuntermPortConfig struct {
 	// Whether to separate upstream / downstream ports. default is false where all ports will be used.
 	SeparateUpstreamDownstream *bool `json:"separate_upstream_downstream,omitempty"`
 	// Native VLAN id for upstream ports
-	UpstreamPortVlanId *int `json:"upstream_port_vlan_id,omitempty"`
+	UpstreamPortVlanId *TuntermPortConfigUpstreamPortVlanId `json:"upstream_port_vlan_id,omitempty"`
 	// List of ports to be used for upstream purpose (to LAN)
 	UpstreamPorts        []string               `json:"upstream_ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -52,7 +52,7 @@ func (t TuntermPortConfig) toMap() map[string]any {
 		structMap["separate_upstream_downstream"] = t.SeparateUpstreamDownstream
 	}
 	if t.UpstreamPortVlanId != nil {
-		structMap["upstream_port_vlan_id"] = t.UpstreamPortVlanId
+		structMap["upstream_port_vlan_id"] = t.UpstreamPortVlanId.toMap()
 	}
 	if t.UpstreamPorts != nil {
 		structMap["upstream_ports"] = t.UpstreamPorts
@@ -83,8 +83,8 @@ func (t *TuntermPortConfig) UnmarshalJSON(input []byte) error {
 
 // tempTuntermPortConfig is a temporary struct used for validating the fields of TuntermPortConfig.
 type tempTuntermPortConfig struct {
-	DownstreamPorts            []string `json:"downstream_ports,omitempty"`
-	SeparateUpstreamDownstream *bool    `json:"separate_upstream_downstream,omitempty"`
-	UpstreamPortVlanId         *int     `json:"upstream_port_vlan_id,omitempty"`
-	UpstreamPorts              []string `json:"upstream_ports,omitempty"`
+	DownstreamPorts            []string                             `json:"downstream_ports,omitempty"`
+	SeparateUpstreamDownstream *bool                                `json:"separate_upstream_downstream,omitempty"`
+	UpstreamPortVlanId         *TuntermPortConfigUpstreamPortVlanId `json:"upstream_port_vlan_id,omitempty"`
+	UpstreamPorts              []string                             `json:"upstream_ports,omitempty"`
 }

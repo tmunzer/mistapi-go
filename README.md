@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2511.1.0**
+> Version: **2511.1.3**
 > 
-> Date: **November 17, 2025**
+> Date: **November 28, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -275,7 +275,6 @@ This API uses the following authentication schemes.
 * [Orgs Wx Rules](doc/controllers/orgs-wx-rules.md)
 * [Orgs Wx Tags](doc/controllers/orgs-wx-tags.md)
 * [Orgs Wx Tunnels](doc/controllers/orgs-wx-tunnels.md)
-* [Samples Webhooks](doc/controllers/samples-webhooks.md)
 * [Self Account](doc/controllers/self-account.md)
 * [Self Alarms](doc/controllers/self-alarms.md)
 * [Self API Token](doc/controllers/self-api-token.md)
@@ -366,6 +365,10 @@ This API uses the following authentication schemes.
 * [Utilities Upgrade](doc/controllers/utilities-upgrade.md)
 * [Utilities WAN](doc/controllers/utilities-wan.md)
 * [Utilities Wi-Fi](doc/controllers/utilities-wi-fi.md)
+
+## Webhooks
+
+* [Webhooks](doc/events/webhooks/webhooks-handler.md)
 
 ## SDK Infrastructure
 

@@ -9,41 +9,47 @@ import (
 
 // CallTroubleshootSummaryData represents a CallTroubleshootSummaryData struct.
 type CallTroubleshootSummaryData struct {
-	ApNumClients          *float64               `json:"ap_num_clients,omitempty"`
-	ApRtt                 *float64               `json:"ap_rtt,omitempty"`
-	ClientCpu             *float64               `json:"client_cpu,omitempty"`
-	ClientNStreams        *float64               `json:"client_n_streams,omitempty"`
-	ClientRadioBand       *float64               `json:"client_radio_band,omitempty"`
-	ClientRssi            *float64               `json:"client_rssi,omitempty"`
-	ClientRxBytes         *float64               `json:"client_rx_bytes,omitempty"`
-	ClientRxRates         *float64               `json:"client_rx_rates,omitempty"`
-	ClientTxBytes         *float64               `json:"client_tx_bytes,omitempty"`
-	ClientTxRates         *float64               `json:"client_tx_rates,omitempty"`
-	ClientTxRetries       *float64               `json:"client_tx_retries,omitempty"`
-	ClientVpnDistance     *float64               `json:"client_vpn_distance,omitempty"`
-	ClientWifiVersion     *float64               `json:"client_wifi_version,omitempty"`
-	Expected              *float64               `json:"expected,omitempty"`
-	RadioBandwidth        *float64               `json:"radio_bandwidth,omitempty"`
-	RadioChannel          *float64               `json:"radio_channel,omitempty"`
-	RadioTxPower          *float64               `json:"radio_tx_power,omitempty"`
-	RadioUtil             *float64               `json:"radio_util,omitempty"`
-	RadioUtilInterference *float64               `json:"radio_util_interference,omitempty"`
-	SiteNumClients        *float64               `json:"site_num_clients,omitempty"`
-	WanAvgDownloadMbps    *float64               `json:"wan_avg_download_mbps,omitempty"`
-	WanAvgUploadMbps      *float64               `json:"wan_avg_upload_mbps,omitempty"`
-	WanJitter             *float64               `json:"wan_jitter,omitempty"`
-	WanMaxDownloadMbps    *float64               `json:"wan_max_download_mbps,omitempty"`
-	WanMaxUploadMbps      *float64               `json:"wan_max_upload_mbps,omitempty"`
-	WanRtt                *float64               `json:"wan_rtt,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"_"`
+	ApNumClients           *float64               `json:"ap_num_clients,omitempty"`
+	ApRtt                  *float64               `json:"ap_rtt,omitempty"`
+	ClientCpu              *float64               `json:"client_cpu,omitempty"`
+	ClientNStreams         *float64               `json:"client_n_streams,omitempty"`
+	ClientRadioBand        *float64               `json:"client_radio_band,omitempty"`
+	ClientRssi             *float64               `json:"client_rssi,omitempty"`
+	ClientRxBytes          *float64               `json:"client_rx_bytes,omitempty"`
+	ClientRxRates          *float64               `json:"client_rx_rates,omitempty"`
+	ClientTxBytes          *float64               `json:"client_tx_bytes,omitempty"`
+	ClientTxRates          *float64               `json:"client_tx_rates,omitempty"`
+	ClientTxRetries        *float64               `json:"client_tx_retries,omitempty"`
+	ClientVpnDistance      *float64               `json:"client_vpn_distance,omitempty"`
+	ClientWifiVersion      *float64               `json:"client_wifi_version,omitempty"`
+	Expected               *float64               `json:"expected,omitempty"`
+	RadioBandwidth         *float64               `json:"radio_bandwidth,omitempty"`
+	RadioChannel           *float64               `json:"radio_channel,omitempty"`
+	RadioTxPower           *float64               `json:"radio_tx_power,omitempty"`
+	RadioUtil              *float64               `json:"radio_util,omitempty"`
+	RadioUtilInterference  *float64               `json:"radio_util_interference,omitempty"`
+	SiteNumClients         *float64               `json:"site_num_clients,omitempty"`
+	SiteWanAvgDownloadMbps *float64               `json:"site_wan_avg_download_mbps,omitempty"`
+	SiteWanAvgUploadMbps   *float64               `json:"site_wan_avg_upload_mbps,omitempty"`
+	SiteWanDownloadMbps    *float64               `json:"site_wan_download_mbps,omitempty"`
+	SiteWanJitter          *float64               `json:"site_wan_jitter,omitempty"`
+	SiteWanRtt             *float64               `json:"site_wan_rtt,omitempty"`
+	SiteWanUploadMbps      *float64               `json:"site_wan_upload_mbps,omitempty"`
+	WanAvgDownloadMbps     *float64               `json:"wan_avg_download_mbps,omitempty"`
+	WanAvgUploadMbps       *float64               `json:"wan_avg_upload_mbps,omitempty"`
+	WanJitter              *float64               `json:"wan_jitter,omitempty"`
+	WanMaxDownloadMbps     *float64               `json:"wan_max_download_mbps,omitempty"`
+	WanMaxUploadMbps       *float64               `json:"wan_max_upload_mbps,omitempty"`
+	WanRtt                 *float64               `json:"wan_rtt,omitempty"`
+	AdditionalProperties   map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for CallTroubleshootSummaryData,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CallTroubleshootSummaryData) String() string {
 	return fmt.Sprintf(
-		"CallTroubleshootSummaryData[ApNumClients=%v, ApRtt=%v, ClientCpu=%v, ClientNStreams=%v, ClientRadioBand=%v, ClientRssi=%v, ClientRxBytes=%v, ClientRxRates=%v, ClientTxBytes=%v, ClientTxRates=%v, ClientTxRetries=%v, ClientVpnDistance=%v, ClientWifiVersion=%v, Expected=%v, RadioBandwidth=%v, RadioChannel=%v, RadioTxPower=%v, RadioUtil=%v, RadioUtilInterference=%v, SiteNumClients=%v, WanAvgDownloadMbps=%v, WanAvgUploadMbps=%v, WanJitter=%v, WanMaxDownloadMbps=%v, WanMaxUploadMbps=%v, WanRtt=%v, AdditionalProperties=%v]",
-		c.ApNumClients, c.ApRtt, c.ClientCpu, c.ClientNStreams, c.ClientRadioBand, c.ClientRssi, c.ClientRxBytes, c.ClientRxRates, c.ClientTxBytes, c.ClientTxRates, c.ClientTxRetries, c.ClientVpnDistance, c.ClientWifiVersion, c.Expected, c.RadioBandwidth, c.RadioChannel, c.RadioTxPower, c.RadioUtil, c.RadioUtilInterference, c.SiteNumClients, c.WanAvgDownloadMbps, c.WanAvgUploadMbps, c.WanJitter, c.WanMaxDownloadMbps, c.WanMaxUploadMbps, c.WanRtt, c.AdditionalProperties)
+		"CallTroubleshootSummaryData[ApNumClients=%v, ApRtt=%v, ClientCpu=%v, ClientNStreams=%v, ClientRadioBand=%v, ClientRssi=%v, ClientRxBytes=%v, ClientRxRates=%v, ClientTxBytes=%v, ClientTxRates=%v, ClientTxRetries=%v, ClientVpnDistance=%v, ClientWifiVersion=%v, Expected=%v, RadioBandwidth=%v, RadioChannel=%v, RadioTxPower=%v, RadioUtil=%v, RadioUtilInterference=%v, SiteNumClients=%v, SiteWanAvgDownloadMbps=%v, SiteWanAvgUploadMbps=%v, SiteWanDownloadMbps=%v, SiteWanJitter=%v, SiteWanRtt=%v, SiteWanUploadMbps=%v, WanAvgDownloadMbps=%v, WanAvgUploadMbps=%v, WanJitter=%v, WanMaxDownloadMbps=%v, WanMaxUploadMbps=%v, WanRtt=%v, AdditionalProperties=%v]",
+		c.ApNumClients, c.ApRtt, c.ClientCpu, c.ClientNStreams, c.ClientRadioBand, c.ClientRssi, c.ClientRxBytes, c.ClientRxRates, c.ClientTxBytes, c.ClientTxRates, c.ClientTxRetries, c.ClientVpnDistance, c.ClientWifiVersion, c.Expected, c.RadioBandwidth, c.RadioChannel, c.RadioTxPower, c.RadioUtil, c.RadioUtilInterference, c.SiteNumClients, c.SiteWanAvgDownloadMbps, c.SiteWanAvgUploadMbps, c.SiteWanDownloadMbps, c.SiteWanJitter, c.SiteWanRtt, c.SiteWanUploadMbps, c.WanAvgDownloadMbps, c.WanAvgUploadMbps, c.WanJitter, c.WanMaxDownloadMbps, c.WanMaxUploadMbps, c.WanRtt, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CallTroubleshootSummaryData.
@@ -52,7 +58,7 @@ func (c CallTroubleshootSummaryData) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt"); err != nil {
+		"ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "site_wan_avg_download_mbps", "site_wan_avg_upload_mbps", "site_wan_download_mbps", "site_wan_jitter", "site_wan_rtt", "site_wan_upload_mbps", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -122,6 +128,24 @@ func (c CallTroubleshootSummaryData) toMap() map[string]any {
 	if c.SiteNumClients != nil {
 		structMap["site_num_clients"] = c.SiteNumClients
 	}
+	if c.SiteWanAvgDownloadMbps != nil {
+		structMap["site_wan_avg_download_mbps"] = c.SiteWanAvgDownloadMbps
+	}
+	if c.SiteWanAvgUploadMbps != nil {
+		structMap["site_wan_avg_upload_mbps"] = c.SiteWanAvgUploadMbps
+	}
+	if c.SiteWanDownloadMbps != nil {
+		structMap["site_wan_download_mbps"] = c.SiteWanDownloadMbps
+	}
+	if c.SiteWanJitter != nil {
+		structMap["site_wan_jitter"] = c.SiteWanJitter
+	}
+	if c.SiteWanRtt != nil {
+		structMap["site_wan_rtt"] = c.SiteWanRtt
+	}
+	if c.SiteWanUploadMbps != nil {
+		structMap["site_wan_upload_mbps"] = c.SiteWanUploadMbps
+	}
 	if c.WanAvgDownloadMbps != nil {
 		structMap["wan_avg_download_mbps"] = c.WanAvgDownloadMbps
 	}
@@ -151,7 +175,7 @@ func (c *CallTroubleshootSummaryData) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_num_clients", "ap_rtt", "client_cpu", "client_n_streams", "client_radio_band", "client_rssi", "client_rx_bytes", "client_rx_rates", "client_tx_bytes", "client_tx_rates", "client_tx_retries", "client_vpn_distance", "client_wifi_version", "expected", "radio_bandwidth", "radio_channel", "radio_tx_power", "radio_util", "radio_util_interference", "site_num_clients", "site_wan_avg_download_mbps", "site_wan_avg_upload_mbps", "site_wan_download_mbps", "site_wan_jitter", "site_wan_rtt", "site_wan_upload_mbps", "wan_avg_download_mbps", "wan_avg_upload_mbps", "wan_jitter", "wan_max_download_mbps", "wan_max_upload_mbps", "wan_rtt")
 	if err != nil {
 		return err
 	}
@@ -177,6 +201,12 @@ func (c *CallTroubleshootSummaryData) UnmarshalJSON(input []byte) error {
 	c.RadioUtil = temp.RadioUtil
 	c.RadioUtilInterference = temp.RadioUtilInterference
 	c.SiteNumClients = temp.SiteNumClients
+	c.SiteWanAvgDownloadMbps = temp.SiteWanAvgDownloadMbps
+	c.SiteWanAvgUploadMbps = temp.SiteWanAvgUploadMbps
+	c.SiteWanDownloadMbps = temp.SiteWanDownloadMbps
+	c.SiteWanJitter = temp.SiteWanJitter
+	c.SiteWanRtt = temp.SiteWanRtt
+	c.SiteWanUploadMbps = temp.SiteWanUploadMbps
 	c.WanAvgDownloadMbps = temp.WanAvgDownloadMbps
 	c.WanAvgUploadMbps = temp.WanAvgUploadMbps
 	c.WanJitter = temp.WanJitter
@@ -188,30 +218,36 @@ func (c *CallTroubleshootSummaryData) UnmarshalJSON(input []byte) error {
 
 // tempCallTroubleshootSummaryData is a temporary struct used for validating the fields of CallTroubleshootSummaryData.
 type tempCallTroubleshootSummaryData struct {
-	ApNumClients          *float64 `json:"ap_num_clients,omitempty"`
-	ApRtt                 *float64 `json:"ap_rtt,omitempty"`
-	ClientCpu             *float64 `json:"client_cpu,omitempty"`
-	ClientNStreams        *float64 `json:"client_n_streams,omitempty"`
-	ClientRadioBand       *float64 `json:"client_radio_band,omitempty"`
-	ClientRssi            *float64 `json:"client_rssi,omitempty"`
-	ClientRxBytes         *float64 `json:"client_rx_bytes,omitempty"`
-	ClientRxRates         *float64 `json:"client_rx_rates,omitempty"`
-	ClientTxBytes         *float64 `json:"client_tx_bytes,omitempty"`
-	ClientTxRates         *float64 `json:"client_tx_rates,omitempty"`
-	ClientTxRetries       *float64 `json:"client_tx_retries,omitempty"`
-	ClientVpnDistance     *float64 `json:"client_vpn_distance,omitempty"`
-	ClientWifiVersion     *float64 `json:"client_wifi_version,omitempty"`
-	Expected              *float64 `json:"expected,omitempty"`
-	RadioBandwidth        *float64 `json:"radio_bandwidth,omitempty"`
-	RadioChannel          *float64 `json:"radio_channel,omitempty"`
-	RadioTxPower          *float64 `json:"radio_tx_power,omitempty"`
-	RadioUtil             *float64 `json:"radio_util,omitempty"`
-	RadioUtilInterference *float64 `json:"radio_util_interference,omitempty"`
-	SiteNumClients        *float64 `json:"site_num_clients,omitempty"`
-	WanAvgDownloadMbps    *float64 `json:"wan_avg_download_mbps,omitempty"`
-	WanAvgUploadMbps      *float64 `json:"wan_avg_upload_mbps,omitempty"`
-	WanJitter             *float64 `json:"wan_jitter,omitempty"`
-	WanMaxDownloadMbps    *float64 `json:"wan_max_download_mbps,omitempty"`
-	WanMaxUploadMbps      *float64 `json:"wan_max_upload_mbps,omitempty"`
-	WanRtt                *float64 `json:"wan_rtt,omitempty"`
+	ApNumClients           *float64 `json:"ap_num_clients,omitempty"`
+	ApRtt                  *float64 `json:"ap_rtt,omitempty"`
+	ClientCpu              *float64 `json:"client_cpu,omitempty"`
+	ClientNStreams         *float64 `json:"client_n_streams,omitempty"`
+	ClientRadioBand        *float64 `json:"client_radio_band,omitempty"`
+	ClientRssi             *float64 `json:"client_rssi,omitempty"`
+	ClientRxBytes          *float64 `json:"client_rx_bytes,omitempty"`
+	ClientRxRates          *float64 `json:"client_rx_rates,omitempty"`
+	ClientTxBytes          *float64 `json:"client_tx_bytes,omitempty"`
+	ClientTxRates          *float64 `json:"client_tx_rates,omitempty"`
+	ClientTxRetries        *float64 `json:"client_tx_retries,omitempty"`
+	ClientVpnDistance      *float64 `json:"client_vpn_distance,omitempty"`
+	ClientWifiVersion      *float64 `json:"client_wifi_version,omitempty"`
+	Expected               *float64 `json:"expected,omitempty"`
+	RadioBandwidth         *float64 `json:"radio_bandwidth,omitempty"`
+	RadioChannel           *float64 `json:"radio_channel,omitempty"`
+	RadioTxPower           *float64 `json:"radio_tx_power,omitempty"`
+	RadioUtil              *float64 `json:"radio_util,omitempty"`
+	RadioUtilInterference  *float64 `json:"radio_util_interference,omitempty"`
+	SiteNumClients         *float64 `json:"site_num_clients,omitempty"`
+	SiteWanAvgDownloadMbps *float64 `json:"site_wan_avg_download_mbps,omitempty"`
+	SiteWanAvgUploadMbps   *float64 `json:"site_wan_avg_upload_mbps,omitempty"`
+	SiteWanDownloadMbps    *float64 `json:"site_wan_download_mbps,omitempty"`
+	SiteWanJitter          *float64 `json:"site_wan_jitter,omitempty"`
+	SiteWanRtt             *float64 `json:"site_wan_rtt,omitempty"`
+	SiteWanUploadMbps      *float64 `json:"site_wan_upload_mbps,omitempty"`
+	WanAvgDownloadMbps     *float64 `json:"wan_avg_download_mbps,omitempty"`
+	WanAvgUploadMbps       *float64 `json:"wan_avg_upload_mbps,omitempty"`
+	WanJitter              *float64 `json:"wan_jitter,omitempty"`
+	WanMaxDownloadMbps     *float64 `json:"wan_max_download_mbps,omitempty"`
+	WanMaxUploadMbps       *float64 `json:"wan_max_upload_mbps,omitempty"`
+	WanRtt                 *float64 `json:"wan_rtt,omitempty"`
 }

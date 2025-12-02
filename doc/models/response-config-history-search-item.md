@@ -1,8 +1,6 @@
 
 # Response Config History Search Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseConfigHistorySearchItem`
@@ -22,7 +20,6 @@
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Version` | `string` | Required | - |
 | `Wlans` | [`[]models.ResponseConfigHistorySearchItemWlan`](../../doc/models/response-config-history-search-item-wlan.md) | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,11 +34,7 @@
   "radios": [
     {
       "band": "band2",
-      "channel": 156,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "channel": 156
     }
   ],
   "secpolicy_violated": false,
@@ -57,11 +50,7 @@
     "ssids_58"
   ],
   "timestamp": 237.76,
-  "version": "version4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "version": "version4"
 }
 ```
 

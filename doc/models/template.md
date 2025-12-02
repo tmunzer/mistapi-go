@@ -40,11 +40,7 @@ Template
     ],
     "sitegroup_ids": [
       "00000634-0000-0000-0000-000000000000"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "created_time": 247.46,
   "deviceprofile_ids": [
@@ -60,11 +56,7 @@ Template
     ],
     "sitegroup_ids": [
       "00000c2e-0000-0000-0000-000000000000"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "filter_by_deviceprofile": false,
   "exampleAdditionalProperty": {

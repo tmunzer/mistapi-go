@@ -1,8 +1,6 @@
 
 # Site Wids Repeated Auth Failures
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteWidsRepeatedAuthFailures`
@@ -13,18 +11,13 @@
 |  --- | --- | --- | --- |
 | `Duration` | `*int` | Optional | Window where a trigger will be detected and action to be taken (in seconds) |
 | `Threshold` | `*int` | Optional | Count of events to trigger |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "duration": 60,
-  "threshold": 80,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "threshold": 80
 }
 ```
 

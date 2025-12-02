@@ -20,8 +20,8 @@ Asset Filter
 | `EddystoneUidNamespace` | `*string` | Optional | Eddystone uid namespace used to filter assets |
 | `EddystoneUrl` | `*string` | Optional | Eddystone url used to filter assets |
 | `ForSite` | `*bool` | Optional | - |
-| `IbeaconMajor` | `*int` | Optional | ibeacon major value used to filter assets |
-| `IbeaconUuid` | `*uuid.UUID` | Optional | ibeacon uuid used to filter assets |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconUuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `MfgCompanyId` | `*int` | Optional | BLE manufacturing-specific company-id used to filter assets |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -39,7 +39,7 @@ Asset Filter
   "disabled": false,
   "eddystone_uid_namespace": "2818e3868dec25629ede",
   "eddystone_url": "https://www.abc.com",
-  "ibeacon_major": 13,
+  "ibeacon_major": 1234,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "mfg_company_id": 935,

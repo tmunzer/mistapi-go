@@ -1,8 +1,6 @@
 
 # Sle Summary
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleSummary`
@@ -17,7 +15,6 @@
 | `Impact` | [`models.SleSummaryImpact`](../../doc/models/sle-summary-impact.md) | Required | - |
 | `Sle` | [`models.SleSummarySle`](../../doc/models/sle-summary-sle.md) | Required | - |
 | `Start` | `float64` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
         "num_aps": 250.52,
         "num_users": 4.56,
         "total_aps": 243.84,
-        "total_users": 4.14,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "total_users": 4.14
       },
       "interval": 217.3,
       "name": "name2",
@@ -48,18 +41,10 @@
         ],
         "total": [
           144.95
-        ],
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        ]
       },
       "x_label": "x_label8",
-      "y_label": "y_label0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "y_label": "y_label0"
     }
   ],
   "end": 255.54,
@@ -81,11 +66,7 @@
     "num_aps": 250.52,
     "num_users": 4.56,
     "total_aps": 243.84,
-    "total_users": 4.14,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "total_users": 4.14
   },
   "sle": {
     "interval": 227.76,
@@ -101,24 +82,12 @@
         13.46,
         13.47,
         13.48
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     "x_label": "x_label4",
-    "y_label": "y_label6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "y_label": "y_label6"
   },
-  "start": 211.6,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 211.6
 }
 ```
 

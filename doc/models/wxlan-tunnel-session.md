@@ -1,8 +1,6 @@
 
 # Wxlan Tunnel Session
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WxlanTunnelSession`
@@ -20,7 +18,6 @@
 | `RemoteId` | `*string` | Optional | Remote-id of the session, has to be unique in the same tunnel |
 | `RemoteSessionId` | `*int` | Optional | 1-2147483647<br><br>**Constraints**: `>= 1`, `<= 2147483647` |
 | `UseApAsSessionIds` | `*bool` | Optional | Whether to use AP (last 4 bytes of MAC currently) as session ids<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "comment": "comment8",
   "enable_cookie": false,
   "ethertype": "ethernet",
-  "local_session_id": 208,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "local_session_id": 208
 }
 ```
 

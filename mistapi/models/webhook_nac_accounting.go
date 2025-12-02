@@ -8,11 +8,11 @@ import (
 )
 
 // WebhookNacAccounting represents a WebhookNacAccounting struct.
-// nac-accounting webhook sample
+// Sample of the `nac-accounting` webhook payload.
 type WebhookNacAccounting struct {
-	Events               []WebhookNacAccountingEvent `json:"events,omitempty"`
-	Topic                *string                     `json:"topic,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Events               []WebhookNacAccountingEvent    `json:"events,omitempty"`
+	Topic                *WebhookNacAccountingTopicEnum `json:"topic,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookNacAccounting,
@@ -69,6 +69,6 @@ func (w *WebhookNacAccounting) UnmarshalJSON(input []byte) error {
 
 // tempWebhookNacAccounting is a temporary struct used for validating the fields of WebhookNacAccounting.
 type tempWebhookNacAccounting struct {
-	Events []WebhookNacAccountingEvent `json:"events,omitempty"`
-	Topic  *string                     `json:"topic,omitempty"`
+	Events []WebhookNacAccountingEvent    `json:"events,omitempty"`
+	Topic  *WebhookNacAccountingTopicEnum `json:"topic,omitempty"`
 }

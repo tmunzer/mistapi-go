@@ -347,6 +347,32 @@ if err != nil {
 }
 ```
 
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "device_name": "name1",
+    "eol_time": 1561507200,
+    "eos_time": 1672012800,
+    "master": true,
+    "model": "EX2300-24MP",
+    "org_id": "6e843b41-f953-4af9-80e5-e1a70f65754a",
+    "serial": "XN3123300095",
+    "sku": "EX2300",
+    "status": "connected",
+    "suggested_version": "Latest 21.4R3-Sx",
+    "type": "switch",
+    "version": "23.4R2-S4.11",
+    "version_eos_time": 1672012800,
+    "version_time": 1561507200,
+    "warranty": "Enhanced Hardware Warranty",
+    "warranty_time": 1672012800,
+    "warranty_type": "Enhanced Hardware Warranty"
+  }
+]
+```
+
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -444,6 +470,40 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "end": 1748023308,
+  "limit": 1000,
+  "results": [
+    {
+      "claimed": true,
+      "device_name": "name1",
+      "eol_time": 1561507200,
+      "eos_time": 1672012800,
+      "has_support": true,
+      "master": true,
+      "model": "EX2300-24MP",
+      "org_id": "6e843b41-f953-4af9-80e5-e1a70f65754a",
+      "serial": "XN3123300095",
+      "sku": "EX2300",
+      "status": "connected",
+      "suggested_version": "Latest 21.4R3-Sx",
+      "type": "switch",
+      "version": "23.4R2-S4.11",
+      "version_eos_time": 1672012800,
+      "version_time": 1561507200,
+      "warranty": "Enhanced Hardware Warranty",
+      "warranty_time": 1672012800,
+      "warranty_type": "Enhanced Hardware Warranty"
+    }
+  ],
+  "start": 1748019708,
+  "total": 1
 }
 ```
 

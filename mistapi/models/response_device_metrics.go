@@ -13,6 +13,8 @@ import (
 type ResponseDeviceMetrics struct {
 	End                  int                                 `json:"end"`
 	Interval             int                                 `json:"interval"`
+	Limit                *int                                `json:"limit,omitempty"`
+	Page                 *int                                `json:"page,omitempty"`
 	Results              []ResponseDeviceMetricsResultsItems `json:"results"`
 	Rt                   []string                            `json:"rt,omitempty"`
 	Start                int                                 `json:"start"`
@@ -23,8 +25,8 @@ type ResponseDeviceMetrics struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseDeviceMetrics) String() string {
 	return fmt.Sprintf(
-		"ResponseDeviceMetrics[End=%v, Interval=%v, Results=%v, Rt=%v, Start=%v, AdditionalProperties=%v]",
-		r.End, r.Interval, r.Results, r.Rt, r.Start, r.AdditionalProperties)
+		"ResponseDeviceMetrics[End=%v, Interval=%v, Limit=%v, Page=%v, Results=%v, Rt=%v, Start=%v, AdditionalProperties=%v]",
+		r.End, r.Interval, r.Limit, r.Page, r.Results, r.Rt, r.Start, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseDeviceMetrics.
@@ -33,7 +35,7 @@ func (r ResponseDeviceMetrics) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"end", "interval", "results", "rt", "start"); err != nil {
+		"end", "interval", "limit", "page", "results", "rt", "start"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -45,6 +47,12 @@ func (r ResponseDeviceMetrics) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
 	structMap["end"] = r.End
 	structMap["interval"] = r.Interval
+	if r.Limit != nil {
+		structMap["limit"] = r.Limit
+	}
+	if r.Page != nil {
+		structMap["page"] = r.Page
+	}
 	structMap["results"] = r.Results
 	if r.Rt != nil {
 		structMap["rt"] = r.Rt
@@ -65,7 +73,7 @@ func (r *ResponseDeviceMetrics) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "results", "rt", "start")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "limit", "page", "results", "rt", "start")
 	if err != nil {
 		return err
 	}
@@ -73,6 +81,8 @@ func (r *ResponseDeviceMetrics) UnmarshalJSON(input []byte) error {
 
 	r.End = *temp.End
 	r.Interval = *temp.Interval
+	r.Limit = temp.Limit
+	r.Page = temp.Page
 	r.Results = *temp.Results
 	r.Rt = temp.Rt
 	r.Start = *temp.Start
@@ -83,6 +93,8 @@ func (r *ResponseDeviceMetrics) UnmarshalJSON(input []byte) error {
 type tempResponseDeviceMetrics struct {
 	End      *int                                 `json:"end"`
 	Interval *int                                 `json:"interval"`
+	Limit    *int                                 `json:"limit,omitempty"`
+	Page     *int                                 `json:"page,omitempty"`
 	Results  *[]ResponseDeviceMetricsResultsItems `json:"results"`
 	Rt       []string                             `json:"rt,omitempty"`
 	Start    *int                                 `json:"start"`

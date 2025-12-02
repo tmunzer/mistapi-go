@@ -65,8 +65,8 @@ AddInstallerDeviceImage(
     imageName string,
     deviceMac string,
     autoDeviceprofileAssignment *bool,
-    csv *models.FileWrapper,
-    file *models.FileWrapper,
+    csv *string,
+    file *string,
     json *models.MapImportJson) (
     http.Response,
     error)
@@ -80,8 +80,8 @@ AddInstallerDeviceImage(
 | `imageName` | `string` | Template, Required | - |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -449,7 +449,6 @@ if err != nil {
   "mac": "52d9107af289",
   "members": [
     {
-      "_idx": 0,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -547,7 +546,6 @@ if err != nil {
       "version": "21.4R3-S4.18"
     },
     {
-      "_idx": 1,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -903,7 +901,6 @@ if err != nil {
   "mac": "52d9107af289",
   "members": [
     {
-      "_idx": 0,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -1001,7 +998,6 @@ if err != nil {
       "version": "21.4R3-S4.18"
     },
     {
-      "_idx": 1,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -1131,8 +1127,8 @@ ImportInstallerMap(
     orgId uuid.UUID,
     siteName string,
     autoDeviceprofileAssignment *bool,
-    csv *models.FileWrapper,
-    file *models.FileWrapper,
+    csv *string,
+    file *string,
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error)
@@ -1145,8 +1141,8 @@ ImportInstallerMap(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteName` | `string` | Template, Required | - |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -2267,7 +2263,6 @@ if err != nil {
   "mac": "52d9107af289",
   "members": [
     {
-      "_idx": 0,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -2365,7 +2360,6 @@ if err != nil {
       "version": "21.4R3-S4.18"
     },
     {
-      "_idx": 1,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {

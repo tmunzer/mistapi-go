@@ -1,8 +1,6 @@
 
 # Sle Histogram
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleHistogram`
@@ -17,7 +15,6 @@
 | `Start` | `float64` | Required | - |
 | `XLabel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `YLabel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,22 +26,14 @@
         7.03,
         7.04
       ],
-      "value": 95.62,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "value": 95.62
     }
   ],
   "end": 37.86,
   "metric": "metric0",
   "start": 249.92,
   "x_label": "x_label6",
-  "y_label": "y_label6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "y_label": "y_label6"
 }
 ```
 

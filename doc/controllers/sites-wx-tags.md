@@ -93,7 +93,7 @@ if err != nil {
     {
       "port_range": "string",
       "protocol": "tcp",
-      "subnet": [
+      "subnets": [
         "string"
       ]
     }
@@ -298,7 +298,7 @@ if err != nil {
     {
       "port_range": "string",
       "protocol": "tcp",
-      "subnet": [
+      "subnets": [
         "string"
       ]
     }
@@ -394,7 +394,7 @@ if err != nil {
       {
         "port_range": "string",
         "protocol": "tcp",
-        "subnet": [
+        "subnets": [
           "string"
         ]
       }
@@ -498,7 +498,7 @@ if err != nil {
     {
       "port_range": "string",
       "protocol": "tcp",
-      "subnet": [
+      "subnets": [
         "string"
       ]
     }

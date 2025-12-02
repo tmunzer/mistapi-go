@@ -160,10 +160,10 @@ if err != nil {
 
 ```json
 {
-  "bad_minutes": 5566,
-  "bad_minutes_client": 526,
-  "bad_minutes_site_wan": 3612,
-  "bad_minutes_wireless": 1428,
+  "bad_minutes": 5566.0,
+  "bad_minutes_client": 526.0,
+  "bad_minutes_site_wan": 3612.0,
+  "bad_minutes_wireless": 1428.0,
   "num_aps": 1,
   "num_users": 3,
   "total_minutes": 575217
@@ -266,7 +266,7 @@ if err != nil {
         "ap_num_clients": 45.48306793636746,
         "ap_rtt": 6.352042701509264,
         "client_cpu": 9.323452578650581,
-        "client_radio_band": 1.5325644097982958E-06,
+        "client_radio_band": 0.5841414928436279,
         "client_rssi": 17.251008563571506,
         "client_tx_bytes": 1.8379177401463191,
         "client_tx_rates": 10.668423069847954,
@@ -278,16 +278,16 @@ if err != nil {
         "radio_util": 27.891777674357098,
         "radio_util_interference": 4.38913492154744,
         "site_num_clients": -0.2855822932389047,
-        "site_wan_avg_upload_mpbs": -0.988989942603641,
+        "site_wan_avg_upload_mbps": -0.988989942603641,
         "site_wan_jitter": 0.7875519659784105,
         "site_wan_rtt": 15.094849904378256,
-        "site_wan_upload_mpbs": -0.8131117953194512
+        "site_wan_upload_mbps": -0.8131117953194512
       },
       "audio_out": {
         "ap_num_clients": 45.48306793636746,
         "ap_rtt": 6.352042701509264,
         "client_cpu": 9.323452578650581,
-        "client_radio_band": 1.5325644097982958E-06,
+        "client_radio_band": 0.5841414928436279,
         "client_rssi": 17.251008563571506,
         "client_tx_bytes": 1.8379177401463191,
         "client_tx_rates": 10.668423069847954,
@@ -299,10 +299,10 @@ if err != nil {
         "radio_util": 27.891777674357098,
         "radio_util_interference": 4.38913492154744,
         "site_num_clients": -0.2855822932389047,
-        "site_wan_avg_upload_mpbs": -0.988989942603641,
+        "site_wan_avg_upload_mbps": -0.988989942603641,
         "site_wan_jitter": 0.7875519659784105,
         "site_wan_rtt": 15.094849904378256,
-        "site_wan_upload_mpbs": -0.8131117953194512
+        "site_wan_upload_mbps": -0.8131117953194512
       },
       "client_cpu": 0.00834270566701889,
       "client_n_streams": 0.00734270566701889,
@@ -328,15 +328,15 @@ if err != nil {
       "site_wan_avg_download_mbps": 3.0566701889E-07,
       "site_wan_avg_upload_mbps": 5.566701889E-08,
       "site_wan_download_mbps": 8.0566701889E-07,
-      "site_wan_jitter": 1.00566701889E-06,
-      "site_wan_rtt": 4.0566701889E-07,
+      "site_wan_jitter": 0.7875519659784105,
+      "site_wan_rtt": 15.094849904378256,
       "site_wan_upload_mbps": 2.0566701889E-07,
       "timestamp": 1695425115,
       "video_in": {
         "ap_num_clients": 45.48306793636746,
         "ap_rtt": 6.352042701509264,
         "client_cpu": 9.323452578650581,
-        "client_radio_band": 1.5325644097982958E-06,
+        "client_radio_band": 0.5841414928436279,
         "client_rssi": 17.251008563571506,
         "client_tx_bytes": 1.8379177401463191,
         "client_tx_rates": 10.668423069847954,
@@ -348,16 +348,16 @@ if err != nil {
         "radio_util": 27.891777674357098,
         "radio_util_interference": 4.38913492154744,
         "site_num_clients": -0.2855822932389047,
-        "site_wan_avg_upload_mpbs": -0.988989942603641,
+        "site_wan_avg_upload_mbps": -0.988989942603641,
         "site_wan_jitter": 0.7875519659784105,
         "site_wan_rtt": 15.094849904378256,
-        "site_wan_upload_mpbs": -0.8131117953194512
+        "site_wan_upload_mbps": -0.8131117953194512
       },
       "video_out": {
         "ap_num_clients": 45.48306793636746,
         "ap_rtt": 6.352042701509264,
         "client_cpu": 9.323452578650581,
-        "client_radio_band": 1.5325644097982958E-06,
+        "client_radio_band": 0.5841414928436279,
         "client_rssi": 17.251008563571506,
         "client_tx_bytes": 1.8379177401463191,
         "client_tx_rates": 10.668423069847954,
@@ -369,10 +369,10 @@ if err != nil {
         "radio_util": 27.891777674357098,
         "radio_util_interference": 4.38913492154744,
         "site_num_clients": -0.2855822932389047,
-        "site_wan_avg_upload_mpbs": -0.988989942603641,
+        "site_wan_avg_upload_mbps": -0.988989942603641,
         "site_wan_jitter": 0.7875519659784105,
         "site_wan_rtt": 15.094849904378256,
-        "site_wan_upload_mpbs": -0.8131117953194512
+        "site_wan_upload_mbps": -0.8131117953194512
       }
     }
   ]

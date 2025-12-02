@@ -10,12 +10,13 @@ import (
 )
 
 // WebhookAlarms represents a WebhookAlarms struct.
+// Sample of the `alarms` webhook payload.
 // **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.
 // Events specific fields for other alarm event type can be found with API [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions), under "fields" array of /alarm_defs response object.
 type WebhookAlarms struct {
 	// List of events
 	Events []WebhookAlarmEvent `json:"events"`
-	// Topic subscribed to
+	// enum: `alarms`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

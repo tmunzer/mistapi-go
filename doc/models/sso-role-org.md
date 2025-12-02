@@ -22,6 +22,7 @@ SSO Role response
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeOrg`](../../doc/models/privilege-org.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
+| `SitegroupId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -31,7 +32,7 @@ SSO Role response
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
   "name": "name4",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+  "org_id": "60f6bfdb-2f45-4022-8e2a-e00d977953fe",
   "privileges": [
     {
       "org_id": "00000cc8-0000-0000-0000-000000000000",
@@ -44,14 +45,11 @@ SSO Role response
         "location",
         "lobby_admin",
         "switch_admin"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
+  "site_id": "580eb9a7-e6cb-4d05-aa20-4c60808fb011",
+  "sitegroup_id": "b069b358-4c97-5319-1f8c-7c5ca64d6ab1",
   "created_time": 76.64,
   "for_site": false,
   "modified_time": 2.32,

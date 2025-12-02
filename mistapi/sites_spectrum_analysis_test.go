@@ -116,7 +116,7 @@ func TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1694708579,"limit":10,"results":[{"band":"5","channel_usage":[{"channel":36,"noise":-78,"non_wifi":0.08,"wifi":0.13}],"fft_samples":[{"frequency":2437,"rssi / signal ?":-93}],"mac":"5c5b35bd76bb","org_id":"f2695c32-0e83-4936-b1b2-96fc88051213","timestamp":1694098696}],"start":1694622179,"total":4}`
+	expected := `{"end":1694708579,"limit":10,"results":[{"band":"5","channel_usage":[{"channel":36,"noise":-78,"non_wifi":0.08,"wifi":0.13}],"fft_samples":[{"frequency":2437,"rssi":-92,"signal7":-93}],"mac":"5c5b35bd76bb","org_id":"f2695c32-0e83-4936-b1b2-96fc88051213","timestamp":1694098696}],"start":1694622179,"total":4}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -139,6 +139,6 @@ func TestSitesSpectrumAnalysisTestListSiteSpectrumAnalysis1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1694708579,"limit":10,"results":[{"band":"5","channel_usage":[{"channel":36,"noise":-78,"non_wifi":0.08,"wifi":0.13}],"fft_samples":[{"frequency":2437,"rssi / signal ?":-93}],"mac":"5c5b35bd76bb","org_id":"f2695c32-0e83-4936-b1b2-96fc88051213","timestamp":1694098696}],"start":1694622179,"total":4}`
+	expected := `{"end":1694708579,"limit":10,"results":[{"band":"5","channel_usage":[{"channel":36,"noise":-78,"non_wifi":0.08,"wifi":0.13}],"fft_samples":[{"frequency":2437,"rssi":-92,"signal7":-93}],"mac":"5c5b35bd76bb","org_id":"f2695c32-0e83-4936-b1b2-96fc88051213","timestamp":1694098696}],"start":1694622179,"total":4}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

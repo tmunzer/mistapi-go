@@ -1,8 +1,6 @@
 
 # Stats Gateway Vpn Peer
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsGatewayVpnPeer`
@@ -27,7 +25,6 @@
 | `Type` | `*string` | Optional | `ipsec`for SRX, `svr` for 128T<br><br>**Constraints**: *Minimum Length*: `1` |
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,11 +35,7 @@
   "is_active": false,
   "jitter": 234.76,
   "latency": 42.94,
-  "loss": 100.0,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "loss": 100.0
 }
 ```
 

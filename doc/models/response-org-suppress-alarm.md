@@ -1,8 +1,6 @@
 
 # Response Org Suppress Alarm
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseOrgSuppressAlarm`
@@ -12,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Results` | [`[]models.ResponseOrgSuppressAlarmItem`](../../doc/models/response-org-suppress-alarm-item.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,39 +21,23 @@
       "expire_time": 238,
       "scheduled_time": 52,
       "scope": "org",
-      "site_id": "00001420-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "site_id": "00001420-0000-0000-0000-000000000000"
     },
     {
       "duration": 202,
       "expire_time": 238,
       "scheduled_time": 52,
       "scope": "org",
-      "site_id": "00001420-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "site_id": "00001420-0000-0000-0000-000000000000"
     },
     {
       "duration": 202,
       "expire_time": 238,
       "scheduled_time": 52,
       "scope": "org",
-      "site_id": "00001420-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "site_id": "00001420-0000-0000-0000-000000000000"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

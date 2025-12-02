@@ -28,11 +28,7 @@
     "day_of_week": "sun",
     "enabled": false,
     "time_of_day": "time_of_day0",
-    "version": "version2",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "version": "version2"
   },
   "name": "name0",
   "exampleAdditionalProperty": {

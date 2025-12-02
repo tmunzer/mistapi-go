@@ -1,8 +1,6 @@
 
 # Webhook Client Sessions Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookClientSessionsEvent`
@@ -35,7 +33,6 @@
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Version` | `float64` | Required | schema version of this message |
 | `WlanId` | `uuid.UUID` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -64,11 +61,7 @@
   "termination_reason": 24,
   "timestamp": 63.56,
   "version": 147.14,
-  "wlan_id": "00000dde-0000-0000-0000-000000000000",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wlan_id": "00000dde-0000-0000-0000-000000000000"
 }
 ```
 

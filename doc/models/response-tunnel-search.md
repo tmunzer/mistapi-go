@@ -1,8 +1,6 @@
 
 # Response Tunnel Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseTunnelSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.ResponseTunnelSearchItem`](../../doc/models/containers/response-tunnel-search-item.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
         "status": "inprogress",
         "status_id": 70,
         "timestamp": 147.68,
-        "will_retry": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "will_retry": false
       },
       "last_seen": 249.6,
       "mtu": 34,
@@ -56,11 +49,7 @@
         "status": "inprogress",
         "status_id": 70,
         "timestamp": 147.68,
-        "will_retry": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "will_retry": false
       },
       "last_seen": 249.6,
       "mtu": 34,
@@ -73,11 +62,7 @@
   ],
   "start": 196,
   "total": 230,
-  "next": "next2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next2"
 }
 ```
 

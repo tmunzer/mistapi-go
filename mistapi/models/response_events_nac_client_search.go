@@ -12,7 +12,7 @@ type ResponseEventsNacClientSearch struct {
 	End                  *int                   `json:"end,omitempty"`
 	Limit                *int                   `json:"limit,omitempty"`
 	Next                 *string                `json:"next,omitempty"`
-	Results              []EventNacClient       `json:"results,omitempty"`
+	Results              []NacClientEvent       `json:"results,omitempty"`
 	Start                *int                   `json:"start,omitempty"`
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -91,7 +91,7 @@ type tempResponseEventsNacClientSearch struct {
 	End     *int             `json:"end,omitempty"`
 	Limit   *int             `json:"limit,omitempty"`
 	Next    *string          `json:"next,omitempty"`
-	Results []EventNacClient `json:"results,omitempty"`
+	Results []NacClientEvent `json:"results,omitempty"`
 	Start   *int             `json:"start,omitempty"`
 	Total   *int             `json:"total,omitempty"`
 }

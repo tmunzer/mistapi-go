@@ -1,8 +1,6 @@
 
 # If Stat Property
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `IfStatProperty`
@@ -27,7 +25,6 @@
 | `Vlan` | `*int` | Optional | - |
 | `WanName` | `*string` | Optional | - |
 | `WanType` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -49,11 +46,7 @@
     "nat_addresses9"
   ],
   "network_name": "network_name2",
-  "port_id": "port_id4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "port_id": "port_id4"
 }
 ```
 

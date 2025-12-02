@@ -8,10 +8,12 @@ import (
 )
 
 // WebhookClientLatency represents a WebhookClientLatency struct.
+// Sample of the `client-latency` webhook payload.
 type WebhookClientLatency struct {
-	Events               []WebhookClientLatencyEvent `json:"events,omitempty"`
-	Topic                *string                     `json:"topic,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Events []WebhookClientLatencyEvent `json:"events,omitempty"`
+	// enum: `client-latency`
+	Topic                *WebhookClientLatencyTopicEnum `json:"topic,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookClientLatency,
@@ -68,6 +70,6 @@ func (w *WebhookClientLatency) UnmarshalJSON(input []byte) error {
 
 // tempWebhookClientLatency is a temporary struct used for validating the fields of WebhookClientLatency.
 type tempWebhookClientLatency struct {
-	Events []WebhookClientLatencyEvent `json:"events,omitempty"`
-	Topic  *string                     `json:"topic,omitempty"`
+	Events []WebhookClientLatencyEvent    `json:"events,omitempty"`
+	Topic  *WebhookClientLatencyTopicEnum `json:"topic,omitempty"`
 }

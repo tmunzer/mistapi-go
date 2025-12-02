@@ -3,8 +3,6 @@
 
 Auto_rules in org settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSettingAutoAssignmentRule`
@@ -25,7 +23,6 @@ Auto_rules in org settings
 | `Subnet` | `*string` | Optional | If `src`==`subnet` or `ext_ip`==`ext_ip` |
 | `Suffix` | `models.Optional[string]` | Optional | If `src`==`name` |
 | `Value` | `*string` | Optional | If<br><br>* `src`==`ext_ip`, `src`==`subnet` or `src`==`model`, the site name<br>* `src`==`geoip`: site name for the device to be assigned to (\"city\" / \"city+country\" / ...)" |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,11 +35,7 @@ Auto_rules in org settings
   "src": "ext_ip",
   "suffix": "-YY",
   "gatewaytemplate_id": "gatewaytemplate_id2",
-  "match_country": "match_country6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "match_country": "match_country6"
 }
 ```
 

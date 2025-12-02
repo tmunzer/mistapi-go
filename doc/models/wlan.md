@@ -22,7 +22,7 @@
 | `AllowSsdp` | `*bool` | Optional | Only applicable when `limit_bcast`==`true`, which allows SSDP<br><br>**Default**: `false` |
 | `ApIds` | `models.Optional[[]uuid.UUID]` | Optional | List of device ids |
 | `AppLimit` | [`*models.WlanAppLimit`](../../doc/models/wlan-app-limit.md) | Optional | Bandwidth limiting for apps (applies to up/down) |
-| `AppQos` | [`*models.WlanAppQos`](../../doc/models/wlan-app-qos.md) | Optional | APp qos wlan settings |
+| `AppQos` | [`*models.WlanAppQos`](../../doc/models/wlan-app-qos.md) | Optional | APP qos wlan settings |
 | `ApplyTo` | [`*models.WlanApplyToEnum`](../../doc/models/wlan-apply-to-enum.md) | Optional | enum: `aps`, `site`, `wxtags` |
 | `ArpFilter` | `*bool` | Optional | Whether to enable smart arp filter<br><br>**Default**: `false` |
 | `Auth` | [`*models.WlanAuth`](../../doc/models/wlan-auth.md) | Optional | Authentication wlan settings |
@@ -199,11 +199,7 @@
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     }
   ],
   "airwatch": {
@@ -211,11 +207,7 @@
     "console_url": "console_url2",
     "enabled": false,
     "password": "password8",
-    "username": "username4",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "username": "username4"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

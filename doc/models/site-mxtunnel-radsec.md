@@ -1,8 +1,6 @@
 
 # Site Mxtunnel Radsec
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteMxtunnelRadsec`
@@ -15,7 +13,6 @@
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | - |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `UseMxedge` | `*bool` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     },
     {
       "host": "host4",
@@ -43,11 +36,7 @@
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     }
   ],
   "auth_servers": [
@@ -58,11 +47,7 @@
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     },
     {
       "host": "host0",
@@ -71,18 +56,10 @@
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     }
   ],
-  "use_mxedge": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "use_mxedge": false
 }
 ```
 

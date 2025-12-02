@@ -1,8 +1,6 @@
 
 # Response Async License
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseAsyncLicense`
@@ -12,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Completed` | `[]string` | Optional | - |
-| `Detail` | [`*models.ResponseAsyncLicenseDetail`](../../doc/models/response-async-license-detail.md) | Optional | detail claim status per device |
+| `Details` | [`[]models.ResponseAsyncLicenseDetail`](../../doc/models/response-async-license-detail.md) | Optional | - |
 | `Failed` | `*int` | Optional | Current failed number of device |
 | `Incompleted` | `[]string` | Optional | Current incompleted lists (macs) |
 | `Processed` | `*int` | Optional | Current processed number of device |
@@ -21,7 +19,6 @@
 | `Succeed` | `*int` | Optional | Current succeed number of device |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Total` | `*int` | Optional | total number of device included in claim |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,26 +29,25 @@
     "completed7",
     "completed6"
   ],
-  "detail": {
-    "mac": "mac0",
-    "status": "status2",
-    "timestamp": 22.64,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
+  "details": [
+    {
+      "mac": "mac4",
+      "status": "status2",
+      "timestamp": 235.48
+    },
+    {
+      "mac": "mac4",
+      "status": "status2",
+      "timestamp": 235.48
     }
-  },
+  ],
   "failed": 170,
   "incompleted": [
     "incompleted8",
     "incompleted7",
     "incompleted6"
   ],
-  "processed": 152,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "processed": 152
 }
 ```
 

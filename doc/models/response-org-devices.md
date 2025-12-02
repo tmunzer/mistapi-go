@@ -1,8 +1,6 @@
 
 # Response Org Devices
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseOrgDevices`
@@ -12,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Results` | [`[]models.OrgDevice`](../../doc/models/org-device.md) | Required | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,17 +18,9 @@
   "results": [
     {
       "mac": "mac0",
-      "name": "name6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "name": "name6"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

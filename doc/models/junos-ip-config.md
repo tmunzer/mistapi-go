@@ -3,8 +3,6 @@
 
 Junos IP Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `JunosIpConfig`
@@ -20,7 +18,6 @@ Junos IP Config
 | `Netmask` | `*string` | Optional | Used only if `subnet` is not specified in `networks` |
 | `Network` | `*string` | Optional | Network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp |
 | `Type` | [`*models.IpTypeEnum`](../../doc/models/ip-type-enum.md) | Optional | enum: `dhcp`, `static`<br><br>**Default**: `"dhcp"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,11 +32,7 @@ Junos IP Config
   ],
   "gateway": "gateway6",
   "ip": "ip0",
-  "netmask": "netmask6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "netmask": "netmask6"
 }
 ```
 

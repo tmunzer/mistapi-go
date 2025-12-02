@@ -1,8 +1,6 @@
 
 # Org Site Sle Wired Result
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSiteSleWiredResult`
@@ -17,7 +15,6 @@
 | `SwitchBandwidth` | `*float64` | Optional | - |
 | `SwitchHealth` | `float64` | Required | - |
 | `SwitchThroughput` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "num_clients": 64.3,
   "num_switches": 63.2,
   "switch-bandwidth": 66.5,
-  "switch-throughput": 152.98,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "switch-throughput": 152.98
 }
 ```
 

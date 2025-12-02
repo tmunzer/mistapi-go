@@ -1,8 +1,6 @@
 
 # Org Site Sle Wifi Result
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSiteSleWifiResult`
@@ -22,7 +20,6 @@
 | `SuccessfulConnect` | `*float64` | Optional | - |
 | `Throughput` | `*float64` | Optional | - |
 | `TimeToConnect` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
   "capacity": 65.86,
   "coverage": 44.84,
   "num_aps": 74.58,
-  "num_clients": 241.54,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "num_clients": 241.54
 }
 ```
 

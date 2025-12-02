@@ -1,8 +1,6 @@
 
 # Gateway Port Mirroring Port Mirror
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPortMirroringPortMirror`
@@ -16,7 +14,6 @@
 | `OutputPortId` | `*string` | Optional | - |
 | `Rate` | `*int` | Optional | - |
 | `RunLength` | `*int` | Optional | **Constraints**: `>= 0` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
     "ingress_port_ids5"
   ],
   "rate": 198,
-  "run_length": 166,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "run_length": 166
 }
 ```
 

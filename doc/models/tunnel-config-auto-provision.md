@@ -3,8 +3,6 @@
 
 Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TunnelConfigAutoProvision`
@@ -20,7 +18,6 @@ Auto Provisioning configuration for the tunne. This takes precedence over the `p
 | `Region` | `*string` | Optional | API override for POP selection in the case user wants to override the auto discovery of remote network location and force the tunnel to use the specified peer location. |
 | `Secondary` | [`*models.TunnelConfigAutoProvisionNode`](../../doc/models/tunnel-config-auto-provision-node.md) | Optional | - |
 | `ServiceConnection` | `*string` | Optional | if `provider`==`prisma-ipsec`. By default, we'll use the location of the site to determine the optimal Remote Network location, optionally, service_connection can be considered, then we'll also consider this along with the site location. Define service_connection if the traffic is to be routed to a specific service connection. This field takes a service connection name that is configured in the Prisma cloud, Prisma Access Setup -> Service Connections. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@ Auto Provisioning configuration for the tunne. This takes precedence over the `p
   "enabled": false,
   "latlng": {
     "lat": 144.64,
-    "lng": 22.82,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "lng": 22.82
   },
   "primary": {
     "probe_ips": [
@@ -65,10 +58,6 @@ Auto Provisioning configuration for the tunne. This takes precedence over the `p
       "key1": "val1",
       "key2": "val2"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

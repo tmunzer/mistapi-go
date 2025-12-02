@@ -67,11 +67,7 @@
       ],
       "config": {
         "dhcpd_config": {
-          "enabled": false,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "enabled": false
         },
         "networks": {
           "key0": {
@@ -80,11 +76,7 @@
             "isolation": false,
             "isolation_vlan_id": "isolation_vlan_id8",
             "subnet": "subnet6",
-            "vlan_id": "String7",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "vlan_id": "String7"
           },
           "key1": {
             "gateway": "gateway8",
@@ -92,11 +84,7 @@
             "isolation": false,
             "isolation_vlan_id": "isolation_vlan_id8",
             "subnet": "subnet6",
-            "vlan_id": "String7",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "vlan_id": "String7"
           }
         },
         "other_ip_configs": {
@@ -105,33 +93,21 @@
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "netmask6": "netmask60"
           },
           "key1": {
             "evpn_anycast": false,
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "netmask6": "netmask60"
           },
           "key2": {
             "evpn_anycast": false,
             "ip": "ip4",
             "ip6": "ip60",
             "netmask": "netmask0",
-            "netmask6": "netmask60",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "netmask6": "netmask60"
           }
         },
         "port_config": {
@@ -141,11 +117,7 @@
             "ae_lacp_slow": false,
             "aggregated": false,
             "critical": false,
-            "usage": "usage6",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "usage": "usage6"
           },
           "key1": {
             "ae_disable_lacp": false,
@@ -153,11 +125,7 @@
             "ae_lacp_slow": false,
             "aggregated": false,
             "critical": false,
-            "usage": "usage6",
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "usage": "usage6"
           }
         },
         "port_usages": {
@@ -166,47 +134,27 @@
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unknown_client": false,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "bypass_auth_when_server_down_for_unknown_client": false
           },
           "key1": {
             "all_networks": false,
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unknown_client": false,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "bypass_auth_when_server_down_for_unknown_client": false
           },
           "key2": {
             "all_networks": false,
             "allow_dhcpd": false,
             "allow_multiple_supplicants": false,
             "bypass_auth_when_server_down": false,
-            "bypass_auth_when_server_down_for_unknown_client": false,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "bypass_auth_when_server_down_for_unknown_client": false
           }
-        },
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
         }
       },
       "downlink_ips": [
         "downlink_ips6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "created_time": 252.34,
@@ -215,11 +163,7 @@
     "auto_loopback_subnet6": "auto_loopback_subnet60",
     "auto_router_id_subnet": "auto_router_id_subnet8",
     "auto_router_id_subnet6": "auto_router_id_subnet60",
-    "core_as_border": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "core_as_border": false
   },
   "modified_time": 82.62,
   "exampleAdditionalProperty": {

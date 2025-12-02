@@ -10,11 +10,12 @@ import (
 )
 
 // WebhookClientSessions represents a WebhookClientSessions struct.
-// Client session webhook sample
+// Sample of the `client-sessions` webhook payload.
 type WebhookClientSessions struct {
-	Events               []WebhookClientSessionsEvent `json:"events"`
-	Topic                string                       `json:"topic"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	Events []WebhookClientSessionsEvent `json:"events"`
+	// enum: `client-sessions`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookClientSessions,

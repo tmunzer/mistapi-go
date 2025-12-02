@@ -1,8 +1,6 @@
 
 # Org Setting Gateway Mgmt Host in Policy
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSettingGatewayMgmtHostInPolicy`
@@ -12,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,11 +17,7 @@
 {
   "tenants": [
     "tenants3"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

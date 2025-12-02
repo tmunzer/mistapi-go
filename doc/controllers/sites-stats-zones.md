@@ -247,7 +247,6 @@ if err != nil {
       "min": 0,
       "p95": 0
     },
-    "display_is_group": false,
     "id": "17ef7169-e000-4dcd-abc7-f721f0a8ffda",
     "modified_time": 1733864928,
     "name": "proximity openspace",
@@ -337,13 +336,13 @@ if err != nil {
 ```json
 [
   {
-    "assets_waits": {
+    "assets_wait": {
       "avg": 0,
       "max": 0,
       "min": 0,
       "p95": 0
     },
-    "clients_waits": {
+    "clients_wait": {
       "avg": 1200,
       "max": 3610,
       "min": 600,
@@ -359,7 +358,7 @@ if err != nil {
     "num_sdkclients": 10,
     "occupancy_limit": 4,
     "org_id": "1234c1a0-6ef6-11e6-8bbf-02e208b21234",
-    "sdkclients_waits": {
+    "sdkclients_wait": {
       "avg": 1200,
       "max": 3610,
       "min": 600,

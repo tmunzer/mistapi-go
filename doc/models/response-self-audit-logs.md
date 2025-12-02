@@ -1,8 +1,6 @@
 
 # Response Self Audit Logs
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSelfAuditLogs`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.AuditLog`](../../doc/models/audit-log.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,19 +40,11 @@
         "key1": "val1",
         "key2": "val2"
       },
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
   "start": 96,
-  "total": 130,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 130
 }
 ```
 

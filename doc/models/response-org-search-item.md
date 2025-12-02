@@ -1,8 +1,6 @@
 
 # Response Org Search Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseOrgSearchItem`
@@ -35,7 +33,6 @@
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `TrialEnabled` | `*bool` | Optional | If this org is under trial period |
 | `UsageTypes` | `[]string` | Optional | a list of types that enabled by usage |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,11 +43,7 @@
   "name": "name6",
   "num_aps": 126,
   "num_gateways": 126,
-  "num_sites": 64,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "num_sites": 64
 }
 ```
 

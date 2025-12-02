@@ -248,7 +248,8 @@ if err != nil {
       "fft_samples": [
         {
           "frequency": 2437,
-          "rssi / signal ?": -93
+          "rssi": -92,
+          "signal7": -93
         }
       ],
       "mac": "5c5b35bd76bb",

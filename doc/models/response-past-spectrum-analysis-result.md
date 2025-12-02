@@ -3,8 +3,6 @@
 
 Result of a past spectrum analysis
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponsePastSpectrumAnalysisResult`
@@ -19,7 +17,6 @@ Result of a past spectrum analysis
 | `Mac` | `*string` | Optional | MAC Address of the AP that ran the spectrum analysis |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*int` | Optional | Timestamp when the spectrum analysis was run in epoch seconds |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,39 +29,23 @@ Result of a past spectrum analysis
       "channel": 192,
       "noise": 76.92,
       "non_wifi": 164.5,
-      "wifi": 198.3,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wifi": 198.3
     },
     {
       "channel": 192,
       "noise": 76.92,
       "non_wifi": 164.5,
-      "wifi": 198.3,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wifi": 198.3
     }
   ],
   "fft_samples": [
     {
       "frequency": 91.6,
       "rssi": 42.86,
-      "signal7": 18.34,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "signal7": 18.34
     }
   ],
-  "mac": "mac4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "mac": "mac4"
 }
 ```
 

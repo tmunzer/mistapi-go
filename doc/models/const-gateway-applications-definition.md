@@ -1,8 +1,6 @@
 
 # Const Gateway Applications Definition
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstGatewayApplicationsDefinition`
@@ -15,7 +13,6 @@
 | `Key` | `*string` | Optional | - |
 | `Name` | `*string` | Optional | - |
 | `SsrAppId` | `*bool` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@
   "app_id": true,
   "key": "4shared",
   "name": "4shared",
-  "ssr_app_id": true,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ssr_app_id": true
 }
 ```
 

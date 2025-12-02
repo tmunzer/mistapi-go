@@ -1,8 +1,6 @@
 
 # Response Client Events Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseClientEventsSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.EventsClient`](../../doc/models/events-client.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,20 +30,12 @@
       "ap": "ap8",
       "bssid": "bssid0",
       "channel": 30,
-      "proto": "b",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "proto": "b"
     }
   ],
   "start": 234,
   "total": 244,
-  "next": "next4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next4"
 }
 ```
 

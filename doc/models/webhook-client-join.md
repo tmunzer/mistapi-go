@@ -1,9 +1,7 @@
 
 # Webhook Client Join
 
-Client join webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `client-join` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ Client join webhook sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookClientJoinEvent`](../../doc/models/webhook-client-join-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | **Default**: `"client-join"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | enum: `client-join`<br><br>**Value**: `"client-join"` |
 
 ## Example (as JSON)
 
@@ -37,18 +34,10 @@ Client join webhook sample
       "ssid": "ssid8",
       "timestamp": 188.18,
       "version": 15.76,
-      "wlan_id": "0000177c-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wlan_id": "0000177c-0000-0000-0000-000000000000"
     }
   ],
-  "topic": "client-join",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "client-join"
 }
 ```
 

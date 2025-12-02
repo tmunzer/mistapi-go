@@ -3,8 +3,6 @@
 
 Asset statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsAsset`
@@ -20,9 +18,9 @@ Asset statistics
 | `EddystoneUidInstance` | `*string` | Optional | - |
 | `EddystoneUidNamespace` | `*string` | Optional | - |
 | `EddystoneUrlUrl` | `*string` | Optional | - |
-| `IbeaconMajor` | `*int` | Optional | - |
-| `IbeaconMinor` | `*int` | Optional | - |
-| `IbeaconUuid` | `*uuid.UUID` | Optional | - |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMinor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconUuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `string` | Required | Bluetooth MAC |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
@@ -33,7 +31,6 @@ Asset statistics
 | `X` | `*float64` | Optional | X in pixel |
 | `Y` | `*float64` | Optional | Y in pixel |
 | `Zones` | [`[]models.AssetZone`](../../doc/models/asset-zone.md) | Optional | Only send this for individual asset stat |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,8 +43,8 @@ Asset statistics
   "eddystone_uid_instance": "5c5b35000001",
   "eddystone_uid_namespace": "2818e3868dec25629ede",
   "eddystone_url_url": "https://www.abc.com",
-  "ibeacon_major": 12,
-  "ibeacon_minor": 138,
+  "ibeacon_major": 1234,
+  "ibeacon_minor": 1234,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "last_seen": 1470417522,
   "mac": "6fa474be7ae5",
@@ -56,11 +53,7 @@ Asset statistics
   "rssi": -60,
   "temperature": 23,
   "x": 280.19918140310193,
-  "y": 420.2987721046529,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "y": 420.2987721046529
 }
 ```
 

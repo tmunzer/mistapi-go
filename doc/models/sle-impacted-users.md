@@ -1,8 +1,6 @@
 
 # Sle Impacted Users
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedUsers`
@@ -21,7 +19,6 @@
 | `Start` | `float64` | Required | - |
 | `TotalCount` | `float64` | Required | - |
 | `Users` | [`[]models.SleImpactedUsersUser`](../../doc/models/sle-impacted-users-user.md) | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,19 +37,11 @@
           "interfaces": [
             "interfaces5",
             "interfaces6"
-          ],
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          ]
         }
       ],
       "mac": "mac2",
-      "name": "name8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "name": "name8"
     }
   ],
   "end": 53.18,
@@ -68,39 +57,23 @@
       "ap_name": "ap_name4",
       "degraded": 137.76,
       "device_os": "device_os6",
-      "device_type": "device_type4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "device_type": "device_type4"
     },
     {
       "ap_mac": "ap_mac8",
       "ap_name": "ap_name4",
       "degraded": 137.76,
       "device_os": "device_os6",
-      "device_type": "device_type4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "device_type": "device_type4"
     },
     {
       "ap_mac": "ap_mac8",
       "ap_name": "ap_name4",
       "degraded": 137.76,
       "device_os": "device_os6",
-      "device_type": "device_type4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "device_type": "device_type4"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

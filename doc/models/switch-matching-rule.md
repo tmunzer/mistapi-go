@@ -39,21 +39,13 @@ Property key defines the type of matching, value is the string to match. e.g:
   ],
   "ip_config": {
     "network": "network6",
-    "type": "dhcp",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "type": "dhcp"
   },
   "name": "name2",
   "oob_ip_config": {
     "type": "dhcp",
     "use_mgmt_vrf": false,
-    "use_mgmt_vrf_for_host_out": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "use_mgmt_vrf_for_host_out": false
   },
   "port_config": {
     "key0": {
@@ -62,11 +54,7 @@ Property key defines the type of matching, value is the string to match. e.g:
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     },
     "key1": {
       "ae_disable_lacp": false,
@@ -74,11 +62,7 @@ Property key defines the type of matching, value is the string to match. e.g:
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     },
     "key2": {
       "ae_disable_lacp": false,
@@ -86,11 +70,7 @@ Property key defines the type of matching, value is the string to match. e.g:
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     }
   }
 }

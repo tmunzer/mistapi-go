@@ -1,8 +1,6 @@
 
 # Org Setting Mist Nac
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSettingMistNac`
@@ -22,7 +20,6 @@
 | `ServerCert` | [`*models.OrgSettingMistNacServerCert`](../../doc/models/org-setting-mist-nac-server-cert.md) | Optional | radius server cert to be presented in EAP TLS |
 | `UseIpVersion` | [`*models.OrgSettingMistNacIpVersionEnum`](../../doc/models/org-setting-mist-nac-ip-version-enum.md) | Optional | by default, NAS devices(switches/aps) and proxies(mxedge) are configured to reach mist-nac via IPv4. enum: `v4`, `v6`<br><br>**Default**: `"v4"` |
 | `UseSslPort` | `*bool` | Optional | By default, NAS devices (switches/aps) and proxies(mxedge) are configured to use port TCP2083(RadSec) to reach mist-nac. Set `use_ssl_port`==`true` to override that port with TCP43 (ssl), This is an org level setting that is applicable to wlans, switch_templates, and mxedge_clusters that have mist-nac enabled<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,11 +37,7 @@
     "cacerts5",
     "cacerts4"
   ],
-  "default_idp_id": "default_idp_id0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "default_idp_id": "default_idp_id0"
 }
 ```
 

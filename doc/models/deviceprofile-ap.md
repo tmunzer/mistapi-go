@@ -66,20 +66,12 @@ Device Profile
     "enabled": false,
     "host": "host6",
     "locate_connected": false,
-    "port": 86,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "port": 86
   },
   "airista": {
     "enabled": false,
     "host": "host8",
-    "port": 218,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "port": 218
   },
   "ble_config": {
     "beacon_enabled": false,
@@ -90,11 +82,7 @@ Device Profile
       114,
       115
     ],
-    "custom_ble_packet_enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "custom_ble_packet_enabled": false
   },
   "created_time": 42.6,
   "exampleAdditionalProperty": {

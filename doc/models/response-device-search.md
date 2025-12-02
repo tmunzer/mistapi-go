@@ -1,8 +1,6 @@
 
 # Response Device Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseDeviceSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.ResponseDeviceSearchResultsItems`](../../doc/models/containers/response-device-search-results-items.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,33 +35,17 @@
       "wlans": [
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         },
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         },
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "band_24_bandwidth": "band_24_bandwidth2",
@@ -78,42 +59,22 @@
       "wlans": [
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         },
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         },
         {
           "id": "00001c56-0000-0000-0000-000000000000",
-          "ssid": "ssid8",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "ssid": "ssid8"
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "start": 12,
   "total": 210,
-  "next": "next4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next4"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Response Mxedge Events Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseMxedgeEventsSearch`
@@ -15,9 +13,8 @@
 | `Limit` | `*int` | Optional | - |
 | `Next` | `*string` | Optional | - |
 | `Page` | `*int` | Optional | - |
-| `Results` | [`[]models.MxedgeEvent`](../../doc/models/mxedge-event.md) | Optional | - |
+| `Results` | [`[]models.MxedgeEvent`](../../doc/models/mxedge-event.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Start` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,32 +27,20 @@
   "next": "next4",
   "results": [
     {
+      "audit_id": "00000d00-0000-0000-0000-000000000000",
       "component": "component4",
-      "mxcluster_id": "mxcluster_id6",
-      "mxedge_id": "mxedge_id2",
-      "org_id": "00002492-0000-0000-0000-000000000000",
-      "service": "service4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "device_type": "device_type4",
+      "from_version": "from_version8",
+      "mac": "mac0"
     },
     {
+      "audit_id": "00000d00-0000-0000-0000-000000000000",
       "component": "component4",
-      "mxcluster_id": "mxcluster_id6",
-      "mxedge_id": "mxedge_id2",
-      "org_id": "00002492-0000-0000-0000-000000000000",
-      "service": "service4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "device_type": "device_type4",
+      "from_version": "from_version8",
+      "mac": "mac0"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

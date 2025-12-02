@@ -39,28 +39,16 @@
   "aamw": {
     "aamwprofile_id": "0000066a-0000-0000-0000-000000000000",
     "enabled": false,
-    "profile": "executables",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "profile": "executables"
   },
   "action": "allow",
   "antivirus": {
     "avprofile_id": "00000282-0000-0000-0000-000000000000",
     "enabled": false,
-    "profile": "profile4",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "profile": "profile4"
   },
   "appqoe": {
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "created_time": 21.72,
   "exampleAdditionalProperty": {

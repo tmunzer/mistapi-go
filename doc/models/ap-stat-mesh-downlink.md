@@ -1,8 +1,6 @@
 
 # Ap Stat Mesh Downlink
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApStatMeshDownlink`
@@ -29,7 +27,6 @@
 | `TxPackets` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `TxRate` | `models.Optional[float64]` | Optional | TX Rate, Mbps |
 | `TxRetries` | `models.Optional[int]` | Optional | Amount of tx retries |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,11 +45,7 @@
   "snr": 31,
   "tx_bps": 634301,
   "tx_bytes": 211217389682,
-  "tx_packets": 812204062,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "tx_packets": 812204062
 }
 ```
 

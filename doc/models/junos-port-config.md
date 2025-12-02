@@ -3,8 +3,6 @@
 
 Switch port config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `JunosPortConfig`
@@ -29,7 +27,6 @@ Switch port config
 | `PortNetwork` | `*string` | Optional | Required if `usage`==`vlan_tunnel`. Q-in-Q tunneling using All-in-one bundling. This also enables standard L2PT for interfaces that are not encapsulation tunnel interfaces and uses MAC rewrite operation. [View more information](https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/topic-map/q-in-q.html#id-understanding-qinq-tunneling-and-vlan-translation) |
 | `Speed` | [`*models.JunosPortConfigSpeedEnum`](../../doc/models/junos-port-config-speed-enum.md) | Optional | enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br><br>**Default**: `"auto"` |
 | `Usage` | `string` | Required | Port usage name. For Q-in-Q, use `vlan_tunnel`. If EVPN is used, use `evpn_uplink`or `evpn_downlink` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,11 +43,7 @@ Switch port config
   "usage": "usage6",
   "ae_disable_lacp": false,
   "ae_idx": 244,
-  "ae_lacp_slow": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ae_lacp_slow": false
 }
 ```
 

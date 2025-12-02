@@ -3,8 +3,6 @@
 
 IoT AP settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApIot`
@@ -20,7 +18,6 @@ IoT AP settings
 | `DI1` | [`*models.ApIotInput`](../../doc/models/ap-iot-input.md) | Optional | IoT Input AP settings |
 | `DI2` | [`*models.ApIotInput`](../../doc/models/ap-iot-input.md) | Optional | IoT Input AP settings |
 | `DO` | [`*models.ApIotOutput`](../../doc/models/ap-iot-output.md) | Optional | IoT output AP settings |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,57 +28,33 @@ IoT AP settings
     "name": "name0",
     "output": false,
     "pullup": "internal",
-    "value": 242,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "value": 242
   },
   "A2": {
     "enabled": false,
     "name": "name8",
     "output": false,
     "pullup": "none",
-    "value": 180,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "value": 180
   },
   "A3": {
     "enabled": false,
     "name": "name6",
     "output": false,
     "pullup": "internal",
-    "value": 118,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "value": 118
   },
   "A4": {
     "enabled": false,
     "name": "name8",
     "output": false,
     "pullup": "internal",
-    "value": 88,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "value": 88
   },
   "DI1": {
     "enabled": false,
     "name": "name0",
-    "pullup": "internal",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "pullup": "internal"
   }
 }
 ```

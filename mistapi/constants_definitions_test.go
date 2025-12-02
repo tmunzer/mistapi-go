@@ -300,38 +300,6 @@ func TestConstantsDefinitionsTestListGatewayApplications1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
-// TestConstantsDefinitionsTestListInsightMetrics tests the behavior of the ConstantsDefinitions
-func TestConstantsDefinitionsTestListInsightMetrics(t *testing.T) {
-	ctx := context.Background()
-	apiResponse, err := constantsDefinitions.ListInsightMetrics(ctx)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"bytes":{"description":"Aggregated bytes over time","example":[185,197,250],"intervals":{"10m":{"interval":600,"max_age":86400},"1h":{"interval":3600,"max_age":1209600}},"report_durations":{"1d":{"duration":86400,"interval":3600},"1w":{"duration":604800,"interval":3600}},"report_scopes":["site","org"],"scopes":["site","ap","client"],"type":"timeseries","unit":"byte"},"num_clients":{"description":"Number of client over time","example":[18,null,15],"intervals":{"10m":{"interval":600,"max_age":86400},"1h":{"interval":3600,"max_age":1209600}},"report_durations":{"1d":{"duration":86400,"interval":3600},"1w":{"duration":604800,"interval":3600}},"report_scopes":["site","org"],"scopes":["site","ap","device"],"type":"timeseries","unit":""}}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestConstantsDefinitionsTestListInsightMetrics1 tests the behavior of the ConstantsDefinitions
-func TestConstantsDefinitionsTestListInsightMetrics1(t *testing.T) {
-	ctx := context.Background()
-	apiResponse, err := constantsDefinitions.ListInsightMetrics(ctx)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"bytes":{"description":"Aggregated bytes over time","example":[185,197,250],"intervals":{"10m":{"interval":600,"max_age":86400},"1h":{"interval":3600,"max_age":1209600}},"report_durations":{"1d":{"duration":86400,"interval":3600},"1w":{"duration":604800,"interval":3600}},"report_scopes":["site","org"],"scopes":["site","ap","client"],"type":"timeseries","unit":"byte"},"num_clients":{"description":"Number of client over time","example":[18,null,15],"intervals":{"10m":{"interval":600,"max_age":86400},"1h":{"interval":3600,"max_age":1209600}},"report_durations":{"1d":{"duration":86400,"interval":3600},"1w":{"duration":604800,"interval":3600}},"report_scopes":["site","org"],"scopes":["site","ap","device"],"type":"timeseries","unit":""}}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
 // TestConstantsDefinitionsTestListSiteLanguages tests the behavior of the ConstantsDefinitions
 func TestConstantsDefinitionsTestListSiteLanguages(t *testing.T) {
 	ctx := context.Background()

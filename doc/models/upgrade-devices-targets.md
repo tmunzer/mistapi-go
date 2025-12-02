@@ -1,8 +1,6 @@
 
 # Upgrade Devices Targets
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `UpgradeDevicesTargets`
@@ -21,7 +19,6 @@
 | `Skipped` | `[]string` | Optional | List of devices MAC Addresses which skipped upgrade since requested version was same as running version. Use force to always upgrade |
 | `Total` | `*int` | Optional | Count of devices part of this upgrade |
 | `Upgraded` | `[]string` | Optional | Count of devices which have upgraded successfully |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,11 +43,7 @@
   ],
   "reboot_in_progress": [
     "reboot_in_progress3"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

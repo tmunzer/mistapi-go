@@ -1,9 +1,7 @@
 
 # Webhook Audits
 
-audit webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `audits` webhook payload.
 
 ## Structure
 
@@ -13,9 +11,8 @@ audit webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookAuditEvent`](../../doc/models/webhook-audit-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | **Default**: `"audits"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Events` | [`[]models.LogEvent`](../../doc/models/log-event.md) | Required | **Constraints**: *Unique Items Required* |
+| `Topic` | `string` | Required, Constant | enum: `audits`<br><br>**Value**: `"audits"` |
 
 ## Example (as JSON)
 
@@ -23,25 +20,24 @@ audit webhook sample
 {
   "events": [
     {
-      "admin_name": "admin_name8",
-      "device_id": "00000000-0000-0000-1000-d8695a0f9e61",
       "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "message": "message0",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "src_ip": "src_ip4",
       "timestamp": 188.18,
-      "exampleAdditionalProperty": {
+      "admin_id": "0000104e-0000-0000-0000-000000000000",
+      "admin_name": "admin_name8",
+      "after": {
         "key1": "val1",
         "key2": "val2"
-      }
+      },
+      "before": {
+        "key1": "val1",
+        "key2": "val2"
+      },
+      "for_site": false
     }
   ],
-  "topic": "audits",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "audits"
 }
 ```
 

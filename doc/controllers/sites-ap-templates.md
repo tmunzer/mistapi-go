@@ -62,167 +62,19 @@ if err != nil {
           "match_model": "string",
           "name": "string",
           "port_config": {
-            "property1": {
-              "additional_vlan_ids": [
-                55,
-                66
-              ],
-              "authentication_protocol": "pap",
+            "eth1,eth2": {
               "disabled": true,
               "dynamic_vlan": {
                 "default_vlan_id": 999,
-                "enabled": true,
-                "type": "string",
-                "vlans": {
-                  "1-10": null,
-                  "user": null
-                }
+                "enabled": true
               },
-              "enable_mac_auth": false,
-              "forwarding": "all",
-              "mx_tunnel_id": "08cd7499-5841-51c8-e663-fb16b6f3b45e",
-              "mxtunnel_name": "string",
-              "port_auth": "none",
               "port_vlan_id": 1,
-              "radius_config": {
-                "acct_interim_interval": 0,
-                "acct_servers": [
-                  {
-                    "host": "1.2.3.4",
-                    "keywrap_enabled": true,
-                    "keywrap_format": "hex",
-                    "keywrap_kek": "1122334455",
-                    "keywrap_mack": "1122334455",
-                    "port": 1813,
-                    "secret": "testing123"
-                  }
-                ],
-                "auth_servers": [
-                  {
-                    "host": "1.2.3.4",
-                    "keywrap_enabled": true,
-                    "keywrap_format": "hex",
-                    "keywrap_kek": "1122334455",
-                    "keywrap_mack": "1122334455",
-                    "port": 1812,
-                    "secret": "testing123"
-                  }
-                ],
-                "auth_servers_retries": 3,
-                "auth_servers_timeout": 5,
-                "coa_enabled": false,
-                "coa_port": 3799,
-                "network": "string",
-                "source_ip": "string"
-              },
-              "radsec": {
-                "enabled": true,
-                "idle_timeout": 60,
-                "mxcluster_ids": [
-                  "572586b7-f97b-a22b-526c-8b97a3f609c4"
-                ],
-                "proxy_hosts": [
-                  "mxedge1.local"
-                ],
-                "server_name": "radsec.abc.com",
-                "servers": [
-                  {
-                    "host": "1.1.1.1",
-                    "port": 1812
-                  }
-                ],
-                "use_mxedge": true,
-                "use_site_mxedge": false
-              },
               "vlan_id": 9,
               "vlan_ids": [
                 1,
                 10,
                 50
-              ],
-              "wxtunnel_id": "7dae216d-7c98-a51b-e068-dd7d477b7216",
-              "wxtunnel_remote_id": "wifiguest"
-            },
-            "property2": {
-              "additional_vlan_ids": [
-                55,
-                66
-              ],
-              "authentication_protocol": "pap",
-              "disabled": true,
-              "dynamic_vlan": {
-                "default_vlan_id": 999,
-                "enabled": true,
-                "type": "string",
-                "vlans": {
-                  "1-10": null,
-                  "user": null
-                }
-              },
-              "enable_mac_auth": false,
-              "forwarding": "all",
-              "mx_tunnel_id": "08cd7499-5841-51c8-e663-fb16b6f3b45e",
-              "mxtunnel_name": "string",
-              "port_auth": "none",
-              "port_vlan_id": 1,
-              "radius_config": {
-                "acct_interim_interval": 0,
-                "acct_servers": [
-                  {
-                    "host": "1.2.3.4",
-                    "keywrap_enabled": true,
-                    "keywrap_format": "hex",
-                    "keywrap_kek": "1122334455",
-                    "keywrap_mack": "1122334455",
-                    "port": 1813,
-                    "secret": "testing123"
-                  }
-                ],
-                "auth_servers": [
-                  {
-                    "host": "1.2.3.4",
-                    "keywrap_enabled": true,
-                    "keywrap_format": "hex",
-                    "keywrap_kek": "1122334455",
-                    "keywrap_mack": "1122334455",
-                    "port": 1812,
-                    "secret": "testing123"
-                  }
-                ],
-                "auth_servers_retries": 3,
-                "auth_servers_timeout": 5,
-                "coa_enabled": false,
-                "coa_port": 3799,
-                "network": "string",
-                "source_ip": "string"
-              },
-              "radsec": {
-                "enabled": true,
-                "idle_timeout": 60,
-                "mxcluster_ids": [
-                  "572586b7-f97b-a22b-526c-8b97a3f609c4"
-                ],
-                "proxy_hosts": [
-                  "mxedge1.local"
-                ],
-                "server_name": "radsec.abc.com",
-                "servers": [
-                  {
-                    "host": "1.1.1.1",
-                    "port": 1812
-                  }
-                ],
-                "use_mxedge": true,
-                "use_site_mxedge": false
-              },
-              "vlan_id": 9,
-              "vlan_ids": [
-                1,
-                10,
-                50
-              ],
-              "wxtunnel_id": "7dae216d-7c98-a51b-e068-dd7d477b7216",
-              "wxtunnel_remote_id": "wifiguest"
+              ]
             }
           }
         }

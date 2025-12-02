@@ -11,6 +11,7 @@ import (
 type ModuleStatItemFansItems struct {
 	Airflow              *string                `json:"airflow,omitempty"`
 	Name                 *string                `json:"name,omitempty"`
+	Rpm                  *int                   `json:"rpm,omitempty"`
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -19,8 +20,8 @@ type ModuleStatItemFansItems struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m ModuleStatItemFansItems) String() string {
 	return fmt.Sprintf(
-		"ModuleStatItemFansItems[Airflow=%v, Name=%v, Status=%v, AdditionalProperties=%v]",
-		m.Airflow, m.Name, m.Status, m.AdditionalProperties)
+		"ModuleStatItemFansItems[Airflow=%v, Name=%v, Rpm=%v, Status=%v, AdditionalProperties=%v]",
+		m.Airflow, m.Name, m.Rpm, m.Status, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemFansItems.
@@ -29,7 +30,7 @@ func (m ModuleStatItemFansItems) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"airflow", "name", "status"); err != nil {
+		"airflow", "name", "rpm", "status"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -45,6 +46,9 @@ func (m ModuleStatItemFansItems) toMap() map[string]any {
 	if m.Name != nil {
 		structMap["name"] = m.Name
 	}
+	if m.Rpm != nil {
+		structMap["rpm"] = m.Rpm
+	}
 	if m.Status != nil {
 		structMap["status"] = m.Status
 	}
@@ -59,7 +63,7 @@ func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "airflow", "name", "status")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "airflow", "name", "rpm", "status")
 	if err != nil {
 		return err
 	}
@@ -67,6 +71,7 @@ func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
 
 	m.Airflow = temp.Airflow
 	m.Name = temp.Name
+	m.Rpm = temp.Rpm
 	m.Status = temp.Status
 	return nil
 }
@@ -75,5 +80,6 @@ func (m *ModuleStatItemFansItems) UnmarshalJSON(input []byte) error {
 type tempModuleStatItemFansItems struct {
 	Airflow *string `json:"airflow,omitempty"`
 	Name    *string `json:"name,omitempty"`
+	Rpm     *int    `json:"rpm,omitempty"`
 	Status  *string `json:"status,omitempty"`
 }

@@ -1,8 +1,6 @@
 
 # Stats Ap Port Stat
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsApPortStat`
@@ -21,7 +19,6 @@
 | `TxPeakBps` | `models.Optional[int]` | Optional | - |
 | `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Up` | `models.Optional[bool]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@
   "tx_bytes": 211217389682,
   "tx_peak_bps": 43922,
   "tx_pkts": 812204062,
-  "up": true,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "up": true
 }
 ```
 

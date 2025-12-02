@@ -3,8 +3,6 @@
 
 Data rates wlan settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanDatarates`
@@ -20,7 +18,6 @@ Data rates wlan settings
 | `MinRssi` | `*int` | Optional | Minimum RSSI for client to connect, 0 means not enforcing<br><br>**Default**: `0` |
 | `Template` | [`models.Optional[models.WlanDataratesTemplateEnum]`](../../doc/models/wlan-datarates-template-enum.md) | Optional | Data Rates template to apply. enum:<br><br>* `no-legacy`: no 11b<br>* `compatible`: all, like before, default setting that Broadcom/Atheros used<br>* `legacy-only`: disable 802.11n and 802.11ac<br>* `high-density`: no 11b, no low rates<br>* `custom`: user defined<br><br>**Default**: `"compatible"` |
 | `Vht` | `models.Optional[string]` | Optional | If `template`==`custom`. MCS bitmasks for 4 streams (16-bit for each stream, MCS0 is least significant bit), e.g. 03ff 01ff 00ff limits VHT rates to MCS 0-9 for 1 stream, MCS 0-8 for 2 streams, and MCS 0-7 for 3 streams. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,11 +38,7 @@ Data rates wlan settings
   ],
   "min_rssi": -70,
   "template": "compatible",
-  "vht": "03ff03ff03ff01ff",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "vht": "03ff03ff03ff01ff"
 }
 ```
 

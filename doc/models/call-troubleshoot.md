@@ -1,8 +1,6 @@
 
 # Call Troubleshoot
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CallTroubleshoot`
@@ -14,7 +12,6 @@
 | `Mac` | `*string` | Optional | - |
 | `MeetingId` | `*uuid.UUID` | Optional | - |
 | `Results` | [`[]models.TroubleshootCallItem`](../../doc/models/troubleshoot-call-item.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,28 +28,16 @@
         "ap_rtt": 133.36,
         "client_cpu": 164.78,
         "client_n_streams": 206.36,
-        "client_radio_band": 43.4,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 43.4
       },
       "audio_out": {
         "ap_num_clients": 71.16,
         "ap_rtt": 52.2,
         "client_cpu": 245.94,
         "client_n_streams": 125.2,
-        "client_radio_band": 218.24,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 218.24
       },
-      "client_cpu": 45.22,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "client_cpu": 45.22
     },
     {
       "ap_num_clients": 15.88,
@@ -62,28 +47,16 @@
         "ap_rtt": 133.36,
         "client_cpu": 164.78,
         "client_n_streams": 206.36,
-        "client_radio_band": 43.4,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 43.4
       },
       "audio_out": {
         "ap_num_clients": 71.16,
         "ap_rtt": 52.2,
         "client_cpu": 245.94,
         "client_n_streams": 125.2,
-        "client_radio_band": 218.24,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 218.24
       },
-      "client_cpu": 45.22,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "client_cpu": 45.22
     },
     {
       "ap_num_clients": 15.88,
@@ -93,34 +66,18 @@
         "ap_rtt": 133.36,
         "client_cpu": 164.78,
         "client_n_streams": 206.36,
-        "client_radio_band": 43.4,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 43.4
       },
       "audio_out": {
         "ap_num_clients": 71.16,
         "ap_rtt": 52.2,
         "client_cpu": 245.94,
         "client_n_streams": 125.2,
-        "client_radio_band": 218.24,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "client_radio_band": 218.24
       },
-      "client_cpu": 45.22,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "client_cpu": 45.22
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

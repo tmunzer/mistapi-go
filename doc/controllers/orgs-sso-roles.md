@@ -54,15 +54,16 @@ body := models.SsoRoleOrg{
         models.PrivilegeOrg{
             Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
             Scope:                models.PrivilegeOrgScopeEnum_ORG,
+        },
+        models.PrivilegeOrg{
+            Role:                 models.PrivilegeOrgRoleEnum_READ,
+            Scope:                models.PrivilegeOrgScopeEnum_SITE,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            AdditionalProperties: map[string]interface{}{
-                "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-                "msp_name": interface{}("string"),
-                "name": interface{}("string"),
-                "org_name": interface{}("string"),
-                "orggroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-                "sitegroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
+        },
+        models.PrivilegeOrg{
+            Role:                 models.PrivilegeOrgRoleEnum_READ,
+            Scope:                models.PrivilegeOrgScopeEnum_SITEGROUP,
+            SitegroupId:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
 }
@@ -335,15 +336,16 @@ body := models.SsoRoleOrg{
         models.PrivilegeOrg{
             Role:                 models.PrivilegeOrgRoleEnum_ADMIN,
             Scope:                models.PrivilegeOrgScopeEnum_ORG,
+        },
+        models.PrivilegeOrg{
+            Role:                 models.PrivilegeOrgRoleEnum_READ,
+            Scope:                models.PrivilegeOrgScopeEnum_SITE,
             SiteId:               models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
-            AdditionalProperties: map[string]interface{}{
-                "msp_id": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-                "msp_name": interface{}("string"),
-                "name": interface{}("string"),
-                "org_name": interface{}("string"),
-                "orggroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-                "sitegroup_ids": interface{}("b069b358-4c97-5319-1f8c-7c5ca64d6ab1"),
-            },
+        },
+        models.PrivilegeOrg{
+            Role:                 models.PrivilegeOrgRoleEnum_READ,
+            Scope:                models.PrivilegeOrgScopeEnum_SITEGROUP,
+            SitegroupId:          models.ToPointer(uuid.MustParse("b069b358-4c97-5319-1f8c-7c5ca64d6ab1")),
         },
     },
 }

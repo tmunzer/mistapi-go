@@ -1,8 +1,6 @@
 
 # Webhook Zone Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookZoneEvent`
@@ -21,7 +19,6 @@
 | `Trigger` | [`models.WebhookZoneEventTriggerEnum`](../../doc/models/webhook-zone-event-trigger-enum.md) | Required | enum: `enter`, `exit` |
 | `Type` | [`models.WebhookZoneEventTypeEnum`](../../doc/models/webhook-zone-event-type-enum.md) | Required | Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi` |
 | `ZoneId` | `uuid.UUID` | Required | Zone id |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@
   "asset_id": "00002608-0000-0000-0000-000000000000",
   "id": "00001496-0000-0000-0000-000000000000",
   "mac": "mac4",
-  "name": "name0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "name": "name0"
 }
 ```
 

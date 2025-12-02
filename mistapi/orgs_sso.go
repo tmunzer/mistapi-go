@@ -338,7 +338,7 @@ func (o *OrgsSSO) GetOrgSamlMetadata(
 }
 
 // DownloadOrgSamlMetadata takes context, orgId, ssoId as parameters and
-// returns an models.ApiResponse with []byte data and
+// returns an models.ApiResponse with string data and
 // an error if there was an issue with the request or response.
 // Download Org SAML Metadata
 // Example of metadata.xml:
@@ -361,7 +361,7 @@ func (o *OrgsSSO) DownloadOrgSamlMetadata(
 	ctx context.Context,
 	orgId uuid.UUID,
 	ssoId uuid.UUID) (
-	models.ApiResponse[[]byte],
+	models.ApiResponse[string],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/ssos/%v/metadata.xml")
 	req.AppendTemplateParams(orgId, ssoId)
@@ -383,9 +383,11 @@ func (o *OrgsSSO) DownloadOrgSamlMetadata(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	stream, resp, err := req.CallAsStream()
+	str, resp, err := req.CallAsText()
+	var result string = str
+
 	if err != nil {
-		return models.NewApiResponse(stream, resp), err
+		return models.NewApiResponse(result, resp), err
 	}
-	return models.NewApiResponse(stream, resp), err
+	return models.NewApiResponse(result, resp), err
 }

@@ -1,9 +1,7 @@
 
 # Webhook Device Events
 
-Device event webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `device-events` webhook payload.
 
 ## Structure
 
@@ -13,9 +11,8 @@ Device event webhook sample
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookDeviceEventsEvent`](../../doc/models/webhook-device-events-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"device_events"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Events` | [`[]models.DeviceEvent`](../../doc/models/device-event.md) | Required | **Constraints**: *Unique Items Required* |
+| `Topic` | `string` | Required, Constant | **Value**: `"device-events"` |
 
 ## Example (as JSON)
 
@@ -23,29 +20,18 @@ Device event webhook sample
 {
   "events": [
     {
-      "device_name": "device_name8",
-      "device_type": "switch",
-      "ev_type": "notice",
-      "mac": "mac4",
+      "audit_id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "timestamp": 188.18,
       "type": "type0",
       "ap": "ap6",
       "ap_name": "ap_name8",
-      "audit_id": "00001d3a-0000-0000-0000-000000000000",
-      "reason": "reason6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "apfw": "apfw6",
+      "bandwidth": 64
     }
   ],
-  "topic": "device_events",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "device-events"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Sle Impacted Chassis
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedChassis`
@@ -20,7 +18,6 @@
 | `Page` | `*int` | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `TotalCount` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,21 +29,13 @@
       "degraded": 171.46,
       "duration": 44.52,
       "role": "role0",
-      "switch_mac": "switch_mac4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "switch_mac": "switch_mac4"
     }
   ],
   "classifier": "classifier0",
   "end": 146,
   "failure": "failure8",
-  "limit": 24,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "limit": 24
 }
 ```
 

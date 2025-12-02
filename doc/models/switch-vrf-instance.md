@@ -1,8 +1,6 @@
 
 # Switch Vrf Instance
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchVrfInstance`
@@ -18,7 +16,6 @@
 | `ExtraRoutes` | [`map[string]models.VrfExtraRoute`](../../doc/models/vrf-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "10.0.0.0/8") |
 | `ExtraRoutes6` | [`map[string]models.VrfExtraRoute`](../../doc/models/vrf-extra-route.md) | Optional | Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64") |
 | `Networks` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
 {
   "extra_routes": {
     "0.0.0.0/0": {
-      "via": "192.168.31.1",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "via": "192.168.31.1"
     }
   },
   "networks": [
@@ -46,11 +39,7 @@
     "key2": {}
   },
   "evpn_auto_loopback_subnet": "evpn_auto_loopback_subnet2",
-  "evpn_auto_loopback_subnet6": "evpn_auto_loopback_subnet66",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "evpn_auto_loopback_subnet6": "evpn_auto_loopback_subnet66"
 }
 ```
 

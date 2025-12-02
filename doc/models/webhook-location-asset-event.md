@@ -1,8 +1,6 @@
 
 # Webhook Location Asset Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookLocationAssetEvent`
@@ -15,9 +13,9 @@
 | `EddystoneUidInstance` | `*string` | Optional | - |
 | `EddystoneUidNamespace` | `*string` | Optional | - |
 | `EddystoneUrlUrl` | `*string` | Optional | - |
-| `IbeaconMajor` | `*int` | Optional | - |
-| `IbeaconMinor` | `*int` | Optional | - |
-| `IbeaconUuid` | `*uuid.UUID` | Optional | - |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMinor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconUuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `MapId` | `*uuid.UUID` | Optional | - |
 | `MfgCompanyId` | `*int` | Optional | Optional, BLE manufacturing company ID |
@@ -27,7 +25,6 @@
 | `Type` | `*string` | Optional | **Default**: `"asset"` |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,8 +34,8 @@
   "eddystone_uid_instance": "5c5b35000001",
   "eddystone_uid_namespace": "2818e3868dec25629ede",
   "eddystone_url_url": "https://www.abc.com",
-  "ibeacon_major": 13,
-  "ibeacon_minor": 138,
+  "ibeacon_major": 1234,
+  "ibeacon_minor": 1234,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "mac": "7fc2936fd243",
   "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
@@ -47,11 +44,7 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "asset",
   "x": 13.5,
-  "y": 3.2,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "y": 3.2
 }
 ```
 

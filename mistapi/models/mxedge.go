@@ -18,6 +18,7 @@ type Mxedge struct {
 	ForSite     *bool    `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id    *uuid.UUID `json:"id,omitempty"`
+	Mac   *string    `json:"mac,omitempty"`
 	Magic *string    `json:"magic,omitempty"`
 	Model string     `json:"model"`
 	// When the object has been modified for the last time, in epoch
@@ -61,8 +62,8 @@ type Mxedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m Mxedge) String() string {
 	return fmt.Sprintf(
-		"Mxedge[CreatedTime=%v, ForSite=%v, Id=%v, Magic=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, MxedgeMgmt=%v, Name=%v, Note=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, Proxy=%v, Services=%v, SiteId=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermIgmpSnoopingConfig=%v, TuntermIpConfig=%v, TuntermMonitoring=%v, TuntermMulticastConfig=%v, TuntermOtherIpConfigs=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermSwitchConfig=%v, Versions=%v, AdditionalProperties=%v]",
-		m.CreatedTime, m.ForSite, m.Id, m.Magic, m.Model, m.ModifiedTime, m.MxagentRegistered, m.MxclusterId, m.MxedgeMgmt, m.Name, m.Note, m.NtpServers, m.OobIpConfig, m.OrgId, m.Proxy, m.Services, m.SiteId, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermIgmpSnoopingConfig, m.TuntermIpConfig, m.TuntermMonitoring, m.TuntermMulticastConfig, m.TuntermOtherIpConfigs, m.TuntermPortConfig, m.TuntermRegistered, m.TuntermSwitchConfig, m.Versions, m.AdditionalProperties)
+		"Mxedge[CreatedTime=%v, ForSite=%v, Id=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, MxedgeMgmt=%v, Name=%v, Note=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, Proxy=%v, Services=%v, SiteId=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermIgmpSnoopingConfig=%v, TuntermIpConfig=%v, TuntermMonitoring=%v, TuntermMulticastConfig=%v, TuntermOtherIpConfigs=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermSwitchConfig=%v, Versions=%v, AdditionalProperties=%v]",
+		m.CreatedTime, m.ForSite, m.Id, m.Mac, m.Magic, m.Model, m.ModifiedTime, m.MxagentRegistered, m.MxclusterId, m.MxedgeMgmt, m.Name, m.Note, m.NtpServers, m.OobIpConfig, m.OrgId, m.Proxy, m.Services, m.SiteId, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermIgmpSnoopingConfig, m.TuntermIpConfig, m.TuntermMonitoring, m.TuntermMulticastConfig, m.TuntermOtherIpConfigs, m.TuntermPortConfig, m.TuntermRegistered, m.TuntermSwitchConfig, m.Versions, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxedge.
@@ -71,7 +72,7 @@ func (m Mxedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"created_time", "for_site", "id", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions"); err != nil {
+		"created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -89,6 +90,9 @@ func (m Mxedge) toMap() map[string]any {
 	}
 	if m.Id != nil {
 		structMap["id"] = m.Id
+	}
+	if m.Mac != nil {
+		structMap["mac"] = m.Mac
 	}
 	if m.Magic != nil {
 		structMap["magic"] = m.Magic
@@ -176,7 +180,7 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
 	if err != nil {
 		return err
 	}
@@ -185,6 +189,7 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
 	m.CreatedTime = temp.CreatedTime
 	m.ForSite = temp.ForSite
 	m.Id = temp.Id
+	m.Mac = temp.Mac
 	m.Magic = temp.Magic
 	m.Model = *temp.Model
 	m.ModifiedTime = temp.ModifiedTime
@@ -218,6 +223,7 @@ type tempMxedge struct {
 	CreatedTime               *float64                              `json:"created_time,omitempty"`
 	ForSite                   *bool                                 `json:"for_site,omitempty"`
 	Id                        *uuid.UUID                            `json:"id,omitempty"`
+	Mac                       *string                               `json:"mac,omitempty"`
 	Magic                     *string                               `json:"magic,omitempty"`
 	Model                     *string                               `json:"model"`
 	ModifiedTime              *float64                              `json:"modified_time,omitempty"`

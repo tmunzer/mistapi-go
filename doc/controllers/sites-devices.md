@@ -39,7 +39,7 @@ AddSiteDeviceImage(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     imageNumber int,
-    file models.FileWrapper,
+    file string,
     json *string) (
     http.Response,
     error)
@@ -52,7 +52,7 @@ AddSiteDeviceImage(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
 | `imageNumber` | `int` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | Binary file |
+| `file` | `string` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -70,7 +70,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 imageNumber := 110
 
-file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
+file := "file0"
 
 resp, err := sitesDevices.AddSiteDeviceImage(ctx, siteId, deviceId, imageNumber, file, nil)
 if err != nil {
@@ -579,7 +579,7 @@ To download the exported device information
 ExportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID) (
-    models.ApiResponse[[]byte],
+    models.ApiResponse[string],
     error)
 ```
 
@@ -591,7 +591,7 @@ ExportSiteDevices(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type string.
 
 ## Example Usage
 
@@ -892,7 +892,7 @@ mac,name,map_id,x,y,height,orientation,labels,band_24.power,band_24.bandwidth,ba
 ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    file models.FileWrapper) (
+    file string) (
     models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
@@ -902,7 +902,7 @@ ImportSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | File to upload |
+| `file` | `string` | Form, Required | File to upload |
 
 ## Response Type
 
@@ -915,7 +915,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
+file := "file0"
 
 apiResponse, err := sitesDevices.ImportSiteDevices(ctx, siteId, file)
 if err != nil {
@@ -1249,14 +1249,27 @@ if err != nil {
   "next": "/api/v1/sites/8aaba0aa-09cc-44bd-9709-33b98040550c/devices/events/search?ap=5c5b350e0001&end=1531855849.000&limit=2&start=1531776183.0",
   "results": [
     {
-      "last_reboot_time": 1531854327,
-      "text": "Success",
-      "timestamp": 1531855849.226722,
-      "type": "AP_CONNECT_STATUS",
-      "type_code": 2002
+      "chassis_mac": "60c78d939c0f",
+      "count": 1,
+      "device_type": "switch",
+      "mac": "60c78d939c0f",
+      "model": "EX4100-48MP",
+      "org_id": "9777c1a0-6ef6-11e6-8bbf-02e208b2d34f",
+      "port_id": "ge-0/0/17",
+      "site_id": "978c48e6-6ef6-11e6-8bbf-02e208b2d34f",
+      "text": "ifIndex 533, ifAdminStatus up(1), ifOperStatus down(2), ifName ge-0/0/17",
+      "timestamp": 1764236687.435,
+      "type": "SW_PORT_DOWN",
+      "version": "23.4R2-S4.11"
     },
     {
-      "timestamp": 1531854326,
+      "ap": "5c5b35d0077b",
+      "device_type": "ap",
+      "mac": "5c5b35d0077b",
+      "model": "AP43",
+      "org_id": "9777c1a0-6ef6-11e6-8bbf-02e208b2d34f",
+      "site_id": "46fc665e-9706-4296-8fe2-78f42f2e67e4",
+      "timestamp": 1764235684.467825,
       "type": "AP_CONFIGURED"
     }
   ],
@@ -1589,7 +1602,6 @@ if err != nil {
       "site_id": "a8178443-ecb5-461c-b854-f16627619ab3",
       "sku": "AP41-US",
       "timestamp": 1596588619.007,
-      "type": "ap",
       "uptime": 85280,
       "version": "0.7.20216",
       "wlans": [

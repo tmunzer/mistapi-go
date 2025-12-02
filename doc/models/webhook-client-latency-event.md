@@ -1,8 +1,6 @@
 
 # Webhook Client Latency Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookClientLatencyEvent`
@@ -23,7 +21,6 @@
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,11 +36,7 @@
   "min_dhcp": 0.015828934,
   "min_dns": 0.029532124,
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6"
 }
 ```
 

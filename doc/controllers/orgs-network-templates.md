@@ -116,6 +116,7 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
+            MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_PAP),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
             Networks:                                 []string{
@@ -125,6 +126,7 @@ body := models.NetworkTemplate{
             PoeDisabled:                              models.ToPointer(false),
             PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
             PortNetwork:                              models.ToPointer("string"),
+            ServerRejectNetwork:                      models.NewOptional(models.ToPointer("server_reject_network4")),
             Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -148,6 +150,7 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
+            MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_PAP),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
             Networks:                                 []string{
@@ -156,6 +159,7 @@ body := models.NetworkTemplate{
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
             PortNetwork:                              models.ToPointer("string"),
+            ServerRejectNetwork:                      models.NewOptional(models.ToPointer("server_reject_network4")),
             Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -169,6 +173,7 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
+        ConfigRevertTimer:     models.ToPointer(10),
         ProtectRe:             models.ToPointer(models.ProtectRe{
             Enabled:              models.ToPointer(false),
         }),
@@ -193,9 +198,6 @@ body := models.NetworkTemplate{
                 },
             },
         }),
-        AdditionalProperties:  map[string]interface{}{
-            "config_revert": interface{}("10"),
-        },
     }),
     VrfConfig:             models.ToPointer(models.VrfConfig{
         Enabled:              models.ToPointer(false),
@@ -315,7 +317,6 @@ if err != nil {
     "property1": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -325,6 +326,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "networks": [
         "string"
@@ -333,7 +335,7 @@ if err != nil {
       "poe_disabled": false,
       "port_auth": "dot1x",
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -348,7 +350,6 @@ if err != nil {
     "property2": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -358,6 +359,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "mode": "access",
       "networks": [
@@ -366,7 +368,7 @@ if err != nil {
       "persist_mac": false,
       "poe_disabled": false,
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -380,7 +382,7 @@ if err != nil {
     }
   },
   "switch_mgmt": {
-    "config_revert": 10,
+    "config_revert_timer": 10,
     "protect_re": {
       "enabled": false
     },
@@ -669,7 +671,6 @@ if err != nil {
       "ap": {
         "all_networks": false,
         "allow_dhcpd": true,
-        "authentication_protocol": "pap",
         "bypass_auth_when_server_down": true,
         "description": "WAP",
         "disable_autoneg": false,
@@ -678,6 +679,7 @@ if err != nil {
         "enable_mac_auth": false,
         "enable_qos": true,
         "mac_auth_only": false,
+        "mac_auth_protocol": "pap",
         "mac_limit": 0,
         "mode": "trunk",
         "networks": [
@@ -687,7 +689,7 @@ if err != nil {
         "persist_mac": false,
         "poe_disabled": false,
         "port_network": "default",
-        "rejected_network": null,
+        "server_reject_network": null,
         "storm_control": {
           "no_broadcast": false,
           "no_multicast": false,
@@ -848,7 +850,7 @@ if err != nil {
       ]
     },
     "switch_mgmt": {
-      "config_revert": 10,
+      "config_revert_timer": 10,
       "protect_re": {
         "enabled": false
       },
@@ -1031,6 +1033,7 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
+            MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_PAP),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
             Networks:                                 []string{
@@ -1040,6 +1043,7 @@ body := models.NetworkTemplate{
             PoeDisabled:                              models.ToPointer(false),
             PortAuth:                                 models.NewOptional(models.ToPointer(models.SwitchPortUsageDot1xEnum_DOT1X)),
             PortNetwork:                              models.ToPointer("string"),
+            ServerRejectNetwork:                      models.NewOptional(models.ToPointer("server_reject_network4")),
             Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -1063,6 +1067,7 @@ body := models.NetworkTemplate{
             EnableQos:                                models.ToPointer(true),
             GuestNetwork:                             models.NewOptional(models.ToPointer("string")),
             MacAuthOnly:                              models.ToPointer(true),
+            MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_PAP),
             MacLimit:                                 models.ToPointer(models.SwitchPortUsageMacLimitContainer.FromNumber(0)),
             Mode:                                     models.ToPointer(models.SwitchPortUsageModeEnum_ACCESS),
             Networks:                                 []string{
@@ -1071,6 +1076,7 @@ body := models.NetworkTemplate{
             PersistMac:                               models.ToPointer(false),
             PoeDisabled:                              models.ToPointer(false),
             PortNetwork:                              models.ToPointer("string"),
+            ServerRejectNetwork:                      models.NewOptional(models.ToPointer("server_reject_network4")),
             Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
             StormControl:                             models.ToPointer(models.SwitchPortUsageStormControl{
                 NoBroadcast:           models.ToPointer(false),
@@ -1084,6 +1090,7 @@ body := models.NetworkTemplate{
         },
     },
     SwitchMgmt:            models.ToPointer(models.SwitchMgmt{
+        ConfigRevertTimer:     models.ToPointer(10),
         ProtectRe:             models.ToPointer(models.ProtectRe{
             Enabled:              models.ToPointer(false),
         }),
@@ -1108,9 +1115,6 @@ body := models.NetworkTemplate{
                 },
             },
         }),
-        AdditionalProperties:  map[string]interface{}{
-            "config_revert": interface{}("10"),
-        },
     }),
     VrfConfig:             models.ToPointer(models.VrfConfig{
         Enabled:              models.ToPointer(false),
@@ -1228,7 +1232,6 @@ if err != nil {
     "property1": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -1238,6 +1241,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "mode": "access",
       "networks": [
@@ -1247,7 +1251,7 @@ if err != nil {
       "poe_disabled": false,
       "port_auth": "dot1x",
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -1262,7 +1266,6 @@ if err != nil {
     "property2": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -1272,6 +1275,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "mode": "access",
       "networks": [
@@ -1280,7 +1284,7 @@ if err != nil {
       "persist_mac": false,
       "poe_disabled": false,
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -1294,7 +1298,7 @@ if err != nil {
     }
   },
   "switch_mgmt": {
-    "config_revert": 10,
+    "config_revert_timer": 10,
     "protect_re": {
       "enabled": false
     },

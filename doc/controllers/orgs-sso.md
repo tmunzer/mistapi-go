@@ -186,7 +186,7 @@ DownloadOrgSamlMetadata(
     ctx context.Context,
     orgId uuid.UUID,
     ssoId uuid.UUID) (
-    models.ApiResponse[[]byte],
+    models.ApiResponse[string],
     error)
 ```
 
@@ -199,7 +199,7 @@ DownloadOrgSamlMetadata(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type string.
 
 ## Example Usage
 

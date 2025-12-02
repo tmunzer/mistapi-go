@@ -30,11 +30,7 @@ RSSI Zone
   "devices": [
     {
       "device_id": "00000000-0000-0000-1000-d8695a0f9e61",
-      "rssi": 0,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "rssi": 0
     }
   ],
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",

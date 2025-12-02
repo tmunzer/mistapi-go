@@ -33,14 +33,10 @@
       "downstream_ports5"
     ],
     "separate_upstream_downstream": false,
-    "upstream_port_vlan_id": 16,
+    "upstream_port_vlan_id": "String1",
     "upstream_ports": [
       "upstream_ports0"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

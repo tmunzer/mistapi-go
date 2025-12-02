@@ -277,7 +277,6 @@ if err != nil {
   "mac": "52d9107af289",
   "members": [
     {
-      "_idx": 0,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -375,7 +374,6 @@ if err != nil {
       "version": "21.4R3-S4.18"
     },
     {
-      "_idx": 1,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {

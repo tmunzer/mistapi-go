@@ -347,7 +347,7 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 	ctx context.Context,
 	orgId uuid.UUID,
 	nacportalId uuid.UUID,
-	file *models.FileWrapper,
+	file *string,
 	json *string) (
 	*http.Response,
 	error) {
@@ -374,16 +374,12 @@ func (o *OrgsNACPortals) UploadOrgNacPortalImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	formFields := []https.FormParam{}
 	if file != nil {
-		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
-		formFields = append(formFields, fileParam)
+		req.FormParam("file", *file)
 	}
 	if json != nil {
-		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
-		formFields = append(formFields, jsonParam)
+		req.FormParam("json", *json)
 	}
-	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -483,7 +479,7 @@ func (o *OrgsNACPortals) GetOrgNacPortalSamlMetadata(
 }
 
 // DownloadOrgNacPortalSamlMetadata takes context, orgId, nacportalId as parameters and
-// returns an models.ApiResponse with []byte data and
+// returns an models.ApiResponse with string data and
 // an error if there was an issue with the request or response.
 // Download Org NAC Portal SAML Metadata
 // Example of metadata.xml:
@@ -506,7 +502,7 @@ func (o *OrgsNACPortals) DownloadOrgNacPortalSamlMetadata(
 	ctx context.Context,
 	orgId uuid.UUID,
 	nacportalId uuid.UUID) (
-	models.ApiResponse[[]byte],
+	models.ApiResponse[string],
 	error) {
 	req := o.prepareRequest(
 		ctx,
@@ -532,9 +528,11 @@ func (o *OrgsNACPortals) DownloadOrgNacPortalSamlMetadata(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	stream, resp, err := req.CallAsStream()
+	str, resp, err := req.CallAsText()
+	var result string = str
+
 	if err != nil {
-		return models.NewApiResponse(stream, resp), err
+		return models.NewApiResponse(result, resp), err
 	}
-	return models.NewApiResponse(stream, resp), err
+	return models.NewApiResponse(result, resp), err
 }

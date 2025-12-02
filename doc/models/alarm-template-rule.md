@@ -1,8 +1,6 @@
 
 # Alarm Template Rule
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AlarmTemplateRule`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Delivery` | [`*models.Delivery`](../../doc/models/delivery.md) | Optional | Delivery object to configure the alarm delivery |
 | `Enabled` | `*bool` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,17 +24,9 @@
     ],
     "enabled": false,
     "to_org_admins": false,
-    "to_site_admins": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "to_site_admins": false
   },
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

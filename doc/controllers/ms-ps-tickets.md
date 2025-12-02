@@ -147,8 +147,7 @@ if err != nil {
         "attachments": [
           {
             "content_type": "string",
-            "content_url": "string",
-            "size": 0
+            "content_url": "string"
           }
         ],
         "author": "string",

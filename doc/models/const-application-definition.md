@@ -1,8 +1,6 @@
 
 # Const Application Definition
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstApplicationDefinition`
@@ -20,7 +18,6 @@
 | `Name` | `*string` | Optional | - |
 | `SignatureBased` | `*bool` | Optional | - |
 | `SsrAppId` | `*bool` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "key": "dropbox",
   "name": "Dropbox",
   "app_id": false,
-  "app_probe": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "app_probe": false
 }
 ```
 

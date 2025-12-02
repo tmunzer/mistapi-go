@@ -1,8 +1,6 @@
 
 # Ssr Version
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SsrVersion`
@@ -15,7 +13,6 @@
 | `Package` | `string` | Required | - |
 | `Tags` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Version` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
     "tags0",
     "tags1"
   ],
-  "version": "version0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "version": "version0"
 }
 ```
 

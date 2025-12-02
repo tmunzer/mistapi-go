@@ -3,8 +3,6 @@
 
 Switch IOT port configuration
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchIotPort`
@@ -17,7 +15,6 @@ Switch IOT port configuration
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `InputSrc` | [`*models.SwitchIotPortInputSrcEnum`](../../doc/models/switch-iot-port-input-src-enum.md) | Optional | Only for "OUT" ports, input source for the switch iot port out. enum: `IN0`, `IN1`<br><br>**Default**: `"IN0"` |
 | `Name` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@ Switch IOT port configuration
   "alarm_class": "minor",
   "enabled": false,
   "input_src": "IN0",
-  "name": "name0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "name": "name0"
 }
 ```
 

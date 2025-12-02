@@ -1,8 +1,6 @@
 
 # Evpn Topology Response
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EvpnTopologyResponse`
@@ -13,6 +11,7 @@
 |  --- | --- | --- | --- |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `EvpnOptions` | [`*models.EvpnOptions`](../../doc/models/evpn-options.md) | Optional | EVPN Options |
+| `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | - |
@@ -20,7 +19,6 @@
 | `Overwrite` | `*bool` | Optional | - |
 | `PodNames` | `map[string]string` | Optional | Property key is the pod number |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,17 +34,10 @@
     "auto_loopback_subnet6": "auto_loopback_subnet60",
     "auto_router_id_subnet": "auto_router_id_subnet8",
     "auto_router_id_subnet6": "auto_router_id_subnet60",
-    "core_as_border": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "core_as_border": false
   },
-  "modified_time": 82.64,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false,
+  "modified_time": 82.64
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Ap Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApSearch`
@@ -47,7 +45,6 @@
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | Version |
 | `Wlans` | [`[]models.ApSearchWlan`](../../doc/models/ap-search-wlan.md) | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -61,22 +58,14 @@
   "wlans": [
     {
       "id": "00001c56-0000-0000-0000-000000000000",
-      "ssid": "ssid8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ssid": "ssid8"
     }
   ],
   "band_24_bandwidth": "band_24_bandwidth2",
   "band_24_channel": 200,
   "band_24_power": 154,
   "band_5_bandwidth": "band_5_bandwidth0",
-  "band_5_channel": 132,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "band_5_channel": 132
 }
 ```
 

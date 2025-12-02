@@ -9,8 +9,8 @@ import (
 
 // ConstInsightMetricsPropertyReportDuration represents a ConstInsightMetricsPropertyReportDuration struct.
 type ConstInsightMetricsPropertyReportDuration struct {
+	Duration             *int                   `json:"duration,omitempty"`
 	Interval             *int                   `json:"interval,omitempty"`
-	MaxAge               *int                   `json:"max_age,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type ConstInsightMetricsPropertyReportDuration struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ConstInsightMetricsPropertyReportDuration) String() string {
 	return fmt.Sprintf(
-		"ConstInsightMetricsPropertyReportDuration[Interval=%v, MaxAge=%v, AdditionalProperties=%v]",
-		c.Interval, c.MaxAge, c.AdditionalProperties)
+		"ConstInsightMetricsPropertyReportDuration[Duration=%v, Interval=%v, AdditionalProperties=%v]",
+		c.Duration, c.Interval, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsPropertyReportDuration.
@@ -28,7 +28,7 @@ func (c ConstInsightMetricsPropertyReportDuration) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"interval", "max_age"); err != nil {
+		"duration", "interval"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -38,11 +38,11 @@ func (c ConstInsightMetricsPropertyReportDuration) MarshalJSON() (
 func (c ConstInsightMetricsPropertyReportDuration) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, c.AdditionalProperties)
+	if c.Duration != nil {
+		structMap["duration"] = c.Duration
+	}
 	if c.Interval != nil {
 		structMap["interval"] = c.Interval
-	}
-	if c.MaxAge != nil {
-		structMap["max_age"] = c.MaxAge
 	}
 	return structMap
 }
@@ -55,19 +55,19 @@ func (c *ConstInsightMetricsPropertyReportDuration) UnmarshalJSON(input []byte) 
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "interval", "max_age")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "interval")
 	if err != nil {
 		return err
 	}
 	c.AdditionalProperties = additionalProperties
 
+	c.Duration = temp.Duration
 	c.Interval = temp.Interval
-	c.MaxAge = temp.MaxAge
 	return nil
 }
 
 // tempConstInsightMetricsPropertyReportDuration is a temporary struct used for validating the fields of ConstInsightMetricsPropertyReportDuration.
 type tempConstInsightMetricsPropertyReportDuration struct {
+	Duration *int `json:"duration,omitempty"`
 	Interval *int `json:"interval,omitempty"`
-	MaxAge   *int `json:"max_age,omitempty"`
 }

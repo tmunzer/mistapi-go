@@ -41,7 +41,7 @@ func TestSitesDevicesWiredTestUpdateSiteLocalSwitchPortConfig(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body map[string]models.JunosLocalPortConfig
-	errBody := json.Unmarshal([]byte(`{"ge-0/0/0-1":{"ae_disable_lacp":true,"ae_idx":0,"aggregated":false,"description":"string","disable_autoneg":true,"duplex":"auto","dynamic_usage":"string","esilag":true,"poe_disabled":true,"speed":"auto","usage":"string"}}`), &body)
+	errBody := json.Unmarshal([]byte(`{"ge-0/0/0-1":{"poe_disabled":true,"usage":"iot"}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

@@ -1,8 +1,6 @@
 
 # Synthetictest Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SynthetictestConfig`
@@ -17,7 +15,6 @@
 | `LanNetworks` | [`[]models.SynthetictestConfigLanNetwork`](../../doc/models/synthetictest-config-lan-network.md) | Optional | List of networks to be used for synthetic tests |
 | `Vlans` | [`[]models.SynthetictestConfigVlan`](../../doc/models/synthetictest-config-vlan.md) | Optional | - |
 | `WanSpeedtest` | [`*models.SynthetictestConfigWanSpeedtest`](../../doc/models/synthetictest-config-wan-speedtest.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,22 +28,14 @@
       "host": "host0",
       "port": 242,
       "threshold": 178,
-      "type": "icmp",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "icmp"
     },
     "key1": {
       "aggressiveness": "med",
       "host": "host0",
       "port": 242,
       "threshold": 178,
-      "type": "icmp",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "icmp"
     }
   },
   "lan_networks": [
@@ -57,11 +46,7 @@
       "probes": [
         "probes5",
         "probes4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "vlans": [
@@ -78,11 +63,7 @@
       "vlan_ids": [
         "String7",
         "String8"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "custom_test_urls": [
@@ -97,17 +78,9 @@
       "vlan_ids": [
         "String7",
         "String8"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

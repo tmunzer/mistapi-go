@@ -1,8 +1,6 @@
 
 # Mist Nacedge
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MistNacedge`
@@ -16,7 +14,6 @@
 | `DefaultVlan` | `*string` | Optional | Default vlan to assign for devices not in the cache |
 | `Enabled` | `*bool` | Optional | - |
 | `MxedgeHosts` | `[]string` | Optional | List of NAC Edges in this site |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "mxedge_hosts": [
     "mxedge1.local"
   ],
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

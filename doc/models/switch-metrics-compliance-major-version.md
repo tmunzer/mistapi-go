@@ -1,8 +1,6 @@
 
 # Switch Metrics Compliance Major Version
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchMetricsComplianceMajorVersion`
@@ -15,7 +13,6 @@
 | `MajorVersion` | `*string` | Optional | - |
 | `Model` | `*string` | Optional | - |
 | `SystemNames` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
   "system_names": [
     "system_names0",
     "system_names1"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

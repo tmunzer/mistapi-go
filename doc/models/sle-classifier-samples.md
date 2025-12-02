@@ -1,8 +1,6 @@
 
 # Sle Classifier Samples
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleClassifierSamples`
@@ -14,7 +12,6 @@
 | `Degraded` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
 | `Duration` | `[]float64` | Required | - |
 | `Total` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   "total": [
     19.61,
     19.6
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

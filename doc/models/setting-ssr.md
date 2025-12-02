@@ -1,8 +1,6 @@
 
 # Setting Ssr
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SettingSsr`
@@ -16,7 +14,6 @@
 | `ConductorToken` | `*string` | Optional | Token to be used by the SSR Devices to connect to the Conductor |
 | `DisableStats` | `*bool` | Optional | Disable stats collection on SSR devices |
 | `Proxy` | [`*models.SsrProxy`](../../doc/models/ssr-proxy.md) | Optional | SSR proxy configuration to talk to Mist |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
       "key0": "custom_versions3",
       "key1": "custom_versions2"
     },
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "conductor_hosts": [
     "conductor_hosts4",
@@ -42,15 +35,7 @@
   "disable_stats": false,
   "proxy": {
     "disabled": false,
-    "url": "url6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "url": "url6"
   }
 }
 ```

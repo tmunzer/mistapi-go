@@ -49,11 +49,7 @@ RF Template
     "bandwidth": 0,
     "channels": [
       221
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "band_24_usage": "6",
   "exampleAdditionalProperty": {

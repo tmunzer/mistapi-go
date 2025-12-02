@@ -22,12 +22,10 @@ type AssetFilter struct {
 	// Eddystone uid namespace used to filter assets
 	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
 	// Eddystone url used to filter assets
-	EddystoneUrl *string `json:"eddystone_url,omitempty"`
-	ForSite      *bool   `json:"for_site,omitempty"`
-	// ibeacon major value used to filter assets
-	IbeaconMajor *int `json:"ibeacon_major,omitempty"`
-	// ibeacon uuid used to filter assets
-	IbeaconUuid *uuid.UUID `json:"ibeacon_uuid,omitempty"`
+	EddystoneUrl *string             `json:"eddystone_url,omitempty"`
+	ForSite      *bool               `json:"for_site,omitempty"`
+	IbeaconMajor Optional[int]       `json:"ibeacon_major"`
+	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// BLE manufacturing-specific company-id used to filter assets
@@ -88,11 +86,19 @@ func (a AssetFilter) toMap() map[string]any {
 	if a.ForSite != nil {
 		structMap["for_site"] = a.ForSite
 	}
-	if a.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = a.IbeaconMajor
+	if a.IbeaconMajor.IsValueSet() {
+		if a.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = a.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if a.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = a.IbeaconUuid
+	if a.IbeaconUuid.IsValueSet() {
+		if a.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = a.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	if a.Id != nil {
 		structMap["id"] = a.Id
@@ -159,23 +165,23 @@ func (a *AssetFilter) UnmarshalJSON(input []byte) error {
 
 // tempAssetFilter is a temporary struct used for validating the fields of AssetFilter.
 type tempAssetFilter struct {
-	ApMac                 *string    `json:"ap_mac,omitempty"`
-	Beam                  *int       `json:"beam,omitempty"`
-	CreatedTime           *float64   `json:"created_time,omitempty"`
-	Disabled              *bool      `json:"disabled,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrl          *string    `json:"eddystone_url,omitempty"`
-	ForSite               *bool      `json:"for_site,omitempty"`
-	IbeaconMajor          *int       `json:"ibeacon_major,omitempty"`
-	IbeaconUuid           *uuid.UUID `json:"ibeacon_uuid,omitempty"`
-	Id                    *uuid.UUID `json:"id,omitempty"`
-	MfgCompanyId          *int       `json:"mfg_company_id,omitempty"`
-	ModifiedTime          *float64   `json:"modified_time,omitempty"`
-	Name                  *string    `json:"name"`
-	OrgId                 *uuid.UUID `json:"org_id,omitempty"`
-	Rssi                  *int       `json:"rssi,omitempty"`
-	ServiceUuid           *uuid.UUID `json:"service_uuid,omitempty"`
-	SiteId                *uuid.UUID `json:"site_id,omitempty"`
+	ApMac                 *string             `json:"ap_mac,omitempty"`
+	Beam                  *int                `json:"beam,omitempty"`
+	CreatedTime           *float64            `json:"created_time,omitempty"`
+	Disabled              *bool               `json:"disabled,omitempty"`
+	EddystoneUidNamespace *string             `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrl          *string             `json:"eddystone_url,omitempty"`
+	ForSite               *bool               `json:"for_site,omitempty"`
+	IbeaconMajor          Optional[int]       `json:"ibeacon_major"`
+	IbeaconUuid           Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	Id                    *uuid.UUID          `json:"id,omitempty"`
+	MfgCompanyId          *int                `json:"mfg_company_id,omitempty"`
+	ModifiedTime          *float64            `json:"modified_time,omitempty"`
+	Name                  *string             `json:"name"`
+	OrgId                 *uuid.UUID          `json:"org_id,omitempty"`
+	Rssi                  *int                `json:"rssi,omitempty"`
+	ServiceUuid           *uuid.UUID          `json:"service_uuid,omitempty"`
+	SiteId                *uuid.UUID          `json:"site_id,omitempty"`
 }
 
 func (a *tempAssetFilter) validate() error {

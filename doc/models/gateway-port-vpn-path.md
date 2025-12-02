@@ -1,8 +1,6 @@
 
 # Gateway Port Vpn Path
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPortVpnPath`
@@ -16,7 +14,6 @@
 | `Preference` | `*int` | Optional | Only if the VPN `type`==`hub_spoke`. For a given VPN, when `path_selection.strategy`==`simple`, the preference for a path (lower is preferred) |
 | `Role` | [`*models.GatewayPortVpnPathRoleEnum`](../../doc/models/gateway-port-vpn-path-role-enum.md) | Optional | If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`<br><br>**Default**: `"spoke"` |
 | `TrafficShaping` | [`*models.GatewayTrafficShaping`](../../doc/models/gateway-traffic-shaping.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,15 +30,7 @@
       95
     ],
     "enabled": false,
-    "max_tx_kbps": 212,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "max_tx_kbps": 212
   }
 }
 ```

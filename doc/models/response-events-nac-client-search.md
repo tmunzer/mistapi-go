@@ -1,8 +1,6 @@
 
 # Response Events Nac Client Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseEventsNacClientSearch`
@@ -14,10 +12,9 @@
 | `End` | `*int` | Optional | - |
 | `Limit` | `*int` | Optional | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.EventNacClient`](../../doc/models/event-nac-client.md) | Optional | - |
+| `Results` | [`[]models.NacClientEvent`](../../doc/models/nac-client-event.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,29 +30,17 @@
       "ap": "ap8",
       "auth_type": "eap-teap",
       "bssid": "bssid0",
-      "device_mac": "device_mac0",
-      "dryrun_nacrule_id": "00000112-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "client_type": "wired",
+      "device_mac": "device_mac0"
     },
     {
       "ap": "ap8",
       "auth_type": "eap-teap",
       "bssid": "bssid0",
-      "device_mac": "device_mac0",
-      "dryrun_nacrule_id": "00000112-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "client_type": "wired",
+      "device_mac": "device_mac0"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

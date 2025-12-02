@@ -3,8 +3,6 @@
 
 Site statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsSite`
@@ -15,8 +13,12 @@ Site statistics
 |  --- | --- | --- | --- |
 | `Address` | `*string` | Optional | - |
 | `AlarmtemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `AnalyticEnabled` | `*bool` | Optional | - |
+| `AptemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `CountryCode` | `string` | Required | - |
 | `CreatedTime` | `float64` | Required | When the object has been created, in epoch |
+| `EngagementEnabled` | `*bool` | Optional | - |
+| `GatewaytemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
 | `Lat` | `*float64` | Optional | - |
 | `Latlng` | [`models.LatLng`](../../doc/models/lat-lng.md) | Required | - |
@@ -25,6 +27,7 @@ Site statistics
 | `MspId` | `*uuid.UUID` | Optional | - |
 | `Name` | `string` | Required | - |
 | `NetworktemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `Notes` | `*string` | Optional | - |
 | `NumAp` | `int` | Required | - |
 | `NumApConnected` | `int` | Required | - |
 | `NumClients` | `int` | Required | - |
@@ -38,9 +41,9 @@ Site statistics
 | `RftemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | - |
+| `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Timezone` | `string` | Required | - |
 | `Tzoffset` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -51,11 +54,7 @@ Site statistics
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "latlng": {
     "lat": 37.295833,
-    "lng": -122.032946,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "lng": -122.032946
   },
   "modified_time": 31.1,
   "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
@@ -74,12 +73,9 @@ Site statistics
   "tzoffset": 240,
   "address": "address2",
   "alarmtemplate_id": "00000b0a-0000-0000-0000-000000000000",
-  "lat": 183.64,
-  "lng": 239.82,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "analyticEnabled": false,
+  "aptemplate_id": "000000ba-0000-0000-0000-000000000000",
+  "engagementEnabled": false
 }
 ```
 

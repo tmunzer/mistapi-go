@@ -3,8 +3,6 @@
 
 If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxcluster
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SsoMxedgeProxy`
@@ -19,7 +17,6 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
 | `OperatorName` | `*string` | Optional | Operator name as Radius attribute while proxying |
 | `ProxyHosts` | `[]string` | Optional | Public hostname/IPs |
 | `Ssids` | `[]string` | Optional | SSIDs that support eduroam |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,29 +34,17 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     },
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     },
     {
       "host": "host4",
       "port": 254,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     }
   ],
   "auth_servers": [
@@ -68,40 +53,24 @@ If `idp_type`==`mxedge_proxy`, this requires `mist_nac` to be enabled on the mxc
       "port": 114,
       "require_message_authenticator": false,
       "retry": 126,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     },
     {
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
       "retry": 126,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     },
     {
       "host": "host0",
       "port": 114,
       "require_message_authenticator": false,
       "retry": 126,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     }
   ],
-  "operator_name": "operator_name2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "operator_name": "operator_name2"
 }
 ```
 

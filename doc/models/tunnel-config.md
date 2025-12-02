@@ -1,8 +1,6 @@
 
 # Tunnel Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TunnelConfig`
@@ -29,7 +27,6 @@
 | `RemoteSubnets` | `[]string` | Optional | List of Remote protected subnet for policy-based IPSec negotiation |
 | `Secondary` | [`*models.TunnelConfigNode`](../../doc/models/tunnel-config-node.md) | Optional | Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `Version` | [`*models.TunnelConfigVersionEnum`](../../doc/models/tunnel-config-version-enum.md) | Optional | Only if `provider`==`custom-gre` or `provider`==`custom-ipsec`. enum: `1`, `2`<br><br>**Default**: `"2"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,11 +39,7 @@
     "enabled": false,
     "latlng": {
       "lat": 144.64,
-      "lng": 22.82,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "lng": 22.82
     },
     "primary": {
       "probe_ips": [
@@ -77,10 +70,6 @@
         "key1": "val1",
         "key2": "val2"
       }
-    },
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
     }
   },
   "ike_lifetime": 118,
@@ -88,27 +77,15 @@
     {
       "auth_algo": "sha1",
       "dh_group": "19",
-      "enc_algo": "aes_gcm256",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "enc_algo": "aes_gcm256"
     },
     {
       "auth_algo": "sha1",
       "dh_group": "19",
-      "enc_algo": "aes_gcm256",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "enc_algo": "aes_gcm256"
     }
   ],
-  "ipsec_lifetime": 178,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ipsec_lifetime": 178
 }
 ```
 

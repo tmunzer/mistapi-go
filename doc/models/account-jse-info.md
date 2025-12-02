@@ -1,8 +1,6 @@
 
 # Account Jse Info
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountJseInfo`
@@ -12,8 +10,8 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `CloudName` | `*string` | Optional | - |
+| `OrgNames` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Username` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,10 +19,9 @@
 {
   "cloud_name": "devcentral.juniperclouds.net",
   "username": "john@abc.com",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "org_names": [
+    "org_names8"
+  ]
 }
 ```
 

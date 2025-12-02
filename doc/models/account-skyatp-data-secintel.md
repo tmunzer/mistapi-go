@@ -8,8 +8,6 @@ third party:
 * url-based: threatfox_url, urlhaus, open_phish
 * domain-based: threatfox_domains
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountSkyatpDataSecintel`
@@ -19,7 +17,6 @@ third party:
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `ThirdPartyThreatFeeds` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@ third party:
   "third_party_threat_feeds": [
     "third_party_threat_feeds4",
     "third_party_threat_feeds3"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

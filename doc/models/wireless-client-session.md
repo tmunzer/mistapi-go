@@ -1,8 +1,6 @@
 
 # Wireless Client Session
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WirelessClientSession`
@@ -25,7 +23,6 @@
 | `Tags` | `[]string` | Optional | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `WlanId` | `uuid.UUID` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,11 +45,7 @@
     "tags9",
     "tags0",
     "tags1"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

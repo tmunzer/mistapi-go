@@ -77,22 +77,14 @@ Network Template
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "acl_tags": {
@@ -107,11 +99,7 @@ Network Template
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     },
     "key1": {
       "ether_types": [
@@ -124,11 +112,7 @@ Network Template
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     },
     "key2": {
       "ether_types": [
@@ -141,11 +125,7 @@ Network Template
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     }
   },
   "additional_config_cmds": [
@@ -162,11 +142,7 @@ Network Template
     "networks": [
       "networks8",
       "networks9"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

@@ -11,13 +11,13 @@ import (
 
 // ResponseLogSearch represents a ResponseLogSearch struct.
 type ResponseLogSearch struct {
-	End                  int                     `json:"end"`
-	Limit                int                     `json:"limit"`
-	Next                 *string                 `json:"next,omitempty"`
-	Results              []ResponseLogSearchItem `json:"results"`
-	Start                int                     `json:"start"`
-	Total                int                     `json:"total"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	End                  int                    `json:"end"`
+	Limit                int                    `json:"limit"`
+	Next                 *string                `json:"next,omitempty"`
+	Results              []LogEvent             `json:"results"`
+	Start                int                    `json:"start"`
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseLogSearch,
@@ -84,12 +84,12 @@ func (r *ResponseLogSearch) UnmarshalJSON(input []byte) error {
 
 // tempResponseLogSearch is a temporary struct used for validating the fields of ResponseLogSearch.
 type tempResponseLogSearch struct {
-	End     *int                     `json:"end"`
-	Limit   *int                     `json:"limit"`
-	Next    *string                  `json:"next,omitempty"`
-	Results *[]ResponseLogSearchItem `json:"results"`
-	Start   *int                     `json:"start"`
-	Total   *int                     `json:"total"`
+	End     *int        `json:"end"`
+	Limit   *int        `json:"limit"`
+	Next    *string     `json:"next,omitempty"`
+	Results *[]LogEvent `json:"results"`
+	Start   *int        `json:"start"`
+	Total   *int        `json:"total"`
 }
 
 func (r *tempResponseLogSearch) validate() error {

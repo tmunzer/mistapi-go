@@ -205,7 +205,7 @@ Justin,reception,visible,multi,1002
 ImportSitePsks(
     ctx context.Context,
     siteId uuid.UUID,
-    file *models.FileWrapper) (
+    file *string) (
     models.ApiResponse[[]models.Psk],
     error)
 ```
@@ -215,7 +215,7 @@ ImportSitePsks(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | - |
+| `file` | `*string` | Form, Optional | - |
 
 ## Response Type
 

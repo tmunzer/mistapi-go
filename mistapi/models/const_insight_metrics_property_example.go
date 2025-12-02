@@ -15,6 +15,7 @@ type ConstInsightMetricsPropertyExample struct {
 	isPrecision bool
 	isString    bool
 	isBoolean   bool
+	isObject    bool
 }
 
 // String implements the fmt.Stringer interface for ConstInsightMetricsPropertyExample,
@@ -45,6 +46,8 @@ func (c *ConstInsightMetricsPropertyExample) toMap() any {
 		return *obj
 	case *bool:
 		return *obj
+	case *interface{}:
+		return *obj
 	}
 	return nil
 }
@@ -53,10 +56,11 @@ func (c *ConstInsightMetricsPropertyExample) toMap() any {
 // It customizes the JSON unmarshaling process for ConstInsightMetricsPropertyExample objects.
 func (c *ConstInsightMetricsPropertyExample) UnmarshalJSON(input []byte) error {
 	result, err := UnmarshallAnyOf(input,
-		NewTypeHolder(new(int), true, &c.isNumber),
-		NewTypeHolder(new(float64), true, &c.isPrecision),
-		NewTypeHolder(new(string), true, &c.isString),
+		NewTypeHolder(new(int), false, &c.isNumber),
+		NewTypeHolder(new(float64), false, &c.isPrecision),
+		NewTypeHolder(new(string), false, &c.isString),
 		NewTypeHolder(new(bool), false, &c.isBoolean),
+		NewTypeHolder(new(interface{}), false, &c.isObject),
 	)
 
 	c.value = result
@@ -69,9 +73,6 @@ func (c *ConstInsightMetricsPropertyExample) AsNumber() (
 	if !c.isNumber {
 		return nil, false
 	}
-	if c.value == nil {
-		return nil, true
-	}
 	return c.value.(*int), true
 }
 
@@ -81,9 +82,6 @@ func (c *ConstInsightMetricsPropertyExample) AsPrecision() (
 	if !c.isPrecision {
 		return nil, false
 	}
-	if c.value == nil {
-		return nil, true
-	}
 	return c.value.(*float64), true
 }
 
@@ -92,9 +90,6 @@ func (c *ConstInsightMetricsPropertyExample) AsString() (
 	bool) {
 	if !c.isString {
 		return nil, false
-	}
-	if c.value == nil {
-		return nil, true
 	}
 	return c.value.(*string), true
 }
@@ -108,27 +103,41 @@ func (c *ConstInsightMetricsPropertyExample) AsBoolean() (
 	return c.value.(*bool), true
 }
 
+func (c *ConstInsightMetricsPropertyExample) AsObject() (
+	*interface{},
+	bool) {
+	if !c.isObject {
+		return nil, false
+	}
+	return c.value.(*interface{}), true
+}
+
 // internalConstInsightMetricsPropertyExample represents a constInsightMetricsPropertyExample struct.
 type internalConstInsightMetricsPropertyExample struct{}
 
 var ConstInsightMetricsPropertyExampleContainer internalConstInsightMetricsPropertyExample
 
 // The internalConstInsightMetricsPropertyExample instance, wrapping the provided int value.
-func (c *internalConstInsightMetricsPropertyExample) FromNumber(val *int) ConstInsightMetricsPropertyExample {
+func (c *internalConstInsightMetricsPropertyExample) FromNumber(val int) ConstInsightMetricsPropertyExample {
 	return ConstInsightMetricsPropertyExample{value: &val}
 }
 
 // The internalConstInsightMetricsPropertyExample instance, wrapping the provided float64 value.
-func (c *internalConstInsightMetricsPropertyExample) FromPrecision(val *float64) ConstInsightMetricsPropertyExample {
+func (c *internalConstInsightMetricsPropertyExample) FromPrecision(val float64) ConstInsightMetricsPropertyExample {
 	return ConstInsightMetricsPropertyExample{value: &val}
 }
 
 // The internalConstInsightMetricsPropertyExample instance, wrapping the provided string value.
-func (c *internalConstInsightMetricsPropertyExample) FromString(val *string) ConstInsightMetricsPropertyExample {
+func (c *internalConstInsightMetricsPropertyExample) FromString(val string) ConstInsightMetricsPropertyExample {
 	return ConstInsightMetricsPropertyExample{value: &val}
 }
 
 // The internalConstInsightMetricsPropertyExample instance, wrapping the provided bool value.
 func (c *internalConstInsightMetricsPropertyExample) FromBoolean(val bool) ConstInsightMetricsPropertyExample {
+	return ConstInsightMetricsPropertyExample{value: &val}
+}
+
+// The internalConstInsightMetricsPropertyExample instance, wrapping the provided interface{} value.
+func (c *internalConstInsightMetricsPropertyExample) FromObject(val interface{}) ConstInsightMetricsPropertyExample {
 	return ConstInsightMetricsPropertyExample{value: &val}
 }

@@ -1,8 +1,6 @@
 
 # Remote Syslog Console
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RemoteSyslogConsole`
@@ -12,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Contents` | [`[]models.RemoteSyslogContent`](../../doc/models/remote-syslog-content.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,33 +18,17 @@
   "contents": [
     {
       "facility": "ntp",
-      "severity": "error",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "severity": "error"
     },
     {
       "facility": "ntp",
-      "severity": "error",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "severity": "error"
     },
     {
       "facility": "ntp",
-      "severity": "error",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "severity": "error"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

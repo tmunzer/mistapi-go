@@ -1,7 +1,7 @@
 
 # Webhook Site Sle
 
-*This model accepts additional fields of type interface{}.*
+Sample of the `site-sle` webhook payload.
 
 ## Structure
 
@@ -11,57 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookSiteSleEvent`](../../doc/models/webhook-site-sle-event.md) | Optional | - |
-| `Topic` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Events` | [`[]models.WebhookSiteSleEvent`](../../doc/models/webhook-site-sle-event.md) | Required | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"site-sle"` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "topic": "site_sle",
   "events": [
     {
-      "org_id": "00000dbc-0000-0000-0000-000000000000",
-      "site_id": "0000245a-0000-0000-0000-000000000000",
+      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
+      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "sle": {
         "ap-availability": 199.22,
         "successful-connect": 14.8,
-        "time-to-connect": 125.56,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "time-to-connect": 125.56
       },
-      "timestamp": 188.18,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "org_id": "00000dbc-0000-0000-0000-000000000000",
-      "site_id": "0000245a-0000-0000-0000-000000000000",
-      "sle": {
-        "ap-availability": 199.22,
-        "successful-connect": 14.8,
-        "time-to-connect": 125.56,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "timestamp": 188.18,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "timestamp": 188.18
     }
   ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "site-sle"
 }
 ```
 

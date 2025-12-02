@@ -14,6 +14,7 @@ type ConstEvent struct {
 	Description          *string                `json:"description,omitempty"`
 	Display              string                 `json:"display"`
 	Example              *interface{}           `json:"example,omitempty"`
+	Group                *string                `json:"group,omitempty"`
 	Key                  string                 `json:"key"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -22,8 +23,8 @@ type ConstEvent struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ConstEvent) String() string {
 	return fmt.Sprintf(
-		"ConstEvent[Description=%v, Display=%v, Example=%v, Key=%v, AdditionalProperties=%v]",
-		c.Description, c.Display, c.Example, c.Key, c.AdditionalProperties)
+		"ConstEvent[Description=%v, Display=%v, Example=%v, Group=%v, Key=%v, AdditionalProperties=%v]",
+		c.Description, c.Display, c.Example, c.Group, c.Key, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstEvent.
@@ -32,7 +33,7 @@ func (c ConstEvent) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"description", "display", "example", "key"); err != nil {
+		"description", "display", "example", "group", "key"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -48,6 +49,9 @@ func (c ConstEvent) toMap() map[string]any {
 	structMap["display"] = c.Display
 	if c.Example != nil {
 		structMap["example"] = c.Example
+	}
+	if c.Group != nil {
+		structMap["group"] = c.Group
 	}
 	structMap["key"] = c.Key
 	return structMap
@@ -65,7 +69,7 @@ func (c *ConstEvent) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "display", "example", "key")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "display", "example", "group", "key")
 	if err != nil {
 		return err
 	}
@@ -74,6 +78,7 @@ func (c *ConstEvent) UnmarshalJSON(input []byte) error {
 	c.Description = temp.Description
 	c.Display = *temp.Display
 	c.Example = temp.Example
+	c.Group = temp.Group
 	c.Key = *temp.Key
 	return nil
 }
@@ -83,6 +88,7 @@ type tempConstEvent struct {
 	Description *string      `json:"description,omitempty"`
 	Display     *string      `json:"display"`
 	Example     *interface{} `json:"example,omitempty"`
+	Group       *string      `json:"group,omitempty"`
 	Key         *string      `json:"key"`
 }
 

@@ -3,8 +3,6 @@
 
 BLE AP settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `BleConfig`
@@ -35,12 +33,11 @@ BLE AP settings
 | `IbeaconBeams` | `*string` | Optional | - |
 | `IbeaconEnabled` | `*bool` | Optional | Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon<br><br>**Default**: `false` |
 | `IbeaconFreqMsec` | `*int` | Optional | Frequency (msec) of data emit for iBeacon<br><br>**Default**: `0` |
-| `IbeaconMajor` | `*int` | Optional | Major number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
-| `IbeaconMinor` | `*int` | Optional | Minor number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMinor` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconUuid` | `*uuid.UUID` | Optional | Optional, if not specified, the same UUID as the beacon will be used |
-| `Power` | `*int` | Optional | Required if `power_mode`==`custom`; else use `power_mode` as default<br><br>**Constraints**: `>= 2`, `<= 7` |
+| `Power` | `*int` | Optional | Required if `power_mode`==`custom`; else use `power_mode` as default<br><br>**Default**: `9`<br><br>**Constraints**: `>= 1`, `<= 10` |
 | `PowerMode` | [`*models.BleConfigPowerModeEnum`](../../doc/models/ble-config-power-mode-enum.md) | Optional | enum: `custom`, `default`<br><br>**Default**: `"default"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -72,15 +69,11 @@ BLE AP settings
   "ibeacon_beams": "2-4,7",
   "ibeacon_enabled": false,
   "ibeacon_freq_msec": 0,
-  "ibeacon_major": 13,
-  "ibeacon_minor": 138,
+  "ibeacon_major": 1234,
+  "ibeacon_minor": 1234,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "power": 6,
-  "power_mode": "custom",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "power_mode": "custom"
 }
 ```
 

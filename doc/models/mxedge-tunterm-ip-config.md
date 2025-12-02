@@ -3,8 +3,6 @@
 
 IPconfiguration of the Mist Tunnel interface
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxedgeTuntermIpConfig`
@@ -19,7 +17,6 @@ IPconfiguration of the Mist Tunnel interface
 | `Ip6` | `*string` | Optional | - |
 | `Netmask` | `string` | Required | - |
 | `Netmask6` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@ IPconfiguration of the Mist Tunnel interface
   "ip": "10.2.1.1",
   "ip6": "2001:1010:1010:1010::2",
   "netmask": "255.255.255.0",
-  "netmask6": "/64",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "netmask6": "/64"
 }
 ```
 

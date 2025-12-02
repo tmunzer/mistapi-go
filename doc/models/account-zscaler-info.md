@@ -3,8 +3,6 @@
 
 OAuth linked Zscaler apps account details
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountZscalerInfo`
@@ -16,7 +14,6 @@ OAuth linked Zscaler apps account details
 | `CloudName` | `*string` | Optional | - |
 | `PartnerKey` | `*string` | Optional | - |
 | `Username` | `*string` | Optional | Customer account user name |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@ OAuth linked Zscaler apps account details
 {
   "cloud_name": "zscalerbeta.net",
   "partner_key": "K35vrZcK3JvrZc",
-  "username": "john@nmo.com",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "username": "john@nmo.com"
 }
 ```
 

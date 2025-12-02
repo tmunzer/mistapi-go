@@ -83,11 +83,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
-      "via": "vpn",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "via": "vpn"
     },
     "key1": {
       "auth_key": "auth_key8",
@@ -95,11 +91,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
-      "via": "vpn",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "via": "vpn"
     },
     "key2": {
       "auth_key": "auth_key8",
@@ -107,11 +99,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
-      "via": "vpn",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "via": "vpn"
     }
   },
   "created_time": 177.78,
@@ -132,11 +120,7 @@ Gateway Template is applied to a site for gateway(s) in a site.
         "key0": null
       },
       "gateway": "gateway8",
-      "ip6_end": "ip6_end8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ip6_end": "ip6_end8"
     }
   },
   "exampleAdditionalProperty": {

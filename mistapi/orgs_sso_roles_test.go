@@ -4,10 +4,8 @@ package mistapi
 
 import (
 	"context"
-	"encoding/json"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
-	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
 
@@ -58,12 +56,8 @@ func TestOrgsSSORolesTestCreateOrgSsoRole(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.SsoRoleOrg
-	errBody := json.Unmarshal([]byte(`{"name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsSsoRoles.CreateOrgSsoRole(ctx, orgId, &body)
+
+	apiResponse, err := orgsSsoRoles.CreateOrgSsoRole(ctx, orgId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -83,12 +77,8 @@ func TestOrgsSSORolesTestCreateOrgSsoRole1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.SsoRoleOrg
-	errBody := json.Unmarshal([]byte(`{"name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsSsoRoles.CreateOrgSsoRole(ctx, orgId, &body)
+
+	apiResponse, err := orgsSsoRoles.CreateOrgSsoRole(ctx, orgId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -178,12 +168,8 @@ func TestOrgsSSORolesTestUpdateOrgSsoRole(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.SsoRoleOrg
-	errBody := json.Unmarshal([]byte(`{"name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsSsoRoles.UpdateOrgSsoRole(ctx, orgId, ssoroleId, &body)
+
+	apiResponse, err := orgsSsoRoles.UpdateOrgSsoRole(ctx, orgId, ssoroleId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -207,12 +193,8 @@ func TestOrgsSSORolesTestUpdateOrgSsoRole1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.SsoRoleOrg
-	errBody := json.Unmarshal([]byte(`{"name":"string","privileges":[{"msp_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","msp_name":"string","name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","org_name":"string","orggroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"],"role":"admin","scope":"org","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitegroup_ids":["b069b358-4c97-5319-1f8c-7c5ca64d6ab1"]}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsSsoRoles.UpdateOrgSsoRole(ctx, orgId, ssoroleId, &body)
+
+	apiResponse, err := orgsSsoRoles.UpdateOrgSsoRole(ctx, orgId, ssoroleId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

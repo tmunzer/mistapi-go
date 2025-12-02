@@ -229,7 +229,7 @@ For a Mist Edge in default state, it will show a random claim code like `135-546
 ClaimOrgMxEdge(
     ctx context.Context,
     orgId uuid.UUID,
-    body *models.CodeString) (
+    body []string) (
     models.ApiResponse[models.ResponseClaimMxEdge],
     error)
 ```
@@ -239,7 +239,7 @@ ClaimOrgMxEdge(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.CodeString`](../../doc/models/code-string.md) | Body, Optional | Request Body |
+| `body` | `[]string` | Body, Optional | Request Body<br><br>**Constraints**: *Unique Items Required* |
 
 ## Response Type
 
@@ -252,11 +252,12 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-body := models.CodeString{
-    Code:                 "135-546-673",
+body := []string{
+    "6JG8E-PTFV2-A9Z2N",
+    "DVH4V-SNMSZ-PDXBR",
 }
 
-apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, &body)
+apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, body)
 if err != nil {
     log.Fatalln(err)
 } else {
@@ -595,7 +596,7 @@ body := models.Mxedge{
             "3",
         },
         SeparateUpstreamDownstream: models.ToPointer(true),
-        UpstreamPortVlanId:         models.ToPointer(1),
+        UpstreamPortVlanId:         models.ToPointer(models.TuntermPortConfigUpstreamPortVlanIdContainer.FromNumber(1)),
         UpstreamPorts:              []string{
             "0",
             "1",
@@ -671,12 +672,6 @@ if err != nil {
     }
   },
   "tunterm_ip_config": {
-    "dns": [
-      "8.8.8.8"
-    ],
-    "dns_suffix": [
-      ".mist.local"
-    ],
     "gateway": "10.2.1.254",
     "ip": "10.2.1.1",
     "netmask": "255.255.255.0"
@@ -950,12 +945,6 @@ if err != nil {
     }
   },
   "tunterm_ip_config": {
-    "dns": [
-      "8.8.8.8"
-    ],
-    "dns_suffix": [
-      ".mist.local"
-    ],
     "gateway": "10.2.1.254",
     "ip": "10.2.1.1",
     "netmask": "255.255.255.0"
@@ -1623,30 +1612,33 @@ mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Mxedge{
     Model:                     "ME-X1",
-    Name:                      "string",
-    NtpServers:                []string{
-        "string",
-    },
+    Name:                      "me-gc1-01",
+    OobIpConfig:               models.ToPointer(models.MxedgeOobIpConfig{
+        Dns:                  []string{
+            "8.8.8.8",
+            "1.1.1.1",
+        },
+        Gateway:              models.ToPointer("10.3.172.9"),
+        Ip:                   models.ToPointer("10.3.172.201"),
+        Netmask:              models.ToPointer("/24"),
+        Type:                 models.ToPointer(models.IpTypeEnum_STATIC),
+    }),
     Services:                  []string{
         "tunterm",
     },
     TuntermIpConfig:           models.ToPointer(models.MxedgeTuntermIpConfig{
-        Gateway:              "string",
-        Ip:                   "string",
-        Netmask:              "string",
-        AdditionalProperties: map[string]interface{}{
-            "dns": interface{}("string"),
-            "dns_suffix": interface{}("string"),
-        },
+        Gateway:              "10.10.172.2",
+        Ip:                   "10.10.172.201",
+        Netmask:              "/24",
     }),
     TuntermPortConfig:         models.ToPointer(models.TuntermPortConfig{
         DownstreamPorts:            []string{
-            "string",
+            "0",
         },
         SeparateUpstreamDownstream: models.ToPointer(true),
-        UpstreamPortVlanId:         models.ToPointer(1),
+        UpstreamPortVlanId:         models.ToPointer(models.TuntermPortConfigUpstreamPortVlanIdContainer.FromString("1010")),
         UpstreamPorts:              []string{
-            "string",
+            "1",
         },
     }),
 }
@@ -1704,12 +1696,6 @@ if err != nil {
     }
   },
   "tunterm_ip_config": {
-    "dns": [
-      "8.8.8.8"
-    ],
-    "dns_suffix": [
-      ".mist.local"
-    ],
     "gateway": "10.2.1.254",
     "ip": "10.2.1.1",
     "netmask": "255.255.255.0"

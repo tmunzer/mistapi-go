@@ -51,11 +51,9 @@ type BleConfig struct {
 	// Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon
 	IbeaconEnabled *bool `json:"ibeacon_enabled,omitempty"`
 	// Frequency (msec) of data emit for iBeacon
-	IbeaconFreqMsec *int `json:"ibeacon_freq_msec,omitempty"`
-	// Major number for iBeacon
-	IbeaconMajor *int `json:"ibeacon_major,omitempty"`
-	// Minor number for iBeacon
-	IbeaconMinor *int `json:"ibeacon_minor,omitempty"`
+	IbeaconFreqMsec *int          `json:"ibeacon_freq_msec,omitempty"`
+	IbeaconMajor    Optional[int] `json:"ibeacon_major"`
+	IbeaconMinor    Optional[int] `json:"ibeacon_minor"`
 	// Optional, if not specified, the same UUID as the beacon will be used
 	IbeaconUuid *uuid.UUID `json:"ibeacon_uuid,omitempty"`
 	// Required if `power_mode`==`custom`; else use `power_mode` as default
@@ -155,11 +153,19 @@ func (b BleConfig) toMap() map[string]any {
 	if b.IbeaconFreqMsec != nil {
 		structMap["ibeacon_freq_msec"] = b.IbeaconFreqMsec
 	}
-	if b.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = b.IbeaconMajor
+	if b.IbeaconMajor.IsValueSet() {
+		if b.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = b.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if b.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = b.IbeaconMinor
+	if b.IbeaconMinor.IsValueSet() {
+		if b.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = b.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
 	if b.IbeaconUuid != nil {
 		structMap["ibeacon_uuid"] = b.IbeaconUuid
@@ -241,8 +247,8 @@ type tempBleConfig struct {
 	IbeaconBeams            *string                      `json:"ibeacon_beams,omitempty"`
 	IbeaconEnabled          *bool                        `json:"ibeacon_enabled,omitempty"`
 	IbeaconFreqMsec         *int                         `json:"ibeacon_freq_msec,omitempty"`
-	IbeaconMajor            *int                         `json:"ibeacon_major,omitempty"`
-	IbeaconMinor            *int                         `json:"ibeacon_minor,omitempty"`
+	IbeaconMajor            Optional[int]                `json:"ibeacon_major"`
+	IbeaconMinor            Optional[int]                `json:"ibeacon_minor"`
 	IbeaconUuid             *uuid.UUID                   `json:"ibeacon_uuid,omitempty"`
 	Power                   *int                         `json:"power,omitempty"`
 	PowerMode               *BleConfigPowerModeEnum      `json:"power_mode,omitempty"`

@@ -1,8 +1,6 @@
 
 # Response Pcap Start
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponsePcapStart`
@@ -29,7 +27,6 @@
 | `TcpdumpParserExpression` | `models.Optional[string]` | Optional | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,11 +44,7 @@
   ],
   "client_mac": "client_mac2",
   "duration": 102.9,
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

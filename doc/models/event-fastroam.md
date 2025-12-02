@@ -1,8 +1,6 @@
 
 # Event Fastroam
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EventFastroam`
@@ -19,7 +17,6 @@
 | `Subtype` | `*string` | Optional | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | [`*models.EventFastroamTypeEnum`](../../doc/models/event-fastroam-type-enum.md) | Optional | enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "ssid": "ssid2",
   "subtype": "subtype2",
   "timestamp": 128.48,
-  "type": "fail",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "type": "fail"
 }
 ```
 

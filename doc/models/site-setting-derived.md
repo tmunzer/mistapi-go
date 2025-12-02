@@ -115,6 +115,7 @@
 | `Error` | `*string` | Optional | This error is provided when the account fails to fetch token/data |
 | `Errors` | `[]string` | Optional | - |
 | `InstanceUrl` | `*string` | Optional | Customer account instance URL |
+| `KeyId` | `*string` | Optional | For ZDX Account only, Customer account API key ID |
 | `LastStatus` | `*string` | Optional | Is the last data pull for account is successful or not |
 | `LastSync` | `*int64` | Optional | Last data pull timestamp, background jobs that pull account data |
 | `LinkedBy` | `*string` | Optional | First name of the user who linked the account |
@@ -134,6 +135,7 @@
 | `WebhookPassword` | `*string` | Optional | For VMWare accounts only |
 | `WebhookUrl` | `*string` | Optional | For VMWare accounts only |
 | `WebhookUsername` | `*string` | Optional | For VMWare accounts only |
+| `ZdxOrgId` | `*string` | Optional | For ZDX Account only, ZDX organization id |
 | `AdditionalProperties` | [`map[string]models.AccountOauthInfoAccount`](../../doc/models/account-oauth-info-account.md) | Optional | OAuth linked apps account info |
 
 ## Example (as JSON)
@@ -195,6 +197,7 @@
     "OAuth token refresh failed, please re-link your account",
     "API daily rate limit reached for your account"
   ],
+  "key_id": "L72frZcK3JvrZc",
   "last_status": "failed",
   "last_sync": 1665465339000,
   "linked_by": "Testname1",
@@ -209,69 +212,46 @@
   "webhook_password": "password_1234",
   "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
   "webhook_username": "username_1234",
+  "zdx_org_id": "123456",
   "acl_policies": [
     {
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "acl_tags": {
@@ -286,11 +266,7 @@
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     },
     "key1": {
       "ether_types": [
@@ -303,22 +279,14 @@
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     }
   },
   "additional_config_cmds": [
     "additional_config_cmds2"
   ],
   "analytic": {
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "ap_matching": {
     "enabled": false,
@@ -326,22 +294,14 @@
       null,
       {},
       {}
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "exampleAdditionalProperty": {
     "account_id": "account_id8",
     "auto_probe_subnet": "auto_probe_subnet4",
     "client_id": "client_id8",
     "cloud_name": "cloud_name8",
-    "company": "company6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "company": "company6"
   }
 }
 ```
