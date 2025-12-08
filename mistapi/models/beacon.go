@@ -20,12 +20,11 @@ type Beacon struct {
 	// Eddystone-URL url
 	EddystoneUrl *string `json:"eddystone_url,omitempty"`
 	ForSite      *bool   `json:"for_site,omitempty"`
-	// Bluetooth tag major
-	IbeaconMajor *int `json:"ibeacon_major,omitempty"`
-	// Bluetooth tag minor
-	IbeaconMinor *int `json:"ibeacon_minor,omitempty"`
-	// Bluetooth tag UUID
-	IbeaconUuid *uuid.UUID `json:"ibeacon_uuid,omitempty"`
+	// Major number for iBeacon
+	IbeaconMajor Optional[int] `json:"ibeacon_major"`
+	// Minor number for iBeacon
+	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Optional, MAC of the beacon, currently used only to identify battery voltage
@@ -88,14 +87,26 @@ func (b Beacon) toMap() map[string]any {
 	if b.ForSite != nil {
 		structMap["for_site"] = b.ForSite
 	}
-	if b.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = b.IbeaconMajor
+	if b.IbeaconMajor.IsValueSet() {
+		if b.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = b.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if b.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = b.IbeaconMinor
+	if b.IbeaconMinor.IsValueSet() {
+		if b.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = b.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
-	if b.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = b.IbeaconUuid
+	if b.IbeaconUuid.IsValueSet() {
+		if b.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = b.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	if b.Id != nil {
 		structMap["id"] = b.Id
@@ -171,23 +182,23 @@ func (b *Beacon) UnmarshalJSON(input []byte) error {
 
 // tempBeacon is a temporary struct used for validating the fields of Beacon.
 type tempBeacon struct {
-	CreatedTime        *float64        `json:"created_time,omitempty"`
-	EddystoneInstance  *string         `json:"eddystone_instance,omitempty"`
-	EddystoneNamespace *string         `json:"eddystone_namespace,omitempty"`
-	EddystoneUrl       *string         `json:"eddystone_url,omitempty"`
-	ForSite            *bool           `json:"for_site,omitempty"`
-	IbeaconMajor       *int            `json:"ibeacon_major,omitempty"`
-	IbeaconMinor       *int            `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid        *uuid.UUID      `json:"ibeacon_uuid,omitempty"`
-	Id                 *uuid.UUID      `json:"id,omitempty"`
-	Mac                *string         `json:"mac,omitempty"`
-	MapId              *uuid.UUID      `json:"map_id,omitempty"`
-	ModifiedTime       *float64        `json:"modified_time,omitempty"`
-	Name               *string         `json:"name,omitempty"`
-	OrgId              *uuid.UUID      `json:"org_id,omitempty"`
-	Power              *int            `json:"power,omitempty"`
-	SiteId             *uuid.UUID      `json:"site_id,omitempty"`
-	Type               *BeaconTypeEnum `json:"type,omitempty"`
-	X                  *float64        `json:"x,omitempty"`
-	Y                  *float64        `json:"y,omitempty"`
+	CreatedTime        *float64            `json:"created_time,omitempty"`
+	EddystoneInstance  *string             `json:"eddystone_instance,omitempty"`
+	EddystoneNamespace *string             `json:"eddystone_namespace,omitempty"`
+	EddystoneUrl       *string             `json:"eddystone_url,omitempty"`
+	ForSite            *bool               `json:"for_site,omitempty"`
+	IbeaconMajor       Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor       Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid        Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	Id                 *uuid.UUID          `json:"id,omitempty"`
+	Mac                *string             `json:"mac,omitempty"`
+	MapId              *uuid.UUID          `json:"map_id,omitempty"`
+	ModifiedTime       *float64            `json:"modified_time,omitempty"`
+	Name               *string             `json:"name,omitempty"`
+	OrgId              *uuid.UUID          `json:"org_id,omitempty"`
+	Power              *int                `json:"power,omitempty"`
+	SiteId             *uuid.UUID          `json:"site_id,omitempty"`
+	Type               *BeaconTypeEnum     `json:"type,omitempty"`
+	X                  *float64            `json:"x,omitempty"`
+	Y                  *float64            `json:"y,omitempty"`
 }

@@ -3,8 +3,6 @@
 
 Airwatch wlan settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanAirwatch`
@@ -18,7 +16,6 @@ Airwatch wlan settings
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `Password` | `*string` | Optional | Password |
 | `Username` | `*string` | Optional | Username |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@ Airwatch wlan settings
   "console_url": "https://hs1.airwatchportals.com",
   "enabled": false,
   "password": "user1",
-  "username": "test123",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "username": "test123"
 }
 ```
 

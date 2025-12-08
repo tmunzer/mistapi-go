@@ -1,8 +1,6 @@
 
 # Service Policy
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ServicePolicy`
@@ -26,7 +24,6 @@
 | `SslProxy` | [`*models.ServicePolicySslProxy`](../../doc/models/service-policy-ssl-proxy.md) | Optional | For SRX-only |
 | `Syslog` | [`*models.ServicePolicySyslog`](../../doc/models/service-policy-syslog.md) | Optional | Required for syslog logging |
 | `Tenants` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,64 +33,36 @@
   "antivirus": {
     "avprofile_id": "00000282-0000-0000-0000-000000000000",
     "enabled": false,
-    "profile": "profile4",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "profile": "profile4"
   },
   "appqoe": {
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "ewf": [
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "profile": "standard"
     },
     {
       "alert_only": false,
       "block_message": "block_message0",
       "enabled": false,
-      "profile": "standard",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "profile": "standard"
     }
   ],
   "idp": {
     "alert_only": false,
     "enabled": false,
     "idpprofile_id": "00000e94-0000-0000-0000-000000000000",
-    "profile": "profile8",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "profile": "profile8"
   }
 }
 ```

@@ -41,33 +41,21 @@
       "magic": "magic6",
       "model": "model4",
       "serial": "serial6",
-      "type": "type6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type6"
     },
     {
       "mac": "mac0",
       "magic": "magic6",
       "model": "model4",
       "serial": "serial6",
-      "type": "type6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type6"
     },
     {
       "mac": "mac0",
       "magic": "magic6",
       "model": "model4",
       "serial": "serial6",
-      "type": "type6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type6"
     }
   ],
   "inventory_duplicated": [
@@ -76,22 +64,14 @@
       "magic": "magic6",
       "model": "model4",
       "serial": "serial6",
-      "type": "type6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type6"
     },
     {
       "mac": "mac0",
       "magic": "magic6",
       "model": "model4",
       "serial": "serial6",
-      "type": "type6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type6"
     }
   ],
   "exampleAdditionalProperty": {

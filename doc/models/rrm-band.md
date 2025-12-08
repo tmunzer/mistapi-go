@@ -1,8 +1,6 @@
 
 # Rrm Band
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RrmBand`
@@ -19,7 +17,6 @@
 | `CurrUsage` | `*string` | Optional | Current radio band<br><br>**Constraints**: *Minimum Length*: `1` |
 | `Power` | `*int` | Optional | proposed tx power |
 | `Usage` | `*string` | Optional | proposed radio band<br><br>**Constraints**: *Minimum Length*: `1` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
   "curr_bandwidth": 20,
   "channel": 56,
   "curr_channel": 176,
-  "curr_power": 140,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "curr_power": 140
 }
 ```
 

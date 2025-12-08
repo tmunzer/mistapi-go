@@ -1,8 +1,6 @@
 
 # Gateway Path Preferences Path
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPathPreferencesPath`
@@ -20,7 +18,6 @@
 | `TargetIps` | `[]string` | Optional | If `type`==`local`, if destination IP is to be replaced |
 | `Type` | [`models.GatewayPathTypeEnum`](../../doc/models/gateway-path-type-enum.md) | Required | enum: `local`, `tunnel`, `vpn`, `wan` |
 | `WanName` | `*string` | Optional | Optional if `type`==`vpn` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "disabled": false,
   "gateway_ip": "gateway_ip2",
   "internet_access": false,
-  "name": "name6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "name": "name6"
 }
 ```
 

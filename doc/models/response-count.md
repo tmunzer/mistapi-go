@@ -1,8 +1,6 @@
 
 # Response Count
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseCount`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.CountResult`](../../doc/models/count-result.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@
     }
   ],
   "start": 214,
-  "total": 8,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 8
 }
 ```
 

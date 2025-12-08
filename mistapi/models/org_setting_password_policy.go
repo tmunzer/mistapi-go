@@ -12,7 +12,7 @@ import (
 type OrgSettingPasswordPolicy struct {
 	// Whether the policy is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// password expiry in days
+	// Password expiry in days. Password Expiry Notice banner will display in the UI 14 days before expiration
 	ExpiryInDays *int `json:"expiry_in_days,omitempty"`
 	// Required password length
 	MinLength *int `json:"min_length,omitempty"`

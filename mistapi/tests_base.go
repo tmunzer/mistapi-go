@@ -52,6 +52,8 @@ var orgsAlarms OrgsAlarms
 
 var orgsAlarmTemplates OrgsAlarmTemplates
 
+var orgsApTemplates OrgsAPTemplates
+
 var orgsApiTokens OrgsAPITokens
 
 var orgsAssets OrgsAssets
@@ -221,6 +223,8 @@ var sitesSpectrumAnalysis SitesSpectrumAnalysis
 var sites Sites
 
 var sitesAlarms SitesAlarms
+
+var sitesApTemplates SitesAPTemplates
 
 var sitesApplications SitesApplications
 
@@ -434,6 +438,7 @@ func init() {
 	orgsAdmins = *client.OrgsAdmins()
 	orgsAlarms = *client.OrgsAlarms()
 	orgsAlarmTemplates = *client.OrgsAlarmTemplates()
+	orgsApTemplates = *client.OrgsAPTemplates()
 	orgsApiTokens = *client.OrgsAPITokens()
 	orgsAssets = *client.OrgsAssets()
 	orgsAssetFilters = *client.OrgsAssetFilters()
@@ -519,6 +524,7 @@ func init() {
 	sitesSpectrumAnalysis = *client.SitesSpectrumAnalysis()
 	sites = *client.Sites()
 	sitesAlarms = *client.SitesAlarms()
+	sitesApTemplates = *client.SitesAPTemplates()
 	sitesApplications = *client.SitesApplications()
 	sitesAssetFilters = *client.SitesAssetFilters()
 	sitesAssets = *client.SitesAssets()

@@ -1,8 +1,6 @@
 
 # Synthetictest Config Custom Probe
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SynthetictestConfigCustomProbe`
@@ -17,7 +15,6 @@
 | `Threshold` | `*int` | Optional | In milliseconds |
 | `Type` | [`*models.SynthetictestConfigCustomProbeTypeEnum`](../../doc/models/synthetictest-config-custom-probe-type-enum.md) | Optional | enum: `curl`, `icmp`, `tcp`<br><br>**Default**: `"icmp"` |
 | `Url` | `*string` | Optional | If `type`==`curl`, URL to be used for the custom probe, can be url or IP |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "port": 443,
   "threshold": 100,
   "type": "icmp",
-  "url": "https://10.3.5.1:8080/about",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "url": "https://10.3.5.1:8080/about"
 }
 ```
 

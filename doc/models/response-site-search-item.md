@@ -1,8 +1,6 @@
 
 # Response Site Search Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSiteSearchItem`
@@ -23,7 +21,6 @@
 | `Timezone` | `string` | Required | - |
 | `VnaEnabled` | `bool` | Required | - |
 | `WifiEnabled` | `bool` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,11 +37,7 @@
   "timezone": "timezone6",
   "vna_enabled": false,
   "wifi_enabled": false,
-  "country_code": "country_code6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "country_code": "country_code6"
 }
 ```
 

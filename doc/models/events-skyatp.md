@@ -3,8 +3,6 @@
 
 SkyATP events
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EventsSkyatp`
@@ -22,7 +20,6 @@ SkyATP events
 | `ThreatLevel` | `int` | Required | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Type` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@ SkyATP events
   "threat_level": 190,
   "timestamp": 212.94,
   "type": "type4",
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false
 }
 ```
 

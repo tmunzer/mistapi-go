@@ -70,11 +70,7 @@
   },
   "type": "switch",
   "defaults": {
-    "_ports": "_ports6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "_ports": "_ports6"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

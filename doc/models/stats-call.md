@@ -1,8 +1,6 @@
 
 # Stats Call
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsCall`
@@ -22,7 +20,6 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `StartTime` | `*int` | Optional | - |
 | `VideoQuality` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
   "audio_quality": 28,
   "end_time": 148,
   "mac": "mac0",
-  "meeting_id": "meeting_id2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "meeting_id": "meeting_id2"
 }
 ```
 

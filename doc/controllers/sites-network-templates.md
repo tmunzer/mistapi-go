@@ -125,7 +125,6 @@ if err != nil {
     "property1": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -135,6 +134,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "networks": [
         "string"
@@ -143,7 +143,7 @@ if err != nil {
       "poe_disabled": false,
       "port_auth": "dot1x",
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -158,7 +158,6 @@ if err != nil {
     "property2": {
       "all_networks": false,
       "allow_dhcpd": true,
-      "authentication_protocol": "pap",
       "bypass_auth_when_server_down": true,
       "description": "string",
       "disable_autoneg": false,
@@ -168,6 +167,7 @@ if err != nil {
       "enable_qos": true,
       "guest_network": "string",
       "mac_auth_only": true,
+      "mac_auth_protocol": "pap",
       "mac_limit": 0,
       "mode": "access",
       "networks": [
@@ -176,7 +176,7 @@ if err != nil {
       "persist_mac": false,
       "poe_disabled": false,
       "port_network": "string",
-      "rejected_network": null,
+      "server_reject_network": null,
       "speed": "auto",
       "storm_control": {
         "no_broadcast": false,
@@ -190,7 +190,7 @@ if err != nil {
     }
   },
   "switch_mgmt": {
-    "config_revert": 10,
+    "config_revert_timer": 10,
     "protect_re": {
       "enabled": false
     },

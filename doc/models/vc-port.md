@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mode` | [`*models.VcPortModeEnum`](../../doc/models/vc-port-mode-enum.md) | Optional | enum: `network`, `vcp-higig`, `vcp-hgoe` (only for EX4400-24X) |
+| `Mode` | [`*models.VcPortModeEnum`](../../doc/models/vc-port-mode-enum.md) | Optional | enum: `network`, `vcp-higig`, `vcp-hgoe` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

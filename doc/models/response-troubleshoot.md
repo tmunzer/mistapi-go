@@ -1,8 +1,6 @@
 
 # Response Troubleshoot
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseTroubleshoot`
@@ -14,7 +12,6 @@
 | `End` | `*int` | Optional | - |
 | `Results` | [`[]models.ResponseTroubleshootItem`](../../doc/models/response-troubleshoot-item.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,17 +24,9 @@
       "category": "category4",
       "reason": "reason8",
       "recommendation": "recommendation8",
-      "text": "text4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "text": "text4"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

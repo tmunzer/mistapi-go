@@ -3,8 +3,6 @@
 
 Property key is the network name. Networks to participate in an OSPF area
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OspfAreasNetwork`
@@ -25,7 +23,6 @@ Property key is the network name. Networks to participate in an OSPF area
 | `Metric` | `models.Optional[int]` | Optional | **Constraints**: `>= 1`, `<= 65535` |
 | `NoReadvertiseToOverlay` | `*bool` | Optional | By default, we'll re-advertise all learned OSPF routes toward overlay<br><br>**Default**: `false` |
 | `Passive` | `*bool` | Optional | Whether to send OSPF-Hello<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,11 +40,7 @@ Property key is the network name. Networks to participate in an OSPF area
   "interface_type": "broadcast",
   "metric": 10000,
   "no_readvertise_to_overlay": false,
-  "passive": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "passive": false
 }
 ```
 

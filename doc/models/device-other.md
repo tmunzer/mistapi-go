@@ -1,8 +1,6 @@
 
 # Device Other
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `DeviceOther`
@@ -24,7 +22,6 @@
 | `State` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
 | `VendorApiId` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@
   "created_time": 33.6,
   "device_mac": "device_mac4",
   "mac": "mac4",
-  "model": "model8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "model": "model8"
 }
 ```
 

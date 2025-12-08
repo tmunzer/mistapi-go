@@ -14,6 +14,7 @@ type EvpnTopologyResponse struct {
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// EVPN Options
 	EvpnOptions *EvpnOptions `json:"evpn_options,omitempty"`
+	ForSite     *bool        `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
@@ -31,8 +32,8 @@ type EvpnTopologyResponse struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (e EvpnTopologyResponse) String() string {
 	return fmt.Sprintf(
-		"EvpnTopologyResponse[CreatedTime=%v, EvpnOptions=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Overwrite=%v, PodNames=%v, SiteId=%v, AdditionalProperties=%v]",
-		e.CreatedTime, e.EvpnOptions, e.Id, e.ModifiedTime, e.Name, e.OrgId, e.Overwrite, e.PodNames, e.SiteId, e.AdditionalProperties)
+		"EvpnTopologyResponse[CreatedTime=%v, EvpnOptions=%v, ForSite=%v, Id=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Overwrite=%v, PodNames=%v, SiteId=%v, AdditionalProperties=%v]",
+		e.CreatedTime, e.EvpnOptions, e.ForSite, e.Id, e.ModifiedTime, e.Name, e.OrgId, e.Overwrite, e.PodNames, e.SiteId, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnTopologyResponse.
@@ -41,7 +42,7 @@ func (e EvpnTopologyResponse) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(e.AdditionalProperties,
-		"created_time", "evpn_options", "id", "modified_time", "name", "org_id", "overwrite", "pod_names", "site_id"); err != nil {
+		"created_time", "evpn_options", "for_site", "id", "modified_time", "name", "org_id", "overwrite", "pod_names", "site_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(e.toMap())
@@ -56,6 +57,9 @@ func (e EvpnTopologyResponse) toMap() map[string]any {
 	}
 	if e.EvpnOptions != nil {
 		structMap["evpn_options"] = e.EvpnOptions.toMap()
+	}
+	if e.ForSite != nil {
+		structMap["for_site"] = e.ForSite
 	}
 	if e.Id != nil {
 		structMap["id"] = e.Id
@@ -89,7 +93,7 @@ func (e *EvpnTopologyResponse) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "evpn_options", "id", "modified_time", "name", "org_id", "overwrite", "pod_names", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "evpn_options", "for_site", "id", "modified_time", "name", "org_id", "overwrite", "pod_names", "site_id")
 	if err != nil {
 		return err
 	}
@@ -97,6 +101,7 @@ func (e *EvpnTopologyResponse) UnmarshalJSON(input []byte) error {
 
 	e.CreatedTime = temp.CreatedTime
 	e.EvpnOptions = temp.EvpnOptions
+	e.ForSite = temp.ForSite
 	e.Id = temp.Id
 	e.ModifiedTime = temp.ModifiedTime
 	e.Name = temp.Name
@@ -111,6 +116,7 @@ func (e *EvpnTopologyResponse) UnmarshalJSON(input []byte) error {
 type tempEvpnTopologyResponse struct {
 	CreatedTime  *float64          `json:"created_time,omitempty"`
 	EvpnOptions  *EvpnOptions      `json:"evpn_options,omitempty"`
+	ForSite      *bool             `json:"for_site,omitempty"`
 	Id           *uuid.UUID        `json:"id,omitempty"`
 	ModifiedTime *float64          `json:"modified_time,omitempty"`
 	Name         *string           `json:"name,omitempty"`

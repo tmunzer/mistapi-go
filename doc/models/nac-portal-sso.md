@@ -1,8 +1,6 @@
 
 # Nac Portal Sso
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `NacPortalSso`
@@ -18,7 +16,6 @@
 | `NameidFormat` | `*string` | Optional | - |
 | `SsoRoleMatching` | [`[]models.NacPortalSsoRoleMatching`](../../doc/models/nac-portal-sso-role-matching.md) | Optional | - |
 | `UseSsoRoleForCert` | `*bool` | Optional | If it's desired to inject a role into Cert's Subject (so it can be used later on in policy) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "idp_sign_algo": "sha256",
   "idp_sso_url": "https://yourorg.onelogin.com/trust/saml2/http-post/sso/138130",
   "issuer": "https://app.onelogin.com/saml/metadata/138130",
-  "nameid_format": "email",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "nameid_format": "email"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Response Pcap Status
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponsePcapStatus`
@@ -37,7 +35,6 @@
 | `TzspPort` | `*int` | Optional | If `format`==`tzsp`. Port on remote host for receiving the captured packets<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `WiredTcpdumpExpression` | `*string` | Optional | When `type`==`wired`, wired_tcpdump_expression provided by the user |
 | `WirelessTcpdumpExpression` | `*string` | Optional | When `type`==`‘wireless’`, wireless_tcpdump_expression provided by the user |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -68,11 +65,7 @@
   ],
   "failed": [
     "failed6"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

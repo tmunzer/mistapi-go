@@ -1,8 +1,6 @@
 
 # Response Auto Orientation
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseAutoOrientation`
@@ -17,7 +15,6 @@
 | `Started` | `*bool` | Optional | Indicates whether the auto orient process has started. |
 | `Valid` | `*bool` | Optional | Indicates whether the auto orient request is valid. |
 | `WifiInterrupting` | `*bool` | Optional | Indicates whether the auto orient process will interrupt WiFi traffic. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,37 +23,21 @@
   "devices": {
     "key0": {
       "reason": "reason0",
-      "valid": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "valid": false
     },
     "key1": {
       "reason": "reason0",
-      "valid": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "valid": false
     },
     "key2": {
       "reason": "reason0",
-      "valid": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "valid": false
     }
   },
   "estimated_runtime": 142,
   "reason": "reason4",
   "started": false,
-  "valid": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "valid": false
 }
 ```
 

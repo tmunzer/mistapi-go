@@ -3,8 +3,6 @@
 
 Name associated to each tag
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteEngagementDwellTagNames`
@@ -17,7 +15,6 @@ Name associated to each tag
 | `Engaged` | `*string` | Optional | **Default**: `"Associates"` |
 | `Passerby` | `*string` | Optional | **Default**: `"Passerby"` |
 | `Stationed` | `*string` | Optional | **Default**: `"Assets"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@ Name associated to each tag
   "bounce": "Bounce",
   "engaged": "Engaged",
   "passerby": "Passer By",
-  "stationed": "Stationed",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "stationed": "Stationed"
 }
 ```
 

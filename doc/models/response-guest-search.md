@@ -1,8 +1,6 @@
 
 # Response Guest Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseGuestSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.Guest`](../../doc/models/guest.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,11 +44,7 @@
   ],
   "start": 124,
   "total": 98,
-  "next": "next0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next0"
 }
 ```
 

@@ -103,11 +103,7 @@ Device gateway
       "bfd_multiplier": 90,
       "disable_bfd": false,
       "export": "export6",
-      "via": "vpn",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "via": "vpn"
     }
   },
   "created_time": 176.02,
@@ -129,11 +125,7 @@ Device gateway
         "key0": null
       },
       "gateway": "gateway8",
-      "ip6_end": "ip6_end8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ip6_end": "ip6_end8"
     }
   },
   "exampleAdditionalProperty": {

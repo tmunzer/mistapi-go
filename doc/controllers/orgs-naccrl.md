@@ -125,7 +125,7 @@ The Import NAC Org CRL File endpoint allows users to manually upload a Certifica
 ImportOrgNacCrl(
     ctx context.Context,
     orgId uuid.UUID,
-    file *models.FileWrapper,
+    file *string,
     json *string) (
     models.ApiResponse[models.NacCrlFile],
     error)
@@ -136,7 +136,7 @@ ImportOrgNacCrl(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | a PEM or DER formatted CRL file |
+| `file` | `*string` | Form, Optional | a PEM or DER formatted CRL file |
 | `json` | `*string` | Form, Optional | a JSON string with "name" field for CRL file issuer (optional) |
 
 ## Response Type

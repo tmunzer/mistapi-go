@@ -1,8 +1,6 @@
 
 # Fingerprint Search Result
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `FingerprintSearchResult`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.Fingerprint`](../../doc/models/fingerprint.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,20 +29,12 @@
       "family": "family8",
       "mac": "mac0",
       "mfg": "mfg6",
-      "model": "model4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "model": "model4"
     }
   ],
   "start": 1710949286,
   "total": 232,
-  "next": "next0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next0"
 }
 ```
 

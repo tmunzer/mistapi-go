@@ -1,8 +1,6 @@
 
 # Rf Template Model Specific Property
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RfTemplateModelSpecificProperty`
@@ -19,7 +17,6 @@
 | `Band5` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band5On24Radio` | [`*models.RftemplateRadioBand5`](../../doc/models/rftemplate-radio-band-5.md) | Optional | Radio Band AP settings |
 | `Band6` | [`*models.RftemplateRadioBand6`](../../doc/models/rftemplate-radio-band-6.md) | Optional | Radio Band AP settings |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,17 +32,9 @@
     "bandwidth": 0,
     "channels": [
       221
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
-  "band_24_usage": "6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "band_24_usage": "6"
 }
 ```
 

@@ -9,16 +9,16 @@ import (
 
 // ConstInsightMetricsProperty represents a ConstInsightMetricsProperty struct.
 type ConstInsightMetricsProperty struct {
-	Ctype       []string                             `json:"ctype,omitempty"`
-	Description *string                              `json:"description,omitempty"`
-	Example     []ConstInsightMetricsPropertyExample `json:"example,omitempty"`
+	Ctype       []string                                  `json:"ctype,omitempty"`
+	Description *string                                   `json:"description,omitempty"`
+	Example     *ConstInsightMetricsPropertyExampleAnyOf2 `json:"example,omitempty"`
 	// Property key is the interval (e.g. 10m, 1h, ...)
 	Intervals map[string]ConstInsightMetricsPropertyInterval `json:"intervals,omitempty"`
 	Keys      *interface{}                                   `json:"keys,omitempty"`
 	// Property key is the parameter name
 	Params map[string]ConstInsightMetricsPropertyParam `json:"params,omitempty"`
 	// Property key is the duration (e.g. 1d, 1w, ...)
-	ReportDuration       map[string]ConstInsightMetricsPropertyReportDuration `json:"report_duration,omitempty"`
+	ReportDurations      map[string]ConstInsightMetricsPropertyReportDuration `json:"report_durations,omitempty"`
 	ReportScopes         []string                                             `json:"report_scopes,omitempty"`
 	Scopes               []ConstInsightMetricsPropertyScopeEnum               `json:"scopes,omitempty"`
 	SleBaselined         *bool                                                `json:"sle_baselined,omitempty"`
@@ -33,8 +33,8 @@ type ConstInsightMetricsProperty struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ConstInsightMetricsProperty) String() string {
 	return fmt.Sprintf(
-		"ConstInsightMetricsProperty[Ctype=%v, Description=%v, Example=%v, Intervals=%v, Keys=%v, Params=%v, ReportDuration=%v, ReportScopes=%v, Scopes=%v, SleBaselined=%v, SleClassifiers=%v, Type=%v, Unit=%v, Values=%v, AdditionalProperties=%v]",
-		c.Ctype, c.Description, c.Example, c.Intervals, c.Keys, c.Params, c.ReportDuration, c.ReportScopes, c.Scopes, c.SleBaselined, c.SleClassifiers, c.Type, c.Unit, c.Values, c.AdditionalProperties)
+		"ConstInsightMetricsProperty[Ctype=%v, Description=%v, Example=%v, Intervals=%v, Keys=%v, Params=%v, ReportDurations=%v, ReportScopes=%v, Scopes=%v, SleBaselined=%v, SleClassifiers=%v, Type=%v, Unit=%v, Values=%v, AdditionalProperties=%v]",
+		c.Ctype, c.Description, c.Example, c.Intervals, c.Keys, c.Params, c.ReportDurations, c.ReportScopes, c.Scopes, c.SleBaselined, c.SleClassifiers, c.Type, c.Unit, c.Values, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ConstInsightMetricsProperty.
@@ -43,7 +43,7 @@ func (c ConstInsightMetricsProperty) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"ctype", "description", "example", "intervals", "keys", "params", "report_duration", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values"); err != nil {
+		"ctype", "description", "example", "intervals", "keys", "params", "report_durations", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -60,7 +60,7 @@ func (c ConstInsightMetricsProperty) toMap() map[string]any {
 		structMap["description"] = c.Description
 	}
 	if c.Example != nil {
-		structMap["example"] = c.Example
+		structMap["example"] = c.Example.toMap()
 	}
 	if c.Intervals != nil {
 		structMap["intervals"] = c.Intervals
@@ -71,8 +71,8 @@ func (c ConstInsightMetricsProperty) toMap() map[string]any {
 	if c.Params != nil {
 		structMap["params"] = c.Params
 	}
-	if c.ReportDuration != nil {
-		structMap["report_duration"] = c.ReportDuration
+	if c.ReportDurations != nil {
+		structMap["report_durations"] = c.ReportDurations
 	}
 	if c.ReportScopes != nil {
 		structMap["report_scopes"] = c.ReportScopes
@@ -106,7 +106,7 @@ func (c *ConstInsightMetricsProperty) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ctype", "description", "example", "intervals", "keys", "params", "report_duration", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ctype", "description", "example", "intervals", "keys", "params", "report_durations", "report_scopes", "scopes", "sle_baselined", "sle_classifiers", "type", "unit", "values")
 	if err != nil {
 		return err
 	}
@@ -118,7 +118,7 @@ func (c *ConstInsightMetricsProperty) UnmarshalJSON(input []byte) error {
 	c.Intervals = temp.Intervals
 	c.Keys = temp.Keys
 	c.Params = temp.Params
-	c.ReportDuration = temp.ReportDuration
+	c.ReportDurations = temp.ReportDurations
 	c.ReportScopes = temp.ReportScopes
 	c.Scopes = temp.Scopes
 	c.SleBaselined = temp.SleBaselined
@@ -131,18 +131,18 @@ func (c *ConstInsightMetricsProperty) UnmarshalJSON(input []byte) error {
 
 // tempConstInsightMetricsProperty is a temporary struct used for validating the fields of ConstInsightMetricsProperty.
 type tempConstInsightMetricsProperty struct {
-	Ctype          []string                                             `json:"ctype,omitempty"`
-	Description    *string                                              `json:"description,omitempty"`
-	Example        []ConstInsightMetricsPropertyExample                 `json:"example,omitempty"`
-	Intervals      map[string]ConstInsightMetricsPropertyInterval       `json:"intervals,omitempty"`
-	Keys           *interface{}                                         `json:"keys,omitempty"`
-	Params         map[string]ConstInsightMetricsPropertyParam          `json:"params,omitempty"`
-	ReportDuration map[string]ConstInsightMetricsPropertyReportDuration `json:"report_duration,omitempty"`
-	ReportScopes   []string                                             `json:"report_scopes,omitempty"`
-	Scopes         []ConstInsightMetricsPropertyScopeEnum               `json:"scopes,omitempty"`
-	SleBaselined   *bool                                                `json:"sle_baselined,omitempty"`
-	SleClassifiers []string                                             `json:"sle_classifiers,omitempty"`
-	Type           *string                                              `json:"type,omitempty"`
-	Unit           *string                                              `json:"unit,omitempty"`
-	Values         *interface{}                                         `json:"values,omitempty"`
+	Ctype           []string                                             `json:"ctype,omitempty"`
+	Description     *string                                              `json:"description,omitempty"`
+	Example         *ConstInsightMetricsPropertyExampleAnyOf2            `json:"example,omitempty"`
+	Intervals       map[string]ConstInsightMetricsPropertyInterval       `json:"intervals,omitempty"`
+	Keys            *interface{}                                         `json:"keys,omitempty"`
+	Params          map[string]ConstInsightMetricsPropertyParam          `json:"params,omitempty"`
+	ReportDurations map[string]ConstInsightMetricsPropertyReportDuration `json:"report_durations,omitempty"`
+	ReportScopes    []string                                             `json:"report_scopes,omitempty"`
+	Scopes          []ConstInsightMetricsPropertyScopeEnum               `json:"scopes,omitempty"`
+	SleBaselined    *bool                                                `json:"sle_baselined,omitempty"`
+	SleClassifiers  []string                                             `json:"sle_classifiers,omitempty"`
+	Type            *string                                              `json:"type,omitempty"`
+	Unit            *string                                              `json:"unit,omitempty"`
+	Values          *interface{}                                         `json:"values,omitempty"`
 }

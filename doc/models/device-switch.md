@@ -83,22 +83,14 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
     "172.16.3.0/24": {
       "discard": false,
       "metric": 28,
-      "preference": 30,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "preference": 30
     }
   },
   "aggregate_routes6": {
     "2a02:1234:420a:10c9::/64": {
       "discard": false,
       "metric": 126,
-      "preference": 30,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "preference": 30
     }
   },
   "disable_auto_config": false,
@@ -143,43 +135,27 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "acl_tags": {
@@ -194,11 +170,7 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     }
   },
   "additional_config_cmds": [

@@ -10,6 +10,7 @@ import (
 )
 
 // WebhookDiscoveredRawRssi represents a WebhookDiscoveredRawRssi struct.
+// Sample of the `discovered-raw-rssi` webhook payload.
 type WebhookDiscoveredRawRssi struct {
 	Events               []WebhookDiscoveredRawRssiEvent `json:"events,omitempty"`
 	Topic                string                          `json:"topic"`

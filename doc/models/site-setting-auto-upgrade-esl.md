@@ -3,8 +3,6 @@
 
 auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingAutoUpgradeEsl`
@@ -19,7 +17,6 @@ auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL up
 | `Enabled` | `*bool` | Optional | Whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)<br><br>**Default**: `false` |
 | `TimeOfDay` | `*string` | Optional | `any` / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time |
 | `Version` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@ auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL up
   "enabled": false,
   "time_of_day": "12:00",
   "version": "2.5.0",
-  "day_of_week": "sun",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "day_of_week": "sun"
 }
 ```
 

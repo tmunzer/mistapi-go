@@ -3,8 +3,6 @@
 
 Junos Radius config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RadiusConfig`
@@ -22,7 +20,6 @@ Junos Radius config
 | `CoaPort` | `*int` | Optional | **Default**: `3799`<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `Network` | `*string` | Optional | use `network`or `source_ip`, which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | use `network`or `source_ip` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,11 +38,7 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     },
     {
       "host": "host4",
@@ -54,11 +47,7 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     }
   ],
   "auth_servers": [
@@ -69,11 +58,7 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     },
     {
       "host": "host0",
@@ -82,11 +67,7 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     },
     {
       "host": "host0",
@@ -95,17 +76,9 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

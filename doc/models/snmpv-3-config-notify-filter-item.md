@@ -1,8 +1,6 @@
 
 # Snmpv 3 Config Notify Filter Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Snmpv3ConfigNotifyFilterItem`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Contents` | [`[]models.Snmpv3ConfigNotifyFilterItemContent`](../../doc/models/snmpv-3-config-notify-filter-item-content.md) | Optional | - |
 | `ProfileName` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,34 +19,18 @@
   "contents": [
     {
       "include": false,
-      "oid": "oid4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "oid": "oid4"
     },
     {
       "include": false,
-      "oid": "oid4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "oid": "oid4"
     },
     {
       "include": false,
-      "oid": "oid4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "oid": "oid4"
     }
   ],
-  "profile_name": "profile_name4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "profile_name": "profile_name4"
 }
 ```
 

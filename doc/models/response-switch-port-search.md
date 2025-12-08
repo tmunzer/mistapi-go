@@ -1,8 +1,6 @@
 
 # Response Switch Port Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSwitchPortSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,20 +47,12 @@
       "active": false,
       "auth_state": "authenticated",
       "disabled": false,
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
   "start": 1511967600,
   "total": 100,
-  "next": "next4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next4"
 }
 ```
 

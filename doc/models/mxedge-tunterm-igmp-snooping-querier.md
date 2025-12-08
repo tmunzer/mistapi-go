@@ -1,8 +1,6 @@
 
 # Mxedge Tunterm Igmp Snooping Querier
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxedgeTuntermIgmpSnoopingQuerier`
@@ -16,7 +14,6 @@
 | `QueryInterval` | `*int` | Optional | Querier's query interval, in seconds |
 | `Robustness` | `*int` | Optional | Querier's robustness<br><br>**Constraints**: `>= 1`, `<= 7` |
 | `Version` | `*int` | Optional | Querier's maximum protocol version |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
   "mtu": 1500,
   "query_interval": 125,
   "version": 3,
-  "robustness": 7,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "robustness": 7
 }
 ```
 

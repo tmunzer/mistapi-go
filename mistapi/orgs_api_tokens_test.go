@@ -4,10 +4,8 @@ package mistapi
 
 import (
 	"context"
-	"encoding/json"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
-	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
 
@@ -170,12 +168,8 @@ func TestOrgsAPITokensTestUpdateOrgApiToken(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.OrgApitoken
-	errBody := json.Unmarshal([]byte(`{"name":"org_token_xyz","privileges":[{"org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","role":"admin","scope":"org"}]}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	resp, err := orgsApiTokens.UpdateOrgApiToken(ctx, orgId, apitokenId, &body)
+
+	resp, err := orgsApiTokens.UpdateOrgApiToken(ctx, orgId, apitokenId, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -30,7 +30,7 @@ AddOrgTicketComment(
     orgId uuid.UUID,
     ticketId uuid.UUID,
     comment *string,
-    file *models.FileWrapper) (
+    file *string) (
     models.ApiResponse[models.Ticket],
     error)
 ```
@@ -42,7 +42,7 @@ AddOrgTicketComment(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
 | `comment` | `*string` | Form, Optional | - |
-| `file` | `*models.FileWrapper` | Form, Optional | - |
+| `file` | `*string` | Form, Optional | - |
 
 ## Response Type
 
@@ -78,8 +78,7 @@ if err != nil {
       "attachments": [
         {
           "content_type": "string",
-          "content_url": "string",
-          "size": 0
+          "content_url": "string"
         }
       ],
       "author": "string",
@@ -242,8 +241,7 @@ if err != nil {
       "attachments": [
         {
           "content_type": "string",
-          "content_url": "string",
-          "size": 0
+          "content_url": "string"
         }
       ],
       "author": "string",
@@ -332,8 +330,7 @@ if err != nil {
       "attachments": [
         {
           "content_type": "string",
-          "content_url": "string",
-          "size": 0
+          "content_url": "string"
         }
       ],
       "author": "string",
@@ -493,8 +490,7 @@ if err != nil {
         "attachments": [
           {
             "content_type": "string",
-            "content_url": "string",
-            "size": 0
+            "content_url": "string"
           }
         ],
         "author": "string",
@@ -586,8 +582,7 @@ if err != nil {
       "attachments": [
         {
           "content_type": "string",
-          "content_url": "string",
-          "size": 0
+          "content_url": "string"
         }
       ],
       "author": "string",
@@ -625,7 +620,7 @@ UploadOrgTicketAttachment(
     ctx context.Context,
     orgId uuid.UUID,
     ticketId uuid.UUID,
-    file *models.FileWrapper) (
+    file *string) (
     http.Response,
     error)
 ```
@@ -636,7 +631,7 @@ UploadOrgTicketAttachment(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
+| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
 
 ## Response Type
 

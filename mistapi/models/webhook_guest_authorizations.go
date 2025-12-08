@@ -8,12 +8,12 @@ import (
 )
 
 // WebhookGuestAuthorizations represents a WebhookGuestAuthorizations struct.
-// guest-authorizations webhook sample
+// Sample of the `guest-authorizations` webhook payload.
 type WebhookGuestAuthorizations struct {
 	// List of events
-	Events               []WebhookGuestAuthorizationsEvent `json:"events,omitempty"`
-	Topic                *string                           `json:"topic,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	Events               []WebhookGuestAuthorizationsEvent    `json:"events,omitempty"`
+	Topic                *WebhookGuestAuthorizationsTopicEnum `json:"topic,omitempty"`
+	AdditionalProperties map[string]interface{}               `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookGuestAuthorizations,
@@ -70,6 +70,6 @@ func (w *WebhookGuestAuthorizations) UnmarshalJSON(input []byte) error {
 
 // tempWebhookGuestAuthorizations is a temporary struct used for validating the fields of WebhookGuestAuthorizations.
 type tempWebhookGuestAuthorizations struct {
-	Events []WebhookGuestAuthorizationsEvent `json:"events,omitempty"`
-	Topic  *string                           `json:"topic,omitempty"`
+	Events []WebhookGuestAuthorizationsEvent    `json:"events,omitempty"`
+	Topic  *WebhookGuestAuthorizationsTopicEnum `json:"topic,omitempty"`
 }

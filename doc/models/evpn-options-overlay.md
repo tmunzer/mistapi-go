@@ -1,8 +1,6 @@
 
 # Evpn Options Overlay
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EvpnOptionsOverlay`
@@ -12,17 +10,12 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `As` | `*int` | Optional | Overlay BGP Local AS Number<br><br>**Default**: `65000`<br><br>**Constraints**: `>= 1`, `<= 65535` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "as": 65000,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "as": 65000
 }
 ```
 

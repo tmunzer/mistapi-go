@@ -1,8 +1,6 @@
 
 # Sle Impact Summary
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactSummary`
@@ -21,7 +19,6 @@
 | `Metric` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Start` | `float64` | Required | - |
 | `Wlan` | [`[]models.SleImpactSummaryWlanItem`](../../doc/models/sle-impact-summary-wlan-item.md) | Required | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@
       "degraded": 149.14,
       "duration": 22.2,
       "name": "name4",
-      "total": 78.86,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "total": 78.86
     }
   ],
   "band": [
@@ -46,11 +39,7 @@
       "degraded": 250.12,
       "duration": 123.18,
       "name": "name2",
-      "total": 22.12,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "total": 22.12
     }
   ],
   "classifier": "classifier4",
@@ -60,11 +49,7 @@
       "device_os": "device_os0",
       "duration": 223.16,
       "name": "name0",
-      "total": 122.1,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "total": 122.1
     }
   ],
   "device_type": [
@@ -73,11 +58,7 @@
       "device_type": "device_type0",
       "duration": 4.96,
       "name": "name0",
-      "total": 159.9,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "total": 159.9
     }
   ],
   "end": 186.58,
@@ -90,17 +71,9 @@
       "duration": 42.96,
       "name": "name0",
       "total": 197.9,
-      "wlan_id": "wlan_id2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wlan_id": "wlan_id2"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

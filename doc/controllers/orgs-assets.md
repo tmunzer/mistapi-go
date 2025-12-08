@@ -230,7 +230,7 @@ name,mac
 ImportOrgAssets(
     ctx context.Context,
     orgId uuid.UUID,
-    file *models.FileWrapper) (
+    file *string) (
     http.Response,
     error)
 ```
@@ -240,7 +240,7 @@ ImportOrgAssets(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | CSV file |
+| `file` | `*string` | Form, Optional | CSV file |
 
 ## Response Type
 

@@ -37,27 +37,15 @@
   "categories": [
     {
       "category": "executable",
-      "hash_lookup_only": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "hash_lookup_only": false
     },
     {
       "category": "executable",
-      "hash_lookup_only": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "hash_lookup_only": false
     },
     {
       "category": "executable",
-      "hash_lookup_only": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "hash_lookup_only": false
     }
   ],
   "created_time": 134.84,

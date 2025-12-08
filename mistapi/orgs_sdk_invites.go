@@ -316,14 +316,14 @@ func (o *OrgsSDKInvites) SendSdkInviteEmail(
 }
 
 // GetSdkInviteQrCode takes context, orgId, sdkinviteId as parameters and
-// returns an models.ApiResponse with []byte data and
+// returns an models.ApiResponse with string data and
 // an error if there was an issue with the request or response.
 // Revoke SDK Invite
 func (o *OrgsSDKInvites) GetSdkInviteQrCode(
 	ctx context.Context,
 	orgId uuid.UUID,
 	sdkinviteId uuid.UUID) (
-	models.ApiResponse[[]byte],
+	models.ApiResponse[string],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/sdkinvites/%v/qrcode")
 	req.AppendTemplateParams(orgId, sdkinviteId)
@@ -345,11 +345,13 @@ func (o *OrgsSDKInvites) GetSdkInviteQrCode(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	stream, resp, err := req.CallAsStream()
+	str, resp, err := req.CallAsText()
+	var result string = str
+
 	if err != nil {
-		return models.NewApiResponse(stream, resp), err
+		return models.NewApiResponse(result, resp), err
 	}
-	return models.NewApiResponse(stream, resp), err
+	return models.NewApiResponse(result, resp), err
 }
 
 // SendSdkInviteSms takes context, orgId, sdkinviteId, body as parameters and

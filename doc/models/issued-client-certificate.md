@@ -1,8 +1,6 @@
 
 # Issued Client Certificate
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `IssuedClientCertificate`
@@ -11,26 +9,23 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `CertProvider` | `*string` | Optional | - |
 | `CommonName` | `*string` | Optional | - |
-| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `CreatedTime` | `*string` | Optional | When the certificate has been created |
 | `DeviceId` | `*uuid.UUID` | Optional | - |
-| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
+| `ExpireTime` | `*string` | Optional | When the certificate will expire |
 | `SerialNumber` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "cert_provider": "byod",
   "common_name": "john@corp.com",
+  "created_time": "2025-08-18 10:10:30.949165+00:00",
   "device_id": "00000000-0000-0000-1000-d8695a0f9e61",
-  "serial_number": "13 00 13 03 23 EE D5 84 01",
-  "created_time": 105.92,
-  "modified_time": 229.04,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "expire_time": "2026-08-18 10:06:00+00:00",
+  "serial_number": "91984382552102771A2B3C4E5F224719956718003374658"
 }
 ```
 

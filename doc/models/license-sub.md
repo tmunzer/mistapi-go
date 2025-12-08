@@ -1,8 +1,6 @@
 
 # License Sub
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `LicenseSub`
@@ -22,7 +20,6 @@
 | `StartTime` | `*int` | Optional | Start date of the license term |
 | `SubscriptionId` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](../../doc/controllers/constants-definitions.md#list-license-types) API request. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@
   "created_time": 46.48,
   "end_time": 18,
   "modified_time": 32.48,
-  "order_id": "order_id8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "order_id": "order_id8"
 }
 ```
 

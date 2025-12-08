@@ -1,9 +1,7 @@
 
 # Webhook Location Centrak
 
-location webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `location-centrak` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ location webhook sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"location"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"location-centrak"` |
 
 ## Example (as JSON)
 
@@ -23,32 +20,14 @@ location webhook sample
 {
   "events": [
     {
+      "mac": "mac4",
       "map_id": "map_id4",
       "mfg_company_id": 234,
       "mfg_data": "mfg_data2",
-      "timestamp": 188.18,
-      "wifi_beacon_extended_info": [
-        {
-          "frame_ctrl": 244,
-          "payload": "payload0",
-          "seq_ctrl": 156,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "site_id": "0000245a-0000-0000-0000-000000000000"
     }
   ],
-  "topic": "location",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "location-centrak"
 }
 ```
 

@@ -3,8 +3,6 @@
 
 Rogue site settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteRogue`
@@ -22,7 +20,6 @@ Rogue site settings
 | `MinRssi` | `*int` | Optional | Minimum RSSI for an AP to be considered neighbor (ignoring APs that’s far away)<br><br>**Default**: `-80`<br><br>**Constraints**: `>= -85` |
 | `WhitelistedBssids` | `[]string` | Optional | list of BSSIDs to whitelist. Ex: "cc-:8e-:6f-:d4-:bf-:16", "cc-8e-6f-d4-bf-16", "cc-73-*", "cc:82:*" |
 | `WhitelistedSsids` | `[]string` | Optional | List of SSIDs to whitelist |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,11 +42,7 @@ Rogue site settings
   ],
   "allowed_vlan_ids": [
     19
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

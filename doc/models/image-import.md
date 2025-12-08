@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `[]byte` | Required | Binary file |
+| `File` | `string` | Required | Binary file |
 | `Json` | `*string` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -19,7 +19,7 @@
 
 ```json
 {
-  "file": "data:text/plain;name=dummy_file;base64,",
+  "file": "file0",
   "json": "json8",
   "exampleAdditionalProperty": {
     "key1": "val1",

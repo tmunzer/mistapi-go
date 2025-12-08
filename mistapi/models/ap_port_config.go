@@ -42,8 +42,8 @@ type ApPortConfig struct {
 	// * if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.
 	// * if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)
 	VlanId *int `json:"vlan_id,omitempty"`
-	// If `forwarding`==`limited`
-	VlanIds []int `json:"vlan_ids,omitempty"`
+	// If `forwarding`==`limited`, comma separated list of additional vlan ids allowed on this port
+	VlanIds *string `json:"vlan_ids,omitempty"`
 	// If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
 	WxtunnelId *uuid.UUID `json:"wxtunnel_id,omitempty"`
 	// If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session
@@ -179,7 +179,7 @@ type tempApPortConfig struct {
 	RadiusConfig     *RadiusConfig                    `json:"radius_config,omitempty"`
 	Radsec           *Radsec                          `json:"radsec,omitempty"`
 	VlanId           *int                             `json:"vlan_id,omitempty"`
-	VlanIds          []int                            `json:"vlan_ids,omitempty"`
+	VlanIds          *string                          `json:"vlan_ids,omitempty"`
 	WxtunnelId       *uuid.UUID                       `json:"wxtunnel_id,omitempty"`
 	WxtunnelRemoteId *string                          `json:"wxtunnel_remote_id,omitempty"`
 }

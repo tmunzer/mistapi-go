@@ -10,7 +10,7 @@ import (
 // PskPortalImage represents a PskPortalImage struct.
 type PskPortalImage struct {
 	// Binary file
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 	// JSON string describing the upload
 	Json                 *string                `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -70,6 +70,6 @@ func (p *PskPortalImage) UnmarshalJSON(input []byte) error {
 
 // tempPskPortalImage is a temporary struct used for validating the fields of PskPortalImage.
 type tempPskPortalImage struct {
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 	Json *string `json:"json,omitempty"`
 }

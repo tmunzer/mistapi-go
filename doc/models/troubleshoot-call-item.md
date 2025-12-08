@@ -1,8 +1,6 @@
 
 # Troubleshoot Call Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TroubleshootCallItem`
@@ -45,7 +43,6 @@
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `VideoIn` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
 | `VideoOut` | [`*models.CallTroubleshootData`](../../doc/models/call-troubleshoot-data.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -85,26 +82,14 @@
     "ap_rtt": 133.36,
     "client_cpu": 164.78,
     "client_n_streams": 206.36,
-    "client_radio_band": 43.4,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "client_radio_band": 43.4
   },
   "audio_out": {
     "ap_num_clients": 71.16,
     "ap_rtt": 52.2,
     "client_cpu": 245.94,
     "client_n_streams": 125.2,
-    "client_radio_band": 218.24,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "client_radio_band": 218.24
   }
 }
 ```

@@ -1,8 +1,6 @@
 
 # Response Log Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseLogSearch`
@@ -14,10 +12,9 @@
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.ResponseLogSearchItem`](../../doc/models/response-log-search-item.md) | Required | **Constraints**: *Unique Items Required* |
+| `Results` | [`[]models.LogEvent`](../../doc/models/log-event.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,20 +38,12 @@
         "key1": "val1",
         "key2": "val2"
       },
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
   "start": 6,
   "total": 40,
-  "next": "next8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next8"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Idp Profile Matching
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `IdpProfileMatching`
@@ -14,7 +12,6 @@
 | `AttackName` | `[]string` | Optional | - |
 | `DstSubnet` | `[]string` | Optional | - |
 | `Severity` | [`[]models.IdpProfileMatchingSeverityValueEnum`](../../doc/models/idp-profile-matching-severity-value-enum.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   ],
   "severity": [
     "major"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

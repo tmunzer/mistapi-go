@@ -9,9 +9,8 @@ import (
 
 // ResponseAsyncLicense represents a ResponseAsyncLicense struct.
 type ResponseAsyncLicense struct {
-	Completed []string `json:"completed,omitempty"`
-	// detail claim status per device
-	Detail *ResponseAsyncLicenseDetail `json:"detail,omitempty"`
+	Completed []string                     `json:"completed,omitempty"`
+	Details   []ResponseAsyncLicenseDetail `json:"details,omitempty"`
 	// Current failed number of device
 	Failed *int `json:"failed,omitempty"`
 	// Current incompleted lists (macs)
@@ -35,8 +34,8 @@ type ResponseAsyncLicense struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseAsyncLicense) String() string {
 	return fmt.Sprintf(
-		"ResponseAsyncLicense[Completed=%v, Detail=%v, Failed=%v, Incompleted=%v, Processed=%v, ScheduledAt=%v, Status=%v, Succeed=%v, Timestamp=%v, Total=%v, AdditionalProperties=%v]",
-		r.Completed, r.Detail, r.Failed, r.Incompleted, r.Processed, r.ScheduledAt, r.Status, r.Succeed, r.Timestamp, r.Total, r.AdditionalProperties)
+		"ResponseAsyncLicense[Completed=%v, Details=%v, Failed=%v, Incompleted=%v, Processed=%v, ScheduledAt=%v, Status=%v, Succeed=%v, Timestamp=%v, Total=%v, AdditionalProperties=%v]",
+		r.Completed, r.Details, r.Failed, r.Incompleted, r.Processed, r.ScheduledAt, r.Status, r.Succeed, r.Timestamp, r.Total, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseAsyncLicense.
@@ -45,7 +44,7 @@ func (r ResponseAsyncLicense) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"completed", "detail", "failed", "incompleted", "processed", "scheduled_at", "status", "succeed", "timestamp", "total"); err != nil {
+		"completed", "details", "failed", "incompleted", "processed", "scheduled_at", "status", "succeed", "timestamp", "total"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -58,8 +57,8 @@ func (r ResponseAsyncLicense) toMap() map[string]any {
 	if r.Completed != nil {
 		structMap["completed"] = r.Completed
 	}
-	if r.Detail != nil {
-		structMap["detail"] = r.Detail.toMap()
+	if r.Details != nil {
+		structMap["details"] = r.Details
 	}
 	if r.Failed != nil {
 		structMap["failed"] = r.Failed
@@ -96,14 +95,14 @@ func (r *ResponseAsyncLicense) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "completed", "detail", "failed", "incompleted", "processed", "scheduled_at", "status", "succeed", "timestamp", "total")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "completed", "details", "failed", "incompleted", "processed", "scheduled_at", "status", "succeed", "timestamp", "total")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
 	r.Completed = temp.Completed
-	r.Detail = temp.Detail
+	r.Details = temp.Details
 	r.Failed = temp.Failed
 	r.Incompleted = temp.Incompleted
 	r.Processed = temp.Processed
@@ -118,7 +117,7 @@ func (r *ResponseAsyncLicense) UnmarshalJSON(input []byte) error {
 // tempResponseAsyncLicense is a temporary struct used for validating the fields of ResponseAsyncLicense.
 type tempResponseAsyncLicense struct {
 	Completed   []string                        `json:"completed,omitempty"`
-	Detail      *ResponseAsyncLicenseDetail     `json:"detail,omitempty"`
+	Details     []ResponseAsyncLicenseDetail    `json:"details,omitempty"`
 	Failed      *int                            `json:"failed,omitempty"`
 	Incompleted []string                        `json:"incompleted,omitempty"`
 	Processed   *int                            `json:"processed,omitempty"`

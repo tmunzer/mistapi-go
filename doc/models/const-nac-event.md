@@ -1,8 +1,6 @@
 
 # Const Nac Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstNacEvent`
@@ -29,7 +27,6 @@
 | `Type` | `*string` | Optional | - |
 | `Username` | `*string` | Optional | - |
 | `Wcid` | `*uuid.UUID` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,11 +50,7 @@
   "ssid": "Test_Suriya-SSID",
   "type": "NAC_CLIENT_CERT_CHECK_SUCCESS",
   "username": "suriyas@juniper.net",
-  "wcid": "b43637b0-f0d9-0a1d-1ec2-73c394a9f679",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wcid": "b43637b0-f0d9-0a1d-1ec2-73c394a9f679"
 }
 ```
 

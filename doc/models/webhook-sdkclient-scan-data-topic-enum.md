@@ -1,7 +1,7 @@
 
 # Webhook Sdkclient Scan Data Topic Enum
 
-enum: `sdkclient_scan_data`
+enum: `sdkclient-scan-data`
 
 ## Enumeration
 
@@ -11,5 +11,5 @@ enum: `sdkclient_scan_data`
 
 | Name |
 |  --- |
-| `sdkclient_scan_data` |
+| `sdkclient-scan-data` |
 

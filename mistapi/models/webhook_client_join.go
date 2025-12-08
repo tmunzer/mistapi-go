@@ -10,11 +10,12 @@ import (
 )
 
 // WebhookClientJoin represents a WebhookClientJoin struct.
-// Client join webhook sample
+// Sample of the `client-join` webhook payload.
 type WebhookClientJoin struct {
-	Events               []WebhookClientJoinEvent `json:"events"`
-	Topic                string                   `json:"topic"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	Events []WebhookClientJoinEvent `json:"events"`
+	// enum: `client-join`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookClientJoin,

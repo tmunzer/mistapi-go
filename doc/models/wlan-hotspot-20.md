@@ -3,8 +3,6 @@
 
 Hostspot 2.0 wlan settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanHotspot20`
@@ -19,7 +17,6 @@ Hostspot 2.0 wlan settings
 | `Operators` | [`[]models.WlanHotspot20OperatorsItemEnum`](../../doc/models/wlan-hotspot-20-operators-item-enum.md) | Optional | List of operators to support |
 | `Rcoi` | `[]string` | Optional | - |
 | `VenueName` | `*string` | Optional | Venue name, default is site name |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,11 +38,7 @@ Hostspot 2.0 wlan settings
     "nai_realms5",
     "nai_realms4",
     "nai_realms3"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

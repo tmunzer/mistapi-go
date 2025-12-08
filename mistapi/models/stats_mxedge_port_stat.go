@@ -9,15 +9,18 @@ import (
 
 // StatsMxedgePortStat represents a StatsMxedgePortStat struct.
 type StatsMxedgePortStat struct {
-	FullDuplex *bool   `json:"full_duplex,omitempty"`
-	Mac        *string `json:"mac,omitempty"`
+	FullDuplex *bool                         `json:"full_duplex,omitempty"`
+	Lacp       *StatsMxedgePortStatLacp      `json:"lacp,omitempty"`
+	LldpStats  *StatsMxedgePortStatLldpStats `json:"lldp_stats,omitempty"`
+	Mac        *string                       `json:"mac,omitempty"`
 	// Amount of traffic received since connection
 	RxBytes  Optional[int64] `json:"rx_bytes"`
 	RxErrors *int            `json:"rx_errors,omitempty"`
 	// Amount of packets received since connection
-	RxPkts Optional[int64] `json:"rx_pkts"`
-	Speed  *int            `json:"speed,omitempty"`
-	State  *string         `json:"state,omitempty"`
+	RxPkts Optional[int64]         `json:"rx_pkts"`
+	Sfp    *StatsMxedgePortStatSfp `json:"sfp,omitempty"`
+	Speed  *int                    `json:"speed,omitempty"`
+	State  *string                 `json:"state,omitempty"`
 	// Amount of traffic sent since connection
 	TxBytes  Optional[int64] `json:"tx_bytes"`
 	TxErrors *int            `json:"tx_errors,omitempty"`
@@ -31,8 +34,8 @@ type StatsMxedgePortStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsMxedgePortStat) String() string {
 	return fmt.Sprintf(
-		"StatsMxedgePortStat[FullDuplex=%v, Mac=%v, RxBytes=%v, RxErrors=%v, RxPkts=%v, Speed=%v, State=%v, TxBytes=%v, TxErrors=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
-		s.FullDuplex, s.Mac, s.RxBytes, s.RxErrors, s.RxPkts, s.Speed, s.State, s.TxBytes, s.TxErrors, s.TxPkts, s.Up, s.AdditionalProperties)
+		"StatsMxedgePortStat[FullDuplex=%v, Lacp=%v, LldpStats=%v, Mac=%v, RxBytes=%v, RxErrors=%v, RxPkts=%v, Sfp=%v, Speed=%v, State=%v, TxBytes=%v, TxErrors=%v, TxPkts=%v, Up=%v, AdditionalProperties=%v]",
+		s.FullDuplex, s.Lacp, s.LldpStats, s.Mac, s.RxBytes, s.RxErrors, s.RxPkts, s.Sfp, s.Speed, s.State, s.TxBytes, s.TxErrors, s.TxPkts, s.Up, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedgePortStat.
@@ -41,7 +44,7 @@ func (s StatsMxedgePortStat) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"full_duplex", "mac", "rx_bytes", "rx_errors", "rx_pkts", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up"); err != nil {
+		"full_duplex", "lacp", "lldp_stats", "mac", "rx_bytes", "rx_errors", "rx_pkts", "sfp", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -53,6 +56,12 @@ func (s StatsMxedgePortStat) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	if s.FullDuplex != nil {
 		structMap["full_duplex"] = s.FullDuplex
+	}
+	if s.Lacp != nil {
+		structMap["lacp"] = s.Lacp.toMap()
+	}
+	if s.LldpStats != nil {
+		structMap["lldp_stats"] = s.LldpStats.toMap()
 	}
 	if s.Mac != nil {
 		structMap["mac"] = s.Mac
@@ -73,6 +82,9 @@ func (s StatsMxedgePortStat) toMap() map[string]any {
 		} else {
 			structMap["rx_pkts"] = nil
 		}
+	}
+	if s.Sfp != nil {
+		structMap["sfp"] = s.Sfp.toMap()
 	}
 	if s.Speed != nil {
 		structMap["speed"] = s.Speed
@@ -111,17 +123,20 @@ func (s *StatsMxedgePortStat) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "mac", "rx_bytes", "rx_errors", "rx_pkts", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "full_duplex", "lacp", "lldp_stats", "mac", "rx_bytes", "rx_errors", "rx_pkts", "sfp", "speed", "state", "tx_bytes", "tx_errors", "tx_pkts", "up")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.FullDuplex = temp.FullDuplex
+	s.Lacp = temp.Lacp
+	s.LldpStats = temp.LldpStats
 	s.Mac = temp.Mac
 	s.RxBytes = temp.RxBytes
 	s.RxErrors = temp.RxErrors
 	s.RxPkts = temp.RxPkts
+	s.Sfp = temp.Sfp
 	s.Speed = temp.Speed
 	s.State = temp.State
 	s.TxBytes = temp.TxBytes
@@ -133,15 +148,18 @@ func (s *StatsMxedgePortStat) UnmarshalJSON(input []byte) error {
 
 // tempStatsMxedgePortStat is a temporary struct used for validating the fields of StatsMxedgePortStat.
 type tempStatsMxedgePortStat struct {
-	FullDuplex *bool           `json:"full_duplex,omitempty"`
-	Mac        *string         `json:"mac,omitempty"`
-	RxBytes    Optional[int64] `json:"rx_bytes"`
-	RxErrors   *int            `json:"rx_errors,omitempty"`
-	RxPkts     Optional[int64] `json:"rx_pkts"`
-	Speed      *int            `json:"speed,omitempty"`
-	State      *string         `json:"state,omitempty"`
-	TxBytes    Optional[int64] `json:"tx_bytes"`
-	TxErrors   *int            `json:"tx_errors,omitempty"`
-	TxPkts     Optional[int64] `json:"tx_pkts"`
-	Up         *bool           `json:"up,omitempty"`
+	FullDuplex *bool                         `json:"full_duplex,omitempty"`
+	Lacp       *StatsMxedgePortStatLacp      `json:"lacp,omitempty"`
+	LldpStats  *StatsMxedgePortStatLldpStats `json:"lldp_stats,omitempty"`
+	Mac        *string                       `json:"mac,omitempty"`
+	RxBytes    Optional[int64]               `json:"rx_bytes"`
+	RxErrors   *int                          `json:"rx_errors,omitempty"`
+	RxPkts     Optional[int64]               `json:"rx_pkts"`
+	Sfp        *StatsMxedgePortStatSfp       `json:"sfp,omitempty"`
+	Speed      *int                          `json:"speed,omitempty"`
+	State      *string                       `json:"state,omitempty"`
+	TxBytes    Optional[int64]               `json:"tx_bytes"`
+	TxErrors   *int                          `json:"tx_errors,omitempty"`
+	TxPkts     Optional[int64]               `json:"tx_pkts"`
+	Up         *bool                         `json:"up,omitempty"`
 }

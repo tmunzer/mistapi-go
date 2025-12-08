@@ -189,7 +189,7 @@ if err != nil {
     "enable": true,
     "rules": [
       {
-        "match_device_type": "ap",
+        "match_device": "ap",
         "prefix": "MIST-",
         "src": "lldp_port_desc"
       }
@@ -257,7 +257,7 @@ if err != nil {
   "name": "string",
   "password_policy": {
     "enabled": true,
-    "freshness": 0,
+    "expiry_in_days": 180,
     "min_length": 8,
     "requires_special_char": true,
     "requires_two_factor_auth": true
@@ -435,7 +435,7 @@ if err != nil {
     "enable": true,
     "rules": [
       {
-        "match_device_type": "ap",
+        "match_device": "ap",
         "prefix": "MIST-",
         "src": "lldp_port_desc"
       }
@@ -500,7 +500,7 @@ if err != nil {
   "name": "string",
   "password_policy": {
     "enabled": true,
-    "freshness": 0,
+    "expiry_in_days": 365,
     "min_length": 8,
     "requires_special_char": true,
     "requires_two_factor_auth": true

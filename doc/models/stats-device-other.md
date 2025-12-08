@@ -1,8 +1,6 @@
 
 # Stats Device Other
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsDeviceOther`
@@ -24,7 +22,6 @@
 | `Vendor` | `*string` | Optional | - |
 | `VendorSpecific` | [`*models.StatsDeviceOtherVendorSpecific`](../../doc/models/stats-device-other-vendor-specific.md) | Optional | When `vendor`==`cradlepoint` |
 | `Version` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -44,21 +41,13 @@
       "mac": "mac2",
       "name": "name8",
       "port_id": "port_id8",
-      "type": "type8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type8"
     },
     "key1": {
       "mac": "mac2",
       "name": "name8",
       "port_id": "port_id8",
-      "type": "type8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type8"
     }
   },
   "interfaces": {
@@ -67,27 +56,15 @@
       "bytes_out": 188,
       "carrier": "carrier6",
       "imei": "imei8",
-      "imsi": "imsi2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "imsi": "imsi2"
     },
     "key1": {
       "bytes_in": 48,
       "bytes_out": 188,
       "carrier": "carrier6",
       "imei": "imei8",
-      "imsi": "imsi2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "imsi": "imsi2"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

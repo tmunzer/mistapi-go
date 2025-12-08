@@ -1,7 +1,7 @@
 
 # Const Insight Metrics Property Scope Enum
 
-enum: `ap`, `client`, `device`, `mxedge`, `site`, `switch`
+enum: `ap`, `client`, `device`, `gateway`, `map`, `msp`, `mxcluster`, `mxedge`, `org`, `otherdevice`, `rssizone`, `sdkclient`, `site`, `switch`, `wlan`, `zone`
 
 ## Enumeration
 
@@ -14,7 +14,17 @@ enum: `ap`, `client`, `device`, `mxedge`, `site`, `switch`
 | `ap` |
 | `client` |
 | `device` |
+| `gateway` |
+| `map` |
+| `msp` |
+| `mxcluster` |
 | `mxedge` |
+| `org` |
+| `otherdevice` |
+| `rssizone` |
+| `sdkclient` |
 | `site` |
 | `switch` |
+| `wlan` |
+| `zone` |
 

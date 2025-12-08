@@ -9,8 +9,8 @@ import (
 
 // PskPortalPassphraseRules represents a PskPortalPassphraseRules struct.
 type PskPortalPassphraseRules struct {
-	AlphabertsEnabled *bool `json:"alphaberts_enabled,omitempty"`
-	Length            *int  `json:"length,omitempty"`
+	AlphabetsEnabled *bool `json:"alphabets_enabled,omitempty"`
+	Length           *int  `json:"length,omitempty"`
 	// For valid `max_length` and `min_length`, passphrase size is set randomly from that range.
 	// - if `max_length` and/or `min_length` are invalid, passphrase size is equal to `length` parameter
 	// - if `length` is not set or is invalid, default passphrase size is 8.
@@ -31,8 +31,8 @@ type PskPortalPassphraseRules struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PskPortalPassphraseRules) String() string {
 	return fmt.Sprintf(
-		"PskPortalPassphraseRules[AlphabertsEnabled=%v, Length=%v, MaxLength=%v, MinLength=%v, NumericsEnabled=%v, Symbols=%v, SymbolsEnabled=%v, AdditionalProperties=%v]",
-		p.AlphabertsEnabled, p.Length, p.MaxLength, p.MinLength, p.NumericsEnabled, p.Symbols, p.SymbolsEnabled, p.AdditionalProperties)
+		"PskPortalPassphraseRules[AlphabetsEnabled=%v, Length=%v, MaxLength=%v, MinLength=%v, NumericsEnabled=%v, Symbols=%v, SymbolsEnabled=%v, AdditionalProperties=%v]",
+		p.AlphabetsEnabled, p.Length, p.MaxLength, p.MinLength, p.NumericsEnabled, p.Symbols, p.SymbolsEnabled, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortalPassphraseRules.
@@ -41,7 +41,7 @@ func (p PskPortalPassphraseRules) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"alphaberts_enabled", "length", "max_length", "min_length", "numerics_enabled", "symbols", "symbols_enabled"); err != nil {
+		"alphabets_enabled", "length", "max_length", "min_length", "numerics_enabled", "symbols", "symbols_enabled"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -51,8 +51,8 @@ func (p PskPortalPassphraseRules) MarshalJSON() (
 func (p PskPortalPassphraseRules) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, p.AdditionalProperties)
-	if p.AlphabertsEnabled != nil {
-		structMap["alphaberts_enabled"] = p.AlphabertsEnabled
+	if p.AlphabetsEnabled != nil {
+		structMap["alphabets_enabled"] = p.AlphabetsEnabled
 	}
 	if p.Length != nil {
 		structMap["length"] = p.Length
@@ -83,13 +83,13 @@ func (p *PskPortalPassphraseRules) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alphaberts_enabled", "length", "max_length", "min_length", "numerics_enabled", "symbols", "symbols_enabled")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "alphabets_enabled", "length", "max_length", "min_length", "numerics_enabled", "symbols", "symbols_enabled")
 	if err != nil {
 		return err
 	}
 	p.AdditionalProperties = additionalProperties
 
-	p.AlphabertsEnabled = temp.AlphabertsEnabled
+	p.AlphabetsEnabled = temp.AlphabetsEnabled
 	p.Length = temp.Length
 	p.MaxLength = temp.MaxLength
 	p.MinLength = temp.MinLength
@@ -101,11 +101,11 @@ func (p *PskPortalPassphraseRules) UnmarshalJSON(input []byte) error {
 
 // tempPskPortalPassphraseRules is a temporary struct used for validating the fields of PskPortalPassphraseRules.
 type tempPskPortalPassphraseRules struct {
-	AlphabertsEnabled *bool   `json:"alphaberts_enabled,omitempty"`
-	Length            *int    `json:"length,omitempty"`
-	MaxLength         *int    `json:"max_length,omitempty"`
-	MinLength         *int    `json:"min_length,omitempty"`
-	NumericsEnabled   *bool   `json:"numerics_enabled,omitempty"`
-	Symbols           *string `json:"symbols,omitempty"`
-	SymbolsEnabled    *bool   `json:"symbols_enabled,omitempty"`
+	AlphabetsEnabled *bool   `json:"alphabets_enabled,omitempty"`
+	Length           *int    `json:"length,omitempty"`
+	MaxLength        *int    `json:"max_length,omitempty"`
+	MinLength        *int    `json:"min_length,omitempty"`
+	NumericsEnabled  *bool   `json:"numerics_enabled,omitempty"`
+	Symbols          *string `json:"symbols,omitempty"`
+	SymbolsEnabled   *bool   `json:"symbols_enabled,omitempty"`
 }

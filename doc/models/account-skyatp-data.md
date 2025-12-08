@@ -26,11 +26,7 @@
     "third_party_threat_feeds": [
       "third_party_threat_feeds0",
       "third_party_threat_feeds1"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

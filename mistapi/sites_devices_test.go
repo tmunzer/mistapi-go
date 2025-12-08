@@ -4,7 +4,6 @@ package mistapi
 
 import (
 	"context"
-	"encoding/json"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
 	"github.com/tmunzer/mistapi-go/mistapi/models"
@@ -275,7 +274,7 @@ func TestSitesDevicesTestSearchSiteDeviceEvents(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1531862583,"limit":2,"next":"/api/v1/sites/8aaba0aa-09cc-44bd-9709-33b98040550c/devices/events/search?ap=5c5b350e0001&end=1531855849.000&limit=2&start=1531776183.0","results":[{"last_reboot_time":1531854327,"text":"Success","timestamp":1531855849.226722,"type":"AP_CONNECT_STATUS","type_code":2002},{"timestamp":1531854326,"type":"AP_CONFIGURED"}],"start":1531776183,"total":14}`
+	expected := `{"end":1531862583,"limit":2,"next":"/api/v1/sites/8aaba0aa-09cc-44bd-9709-33b98040550c/devices/events/search?ap=5c5b350e0001&end=1531855849.000&limit=2&start=1531776183.0","results":[{"chassis_mac":"60c78d939c0f","count":1,"device_type":"switch","mac":"60c78d939c0f","model":"EX4100-48MP","org_id":"9777c1a0-6ef6-11e6-8bbf-02e208b2d34f","port_id":"ge-0/0/17","site_id":"978c48e6-6ef6-11e6-8bbf-02e208b2d34f","text":"ifIndex 533, ifAdminStatus up(1), ifOperStatus down(2), ifName ge-0/0/17","timestamp":1764236687.435,"type":"SW_PORT_DOWN","version":"23.4R2-S4.11"},{"ap":"5c5b35d0077b","device_type":"ap","mac":"5c5b35d0077b","model":"AP43","org_id":"9777c1a0-6ef6-11e6-8bbf-02e208b2d34f","site_id":"46fc665e-9706-4296-8fe2-78f42f2e67e4","timestamp":1764235684.467825,"type":"AP_CONFIGURED"}],"start":1531776183,"total":14}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -303,7 +302,7 @@ func TestSitesDevicesTestSearchSiteDeviceEvents1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1531862583,"limit":2,"next":"/api/v1/sites/8aaba0aa-09cc-44bd-9709-33b98040550c/devices/events/search?ap=5c5b350e0001&end=1531855849.000&limit=2&start=1531776183.0","results":[{"last_reboot_time":1531854327,"text":"Success","timestamp":1531855849.226722,"type":"AP_CONNECT_STATUS","type_code":2002},{"timestamp":1531854326,"type":"AP_CONFIGURED"}],"start":1531776183,"total":14}`
+	expected := `{"end":1531862583,"limit":2,"next":"/api/v1/sites/8aaba0aa-09cc-44bd-9709-33b98040550c/devices/events/search?ap=5c5b350e0001&end=1531855849.000&limit=2&start=1531776183.0","results":[{"chassis_mac":"60c78d939c0f","count":1,"device_type":"switch","mac":"60c78d939c0f","model":"EX4100-48MP","org_id":"9777c1a0-6ef6-11e6-8bbf-02e208b2d34f","port_id":"ge-0/0/17","site_id":"978c48e6-6ef6-11e6-8bbf-02e208b2d34f","text":"ifIndex 533, ifAdminStatus up(1), ifOperStatus down(2), ifName ge-0/0/17","timestamp":1764236687.435,"type":"SW_PORT_DOWN","version":"23.4R2-S4.11"},{"ap":"5c5b35d0077b","device_type":"ap","mac":"5c5b35d0077b","model":"AP43","org_id":"9777c1a0-6ef6-11e6-8bbf-02e208b2d34f","site_id":"46fc665e-9706-4296-8fe2-78f42f2e67e4","timestamp":1764235684.467825,"type":"AP_CONFIGURED"}],"start":1531776183,"total":14}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -489,7 +488,7 @@ func TestSitesDevicesTestSearchSiteDevices(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"next":"string","results":[{"hostname":["AP41-STB-3E5299-WH-2001","AP41-STB-3E5299-WH-50","AP41-STB-3E5299","5c5b353e5299"],"ip":"10.2.16.205","lldp_mgmt_addr":"10.2.10.139","lldp_port_desc":"GigabitEthernet1/0/1","lldp_port_id":"Gi1/0/1","lldp_system_desc":"Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team","lldp_system_name":"ME-DC-1-ACC-SW","mac":"5c5b353e5299","model":"AP41","mxedge_id":"00000000-0000-0000-1000-43a81f238391","mxtunnel_status":"down","org_id":"6748cfa6-4e12-11e6-9188-0242ac110007","power_constrained":false,"power_opmode":"","site_id":"a8178443-ecb5-461c-b854-f16627619ab3","sku":"AP41-US","timestamp":1596588619.007,"type":"ap","uptime":85280,"version":"0.7.20216","wlans":[{"id":"28c36fc7-dc22-4960-9d81-34087511c2e5","ssid":"Live-Demo-NAC"},{"id":"51b82e2b-f9e8-470b-a32a-cecde5501b0f","ssid":"Live-Demo"}]}],"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"next":"string","results":[{"hostname":["AP41-STB-3E5299-WH-2001","AP41-STB-3E5299-WH-50","AP41-STB-3E5299","5c5b353e5299"],"ip":"10.2.16.205","lldp_mgmt_addr":"10.2.10.139","lldp_port_desc":"GigabitEthernet1/0/1","lldp_port_id":"Gi1/0/1","lldp_system_desc":"Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team","lldp_system_name":"ME-DC-1-ACC-SW","mac":"5c5b353e5299","model":"AP41","mxedge_id":"00000000-0000-0000-1000-43a81f238391","mxtunnel_status":"down","org_id":"6748cfa6-4e12-11e6-9188-0242ac110007","power_constrained":false,"power_opmode":"","site_id":"a8178443-ecb5-461c-b854-f16627619ab3","sku":"AP41-US","timestamp":1596588619.007,"uptime":85280,"version":"0.7.20216","wlans":[{"id":"28c36fc7-dc22-4960-9d81-34087511c2e5","ssid":"Live-Demo-NAC"},{"id":"51b82e2b-f9e8-470b-a32a-cecde5501b0f","ssid":"Live-Demo"}]}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -520,7 +519,7 @@ func TestSitesDevicesTestSearchSiteDevices1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":0,"limit":0,"next":"string","results":[{"hostname":["AP41-STB-3E5299-WH-2001","AP41-STB-3E5299-WH-50","AP41-STB-3E5299","5c5b353e5299"],"ip":"10.2.16.205","lldp_mgmt_addr":"10.2.10.139","lldp_port_desc":"GigabitEthernet1/0/1","lldp_port_id":"Gi1/0/1","lldp_system_desc":"Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team","lldp_system_name":"ME-DC-1-ACC-SW","mac":"5c5b353e5299","model":"AP41","mxedge_id":"00000000-0000-0000-1000-43a81f238391","mxtunnel_status":"down","org_id":"6748cfa6-4e12-11e6-9188-0242ac110007","power_constrained":false,"power_opmode":"","site_id":"a8178443-ecb5-461c-b854-f16627619ab3","sku":"AP41-US","timestamp":1596588619.007,"type":"ap","uptime":85280,"version":"0.7.20216","wlans":[{"id":"28c36fc7-dc22-4960-9d81-34087511c2e5","ssid":"Live-Demo-NAC"},{"id":"51b82e2b-f9e8-470b-a32a-cecde5501b0f","ssid":"Live-Demo"}]}],"start":0,"total":0}`
+	expected := `{"end":0,"limit":0,"next":"string","results":[{"hostname":["AP41-STB-3E5299-WH-2001","AP41-STB-3E5299-WH-50","AP41-STB-3E5299","5c5b353e5299"],"ip":"10.2.16.205","lldp_mgmt_addr":"10.2.10.139","lldp_port_desc":"GigabitEthernet1/0/1","lldp_port_id":"Gi1/0/1","lldp_system_desc":"Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 15.2(1)E1, RELEASE SOFTWARE (fc2)\nTechnical Support: https://www.cisco.com/techsupport\nCopyright (c) 1986-2013 by Cisco Systems, Inc.\nCompiled Fri 22-Nov-13 07:10 by prod_rel_team","lldp_system_name":"ME-DC-1-ACC-SW","mac":"5c5b353e5299","model":"AP41","mxedge_id":"00000000-0000-0000-1000-43a81f238391","mxtunnel_status":"down","org_id":"6748cfa6-4e12-11e6-9188-0242ac110007","power_constrained":false,"power_opmode":"","site_id":"a8178443-ecb5-461c-b854-f16627619ab3","sku":"AP41-US","timestamp":1596588619.007,"uptime":85280,"version":"0.7.20216","wlans":[{"id":"28c36fc7-dc22-4960-9d81-34087511c2e5","ssid":"Live-Demo-NAC"},{"id":"51b82e2b-f9e8-470b-a32a-cecde5501b0f","ssid":"Live-Demo"}]}],"start":0,"total":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -620,27 +619,4 @@ func TestSitesDevicesTestUpdateSiteDevice1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"aeroscout":{"enabled":false,"host":"aero.pvt.net","locate_connected":true},"airista":{"enabled":false},"ble_config":{"beacon_enabled":false,"beacon_rate":3,"beacon_rate_mode":"custom","beam_disabled":[1,3,6],"custom_ble_packet_enabled":false,"custom_ble_packet_frame":"0x........","custom_ble_packet_freq_msec":300,"eddystone_uid_adv_power":-65,"eddystone_uid_beams":"2-4,7","eddystone_uid_enabled":false,"eddystone_uid_freq_msec":200,"eddystone_uid_instance":"5c5b35000001","eddystone_uid_namespace":"2818e3868dec25629ede","eddystone_url_adv_power":-65,"eddystone_url_beams":"2-4,7","eddystone_url_enabled":true,"eddystone_url_freq_msec":1000,"eddystone_url_url":"https://www.abc.com","ibeacon_adv_power":-65,"ibeacon_beams":"2-4,7","ibeacon_enabled":false,"ibeacon_freq_msec":0,"ibeacon_major":13,"ibeacon_minor":138,"ibeacon_uuid":"f3f17139-704a-f03a-2786-0400279e37c3","power":6,"power_mode":"custom"},"centrak":{"enabled":false},"client_bridge":{"auth":{"psk":"foryoureyesonly","type":"psk"},"enabled":false,"ssid":"Uplink-SSID"},"created_time":0,"deviceprofile_id":"6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9","disable_eth1":false,"disable_eth2":false,"disable_eth3":false,"disable_module":false,"esl_config":{"cacert":"string","channel":3,"enabled":false,"host":"1.1.1.1","port":0,"type":"imagotag","verify_cert":true,"vlan_id":1},"for_site":true,"height":2.75,"id":"497f6eca-6276-4993-bfeb-53cbbbba6008","image1_url":"string","image2_url":"string","image3_url":"string","iot_config":{"A1":{"enabled":false,"name":"motion","output":true,"pullup":"internal","value":0},"A2":{"enabled":false,"name":"motion","output":true,"pullup":"internal","value":0},"A3":{"enabled":false,"name":"motion","output":true,"pullup":"internal","value":0},"A4":{"enabled":false,"name":"motion","output":true,"pullup":"internal","value":0},"DI1":{"enabled":false,"name":"string","pullup":"internal"},"DI2":{"enabled":false,"name":"string","pullup":"internal"},"DO":{"enabled":false,"name":"motion","output":true,"pullup":"internal","value":0}},"ip_config":{"dns":["8.8.8.8","4.4.4.4"],"dns_suffix":[".mist.local",".mist.com"],"gateway":"10.2.1.254","gateway6":"2607:f8b0:4005:808::1","ip":"10.2.1.1","ip6":"2607:f8b0:4005:808::2004","mtu":1500,"netmask":"255.255.255.0","netmask6":"/32","type":"static","type6":"static","vlan_id":1},"led":{"brightness":255,"enabled":true},"locked":true,"map_id":"63eda950-c6da-11e4-a628-60f81dd250cc","mesh":{"enabled":false,"group":1,"role":"base"},"modified_time":0,"name":"conference room","notes":"slightly off center","ntp_servers":["string"],"org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","orientation":45,"poe_passthrough":false,"pwr_config":{"base":2000,"prefer_usb_over_wifi":false},"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","type":"ap","uplink_port_config":{"dot1x":false,"keep_wlans_up_if_down":false},"usb_config":{"cacert":"string","channel":3,"enabled":true,"host":"1.1.1.1","port":0,"type":"imagotag","verify_cert":true,"vlan_id":1},"vars":{"RADIUS_IP1":"172.31.2.5","RADIUS_SECRET":"11s64632d"},"x":53.5,"y":173.1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestSitesDevicesTestChangeSiteSwitchVcPortMode tests the behavior of the SitesDevices
-func TestSitesDevicesTestChangeSiteSwitchVcPortMode(t *testing.T) {
-	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-	var body models.VcPort
-	errBody := json.Unmarshal([]byte(`{"mode":"network"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	resp, err := sitesDevices.ChangeSiteSwitchVcPortMode(ctx, siteId, deviceId, &body)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }

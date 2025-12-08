@@ -1,8 +1,6 @@
 
 # Search Wireless Client Session
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SearchWirelessClientSession`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.WirelessClientSession`](../../doc/models/wireless-client-session.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,20 +40,12 @@
       "tags": [
         "tags1",
         "tags2"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "start": 233.44,
   "total": 82,
-  "next": "next8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next8"
 }
 ```
 

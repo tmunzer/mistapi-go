@@ -10,6 +10,7 @@ import (
 // AccountJseInfo represents a AccountJseInfo struct.
 type AccountJseInfo struct {
 	CloudName            *string                `json:"cloud_name,omitempty"`
+	OrgNames             []string               `json:"org_names,omitempty"`
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -18,8 +19,8 @@ type AccountJseInfo struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountJseInfo) String() string {
 	return fmt.Sprintf(
-		"AccountJseInfo[CloudName=%v, Username=%v, AdditionalProperties=%v]",
-		a.CloudName, a.Username, a.AdditionalProperties)
+		"AccountJseInfo[CloudName=%v, OrgNames=%v, Username=%v, AdditionalProperties=%v]",
+		a.CloudName, a.OrgNames, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountJseInfo.
@@ -28,7 +29,7 @@ func (a AccountJseInfo) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"cloud_name", "username"); err != nil {
+		"cloud_name", "org_names", "username"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -40,6 +41,9 @@ func (a AccountJseInfo) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
 	if a.CloudName != nil {
 		structMap["cloud_name"] = a.CloudName
+	}
+	if a.OrgNames != nil {
+		structMap["org_names"] = a.OrgNames
 	}
 	if a.Username != nil {
 		structMap["username"] = a.Username
@@ -55,19 +59,21 @@ func (a *AccountJseInfo) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "username")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "org_names", "username")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
 	a.CloudName = temp.CloudName
+	a.OrgNames = temp.OrgNames
 	a.Username = temp.Username
 	return nil
 }
 
 // tempAccountJseInfo is a temporary struct used for validating the fields of AccountJseInfo.
 type tempAccountJseInfo struct {
-	CloudName *string `json:"cloud_name,omitempty"`
-	Username  *string `json:"username,omitempty"`
+	CloudName *string  `json:"cloud_name,omitempty"`
+	OrgNames  []string `json:"org_names,omitempty"`
+	Username  *string  `json:"username,omitempty"`
 }

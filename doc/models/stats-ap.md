@@ -3,8 +3,6 @@
 
 AP statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsAp`
@@ -13,13 +11,14 @@ AP statistics
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AntennaSelect` | [`*models.AntennaSelectEnum`](../../doc/models/antenna-select-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
+| `AntennaSelect` | [`*models.AntennaSelectEnum`](../../doc/models/antenna-select-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal` |
 | `AutoPlacement` | [`*models.StatsApAutoPlacement`](../../doc/models/stats-ap-auto-placement.md) | Optional | - |
 | `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
 | `BleStat` | [`*models.StatsApBle`](../../doc/models/stats-ap-ble.md) | Optional | - |
 | `CertExpiry` | `models.Optional[float64]` | Optional | - |
 | `ConfigReverted` | `models.Optional[bool]` | Optional | - |
 | `CpuSystem` | `models.Optional[int64]` | Optional | - |
+| `CpuUser` | `models.Optional[int]` | Optional | - |
 | `CpuUtil` | `models.Optional[int]` | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
@@ -47,6 +46,7 @@ AP statistics
 | `Locked` | `models.Optional[bool]` | Optional | Whether this AP is considered locked (placement / orientation has been vetted) |
 | `Mac` | `models.Optional[string]` | Optional | Device mac |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `MemTotalKb` | `models.Optional[int64]` | Optional | - |
 | `MemUsedKb` | `models.Optional[int64]` | Optional | - |
 | `MeshDownlinks` | [`map[string]models.ApStatMeshDownlink`](../../doc/models/ap-stat-mesh-downlink.md) | Optional | Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`) |
 | `MeshUplink` | [`*models.ApStatMeshUplink`](../../doc/models/ap-stat-mesh-uplink.md) | Optional | - |
@@ -81,7 +81,6 @@ AP statistics
 | `Version` | `models.Optional[string]` | Optional | - |
 | `X` | `models.Optional[float64]` | Optional | - |
 | `Y` | `models.Optional[float64]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -130,47 +129,23 @@ AP statistics
       "probability_surface": {
         "radius": 74.96,
         "radius_m": 19.46,
-        "x": 93.54,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
+        "x": 93.54
       }
     },
     "recommended_anchor": false,
     "status": "status4",
     "status_detail": "status_detail0",
-    "x": 15.0,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "x": 15.0
   },
   "auto_upgrade_stat": {
-    "lastcheck": 28,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "lastcheck": 28
   },
   "ble_stat": {
     "beacon_enabled": false,
     "beacon_rate": 78,
     "eddystone_uid_enabled": false,
     "eddystone_uid_freq_msec": 132,
-    "eddystone_uid_instance": "eddystone_uid_instance6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "eddystone_uid_instance": "eddystone_uid_instance6"
   }
 }
 ```

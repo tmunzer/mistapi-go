@@ -3,8 +3,6 @@
 
 Custom acls
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ProtectReCustom`
@@ -16,7 +14,6 @@ Custom acls
 | `PortRange` | `*string` | Optional | Matched dst port, "0" means any<br><br>**Default**: `"0"` |
 | `Protocol` | [`*models.ProtectReCustomProtocolEnum`](../../doc/models/protect-re-custom-protocol-enum.md) | Optional | enum: `any`, `icmp`, `tcp`, `udp`<br><br>**Default**: `"any"` |
 | `Subnets` | `[]string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@ Custom acls
   "subnets": [
     "subnets5",
     "subnets4"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

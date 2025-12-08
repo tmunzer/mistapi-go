@@ -3,8 +3,6 @@
 
 SDK Client statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsSdkclient`
@@ -21,7 +19,6 @@ SDK Client statistics
 | `Uuid` | `uuid.UUID` | Required | UUID of the sdk client |
 | `X` | `*float64` | Optional | X (in pixels) of user location on the map (if known) |
 | `Y` | `*float64` | Optional | Y (in pixels) of user location on the map (if known) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,19 +32,11 @@ SDK Client statistics
     "mac": "mac2",
     "rssi": 235.8,
     "signal_level": 47.82,
-    "type": "type2",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "type": "type2"
   },
   "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64",
   "x": 60.0,
-  "y": 80.0,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "y": 80.0
 }
 ```
 

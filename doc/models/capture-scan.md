@@ -3,8 +3,6 @@
 
 Initiate a Scan Radio Packet Capture
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CaptureScan`
@@ -26,7 +24,6 @@ Initiate a Scan Radio Packet Capture
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
 | `Type` | `string` | Required, Constant | enum: `scan`<br><br>**Value**: `"scan"` |
 | `Width` | `*string` | Optional | Specify the bandwidth value with respect to the channel. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,36 +45,20 @@ Initiate a Scan Radio Packet Capture
       "band": "24",
       "channel": "channel0",
       "tcpdump_expression": "tcpdump_expression4",
-      "width": "width2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "width": "width2"
     },
     "key1": {
       "band": "24",
       "channel": "channel0",
       "tcpdump_expression": "tcpdump_expression4",
-      "width": "width2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "width": "width2"
     },
     "key2": {
       "band": "24",
       "channel": "channel0",
       "tcpdump_expression": "tcpdump_expression4",
-      "width": "width2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "width": "width2"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

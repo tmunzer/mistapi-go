@@ -3,8 +3,6 @@
 
 Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TunnelConfigNode`
@@ -18,7 +16,6 @@ Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`cus
 | `ProbeIps` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `RemoteIds` | `[]string` | Optional | Only if  `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `WanNames` | `[]string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,11 +37,7 @@ Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`cus
   "wan_names": [
     "wan_names8",
     "wan_names9"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

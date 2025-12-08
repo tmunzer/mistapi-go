@@ -1,8 +1,6 @@
 
 # Sso Mxedge Proxy Auth Server
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SsoMxedgeProxyAuthServer`
@@ -17,7 +15,6 @@
 | `Retry` | `*int` | Optional | Authentication request retry<br><br>**Default**: `2` |
 | `Secret` | `*string` | Optional | - |
 | `Timeout` | `*int` | Optional | Authentication request timeout, in seconds<br><br>**Default**: `5` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "require_message_authenticator": false,
   "retry": 2,
   "secret": "testing123",
-  "timeout": 5,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "timeout": 5
 }
 ```
 

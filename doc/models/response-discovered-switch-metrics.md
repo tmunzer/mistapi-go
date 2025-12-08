@@ -1,8 +1,6 @@
 
 # Response Discovered Switch Metrics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseDiscoveredSwitchMetrics`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.DiscoveredSwitchMetric`](../../doc/models/discovered-switch-metric.md) | Required | - |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,42 +40,26 @@
           "mac": "mac8",
           "poe_status": false,
           "port": "port4",
-          "port_id": "port_id4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "port_id": "port_id4"
         },
         {
           "hostname": "hostname0",
           "mac": "mac8",
           "poe_status": false,
           "port": "port4",
-          "port_id": "port_id4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "port_id": "port_id4"
         }
       ],
       "chassis_id": [
         "chassis_id0",
         "chassis_id1",
         "chassis_id2"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "start": 178.12,
   "total": 182,
-  "next": "next6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next6"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Vpn Peer Stat Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `VpnPeerStatSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.VpnPeerStat`](../../doc/models/vpn-peer-stat.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,20 +31,12 @@
       "is_active": false,
       "jitter": 27.56,
       "latency": 250.14,
-      "loss": 36.76,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "loss": 36.76
     }
   ],
   "start": 98.48,
   "total": 102,
-  "next": "next8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next8"
 }
 ```
 

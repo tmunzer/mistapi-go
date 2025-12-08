@@ -1,9 +1,7 @@
 
 # Webhook Location Asset
 
-Location Asset sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `location_asset` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ Location Asset sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationAssetEvent`](../../doc/models/webhook-location-asset-event.md) | Required | List of events |
-| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"location_asset"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"location-asset"` |
 
 ## Example (as JSON)
 
@@ -27,8 +24,8 @@ Location Asset sample
       "eddystone_uid_instance": "5c5b35000001",
       "eddystone_uid_namespace": "2818e3868dec25629ede",
       "eddystone_url_url": "https://www.abc.com",
-      "ibeacon_major": 13,
-      "ibeacon_minor": 138,
+      "ibeacon_major": 1234,
+      "ibeacon_minor": 1234,
       "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
       "mac": "7fc2936fd243",
       "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
@@ -37,18 +34,10 @@ Location Asset sample
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "type": "asset",
       "x": 13.5,
-      "y": 3.2,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "y": 3.2
     }
   ],
-  "topic": "location_asset",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "location-asset"
 }
 ```
 

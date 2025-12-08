@@ -31,6 +31,7 @@ type StatsMxedge struct {
 	// Last seen timestamp
 	LastSeen Optional[float64] `json:"last_seen"`
 	Mac      *string           `json:"mac,omitempty"`
+	Magic    *string           `json:"magic,omitempty"`
 	// Memory usage
 	MemoryStat *StatsMxedgeMemoryStat `json:"memory_stat,omitempty"`
 	Model      *string                `json:"model,omitempty"`
@@ -66,8 +67,8 @@ type StatsMxedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsMxedge) String() string {
 	return fmt.Sprintf(
-		"StatsMxedge[CpuStat=%v, CreatedTime=%v, FipsEnabled=%v, ForSite=%v, Fwupdate=%v, Id=%v, IdracVersion=%v, InactiveVlanStrs=%v, IpStat=%v, LagStat=%v, LastSeen=%v, Mac=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, Name=%v, NumTunnels=%v, OobIpConfig=%v, OobIpStat=%v, OrgId=%v, PortStat=%v, Serial=%v, ServiceStat=%v, Services=%v, SiteId=%v, Status=%v, TuntermIpConfig=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermStat=%v, Uptime=%v, VirtualizationType=%v, AdditionalProperties=%v]",
-		s.CpuStat, s.CreatedTime, s.FipsEnabled, s.ForSite, s.Fwupdate, s.Id, s.IdracVersion, s.InactiveVlanStrs, s.IpStat, s.LagStat, s.LastSeen, s.Mac, s.MemoryStat, s.Model, s.ModifiedTime, s.MxagentRegistered, s.MxclusterId, s.Name, s.NumTunnels, s.OobIpConfig, s.OobIpStat, s.OrgId, s.PortStat, s.Serial, s.ServiceStat, s.Services, s.SiteId, s.Status, s.TuntermIpConfig, s.TuntermPortConfig, s.TuntermRegistered, s.TuntermStat, s.Uptime, s.VirtualizationType, s.AdditionalProperties)
+		"StatsMxedge[CpuStat=%v, CreatedTime=%v, FipsEnabled=%v, ForSite=%v, Fwupdate=%v, Id=%v, IdracVersion=%v, InactiveVlanStrs=%v, IpStat=%v, LagStat=%v, LastSeen=%v, Mac=%v, Magic=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, Name=%v, NumTunnels=%v, OobIpConfig=%v, OobIpStat=%v, OrgId=%v, PortStat=%v, Serial=%v, ServiceStat=%v, Services=%v, SiteId=%v, Status=%v, TuntermIpConfig=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermStat=%v, Uptime=%v, VirtualizationType=%v, AdditionalProperties=%v]",
+		s.CpuStat, s.CreatedTime, s.FipsEnabled, s.ForSite, s.Fwupdate, s.Id, s.IdracVersion, s.InactiveVlanStrs, s.IpStat, s.LagStat, s.LastSeen, s.Mac, s.Magic, s.MemoryStat, s.Model, s.ModifiedTime, s.MxagentRegistered, s.MxclusterId, s.Name, s.NumTunnels, s.OobIpConfig, s.OobIpStat, s.OrgId, s.PortStat, s.Serial, s.ServiceStat, s.Services, s.SiteId, s.Status, s.TuntermIpConfig, s.TuntermPortConfig, s.TuntermRegistered, s.TuntermStat, s.Uptime, s.VirtualizationType, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsMxedge.
@@ -76,7 +77,7 @@ func (s StatsMxedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
+		"cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "magic", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -125,6 +126,9 @@ func (s StatsMxedge) toMap() map[string]any {
 	}
 	if s.Mac != nil {
 		structMap["mac"] = s.Mac
+	}
+	if s.Magic != nil {
+		structMap["magic"] = s.Magic
 	}
 	if s.MemoryStat != nil {
 		structMap["memory_stat"] = s.MemoryStat.toMap()
@@ -207,7 +211,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cpu_stat", "created_time", "fips_enabled", "for_site", "fwupdate", "id", "idrac_version", "inactive_vlan_strs", "ip_stat", "lag_stat", "last_seen", "mac", "magic", "memory_stat", "model", "modified_time", "mxagent_registered", "mxcluster_id", "name", "num_tunnels", "oob_ip_config", "oob_ip_stat", "org_id", "port_stat", "serial", "service_stat", "services", "site_id", "status", "tunterm_ip_config", "tunterm_port_config", "tunterm_registered", "tunterm_stat", "uptime", "virtualization_type")
 	if err != nil {
 		return err
 	}
@@ -225,6 +229,7 @@ func (s *StatsMxedge) UnmarshalJSON(input []byte) error {
 	s.LagStat = temp.LagStat
 	s.LastSeen = temp.LastSeen
 	s.Mac = temp.Mac
+	s.Magic = temp.Magic
 	s.MemoryStat = temp.MemoryStat
 	s.Model = temp.Model
 	s.ModifiedTime = temp.ModifiedTime
@@ -264,6 +269,7 @@ type tempStatsMxedge struct {
 	LagStat            map[string]StatsMxedgeLagStat     `json:"lag_stat,omitempty"`
 	LastSeen           Optional[float64]                 `json:"last_seen"`
 	Mac                *string                           `json:"mac,omitempty"`
+	Magic              *string                           `json:"magic,omitempty"`
 	MemoryStat         *StatsMxedgeMemoryStat            `json:"memory_stat,omitempty"`
 	Model              *string                           `json:"model,omitempty"`
 	ModifiedTime       *float64                          `json:"modified_time,omitempty"`

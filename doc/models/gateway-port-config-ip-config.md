@@ -3,8 +3,6 @@
 
 Junos IP Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPortConfigIpConfig`
@@ -27,7 +25,6 @@ Junos IP Config
 | `PppoeUsername` | `*string` | Optional | If `type`==`pppoe` |
 | `Type` | [`*models.GatewayWanTypeEnum`](../../doc/models/gateway-wan-type-enum.md) | Optional | enum: `dhcp`, `pppoe`, `static`<br><br>**Default**: `"dhcp"` |
 | `Type6` | [`*models.GatewayWanType6Enum`](../../doc/models/gateway-wan-type-6-enum.md) | Optional | enum: `autoconf`, `dhcp`, `static`<br><br>**Default**: `"autoconf"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -49,11 +46,7 @@ Junos IP Config
   "dns_suffix": [
     "dns_suffix9",
     "dns_suffix0"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

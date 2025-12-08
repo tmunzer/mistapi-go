@@ -51,6 +51,7 @@ type PskPortal struct {
 	ThumbnailUrl *string `json:"thumbnail_url,omitempty"`
 	// for personal psk portal. enum: `admin`, `byod`
 	Type                 *PskPortalTypeEnum     `json:"type,omitempty"`
+	UiUrl                *string                `json:"ui_url,omitempty"`
 	VlanId               *VlanIdWithVariable    `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -59,8 +60,8 @@ type PskPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p PskPortal) String() string {
 	return fmt.Sprintf(
-		"PskPortal[Auth=%v, BgImageUrl=%v, CleanupPsk=%v, CreatedTime=%v, ExpireTime=%v, ExpiryNotificationTime=%v, HidePsksCreatedByOtherAdmins=%v, Id=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, NotificationRenewUrl=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OrgId=%v, PassphraseRules=%v, RequiredFields=%v, Role=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Type=%v, VlanId=%v, AdditionalProperties=%v]",
-		p.Auth, p.BgImageUrl, p.CleanupPsk, p.CreatedTime, p.ExpireTime, p.ExpiryNotificationTime, p.HidePsksCreatedByOtherAdmins, p.Id, p.MaxUsage, p.ModifiedTime, p.Name, p.NotificationRenewUrl, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OrgId, p.PassphraseRules, p.RequiredFields, p.Role, p.Ssid, p.Sso, p.TemplateUrl, p.ThumbnailUrl, p.Type, p.VlanId, p.AdditionalProperties)
+		"PskPortal[Auth=%v, BgImageUrl=%v, CleanupPsk=%v, CreatedTime=%v, ExpireTime=%v, ExpiryNotificationTime=%v, HidePsksCreatedByOtherAdmins=%v, Id=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, NotificationRenewUrl=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OrgId=%v, PassphraseRules=%v, RequiredFields=%v, Role=%v, Ssid=%v, Sso=%v, TemplateUrl=%v, ThumbnailUrl=%v, Type=%v, UiUrl=%v, VlanId=%v, AdditionalProperties=%v]",
+		p.Auth, p.BgImageUrl, p.CleanupPsk, p.CreatedTime, p.ExpireTime, p.ExpiryNotificationTime, p.HidePsksCreatedByOtherAdmins, p.Id, p.MaxUsage, p.ModifiedTime, p.Name, p.NotificationRenewUrl, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OrgId, p.PassphraseRules, p.RequiredFields, p.Role, p.Ssid, p.Sso, p.TemplateUrl, p.ThumbnailUrl, p.Type, p.UiUrl, p.VlanId, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for PskPortal.
@@ -69,7 +70,7 @@ func (p PskPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "vlan_id"); err != nil {
+		"auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "ui_url", "vlan_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -144,6 +145,9 @@ func (p PskPortal) toMap() map[string]any {
 	if p.Type != nil {
 		structMap["type"] = p.Type
 	}
+	if p.UiUrl != nil {
+		structMap["ui_url"] = p.UiUrl
+	}
 	if p.VlanId != nil {
 		structMap["vlan_id"] = p.VlanId.toMap()
 	}
@@ -162,7 +166,7 @@ func (p *PskPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "vlan_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "bg_image_url", "cleanup_psk", "created_time", "expire_time", "expiry_notification_time", "hide_psks_created_by_other_admins", "id", "max_usage", "modified_time", "name", "notification_renew_url", "notify_expiry", "notify_on_create_or_edit", "org_id", "passphrase_rules", "required_fields", "role", "ssid", "sso", "template_url", "thumbnail_url", "type", "ui_url", "vlan_id")
 	if err != nil {
 		return err
 	}
@@ -191,6 +195,7 @@ func (p *PskPortal) UnmarshalJSON(input []byte) error {
 	p.TemplateUrl = temp.TemplateUrl
 	p.ThumbnailUrl = temp.ThumbnailUrl
 	p.Type = temp.Type
+	p.UiUrl = temp.UiUrl
 	p.VlanId = temp.VlanId
 	return nil
 }
@@ -220,6 +225,7 @@ type tempPskPortal struct {
 	TemplateUrl                  *string                   `json:"template_url,omitempty"`
 	ThumbnailUrl                 *string                   `json:"thumbnail_url,omitempty"`
 	Type                         *PskPortalTypeEnum        `json:"type,omitempty"`
+	UiUrl                        *string                   `json:"ui_url,omitempty"`
 	VlanId                       *VlanIdWithVariable       `json:"vlan_id,omitempty"`
 }
 

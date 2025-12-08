@@ -3,8 +3,6 @@
 
 A network represents a network segment. It can either represent a VLAN (then usually ties to a L3 subnet), optionally associate it with a subnet which can later be used to create addition routes. Used for ports doing `family ethernet-switching`. It can also be a pure L3-subnet that can then be used against a port that with `family inet`.
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchNetwork`
@@ -20,7 +18,6 @@ A network represents a network segment. It can either represent a VLAN (then usu
 | `Subnet` | `*string` | Optional | Optional for pure switching, required when L3 / routing features are used |
 | `Subnet6` | `*string` | Optional | Optional for pure switching, required when L3 / routing features are used |
 | `VlanId` | [`models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@ A network represents a network segment. It can either represent a VLAN (then usu
   "vlan_id": "String9",
   "gateway": "gateway0",
   "gateway6": "gateway66",
-  "subnet": "subnet8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "subnet": "subnet8"
 }
 ```
 

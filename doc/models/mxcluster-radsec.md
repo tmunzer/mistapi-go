@@ -3,8 +3,6 @@
 
 MxEdge RadSec Configuration
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxclusterRadsec`
@@ -21,7 +19,6 @@ MxEdge RadSec Configuration
 | `ProxyHosts` | `[]string` | Optional | Hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts` |
 | `ServerSelection` | [`*models.MxclusterRadsecServerSelectionEnum`](../../doc/models/mxcluster-radsec-server-selection-enum.md) | Optional | When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`<br><br>**Default**: `"ordered"` |
 | `SrcIpSource` | [`*models.MxclusterRadsecSrcIpSourceEnum`](../../doc/models/mxcluster-radsec-src-ip-source-enum.md) | Optional | Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`<br><br>**Default**: `"any"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,11 +35,7 @@ MxEdge RadSec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "host": "host4",
@@ -51,11 +44,7 @@ MxEdge RadSec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "host": "host4",
@@ -64,11 +53,7 @@ MxEdge RadSec Configuration
       "ssids": [
         "ssids5",
         "ssids6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "auth_servers": [
@@ -77,41 +62,25 @@ MxEdge RadSec Configuration
       "inband_status_check": false,
       "inband_status_interval": 160,
       "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "keywrap_format": "ascii"
     },
     {
       "host": "host0",
       "inband_status_check": false,
       "inband_status_interval": 160,
       "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "keywrap_format": "ascii"
     },
     {
       "host": "host0",
       "inband_status_check": false,
       "inband_status_interval": 160,
       "keywrap_enabled": false,
-      "keywrap_format": "ascii",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "keywrap_format": "ascii"
     }
   ],
   "enabled": false,
-  "match_ssid": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "match_ssid": false
 }
 ```
 

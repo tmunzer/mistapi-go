@@ -17,8 +17,8 @@ WXlan
 | `ApplyTags` | `[]string` | Optional | - |
 | `BlockedApps` | `[]string` | Optional | Blocked apps (always blocking, ignoring action), the key of Get Application List |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `DstAllowWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are allowed access |
-| `DstDenyWxtags` | `[]string` | Required | List of WxTag UUID to indicate these tags are blocked access |
+| `DstAllowWxtags` | `[]string` | Optional | List of WxTag UUID to indicate these tags are allowed access |
+| `DstDenyWxtags` | `[]string` | Optional | List of WxTag UUID to indicate these tags are blocked access |
 | `DstWxtags` | `[]string` | Optional | List of WxTag UUID |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `ForSite` | `*bool` | Optional | - |

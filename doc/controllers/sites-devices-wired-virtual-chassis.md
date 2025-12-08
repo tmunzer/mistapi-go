@@ -10,12 +10,73 @@ sitesDevicesWiredVirtualChassis := client.SitesDevicesWiredVirtualChassis()
 
 ## Methods
 
+* [Change Site Switch Vc Port Mode](../../doc/controllers/sites-devices-wired-virtual-chassis.md#change-site-switch-vc-port-mode)
 * [Convert Site Virtual Chassis to Virtual Mac](../../doc/controllers/sites-devices-wired-virtual-chassis.md#convert-site-virtual-chassis-to-virtual-mac)
 * [Create Site Virtual Chassis](../../doc/controllers/sites-devices-wired-virtual-chassis.md#create-site-virtual-chassis)
 * [Delete Site Virtual Chassis](../../doc/controllers/sites-devices-wired-virtual-chassis.md#delete-site-virtual-chassis)
 * [Get Site Device Virtual Chassis](../../doc/controllers/sites-devices-wired-virtual-chassis.md#get-site-device-virtual-chassis)
 * [Set Site Vc Port](../../doc/controllers/sites-devices-wired-virtual-chassis.md#set-site-vc-port)
 * [Update Site Virtual Chassis Member](../../doc/controllers/sites-devices-wired-virtual-chassis.md#update-site-virtual-chassis-member)
+
+
+# Change Site Switch Vc Port Mode
+
+Change VCP port mode
+
+Some switch model allows changing VCP port behaviors, e.g. - use them as regular network ports - change vcp protocol Note, this command will reboot the switch
+
+```go
+ChangeSiteSwitchVcPortMode(
+    ctx context.Context,
+    siteId uuid.UUID,
+    deviceId uuid.UUID,
+    body *models.VcPort) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.VcPort`](../../doc/models/vc-port.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.VcPort{
+    Mode:                 models.ToPointer(models.VcPortModeEnum_NETWORK),
+}
+
+resp, err := sitesDevicesWiredVirtualChassis.ChangeSiteSwitchVcPortMode(ctx, siteId, deviceId, &body)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Convert Site Virtual Chassis to Virtual Mac
@@ -277,7 +338,6 @@ if err != nil {
   "mac": "52d9107af289",
   "members": [
     {
-      "_idx": 0,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {
@@ -375,7 +435,6 @@ if err != nil {
       "version": "21.4R3-S4.18"
     },
     {
-      "_idx": 1,
       "boot_partition": "junos",
       "cpld_version": "6",
       "cpu_stat": {

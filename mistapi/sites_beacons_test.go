@@ -29,7 +29,7 @@ func TestSitesBeaconsTestListSiteBeacons(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}]`
+	expected := `[{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -51,7 +51,7 @@ func TestSitesBeaconsTestListSiteBeacons1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}]`
+	expected := `[{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -63,7 +63,7 @@ func TestSitesBeaconsTestCreateSiteBeacon(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Beacon
-	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
+	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -76,7 +76,7 @@ func TestSitesBeaconsTestCreateSiteBeacon(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -88,7 +88,7 @@ func TestSitesBeaconsTestCreateSiteBeacon1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Beacon
-	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
+	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -101,7 +101,7 @@ func TestSitesBeaconsTestCreateSiteBeacon1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -143,7 +143,7 @@ func TestSitesBeaconsTestGetSiteBeacon(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -167,7 +167,7 @@ func TestSitesBeaconsTestGetSiteBeacon1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -183,7 +183,7 @@ func TestSitesBeaconsTestUpdateSiteBeacon(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Beacon
-	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
+	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -196,7 +196,7 @@ func TestSitesBeaconsTestUpdateSiteBeacon(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -212,7 +212,7 @@ func TestSitesBeaconsTestUpdateSiteBeacon1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Beacon
-	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
+	errBody := json.Unmarshal([]byte(`{"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","name":"string","power":0,"type":"eddystone-uid","x":0,"y":0}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -225,6 +225,6 @@ func TestSitesBeaconsTestUpdateSiteBeacon1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_minor":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
+	expected := `{"created_time":0,"eddystone_instance":"string","eddystone_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","power":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","type":"eddystone-uid","x":0,"y":0}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

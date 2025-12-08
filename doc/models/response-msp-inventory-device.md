@@ -1,8 +1,6 @@
 
 # Response Msp Inventory Device
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseMspInventoryDevice`
@@ -18,7 +16,6 @@
 | `Serial` | `string` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Type` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   "serial": "serial6",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "type4",
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false
 }
 ```
 

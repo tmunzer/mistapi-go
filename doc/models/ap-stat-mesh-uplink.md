@@ -1,8 +1,6 @@
 
 # Ap Stat Mesh Uplink
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApStatMeshUplink`
@@ -30,7 +28,6 @@
 | `TxRate` | `models.Optional[float64]` | Optional | TX Rate, Mbps |
 | `TxRetries` | `models.Optional[int]` | Optional | Amount of tx retries |
 | `UplinkApId` | `*uuid.UUID` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,11 +47,7 @@
   "tx_bps": 634301,
   "tx_bytes": 211217389682,
   "tx_packets": 812204062,
-  "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "uplink_ap_id": "00000000-0000-0000-1000-5c5b35000010"
 }
 ```
 

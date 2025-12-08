@@ -1,8 +1,6 @@
 
 # Dhcp Snooping
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `DhcpSnooping`
@@ -16,7 +14,6 @@
 | `EnableIpSourceGuard` | `*bool` | Optional | Enable for check for forging source IP address |
 | `Enabled` | `*bool` | Optional | - |
 | `Networks` | `[]string` | Optional | If `all_networks`==`false`, list of network with DHCP snooping enabled |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
   "networks": [
     "networks8",
     "networks9"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Stats Mxedge
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsMxedge`
@@ -23,6 +21,7 @@
 | `LagStat` | [`map[string]models.StatsMxedgeLagStat`](../../doc/models/stats-mxedge-lag-stat.md) | Optional | Stat for LAG (Link Aggregation Group). Property key is the LAG name |
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `*string` | Optional | - |
+| `Magic` | `*string` | Optional | - |
 | `MemoryStat` | [`*models.StatsMxedgeMemoryStat`](../../doc/models/stats-mxedge-memory-stat.md) | Optional | Memory usage |
 | `Model` | `*string` | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -45,7 +44,6 @@
 | `TuntermStat` | [`*models.StatsMxedgeTuntermStat`](../../doc/models/stats-mxedge-tunterm-stat.md) | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `VirtualizationType` | `*string` | Optional | Virtualization environment |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -131,11 +129,7 @@
     "idle": 224,
     "interrupt": 80,
     "system": 80,
-    "usage": 46,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "usage": 46
   },
   "created_time": 71.86,
   "fips_enabled": false,
@@ -144,15 +138,7 @@
     "status": "inprogress",
     "status_id": 70,
     "timestamp": 147.68,
-    "will_retry": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "will_retry": false
   }
 }
 ```

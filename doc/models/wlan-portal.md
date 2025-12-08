@@ -3,8 +3,6 @@
 
 Portal wlan settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanPortal`
@@ -89,7 +87,6 @@ Portal wlan settings
 | `TwilioAuthToken` | `models.Optional[string]` | Optional | Required if `sms_provider`==`twilio`, Auth token account with twilio account |
 | `TwilioPhoneNumber` | `models.Optional[string]` | Optional | Required if `sms_provider`==`twilio`, Twilio phone number associated with the account. See example for accepted format. |
 | `TwilioSid` | `models.Optional[string]` | Optional | Required if `sms_provider`==`twilio`, Account SID provided by Twilio |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -141,11 +138,7 @@ Portal wlan settings
   "twilio_phone_number": "+18548888888",
   "twilio_sid": "af9dac44c344a875ab5d31cb7abcdefg",
   "amazon_client_id": "amazon_client_id4",
-  "amazon_client_secret": "amazon_client_secret0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "amazon_client_secret": "amazon_client_secret0"
 }
 ```
 

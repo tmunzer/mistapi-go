@@ -18,16 +18,18 @@ type StatsApBle struct {
 	EddystoneUidNamespace Optional[string] `json:"eddystone_uid_namespace"`
 	EddystoneUrlEnabled   Optional[bool]   `json:"eddystone_url_enabled"`
 	// Frequency (msec) of data emit by Eddystone-UID beacon
-	EddystoneUrlFreqMsec Optional[int]       `json:"eddystone_url_freq_msec"`
-	EddystoneUrlUrl      Optional[string]    `json:"eddystone_url_url"`
-	IbeaconEnabled       Optional[bool]      `json:"ibeacon_enabled"`
-	IbeaconFreqMsec      Optional[int]       `json:"ibeacon_freq_msec"`
-	IbeaconMajor         Optional[int]       `json:"ibeacon_major"`
-	IbeaconMinor         Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid          Optional[uuid.UUID] `json:"ibeacon_uuid"`
-	Major                Optional[int]       `json:"major"`
-	Minors               []int               `json:"minors,omitempty"`
-	Power                Optional[int]       `json:"power"`
+	EddystoneUrlFreqMsec Optional[int]    `json:"eddystone_url_freq_msec"`
+	EddystoneUrlUrl      Optional[string] `json:"eddystone_url_url"`
+	IbeaconEnabled       Optional[bool]   `json:"ibeacon_enabled"`
+	IbeaconFreqMsec      Optional[int]    `json:"ibeacon_freq_msec"`
+	// Major number for iBeacon
+	IbeaconMajor Optional[int] `json:"ibeacon_major"`
+	// Minor number for iBeacon
+	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	Major        Optional[int]       `json:"major"`
+	Minors       []int               `json:"minors,omitempty"`
+	Power        Optional[int]       `json:"power"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection

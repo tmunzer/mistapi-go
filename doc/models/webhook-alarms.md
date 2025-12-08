@@ -1,11 +1,11 @@
 
 # Webhook Alarms
 
+Sample of the `alarms` webhook payload.
+
 **N.B.**: Fields like `aps`, `bssids`, `ssids` are event specific. They are relevant to this event type ( rogue-ap-detected). For a different event type, different fields may be sent. These don’t contain all affected entities and are representative samples of entities (capped at 10). For marvis action related events, we expose `details` to include more event specific details.
 
 Events specific fields for other alarm event type can be found with API [List Alarm Definitions#]($e/Events%20Definitions/listAlarmDefinitions), under "fields" array of /alarm_defs response object.
-
-*This model accepts additional fields of type interface{}.*
 
 ## Structure
 
@@ -16,8 +16,7 @@ Events specific fields for other alarm event type can be found with API [List Al
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookAlarmEvent`](../../doc/models/webhook-alarm-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"alarms"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | enum: `alarms`<br><br>**Value**: `"alarms"` |
 
 ## Example (as JSON)
 
@@ -40,18 +39,10 @@ Events specific fields for other alarm event type can be found with API [List Al
       ],
       "count": 152,
       "event_id": "000015dc-0000-0000-0000-000000000000",
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
-  "topic": "alarms",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "alarms"
 }
 ```
 

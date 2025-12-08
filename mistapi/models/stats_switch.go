@@ -13,19 +13,23 @@ import (
 // StatsSwitch represents a StatsSwitch struct.
 // Switch statistics
 type StatsSwitch struct {
-	ApRedundancy  *StatsSwitchApRedundancy `json:"ap_redundancy,omitempty"`
-	ArpTableStats *ArpTableStats           `json:"arp_table_stats,omitempty"`
-	CertExpiry    *int64                   `json:"cert_expiry,omitempty"`
-	Clients       []StatsSwitchClientItem  `json:"clients,omitempty"`
-	ClientsStats  *StatsSwitchClientsStats `json:"clients_stats,omitempty"`
-	ConfigStatus  *string                  `json:"config_status,omitempty"`
-	CpuStat       *CpuStat                 `json:"cpu_stat,omitempty"`
+	ApRedundancy    *StatsSwitchApRedundancy `json:"ap_redundancy,omitempty"`
+	ArpTableStats   *ArpTableStats           `json:"arp_table_stats,omitempty"`
+	AutoUpgradeStat *StatsApAutoUpgrade      `json:"auto_upgrade_stat,omitempty"`
+	CertExpiry      *int64                   `json:"cert_expiry,omitempty"`
+	Clients         []StatsSwitchClientItem  `json:"clients,omitempty"`
+	ClientsStats    *StatsSwitchClientsStats `json:"clients_stats,omitempty"`
+	ConfigStatus    *string                  `json:"config_status,omitempty"`
+	ConfigTimestamp *int                     `json:"config_timestamp,omitempty"`
+	ConfigVersion   *int                     `json:"config_version,omitempty"`
+	CpuStat         *CpuStat                 `json:"cpu_stat,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime     *float64            `json:"created_time,omitempty"`
 	DeviceprofileId Optional[uuid.UUID] `json:"deviceprofile_id"`
 	// Property key is the network name
 	DhcpdStat           map[string]DhcpdStatLan `json:"dhcpd_stat,omitempty"`
 	EvpntopoId          Optional[uuid.UUID]     `json:"evpntopo_id"`
+	ExtIp               *string                 `json:"ext_ip,omitempty"`
 	FwVersionsOutofsync *bool                   `json:"fw_versions_outofsync,omitempty"`
 	Fwupdate            *FwupdateStat           `json:"fwupdate,omitempty"`
 	// Whether the switch supports packet capture
@@ -62,6 +66,8 @@ type StatsSwitch struct {
 	ServiceStat       map[string]ServiceStatProperty `json:"service_stat,omitempty"`
 	SiteId            *uuid.UUID                     `json:"site_id,omitempty"`
 	Status            *string                        `json:"status,omitempty"`
+	TagId             *int                           `json:"tag_id,omitempty"`
+	TagUuid           *uuid.UUID                     `json:"tag_uuid,omitempty"`
 	// Device Type. enum: `switch`
 	Type                 string                  `json:"type"`
 	Uptime               Optional[float64]       `json:"uptime"`
@@ -75,8 +81,8 @@ type StatsSwitch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitch) String() string {
 	return fmt.Sprintf(
-		"StatsSwitch[ApRedundancy=%v, ArpTableStats=%v, CertExpiry=%v, Clients=%v, ClientsStats=%v, ConfigStatus=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdStat=%v, EvpntopoId=%v, FwVersionsOutofsync=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, HwRev=%v, Id=%v, IfStat=%v, Ip=%v, IpStat=%v, LastSeen=%v, LastTrouble=%v, Mac=%v, MacTableStats=%v, MapId=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, ModuleStat=%v, Name=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, Serial=%v, ServiceStat=%v, SiteId=%v, Status=%v, Type=%v, Uptime=%v, VcMac=%v, VcSetupInfo=%v, Version=%v, AdditionalProperties=%v]",
-		s.ApRedundancy, s.ArpTableStats, s.CertExpiry, s.Clients, s.ClientsStats, s.ConfigStatus, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.DhcpdStat, s.EvpntopoId, s.FwVersionsOutofsync, s.Fwupdate, s.HasPcap, s.Hostname, s.HwRev, s.Id, s.IfStat, s.Ip, s.IpStat, s.LastSeen, s.LastTrouble, s.Mac, s.MacTableStats, s.MapId, s.MemoryStat, s.Model, s.ModifiedTime, s.ModuleStat, s.Name, s.OrgId, s.Ports, s.RouteSummaryStats, s.Serial, s.ServiceStat, s.SiteId, s.Status, s.Type, s.Uptime, s.VcMac, s.VcSetupInfo, s.Version, s.AdditionalProperties)
+		"StatsSwitch[ApRedundancy=%v, ArpTableStats=%v, AutoUpgradeStat=%v, CertExpiry=%v, Clients=%v, ClientsStats=%v, ConfigStatus=%v, ConfigTimestamp=%v, ConfigVersion=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpdStat=%v, EvpntopoId=%v, ExtIp=%v, FwVersionsOutofsync=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, HwRev=%v, Id=%v, IfStat=%v, Ip=%v, IpStat=%v, LastSeen=%v, LastTrouble=%v, Mac=%v, MacTableStats=%v, MapId=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, ModuleStat=%v, Name=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, Serial=%v, ServiceStat=%v, SiteId=%v, Status=%v, TagId=%v, TagUuid=%v, Type=%v, Uptime=%v, VcMac=%v, VcSetupInfo=%v, Version=%v, AdditionalProperties=%v]",
+		s.ApRedundancy, s.ArpTableStats, s.AutoUpgradeStat, s.CertExpiry, s.Clients, s.ClientsStats, s.ConfigStatus, s.ConfigTimestamp, s.ConfigVersion, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.DhcpdStat, s.EvpntopoId, s.ExtIp, s.FwVersionsOutofsync, s.Fwupdate, s.HasPcap, s.Hostname, s.HwRev, s.Id, s.IfStat, s.Ip, s.IpStat, s.LastSeen, s.LastTrouble, s.Mac, s.MacTableStats, s.MapId, s.MemoryStat, s.Model, s.ModifiedTime, s.ModuleStat, s.Name, s.OrgId, s.Ports, s.RouteSummaryStats, s.Serial, s.ServiceStat, s.SiteId, s.Status, s.TagId, s.TagUuid, s.Type, s.Uptime, s.VcMac, s.VcSetupInfo, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitch.
@@ -85,7 +91,7 @@ func (s StatsSwitch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version"); err != nil {
+		"ap_redundancy", "arp_table_stats", "auto_upgrade_stat", "cert_expiry", "clients", "clients_stats", "config_status", "config_timestamp", "config_version", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "ext_ip", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "tag_id", "tag_uuid", "type", "uptime", "vc_mac", "vc_setup_info", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -101,6 +107,9 @@ func (s StatsSwitch) toMap() map[string]any {
 	if s.ArpTableStats != nil {
 		structMap["arp_table_stats"] = s.ArpTableStats.toMap()
 	}
+	if s.AutoUpgradeStat != nil {
+		structMap["auto_upgrade_stat"] = s.AutoUpgradeStat.toMap()
+	}
 	if s.CertExpiry != nil {
 		structMap["cert_expiry"] = s.CertExpiry
 	}
@@ -112,6 +121,12 @@ func (s StatsSwitch) toMap() map[string]any {
 	}
 	if s.ConfigStatus != nil {
 		structMap["config_status"] = s.ConfigStatus
+	}
+	if s.ConfigTimestamp != nil {
+		structMap["config_timestamp"] = s.ConfigTimestamp
+	}
+	if s.ConfigVersion != nil {
+		structMap["config_version"] = s.ConfigVersion
 	}
 	if s.CpuStat != nil {
 		structMap["cpu_stat"] = s.CpuStat.toMap()
@@ -135,6 +150,9 @@ func (s StatsSwitch) toMap() map[string]any {
 		} else {
 			structMap["evpntopo_id"] = nil
 		}
+	}
+	if s.ExtIp != nil {
+		structMap["ext_ip"] = s.ExtIp
 	}
 	if s.FwVersionsOutofsync != nil {
 		structMap["fw_versions_outofsync"] = s.FwVersionsOutofsync
@@ -222,6 +240,12 @@ func (s StatsSwitch) toMap() map[string]any {
 	if s.Status != nil {
 		structMap["status"] = s.Status
 	}
+	if s.TagId != nil {
+		structMap["tag_id"] = s.TagId
+	}
+	if s.TagUuid != nil {
+		structMap["tag_uuid"] = s.TagUuid
+	}
 	structMap["type"] = s.Type
 	if s.Uptime.IsValueSet() {
 		if s.Uptime.Value() != nil {
@@ -262,7 +286,7 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "cert_expiry", "clients", "clients_stats", "config_status", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "type", "uptime", "vc_mac", "vc_setup_info", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "auto_upgrade_stat", "cert_expiry", "clients", "clients_stats", "config_status", "config_timestamp", "config_version", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd_stat", "evpntopo_id", "ext_ip", "fw_versions_outofsync", "fwupdate", "has_pcap", "hostname", "hw_rev", "id", "if_stat", "ip", "ip_stat", "last_seen", "last_trouble", "mac", "mac_table_stats", "map_id", "memory_stat", "model", "modified_time", "module_stat", "name", "org_id", "ports", "route_summary_stats", "serial", "service_stat", "site_id", "status", "tag_id", "tag_uuid", "type", "uptime", "vc_mac", "vc_setup_info", "version")
 	if err != nil {
 		return err
 	}
@@ -270,15 +294,19 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
 
 	s.ApRedundancy = temp.ApRedundancy
 	s.ArpTableStats = temp.ArpTableStats
+	s.AutoUpgradeStat = temp.AutoUpgradeStat
 	s.CertExpiry = temp.CertExpiry
 	s.Clients = temp.Clients
 	s.ClientsStats = temp.ClientsStats
 	s.ConfigStatus = temp.ConfigStatus
+	s.ConfigTimestamp = temp.ConfigTimestamp
+	s.ConfigVersion = temp.ConfigVersion
 	s.CpuStat = temp.CpuStat
 	s.CreatedTime = temp.CreatedTime
 	s.DeviceprofileId = temp.DeviceprofileId
 	s.DhcpdStat = temp.DhcpdStat
 	s.EvpntopoId = temp.EvpntopoId
+	s.ExtIp = temp.ExtIp
 	s.FwVersionsOutofsync = temp.FwVersionsOutofsync
 	s.Fwupdate = temp.Fwupdate
 	s.HasPcap = temp.HasPcap
@@ -305,6 +333,8 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
 	s.ServiceStat = temp.ServiceStat
 	s.SiteId = temp.SiteId
 	s.Status = temp.Status
+	s.TagId = temp.TagId
+	s.TagUuid = temp.TagUuid
 	s.Type = *temp.Type
 	s.Uptime = temp.Uptime
 	s.VcMac = temp.VcMac
@@ -317,15 +347,19 @@ func (s *StatsSwitch) UnmarshalJSON(input []byte) error {
 type tempStatsSwitch struct {
 	ApRedundancy        *StatsSwitchApRedundancy       `json:"ap_redundancy,omitempty"`
 	ArpTableStats       *ArpTableStats                 `json:"arp_table_stats,omitempty"`
+	AutoUpgradeStat     *StatsApAutoUpgrade            `json:"auto_upgrade_stat,omitempty"`
 	CertExpiry          *int64                         `json:"cert_expiry,omitempty"`
 	Clients             []StatsSwitchClientItem        `json:"clients,omitempty"`
 	ClientsStats        *StatsSwitchClientsStats       `json:"clients_stats,omitempty"`
 	ConfigStatus        *string                        `json:"config_status,omitempty"`
+	ConfigTimestamp     *int                           `json:"config_timestamp,omitempty"`
+	ConfigVersion       *int                           `json:"config_version,omitempty"`
 	CpuStat             *CpuStat                       `json:"cpu_stat,omitempty"`
 	CreatedTime         *float64                       `json:"created_time,omitempty"`
 	DeviceprofileId     Optional[uuid.UUID]            `json:"deviceprofile_id"`
 	DhcpdStat           map[string]DhcpdStatLan        `json:"dhcpd_stat,omitempty"`
 	EvpntopoId          Optional[uuid.UUID]            `json:"evpntopo_id"`
+	ExtIp               *string                        `json:"ext_ip,omitempty"`
 	FwVersionsOutofsync *bool                          `json:"fw_versions_outofsync,omitempty"`
 	Fwupdate            *FwupdateStat                  `json:"fwupdate,omitempty"`
 	HasPcap             *bool                          `json:"has_pcap,omitempty"`
@@ -352,6 +386,8 @@ type tempStatsSwitch struct {
 	ServiceStat         map[string]ServiceStatProperty `json:"service_stat,omitempty"`
 	SiteId              *uuid.UUID                     `json:"site_id,omitempty"`
 	Status              *string                        `json:"status,omitempty"`
+	TagId               *int                           `json:"tag_id,omitempty"`
+	TagUuid             *uuid.UUID                     `json:"tag_uuid,omitempty"`
 	Type                *string                        `json:"type"`
 	Uptime              Optional[float64]              `json:"uptime"`
 	VcMac               Optional[string]               `json:"vc_mac"`

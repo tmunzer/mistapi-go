@@ -1,8 +1,6 @@
 
 # Wlan Mist Nac
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanMistNac`
@@ -20,7 +18,6 @@
 | `FastDot1xTimers` | `*bool` | Optional | If set to true, sets default fast-timers with values calculated from `auth_servers_timeout` and `auth_server_retries`.<br><br>**Default**: `false` |
 | `Network` | `models.Optional[string]` | Optional | Which network the mist nac server resides in |
 | `SourceIp` | `models.Optional[string]` | Optional | In case there is a static IP for this network, we can specify it using source ip |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
   "enabled": false,
   "fast_dot1x_timers": false,
   "network": "default",
-  "source_ip": "1.2.3.4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "source_ip": "1.2.3.4"
 }
 ```
 

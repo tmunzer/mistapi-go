@@ -3,8 +3,6 @@
 
 For 802.1x
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanDynamicVlan`
@@ -19,7 +17,6 @@ For 802.1x
 | `LocalVlanIds` | [`[]models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | VLAN_ids to be locally bridged |
 | `Type` | [`*models.WlanDynamicVlanTypeEnum`](../../doc/models/wlan-dynamic-vlan-type-enum.md) | Optional | standard (using Tunnel-Private-Group-ID, widely supported), airespace-interface-name (Airespace/Cisco). enum: `airespace-interface-name`, `standard`<br><br>**Default**: `"standard"` |
 | `Vlans` | `map[string]string` | Optional | Map between vlan_id (as string) to airespace interface names (comma-separated) or null for standard mapping<br><br>* if `dynamic_vlan.type`==`standard`, property key is the Vlan ID and property value is \"\"<br>* if `dynamic_vlan.type`==`airespace-interface-name`, property key is the Vlan ID and property value is the Airespace Interface Name |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,11 +35,7 @@ For 802.1x
   "local_vlan_ids": [
     "String8",
     "String9"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

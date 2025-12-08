@@ -835,7 +835,7 @@ UploadOrgWlanPortalImage(
     ctx context.Context,
     orgId uuid.UUID,
     wlanId uuid.UUID,
-    file models.FileWrapper,
+    file string,
     json *string) (
     http.Response,
     error)
@@ -847,7 +847,7 @@ UploadOrgWlanPortalImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `wlanId` | `uuid.UUID` | Template, Required | - |
-| `file` | `models.FileWrapper` | Form, Required | Binary file |
+| `file` | `string` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -863,7 +863,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 wlanId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
+file := "file0"
 
 resp, err := orgsWlans.UploadOrgWlanPortalImage(ctx, orgId, wlanId, file, nil)
 if err != nil {

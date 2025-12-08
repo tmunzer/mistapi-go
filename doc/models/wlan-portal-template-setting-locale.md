@@ -1,8 +1,6 @@
 
 # Wlan Portal Template Setting Locale
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanPortalTemplateSettingLocale`
@@ -109,7 +107,6 @@
 | `TosError` | `*string` | Optional | Error message when tos not accepted |
 | `TosLink` | `*string` | Optional | Label of the link to go to tos |
 | `TosText` | `*string` | Optional | Text of the Terms of Service |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -119,11 +116,7 @@
   "authButtonAzure": "authButtonAzure0",
   "authButtonEmail": "authButtonEmail8",
   "authButtonFacebook": "authButtonFacebook2",
-  "authButtonGoogle": "authButtonGoogle8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "authButtonGoogle": "authButtonGoogle8"
 }
 ```
 

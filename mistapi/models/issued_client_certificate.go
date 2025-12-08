@@ -10,12 +10,13 @@ import (
 
 // IssuedClientCertificate represents a IssuedClientCertificate struct.
 type IssuedClientCertificate struct {
-	CommonName *string `json:"common_name,omitempty"`
-	// When the object has been created, in epoch
-	CreatedTime *float64   `json:"created_time,omitempty"`
+	CertProvider *string `json:"cert_provider,omitempty"`
+	CommonName   *string `json:"common_name,omitempty"`
+	// When the certificate has been created
+	CreatedTime *string    `json:"created_time,omitempty"`
 	DeviceId    *uuid.UUID `json:"device_id,omitempty"`
-	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
+	// When the certificate will expire
+	ExpireTime           *string                `json:"expire_time,omitempty"`
 	SerialNumber         *string                `json:"serial_number,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -24,8 +25,8 @@ type IssuedClientCertificate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i IssuedClientCertificate) String() string {
 	return fmt.Sprintf(
-		"IssuedClientCertificate[CommonName=%v, CreatedTime=%v, DeviceId=%v, ModifiedTime=%v, SerialNumber=%v, AdditionalProperties=%v]",
-		i.CommonName, i.CreatedTime, i.DeviceId, i.ModifiedTime, i.SerialNumber, i.AdditionalProperties)
+		"IssuedClientCertificate[CertProvider=%v, CommonName=%v, CreatedTime=%v, DeviceId=%v, ExpireTime=%v, SerialNumber=%v, AdditionalProperties=%v]",
+		i.CertProvider, i.CommonName, i.CreatedTime, i.DeviceId, i.ExpireTime, i.SerialNumber, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificate.
@@ -34,7 +35,7 @@ func (i IssuedClientCertificate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"common_name", "created_time", "device_id", "modified_time", "serial_number"); err != nil {
+		"cert_provider", "common_name", "created_time", "device_id", "expire_time", "serial_number"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -44,6 +45,9 @@ func (i IssuedClientCertificate) MarshalJSON() (
 func (i IssuedClientCertificate) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
+	if i.CertProvider != nil {
+		structMap["cert_provider"] = i.CertProvider
+	}
 	if i.CommonName != nil {
 		structMap["common_name"] = i.CommonName
 	}
@@ -53,8 +57,8 @@ func (i IssuedClientCertificate) toMap() map[string]any {
 	if i.DeviceId != nil {
 		structMap["device_id"] = i.DeviceId
 	}
-	if i.ModifiedTime != nil {
-		structMap["modified_time"] = i.ModifiedTime
+	if i.ExpireTime != nil {
+		structMap["expire_time"] = i.ExpireTime
 	}
 	if i.SerialNumber != nil {
 		structMap["serial_number"] = i.SerialNumber
@@ -70,25 +74,27 @@ func (i *IssuedClientCertificate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "common_name", "created_time", "device_id", "modified_time", "serial_number")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cert_provider", "common_name", "created_time", "device_id", "expire_time", "serial_number")
 	if err != nil {
 		return err
 	}
 	i.AdditionalProperties = additionalProperties
 
+	i.CertProvider = temp.CertProvider
 	i.CommonName = temp.CommonName
 	i.CreatedTime = temp.CreatedTime
 	i.DeviceId = temp.DeviceId
-	i.ModifiedTime = temp.ModifiedTime
+	i.ExpireTime = temp.ExpireTime
 	i.SerialNumber = temp.SerialNumber
 	return nil
 }
 
 // tempIssuedClientCertificate is a temporary struct used for validating the fields of IssuedClientCertificate.
 type tempIssuedClientCertificate struct {
+	CertProvider *string    `json:"cert_provider,omitempty"`
 	CommonName   *string    `json:"common_name,omitempty"`
-	CreatedTime  *float64   `json:"created_time,omitempty"`
+	CreatedTime  *string    `json:"created_time,omitempty"`
 	DeviceId     *uuid.UUID `json:"device_id,omitempty"`
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
+	ExpireTime   *string    `json:"expire_time,omitempty"`
 	SerialNumber *string    `json:"serial_number,omitempty"`
 }

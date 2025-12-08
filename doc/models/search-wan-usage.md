@@ -1,8 +1,6 @@
 
 # Search Wan Usage
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SearchWanUsage`
@@ -15,7 +13,6 @@
 | `Limit` | `*int` | Optional | - |
 | `Results` | [`[]models.WanUsages`](../../doc/models/wan-usages.md) | Optional | - |
 | `Start` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,18 +26,10 @@
       "path_type": "path_type8",
       "path_weight": 242,
       "peer_mac": "peer_mac6",
-      "peer_port_id": "peer_port_id4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "peer_port_id": "peer_port_id4"
     }
   ],
-  "start": 129.06,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 129.06
 }
 ```
 

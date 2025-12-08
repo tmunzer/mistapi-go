@@ -1,9 +1,7 @@
 
 # Webhook Client Sessions
 
-Client session webhook sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `client-sessions` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ Client session webhook sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookClientSessionsEvent`](../../doc/models/webhook-client-sessions-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | **Default**: `"client-sessions"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | enum: `client-sessions`<br><br>**Value**: `"client-sessions"` |
 
 ## Example (as JSON)
 
@@ -46,18 +43,10 @@ Client session webhook sample
       "termination_reason": 198,
       "timestamp": 188.18,
       "version": 15.76,
-      "wlan_id": "0000177c-0000-0000-0000-000000000000",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wlan_id": "0000177c-0000-0000-0000-000000000000"
     }
   ],
-  "topic": "client-sessions",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "client-sessions"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Response Anomaly Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseAnomalySearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.Anomaly`](../../doc/models/anomaly.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,19 +31,11 @@
       "since": 133.06,
       "sle_baseline": 108.54,
       "sle_deviation": 23.0,
-      "timestamp": 2.64,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "timestamp": 2.64
     }
   ],
   "start": 1710949286,
-  "total": 232,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 232
 }
 ```
 

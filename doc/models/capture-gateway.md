@@ -3,8 +3,6 @@
 
 Initiate a Gateway (SSR/SRX) Packet Capture
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CaptureGateway`
@@ -20,7 +18,6 @@ Initiate a Gateway (SSR/SRX) Packet Capture
 | `NumPackets` | `models.Optional[int]` | Optional | number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000<br><br>**Default**: `1024`<br><br>**Constraints**: `>= 0`, `<= 10000` |
 | `Ports` | [`map[string]models.CaptureGatewayGatewaysPort`](../../doc/models/capture-gateway-gateways-port.md) | Optional | Property key is the port ID |
 | `Type` | `string` | Required, Constant | enum: `gateway`<br><br>**Value**: `"gateway"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,23 +29,11 @@ Initiate a Gateway (SSR/SRX) Packet Capture
     "key0": {
       "ports": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         },
         "key1": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     }
   },
@@ -57,30 +42,14 @@ Initiate a Gateway (SSR/SRX) Packet Capture
   "type": "gateway",
   "ports": {
     "key0": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key1": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key2": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

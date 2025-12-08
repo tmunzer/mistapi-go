@@ -1,8 +1,6 @@
 
 # Const Device Ap Band 24
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstDeviceApBand24`
@@ -15,7 +13,6 @@
 | `MaxClients` | `*int` | Optional | - |
 | `MaxPower` | `*int` | Optional | - |
 | `MinPower` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@
   "band5_channels_op": "low",
   "max_clients": 128,
   "max_power": 19,
-  "min_power": 8,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "min_power": 8
 }
 ```
 

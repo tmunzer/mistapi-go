@@ -1,8 +1,6 @@
 
 # Marvis Auto Operations
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MarvisAutoOperations`
@@ -20,7 +18,6 @@
 | `GatewayNonCompliant` | `*bool` | Optional | **Default**: `false` |
 | `SwitchMisconfiguredPort` | `*bool` | Optional | **Default**: `false` |
 | `SwitchPortStuck` | `*bool` | Optional | **Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
   "disable_port_when_rogue_dhcp_server_detected": false,
   "gateway_non_compliant": false,
   "switch_misconfigured_port": false,
-  "switch_port_stuck": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "switch_port_stuck": false
 }
 ```
 

@@ -3,8 +3,6 @@
 
 CPU/core stats list
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsMxedgeCpuStat`
@@ -19,7 +17,6 @@ CPU/core stats list
 | `System` | `*int` | Optional | Percentage of System, System/(Idle + Busy) since last sampling |
 | `Usage` | `*int` | Optional | Percentage of load, Busy/(Idle + Busy) since last sampling |
 | `User` | `*int` | Optional | Percentage of User, User/(Idle + Busy) since last sampling |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,8 +27,8 @@ CPU/core stats list
       "idle": 89.0,
       "interrupt": 0.0,
       "system": 8.0,
-      "usage": 10,
-      "user": 1.0,
+      "usage": 10.0,
+      "user": 1,
       "load_avg": [
         8.63
       ]
@@ -40,8 +37,8 @@ CPU/core stats list
       "idle": 81.0,
       "interrupt": 0.0,
       "system": 4.0,
-      "usage": 18,
-      "user": 13.0,
+      "usage": 18.0,
+      "user": 13,
       "load_avg": [
         8.63
       ]
@@ -50,8 +47,8 @@ CPU/core stats list
       "idle": 81.0,
       "interrupt": 0.0,
       "system": 4.0,
-      "usage": 18,
-      "user": 13.0,
+      "usage": 18.0,
+      "user": 13,
       "load_avg": [
         8.63
       ]
@@ -60,8 +57,8 @@ CPU/core stats list
       "idle": 2.0,
       "interrupt": 0.0,
       "system": 50.0,
-      "usage": 97,
-      "user": 46.0,
+      "usage": 97.0,
+      "user": 46,
       "load_avg": [
         8.63
       ]
@@ -71,11 +68,7 @@ CPU/core stats list
   "interrupt": 0,
   "system": 17,
   "usage": 37,
-  "user": 19,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "user": 19
 }
 ```
 

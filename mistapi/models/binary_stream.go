@@ -12,7 +12,7 @@ import (
 // BinaryStream represents a BinaryStream struct.
 type BinaryStream struct {
 	// File to upload
-	File                 []byte                 `json:"file"`
+	File                 string                 `json:"file"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -68,7 +68,7 @@ func (b *BinaryStream) UnmarshalJSON(input []byte) error {
 
 // tempBinaryStream is a temporary struct used for validating the fields of BinaryStream.
 type tempBinaryStream struct {
-	File *[]byte `json:"file"`
+	File *string `json:"file"`
 }
 
 func (b *tempBinaryStream) validate() error {

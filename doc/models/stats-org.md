@@ -3,8 +3,6 @@
 
 Org statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsOrg`
@@ -28,7 +26,6 @@ Org statistics
 | `OrggroupIds` | `[]uuid.UUID` | Required | - |
 | `SessionExpiry` | `int64` | Required | - |
 | `Sle` | [`[]models.StatsOrgSle`](../../doc/models/stats-org-sle.md) | Required | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -57,22 +54,10 @@ Org statistics
       "path": "path2",
       "user_minutes": {
         "ok": 13.84,
-        "total": 12.38,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
+        "total": 12.38
       }
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

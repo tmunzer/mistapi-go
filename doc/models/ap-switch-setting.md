@@ -1,8 +1,6 @@
 
 # Ap Switch Setting
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApSwitchSetting`
@@ -14,7 +12,6 @@
 | `EnableVlan` | `*bool` | Optional | - |
 | `PortVlanId` | [`*models.ApSwitchSettingPortVlanId`](../../doc/models/containers/ap-switch-setting-port-vlan-id.md) | Optional | Native VLAN id, optional |
 | `VlanIds` | `[]int` | Optional | List of VLAN ids<br><br>**Constraints**: `>= 1`, `<= 4094` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
     1,
     1,
     2
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

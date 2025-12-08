@@ -29,7 +29,7 @@ func TestSitesEVPNTopologiesTestListSiteEvpnTopologies(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":1736421230,"evpn_options":{"auto_loopback_subnet":"172.16.192.0/24","auto_loopback_subnet6":"fd33:ab00:2::/64","auto_router_id_subnet":"172.16.254.0/23","core_as_border":true,"overlay":{"as":65000},"per_vlan_vga_v4_mac":false,"routed_at":"core","underlay":{"as_base":65001,"subnet":"10.255.240.0/20","use_ipv6":false}},"for_site":false,"id":"764fb173-94f9-447c-8454-def62e5a999f","modified_time":1736421230,"name":"tert","org_id":"3a2627d7-bfbc-45af-b85d-8841581c6d63","pod_names":{"1":"Pod 1"},"site_id":"00000000-0000-0000-0000-000000000000","version":6}]`
+	expected := `[{"created_time":1736421230,"evpn_options":{"auto_loopback_subnet":"172.16.192.0/24","auto_loopback_subnet6":"fd33:ab00:2::/64","auto_router_id_subnet":"172.16.254.0/23","core_as_border":true,"overlay":{"as":65000},"per_vlan_vga_v4_mac":false,"routed_at":"core","underlay":{"as_base":65001,"subnet":"10.255.240.0/20","use_ipv6":false}},"for_site":false,"id":"764fb173-94f9-447c-8454-def62e5a999f","modified_time":1736421230,"name":"tert","org_id":"3a2627d7-bfbc-45af-b85d-8841581c6d63","pod_names":{"1":"Pod 1"},"site_id":"00000000-0000-0000-0000-000000000000"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -51,7 +51,7 @@ func TestSitesEVPNTopologiesTestListSiteEvpnTopologies1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"created_time":1736421230,"evpn_options":{"auto_loopback_subnet":"172.16.192.0/24","auto_loopback_subnet6":"fd33:ab00:2::/64","auto_router_id_subnet":"172.16.254.0/23","core_as_border":true,"overlay":{"as":65000},"per_vlan_vga_v4_mac":false,"routed_at":"core","underlay":{"as_base":65001,"subnet":"10.255.240.0/20","use_ipv6":false}},"for_site":false,"id":"764fb173-94f9-447c-8454-def62e5a999f","modified_time":1736421230,"name":"tert","org_id":"3a2627d7-bfbc-45af-b85d-8841581c6d63","pod_names":{"1":"Pod 1"},"site_id":"00000000-0000-0000-0000-000000000000","version":6}]`
+	expected := `[{"created_time":1736421230,"evpn_options":{"auto_loopback_subnet":"172.16.192.0/24","auto_loopback_subnet6":"fd33:ab00:2::/64","auto_router_id_subnet":"172.16.254.0/23","core_as_border":true,"overlay":{"as":65000},"per_vlan_vga_v4_mac":false,"routed_at":"core","underlay":{"as_base":65001,"subnet":"10.255.240.0/20","use_ipv6":false}},"for_site":false,"id":"764fb173-94f9-447c-8454-def62e5a999f","modified_time":1736421230,"name":"tert","org_id":"3a2627d7-bfbc-45af-b85d-8841581c6d63","pod_names":{"1":"Pod 1"},"site_id":"00000000-0000-0000-0000-000000000000"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

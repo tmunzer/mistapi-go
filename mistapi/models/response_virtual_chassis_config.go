@@ -14,6 +14,7 @@ type ResponseVirtualChassisConfig struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id       *uuid.UUID                  `json:"id,omitempty"`
 	Locating *bool                       `json:"locating,omitempty"`
+	Mac      *string                     `json:"mac,omitempty"`
 	Members  []StatsSwitchModuleStatItem `json:"members,omitempty"`
 	Model    *string                     `json:"model,omitempty"`
 	// routing-engine count
@@ -22,6 +23,7 @@ type ResponseVirtualChassisConfig struct {
 	Serial               *string                `json:"serial,omitempty"`
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	Status               *string                `json:"status,omitempty"`
+	Type                 *string                `json:"type,omitempty"`
 	VcMac                *string                `json:"vc_mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -30,8 +32,8 @@ type ResponseVirtualChassisConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseVirtualChassisConfig) String() string {
 	return fmt.Sprintf(
-		"ResponseVirtualChassisConfig[ConfigType=%v, Id=%v, Locating=%v, Members=%v, Model=%v, NumRoutingEngines=%v, OrgId=%v, Serial=%v, SiteId=%v, Status=%v, VcMac=%v, AdditionalProperties=%v]",
-		r.ConfigType, r.Id, r.Locating, r.Members, r.Model, r.NumRoutingEngines, r.OrgId, r.Serial, r.SiteId, r.Status, r.VcMac, r.AdditionalProperties)
+		"ResponseVirtualChassisConfig[ConfigType=%v, Id=%v, Locating=%v, Mac=%v, Members=%v, Model=%v, NumRoutingEngines=%v, OrgId=%v, Serial=%v, SiteId=%v, Status=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
+		r.ConfigType, r.Id, r.Locating, r.Mac, r.Members, r.Model, r.NumRoutingEngines, r.OrgId, r.Serial, r.SiteId, r.Status, r.Type, r.VcMac, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseVirtualChassisConfig.
@@ -40,7 +42,7 @@ func (r ResponseVirtualChassisConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"config_type", "id", "locating", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "vc_mac"); err != nil {
+		"config_type", "id", "locating", "mac", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "type", "vc_mac"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -58,6 +60,9 @@ func (r ResponseVirtualChassisConfig) toMap() map[string]any {
 	}
 	if r.Locating != nil {
 		structMap["locating"] = r.Locating
+	}
+	if r.Mac != nil {
+		structMap["mac"] = r.Mac
 	}
 	if r.Members != nil {
 		structMap["members"] = r.Members
@@ -80,6 +85,9 @@ func (r ResponseVirtualChassisConfig) toMap() map[string]any {
 	if r.Status != nil {
 		structMap["status"] = r.Status
 	}
+	if r.Type != nil {
+		structMap["type"] = r.Type
+	}
 	if r.VcMac != nil {
 		structMap["vc_mac"] = r.VcMac
 	}
@@ -94,7 +102,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "id", "locating", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "vc_mac")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "config_type", "id", "locating", "mac", "members", "model", "num_routing_engines", "org_id", "serial", "site_id", "status", "type", "vc_mac")
 	if err != nil {
 		return err
 	}
@@ -103,6 +111,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 	r.ConfigType = temp.ConfigType
 	r.Id = temp.Id
 	r.Locating = temp.Locating
+	r.Mac = temp.Mac
 	r.Members = temp.Members
 	r.Model = temp.Model
 	r.NumRoutingEngines = temp.NumRoutingEngines
@@ -110,6 +119,7 @@ func (r *ResponseVirtualChassisConfig) UnmarshalJSON(input []byte) error {
 	r.Serial = temp.Serial
 	r.SiteId = temp.SiteId
 	r.Status = temp.Status
+	r.Type = temp.Type
 	r.VcMac = temp.VcMac
 	return nil
 }
@@ -119,6 +129,7 @@ type tempResponseVirtualChassisConfig struct {
 	ConfigType        *string                     `json:"config_type,omitempty"`
 	Id                *uuid.UUID                  `json:"id,omitempty"`
 	Locating          *bool                       `json:"locating,omitempty"`
+	Mac               *string                     `json:"mac,omitempty"`
 	Members           []StatsSwitchModuleStatItem `json:"members,omitempty"`
 	Model             *string                     `json:"model,omitempty"`
 	NumRoutingEngines *int                        `json:"num_routing_engines,omitempty"`
@@ -126,5 +137,6 @@ type tempResponseVirtualChassisConfig struct {
 	Serial            *string                     `json:"serial,omitempty"`
 	SiteId            *uuid.UUID                  `json:"site_id,omitempty"`
 	Status            *string                     `json:"status,omitempty"`
+	Type              *string                     `json:"type,omitempty"`
 	VcMac             *string                     `json:"vc_mac,omitempty"`
 }

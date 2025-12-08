@@ -1,8 +1,6 @@
 
 # Ospf Peer Stats Search Results Items
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OspfPeerStatsSearchResultsItems`
@@ -22,7 +20,6 @@
 | `Timestamp` | `*float64` | Optional | Sampling time (in epoch seconds) |
 | `Up` | `*bool` | Optional | True if state is full |
 | `VrfName` | `*string` | Optional | Instance name, e.g. master |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@
   "dead_time": 194,
   "mac": "mac4",
   "peer_ip": "peer_ip0",
-  "port_id": "port_id0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "port_id": "port_id0"
 }
 ```
 

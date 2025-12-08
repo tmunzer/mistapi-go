@@ -12,7 +12,7 @@ type ResponseMxedgeSearch struct {
 	End                  *int                   `json:"end,omitempty"`
 	Limit                *int                   `json:"limit,omitempty"`
 	Next                 *string                `json:"next,omitempty"`
-	Results              []StatsMxedge          `json:"results,omitempty"`
+	Results              []SearchMxedge         `json:"results,omitempty"`
 	Start                *int                   `json:"start,omitempty"`
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -88,10 +88,10 @@ func (r *ResponseMxedgeSearch) UnmarshalJSON(input []byte) error {
 
 // tempResponseMxedgeSearch is a temporary struct used for validating the fields of ResponseMxedgeSearch.
 type tempResponseMxedgeSearch struct {
-	End     *int          `json:"end,omitempty"`
-	Limit   *int          `json:"limit,omitempty"`
-	Next    *string       `json:"next,omitempty"`
-	Results []StatsMxedge `json:"results,omitempty"`
-	Start   *int          `json:"start,omitempty"`
-	Total   *int          `json:"total,omitempty"`
+	End     *int           `json:"end,omitempty"`
+	Limit   *int           `json:"limit,omitempty"`
+	Next    *string        `json:"next,omitempty"`
+	Results []SearchMxedge `json:"results,omitempty"`
+	Start   *int           `json:"start,omitempty"`
+	Total   *int           `json:"total,omitempty"`
 }

@@ -1,8 +1,6 @@
 
 # Response Search Bgps
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSearchBgps`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.BgpStats`](../../doc/models/bgp-stats.md) | Optional | - |
 | `Start` | `*float64` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,18 +29,10 @@
       "for_overlay": false,
       "local_as": "String3",
       "mac": "mac0",
-      "model": "model4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "model": "model4"
     }
   ],
-  "start": 193.42,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 193.42
 }
 ```
 

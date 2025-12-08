@@ -8,7 +8,7 @@ import (
 )
 
 // WlanAppQos represents a WlanAppQos struct.
-// APp qos wlan settings
+// APP qos wlan settings
 type WlanAppQos struct {
 	Apps                 map[string]WlanAppQosAppsProperties `json:"apps,omitempty"`
 	Enabled              *bool                               `json:"enabled,omitempty"`

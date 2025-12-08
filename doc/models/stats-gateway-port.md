@@ -3,8 +3,6 @@
 
 Port statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsGatewayPort`
@@ -57,7 +55,6 @@ Port statistics
 | `XcvrModel` | `*string` | Optional | Optic Slot ModelName, Check for null/empty |
 | `XcvrPartNumber` | `*string` | Optional | Optic Slot Partnumber, Check for null/empty |
 | `XcvrSerial` | `*string` | Optional | Optic Slot SerialNumber, Check for null/empty |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -83,11 +80,7 @@ Port statistics
   "active": false,
   "auth_state": "held",
   "disabled": false,
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false
 }
 ```
 

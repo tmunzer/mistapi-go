@@ -1,8 +1,6 @@
 
 # Stats Beacon
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsBeacon`
@@ -22,7 +20,6 @@
 | `Type` | `string` | Required | - |
 | `X` | `float64` | Required | - |
 | `Y` | `float64` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,11 +35,7 @@
   "y": 240.34,
   "battery_voltage": 33.46,
   "eddystone_instance": "eddystone_instance8",
-  "eddystone_namespace": "eddystone_namespace4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "eddystone_namespace": "eddystone_namespace4"
 }
 ```
 

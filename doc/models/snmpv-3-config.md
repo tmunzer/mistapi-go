@@ -1,8 +1,6 @@
 
 # Snmpv 3 Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Snmpv3Config`
@@ -17,7 +15,6 @@
 | `TargetParameters` | [`[]models.Snmpv3ConfigTargetParam`](../../doc/models/snmpv-3-config-target-param.md) | Optional | - |
 | `Usm` | [`[]models.SnmpUsm`](../../doc/models/snmp-usm.md) | Optional | - |
 | `Vacm` | [`*models.SnmpVacm`](../../doc/models/snmp-vacm.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,20 +24,12 @@
     {
       "name": "name0",
       "tag": "tag4",
-      "type": "inform",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "inform"
     },
     {
       "name": "name0",
       "tag": "tag4",
-      "type": "inform",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "inform"
     }
   ],
   "notify_filter": [
@@ -48,18 +37,10 @@
       "contents": [
         {
           "include": false,
-          "oid": "oid4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "oid": "oid4"
         }
       ],
-      "profile_name": "profile_name2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "profile_name": "profile_name2"
     }
   ],
   "target_address": [
@@ -68,22 +49,14 @@
       "address_mask": "address_mask0",
       "port": "port2",
       "tag_list": "tag_list4",
-      "target_address_name": "target_address_name6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "target_address_name": "target_address_name6"
     },
     {
       "address": "address8",
       "address_mask": "address_mask0",
       "port": "port2",
       "tag_list": "tag_list4",
-      "target_address_name": "target_address_name6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "target_address_name": "target_address_name6"
     }
   ],
   "target_parameters": [
@@ -92,22 +65,14 @@
       "name": "name4",
       "notify_filter": "notify_filter6",
       "security_level": "none",
-      "security_model": "usm",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "security_model": "usm"
     },
     {
       "message_processing_model": "v3",
       "name": "name4",
       "notify_filter": "notify_filter6",
       "security_level": "none",
-      "security_model": "usm",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "security_model": "usm"
     }
   ],
   "usm": [
@@ -120,17 +85,9 @@
           "authentication_type": "authentication-sha384",
           "encryption_password": "encryption_password4",
           "encryption_type": "privacy-3des",
-          "name": "name6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "name": "name6"
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "engine_type": "local_engine",
@@ -141,23 +98,11 @@
           "authentication_type": "authentication-sha384",
           "encryption_password": "encryption_password4",
           "encryption_type": "privacy-3des",
-          "name": "name6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "name": "name6"
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

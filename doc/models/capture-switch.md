@@ -35,67 +35,31 @@ Initiate a Switch (Junos) Packet Capture
     "key0": {
       "ports": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         },
         "key1": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     },
     "key1": {
       "ports": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         },
         "key1": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     },
     "key2": {
       "ports": {
         "key0": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         },
         "key1": {
-          "tcpdump_expression": "tcpdump_expression0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "tcpdump_expression": "tcpdump_expression0"
         }
-      },
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
       }
     }
   },
@@ -103,25 +67,13 @@ Initiate a Switch (Junos) Packet Capture
   "type": "switch",
   "ports": {
     "key0": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key1": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     },
     "key2": {
-      "tcpdump_expression": "tcpdump_expression0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "tcpdump_expression": "tcpdump_expression0"
     }
   },
   "exampleAdditionalProperty": {

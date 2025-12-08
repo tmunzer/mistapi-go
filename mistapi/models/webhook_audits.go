@@ -10,9 +10,10 @@ import (
 )
 
 // WebhookAudits represents a WebhookAudits struct.
-// audit webhook sample
+// Sample of the `audits` webhook payload.
 type WebhookAudits struct {
-	Events               []WebhookAuditEvent    `json:"events"`
+	Events []LogEvent `json:"events"`
+	// enum: `audits`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -71,8 +72,8 @@ func (w *WebhookAudits) UnmarshalJSON(input []byte) error {
 
 // tempWebhookAudits is a temporary struct used for validating the fields of WebhookAudits.
 type tempWebhookAudits struct {
-	Events *[]WebhookAuditEvent `json:"events"`
-	Topic  *string              `json:"topic"`
+	Events *[]LogEvent `json:"events"`
+	Topic  *string     `json:"topic"`
 }
 
 func (w *tempWebhookAudits) validate() error {

@@ -1,8 +1,6 @@
 
 # Gateway Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewaySearch`
@@ -37,7 +35,6 @@
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
 | `Uptime` | `*int` | Optional | - |
 | `Version` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -54,11 +51,7 @@
     "hostname2",
     "hostname1",
     "hostname0"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

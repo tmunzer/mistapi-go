@@ -3,8 +3,6 @@
 
 Occupancy Analytics settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteOccupancyAnalytics`
@@ -18,7 +16,6 @@ Occupancy Analytics settings
 | `MinDuration` | `*int` | Optional | Minimum duration<br><br>**Default**: `3000` |
 | `SdkclientsEnabled` | `*bool` | Optional | Indicate whether SDK clients should be included in the zone occupancy calculation<br><br>**Default**: `false` |
 | `UnconnectedClientsEnabled` | `*bool` | Optional | Indicate whether unconnected Wi-Fi clients should be included in the zone occupancy calculation<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@ Occupancy Analytics settings
   "clients_enabled": true,
   "min_duration": 3000,
   "sdkclients_enabled": false,
-  "unconnected_clients_enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "unconnected_clients_enabled": false
 }
 ```
 

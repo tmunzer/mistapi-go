@@ -1,8 +1,6 @@
 
 # Response Count Marvis Actions
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseCountMarvisActions`
@@ -15,7 +13,6 @@
 | `Limit` | `*int` | Optional | - |
 | `Results` | [`[]models.ResponseCountMarvisActionsResult`](../../doc/models/response-count-marvis-actions-result.md) | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,11 +34,7 @@
       "status": "08b2176a-0000-000-3333-002e208b2d3f"
     }
   ],
-  "total": 3,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 3
 }
 ```
 

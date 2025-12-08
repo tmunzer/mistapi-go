@@ -32,11 +32,7 @@
     ],
     "sitegroup_ids": [
       "00000634-0000-0000-0000-000000000000"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "scheduled_time": 8,
   "exampleAdditionalProperty": {

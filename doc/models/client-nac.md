@@ -1,8 +1,6 @@
 
 # Client Nac
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ClientNac`
@@ -57,7 +55,6 @@
 | `UsermacLabel` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Username` | `[]string` | Optional | List of usernames that have been assigned to the client |
 | `Vlan` | `[]string` | Optional | List of vlans that have been assigned to the client |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -123,11 +120,7 @@
   "ssid": [
     "MyCorp-NAC"
   ],
-  "type": "wireless",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "type": "wireless"
 }
 ```
 

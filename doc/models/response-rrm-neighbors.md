@@ -1,8 +1,6 @@
 
 # Response Rrm Neighbors
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseRrmNeighbors`
@@ -16,7 +14,6 @@
 | `Next` | `*string` | Optional | Link to query next set of results. value is null if no next page exists. |
 | `Results` | [`[]models.RrmNeighbors`](../../doc/models/rrm-neighbors.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,25 +27,13 @@
       "neighbors": [
         {
           "mac": "mac4",
-          "rssi": 56,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "rssi": 56
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "start": 204,
-  "next": "next6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next6"
 }
 ```
 

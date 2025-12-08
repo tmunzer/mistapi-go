@@ -18,9 +18,9 @@ Beacon
 | `EddystoneNamespace` | `*string` | Optional | Eddystone-UID namespace (10 bytes) in hexstring format |
 | `EddystoneUrl` | `*string` | Optional | Eddystone-URL url |
 | `ForSite` | `*bool` | Optional | - |
-| `IbeaconMajor` | `*int` | Optional | Bluetooth tag major |
-| `IbeaconMinor` | `*int` | Optional | Bluetooth tag minor |
-| `IbeaconUuid` | `*uuid.UUID` | Optional | Bluetooth tag UUID |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | Major number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMinor` | `models.Optional[int]` | Optional | Minor number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconUuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Mac` | `*string` | Optional | Optional, MAC of the beacon, currently used only to identify battery voltage |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
@@ -38,6 +38,9 @@ Beacon
 
 ```json
 {
+  "ibeacon_major": 1234,
+  "ibeacon_minor": 1234,
+  "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "power": -12,

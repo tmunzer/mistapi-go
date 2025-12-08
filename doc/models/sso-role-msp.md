@@ -21,7 +21,6 @@ SSO Role response
 | `Name` | `string` | Required | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Privileges` | [`[]models.PrivilegeMsp`](../../doc/models/privilege-msp.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `SiteId` | `*uuid.UUID` | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
@@ -43,14 +42,9 @@ SSO Role response
         "location",
         "lobby_admin",
         "switch_admin"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 45.5,
   "for_site": false,
   "modified_time": 33.46,

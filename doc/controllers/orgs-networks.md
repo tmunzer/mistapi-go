@@ -102,18 +102,14 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
                 "property1": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
                 "property2": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
@@ -137,18 +133,14 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
                 "property1": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
                 "property2": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
@@ -255,14 +247,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",
@@ -286,14 +278,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",
@@ -494,14 +486,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",
@@ -525,14 +517,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",
@@ -686,14 +678,14 @@ if err != nil {
         "allow_ping": true,
         "destination_nat": {
           "property1": {
+            "internal_ip": "192.168.70.5/30",
             "name": "web server",
-            "port": "443",
-            "to": "192.168.70.5/30"
+            "port": "443"
           },
           "property2": {
+            "internal_ip": "192.168.70.5/30",
             "name": "web server",
-            "port": "443",
-            "to": "192.168.70.5/30"
+            "port": "443"
           }
         },
         "nat_pool": "172.16.0.0/26",
@@ -717,14 +709,14 @@ if err != nil {
         "allow_ping": true,
         "destination_nat": {
           "property1": {
+            "internal_ip": "192.168.70.5/30",
             "name": "web server",
-            "port": "443",
-            "to": "192.168.70.5/30"
+            "port": "443"
           },
           "property2": {
+            "internal_ip": "192.168.70.5/30",
             "name": "web server",
-            "port": "443",
-            "to": "192.168.70.5/30"
+            "port": "443"
           }
         },
         "nat_pool": "172.16.0.0/26",
@@ -849,18 +841,14 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
                 "property1": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
                 "property2": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
@@ -884,18 +872,14 @@ body := models.Network{
             AllowPing:                 models.ToPointer(true),
             DestinationNat:            map[string]models.NetworkVpnAccessDestinationNatProperty{
                 "property1": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
                 "property2": models.NetworkVpnAccessDestinationNatProperty{
+                    InternalIp:           models.ToPointer("192.168.70.5/30"),
                     Name:                 models.ToPointer("web server"),
                     Port:                 models.ToPointer("443"),
-                    AdditionalProperties: map[string]interface{}{
-                        "to": interface{}("192.168.70.5/30"),
-                    },
                 },
             },
             NatPool:                   models.ToPointer("172.16.0.0/26"),
@@ -1002,14 +986,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",
@@ -1033,14 +1017,14 @@ if err != nil {
       "allow_ping": true,
       "destination_nat": {
         "property1": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         },
         "property2": {
+          "internal_ip": "192.168.70.5/30",
           "name": "web server",
-          "port": "443",
-          "to": "192.168.70.5/30"
+          "port": "443"
         }
       },
       "nat_pool": "172.16.0.0/26",

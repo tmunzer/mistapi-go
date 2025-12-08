@@ -1,8 +1,6 @@
 
 # Webhook Occupancy Alerts Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookOccupancyAlertsEvent`
@@ -15,7 +13,6 @@
 | `ForSite` | `*bool` | Optional | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `SiteName` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,18 +29,10 @@
       "timestamp": 148.24,
       "type": "COMPLIANCE-OK",
       "zone_id": "000010f6-0000-0000-0000-000000000000",
-      "zone_name": "zone_name6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "zone_name": "zone_name6"
     }
   ],
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false
 }
 ```
 

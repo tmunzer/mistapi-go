@@ -1,8 +1,6 @@
 
 # Stats Gateway Service Status
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsGatewayServiceStatus`
@@ -21,7 +19,6 @@
 | `IdpPolicy` | `*string` | Optional | - |
 | `IdpStatus` | `*string` | Optional | - |
 | `IdpUpdateTimestamp` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@
   "appid_install_timestamp": "appid_install_timestamp2",
   "appid_status": "appid_status2",
   "appid_version": 106,
-  "ewf_status": "ewf_status6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ewf_status": "ewf_status6"
 }
 ```
 

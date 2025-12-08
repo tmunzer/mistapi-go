@@ -1,8 +1,6 @@
 
 # Sle Impacted Users User
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedUsersUser`
@@ -22,7 +20,6 @@
 | `Ssid` | `*string` | Optional | - |
 | `Total` | `*float64` | Optional | - |
 | `WlanId` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "ap_name": "ap_name8",
   "degraded": 225.0,
   "device_os": "device_os0",
-  "device_type": "device_type0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "device_type": "device_type0"
 }
 ```
 

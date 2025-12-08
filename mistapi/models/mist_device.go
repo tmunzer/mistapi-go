@@ -49,10 +49,10 @@ func (m *MistDevice) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for MistDevice.
 // It customizes the JSON unmarshaling process for MistDevice objects.
 func (m *MistDevice) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallOneOf(input,
-		NewTypeHolder(&DeviceAp{}, false, &m.isDeviceAp),
-		NewTypeHolder(&DeviceSwitch{}, false, &m.isDeviceSwitch),
-		NewTypeHolder(&DeviceGateway{}, false, &m.isDeviceGateway),
+	result, err := UnmarshallOneOfWithDiscriminator(input, "type",
+		NewTypeHolderDiscriminator(&DeviceAp{}, false, &m.isDeviceAp, "ap"),
+		NewTypeHolderDiscriminator(&DeviceSwitch{}, false, &m.isDeviceSwitch, "switch"),
+		NewTypeHolderDiscriminator(&DeviceGateway{}, false, &m.isDeviceGateway, "gateway"),
 	)
 
 	m.value = result

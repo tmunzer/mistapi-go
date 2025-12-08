@@ -38,11 +38,7 @@
     "mxdas": false,
     "mxocproxy": false,
     "radsecproxy": false,
-    "tunterm": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "tunterm": false
   },
   "distro": "distro4",
   "exampleAdditionalProperty": {

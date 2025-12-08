@@ -1,8 +1,6 @@
 
 # Mxedge Das Coa Server
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxedgeDasCoaServer`
@@ -17,7 +15,6 @@
 | `Port` | `*int` | Optional | Mist edges will allow this host on this port<br><br>**Default**: `3799` |
 | `RequireMessageAuthenticator` | `*bool` | Optional | Whether to require Message-Authenticator in requests<br><br>**Default**: `false` |
 | `Secret` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
   "port": 3799,
   "require_message_authenticator": false,
   "enabled": false,
-  "host": "host8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "host": "host8"
 }
 ```
 

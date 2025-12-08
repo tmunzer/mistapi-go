@@ -1,8 +1,6 @@
 
 # User Mac Import
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `UserMacImport`
@@ -14,7 +12,6 @@
 | `Added` | `[]string` | Optional | - |
 | `Errors` | `[]string` | Optional | - |
 | `Updated` | `[]string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   "updated": [
     "721b638445ef",
     "721b638445ee"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

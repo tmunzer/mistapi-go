@@ -1,8 +1,6 @@
 
 # Account Oauth Info
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountOauthInfo`
@@ -14,7 +12,6 @@
 | `Accounts` | [`[]models.AccountOauthInfoAccount`](../../doc/models/account-oauth-info-account.md) | Required | List of linked account details |
 | `AuthorizationUrl` | `*string` | Optional | - |
 | `Linked` | `bool` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,6 +29,7 @@
         "OAuth token refresh failed, please re-link your account",
         "API daily rate limit reached for your account"
       ],
+      "key_id": "L72frZcK3JvrZc",
       "last_status": "failed",
       "last_sync": 1665465339000,
       "linked_by": "Testname1",
@@ -46,19 +44,12 @@
       "webhook_password": "password_1234",
       "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
       "webhook_username": "username_1234",
-      "client_id": "client_id2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "zdx_org_id": "123456",
+      "client_id": "client_id2"
     }
   ],
   "linked": false,
-  "authorization_url": "authorization_url0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "authorization_url": "authorization_url0"
 }
 ```
 

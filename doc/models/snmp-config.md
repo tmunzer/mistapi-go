@@ -1,8 +1,6 @@
 
 # Snmp Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SnmpConfig`
@@ -24,7 +22,6 @@
 | `V2cConfig` | [`[]models.SnmpConfigV2cConfig`](../../doc/models/snmp-config-v2-c-config.md) | Optional | - |
 | `V3Config` | [`*models.Snmpv3Config`](../../doc/models/snmpv-3-config.md) | Optional | - |
 | `Views` | [`[]models.SnmpConfigView`](../../doc/models/snmp-config-view.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,38 +39,22 @@
       "client_list_name": "client_list_name2",
       "clients": [
         "clients4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "client_list_name": "client_list_name2",
       "clients": [
         "clients4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "client_list_name": "client_list_name2",
       "clients": [
         "clients4"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
-  "engine_id": "engine_id6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "engine_id": "engine_id6"
 }
 ```
 

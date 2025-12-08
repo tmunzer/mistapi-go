@@ -11,14 +11,14 @@ import (
 // SRX only
 type ServicePolicySkyatp struct {
 	// enum: `disabled`, `default`, `standard`, `strict`
-	DnsDgaDetection *DnsDgaDetectionEnum `json:"dns_dga_detection,omitempty"`
+	DnsDgaDetection *ServicePolicySkyatpDnsDgaDetectionEnum `json:"dns_dga_detection,omitempty"`
 	// enum: `disabled`, `default`, `standard`, `strict`
-	DnsTunnelDetection *DnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
+	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
 	// enum: `disabled`, `standard`
-	HttpInspection *HttpInspectionEnum `json:"http_inspection,omitempty"`
+	HttpInspection *ServicePolicySkyatpHttpInspectionEnum `json:"http_inspection,omitempty"`
 	// enum: `disabled`, `enabled`
-	IotDevicePolicy      *IotDevicePolicyEnum   `json:"iot_device_policy,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	IotDevicePolicy      *ServicePolicySkyatpIotDevicePolicyEnum `json:"iot_device_policy,omitempty"`
+	AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatp,
@@ -83,8 +83,8 @@ func (s *ServicePolicySkyatp) UnmarshalJSON(input []byte) error {
 
 // tempServicePolicySkyatp is a temporary struct used for validating the fields of ServicePolicySkyatp.
 type tempServicePolicySkyatp struct {
-	DnsDgaDetection    *DnsDgaDetectionEnum    `json:"dns_dga_detection,omitempty"`
-	DnsTunnelDetection *DnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
-	HttpInspection     *HttpInspectionEnum     `json:"http_inspection,omitempty"`
-	IotDevicePolicy    *IotDevicePolicyEnum    `json:"iot_device_policy,omitempty"`
+	DnsDgaDetection    *ServicePolicySkyatpDnsDgaDetectionEnum    `json:"dns_dga_detection,omitempty"`
+	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
+	HttpInspection     *ServicePolicySkyatpHttpInspectionEnum     `json:"http_inspection,omitempty"`
+	IotDevicePolicy    *ServicePolicySkyatpIotDevicePolicyEnum    `json:"iot_device_policy,omitempty"`
 }

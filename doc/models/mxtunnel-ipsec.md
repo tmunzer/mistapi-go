@@ -1,8 +1,6 @@
 
 # Mxtunnel Ipsec
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxtunnelIpsec`
@@ -17,7 +15,6 @@
 | `ExtraRoutes` | [`[]models.MxtunnelIpsecExtraRoute`](../../doc/models/mxtunnel-ipsec-extra-route.md) | Optional | - |
 | `SplitTunnel` | `*bool` | Optional | - |
 | `UseMxedge` | `*bool` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,34 +32,18 @@
   "extra_routes": [
     {
       "dest": "dest4",
-      "next_hop": "next_hop4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "next_hop": "next_hop4"
     },
     {
       "dest": "dest4",
-      "next_hop": "next_hop4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "next_hop": "next_hop4"
     },
     {
       "dest": "dest4",
-      "next_hop": "next_hop4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "next_hop": "next_hop4"
     }
   ],
-  "split_tunnel": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "split_tunnel": false
 }
 ```
 

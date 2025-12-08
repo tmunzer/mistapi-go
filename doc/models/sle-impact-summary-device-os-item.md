@@ -1,8 +1,6 @@
 
 # Sle Impact Summary Device Os Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactSummaryDeviceOsItem`
@@ -16,7 +14,6 @@
 | `Duration` | `float64` | Required | - |
 | `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Total` | `float64` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
   "device_os": "device_os6",
   "duration": 66.02,
   "name": "name6",
-  "total": 220.96,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 220.96
 }
 ```
 

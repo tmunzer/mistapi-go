@@ -48,11 +48,7 @@ MxTunnels statistics
     "status": "inprogress",
     "status_id": 70,
     "timestamp": 147.68,
-    "will_retry": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "will_retry": false
   },
   "mtu": 34,
   "exampleAdditionalProperty": {

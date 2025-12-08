@@ -1,8 +1,6 @@
 
 # Upgrade Site Devices Counts
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `UpgradeSiteDevicesCounts`
@@ -20,7 +18,6 @@
 | `Skipped` | `*int` | Optional | Count of devices which skipped upgrade since requested version was same as running version. Use force to always upgrade |
 | `Total` | `*int` | Optional | Count of devices part of this upgrade |
 | `Upgraded` | `*int` | Optional | Count of devices which have upgraded successfully |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   "downloaded": 112,
   "failed": 240,
   "reboot_in_progress": 94,
-  "rebooted": 2,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "rebooted": 2
 }
 ```
 

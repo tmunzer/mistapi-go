@@ -3,8 +3,6 @@
 
 Whether downgrade is allowed when running version is higher than expected version for each service
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MxedgeUpgradeMultiAllowDowngrades`
@@ -18,7 +16,6 @@ Whether downgrade is allowed when running version is higher than expected versio
 | `Mxocproxy` | `*bool` | Optional | **Default**: `false` |
 | `Radsecproxy` | `*bool` | Optional | **Default**: `false` |
 | `Tunterm` | `*bool` | Optional | **Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@ Whether downgrade is allowed when running version is higher than expected versio
   "mxdas": false,
   "mxocproxy": false,
   "radsecproxy": false,
-  "tunterm": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "tunterm": false
 }
 ```
 

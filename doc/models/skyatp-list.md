@@ -22,21 +22,13 @@
   "domains": [
     {
       "comment": "comment6",
-      "value": "value2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "value": "value2"
     }
   ],
   "ip": [
     {
       "comment": "comment8",
-      "value": "value6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "value": "value6"
     }
   ],
   "exampleAdditionalProperty": {

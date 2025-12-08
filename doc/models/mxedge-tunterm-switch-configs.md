@@ -26,11 +26,7 @@ If custom vlan settings are desired
     "vlan_ids": [
       "String7",
       "String8"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   }
 }
 ```

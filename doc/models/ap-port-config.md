@@ -1,8 +1,6 @@
 
 # Ap Port Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApPortConfig`
@@ -25,10 +23,9 @@
 | `RadiusConfig` | [`*models.RadiusConfig`](../../doc/models/radius-config.md) | Optional | Junos Radius config |
 | `Radsec` | [`*models.Radsec`](../../doc/models/radsec.md) | Optional | RadSec settings |
 | `VlanId` | `*int` | Optional | Optional to specify the vlan id for a tunnel if forwarding is for `wxtunnel`, `mxtunnel` or `site_mxedge`.<br><br>* if vlan_id is not specified then it will use first one in vlan_ids[] of the mxtunnel.<br>* if forwarding == site_mxedge, vlan_ids comes from site_mxedge (`mxtunnels` under site setting)<br><br>**Constraints**: `>= 1`, `<= 4094` |
-| `VlanIds` | `[]int` | Optional | If `forwarding`==`limited`<br><br>**Constraints**: `>= 1`, `<= 4094` |
+| `VlanIds` | `*string` | Optional | If `forwarding`==`limited`, comma separated list of additional vlan ids allowed on this port |
 | `WxtunnelId` | `*uuid.UUID` | Optional | If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session |
 | `WxtunnelRemoteId` | `*string` | Optional | If `forwarding`==`wxtunnel`, the port is bridged to the vlan of the session |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -43,11 +40,7 @@
   "port_auth": "none",
   "port_vlan_id": 1,
   "vlan_id": 9,
-  "vlan_ids": [
-    1,
-    10,
-    50
-  ],
+  "vlan_ids": "10,20,30",
   "wxtunnel_id": "7dae216d-7c98-a51b-e068-dd7d477b7216",
   "wxtunnel_remote_id": "wifiguest",
   "dynamic_vlan": {
@@ -56,15 +49,7 @@
     "type": "type6",
     "vlans": {
       "key0": "vlans1"
-    },
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

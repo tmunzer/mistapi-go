@@ -1,7 +1,7 @@
 
 # Webhook Sdkclient Scan Data
 
-*This model accepts additional fields of type interface{}.*
+Sample of the `sdkclient-scan-data` webhook payload.
 
 ## Structure
 
@@ -12,8 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookSdkclientScanDataEvent`](../../doc/models/webhook-sdkclient-scan-data-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | enum: `sdkclient_scan_data`<br><br>**Value**: `"sdkclient_scan_data"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | enum: `sdkclient-scan-data`<br><br>**Value**: `"sdkclient-scan-data"` |
 
 ## Example (as JSON)
 
@@ -37,24 +36,12 @@
           "channel": 72,
           "rssi": 228.1,
           "ssid": "ssid4",
-          "timestamp": 102.06,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "timestamp": 102.06
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
-  "topic": "sdkclient_scan_data",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "sdkclient-scan-data"
 }
 ```
 

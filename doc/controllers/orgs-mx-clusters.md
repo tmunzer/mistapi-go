@@ -51,11 +51,13 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Mxcluster{
     Name:                      models.ToPointer("string"),
     Radsec:                    models.ToPointer(models.MxclusterRadsec{
-        Enabled:              models.ToPointer(true),
-        AdditionalProperties: map[string]interface{}{
-            "server_name": interface{}("string"),
-            "servers": interface{}("System.Collections.Generic.Dictionary`2[System.String,System.Object]"),
+        AuthServers:          []models.MxclusterRadsecAuthServer{
+            models.MxclusterRadsecAuthServer{
+                Host:                 models.ToPointer("string"),
+                Port:                 models.ToPointer(0),
+            },
         },
+        Enabled:              models.ToPointer(true),
     }),
     TuntermApSubnets:          []string{
         "string",
@@ -500,11 +502,13 @@ mxclusterId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 body := models.Mxcluster{
     Name:                      models.ToPointer("string"),
     Radsec:                    models.ToPointer(models.MxclusterRadsec{
-        Enabled:              models.ToPointer(true),
-        AdditionalProperties: map[string]interface{}{
-            "server_name": interface{}("string"),
-            "servers": interface{}("System.Collections.Generic.Dictionary`2[System.String,System.Object]"),
+        AuthServers:          []models.MxclusterRadsecAuthServer{
+            models.MxclusterRadsecAuthServer{
+                Host:                 models.ToPointer("string"),
+                Port:                 models.ToPointer(0),
+            },
         },
+        Enabled:              models.ToPointer(true),
     }),
     TuntermApSubnets:          []string{
         "string",

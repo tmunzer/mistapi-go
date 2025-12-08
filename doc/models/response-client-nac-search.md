@@ -1,8 +1,6 @@
 
 # Response Client Nac Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseClientNacSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.ClientNac`](../../doc/models/client-nac.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,17 +42,9 @@
       ],
       "cert_serial": [
         "cert_serial8"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

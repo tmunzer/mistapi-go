@@ -1,8 +1,6 @@
 
 # Call Troubleshoot Summary
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CallTroubleshootSummary`
@@ -45,7 +43,6 @@
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `VideoIn` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
 | `VideoOut` | [`*models.CallTroubleshootSummaryData`](../../doc/models/call-troubleshoot-summary-data.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -77,34 +74,22 @@
   "site_wan_avg_download_mbps": 3.0566701889E-07,
   "site_wan_avg_upload_mbps": 5.566701889E-08,
   "site_wan_download_mbps": 8.0566701889E-07,
-  "site_wan_jitter": 1.00566701889E-06,
-  "site_wan_rtt": 4.0566701889E-07,
+  "site_wan_jitter": 0.7875519659784105,
+  "site_wan_rtt": 15.094849904378256,
   "site_wan_upload_mbps": 2.0566701889E-07,
   "audio_in": {
     "ap_num_clients": 152.32,
     "ap_rtt": 133.36,
     "client_cpu": 164.78,
     "client_n_streams": 206.36,
-    "client_radio_band": 43.4,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "client_radio_band": 43.4
   },
   "audio_out": {
     "ap_num_clients": 71.16,
     "ap_rtt": 52.2,
     "client_cpu": 245.94,
     "client_n_streams": 125.2,
-    "client_radio_band": 218.24,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "client_radio_band": 218.24
   }
 }
 ```

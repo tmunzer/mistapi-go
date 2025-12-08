@@ -3,8 +3,6 @@
 
 When `vendor`==`cradlepoint`
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsDeviceOtherVendorSpecific`
@@ -13,15 +11,14 @@ When `vendor`==`cradlepoint`
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ports` | [`map[string]models.StatsDeviceOtherVendorSpecificPort`](../../doc/models/stats-device-other-vendor-specific-port.md) | Optional | - |
+| `Interfaces` | [`map[string]models.StatsDeviceOtherVendorSpecificPort`](../../doc/models/stats-device-other-vendor-specific-port.md) | Optional | - |
 | `TargetVersion` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "ports": {
+  "interfaces": {
     "mdm-4d0e073b": {
       "bytes_in": 5623096929,
       "bytes_out": 12372750366,
@@ -39,17 +36,10 @@ When `vendor`==`cradlepoint`
       "state": "READY",
       "type": "mdm",
       "uptime": 2095779,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "display_name": "display_name4"
     }
   },
-  "target_version": "7.23.40",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "target_version": "7.23.40"
 }
 ```
 

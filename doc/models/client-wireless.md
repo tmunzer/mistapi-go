@@ -1,8 +1,6 @@
 
 # Client Wireless
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ClientWireless`
@@ -30,6 +28,7 @@
 | `LastPskId` | `*uuid.UUID` | Optional | Only for PPSK authentication. Latest PPSK ID used by the client |
 | `LastPskName` | `*string` | Optional | Only for PPSK authentication. Latest PPSK Name used by the client |
 | `LastSsid` | `*string` | Optional | If dot1x authentication, the username used during the latest authentication. Otherwise, the MAC address of the client |
+| `LastUsername` | `*string` | Optional | - |
 | `LastVlan` | `*int` | Optional | Latest VLAN ID assigned to the client |
 | `LastWlanId` | `*uuid.UUID` | Optional | ID of the latest SSID (WLAN) the client is/was connected to |
 | `Mac` | `*string` | Optional | Client MAC Address |
@@ -50,7 +49,6 @@
 | `Username` | `[]string` | Optional | Only for 802.1X authentication. List of usernames used by the client |
 | `Vlan` | `[]int` | Optional | List of vlans that have been assigned to the client |
 | `WlanId` | `[]uuid.UUID` | Optional | List of IDs of WLANs the client was connected to |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -125,11 +123,7 @@
   "wlan_id": [
     "e5d67b07-aae8-494b-8584-cbc20c8110aa"
   ],
-  "ftc": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ftc": false
 }
 ```
 

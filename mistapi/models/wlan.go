@@ -31,7 +31,7 @@ type Wlan struct {
 	ApIds Optional[[]uuid.UUID] `json:"ap_ids"`
 	// Bandwidth limiting for apps (applies to up/down)
 	AppLimit *WlanAppLimit `json:"app_limit,omitempty"`
-	// APp qos wlan settings
+	// APP qos wlan settings
 	AppQos *WlanAppQos `json:"app_qos,omitempty"`
 	// enum: `aps`, `site`, `wxtags`
 	ApplyTo *WlanApplyToEnum `json:"apply_to,omitempty"`

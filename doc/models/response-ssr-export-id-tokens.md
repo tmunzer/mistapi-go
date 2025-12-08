@@ -1,8 +1,6 @@
 
 # Response Ssr Export Id Tokens
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSsrExportIdTokens`
@@ -12,7 +10,6 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Results` | [`[]models.ResponseSsrExportIdTokensResultsItem`](../../doc/models/response-ssr-export-id-tokens-results-item.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -20,26 +17,14 @@
 {
   "results": [
     {
-      "idtoken": "idtoken8",
       "mac": "mac0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "token": "token0"
     },
     {
-      "idtoken": "idtoken8",
       "mac": "mac0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "token": "token0"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

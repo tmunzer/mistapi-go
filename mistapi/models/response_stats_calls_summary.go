@@ -9,6 +9,7 @@ import (
 
 // ResponseStatsCallsSummary represents a ResponseStatsCallsSummary struct.
 type ResponseStatsCallsSummary struct {
+	BadMinutes           *float64               `json:"bad_minutes,omitempty"`
 	BadMinutesClient     *float64               `json:"bad_minutes_client,omitempty"`
 	BadMinutesSiteWan    *float64               `json:"bad_minutes_site_wan,omitempty"`
 	BadMinutesWireless   *float64               `json:"bad_minutes_wireless,omitempty"`
@@ -22,8 +23,8 @@ type ResponseStatsCallsSummary struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseStatsCallsSummary) String() string {
 	return fmt.Sprintf(
-		"ResponseStatsCallsSummary[BadMinutesClient=%v, BadMinutesSiteWan=%v, BadMinutesWireless=%v, NumAps=%v, NumUsers=%v, TotalMinutes=%v, AdditionalProperties=%v]",
-		r.BadMinutesClient, r.BadMinutesSiteWan, r.BadMinutesWireless, r.NumAps, r.NumUsers, r.TotalMinutes, r.AdditionalProperties)
+		"ResponseStatsCallsSummary[BadMinutes=%v, BadMinutesClient=%v, BadMinutesSiteWan=%v, BadMinutesWireless=%v, NumAps=%v, NumUsers=%v, TotalMinutes=%v, AdditionalProperties=%v]",
+		r.BadMinutes, r.BadMinutesClient, r.BadMinutesSiteWan, r.BadMinutesWireless, r.NumAps, r.NumUsers, r.TotalMinutes, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseStatsCallsSummary.
@@ -32,7 +33,7 @@ func (r ResponseStatsCallsSummary) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"bad_minutes_client", "bad_minutes_site_wan", "bad_minutes_wireless", "num_aps", "num_users", "total_minutes"); err != nil {
+		"bad_minutes", "bad_minutes_client", "bad_minutes_site_wan", "bad_minutes_wireless", "num_aps", "num_users", "total_minutes"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -42,6 +43,9 @@ func (r ResponseStatsCallsSummary) MarshalJSON() (
 func (r ResponseStatsCallsSummary) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
+	if r.BadMinutes != nil {
+		structMap["bad_minutes"] = r.BadMinutes
+	}
 	if r.BadMinutesClient != nil {
 		structMap["bad_minutes_client"] = r.BadMinutesClient
 	}
@@ -71,12 +75,13 @@ func (r *ResponseStatsCallsSummary) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bad_minutes_client", "bad_minutes_site_wan", "bad_minutes_wireless", "num_aps", "num_users", "total_minutes")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bad_minutes", "bad_minutes_client", "bad_minutes_site_wan", "bad_minutes_wireless", "num_aps", "num_users", "total_minutes")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
+	r.BadMinutes = temp.BadMinutes
 	r.BadMinutesClient = temp.BadMinutesClient
 	r.BadMinutesSiteWan = temp.BadMinutesSiteWan
 	r.BadMinutesWireless = temp.BadMinutesWireless
@@ -88,6 +93,7 @@ func (r *ResponseStatsCallsSummary) UnmarshalJSON(input []byte) error {
 
 // tempResponseStatsCallsSummary is a temporary struct used for validating the fields of ResponseStatsCallsSummary.
 type tempResponseStatsCallsSummary struct {
+	BadMinutes         *float64 `json:"bad_minutes,omitempty"`
 	BadMinutesClient   *float64 `json:"bad_minutes_client,omitempty"`
 	BadMinutesSiteWan  *float64 `json:"bad_minutes_site_wan,omitempty"`
 	BadMinutesWireless *float64 `json:"bad_minutes_wireless,omitempty"`

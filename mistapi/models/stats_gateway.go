@@ -13,20 +13,24 @@ import (
 // StatsGateway represents a StatsGateway struct.
 // Gateway statistics
 type StatsGateway struct {
-	ApRedundancy  *ApRedundancy  `json:"ap_redundancy,omitempty"`
-	ArpTableStats *ArpTableStats `json:"arp_table_stats,omitempty"`
+	ApRedundancy    *ApRedundancy       `json:"ap_redundancy,omitempty"`
+	ArpTableStats   *ArpTableStats      `json:"arp_table_stats,omitempty"`
+	AutoUpgradeStat *StatsApAutoUpgrade `json:"auto_upgrade_stat,omitempty"`
 	// Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed
-	BgpPeers      []BgpPeer            `json:"bgp_peers,omitempty"`
-	CertExpiry    *int64               `json:"cert_expiry,omitempty"`
-	ClusterConfig *StatsClusterConfig  `json:"cluster_config,omitempty"`
-	ClusterStat   *StatsGatewayCluster `json:"cluster_stat,omitempty"`
-	ConductorName *string              `json:"conductor_name,omitempty"`
-	ConfigStatus  *string              `json:"config_status,omitempty"`
-	Cpu2Stat      *CpuStat             `json:"cpu2_stat,omitempty"`
-	CpuStat       *CpuStat             `json:"cpu_stat,omitempty"`
+	BgpPeers        []BgpPeer            `json:"bgp_peers,omitempty"`
+	CertExpiry      *int64               `json:"cert_expiry,omitempty"`
+	ClusterConfig   *StatsClusterConfig  `json:"cluster_config,omitempty"`
+	ClusterStat     *StatsGatewayCluster `json:"cluster_stat,omitempty"`
+	ConductorName   *string              `json:"conductor_name,omitempty"`
+	ConfigStatus    *string              `json:"config_status,omitempty"`
+	ConfigTimestamp *int                 `json:"config_timestamp,omitempty"`
+	ConfigVersion   *int                 `json:"config_version,omitempty"`
+	Cpu2Stat        *CpuStat             `json:"cpu2_stat,omitempty"`
+	CpuStat         *CpuStat             `json:"cpu_stat,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime     *float64            `json:"created_time,omitempty"`
-	DeviceprofileId Optional[uuid.UUID] `json:"deviceprofile_id"`
+	CreatedTime       *float64            `json:"created_time,omitempty"`
+	DeviceprofileId   Optional[uuid.UUID] `json:"deviceprofile_id"`
+	DeviceprofileName *string             `json:"deviceprofile_name,omitempty"`
 	// Property key is the network name
 	Dhcpd2Stat map[string]DhcpdStatLan `json:"dhcpd2_stat,omitempty"`
 	// Property key is the network name
@@ -52,7 +56,8 @@ type StatsGateway struct {
 	// Last seen timestamp
 	LastSeen Optional[float64] `json:"last_seen"`
 	// Device mac
-	Mac string `json:"mac"`
+	Mac           string                     `json:"mac"`
+	MacTableStats *StatsGatewayMacTableStats `json:"mac_table_stats,omitempty"`
 	// Serial Number
 	MapId Optional[uuid.UUID] `json:"map_id"`
 	// Memory usage stat (for virtual chassis, memory usage of master RE)
@@ -83,6 +88,8 @@ type StatsGateway struct {
 	Spu2Stat      []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
 	SpuStat       []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
 	Status        *string                        `json:"status,omitempty"`
+	TagId         *int                           `json:"tag_id,omitempty"`
+	TagUuid       *uuid.UUID                     `json:"tag_uuid,omitempty"`
 	// Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed
 	Tunnels []StatsGatewayWanTunnel `json:"tunnels,omitempty"`
 	// Device Type. enum: `gateway`
@@ -98,8 +105,8 @@ type StatsGateway struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsGateway) String() string {
 	return fmt.Sprintf(
-		"StatsGateway[ApRedundancy=%v, ArpTableStats=%v, BgpPeers=%v, CertExpiry=%v, ClusterConfig=%v, ClusterStat=%v, ConductorName=%v, ConfigStatus=%v, Cpu2Stat=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, Dhcpd2Stat=%v, DhcpdStat=%v, EvpntopoId=%v, ExtIp=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, Id=%v, If2Stat=%v, IfStat=%v, Ip=%v, Ip2Stat=%v, IpStat=%v, IsHa=%v, LastSeen=%v, Mac=%v, MapId=%v, Memory2Stat=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, Module2Stat=%v, ModuleStat=%v, Name=%v, NodeName=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, RouterName=%v, Serial=%v, Service2Stat=%v, ServiceStat=%v, ServiceStatus=%v, SiteId=%v, Spu2Stat=%v, SpuStat=%v, Status=%v, Tunnels=%v, Type=%v, Uptime=%v, Version=%v, VpnPeers=%v, AdditionalProperties=%v]",
-		s.ApRedundancy, s.ArpTableStats, s.BgpPeers, s.CertExpiry, s.ClusterConfig, s.ClusterStat, s.ConductorName, s.ConfigStatus, s.Cpu2Stat, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.Dhcpd2Stat, s.DhcpdStat, s.EvpntopoId, s.ExtIp, s.Fwupdate, s.HasPcap, s.Hostname, s.Id, s.If2Stat, s.IfStat, s.Ip, s.Ip2Stat, s.IpStat, s.IsHa, s.LastSeen, s.Mac, s.MapId, s.Memory2Stat, s.MemoryStat, s.Model, s.ModifiedTime, s.Module2Stat, s.ModuleStat, s.Name, s.NodeName, s.OrgId, s.Ports, s.RouteSummaryStats, s.RouterName, s.Serial, s.Service2Stat, s.ServiceStat, s.ServiceStatus, s.SiteId, s.Spu2Stat, s.SpuStat, s.Status, s.Tunnels, s.Type, s.Uptime, s.Version, s.VpnPeers, s.AdditionalProperties)
+		"StatsGateway[ApRedundancy=%v, ArpTableStats=%v, AutoUpgradeStat=%v, BgpPeers=%v, CertExpiry=%v, ClusterConfig=%v, ClusterStat=%v, ConductorName=%v, ConfigStatus=%v, ConfigTimestamp=%v, ConfigVersion=%v, Cpu2Stat=%v, CpuStat=%v, CreatedTime=%v, DeviceprofileId=%v, DeviceprofileName=%v, Dhcpd2Stat=%v, DhcpdStat=%v, EvpntopoId=%v, ExtIp=%v, Fwupdate=%v, HasPcap=%v, Hostname=%v, Id=%v, If2Stat=%v, IfStat=%v, Ip=%v, Ip2Stat=%v, IpStat=%v, IsHa=%v, LastSeen=%v, Mac=%v, MacTableStats=%v, MapId=%v, Memory2Stat=%v, MemoryStat=%v, Model=%v, ModifiedTime=%v, Module2Stat=%v, ModuleStat=%v, Name=%v, NodeName=%v, OrgId=%v, Ports=%v, RouteSummaryStats=%v, RouterName=%v, Serial=%v, Service2Stat=%v, ServiceStat=%v, ServiceStatus=%v, SiteId=%v, Spu2Stat=%v, SpuStat=%v, Status=%v, TagId=%v, TagUuid=%v, Tunnels=%v, Type=%v, Uptime=%v, Version=%v, VpnPeers=%v, AdditionalProperties=%v]",
+		s.ApRedundancy, s.ArpTableStats, s.AutoUpgradeStat, s.BgpPeers, s.CertExpiry, s.ClusterConfig, s.ClusterStat, s.ConductorName, s.ConfigStatus, s.ConfigTimestamp, s.ConfigVersion, s.Cpu2Stat, s.CpuStat, s.CreatedTime, s.DeviceprofileId, s.DeviceprofileName, s.Dhcpd2Stat, s.DhcpdStat, s.EvpntopoId, s.ExtIp, s.Fwupdate, s.HasPcap, s.Hostname, s.Id, s.If2Stat, s.IfStat, s.Ip, s.Ip2Stat, s.IpStat, s.IsHa, s.LastSeen, s.Mac, s.MacTableStats, s.MapId, s.Memory2Stat, s.MemoryStat, s.Model, s.ModifiedTime, s.Module2Stat, s.ModuleStat, s.Name, s.NodeName, s.OrgId, s.Ports, s.RouteSummaryStats, s.RouterName, s.Serial, s.Service2Stat, s.ServiceStat, s.ServiceStatus, s.SiteId, s.Spu2Stat, s.SpuStat, s.Status, s.TagId, s.TagUuid, s.Tunnels, s.Type, s.Uptime, s.Version, s.VpnPeers, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGateway.
@@ -108,7 +115,7 @@ func (s StatsGateway) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers"); err != nil {
+		"ap_redundancy", "arp_table_stats", "auto_upgrade_stat", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "config_timestamp", "config_version", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "deviceprofile_name", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "mac_table_stats", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tag_id", "tag_uuid", "tunnels", "type", "uptime", "version", "vpn_peers"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -123,6 +130,9 @@ func (s StatsGateway) toMap() map[string]any {
 	}
 	if s.ArpTableStats != nil {
 		structMap["arp_table_stats"] = s.ArpTableStats.toMap()
+	}
+	if s.AutoUpgradeStat != nil {
+		structMap["auto_upgrade_stat"] = s.AutoUpgradeStat.toMap()
 	}
 	if s.BgpPeers != nil {
 		structMap["bgp_peers"] = s.BgpPeers
@@ -142,6 +152,12 @@ func (s StatsGateway) toMap() map[string]any {
 	if s.ConfigStatus != nil {
 		structMap["config_status"] = s.ConfigStatus
 	}
+	if s.ConfigTimestamp != nil {
+		structMap["config_timestamp"] = s.ConfigTimestamp
+	}
+	if s.ConfigVersion != nil {
+		structMap["config_version"] = s.ConfigVersion
+	}
 	if s.Cpu2Stat != nil {
 		structMap["cpu2_stat"] = s.Cpu2Stat.toMap()
 	}
@@ -157,6 +173,9 @@ func (s StatsGateway) toMap() map[string]any {
 		} else {
 			structMap["deviceprofile_id"] = nil
 		}
+	}
+	if s.DeviceprofileName != nil {
+		structMap["deviceprofile_name"] = s.DeviceprofileName
 	}
 	if s.Dhcpd2Stat != nil {
 		structMap["dhcpd2_stat"] = s.Dhcpd2Stat
@@ -228,6 +247,9 @@ func (s StatsGateway) toMap() map[string]any {
 		}
 	}
 	structMap["mac"] = s.Mac
+	if s.MacTableStats != nil {
+		structMap["mac_table_stats"] = s.MacTableStats.toMap()
+	}
 	if s.MapId.IsValueSet() {
 		if s.MapId.Value() != nil {
 			structMap["map_id"] = s.MapId.Value()
@@ -295,6 +317,12 @@ func (s StatsGateway) toMap() map[string]any {
 	if s.Status != nil {
 		structMap["status"] = s.Status
 	}
+	if s.TagId != nil {
+		structMap["tag_id"] = s.TagId
+	}
+	if s.TagUuid != nil {
+		structMap["tag_uuid"] = s.TagUuid
+	}
 	if s.Tunnels != nil {
 		structMap["tunnels"] = s.Tunnels
 	}
@@ -331,7 +359,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tunnels", "type", "uptime", "version", "vpn_peers")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_redundancy", "arp_table_stats", "auto_upgrade_stat", "bgp_peers", "cert_expiry", "cluster_config", "cluster_stat", "conductor_name", "config_status", "config_timestamp", "config_version", "cpu2_stat", "cpu_stat", "created_time", "deviceprofile_id", "deviceprofile_name", "dhcpd2_stat", "dhcpd_stat", "evpntopo_id", "ext_ip", "fwupdate", "has_pcap", "hostname", "id", "if2_stat", "if_stat", "ip", "ip2_stat", "ip_stat", "is_ha", "last_seen", "mac", "mac_table_stats", "map_id", "memory2_stat", "memory_stat", "model", "modified_time", "module2_stat", "module_stat", "name", "node_name", "org_id", "ports", "route_summary_stats", "router_name", "serial", "service2_stat", "service_stat", "service_status", "site_id", "spu2_stat", "spu_stat", "status", "tag_id", "tag_uuid", "tunnels", "type", "uptime", "version", "vpn_peers")
 	if err != nil {
 		return err
 	}
@@ -339,16 +367,20 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 
 	s.ApRedundancy = temp.ApRedundancy
 	s.ArpTableStats = temp.ArpTableStats
+	s.AutoUpgradeStat = temp.AutoUpgradeStat
 	s.BgpPeers = temp.BgpPeers
 	s.CertExpiry = temp.CertExpiry
 	s.ClusterConfig = temp.ClusterConfig
 	s.ClusterStat = temp.ClusterStat
 	s.ConductorName = temp.ConductorName
 	s.ConfigStatus = temp.ConfigStatus
+	s.ConfigTimestamp = temp.ConfigTimestamp
+	s.ConfigVersion = temp.ConfigVersion
 	s.Cpu2Stat = temp.Cpu2Stat
 	s.CpuStat = temp.CpuStat
 	s.CreatedTime = temp.CreatedTime
 	s.DeviceprofileId = temp.DeviceprofileId
+	s.DeviceprofileName = temp.DeviceprofileName
 	s.Dhcpd2Stat = temp.Dhcpd2Stat
 	s.DhcpdStat = temp.DhcpdStat
 	s.EvpntopoId = temp.EvpntopoId
@@ -365,6 +397,7 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 	s.IsHa = temp.IsHa
 	s.LastSeen = temp.LastSeen
 	s.Mac = *temp.Mac
+	s.MacTableStats = temp.MacTableStats
 	s.MapId = temp.MapId
 	s.Memory2Stat = temp.Memory2Stat
 	s.MemoryStat = temp.MemoryStat
@@ -386,6 +419,8 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 	s.Spu2Stat = temp.Spu2Stat
 	s.SpuStat = temp.SpuStat
 	s.Status = temp.Status
+	s.TagId = temp.TagId
+	s.TagUuid = temp.TagUuid
 	s.Tunnels = temp.Tunnels
 	s.Type = *temp.Type
 	s.Uptime = temp.Uptime
@@ -398,16 +433,20 @@ func (s *StatsGateway) UnmarshalJSON(input []byte) error {
 type tempStatsGateway struct {
 	ApRedundancy      *ApRedundancy                  `json:"ap_redundancy,omitempty"`
 	ArpTableStats     *ArpTableStats                 `json:"arp_table_stats,omitempty"`
+	AutoUpgradeStat   *StatsApAutoUpgrade            `json:"auto_upgrade_stat,omitempty"`
 	BgpPeers          []BgpPeer                      `json:"bgp_peers,omitempty"`
 	CertExpiry        *int64                         `json:"cert_expiry,omitempty"`
 	ClusterConfig     *StatsClusterConfig            `json:"cluster_config,omitempty"`
 	ClusterStat       *StatsGatewayCluster           `json:"cluster_stat,omitempty"`
 	ConductorName     *string                        `json:"conductor_name,omitempty"`
 	ConfigStatus      *string                        `json:"config_status,omitempty"`
+	ConfigTimestamp   *int                           `json:"config_timestamp,omitempty"`
+	ConfigVersion     *int                           `json:"config_version,omitempty"`
 	Cpu2Stat          *CpuStat                       `json:"cpu2_stat,omitempty"`
 	CpuStat           *CpuStat                       `json:"cpu_stat,omitempty"`
 	CreatedTime       *float64                       `json:"created_time,omitempty"`
 	DeviceprofileId   Optional[uuid.UUID]            `json:"deviceprofile_id"`
+	DeviceprofileName *string                        `json:"deviceprofile_name,omitempty"`
 	Dhcpd2Stat        map[string]DhcpdStatLan        `json:"dhcpd2_stat,omitempty"`
 	DhcpdStat         map[string]DhcpdStatLan        `json:"dhcpd_stat,omitempty"`
 	EvpntopoId        Optional[uuid.UUID]            `json:"evpntopo_id"`
@@ -424,6 +463,7 @@ type tempStatsGateway struct {
 	IsHa              Optional[bool]                 `json:"is_ha"`
 	LastSeen          Optional[float64]              `json:"last_seen"`
 	Mac               *string                        `json:"mac"`
+	MacTableStats     *StatsGatewayMacTableStats     `json:"mac_table_stats,omitempty"`
 	MapId             Optional[uuid.UUID]            `json:"map_id"`
 	Memory2Stat       *MemoryStat                    `json:"memory2_stat,omitempty"`
 	MemoryStat        *MemoryStat                    `json:"memory_stat,omitempty"`
@@ -445,6 +485,8 @@ type tempStatsGateway struct {
 	Spu2Stat          []StatsGatewaySpuItem          `json:"spu2_stat,omitempty"`
 	SpuStat           []StatsGatewaySpuItem          `json:"spu_stat,omitempty"`
 	Status            *string                        `json:"status,omitempty"`
+	TagId             *int                           `json:"tag_id,omitempty"`
+	TagUuid           *uuid.UUID                     `json:"tag_uuid,omitempty"`
 	Tunnels           []StatsGatewayWanTunnel        `json:"tunnels,omitempty"`
 	Type              *string                        `json:"type"`
 	Uptime            Optional[float64]              `json:"uptime"`

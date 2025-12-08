@@ -1,8 +1,6 @@
 
 # License Usage Site
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `LicenseUsageSite`
@@ -18,7 +16,6 @@
 | `VnaEligible` | `bool` | Required | Eligibility for the AP/Client SLE |
 | `VnaUi` | `bool` | Required | If True, Conversational Assistant and Marvis Action available |
 | `WvnaEligible` | `bool` | Required | Eligibility for the WAN SLE |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@
   },
   "vna_eligible": false,
   "vna_ui": false,
-  "wvna_eligible": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wvna_eligible": false
 }
 ```
 

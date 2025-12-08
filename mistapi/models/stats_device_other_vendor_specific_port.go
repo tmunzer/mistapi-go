@@ -12,11 +12,14 @@ type StatsDeviceOtherVendorSpecificPort struct {
     BytesIn              *int64                 `json:"bytes_in,omitempty"`
     BytesOut             *int64                 `json:"bytes_out,omitempty"`
     Carrier              *string                `json:"carrier,omitempty"`
+    DisplayName          *string                `json:"display_name,omitempty"`
     Imei                 *string                `json:"imei,omitempty"`
     Imsi                 *string                `json:"imsi,omitempty"`
     Ip                   *string                `json:"ip,omitempty"`
     Link                 *bool                  `json:"link,omitempty"`
     Mode                 *string                `json:"mode,omitempty"`
+    Mtu                  *int                   `json:"mtu,omitempty"`
+    PortParent           *string                `json:"port_parent,omitempty"`
     Rsrp                 *float64               `json:"rsrp,omitempty"`
     Rsrq                 *float64               `json:"rsrq,omitempty"`
     Rssi                 *int                   `json:"rssi,omitempty"`
@@ -32,8 +35,8 @@ type StatsDeviceOtherVendorSpecificPort struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsDeviceOtherVendorSpecificPort) String() string {
     return fmt.Sprintf(
-    	"StatsDeviceOtherVendorSpecificPort[BytesIn=%v, BytesOut=%v, Carrier=%v, Imei=%v, Imsi=%v, Ip=%v, Link=%v, Mode=%v, Rsrp=%v, Rsrq=%v, Rssi=%v, ServiceMode=%v, Sinr=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
-    	s.BytesIn, s.BytesOut, s.Carrier, s.Imei, s.Imsi, s.Ip, s.Link, s.Mode, s.Rsrp, s.Rsrq, s.Rssi, s.ServiceMode, s.Sinr, s.State, s.Type, s.Uptime, s.AdditionalProperties)
+    	"StatsDeviceOtherVendorSpecificPort[BytesIn=%v, BytesOut=%v, Carrier=%v, DisplayName=%v, Imei=%v, Imsi=%v, Ip=%v, Link=%v, Mode=%v, Mtu=%v, PortParent=%v, Rsrp=%v, Rsrq=%v, Rssi=%v, ServiceMode=%v, Sinr=%v, State=%v, Type=%v, Uptime=%v, AdditionalProperties=%v]",
+    	s.BytesIn, s.BytesOut, s.Carrier, s.DisplayName, s.Imei, s.Imsi, s.Ip, s.Link, s.Mode, s.Mtu, s.PortParent, s.Rsrp, s.Rsrq, s.Rssi, s.ServiceMode, s.Sinr, s.State, s.Type, s.Uptime, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsDeviceOtherVendorSpecificPort.
@@ -42,7 +45,7 @@ func (s StatsDeviceOtherVendorSpecificPort) MarshalJSON() (
     []byte,
     error) {
     if err := DetectConflictingProperties(s.AdditionalProperties,
-        "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime"); err != nil {
+        "bytes_in", "bytes_out", "carrier", "display_name", "imei", "imsi", "ip", "link", "mode", "mtu", "port_parent", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime"); err != nil {
         return []byte{}, err
     }
     return json.Marshal(s.toMap())
@@ -61,6 +64,9 @@ func (s StatsDeviceOtherVendorSpecificPort) toMap() map[string]any {
     if s.Carrier != nil {
         structMap["carrier"] = s.Carrier
     }
+    if s.DisplayName != nil {
+        structMap["display_name"] = s.DisplayName
+    }
     if s.Imei != nil {
         structMap["imei"] = s.Imei
     }
@@ -75,6 +81,12 @@ func (s StatsDeviceOtherVendorSpecificPort) toMap() map[string]any {
     }
     if s.Mode != nil {
         structMap["mode"] = s.Mode
+    }
+    if s.Mtu != nil {
+        structMap["mtu"] = s.Mtu
+    }
+    if s.PortParent != nil {
+        structMap["port_parent"] = s.PortParent
     }
     if s.Rsrp != nil {
         structMap["rsrp"] = s.Rsrp
@@ -111,7 +123,7 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
     if err != nil {
     	return err
     }
-    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "carrier", "imei", "imsi", "ip", "link", "mode", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime")
+    additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bytes_in", "bytes_out", "carrier", "display_name", "imei", "imsi", "ip", "link", "mode", "mtu", "port_parent", "rsrp", "rsrq", "rssi", "service_mode", "sinr", "state", "type", "uptime")
     if err != nil {
     	return err
     }
@@ -120,11 +132,14 @@ func (s *StatsDeviceOtherVendorSpecificPort) UnmarshalJSON(input []byte) error {
     s.BytesIn = temp.BytesIn
     s.BytesOut = temp.BytesOut
     s.Carrier = temp.Carrier
+    s.DisplayName = temp.DisplayName
     s.Imei = temp.Imei
     s.Imsi = temp.Imsi
     s.Ip = temp.Ip
     s.Link = temp.Link
     s.Mode = temp.Mode
+    s.Mtu = temp.Mtu
+    s.PortParent = temp.PortParent
     s.Rsrp = temp.Rsrp
     s.Rsrq = temp.Rsrq
     s.Rssi = temp.Rssi
@@ -141,11 +156,14 @@ type tempStatsDeviceOtherVendorSpecificPort  struct {
     BytesIn     *int64   `json:"bytes_in,omitempty"`
     BytesOut    *int64   `json:"bytes_out,omitempty"`
     Carrier     *string  `json:"carrier,omitempty"`
+    DisplayName *string  `json:"display_name,omitempty"`
     Imei        *string  `json:"imei,omitempty"`
     Imsi        *string  `json:"imsi,omitempty"`
     Ip          *string  `json:"ip,omitempty"`
     Link        *bool    `json:"link,omitempty"`
     Mode        *string  `json:"mode,omitempty"`
+    Mtu         *int     `json:"mtu,omitempty"`
+    PortParent  *string  `json:"port_parent,omitempty"`
     Rsrp        *float64 `json:"rsrp,omitempty"`
     Rsrq        *float64 `json:"rsrq,omitempty"`
     Rssi        *int     `json:"rssi,omitempty"`

@@ -121,7 +121,7 @@ func TestUtilitiesPCAPsTestStartOrgPacketCapture(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.CaptureOrg
-	errBody := json.Unmarshal([]byte(`{"duration":600,"format":"stream","max_pkt_len":1500,"mxedges":{"00000000-0000-0000-1000-001122334455":{"interfaces":{"port1":{"tcpdump_expression":"udp port 67 or udp port 68"}}}},"num_packets":100,"tcpdump_expression":"vlan 999","type":"mxedge"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"duration":600,"format":"stream","max_pkt_len":1500,"mxedges":{"00000000-0000-0000-1000-001122334455":{"interfaces":{"port1":{"tcpdump_expression":"udp port 67 or udp port 68"}}}},"num_packets":100,"type":"mxedge"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -146,7 +146,7 @@ func TestUtilitiesPCAPsTestStartOrgPacketCapture1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.CaptureOrg
-	errBody := json.Unmarshal([]byte(`{"duration":600,"format":"stream","max_pkt_len":1500,"mxedges":{"00000000-0000-0000-1000-001122334455":{"interfaces":{"port1":{"tcpdump_expression":"udp port 67 or udp port 68"}}}},"num_packets":100,"tcpdump_expression":"vlan 999","type":"mxedge"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"duration":600,"format":"stream","max_pkt_len":1500,"mxedges":{"00000000-0000-0000-1000-001122334455":{"interfaces":{"port1":{"tcpdump_expression":"udp port 67 or udp port 68"}}}},"num_packets":100,"type":"mxedge"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

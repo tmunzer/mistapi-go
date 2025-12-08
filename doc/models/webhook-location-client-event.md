@@ -1,8 +1,6 @@
 
 # Webhook Location Client Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookLocationClientEvent`
@@ -19,7 +17,6 @@
 | `WifiBeaconExtendedInfo` | [`[]models.WifiBeaconExtendedInfoItems`](../../doc/models/wifi-beacon-extended-info-items.md) | Optional | Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload |
 | `X` | `*float64` | Optional | x, in meter |
 | `Y` | `*float64` | Optional | y, in meter |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@
   "type": "wifi",
   "x": 13.5,
   "y": 3.2,
-  "timestamp": 248.04,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "timestamp": 248.04
 }
 ```
 

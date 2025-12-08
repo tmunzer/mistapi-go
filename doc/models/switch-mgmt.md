@@ -3,8 +3,6 @@
 
 Switch settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchMgmt`
@@ -29,7 +27,6 @@ Switch settings
 | `RootPassword` | `*string` | Optional | - |
 | `Tacacs` | [`*models.Tacacs`](../../doc/models/tacacs.md) | Optional | - |
 | `UseMxedgeProxy` | `*bool` | Optional | To use mxedge as proxy |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -41,11 +38,7 @@ Switch settings
   "dhcp_option_fqdn": false,
   "fips_enabled": false,
   "remove_existing_configs": false,
-  "cli_idle_timeout": 60,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "cli_idle_timeout": 60
 }
 ```
 

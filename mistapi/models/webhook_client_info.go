@@ -8,6 +8,7 @@ import (
 )
 
 // WebhookClientInfo represents a WebhookClientInfo struct.
+// Sample of the `client-info` webhook payload.
 type WebhookClientInfo struct {
 	Events []WebhookClientInfoEvent `json:"events,omitempty"`
 	// enum: `client-info`

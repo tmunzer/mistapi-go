@@ -9,7 +9,7 @@ import (
 
 // VcPort represents a VcPort struct.
 type VcPort struct {
-	// enum: `network`, `vcp-higig`, `vcp-hgoe` (only for EX4400-24X)
+	// enum: `network`, `vcp-higig`, `vcp-hgoe`
 	Mode                 *VcPortModeEnum        `json:"mode,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

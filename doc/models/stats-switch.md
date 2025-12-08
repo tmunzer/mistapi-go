@@ -15,15 +15,19 @@ Switch statistics
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.StatsSwitchApRedundancy`](../../doc/models/stats-switch-ap-redundancy.md) | Optional | - |
 | `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
 | `CertExpiry` | `*int64` | Optional | - |
 | `Clients` | [`[]models.StatsSwitchClientItem`](../../doc/models/stats-switch-client-item.md) | Optional | - |
 | `ClientsStats` | [`*models.StatsSwitchClientsStats`](../../doc/models/stats-switch-clients-stats.md) | Optional | - |
 | `ConfigStatus` | `*string` | Optional | - |
+| `ConfigTimestamp` | `*int` | Optional | - |
+| `ConfigVersion` | `*int` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `ExtIp` | `*string` | Optional | - |
 | `FwVersionsOutofsync` | `*bool` | Optional | - |
 | `Fwupdate` | [`*models.FwupdateStat`](../../doc/models/fwupdate-stat.md) | Optional | - |
 | `HasPcap` | `*bool` | Optional | Whether the switch supports packet capture |
@@ -50,6 +54,8 @@ Switch statistics
 | `ServiceStat` | [`map[string]models.ServiceStatProperty`](../../doc/models/service-stat-property.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `TagId` | `*int` | Optional | - |
+| `TagUuid` | `*uuid.UUID` | Optional | - |
 | `Type` | `string` | Required, Constant | Device Type. enum: `switch`<br><br>**Value**: `"switch"` |
 | `Uptime` | `models.Optional[float64]` | Optional | - |
 | `VcMac` | `models.Optional[string]` | Optional | - |
@@ -79,27 +85,18 @@ Switch statistics
     "modules": {
       "key0": {
         "num_aps": 2,
-        "num_aps_with_switch_redundancy": 254,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "num_aps_with_switch_redundancy": 254
       }
     },
     "num_aps": 246,
-    "num_aps_with_switch_redundancy": 10,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "num_aps_with_switch_redundancy": 10
   },
   "arp_table_stats": {
     "arp_table_count": 136,
-    "max_entries_supported": 8,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "max_entries_supported": 8
+  },
+  "auto_upgrade_stat": {
+    "lastcheck": 28
   },
   "cert_expiry": 122,
   "clients": [
@@ -107,51 +104,21 @@ Switch statistics
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id8"
     },
     {
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id8"
     },
     {
       "device_mac": "device_mac2",
       "hostname": "hostname6",
       "mac": "mac2",
-      "port_id": "port_id8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id8"
     }
   ],
-  "clients_stats": {
-    "total": {
-      "num_aps": [
-        23,
-        22,
-        21
-      ],
-      "num_wired_clients": 222,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

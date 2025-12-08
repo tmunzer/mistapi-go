@@ -3,8 +3,6 @@
 
 Client events
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EventsClient`
@@ -25,7 +23,6 @@ Client events
 | `Type` | `*string` | Optional | Event type, e.g. MARVIS_EVENT_CLIENT_FBT_FAILURE |
 | `TypeCode` | `*int` | Optional | For assoc/disassoc events |
 | `WlanId` | `*uuid.UUID` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,11 +34,7 @@ Client events
   "ap": "ap2",
   "bssid": "bssid6",
   "channel": 2,
-  "proto": "a",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "proto": "a"
 }
 ```
 
