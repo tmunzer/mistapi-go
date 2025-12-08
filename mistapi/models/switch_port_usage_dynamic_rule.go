@@ -18,7 +18,7 @@ type SwitchPortUsageDynamicRule struct {
 	// "split(.)[1]": "a.b.c" -> "b"
 	// "split(-)[1][0:3]: "a1234-b5678-c90" -> "b56"
 	Expression *string `json:"expression,omitempty"`
-	// enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
+	// enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_description`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
 	Src SwitchPortUsageDynamicRuleSrcEnum `json:"src"`
 	// `port_usage` name
 	Usage                *string                `json:"usage,omitempty"`

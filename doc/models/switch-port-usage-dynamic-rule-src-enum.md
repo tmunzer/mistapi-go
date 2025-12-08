@@ -1,7 +1,7 @@
 
 # Switch Port Usage Dynamic Rule Src Enum
 
-enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
+enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_description`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
 
 ## Enumeration
 
@@ -17,6 +17,7 @@ enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufac
 | `lldp_manufacturer_name` |
 | `lldp_oui` |
 | `lldp_serial_number` |
+| `lldp_system_description` |
 | `lldp_system_name` |
 | `radius_dynamicfilter` |
 | `radius_usermac` |

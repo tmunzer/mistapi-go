@@ -4136,20 +4136,21 @@ const (
 )
 
 // SwitchPortUsageDynamicRuleSrcEnum is a string enum.
-// enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
+// enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufacturer_name`, `lldp_oui`, `lldp_serial_number`, `lldp_system_description`, `lldp_system_name`, `radius_dynamicfilter`, `radius_usermac`, `radius_username`
 type SwitchPortUsageDynamicRuleSrcEnum string
 
 const (
-	SwitchPortUsageDynamicRuleSrcEnum_LINKPEERMAC          SwitchPortUsageDynamicRuleSrcEnum = "link_peermac"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPCHASSISID        SwitchPortUsageDynamicRuleSrcEnum = "lldp_chassis_id"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPHARDWAREREVISION SwitchPortUsageDynamicRuleSrcEnum = "lldp_hardware_revision"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPMANUFACTURERNAME SwitchPortUsageDynamicRuleSrcEnum = "lldp_manufacturer_name"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPOUI              SwitchPortUsageDynamicRuleSrcEnum = "lldp_oui"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPSERIALNUMBER     SwitchPortUsageDynamicRuleSrcEnum = "lldp_serial_number"
-	SwitchPortUsageDynamicRuleSrcEnum_LLDPSYSTEMNAME       SwitchPortUsageDynamicRuleSrcEnum = "lldp_system_name"
-	SwitchPortUsageDynamicRuleSrcEnum_RADIUSDYNAMICFILTER  SwitchPortUsageDynamicRuleSrcEnum = "radius_dynamicfilter"
-	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERMAC        SwitchPortUsageDynamicRuleSrcEnum = "radius_usermac"
-	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERNAME       SwitchPortUsageDynamicRuleSrcEnum = "radius_username"
+	SwitchPortUsageDynamicRuleSrcEnum_LINKPEERMAC           SwitchPortUsageDynamicRuleSrcEnum = "link_peermac"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPCHASSISID         SwitchPortUsageDynamicRuleSrcEnum = "lldp_chassis_id"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPHARDWAREREVISION  SwitchPortUsageDynamicRuleSrcEnum = "lldp_hardware_revision"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPMANUFACTURERNAME  SwitchPortUsageDynamicRuleSrcEnum = "lldp_manufacturer_name"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPOUI               SwitchPortUsageDynamicRuleSrcEnum = "lldp_oui"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPSERIALNUMBER      SwitchPortUsageDynamicRuleSrcEnum = "lldp_serial_number"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPSYSTEMDESCRIPTION SwitchPortUsageDynamicRuleSrcEnum = "lldp_system_description"
+	SwitchPortUsageDynamicRuleSrcEnum_LLDPSYSTEMNAME        SwitchPortUsageDynamicRuleSrcEnum = "lldp_system_name"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSDYNAMICFILTER   SwitchPortUsageDynamicRuleSrcEnum = "radius_dynamicfilter"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERMAC         SwitchPortUsageDynamicRuleSrcEnum = "radius_usermac"
+	SwitchPortUsageDynamicRuleSrcEnum_RADIUSUSERNAME        SwitchPortUsageDynamicRuleSrcEnum = "radius_username"
 )
 
 // SwitchPortUsageMacAuthProtocolEnum is a string enum.
