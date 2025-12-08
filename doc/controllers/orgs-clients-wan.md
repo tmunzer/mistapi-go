@@ -364,7 +364,6 @@ if err != nil {
   "limit": 0,
   "results": [
     {
-      "When": "2022-12-31T23:59:43.497+0000",
       "hostname": [
         "sonoszp"
       ],

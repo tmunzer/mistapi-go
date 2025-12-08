@@ -156,7 +156,6 @@ if err != nil {
       "rowspan": 2,
       "scopeId": "e0c767834b4c",
       "scopeType": "client",
-      "sortedColumns": null,
       "timeRange": {
         "end": 1508823743,
         "endDate": "10/23/2017",
@@ -325,7 +324,6 @@ if err != nil {
       "rowspan": 2,
       "scopeId": "e0c767834b4c",
       "scopeType": "client",
-      "sortedColumns": null,
       "timeRange": {
         "end": 1508823743,
         "endDate": "10/23/2017",
@@ -438,7 +436,6 @@ if err != nil {
       "rowspan": 2,
       "scopeId": "e0c767834b4c",
       "scopeType": "client",
-      "sortedColumns": null,
       "timeRange": {
         "end": 1508823743,
         "endDate": "10/23/2017",
@@ -552,7 +549,6 @@ if err != nil {
         "rowspan": 2,
         "scopeId": "e0c767834b4c",
         "scopeType": "client",
-        "sortedColumns": null,
         "timeRange": {
           "end": 1508823743,
           "endDate": "10/23/2017",
@@ -723,7 +719,6 @@ if err != nil {
       "rowspan": 2,
       "scopeId": "e0c767834b4c",
       "scopeType": "client",
-      "sortedColumns": null,
       "timeRange": {
         "end": 1508823743,
         "endDate": "10/23/2017",

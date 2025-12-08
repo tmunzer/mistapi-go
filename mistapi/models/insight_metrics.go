@@ -11,20 +11,21 @@ import (
 
 // InsightMetrics represents a InsightMetrics struct.
 type InsightMetrics struct {
-	End      int `json:"end"`
-	Interval int `json:"interval"`
-	// Results depends on the `metric`
-	Results              []interface{}          `json:"results"`
-	Start                int                    `json:"start"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	End      int  `json:"end"`
+	Interval int  `json:"interval"`
+	Limit    *int `json:"limit,omitempty"`
+	// Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects
+	Results              []InsightMetricsResultsItem `json:"results"`
+	Start                int                         `json:"start"`
+	AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for InsightMetrics,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i InsightMetrics) String() string {
 	return fmt.Sprintf(
-		"InsightMetrics[End=%v, Interval=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
-		i.End, i.Interval, i.Results, i.Start, i.AdditionalProperties)
+		"InsightMetrics[End=%v, Interval=%v, Limit=%v, Results=%v, Start=%v, AdditionalProperties=%v]",
+		i.End, i.Interval, i.Limit, i.Results, i.Start, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InsightMetrics.
@@ -33,7 +34,7 @@ func (i InsightMetrics) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"end", "interval", "results", "start"); err != nil {
+		"end", "interval", "limit", "results", "start"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -45,6 +46,9 @@ func (i InsightMetrics) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
 	structMap["end"] = i.End
 	structMap["interval"] = i.Interval
+	if i.Limit != nil {
+		structMap["limit"] = i.Limit
+	}
 	structMap["results"] = i.Results
 	structMap["start"] = i.Start
 	return structMap
@@ -62,7 +66,7 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "results", "start")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "end", "interval", "limit", "results", "start")
 	if err != nil {
 		return err
 	}
@@ -70,6 +74,7 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
 
 	i.End = *temp.End
 	i.Interval = *temp.Interval
+	i.Limit = temp.Limit
 	i.Results = *temp.Results
 	i.Start = *temp.Start
 	return nil
@@ -77,10 +82,11 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
 
 // tempInsightMetrics is a temporary struct used for validating the fields of InsightMetrics.
 type tempInsightMetrics struct {
-	End      *int           `json:"end"`
-	Interval *int           `json:"interval"`
-	Results  *[]interface{} `json:"results"`
-	Start    *int           `json:"start"`
+	End      *int                         `json:"end"`
+	Interval *int                         `json:"interval"`
+	Limit    *int                         `json:"limit,omitempty"`
+	Results  *[]InsightMetricsResultsItem `json:"results"`
+	Start    *int                         `json:"start"`
 }
 
 func (i *tempInsightMetrics) validate() error {

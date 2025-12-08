@@ -1,8 +1,6 @@
 
 # Site Setting Ap Matching
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingApMatching`
@@ -13,22 +11,14 @@
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
 | `Rules` | [`[]models.SiteSettingApMatchingRule`](../../doc/models/site-setting-ap-matching-rule.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
+  "enabled": false,
   "rules": [
     {
-      "eth1,eth2": {
-        "port_vlan_id": 1,
-        "vlan_ids": [
-          1,
-          10,
-          50
-        ]
-      },
       "match_model": "match_model0",
       "name": "name8",
       "port_config": {
@@ -40,19 +30,11 @@
             "type": "type6",
             "vlans": {
               "key0": "vlans1"
-            },
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
             }
           },
           "enable_mac_auth": false,
           "forwarding": "site_mxedge",
-          "mac_auth_preferred": false,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "mac_auth_preferred": false
         },
         "key1": {
           "disabled": false,
@@ -62,28 +44,83 @@
             "type": "type6",
             "vlans": {
               "key0": "vlans1"
-            },
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
             }
           },
           "enable_mac_auth": false,
           "forwarding": "site_mxedge",
-          "mac_auth_preferred": false,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "mac_auth_preferred": false
+        }
+      }
+    },
+    {
+      "match_model": "match_model0",
+      "name": "name8",
+      "port_config": {
+        "key0": {
+          "disabled": false,
+          "dynamic_vlan": {
+            "default_vlan_id": 34,
+            "enabled": false,
+            "type": "type6",
+            "vlans": {
+              "key0": "vlans1"
+            }
+          },
+          "enable_mac_auth": false,
+          "forwarding": "site_mxedge",
+          "mac_auth_preferred": false
+        },
+        "key1": {
+          "disabled": false,
+          "dynamic_vlan": {
+            "default_vlan_id": 34,
+            "enabled": false,
+            "type": "type6",
+            "vlans": {
+              "key0": "vlans1"
+            }
+          },
+          "enable_mac_auth": false,
+          "forwarding": "site_mxedge",
+          "mac_auth_preferred": false
+        }
+      }
+    },
+    {
+      "match_model": "match_model0",
+      "name": "name8",
+      "port_config": {
+        "key0": {
+          "disabled": false,
+          "dynamic_vlan": {
+            "default_vlan_id": 34,
+            "enabled": false,
+            "type": "type6",
+            "vlans": {
+              "key0": "vlans1"
+            }
+          },
+          "enable_mac_auth": false,
+          "forwarding": "site_mxedge",
+          "mac_auth_preferred": false
+        },
+        "key1": {
+          "disabled": false,
+          "dynamic_vlan": {
+            "default_vlan_id": 34,
+            "enabled": false,
+            "type": "type6",
+            "vlans": {
+              "key0": "vlans1"
+            }
+          },
+          "enable_mac_auth": false,
+          "forwarding": "site_mxedge",
+          "mac_auth_preferred": false
         }
       }
     }
-  ],
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -63,7 +63,7 @@ func TestOrgsServicesTestCreateOrgService(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Service
-	errBody := json.Unmarshal([]byte(`{"app_key":"string","name":"string","network_id":"d6797cf4-42b9-4cad-8591-9dd91c3f0fc3","specs":[{"address":"string","port":0,"protocol":"any"}],"subnet":"string","type":"custom"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"addresses":["0.0.0.0/0"],"app_key":"string","name":"string","network_id":"d6797cf4-42b9-4cad-8591-9dd91c3f0fc3","specs":[{"port_range":"8080,8443","protocol":"any"}],"subnet":"string","type":"custom"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -88,7 +88,7 @@ func TestOrgsServicesTestCreateOrgService1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Service
-	errBody := json.Unmarshal([]byte(`{"app_key":"string","name":"string","network_id":"d6797cf4-42b9-4cad-8591-9dd91c3f0fc3","specs":[{"address":"string","port":0,"protocol":"any"}],"subnet":"string","type":"custom"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"addresses":["0.0.0.0/0"],"app_key":"string","name":"string","network_id":"d6797cf4-42b9-4cad-8591-9dd91c3f0fc3","specs":[{"port_range":"8080,8443","protocol":"any"}],"subnet":"string","type":"custom"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

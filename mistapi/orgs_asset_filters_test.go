@@ -59,7 +59,7 @@ func TestOrgsAssetFiltersTestCreateOrgAssetFilter(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AssetFilter
-	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","mfg_company_id":0,"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","mfg_company_id":0,"name":"string"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -72,7 +72,7 @@ func TestOrgsAssetFiltersTestCreateOrgAssetFilter(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -84,7 +84,7 @@ func TestOrgsAssetFiltersTestCreateOrgAssetFilter1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AssetFilter
-	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","mfg_company_id":0,"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","mfg_company_id":0,"name":"string"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -97,7 +97,7 @@ func TestOrgsAssetFiltersTestCreateOrgAssetFilter1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -139,7 +139,7 @@ func TestOrgsAssetFiltersTestGetOrgAssetFilter(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -163,7 +163,7 @@ func TestOrgsAssetFiltersTestGetOrgAssetFilter1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -179,7 +179,7 @@ func TestOrgsAssetFiltersTestUpdateOrgAssetFilter(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AssetFilter
-	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab2","mfg_company_id":0,"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab2","mfg_company_id":0,"name":"string"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -192,7 +192,7 @@ func TestOrgsAssetFiltersTestUpdateOrgAssetFilter(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -208,7 +208,7 @@ func TestOrgsAssetFiltersTestUpdateOrgAssetFilter1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AssetFilter
-	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab2","mfg_company_id":0,"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab2","mfg_company_id":0,"name":"string"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -221,6 +221,6 @@ func TestOrgsAssetFiltersTestUpdateOrgAssetFilter1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":0,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
+	expected := `{"created_time":0,"disabled":true,"eddystone_uid_namespace":"string","eddystone_url":"string","for_site":true,"ibeacon_major":1,"ibeacon_uuid":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mfg_company_id":0,"modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

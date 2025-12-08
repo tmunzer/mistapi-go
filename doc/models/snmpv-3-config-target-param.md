@@ -1,8 +1,6 @@
 
 # Snmpv 3 Config Target Param
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Snmpv3ConfigTargetParam`
@@ -17,7 +15,6 @@
 | `SecurityLevel` | [`*models.Snmpv3ConfigTargetParamSecurityLevelEnum`](../../doc/models/snmpv-3-config-target-param-security-level-enum.md) | Optional | enum: `authentication`, `none`, `privacy` |
 | `SecurityModel` | [`*models.Snmpv3ConfigTargetParamSecurityModelEnum`](../../doc/models/snmpv-3-config-target-param-security-model-enum.md) | Optional | enum: `usm`, `v1`, `v2c` |
 | `SecurityName` | `*string` | Optional | Refer to security_name in usm |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,11 +25,7 @@
   "name": "name0",
   "notify_filter": "notify_filter2",
   "security_level": "privacy",
-  "security_model": "v2c",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "security_model": "v2c"
 }
 ```
 

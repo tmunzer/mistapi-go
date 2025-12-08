@@ -1,8 +1,6 @@
 
 # Response Virtual Chassis Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseVirtualChassisConfig`
@@ -14,6 +12,7 @@
 | `ConfigType` | `*string` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Locating` | `*bool` | Optional | - |
+| `Mac` | `*string` | Optional | - |
 | `Members` | [`[]models.StatsSwitchModuleStatItem`](../../doc/models/stats-switch-module-stat-item.md) | Optional | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `Model` | `*string` | Optional | - |
 | `NumRoutingEngines` | `*int` | Optional | routing-engine count |
@@ -21,8 +20,8 @@
 | `Serial` | `*string` | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `Type` | `*string` | Optional | - |
 | `VcMac` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,10 +33,12 @@
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "config_type": "config_type6",
   "locating": false,
+  "mac": "mac2",
   "members": [
     {
       "backup_version": "backup_version8",
       "bios_version": "bios_version6",
+      "boot_partition": "boot_partition8",
       "cpld_version": "cpld_version4",
       "cpu_stat": {
         "idle": 102.08,
@@ -46,36 +47,10 @@
           105.91
         ],
         "system": 13.6,
-        "user": 204.52,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      },
-      "errors": [
-        {
-          "feature": "feature4",
-          "minimum_version": "minimum_version2",
-          "reason": "reason4",
-          "since": 174,
-          "type": "type0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
+        "usage": 125.9
       }
     }
-  ],
-  "model": "model6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

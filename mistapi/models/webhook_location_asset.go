@@ -10,13 +10,12 @@ import (
 )
 
 // WebhookLocationAsset represents a WebhookLocationAsset struct.
-// Location Asset sample
+// Sample of the `location_asset` webhook payload.
 type WebhookLocationAsset struct {
 	// List of events
-	Events []WebhookLocationAssetEvent `json:"events"`
-	// Topic subscribed to
-	Topic                string                 `json:"topic"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	Events               []WebhookLocationAssetEvent `json:"events"`
+	Topic                string                      `json:"topic"`
+	AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookLocationAsset,

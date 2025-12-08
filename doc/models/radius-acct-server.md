@@ -1,8 +1,6 @@
 
 # Radius Acct Server
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RadiusAcctServer`
@@ -18,7 +16,6 @@
 | `KeywrapMack` | `*string` | Optional | - |
 | `Port` | [`*models.RadiusAcctPort`](../../doc/models/containers/radius-acct-port.md) | Optional | Radius Auth Port, value from 1 to 65535, default is 1813 |
 | `Secret` | `string` | Required | Secret of RADIUS server |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,11 +27,7 @@
   "secret": "testing123",
   "keywrap_enabled": false,
   "keywrap_format": "ascii",
-  "port": 232,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "port": 232
 }
 ```
 

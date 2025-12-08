@@ -3,8 +3,6 @@
 
 OAuth linked CrowdStrike apps account details
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountCrowdstrikeConfig`
@@ -16,7 +14,6 @@ OAuth linked CrowdStrike apps account details
 | `ClientId` | `string` | Required | Customer account api client ID |
 | `ClientSecret` | `string` | Required | Customer account api client Secret |
 | `CustomerId` | `string` | Required | Customer id of an admin |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@ OAuth linked CrowdStrike apps account details
 {
   "client_id": "client_id4",
   "client_secret": "client_secret0",
-  "customer_id": "customer_id0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "customer_id": "customer_id0"
 }
 ```
 

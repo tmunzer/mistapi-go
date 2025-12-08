@@ -78,7 +78,7 @@ func TestOrgsMxEdgesTestCreateOrgMxEdge(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -103,7 +103,7 @@ func TestOrgsMxEdgesTestCreateOrgMxEdge1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -164,12 +164,8 @@ func TestOrgsMxEdgesTestClaimOrgMxEdge(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.CodeString
-	errBody := json.Unmarshal([]byte(`{"code":"135-546-673"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, &body)
+	body := []string{"6JG8E-PTFV2-A9Z2N", "DVH4V-SNMSZ-PDXBR"}
+	apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -189,12 +185,8 @@ func TestOrgsMxEdgesTestClaimOrgMxEdge1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	var body models.CodeString
-	errBody := json.Unmarshal([]byte(`{"code":"135-546-673"}`), &body)
-	if errBody != nil {
-		t.Errorf("Cannot parse the model object.")
-	}
-	apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, &body)
+	body := []string{"6JG8E-PTFV2-A9Z2N", "DVH4V-SNMSZ-PDXBR"}
+	apiResponse, err := orgsMxEdges.ClaimOrgMxEdge(ctx, orgId, body)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -539,7 +531,7 @@ func TestOrgsMxEdgesTestGetOrgMxEdge(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -563,7 +555,7 @@ func TestOrgsMxEdgesTestGetOrgMxEdge1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -579,7 +571,7 @@ func TestOrgsMxEdgesTestUpdateOrgMxEdge(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxedge
-	errBody := json.Unmarshal([]byte(`{"model":"ME-X1","name":"string","ntp_servers":["string"],"services":["tunterm"],"tunterm_ip_config":{"dns":["string"],"dns_suffix":["string"],"gateway":"string","ip":"string","netmask":"string"},"tunterm_port_config":{"downstream_ports":["string"],"separate_upstream_downstream":true,"upstream_port_vlan_id":1,"upstream_ports":["string"]}}`), &body)
+	errBody := json.Unmarshal([]byte(`{"model":"ME-X1","name":"me-gc1-01","oob_ip_config":{"dns":["8.8.8.8","1.1.1.1"],"gateway":"10.3.172.9","ip":"10.3.172.201","netmask":"/24","type":"static"},"services":["tunterm"],"tunterm_ip_config":{"gateway":"10.10.172.2","ip":"10.10.172.201","netmask":"/24"},"tunterm_port_config":{"downstream_ports":["0"],"separate_upstream_downstream":true,"upstream_port_vlan_id":"1010","upstream_ports":["1"]}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -592,7 +584,7 @@ func TestOrgsMxEdgesTestUpdateOrgMxEdge(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -608,7 +600,7 @@ func TestOrgsMxEdgesTestUpdateOrgMxEdge1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.Mxedge
-	errBody := json.Unmarshal([]byte(`{"model":"ME-X1","name":"string","ntp_servers":["string"],"services":["tunterm"],"tunterm_ip_config":{"dns":["string"],"dns_suffix":["string"],"gateway":"string","ip":"string","netmask":"string"},"tunterm_port_config":{"downstream_ports":["string"],"separate_upstream_downstream":true,"upstream_port_vlan_id":1,"upstream_ports":["string"]}}`), &body)
+	errBody := json.Unmarshal([]byte(`{"model":"ME-X1","name":"me-gc1-01","oob_ip_config":{"dns":["8.8.8.8","1.1.1.1"],"gateway":"10.3.172.9","ip":"10.3.172.201","netmask":"/24","type":"static"},"services":["tunterm"],"tunterm_ip_config":{"gateway":"10.10.172.2","ip":"10.10.172.201","netmask":"/24"},"tunterm_port_config":{"downstream_ports":["0"],"separate_upstream_downstream":true,"upstream_port_vlan_id":"1010","upstream_ports":["1"]}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -621,7 +613,7 @@ func TestOrgsMxEdgesTestUpdateOrgMxEdge1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"dns":["8.8.8.8"],"dns_suffix":[".mist.local"],"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
+	expected := `{"id":"95ddd29a-6a3c-929e-a431-51a5b09f36a6","magic":"L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD","model":"ME-100","mxagent_registered":true,"mxcluster_id":"572586b7-f97b-a22b-526c-8b97a3f609c4","mxedge_mgmt":{"mist_password":"MIST_PASSWORD","root_password":"ROOT_PASSWORD"},"name":"Guest","ntp_servers":[],"oob_ip_config":{"dns":["8.8.8.8","4.4.4.4"],"gateway":"10.2.1.254","ip":"10.2.1.10","netmask":"255.255.255.0","type":"static"},"tunterm_dhcpd_config":{"2":{"enabled":true,"servers":["11.2.3.44"]},"enabled":false,"servers":["11.2.3.4"]},"tunterm_extra_routes":{"11.0.0.0/8":{"via":"10.3.3.1"}},"tunterm_ip_config":{"gateway":"10.2.1.254","ip":"10.2.1.1","netmask":"255.255.255.0"}}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

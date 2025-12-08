@@ -164,22 +164,14 @@ Site Settings
       "actions": [
         {
           "action": "allow",
-          "dst_tag": "dst_tag0",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "dst_tag": "dst_tag0"
         }
       ],
       "name": "name2",
       "src_tags": [
         "src_tags1",
         "src_tags0"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "acl_tags": {
@@ -194,11 +186,7 @@ Site Settings
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     },
     "key1": {
       "ether_types": [
@@ -211,11 +199,7 @@ Site Settings
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     },
     "key2": {
       "ether_types": [
@@ -228,11 +212,7 @@ Site Settings
       ],
       "network": "network2",
       "port_usage": "port_usage0",
-      "type": "network",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "network"
     }
   },
   "additional_config_cmds": [
@@ -241,23 +221,114 @@ Site Settings
     "additional_config_cmds2"
   ],
   "analytic": {
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "ap_matching": {
     "enabled": false,
     "rules": [
-      null,
-      {},
-      {}
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+      {
+        "match_model": "match_model0",
+        "name": "name8",
+        "port_config": {
+          "key0": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          },
+          "key1": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          }
+        }
+      },
+      {
+        "match_model": "match_model0",
+        "name": "name8",
+        "port_config": {
+          "key0": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          },
+          "key1": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          }
+        }
+      },
+      {
+        "match_model": "match_model0",
+        "name": "name8",
+        "port_config": {
+          "key0": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          },
+          "key1": {
+            "disabled": false,
+            "dynamic_vlan": {
+              "default_vlan_id": 34,
+              "enabled": false,
+              "type": "type6",
+              "vlans": {
+                "key0": "vlans1"
+              }
+            },
+            "enable_mac_auth": false,
+            "forwarding": "site_mxedge",
+            "mac_auth_preferred": false
+          }
+        }
+      }
+    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

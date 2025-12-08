@@ -1,8 +1,6 @@
 
 # Bgp Stats
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `BgpStats`
@@ -31,7 +29,6 @@
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `VrfName` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -54,11 +51,7 @@
   "vrf_name": "default",
   "evpn_overlay": false,
   "for_overlay": false,
-  "model": "model8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "model": "model8"
 }
 ```
 

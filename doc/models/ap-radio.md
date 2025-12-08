@@ -3,8 +3,6 @@
 
 Radio AP settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApRadio`
@@ -18,7 +16,7 @@ Radio AP settings
 | `AntGain5` | `*int` | Optional | Antenna gain for 5G - for models with external antenna only<br><br>**Constraints**: `>= 0` |
 | `AntGain6` | `*int` | Optional | Antenna gain for 6G - for models with external antenna only<br><br>**Constraints**: `>= 0` |
 | `AntennaMode` | [`*models.ApRadioAntennaModeEnum`](../../doc/models/ap-radio-antenna-mode-enum.md) | Optional | enum: `1x1`, `2x2`, `3x3`, `4x4`, `default`<br><br>**Default**: `"default"` |
-| `AntennaSelect` | [`*models.AntennaSelectEnum`](../../doc/models/antenna-select-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal` |
+| `AntennaSelect` | [`*models.AntennaSelectEnum`](../../doc/models/antenna-select-enum.md) | Optional | Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal` |
 | `Band24` | [`*models.ApRadioBand24`](../../doc/models/ap-radio-band-24.md) | Optional | Radio Band AP settings |
 | `Band24Usage` | [`*models.RadioBand24UsageEnum`](../../doc/models/radio-band-24-usage-enum.md) | Optional | enum: `24`, `5`, `6`, `auto` |
 | `Band5` | [`*models.ApRadioBand5`](../../doc/models/ap-radio-band-5.md) | Optional | Radio Band AP settings |
@@ -28,7 +26,6 @@ Radio AP settings
 | `IndoorUse` | `*bool` | Optional | To make an outdoor operate indoor. For an outdoor-ap, some channels are disallowed by default, this allows the user to use it as an indoor-ap<br><br>**Default**: `false` |
 | `RrmManaged` | `*bool` | Optional | Enable RRM to manage all radio settings (ignores all band_xxx configs) |
 | `ScanningEnabled` | `*bool` | Optional | Whether scanning radio is enabled |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,11 +39,7 @@ Radio AP settings
   "antenna_select": "external",
   "full_automatic_rrm": false,
   "indoor_use": false,
-  "scanning_enabled": true,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "scanning_enabled": true
 }
 ```
 

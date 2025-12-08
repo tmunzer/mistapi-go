@@ -14,12 +14,16 @@
 | `Accuracy` | `*int` | Optional | Estimated client location accuracy, in meter |
 | `AirespaceIfname` | `*string` | Optional | - |
 | `Airwatch` | [`*models.StatsWirelessClientAirwatch`](../../doc/models/stats-wireless-client-airwatch.md) | Optional | Information if airwatch enabled |
+| `Annotation` | `*string` | Optional | - |
 | `ApId` | `uuid.UUID` | Required | AP ID the client is connected to |
 | `ApMac` | `string` | Required | AP the client is connected to |
+| `AssocTime` | `*int` | Optional | - |
 | `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
+| `Bssid` | `*string` | Optional | - |
 | `Channel` | `int` | Required | Current channel |
 | `DualBand` | `*bool` | Optional | Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |
 | `Family` | `*string` | Optional | Device family, through fingerprinting. iPod / Nexus Galaxy / Windows Mobile or CE … |
+| `Group` | `*string` | Optional | - |
 | `Guest` | [`*models.Guest`](../../doc/models/guest.md) | Optional | Guest |
 | `Hostname` | `*string` | Optional | Hostname that we learned from sniffing DHCP |
 | `IdleTime` | `*float64` | Optional | How long, in seconds, has the client been idle (since the last RX packet) |
@@ -43,6 +47,7 @@
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `RxRate` | `models.Optional[float64]` | Optional | RX Rate, Mbps |
 | `RxRetries` | `models.Optional[int]` | Optional | Amount of rx retries |
+| `SiteId` | `*uuid.UUID` | Optional | - |
 | `Snr` | `float64` | Required | Signal over noise |
 | `Ssid` | `string` | Required | SSID the client is connected to |
 | `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
@@ -82,6 +87,7 @@
   "rx_bps": 60003,
   "rx_bytes": 8515104416,
   "rx_pkts": 57770567,
+  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "snr": 64.24,
   "ssid": "ssid8",
   "tx_bps": 634301,
@@ -91,14 +97,10 @@
   "accuracy": 154,
   "airespace_ifname": "airespace_ifname0",
   "airwatch": {
-    "authorized": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "authorized": false
   },
-  "dual_band": false,
-  "family": "family2",
+  "annotation": "annotation6",
+  "assoc_time": 112,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

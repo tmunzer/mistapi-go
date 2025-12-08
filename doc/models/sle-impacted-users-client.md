@@ -1,8 +1,6 @@
 
 # Sle Impacted Users Client
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedUsersClient`
@@ -18,7 +16,6 @@
 | `Name` | `*string` | Optional | - |
 | `SrcIp` | `*string` | Optional | - |
 | `Total` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
       "interfaces": [
         "interfaces5",
         "interfaces6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "chassis_mac": "chassis_mac4",
@@ -47,11 +40,7 @@
       "interfaces": [
         "interfaces5",
         "interfaces6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     {
       "chassis_mac": "chassis_mac4",
@@ -60,19 +49,11 @@
       "interfaces": [
         "interfaces5",
         "interfaces6"
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "mac": "mac2",
-  "name": "name8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "name": "name8"
 }
 ```
 

@@ -13,8 +13,6 @@ Guest portal configuration when `type`==`guest_portal`. If
   - sso
   - userpass: pre created guest list
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `NacPortalGuestPortal`
@@ -33,7 +31,6 @@ Guest portal configuration when `type`==`guest_portal`. If
 | `PortalAllowedSubnets` | `[]string` | Optional | List of CIDRs |
 | `PortalDeniedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames |
 | `Privacy` | `*bool` | Optional | If `auth`==`none` or `auth`==`multi`, whether to show the privacy policy |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -55,11 +52,7 @@ Guest portal configuration when `type`==`guest_portal`. If
   ],
   "privacy": true,
   "auth": "external",
-  "force_reconnect": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "force_reconnect": false
 }
 ```
 

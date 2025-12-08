@@ -82,11 +82,7 @@ Org Settings
   "ui_idle_timeout": 10,
   "ui_no_tracking": false,
   "api_policy": {
-    "no_reveal": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "no_reveal": false
   },
   "auto_device_naming": {
     "enable": false,
@@ -96,28 +92,16 @@ Org Settings
         "match_device": "ap",
         "prefix": "prefix6",
         "src": "lldp_port_desc",
-        "suffix": "suffix2",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "suffix": "suffix2"
       },
       {
         "expression": "expression4",
         "match_device": "ap",
         "prefix": "prefix6",
         "src": "lldp_port_desc",
-        "suffix": "suffix2",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "suffix": "suffix2"
       }
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "auto_deviceprofile_assignment": {
     "enable": false,
@@ -128,17 +112,9 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "switch",
-        "src": "name",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "src": "name"
       }
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "auto_site_assignment": {
     "enable": false,
@@ -149,17 +125,9 @@ Org Settings
         "gatewaytemplate_id": "gatewaytemplate_id0",
         "match_country": "match_country8",
         "match_device_type": "switch",
-        "src": "name",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "src": "name"
       }
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

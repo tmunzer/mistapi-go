@@ -1,8 +1,6 @@
 
 # Stats Device Other Vendor Specific Port
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsDeviceOtherVendorSpecificPort`
@@ -14,11 +12,14 @@
 | `BytesIn` | `*int64` | Optional | - |
 | `BytesOut` | `*int64` | Optional | - |
 | `Carrier` | `*string` | Optional | - |
+| `DisplayName` | `*string` | Optional | - |
 | `Imei` | `*string` | Optional | - |
 | `Imsi` | `*string` | Optional | - |
 | `Ip` | `*string` | Optional | - |
 | `Link` | `*bool` | Optional | - |
 | `Mode` | `*string` | Optional | - |
+| `Mtu` | `*int` | Optional | - |
+| `PortParent` | `*string` | Optional | - |
 | `Rsrp` | `*float64` | Optional | - |
 | `Rsrq` | `*float64` | Optional | - |
 | `Rssi` | `*int` | Optional | - |
@@ -27,7 +28,6 @@
 | `State` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +36,14 @@
   "bytes_in": 5623096929,
   "bytes_out": 12372750366,
   "carrier": "Orange",
+  "display_name": "mdm-4d0e073b",
   "imei": "866401234567893",
   "imsi": "2080101234567893",
   "ip": "10.134.237.57",
   "link": true,
   "mode": "wan",
+  "mtu": 1500,
+  "port_parent": "mdm",
   "rsrp": -108,
   "rsrq": -14,
   "rssi": -74,
@@ -48,11 +51,7 @@
   "sinr": -1.2,
   "state": "READY",
   "type": "mdm",
-  "uptime": 2095779,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "uptime": 2095779
 }
 ```
 

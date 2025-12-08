@@ -1,8 +1,6 @@
 
 # Call Troubleshoot Data
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CallTroubleshootData`
@@ -38,7 +36,6 @@
 | `WanMaxDownloadMbps` | `*float64` | Optional | - |
 | `WanMaxUploadMbps` | `*float64` | Optional | - |
 | `WanRtt` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -70,11 +67,7 @@
   "wan_jitter": 5.9680853,
   "wan_max_download_mbps": 1.4803165,
   "wan_max_upload_mbps": -0.038184267,
-  "wan_rtt": 46.77899,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wan_rtt": 46.77899
 }
 ```
 

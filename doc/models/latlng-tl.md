@@ -3,8 +3,6 @@
 
 When type=google, latitude / longitude of the top-left corner
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `LatlngTl`
@@ -15,18 +13,13 @@ When type=google, latitude / longitude of the top-left corner
 |  --- | --- | --- | --- |
 | `Lat` | `*string` | Optional | - |
 | `Lng` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
   "lat": "lat4",
-  "lng": "lng2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "lng": "lng2"
 }
 ```
 

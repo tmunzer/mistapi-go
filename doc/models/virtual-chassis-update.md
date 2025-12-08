@@ -34,11 +34,7 @@ Virtual Chassis
         "vc_ports3",
         "vc_ports4"
       ],
-      "vc_role": "master",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "vc_role": "master"
     }
   ],
   "new-member": 200,

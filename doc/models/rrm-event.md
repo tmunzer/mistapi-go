@@ -1,8 +1,6 @@
 
 # Rrm Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RrmEvent`
@@ -23,7 +21,6 @@
 | `PreUsage` | `string` | Required | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
 | `Usage` | `string` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,11 +37,7 @@
   "pre_power": 187.92,
   "pre_usage": "pre_usage8",
   "timestamp": 162.92,
-  "usage": "usage2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "usage": "usage2"
 }
 ```
 

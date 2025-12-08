@@ -24,7 +24,6 @@ type SsoRoleMsp struct {
 	Name                 string                 `json:"name"`
 	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
 	Privileges           []PrivilegeMsp         `json:"privileges"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -32,8 +31,8 @@ type SsoRoleMsp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SsoRoleMsp) String() string {
 	return fmt.Sprintf(
-		"SsoRoleMsp[CreatedTime=%v, ForSite=%v, Id=%v, ModifiedTime=%v, MspId=%v, Name=%v, OrgId=%v, Privileges=%v, SiteId=%v, AdditionalProperties=%v]",
-		s.CreatedTime, s.ForSite, s.Id, s.ModifiedTime, s.MspId, s.Name, s.OrgId, s.Privileges, s.SiteId, s.AdditionalProperties)
+		"SsoRoleMsp[CreatedTime=%v, ForSite=%v, Id=%v, ModifiedTime=%v, MspId=%v, Name=%v, OrgId=%v, Privileges=%v, AdditionalProperties=%v]",
+		s.CreatedTime, s.ForSite, s.Id, s.ModifiedTime, s.MspId, s.Name, s.OrgId, s.Privileges, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SsoRoleMsp.
@@ -42,7 +41,7 @@ func (s SsoRoleMsp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges", "site_id"); err != nil {
+		"created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -72,9 +71,6 @@ func (s SsoRoleMsp) toMap() map[string]any {
 		structMap["org_id"] = s.OrgId
 	}
 	structMap["privileges"] = s.Privileges
-	if s.SiteId != nil {
-		structMap["site_id"] = s.SiteId
-	}
 	return structMap
 }
 
@@ -90,7 +86,7 @@ func (s *SsoRoleMsp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "modified_time", "msp_id", "name", "org_id", "privileges")
 	if err != nil {
 		return err
 	}
@@ -104,7 +100,6 @@ func (s *SsoRoleMsp) UnmarshalJSON(input []byte) error {
 	s.Name = *temp.Name
 	s.OrgId = temp.OrgId
 	s.Privileges = *temp.Privileges
-	s.SiteId = temp.SiteId
 	return nil
 }
 
@@ -118,7 +113,6 @@ type tempSsoRoleMsp struct {
 	Name         *string         `json:"name"`
 	OrgId        *uuid.UUID      `json:"org_id,omitempty"`
 	Privileges   *[]PrivilegeMsp `json:"privileges"`
-	SiteId       *uuid.UUID      `json:"site_id,omitempty"`
 }
 
 func (s *tempSsoRoleMsp) validate() error {

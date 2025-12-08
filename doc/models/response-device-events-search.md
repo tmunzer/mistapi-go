@@ -1,8 +1,6 @@
 
 # Response Device Events Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseDeviceEventsSearch`
@@ -14,10 +12,9 @@
 | `End` | `int` | Required | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.EventsDeviceAp`](../../doc/models/events-device-ap.md) | Required | **Constraints**: *Unique Items Required* |
+| `Results` | [`[]models.DeviceEvent`](../../doc/models/device-event.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,27 +24,20 @@
   "limit": 8,
   "results": [
     {
+      "audit_id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "timestamp": 2.64,
+      "type": "type4",
       "ap": "ap8",
+      "ap_name": "ap_name6",
       "apfw": "apfw8",
-      "count": 226,
-      "device_type": "device_type4",
-      "mac": "mac0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "bandwidth": 198
     }
   ],
   "start": 120,
   "total": 154,
-  "next": "next6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next6"
 }
 ```
 

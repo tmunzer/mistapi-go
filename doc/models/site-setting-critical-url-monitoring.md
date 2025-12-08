@@ -3,8 +3,6 @@
 
 You can define some URLs that's critical to site operations the latency will be captured and considered for site health
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingCriticalUrlMonitoring`
@@ -15,7 +13,6 @@ You can define some URLs that's critical to site operations the latency will be 
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | **Default**: `true` |
 | `Monitors` | [`[]models.SiteSettingCriticalUrlMonitoringMonitor`](../../doc/models/site-setting-critical-url-monitoring-monitor.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -25,33 +22,17 @@ You can define some URLs that's critical to site operations the latency will be 
   "monitors": [
     {
       "url": "url0",
-      "vlan_id": "String5",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "vlan_id": "String5"
     },
     {
       "url": "url0",
-      "vlan_id": "String5",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "vlan_id": "String5"
     },
     {
       "url": "url0",
-      "vlan_id": "String5",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "vlan_id": "String5"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

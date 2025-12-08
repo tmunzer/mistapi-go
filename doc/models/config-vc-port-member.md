@@ -1,8 +1,6 @@
 
 # Config Vc Port Member
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConfigVcPortMember`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Member` | `float64` | Required | - |
 | `VcPorts` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@
     "vc_ports4",
     "vc_ports5",
     "vc_ports6"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

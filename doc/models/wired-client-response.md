@@ -1,8 +1,6 @@
 
 # Wired Client Response
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WiredClientResponse`
@@ -28,7 +26,6 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Vlan` | `[]int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -52,28 +49,16 @@
       "ip": "ip8",
       "port_id": "port_id4",
       "port_parent": "port_parent6",
-      "start": "start8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "start": "start8"
     },
     {
       "device_mac": "device_mac8",
       "ip": "ip8",
       "port_id": "port_id4",
       "port_parent": "port_parent6",
-      "start": "start8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "start": "start8"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Const Ap Channel
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstApChannel`
@@ -24,7 +22,6 @@
 | `Key` | `*string` | Optional | Country code, in two-character |
 | `Name` | `*string` | Optional | - |
 | `Uses` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -449,11 +446,7 @@
   "dfs_ok": true,
   "key": "US",
   "name": "United States",
-  "uses": "US_FCC",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "uses": "US_FCC"
 }
 ```
 

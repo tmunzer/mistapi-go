@@ -3,8 +3,6 @@
 
 Defines custom switch configuration based on different criteria
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchMatching`
@@ -15,7 +13,6 @@ Defines custom switch configuration based on different criteria
 |  --- | --- | --- | --- |
 | `Enable` | `*bool` | Optional | - |
 | `Rules` | [`[]models.SwitchMatchingRule`](../../doc/models/switch-matching-rule.md) | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,21 +26,13 @@ Defines custom switch configuration based on different criteria
       ],
       "ip_config": {
         "network": "network6",
-        "type": "dhcp",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "type": "dhcp"
       },
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
         "use_mgmt_vrf": false,
-        "use_mgmt_vrf_for_host_out": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "use_mgmt_vrf_for_host_out": false
       },
       "port_config": {
         "key0": {
@@ -52,11 +41,7 @@ Defines custom switch configuration based on different criteria
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "usage": "usage6"
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -64,11 +49,7 @@ Defines custom switch configuration based on different criteria
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "usage": "usage6"
         }
       },
       "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
@@ -79,21 +60,13 @@ Defines custom switch configuration based on different criteria
       ],
       "ip_config": {
         "network": "network6",
-        "type": "dhcp",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "type": "dhcp"
       },
       "name": "name8",
       "oob_ip_config": {
         "type": "dhcp",
         "use_mgmt_vrf": false,
-        "use_mgmt_vrf_for_host_out": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "use_mgmt_vrf_for_host_out": false
       },
       "port_config": {
         "key0": {
@@ -102,11 +75,7 @@ Defines custom switch configuration based on different criteria
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "usage": "usage6"
         },
         "key1": {
           "ae_disable_lacp": false,
@@ -114,20 +83,12 @@ Defines custom switch configuration based on different criteria
           "ae_lacp_slow": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "usage": "usage6"
         }
       },
       "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

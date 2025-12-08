@@ -3,8 +3,6 @@
 
 Junos Radius config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchRadiusConfig`
@@ -25,7 +23,6 @@ Junos Radius config
 | `FastDot1xTimers` | `*bool` | Optional | **Default**: `false` |
 | `Network` | `*string` | Optional | Use `network`or `source_ip`. Which network the RADIUS server resides, if there's static IP for this network, we'd use it as source-ip |
 | `SourceIp` | `*string` | Optional | Use `network`or `source_ip` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,11 +43,7 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek0",
       "keywrap_mack": "keywrap_mack2",
       "port": 176,
-      "secret": "secret0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret0"
     }
   ],
   "auth_servers": [
@@ -61,17 +54,9 @@ Junos Radius config
       "keywrap_kek": "keywrap_kek4",
       "keywrap_mack": "keywrap_mack6",
       "port": 36,
-      "secret": "secret4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "secret": "secret4"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

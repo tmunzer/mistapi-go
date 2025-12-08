@@ -262,7 +262,6 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SelfMFA() | Gets SelfMFA |
 | SelfAlarms() | Gets SelfAlarms |
 | SelfAuditLogs() | Gets SelfAuditLogs |
-| SamplesWebhooks() | Gets SamplesWebhooks |
 | UtilitiesCommon() | Gets UtilitiesCommon |
 | UtilitiesWAN() | Gets UtilitiesWAN |
 | UtilitiesLAN() | Gets UtilitiesLAN |

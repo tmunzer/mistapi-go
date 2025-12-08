@@ -34,6 +34,7 @@
 | `TemplateUrl` | `*string` | Optional | UI customization |
 | `ThumbnailUrl` | `*string` | Optional | - |
 | `Type` | [`*models.PskPortalTypeEnum`](../../doc/models/psk-portal-type-enum.md) | Optional | for personal psk portal. enum: `admin`, `byod` |
+| `UiUrl` | `*string` | Optional | - |
 | `VlanId` | [`*models.VlanIdWithVariable`](../../doc/models/containers/vlan-id-with-variable.md) | Optional | - |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

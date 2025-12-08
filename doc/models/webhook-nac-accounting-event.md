@@ -1,8 +1,6 @@
 
 # Webhook Nac Accounting Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookNacAccountingEvent`
@@ -26,7 +24,6 @@
 | `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `Type` | `*string` | Optional | Type of event. E.g. "ACCOUNTING_START", "ACCOUNTING_UPDATE", "ACCOUNTING_STOP" |
 | `Username` | `*string` | Optional | Username authenticated with |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -45,11 +42,7 @@
   "ssid": "Test-CMR SSID",
   "tx_pkts": 812204062,
   "type": "NAC_ACCOUNTING_STOP",
-  "username": "hi",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "username": "hi"
 }
 ```
 

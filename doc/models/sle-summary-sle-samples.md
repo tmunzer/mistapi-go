@@ -1,8 +1,6 @@
 
 # Sle Summary Sle Samples
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleSummarySleSamples`
@@ -14,7 +12,6 @@
 | `Degraded` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
 | `Total` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
 | `Value` | [`[]models.NumberOrNull`](../../doc/models/containers/number-or-null.md) | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@
   "value": [
     178.72,
     178.73
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

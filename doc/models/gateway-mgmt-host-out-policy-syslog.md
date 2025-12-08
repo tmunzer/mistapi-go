@@ -1,8 +1,6 @@
 
 # Gateway Mgmt Host Out Policy Syslog
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayMgmtHostOutPolicySyslog`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `PathPreference` | `*string` | Optional | - |
 | `Servers` | [`[]models.GatewayMgmtHostOutPolicySyslogServer`](../../doc/models/gateway-mgmt-host-out-policy-syslog-server.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,35 +21,19 @@
     {
       "host": "host4",
       "path_preference": "path_preference8",
-      "server_name": "server_name8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "server_name": "server_name8"
     },
     {
       "host": "host4",
       "path_preference": "path_preference8",
-      "server_name": "server_name8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "server_name": "server_name8"
     },
     {
       "host": "host4",
       "path_preference": "path_preference8",
-      "server_name": "server_name8",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "server_name": "server_name8"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

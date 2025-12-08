@@ -15,6 +15,7 @@ type DiscoveredSwitch struct {
 	Aps          []DiscoveredSwitchAp `json:"aps,omitempty"`
 	ChassisId    []string             `json:"chassis_id,omitempty"`
 	ForSite      *bool                `json:"for_site,omitempty"`
+	MgmtAddr     *string              `json:"mgmt_addr,omitempty"`
 	Model        *string              `json:"model,omitempty"`
 	OrgId        *uuid.UUID           `json:"org_id,omitempty"`
 	SiteId       *uuid.UUID           `json:"site_id,omitempty"`
@@ -31,8 +32,8 @@ type DiscoveredSwitch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DiscoveredSwitch) String() string {
 	return fmt.Sprintf(
-		"DiscoveredSwitch[Adopted=%v, ApRedundancy=%v, Aps=%v, ChassisId=%v, ForSite=%v, Model=%v, OrgId=%v, SiteId=%v, SystemDesc=%v, SystemName=%v, Timestamp=%v, Vendor=%v, Version=%v, AdditionalProperties=%v]",
-		d.Adopted, d.ApRedundancy, d.Aps, d.ChassisId, d.ForSite, d.Model, d.OrgId, d.SiteId, d.SystemDesc, d.SystemName, d.Timestamp, d.Vendor, d.Version, d.AdditionalProperties)
+		"DiscoveredSwitch[Adopted=%v, ApRedundancy=%v, Aps=%v, ChassisId=%v, ForSite=%v, MgmtAddr=%v, Model=%v, OrgId=%v, SiteId=%v, SystemDesc=%v, SystemName=%v, Timestamp=%v, Vendor=%v, Version=%v, AdditionalProperties=%v]",
+		d.Adopted, d.ApRedundancy, d.Aps, d.ChassisId, d.ForSite, d.MgmtAddr, d.Model, d.OrgId, d.SiteId, d.SystemDesc, d.SystemName, d.Timestamp, d.Vendor, d.Version, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitch.
@@ -41,7 +42,7 @@ func (d DiscoveredSwitch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version"); err != nil {
+		"adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "mgmt_addr", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -65,6 +66,9 @@ func (d DiscoveredSwitch) toMap() map[string]any {
 	}
 	if d.ForSite != nil {
 		structMap["for_site"] = d.ForSite
+	}
+	if d.MgmtAddr != nil {
+		structMap["mgmt_addr"] = d.MgmtAddr
 	}
 	if d.Model != nil {
 		structMap["model"] = d.Model
@@ -101,7 +105,7 @@ func (d *DiscoveredSwitch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "ap_redundancy", "aps", "chassis_id", "for_site", "mgmt_addr", "model", "org_id", "site_id", "system_desc", "system_name", "timestamp", "vendor", "version")
 	if err != nil {
 		return err
 	}
@@ -112,6 +116,7 @@ func (d *DiscoveredSwitch) UnmarshalJSON(input []byte) error {
 	d.Aps = temp.Aps
 	d.ChassisId = temp.ChassisId
 	d.ForSite = temp.ForSite
+	d.MgmtAddr = temp.MgmtAddr
 	d.Model = temp.Model
 	d.OrgId = temp.OrgId
 	d.SiteId = temp.SiteId
@@ -130,6 +135,7 @@ type tempDiscoveredSwitch struct {
 	Aps          []DiscoveredSwitchAp `json:"aps,omitempty"`
 	ChassisId    []string             `json:"chassis_id,omitempty"`
 	ForSite      *bool                `json:"for_site,omitempty"`
+	MgmtAddr     *string              `json:"mgmt_addr,omitempty"`
 	Model        *string              `json:"model,omitempty"`
 	OrgId        *uuid.UUID           `json:"org_id,omitempty"`
 	SiteId       *uuid.UUID           `json:"site_id,omitempty"`

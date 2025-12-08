@@ -46,11 +46,7 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "id": "000001f4-0000-0000-0000-000000000000"
         }
       ],
       "author": "author2",
@@ -73,11 +69,7 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "id": "000001f4-0000-0000-0000-000000000000"
         }
       ],
       "author": "author2",
@@ -100,11 +92,7 @@ Support Ticket
           "content_url": "content_url4",
           "created_at": 174,
           "file_name": "file_name8",
-          "id": "000001f4-0000-0000-0000-000000000000",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "id": "000001f4-0000-0000-0000-000000000000"
         }
       ],
       "author": "author2",

@@ -158,7 +158,7 @@ func TestOrgsSCEPTestListOrgIssuedClientCertificates(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"results":[{"common_name":"john@corp.com","created_time":1431382121,"device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","expire_time":1718921115,"serial_number":"13 00 13 03 23 EE D5 84 01"}]}`
+	expected := `{"results":[{"common_name":"john@corp.com","created_time":"2025-08-18 10:10:30.949165+00:00","device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","expire_time":"2026-08-18 10:06:00+00:00","serial_number":"91984382552102771A2B3C4E5F224719956718003374658"}]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -179,7 +179,7 @@ func TestOrgsSCEPTestListOrgIssuedClientCertificates1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"results":[{"common_name":"john@corp.com","created_time":1431382121,"device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","expire_time":1718921115,"serial_number":"13 00 13 03 23 EE D5 84 01"}]}`
+	expected := `{"results":[{"common_name":"john@corp.com","created_time":"2025-08-18 10:10:30.949165+00:00","device_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","expire_time":"2026-08-18 10:06:00+00:00","serial_number":"91984382552102771A2B3C4E5F224719956718003374658"}]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

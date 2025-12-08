@@ -3,8 +3,6 @@
 
 Only present when `bgp_peers` in `fields` query parameter
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `BgpPeer`
@@ -29,7 +27,6 @@ Only present when `bgp_peers` in `fields` query parameter
 | `Up` | `*bool` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
 | `VrfName` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,11 +45,7 @@ Only present when `bgp_peers` in `fields` query parameter
   "uptime": 31355,
   "vrf_name": "default",
   "evpn_overlay": false,
-  "for_overlay": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_overlay": false
 }
 ```
 

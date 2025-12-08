@@ -1,8 +1,6 @@
 
 # Fwupdate Stat
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `FwupdateStat`
@@ -16,7 +14,6 @@
 | `StatusId` | `models.Optional[int]` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `WillRetry` | `models.Optional[bool]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
   "status_id": 5,
   "will_retry": false,
   "status": "scheduled",
-  "timestamp": 231.24,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "timestamp": 231.24
 }
 ```
 

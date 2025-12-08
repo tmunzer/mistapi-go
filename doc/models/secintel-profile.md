@@ -23,19 +23,11 @@
   "profiles": [
     {
       "action": "strict",
-      "category": "IH",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "category": "IH"
     },
     {
       "action": "strict",
-      "category": "IH",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "category": "IH"
     }
   ],
   "exampleAdditionalProperty": {

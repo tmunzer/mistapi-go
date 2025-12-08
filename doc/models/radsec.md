@@ -3,8 +3,6 @@
 
 RadSec settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Radsec`
@@ -22,7 +20,6 @@ RadSec settings
 | `Servers` | [`[]models.RadsecServer`](../../doc/models/radsec-server.md) | Optional | List of RadSec Servers. Only if not Mist Edge.<br><br>**Constraints**: *Unique Items Required* |
 | `UseMxedge` | `*bool` | Optional | use mxedge(s) as RadSec Proxy |
 | `UseSiteMxedge` | `*bool` | Optional | To use Site mxedges when this WLAN does not use mxtunnel<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,11 +36,7 @@ RadSec settings
   ],
   "proxy_hosts": [
     "proxy_hosts4"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

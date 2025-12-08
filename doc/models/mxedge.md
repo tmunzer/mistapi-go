@@ -16,6 +16,7 @@ MxEdge
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
+| `Mac` | `*string` | Optional | - |
 | `Magic` | `*string` | Optional | - |
 | `Model` | `string` | Required | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
@@ -48,6 +49,7 @@ MxEdge
 ```json
 {
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
+  "mac": "0200009fbe65",
   "magic": "L-NpT5gi-ADR8WTFd4EiQPY3cP5WdSoD",
   "model": "ME-100",
   "mxcluster_id": "572586b7-f97b-a22b-526c-8b97a3f609c4",
@@ -57,7 +59,6 @@ MxEdge
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 184.84,
   "for_site": false,
-  "modified_time": 150.12,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

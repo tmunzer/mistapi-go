@@ -419,8 +419,8 @@ func (i *Installer) AddInstallerDeviceImage(
 	imageName string,
 	deviceMac string,
 	autoDeviceprofileAssignment *bool,
-	csv *models.FileWrapper,
-	file *models.FileWrapper,
+	csv *string,
+	file *string,
 	json *models.MapImportJson) (
 	*http.Response,
 	error) {
@@ -443,24 +443,18 @@ func (i *Installer) AddInstallerDeviceImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	formFields := []https.FormParam{}
 	if autoDeviceprofileAssignment != nil {
-		auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
-		formFields = append(formFields, auto_deviceprofile_assignmentParam)
+		req.FormParam("auto_deviceprofile_assignment", *autoDeviceprofileAssignment)
 	}
 	if csv != nil {
-		csvParam := https.FormParam{Key: "csv", Value: *csv, Headers: http.Header{}}
-		formFields = append(formFields, csvParam)
+		req.FormParam("csv", *csv)
 	}
 	if file != nil {
-		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
-		formFields = append(formFields, fileParam)
+		req.FormParam("file", *file)
 	}
 	if json != nil {
-		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
-		formFields = append(formFields, jsonParam)
+		req.FormParam("json", *json)
 	}
-	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -851,8 +845,8 @@ func (i *Installer) ImportInstallerMap(
 	orgId uuid.UUID,
 	siteName string,
 	autoDeviceprofileAssignment *bool,
-	csv *models.FileWrapper,
-	file *models.FileWrapper,
+	csv *string,
+	file *string,
 	json *models.MapImportJson) (
 	models.ApiResponse[models.ResponseMapImport],
 	error) {
@@ -879,24 +873,18 @@ func (i *Installer) ImportInstallerMap(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	formFields := []https.FormParam{}
 	if autoDeviceprofileAssignment != nil {
-		auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
-		formFields = append(formFields, auto_deviceprofile_assignmentParam)
+		req.FormParam("auto_deviceprofile_assignment", *autoDeviceprofileAssignment)
 	}
 	if csv != nil {
-		csvParam := https.FormParam{Key: "csv", Value: *csv, Headers: http.Header{}}
-		formFields = append(formFields, csvParam)
+		req.FormParam("csv", *csv)
 	}
 	if file != nil {
-		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
-		formFields = append(formFields, fileParam)
+		req.FormParam("file", *file)
 	}
 	if json != nil {
-		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
-		formFields = append(formFields, jsonParam)
+		req.FormParam("json", *json)
 	}
-	req.FormData(formFields)
 
 	var result models.ResponseMapImport
 	decoder, resp, err := req.CallAsJson()

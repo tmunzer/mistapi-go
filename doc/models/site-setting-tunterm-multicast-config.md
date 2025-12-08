@@ -1,8 +1,6 @@
 
 # Site Setting Tunterm Multicast Config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingTuntermMulticastConfig`
@@ -14,7 +12,6 @@
 | `Mdns` | [`*models.SiteSettingTuntermMulticastConfigMdns`](../../doc/models/site-setting-tunterm-multicast-config-mdns.md) | Optional | - |
 | `MulticastAll` | `*bool` | Optional | **Default**: `false` |
 | `Ssdp` | [`*models.SiteSettingTuntermMulticastConfigSsdp`](../../doc/models/site-setting-tunterm-multicast-config-ssdp.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
     "vlan_ids": [
       246,
       247
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "ssdp": {
     "enabled": false,
@@ -38,15 +31,7 @@
       236,
       237,
       238
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    ]
   }
 }
 ```

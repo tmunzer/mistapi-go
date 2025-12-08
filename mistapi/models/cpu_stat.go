@@ -17,6 +17,8 @@ type CpuStat struct {
 	LoadAvg []float64 `json:"load_avg,omitempty"`
 	// Percentage of CPU time being used by system processes
 	System Optional[float64] `json:"system"`
+	// CPU usage
+	Usage Optional[float64] `json:"usage"`
 	// Percentage of CPU time being used by user processes
 	User                 Optional[float64]      `json:"user"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -26,8 +28,8 @@ type CpuStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CpuStat) String() string {
 	return fmt.Sprintf(
-		"CpuStat[Idle=%v, Interrupt=%v, LoadAvg=%v, System=%v, User=%v, AdditionalProperties=%v]",
-		c.Idle, c.Interrupt, c.LoadAvg, c.System, c.User, c.AdditionalProperties)
+		"CpuStat[Idle=%v, Interrupt=%v, LoadAvg=%v, System=%v, Usage=%v, User=%v, AdditionalProperties=%v]",
+		c.Idle, c.Interrupt, c.LoadAvg, c.System, c.Usage, c.User, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CpuStat.
@@ -36,7 +38,7 @@ func (c CpuStat) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"idle", "interrupt", "load_avg", "system", "user"); err != nil {
+		"idle", "interrupt", "load_avg", "system", "usage", "user"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -70,6 +72,13 @@ func (c CpuStat) toMap() map[string]any {
 			structMap["system"] = nil
 		}
 	}
+	if c.Usage.IsValueSet() {
+		if c.Usage.Value() != nil {
+			structMap["usage"] = c.Usage.Value()
+		} else {
+			structMap["usage"] = nil
+		}
+	}
 	if c.User.IsValueSet() {
 		if c.User.Value() != nil {
 			structMap["user"] = c.User.Value()
@@ -88,7 +97,7 @@ func (c *CpuStat) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "idle", "interrupt", "load_avg", "system", "user")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "idle", "interrupt", "load_avg", "system", "usage", "user")
 	if err != nil {
 		return err
 	}
@@ -98,6 +107,7 @@ func (c *CpuStat) UnmarshalJSON(input []byte) error {
 	c.Interrupt = temp.Interrupt
 	c.LoadAvg = temp.LoadAvg
 	c.System = temp.System
+	c.Usage = temp.Usage
 	c.User = temp.User
 	return nil
 }
@@ -108,5 +118,6 @@ type tempCpuStat struct {
 	Interrupt Optional[float64] `json:"interrupt"`
 	LoadAvg   []float64         `json:"load_avg,omitempty"`
 	System    Optional[float64] `json:"system"`
+	Usage     Optional[float64] `json:"usage"`
 	User      Optional[float64] `json:"user"`
 }

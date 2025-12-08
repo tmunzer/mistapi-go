@@ -1,8 +1,6 @@
 
 # Response Zone Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseZoneSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.ResponseZoneSearchItem`](../../doc/models/response-zone-search-item.md) | Optional | - |
 | `Start` | `*float64` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,27 +30,15 @@
       "enter": 226,
       "scope": "scope6",
       "timestamp": 2.64,
-      "user": "user6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "user": "user6"
     },
     {
       "enter": 226,
       "scope": "scope6",
       "timestamp": 2.64,
-      "user": "user6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "user": "user6"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

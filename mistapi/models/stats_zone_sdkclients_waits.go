@@ -8,7 +8,7 @@ import (
 )
 
 // StatsZoneSdkclientsWaits represents a StatsZoneSdkclientsWaits struct.
-// SDK Clients wait time right now
+// SDK client wait time right now
 type StatsZoneSdkclientsWaits struct {
 	// Average wait time in seconds
 	Avg *float64 `json:"avg,omitempty"`

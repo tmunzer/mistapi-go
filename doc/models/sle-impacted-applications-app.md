@@ -1,8 +1,6 @@
 
 # Sle Impacted Applications App
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedApplicationsApp`
@@ -17,7 +15,6 @@
 | `Name` | `*string` | Optional | - |
 | `Threshold` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
   "degraded": 192,
   "duration": 42,
   "name": "name6",
-  "threshold": 154,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "threshold": 154
 }
 ```
 

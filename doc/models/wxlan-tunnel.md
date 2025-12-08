@@ -57,11 +57,7 @@ WxLAn Tunnel
     "host_routes": [
       "host_routes6",
       "host_routes7"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "for_site": false,
   "exampleAdditionalProperty": {

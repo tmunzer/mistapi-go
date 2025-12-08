@@ -1,8 +1,6 @@
 
 # Org System Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSystemEvent`
@@ -18,7 +16,6 @@
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
   "scope": "org",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "type": "delete-wlan",
-  "metadata": "metadata2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "metadata": "metadata2"
 }
 ```
 

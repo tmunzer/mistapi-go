@@ -1,8 +1,6 @@
 
 # Response Events Orgs Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseEventsOrgsSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.OrgEvent`](../../doc/models/org-event.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,27 +29,15 @@
       "org_id": "00002492-0000-0000-0000-000000000000",
       "text": "text4",
       "timestamp": 2.64,
-      "type": "type4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type4"
     },
     {
       "org_id": "00002492-0000-0000-0000-000000000000",
       "text": "text4",
       "timestamp": 2.64,
-      "type": "type4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "type4"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

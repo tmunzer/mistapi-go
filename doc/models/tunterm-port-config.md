@@ -3,8 +3,6 @@
 
 Ethernet port configurations
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TuntermPortConfig`
@@ -15,9 +13,8 @@ Ethernet port configurations
 |  --- | --- | --- | --- |
 | `DownstreamPorts` | `[]string` | Optional | List of ports to be used for downstream (to AP) purpose |
 | `SeparateUpstreamDownstream` | `*bool` | Optional | Whether to separate upstream / downstream ports. default is false where all ports will be used.<br><br>**Default**: `false` |
-| `UpstreamPortVlanId` | `*int` | Optional | Native VLAN id for upstream ports<br><br>**Default**: `1` |
+| `UpstreamPortVlanId` | [`*models.TuntermPortConfigUpstreamPortVlanId`](../../doc/models/containers/tunterm-port-config-upstream-port-vlan-id.md) | Optional | Native VLAN id for upstream ports |
 | `UpstreamPorts` | `[]string` | Optional | List of ports to be used for upstream purpose (to LAN) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -28,15 +25,11 @@ Ethernet port configurations
     "3"
   ],
   "separate_upstream_downstream": false,
-  "upstream_port_vlan_id": 30,
   "upstream_ports": [
     "0",
     "1"
   ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "upstream_port_vlan_id": "String1"
 }
 ```
 

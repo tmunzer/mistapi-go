@@ -1,8 +1,6 @@
 
 # Event Otherdevice
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `EventOtherdevice`
@@ -19,7 +17,6 @@
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | `*string` | Optional | - |
 | `Vendor` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -31,11 +28,7 @@
   "text": "Plugged: The Internal 5GB (SIM1) has been inserted into Internal 1.",
   "type": "CELLULAR_EDGE_MODEM_WAN_PLUGGED",
   "vendor": "cradlepoint",
-  "device_mac": "device_mac8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "device_mac": "device_mac8"
 }
 ```
 

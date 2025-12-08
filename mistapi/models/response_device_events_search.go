@@ -14,7 +14,7 @@ type ResponseDeviceEventsSearch struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
 	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsDeviceAp       `json:"results"`
+	Results              []DeviceEvent          `json:"results"`
 	Start                int                    `json:"start"`
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -84,12 +84,12 @@ func (r *ResponseDeviceEventsSearch) UnmarshalJSON(input []byte) error {
 
 // tempResponseDeviceEventsSearch is a temporary struct used for validating the fields of ResponseDeviceEventsSearch.
 type tempResponseDeviceEventsSearch struct {
-	End     *int              `json:"end"`
-	Limit   *int              `json:"limit"`
-	Next    *string           `json:"next,omitempty"`
-	Results *[]EventsDeviceAp `json:"results"`
-	Start   *int              `json:"start"`
-	Total   *int              `json:"total"`
+	End     *int           `json:"end"`
+	Limit   *int           `json:"limit"`
+	Next    *string        `json:"next,omitempty"`
+	Results *[]DeviceEvent `json:"results"`
+	Start   *int           `json:"start"`
+	Total   *int           `json:"total"`
 }
 
 func (r *tempResponseDeviceEventsSearch) validate() error {

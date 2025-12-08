@@ -3,8 +3,6 @@
 
 Wxrule statistics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsWxrule`
@@ -22,7 +20,6 @@ Wxrule statistics
 | `Order` | `int` | Required | - |
 | `SrcWxtags` | `[]uuid.UUID` | Required | - |
 | `Usage` | [`map[string]models.StatsWxruleUsageProperties`](../../doc/models/stats-wxrule-usage-properties.md) | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,23 +50,11 @@ Wxrule statistics
   ],
   "usage": {
     "1a42c7b0-d1d0-5a30-f349-e35fa43dc3b3": {
-      "num_flows": 60,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "num_flows": 60
     },
     "d4134466-eec0-3756-6765-381c728a6037": {
-      "num_flows": 60,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "num_flows": 60
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

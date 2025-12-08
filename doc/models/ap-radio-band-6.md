@@ -3,8 +3,6 @@
 
 Radio Band AP settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApRadioBand6`
@@ -26,7 +24,6 @@ Radio Band AP settings
 | `PowerMin` | `models.Optional[int]` | Optional | When power=0, min tx power to use, HW-specific values will be used if not set<br><br>**Default**: `8`<br><br>**Constraints**: `>= 5`, `<= 18` |
 | `Preamble` | [`*models.RadioBandPreambleEnum`](../../doc/models/radio-band-preamble-enum.md) | Optional | enum: `auto`, `long`, `short`<br><br>**Default**: `"short"` |
 | `StandardPower` | `*bool` | Optional | For 6GHz Only, standard-power operation, AFC (Automatic Frequency Coordination) will be performed, and we'll fall back to Low Power Indoor if AFC failed<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -44,11 +41,7 @@ Radio Band AP settings
   "power_min": 8,
   "preamble": "short",
   "standard_power": false,
-  "antenna_beam_pattern": "medium",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "antenna_beam_pattern": "medium"
 }
 ```
 

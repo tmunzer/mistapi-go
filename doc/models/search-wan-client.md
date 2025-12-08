@@ -1,8 +1,6 @@
 
 # Search Wan Client
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SearchWanClient`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.StatsWanClient`](../../doc/models/stats-wan-client.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -39,11 +36,7 @@
         "ip7",
         "ip8"
       ],
-      "ip_src": "ip_src6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ip_src": "ip_src6"
     },
     {
       "dhcp_expire_time": 124.26,
@@ -57,18 +50,10 @@
         "ip7",
         "ip8"
       ],
-      "ip_src": "ip_src6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ip_src": "ip_src6"
     }
   ],
-  "start": 164,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 164
 }
 ```
 

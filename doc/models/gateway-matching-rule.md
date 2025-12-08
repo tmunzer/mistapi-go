@@ -31,11 +31,7 @@
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     },
     "key1": {
       "ae_disable_lacp": false,
@@ -43,11 +39,7 @@
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     },
     "key2": {
       "ae_disable_lacp": false,
@@ -55,11 +47,7 @@
       "ae_lacp_slow": false,
       "aggregated": false,
       "critical": false,
-      "usage": "usage6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "usage": "usage6"
     }
   },
   "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"

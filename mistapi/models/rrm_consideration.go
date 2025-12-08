@@ -17,6 +17,8 @@ type RrmConsideration struct {
 	OtherRssi *float64 `json:"other_rssi,omitempty"`
 	// SSID from other AP that we heard from with the max RSSI
 	OtherSsid *string `json:"other_ssid,omitempty"`
+	// Avg RSSI heard from APs (that belongs to the same site)
+	Rssi *float64 `json:"rssi,omitempty"`
 	// utilization score, 0-1, lower means less utilization (cleaner RF)
 	UtilScore float64 `json:"util_score"`
 	// non-Wi-Fi utilization score, 0-1, lower means less utilization (cleaner RF)
@@ -30,8 +32,8 @@ type RrmConsideration struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RrmConsideration) String() string {
 	return fmt.Sprintf(
-		"RrmConsideration[Channel=%v, Noise=%v, OtherRssi=%v, OtherSsid=%v, UtilScore=%v, UtilScoreNonWifi=%v, UtilScoreOther=%v, AdditionalProperties=%v]",
-		r.Channel, r.Noise, r.OtherRssi, r.OtherSsid, r.UtilScore, r.UtilScoreNonWifi, r.UtilScoreOther, r.AdditionalProperties)
+		"RrmConsideration[Channel=%v, Noise=%v, OtherRssi=%v, OtherSsid=%v, Rssi=%v, UtilScore=%v, UtilScoreNonWifi=%v, UtilScoreOther=%v, AdditionalProperties=%v]",
+		r.Channel, r.Noise, r.OtherRssi, r.OtherSsid, r.Rssi, r.UtilScore, r.UtilScoreNonWifi, r.UtilScoreOther, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmConsideration.
@@ -40,7 +42,7 @@ func (r RrmConsideration) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"channel", "noise", "other_rssi", "other_ssid", "util_score", "util_score_non_wifi", "util_score_other"); err != nil {
+		"channel", "noise", "other_rssi", "other_ssid", "rssi", "util_score", "util_score_non_wifi", "util_score_other"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -57,6 +59,9 @@ func (r RrmConsideration) toMap() map[string]any {
 	}
 	if r.OtherSsid != nil {
 		structMap["other_ssid"] = r.OtherSsid
+	}
+	if r.Rssi != nil {
+		structMap["rssi"] = r.Rssi
 	}
 	structMap["util_score"] = r.UtilScore
 	structMap["util_score_non_wifi"] = r.UtilScoreNonWifi
@@ -76,7 +81,7 @@ func (r *RrmConsideration) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "noise", "other_rssi", "other_ssid", "util_score", "util_score_non_wifi", "util_score_other")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "noise", "other_rssi", "other_ssid", "rssi", "util_score", "util_score_non_wifi", "util_score_other")
 	if err != nil {
 		return err
 	}
@@ -86,6 +91,7 @@ func (r *RrmConsideration) UnmarshalJSON(input []byte) error {
 	r.Noise = *temp.Noise
 	r.OtherRssi = temp.OtherRssi
 	r.OtherSsid = temp.OtherSsid
+	r.Rssi = temp.Rssi
 	r.UtilScore = *temp.UtilScore
 	r.UtilScoreNonWifi = *temp.UtilScoreNonWifi
 	r.UtilScoreOther = *temp.UtilScoreOther
@@ -98,6 +104,7 @@ type tempRrmConsideration struct {
 	Noise            *float64 `json:"noise"`
 	OtherRssi        *float64 `json:"other_rssi,omitempty"`
 	OtherSsid        *string  `json:"other_ssid,omitempty"`
+	Rssi             *float64 `json:"rssi,omitempty"`
 	UtilScore        *float64 `json:"util_score"`
 	UtilScoreNonWifi *float64 `json:"util_score_non_wifi"`
 	UtilScoreOther   *float64 `json:"util_score_other"`

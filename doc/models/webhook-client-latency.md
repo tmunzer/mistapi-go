@@ -1,7 +1,7 @@
 
 # Webhook Client Latency
 
-*This model accepts additional fields of type interface{}.*
+Sample of the `client-latency` webhook payload.
 
 ## Structure
 
@@ -12,53 +12,36 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookClientLatencyEvent`](../../doc/models/webhook-client-latency-event.md) | Optional | - |
-| `Topic` | `*string` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | [`*models.WebhookClientLatencyTopicEnum`](../../doc/models/webhook-client-latency-topic-enum.md) | Optional | enum: `client-latency` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "topic": "client-latency",
   "events": [
     {
       "avg_auth": 161.94,
       "avg_dhcp": 179.42,
       "avg_dns": 84.7,
       "max_auth": 92.74,
-      "max_dhcp": 117.02,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_dhcp": 117.02
     },
     {
       "avg_auth": 161.94,
       "avg_dhcp": 179.42,
       "avg_dns": 84.7,
       "max_auth": 92.74,
-      "max_dhcp": 117.02,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_dhcp": 117.02
     },
     {
       "avg_auth": 161.94,
       "avg_dhcp": 179.42,
       "avg_dns": 84.7,
       "max_auth": 92.74,
-      "max_dhcp": 117.02,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_dhcp": 117.02
     }
   ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "client-latency"
 }
 ```
 

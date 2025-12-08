@@ -1,8 +1,6 @@
 
 # Response Ssr Upgrade Status
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseSsrUpgradeStatus`
@@ -17,7 +15,6 @@
 | `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
 | `Targets` | [`models.ResponseSsrUpgradeStatusTargets`](../../doc/models/response-ssr-upgrade-status-targets.md) | Required | - |
 | `Versions` | `interface{}` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,21 +37,13 @@
     ],
     "upgrading": [
       "upgrading9"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "versions": {
     "key1": "val1",
     "key2": "val2"
   },
-  "device_type": "device_type4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "device_type": "device_type4"
 }
 ```
 

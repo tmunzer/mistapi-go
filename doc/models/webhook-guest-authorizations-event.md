@@ -1,8 +1,6 @@
 
 # Webhook Guest Authorizations Event
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookGuestAuthorizationsEvent`
@@ -31,7 +29,6 @@
 | `SponsorEmail` | `*string` | Optional | guest sponsor email |
 | `Ssid` | `*string` | Optional | ssid |
 | `WlanId` | `*string` | Optional | wlan id |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -56,11 +53,7 @@
   "sms_gateway": "Telstra",
   "sponsor_email": "sponsor@gmail.com",
   "ssid": "Portal Auth",
-  "wlan_id": "7681be9a-044a-4622-90cf-3accde5ad853",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wlan_id": "7681be9a-044a-4622-90cf-3accde5ad853"
 }
 ```
 

@@ -3,8 +3,6 @@
 
 the Property key is the network name. In case of DHCP relay, it's common for many networks to use the same dhcp relay, comma-separated network names can be used here (e.g. "net1,net2")
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SwitchDhcpdConfigProperty`
@@ -29,7 +27,6 @@ the Property key is the network name. In case of DHCP relay, it's common for man
 | `Type` | [`*models.SwitchDhcpdConfigTypeEnum`](../../doc/models/switch-dhcpd-config-type-enum.md) | Optional | enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server) |
 | `Type6` | [`*models.SwitchDhcpdConfigTypeEnum`](../../doc/models/switch-dhcpd-config-type-enum.md) | Optional | enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)<br><br>**Default**: `"none"` |
 | `VendorEncapsulated` | [`map[string]models.DhcpdConfigVendorOption`](../../doc/models/dhcpd-config-vendor-option.md) | Optional | If `type`==`server` or `type6`==`server`. Property key is <enterprise number>:<sub option code>, with<br><br>* enterprise number: 1-65535 (https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers)<br>* sub option code: 1-255, sub-option code' |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -48,11 +45,7 @@ the Property key is the network name. In case of DHCP relay, it's common for man
     "5684dae9ac8b": {
       "ip": "192.168.70.35",
       "name": "John",
-      "ip6": "ip66",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "ip6": "ip66"
     }
   },
   "gateway": "192.168.70.1",
@@ -68,11 +61,7 @@ the Property key is the network name. In case of DHCP relay, it's common for man
   "servers6": [
     "2607:f8b0:4005:808::64"
   ],
-  "type6": "none",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "type6": "none"
 }
 ```
 

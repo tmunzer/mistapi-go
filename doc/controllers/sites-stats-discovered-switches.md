@@ -404,7 +404,6 @@ if err != nil {
   "next": "/api/v1/sites/f5fcbee5-fbca-45b3-8bf1-1619ede87879/stats/discovered_switch_metrics/search?end=1675193686.0191767&limit=1&search_after=%5B1675193400000%5D&start=1675107286.0191767",
   "results": [
     {
-      "details": {},
       "org_id": "203d3d02-dbc0-4c1b-9f41-76896a3330f4",
       "scope": "site",
       "score": 100,

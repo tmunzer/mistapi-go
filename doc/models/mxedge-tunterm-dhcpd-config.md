@@ -36,11 +36,7 @@ Global and per-VLAN. Property key is the VLAN ID
       "servers0",
       "servers1"
     ],
-    "type": "relay",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "type": "relay"
   }
 }
 ```

@@ -11,6 +11,7 @@ import (
 type ModuleStatItemPoe struct {
 	MaxPower             *float64               `json:"max_power,omitempty"`
 	PowerDraw            *float64               `json:"power_draw,omitempty"`
+	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +19,8 @@ type ModuleStatItemPoe struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m ModuleStatItemPoe) String() string {
 	return fmt.Sprintf(
-		"ModuleStatItemPoe[MaxPower=%v, PowerDraw=%v, AdditionalProperties=%v]",
-		m.MaxPower, m.PowerDraw, m.AdditionalProperties)
+		"ModuleStatItemPoe[MaxPower=%v, PowerDraw=%v, Status=%v, AdditionalProperties=%v]",
+		m.MaxPower, m.PowerDraw, m.Status, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ModuleStatItemPoe.
@@ -28,7 +29,7 @@ func (m ModuleStatItemPoe) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"max_power", "power_draw"); err != nil {
+		"max_power", "power_draw", "status"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -44,6 +45,9 @@ func (m ModuleStatItemPoe) toMap() map[string]any {
 	if m.PowerDraw != nil {
 		structMap["power_draw"] = m.PowerDraw
 	}
+	if m.Status != nil {
+		structMap["status"] = m.Status
+	}
 	return structMap
 }
 
@@ -55,7 +59,7 @@ func (m *ModuleStatItemPoe) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "max_power", "power_draw")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "max_power", "power_draw", "status")
 	if err != nil {
 		return err
 	}
@@ -63,6 +67,7 @@ func (m *ModuleStatItemPoe) UnmarshalJSON(input []byte) error {
 
 	m.MaxPower = temp.MaxPower
 	m.PowerDraw = temp.PowerDraw
+	m.Status = temp.Status
 	return nil
 }
 
@@ -70,4 +75,5 @@ func (m *ModuleStatItemPoe) UnmarshalJSON(input []byte) error {
 type tempModuleStatItemPoe struct {
 	MaxPower  *float64 `json:"max_power,omitempty"`
 	PowerDraw *float64 `json:"power_draw,omitempty"`
+	Status    *string  `json:"status,omitempty"`
 }

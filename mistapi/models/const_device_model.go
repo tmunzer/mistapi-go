@@ -49,10 +49,10 @@ func (c *ConstDeviceModel) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for ConstDeviceModel.
 // It customizes the JSON unmarshaling process for ConstDeviceModel objects.
 func (c *ConstDeviceModel) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallOneOf(input,
-		NewTypeHolder(&ConstDeviceAp{}, false, &c.isConstDeviceAp),
-		NewTypeHolder(&ConstDeviceSwitch{}, false, &c.isConstDeviceSwitch),
-		NewTypeHolder(&ConstDeviceGateway{}, false, &c.isConstDeviceGateway),
+	result, err := UnmarshallOneOfWithDiscriminator(input, "type",
+		NewTypeHolderDiscriminator(&ConstDeviceAp{}, false, &c.isConstDeviceAp, "ap"),
+		NewTypeHolderDiscriminator(&ConstDeviceSwitch{}, false, &c.isConstDeviceSwitch, "gateway"),
+		NewTypeHolderDiscriminator(&ConstDeviceGateway{}, false, &c.isConstDeviceGateway, "switch"),
 	)
 
 	c.value = result

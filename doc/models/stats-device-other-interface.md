@@ -1,8 +1,6 @@
 
 # Stats Device Other Interface
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsDeviceOtherInterface`
@@ -28,7 +26,6 @@
 | `State` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | - |
 | `Uptime` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,11 +47,7 @@
   "sinr": -1.2,
   "state": "READY",
   "type": "mdm",
-  "uptime": 2095779,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "uptime": 2095779
 }
 ```
 

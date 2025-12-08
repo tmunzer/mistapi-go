@@ -26,18 +26,10 @@
   "managed": false,
   "nodes": [
     {
-      "mac": "mac0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "mac": "mac0"
     },
     {
-      "mac": "mac0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "mac": "mac0"
     }
   ],
   "exampleAdditionalProperty": {

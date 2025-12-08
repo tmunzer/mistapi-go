@@ -3,8 +3,6 @@
 
 Memory usage stat (for virtual chassis, memory usage of master RE)
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MemoryStat`
@@ -14,17 +12,12 @@ Memory usage stat (for virtual chassis, memory usage of master RE)
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Usage` | `float64` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
 ```json
 {
-  "usage": 57.54,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "usage": 57.54
 }
 ```
 

@@ -8,10 +8,11 @@ import (
 )
 
 // WebhookNacEvents represents a WebhookNacEvents struct.
+// Sample of the `nac-events` webhook payload.
 type WebhookNacEvents struct {
-	Events               []WebhookNacEventsEvent `json:"events,omitempty"`
-	Topic                *string                 `json:"topic,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	Events               []NacClientEvent           `json:"events,omitempty"`
+	Topic                *WebhookNacEventsTopicEnum `json:"topic,omitempty"`
+	AdditionalProperties map[string]interface{}     `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookNacEvents,
@@ -68,6 +69,6 @@ func (w *WebhookNacEvents) UnmarshalJSON(input []byte) error {
 
 // tempWebhookNacEvents is a temporary struct used for validating the fields of WebhookNacEvents.
 type tempWebhookNacEvents struct {
-	Events []WebhookNacEventsEvent `json:"events,omitempty"`
-	Topic  *string                 `json:"topic,omitempty"`
+	Events []NacClientEvent           `json:"events,omitempty"`
+	Topic  *WebhookNacEventsTopicEnum `json:"topic,omitempty"`
 }

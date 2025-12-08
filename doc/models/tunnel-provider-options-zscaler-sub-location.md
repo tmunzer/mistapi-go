@@ -1,8 +1,6 @@
 
 # Tunnel Provider Options Zscaler Sub Location
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `TunnelProviderOptionsZscalerSubLocation`
@@ -25,7 +23,6 @@
 | `SurrogateIPEnforcedForKnownBrowsers` | `*bool` | Optional | Can only be `true` when `surrogate_IP`==`true`, enforce surrogate IP for known browsers |
 | `SurrogateRefreshTimeInMinutes` | `*int` | Optional | Required if `surrogate_IP_enforced_for_known_browsers`==`true`, must be lower or equal than `idle_time_in_minutes`, refresh Time for re-validation of Surrogacy<br><br>**Constraints**: `>= 1`, `<= 43200` |
 | `UpBandwidth` | `models.Optional[float64]` | Optional | Download bandwidth cap of the link, in Mbps. Disabled if not set<br><br>**Constraints**: `>= 0.1`, `<= 99999` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -40,11 +37,7 @@
   "ofw_enabled": false,
   "surrogate_IP": false,
   "up_bandwidth": 200,
-  "aup_timeout_in_days": 180,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "aup_timeout_in_days": 180
 }
 ```
 

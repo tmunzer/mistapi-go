@@ -49,10 +49,10 @@ func (d *Deviceprofile) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for Deviceprofile.
 // It customizes the JSON unmarshaling process for Deviceprofile objects.
 func (d *Deviceprofile) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallOneOf(input,
-		NewTypeHolder(&DeviceprofileAp{}, false, &d.isDeviceprofileAp),
-		NewTypeHolder(&DeviceprofileGateway{}, false, &d.isDeviceprofileGateway),
-		NewTypeHolder(&DeviceprofileSwitch{}, false, &d.isDeviceprofileSwitch),
+	result, err := UnmarshallOneOfWithDiscriminator(input, "type",
+		NewTypeHolderDiscriminator(&DeviceprofileAp{}, false, &d.isDeviceprofileAp, "ap"),
+		NewTypeHolderDiscriminator(&DeviceprofileGateway{}, false, &d.isDeviceprofileGateway, "gateway"),
+		NewTypeHolderDiscriminator(&DeviceprofileSwitch{}, false, &d.isDeviceprofileSwitch, "switch"),
 	)
 
 	d.value = result

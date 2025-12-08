@@ -323,11 +323,6 @@ body := models.Secpolicy{
                 TwilioAuthToken:             models.NewOptional(models.ToPointer("af9dac44c344a875ab5d31cb7abcdefg")),
                 TwilioPhoneNumber:           models.NewOptional(models.ToPointer("+18548888888")),
                 TwilioSid:                   models.NewOptional(models.ToPointer("AC72ec6ba0ec5af30e6731c5e47abcdefgh")),
-                AdditionalProperties:        map[string]interface{}{
-                    "portal_api_secret": interface{}("string"),
-                    "portal_image": interface{}("https://url/to/image.png"),
-                    "thumbnail": interface{}("string"),
-                },
             }),
             PortalAllowedHostnames:               []string{
                 "snapchat.com",
@@ -336,7 +331,6 @@ body := models.Secpolicy{
             PortalAllowedSubnets:                 []string{
                 "63.5.3.0/24",
             },
-            PortalApiSecret:                      models.NewOptional(models.ToPointer("EIfPMOykI3lMlDdNPub2WcbqT6dNOtWwmYHAd6bY")),
             PortalDeniedHostnames:                []string{
                 "msg.snapchat.com",
             },
@@ -407,7 +401,6 @@ body := models.Secpolicy{
             }),
             SleExcluded:                          models.ToPointer(false),
             Ssid:                                 "corporate",
-            TemplateId:                           models.NewOptional(models.ToPointer(uuid.MustParse("c6d67e98-83ea-49f0-8812-e4abae2b68bc"))),
             UseEapolV1:                           models.ToPointer(false),
             VlanEnabled:                          models.ToPointer(false),
             VlanIds:                              models.ToPointer(models.WlanVlanIdsContainer.FromArrayOfVlanIdWithVariable4([]models.VlanIdWithVariable{

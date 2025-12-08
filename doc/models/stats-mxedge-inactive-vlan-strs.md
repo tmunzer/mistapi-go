@@ -3,8 +3,6 @@
 
 Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsMxedgeInactiveVlanStrs`
@@ -15,7 +13,6 @@ Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
 |  --- | --- | --- | --- |
 | `L2tp` | `[]string` | Optional | Inactive L2TP VLANs. Entries can be individual VLANs or ranges. |
 | `Wired` | `[]string` | Optional | Inactive wired VLANs. Entries can be individual VLANs or ranges. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@ Inactive wired/L2TP VLANs. Entries can be individual VLANs or ranges.
   ],
   "l2tp": [
     "l2tp1"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

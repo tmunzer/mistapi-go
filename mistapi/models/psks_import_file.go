@@ -9,7 +9,7 @@ import (
 
 // PsksImportFile represents a PsksImportFile struct.
 type PsksImportFile struct {
-	File                 *[]byte                `json:"file,omitempty"`
+	File                 *string                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -63,5 +63,5 @@ func (p *PsksImportFile) UnmarshalJSON(input []byte) error {
 
 // tempPsksImportFile is a temporary struct used for validating the fields of PsksImportFile.
 type tempPsksImportFile struct {
-	File *[]byte `json:"file,omitempty"`
+	File *string `json:"file,omitempty"`
 }

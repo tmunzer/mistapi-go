@@ -17,11 +17,13 @@ type WebhookDiscoveredRawRssiEvent struct {
 	// Antenna index, from 1-8, clock-wise starting from the LED
 	Beam int `json:"beam"`
 	// Device id of the reporting AP
-	DeviceId     uuid.UUID  `json:"device_id"`
-	IbeaconMajor *int       `json:"ibeacon_major,omitempty"`
-	IbeaconMinor *int       `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid  *uuid.UUID `json:"ibeacon_uuid,omitempty"`
-	IsAsset      *bool      `json:"is_asset,omitempty"`
+	DeviceId uuid.UUID `json:"device_id"`
+	// Major number for iBeacon
+	IbeaconMajor Optional[int] `json:"ibeacon_major"`
+	// Minor number for iBeacon
+	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IsAsset      *bool               `json:"is_asset,omitempty"`
 	// MAC of the asset/ beacon
 	Mac   string    `json:"mac"`
 	MapId uuid.UUID `json:"map_id"`
@@ -69,14 +71,26 @@ func (w WebhookDiscoveredRawRssiEvent) toMap() map[string]any {
 	}
 	structMap["beam"] = w.Beam
 	structMap["device_id"] = w.DeviceId
-	if w.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = w.IbeaconMajor
+	if w.IbeaconMajor.IsValueSet() {
+		if w.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = w.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if w.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = w.IbeaconMinor
+	if w.IbeaconMinor.IsValueSet() {
+		if w.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = w.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
-	if w.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = w.IbeaconUuid
+	if w.IbeaconUuid.IsValueSet() {
+		if w.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = w.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	if w.IsAsset != nil {
 		structMap["is_asset"] = w.IsAsset
@@ -140,22 +154,22 @@ func (w *WebhookDiscoveredRawRssiEvent) UnmarshalJSON(input []byte) error {
 
 // tempWebhookDiscoveredRawRssiEvent is a temporary struct used for validating the fields of WebhookDiscoveredRawRssiEvent.
 type tempWebhookDiscoveredRawRssiEvent struct {
-	ApLoc          []float64       `json:"ap_loc,omitempty"`
-	Beam           *int            `json:"beam"`
-	DeviceId       *uuid.UUID      `json:"device_id"`
-	IbeaconMajor   *int            `json:"ibeacon_major,omitempty"`
-	IbeaconMinor   *int            `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid    *uuid.UUID      `json:"ibeacon_uuid,omitempty"`
-	IsAsset        *bool           `json:"is_asset,omitempty"`
-	Mac            *string         `json:"mac"`
-	MapId          *uuid.UUID      `json:"map_id"`
-	MfgCompanyId   *string         `json:"mfg_company_id,omitempty"`
-	MfgData        *string         `json:"mfg_data,omitempty"`
-	OrgId          *uuid.UUID      `json:"org_id"`
-	Rssi           *float64        `json:"rssi"`
-	ServicePackets []ServicePacket `json:"service_packets,omitempty"`
-	SiteId         *uuid.UUID      `json:"site_id"`
-	Timestamp      *float64        `json:"timestamp,omitempty"`
+	ApLoc          []float64           `json:"ap_loc,omitempty"`
+	Beam           *int                `json:"beam"`
+	DeviceId       *uuid.UUID          `json:"device_id"`
+	IbeaconMajor   Optional[int]       `json:"ibeacon_major"`
+	IbeaconMinor   Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid    Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IsAsset        *bool               `json:"is_asset,omitempty"`
+	Mac            *string             `json:"mac"`
+	MapId          *uuid.UUID          `json:"map_id"`
+	MfgCompanyId   *string             `json:"mfg_company_id,omitempty"`
+	MfgData        *string             `json:"mfg_data,omitempty"`
+	OrgId          *uuid.UUID          `json:"org_id"`
+	Rssi           *float64            `json:"rssi"`
+	ServicePackets []ServicePacket     `json:"service_packets,omitempty"`
+	SiteId         *uuid.UUID          `json:"site_id"`
+	Timestamp      *float64            `json:"timestamp,omitempty"`
 }
 
 func (w *tempWebhookDiscoveredRawRssiEvent) validate() error {

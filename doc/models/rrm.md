@@ -3,8 +3,6 @@
 
 RRM
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `Rrm`
@@ -24,7 +22,6 @@ RRM
 | `RftemplateName` | `string` | Required | - |
 | `Status` | [`models.RrmStatusEnum`](../../doc/models/rrm-status-enum.md) | Required | enum: `ready`, `unknown`, `updating` |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,33 +33,21 @@ RRM
       "channel": 80,
       "curr_bandwidth": 80,
       "curr_channel": 200,
-      "curr_power": 116,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 116
     },
     "key1": {
       "bandwidth": 160,
       "channel": 80,
       "curr_bandwidth": 80,
       "curr_channel": 200,
-      "curr_power": 116,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 116
     },
     "key2": {
       "bandwidth": 160,
       "channel": 80,
       "curr_bandwidth": 80,
       "curr_channel": 200,
-      "curr_power": 116,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 116
     }
   },
   "band_24_metric": {
@@ -70,25 +55,22 @@ RRM
     "density": 1.0,
     "interferences": {
       "149": {
-        "radar": 0.3,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "radar": 0.3
       },
       "153": {
-        "radar": 0.2,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "radar": 0.2
       }
     },
     "neighbors": 12.0,
     "noise": 252.7,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
+    "avg_aps_per_channel": 75.02,
+    "channel_distribution_uniformity": 91.38,
+    "naps_by_channel": {
+      "key0": 11.57
+    },
+    "naps_by_power": {
+      "key0": 128.78,
+      "key1": 128.77
     }
   },
   "band_5": {
@@ -97,22 +79,14 @@ RRM
       "channel": 132,
       "curr_bandwidth": 0,
       "curr_channel": 252,
-      "curr_power": 64,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 64
     },
     "key1": {
       "bandwidth": 20,
       "channel": 132,
       "curr_bandwidth": 0,
       "curr_channel": 252,
-      "curr_power": 64,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 64
     }
   },
   "band_5_metric": {
@@ -120,25 +94,22 @@ RRM
     "density": 1.0,
     "interferences": {
       "149": {
-        "radar": 0.3,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "radar": 0.3
       },
       "153": {
-        "radar": 0.2,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "radar": 0.2
       }
     },
     "neighbors": 184.78,
     "noise": 86.52,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
+    "avg_aps_per_channel": 158.24,
+    "channel_distribution_uniformity": 174.6,
+    "naps_by_channel": {
+      "key0": 57.41,
+      "key1": 57.42
+    },
+    "naps_by_power": {
+      "key0": 96.48
     }
   },
   "rftemplate": {
@@ -155,11 +126,7 @@ RRM
       "bandwidth": 0,
       "channels": [
         221
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     },
     "band_24_usage": "24",
     "exampleAdditionalProperty": {
@@ -177,29 +144,26 @@ RRM
       "channel": 200,
       "curr_bandwidth": 80,
       "curr_channel": 64,
-      "curr_power": 252,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "curr_power": 252
     }
   },
   "band_6_metric": {
+    "avg_aps_per_channel": 82.4,
+    "channel_distribution_uniformity": 98.76,
     "cochannel_neighbors": 154.0,
     "density": 1.0,
     "interferences": {
       "key0": null
     },
+    "naps_by_channel": {
+      "key0": 18.43,
+      "key1": 18.42
+    },
+    "naps_by_power": {
+      "key0": 20.64
+    },
     "neighbors": 4.62,
-    "noise": 10.68,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "noise": 10.68
   }
 }
 ```

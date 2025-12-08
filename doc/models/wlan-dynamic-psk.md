@@ -12,8 +12,6 @@ For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to
 * `multi_psk_only` and `psk` is ignored
 * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanDynamicPsk`
@@ -27,7 +25,6 @@ For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
 | `ForceLookup` | `*bool` | Optional | When 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto<br><br>**Default**: `false` |
 | `Source` | [`*models.DynamicPskSourceEnum`](../../doc/models/dynamic-psk-source-enum.md) | Optional | enum: `cloud_psks`, `radius`<br><br>**Default**: `"radius"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,11 +34,7 @@ For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to
   "enabled": false,
   "force_lookup": false,
   "source": "cloud_psks",
-  "default_vlan_id": "String3",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "default_vlan_id": "String3"
 }
 ```
 

@@ -10,11 +10,9 @@ import (
 )
 
 // WebhookDeviceEvents represents a WebhookDeviceEvents struct.
-// Device event webhook sample
+// Sample of the `device-events` webhook payload.
 type WebhookDeviceEvents struct {
-	// List of events
-	Events []WebhookDeviceEventsEvent `json:"events"`
-	// Topic subscribed to
+	Events               []DeviceEvent          `json:"events"`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -73,8 +71,8 @@ func (w *WebhookDeviceEvents) UnmarshalJSON(input []byte) error {
 
 // tempWebhookDeviceEvents is a temporary struct used for validating the fields of WebhookDeviceEvents.
 type tempWebhookDeviceEvents struct {
-	Events *[]WebhookDeviceEventsEvent `json:"events"`
-	Topic  *string                     `json:"topic"`
+	Events *[]DeviceEvent `json:"events"`
+	Topic  *string        `json:"topic"`
 }
 
 func (w *tempWebhookDeviceEvents) validate() error {

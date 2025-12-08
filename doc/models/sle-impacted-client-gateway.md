@@ -1,8 +1,6 @@
 
 # Sle Impacted Client Gateway
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SleImpactedClientGateway`
@@ -15,7 +13,6 @@
 | `GatewayMac` | `*string` | Optional | - |
 | `GatewayName` | `*string` | Optional | - |
 | `Interfaces` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
   "interfaces": [
     "interfaces3",
     "interfaces4"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Audit Log
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AuditLog`
@@ -21,7 +19,6 @@
 | `OrgId` | `uuid.UUID` | Required | - |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Timestamp` | `float64` | Required | Epoch (seconds) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,11 +39,7 @@
     "key1": "val1",
     "key2": "val2"
   },
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "for_site": false
 }
 ```
 

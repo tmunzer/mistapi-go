@@ -15,16 +15,20 @@ Gateway statistics
 |  --- | --- | --- | --- |
 | `ApRedundancy` | [`*models.ApRedundancy`](../../doc/models/ap-redundancy.md) | Optional | - |
 | `ArpTableStats` | [`*models.ArpTableStats`](../../doc/models/arp-table-stats.md) | Optional | - |
+| `AutoUpgradeStat` | [`*models.StatsApAutoUpgrade`](../../doc/models/stats-ap-auto-upgrade.md) | Optional | - |
 | `BgpPeers` | [`[]models.BgpPeer`](../../doc/models/bgp-peer.md) | Optional | Only present when `bgp_peers` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/bgp_peers/search` result object, except that org_id, site_id, mac, model are removed |
 | `CertExpiry` | `*int64` | Optional | - |
 | `ClusterConfig` | [`*models.StatsClusterConfig`](../../doc/models/stats-cluster-config.md) | Optional | - |
 | `ClusterStat` | [`*models.StatsGatewayCluster`](../../doc/models/stats-gateway-cluster.md) | Optional | - |
 | `ConductorName` | `*string` | Optional | - |
 | `ConfigStatus` | `*string` | Optional | - |
+| `ConfigTimestamp` | `*int` | Optional | - |
+| `ConfigVersion` | `*int` | Optional | - |
 | `Cpu2Stat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DeviceprofileId` | `models.Optional[uuid.UUID]` | Optional | - |
+| `DeviceprofileName` | `*string` | Optional | - |
 | `Dhcpd2Stat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `DhcpdStat` | [`map[string]models.DhcpdStatLan`](../../doc/models/dhcpd-stat-lan.md) | Optional | Property key is the network name |
 | `EvpntopoId` | `models.Optional[uuid.UUID]` | Optional | - |
@@ -41,6 +45,7 @@ Gateway statistics
 | `IsHa` | `models.Optional[bool]` | Optional | - |
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Mac` | `string` | Required | Device mac |
+| `MacTableStats` | [`*models.StatsGatewayMacTableStats`](../../doc/models/stats-gateway-mac-table-stats.md) | Optional | - |
 | `MapId` | `models.Optional[uuid.UUID]` | Optional | Serial Number |
 | `Memory2Stat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
 | `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
@@ -62,6 +67,8 @@ Gateway statistics
 | `Spu2Stat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `SpuStat` | [`[]models.StatsGatewaySpuItem`](../../doc/models/stats-gateway-spu-item.md) | Optional | - |
 | `Status` | `*string` | Optional | - |
+| `TagId` | `*int` | Optional | - |
+| `TagUuid` | `*uuid.UUID` | Optional | - |
 | `Tunnels` | [`[]models.StatsGatewayWanTunnel`](../../doc/models/stats-gateway-wan-tunnel.md) | Optional | Only present when `tunnels` in `fields` query parameter. Each port object is same as `GET /api/v1/sites/{site_id}/stats/tunnels/search` result object, except that org_id, site_id, mac, model are removed |
 | `Type` | `string` | Required, Constant | Device Type. enum: `gateway`<br><br>**Value**: `"gateway"` |
 | `Uptime` | `models.Optional[float64]` | Optional | - |
@@ -94,27 +101,18 @@ Gateway statistics
     "modules": {
       "key0": {
         "num_aps": 2,
-        "num_aps_with_switch_redundancy": 254,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "num_aps_with_switch_redundancy": 254
       }
     },
     "num_aps": 246,
-    "num_aps_with_switch_redundancy": 10,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "num_aps_with_switch_redundancy": 10
   },
   "arp_table_stats": {
     "arp_table_count": 136,
-    "max_entries_supported": 8,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "max_entries_supported": 8
+  },
+  "auto_upgrade_stat": {
+    "lastcheck": 28
   },
   "bgp_peers": [
     {
@@ -122,77 +120,24 @@ Gateway statistics
       "for_overlay": false,
       "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": "String9",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "neighbor_as": "String9"
     },
     {
       "evpn_overlay": false,
       "for_overlay": false,
       "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": "String9",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "neighbor_as": "String9"
     },
     {
       "evpn_overlay": false,
       "for_overlay": false,
       "local_as": "String3",
       "neighbor": "neighbor6",
-      "neighbor_as": "String9",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "neighbor_as": "String9"
     }
   ],
   "cert_expiry": 52,
-  "cluster_config": {
-    "configuration": "configuration0",
-    "control_link_info": {
-      "name": "name0",
-      "status": "status2",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "ethernet_connection": [
-      {
-        "name": "name2",
-        "status": "status6",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
-      }
-    ],
-    "fabric_link_info": {
-      "DataPlaneNotifiedStatus": "DataPlaneNotifiedStatus8",
-      "Interface": [
-        "Interface0",
-        "Interface1",
-        "Interface2"
-      ],
-      "InternalStatus": "InternalStatus2",
-      "State": "State4",
-      "Status": "Status0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    "last_status_change_reason": "last_status_change_reason8",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

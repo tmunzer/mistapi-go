@@ -34,11 +34,7 @@ Alarm Template
       "additional_emails9",
       "additional_emails0",
       "additional_emails1"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "name": "default",
@@ -51,17 +47,9 @@ Alarm Template
         ],
         "enabled": true,
         "to_org_admins": true,
-        "to_site_admins": true,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "to_site_admins": true
       },
-      "enabled": true,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "enabled": true
     },
     "bad_cable": {
       "delivery": {
@@ -70,17 +58,9 @@ Alarm Template
         ],
         "enabled": true,
         "to_org_admins": true,
-        "to_site_admins": true,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "to_site_admins": true
       },
-      "enabled": true,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "enabled": true
     }
   },
   "created_time": 2.88,

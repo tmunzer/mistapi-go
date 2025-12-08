@@ -1,9 +1,7 @@
 
 # Webhook Ping
 
-Ping webhook
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `ping` webhook payload.\n\nThe `ping` webhook can be manually sent with the following API calls:\n- for a Site level webhook with the [Ping Site Webhook](../../doc/controllers/orgs-webhooks.md#ping-org-webhook) endpoint\n- for an Org level webhook with the [Ping Org Webhook](../../doc/controllers/orgs-webhooks.md#ping-org-webhook) endpoint
 
 ## Structure
 
@@ -14,8 +12,7 @@ Ping webhook
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookPingEvent`](../../doc/models/webhook-ping-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required | **Default**: `"ping"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"ping"` |
 
 ## Example (as JSON)
 
@@ -26,18 +23,10 @@ Ping webhook
       "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
       "name": "name0",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "timestamp": 188.18,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "timestamp": 188.18
     }
   ],
-  "topic": "ping",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "ping"
 }
 ```
 

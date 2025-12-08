@@ -3,8 +3,6 @@
 
 zero or more criteria/filter can be specified to match the term, all criteria have to be met
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `RoutingPolicyTermMatching`
@@ -22,7 +20,6 @@ zero or more criteria/filter can be specified to match the term, all criteria ha
 | `VpnNeighborMac` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn) |
 | `VpnPath` | `[]string` | Optional | overlay-facing criteria (used for bgp_config where via=vpn). ordered- |
 | `VpnPathSla` | [`*models.RoutingPolicyTermMatchingVpnPathSla`](../../doc/models/routing-policy-term-matching-vpn-path-sla.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -46,11 +43,7 @@ zero or more criteria/filter can be specified to match the term, all criteria ha
     "protocol5",
     "protocol6",
     "protocol7"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

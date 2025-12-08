@@ -14,6 +14,7 @@ type StatsGatewaySpuItem struct {
 	SpuMaxSession        *int                   `json:"spu_max_session,omitempty"`
 	SpuMemory            *int                   `json:"spu_memory,omitempty"`
 	SpuPendingSession    *int                   `json:"spu_pending_session,omitempty"`
+	SpuUptime            *int                   `json:"spu_uptime,omitempty"`
 	SpuValidSession      *int                   `json:"spu_valid_session,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -22,8 +23,8 @@ type StatsGatewaySpuItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsGatewaySpuItem) String() string {
 	return fmt.Sprintf(
-		"StatsGatewaySpuItem[SpuCpu=%v, SpuCurrentSession=%v, SpuMaxSession=%v, SpuMemory=%v, SpuPendingSession=%v, SpuValidSession=%v, AdditionalProperties=%v]",
-		s.SpuCpu, s.SpuCurrentSession, s.SpuMaxSession, s.SpuMemory, s.SpuPendingSession, s.SpuValidSession, s.AdditionalProperties)
+		"StatsGatewaySpuItem[SpuCpu=%v, SpuCurrentSession=%v, SpuMaxSession=%v, SpuMemory=%v, SpuPendingSession=%v, SpuUptime=%v, SpuValidSession=%v, AdditionalProperties=%v]",
+		s.SpuCpu, s.SpuCurrentSession, s.SpuMaxSession, s.SpuMemory, s.SpuPendingSession, s.SpuUptime, s.SpuValidSession, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsGatewaySpuItem.
@@ -32,7 +33,7 @@ func (s StatsGatewaySpuItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_valid_session"); err != nil {
+		"spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_uptime", "spu_valid_session"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -57,6 +58,9 @@ func (s StatsGatewaySpuItem) toMap() map[string]any {
 	if s.SpuPendingSession != nil {
 		structMap["spu_pending_session"] = s.SpuPendingSession
 	}
+	if s.SpuUptime != nil {
+		structMap["spu_uptime"] = s.SpuUptime
+	}
 	if s.SpuValidSession != nil {
 		structMap["spu_valid_session"] = s.SpuValidSession
 	}
@@ -71,7 +75,7 @@ func (s *StatsGatewaySpuItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_valid_session")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "spu_cpu", "spu_current_session", "spu_max_session", "spu_memory", "spu_pending_session", "spu_uptime", "spu_valid_session")
 	if err != nil {
 		return err
 	}
@@ -82,6 +86,7 @@ func (s *StatsGatewaySpuItem) UnmarshalJSON(input []byte) error {
 	s.SpuMaxSession = temp.SpuMaxSession
 	s.SpuMemory = temp.SpuMemory
 	s.SpuPendingSession = temp.SpuPendingSession
+	s.SpuUptime = temp.SpuUptime
 	s.SpuValidSession = temp.SpuValidSession
 	return nil
 }
@@ -93,5 +98,6 @@ type tempStatsGatewaySpuItem struct {
 	SpuMaxSession     *int `json:"spu_max_session,omitempty"`
 	SpuMemory         *int `json:"spu_memory,omitempty"`
 	SpuPendingSession *int `json:"spu_pending_session,omitempty"`
+	SpuUptime         *int `json:"spu_uptime,omitempty"`
 	SpuValidSession   *int `json:"spu_valid_session,omitempty"`
 }

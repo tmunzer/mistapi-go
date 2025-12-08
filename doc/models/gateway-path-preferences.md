@@ -1,8 +1,6 @@
 
 # Gateway Path Preferences
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPathPreferences`
@@ -13,7 +11,6 @@
 |  --- | --- | --- | --- |
 | `Paths` | [`[]models.GatewayPathPreferencesPath`](../../doc/models/gateway-path-preferences-path.md) | Optional | - |
 | `Strategy` | [`*models.GatewayPathStrategyEnum`](../../doc/models/gateway-path-strategy-enum.md) | Optional | enum: `ecmp`, `ordered`, `weighted`<br><br>**Default**: `"ordered"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,11 +24,7 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
-      "type": "local",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "local"
     },
     {
       "cost": 118,
@@ -39,11 +32,7 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
-      "type": "local",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "local"
     },
     {
       "cost": 118,
@@ -51,17 +40,9 @@
       "gateway_ip": "gateway_ip0",
       "internet_access": false,
       "name": "name4",
-      "type": "local",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "local"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

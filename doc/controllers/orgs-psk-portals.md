@@ -140,13 +140,29 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
-    CleanupPsk:                   models.ToPointer(false),
+    ExpireTime:                   models.ToPointer(262800),
+    ExpiryNotificationTime:       models.ToPointer(2),
     HidePsksCreatedByOtherAdmins: models.ToPointer(false),
-    MaxUsage:                     models.ToPointer(0),
-    Name:                         "name6",
-    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
-    NotifyOnCreateOrEdit:         models.ToPointer(false),
-    Ssid:                         "ssid6",
+    MaxUsage:                     models.ToPointer(1),
+    Name:                         "USR-test",
+    NotifyExpiry:                 models.ToPointer(false),
+    PassphraseRules:              models.ToPointer(models.PskPortalPassphraseRules{
+        AlphabetsEnabled:     models.ToPointer(true),
+        Length:               models.ToPointer(8),
+        NumericsEnabled:      models.ToPointer(true),
+        Symbols:              models.ToPointer("()[]{}_%@#&$"),
+        SymbolsEnabled:       models.ToPointer(true),
+    }),
+    Ssid:                         "USR-test",
+    Sso:                          models.ToPointer(models.PskPortalSso{
+        IdpCert:              models.ToPointer("-----BEGIN CERTIFICATE-----\nMIIDqDCCApCgA...-----END CERTIFICATE-----"),
+        IdpSignAlgo:          models.ToPointer(models.PskPortalSsoIdpSignAlgoEnum_SHA256),
+        IdpSsoUrl:            models.ToPointer("https://dev-00000000.okta.com/app/dev-00000000/a6b88bec5ab7/sso/saml"),
+        Issuer:               models.ToPointer("http://www.okta.com/a6b88bec5ab7"),
+        NameidFormat:         models.ToPointer("email"),
+    }),
+    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
+    VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromNumber(42)),
 }
 
 apiResponse, err := orgsPskPortals.CreateOrgPskPortal(ctx, orgId, &body)
@@ -156,6 +172,43 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "auth": "sso",
+  "created_time": 1727272316,
+  "expire_time": 262800,
+  "expiry_notification_time": 2,
+  "hide_psks_created_by_other_admins": false,
+  "id": "86ef73e5-e360-4e33-abd8-c2da7b11cbd6",
+  "max_usage": 1,
+  "modified_time": 1727272316,
+  "name": "USR-test",
+  "notify_expiry": false,
+  "org_id": "8f6c24d5-b618-4c30-b6ff-b2febc1078ab",
+  "passphrase_rules": {
+    "alphabets_enabled": true,
+    "length": 8,
+    "numerics_enabled": true,
+    "symbols": "()[]{}_%@#&$",
+    "symbols_enabled": true
+  },
+  "role": "",
+  "ssid": "USR-test",
+  "sso": {
+    "idp_cert": "-----BEGIN CERTIFICATE-----\nMIIDqDCCApCgA...-----END CERTIFICATE-----",
+    "idp_sign_algo": "sha256",
+    "idp_sso_url": "https://dev-00000000.okta.com/app/dev-00000000/a6b88bec5ab7/sso/saml",
+    "issuer": "http://www.okta.com/a6b88bec5ab7",
+    "nameid_format": "email"
+  },
+  "type": "byod",
+  "ui_url": "https://pskportal.gc1.mist.com/#!byod/a6b88bec-5ab7-41ae-a34c-44ff52a8b81d",
+  "vlan_id": 123
 }
 ```
 
@@ -316,6 +369,43 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "auth": "sso",
+  "created_time": 1727272316,
+  "expire_time": 262800,
+  "expiry_notification_time": 2,
+  "hide_psks_created_by_other_admins": false,
+  "id": "86ef73e5-e360-4e33-abd8-c2da7b11cbd6",
+  "max_usage": 1,
+  "modified_time": 1727272316,
+  "name": "USR-test",
+  "notify_expiry": false,
+  "org_id": "8f6c24d5-b618-4c30-b6ff-b2febc1078ab",
+  "passphrase_rules": {
+    "alphabets_enabled": true,
+    "length": 8,
+    "numerics_enabled": true,
+    "symbols": "()[]{}_%@#&$",
+    "symbols_enabled": true
+  },
+  "role": "",
+  "ssid": "USR-test",
+  "sso": {
+    "idp_cert": "-----BEGIN CERTIFICATE-----\nMIIDqDCCApCgA...-----END CERTIFICATE-----",
+    "idp_sign_algo": "sha256",
+    "idp_sso_url": "https://dev-00000000.okta.com/app/dev-00000000/a6b88bec5ab7/sso/saml",
+    "issuer": "http://www.okta.com/a6b88bec5ab7",
+    "nameid_format": "email"
+  },
+  "type": "byod",
+  "ui_url": "https://pskportal.gc1.mist.com/#!byod/a6b88bec-5ab7-41ae-a34c-44ff52a8b81d",
+  "vlan_id": 123
 }
 ```
 
@@ -619,13 +709,26 @@ pskportalId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.PskPortal{
     Auth:                         models.ToPointer(models.PskPortalAuthEnum_SSO),
-    CleanupPsk:                   models.ToPointer(false),
+    ExpireTime:                   models.ToPointer(262800),
+    ExpiryNotificationTime:       models.ToPointer(2),
     HidePsksCreatedByOtherAdmins: models.ToPointer(false),
-    MaxUsage:                     models.ToPointer(0),
-    Name:                         "name6",
-    NotificationRenewUrl:         models.ToPointer("https://custom-sso/url"),
-    NotifyOnCreateOrEdit:         models.ToPointer(false),
-    Ssid:                         "ssid6",
+    MaxUsage:                     models.ToPointer(1),
+    Name:                         "USR-test",
+    NotifyExpiry:                 models.ToPointer(false),
+    PassphraseRules:              models.ToPointer(models.PskPortalPassphraseRules{
+        AlphabetsEnabled:     models.ToPointer(true),
+        Length:               models.ToPointer(8),
+        NumericsEnabled:      models.ToPointer(true),
+        Symbols:              models.ToPointer("()[]{}_%@#&$"),
+        SymbolsEnabled:       models.ToPointer(true),
+    }),
+    Ssid:                         "USR-test",
+    Type:                         models.ToPointer(models.PskPortalTypeEnum_BYOD),
+    VlanId:                       models.ToPointer(models.VlanIdWithVariableContainer.FromString("nu42ll")),
+    AdditionalProperties:         map[string]interface{}{
+        "sponsors": interface{}("[idp_cert, -----BEGIN CERTIFICATE-----
+MIIDqDCCApCgA...-----END CERTIFICATE-----][idp_sign_algo, sha256][idp_sso_url, https://dev-00000000.okta.com/app/dev-00000000/a6b88bec5ab7/sso/saml][issuer, http://www.okta.com/a6b88bec5ab7][nameid_format, email]"),
+    },
 }
 
 apiResponse, err := orgsPskPortals.UpdateOrgPskPortal(ctx, orgId, pskportalId, &body)
@@ -635,6 +738,43 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "auth": "sso",
+  "created_time": 1727272316,
+  "expire_time": 262800,
+  "expiry_notification_time": 2,
+  "hide_psks_created_by_other_admins": false,
+  "id": "86ef73e5-e360-4e33-abd8-c2da7b11cbd6",
+  "max_usage": 1,
+  "modified_time": 1727272316,
+  "name": "USR-test",
+  "notify_expiry": false,
+  "org_id": "8f6c24d5-b618-4c30-b6ff-b2febc1078ab",
+  "passphrase_rules": {
+    "alphabets_enabled": true,
+    "length": 8,
+    "numerics_enabled": true,
+    "symbols": "()[]{}_%@#&$",
+    "symbols_enabled": true
+  },
+  "role": "",
+  "ssid": "USR-test",
+  "sso": {
+    "idp_cert": "-----BEGIN CERTIFICATE-----\nMIIDqDCCApCgA...-----END CERTIFICATE-----",
+    "idp_sign_algo": "sha256",
+    "idp_sso_url": "https://dev-00000000.okta.com/app/dev-00000000/a6b88bec5ab7/sso/saml",
+    "issuer": "http://www.okta.com/a6b88bec5ab7",
+    "nameid_format": "email"
+  },
+  "type": "byod",
+  "ui_url": "https://pskportal.gc1.mist.com/#!byod/a6b88bec-5ab7-41ae-a34c-44ff52a8b81d",
+  "vlan_id": 123
 }
 ```
 
@@ -723,7 +863,7 @@ UploadOrgPskPortalImage(
     ctx context.Context,
     orgId uuid.UUID,
     pskportalId uuid.UUID,
-    file *models.FileWrapper,
+    file *string,
     json *string) (
     http.Response,
     error)
@@ -735,7 +875,7 @@ UploadOrgPskPortalImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `pskportalId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*models.FileWrapper` | Form, Optional | Binary file |
+| `file` | `*string` | Form, Optional | Binary file |
 | `json` | `*string` | Form, Optional | JSON string describing the upload |
 
 ## Response Type

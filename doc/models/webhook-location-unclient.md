@@ -1,9 +1,7 @@
 
 # Webhook Location Unclient
 
-Location Unconnected Client sample
-
-*This model accepts additional fields of type interface{}.*
+Sample of the `location-unclient` webhook payload.
 
 ## Structure
 
@@ -14,8 +12,7 @@ Location Unconnected Client sample
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationUnclientEvent`](../../doc/models/webhook-location-unclient-event.md) | Required | List of events |
-| `Topic` | `string` | Required | Topic subscribed to<br><br>**Default**: `"location_unclient"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Topic` | `string` | Required, Constant | **Value**: `"location-unclient"` |
 
 ## Example (as JSON)
 
@@ -29,18 +26,10 @@ Location Unconnected Client sample
       "type": "wifi",
       "x": 13.5,
       "y": 3.2,
-      "timestamp": 188.18,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "timestamp": 188.18
     }
   ],
-  "topic": "location_unclient",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "topic": "location-unclient"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Const Insight Metrics Property
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ConstInsightMetricsProperty`
@@ -13,11 +11,11 @@
 |  --- | --- | --- | --- |
 | `Ctype` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Description` | `*string` | Optional | - |
-| `Example` | [`[]models.ConstInsightMetricsPropertyExample`](../../doc/models/containers/const-insight-metrics-property-example.md) | Optional | - |
+| `Example` | [`*models.ConstInsightMetricsPropertyExampleAnyOf2`](../../doc/models/containers/const-insight-metrics-property-example-any-of-2.md) | Optional | - |
 | `Intervals` | [`map[string]models.ConstInsightMetricsPropertyInterval`](../../doc/models/const-insight-metrics-property-interval.md) | Optional | Property key is the interval (e.g. 10m, 1h, ...) |
 | `Keys` | `*interface{}` | Optional | - |
 | `Params` | [`map[string]models.ConstInsightMetricsPropertyParam`](../../doc/models/const-insight-metrics-property-param.md) | Optional | Property key is the parameter name |
-| `ReportDuration` | [`map[string]models.ConstInsightMetricsPropertyReportDuration`](../../doc/models/const-insight-metrics-property-report-duration.md) | Optional | Property key is the duration (e.g. 1d, 1w, ...) |
+| `ReportDurations` | [`map[string]models.ConstInsightMetricsPropertyReportDuration`](../../doc/models/const-insight-metrics-property-report-duration.md) | Optional | Property key is the duration (e.g. 1d, 1w, ...) |
 | `ReportScopes` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `Scopes` | [`[]models.ConstInsightMetricsPropertyScopeEnum`](../../doc/models/const-insight-metrics-property-scope-enum.md) | Optional | - |
 | `SleBaselined` | `*bool` | Optional | - |
@@ -25,7 +23,6 @@
 | `Type` | `*string` | Optional | - |
 | `Unit` | `*string` | Optional | - |
 | `Values` | `*interface{}` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -38,39 +35,25 @@
   ],
   "description": "description8",
   "example": [
-    60
+    80,
+    81,
+    82
   ],
   "intervals": {
     "key0": {
       "interval": 140,
-      "max_age": 96,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_age": 96
     },
     "key1": {
       "interval": 140,
-      "max_age": 96,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_age": 96
     },
     "key2": {
       "interval": 140,
-      "max_age": 96,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "max_age": 96
     }
   },
   "keys": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
   }

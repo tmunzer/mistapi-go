@@ -3,8 +3,6 @@
 
 AP
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `DeviceAp`
@@ -59,7 +57,6 @@ AP
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `X` | `*float64` | Optional | X in pixel |
 | `Y` | `*float64` | Optional | Y in pixel |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -91,20 +88,12 @@ AP
     "enabled": false,
     "host": "host6",
     "locate_connected": false,
-    "port": 86,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "port": 86
   },
   "airista": {
     "enabled": false,
     "host": "host8",
-    "port": 218,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "port": 218
   },
   "ble_config": {
     "beacon_enabled": false,
@@ -115,38 +104,18 @@ AP
       114,
       115
     ],
-    "custom_ble_packet_enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "custom_ble_packet_enabled": false
   },
   "centrak": {
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "client_bridge": {
     "auth": {
       "psk": "psk4",
-      "type": "open",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "open"
     },
     "enabled": false,
-    "ssid": "ssid0",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "ssid": "ssid0"
   }
 }
 ```

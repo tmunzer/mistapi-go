@@ -3,8 +3,6 @@
 
 Auto Upgrade Settings
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingAutoUpgrade`
@@ -18,7 +16,6 @@ Auto Upgrade Settings
 | `Enabled` | `*bool` | Optional | Whether auto upgrade should happen (Note that Mist may auto-upgrade if the version is not supported)<br><br>**Default**: `false` |
 | `TimeOfDay` | `*string` | Optional | `any` / HH:MM (24-hour format), upgrade will happen within up to 1-hour from this time |
 | `Version` | [`*models.SiteAutoUpgradeVersionEnum`](../../doc/models/site-auto-upgrade-version-enum.md) | Optional | desired version. enum: `beta`, `custom`, `stable`<br><br>**Default**: `"stable"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,11 +29,7 @@ Auto Upgrade Settings
   "enabled": false,
   "time_of_day": "12:00",
   "version": "beta",
-  "day_of_week": "any",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "day_of_week": "any"
 }
 ```
 

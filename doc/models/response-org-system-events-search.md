@@ -1,8 +1,6 @@
 
 # Response Org System Events Search
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseOrgSystemEventsSearch`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.OrgSystemEvent`](../../doc/models/org-system-event.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -32,20 +29,12 @@
       "scope": "org",
       "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
       "type": "delete-wlan",
-      "metadata": "metadata0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "metadata": "metadata0"
     }
   ],
   "start": 62,
   "total": 96,
-  "next": "next0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next0"
 }
 ```
 

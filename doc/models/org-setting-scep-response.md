@@ -1,8 +1,6 @@
 
 # Org Setting Scep Response
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSettingScepResponse`
@@ -18,7 +16,6 @@
 | `JamfScepUrl` | `*string` | Optional | - |
 | `JamfWebhookUrl` | `*string` | Optional | - |
 | `Suspended` | `*bool` | Optional | Whether SCEP is suspended for this org<br><br>**Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
     "intune",
     "byod"
   ],
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

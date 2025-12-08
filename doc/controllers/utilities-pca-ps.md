@@ -435,9 +435,6 @@ body := models.CaptureOrgContainer.FromCaptureMxedge(models.CaptureMxedge{
     },
     NumPackets:           models.ToPointer(100),
     Type:                 "mxedge",
-    AdditionalProperties: map[string]interface{}{
-        "tcpdump_expression": interface{}("vlan 999"),
-    },
 })
 
 apiResponse, err := utilitiesPCAPs.StartOrgPacketCapture(ctx, orgId, &body)

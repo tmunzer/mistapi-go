@@ -10,6 +10,7 @@ import (
 // DiscoveredSwitchAp represents a DiscoveredSwitchAp struct.
 type DiscoveredSwitchAp struct {
 	Hostname             *string                `json:"hostname,omitempty"`
+	InactiveWiredVlans   []int                  `json:"inactive_wired_vlans,omitempty"`
 	Mac                  *string                `json:"mac,omitempty"`
 	PoeStatus            *bool                  `json:"poe_status,omitempty"`
 	Port                 *string                `json:"port,omitempty"`
@@ -23,8 +24,8 @@ type DiscoveredSwitchAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DiscoveredSwitchAp) String() string {
 	return fmt.Sprintf(
-		"DiscoveredSwitchAp[Hostname=%v, Mac=%v, PoeStatus=%v, Port=%v, PortId=%v, PowerDraw=%v, When=%v, AdditionalProperties=%v]",
-		d.Hostname, d.Mac, d.PoeStatus, d.Port, d.PortId, d.PowerDraw, d.When, d.AdditionalProperties)
+		"DiscoveredSwitchAp[Hostname=%v, InactiveWiredVlans=%v, Mac=%v, PoeStatus=%v, Port=%v, PortId=%v, PowerDraw=%v, When=%v, AdditionalProperties=%v]",
+		d.Hostname, d.InactiveWiredVlans, d.Mac, d.PoeStatus, d.Port, d.PortId, d.PowerDraw, d.When, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DiscoveredSwitchAp.
@@ -33,7 +34,7 @@ func (d DiscoveredSwitchAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"hostname", "mac", "poe_status", "port", "port_id", "power_draw", "when"); err != nil {
+		"hostname", "inactive_wired_vlans", "mac", "poe_status", "port", "port_id", "power_draw", "when"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -45,6 +46,9 @@ func (d DiscoveredSwitchAp) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, d.AdditionalProperties)
 	if d.Hostname != nil {
 		structMap["hostname"] = d.Hostname
+	}
+	if d.InactiveWiredVlans != nil {
+		structMap["inactive_wired_vlans"] = d.InactiveWiredVlans
 	}
 	if d.Mac != nil {
 		structMap["mac"] = d.Mac
@@ -75,13 +79,14 @@ func (d *DiscoveredSwitchAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hostname", "mac", "poe_status", "port", "port_id", "power_draw", "when")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "hostname", "inactive_wired_vlans", "mac", "poe_status", "port", "port_id", "power_draw", "when")
 	if err != nil {
 		return err
 	}
 	d.AdditionalProperties = additionalProperties
 
 	d.Hostname = temp.Hostname
+	d.InactiveWiredVlans = temp.InactiveWiredVlans
 	d.Mac = temp.Mac
 	d.PoeStatus = temp.PoeStatus
 	d.Port = temp.Port
@@ -93,11 +98,12 @@ func (d *DiscoveredSwitchAp) UnmarshalJSON(input []byte) error {
 
 // tempDiscoveredSwitchAp is a temporary struct used for validating the fields of DiscoveredSwitchAp.
 type tempDiscoveredSwitchAp struct {
-	Hostname  *string  `json:"hostname,omitempty"`
-	Mac       *string  `json:"mac,omitempty"`
-	PoeStatus *bool    `json:"poe_status,omitempty"`
-	Port      *string  `json:"port,omitempty"`
-	PortId    *string  `json:"port_id,omitempty"`
-	PowerDraw *float64 `json:"power_draw,omitempty"`
-	When      *string  `json:"when,omitempty"`
+	Hostname           *string  `json:"hostname,omitempty"`
+	InactiveWiredVlans []int    `json:"inactive_wired_vlans,omitempty"`
+	Mac                *string  `json:"mac,omitempty"`
+	PoeStatus          *bool    `json:"poe_status,omitempty"`
+	Port               *string  `json:"port,omitempty"`
+	PortId             *string  `json:"port_id,omitempty"`
+	PowerDraw          *float64 `json:"power_draw,omitempty"`
+	When               *string  `json:"when,omitempty"`
 }

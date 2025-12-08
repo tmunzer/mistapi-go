@@ -3,8 +3,6 @@
 
 If `auth`==`sso`
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `PskPortalSso`
@@ -21,7 +19,6 @@ If `auth`==`sso`
 | `NameidFormat` | `*string` | Optional | - |
 | `RoleMapping` | `map[string]string` | Optional | Property key is the role name, property value is the SSO Attribute |
 | `UseSsoRoleForPskRole` | `*bool` | Optional | If enabled, the `role` above will be ignored |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -33,11 +30,7 @@ If `auth`==`sso`
   ],
   "idp_cert": "idp_cert2",
   "idp_sso_url": "idp_sso_url8",
-  "issuer": "issuer8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "issuer": "issuer8"
 }
 ```
 

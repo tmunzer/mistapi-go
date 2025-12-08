@@ -49,11 +49,7 @@ MxTunnel
   "auto_preemption": {
     "day_of_week": "mon",
     "enabled": false,
-    "time_of_day": "time_of_day4",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "time_of_day": "time_of_day4"
   },
   "created_time": 69.9,
   "for_site": false,

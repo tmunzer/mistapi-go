@@ -1,8 +1,6 @@
 
 # Vpn Path
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `VpnPath`
@@ -17,7 +15,6 @@
 | `PeerPaths` | [`map[string]models.VpnPathPeerPathsPeer`](../../doc/models/vpn-path-peer-paths-peer.md) | Optional | If `type`==`mesh`, Property key is the Peer Interface name |
 | `Pod` | `*int` | Optional | **Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 128` |
 | `TrafficShaping` | [`*models.VpnPathTrafficShaping`](../../doc/models/vpn-path-traffic-shaping.md) | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,16 +26,8 @@
   "ip": "ip4",
   "peer_paths": {
     "key0": {
-      "preference": 144,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "preference": 144
     }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
   }
 }
 ```

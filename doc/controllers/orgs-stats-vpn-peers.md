@@ -167,9 +167,6 @@ if err != nil {
   "limit": 10,
   "results": [
     {
-      "auth_algo": "hmac-sha1-96",
-      "enc_algo": "aes-cbc-128",
-      "ike_version": "1",
       "is_active": true,
       "last_seen": 1619518709.222,
       "mac": "020001c04668",

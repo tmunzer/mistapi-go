@@ -3,8 +3,6 @@
 
 OAuth linked apps account info
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AccountOauthInfoAccount`
@@ -22,6 +20,7 @@ OAuth linked apps account info
 | `Error` | `*string` | Optional | This error is provided when the account fails to fetch token/data |
 | `Errors` | `[]string` | Optional | - |
 | `InstanceUrl` | `*string` | Optional | Customer account instance URL |
+| `KeyId` | `*string` | Optional | For ZDX Account only, Customer account API key ID |
 | `LastStatus` | `*string` | Optional | Is the last data pull for account is successful or not |
 | `LastSync` | `*int64` | Optional | Last data pull timestamp, background jobs that pull account data |
 | `LinkedBy` | `*string` | Optional | First name of the user who linked the account |
@@ -41,7 +40,7 @@ OAuth linked apps account info
 | `WebhookPassword` | `*string` | Optional | For VMWare accounts only |
 | `WebhookUrl` | `*string` | Optional | For VMWare accounts only |
 | `WebhookUsername` | `*string` | Optional | For VMWare accounts only |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `ZdxOrgId` | `*string` | Optional | For ZDX Account only, ZDX organization id |
 
 ## Example (as JSON)
 
@@ -57,6 +56,7 @@ OAuth linked apps account info
     "OAuth token refresh failed, please re-link your account",
     "API daily rate limit reached for your account"
   ],
+  "key_id": "L72frZcK3JvrZc",
   "last_status": "failed",
   "last_sync": 1665465339000,
   "linked_by": "Testname1",
@@ -71,11 +71,8 @@ OAuth linked apps account info
   "webhook_password": "password_1234",
   "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
   "webhook_username": "username_1234",
-  "client_id": "client_id6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "zdx_org_id": "123456",
+  "client_id": "client_id6"
 }
 ```
 

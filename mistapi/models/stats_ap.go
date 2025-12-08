@@ -13,7 +13,7 @@ import (
 // StatsAp represents a StatsAp struct.
 // AP statistics
 type StatsAp struct {
-	// Antenna Mode for AP which supports selectable antennas. enum: `external`, `internal`
+	// Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal`
 	AntennaSelect   *AntennaSelectEnum    `json:"antenna_select,omitempty"`
 	AutoPlacement   *StatsApAutoPlacement `json:"auto_placement,omitempty"`
 	AutoUpgradeStat *StatsApAutoUpgrade   `json:"auto_upgrade_stat,omitempty"`
@@ -21,6 +21,7 @@ type StatsAp struct {
 	CertExpiry      Optional[float64]     `json:"cert_expiry"`
 	ConfigReverted  Optional[bool]        `json:"config_reverted"`
 	CpuSystem       Optional[int64]       `json:"cpu_system"`
+	CpuUser         Optional[int]         `json:"cpu_user"`
 	CpuUtil         Optional[int]         `json:"cpu_util"`
 	// When the object has been created, in epoch
 	CreatedTime     *float64            `json:"created_time,omitempty"`
@@ -59,9 +60,10 @@ type StatsAp struct {
 	// Whether this AP is considered locked (placement / orientation has been vetted)
 	Locked Optional[bool] `json:"locked"`
 	// Device mac
-	Mac       Optional[string]    `json:"mac"`
-	MapId     Optional[uuid.UUID] `json:"map_id"`
-	MemUsedKb Optional[int64]     `json:"mem_used_kb"`
+	Mac        Optional[string]    `json:"mac"`
+	MapId      Optional[uuid.UUID] `json:"map_id"`
+	MemTotalKb Optional[int64]     `json:"mem_total_kb"`
+	MemUsedKb  Optional[int64]     `json:"mem_used_kb"`
 	// Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`)
 	MeshDownlinks map[string]ApStatMeshDownlink `json:"mesh_downlinks,omitempty"`
 	MeshUplink    *ApStatMeshUplink             `json:"mesh_uplink,omitempty"`
@@ -121,8 +123,8 @@ type StatsAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsAp) String() string {
 	return fmt.Sprintf(
-		"StatsAp[AntennaSelect=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, GpsStat=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-		s.AntennaSelect, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.GpsStat, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
+		"StatsAp[AntennaSelect=%v, AutoPlacement=%v, AutoUpgradeStat=%v, BleStat=%v, CertExpiry=%v, ConfigReverted=%v, CpuSystem=%v, CpuUser=%v, CpuUtil=%v, CreatedTime=%v, DeviceprofileId=%v, EnvStat=%v, EslStat=%v, EvpntopoId=%v, ExpiringCerts=%v, ExtIp=%v, Fwupdate=%v, GpsStat=%v, HwRev=%v, Id=%v, InactiveWiredVlans=%v, IotStat=%v, Ip=%v, IpConfig=%v, IpStat=%v, L2tpStat=%v, LastSeen=%v, LastTrouble=%v, Led=%v, LldpStat=%v, LldpStats=%v, Locating=%v, Locked=%v, Mac=%v, MapId=%v, MemTotalKb=%v, MemUsedKb=%v, MeshDownlinks=%v, MeshUplink=%v, Model=%v, ModifiedTime=%v, Mount=%v, Name=%v, Notes=%v, NumClients=%v, NumWlans=%v, OrgId=%v, PortStat=%v, PowerBudget=%v, PowerConstrained=%v, PowerOpmode=%v, PowerSrc=%v, RadioConfig=%v, RadioStat=%v, RxBps=%v, RxBytes=%v, RxPkts=%v, Serial=%v, SiteId=%v, Status=%v, SwitchRedundancy=%v, TxBps=%v, TxBytes=%v, TxPkts=%v, Type=%v, Uptime=%v, UsbStat=%v, Version=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+		s.AntennaSelect, s.AutoPlacement, s.AutoUpgradeStat, s.BleStat, s.CertExpiry, s.ConfigReverted, s.CpuSystem, s.CpuUser, s.CpuUtil, s.CreatedTime, s.DeviceprofileId, s.EnvStat, s.EslStat, s.EvpntopoId, s.ExpiringCerts, s.ExtIp, s.Fwupdate, s.GpsStat, s.HwRev, s.Id, s.InactiveWiredVlans, s.IotStat, s.Ip, s.IpConfig, s.IpStat, s.L2tpStat, s.LastSeen, s.LastTrouble, s.Led, s.LldpStat, s.LldpStats, s.Locating, s.Locked, s.Mac, s.MapId, s.MemTotalKb, s.MemUsedKb, s.MeshDownlinks, s.MeshUplink, s.Model, s.ModifiedTime, s.Mount, s.Name, s.Notes, s.NumClients, s.NumWlans, s.OrgId, s.PortStat, s.PowerBudget, s.PowerConstrained, s.PowerOpmode, s.PowerSrc, s.RadioConfig, s.RadioStat, s.RxBps, s.RxBytes, s.RxPkts, s.Serial, s.SiteId, s.Status, s.SwitchRedundancy, s.TxBps, s.TxBytes, s.TxPkts, s.Type, s.Uptime, s.UsbStat, s.Version, s.X, s.Y, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAp.
@@ -131,7 +133,7 @@ func (s StatsAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y"); err != nil {
+		"antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -172,6 +174,13 @@ func (s StatsAp) toMap() map[string]any {
 			structMap["cpu_system"] = s.CpuSystem.Value()
 		} else {
 			structMap["cpu_system"] = nil
+		}
+	}
+	if s.CpuUser.IsValueSet() {
+		if s.CpuUser.Value() != nil {
+			structMap["cpu_user"] = s.CpuUser.Value()
+		} else {
+			structMap["cpu_user"] = nil
 		}
 	}
 	if s.CpuUtil.IsValueSet() {
@@ -301,6 +310,13 @@ func (s StatsAp) toMap() map[string]any {
 			structMap["map_id"] = s.MapId.Value()
 		} else {
 			structMap["map_id"] = nil
+		}
+	}
+	if s.MemTotalKb.IsValueSet() {
+		if s.MemTotalKb.Value() != nil {
+			structMap["mem_total_kb"] = s.MemTotalKb.Value()
+		} else {
+			structMap["mem_total_kb"] = nil
 		}
 	}
 	if s.MemUsedKb.IsValueSet() {
@@ -510,7 +526,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "antenna_select", "auto_placement", "auto_upgrade_stat", "ble_stat", "cert_expiry", "config_reverted", "cpu_system", "cpu_user", "cpu_util", "created_time", "deviceprofile_id", "env_stat", "esl_stat", "evpntopo_id", "expiring_certs", "ext_ip", "fwupdate", "gps_stat", "hw_rev", "id", "inactive_wired_vlans", "iot_stat", "ip", "ip_config", "ip_stat", "l2tp_stat", "last_seen", "last_trouble", "led", "lldp_stat", "lldp_stats", "locating", "locked", "mac", "map_id", "mem_total_kb", "mem_used_kb", "mesh_downlinks", "mesh_uplink", "model", "modified_time", "mount", "name", "notes", "num_clients", "num_wlans", "org_id", "port_stat", "power_budget", "power_constrained", "power_opmode", "power_src", "radio_config", "radio_stat", "rx_bps", "rx_bytes", "rx_pkts", "serial", "site_id", "status", "switch_redundancy", "tx_bps", "tx_bytes", "tx_pkts", "type", "uptime", "usb_stat", "version", "x", "y")
 	if err != nil {
 		return err
 	}
@@ -523,6 +539,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	s.CertExpiry = temp.CertExpiry
 	s.ConfigReverted = temp.ConfigReverted
 	s.CpuSystem = temp.CpuSystem
+	s.CpuUser = temp.CpuUser
 	s.CpuUtil = temp.CpuUtil
 	s.CreatedTime = temp.CreatedTime
 	s.DeviceprofileId = temp.DeviceprofileId
@@ -550,6 +567,7 @@ func (s *StatsAp) UnmarshalJSON(input []byte) error {
 	s.Locked = temp.Locked
 	s.Mac = temp.Mac
 	s.MapId = temp.MapId
+	s.MemTotalKb = temp.MemTotalKb
 	s.MemUsedKb = temp.MemUsedKb
 	s.MeshDownlinks = temp.MeshDownlinks
 	s.MeshUplink = temp.MeshUplink
@@ -596,6 +614,7 @@ type tempStatsAp struct {
 	CertExpiry         Optional[float64]                             `json:"cert_expiry"`
 	ConfigReverted     Optional[bool]                                `json:"config_reverted"`
 	CpuSystem          Optional[int64]                               `json:"cpu_system"`
+	CpuUser            Optional[int]                                 `json:"cpu_user"`
 	CpuUtil            Optional[int]                                 `json:"cpu_util"`
 	CreatedTime        *float64                                      `json:"created_time,omitempty"`
 	DeviceprofileId    Optional[uuid.UUID]                           `json:"deviceprofile_id"`
@@ -623,6 +642,7 @@ type tempStatsAp struct {
 	Locked             Optional[bool]                                `json:"locked"`
 	Mac                Optional[string]                              `json:"mac"`
 	MapId              Optional[uuid.UUID]                           `json:"map_id"`
+	MemTotalKb         Optional[int64]                               `json:"mem_total_kb"`
 	MemUsedKb          Optional[int64]                               `json:"mem_used_kb"`
 	MeshDownlinks      map[string]ApStatMeshDownlink                 `json:"mesh_downlinks,omitempty"`
 	MeshUplink         *ApStatMeshUplink                             `json:"mesh_uplink,omitempty"`

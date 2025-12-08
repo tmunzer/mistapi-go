@@ -1,8 +1,6 @@
 
 # Response Claim License
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseClaimLicense`
@@ -17,7 +15,6 @@
 | `LicenseAdded` | [`[]models.ResponseClaimLicenseLicenseItem`](../../doc/models/response-claim-license-license-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `LicenseDuplicated` | [`[]models.ResponseClaimLicenseLicenseItem`](../../doc/models/response-claim-license-license-item.md) | Required | **Constraints**: *Unique Items Required* |
 | `LicenseError` | [`[]models.ResponseClaimLicenseLicenseErrorItem`](../../doc/models/response-claim-license-license-error-item.md) | Required | **Constraints**: *Unique Items Required* |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -85,31 +82,15 @@
   ],
   "inventory_pending": [
     {
-      "mac": "mac6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "mac": "mac6"
     },
     {
-      "mac": "mac6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "mac": "mac6"
     },
     {
-      "mac": "mac6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "mac": "mac6"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

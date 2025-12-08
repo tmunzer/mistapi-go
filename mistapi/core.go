@@ -132,3 +132,6 @@ var WithTransport = https.WithTransport
 
 // WithRetryConfiguration sets the RetryConfiguration.
 var WithRetryConfiguration = https.WithRetryConfiguration
+
+// FromFastHttpRequest creates http.Request using provided values and Closures.
+var FromFastHttpRequest = https.FromFastHttpRequest

@@ -1,8 +1,6 @@
 
 # Simple Alert Arp Failure
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SimpleAlertArpFailure`
@@ -14,7 +12,6 @@
 | `ClientCount` | `*int` | Optional | **Default**: `10` |
 | `Duration` | `*int` | Optional | failing within minutes<br><br>**Default**: `20`<br><br>**Constraints**: `>= 5`, `<= 60` |
 | `IncidentCount` | `*int` | Optional | **Default**: `10` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -22,11 +19,7 @@
 {
   "client_count": 10,
   "duration": 20,
-  "incident_count": 10,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "incident_count": 10
 }
 ```
 

@@ -3,8 +3,6 @@
 
 Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WlanCiscoCwa`
@@ -17,7 +15,6 @@ Cisco CWA (central web authentication) required RADIUS with COA in order to work
 | `AllowedSubnets` | `[]string` | Optional | List of CIDRs |
 | `BlockedSubnets` | `[]string` | Optional | List of blocked CIDRs |
 | `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,11 +32,7 @@ Cisco CWA (central web authentication) required RADIUS with COA in order to work
     "blocked_subnets4",
     "blocked_subnets5",
     "blocked_subnets6"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

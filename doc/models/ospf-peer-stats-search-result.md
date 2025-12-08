@@ -1,8 +1,6 @@
 
 # Ospf Peer Stats Search Result
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OspfPeerStatsSearchResult`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.OspfPeerStatsSearchResultsItems`](../../doc/models/ospf-peer-stats-search-results-items.md) | Optional | - |
 | `Start` | `*int` | Optional | - |
 | `Total` | `*int` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,39 +31,23 @@
       "mac": "mac0",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "peer_ip": "peer_ip4",
-      "port_id": "port_id6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id6"
     },
     {
       "dead_time": 140,
       "mac": "mac0",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "peer_ip": "peer_ip4",
-      "port_id": "port_id6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id6"
     },
     {
       "dead_time": 140,
       "mac": "mac0",
       "org_id": "00002492-0000-0000-0000-000000000000",
       "peer_ip": "peer_ip4",
-      "port_id": "port_id6",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "port_id": "port_id6"
     }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

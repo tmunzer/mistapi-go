@@ -1,8 +1,6 @@
 
 # Alarm Search Result
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `AlarmSearchResult`
@@ -19,7 +17,6 @@
 | `Results` | [`[]models.Alarm`](../../doc/models/alarm.md) | Required | - |
 | `Start` | `int` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -59,20 +56,12 @@
         "ffeeddccbbab"
       ],
       "timestamp": 2.64,
-      "type": "rogue_client",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "type": "rogue_client"
     }
   ],
   "start": 1710949286,
   "total": 232,
-  "component": "component4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "component": "component4"
 }
 ```
 

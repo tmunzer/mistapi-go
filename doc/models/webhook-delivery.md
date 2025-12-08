@@ -1,8 +1,6 @@
 
 # Webhook Delivery
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `WebhookDelivery`
@@ -25,7 +23,6 @@
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Topic` | [`*models.WebhookDeliveryTopicEnum`](../../doc/models/webhook-delivery-topic-enum.md) | Optional | webhook topic. enum: `alarms`, `audits`, `device-updowns`, `occupancy-alerts`, `ping` |
 | `WebhookId` | `*uuid.UUID` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -42,11 +39,7 @@
   "status_code": 200,
   "topic": "audits",
   "webhook_id": "7a11b901-f719-4c91-8aef-deb8699a6364",
-  "error": "error0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "error": "error0"
 }
 ```
 

@@ -9,8 +9,8 @@ import (
 
 // ResponseSsrExportIdTokensResultsItem represents a ResponseSsrExportIdTokensResultsItem struct.
 type ResponseSsrExportIdTokensResultsItem struct {
-	Idtoken              *string                `json:"idtoken,omitempty"`
 	Mac                  *string                `json:"mac,omitempty"`
+	Token                *string                `json:"token,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type ResponseSsrExportIdTokensResultsItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponseSsrExportIdTokensResultsItem) String() string {
 	return fmt.Sprintf(
-		"ResponseSsrExportIdTokensResultsItem[Idtoken=%v, Mac=%v, AdditionalProperties=%v]",
-		r.Idtoken, r.Mac, r.AdditionalProperties)
+		"ResponseSsrExportIdTokensResultsItem[Mac=%v, Token=%v, AdditionalProperties=%v]",
+		r.Mac, r.Token, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponseSsrExportIdTokensResultsItem.
@@ -28,7 +28,7 @@ func (r ResponseSsrExportIdTokensResultsItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"idtoken", "mac"); err != nil {
+		"mac", "token"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -38,11 +38,11 @@ func (r ResponseSsrExportIdTokensResultsItem) MarshalJSON() (
 func (r ResponseSsrExportIdTokensResultsItem) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
-	if r.Idtoken != nil {
-		structMap["idtoken"] = r.Idtoken
-	}
 	if r.Mac != nil {
 		structMap["mac"] = r.Mac
+	}
+	if r.Token != nil {
+		structMap["token"] = r.Token
 	}
 	return structMap
 }
@@ -55,19 +55,19 @@ func (r *ResponseSsrExportIdTokensResultsItem) UnmarshalJSON(input []byte) error
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "idtoken", "mac")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "token")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
-	r.Idtoken = temp.Idtoken
 	r.Mac = temp.Mac
+	r.Token = temp.Token
 	return nil
 }
 
 // tempResponseSsrExportIdTokensResultsItem is a temporary struct used for validating the fields of ResponseSsrExportIdTokensResultsItem.
 type tempResponseSsrExportIdTokensResultsItem struct {
-	Idtoken *string `json:"idtoken,omitempty"`
-	Mac     *string `json:"mac,omitempty"`
+	Mac   *string `json:"mac,omitempty"`
+	Token *string `json:"token,omitempty"`
 }

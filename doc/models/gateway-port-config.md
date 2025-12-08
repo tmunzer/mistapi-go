@@ -3,8 +3,6 @@
 
 Gateway port config
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `GatewayPortConfig`
@@ -60,7 +58,6 @@ Gateway port config
 | `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | Only if `usage`==`wan` |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip |
 | `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br><br>**Default**: `"broadband"` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -92,11 +89,7 @@ Gateway port config
   "wan_ext_ip": "64.2.4.3",
   "wan_ext_ip6": "2601:1700:43c0:dc0::10",
   "wan_type": "broadband",
-  "ae_idx": "ae_idx6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "ae_idx": "ae_idx6"
 }
 ```
 

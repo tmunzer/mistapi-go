@@ -3,8 +3,6 @@
 
 Site Mist Edges form a cluster of RadSec Proxy servers
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `SiteSettingMxedge`
@@ -17,7 +15,6 @@ Site Mist Edges form a cluster of RadSec Proxy servers
 | `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
 | `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
 | `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge RadSec Configuration |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -30,29 +27,17 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "require_message_authenticator": false
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "require_message_authenticator": false
       }
     ],
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "mist_nac": {
     "acct_server_port": 70,
@@ -62,39 +47,23 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       },
       "key1": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       },
       "key2": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       }
     },
     "enabled": false,
-    "secret": "secret6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "secret": "secret6"
   },
   "mist_nacedge": {
     "auth_ttl": 110,
@@ -105,11 +74,7 @@ Site Mist Edges form a cluster of RadSec Proxy servers
       "mxedge_hosts7",
       "mxedge_hosts8",
       "mxedge_hosts9"
-    ],
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    ]
   },
   "radsec": {
     "acct_servers": [
@@ -120,11 +85,7 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "ssids": [
           "ssids5",
           "ssids6"
-        ],
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        ]
       }
     ],
     "auth_servers": [
@@ -133,24 +94,12 @@ Site Mist Edges form a cluster of RadSec Proxy servers
         "inband_status_check": false,
         "inband_status_interval": 160,
         "keywrap_enabled": false,
-        "keywrap_format": "ascii",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "keywrap_format": "ascii"
       }
     ],
     "enabled": false,
     "match_ssid": false,
-    "nas_ip_source": "tunnel",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "nas_ip_source": "tunnel"
   }
 }
 ```

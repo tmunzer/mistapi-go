@@ -1,8 +1,6 @@
 
 # Org Site Wan Wifi
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `OrgSiteWanWifi`
@@ -18,7 +16,6 @@
 | `Results` | [`[]models.OrgSiteSleWanResult`](../../doc/models/org-site-sle-wan-result.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -35,19 +32,11 @@
       "application_health": 246.28,
       "num_clients": 68.96,
       "num_gateways": 213.6,
-      "wan-link-health": 134.82,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "wan-link-health": 134.82
     }
   ],
   "start": 246.86,
-  "total": 112,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "total": 112
 }
 ```
 

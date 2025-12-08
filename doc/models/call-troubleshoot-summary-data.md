@@ -1,8 +1,6 @@
 
 # Call Troubleshoot Summary Data
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `CallTroubleshootSummaryData`
@@ -31,13 +29,18 @@
 | `RadioUtil` | `*float64` | Optional | - |
 | `RadioUtilInterference` | `*float64` | Optional | - |
 | `SiteNumClients` | `*float64` | Optional | - |
+| `SiteWanAvgDownloadMbps` | `*float64` | Optional | - |
+| `SiteWanAvgUploadMbps` | `*float64` | Optional | - |
+| `SiteWanDownloadMbps` | `*float64` | Optional | - |
+| `SiteWanJitter` | `*float64` | Optional | - |
+| `SiteWanRtt` | `*float64` | Optional | - |
+| `SiteWanUploadMbps` | `*float64` | Optional | - |
 | `WanAvgDownloadMbps` | `*float64` | Optional | - |
 | `WanAvgUploadMbps` | `*float64` | Optional | - |
 | `WanJitter` | `*float64` | Optional | - |
 | `WanMaxDownloadMbps` | `*float64` | Optional | - |
 | `WanMaxUploadMbps` | `*float64` | Optional | - |
 | `WanRtt` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -63,16 +66,18 @@
   "radio_util": 12.770318,
   "radio_util_interference": -3.079999,
   "site_num_clients": 0.017364305,
+  "site_wan_avg_download_mbps": 3.0566701889E-07,
+  "site_wan_avg_upload_mbps": 5.566701889E-08,
+  "site_wan_download_mbps": 8.0566701889E-07,
+  "site_wan_jitter": 0.7875519659784105,
+  "site_wan_rtt": 15.094849904378256,
+  "site_wan_upload_mbps": 2.0566701889E-07,
   "wan_avg_download_mbps": 1.4803165,
   "wan_avg_upload_mbps": -0.038184267,
   "wan_jitter": 5.9680853,
   "wan_max_download_mbps": 1.4803165,
   "wan_max_upload_mbps": -0.038184267,
-  "wan_rtt": 46.77899,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "wan_rtt": 46.77899
 }
 ```
 

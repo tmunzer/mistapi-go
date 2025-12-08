@@ -1,8 +1,6 @@
 
 # License Amendment
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `LicenseAmendment`
@@ -19,7 +17,6 @@
 | `StartTime` | `*int` | Optional | - |
 | `SubscriptionId` | `*string` | Optional | - |
 | `Type` | `*string` | Optional | Type of license. The list of supported license type can be retrieve with the [List License Type](../../doc/controllers/constants-definitions.md#list-license-types) API request. |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,11 +26,7 @@
   "created_time": 222.36,
   "end_time": 198,
   "modified_time": 112.6,
-  "quantity": 170,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "quantity": 170
 }
 ```
 

@@ -21,9 +21,9 @@ type WxlanRule struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// List of WxTag UUID to indicate these tags are allowed access
-	DstAllowWxtags []string `json:"dst_allow_wxtags"`
+	DstAllowWxtags []string `json:"dst_allow_wxtags,omitempty"`
 	// List of WxTag UUID to indicate these tags are blocked access
-	DstDenyWxtags []string `json:"dst_deny_wxtags"`
+	DstDenyWxtags []string `json:"dst_deny_wxtags,omitempty"`
 	// List of WxTag UUID
 	DstWxtags []string `json:"dst_wxtags,omitempty"`
 	Enabled   *bool    `json:"enabled,omitempty"`
@@ -79,8 +79,12 @@ func (w WxlanRule) toMap() map[string]any {
 	if w.CreatedTime != nil {
 		structMap["created_time"] = w.CreatedTime
 	}
-	structMap["dst_allow_wxtags"] = w.DstAllowWxtags
-	structMap["dst_deny_wxtags"] = w.DstDenyWxtags
+	if w.DstAllowWxtags != nil {
+		structMap["dst_allow_wxtags"] = w.DstAllowWxtags
+	}
+	if w.DstDenyWxtags != nil {
+		structMap["dst_deny_wxtags"] = w.DstDenyWxtags
+	}
 	if w.DstWxtags != nil {
 		structMap["dst_wxtags"] = w.DstWxtags
 	}
@@ -132,8 +136,8 @@ func (w *WxlanRule) UnmarshalJSON(input []byte) error {
 	w.ApplyTags = temp.ApplyTags
 	w.BlockedApps = temp.BlockedApps
 	w.CreatedTime = temp.CreatedTime
-	w.DstAllowWxtags = *temp.DstAllowWxtags
-	w.DstDenyWxtags = *temp.DstDenyWxtags
+	w.DstAllowWxtags = temp.DstAllowWxtags
+	w.DstDenyWxtags = temp.DstDenyWxtags
 	w.DstWxtags = temp.DstWxtags
 	w.Enabled = temp.Enabled
 	w.ForSite = temp.ForSite
@@ -153,8 +157,8 @@ type tempWxlanRule struct {
 	ApplyTags      []string             `json:"apply_tags,omitempty"`
 	BlockedApps    []string             `json:"blocked_apps,omitempty"`
 	CreatedTime    *float64             `json:"created_time,omitempty"`
-	DstAllowWxtags *[]string            `json:"dst_allow_wxtags"`
-	DstDenyWxtags  *[]string            `json:"dst_deny_wxtags"`
+	DstAllowWxtags []string             `json:"dst_allow_wxtags,omitempty"`
+	DstDenyWxtags  []string             `json:"dst_deny_wxtags,omitempty"`
 	DstWxtags      []string             `json:"dst_wxtags,omitempty"`
 	Enabled        *bool                `json:"enabled,omitempty"`
 	ForSite        *bool                `json:"for_site,omitempty"`
@@ -169,12 +173,6 @@ type tempWxlanRule struct {
 
 func (w *tempWxlanRule) validate() error {
 	var errs []string
-	if w.DstAllowWxtags == nil {
-		errs = append(errs, "required field `dst_allow_wxtags` is missing for type `wxlan_rule`")
-	}
-	if w.DstDenyWxtags == nil {
-		errs = append(errs, "required field `dst_deny_wxtags` is missing for type `wxlan_rule`")
-	}
 	if w.Order == nil {
 		errs = append(errs, "required field `order` is missing for type `wxlan_rule`")
 	}

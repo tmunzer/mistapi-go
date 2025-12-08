@@ -14,7 +14,7 @@ type ResponseEventsDevices struct {
 	End                  int                    `json:"end"`
 	Limit                int                    `json:"limit"`
 	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsDeviceAp       `json:"results"`
+	Results              []DeviceEvent          `json:"results"`
 	Start                int                    `json:"start"`
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -84,12 +84,12 @@ func (r *ResponseEventsDevices) UnmarshalJSON(input []byte) error {
 
 // tempResponseEventsDevices is a temporary struct used for validating the fields of ResponseEventsDevices.
 type tempResponseEventsDevices struct {
-	End     *int              `json:"end"`
-	Limit   *int              `json:"limit"`
-	Next    *string           `json:"next,omitempty"`
-	Results *[]EventsDeviceAp `json:"results"`
-	Start   *int              `json:"start"`
-	Total   *int              `json:"total"`
+	End     *int           `json:"end"`
+	Limit   *int           `json:"limit"`
+	Next    *string        `json:"next,omitempty"`
+	Results *[]DeviceEvent `json:"results"`
+	Start   *int           `json:"start"`
+	Total   *int           `json:"total"`
 }
 
 func (r *tempResponseEventsDevices) validate() error {

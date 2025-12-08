@@ -250,7 +250,7 @@ func (s *SitesRfdiags) UpdateSiteRfdiagRecording(
 }
 
 // DownloadSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and
-// returns an models.ApiResponse with []byte data and
+// returns an models.ApiResponse with string data and
 // an error if there was an issue with the request or response.
 // Download Recording
 // Download raw_events blob
@@ -258,7 +258,7 @@ func (s *SitesRfdiags) DownloadSiteRfdiagRecording(
 	ctx context.Context,
 	siteId uuid.UUID,
 	rfdiagId uuid.UUID) (
-	models.ApiResponse[[]byte],
+	models.ApiResponse[string],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/rfdiags/%v/download")
 	req.AppendTemplateParams(siteId, rfdiagId)
@@ -280,11 +280,13 @@ func (s *SitesRfdiags) DownloadSiteRfdiagRecording(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	stream, resp, err := req.CallAsStream()
+	str, resp, err := req.CallAsText()
+	var result string = str
+
 	if err != nil {
-		return models.NewApiResponse(stream, resp), err
+		return models.NewApiResponse(result, resp), err
 	}
-	return models.NewApiResponse(stream, resp), err
+	return models.NewApiResponse(result, resp), err
 }
 
 // StopSiteRfdiagRecording takes context, siteId, rfdiagId as parameters and

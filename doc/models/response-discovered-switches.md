@@ -1,8 +1,6 @@
 
 # Response Discovered Switches
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseDiscoveredSwitches`
@@ -17,7 +15,6 @@
 | `Results` | [`[]models.DiscoveredSwitch`](../../doc/models/discovered-switch.md) | Required | **Constraints**: *Unique Items Required* |
 | `Start` | `float64` | Required | - |
 | `Total` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,42 +31,34 @@
         "modules": {
           "key0": {
             "num_aps": 2,
-            "num_aps_with_switch_redundancy": 254,
-            "exampleAdditionalProperty": {
-              "key1": "val1",
-              "key2": "val2"
-            }
+            "num_aps_with_switch_redundancy": 254
           }
         },
         "num_aps": 246,
-        "num_aps_with_switch_redundancy": 10,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "num_aps_with_switch_redundancy": 10
       },
       "aps": [
         {
           "hostname": "hostname0",
+          "inactive_wired_vlans": [
+            168,
+            169,
+            170
+          ],
           "mac": "mac8",
           "poe_status": false,
-          "port": "port4",
-          "port_id": "port_id4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "port": "port4"
         },
         {
           "hostname": "hostname0",
+          "inactive_wired_vlans": [
+            168,
+            169,
+            170
+          ],
           "mac": "mac8",
           "poe_status": false,
-          "port": "port4",
-          "port_id": "port_id4",
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "port": "port4"
         }
       ],
       "chassis_id": [
@@ -77,20 +66,12 @@
         "chassis_id1",
         "chassis_id2"
       ],
-      "for_site": false,
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "for_site": false
     }
   ],
   "start": 49.6,
   "total": 130,
-  "next": "next4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "next": "next4"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Insight Metrics
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `InsightMetrics`
@@ -13,9 +11,9 @@
 |  --- | --- | --- | --- |
 | `End` | `int` | Required | - |
 | `Interval` | `int` | Required | - |
-| `Results` | `[]interface{}` | Required | Results depends on the `metric`<br><br>**Constraints**: *Unique Items Required* |
+| `Limit` | `*int` | Optional | - |
+| `Results` | [`[]models.InsightMetricsResultsItem`](../../doc/models/containers/insight-metrics-results-item.md) | Required | Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects<br><br>**Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,17 +21,11 @@
 {
   "end": 16,
   "interval": 182,
+  "limit": 154,
   "results": [
-    {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    234.97
   ],
-  "start": 230,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "start": 230
 }
 ```
 

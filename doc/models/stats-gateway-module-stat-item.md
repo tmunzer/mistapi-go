@@ -1,8 +1,6 @@
 
 # Stats Gateway Module Stat Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsGatewayModuleStatItem`
@@ -13,12 +11,14 @@
 |  --- | --- | --- | --- |
 | `BackupVersion` | `models.Optional[string]` | Optional | - |
 | `BiosVersion` | `models.Optional[string]` | Optional | - |
+| `BootPartition` | `*string` | Optional | - |
 | `CpldVersion` | `models.Optional[string]` | Optional | - |
 | `Fans` | [`[]models.ModuleStatItemFansItems`](../../doc/models/module-stat-item-fans-items.md) | Optional | **Constraints**: *Unique Items Required* |
 | `FpgaVersion` | `models.Optional[string]` | Optional | - |
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Locating` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | - |
+| `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `models.Optional[string]` | Optional | - |
 | `NetworkResources` | [`[]models.ModuleStatItemNetworkResource`](../../doc/models/module-stat-item-network-resource.md) | Optional | - |
 | `OpticsCpldVersion` | `models.Optional[string]` | Optional | - |
@@ -40,7 +40,6 @@
 | `VcRole` | `models.Optional[string]` | Optional | enum: `master`, `backup`, `linecard` |
 | `VcState` | `models.Optional[string]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -53,41 +52,28 @@
   "vc_role": "master",
   "backup_version": "backup_version6",
   "bios_version": "bios_version8",
+  "boot_partition": "boot_partition6",
   "cpld_version": "cpld_version2",
   "fans": [
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "rpm": 78,
+      "status": "status4"
     },
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "rpm": 78,
+      "status": "status4"
     },
     {
       "airflow": "airflow8",
       "name": "name4",
-      "status": "status4",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      "rpm": 78,
+      "status": "status4"
     }
-  ],
-  "fpga_version": "fpga_version4",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  ]
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Map Jibestream
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `MapJibestream`
@@ -20,7 +18,6 @@
 | `Ppm` | `float64` | Required | Pixel per meter, same as the map JSON value. |
 | `VendorName` | `string` | Required, Constant | The vendor ‘jibestream’. enum: `jibestream`<br><br>**Value**: `"jibestream"` |
 | `VenueId` | `int` | Required | Venue or organization id |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,11 +31,7 @@
   "mmpp": 223,
   "ppm": 4.0,
   "vendor_name": "jibestream",
-  "venue_id": 123,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "venue_id": 123
 }
 ```
 

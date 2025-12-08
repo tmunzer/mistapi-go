@@ -12,13 +12,15 @@ import (
 
 // WebhookLocationEvent represents a WebhookLocationEvent struct.
 type WebhookLocationEvent struct {
-	BatteryVoltage        *int       `json:"battery_voltage,omitempty"`
-	EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string    `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor          *int       `json:"ibeacon_major,omitempty"`
-	IbeaconMinor          *int       `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid           *uuid.UUID `json:"ibeacon_uuid,omitempty"`
+	BatteryVoltage        *int    `json:"battery_voltage,omitempty"`
+	EddystoneUidInstance  *string `json:"eddystone_uid_instance,omitempty"`
+	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
+	EddystoneUrlUrl       *string `json:"eddystone_url_url,omitempty"`
+	// Major number for iBeacon
+	IbeaconMajor Optional[int] `json:"ibeacon_major"`
+	// Minor number for iBeacon
+	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
+	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id  uuid.UUID `json:"id"`
 	Mac *string   `json:"mac,omitempty"`
@@ -79,14 +81,26 @@ func (w WebhookLocationEvent) toMap() map[string]any {
 	if w.EddystoneUrlUrl != nil {
 		structMap["eddystone_url_url"] = w.EddystoneUrlUrl
 	}
-	if w.IbeaconMajor != nil {
-		structMap["ibeacon_major"] = w.IbeaconMajor
+	if w.IbeaconMajor.IsValueSet() {
+		if w.IbeaconMajor.Value() != nil {
+			structMap["ibeacon_major"] = w.IbeaconMajor.Value()
+		} else {
+			structMap["ibeacon_major"] = nil
+		}
 	}
-	if w.IbeaconMinor != nil {
-		structMap["ibeacon_minor"] = w.IbeaconMinor
+	if w.IbeaconMinor.IsValueSet() {
+		if w.IbeaconMinor.Value() != nil {
+			structMap["ibeacon_minor"] = w.IbeaconMinor.Value()
+		} else {
+			structMap["ibeacon_minor"] = nil
+		}
 	}
-	if w.IbeaconUuid != nil {
-		structMap["ibeacon_uuid"] = w.IbeaconUuid
+	if w.IbeaconUuid.IsValueSet() {
+		if w.IbeaconUuid.Value() != nil {
+			structMap["ibeacon_uuid"] = w.IbeaconUuid.Value()
+		} else {
+			structMap["ibeacon_uuid"] = nil
+		}
 	}
 	structMap["id"] = w.Id
 	if w.Mac != nil {
@@ -159,9 +173,9 @@ type tempWebhookLocationEvent struct {
 	EddystoneUidInstance   *string                       `json:"eddystone_uid_instance,omitempty"`
 	EddystoneUidNamespace  *string                       `json:"eddystone_uid_namespace,omitempty"`
 	EddystoneUrlUrl        *string                       `json:"eddystone_url_url,omitempty"`
-	IbeaconMajor           *int                          `json:"ibeacon_major,omitempty"`
-	IbeaconMinor           *int                          `json:"ibeacon_minor,omitempty"`
-	IbeaconUuid            *uuid.UUID                    `json:"ibeacon_uuid,omitempty"`
+	IbeaconMajor           Optional[int]                 `json:"ibeacon_major"`
+	IbeaconMinor           Optional[int]                 `json:"ibeacon_minor"`
+	IbeaconUuid            Optional[uuid.UUID]           `json:"ibeacon_uuid"`
 	Id                     *uuid.UUID                    `json:"id"`
 	Mac                    *string                       `json:"mac,omitempty"`
 	MapId                  *uuid.UUID                    `json:"map_id"`

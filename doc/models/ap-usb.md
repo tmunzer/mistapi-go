@@ -6,8 +6,6 @@ USB AP settings
 - Note: if native imagotag is enabled, BLE will be disabled automatically
 - Note: legacy, new config moved to ESL Config.
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ApUsb`
@@ -24,7 +22,6 @@ USB AP settings
 | `Type` | [`*models.ApUsbTypeEnum`](../../doc/models/ap-usb-type-enum.md) | Optional | usb config type. enum: `hanshow`, `imagotag`, `solum` |
 | `VerifyCert` | `*bool` | Optional | Only if `type`==`imagotag`, whether to turn on SSL verification |
 | `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hanshow`<br><br>**Default**: `1` |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -36,11 +33,7 @@ USB AP settings
   "type": "imagotag",
   "vlan_id": 1,
   "cacert": "cacert4",
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "enabled": false
 }
 ```
 

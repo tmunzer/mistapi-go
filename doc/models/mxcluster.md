@@ -53,29 +53,17 @@ MxCluster
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "require_message_authenticator": false
       },
       {
         "disable_event_timestamp_check": false,
         "enabled": false,
         "host": "host8",
         "port": 28,
-        "require_message_authenticator": false,
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "require_message_authenticator": false
       }
     ],
-    "enabled": false,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "enabled": false
   },
   "mist_nac": {
     "acct_server_port": 70,
@@ -85,39 +73,23 @@ MxCluster
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       },
       "key1": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       },
       "key2": {
         "require_message_authenticator": false,
         "secret": "secret4",
         "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet",
-        "exampleAdditionalProperty": {
-          "key1": "val1",
-          "key2": "val2"
-        }
+        "vendor": "cisco-aironet"
       }
     },
     "enabled": false,
-    "secret": "secret6",
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
+    "secret": "secret6"
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

@@ -67,16 +67,16 @@ func (c *CaptureSite) toMap() any {
 // UnmarshalJSON implements the json.Unmarshaler interface for CaptureSite.
 // It customizes the JSON unmarshaling process for CaptureSite objects.
 func (c *CaptureSite) UnmarshalJSON(input []byte) error {
-	result, err := UnmarshallOneOf(input,
-		NewTypeHolder(&CaptureClient{}, false, &c.isCaptureClient),
-		NewTypeHolder(&CaptureGateway{}, false, &c.isCaptureGateway),
-		NewTypeHolder(&CaptureNewAssoc{}, false, &c.isCaptureNewAssoc),
-		NewTypeHolder(&CaptureRadiotap{}, false, &c.isCaptureRadiotap),
-		NewTypeHolder(&CaptureRadiotapwired{}, false, &c.isCaptureRadiotapwired),
-		NewTypeHolder(&CaptureScan{}, false, &c.isCaptureScan),
-		NewTypeHolder(&CaptureSwitch{}, false, &c.isCaptureSwitch),
-		NewTypeHolder(&CaptureWired{}, false, &c.isCaptureWired),
-		NewTypeHolder(&CaptureWireless{}, false, &c.isCaptureWireless),
+	result, err := UnmarshallOneOfWithDiscriminator(input, "type",
+		NewTypeHolderDiscriminator(&CaptureClient{}, false, &c.isCaptureClient, "client"),
+		NewTypeHolderDiscriminator(&CaptureGateway{}, false, &c.isCaptureGateway, "gateway"),
+		NewTypeHolderDiscriminator(&CaptureNewAssoc{}, false, &c.isCaptureNewAssoc, "new_assoc"),
+		NewTypeHolderDiscriminator(&CaptureRadiotap{}, false, &c.isCaptureRadiotap, "radiotap"),
+		NewTypeHolderDiscriminator(&CaptureRadiotapwired{}, false, &c.isCaptureRadiotapwired, "radiotap,wired"),
+		NewTypeHolderDiscriminator(&CaptureScan{}, false, &c.isCaptureScan, "scan"),
+		NewTypeHolderDiscriminator(&CaptureSwitch{}, false, &c.isCaptureSwitch, "switch"),
+		NewTypeHolderDiscriminator(&CaptureWired{}, false, &c.isCaptureWired, "wired"),
+		NewTypeHolderDiscriminator(&CaptureWireless{}, false, &c.isCaptureWireless, "wireless"),
 	)
 
 	c.value = result

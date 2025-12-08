@@ -1,8 +1,6 @@
 
 # Module Stat Item Poe
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ModuleStatItemPoe`
@@ -13,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `MaxPower` | `*float64` | Optional | - |
 | `PowerDraw` | `*float64` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
+| `Status` | `*string` | Optional | - |
 
 ## Example (as JSON)
 
@@ -21,10 +19,7 @@
 {
   "max_power": 250.0,
   "power_draw": 120.3,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "status": "status6"
 }
 ```
 

@@ -1,8 +1,6 @@
 
 # Stats Switch Module Stat Item
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsSwitchModuleStatItem`
@@ -13,6 +11,7 @@
 |  --- | --- | --- | --- |
 | `BackupVersion` | `models.Optional[string]` | Optional | - |
 | `BiosVersion` | `models.Optional[string]` | Optional | - |
+| `BootPartition` | `*string` | Optional | - |
 | `CpldVersion` | `models.Optional[string]` | Optional | - |
 | `CpuStat` | [`*models.CpuStat`](../../doc/models/cpu-stat.md) | Optional | - |
 | `Errors` | [`[]models.ModuleStatItemErrorsItems`](../../doc/models/module-stat-item-errors-items.md) | Optional | Used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type. |
@@ -22,6 +21,7 @@
 | `LastSeen` | `models.Optional[float64]` | Optional | Last seen timestamp |
 | `Locating` | `*bool` | Optional | - |
 | `Mac` | `*string` | Optional | - |
+| `MemoryStat` | [`*models.MemoryStat`](../../doc/models/memory-stat.md) | Optional | Memory usage stat (for virtual chassis, memory usage of master RE) |
 | `Model` | `models.Optional[string]` | Optional | - |
 | `OpticsCpldVersion` | `models.Optional[string]` | Optional | - |
 | `PendingVersion` | `models.Optional[string]` | Optional | - |
@@ -44,7 +44,6 @@
 | `VcRole` | `models.Optional[string]` | Optional | enum: `master`, `backup`, `linecard` |
 | `VcState` | `models.Optional[string]` | Optional | - |
 | `Version` | `models.Optional[string]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -57,6 +56,7 @@
   "vc_role": "master",
   "backup_version": "backup_version0",
   "bios_version": "bios_version4",
+  "boot_partition": "boot_partition0",
   "cpld_version": "cpld_version6",
   "cpu_stat": {
     "idle": 102.08,
@@ -65,50 +65,7 @@
       105.91
     ],
     "system": 13.6,
-    "user": 204.52,
-    "exampleAdditionalProperty": {
-      "key1": "val1",
-      "key2": "val2"
-    }
-  },
-  "errors": [
-    {
-      "feature": "feature4",
-      "minimum_version": "minimum_version2",
-      "reason": "reason4",
-      "since": 174,
-      "type": "type0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "feature": "feature4",
-      "minimum_version": "minimum_version2",
-      "reason": "reason4",
-      "since": 174,
-      "type": "type0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    },
-    {
-      "feature": "feature4",
-      "minimum_version": "minimum_version2",
-      "reason": "reason4",
-      "since": 174,
-      "type": "type0",
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    }
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
+    "usage": 125.9
   }
 }
 ```

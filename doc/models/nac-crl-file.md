@@ -1,8 +1,6 @@
 
 # Nac Crl File
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `NacCrlFile`
@@ -16,7 +14,6 @@
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | Issuer name for the CRL file |
 | `Url` | `*string` | Optional | URL to download the uploaded CRL file |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -26,11 +23,7 @@
   "name": "SampleCertificateSigner",
   "url": "http://url/to/crl_file",
   "created_time": 107.38,
-  "modified_time": 227.58,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "modified_time": 227.58
 }
 ```
 

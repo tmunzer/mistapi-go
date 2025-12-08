@@ -1,8 +1,6 @@
 
 # Stats Ap Ble
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `StatsApBle`
@@ -22,8 +20,8 @@
 | `EddystoneUrlUrl` | `models.Optional[string]` | Optional | - |
 | `IbeaconEnabled` | `models.Optional[bool]` | Optional | - |
 | `IbeaconFreqMsec` | `models.Optional[int]` | Optional | - |
-| `IbeaconMajor` | `models.Optional[int]` | Optional | - |
-| `IbeaconMinor` | `models.Optional[int]` | Optional | - |
+| `IbeaconMajor` | `models.Optional[int]` | Optional | Major number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
+| `IbeaconMinor` | `models.Optional[int]` | Optional | Minor number for iBeacon<br><br>**Constraints**: `>= 1`, `<= 65535` |
 | `IbeaconUuid` | `models.Optional[uuid.UUID]` | Optional | - |
 | `Major` | `models.Optional[int]` | Optional | - |
 | `Minors` | `[]int` | Optional | - |
@@ -34,7 +32,6 @@
 | `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
 | `TxResets` | `models.Optional[int]` | Optional | Resets due to tx hung |
 | `Uuid` | `models.Optional[uuid.UUID]` | Optional | - |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -50,8 +47,8 @@
   "eddystone_url_url": "https://www.abc.com",
   "ibeacon_enabled": true,
   "ibeacon_freq_msec": 2000,
-  "ibeacon_major": 13,
-  "ibeacon_minor": 138,
+  "ibeacon_major": 1234,
+  "ibeacon_minor": 1234,
   "ibeacon_uuid": "f3f17139-704a-f03a-2786-0400279e37c3",
   "major": 12345,
   "power": 10,
@@ -61,11 +58,7 @@
   "tx_pkts": 812204062,
   "tx_resets": 0,
   "uuid": "ada72f8f-1643-e5c6-94db-f2a5636f1a64",
-  "beacon_enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "beacon_enabled": false
 }
 ```
 

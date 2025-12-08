@@ -11,6 +11,7 @@ import (
 type StatsSwitchModuleStatItem struct {
 	BackupVersion Optional[string] `json:"backup_version"`
 	BiosVersion   Optional[string] `json:"bios_version"`
+	BootPartition *string          `json:"boot_partition,omitempty"`
 	CpldVersion   Optional[string] `json:"cpld_version"`
 	CpuStat       *CpuStat         `json:"cpu_stat,omitempty"`
 	// Used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
@@ -19,9 +20,11 @@ type StatsSwitchModuleStatItem struct {
 	FpcIdx      *int                        `json:"fpc_idx,omitempty"`
 	FpgaVersion Optional[string]            `json:"fpga_version"`
 	// Last seen timestamp
-	LastSeen          Optional[float64]                `json:"last_seen"`
-	Locating          *bool                            `json:"locating,omitempty"`
-	Mac               *string                          `json:"mac,omitempty"`
+	LastSeen Optional[float64] `json:"last_seen"`
+	Locating *bool             `json:"locating,omitempty"`
+	Mac      *string           `json:"mac,omitempty"`
+	// Memory usage stat (for virtual chassis, memory usage of master RE)
+	MemoryStat        *MemoryStat                      `json:"memory_stat,omitempty"`
 	Model             Optional[string]                 `json:"model"`
 	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
 	PendingVersion    Optional[string]                 `json:"pending_version"`
@@ -52,8 +55,8 @@ type StatsSwitchModuleStatItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitchModuleStatItem) String() string {
 	return fmt.Sprintf(
-		"StatsSwitchModuleStatItem[BackupVersion=%v, BiosVersion=%v, CpldVersion=%v, CpuStat=%v, Errors=%v, Fans=%v, FpcIdx=%v, FpgaVersion=%v, LastSeen=%v, Locating=%v, Mac=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Pics=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, Type=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
-		s.BackupVersion, s.BiosVersion, s.CpldVersion, s.CpuStat, s.Errors, s.Fans, s.FpcIdx, s.FpgaVersion, s.LastSeen, s.Locating, s.Mac, s.Model, s.OpticsCpldVersion, s.PendingVersion, s.Pics, s.Poe, s.PoeVersion, s.PowerCpldVersion, s.Psus, s.ReFpgaVersion, s.RecoveryVersion, s.Serial, s.Status, s.Temperatures, s.TmcFpgaVersion, s.Type, s.UbootVersion, s.Uptime, s.VcLinks, s.VcMode, s.VcRole, s.VcState, s.Version, s.AdditionalProperties)
+		"StatsSwitchModuleStatItem[BackupVersion=%v, BiosVersion=%v, BootPartition=%v, CpldVersion=%v, CpuStat=%v, Errors=%v, Fans=%v, FpcIdx=%v, FpgaVersion=%v, LastSeen=%v, Locating=%v, Mac=%v, MemoryStat=%v, Model=%v, OpticsCpldVersion=%v, PendingVersion=%v, Pics=%v, Poe=%v, PoeVersion=%v, PowerCpldVersion=%v, Psus=%v, ReFpgaVersion=%v, RecoveryVersion=%v, Serial=%v, Status=%v, Temperatures=%v, TmcFpgaVersion=%v, Type=%v, UbootVersion=%v, Uptime=%v, VcLinks=%v, VcMode=%v, VcRole=%v, VcState=%v, Version=%v, AdditionalProperties=%v]",
+		s.BackupVersion, s.BiosVersion, s.BootPartition, s.CpldVersion, s.CpuStat, s.Errors, s.Fans, s.FpcIdx, s.FpgaVersion, s.LastSeen, s.Locating, s.Mac, s.MemoryStat, s.Model, s.OpticsCpldVersion, s.PendingVersion, s.Pics, s.Poe, s.PoeVersion, s.PowerCpldVersion, s.Psus, s.ReFpgaVersion, s.RecoveryVersion, s.Serial, s.Status, s.Temperatures, s.TmcFpgaVersion, s.Type, s.UbootVersion, s.Uptime, s.VcLinks, s.VcMode, s.VcRole, s.VcState, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchModuleStatItem.
@@ -62,7 +65,7 @@ func (s StatsSwitchModuleStatItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"backup_version", "bios_version", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "locating", "mac", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
+		"backup_version", "bios_version", "boot_partition", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "locating", "mac", "memory_stat", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -85,6 +88,9 @@ func (s StatsSwitchModuleStatItem) toMap() map[string]any {
 		} else {
 			structMap["bios_version"] = nil
 		}
+	}
+	if s.BootPartition != nil {
+		structMap["boot_partition"] = s.BootPartition
 	}
 	if s.CpldVersion.IsValueSet() {
 		if s.CpldVersion.Value() != nil {
@@ -124,6 +130,9 @@ func (s StatsSwitchModuleStatItem) toMap() map[string]any {
 	}
 	if s.Mac != nil {
 		structMap["mac"] = s.Mac
+	}
+	if s.MemoryStat != nil {
+		structMap["memory_stat"] = s.MemoryStat.toMap()
 	}
 	if s.Model.IsValueSet() {
 		if s.Model.Value() != nil {
@@ -270,7 +279,7 @@ func (s *StatsSwitchModuleStatItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "locating", "mac", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "backup_version", "bios_version", "boot_partition", "cpld_version", "cpu_stat", "errors", "fans", "fpc_idx", "fpga_version", "last_seen", "locating", "mac", "memory_stat", "model", "optics_cpld_version", "pending_version", "pics", "poe", "poe_version", "power_cpld_version", "psus", "re_fpga_version", "recovery_version", "serial", "status", "temperatures", "tmc_fpga_version", "type", "uboot_version", "uptime", "vc_links", "vc_mode", "vc_role", "vc_state", "version")
 	if err != nil {
 		return err
 	}
@@ -278,6 +287,7 @@ func (s *StatsSwitchModuleStatItem) UnmarshalJSON(input []byte) error {
 
 	s.BackupVersion = temp.BackupVersion
 	s.BiosVersion = temp.BiosVersion
+	s.BootPartition = temp.BootPartition
 	s.CpldVersion = temp.CpldVersion
 	s.CpuStat = temp.CpuStat
 	s.Errors = temp.Errors
@@ -287,6 +297,7 @@ func (s *StatsSwitchModuleStatItem) UnmarshalJSON(input []byte) error {
 	s.LastSeen = temp.LastSeen
 	s.Locating = temp.Locating
 	s.Mac = temp.Mac
+	s.MemoryStat = temp.MemoryStat
 	s.Model = temp.Model
 	s.OpticsCpldVersion = temp.OpticsCpldVersion
 	s.PendingVersion = temp.PendingVersion
@@ -316,6 +327,7 @@ func (s *StatsSwitchModuleStatItem) UnmarshalJSON(input []byte) error {
 type tempStatsSwitchModuleStatItem struct {
 	BackupVersion     Optional[string]                 `json:"backup_version"`
 	BiosVersion       Optional[string]                 `json:"bios_version"`
+	BootPartition     *string                          `json:"boot_partition,omitempty"`
 	CpldVersion       Optional[string]                 `json:"cpld_version"`
 	CpuStat           *CpuStat                         `json:"cpu_stat,omitempty"`
 	Errors            []ModuleStatItemErrorsItems      `json:"errors,omitempty"`
@@ -325,6 +337,7 @@ type tempStatsSwitchModuleStatItem struct {
 	LastSeen          Optional[float64]                `json:"last_seen"`
 	Locating          *bool                            `json:"locating,omitempty"`
 	Mac               *string                          `json:"mac,omitempty"`
+	MemoryStat        *MemoryStat                      `json:"memory_stat,omitempty"`
 	Model             Optional[string]                 `json:"model"`
 	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
 	PendingVersion    Optional[string]                 `json:"pending_version"`

@@ -3,8 +3,6 @@
 
 detail claim status per device
 
-*This model accepts additional fields of type interface{}.*
-
 ## Structure
 
 `ResponseAsyncLicenseDetail`
@@ -16,7 +14,6 @@ detail claim status per device
 | `Mac` | `*string` | Optional | Device MAC Address |
 | `Status` | `*string` | Optional | - |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)
 
@@ -24,11 +21,7 @@ detail claim status per device
 {
   "mac": "mac0",
   "status": "status8",
-  "timestamp": 238.64,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+  "timestamp": 238.64
 }
 ```
 

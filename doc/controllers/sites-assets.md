@@ -231,7 +231,7 @@ ImportSiteAssets(
     ctx context.Context,
     siteId uuid.UUID,
     upsert *models.ImportSiteAssetsUpsertEnum,
-    file *models.FileWrapper) (
+    file *string) (
     http.Response,
     error)
 ```
@@ -242,7 +242,7 @@ ImportSiteAssets(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `upsert` | [`*models.ImportSiteAssetsUpsertEnum`](../../doc/models/import-site-assets-upsert-enum.md) | Query, Optional | API will replace the assets with same mac if provided `upsert`==`True`, otherwise will report in errors in response.<br><br>**Default**: `"False"` |
-| `file` | `*models.FileWrapper` | Form, Optional | CSV file |
+| `file` | `*string` | Form, Optional | CSV file |
 
 ## Response Type
 
