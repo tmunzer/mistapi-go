@@ -9,6 +9,6 @@
 
 | Type | Factory Method |
 |  --- | --- |
-| [`models.SwitchBgpConfigHoldTimeEnum`](../../../doc/models/containers/switch-bgp-config-hold-time.md) | models.SwitchBgpConfigHoldTimeContainer.FromSwitchBgpConfigHoldTime(models.SwitchBgpConfigHoldTimeEnum switchBgpConfigHoldTime) |
+| [`models.SwitchBgpConfigHoldTimeEnum`](../../../doc/models/switch-bgp-config-hold-time-enum.md) | models.SwitchBgpConfigHoldTimeContainer.FromSwitchBgpConfigHoldTime(models.SwitchBgpConfigHoldTimeEnum switchBgpConfigHoldTime) |
 | `int` | models.SwitchBgpConfigHoldTimeContainer.FromNumber(int number) |
 
