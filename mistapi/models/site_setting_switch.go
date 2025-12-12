@@ -14,7 +14,8 @@ type SiteSettingSwitch struct {
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags map[string]AclTag `json:"acl_tags,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
-	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
+	AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
+	BgpConfig            map[string]SwitchBgpConfig `json:"bgp_config,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime  *float64      `json:"created_time,omitempty"`
 	DhcpSnooping *DhcpSnooping `json:"dhcp_snooping,omitempty"`
@@ -67,8 +68,8 @@ type SiteSettingSwitch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingSwitch) String() string {
 	return fmt.Sprintf(
-		"SiteSettingSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AutoUpgrade=%v, AdditionalProperties=%v]",
-		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.CreatedTime, s.DhcpSnooping, s.DnsServers, s.DnsSuffix, s.ExtraRoutes, s.ExtraRoutes6, s.Id, s.ImportOrgNetworks, s.MistNac, s.ModifiedTime, s.Name, s.Networks, s.NtpServers, s.OrgId, s.OspfAreas, s.PortMirroring, s.PortUsages, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.SnmpConfig, s.SwitchMatching, s.SwitchMgmt, s.VrfConfig, s.VrfInstances, s.AutoUpgrade, s.AdditionalProperties)
+		"SiteSettingSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AutoUpgrade=%v, AdditionalProperties=%v]",
+		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.BgpConfig, s.CreatedTime, s.DhcpSnooping, s.DnsServers, s.DnsSuffix, s.ExtraRoutes, s.ExtraRoutes6, s.Id, s.ImportOrgNetworks, s.MistNac, s.ModifiedTime, s.Name, s.Networks, s.NtpServers, s.OrgId, s.OspfAreas, s.PortMirroring, s.PortUsages, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.SnmpConfig, s.SwitchMatching, s.SwitchMgmt, s.VrfConfig, s.VrfInstances, s.AutoUpgrade, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingSwitch.
@@ -77,7 +78,7 @@ func (s SiteSettingSwitch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances", "auto_upgrade"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances", "auto_upgrade"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -95,6 +96,9 @@ func (s SiteSettingSwitch) toMap() map[string]any {
 	}
 	if s.AdditionalConfigCmds != nil {
 		structMap["additional_config_cmds"] = s.AdditionalConfigCmds
+	}
+	if s.BgpConfig != nil {
+		structMap["bgp_config"] = s.BgpConfig
 	}
 	if s.CreatedTime != nil {
 		structMap["created_time"] = s.CreatedTime
@@ -185,7 +189,7 @@ func (s *SiteSettingSwitch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances", "auto_upgrade")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances", "auto_upgrade")
 	if err != nil {
 		return err
 	}
@@ -194,6 +198,7 @@ func (s *SiteSettingSwitch) UnmarshalJSON(input []byte) error {
 	s.AclPolicies = temp.AclPolicies
 	s.AclTags = temp.AclTags
 	s.AdditionalConfigCmds = temp.AdditionalConfigCmds
+	s.BgpConfig = temp.BgpConfig
 	s.CreatedTime = temp.CreatedTime
 	s.DhcpSnooping = temp.DhcpSnooping
 	s.DnsServers = temp.DnsServers
@@ -228,6 +233,7 @@ type tempSiteSettingSwitch struct {
 	AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
 	AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
 	AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
+	BgpConfig             map[string]SwitchBgpConfig             `json:"bgp_config,omitempty"`
 	CreatedTime           *float64                               `json:"created_time,omitempty"`
 	DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
 	DnsServers            []string                               `json:"dns_servers,omitempty"`

@@ -13,9 +13,9 @@ Only present when `bgp_peers` in `fields` query parameter
 |  --- | --- | --- | --- |
 | `EvpnOverlay` | `*bool` | Optional | If this is created for evpn overlay |
 | `ForOverlay` | `*bool` | Optional | If this is created for overlay |
-| `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
+| `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294 |
 | `Neighbor` | `*string` | Optional | - |
-| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
+| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294 |
 | `NeighborMac` | `*string` | Optional | If it's another device in the same org |
 | `Node` | `*string` | Optional | Node0/node1 |
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |

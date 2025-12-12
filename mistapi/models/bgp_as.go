@@ -9,7 +9,7 @@ import (
 )
 
 // BgpAs represents a BgpAs struct.
-// BGP AS, value in range 1-4294967295
+// BGP AS, value in range 1-4294967294
 type BgpAs struct {
 	value    any
 	isString bool
@@ -75,7 +75,7 @@ func (b *BgpAs) AsNumber() (
 }
 
 // internalBgpAs represents a bgpAs struct.
-// BGP AS, value in range 1-4294967295
+// BGP AS, value in range 1-4294967294
 type internalBgpAs struct{}
 
 var BgpAsContainer internalBgpAs

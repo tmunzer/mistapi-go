@@ -28,19 +28,19 @@ Gateway matching
       "port_config": {
         "key0": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         },
         "key1": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         }
       },
       "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
@@ -53,19 +53,19 @@ Gateway matching
       "port_config": {
         "key0": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         },
         "key1": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         }
       },
       "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
@@ -78,19 +78,19 @@ Gateway matching
       "port_config": {
         "key0": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         },
         "key1": {
           "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
+          "ae_idx": "ae_idx8",
+          "ae_lacp_force_up": false,
           "aggregated": false,
           "critical": false,
-          "usage": "usage6"
+          "usage": "lan"
         }
       },
       "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"

@@ -22,6 +22,7 @@ Switch port config
 | `DynamicUsage` | `models.Optional[string]` | Optional | Enable dynamic usage for this port. Set to `dynamic` to enable. |
 | `Esilag` | `*bool` | Optional | - |
 | `Mtu` | `*int` | Optional | Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation<br><br>**Default**: `1514` |
+| `Networks` | `[]string` | Optional | List of network names. Required if `usage`==`inet` |
 | `NoLocalOverwrite` | `*bool` | Optional | Prevent helpdesk to override the port config<br><br>**Default**: `true` |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
 | `PortNetwork` | `*string` | Optional | Required if `usage`==`vlan_tunnel`. Q-in-Q tunneling using All-in-one bundling. This also enables standard L2PT for interfaces that are not encapsulation tunnel interfaces and uses MAC rewrite operation. [View more information](https://www.juniper.net/documentation/us/en/software/junos/multicast-l2/topics/topic-map/q-in-q.html#id-understanding-qinq-tunneling-and-vlan-translation) |

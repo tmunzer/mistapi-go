@@ -12,9 +12,9 @@ type GatewayMatchingRule struct {
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
 	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
 	Name                 *string  `json:"name,omitempty"`
-	// Property key is the port name or range (e.g. "ge-0/0/0-10")
-	PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
-	AdditionalProperties map[string]string          `json:"_"`
+	// Property key is the port(s) name or range (e.g. "ge-0/0/0-10").
+	PortConfig           map[string]GatewayPortConfig `json:"port_config,omitempty"`
+	AdditionalProperties map[string]string            `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for GatewayMatchingRule,
@@ -75,7 +75,7 @@ func (g *GatewayMatchingRule) UnmarshalJSON(input []byte) error {
 
 // tempGatewayMatchingRule is a temporary struct used for validating the fields of GatewayMatchingRule.
 type tempGatewayMatchingRule struct {
-	AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
-	Name                 *string                    `json:"name,omitempty"`
-	PortConfig           map[string]JunosPortConfig `json:"port_config,omitempty"`
+	AdditionalConfigCmds []string                     `json:"additional_config_cmds,omitempty"`
+	Name                 *string                      `json:"name,omitempty"`
+	PortConfig           map[string]GatewayPortConfig `json:"port_config,omitempty"`
 }

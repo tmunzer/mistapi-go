@@ -14,10 +14,10 @@ type BgpPeer struct {
 	EvpnOverlay *bool `json:"evpn_overlay,omitempty"`
 	// If this is created for overlay
 	ForOverlay *bool `json:"for_overlay,omitempty"`
-	// BGP AS, value in range 1-4294967295
+	// BGP AS, value in range 1-4294967294
 	LocalAs  *BgpAs  `json:"local_as,omitempty"`
 	Neighbor *string `json:"neighbor,omitempty"`
-	// BGP AS, value in range 1-4294967295
+	// BGP AS, value in range 1-4294967294
 	NeighborAs *BgpAs `json:"neighbor_as,omitempty"`
 	// If it's another device in the same org
 	NeighborMac *string `json:"neighbor_mac,omitempty"`

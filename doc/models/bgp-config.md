@@ -23,7 +23,7 @@ BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 | `Import` | `*string` | Optional | - |
 | `ImportPolicy` | `*string` | Optional | Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. Default import policies if no per-neighbor policies defined |
 | `LocalAs` | [`*models.BgpLocalAs`](../../doc/models/containers/bgp-local-as.md) | Optional | Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BGP AS, value in range 1-4294967295 |
-| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967295 |
+| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294 |
 | `Neighbors` | [`map[string]models.BgpConfigNeighbors`](../../doc/models/bgp-config-neighbors.md) | Optional | Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. If per-neighbor as is desired. Property key is the neighbor address |
 | `Networks` | `[]string` | Optional | Optional if `via`==`lan`. List of networks where we expect BGP neighbor to connect to/from |
 | `NoPrivateAs` | `*bool` | Optional | Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. If true, we will not advertise private ASNs (AS 64512-65534) to this neighbor<br><br>**Default**: `false` |
