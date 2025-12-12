@@ -31,6 +31,8 @@ type JunosPortConfig struct {
 	Esilag       *bool            `json:"esilag,omitempty"`
 	// Media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation
 	Mtu *int `json:"mtu,omitempty"`
+	// List of network names. Required if `usage`==`inet`
+	Networks []string `json:"networks,omitempty"`
 	// Prevent helpdesk to override the port config
 	NoLocalOverwrite *bool `json:"no_local_overwrite,omitempty"`
 	PoeDisabled      *bool `json:"poe_disabled,omitempty"`
@@ -47,8 +49,8 @@ type JunosPortConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JunosPortConfig) String() string {
 	return fmt.Sprintf(
-		"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, NoLocalOverwrite=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
-		j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.NoLocalOverwrite, j.PoeDisabled, j.PortNetwork, j.Speed, j.Usage, j.AdditionalProperties)
+		"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, Networks=%v, NoLocalOverwrite=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
+		j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.Networks, j.NoLocalOverwrite, j.PoeDisabled, j.PortNetwork, j.Speed, j.Usage, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosPortConfig.
@@ -57,7 +59,7 @@ func (j JunosPortConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage"); err != nil {
+		"ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -104,6 +106,9 @@ func (j JunosPortConfig) toMap() map[string]any {
 	if j.Mtu != nil {
 		structMap["mtu"] = j.Mtu
 	}
+	if j.Networks != nil {
+		structMap["networks"] = j.Networks
+	}
 	if j.NoLocalOverwrite != nil {
 		structMap["no_local_overwrite"] = j.NoLocalOverwrite
 	}
@@ -132,7 +137,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage")
 	if err != nil {
 		return err
 	}
@@ -149,6 +154,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
 	j.DynamicUsage = temp.DynamicUsage
 	j.Esilag = temp.Esilag
 	j.Mtu = temp.Mtu
+	j.Networks = temp.Networks
 	j.NoLocalOverwrite = temp.NoLocalOverwrite
 	j.PoeDisabled = temp.PoeDisabled
 	j.PortNetwork = temp.PortNetwork
@@ -170,6 +176,7 @@ type tempJunosPortConfig struct {
 	DynamicUsage     Optional[string]           `json:"dynamic_usage"`
 	Esilag           *bool                      `json:"esilag,omitempty"`
 	Mtu              *int                       `json:"mtu,omitempty"`
+	Networks         []string                   `json:"networks,omitempty"`
 	NoLocalOverwrite *bool                      `json:"no_local_overwrite,omitempty"`
 	PoeDisabled      *bool                      `json:"poe_disabled,omitempty"`
 	PortNetwork      *string                    `json:"port_network,omitempty"`

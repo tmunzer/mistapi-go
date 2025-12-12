@@ -36,7 +36,7 @@ type BgpConfig struct {
 	ImportPolicy *string `json:"import_policy,omitempty"`
 	// Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BGP AS, value in range 1-4294967295
 	LocalAs *BgpLocalAs `json:"local_as,omitempty"`
-	// BGP AS, value in range 1-4294967295
+	// BGP AS, value in range 1-4294967294
 	NeighborAs *BgpAs `json:"neighbor_as,omitempty"`
 	// Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. If per-neighbor as is desired. Property key is the neighbor address
 	Neighbors map[string]BgpConfigNeighbors `json:"neighbors,omitempty"`

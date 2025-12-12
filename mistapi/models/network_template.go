@@ -15,7 +15,8 @@ type NetworkTemplate struct {
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags map[string]AclTag `json:"acl_tags,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
-	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
+	AdditionalConfigCmds []string                   `json:"additional_config_cmds,omitempty"`
+	BgpConfig            map[string]SwitchBgpConfig `json:"bgp_config,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime  *float64      `json:"created_time,omitempty"`
 	DhcpSnooping *DhcpSnooping `json:"dhcp_snooping,omitempty"`
@@ -67,8 +68,8 @@ type NetworkTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NetworkTemplate) String() string {
 	return fmt.Sprintf(
-		"NetworkTemplate[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
-		n.AclPolicies, n.AclTags, n.AdditionalConfigCmds, n.CreatedTime, n.DhcpSnooping, n.DnsServers, n.DnsSuffix, n.ExtraRoutes, n.ExtraRoutes6, n.Id, n.ImportOrgNetworks, n.MistNac, n.ModifiedTime, n.Name, n.Networks, n.NtpServers, n.OrgId, n.OspfAreas, n.PortMirroring, n.PortUsages, n.RadiusConfig, n.RemoteSyslog, n.RemoveExistingConfigs, n.SnmpConfig, n.SwitchMatching, n.SwitchMgmt, n.VrfConfig, n.VrfInstances, n.AdditionalProperties)
+		"NetworkTemplate[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpSnooping=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, ImportOrgNetworks=%v, MistNac=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpServers=%v, OrgId=%v, OspfAreas=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, SnmpConfig=%v, SwitchMatching=%v, SwitchMgmt=%v, VrfConfig=%v, VrfInstances=%v, AdditionalProperties=%v]",
+		n.AclPolicies, n.AclTags, n.AdditionalConfigCmds, n.BgpConfig, n.CreatedTime, n.DhcpSnooping, n.DnsServers, n.DnsSuffix, n.ExtraRoutes, n.ExtraRoutes6, n.Id, n.ImportOrgNetworks, n.MistNac, n.ModifiedTime, n.Name, n.Networks, n.NtpServers, n.OrgId, n.OspfAreas, n.PortMirroring, n.PortUsages, n.RadiusConfig, n.RemoteSyslog, n.RemoveExistingConfigs, n.SnmpConfig, n.SwitchMatching, n.SwitchMgmt, n.VrfConfig, n.VrfInstances, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NetworkTemplate.
@@ -77,7 +78,7 @@ func (n NetworkTemplate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -95,6 +96,9 @@ func (n NetworkTemplate) toMap() map[string]any {
 	}
 	if n.AdditionalConfigCmds != nil {
 		structMap["additional_config_cmds"] = n.AdditionalConfigCmds
+	}
+	if n.BgpConfig != nil {
+		structMap["bgp_config"] = n.BgpConfig
 	}
 	if n.CreatedTime != nil {
 		structMap["created_time"] = n.CreatedTime
@@ -182,7 +186,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "bgp_config", "created_time", "dhcp_snooping", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "id", "import_org_networks", "mist_nac", "modified_time", "name", "networks", "ntp_servers", "org_id", "ospf_areas", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "remove_existing_configs", "snmp_config", "switch_matching", "switch_mgmt", "vrf_config", "vrf_instances")
 	if err != nil {
 		return err
 	}
@@ -191,6 +195,7 @@ func (n *NetworkTemplate) UnmarshalJSON(input []byte) error {
 	n.AclPolicies = temp.AclPolicies
 	n.AclTags = temp.AclTags
 	n.AdditionalConfigCmds = temp.AdditionalConfigCmds
+	n.BgpConfig = temp.BgpConfig
 	n.CreatedTime = temp.CreatedTime
 	n.DhcpSnooping = temp.DhcpSnooping
 	n.DnsServers = temp.DnsServers
@@ -224,6 +229,7 @@ type tempNetworkTemplate struct {
 	AclPolicies           []AclPolicy                            `json:"acl_policies,omitempty"`
 	AclTags               map[string]AclTag                      `json:"acl_tags,omitempty"`
 	AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
+	BgpConfig             map[string]SwitchBgpConfig             `json:"bgp_config,omitempty"`
 	CreatedTime           *float64                               `json:"created_time,omitempty"`
 	DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
 	DnsServers            []string                               `json:"dns_servers,omitempty"`

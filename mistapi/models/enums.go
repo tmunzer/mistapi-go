@@ -4016,6 +4016,15 @@ const (
 	SuppressedAlarmScopeEnum_SITE SuppressedAlarmScopeEnum = "site"
 )
 
+// SwitchBgpConfigTypeEnum is a string enum.
+// enum: `external`, `internal`
+type SwitchBgpConfigTypeEnum string
+
+const (
+	SwitchBgpConfigTypeEnum_EXTERNAL SwitchBgpConfigTypeEnum = "external"
+	SwitchBgpConfigTypeEnum_INTERNAL SwitchBgpConfigTypeEnum = "internal"
+)
+
 // SwitchDhcpdConfigTypeEnum is a string enum.
 // enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
 type SwitchDhcpdConfigTypeEnum string
@@ -5394,4 +5403,11 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
+)
+
+// SwitchBgpConfigHoldTimeEnum is a int enum.
+type SwitchBgpConfigHoldTimeEnum int
+
+const (
+	SwitchBgpConfigHoldTimeEnum_ENUM0 SwitchBgpConfigHoldTimeEnum = 0
 )

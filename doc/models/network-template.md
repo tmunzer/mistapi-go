@@ -16,6 +16,7 @@ Network Template
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
+| `BgpConfig` | [`map[string]models.SwitchBgpConfig`](../../doc/models/switch-bgp-config.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DnsServers` | `[]string` | Optional | Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting |
@@ -133,17 +134,51 @@ Network Template
     "additional_config_cmds9",
     "additional_config_cmds8"
   ],
-  "created_time": 167.36,
-  "dhcp_snooping": {
-    "all_networks": false,
-    "enable_arp_spoof_check": false,
-    "enable_ip_source_guard": false,
-    "enabled": false,
-    "networks": [
-      "networks8",
-      "networks9"
-    ]
+  "bgp_config": {
+    "key0": {
+      "type": "external",
+      "networks": [
+        "networks2",
+        "networks3",
+        "networks4"
+      ],
+      "bfd_minimum_interval": 212,
+      "local_as": "String7",
+      "hold_time": 0,
+      "auth_key": "auth_key8",
+      "neighbors": {
+        "key0": {
+          "neighbor_as": "String3",
+          "hold_time": 0,
+          "export_policy": "export_policy0",
+          "import_policy": "import_policy4",
+          "multihop_ttl": 118
+        }
+      }
+    },
+    "key1": {
+      "type": "external",
+      "networks": [
+        "networks2",
+        "networks3",
+        "networks4"
+      ],
+      "bfd_minimum_interval": 212,
+      "local_as": "String7",
+      "hold_time": 0,
+      "auth_key": "auth_key8",
+      "neighbors": {
+        "key0": {
+          "neighbor_as": "String3",
+          "hold_time": 0,
+          "export_policy": "export_policy0",
+          "import_policy": "import_policy4",
+          "multihop_ttl": 118
+        }
+      }
+    }
   },
+  "created_time": 167.36,
   "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"

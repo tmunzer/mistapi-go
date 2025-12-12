@@ -22,7 +22,8 @@ type DeviceSwitch struct {
 	// Property key is the destination subnet (e.g. "172.16.3.0/24")
 	AggregateRoutes map[string]AggregateRoute `json:"aggregate_routes,omitempty"`
 	// Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64")
-	AggregateRoutes6 map[string]AggregateRoute `json:"aggregate_routes6,omitempty"`
+	AggregateRoutes6 map[string]AggregateRoute  `json:"aggregate_routes6,omitempty"`
+	BgpConfig        map[string]SwitchBgpConfig `json:"bgp_config,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime     *float64           `json:"created_time,omitempty"`
 	DeviceprofileId *uuid.UUID         `json:"deviceprofile_id,omitempty"`
@@ -127,8 +128,8 @@ type DeviceSwitch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceSwitch) String() string {
 	return fmt.Sprintf(
-		"DeviceSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AggregateRoutes=%v, AggregateRoutes6=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpSnooping=%v, DhcpdConfig=%v, DisableAutoConfig=%v, DnsServers=%v, DnsSuffix=%v, EvpnConfig=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LocalPortConfig=%v, Mac=%v, Managed=%v, MapId=%v, MistNac=%v, Model=%v, ModifiedTime=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, OspfAreas=%v, OspfConfig=%v, OtherIpConfigs=%v, PortConfig=%v, PortConfigOverwrite=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, Role=%v, RouterId=%v, Serial=%v, SiteId=%v, SnmpConfig=%v, StpConfig=%v, SwitchMgmt=%v, Type=%v, UseRouterIdAsSourceIp=%v, Vars=%v, VirtualChassis=%v, VrfConfig=%v, VrfInstances=%v, VrrpConfig=%v, X=%v, Y=%v, AdditionalProperties=%v]",
-		d.AclPolicies, d.AclTags, d.AdditionalConfigCmds, d.AggregateRoutes, d.AggregateRoutes6, d.CreatedTime, d.DeviceprofileId, d.DhcpSnooping, d.DhcpdConfig, d.DisableAutoConfig, d.DnsServers, d.DnsSuffix, d.EvpnConfig, d.ExtraRoutes, d.ExtraRoutes6, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LocalPortConfig, d.Mac, d.Managed, d.MapId, d.MistNac, d.Model, d.ModifiedTime, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.OspfAreas, d.OspfConfig, d.OtherIpConfigs, d.PortConfig, d.PortConfigOverwrite, d.PortMirroring, d.PortUsages, d.RadiusConfig, d.RemoteSyslog, d.Role, d.RouterId, d.Serial, d.SiteId, d.SnmpConfig, d.StpConfig, d.SwitchMgmt, d.Type, d.UseRouterIdAsSourceIp, d.Vars, d.VirtualChassis, d.VrfConfig, d.VrfInstances, d.VrrpConfig, d.X, d.Y, d.AdditionalProperties)
+		"DeviceSwitch[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AggregateRoutes=%v, AggregateRoutes6=%v, BgpConfig=%v, CreatedTime=%v, DeviceprofileId=%v, DhcpSnooping=%v, DhcpdConfig=%v, DisableAutoConfig=%v, DnsServers=%v, DnsSuffix=%v, EvpnConfig=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Id=%v, Image1Url=%v, Image2Url=%v, Image3Url=%v, IotConfig=%v, IpConfig=%v, LocalPortConfig=%v, Mac=%v, Managed=%v, MapId=%v, MistNac=%v, Model=%v, ModifiedTime=%v, Name=%v, Networks=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, OspfAreas=%v, OspfConfig=%v, OtherIpConfigs=%v, PortConfig=%v, PortConfigOverwrite=%v, PortMirroring=%v, PortUsages=%v, RadiusConfig=%v, RemoteSyslog=%v, Role=%v, RouterId=%v, Serial=%v, SiteId=%v, SnmpConfig=%v, StpConfig=%v, SwitchMgmt=%v, Type=%v, UseRouterIdAsSourceIp=%v, Vars=%v, VirtualChassis=%v, VrfConfig=%v, VrfInstances=%v, VrrpConfig=%v, X=%v, Y=%v, AdditionalProperties=%v]",
+		d.AclPolicies, d.AclTags, d.AdditionalConfigCmds, d.AggregateRoutes, d.AggregateRoutes6, d.BgpConfig, d.CreatedTime, d.DeviceprofileId, d.DhcpSnooping, d.DhcpdConfig, d.DisableAutoConfig, d.DnsServers, d.DnsSuffix, d.EvpnConfig, d.ExtraRoutes, d.ExtraRoutes6, d.Id, d.Image1Url, d.Image2Url, d.Image3Url, d.IotConfig, d.IpConfig, d.LocalPortConfig, d.Mac, d.Managed, d.MapId, d.MistNac, d.Model, d.ModifiedTime, d.Name, d.Networks, d.Notes, d.NtpServers, d.OobIpConfig, d.OrgId, d.OspfAreas, d.OspfConfig, d.OtherIpConfigs, d.PortConfig, d.PortConfigOverwrite, d.PortMirroring, d.PortUsages, d.RadiusConfig, d.RemoteSyslog, d.Role, d.RouterId, d.Serial, d.SiteId, d.SnmpConfig, d.StpConfig, d.SwitchMgmt, d.Type, d.UseRouterIdAsSourceIp, d.Vars, d.VirtualChassis, d.VrfConfig, d.VrfInstances, d.VrrpConfig, d.X, d.Y, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceSwitch.
@@ -137,7 +138,7 @@ func (d DeviceSwitch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "bgp_config", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -161,6 +162,9 @@ func (d DeviceSwitch) toMap() map[string]any {
 	}
 	if d.AggregateRoutes6 != nil {
 		structMap["aggregate_routes6"] = d.AggregateRoutes6
+	}
+	if d.BgpConfig != nil {
+		structMap["bgp_config"] = d.BgpConfig
 	}
 	if d.CreatedTime != nil {
 		structMap["created_time"] = d.CreatedTime
@@ -349,7 +353,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "aggregate_routes", "aggregate_routes6", "bgp_config", "created_time", "deviceprofile_id", "dhcp_snooping", "dhcpd_config", "disable_auto_config", "dns_servers", "dns_suffix", "evpn_config", "extra_routes", "extra_routes6", "id", "image1_url", "image2_url", "image3_url", "iot_config", "ip_config", "local_port_config", "mac", "managed", "map_id", "mist_nac", "model", "modified_time", "name", "networks", "notes", "ntp_servers", "oob_ip_config", "org_id", "ospf_areas", "ospf_config", "other_ip_configs", "port_config", "port_config_overwrite", "port_mirroring", "port_usages", "radius_config", "remote_syslog", "role", "router_id", "serial", "site_id", "snmp_config", "stp_config", "switch_mgmt", "type", "use_router_id_as_source_ip", "vars", "virtual_chassis", "vrf_config", "vrf_instances", "vrrp_config", "x", "y")
 	if err != nil {
 		return err
 	}
@@ -360,6 +364,7 @@ func (d *DeviceSwitch) UnmarshalJSON(input []byte) error {
 	d.AdditionalConfigCmds = temp.AdditionalConfigCmds
 	d.AggregateRoutes = temp.AggregateRoutes
 	d.AggregateRoutes6 = temp.AggregateRoutes6
+	d.BgpConfig = temp.BgpConfig
 	d.CreatedTime = temp.CreatedTime
 	d.DeviceprofileId = temp.DeviceprofileId
 	d.DhcpSnooping = temp.DhcpSnooping
@@ -424,6 +429,7 @@ type tempDeviceSwitch struct {
 	AdditionalConfigCmds  []string                               `json:"additional_config_cmds,omitempty"`
 	AggregateRoutes       map[string]AggregateRoute              `json:"aggregate_routes,omitempty"`
 	AggregateRoutes6      map[string]AggregateRoute              `json:"aggregate_routes6,omitempty"`
+	BgpConfig             map[string]SwitchBgpConfig             `json:"bgp_config,omitempty"`
 	CreatedTime           *float64                               `json:"created_time,omitempty"`
 	DeviceprofileId       *uuid.UUID                             `json:"deviceprofile_id,omitempty"`
 	DhcpSnooping          *DhcpSnooping                          `json:"dhcp_snooping,omitempty"`
