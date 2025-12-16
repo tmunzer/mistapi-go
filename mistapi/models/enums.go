@@ -5404,10 +5404,3 @@ const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
 )
-
-// SwitchBgpConfigHoldTimeEnum is a int enum.
-type SwitchBgpConfigHoldTimeEnum int
-
-const (
-	SwitchBgpConfigHoldTimeEnum_ENUM0 SwitchBgpConfigHoldTimeEnum = 0
-)

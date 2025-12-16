@@ -144,12 +144,12 @@ Network Template
       ],
       "bfd_minimum_interval": 212,
       "local_as": "String7",
-      "hold_time": 0,
+      "hold_time": 164,
       "auth_key": "auth_key8",
       "neighbors": {
         "key0": {
           "neighbor_as": "String3",
-          "hold_time": 0,
+          "hold_time": 236,
           "export_policy": "export_policy0",
           "import_policy": "import_policy4",
           "multihop_ttl": 118
@@ -165,12 +165,12 @@ Network Template
       ],
       "bfd_minimum_interval": 212,
       "local_as": "String7",
-      "hold_time": 0,
+      "hold_time": 164,
       "auth_key": "auth_key8",
       "neighbors": {
         "key0": {
           "neighbor_as": "String3",
-          "hold_time": 0,
+          "hold_time": 236,
           "export_policy": "export_policy0",
           "import_policy": "import_policy4",
           "multihop_ttl": 118
