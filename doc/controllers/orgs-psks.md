@@ -329,7 +329,7 @@ Common2,ssid,1245678-xx,single,35,a31425f31278,0,student,1618594236,true,7,true,
 ImportOrgPsks(
     ctx context.Context,
     orgId uuid.UUID,
-    file *string) (
+    file *models.FileWrapper) (
     models.ApiResponse[[]models.Psk],
     error)
 ```
@@ -339,7 +339,7 @@ ImportOrgPsks(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*string` | Form, Optional | - |
+| `file` | `*models.FileWrapper` | Form, Optional | - |
 
 ## Response Type
 

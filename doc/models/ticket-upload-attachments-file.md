@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*string` | Optional | Ekahau or ibwave file |
+| `File` | `*[]byte` | Optional | Ekahau or ibwave file |
 
 ## Example (as JSON)
 
 ```json
 {
-  "file": "file2"
+  "file": "data:text/plain;name=dummy_file;base64,"
 }
 ```
 

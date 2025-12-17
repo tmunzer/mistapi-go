@@ -32,7 +32,7 @@ AddSiteMapImage(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID,
-    file string,
+    file models.FileWrapper,
     json *string) (
     http.Response,
     error)
@@ -44,7 +44,7 @@ AddSiteMapImage(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mapId` | `uuid.UUID` | Template, Required | - |
-| `file` | `string` | Form, Required | Binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -60,7 +60,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := "file0"
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
 resp, err := sitesMaps.AddSiteMapImage(ctx, siteId, mapId, file, nil)
 if err != nil {
@@ -473,8 +473,8 @@ ImportSiteMaps(
     ctx context.Context,
     siteId uuid.UUID,
     autoDeviceprofileAssignment *bool,
-    csv *string,
-    file *string,
+    csv *models.FileWrapper,
+    file *models.FileWrapper,
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error)
@@ -486,8 +486,8 @@ ImportSiteMaps(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -794,7 +794,7 @@ ReplaceSiteMapImage(
     ctx context.Context,
     siteId uuid.UUID,
     mapId uuid.UUID,
-    file string,
+    file models.FileWrapper,
     json *models.MapSiteReplaceFileJson) (
     http.Response,
     error)
@@ -806,7 +806,7 @@ ReplaceSiteMapImage(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mapId` | `uuid.UUID` | Template, Required | - |
-| `file` | `string` | Form, Required | - |
+| `file` | `models.FileWrapper` | Form, Required | - |
 | `json` | [`*models.MapSiteReplaceFileJson`](../../doc/models/map-site-replace-file-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -822,7 +822,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := "file0"
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
 resp, err := sitesMaps.ReplaceSiteMapImage(ctx, siteId, mapId, file, nil)
 if err != nil {

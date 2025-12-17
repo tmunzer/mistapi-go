@@ -70,7 +70,7 @@ func (o *OrgsNACCRL) GetOrgNacCrl(
 func (o *OrgsNACCRL) ImportOrgNacCrl(
 	ctx context.Context,
 	orgId uuid.UUID,
-	file *string,
+	file *models.FileWrapper,
 	json *string) (
 	models.ApiResponse[models.NacCrlFile],
 	error) {
@@ -93,12 +93,16 @@ func (o *OrgsNACCRL) ImportOrgNacCrl(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	var result models.NacCrlFile
 	decoder, resp, err := req.CallAsJson()

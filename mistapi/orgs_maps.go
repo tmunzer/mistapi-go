@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/tmunzer/mistapi-go/mistapi/errors"
 	"github.com/tmunzer/mistapi-go/mistapi/models"
+	"net/http"
 )
 
 // OrgsMaps represents a controller struct.
@@ -36,8 +37,8 @@ func (o *OrgsMaps) ImportOrgMaps(
 	ctx context.Context,
 	orgId uuid.UUID,
 	autoDeviceprofileAssignment *bool,
-	csv *string,
-	file *string,
+	csv *models.FileWrapper,
+	file *models.FileWrapper,
 	json *models.MapOrgImportFileJson) (
 	models.ApiResponse[models.ResponseMapImport],
 	error) {
@@ -60,18 +61,24 @@ func (o *OrgsMaps) ImportOrgMaps(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if autoDeviceprofileAssignment != nil {
-		req.FormParam("auto_deviceprofile_assignment", *autoDeviceprofileAssignment)
+		auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
+		formFields = append(formFields, auto_deviceprofile_assignmentParam)
 	}
 	if csv != nil {
-		req.FormParam("csv", *csv)
+		csvParam := https.FormParam{Key: "csv", Value: *csv, Headers: http.Header{}}
+		formFields = append(formFields, csvParam)
 	}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	var result models.ResponseMapImport
 	decoder, resp, err := req.CallAsJson()
@@ -97,8 +104,8 @@ func (o *OrgsMaps) ImportOrgMapToSite(
 	orgId uuid.UUID,
 	siteName string,
 	autoDeviceprofileAssignment *bool,
-	csv *string,
-	file *string,
+	csv *models.FileWrapper,
+	file *models.FileWrapper,
 	json *models.MapImportJson) (
 	models.ApiResponse[models.ResponseMapImport],
 	error) {
@@ -121,18 +128,24 @@ func (o *OrgsMaps) ImportOrgMapToSite(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if autoDeviceprofileAssignment != nil {
-		req.FormParam("auto_deviceprofile_assignment", *autoDeviceprofileAssignment)
+		auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
+		formFields = append(formFields, auto_deviceprofile_assignmentParam)
 	}
 	if csv != nil {
-		req.FormParam("csv", *csv)
+		csvParam := https.FormParam{Key: "csv", Value: *csv, Headers: http.Header{}}
+		formFields = append(formFields, csvParam)
 	}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	var result models.ResponseMapImport
 	decoder, resp, err := req.CallAsJson()

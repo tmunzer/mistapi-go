@@ -863,7 +863,7 @@ UploadOrgPskPortalImage(
     ctx context.Context,
     orgId uuid.UUID,
     pskportalId uuid.UUID,
-    file *string,
+    file *models.FileWrapper,
     json *string) (
     http.Response,
     error)
@@ -875,7 +875,7 @@ UploadOrgPskPortalImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `pskportalId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*string` | Form, Optional | Binary file |
+| `file` | `*models.FileWrapper` | Form, Optional | Binary file |
 | `json` | `*string` | Form, Optional | JSON string describing the upload |
 
 ## Response Type

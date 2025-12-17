@@ -176,7 +176,7 @@ func (o *OrgsUserMACs) DeleteOrgMultipleUserMacs(
 func (o *OrgsUserMACs) ImportOrgUserMacs(
 	ctx context.Context,
 	orgId uuid.UUID,
-	file string) (
+	file models.FileWrapper) (
 	models.ApiResponse[models.UserMacImport],
 	error) {
 	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/usermacs/import")
@@ -198,7 +198,10 @@ func (o *OrgsUserMACs) ImportOrgUserMacs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	req.FormParam("file", file)
+	formFields := []https.FormParam{}
+	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+	formFields = append(formFields, fileParam)
+	req.FormData(formFields)
 
 	var result models.UserMacImport
 	decoder, resp, err := req.CallAsJson()

@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*string` | Optional | CSV file |
+| `File` | `*[]byte` | Optional | CSV file |
 
 ## Example (as JSON)
 
 ```json
 {
-  "file": "file4"
+  "file": "data:text/plain;name=dummy_file;base64,"
 }
 ```
 

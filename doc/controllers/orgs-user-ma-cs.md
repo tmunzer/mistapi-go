@@ -298,7 +298,7 @@ mac,labels,vlan,notes,name,radius_group
 ImportOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    file string) (
+    file models.FileWrapper) (
     models.ApiResponse[models.UserMacImport],
     error)
 ```
@@ -308,7 +308,7 @@ ImportOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `file` | `string` | Form, Required | File to upload |
+| `file` | `models.FileWrapper` | Form, Required | File to upload |
 
 ## Response Type
 
@@ -321,7 +321,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := "file0"
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
 apiResponse, err := orgsUserMACs.ImportOrgUserMacs(ctx, orgId, file)
 if err != nil {

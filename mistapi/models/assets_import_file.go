@@ -10,7 +10,7 @@ import (
 // AssetsImportFile represents a AssetsImportFile struct.
 type AssetsImportFile struct {
 	// CSV file
-	File                 *string                `json:"file,omitempty"`
+	File                 *[]byte                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -64,5 +64,5 @@ func (a *AssetsImportFile) UnmarshalJSON(input []byte) error {
 
 // tempAssetsImportFile is a temporary struct used for validating the fields of AssetsImportFile.
 type tempAssetsImportFile struct {
-	File *string `json:"file,omitempty"`
+	File *[]byte `json:"file,omitempty"`
 }

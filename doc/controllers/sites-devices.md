@@ -38,7 +38,7 @@ AddSiteDeviceImage(
     siteId uuid.UUID,
     deviceId uuid.UUID,
     imageNumber int,
-    file string,
+    file models.FileWrapper,
     json *string) (
     http.Response,
     error)
@@ -51,7 +51,7 @@ AddSiteDeviceImage(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
 | `imageNumber` | `int` | Template, Required | - |
-| `file` | `string` | Form, Required | Binary file |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
 | `json` | `*string` | Form, Optional | - |
 
 ## Response Type
@@ -69,7 +69,7 @@ deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 imageNumber := 110
 
-file := "file0"
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
 resp, err := sitesDevices.AddSiteDeviceImage(ctx, siteId, deviceId, imageNumber, file, nil)
 if err != nil {
@@ -518,7 +518,7 @@ To download the exported device information
 ExportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID) (
-    models.ApiResponse[string],
+    models.ApiResponse[[]byte],
     error)
 ```
 
@@ -530,7 +530,7 @@ ExportSiteDevices(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type string.
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -831,7 +831,7 @@ mac,name,map_id,x,y,height,orientation,labels,band_24.power,band_24.bandwidth,ba
 ImportSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    file string) (
+    file models.FileWrapper) (
     models.ApiResponse[[]models.ConfigDevice],
     error)
 ```
@@ -841,7 +841,7 @@ ImportSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `file` | `string` | Form, Required | File to upload |
+| `file` | `models.FileWrapper` | Form, Required | File to upload |
 
 ## Response Type
 
@@ -854,7 +854,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-file := "file0"
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
 apiResponse, err := sitesDevices.ImportSiteDevices(ctx, siteId, file)
 if err != nil {
