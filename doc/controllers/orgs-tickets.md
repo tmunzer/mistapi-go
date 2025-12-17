@@ -30,7 +30,7 @@ AddOrgTicketComment(
     orgId uuid.UUID,
     ticketId uuid.UUID,
     comment *string,
-    file *string) (
+    file *models.FileWrapper) (
     models.ApiResponse[models.Ticket],
     error)
 ```
@@ -42,7 +42,7 @@ AddOrgTicketComment(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
 | `comment` | `*string` | Form, Optional | - |
-| `file` | `*string` | Form, Optional | - |
+| `file` | `*models.FileWrapper` | Form, Optional | - |
 
 ## Response Type
 
@@ -620,7 +620,7 @@ UploadOrgTicketAttachment(
     ctx context.Context,
     orgId uuid.UUID,
     ticketId uuid.UUID,
-    file *string) (
+    file *models.FileWrapper) (
     http.Response,
     error)
 ```
@@ -631,7 +631,7 @@ UploadOrgTicketAttachment(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ticketId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 
 ## Response Type
 

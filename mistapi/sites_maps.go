@@ -131,8 +131,8 @@ func (s *SitesMaps) ImportSiteMaps(
 	ctx context.Context,
 	siteId uuid.UUID,
 	autoDeviceprofileAssignment *bool,
-	csv *string,
-	file *string,
+	csv *models.FileWrapper,
+	file *models.FileWrapper,
 	json *models.MapImportJson) (
 	models.ApiResponse[models.ResponseMapImport],
 	error) {
@@ -155,18 +155,24 @@ func (s *SitesMaps) ImportSiteMaps(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if autoDeviceprofileAssignment != nil {
-		req.FormParam("auto_deviceprofile_assignment", *autoDeviceprofileAssignment)
+		auto_deviceprofile_assignmentParam := https.FormParam{Key: "auto_deviceprofile_assignment", Value: *autoDeviceprofileAssignment, Headers: http.Header{}}
+		formFields = append(formFields, auto_deviceprofile_assignmentParam)
 	}
 	if csv != nil {
-		req.FormParam("csv", *csv)
+		csvParam := https.FormParam{Key: "csv", Value: *csv, Headers: http.Header{}}
+		formFields = append(formFields, csvParam)
 	}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	var result models.ResponseMapImport
 	decoder, resp, err := req.CallAsJson()
@@ -345,7 +351,7 @@ func (s *SitesMaps) AddSiteMapImage(
 	ctx context.Context,
 	siteId uuid.UUID,
 	mapId uuid.UUID,
-	file string,
+	file models.FileWrapper,
 	json *string) (
 	*http.Response,
 	error) {
@@ -368,10 +374,14 @@ func (s *SitesMaps) AddSiteMapImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	req.FormParam("file", file)
+	formFields := []https.FormParam{}
+	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+	formFields = append(formFields, fileParam)
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -389,7 +399,7 @@ func (s *SitesMaps) ReplaceSiteMapImage(
 	ctx context.Context,
 	siteId uuid.UUID,
 	mapId uuid.UUID,
-	file string,
+	file models.FileWrapper,
 	json *models.MapSiteReplaceFileJson) (
 	*http.Response,
 	error) {
@@ -412,10 +422,14 @@ func (s *SitesMaps) ReplaceSiteMapImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	req.FormParam("file", file)
+	formFields := []https.FormParam{}
+	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+	formFields = append(formFields, fileParam)
 	if json != nil {
-		req.FormParam("json", *json)
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {

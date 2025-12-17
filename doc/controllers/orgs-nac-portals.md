@@ -247,7 +247,7 @@ DownloadOrgNacPortalSamlMetadata(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID) (
-    models.ApiResponse[string],
+    models.ApiResponse[[]byte],
     error)
 ```
 
@@ -260,7 +260,7 @@ DownloadOrgNacPortalSamlMetadata(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type string.
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 
@@ -778,7 +778,7 @@ UploadOrgNacPortalImage(
     ctx context.Context,
     orgId uuid.UUID,
     nacportalId uuid.UUID,
-    file *string,
+    file *models.FileWrapper,
     json *string) (
     http.Response,
     error)
@@ -790,7 +790,7 @@ UploadOrgNacPortalImage(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `nacportalId` | `uuid.UUID` | Template, Required | - |
-| `file` | `*string` | Form, Optional | Binary file |
+| `file` | `*models.FileWrapper` | Form, Optional | Binary file |
 | `json` | `*string` | Form, Optional | JSON string describing the upload |
 
 ## Response Type

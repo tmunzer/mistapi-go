@@ -9,13 +9,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `string` | Required | File to upload |
+| `File` | `[]byte` | Required | File to upload |
 
 ## Example (as JSON)
 
 ```json
 {
-  "file": "file6"
+  "file": "data:text/plain;name=dummy_file;base64,"
 }
 ```
 

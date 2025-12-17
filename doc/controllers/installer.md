@@ -65,8 +65,8 @@ AddInstallerDeviceImage(
     imageName string,
     deviceMac string,
     autoDeviceprofileAssignment *bool,
-    csv *string,
-    file *string,
+    csv *models.FileWrapper,
+    file *models.FileWrapper,
     json *models.MapImportJson) (
     http.Response,
     error)
@@ -80,8 +80,8 @@ AddInstallerDeviceImage(
 | `imageName` | `string` | Template, Required | - |
 | `deviceMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -1127,8 +1127,8 @@ ImportInstallerMap(
     orgId uuid.UUID,
     siteName string,
     autoDeviceprofileAssignment *bool,
-    csv *string,
-    file *string,
+    csv *models.FileWrapper,
+    file *models.FileWrapper,
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error)
@@ -1141,8 +1141,8 @@ ImportInstallerMap(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteName` | `string` | Template, Required | - |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type

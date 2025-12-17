@@ -12,9 +12,9 @@ type MapOrgImportFile struct {
 	// Whether to auto assign device to deviceprofile by name
 	AutoDeviceprofileAssignment *bool `json:"auto_deviceprofile_assignment,omitempty"`
 	// CSV file for ap name mapping, optional
-	Csv *string `json:"csv,omitempty"`
+	Csv *[]byte `json:"csv,omitempty"`
 	// Ekahau or ibwave file
-	File                 *string                `json:"file,omitempty"`
+	File                 *[]byte                `json:"file,omitempty"`
 	Json                 *MapOrgImportFileJson  `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -82,7 +82,7 @@ func (m *MapOrgImportFile) UnmarshalJSON(input []byte) error {
 // tempMapOrgImportFile is a temporary struct used for validating the fields of MapOrgImportFile.
 type tempMapOrgImportFile struct {
 	AutoDeviceprofileAssignment *bool                 `json:"auto_deviceprofile_assignment,omitempty"`
-	Csv                         *string               `json:"csv,omitempty"`
-	File                        *string               `json:"file,omitempty"`
+	Csv                         *[]byte               `json:"csv,omitempty"`
+	File                        *[]byte               `json:"file,omitempty"`
 	Json                        *MapOrgImportFileJson `json:"json,omitempty"`
 }

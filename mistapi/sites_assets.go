@@ -129,7 +129,7 @@ func (s *SitesAssets) ImportSiteAssets(
 	ctx context.Context,
 	siteId uuid.UUID,
 	upsert *models.ImportSiteAssetsUpsertEnum,
-	file *string) (
+	file *models.FileWrapper) (
 	*http.Response,
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/assets/import")
@@ -154,9 +154,12 @@ func (s *SitesAssets) ImportSiteAssets(
 	if upsert != nil {
 		req.QueryParam("upsert", *upsert)
 	}
+	formFields := []https.FormParam{}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
+	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {

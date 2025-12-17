@@ -271,7 +271,7 @@ func (o *OrgsTickets) UploadOrgTicketAttachment(
 	ctx context.Context,
 	orgId uuid.UUID,
 	ticketId uuid.UUID,
-	file *string) (
+	file *models.FileWrapper) (
 	*http.Response,
 	error) {
 	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/tickets/%v/attachments")
@@ -293,9 +293,12 @@ func (o *OrgsTickets) UploadOrgTicketAttachment(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
+	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {
@@ -366,7 +369,7 @@ func (o *OrgsTickets) AddOrgTicketComment(
 	orgId uuid.UUID,
 	ticketId uuid.UUID,
 	comment *string,
-	file *string) (
+	file *models.FileWrapper) (
 	models.ApiResponse[models.Ticket],
 	error) {
 	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/tickets/%v/comments")
@@ -388,12 +391,16 @@ func (o *OrgsTickets) AddOrgTicketComment(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if comment != nil {
-		req.FormParam("comment", *comment)
+		commentParam := https.FormParam{Key: "comment", Value: *comment, Headers: http.Header{}}
+		formFields = append(formFields, commentParam)
 	}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
+	req.FormData(formFields)
 
 	var result models.Ticket
 	decoder, resp, err := req.CallAsJson()

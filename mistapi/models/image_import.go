@@ -12,7 +12,7 @@ import (
 // ImageImport represents a ImageImport struct.
 type ImageImport struct {
 	// Binary file
-	File                 string                 `json:"file"`
+	File                 []byte                 `json:"file"`
 	Json                 *string                `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -73,7 +73,7 @@ func (i *ImageImport) UnmarshalJSON(input []byte) error {
 
 // tempImageImport is a temporary struct used for validating the fields of ImageImport.
 type tempImageImport struct {
-	File *string `json:"file"`
+	File *[]byte `json:"file"`
 	Json *string `json:"json,omitempty"`
 }
 

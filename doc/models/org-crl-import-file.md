@@ -9,14 +9,14 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*string` | Optional | a PEM or DER formatted CRL file |
+| `File` | `*[]byte` | Optional | a PEM or DER formatted CRL file |
 | `Json` | `*string` | Optional | a JSON string with "name" field for CRL file issuer (optional) |
 
 ## Example (as JSON)
 
 ```json
 {
-  "file": "file4",
+  "file": "data:text/plain;name=dummy_file;base64,",
   "json": "json2"
 }
 ```

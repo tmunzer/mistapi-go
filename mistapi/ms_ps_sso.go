@@ -310,7 +310,7 @@ func (m *MSPsSSO) GetMspSamlMetadata(
 }
 
 // DownloadMspSamlMetadata takes context, mspId, ssoId as parameters and
-// returns an models.ApiResponse with string data and
+// returns an models.ApiResponse with []byte data and
 // an error if there was an issue with the request or response.
 // Download MSP SAML Metadata
 // Example of metadata.xml:
@@ -333,7 +333,7 @@ func (m *MSPsSSO) DownloadMspSamlMetadata(
 	ctx context.Context,
 	mspId uuid.UUID,
 	ssoId uuid.UUID) (
-	models.ApiResponse[string],
+	models.ApiResponse[[]byte],
 	error) {
 	req := m.prepareRequest(ctx, "GET", "/api/v1/msps/%v/ssos/%v/metadata.xml")
 	req.AppendTemplateParams(mspId, ssoId)
@@ -355,11 +355,9 @@ func (m *MSPsSSO) DownloadMspSamlMetadata(
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
 
-	str, resp, err := req.CallAsText()
-	var result string = str
-
+	stream, resp, err := req.CallAsStream()
 	if err != nil {
-		return models.NewApiResponse(result, resp), err
+		return models.NewApiResponse(stream, resp), err
 	}
-	return models.NewApiResponse(result, resp), err
+	return models.NewApiResponse(stream, resp), err
 }

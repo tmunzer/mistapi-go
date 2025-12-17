@@ -235,7 +235,7 @@ GetSdkInviteQrCode(
     ctx context.Context,
     orgId uuid.UUID,
     sdkinviteId uuid.UUID) (
-    models.ApiResponse[string],
+    models.ApiResponse[[]byte],
     error)
 ```
 
@@ -248,7 +248,7 @@ GetSdkInviteQrCode(
 
 ## Response Type
 
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type string.
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []byte.
 
 ## Example Usage
 

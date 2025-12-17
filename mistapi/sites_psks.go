@@ -186,7 +186,7 @@ func (s *SitesPsks) UpdateSiteMultiplePsks(
 func (s *SitesPsks) ImportSitePsks(
 	ctx context.Context,
 	siteId uuid.UUID,
-	file *string) (
+	file *models.FileWrapper) (
 	models.ApiResponse[[]models.Psk],
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/psks/import")
@@ -208,9 +208,12 @@ func (s *SitesPsks) ImportSitePsks(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	formFields := []https.FormParam{}
 	if file != nil {
-		req.FormParam("file", *file)
+		fileParam := https.FormParam{Key: "file", Value: *file, Headers: http.Header{}}
+		formFields = append(formFields, fileParam)
 	}
+	req.FormData(formFields)
 
 	var result []models.Psk
 	decoder, resp, err := req.CallAsJson()

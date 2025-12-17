@@ -10,7 +10,7 @@ import (
 // TicketCommentImportFile represents a TicketCommentImportFile struct.
 type TicketCommentImportFile struct {
 	Comment              *string                `json:"comment,omitempty"`
-	File                 *string                `json:"file,omitempty"`
+	File                 *[]byte                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -69,5 +69,5 @@ func (t *TicketCommentImportFile) UnmarshalJSON(input []byte) error {
 // tempTicketCommentImportFile is a temporary struct used for validating the fields of TicketCommentImportFile.
 type tempTicketCommentImportFile struct {
 	Comment *string `json:"comment,omitempty"`
-	File    *string `json:"file,omitempty"`
+	File    *[]byte `json:"file,omitempty"`
 }

@@ -31,8 +31,8 @@ ImportOrgMapToSite(
     orgId uuid.UUID,
     siteName string,
     autoDeviceprofileAssignment *bool,
-    csv *string,
-    file *string,
+    csv *models.FileWrapper,
+    file *models.FileWrapper,
     json *models.MapImportJson) (
     models.ApiResponse[models.ResponseMapImport],
     error)
@@ -45,8 +45,8 @@ ImportOrgMapToSite(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteName` | `string` | Template, Required | - |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapImportJson`](../../doc/models/map-import-json.md) | Form, Optional | - |
 
 ## Response Type
@@ -139,8 +139,8 @@ ImportOrgMaps(
     ctx context.Context,
     orgId uuid.UUID,
     autoDeviceprofileAssignment *bool,
-    csv *string,
-    file *string,
+    csv *models.FileWrapper,
+    file *models.FileWrapper,
     json *models.MapOrgImportFileJson) (
     models.ApiResponse[models.ResponseMapImport],
     error)
@@ -152,8 +152,8 @@ ImportOrgMaps(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `autoDeviceprofileAssignment` | `*bool` | Form, Optional | Whether to auto assign device to deviceprofile by name |
-| `csv` | `*string` | Form, Optional | CSV file for ap name mapping, optional |
-| `file` | `*string` | Form, Optional | Ekahau or ibwave file |
+| `csv` | `*models.FileWrapper` | Form, Optional | CSV file for ap name mapping, optional |
+| `file` | `*models.FileWrapper` | Form, Optional | Ekahau or ibwave file |
 | `json` | [`*models.MapOrgImportFileJson`](../../doc/models/map-org-import-file-json.md) | Form, Optional | - |
 
 ## Response Type
