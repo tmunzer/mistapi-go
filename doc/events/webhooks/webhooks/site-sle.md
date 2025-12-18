@@ -33,7 +33,7 @@ This event's request payload is of type [*models.WebhookSiteSle](../../../../doc
       "timestamp": 1694620800.0
     }
   ],
-  "topic": "site_sle"
+  "topic": "site-sle"
 }
 ```
 

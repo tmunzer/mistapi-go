@@ -1,6 +1,8 @@
 
 # Webhook Location Client Topic Enum
 
+enum: `location-client`
+
 ## Enumeration
 
 `WebhookLocationClientTopicEnum`

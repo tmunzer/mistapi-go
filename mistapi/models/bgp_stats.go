@@ -14,13 +14,13 @@ type BgpStats struct {
 	EvpnOverlay *bool `json:"evpn_overlay,omitempty"`
 	// If this is created for overlay
 	ForOverlay *bool `json:"for_overlay,omitempty"`
-	// BGP AS, value in range 1-4294967294
+	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
 	LocalAs *BgpAs `json:"local_as,omitempty"`
 	// Router mac address
 	Mac      *string `json:"mac,omitempty"`
 	Model    *string `json:"model,omitempty"`
 	Neighbor *string `json:"neighbor,omitempty"`
-	// BGP AS, value in range 1-4294967294
+	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
 	NeighborAs *BgpAs `json:"neighbor_as,omitempty"`
 	// If it's another device in the same org
 	NeighborMac *string `json:"neighbor_mac,omitempty"`

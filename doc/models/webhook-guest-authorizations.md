@@ -12,7 +12,7 @@ Sample of the `guest-authorizations` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookGuestAuthorizationsEvent`](../../doc/models/webhook-guest-authorizations-event.md) | Optional | List of events |
-| `Topic` | [`*models.WebhookGuestAuthorizationsTopicEnum`](../../doc/models/webhook-guest-authorizations-topic-enum.md) | Optional | - |
+| `Topic` | [`*models.WebhookGuestAuthorizationsTopicEnum`](../../doc/models/webhook-guest-authorizations-topic-enum.md) | Optional | enum: `guest-authorizations` |
 
 ## Example (as JSON)
 

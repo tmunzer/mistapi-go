@@ -1,11 +1,11 @@
 
-# Routing Policy Term Action
+# Gw Routing Policy Term Action
 
 When used as import policy
 
 ## Structure
 
-`RoutingPolicyTermAction`
+`GwRoutingPolicyTermAction`
 
 ## Fields
 
@@ -18,8 +18,8 @@ When used as import policy
 | `ExcludeAsPath` | `[]string` | Optional | When used as export policy, optional. To exclude certain AS |
 | `ExcludeCommunity` | `[]string` | Optional | - |
 | `ExportCommunities` | `[]string` | Optional | When used as export policy, optional |
-| `LocalPreference` | `*string` | Optional | Optional, for an import policy, local_preference can be changed |
-| `PrependAsPath` | `[]string` | Optional | When used as export policy, optional. By default, the local AS will be prepended, to change it |
+| `LocalPreference` | [`*models.RoutingPolicyLocalPreference`](../../doc/models/containers/routing-policy-local-preference.md) | Optional | Optional, for an import policy, local_preference can be changed, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}`) |
+| `PrependAsPath` | `[]string` | Optional | When used as export policy, optional. By default, the local AS will be prepended, to change it. Can be a Variable (e.g. `{{as_path}}`) |
 
 ## Example (as JSON)
 
@@ -27,21 +27,19 @@ When used as import policy
 {
   "accept": false,
   "add_community": [
-    "add_community5",
-    "add_community6",
-    "add_community7"
+    "add_community3"
   ],
   "add_target_vrfs": [
-    "add_target_vrfs9"
+    "add_target_vrfs9",
+    "add_target_vrfs8",
+    "add_target_vrfs7"
   ],
   "community": [
-    "community0",
-    "community9",
-    "community8"
+    "community2",
+    "community3",
+    "community4"
   ],
   "exclude_as_path": [
-    "exclude_as_path0",
-    "exclude_as_path9",
     "exclude_as_path8"
   ]
 }

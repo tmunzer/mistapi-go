@@ -1,6 +1,8 @@
 
 # Webhook Location Centrak Topic Enum
 
+enum: `location-centrak`
+
 ## Enumeration
 
 `WebhookLocationCentrakTopicEnum`

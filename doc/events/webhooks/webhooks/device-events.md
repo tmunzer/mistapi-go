@@ -41,7 +41,7 @@ This event's request payload is of type [*models.WebhookDeviceEvents](../../../.
       "bandwidth": 64
     }
   ],
-  "topic": "device_events"
+  "topic": "device-events"
 }
 ```
 

@@ -33,7 +33,7 @@ This event's request payload is of type [*models.WebhookLocationSdk](../../../..
       "y": 3.2
     }
   ],
-  "topic": "location_sdk"
+  "topic": "location-sdk"
 }
 ```
 

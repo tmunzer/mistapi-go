@@ -28,11 +28,11 @@ This event's request payload is of type [*models.WebhookZone](../../../../doc/mo
       "name": "string",
       "site_id": "72771e6a-6f5e-4de4-a5b9-1266c4197811",
       "timestamp": 0.0,
-      "type": "string",
-      "asset_id": "00001e56-0000-0000-0000-000000000000",
-      "mac": "mac4",
       "trigger": "enter",
-      "zone_id": "00000f60-0000-0000-0000-000000000000"
+      "type": "wifi",
+      "zone_id": "d38f8e76-40db-4144-8cbb-1266c4197811",
+      "asset_id": "00001e56-0000-0000-0000-000000000000",
+      "mac": "mac4"
     }
   ],
   "topic": "zone"

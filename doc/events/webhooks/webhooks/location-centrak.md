@@ -15,7 +15,7 @@ This event's request contains the following headers.
 
 ## Payload Type
 
-This event's request payload is of type [*interface{}].
+This event's request payload is of type [*models.WebhookLocationCentrak](../../../../doc/models/webhook-location-centrak.md).
 
 ## Payload Example
 
@@ -36,10 +36,12 @@ This event's request payload is of type [*interface{}].
         }
       ],
       "x": 13.5,
-      "y": 3.2
+      "y": 3.2,
+      "mfg_company_id": 234,
+      "mfg_data": "mfg_data2"
     }
   ],
-  "topic": "location_centrak"
+  "topic": "location-centrak"
 }
 ```
 

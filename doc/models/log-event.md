@@ -13,6 +13,7 @@
 | `AdminName` | `models.Optional[string]` | Optional | Name of the admin that performs the action |
 | `After` | `*interface{}` | Optional | field values after the change |
 | `Before` | `*interface{}` | Optional | field values prior to the change |
+| `DeviceId` | `models.Optional[uuid.UUID]` | Optional | Device id |
 | `ForSite` | `*bool` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `Message` | `string` | Required | log message |
@@ -39,7 +40,7 @@
     "key1": "val1",
     "key2": "val2"
   },
-  "for_site": false
+  "device_id": "00000e6e-0000-0000-0000-000000000000"
 }
 ```
 

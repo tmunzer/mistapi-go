@@ -1,6 +1,8 @@
 
 # Webhook Discovered Raw Rssi Topic Enum
 
+enum: `discovered-raw-rssi`
+
 ## Enumeration
 
 `WebhookDiscoveredRawRssiTopicEnum`
@@ -9,5 +11,5 @@
 
 | Name |
 |  --- |
-| `asset-raw-rssi` |
+| `discovered-raw-rssi` |
 

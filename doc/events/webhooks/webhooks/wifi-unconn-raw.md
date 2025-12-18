@@ -31,16 +31,15 @@ This event's request payload is of type [*models.WebhookWifiUnconnRaw](../../../
       ],
       "client_id": "28-f0-76-2d-22-1e",
       "connected_site": false,
-      "mapid": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
-      "orgid": "9c3e516c-397d-11e6-ae35-0242ac110008",
+      "map_id": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
+      "org_id": "9c3e516c-397d-11e6-ae35-0242ac110008",
       "packets": [
         {
           "band": "5GHz",
           "rssi": -92
         }
       ],
-      "siteid": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
-      "map_id": "00001148-0000-0000-0000-000000000000"
+      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"
     },
     {
       "ap_id": "ac-23-16-ec-a7-0b",
@@ -51,16 +50,15 @@ This event's request payload is of type [*models.WebhookWifiUnconnRaw](../../../
       ],
       "client_id": "38-f9-d3-99-08-6e",
       "connected_site": false,
-      "mapid": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
-      "orgid": "9c3e516c-397d-11e6-ae35-0242ac110008",
+      "map_id": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
+      "org_id": "9c3e516c-397d-11e6-ae35-0242ac110008",
       "packets": [
         {
           "band": "5GHz",
-          "rssi": -94.333336
+          "rssi": -94
         }
       ],
-      "siteid": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
-      "map_id": "00001148-0000-0000-0000-000000000000"
+      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"
     }
   ],
   "topic": "wifi-unconn-raw"

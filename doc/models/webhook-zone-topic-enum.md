@@ -1,6 +1,8 @@
 
 # Webhook Zone Topic Enum
 
+enum: `zone`
+
 ## Enumeration
 
 `WebhookZoneTopicEnum`

@@ -53,8 +53,8 @@ type GatewayTemplate struct {
 	// Auto assigned if not set
 	RouterId *string `json:"router_id,omitempty"`
 	// Property key is the routing policy name
-	RoutingPolicies map[string]RoutingPolicy `json:"routing_policies,omitempty"`
-	ServicePolicies []ServicePolicy          `json:"service_policies,omitempty"`
+	RoutingPolicies map[string]GwRoutingPolicy `json:"routing_policies,omitempty"`
+	ServicePolicies []ServicePolicy            `json:"service_policies,omitempty"`
 	// Property key is the tunnel name
 	TunnelConfigs         map[string]TunnelConfig `json:"tunnel_configs,omitempty"`
 	TunnelProviderOptions *TunnelProviderOptions  `json:"tunnel_provider_options,omitempty"`
@@ -269,7 +269,7 @@ type tempGatewayTemplate struct {
 	PathPreferences         map[string]GatewayPathPreferences  `json:"path_preferences,omitempty"`
 	PortConfig              map[string]GatewayPortConfig       `json:"port_config,omitempty"`
 	RouterId                *string                            `json:"router_id,omitempty"`
-	RoutingPolicies         map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
+	RoutingPolicies         map[string]GwRoutingPolicy         `json:"routing_policies,omitempty"`
 	ServicePolicies         []ServicePolicy                    `json:"service_policies,omitempty"`
 	TunnelConfigs           map[string]TunnelConfig            `json:"tunnel_configs,omitempty"`
 	TunnelProviderOptions   *TunnelProviderOptions             `json:"tunnel_provider_options,omitempty"`

@@ -18,7 +18,7 @@ type BgpConfigNeighbors struct {
 	ImportPolicy *string `json:"import_policy,omitempty"`
 	// Assuming BGP neighbor is directly connected
 	MultihopTtl *int `json:"multihop_ttl,omitempty"`
-	// BGP AS, value in range 1-4294967294
+	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
 	NeighborAs           BgpAs                  `json:"neighbor_as"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

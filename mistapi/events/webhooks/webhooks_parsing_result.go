@@ -34,6 +34,7 @@ type WebhooksParsingResult struct {
 	isNacEvents           bool
 	isOccupancyAlerts     bool
 	isPing                bool
+	isRssizone            bool
 	isSdkclientScanData   bool
 	isSiteSle             bool
 	isWifiConnRaw         bool
@@ -76,7 +77,7 @@ func (w *WebhooksParsingResult) UnmarshalJSON(input []byte) error {
 		models.NewTypeHolder(&models.WebhookGuestAuthorizations{}, true, &w.isGuestAuthorizations),
 		models.NewTypeHolder(&models.WebhookLocation{}, true, &w.isLocation),
 		models.NewTypeHolder(&models.WebhookLocationAsset{}, true, &w.isLocationAsset),
-		models.NewTypeHolder(new(interface{}), true, &w.isLocationCentrak),
+		models.NewTypeHolder(&models.WebhookLocationCentrak{}, true, &w.isLocationCentrak),
 		models.NewTypeHolder(&models.WebhookLocationClient{}, true, &w.isLocationClient),
 		models.NewTypeHolder(&models.WebhookLocationSdk{}, true, &w.isLocationSdk),
 		models.NewTypeHolder(&models.WebhookLocationUnclient{}, true, &w.isLocationUnclient),
@@ -85,6 +86,7 @@ func (w *WebhooksParsingResult) UnmarshalJSON(input []byte) error {
 		models.NewTypeHolder(&models.WebhookNacEvents{}, true, &w.isNacEvents),
 		models.NewTypeHolder(&models.WebhookOccupancyAlerts{}, true, &w.isOccupancyAlerts),
 		models.NewTypeHolder(&models.WebhookPing{}, true, &w.isPing),
+		models.NewTypeHolder(&models.WebhookRssizone{}, true, &w.isRssizone),
 		models.NewTypeHolder(&models.WebhookSdkclientScanData{}, true, &w.isSdkclientScanData),
 		models.NewTypeHolder(&models.WebhookSiteSle{}, true, &w.isSiteSle),
 		models.NewTypeHolder(&models.WebhookWifiConnRaw{}, true, &w.isWifiConnRaw),
@@ -253,7 +255,7 @@ func (w *WebhooksParsingResult) AsLocationAsset() (
 }
 
 func (w *WebhooksParsingResult) AsLocationCentrak() (
-	*interface{},
+	*models.WebhookLocationCentrak,
 	bool) {
 	if !w.isLocationCentrak {
 		return nil, false
@@ -261,7 +263,7 @@ func (w *WebhooksParsingResult) AsLocationCentrak() (
 	if w.value == nil {
 		return nil, true
 	}
-	return w.value.(*interface{}), true
+	return w.value.(*models.WebhookLocationCentrak), true
 }
 
 func (w *WebhooksParsingResult) AsLocationClient() (
@@ -358,6 +360,18 @@ func (w *WebhooksParsingResult) AsPing() (
 		return nil, true
 	}
 	return w.value.(*models.WebhookPing), true
+}
+
+func (w *WebhooksParsingResult) AsRssizone() (
+	*models.WebhookRssizone,
+	bool) {
+	if !w.isRssizone {
+		return nil, false
+	}
+	if w.value == nil {
+		return nil, true
+	}
+	return w.value.(*models.WebhookRssizone), true
 }
 
 func (w *WebhooksParsingResult) AsSdkclientScanData() (
@@ -494,8 +508,8 @@ func (w *internalWebhooksParsingResult) FromLocationAsset(val *models.WebhookLoc
 	return WebhooksParsingResult{value: &val}
 }
 
-// The internalWebhooksParsingResult instance, wrapping the provided interface{} value.
-func (w *internalWebhooksParsingResult) FromLocationCentrak(val *interface{}) WebhooksParsingResult {
+// The internalWebhooksParsingResult instance, wrapping the provided models.WebhookLocationCentrak value.
+func (w *internalWebhooksParsingResult) FromLocationCentrak(val *models.WebhookLocationCentrak) WebhooksParsingResult {
 	return WebhooksParsingResult{value: &val}
 }
 
@@ -536,6 +550,11 @@ func (w *internalWebhooksParsingResult) FromOccupancyAlerts(val *models.WebhookO
 
 // The internalWebhooksParsingResult instance, wrapping the provided models.WebhookPing value.
 func (w *internalWebhooksParsingResult) FromPing(val *models.WebhookPing) WebhooksParsingResult {
+	return WebhooksParsingResult{value: &val}
+}
+
+// The internalWebhooksParsingResult instance, wrapping the provided models.WebhookRssizone value.
+func (w *internalWebhooksParsingResult) FromRssizone(val *models.WebhookRssizone) WebhooksParsingResult {
 	return WebhooksParsingResult{value: &val}
 }
 

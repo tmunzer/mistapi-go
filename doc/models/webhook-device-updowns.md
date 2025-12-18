@@ -12,7 +12,7 @@ Sample of the `device-updowns` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookDeviceUpdownsEvent`](../../doc/models/webhook-device-updowns-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"device-updowns"` |
+| `Topic` | `string` | Required, Constant | enum: `device-updowns`<br><br>**Value**: `"device-updowns"` |
 
 ## Example (as JSON)
 

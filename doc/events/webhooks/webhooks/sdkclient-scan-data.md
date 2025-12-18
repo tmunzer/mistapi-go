@@ -53,7 +53,7 @@ This event's request payload is of type [*models.WebhookSdkclientScanData](../..
       "site_id": "93986f10-773b-42be-9438-8d3e6d127f1a"
     }
   ],
-  "topic": "sdkclient_scan_data"
+  "topic": "sdkclient-scan-data"
 }
 ```
 

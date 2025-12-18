@@ -1220,6 +1220,18 @@ const (
 	GetOrgMxedgeUpgradeInfoChannelEnum_STABLE GetOrgMxedgeUpgradeInfoChannelEnum = "stable"
 )
 
+// GwRoutingPolicyTermMatchingProtocolEnum is a string enum.
+// enum: `aggregate`, `bgp`, `direct`, `ospf`, `static` (SRX Only)
+type GwRoutingPolicyTermMatchingProtocolEnum string
+
+const (
+	GwRoutingPolicyTermMatchingProtocolEnum_AGGREGATE GwRoutingPolicyTermMatchingProtocolEnum = "aggregate"
+	GwRoutingPolicyTermMatchingProtocolEnum_BGP       GwRoutingPolicyTermMatchingProtocolEnum = "bgp"
+	GwRoutingPolicyTermMatchingProtocolEnum_DIRECT    GwRoutingPolicyTermMatchingProtocolEnum = "direct"
+	GwRoutingPolicyTermMatchingProtocolEnum_OSPF      GwRoutingPolicyTermMatchingProtocolEnum = "ospf"
+	GwRoutingPolicyTermMatchingProtocolEnum_STATIC    GwRoutingPolicyTermMatchingProtocolEnum = "static"
+)
+
 // HaClusterNodeEnum is a string enum.
 // only for HA. enum: `node0`, `node1`
 type HaClusterNodeEnum string
@@ -4016,6 +4028,25 @@ const (
 	SuppressedAlarmScopeEnum_SITE SuppressedAlarmScopeEnum = "site"
 )
 
+// SwRoutingPolicyTermMatchingProtocolEnum is a string enum.
+// enum: `bgp`, `direct`, `evpn`, `ospf`, `static`
+type SwRoutingPolicyTermMatchingProtocolEnum string
+
+const (
+	SwRoutingPolicyTermMatchingProtocolEnum_BGP    SwRoutingPolicyTermMatchingProtocolEnum = "bgp"
+	SwRoutingPolicyTermMatchingProtocolEnum_DIRECT SwRoutingPolicyTermMatchingProtocolEnum = "direct"
+	SwRoutingPolicyTermMatchingProtocolEnum_EVPN   SwRoutingPolicyTermMatchingProtocolEnum = "evpn"
+	SwRoutingPolicyTermMatchingProtocolEnum_OSPF   SwRoutingPolicyTermMatchingProtocolEnum = "ospf"
+	SwRoutingPolicyTermMatchingProtocolEnum_STATIC SwRoutingPolicyTermMatchingProtocolEnum = "static"
+)
+
+// SwitchBgpConfigHoldTimeZeroEnum is a int enum.
+type SwitchBgpConfigHoldTimeZeroEnum int
+
+const (
+	SwitchBgpConfigHoldTimeZeroEnum_ENUM0 SwitchBgpConfigHoldTimeZeroEnum = 0
+)
+
 // SwitchBgpConfigTypeEnum is a string enum.
 // enum: `external`, `internal`
 type SwitchBgpConfigTypeEnum string
@@ -4891,6 +4922,7 @@ const (
 )
 
 // WebhookDeviceEventsTopicEnum is a string enum.
+// enum: `device-events`
 type WebhookDeviceEventsTopicEnum string
 
 const (
@@ -4898,6 +4930,7 @@ const (
 )
 
 // WebhookDeviceUpdownsTopicEnum is a string enum.
+// enum: `device-updowns`
 type WebhookDeviceUpdownsTopicEnum string
 
 const (
@@ -4905,13 +4938,15 @@ const (
 )
 
 // WebhookDiscoveredRawRssiTopicEnum is a string enum.
+// enum: `discovered-raw-rssi`
 type WebhookDiscoveredRawRssiTopicEnum string
 
 const (
-	WebhookDiscoveredRawRssiTopicEnum_ASSETRAWRSSI WebhookDiscoveredRawRssiTopicEnum = "asset-raw-rssi"
+	WebhookDiscoveredRawRssiTopicEnum_DISCOVEREDRAWRSSI WebhookDiscoveredRawRssiTopicEnum = "discovered-raw-rssi"
 )
 
 // WebhookGuestAuthorizationsTopicEnum is a string enum.
+// enum: `guest-authorizations`
 type WebhookGuestAuthorizationsTopicEnum string
 
 const (
@@ -4919,6 +4954,7 @@ const (
 )
 
 // WebhookLocationAssetTopicEnum is a string enum.
+// enum: `location-asset`
 type WebhookLocationAssetTopicEnum string
 
 const (
@@ -4933,6 +4969,7 @@ const (
 )
 
 // WebhookLocationCentrakTopicEnum is a string enum.
+// enum: `location-centrak`
 type WebhookLocationCentrakTopicEnum string
 
 const (
@@ -4940,6 +4977,7 @@ const (
 )
 
 // WebhookLocationClientTopicEnum is a string enum.
+// enum: `location-client`
 type WebhookLocationClientTopicEnum string
 
 const (
@@ -4947,6 +4985,7 @@ const (
 )
 
 // WebhookLocationSdkTopicEnum is a string enum.
+// enum: `location-sdk`
 type WebhookLocationSdkTopicEnum string
 
 const (
@@ -4954,6 +4993,7 @@ const (
 )
 
 // WebhookLocationTopicEnum is a string enum.
+// enum: `location`
 type WebhookLocationTopicEnum string
 
 const (
@@ -4961,6 +5001,7 @@ const (
 )
 
 // WebhookLocationUnclientTopicEnum is a string enum.
+// enum: `location-unclient`
 type WebhookLocationUnclientTopicEnum string
 
 const (
@@ -4968,6 +5009,7 @@ const (
 )
 
 // WebhookMxedgeEventTopicEnum is a string enum.
+// enum: `mxedge-events`
 type WebhookMxedgeEventTopicEnum string
 
 const (
@@ -4975,6 +5017,7 @@ const (
 )
 
 // WebhookNacAccountingTopicEnum is a string enum.
+// enum: `nac-accounting`
 type WebhookNacAccountingTopicEnum string
 
 const (
@@ -4982,6 +5025,7 @@ const (
 )
 
 // WebhookNacEventsTopicEnum is a string enum.
+// enum: `nac-events`
 type WebhookNacEventsTopicEnum string
 
 const (
@@ -5007,6 +5051,7 @@ const (
 )
 
 // WebhookOccupancyAlertsTopicEnum is a string enum.
+// enum: `occupeancy-alerts`
 type WebhookOccupancyAlertsTopicEnum string
 
 const (
@@ -5014,10 +5059,19 @@ const (
 )
 
 // WebhookPingTopicEnum is a string enum.
+// enum: `ping`
 type WebhookPingTopicEnum string
 
 const (
 	WebhookPingTopicEnum_PING WebhookPingTopicEnum = "ping"
+)
+
+// WebhookRssizoneTopicEnum is a string enum.
+// enum: `rssizone`
+type WebhookRssizoneTopicEnum string
+
+const (
+	WebhookRssizoneTopicEnum_RSSIZONE WebhookRssizoneTopicEnum = "rssizone"
 )
 
 // WebhookSdkclientScanDataTopicEnum is a string enum.
@@ -5083,6 +5137,7 @@ const (
 )
 
 // WebhookZoneTopicEnum is a string enum.
+// enum: `zone`
 type WebhookZoneTopicEnum string
 
 const (

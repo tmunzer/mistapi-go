@@ -1,16 +1,16 @@
 
-# Routing Policy Term
+# Gw Routing Policy Term
 
 ## Structure
 
-`RoutingPolicyTerm`
+`GwRoutingPolicyTerm`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Actions` | [`*models.RoutingPolicyTermAction`](../../doc/models/routing-policy-term-action.md) | Optional | When used as import policy |
-| `Matching` | [`*models.RoutingPolicyTermMatching`](../../doc/models/routing-policy-term-matching.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
+| `Actions` | [`*models.GwRoutingPolicyTermAction`](../../doc/models/gw-routing-policy-term-action.md) | Optional | When used as import policy |
+| `Matching` | [`*models.GwRoutingPolicyTermMatching`](../../doc/models/gw-routing-policy-term-matching.md) | Optional | zero or more criteria/filter can be specified to match the term, all criteria have to be met |
 
 ## Example (as JSON)
 
@@ -38,7 +38,7 @@
   },
   "matching": {
     "as_path": [
-      "as_path2"
+      "String3"
     ],
     "community": [
       "community4"
@@ -54,8 +54,8 @@
       "prefix7"
     ],
     "protocol": [
-      "protocol5",
-      "protocol6"
+      "aggregate",
+      "bgp"
     ]
   }
 }

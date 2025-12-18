@@ -11,11 +11,11 @@
 |  --- | --- | --- | --- |
 | `EvpnOverlay` | `*bool` | Optional | If this is created for evpn overlay |
 | `ForOverlay` | `*bool` | Optional | If this is created for overlay |
-| `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294 |
+| `LocalAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` ) |
 | `Mac` | `*string` | Optional | Router mac address |
 | `Model` | `*string` | Optional | - |
 | `Neighbor` | `*string` | Optional | - |
-| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294 |
+| `NeighborAs` | [`*models.BgpAs`](../../doc/models/containers/bgp-as.md) | Optional | BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` ) |
 | `NeighborMac` | `*string` | Optional | If it's another device in the same org |
 | `Node` | `*string` | Optional | Node0/node1 |
 | `OrgId` | `*uuid.UUID` | Optional | - |

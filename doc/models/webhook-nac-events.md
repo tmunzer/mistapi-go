@@ -12,7 +12,7 @@ Sample of the `nac-events` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.NacClientEvent`](../../doc/models/nac-client-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookNacEventsTopicEnum`](../../doc/models/webhook-nac-events-topic-enum.md) | Optional | - |
+| `Topic` | [`*models.WebhookNacEventsTopicEnum`](../../doc/models/webhook-nac-events-topic-enum.md) | Optional | enum: `nac-events` |
 
 ## Example (as JSON)
 

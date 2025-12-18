@@ -12,7 +12,7 @@ Sample of the `location-centrak` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"location-centrak"` |
+| `Topic` | `string` | Required, Constant | enum: `location-centrak`<br><br>**Value**: `"location-centrak"` |
 
 ## Example (as JSON)
 

@@ -12,7 +12,7 @@ Sample of the `occupancy-alerts` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookOccupancyAlertsEvent`](../../doc/models/webhook-occupancy-alerts-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"occupancy-alerts"` |
+| `Topic` | `string` | Required, Constant | enum: `occupeancy-alerts`<br><br>**Value**: `"occupancy-alerts"` |
 
 ## Example (as JSON)
 

@@ -29,16 +29,16 @@
     {
       "audit_id": "00000d00-0000-0000-0000-000000000000",
       "component": "component4",
+      "device_id": "00001510-0000-0000-0000-000000000000",
       "device_type": "device_type4",
-      "from_version": "from_version8",
-      "mac": "mac0"
+      "from_version": "from_version8"
     },
     {
       "audit_id": "00000d00-0000-0000-0000-000000000000",
       "component": "component4",
+      "device_id": "00001510-0000-0000-0000-000000000000",
       "device_type": "device_type4",
-      "from_version": "from_version8",
-      "mac": "mac0"
+      "from_version": "from_version8"
     }
   ]
 }

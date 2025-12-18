@@ -30,6 +30,7 @@ Events available in this group. Subscribe to receive webhook notifications when 
 | [nac_events](../../../doc/events/webhooks/webhooks/nac-events.md) |
 | [occupancy_alerts](../../../doc/events/webhooks/webhooks/occupancy-alerts.md) |
 | [ping](../../../doc/events/webhooks/webhooks/ping.md) |
+| [rssizone](../../../doc/events/webhooks/webhooks/rssizone.md) |
 | [sdkclient_scan_data](../../../doc/events/webhooks/webhooks/sdkclient-scan-data.md) |
 | [site_sle](../../../doc/events/webhooks/webhooks/site-sle.md) |
 | [wifi_conn_raw](../../../doc/events/webhooks/webhooks/wifi-conn-raw.md) |

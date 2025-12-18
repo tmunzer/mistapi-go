@@ -31,15 +31,15 @@ This event's request payload is of type [*models.WebhookWifiConnRaw](../../../..
       ],
       "client_id": "28-f0-76-2d-22-1e",
       "connected_site": false,
-      "mapid": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
-      "orgid": "9c3e516c-397d-11e6-ae35-0242ac110008",
+      "map_id": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
+      "org_id": "9c3e516c-397d-11e6-ae35-0242ac110008",
       "packets": [
         {
           "band": "5GHz",
           "rssi": -92
         }
       ],
-      "siteid": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
+      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67",
       "extended_info_list": [
         {
           "frame_ctrl": 248,
@@ -69,15 +69,15 @@ This event's request payload is of type [*models.WebhookWifiConnRaw](../../../..
           "sequence_ctrl": 8432
         }
       ],
-      "mapid": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
-      "orgid": "9c3e516c-397d-11e6-ae35-0242ac110008",
+      "map_id": "bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418",
+      "org_id": "9c3e516c-397d-11e6-ae35-0242ac110008",
       "packets": [
         {
           "band": "5GHz",
-          "rssi": -94.333336
+          "rssi": -94
         }
       ],
-      "siteid": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"
+      "site_id": "27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"
     }
   ],
   "topic": "wifi-conn-raw"

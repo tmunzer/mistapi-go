@@ -34,7 +34,7 @@ Sample of the `audits` webhook payload.
         "key1": "val1",
         "key2": "val2"
       },
-      "for_site": false
+      "device_id": "0000254a-0000-0000-0000-000000000000"
     }
   ],
   "topic": "audits"

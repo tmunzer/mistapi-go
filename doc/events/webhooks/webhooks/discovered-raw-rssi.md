@@ -48,7 +48,7 @@ This event's request payload is of type [*models.WebhookDiscoveredRawRssi](../..
       "timestamp": 0
     }
   ],
-  "topic": "string"
+  "topic": "discovered-raw-rssi"
 }
 ```
 

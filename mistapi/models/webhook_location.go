@@ -13,7 +13,8 @@ import (
 // Sample of the `location` webhook payload.
 type WebhookLocation struct {
 	// List of events
-	Events               []WebhookLocationEvent `json:"events"`
+	Events []WebhookLocationEvent `json:"events"`
+	// enum: `location`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

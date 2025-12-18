@@ -12,7 +12,7 @@ Sample of the `location_asset` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationAssetEvent`](../../doc/models/webhook-location-asset-event.md) | Required | List of events |
-| `Topic` | `string` | Required, Constant | **Value**: `"location-asset"` |
+| `Topic` | `string` | Required, Constant | enum: `location-asset`<br><br>**Value**: `"location-asset"` |
 
 ## Example (as JSON)
 

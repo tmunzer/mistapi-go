@@ -46,7 +46,7 @@ Device gateway
 | `PortConfig` | [`map[string]models.GatewayPortConfig`](../../doc/models/gateway-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `PortMirroring` | [`*models.GatewayPortMirroring`](../../doc/models/gateway-port-mirroring.md) | Optional | - |
 | `RouterId` | `*string` | Optional | Auto assigned if not set |
-| `RoutingPolicies` | [`map[string]models.RoutingPolicy`](../../doc/models/routing-policy.md) | Optional | Property key is the routing policy name |
+| `RoutingPolicies` | [`map[string]models.GwRoutingPolicy`](../../doc/models/gw-routing-policy.md) | Optional | Property key is the routing policy name |
 | `Serial` | `*string` | Optional | Device Serial |
 | `ServicePolicies` | [`[]models.ServicePolicy`](../../doc/models/service-policy.md) | Optional | - |
 | `SiteId` | `*uuid.UUID` | Optional | - |

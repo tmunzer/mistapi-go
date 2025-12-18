@@ -13,7 +13,7 @@ import (
 type SwitchPortUsage struct {
 	// Only if `mode`==`trunk`. Whether to trunk all network/vlans
 	AllNetworks *bool `json:"all_networks,omitempty"`
-	// Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; true: ports become trusted ports allowing DHCP server traffic, false: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted).
+	// Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; `true`: ports become trusted ports allowing DHCP server traffic, `false`: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted).
 	AllowDhcpd *bool `json:"allow_dhcpd,omitempty"`
 	// Only if `mode`!=`dynamic`
 	AllowMultipleSupplicants *bool `json:"allow_multiple_supplicants,omitempty"`

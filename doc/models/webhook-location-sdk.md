@@ -12,7 +12,7 @@ Sample of the `location-sdk` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationSdkEvent`](../../doc/models/webhook-location-sdk-event.md) | Required | List of events |
-| `Topic` | `string` | Required, Constant | **Value**: `"location-sdk"` |
+| `Topic` | `string` | Required, Constant | enum: `location-sdk`<br><br>**Value**: `"location-sdk"` |
 
 ## Example (as JSON)
 
