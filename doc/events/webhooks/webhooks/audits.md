@@ -39,8 +39,7 @@ This event's request payload is of type [*models.WebhookAudits](../../../../doc/
       "before": {
         "key1": "val1",
         "key2": "val2"
-      },
-      "for_site": false
+      }
     }
   ],
   "topic": "audits"

@@ -10,7 +10,8 @@ import (
 // WebhookNacAccounting represents a WebhookNacAccounting struct.
 // Sample of the `nac-accounting` webhook payload.
 type WebhookNacAccounting struct {
-	Events               []WebhookNacAccountingEvent    `json:"events,omitempty"`
+	Events []WebhookNacAccountingEvent `json:"events,omitempty"`
+	// enum: `nac-accounting`
 	Topic                *WebhookNacAccountingTopicEnum `json:"topic,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"_"`
 }

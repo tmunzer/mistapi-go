@@ -13,9 +13,10 @@ import (
 // Sample of the `location-unclient` webhook payload.
 type WebhookLocationUnclient struct {
 	// List of events
-	Events               []WebhookLocationUnclientEvent `json:"events"`
-	Topic                string                         `json:"topic"`
-	AdditionalProperties map[string]interface{}         `json:"_"`
+	Events []WebhookLocationUnclientEvent `json:"events"`
+	// enum: `location-unclient`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookLocationUnclient,

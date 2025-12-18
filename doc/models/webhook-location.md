@@ -12,7 +12,7 @@ Sample of the `location` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationEvent`](../../doc/models/webhook-location-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"location"` |
+| `Topic` | `string` | Required, Constant | enum: `location`<br><br>**Value**: `"location"` |
 
 ## Example (as JSON)
 

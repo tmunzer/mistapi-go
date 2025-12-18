@@ -11,13 +11,16 @@ import (
 // MxedgeEvent represents a MxedgeEvent struct.
 type MxedgeEvent struct {
 	// Unique ID of the object instance in the Mist Organization
-	AuditId      *uuid.UUID          `json:"audit_id,omitempty"`
-	Component    *string             `json:"component,omitempty"`
+	AuditId   *uuid.UUID       `json:"audit_id,omitempty"`
+	Component Optional[string] `json:"component"`
+	// Device id
+	DeviceId     Optional[uuid.UUID] `json:"device_id"`
 	DeviceType   *string             `json:"device_type,omitempty"`
 	FromVersion  *string             `json:"from_version,omitempty"`
 	Mac          *string             `json:"mac,omitempty"`
 	MxclusterId  *string             `json:"mxcluster_id,omitempty"`
 	MxedgeId     *string             `json:"mxedge_id,omitempty"`
+	MxedgeName   *string             `json:"mxedge_name,omitempty"`
 	OrgId        *uuid.UUID          `json:"org_id,omitempty"`
 	Package      *string             `json:"package,omitempty"`
 	Service      *string             `json:"service,omitempty"`
@@ -35,8 +38,8 @@ type MxedgeEvent struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MxedgeEvent) String() string {
 	return fmt.Sprintf(
-		"MxedgeEvent[AuditId=%v, Component=%v, DeviceType=%v, FromVersion=%v, Mac=%v, MxclusterId=%v, MxedgeId=%v, OrgId=%v, Package=%v, Service=%v, Severity=%v, SysInfoUsage=%v, Text=%v, Timestamp=%v, ToVersion=%v, Type=%v, AdditionalProperties=%v]",
-		m.AuditId, m.Component, m.DeviceType, m.FromVersion, m.Mac, m.MxclusterId, m.MxedgeId, m.OrgId, m.Package, m.Service, m.Severity, m.SysInfoUsage, m.Text, m.Timestamp, m.ToVersion, m.Type, m.AdditionalProperties)
+		"MxedgeEvent[AuditId=%v, Component=%v, DeviceId=%v, DeviceType=%v, FromVersion=%v, Mac=%v, MxclusterId=%v, MxedgeId=%v, MxedgeName=%v, OrgId=%v, Package=%v, Service=%v, Severity=%v, SysInfoUsage=%v, Text=%v, Timestamp=%v, ToVersion=%v, Type=%v, AdditionalProperties=%v]",
+		m.AuditId, m.Component, m.DeviceId, m.DeviceType, m.FromVersion, m.Mac, m.MxclusterId, m.MxedgeId, m.MxedgeName, m.OrgId, m.Package, m.Service, m.Severity, m.SysInfoUsage, m.Text, m.Timestamp, m.ToVersion, m.Type, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MxedgeEvent.
@@ -45,7 +48,7 @@ func (m MxedgeEvent) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"audit_id", "component", "device_type", "from_version", "mac", "mxcluster_id", "mxedge_id", "org_id", "package", "service", "severity", "sys_info.usage", "text", "timestamp", "to_version", "type"); err != nil {
+		"audit_id", "component", "device_id", "device_type", "from_version", "mac", "mxcluster_id", "mxedge_id", "mxedge_name", "org_id", "package", "service", "severity", "sys_info.usage", "text", "timestamp", "to_version", "type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -58,8 +61,19 @@ func (m MxedgeEvent) toMap() map[string]any {
 	if m.AuditId != nil {
 		structMap["audit_id"] = m.AuditId
 	}
-	if m.Component != nil {
-		structMap["component"] = m.Component
+	if m.Component.IsValueSet() {
+		if m.Component.Value() != nil {
+			structMap["component"] = m.Component.Value()
+		} else {
+			structMap["component"] = nil
+		}
+	}
+	if m.DeviceId.IsValueSet() {
+		if m.DeviceId.Value() != nil {
+			structMap["device_id"] = m.DeviceId.Value()
+		} else {
+			structMap["device_id"] = nil
+		}
 	}
 	if m.DeviceType != nil {
 		structMap["device_type"] = m.DeviceType
@@ -75,6 +89,9 @@ func (m MxedgeEvent) toMap() map[string]any {
 	}
 	if m.MxedgeId != nil {
 		structMap["mxedge_id"] = m.MxedgeId
+	}
+	if m.MxedgeName != nil {
+		structMap["mxedge_name"] = m.MxedgeName
 	}
 	if m.OrgId != nil {
 		structMap["org_id"] = m.OrgId
@@ -114,7 +131,7 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "audit_id", "component", "device_type", "from_version", "mac", "mxcluster_id", "mxedge_id", "org_id", "package", "service", "severity", "sys_info.usage", "text", "timestamp", "to_version", "type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "audit_id", "component", "device_id", "device_type", "from_version", "mac", "mxcluster_id", "mxedge_id", "mxedge_name", "org_id", "package", "service", "severity", "sys_info.usage", "text", "timestamp", "to_version", "type")
 	if err != nil {
 		return err
 	}
@@ -122,11 +139,13 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
 
 	m.AuditId = temp.AuditId
 	m.Component = temp.Component
+	m.DeviceId = temp.DeviceId
 	m.DeviceType = temp.DeviceType
 	m.FromVersion = temp.FromVersion
 	m.Mac = temp.Mac
 	m.MxclusterId = temp.MxclusterId
 	m.MxedgeId = temp.MxedgeId
+	m.MxedgeName = temp.MxedgeName
 	m.OrgId = temp.OrgId
 	m.Package = temp.Package
 	m.Service = temp.Service
@@ -142,12 +161,14 @@ func (m *MxedgeEvent) UnmarshalJSON(input []byte) error {
 // tempMxedgeEvent is a temporary struct used for validating the fields of MxedgeEvent.
 type tempMxedgeEvent struct {
 	AuditId      *uuid.UUID          `json:"audit_id,omitempty"`
-	Component    *string             `json:"component,omitempty"`
+	Component    Optional[string]    `json:"component"`
+	DeviceId     Optional[uuid.UUID] `json:"device_id"`
 	DeviceType   *string             `json:"device_type,omitempty"`
 	FromVersion  *string             `json:"from_version,omitempty"`
 	Mac          *string             `json:"mac,omitempty"`
 	MxclusterId  *string             `json:"mxcluster_id,omitempty"`
 	MxedgeId     *string             `json:"mxedge_id,omitempty"`
+	MxedgeName   *string             `json:"mxedge_name,omitempty"`
 	OrgId        *uuid.UUID          `json:"org_id,omitempty"`
 	Package      *string             `json:"package,omitempty"`
 	Service      *string             `json:"service,omitempty"`

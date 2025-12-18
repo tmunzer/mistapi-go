@@ -12,7 +12,7 @@ Sample of the `ping` webhook payload.\n\nThe `ping` webhook can be manually sent
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookPingEvent`](../../doc/models/webhook-ping-event.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"ping"` |
+| `Topic` | `string` | Required, Constant | enum: `ping`<br><br>**Value**: `"ping"` |
 
 ## Example (as JSON)
 

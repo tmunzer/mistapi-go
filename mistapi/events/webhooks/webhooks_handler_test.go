@@ -121,7 +121,7 @@ func TestOnClientSessions_WebhooksHandler_ReturnsClientSessionsEvent(t *testing.
 
 func TestOnDeviceEvents_WebhooksHandler_ReturnsDeviceEventsEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"ap":"string","ap_name":"string","audit_id":"78c04fa6-cfb4-46a0-9aa5-3681ba4f3897","device_name":"string","device_type":"ap","ev_type":"notice","mac":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","reason":"string","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","site_name":"string","text":"string","timestamp":0,"type":"string"}],"topic":"device_events"}`)
+	bodyBytes := []byte(`{"events":[{"ap":"string","ap_name":"string","audit_id":"78c04fa6-cfb4-46a0-9aa5-3681ba4f3897","device_name":"string","device_type":"ap","ev_type":"notice","mac":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","reason":"string","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","site_name":"string","text":"string","timestamp":0,"type":"string"}],"topic":"device-events"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -151,7 +151,7 @@ func TestOnDeviceUpdowns_WebhooksHandler_ReturnsDeviceUpdownsEvent(t *testing.T)
 
 func TestOnDiscoveredRawRssi_WebhooksHandler_ReturnsDiscoveredRawRssiEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"ap_loc":[0.0],"beam":0,"device_id":"3bafab7b-4400-4bcf-8e6e-09f954699940","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","is_asset":true,"mac":"string","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","mfg_company_id":"string","mfg_data":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rssi":0.0,"service_packets":[{"service_data":"string","service_uuid":"7138cc00-c611-4dec-a05e-5c4b1cae13c0"}],"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0.0}],"topic":"string"}`)
+	bodyBytes := []byte(`{"events":[{"ap_loc":[0.0],"beam":0,"device_id":"3bafab7b-4400-4bcf-8e6e-09f954699940","ibeacon_major":1,"ibeacon_minor":1,"ibeacon_uuid":"1f89bc00-d0af-481b-82fe-a6629259a39f","is_asset":true,"mac":"string","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","mfg_company_id":"string","mfg_data":"string","org_id":"a40f5d1f-d889-42e9-94ea-b9b33585fc6b","rssi":0.0,"service_packets":[{"service_data":"string","service_uuid":"7138cc00-c611-4dec-a05e-5c4b1cae13c0"}],"site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0.0}],"topic":"discovered-raw-rssi"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -196,7 +196,7 @@ func TestOnLocation_WebhooksHandler_ReturnsLocationEvent(t *testing.T) {
 
 func TestOnLocationAsset_WebhooksHandler_ReturnsLocationAssetEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"battery_voltage":3370,"eddystone_uid_instance":"5c5b35000001","eddystone_uid_namespace":"2818e3868dec25629ede","eddystone_url_url":"https://www.abc.com","ibeacon_major":13,"ibeacon_minor":138,"ibeacon_uuid":"f3f17139-704a-f03a-2786-0400279e37c3","mac":"7fc2936fd243","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","mfg_company_id":935,"mfg_data":"648520a1020000","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"asset","x":13.5,"y":3.2}],"topic":"location_asset"}`)
+	bodyBytes := []byte(`{"events":[{"battery_voltage":3370,"eddystone_uid_instance":"5c5b35000001","eddystone_uid_namespace":"2818e3868dec25629ede","eddystone_url_url":"https://www.abc.com","ibeacon_major":13,"ibeacon_minor":138,"ibeacon_uuid":"f3f17139-704a-f03a-2786-0400279e37c3","mac":"7fc2936fd243","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","mfg_company_id":935,"mfg_data":"648520a1020000","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"asset","x":13.5,"y":3.2}],"topic":"location-asset"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -211,7 +211,7 @@ func TestOnLocationAsset_WebhooksHandler_ReturnsLocationAssetEvent(t *testing.T)
 
 func TestOnLocationCentrak_WebhooksHandler_ReturnsLocationCentrakEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location_centrak"}`)
+	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location-centrak"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -226,7 +226,7 @@ func TestOnLocationCentrak_WebhooksHandler_ReturnsLocationCentrakEvent(t *testin
 
 func TestOnLocationClient_WebhooksHandler_ReturnsLocationClientEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location_client"}`)
+	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location-client"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -241,7 +241,7 @@ func TestOnLocationClient_WebhooksHandler_ReturnsLocationClientEvent(t *testing.
 
 func TestOnLocationSdk_WebhooksHandler_ReturnsLocationSdkEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"id":"de87bf9d-183f-e383-cc68-6ba43947d403","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","name":"optional","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"sdk","x":13.5,"y":3.2}],"topic":"location_sdk"}`)
+	bodyBytes := []byte(`{"events":[{"id":"de87bf9d-183f-e383-cc68-6ba43947d403","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","name":"optional","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"sdk","x":13.5,"y":3.2}],"topic":"location-sdk"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -256,7 +256,7 @@ func TestOnLocationSdk_WebhooksHandler_ReturnsLocationSdkEvent(t *testing.T) {
 
 func TestOnLocationUnclient_WebhooksHandler_ReturnsLocationUnclientEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location_unclient"}`)
+	bodyBytes := []byte(`{"events":[{"mac":"5684dae9ac8b","map_id":"845a23bf-bed9-e43c-4c86-6fa474be7ae5","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","timestamp":1461220784.0,"type":"wifi","wifi_beacon_extended_info":[{"frame_ctrl":776,"payload":"............","seq_ctrl":772}],"x":13.5,"y":3.2}],"topic":"location-unclient"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -271,7 +271,7 @@ func TestOnLocationUnclient_WebhooksHandler_ReturnsLocationUnclientEvent(t *test
 
 func TestOnMxedgeEvents_WebhooksHandler_ReturnsMxedgeEventsEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"audit_id":"8912e5cb-8ddd-41f7-be5f-476a7abbf658","component":null,"mxedge_id":"00000000-0000-0000-1000-020000230522","mxedge_name":"demo123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":128.82,"type":"ME_CONFIG_CHANGED_BY_USER"},{"audit_id":"48efa5bf-d290-4e93-80ca-4dbf72f4187a","component":null,"mxedge_id":"00000000-0000-0000-1000-020000a5fca1","mxedge_name":"test123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":128.82,"type":"ME_CONFIG_CHANGED_BY_USER"}],"topic":"mxedge-events"}`)
+	bodyBytes := []byte(`{"events":[{"audit_id":"8912e5cb-8ddd-41f7-be5f-476a7abbf658","component":null,"mxedge_id":"00000000-0000-0000-1000-020000230522","mxedge_name":"demo123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":1763546876.209649,"type":"ME_CONFIG_CHANGED_BY_USER"},{"audit_id":"48efa5bf-d290-4e93-80ca-4dbf72f4187a","component":null,"mxedge_id":"00000000-0000-0000-1000-020000a5fca1","mxedge_name":"test123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":1763546876.417778,"type":"ME_CONFIG_CHANGED_BY_USER"}],"topic":"mxedge-events"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -301,7 +301,7 @@ func TestOnNacAccounting_WebhooksHandler_ReturnsNacAccountingEvent(t *testing.T)
 
 func TestOnNacEvents_WebhooksHandler_ReturnsNacEventsEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"ap":"5c5b35513227","auth_type":"eap-teap","bssid":"5c5b355fafcc","dryrun_nacrule_id":"32f27e7d-ff26-4a9b-b3d1-ff9bcb264012","dryrun_nacrule_matched":true,"idp_id":"912ef72e-2239-4996-b81e-469e87a27cd6","idp_role":["itsuperusers","vip"],"mac":"ac3eb179e535","nacrule_id":"32f27e7d-ff26-4a9b-b3d1-ff9bcb264c62","nacrule_matched":true,"nas_vendor":"juniper-mist","org_id":"27547ac2-d114-4e04-beb1-f3f1e6e81ec6","random_mac":"true","resp_attrs":["Tunnel-Type=VLAN","Tunnel-Medium-Type=IEEE-802","Tunnel-Private-Group-Id=750","User-Name=anonymous"],"site_id":"441a1214-6928-442a-8e92-e1d34b8ec6a6","ssid":"##mist_nac","timestamp":1691512031.358188,"type":"NAC_CLIENT_PERMIT","username":"user@deaflyz.net","vlan":"750"}],"topic":"string"}`)
+	bodyBytes := []byte(`{"events":[{"ap":"5c5b35513227","auth_type":"eap-teap","bssid":"5c5b355fafcc","dryrun_nacrule_id":"32f27e7d-ff26-4a9b-b3d1-ff9bcb264012","dryrun_nacrule_matched":true,"idp_id":"912ef72e-2239-4996-b81e-469e87a27cd6","idp_role":["itsuperusers","vip"],"mac":"ac3eb179e535","nacrule_id":"32f27e7d-ff26-4a9b-b3d1-ff9bcb264c62","nacrule_matched":true,"nas_vendor":"juniper-mist","org_id":"27547ac2-d114-4e04-beb1-f3f1e6e81ec6","random_mac":"true","resp_attrs":["Tunnel-Type=VLAN","Tunnel-Medium-Type=IEEE-802","Tunnel-Private-Group-Id=750","User-Name=anonymous"],"site_id":"441a1214-6928-442a-8e92-e1d34b8ec6a6","ssid":"##mist_nac","timestamp":1691512031.358188,"type":"NAC_CLIENT_PERMIT","username":"user@deaflyz.net","vlan":"750"}],"topic":"nac-events"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -344,9 +344,24 @@ func TestOnPing_WebhooksHandler_ReturnsPingEvent(t *testing.T) {
 	}
 }
 
+func TestOnRssizone_WebhooksHandler_ReturnsRssizoneEvent(t *testing.T) {
+	// Arrange
+	bodyBytes := []byte(`{"events":[{"mac":"500291xxxxxx","map_id":"f5d26c7f-1670-4921-xxxx-xxxxxxxxxxxx","rssizone_id":"e38f8e76-40db-4144-xxxx-xxxxxxxxxxxx","site_id":"f5fcbee5-fbca-45b3-xxxx-xxxxxxxxxxxx","timestamp":1694158990.986472,"trigger":"enter","type":"wifi"}],"topic":"rssizone"}`)
+	request := newWebhooksHandlerRequest(bodyBytes)
+	handler := NewWebhooksHandler()
+
+	// Act
+	result := handler.ParseEvent(request)
+
+	// Assert
+	if _, ok := result.AsRssizone(); !ok {
+		t.Fatal("expected RssizoneEvent")
+	}
+}
+
 func TestOnSdkclientScanData_WebhooksHandler_ReturnsSdkclientScanDataEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"connection_ap":"5c5b352f587e","connection_band":"2.4","connection_bssid":"5c5b352b51b4","connection_channel":11,"connection_rssi":-87.0,"last_seen":1592333828.0,"mac":"70ef0071535f","scan_data":[{"ap":"5c5b352f587e","band":"2.4","bssid":"5c5b352b51b4","channel":11,"rssi":-87.0,"ssid":"mist-wifi","timestamp":1592333828},{"ap":"5c5b352f587e","band":"5","bssid":"5c5b352b51b8","channel":36,"rssi":-75.0,"ssid":"mist-wifi","timestamp":1592333828}],"site_id":"93986f10-773b-42be-9438-8d3e6d127f1a"}],"topic":"sdkclient_scan_data"}`)
+	bodyBytes := []byte(`{"events":[{"connection_ap":"5c5b352f587e","connection_band":"2.4","connection_bssid":"5c5b352b51b4","connection_channel":11,"connection_rssi":-87.0,"last_seen":1592333828.0,"mac":"70ef0071535f","scan_data":[{"ap":"5c5b352f587e","band":"2.4","bssid":"5c5b352b51b4","channel":11,"rssi":-87.0,"ssid":"mist-wifi","timestamp":1592333828},{"ap":"5c5b352f587e","band":"5","bssid":"5c5b352b51b8","channel":36,"rssi":-75.0,"ssid":"mist-wifi","timestamp":1592333828}],"site_id":"93986f10-773b-42be-9438-8d3e6d127f1a"}],"topic":"sdkclient-scan-data"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -361,7 +376,7 @@ func TestOnSdkclientScanData_WebhooksHandler_ReturnsSdkclientScanDataEvent(t *te
 
 func TestOnSiteSle_WebhooksHandler_ReturnsSiteSleEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","sle":{"ap-availability":0.6,"successful-connect":0.7,"time-to-connect":0.9},"timestamp":1694620800.0}],"topic":"site_sle"}`)
+	bodyBytes := []byte(`{"events":[{"org_id":"2818e386-8dec-2562-9ede-5b8a0fbbdc71","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","sle":{"ap-availability":0.6,"successful-connect":0.7,"time-to-connect":0.9},"timestamp":1694620800.0}],"topic":"site-sle"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -376,7 +391,7 @@ func TestOnSiteSle_WebhooksHandler_ReturnsSiteSleEvent(t *testing.T) {
 
 func TestOnWifiConnRaw_WebhooksHandler_ReturnsWifiConnRawEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"28-f0-76-2d-22-1e","connected_site":false,"mapid":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","orgid":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-92}],"siteid":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"},{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"38-f9-d3-99-08-6e","connected_site":false,"extended_info_list":[{"frame_ctrl":776,"payload":"010441060606fe3d35700601cecbd902512f000001","sequence_ctrl":8432}],"mapid":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","orgid":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":88}],"siteid":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"}],"topic":"wifi-conn-raw"}`)
+	bodyBytes := []byte(`{"events":[{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"28-f0-76-2d-22-1e","connected_site":false,"map_id":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","org_id":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-92}],"site_id":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"},{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"38-f9-d3-99-08-6e","connected_site":false,"extended_info_list":[{"frame_ctrl":776,"payload":"010441060606fe3d35700601cecbd902512f000001","sequence_ctrl":8432}],"map_id":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","org_id":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-94}],"site_id":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"}],"topic":"wifi-conn-raw"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -391,7 +406,7 @@ func TestOnWifiConnRaw_WebhooksHandler_ReturnsWifiConnRawEvent(t *testing.T) {
 
 func TestOnWifiUnconnRaw_WebhooksHandler_ReturnsWifiUnconnRawEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"28-f0-76-2d-22-1e","connected_site":false,"mapid":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","orgid":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-92}],"siteid":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"},{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"38-f9-d3-99-08-6e","connected_site":false,"mapid":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","orgid":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":88}],"siteid":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"}],"topic":"wifi-unconn-raw"}`)
+	bodyBytes := []byte(`{"events":[{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"28-f0-76-2d-22-1e","connected_site":false,"map_id":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","org_id":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-92}],"site_id":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"},{"ap_id":"ac-23-16-ec-a7-0b","ap_loc":[36.03303862386182,43.57022468463291,2.75],"client_id":"38-f9-d3-99-08-6e","connected_site":false,"map_id":"bd42f0c3-2e6a-4f8a-ac2d-d34e268c1418","org_id":"9c3e516c-397d-11e6-ae35-0242ac110008","packets":[{"band":"5GHz","rssi":-94}],"site_id":"27ea2f07-6fe6-4eab-be1b-b8e3ce083d67"}],"topic":"wifi-unconn-raw"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 
@@ -406,7 +421,7 @@ func TestOnWifiUnconnRaw_WebhooksHandler_ReturnsWifiUnconnRawEvent(t *testing.T)
 
 func TestOnZone_WebhooksHandler_ReturnsZoneEvent(t *testing.T) {
 	// Arrange
-	bodyBytes := []byte(`{"events":[{"id":"487f6eca-6276-4993-bfeb-d3cbbbba2f08","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","name":"string","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0,"type":"string","trigger":"enter","zone_id":"00000f60-0000-0000-0000-000000000000"}],"topic":"zone"}`)
+	bodyBytes := []byte(`{"events":[{"id":"487f6eca-6276-4993-bfeb-d3cbbbba2f08","map_id":"09d2b626-2e4e-45ef-a3c4-e6aeb6c83db1","name":"string","site_id":"72771e6a-6f5e-4de4-a5b9-1266c4197811","timestamp":0,"trigger":"enter","type":"wifi","zone_id":"d38f8e76-40db-4144-8cbb-1266c4197811"}],"topic":"zone"}`)
 	request := newWebhooksHandlerRequest(bodyBytes)
 	handler := NewWebhooksHandler()
 

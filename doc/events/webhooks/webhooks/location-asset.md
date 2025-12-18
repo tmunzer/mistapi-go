@@ -41,7 +41,7 @@ This event's request payload is of type [*models.WebhookLocationAsset](../../../
       "y": 3.2
     }
   ],
-  "topic": "location_asset"
+  "topic": "location-asset"
 }
 ```
 

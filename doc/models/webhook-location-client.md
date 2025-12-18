@@ -12,7 +12,7 @@ Sample of the `location-client` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | List of events |
-| `Topic` | `string` | Required, Constant | **Value**: `"location-client"` |
+| `Topic` | `string` | Required, Constant | enum: `location-client`<br><br>**Value**: `"location-client"` |
 
 ## Example (as JSON)
 

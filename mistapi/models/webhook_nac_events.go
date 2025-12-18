@@ -10,7 +10,8 @@ import (
 // WebhookNacEvents represents a WebhookNacEvents struct.
 // Sample of the `nac-events` webhook payload.
 type WebhookNacEvents struct {
-	Events               []NacClientEvent           `json:"events,omitempty"`
+	Events []NacClientEvent `json:"events,omitempty"`
+	// enum: `nac-events`
 	Topic                *WebhookNacEventsTopicEnum `json:"topic,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Webhook Ping Topic Enum
 
+enum: `ping`
+
 ## Enumeration
 
 `WebhookPingTopicEnum`

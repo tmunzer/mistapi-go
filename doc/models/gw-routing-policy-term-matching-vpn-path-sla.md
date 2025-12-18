@@ -1,9 +1,9 @@
 
-# Routing Policy Term Matching Vpn Path Sla
+# Gw Routing Policy Term Matching Vpn Path Sla
 
 ## Structure
 
-`RoutingPolicyTermMatchingVpnPathSla`
+`GwRoutingPolicyTermMatchingVpnPathSla`
 
 ## Fields
 
@@ -19,7 +19,7 @@
 {
   "max_latency": 1500,
   "max_loss": 30,
-  "max_jitter": 142
+  "max_jitter": 64
 }
 ```
 

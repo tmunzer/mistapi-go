@@ -13,9 +13,10 @@ import (
 // Sample of the `location-centrak` webhook payload.
 type WebhookLocationCentrak struct {
 	// List of events
-	Events               []WebhookLocationCentrakEvent `json:"events"`
-	Topic                string                        `json:"topic"`
-	AdditionalProperties map[string]interface{}        `json:"_"`
+	Events []WebhookLocationCentrakEvent `json:"events"`
+	// enum: `location-centrak`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookLocationCentrak,

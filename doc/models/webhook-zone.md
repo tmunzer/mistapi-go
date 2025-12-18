@@ -12,7 +12,7 @@ Sample of the `zone` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookZoneEvent`](../../doc/models/webhook-zone-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"zone"` |
+| `Topic` | `string` | Required, Constant | enum: `zone`<br><br>**Value**: `"zone"` |
 
 ## Example (as JSON)
 

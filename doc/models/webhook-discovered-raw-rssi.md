@@ -12,13 +12,13 @@ Sample of the `discovered-raw-rssi` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookDiscoveredRawRssiEvent`](../../doc/models/webhook-discovered-raw-rssi-event.md) | Optional | - |
-| `Topic` | `string` | Required, Constant | **Value**: `"asset-raw-rssi"` |
+| `Topic` | `string` | Required, Constant | enum: `discovered-raw-rssi`<br><br>**Value**: `"discovered-raw-rssi"` |
 
 ## Example (as JSON)
 
 ```json
 {
-  "topic": "asset-raw-rssi",
+  "topic": "discovered-raw-rssi",
   "events": [
     {
       "ap_loc": [

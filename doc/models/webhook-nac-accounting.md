@@ -12,7 +12,7 @@ Sample of the `nac-accounting` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookNacAccountingEvent`](../../doc/models/webhook-nac-accounting-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookNacAccountingTopicEnum`](../../doc/models/webhook-nac-accounting-topic-enum.md) | Optional | - |
+| `Topic` | [`*models.WebhookNacAccountingTopicEnum`](../../doc/models/webhook-nac-accounting-topic-enum.md) | Optional | enum: `nac-accounting` |
 
 ## Example (as JSON)
 

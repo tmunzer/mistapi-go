@@ -10,12 +10,14 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AuditId` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `Component` | `*string` | Optional | - |
+| `Component` | `models.Optional[string]` | Optional | - |
+| `DeviceId` | `models.Optional[uuid.UUID]` | Optional | Device id |
 | `DeviceType` | `*string` | Optional | - |
 | `FromVersion` | `*string` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `MxclusterId` | `*string` | Optional | - |
 | `MxedgeId` | `*string` | Optional | - |
+| `MxedgeName` | `*string` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `Package` | `*string` | Optional | - |
 | `Service` | `*string` | Optional | - |
@@ -37,9 +39,9 @@
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "service": "tunterm",
   "type": "ME_SERVICE_STOPPED",
+  "device_id": "0000069e-0000-0000-0000-000000000000",
   "device_type": "device_type2",
-  "from_version": "from_version0",
-  "mac": "mac2"
+  "from_version": "from_version0"
 }
 ```
 

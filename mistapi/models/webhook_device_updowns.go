@@ -12,9 +12,10 @@ import (
 // WebhookDeviceUpdowns represents a WebhookDeviceUpdowns struct.
 // Sample of the `device-updowns` webhook payload.
 type WebhookDeviceUpdowns struct {
-	Events               []WebhookDeviceUpdownsEvent `json:"events"`
-	Topic                string                      `json:"topic"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Events []WebhookDeviceUpdownsEvent `json:"events"`
+	// enum: `device-updowns`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookDeviceUpdowns,

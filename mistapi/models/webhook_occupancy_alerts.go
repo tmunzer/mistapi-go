@@ -12,9 +12,10 @@ import (
 // WebhookOccupancyAlerts represents a WebhookOccupancyAlerts struct.
 // Sample of the `occupancy-alerts` webhook payload.
 type WebhookOccupancyAlerts struct {
-	Events               []WebhookOccupancyAlertsEvent `json:"events"`
-	Topic                string                        `json:"topic"`
-	AdditionalProperties map[string]interface{}        `json:"_"`
+	Events []WebhookOccupancyAlertsEvent `json:"events"`
+	// enum: `occupeancy-alerts`
+	Topic                string                 `json:"topic"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookOccupancyAlerts,

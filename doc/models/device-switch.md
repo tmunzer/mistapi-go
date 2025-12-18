@@ -60,6 +60,7 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
 | `RemoteSyslog` | [`*models.RemoteSyslog`](../../doc/models/remote-syslog.md) | Optional | - |
 | `Role` | `*string` | Optional | - |
 | `RouterId` | `*string` | Optional | Used for OSPF / BGP / EVPN |
+| `RoutingPolicies` | [`map[string]models.SwRoutingPolicy`](../../doc/models/sw-routing-policy.md) | Optional | Property key is the routing policy name |
 | `Serial` | `*string` | Optional | Device Serial |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SnmpConfig` | [`*models.SnmpConfig`](../../doc/models/snmp-config.md) | Optional | - |

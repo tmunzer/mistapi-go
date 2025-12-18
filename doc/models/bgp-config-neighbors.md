@@ -14,7 +14,7 @@
 | `HoldTime` | `*int` | Optional | **Default**: `90`<br><br>**Constraints**: `>= 0`, `<= 65535` |
 | `ImportPolicy` | `*string` | Optional | - |
 | `MultihopTtl` | `*int` | Optional | Assuming BGP neighbor is directly connected<br><br>**Constraints**: `>= 0`, `<= 255` |
-| `NeighborAs` | [`models.BgpAs`](../../doc/models/containers/bgp-as.md) | Required | BGP AS, value in range 1-4294967294 |
+| `NeighborAs` | [`models.BgpAs`](../../doc/models/containers/bgp-as.md) | Required | BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` ) |
 
 ## Example (as JSON)
 

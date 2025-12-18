@@ -19,8 +19,10 @@ type LogEvent struct {
 	// field values after the change
 	After *interface{} `json:"after,omitempty"`
 	// field values prior to the change
-	Before  *interface{} `json:"before,omitempty"`
-	ForSite *bool        `json:"for_site,omitempty"`
+	Before *interface{} `json:"before,omitempty"`
+	// Device id
+	DeviceId Optional[uuid.UUID] `json:"device_id"`
+	ForSite  *bool               `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// log message
@@ -38,8 +40,8 @@ type LogEvent struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (l LogEvent) String() string {
 	return fmt.Sprintf(
-		"LogEvent[AdminId=%v, AdminName=%v, After=%v, Before=%v, ForSite=%v, Id=%v, Message=%v, OrgId=%v, SiteId=%v, SrcIp=%v, Timestamp=%v, AdditionalProperties=%v]",
-		l.AdminId, l.AdminName, l.After, l.Before, l.ForSite, l.Id, l.Message, l.OrgId, l.SiteId, l.SrcIp, l.Timestamp, l.AdditionalProperties)
+		"LogEvent[AdminId=%v, AdminName=%v, After=%v, Before=%v, DeviceId=%v, ForSite=%v, Id=%v, Message=%v, OrgId=%v, SiteId=%v, SrcIp=%v, Timestamp=%v, AdditionalProperties=%v]",
+		l.AdminId, l.AdminName, l.After, l.Before, l.DeviceId, l.ForSite, l.Id, l.Message, l.OrgId, l.SiteId, l.SrcIp, l.Timestamp, l.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for LogEvent.
@@ -48,7 +50,7 @@ func (l LogEvent) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(l.AdditionalProperties,
-		"admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp"); err != nil {
+		"admin_id", "admin_name", "after", "before", "device_id", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(l.toMap())
@@ -77,6 +79,13 @@ func (l LogEvent) toMap() map[string]any {
 	}
 	if l.Before != nil {
 		structMap["before"] = l.Before
+	}
+	if l.DeviceId.IsValueSet() {
+		if l.DeviceId.Value() != nil {
+			structMap["device_id"] = l.DeviceId.Value()
+		} else {
+			structMap["device_id"] = nil
+		}
 	}
 	if l.ForSite != nil {
 		structMap["for_site"] = l.ForSite
@@ -112,7 +121,7 @@ func (l *LogEvent) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_id", "admin_name", "after", "before", "device_id", "for_site", "id", "message", "org_id", "site_id", "src_ip", "timestamp")
 	if err != nil {
 		return err
 	}
@@ -122,6 +131,7 @@ func (l *LogEvent) UnmarshalJSON(input []byte) error {
 	l.AdminName = temp.AdminName
 	l.After = temp.After
 	l.Before = temp.Before
+	l.DeviceId = temp.DeviceId
 	l.ForSite = temp.ForSite
 	l.Id = temp.Id
 	l.Message = *temp.Message
@@ -138,6 +148,7 @@ type tempLogEvent struct {
 	AdminName Optional[string]    `json:"admin_name"`
 	After     *interface{}        `json:"after,omitempty"`
 	Before    *interface{}        `json:"before,omitempty"`
+	DeviceId  Optional[uuid.UUID] `json:"device_id"`
 	ForSite   *bool               `json:"for_site,omitempty"`
 	Id        *uuid.UUID          `json:"id,omitempty"`
 	Message   *string             `json:"message"`

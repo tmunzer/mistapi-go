@@ -12,7 +12,7 @@ Junos port usages
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllNetworks` | `*bool` | Optional | Only if `mode`==`trunk`. Whether to trunk all network/vlans<br><br>**Default**: `false` |
-| `AllowDhcpd` | `*bool` | Optional | Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; true: ports become trusted ports allowing DHCP server traffic, false: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted). |
+| `AllowDhcpd` | `*bool` | Optional | Only applies when `mode`!=`dynamic`. Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; `true`: ports become trusted ports allowing DHCP server traffic, `false`: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted). |
 | `AllowMultipleSupplicants` | `*bool` | Optional | Only if `mode`!=`dynamic`<br><br>**Default**: `false` |
 | `BypassAuthWhenServerDown` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Bypass auth for known clients if set to true when RADIUS server is down<br><br>**Default**: `false` |
 | `BypassAuthWhenServerDownForUnknownClient` | `*bool` | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x`. Bypass auth for all (including unknown clients) if set to true when RADIUS server is down<br><br>**Default**: `false` |

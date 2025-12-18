@@ -12,7 +12,7 @@ Sample of the `location-unclient` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.WebhookLocationUnclientEvent`](../../doc/models/webhook-location-unclient-event.md) | Required | List of events |
-| `Topic` | `string` | Required, Constant | **Value**: `"location-unclient"` |
+| `Topic` | `string` | Required, Constant | enum: `location-unclient`<br><br>**Value**: `"location-unclient"` |
 
 ## Example (as JSON)
 

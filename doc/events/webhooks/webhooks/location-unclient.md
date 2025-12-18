@@ -39,7 +39,7 @@ This event's request payload is of type [*models.WebhookLocationUnclient](../../
       "y": 3.2
     }
   ],
-  "topic": "location_unclient"
+  "topic": "location-unclient"
 }
 ```
 

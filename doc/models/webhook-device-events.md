@@ -12,7 +12,7 @@ Sample of the `device-events` webhook payload.
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Events` | [`[]models.DeviceEvent`](../../doc/models/device-event.md) | Required | **Constraints**: *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | **Value**: `"device-events"` |
+| `Topic` | `string` | Required, Constant | enum: `device-events`<br><br>**Value**: `"device-events"` |
 
 ## Example (as JSON)
 

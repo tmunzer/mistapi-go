@@ -65,7 +65,7 @@ type DeviceGateway struct {
 	// Auto assigned if not set
 	RouterId *string `json:"router_id,omitempty"`
 	// Property key is the routing policy name
-	RoutingPolicies map[string]RoutingPolicy `json:"routing_policies,omitempty"`
+	RoutingPolicies map[string]GwRoutingPolicy `json:"routing_policies,omitempty"`
 	// Device Serial
 	Serial          *string         `json:"serial,omitempty"`
 	ServicePolicies []ServicePolicy `json:"service_policies,omitempty"`
@@ -372,7 +372,7 @@ type tempDeviceGateway struct {
 	PortConfig              map[string]GatewayPortConfig       `json:"port_config,omitempty"`
 	PortMirroring           *GatewayPortMirroring              `json:"port_mirroring,omitempty"`
 	RouterId                *string                            `json:"router_id,omitempty"`
-	RoutingPolicies         map[string]RoutingPolicy           `json:"routing_policies,omitempty"`
+	RoutingPolicies         map[string]GwRoutingPolicy         `json:"routing_policies,omitempty"`
 	Serial                  *string                            `json:"serial,omitempty"`
 	ServicePolicies         []ServicePolicy                    `json:"service_policies,omitempty"`
 	SiteId                  *uuid.UUID                         `json:"site_id,omitempty"`

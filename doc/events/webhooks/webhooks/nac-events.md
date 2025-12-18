@@ -55,7 +55,7 @@ This event's request payload is of type [*models.WebhookNacEvents](../../../../d
       "device_mac": "device_mac4"
     }
   ],
-  "topic": "string"
+  "topic": "nac-events"
 }
 ```
 
