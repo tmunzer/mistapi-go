@@ -155,6 +155,208 @@ func (s *SitesInsights) GetSiteInsightMetricsForDevice(
 	return models.NewApiResponse(result, resp), err
 }
 
+// GetSiteInsightMetricsForGateway takes context, siteId, metric, deviceId, start, end, duration, interval, limit, page as parameters and
+// returns an models.ApiResponse with models.ResponseDeviceMetrics data and
+// an error if there was an issue with the request or response.
+// Get Gateway Insight Metrics
+// See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+func (s *SitesInsights) GetSiteInsightMetricsForGateway(
+	ctx context.Context,
+	siteId uuid.UUID,
+	metric string,
+	deviceId uuid.UUID,
+	start *string,
+	end *string,
+	duration *string,
+	interval *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseDeviceMetrics],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/sites/%v/insights/gateway/%v/stats/%v",
+	)
+	req.AppendTemplateParams(siteId, deviceId, metric)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if interval != nil {
+		req.QueryParam("interval", *interval)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+
+	var result models.ResponseDeviceMetrics
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseDeviceMetrics](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteInsightMetricsForMxEdge takes context, siteId, metric, deviceMac, start, end, duration, interval, limit, page as parameters and
+// returns an models.ApiResponse with models.ResponseDeviceMetrics data and
+// an error if there was an issue with the request or response.
+// Get MxEdge Insight Metrics
+// See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+func (s *SitesInsights) GetSiteInsightMetricsForMxEdge(
+	ctx context.Context,
+	siteId uuid.UUID,
+	metric string,
+	deviceMac string,
+	start *string,
+	end *string,
+	duration *string,
+	interval *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseDeviceMetrics],
+	error) {
+	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/mxedge/%v/%v")
+	req.AppendTemplateParams(siteId, deviceMac, metric)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if interval != nil {
+		req.QueryParam("interval", *interval)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+
+	var result models.ResponseDeviceMetrics
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseDeviceMetrics](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteInsightMetricsForSwitch takes context, siteId, metric, deviceMac, start, end, duration, interval, limit, page as parameters and
+// returns an models.ApiResponse with models.ResponseDeviceMetrics data and
+// an error if there was an issue with the request or response.
+// Get Switch Insight Metrics
+// See metrics possibilities at [List Insight Metrics](/#operations/listInsightMetrics)
+func (s *SitesInsights) GetSiteInsightMetricsForSwitch(
+	ctx context.Context,
+	siteId uuid.UUID,
+	metric string,
+	deviceMac string,
+	start *string,
+	end *string,
+	duration *string,
+	interval *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseDeviceMetrics],
+	error) {
+	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/insights/switch/%v/%v")
+	req.AppendTemplateParams(siteId, deviceMac, metric)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if interval != nil {
+		req.QueryParam("interval", *interval)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+
+	var result models.ResponseDeviceMetrics
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseDeviceMetrics](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // GetSiteInsightMetrics takes context, siteId, metric, start, end, duration, interval, limit, page as parameters and
 // returns an models.ApiResponse with models.InsightMetrics data and
 // an error if there was an issue with the request or response.

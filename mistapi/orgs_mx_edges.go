@@ -602,7 +602,7 @@ func (o *OrgsMxEdges) GetOrgMxEdgeUpgradeInfo(
 	distro *string) (
 	models.ApiResponse[[]models.MxedgeUpgradeInfoItems],
 	error) {
-	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/version")
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/mxedges/versions")
 	req.AppendTemplateParams(orgId)
 	req.Authenticate(
 		NewOrAuth(

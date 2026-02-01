@@ -108,14 +108,14 @@ func TestOrgsAlarmsTestSearchOrgAlarms(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := "marvis"
-	status := "open"
+
+	mType := "infra_dhcp_failure,missing_vlan"
 
 	duration := "1d"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -137,14 +137,14 @@ func TestOrgsAlarmsTestSearchOrgAlarms1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := "marvis"
-	status := "open"
+
+	mType := "infra_dhcp_failure,missing_vlan"
 
 	duration := "1d"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

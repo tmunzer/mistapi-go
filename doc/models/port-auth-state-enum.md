@@ -1,11 +1,11 @@
 
-# Search Org Sw or Gw Ports Auth State Enum
+# Port Auth State Enum
 
 enum: `authenticated`, `authenticating`, `held`, `init`
 
 ## Enumeration
 
-`SearchOrgSwOrGwPortsAuthStateEnum`
+`PortAuthStateEnum`
 
 ## Fields
 

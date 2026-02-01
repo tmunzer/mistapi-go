@@ -44,9 +44,9 @@ CountSiteSwOrGwPorts(
     rxMcastPkts *int,
     rxBcastPkts *int,
     speed *int,
-    stpState *models.CountPortsStpStateEnum,
-    stpRole *models.CountPortsStpRoleEnum,
-    authState *models.CountPortsAuthStateEnum,
+    stpState *models.PortStpStateEnum,
+    stpRole *models.PortStpRoleEnum,
+    authState *models.PortAuthStateEnum,
     up *bool,
     start *string,
     end *string,
@@ -83,9 +83,9 @@ CountSiteSwOrGwPorts(
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
 | `speed` | `*int` | Query, Optional | Port speed |
-| `stpState` | [`*models.CountPortsStpStateEnum`](../../doc/models/count-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
-| `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
-| `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `stpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `up` | `*bool` | Query, Optional | Indicates if interface is up |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -155,7 +155,20 @@ limit := 100
 
 apiResponse, err := sitesStatsPorts.CountSiteSwOrGwPorts(ctx, siteId, &distinct, &fullDuplex, &mac, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, nil, nil, nil, &up, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -232,10 +245,10 @@ SearchSiteSwOrGwPorts(
     jitter *float64,
     loss *float64,
     latency *float64,
-    stpState *models.SearchSiteSwOrGwPortsStpStateEnum,
-    stpRole *models.SearchSiteSwOrGwPortsStpRoleEnum,
+    stpState *models.PortStpStateEnum,
+    stpRole *models.PortStpRoleEnum,
     xcvrPartNumber *string,
-    authState *models.SearchSiteSwOrGwPortsAuthStateEnum,
+    authState *models.PortAuthStateEnum,
     lteImsi *string,
     lteIccid *string,
     lteImei *string,
@@ -291,10 +304,10 @@ SearchSiteSwOrGwPorts(
 | `jitter` | `*float64` | Query, Optional | Last sampled jitter of the interface |
 | `loss` | `*float64` | Query, Optional | Last sampled loss of the interface |
 | `latency` | `*float64` | Query, Optional | Last sampled latency of the interface |
-| `stpState` | [`*models.SearchSiteSwOrGwPortsStpStateEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
-| `stpRole` | [`*models.SearchSiteSwOrGwPortsStpRoleEnum`](../../doc/models/search-site-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `stpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Query, Optional | If `up`==`true` |
 | `xcvrPartNumber` | `*string` | Query, Optional | Optic Slot Partnumber, Check for null/empty |
-| `authState` | [`*models.SearchSiteSwOrGwPortsAuthStateEnum`](../../doc/models/search-site-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
 | `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
 | `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
@@ -399,7 +412,20 @@ sort := "-site_id"
 
 apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

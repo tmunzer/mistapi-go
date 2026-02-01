@@ -12,7 +12,7 @@
 | `End` | `int` | Required | - |
 | `Interval` | `int` | Required | - |
 | `Limit` | `*int` | Optional | - |
-| `Results` | [`[]models.InsightMetricsResultsItem`](../../doc/models/containers/insight-metrics-results-item.md) | Required | Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects<br><br>**Constraints**: *Unique Items Required* |
+| `Results` | [`[]models.InsightMetricsResultsItem`](../../doc/models/containers/insight-metrics-results-item.md) | Optional | Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects<br><br>**Constraints**: *Unique Items Required* |
 | `Start` | `int` | Required | - |
 
 ## Example (as JSON)

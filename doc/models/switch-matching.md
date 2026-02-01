@@ -24,6 +24,7 @@ Defines custom switch configuration based on different criteria
       "additional_config_cmds": [
         "additional_config_cmds8"
       ],
+      "default_port_usage": "default_port_usage4",
       "ip_config": {
         "network": "network6",
         "type": "dhcp"
@@ -33,24 +34,6 @@ Defines custom switch configuration based on different criteria
         "type": "dhcp",
         "use_mgmt_vrf": false,
         "use_mgmt_vrf_for_host_out": false
-      },
-      "port_config": {
-        "key0": {
-          "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "usage6"
-        },
-        "key1": {
-          "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "usage6"
-        }
       },
       "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
     },
@@ -58,6 +41,7 @@ Defines custom switch configuration based on different criteria
       "additional_config_cmds": [
         "additional_config_cmds8"
       ],
+      "default_port_usage": "default_port_usage4",
       "ip_config": {
         "network": "network6",
         "type": "dhcp"
@@ -67,24 +51,6 @@ Defines custom switch configuration based on different criteria
         "type": "dhcp",
         "use_mgmt_vrf": false,
         "use_mgmt_vrf_for_host_out": false
-      },
-      "port_config": {
-        "key0": {
-          "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "usage6"
-        },
-        "key1": {
-          "ae_disable_lacp": false,
-          "ae_idx": 230,
-          "ae_lacp_slow": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "usage6"
-        }
       },
       "exampleAdditionalProperty": "switch_matching_rule_additionalProperties2"
     }

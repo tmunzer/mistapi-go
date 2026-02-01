@@ -61,7 +61,20 @@ sort := "-site_id"
 
 apiResponse, err := sitesStatsOspf.CountSiteOspfStats(ctx, siteId, nil, nil, nil, &limit, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -105,8 +118,7 @@ Search OSPF Neighbor Stats
 ```go
 SearchSiteOspfStats(
     ctx context.Context,
-    siteIdTemplate uuid.UUID,
-    siteId *string,
+    siteId uuid.UUID,
     mac *string,
     vrfName *string,
     peerIp *string,
@@ -123,8 +135,7 @@ SearchSiteOspfStats(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `siteIdTemplate` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | - |
+| `siteId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | - |
 | `vrfName` | `*string` | Query, Optional | - |
 | `peerIp` | `*string` | Query, Optional | - |
@@ -143,15 +154,28 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
-siteIdTemplate := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := sitesStatsOspf.SearchSiteOspfStats(ctx, siteIdTemplate, nil, nil, nil, nil, nil, nil, &limit, &sort, nil)
+apiResponse, err := sitesStatsOspf.SearchSiteOspfStats(ctx, siteId, nil, nil, nil, nil, nil, &limit, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

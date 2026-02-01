@@ -166,7 +166,7 @@ func (o *OrgsAlarms) CountOrgAlarms(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgAlarms takes context, orgId, siteId, mType, status, start, end, duration, limit, sort, searchAfter as parameters and
+// SearchOrgAlarms takes context, orgId, siteId, group, severity, mType, ackAdminName, acked, start, end, duration, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Org Alarms
@@ -174,8 +174,11 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 	ctx context.Context,
 	orgId uuid.UUID,
 	siteId *uuid.UUID,
+	group *models.AlarmGroupEnum,
+	severity *models.AlarmSeverityEnum,
 	mType *string,
-	status *string,
+	ackAdminName *string,
+	acked *bool,
 	start *string,
 	end *string,
 	duration *string,
@@ -206,11 +209,20 @@ func (o *OrgsAlarms) SearchOrgAlarms(
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)
 	}
+	if group != nil {
+		req.QueryParam("group", *group)
+	}
+	if severity != nil {
+		req.QueryParam("severity", *severity)
+	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
-	if status != nil {
-		req.QueryParam("status", *status)
+	if ackAdminName != nil {
+		req.QueryParam("ack_admin_name", *ackAdminName)
+	}
+	if acked != nil {
+		req.QueryParam("acked", *acked)
 	}
 	if start != nil {
 		req.QueryParam("start", *start)

@@ -1,11 +1,11 @@
 
-# Count Ports Stp State Enum
+# Port Stp State Enum
 
 enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 
 ## Enumeration
 
-`CountPortsStpStateEnum`
+`PortStpStateEnum`
 
 ## Fields
 

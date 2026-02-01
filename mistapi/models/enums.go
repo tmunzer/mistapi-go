@@ -114,6 +114,26 @@ const (
 	AlarmCountDistinctEnum_ENUMTYPE AlarmCountDistinctEnum = "type"
 )
 
+// AlarmGroupEnum is a string enum.
+// Alarm group. enum: `infrastructure`, `marvis`, `security`
+type AlarmGroupEnum string
+
+const (
+	AlarmGroupEnum_INFRASTRUCTURE AlarmGroupEnum = "infrastructure"
+	AlarmGroupEnum_MARVIS         AlarmGroupEnum = "marvis"
+	AlarmGroupEnum_SECURITY       AlarmGroupEnum = "security"
+)
+
+// AlarmSeverityEnum is a string enum.
+// Severity of the alarm. enum: `critical`, `info`, `warn`
+type AlarmSeverityEnum string
+
+const (
+	AlarmSeverityEnum_CRITICAL AlarmSeverityEnum = "critical"
+	AlarmSeverityEnum_INFO     AlarmSeverityEnum = "info"
+	AlarmSeverityEnum_WARN     AlarmSeverityEnum = "warn"
+)
+
 // AlarmStatusEnum is a string enum.
 // enum: `open`, `resolved`
 type AlarmStatusEnum string
@@ -673,41 +693,6 @@ type CountOrgDevicesMxtunnelStatusEnum string
 const (
 	CountOrgDevicesMxtunnelStatusEnum_DOWN CountOrgDevicesMxtunnelStatusEnum = "down"
 	CountOrgDevicesMxtunnelStatusEnum_UP   CountOrgDevicesMxtunnelStatusEnum = "up"
-)
-
-// CountPortsAuthStateEnum is a string enum.
-// enum: `authenticated`, `authenticating`, `held`, `init`
-type CountPortsAuthStateEnum string
-
-const (
-	CountPortsAuthStateEnum_AUTHENTICATED  CountPortsAuthStateEnum = "authenticated"
-	CountPortsAuthStateEnum_AUTHENTICATING CountPortsAuthStateEnum = "authenticating"
-	CountPortsAuthStateEnum_HELD           CountPortsAuthStateEnum = "held"
-	CountPortsAuthStateEnum_INIT           CountPortsAuthStateEnum = "init"
-)
-
-// CountPortsStpRoleEnum is a string enum.
-// enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type CountPortsStpRoleEnum string
-
-const (
-	CountPortsStpRoleEnum_ALTERNATE     CountPortsStpRoleEnum = "alternate"
-	CountPortsStpRoleEnum_BACKUP        CountPortsStpRoleEnum = "backup"
-	CountPortsStpRoleEnum_DESIGNATED    CountPortsStpRoleEnum = "designated"
-	CountPortsStpRoleEnum_ROOT          CountPortsStpRoleEnum = "root"
-	CountPortsStpRoleEnum_ROOTPREVENTED CountPortsStpRoleEnum = "root-prevented"
-)
-
-// CountPortsStpStateEnum is a string enum.
-// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type CountPortsStpStateEnum string
-
-const (
-	CountPortsStpStateEnum_BLOCKING   CountPortsStpStateEnum = "blocking"
-	CountPortsStpStateEnum_DISABLED   CountPortsStpStateEnum = "disabled"
-	CountPortsStpStateEnum_FORWARDING CountPortsStpStateEnum = "forwarding"
-	CountPortsStpStateEnum_LEARNING   CountPortsStpStateEnum = "learning"
-	CountPortsStpStateEnum_LISTENING  CountPortsStpStateEnum = "listening"
 )
 
 // CountSiteCallsDistinctEnum is a string enum.
@@ -2480,6 +2465,42 @@ const (
 	PoePriorityEnum_HIGH PoePriorityEnum = "high"
 )
 
+// PortAuthStateEnum is a string enum.
+// enum: `authenticated`, `authenticating`, `held`, `init`
+type PortAuthStateEnum string
+
+const (
+	PortAuthStateEnum_AUTHENTICATED  PortAuthStateEnum = "authenticated"
+	PortAuthStateEnum_AUTHENTICATING PortAuthStateEnum = "authenticating"
+	PortAuthStateEnum_HELD           PortAuthStateEnum = "held"
+	PortAuthStateEnum_INIT           PortAuthStateEnum = "init"
+)
+
+// PortStpRoleEnum is a string enum.
+// enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+type PortStpRoleEnum string
+
+const (
+	PortStpRoleEnum_ALTERNATE     PortStpRoleEnum = "alternate"
+	PortStpRoleEnum_BACKUP        PortStpRoleEnum = "backup"
+	PortStpRoleEnum_DESIGNATED    PortStpRoleEnum = "designated"
+	PortStpRoleEnum_DISABLED      PortStpRoleEnum = "disabled"
+	PortStpRoleEnum_ROOT          PortStpRoleEnum = "root"
+	PortStpRoleEnum_ROOTPREVENTED PortStpRoleEnum = "root-prevented"
+)
+
+// PortStpStateEnum is a string enum.
+// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+type PortStpStateEnum string
+
+const (
+	PortStpStateEnum_BLOCKING   PortStpStateEnum = "blocking"
+	PortStpStateEnum_DISABLED   PortStpStateEnum = "disabled"
+	PortStpStateEnum_FORWARDING PortStpStateEnum = "forwarding"
+	PortStpStateEnum_LEARNING   PortStpStateEnum = "learning"
+	PortStpStateEnum_LISTENING  PortStpStateEnum = "listening"
+)
+
 // PortalTemplateAlignmentEnum is a string enum.
 // defines alignment on portal. enum: `center`, `left`, `right`
 type PortalTemplateAlignmentEnum string
@@ -2870,41 +2891,6 @@ const (
 	SearchOrgDevicesMxtunnelStatusEnum_UP   SearchOrgDevicesMxtunnelStatusEnum = "up"
 )
 
-// SearchOrgSwOrGwPortsAuthStateEnum is a string enum.
-// enum: `authenticated`, `authenticating`, `held`, `init`
-type SearchOrgSwOrGwPortsAuthStateEnum string
-
-const (
-	SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchOrgSwOrGwPortsAuthStateEnum = "authenticated"
-	SearchOrgSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchOrgSwOrGwPortsAuthStateEnum = "authenticating"
-	SearchOrgSwOrGwPortsAuthStateEnum_HELD           SearchOrgSwOrGwPortsAuthStateEnum = "held"
-	SearchOrgSwOrGwPortsAuthStateEnum_INIT           SearchOrgSwOrGwPortsAuthStateEnum = "init"
-)
-
-// SearchOrgSwOrGwPortsStpRoleEnum is a string enum.
-// enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type SearchOrgSwOrGwPortsStpRoleEnum string
-
-const (
-	SearchOrgSwOrGwPortsStpRoleEnum_ALTERNATE     SearchOrgSwOrGwPortsStpRoleEnum = "alternate"
-	SearchOrgSwOrGwPortsStpRoleEnum_BACKUP        SearchOrgSwOrGwPortsStpRoleEnum = "backup"
-	SearchOrgSwOrGwPortsStpRoleEnum_DESIGNATED    SearchOrgSwOrGwPortsStpRoleEnum = "designated"
-	SearchOrgSwOrGwPortsStpRoleEnum_ROOT          SearchOrgSwOrGwPortsStpRoleEnum = "root"
-	SearchOrgSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchOrgSwOrGwPortsStpRoleEnum = "root-prevented"
-)
-
-// SearchOrgSwOrGwPortsStpStateEnum is a string enum.
-// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type SearchOrgSwOrGwPortsStpStateEnum string
-
-const (
-	SearchOrgSwOrGwPortsStpStateEnum_BLOCKING   SearchOrgSwOrGwPortsStpStateEnum = "blocking"
-	SearchOrgSwOrGwPortsStpStateEnum_DISABLED   SearchOrgSwOrGwPortsStpStateEnum = "disabled"
-	SearchOrgSwOrGwPortsStpStateEnum_FORWARDING SearchOrgSwOrGwPortsStpStateEnum = "forwarding"
-	SearchOrgSwOrGwPortsStpStateEnum_LEARNING   SearchOrgSwOrGwPortsStpStateEnum = "learning"
-	SearchOrgSwOrGwPortsStpStateEnum_LISTENING  SearchOrgSwOrGwPortsStpStateEnum = "listening"
-)
-
 // SearchOrgSwOrGwPortsTypeEnum is a string enum.
 // enum: `switch`,  `gateway`, `all`
 type SearchOrgSwOrGwPortsTypeEnum string
@@ -2946,17 +2932,6 @@ const (
 	SearchSiteDevicesSortEnum_TIMESTAMP SearchSiteDevicesSortEnum = "timestamp"
 )
 
-// SearchSiteSwOrGwPortsAuthStateEnum is a string enum.
-// enum: `authenticated`, `authenticating`, `held`, `init`
-type SearchSiteSwOrGwPortsAuthStateEnum string
-
-const (
-	SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATED  SearchSiteSwOrGwPortsAuthStateEnum = "authenticated"
-	SearchSiteSwOrGwPortsAuthStateEnum_AUTHENTICATING SearchSiteSwOrGwPortsAuthStateEnum = "authenticating"
-	SearchSiteSwOrGwPortsAuthStateEnum_HELD           SearchSiteSwOrGwPortsAuthStateEnum = "held"
-	SearchSiteSwOrGwPortsAuthStateEnum_INIT           SearchSiteSwOrGwPortsAuthStateEnum = "init"
-)
-
 // SearchSiteSwOrGwPortsDeviceTypeEnum is a string enum.
 // enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
 type SearchSiteSwOrGwPortsDeviceTypeEnum string
@@ -2968,30 +2943,6 @@ const (
 	SearchSiteSwOrGwPortsDeviceTypeEnum_MXEDGE     SearchSiteSwOrGwPortsDeviceTypeEnum = "mxedge"
 	SearchSiteSwOrGwPortsDeviceTypeEnum_NAC        SearchSiteSwOrGwPortsDeviceTypeEnum = "nac"
 	SearchSiteSwOrGwPortsDeviceTypeEnum_ENUMSWITCH SearchSiteSwOrGwPortsDeviceTypeEnum = "switch"
-)
-
-// SearchSiteSwOrGwPortsStpRoleEnum is a string enum.
-// enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type SearchSiteSwOrGwPortsStpRoleEnum string
-
-const (
-	SearchSiteSwOrGwPortsStpRoleEnum_ALTERNATE     SearchSiteSwOrGwPortsStpRoleEnum = "alternate"
-	SearchSiteSwOrGwPortsStpRoleEnum_BACKUP        SearchSiteSwOrGwPortsStpRoleEnum = "backup"
-	SearchSiteSwOrGwPortsStpRoleEnum_DESIGNATED    SearchSiteSwOrGwPortsStpRoleEnum = "designated"
-	SearchSiteSwOrGwPortsStpRoleEnum_ROOT          SearchSiteSwOrGwPortsStpRoleEnum = "root"
-	SearchSiteSwOrGwPortsStpRoleEnum_ROOTPREVENTED SearchSiteSwOrGwPortsStpRoleEnum = "root-prevented"
-)
-
-// SearchSiteSwOrGwPortsStpStateEnum is a string enum.
-// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type SearchSiteSwOrGwPortsStpStateEnum string
-
-const (
-	SearchSiteSwOrGwPortsStpStateEnum_BLOCKING   SearchSiteSwOrGwPortsStpStateEnum = "blocking"
-	SearchSiteSwOrGwPortsStpStateEnum_DISABLED   SearchSiteSwOrGwPortsStpStateEnum = "disabled"
-	SearchSiteSwOrGwPortsStpStateEnum_FORWARDING SearchSiteSwOrGwPortsStpStateEnum = "forwarding"
-	SearchSiteSwOrGwPortsStpStateEnum_LEARNING   SearchSiteSwOrGwPortsStpStateEnum = "learning"
-	SearchSiteSwOrGwPortsStpStateEnum_LISTENING  SearchSiteSwOrGwPortsStpStateEnum = "listening"
 )
 
 // SecintelProfileProfileActionEnum is a string enum.
@@ -3935,17 +3886,6 @@ const (
 	StatsMxtunnelStateEnum_WAITCTRLREPLY           StatsMxtunnelStateEnum = "wait-ctrl-reply"
 )
 
-// StatsSwitchPortAuthStateEnum is a string enum.
-// if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
-type StatsSwitchPortAuthStateEnum string
-
-const (
-	StatsSwitchPortAuthStateEnum_AUTHENTICATED  StatsSwitchPortAuthStateEnum = "authenticated"
-	StatsSwitchPortAuthStateEnum_AUTHENTICATING StatsSwitchPortAuthStateEnum = "authenticating"
-	StatsSwitchPortAuthStateEnum_HELD           StatsSwitchPortAuthStateEnum = "held"
-	StatsSwitchPortAuthStateEnum_INIT           StatsSwitchPortAuthStateEnum = "init"
-)
-
 // StatsSwitchPortPoeModeEnum is a string enum.
 // enum: `802.3af`, `802.3at`, `802.3bt`
 type StatsSwitchPortPoeModeEnum string
@@ -3954,38 +3894,6 @@ const (
 	StatsSwitchPortPoeModeEnum_ENUM8023AF StatsSwitchPortPoeModeEnum = "802.3af"
 	StatsSwitchPortPoeModeEnum_ENUM8023AT StatsSwitchPortPoeModeEnum = "802.3at"
 	StatsSwitchPortPoeModeEnum_ENUM8023BT StatsSwitchPortPoeModeEnum = "802.3bt"
-)
-
-// StatsSwitchPortPortUsageEnum is a string enum.
-// gateway port usage. enum: `lan`
-type StatsSwitchPortPortUsageEnum string
-
-const (
-	StatsSwitchPortPortUsageEnum_LAN StatsSwitchPortPortUsageEnum = "lan"
-)
-
-// StatsSwitchPortStpRoleEnum is a string enum.
-// if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-type StatsSwitchPortStpRoleEnum string
-
-const (
-	StatsSwitchPortStpRoleEnum_ALTERNATE     StatsSwitchPortStpRoleEnum = "alternate"
-	StatsSwitchPortStpRoleEnum_BACKUP        StatsSwitchPortStpRoleEnum = "backup"
-	StatsSwitchPortStpRoleEnum_DESIGNATED    StatsSwitchPortStpRoleEnum = "designated"
-	StatsSwitchPortStpRoleEnum_ROOT          StatsSwitchPortStpRoleEnum = "root"
-	StatsSwitchPortStpRoleEnum_ROOTPREVENTED StatsSwitchPortStpRoleEnum = "root-prevented"
-)
-
-// StatsSwitchPortStpStateEnum is a string enum.
-// if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-type StatsSwitchPortStpStateEnum string
-
-const (
-	StatsSwitchPortStpStateEnum_BLOCKING   StatsSwitchPortStpStateEnum = "blocking"
-	StatsSwitchPortStpStateEnum_DISABLED   StatsSwitchPortStpStateEnum = "disabled"
-	StatsSwitchPortStpStateEnum_FORWARDING StatsSwitchPortStpStateEnum = "forwarding"
-	StatsSwitchPortStpStateEnum_LEARNING   StatsSwitchPortStpStateEnum = "learning"
-	StatsSwitchPortStpStateEnum_LISTENING  StatsSwitchPortStpStateEnum = "listening"
 )
 
 // StatsSwitchPortTypeEnum is a string enum.

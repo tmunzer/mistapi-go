@@ -845,7 +845,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceBgpSummary(
 	req := u.prepareRequest(
 		ctx,
 		"POST",
-		"/api/v1/sites/%v/devices/%v/show_bgp_rummary",
+		"/api/v1/sites/%v/devices/%v/show_bgp_summary",
 	)
 	req.AppendTemplateParams(siteId, deviceId)
 	req.Authenticate(

@@ -186,18 +186,18 @@ func (s *SitesAlarms) CountSiteAlarms(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteAlarms takes context, siteId, mType, ackAdminName, acked, severity, group, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteAlarms takes context, siteId, group, severity, mType, ackAdminName, acked, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.AlarmSearchResult data and
 // an error if there was an issue with the request or response.
 // Search Site Alarms
 func (s *SitesAlarms) SearchSiteAlarms(
 	ctx context.Context,
 	siteId uuid.UUID,
+	group *models.AlarmGroupEnum,
+	severity *models.AlarmSeverityEnum,
 	mType *string,
 	ackAdminName *string,
 	acked *bool,
-	severity *string,
-	group *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -225,6 +225,12 @@ func (s *SitesAlarms) SearchSiteAlarms(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if group != nil {
+		req.QueryParam("group", *group)
+	}
+	if severity != nil {
+		req.QueryParam("severity", *severity)
+	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
@@ -233,12 +239,6 @@ func (s *SitesAlarms) SearchSiteAlarms(
 	}
 	if acked != nil {
 		req.QueryParam("acked", *acked)
-	}
-	if severity != nil {
-		req.QueryParam("severity", *severity)
-	}
-	if group != nil {
-		req.QueryParam("group", *group)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

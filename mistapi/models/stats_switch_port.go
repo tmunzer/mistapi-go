@@ -15,8 +15,8 @@ import (
 type StatsSwitchPort struct {
 	// Indicates if interface is active/inactive
 	Active *bool `json:"active,omitempty"`
-	// if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
-	AuthState *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
+	// enum: `authenticated`, `authenticating`, `held`, `init`
+	AuthState *PortAuthStateEnum `json:"auth_state,omitempty"`
 	// Indicates if interface is disabled
 	Disabled *bool `json:"disabled,omitempty"`
 	ForSite  *bool `json:"for_site,omitempty"`
@@ -42,7 +42,7 @@ type StatsSwitchPort struct {
 	// Limit on number of dynamically learned macs
 	MacLimit *int `json:"mac_limit,omitempty"`
 	// chassis identifier of the chassis type listed
-	NeighborMac string `json:"neighbor_mac"`
+	NeighborMac *string `json:"neighbor_mac,omitempty"`
 	// Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39"
 	NeighborPortDesc *string `json:"neighbor_port_desc,omitempty"`
 	// Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local"
@@ -58,9 +58,8 @@ type StatsSwitchPort struct {
 	PoePriority *PoePriorityEnum `json:"poe_priority,omitempty"`
 	PortId      string           `json:"port_id"`
 	// Interface MAC address
-	PortMac string `json:"port_mac"`
-	// gateway port usage. enum: `lan`
-	PortUsage *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
+	PortMac   *string `json:"port_mac,omitempty"`
+	PortUsage *string `json:"port_usage,omitempty"`
 	// Amount of power being used by the interface at the time the command is executed. Unit in watts.
 	PowerDraw *float64 `json:"power_draw,omitempty"`
 	// Broadcast input packets
@@ -78,10 +77,10 @@ type StatsSwitchPort struct {
 	SiteId uuid.UUID       `json:"site_id"`
 	// Port speed
 	Speed *int `json:"speed,omitempty"`
-	// if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-	StpRole *StatsSwitchPortStpRoleEnum `json:"stp_role,omitempty"`
-	// if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-	StpState *StatsSwitchPortStpStateEnum `json:"stp_state,omitempty"`
+	// enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+	StpRole *PortStpRoleEnum `json:"stp_role,omitempty"`
+	// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+	StpState *PortStpStateEnum `json:"stp_state,omitempty"`
 	// Broadcast output packets
 	TxBcastPkts *int `json:"tx_bcast_pkts,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
@@ -188,7 +187,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
 	if s.MacLimit != nil {
 		structMap["mac_limit"] = s.MacLimit
 	}
-	structMap["neighbor_mac"] = s.NeighborMac
+	if s.NeighborMac != nil {
+		structMap["neighbor_mac"] = s.NeighborMac
+	}
 	if s.NeighborPortDesc != nil {
 		structMap["neighbor_port_desc"] = s.NeighborPortDesc
 	}
@@ -209,7 +210,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
 		structMap["poe_priority"] = s.PoePriority
 	}
 	structMap["port_id"] = s.PortId
-	structMap["port_mac"] = s.PortMac
+	if s.PortMac != nil {
+		structMap["port_mac"] = s.PortMac
+	}
 	if s.PortUsage != nil {
 		structMap["port_usage"] = s.PortUsage
 	}
@@ -340,7 +343,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	s.Mac = *temp.Mac
 	s.MacCount = temp.MacCount
 	s.MacLimit = temp.MacLimit
-	s.NeighborMac = *temp.NeighborMac
+	s.NeighborMac = temp.NeighborMac
 	s.NeighborPortDesc = temp.NeighborPortDesc
 	s.NeighborSystemName = temp.NeighborSystemName
 	s.OrgId = *temp.OrgId
@@ -349,7 +352,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	s.PoeOn = temp.PoeOn
 	s.PoePriority = temp.PoePriority
 	s.PortId = *temp.PortId
-	s.PortMac = *temp.PortMac
+	s.PortMac = temp.PortMac
 	s.PortUsage = temp.PortUsage
 	s.PowerDraw = temp.PowerDraw
 	s.RxBcastPkts = temp.RxBcastPkts
@@ -379,55 +382,55 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 
 // tempStatsSwitchPort is a temporary struct used for validating the fields of StatsSwitchPort.
 type tempStatsSwitchPort struct {
-	Active             *bool                         `json:"active,omitempty"`
-	AuthState          *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
-	Disabled           *bool                         `json:"disabled,omitempty"`
-	ForSite            *bool                         `json:"for_site,omitempty"`
-	FullDuplex         *bool                         `json:"full_duplex,omitempty"`
-	Jitter             *float64                      `json:"jitter,omitempty"`
-	LastFlapped        *float64                      `json:"last_flapped,omitempty"`
-	Latency            *float64                      `json:"latency,omitempty"`
-	Loss               *float64                      `json:"loss,omitempty"`
-	LteIccid           Optional[string]              `json:"lte_iccid"`
-	LteImei            Optional[string]              `json:"lte_imei"`
-	LteImsi            Optional[string]              `json:"lte_imsi"`
-	Mac                *string                       `json:"mac"`
-	MacCount           *int                          `json:"mac_count,omitempty"`
-	MacLimit           *int                          `json:"mac_limit,omitempty"`
-	NeighborMac        *string                       `json:"neighbor_mac"`
-	NeighborPortDesc   *string                       `json:"neighbor_port_desc,omitempty"`
-	NeighborSystemName *string                       `json:"neighbor_system_name,omitempty"`
-	OrgId              *uuid.UUID                    `json:"org_id"`
-	PoeDisabled        *bool                         `json:"poe_disabled,omitempty"`
-	PoeMode            *StatsSwitchPortPoeModeEnum   `json:"poe_mode,omitempty"`
-	PoeOn              *bool                         `json:"poe_on,omitempty"`
-	PoePriority        *PoePriorityEnum              `json:"poe_priority,omitempty"`
-	PortId             *string                       `json:"port_id"`
-	PortMac            *string                       `json:"port_mac"`
-	PortUsage          *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
-	PowerDraw          *float64                      `json:"power_draw,omitempty"`
-	RxBcastPkts        *int                          `json:"rx_bcast_pkts,omitempty"`
-	RxBps              Optional[int64]               `json:"rx_bps"`
-	RxBytes            Optional[int64]               `json:"rx_bytes"`
-	RxErrors           *int                          `json:"rx_errors,omitempty"`
-	RxMcastPkts        *int                          `json:"rx_mcast_pkts,omitempty"`
-	RxPkts             Optional[int64]               `json:"rx_pkts"`
-	SiteId             *uuid.UUID                    `json:"site_id"`
-	Speed              *int                          `json:"speed,omitempty"`
-	StpRole            *StatsSwitchPortStpRoleEnum   `json:"stp_role,omitempty"`
-	StpState           *StatsSwitchPortStpStateEnum  `json:"stp_state,omitempty"`
-	TxBcastPkts        *int                          `json:"tx_bcast_pkts,omitempty"`
-	TxBps              Optional[int64]               `json:"tx_bps"`
-	TxBytes            Optional[int64]               `json:"tx_bytes"`
-	TxErrors           *int                          `json:"tx_errors,omitempty"`
-	TxMcastPkts        *int                          `json:"tx_mcast_pkts,omitempty"`
-	TxPkts             Optional[int64]               `json:"tx_pkts"`
-	Type               *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
-	Unconfigured       *bool                         `json:"unconfigured,omitempty"`
-	Up                 *bool                         `json:"up,omitempty"`
-	XcvrModel          *string                       `json:"xcvr_model,omitempty"`
-	XcvrPartNumber     *string                       `json:"xcvr_part_number,omitempty"`
-	XcvrSerial         *string                       `json:"xcvr_serial,omitempty"`
+	Active             *bool                       `json:"active,omitempty"`
+	AuthState          *PortAuthStateEnum          `json:"auth_state,omitempty"`
+	Disabled           *bool                       `json:"disabled,omitempty"`
+	ForSite            *bool                       `json:"for_site,omitempty"`
+	FullDuplex         *bool                       `json:"full_duplex,omitempty"`
+	Jitter             *float64                    `json:"jitter,omitempty"`
+	LastFlapped        *float64                    `json:"last_flapped,omitempty"`
+	Latency            *float64                    `json:"latency,omitempty"`
+	Loss               *float64                    `json:"loss,omitempty"`
+	LteIccid           Optional[string]            `json:"lte_iccid"`
+	LteImei            Optional[string]            `json:"lte_imei"`
+	LteImsi            Optional[string]            `json:"lte_imsi"`
+	Mac                *string                     `json:"mac"`
+	MacCount           *int                        `json:"mac_count,omitempty"`
+	MacLimit           *int                        `json:"mac_limit,omitempty"`
+	NeighborMac        *string                     `json:"neighbor_mac,omitempty"`
+	NeighborPortDesc   *string                     `json:"neighbor_port_desc,omitempty"`
+	NeighborSystemName *string                     `json:"neighbor_system_name,omitempty"`
+	OrgId              *uuid.UUID                  `json:"org_id"`
+	PoeDisabled        *bool                       `json:"poe_disabled,omitempty"`
+	PoeMode            *StatsSwitchPortPoeModeEnum `json:"poe_mode,omitempty"`
+	PoeOn              *bool                       `json:"poe_on,omitempty"`
+	PoePriority        *PoePriorityEnum            `json:"poe_priority,omitempty"`
+	PortId             *string                     `json:"port_id"`
+	PortMac            *string                     `json:"port_mac,omitempty"`
+	PortUsage          *string                     `json:"port_usage,omitempty"`
+	PowerDraw          *float64                    `json:"power_draw,omitempty"`
+	RxBcastPkts        *int                        `json:"rx_bcast_pkts,omitempty"`
+	RxBps              Optional[int64]             `json:"rx_bps"`
+	RxBytes            Optional[int64]             `json:"rx_bytes"`
+	RxErrors           *int                        `json:"rx_errors,omitempty"`
+	RxMcastPkts        *int                        `json:"rx_mcast_pkts,omitempty"`
+	RxPkts             Optional[int64]             `json:"rx_pkts"`
+	SiteId             *uuid.UUID                  `json:"site_id"`
+	Speed              *int                        `json:"speed,omitempty"`
+	StpRole            *PortStpRoleEnum            `json:"stp_role,omitempty"`
+	StpState           *PortStpStateEnum           `json:"stp_state,omitempty"`
+	TxBcastPkts        *int                        `json:"tx_bcast_pkts,omitempty"`
+	TxBps              Optional[int64]             `json:"tx_bps"`
+	TxBytes            Optional[int64]             `json:"tx_bytes"`
+	TxErrors           *int                        `json:"tx_errors,omitempty"`
+	TxMcastPkts        *int                        `json:"tx_mcast_pkts,omitempty"`
+	TxPkts             Optional[int64]             `json:"tx_pkts"`
+	Type               *StatsSwitchPortTypeEnum    `json:"type,omitempty"`
+	Unconfigured       *bool                       `json:"unconfigured,omitempty"`
+	Up                 *bool                       `json:"up,omitempty"`
+	XcvrModel          *string                     `json:"xcvr_model,omitempty"`
+	XcvrPartNumber     *string                     `json:"xcvr_part_number,omitempty"`
+	XcvrSerial         *string                     `json:"xcvr_serial,omitempty"`
 }
 
 func (s *tempStatsSwitchPort) validate() error {
@@ -435,17 +438,11 @@ func (s *tempStatsSwitchPort) validate() error {
 	if s.Mac == nil {
 		errs = append(errs, "required field `mac` is missing for type `stats_switch_port`")
 	}
-	if s.NeighborMac == nil {
-		errs = append(errs, "required field `neighbor_mac` is missing for type `stats_switch_port`")
-	}
 	if s.OrgId == nil {
 		errs = append(errs, "required field `org_id` is missing for type `stats_switch_port`")
 	}
 	if s.PortId == nil {
 		errs = append(errs, "required field `port_id` is missing for type `stats_switch_port`")
-	}
-	if s.PortMac == nil {
-		errs = append(errs, "required field `port_mac` is missing for type `stats_switch_port`")
 	}
 	if s.SiteId == nil {
 		errs = append(errs, "required field `site_id` is missing for type `stats_switch_port`")

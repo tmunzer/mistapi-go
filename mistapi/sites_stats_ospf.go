@@ -86,14 +86,13 @@ func (s *SitesStatsOspf) CountSiteOspfStats(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteOspfStats takes context, siteIdTemplate, siteId, mac, vrfName, peerIp, start, end, limit, sort, searchAfter as parameters and
+// SearchSiteOspfStats takes context, siteId, mac, vrfName, peerIp, start, end, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.OspfPeerStatsSearchResult data and
 // an error if there was an issue with the request or response.
 // Search OSPF Neighbor Stats
 func (s *SitesStatsOspf) SearchSiteOspfStats(
 	ctx context.Context,
-	siteIdTemplate uuid.UUID,
-	siteId *string,
+	siteId uuid.UUID,
 	mac *string,
 	vrfName *string,
 	peerIp *string,
@@ -105,7 +104,7 @@ func (s *SitesStatsOspf) SearchSiteOspfStats(
 	models.ApiResponse[models.OspfPeerStatsSearchResult],
 	error) {
 	req := s.prepareRequest(ctx, "GET", "/api/v1/sites/%v/stats/ospf_peers/search")
-	req.AppendTemplateParams(siteIdTemplate)
+	req.AppendTemplateParams(siteId)
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
@@ -123,9 +122,6 @@ func (s *SitesStatsOspf) SearchSiteOspfStats(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if siteId != nil {
-		req.QueryParam("site_id", *siteId)
-	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}

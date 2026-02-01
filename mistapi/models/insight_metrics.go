@@ -15,7 +15,7 @@ type InsightMetrics struct {
 	Interval int  `json:"interval"`
 	Limit    *int `json:"limit,omitempty"`
 	// Results depends on the `metric` - some return numbers (e.g. bytes, ap-count), others return objects
-	Results              []InsightMetricsResultsItem `json:"results"`
+	Results              []InsightMetricsResultsItem `json:"results,omitempty"`
 	Start                int                         `json:"start"`
 	AdditionalProperties map[string]interface{}      `json:"_"`
 }
@@ -49,7 +49,9 @@ func (i InsightMetrics) toMap() map[string]any {
 	if i.Limit != nil {
 		structMap["limit"] = i.Limit
 	}
-	structMap["results"] = i.Results
+	if i.Results != nil {
+		structMap["results"] = i.Results
+	}
 	structMap["start"] = i.Start
 	return structMap
 }
@@ -75,18 +77,18 @@ func (i *InsightMetrics) UnmarshalJSON(input []byte) error {
 	i.End = *temp.End
 	i.Interval = *temp.Interval
 	i.Limit = temp.Limit
-	i.Results = *temp.Results
+	i.Results = temp.Results
 	i.Start = *temp.Start
 	return nil
 }
 
 // tempInsightMetrics is a temporary struct used for validating the fields of InsightMetrics.
 type tempInsightMetrics struct {
-	End      *int                         `json:"end"`
-	Interval *int                         `json:"interval"`
-	Limit    *int                         `json:"limit,omitempty"`
-	Results  *[]InsightMetricsResultsItem `json:"results"`
-	Start    *int                         `json:"start"`
+	End      *int                        `json:"end"`
+	Interval *int                        `json:"interval"`
+	Limit    *int                        `json:"limit,omitempty"`
+	Results  []InsightMetricsResultsItem `json:"results,omitempty"`
+	Start    *int                        `json:"start"`
 }
 
 func (i *tempInsightMetrics) validate() error {
@@ -96,9 +98,6 @@ func (i *tempInsightMetrics) validate() error {
 	}
 	if i.Interval == nil {
 		errs = append(errs, "required field `interval` is missing for type `insight_metrics`")
-	}
-	if i.Results == nil {
-		errs = append(errs, "required field `results` is missing for type `insight_metrics`")
 	}
 	if i.Start == nil {
 		errs = append(errs, "required field `start` is missing for type `insight_metrics`")

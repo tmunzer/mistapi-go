@@ -9,11 +9,11 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `int` | Required | - |
+| `End` | `*int` | Optional | - |
 | `Limit` | `int` | Required | - |
 | `Next` | `*string` | Optional | - |
 | `Results` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Required | - |
-| `Start` | `int` | Required | - |
+| `Start` | `*int` | Optional | - |
 | `Total` | `int` | Required | - |
 
 ## Example (as JSON)
@@ -32,6 +32,7 @@
       "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
       "port_id": "ge-0/0/0",
       "port_mac": "5c4527a96580",
+      "port_usage": "lan",
       "rx_bps": 60003,
       "rx_bytes": 8515104416,
       "rx_pkts": 57770567,
