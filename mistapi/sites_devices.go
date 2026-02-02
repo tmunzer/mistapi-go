@@ -1053,7 +1053,7 @@ func (s *SitesDevices) DeleteSiteDeviceImage(
 	imageNumber int) (
 	*http.Response,
 	error) {
-	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/image%v")
+	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/devices/%v/image/%v")
 	req.AppendTemplateParams(siteId, deviceId, imageNumber)
 	req.Authenticate(
 		NewOrAuth(
@@ -1093,7 +1093,7 @@ func (s *SitesDevices) AddSiteDeviceImage(
 	json *string) (
 	*http.Response,
 	error) {
-	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/image%v")
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/image/%v")
 	req.AppendTemplateParams(siteId, deviceId, imageNumber)
 	req.Authenticate(
 		NewOrAuth(

@@ -67,7 +67,20 @@ page := 1
 
 apiResponse, err := orgsSLEs.GetOrgSitesSle(ctx, orgId, nil, nil, nil, &duration, &interval, &limit, &page)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     responseBody := apiResponse.Data
@@ -166,7 +179,20 @@ interval := "10m"
 
 apiResponse, err := orgsSLEs.GetOrgSle(ctx, orgId, metric, nil, &duration, &interval, nil, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

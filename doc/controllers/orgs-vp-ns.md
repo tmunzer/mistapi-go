@@ -64,7 +64,20 @@ body := models.Vpn{
 
 apiResponse, err := orgsVPNs.CreateOrgVpn(ctx, orgId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -140,7 +153,20 @@ vpnId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := orgsVPNs.DeleteOrgVpn(ctx, orgId, vpnId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -192,7 +218,20 @@ vpnId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := orgsVPNs.GetOrgVpn(ctx, orgId, vpnId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -272,7 +311,20 @@ page := 1
 
 apiResponse, err := orgsVPNs.ListOrgVpns(ctx, orgId, &limit, &page)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -362,7 +414,20 @@ body := models.Vpn{
 
 apiResponse, err := orgsVPNs.UpdateOrgVpn(ctx, orgId, vpnId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

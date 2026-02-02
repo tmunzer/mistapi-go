@@ -95,7 +95,20 @@ limit := 100
 
 apiResponse, err := orgsDevices.CountOrgDeviceEvents(ctx, orgId, &distinct, &siteId, &ap, &apfw, &model, &text, &timestamp, nil, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -181,7 +194,20 @@ limit := 100
 
 apiResponse, err := orgsDevices.CountOrgDeviceLastConfigs(ctx, orgId, &mType, nil, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -319,7 +345,20 @@ limit := 100
 
 apiResponse, err := orgsDevices.CountOrgDevices(ctx, orgId, &distinct, &hostname, &siteId, &model, &managed, &mac, &version, &ip, nil, &mxedgeId, &lldpSystemName, &lldpSystemDesc, &lldpPortId, &lldpMgmtAddr, &mType, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -392,7 +431,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := orgsDevices.GetOrgJuniperDevicesCommand(ctx, orgId, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -460,7 +512,20 @@ page := 1
 
 apiResponse, err := orgsDevices.ListOrgApsMacs(ctx, orgId, &limit, &page)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -533,7 +598,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := orgsDevices.ListOrgDevices(ctx, orgId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -596,7 +674,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := orgsDevices.ListOrgDevicesSummary(ctx, orgId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -708,7 +799,20 @@ sort := "-site_id"
 
 apiResponse, err := orgsDevices.SearchOrgDeviceEvents(ctx, orgId, &mac, &model, &deviceType, &text, &timestamp, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -820,7 +924,20 @@ sort := "-site_id"
 
 apiResponse, err := orgsDevices.SearchOrgDeviceLastConfigs(ctx, orgId, &deviceType, &mac, &name, &version, &certExpiryDuration, nil, nil, &limit, &duration, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1103,7 +1220,20 @@ sort := "-site_id"
 
 apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

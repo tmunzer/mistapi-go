@@ -62,7 +62,20 @@ body := models.NoteString{
 
 resp, err := orgsAlarms.AckOrgAlarm(ctx, orgId, alarmId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -118,7 +131,20 @@ body := models.NoteString{
 
 resp, err := orgsAlarms.AckOrgAllAlarms(ctx, orgId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -176,7 +202,20 @@ body := models.Alarms{
 
 resp, err := orgsAlarms.AckOrgMultipleAlarms(ctx, orgId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -240,7 +279,20 @@ limit := 100
 
 apiResponse, err := orgsAlarms.CountOrgAlarms(ctx, orgId, &distinct, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -286,8 +338,11 @@ SearchOrgAlarms(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *uuid.UUID,
+    group *models.AlarmGroupEnum,
+    severity *models.AlarmSeverityEnum,
     mType *string,
-    status *string,
+    ackAdminName *string,
+    acked *bool,
     start *string,
     end *string,
     duration *string,
@@ -304,8 +359,11 @@ SearchOrgAlarms(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `mType` | `*string` | Query, Optional | Alarm type |
-| `status` | `*string` | Query, Optional | Alarm status. Accepts multiple values separated by comma. enum: `open`, `resolved` |
+| `group` | [`*models.AlarmGroupEnum`](../../doc/models/alarm-group-enum.md) | Query, Optional | Alarm group. enum: `infrastructure`, `marvis`, `security` |
+| `severity` | [`*models.AlarmSeverityEnum`](../../doc/models/alarm-severity-enum.md) | Query, Optional | Severity of the alarm. enum: `critical`, `info`, `warn` |
+| `mType` | `*string` | Query, Optional | Type of the alarm. Accepts multiple values separated by comma. Use [List Alarm Definitions](/#operations/listAlarmDefinitions) to get the list of possible alarm types. |
+| `ackAdminName` | `*string` | Query, Optional | Name of the admins who have acked the alarms; accepts multiple values separated by comma |
+| `acked` | `*bool` | Query, Optional | - |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -326,9 +384,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 
-mType := "marvis"
-
-status := "open"
+mType := "infra_dhcp_failure,missing_vlan"
 
 duration := "10m"
 
@@ -336,9 +392,22 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, &mType, &status, nil, nil, &duration, &limit, &sort, nil)
+apiResponse, err := orgsAlarms.SearchOrgAlarms(ctx, orgId, &siteId, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -389,7 +458,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := orgsAlarms.SubscribeOrgAlarmsReports(ctx, orgId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -445,7 +527,20 @@ body := models.NoteString{
 
 resp, err := orgsAlarms.UnackOrgAllAlarms(ctx, orgId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -503,7 +598,20 @@ body := models.Alarms{
 
 resp, err := orgsAlarms.UnackOrgMultipleAlarms(ctx, orgId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -552,7 +660,20 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := orgsAlarms.UnsubscribeOrgAlarmsReports(ctx, orgId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }

@@ -63,7 +63,20 @@ body := models.MacAddresses{
 
 apiResponse, err := sitesSetting.CreateSiteWatchedStations(ctx, siteId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -134,7 +147,20 @@ body := models.MacAddresses{
 
 apiResponse, err := sitesSetting.CreateSiteWirelessClientsAllowlist(ctx, siteId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -206,7 +232,20 @@ body := models.MacAddresses{
 
 apiResponse, err := sitesSetting.CreateSiteWirelessClientsBlocklist(ctx, siteId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -267,7 +306,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := sitesSetting.DeleteSiteWatchedStations(ctx, siteId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -315,7 +367,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := sitesSetting.DeleteSiteWirelessClientsAllowlist(ctx, siteId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -363,7 +428,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := sitesSetting.DeleteSiteWirelessClientsBlocklist(ctx, siteId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     fmt.Println(resp.StatusCode)
 }
@@ -411,7 +489,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := sitesSetting.GetSiteSetting(ctx, siteId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -461,7 +552,20 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 apiResponse, err := sitesSetting.GetSiteSettingDerived(ctx, siteId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -515,7 +619,6 @@ body := models.SiteSetting{
     ApUpdownThreshold:               models.NewOptional(models.ToPointer(0)),
     AutoUpgradeLinecard:             models.ToPointer(true),
     ConfigAutoRevert:                models.ToPointer(false),
-    DefaultPortUsage:                models.ToPointer("default"),
     DeviceUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
     EnableUnii4:                     models.ToPointer(false),
     ExtraRoutes:                     map[string]models.ExtraRoute{
@@ -555,7 +658,20 @@ body := models.SiteSetting{
 
 apiResponse, err := sitesSetting.UpdateSiteSettings(ctx, siteId, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

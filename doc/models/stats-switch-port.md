@@ -12,7 +12,7 @@ Switch port statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Active` | `*bool` | Optional | Indicates if interface is active/inactive |
-| `AuthState` | [`*models.StatsSwitchPortAuthStateEnum`](../../doc/models/stats-switch-port-auth-state-enum.md) | Optional | if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init` |
+| `AuthState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Optional | enum: `authenticated`, `authenticating`, `held`, `init` |
 | `Disabled` | `*bool` | Optional | Indicates if interface is disabled |
 | `ForSite` | `*bool` | Optional | - |
 | `FullDuplex` | `*bool` | Optional | Indicates full or half duplex |
@@ -26,7 +26,7 @@ Switch port statistics
 | `Mac` | `string` | Required | - |
 | `MacCount` | `*int` | Optional | Number of mac addresses in the forwarding table |
 | `MacLimit` | `*int` | Optional | Limit on number of dynamically learned macs<br><br>**Constraints**: `>= 0` |
-| `NeighborMac` | `string` | Required | chassis identifier of the chassis type listed |
+| `NeighborMac` | `*string` | Optional | chassis identifier of the chassis type listed |
 | `NeighborPortDesc` | `*string` | Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
 | `NeighborSystemName` | `*string` | Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |
 | `OrgId` | `uuid.UUID` | Required | - |
@@ -35,8 +35,8 @@ Switch port statistics
 | `PoeOn` | `*bool` | Optional | Is the device attached to POE |
 | `PoePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Optional | PoE priority. enum: `low`, `high` |
 | `PortId` | `string` | Required | - |
-| `PortMac` | `string` | Required | Interface MAC address |
-| `PortUsage` | [`*models.StatsSwitchPortPortUsageEnum`](../../doc/models/stats-switch-port-port-usage-enum.md) | Optional | gateway port usage. enum: `lan` |
+| `PortMac` | `*string` | Optional | Interface MAC address |
+| `PortUsage` | `*string` | Optional | - |
 | `PowerDraw` | `*float64` | Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `RxBcastPkts` | `*int` | Optional | Broadcast input packets |
 | `RxBps` | `models.Optional[int64]` | Optional | Rate of receiving traffic, bits/seconds, last known |
@@ -46,8 +46,8 @@ Switch port statistics
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `SiteId` | `uuid.UUID` | Required | - |
 | `Speed` | `*int` | Optional | Port speed |
-| `StpRole` | [`*models.StatsSwitchPortStpRoleEnum`](../../doc/models/stats-switch-port-stp-role-enum.md) | Optional | if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented` |
-| `StpState` | [`*models.StatsSwitchPortStpStateEnum`](../../doc/models/stats-switch-port-stp-state-enum.md) | Optional | if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
+| `StpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Optional | enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented` |
+| `StpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Optional | enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
 | `TxBcastPkts` | `*int` | Optional | Broadcast output packets |
 | `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
 | `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
@@ -73,6 +73,7 @@ Switch port statistics
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
+  "port_usage": "lan",
   "rx_bps": 60003,
   "rx_bytes": 8515104416,
   "rx_pkts": 57770567,

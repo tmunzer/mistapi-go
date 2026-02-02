@@ -11,11 +11,11 @@ import (
 
 // ResponsePortStatsSearch represents a ResponsePortStatsSearch struct.
 type ResponsePortStatsSearch struct {
-	End                  int                    `json:"end"`
+	End                  *int                   `json:"end,omitempty"`
 	Limit                int                    `json:"limit"`
 	Next                 *string                `json:"next,omitempty"`
 	Results              []StatsSwitchPort      `json:"results"`
-	Start                int                    `json:"start"`
+	Start                *int                   `json:"start,omitempty"`
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -44,13 +44,17 @@ func (r ResponsePortStatsSearch) MarshalJSON() (
 func (r ResponsePortStatsSearch) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
-	structMap["end"] = r.End
+	if r.End != nil {
+		structMap["end"] = r.End
+	}
 	structMap["limit"] = r.Limit
 	if r.Next != nil {
 		structMap["next"] = r.Next
 	}
 	structMap["results"] = r.Results
-	structMap["start"] = r.Start
+	if r.Start != nil {
+		structMap["start"] = r.Start
+	}
 	structMap["total"] = r.Total
 	return structMap
 }
@@ -73,38 +77,32 @@ func (r *ResponsePortStatsSearch) UnmarshalJSON(input []byte) error {
 	}
 	r.AdditionalProperties = additionalProperties
 
-	r.End = *temp.End
+	r.End = temp.End
 	r.Limit = *temp.Limit
 	r.Next = temp.Next
 	r.Results = *temp.Results
-	r.Start = *temp.Start
+	r.Start = temp.Start
 	r.Total = *temp.Total
 	return nil
 }
 
 // tempResponsePortStatsSearch is a temporary struct used for validating the fields of ResponsePortStatsSearch.
 type tempResponsePortStatsSearch struct {
-	End     *int               `json:"end"`
+	End     *int               `json:"end,omitempty"`
 	Limit   *int               `json:"limit"`
 	Next    *string            `json:"next,omitempty"`
 	Results *[]StatsSwitchPort `json:"results"`
-	Start   *int               `json:"start"`
+	Start   *int               `json:"start,omitempty"`
 	Total   *int               `json:"total"`
 }
 
 func (r *tempResponsePortStatsSearch) validate() error {
 	var errs []string
-	if r.End == nil {
-		errs = append(errs, "required field `end` is missing for type `response_port_stats_search`")
-	}
 	if r.Limit == nil {
 		errs = append(errs, "required field `limit` is missing for type `response_port_stats_search`")
 	}
 	if r.Results == nil {
 		errs = append(errs, "required field `results` is missing for type `response_port_stats_search`")
-	}
-	if r.Start == nil {
-		errs = append(errs, "required field `start` is missing for type `response_port_stats_search`")
 	}
 	if r.Total == nil {
 		errs = append(errs, "required field `total` is missing for type `response_port_stats_search`")

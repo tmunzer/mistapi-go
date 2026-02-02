@@ -52,7 +52,7 @@ This event's request payload is of type [*models.WebhookLocation](../../../../do
 ```go
 // Package mistapi
 // Copyright \xA9 2024 Juniper Networks, Inc. All rights reserved
-package mistapi
+package main
 
 import (
     "fmt"
@@ -75,7 +75,9 @@ func WebhooksGinEventHandler(c *gin.Context) {
             "eventInfo": "Unknown event received",
         })
     } else {
-        c.JSON(400, map[string]any{"status": "failure"})
+        c.JSON(400, map[string]any{
+            "status": "failure",
+        })
     }
 }
 ```

@@ -14,8 +14,8 @@ import (
 type StatsGatewayPort struct {
 	// Indicates if interface is active/inactive
 	Active *bool `json:"active,omitempty"`
-	// if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init`
-	AuthState *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
+	// enum: `authenticated`, `authenticating`, `held`, `init`
+	AuthState *PortAuthStateEnum `json:"auth_state,omitempty"`
 	// Indicates if interface is disabled
 	Disabled *bool `json:"disabled,omitempty"`
 	ForSite  *bool `json:"for_site,omitempty"`
@@ -51,9 +51,8 @@ type StatsGatewayPort struct {
 	PoeOn  *bool  `json:"poe_on,omitempty"`
 	PortId string `json:"port_id"`
 	// Interface mac address
-	PortMac string `json:"port_mac"`
-	// gateway port usage. enum: `lan`
-	PortUsage *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
+	PortMac   string  `json:"port_mac"`
+	PortUsage *string `json:"port_usage,omitempty"`
 	// Amount of power being used by the interface at the time the command is executed. Unit in watts.
 	PowerDraw *float64 `json:"power_draw,omitempty"`
 	// Broadcast input packets
@@ -70,10 +69,10 @@ type StatsGatewayPort struct {
 	RxPkts Optional[int64] `json:"rx_pkts"`
 	// Port speed
 	Speed *int `json:"speed,omitempty"`
-	// if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented`
-	StpRole *StatsSwitchPortStpRoleEnum `json:"stp_role,omitempty"`
-	// if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
-	StpState *StatsSwitchPortStpStateEnum `json:"stp_state,omitempty"`
+	// enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+	StpRole *PortStpRoleEnum `json:"stp_role,omitempty"`
+	// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+	StpState *PortStpStateEnum `json:"stp_state,omitempty"`
 	// Broadcast output packets
 	TxBcastPkts *int `json:"tx_bcast_pkts,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
@@ -357,50 +356,50 @@ func (s *StatsGatewayPort) UnmarshalJSON(input []byte) error {
 
 // tempStatsGatewayPort is a temporary struct used for validating the fields of StatsGatewayPort.
 type tempStatsGatewayPort struct {
-	Active             *bool                         `json:"active,omitempty"`
-	AuthState          *StatsSwitchPortAuthStateEnum `json:"auth_state,omitempty"`
-	Disabled           *bool                         `json:"disabled,omitempty"`
-	ForSite            *bool                         `json:"for_site,omitempty"`
-	FullDuplex         *bool                         `json:"full_duplex,omitempty"`
-	Jitter             *float64                      `json:"jitter,omitempty"`
-	Latency            *float64                      `json:"latency,omitempty"`
-	Loss               *float64                      `json:"loss,omitempty"`
-	LteIccid           Optional[string]              `json:"lte_iccid"`
-	LteImei            Optional[string]              `json:"lte_imei"`
-	LteImsi            Optional[string]              `json:"lte_imsi"`
-	MacCount           *int                          `json:"mac_count,omitempty"`
-	MacLimit           *int                          `json:"mac_limit,omitempty"`
-	NeighborMac        *string                       `json:"neighbor_mac"`
-	NeighborPortDesc   *string                       `json:"neighbor_port_desc,omitempty"`
-	NeighborSystemName *string                       `json:"neighbor_system_name,omitempty"`
-	PoeDisabled        *bool                         `json:"poe_disabled,omitempty"`
-	PoeMode            *StatsSwitchPortPoeModeEnum   `json:"poe_mode,omitempty"`
-	PoeOn              *bool                         `json:"poe_on,omitempty"`
-	PortId             *string                       `json:"port_id"`
-	PortMac            *string                       `json:"port_mac"`
-	PortUsage          *StatsSwitchPortPortUsageEnum `json:"port_usage,omitempty"`
-	PowerDraw          *float64                      `json:"power_draw,omitempty"`
-	RxBcastPkts        *int                          `json:"rx_bcast_pkts,omitempty"`
-	RxBps              Optional[int64]               `json:"rx_bps"`
-	RxBytes            Optional[int64]               `json:"rx_bytes"`
-	RxErrors           *int                          `json:"rx_errors,omitempty"`
-	RxMcastPkts        *int                          `json:"rx_mcast_pkts,omitempty"`
-	RxPkts             Optional[int64]               `json:"rx_pkts"`
-	Speed              *int                          `json:"speed,omitempty"`
-	StpRole            *StatsSwitchPortStpRoleEnum   `json:"stp_role,omitempty"`
-	StpState           *StatsSwitchPortStpStateEnum  `json:"stp_state,omitempty"`
-	TxBcastPkts        *int                          `json:"tx_bcast_pkts,omitempty"`
-	TxBps              Optional[int64]               `json:"tx_bps"`
-	TxBytes            Optional[int64]               `json:"tx_bytes"`
-	TxErrors           *int                          `json:"tx_errors,omitempty"`
-	TxMcastPkts        *int                          `json:"tx_mcast_pkts,omitempty"`
-	TxPkts             Optional[int64]               `json:"tx_pkts"`
-	Type               *StatsSwitchPortTypeEnum      `json:"type,omitempty"`
-	Unconfigured       *bool                         `json:"unconfigured,omitempty"`
-	Up                 *bool                         `json:"up,omitempty"`
-	XcvrModel          *string                       `json:"xcvr_model,omitempty"`
-	XcvrPartNumber     *string                       `json:"xcvr_part_number,omitempty"`
-	XcvrSerial         *string                       `json:"xcvr_serial,omitempty"`
+	Active             *bool                       `json:"active,omitempty"`
+	AuthState          *PortAuthStateEnum          `json:"auth_state,omitempty"`
+	Disabled           *bool                       `json:"disabled,omitempty"`
+	ForSite            *bool                       `json:"for_site,omitempty"`
+	FullDuplex         *bool                       `json:"full_duplex,omitempty"`
+	Jitter             *float64                    `json:"jitter,omitempty"`
+	Latency            *float64                    `json:"latency,omitempty"`
+	Loss               *float64                    `json:"loss,omitempty"`
+	LteIccid           Optional[string]            `json:"lte_iccid"`
+	LteImei            Optional[string]            `json:"lte_imei"`
+	LteImsi            Optional[string]            `json:"lte_imsi"`
+	MacCount           *int                        `json:"mac_count,omitempty"`
+	MacLimit           *int                        `json:"mac_limit,omitempty"`
+	NeighborMac        *string                     `json:"neighbor_mac"`
+	NeighborPortDesc   *string                     `json:"neighbor_port_desc,omitempty"`
+	NeighborSystemName *string                     `json:"neighbor_system_name,omitempty"`
+	PoeDisabled        *bool                       `json:"poe_disabled,omitempty"`
+	PoeMode            *StatsSwitchPortPoeModeEnum `json:"poe_mode,omitempty"`
+	PoeOn              *bool                       `json:"poe_on,omitempty"`
+	PortId             *string                     `json:"port_id"`
+	PortMac            *string                     `json:"port_mac"`
+	PortUsage          *string                     `json:"port_usage,omitempty"`
+	PowerDraw          *float64                    `json:"power_draw,omitempty"`
+	RxBcastPkts        *int                        `json:"rx_bcast_pkts,omitempty"`
+	RxBps              Optional[int64]             `json:"rx_bps"`
+	RxBytes            Optional[int64]             `json:"rx_bytes"`
+	RxErrors           *int                        `json:"rx_errors,omitempty"`
+	RxMcastPkts        *int                        `json:"rx_mcast_pkts,omitempty"`
+	RxPkts             Optional[int64]             `json:"rx_pkts"`
+	Speed              *int                        `json:"speed,omitempty"`
+	StpRole            *PortStpRoleEnum            `json:"stp_role,omitempty"`
+	StpState           *PortStpStateEnum           `json:"stp_state,omitempty"`
+	TxBcastPkts        *int                        `json:"tx_bcast_pkts,omitempty"`
+	TxBps              Optional[int64]             `json:"tx_bps"`
+	TxBytes            Optional[int64]             `json:"tx_bytes"`
+	TxErrors           *int                        `json:"tx_errors,omitempty"`
+	TxMcastPkts        *int                        `json:"tx_mcast_pkts,omitempty"`
+	TxPkts             Optional[int64]             `json:"tx_pkts"`
+	Type               *StatsSwitchPortTypeEnum    `json:"type,omitempty"`
+	Unconfigured       *bool                       `json:"unconfigured,omitempty"`
+	Up                 *bool                       `json:"up,omitempty"`
+	XcvrModel          *string                     `json:"xcvr_model,omitempty"`
+	XcvrPartNumber     *string                     `json:"xcvr_part_number,omitempty"`
+	XcvrSerial         *string                     `json:"xcvr_serial,omitempty"`
 }
 
 func (s *tempStatsGatewayPort) validate() error {

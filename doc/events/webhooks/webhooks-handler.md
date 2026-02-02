@@ -40,7 +40,7 @@ Events available in this group. Subscribe to receive webhook notifications when 
 ## SDK Usage Example
 
 ```go
-package mistapi
+package main
 
 import (
     "fmt"
@@ -73,7 +73,9 @@ func WebhooksGinEventHandler(c *gin.Context) {
             "eventInfo": "Unknown event received",
         })
     } else {
-        c.JSON(400, map[string]any{"status": "failure"})
+        c.JSON(400, map[string]any{
+            "status": "failure",
+        })
     }
 }
 ```

@@ -21,6 +21,7 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
 | `AggregateRoutes6` | [`map[string]models.AggregateRoute`](../../doc/models/aggregate-route.md) | Optional | Property key is the destination subnet (e.g. "2a02:1234:420a:10c9::/64") |
 | `BgpConfig` | [`map[string]models.SwitchBgpConfig`](../../doc/models/switch-bgp-config.md) | Optional | - |
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `DefaultPortUsage` | `*string` | Optional | Port usage to assign to switch ports without any port usage assigned. Default: `default` to preserve default behavior<br><br>**Default**: `"default"` |
 | `DeviceprofileId` | `*uuid.UUID` | Optional | - |
 | `DhcpSnooping` | [`*models.DhcpSnooping`](../../doc/models/dhcp-snooping.md) | Optional | - |
 | `DhcpdConfig` | [`*models.SwitchDhcpdConfig`](../../doc/models/switch-dhcpd-config.md) | Optional | - |
@@ -95,6 +96,7 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
       "preference": 30
     }
   },
+  "default_port_usage": "default",
   "disable_auto_config": false,
   "extra_routes": {
     "0.0.0.0/0": {

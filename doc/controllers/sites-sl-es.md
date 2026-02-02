@@ -11,9 +11,11 @@ sitesSLEs := client.SitesSLEs()
 ## Methods
 
 * [Get Site Sle Classifier Details](../../doc/controllers/sites-sl-es.md#get-site-sle-classifier-details)
+* [Get Site Sle Classifier Summary Trend](../../doc/controllers/sites-sl-es.md#get-site-sle-classifier-summary-trend)
 * [Get Site Sle Histogram](../../doc/controllers/sites-sl-es.md#get-site-sle-histogram)
 * [Get Site Sle Impact Summary](../../doc/controllers/sites-sl-es.md#get-site-sle-impact-summary)
 * [Get Site Sle Summary](../../doc/controllers/sites-sl-es.md#get-site-sle-summary)
+* [Get Site Sle Summary Trend](../../doc/controllers/sites-sl-es.md#get-site-sle-summary-trend)
 * [Get Site Sle Threshold](../../doc/controllers/sites-sl-es.md#get-site-sle-threshold)
 * [List Site Sle Impacted Applications](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-applications)
 * [List Site Sle Impacted Aps](../../doc/controllers/sites-sl-es.md#list-site-sle-impacted-aps)
@@ -31,7 +33,11 @@ sitesSLEs := client.SitesSLEs()
 
 # Get Site Sle Classifier Details
 
+**This endpoint is deprecated.**
+
 Get SLE classifier details
+
+This API Endpoint is deprecated and replaced by [Get Site SLE Classifier Summary Trend](../../doc/controllers/sites-sl-es.md#get-site-sle-classifier-summary-trend)
 
 ```go
 GetSiteSleClassifierDetails(
@@ -84,7 +90,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleClassifierDetails(ctx, siteId, scope, scopeId, metric, classifier, nil, nil, &duration)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -212,6 +231,189 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Get Site Sle Classifier Summary Trend
+
+Get SLE classifier Summary Trend
+
+```go
+GetSiteSleClassifierSummaryTrend(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SleSummaryScopeEnum,
+    scopeId string,
+    metric string,
+    classifier string,
+    start *string,
+    end *string,
+    duration *string) (
+    models.ApiResponse[models.SleClassifierSummaryTrend],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SleSummaryScopeEnum`](../../doc/models/sle-summary-scope-enum.md) | Template, Required | - |
+| `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
+| `classifier` | `string` | Template, Required | - |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleClassifierSummaryTrend](../../doc/models/sle-classifier-summary-trend.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SleSummaryScopeEnum_GATEWAY
+
+scopeId := "scope_id0"
+
+metric := "metric8"
+
+classifier := "classifier4"
+
+duration := "10m"
+
+apiResponse, err := sitesSLEs.GetSiteSleClassifierSummaryTrend(ctx, siteId, scope, scopeId, metric, classifier, nil, nil, &duration)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifier": {
+    "interval": 3600,
+    "name": "wifi-interference",
+    "samples": {
+      "degraded": [
+        0,
+        0,
+        210.03334,
+        3.1333334,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        102.5,
+        108.03333,
+        0,
+        0,
+        201.9,
+        566.48334,
+        135.63333,
+        0
+      ],
+      "duration": [
+        0,
+        0,
+        210.03334,
+        3.1333334,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        102.5,
+        108.03333,
+        0,
+        0,
+        201.9,
+        566.48334,
+        135.63333,
+        0
+      ],
+      "total": [
+        1302.3,
+        1289.0167,
+        1396.3167,
+        1423.6666,
+        1439.2167,
+        1414.7,
+        1361.0834,
+        1371.5834,
+        1372.0667,
+        1339.1,
+        1374.3667,
+        1369.9,
+        1352.4833,
+        1382.8,
+        1426.7167,
+        1425.6333,
+        1403.9333,
+        1420.75,
+        1416.8334,
+        1437.3334,
+        1425.1,
+        1485.3667,
+        1426.4333,
+        444.13333
+      ]
+    },
+    "x_label": "seconds",
+    "y_label": "user-minutes"
+  },
+  "end": 1627312871,
+  "metric": "capacity",
+  "start": 1627226471
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Get Site Sle Histogram
 
 Get the histogram for the SLE metric
@@ -263,7 +465,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleHistogram(ctx, siteId, scope, scopeId, metric, nil, nil, &duration)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -439,7 +654,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleImpactSummary(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -601,7 +829,11 @@ if err != nil {
 
 # Get Site Sle Summary
 
+**This endpoint is deprecated.**
+
 Get the summary for the SLE metric
+
+This API Endpoint is deprecated and replaced by [Get Site SLE Summary Trend](../../doc/controllers/sites-sl-es.md#get-site-sle-summary-trend)
 
 ```go
 GetSiteSleSummary(
@@ -650,7 +882,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.GetSiteSleSummary(ctx, siteId, scope, scopeId, metric, nil, nil, &duration)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1141,6 +1386,530 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# Get Site Sle Summary Trend
+
+Get the summary for the SLE metric trend
+
+```go
+GetSiteSleSummaryTrend(
+    ctx context.Context,
+    siteId uuid.UUID,
+    scope models.SiteSleMetricSummaryScopeParametersEnum,
+    scopeId string,
+    metric string,
+    start *string,
+    end *string,
+    duration *string) (
+    models.ApiResponse[models.SleSummaryTrend],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `scope` | [`models.SiteSleMetricSummaryScopeParametersEnum`](../../doc/models/site-sle-metric-summary-scope-parameters-enum.md) | Template, Required | - |
+| `scopeId` | `string` | Template, Required | * site_id if `scope`==`site`<br>* device_id if `scope`==`ap`, `scope`==`switch` or `scope`==`gateway`<br>* mac if `scope`==`client` |
+| `metric` | `string` | Template, Required | Values from `listSiteSlesMetrics` |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SleSummaryTrend](../../doc/models/sle-summary-trend.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+scope := models.SiteSleMetricSummaryScopeParametersEnum_GATEWAY
+
+scopeId := "scope_id0"
+
+metric := "metric8"
+
+duration := "10m"
+
+apiResponse, err := sitesSLEs.GetSiteSleSummaryTrend(ctx, siteId, scope, scopeId, metric, nil, nil, &duration)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "classifiers": [
+    {
+      "interval": 3600,
+      "name": "client-count",
+      "samples": {
+        "degraded": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5.8,
+          0,
+          0,
+          0,
+          4.65,
+          0,
+          7.55,
+          47.55,
+          13.266666
+        ],
+        "duration": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5.8,
+          0,
+          0,
+          0,
+          4.65,
+          0,
+          7.55,
+          47.55,
+          13.266666
+        ],
+        "total": [
+          1302.3,
+          1289.0167,
+          1396.3167,
+          1423.6666,
+          1439.2167,
+          1414.7,
+          1361.0834,
+          1371.5834,
+          1372.0667,
+          1339.1,
+          1374.3667,
+          1369.9,
+          1352.4833,
+          1382.8,
+          1426.7167,
+          1425.6333,
+          1403.9333,
+          1420.75,
+          1416.8334,
+          1437.3334,
+          1425.1,
+          1485.3667,
+          1426.4333,
+          289.83334
+        ]
+      },
+      "x_label": "seconds",
+      "y_label": "user-minutes"
+    },
+    {
+      "interval": 3600,
+      "name": "wifi-interference",
+      "samples": {
+        "degraded": [
+          0,
+          0,
+          210.03334,
+          3.1333334,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          102.5,
+          108.03333,
+          0,
+          0,
+          201.9,
+          566.48334,
+          135.63333,
+          0
+        ],
+        "duration": [
+          0,
+          0,
+          210.03334,
+          3.1333334,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          102.5,
+          108.03333,
+          0,
+          0,
+          201.9,
+          566.48334,
+          135.63333,
+          0
+        ],
+        "total": [
+          1302.3,
+          1289.0167,
+          1396.3167,
+          1423.6666,
+          1439.2167,
+          1414.7,
+          1361.0834,
+          1371.5834,
+          1372.0667,
+          1339.1,
+          1374.3667,
+          1369.9,
+          1352.4833,
+          1382.8,
+          1426.7167,
+          1425.6333,
+          1403.9333,
+          1420.75,
+          1416.8334,
+          1437.3334,
+          1425.1,
+          1485.3667,
+          1426.4333,
+          289.83334
+        ]
+      },
+      "x_label": "seconds",
+      "y_label": "user-minutes"
+    },
+    {
+      "interval": 3600,
+      "name": "client_usage",
+      "samples": {
+        "degraded": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "duration": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": [
+          1302.3,
+          1289.0167,
+          1396.3167,
+          1423.6666,
+          1439.2167,
+          1414.7,
+          1361.0834,
+          1371.5834,
+          1372.0667,
+          1339.1,
+          1374.3667,
+          1369.9,
+          1352.4833,
+          1382.8,
+          1426.7167,
+          1425.6333,
+          1403.9333,
+          1420.75,
+          1416.8334,
+          1437.3334,
+          1425.1,
+          1485.3667,
+          1426.4333,
+          289.83334
+        ]
+      },
+      "x_label": "seconds",
+      "y_label": "user-minutes"
+    },
+    {
+      "interval": 3600,
+      "name": "non-wifi-interference",
+      "samples": {
+        "degraded": [
+          0,
+          0,
+          0,
+          0,
+          16.65,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          31.15,
+          17.616667,
+          17.85,
+          0,
+          0,
+          0,
+          0
+        ],
+        "duration": [
+          0,
+          0,
+          0,
+          0,
+          16.65,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          31.15,
+          17.616667,
+          17.85,
+          0,
+          0,
+          0,
+          0
+        ],
+        "total": [
+          1302.3,
+          1289.0167,
+          1396.3167,
+          1423.6666,
+          1439.2167,
+          1414.7,
+          1361.0834,
+          1371.5834,
+          1372.0667,
+          1339.1,
+          1374.3667,
+          1369.9,
+          1352.4833,
+          1382.8,
+          1426.7167,
+          1425.6333,
+          1403.9333,
+          1420.75,
+          1416.8334,
+          1437.3334,
+          1425.1,
+          1485.3667,
+          1426.4333,
+          289.83334
+        ]
+      },
+      "x_label": "seconds",
+      "y_label": "user-minutes"
+    }
+  ],
+  "end": 1627312606,
+  "sle": {
+    "interval": 3600,
+    "name": "capacity",
+    "samples": {
+      "degraded": [
+        0,
+        0,
+        210.03334,
+        3.1333334,
+        16.65,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5.8,
+        102.5,
+        139.18333,
+        17.616667,
+        22.5,
+        201.9,
+        574.0333,
+        183.18333,
+        13.266666
+      ],
+      "total": [
+        1302.3,
+        1289.0167,
+        1396.3167,
+        1423.6666,
+        1439.2167,
+        1414.7,
+        1361.0834,
+        1371.5834,
+        1372.0667,
+        1339.1,
+        1374.3667,
+        1369.9,
+        1352.4833,
+        1382.8,
+        1426.7167,
+        1425.6333,
+        1403.9333,
+        1420.75,
+        1416.8334,
+        1437.3334,
+        1425.1,
+        1485.3667,
+        1426.4333,
+        289.83334
+      ],
+      "value": [
+        0.6764934,
+        0.6783766,
+        0.641645,
+        0.6934629,
+        0.68676674,
+        0.6834809,
+        0.6961604,
+        0.6979584,
+        0.7033722,
+        0.70410794,
+        0.7025278,
+        0.70305353,
+        0.70292175,
+        0.7009334,
+        0.69344264,
+        0.68596864,
+        0.5952168,
+        0.62183666,
+        0.68161446,
+        0.65352744,
+        0.6183489,
+        0.54178274,
+        0.6044712,
+        0.66845906
+      ]
+    },
+    "x_label": "seconds",
+    "y_label": "%"
+  },
+  "start": 1627226206
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Get Site Sle Threshold
 
 Get the SLE threshold
@@ -1184,7 +1953,20 @@ metric := "asymmetry-uplink"
 
 apiResponse, err := sitesSLEs.GetSiteSleThreshold(ctx, siteId, scope, scopeId, metric)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1270,7 +2052,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedApplications(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1367,7 +2162,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedAps(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1470,7 +2278,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedChassis(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1568,7 +2389,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedGateways(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1666,7 +2500,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedInterfaces(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1771,7 +2618,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedSwitches(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1873,7 +2733,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedWiredClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -1978,7 +2851,20 @@ duration := "10m"
 
 apiResponse, err := sitesSLEs.ListSiteSleImpactedWirelessClients(ctx, siteId, scope, scopeId, metric, nil, nil, &duration, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -2109,7 +2995,20 @@ metric := "metric8"
 
 apiResponse, err := sitesSLEs.ListSiteSleMetricClassifiers(ctx, siteId, scope, scopeId, metric)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -2177,7 +3076,20 @@ scopeId := "scope_id0"
 
 apiResponse, err := sitesSLEs.ListSiteSlesMetrics(ctx, siteId, scope, scopeId)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -2290,7 +3202,20 @@ body := models.SleThreshold{
 
 apiResponse, err := sitesSLEs.ReplaceSiteSleThreshold(ctx, siteId, scope, scopeId, metric, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -2373,7 +3298,20 @@ body := models.SleThreshold{
 
 apiResponse, err := sitesSLEs.UpdateSiteSleThreshold(ctx, siteId, scope, scopeId, metric, &body)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

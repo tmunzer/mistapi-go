@@ -44,9 +44,9 @@ CountOrgSwOrGwPorts(
     rxMcastPkts *int,
     rxBcastPkts *int,
     speed *int,
-    stpState *models.CountPortsStpStateEnum,
-    stpRole *models.CountPortsStpRoleEnum,
-    authState *models.CountPortsAuthStateEnum,
+    stpState *models.PortStpStateEnum,
+    stpRole *models.PortStpRoleEnum,
+    authState *models.PortAuthStateEnum,
     up *bool,
     siteId *uuid.UUID,
     start *string,
@@ -84,9 +84,9 @@ CountOrgSwOrGwPorts(
 | `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
 | `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
 | `speed` | `*int` | Query, Optional | Port speed |
-| `stpState` | [`*models.CountPortsStpStateEnum`](../../doc/models/count-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
-| `stpRole` | [`*models.CountPortsStpRoleEnum`](../../doc/models/count-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
-| `authState` | [`*models.CountPortsAuthStateEnum`](../../doc/models/count-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `stpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `up` | `*bool` | Query, Optional | Indicates if interface is up |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
@@ -159,7 +159,20 @@ limit := 100
 
 apiResponse, err := orgsStatsPorts.CountOrgSwOrGwPorts(ctx, orgId, &distinct, &fullDuplex, &mac, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, nil, nil, nil, &up, &siteId, nil, nil, &duration, &limit)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
@@ -231,9 +244,9 @@ SearchOrgSwOrGwPorts(
     macLimit *int,
     macCount *int,
     up *bool,
-    stpState *models.SearchOrgSwOrGwPortsStpStateEnum,
-    stpRole *models.SearchOrgSwOrGwPortsStpRoleEnum,
-    authState *models.SearchOrgSwOrGwPortsAuthStateEnum,
+    stpState *models.PortStpStateEnum,
+    stpRole *models.PortStpRoleEnum,
+    authState *models.PortAuthStateEnum,
     opticsBiasCurrent *float64,
     opticsTxPower *float64,
     opticsRxPower *float64,
@@ -282,9 +295,9 @@ SearchOrgSwOrGwPorts(
 | `macLimit` | `*int` | Query, Optional | Limit on number of dynamically learned macs |
 | `macCount` | `*int` | Query, Optional | Number of mac addresses in the forwarding table |
 | `up` | `*bool` | Query, Optional | Indicates if interface is up |
-| `stpState` | [`*models.SearchOrgSwOrGwPortsStpStateEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-state-enum.md) | Query, Optional | If `up`==`true` |
-| `stpRole` | [`*models.SearchOrgSwOrGwPortsStpRoleEnum`](../../doc/models/search-org-sw-or-gw-ports-stp-role-enum.md) | Query, Optional | If `up`==`true` |
-| `authState` | [`*models.SearchOrgSwOrGwPortsAuthStateEnum`](../../doc/models/search-org-sw-or-gw-ports-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
+| `stpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Query, Optional | If `up`==`true` |
+| `stpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Query, Optional | If `up`==`true` |
+| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `opticsBiasCurrent` | `*float64` | Query, Optional | Bias current of the optics in mA |
 | `opticsTxPower` | `*float64` | Query, Optional | Transmit power of the optics in dBm |
 | `opticsRxPower` | `*float64` | Query, Optional | Receive power of the optics in dBm |
@@ -319,7 +332,20 @@ sort := "-site_id"
 
 apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
-    log.Fatalln(err)
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
 } else {
     // Printing the result and response
     fmt.Println(apiResponse.Data)

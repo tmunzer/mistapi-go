@@ -26,7 +26,9 @@ func NewSitesSLEs(baseController baseController) *SitesSLEs {
 // GetSiteSleClassifierDetails takes context, siteId, scope, scopeId, metric, classifier, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SleClassifierSummary data and
 // an error if there was an issue with the request or response.
+// Deprecated: getSiteSleClassifierDetails is deprecated
 // Get SLE classifier details
+// This API Endpoint is deprecated and replaced by [Get Site SLE Classifier Summary Trend]($e/Sites%20SLEs/getSiteSleClassifierSummaryTrend)
 func (s *SitesSLEs) GetSiteSleClassifierDetails(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -79,6 +81,65 @@ func (s *SitesSLEs) GetSiteSleClassifierDetails(
 	}
 
 	result, err = utilities.DecodeResults[models.SleClassifierSummary](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSleClassifierSummaryTrend takes context, siteId, scope, scopeId, metric, classifier, start, end, duration as parameters and
+// returns an models.ApiResponse with models.SleClassifierSummaryTrend data and
+// an error if there was an issue with the request or response.
+// Get SLE classifier Summary Trend
+func (s *SitesSLEs) GetSiteSleClassifierSummaryTrend(
+	ctx context.Context,
+	siteId uuid.UUID,
+	scope models.SleSummaryScopeEnum,
+	scopeId string,
+	metric string,
+	classifier string,
+	start *string,
+	end *string,
+	duration *string) (
+	models.ApiResponse[models.SleClassifierSummaryTrend],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/sites/%v/sle/%v/%v/metric/%v/classifier/%v/summary-trend",
+	)
+	req.AppendTemplateParams(siteId, scope, scopeId, metric, classifier)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+
+	var result models.SleClassifierSummaryTrend
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SleClassifierSummaryTrend](decoder)
 	return models.NewApiResponse(result, resp), err
 }
 
@@ -754,7 +815,9 @@ func (s *SitesSLEs) ListSiteSleImpactedWirelessClients(
 // GetSiteSleSummary takes context, siteId, scope, scopeId, metric, start, end, duration as parameters and
 // returns an models.ApiResponse with models.SleSummary data and
 // an error if there was an issue with the request or response.
+// Deprecated: getSiteSleSummary is deprecated
 // Get the summary for the SLE metric
+// This API Endpoint is deprecated and replaced by [Get Site SLE Summary Trend]($e/Sites%20SLEs/getSiteSleSummaryTrend)
 func (s *SitesSLEs) GetSiteSleSummary(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -806,6 +869,64 @@ func (s *SitesSLEs) GetSiteSleSummary(
 	}
 
 	result, err = utilities.DecodeResults[models.SleSummary](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// GetSiteSleSummaryTrend takes context, siteId, scope, scopeId, metric, start, end, duration as parameters and
+// returns an models.ApiResponse with models.SleSummaryTrend data and
+// an error if there was an issue with the request or response.
+// Get the summary for the SLE metric trend
+func (s *SitesSLEs) GetSiteSleSummaryTrend(
+	ctx context.Context,
+	siteId uuid.UUID,
+	scope models.SiteSleMetricSummaryScopeParametersEnum,
+	scopeId string,
+	metric string,
+	start *string,
+	end *string,
+	duration *string) (
+	models.ApiResponse[models.SleSummaryTrend],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/sites/%v/sle/%v/%v/metric/%v/summary-trend",
+	)
+	req.AppendTemplateParams(siteId, scope, scopeId, metric)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+
+	var result models.SleSummaryTrend
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SleSummaryTrend](decoder)
 	return models.NewApiResponse(result, resp), err
 }
 

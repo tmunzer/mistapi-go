@@ -12,7 +12,7 @@ Port statistics
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Active` | `*bool` | Optional | Indicates if interface is active/inactive |
-| `AuthState` | [`*models.StatsSwitchPortAuthStateEnum`](../../doc/models/stats-switch-port-auth-state-enum.md) | Optional | if `up`==`true` and has Authenticator role. enum: `authenticated`, `authenticating`, `held`, `init` |
+| `AuthState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Optional | enum: `authenticated`, `authenticating`, `held`, `init` |
 | `Disabled` | `*bool` | Optional | Indicates if interface is disabled |
 | `ForSite` | `*bool` | Optional | - |
 | `FullDuplex` | `*bool` | Optional | Indicates full or half duplex |
@@ -32,7 +32,7 @@ Port statistics
 | `PoeOn` | `*bool` | Optional | Is the device attached to POE |
 | `PortId` | `string` | Required | - |
 | `PortMac` | `string` | Required | Interface mac address |
-| `PortUsage` | [`*models.StatsSwitchPortPortUsageEnum`](../../doc/models/stats-switch-port-port-usage-enum.md) | Optional | gateway port usage. enum: `lan` |
+| `PortUsage` | `*string` | Optional | - |
 | `PowerDraw` | `*float64` | Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
 | `RxBcastPkts` | `*int` | Optional | Broadcast input packets |
 | `RxBps` | `models.Optional[int64]` | Optional | Rate of receiving traffic, bits/seconds, last known |
@@ -41,8 +41,8 @@ Port statistics
 | `RxMcastPkts` | `*int` | Optional | Multicast input packets |
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
 | `Speed` | `*int` | Optional | Port speed |
-| `StpRole` | [`*models.StatsSwitchPortStpRoleEnum`](../../doc/models/stats-switch-port-stp-role-enum.md) | Optional | if `up`==`true`. enum: `alternate`, `backup`, `designated`, `root`, `root-prevented` |
-| `StpState` | [`*models.StatsSwitchPortStpStateEnum`](../../doc/models/stats-switch-port-stp-state-enum.md) | Optional | if `up`==`true`. enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
+| `StpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Optional | enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented` |
+| `StpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Optional | enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening` |
 | `TxBcastPkts` | `*int` | Optional | Broadcast output packets |
 | `TxBps` | `models.Optional[int64]` | Optional | Rate of transmitting traffic, bits/seconds, last known |
 | `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
@@ -66,6 +66,7 @@ Port statistics
   "neighbor_system_name": "CORP-D-SW-2",
   "port_id": "ge-0/0/0",
   "port_mac": "5c4527a96580",
+  "port_usage": "lan",
   "rx_bps": 60003,
   "rx_bytes": 8515104416,
   "rx_pkts": 57770567,

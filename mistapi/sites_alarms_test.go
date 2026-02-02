@@ -97,12 +97,14 @@ func TestSitesAlarmsTestSearchSiteAlarms(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mType := "infra_dhcp_failure,missing_vlan"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, &mType, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -121,12 +123,14 @@ func TestSitesAlarmsTestSearchSiteAlarms1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mType := "infra_dhcp_failure,missing_vlan"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesAlarms.SearchSiteAlarms(ctx, siteId, nil, nil, &mType, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

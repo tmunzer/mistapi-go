@@ -19,6 +19,7 @@ Property key defines the type of matching, value is the string to match. e.g:
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
+| `DefaultPortUsage` | `*string` | Optional | Port usage to assign to switch ports without any port usage assigned. Default: `default` to preserve default behavior<br><br>**Default**: `"default"` |
 | `IpConfig` | [`*models.SwitchMatchingRuleIpConfig`](../../doc/models/switch-matching-rule-ip-config.md) | Optional | In-Band Management interface configuration |
 | `Name` | `*string` | Optional | Rule name. WARNING: the name `default` is reserved and can only be used for the last rule in the list<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `32` |
 | `OobIpConfig` | [`*models.SwitchMatchingRuleOobIpConfig`](../../doc/models/switch-matching-rule-oob-ip-config.md) | Optional | Out-of-Band Management interface configuration |
@@ -37,6 +38,7 @@ Property key defines the type of matching, value is the string to match. e.g:
   "additional_config_cmds": [
     "additional_config_cmds4"
   ],
+  "default_port_usage": "default_port_usage8",
   "ip_config": {
     "network": "network6",
     "type": "dhcp"
@@ -46,32 +48,6 @@ Property key defines the type of matching, value is the string to match. e.g:
     "type": "dhcp",
     "use_mgmt_vrf": false,
     "use_mgmt_vrf_for_host_out": false
-  },
-  "port_config": {
-    "key0": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
-    },
-    "key1": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
-    },
-    "key2": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "critical": false,
-      "usage": "usage6"
-    }
   }
 }
 ```
