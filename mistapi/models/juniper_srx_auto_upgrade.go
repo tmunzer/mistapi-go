@@ -11,9 +11,11 @@ import (
 // auto_upgrade device first time it is onboarded
 type JuniperSrxAutoUpgrade struct {
 	// Property key is the SRX Hardware model (e.g. "SRX4600")
-	CustomVersions       map[string]string      `json:"custom_versions,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
-	Snapshot             *bool                  `json:"snapshot,omitempty"`
+	CustomVersions map[string]string `json:"custom_versions,omitempty"`
+	Enabled        *bool             `json:"enabled,omitempty"`
+	Snapshot       *bool             `json:"snapshot,omitempty"`
+	// Firmware version to deploy (e.g. 23.4R2-S5.5). Optional, used when custom_versions not specified
+	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -21,8 +23,8 @@ type JuniperSrxAutoUpgrade struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JuniperSrxAutoUpgrade) String() string {
 	return fmt.Sprintf(
-		"JuniperSrxAutoUpgrade[CustomVersions=%v, Enabled=%v, Snapshot=%v, AdditionalProperties=%v]",
-		j.CustomVersions, j.Enabled, j.Snapshot, j.AdditionalProperties)
+		"JuniperSrxAutoUpgrade[CustomVersions=%v, Enabled=%v, Snapshot=%v, Version=%v, AdditionalProperties=%v]",
+		j.CustomVersions, j.Enabled, j.Snapshot, j.Version, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JuniperSrxAutoUpgrade.
@@ -31,7 +33,7 @@ func (j JuniperSrxAutoUpgrade) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"custom_versions", "enabled", "snapshot"); err != nil {
+		"custom_versions", "enabled", "snapshot", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -50,6 +52,9 @@ func (j JuniperSrxAutoUpgrade) toMap() map[string]any {
 	if j.Snapshot != nil {
 		structMap["snapshot"] = j.Snapshot
 	}
+	if j.Version != nil {
+		structMap["version"] = j.Version
+	}
 	return structMap
 }
 
@@ -61,7 +66,7 @@ func (j *JuniperSrxAutoUpgrade) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "custom_versions", "enabled", "snapshot")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "custom_versions", "enabled", "snapshot", "version")
 	if err != nil {
 		return err
 	}
@@ -70,6 +75,7 @@ func (j *JuniperSrxAutoUpgrade) UnmarshalJSON(input []byte) error {
 	j.CustomVersions = temp.CustomVersions
 	j.Enabled = temp.Enabled
 	j.Snapshot = temp.Snapshot
+	j.Version = temp.Version
 	return nil
 }
 
@@ -78,4 +84,5 @@ type tempJuniperSrxAutoUpgrade struct {
 	CustomVersions map[string]string `json:"custom_versions,omitempty"`
 	Enabled        *bool             `json:"enabled,omitempty"`
 	Snapshot       *bool             `json:"snapshot,omitempty"`
+	Version        *string           `json:"version,omitempty"`
 }

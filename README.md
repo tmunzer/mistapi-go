@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2511.1.15**
+> Version: **2602.1.0**
 > 
-> Date: **January 30, 2026**
+> Date: **February 10, 2025**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -78,7 +78,7 @@ The following parameters are configurable for the API Client:
 | Parameter | Type | Description |
 |  --- | --- | --- |
 | accept | `string` | *Default*: `"application/json, application/vnd.api+json"` |
-| environment | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
+| environment | [`Environment`](README.md#environments) | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
 | httpConfiguration | [`HttpConfiguration`](doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
 | apiTokenCredentials | [`ApiTokenCredentials`](doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
@@ -138,18 +138,18 @@ The SDK can be configured to use a different environment for making API calls. A
 
 | Name | Description |
 |  --- | --- |
-| Mist Global 01 | **Default** |
-| Mist Global 02 | - |
-| Mist Global 03 | - |
-| Mist Global 04 | - |
-| Mist Global 05 | - |
-| Mist EMEA 01 | - |
-| Mist EMEA 02 | - |
-| Mist EMEA 03 | - |
-| Mist EMEA 04 | - |
-| Mist APAC 01 | - |
-| Mist APAC 02 | - |
-| Mist APAC 03 | - |
+| MISTGLOBAL01 | **Default** |
+| MISTGLOBAL02 | - |
+| MISTGLOBAL03 | - |
+| MISTGLOBAL04 | - |
+| MISTGLOBAL05 | - |
+| MISTEMEA01 | - |
+| MISTEMEA02 | - |
+| MISTEMEA03 | - |
+| MISTEMEA04 | - |
+| MISTAPAC01 | - |
+| MISTAPAC02 | - |
+| MISTAPAC03 | - |
 
 ## Authorization
 
@@ -204,6 +204,7 @@ This API uses the following authentication schemes.
 * [Orgs CRL](doc/controllers/orgs-crl.md)
 * [Orgs Device Profiles](doc/controllers/orgs-device-profiles.md)
 * [Orgs Devices](doc/controllers/orgs-devices.md)
+* [Orgs Devices-AOS](doc/controllers/orgs-devices-aos.md)
 * [Orgs Devices-Others](doc/controllers/orgs-devices-others.md)
 * [Orgs Devices-SSR](doc/controllers/orgs-devices-ssr.md)
 * [Orgs Events](doc/controllers/orgs-events.md)

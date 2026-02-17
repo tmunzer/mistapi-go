@@ -10,12 +10,83 @@ sitesAssets := client.SitesAssets()
 
 ## Methods
 
+* [Attach Site Asset Image](../../doc/controllers/sites-assets.md#attach-site-asset-image)
 * [Create Site Asset](../../doc/controllers/sites-assets.md#create-site-asset)
 * [Delete Site Asset](../../doc/controllers/sites-assets.md#delete-site-asset)
+* [Delete Site Asset Image](../../doc/controllers/sites-assets.md#delete-site-asset-image)
 * [Get Site Asset](../../doc/controllers/sites-assets.md#get-site-asset)
 * [Import Site Assets](../../doc/controllers/sites-assets.md#import-site-assets)
 * [List Site Assets](../../doc/controllers/sites-assets.md#list-site-assets)
 * [Update Site Asset](../../doc/controllers/sites-assets.md#update-site-asset)
+
+
+# Attach Site Asset Image
+
+Attach Image to Site Asset
+
+```go
+AttachSiteAssetImage(
+    ctx context.Context,
+    siteId uuid.UUID,
+    assetId uuid.UUID,
+    file models.FileWrapper) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `assetId` | `uuid.UUID` | Template, Required | - |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
+
+resp, err := sitesAssets.AttachSiteAssetImage(ctx, siteId, assetId, file)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Create Site Asset
@@ -138,6 +209,71 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := sitesAssets.DeleteSiteAsset(ctx, siteId, assetId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Delete Site Asset Image
+
+Delete Site Asset Image
+
+```go
+DeleteSiteAssetImage(
+    ctx context.Context,
+    siteId uuid.UUID,
+    assetId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `assetId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := sitesAssets.DeleteSiteAssetImage(ctx, siteId, assetId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

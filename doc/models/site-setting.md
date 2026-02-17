@@ -93,6 +93,7 @@ Site Settings
 | `TuntermMonitoringDisabled` | `*bool` | Optional | **Default**: `false` |
 | `TuntermMulticastConfig` | [`*models.SiteSettingTuntermMulticastConfig`](../../doc/models/site-setting-tunterm-multicast-config.md) | Optional | - |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
+| `UsesDescriptionFromPortUsage` | `*bool` | Optional | by default, we only honor description provided in port_config. This allows fallback to those defined in port_usages<br><br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | - |
 | `VpnPathUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn path down delivery.<br><br>**Constraints**: `>= 0` |
@@ -140,6 +141,7 @@ Site Settings
   "switch_updown_threshold": 0,
   "track_anonymous_devices": false,
   "tunterm_monitoring_disabled": false,
+  "uses_description_from_port_usage": false,
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"

@@ -47,6 +47,7 @@ SSO
 | `OauthCcClientSecret` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
 | `OauthDiscoveryUrl` | `*string` | Optional | If `idp_type`==`oauth` |
 | `OauthPingIdentityRegion` | [`*models.OauthPingIdentityRegionEnum`](../../doc/models/oauth-ping-identity-region-enum.md) | Optional | enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)<br><br>**Default**: `"us"` |
+| `OauthProviderDomain` | [`*models.OauthProviderDomainEnum`](../../doc/models/oauth-provider-domain-enum.md) | Optional | If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain<br><br>**Default**: `"okta.com"` |
 | `OauthRopcClientId` | `*string` | Optional | If `idp_type`==`oauth`, ropc = Resource Owner Password Credentials |
 | `OauthRopcClientSecret` | `*string` | Optional | If `oauth_type`==`azure` or `oauth_type`==`azure-gov`. oauth_ropc_client_secret can be empty |
 | `OauthTenantId` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_tenant_id |
@@ -91,6 +92,7 @@ SSO
   "oauth_cc_client_id": "e60da615-7def-4c5a-8196-43675f45e174",
   "oauth_cc_client_secret": "akL8Q~5kWFMVFYl4TFZ3fi~7cMdyDONi6cj01cpH",
   "oauth_ping_identity_region": "us",
+  "oauth_provider_domain": "okta.com",
   "oauth_ropc_client_id": "9ce04c97-b5b1-4ec8-af17-f5ed42d2daf7",
   "oauth_ropc_client_secret": "blM9R~6kWFMVFYl4TFZ3fi~8cMdyDONi6cj01dqI",
   "oauth_tenant_id": "dev-88336535",

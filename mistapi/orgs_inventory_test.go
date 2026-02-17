@@ -129,7 +129,7 @@ func TestOrgsInventoryTestUpdateOrgInventoryAssignment(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.InventoryUpdate
-	errBody := json.Unmarshal([]byte(`{"disable_auto_config":false,"macs":["5c5b350e0001"],"managed":false,"no_reassign":false,"op":"assign","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disable_auto_config":false,"macs":["5c5b350e0001"],"no_reassign":false,"op":"assign","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -154,7 +154,7 @@ func TestOrgsInventoryTestUpdateOrgInventoryAssignment1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.InventoryUpdate
-	errBody := json.Unmarshal([]byte(`{"disable_auto_config":false,"macs":["5c5b350e0001"],"managed":false,"no_reassign":false,"op":"assign","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disable_auto_config":false,"macs":["5c5b350e0001"],"no_reassign":false,"op":"assign","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -225,7 +225,7 @@ func TestOrgsInventoryTestCreateOrgGatewayHaCluster(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.HaClusterConfig
-	errBody := json.Unmarshal([]byte(`{"disable_auto_config":true,"managed":true,"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}],"site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"disable_auto_config":true,"mist_configured":true,"nodes":[{"mac":"aff827549235"},{"mac":"8396cd006c8c"}],"site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

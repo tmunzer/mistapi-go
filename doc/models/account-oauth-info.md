@@ -42,7 +42,9 @@
       "tsg_id": "189953456",
       "webhook_auth_type": "Basic",
       "webhook_password": "password_1234",
-      "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
+      "webhook_secret": "secret-value",
+      "webhook_token": "token-value",
+      "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_org-8dcbe9005/ae9dee49-69e7-4710-a114-5b827a777738/crowdstrike/edr",
       "webhook_username": "username_1234",
       "zdx_org_id": "123456",
       "client_id": "client_id2"

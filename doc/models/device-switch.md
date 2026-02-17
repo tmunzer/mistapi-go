@@ -39,8 +39,9 @@ In addition it is possible to use the `port_config_overwrite` to overwrite some 
 | `IpConfig` | [`*models.JunosIpConfig`](../../doc/models/junos-ip-config.md) | Optional | Junos IP Config |
 | `LocalPortConfig` | [`map[string]models.JunosLocalPortConfig`](../../doc/models/junos-local-port-config.md) | Optional | Local port override, overriding the port configuration from `port_config`. Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `Mac` | `*string` | Optional | Device MAC address |
-| `Managed` | `*bool` | Optional | An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.<br><br>**Default**: `false` |
+| `Managed` | `*bool` | Optional | An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist. Deprecated in favour of mist_configured, which is more intuitive and can be used for both adopted and claimed devices.<br><br>**Default**: `false` |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
+| `MistConfigured` | `*bool` | Optional | whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device) |
 | `MistNac` | [`*models.SwitchMistNac`](../../doc/models/switch-mist-nac.md) | Optional | Enable mist_nac to use RadSec |
 | `Model` | `*string` | Optional | Device Model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

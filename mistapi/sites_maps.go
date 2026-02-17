@@ -115,6 +115,42 @@ func (s *SitesMaps) CreateSiteMap(
 	return models.NewApiResponse(result, resp), err
 }
 
+// StartSiteMapsAutoGeofence takes context, siteId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// The auto geofence service is a map parsing service that uses map image data to identify the exterior of buildings in the map image also known as "geofences". This API processes all maps for a given SiteId. The maps must have an image to parse for the auto geofence service. Repeated POST requests to this endpoint while the auto geofence service is processing the map will be rejected.
+func (s *SitesMaps) StartSiteMapsAutoGeofence(
+	ctx context.Context,
+	siteId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/auto_geofences")
+	req.AppendTemplateParams(siteId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
 // ImportSiteMaps takes context, siteId, autoDeviceprofileAssignment, csv, file, json as parameters and
 // returns an models.ApiResponse with models.ResponseMapImport data and
 // an error if there was an issue with the request or response.
@@ -304,6 +340,43 @@ func (s *SitesMaps) UpdateSiteMap(
 
 	result, err = utilities.DecodeResults[models.Map](decoder)
 	return models.NewApiResponse(result, resp), err
+}
+
+// StartSiteMapAutoGeofence takes context, mapId, siteId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// The auto geofence service is a map parsing service that uses map image data to identify the exterior of buildings in the map image also known as "geofences". This API processes a single given MapId. This map must have an image to parse for the auto geofence service. Repeated POST requests to this endpoint while the auto geofence service is processing the map will be rejected.
+func (s *SitesMaps) StartSiteMapAutoGeofence(
+	ctx context.Context,
+	mapId uuid.UUID,
+	siteId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/maps/%v/auto_geofences")
+	req.AppendTemplateParams(siteId, mapId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
 }
 
 // DeleteSiteMapImage takes context, siteId, mapId as parameters and

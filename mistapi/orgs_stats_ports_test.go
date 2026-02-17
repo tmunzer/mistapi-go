@@ -120,13 +120,17 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mType := models.SearchOrgSwOrGwPortsTypeEnum("all")
-	limit := int(100)
+	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
-	duration := "1d"
+	lteImsi := "310260000000001"
+	lteIccid := "89014103211118510720"
+	lteImei := "123456789012345"
+
+	xcvrPartNumber := "SFP-10G-SR"
+	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -145,13 +149,17 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mType := models.SearchOrgSwOrGwPortsTypeEnum("all")
-	limit := int(100)
+	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
-	duration := "1d"
+	lteImsi := "310260000000001"
+	lteIccid := "89014103211118510720"
+	lteImei := "123456789012345"
+
+	xcvrPartNumber := "SFP-10G-SR"
+	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

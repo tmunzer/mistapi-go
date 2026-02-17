@@ -694,6 +694,7 @@ body := models.Sso{
     OauthCcClientId:         models.ToPointer("e60da615-7def-4c5a-8196-43675f45e174"),
     OauthCcClientSecret:     models.ToPointer("akL8Q~5kWFMVFYl4TFZ3fi~7cMdyDONi6cj01cpH"),
     OauthPingIdentityRegion: models.ToPointer(models.OauthPingIdentityRegionEnum_US),
+    OauthProviderDomain:     models.ToPointer(models.OauthProviderDomainEnum_ENUMOKTACOM),
     OauthRopcClientId:       models.ToPointer("9ce04c97-b5b1-4ec8-af17-f5ed42d2daf7"),
     OauthRopcClientSecret:   models.ToPointer("blM9R~6kWFMVFYl4TFZ3fi~8cMdyDONi6cj01dqI"),
     OauthTenantId:           models.ToPointer("dev-88336535"),

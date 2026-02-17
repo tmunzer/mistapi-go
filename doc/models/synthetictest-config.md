@@ -25,17 +25,15 @@
   "custom_probes": {
     "key0": {
       "aggressiveness": "med",
-      "host": "host0",
-      "port": 242,
+      "target": "target6",
       "threshold": 178,
-      "type": "icmp"
+      "type": "reachability"
     },
     "key1": {
       "aggressiveness": "med",
-      "host": "host0",
-      "port": 242,
+      "target": "target6",
       "threshold": 178,
-      "type": "icmp"
+      "type": "reachability"
     }
   },
   "lan_networks": [

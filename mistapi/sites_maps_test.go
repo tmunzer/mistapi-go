@@ -101,6 +101,20 @@ func TestSitesMapsTestCreateSiteMap1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestSitesMapsTestStartSiteMapsAutoGeofence tests the behavior of the SitesMaps
+func TestSitesMapsTestStartSiteMapsAutoGeofence(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := sitesMaps.StartSiteMapsAutoGeofence(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestSitesMapsTestImportSiteMaps tests the behavior of the SitesMaps
 func TestSitesMapsTestImportSiteMaps(t *testing.T) {
 	ctx := context.Background()
@@ -259,6 +273,24 @@ func TestSitesMapsTestUpdateSiteMap1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestSitesMapsTestStartSiteMapAutoGeofence tests the behavior of the SitesMaps
+func TestSitesMapsTestStartSiteMapAutoGeofence(t *testing.T) {
+	ctx := context.Background()
+	mapId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := sitesMaps.StartSiteMapAutoGeofence(ctx, mapId, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
 // TestSitesMapsTestDeleteSiteMapImage tests the behavior of the SitesMaps

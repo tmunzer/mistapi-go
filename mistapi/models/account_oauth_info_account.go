@@ -56,13 +56,17 @@ type AccountOauthInfoAccount struct {
 	TsgId *string `json:"tsg_id,omitempty"`
 	// Customer account username
 	Username *string `json:"username,omitempty"`
-	// For VMWare accounts only
+	// For Crowdstrike, JAMF, SentinelOne and VMWare accounts only
 	WebhookAuthType *string `json:"webhook_auth_type,omitempty"`
-	// For VMWare accounts only
+	// For Crowdstrike, JAMF, SentinelOne and VMWare accounts only
 	WebhookEnabled *bool `json:"webhook_enabled,omitempty"`
 	// For VMWare accounts only
 	WebhookPassword *string `json:"webhook_password,omitempty"`
-	// For VMWare accounts only
+	// For Crowdstrike accounts only
+	WebhookSecret *string `json:"webhook_secret,omitempty"`
+	// For JAMF and SentinelOne accounts only
+	WebhookToken *string `json:"webhook_token,omitempty"`
+	// For Crowdstrike, JAMF, SentinelOne and VMWare accounts only
 	WebhookUrl *string `json:"webhook_url,omitempty"`
 	// For VMWare accounts only
 	WebhookUsername *string `json:"webhook_username,omitempty"`
@@ -75,8 +79,8 @@ type AccountOauthInfoAccount struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountOauthInfoAccount) String() string {
 	return fmt.Sprintf(
-		"AccountOauthInfoAccount[AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, KeyId=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, WebhookAuthType=%v, WebhookEnabled=%v, WebhookPassword=%v, WebhookUrl=%v, WebhookUsername=%v, ZdxOrgId=%v, AdditionalProperties=%v]",
-		a.AccountId, a.AutoProbeSubnet, a.ClientId, a.CloudName, a.Company, a.EnableProbe, a.Error, a.Errors, a.InstanceUrl, a.KeyId, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.Regions, a.ServiceAccountName, a.ServiceConnections, a.SmartgroupName, a.TsgId, a.Username, a.WebhookAuthType, a.WebhookEnabled, a.WebhookPassword, a.WebhookUrl, a.WebhookUsername, a.ZdxOrgId, a.AdditionalProperties)
+		"AccountOauthInfoAccount[AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, KeyId=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, WebhookAuthType=%v, WebhookEnabled=%v, WebhookPassword=%v, WebhookSecret=%v, WebhookToken=%v, WebhookUrl=%v, WebhookUsername=%v, ZdxOrgId=%v, AdditionalProperties=%v]",
+		a.AccountId, a.AutoProbeSubnet, a.ClientId, a.CloudName, a.Company, a.EnableProbe, a.Error, a.Errors, a.InstanceUrl, a.KeyId, a.LastStatus, a.LastSync, a.LinkedBy, a.LinkedTimestamp, a.MaxDailyApiRequests, a.Name, a.Password, a.Region, a.Regions, a.ServiceAccountName, a.ServiceConnections, a.SmartgroupName, a.TsgId, a.Username, a.WebhookAuthType, a.WebhookEnabled, a.WebhookPassword, a.WebhookSecret, a.WebhookToken, a.WebhookUrl, a.WebhookUsername, a.ZdxOrgId, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountOauthInfoAccount.
@@ -85,7 +89,7 @@ func (a AccountOauthInfoAccount) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_url", "webhook_username", "zdx_org_id"); err != nil {
+		"account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -176,6 +180,12 @@ func (a AccountOauthInfoAccount) toMap() map[string]any {
 	if a.WebhookPassword != nil {
 		structMap["webhook_password"] = a.WebhookPassword
 	}
+	if a.WebhookSecret != nil {
+		structMap["webhook_secret"] = a.WebhookSecret
+	}
+	if a.WebhookToken != nil {
+		structMap["webhook_token"] = a.WebhookToken
+	}
 	if a.WebhookUrl != nil {
 		structMap["webhook_url"] = a.WebhookUrl
 	}
@@ -196,7 +206,7 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_url", "webhook_username", "zdx_org_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id")
 	if err != nil {
 		return err
 	}
@@ -229,6 +239,8 @@ func (a *AccountOauthInfoAccount) UnmarshalJSON(input []byte) error {
 	a.WebhookAuthType = temp.WebhookAuthType
 	a.WebhookEnabled = temp.WebhookEnabled
 	a.WebhookPassword = temp.WebhookPassword
+	a.WebhookSecret = temp.WebhookSecret
+	a.WebhookToken = temp.WebhookToken
 	a.WebhookUrl = temp.WebhookUrl
 	a.WebhookUsername = temp.WebhookUsername
 	a.ZdxOrgId = temp.ZdxOrgId
@@ -264,6 +276,8 @@ type tempAccountOauthInfoAccount struct {
 	WebhookAuthType     *string                                             `json:"webhook_auth_type,omitempty"`
 	WebhookEnabled      *bool                                               `json:"webhook_enabled,omitempty"`
 	WebhookPassword     *string                                             `json:"webhook_password,omitempty"`
+	WebhookSecret       *string                                             `json:"webhook_secret,omitempty"`
+	WebhookToken        *string                                             `json:"webhook_token,omitempty"`
 	WebhookUrl          *string                                             `json:"webhook_url,omitempty"`
 	WebhookUsername     *string                                             `json:"webhook_username,omitempty"`
 	ZdxOrgId            *string                                             `json:"zdx_org_id,omitempty"`

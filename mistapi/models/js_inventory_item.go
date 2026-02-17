@@ -14,6 +14,8 @@ type JsInventoryItem struct {
 	Claimed *bool `json:"claimed,omitempty"`
 	// Name of the device
 	DeviceName *string `json:"device_name,omitempty"`
+	// EOL PSN
+	EolPsn *string `json:"eol_psn,omitempty"`
 	// End of life time
 	EolTime *int `json:"eol_time,omitempty"`
 	// End of support time
@@ -37,6 +39,8 @@ type JsInventoryItem struct {
 	Type *DeviceTypeEnum `json:"type,omitempty"`
 	// SW version running
 	Version *string `json:"version,omitempty"`
+	// Version description
+	VersionDescription *string `json:"version_description,omitempty"`
 	// End of Service of version
 	VersionEosTime *int `json:"version_eos_time,omitempty"`
 	// FRS date of the version
@@ -66,8 +70,8 @@ type JsInventoryItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JsInventoryItem) String() string {
 	return fmt.Sprintf(
-		"JsInventoryItem[Claimed=%v, DeviceName=%v, EolTime=%v, EosTime=%v, HasSupport=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, Sku=%v, Status=%v, SuggestedVersion=%v, Type=%v, Version=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
-		j.Claimed, j.DeviceName, j.EolTime, j.EosTime, j.HasSupport, j.Master, j.Model, j.OrgId, j.Serial, j.Sku, j.Status, j.SuggestedVersion, j.Type, j.Version, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
+		"JsInventoryItem[Claimed=%v, DeviceName=%v, EolPsn=%v, EolTime=%v, EosTime=%v, HasSupport=%v, Master=%v, Model=%v, OrgId=%v, Serial=%v, Sku=%v, Status=%v, SuggestedVersion=%v, Type=%v, Version=%v, VersionDescription=%v, VersionEosTime=%v, VersionTime=%v, Warranty=%v, WarrantyTime=%v, WarrantyType=%v, AdditionalProperties=%v]",
+		j.Claimed, j.DeviceName, j.EolPsn, j.EolTime, j.EosTime, j.HasSupport, j.Master, j.Model, j.OrgId, j.Serial, j.Sku, j.Status, j.SuggestedVersion, j.Type, j.Version, j.VersionDescription, j.VersionEosTime, j.VersionTime, j.Warranty, j.WarrantyTime, j.WarrantyType, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JsInventoryItem.
@@ -76,7 +80,7 @@ func (j JsInventoryItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"claimed", "device_name", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type"); err != nil {
+		"claimed", "device_name", "eol_psn", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -91,6 +95,9 @@ func (j JsInventoryItem) toMap() map[string]any {
 	}
 	if j.DeviceName != nil {
 		structMap["device_name"] = j.DeviceName
+	}
+	if j.EolPsn != nil {
+		structMap["eol_psn"] = j.EolPsn
 	}
 	if j.EolTime != nil {
 		structMap["eol_time"] = j.EolTime
@@ -128,6 +135,9 @@ func (j JsInventoryItem) toMap() map[string]any {
 	if j.Version != nil {
 		structMap["version"] = j.Version
 	}
+	if j.VersionDescription != nil {
+		structMap["version_description"] = j.VersionDescription
+	}
 	if j.VersionEosTime != nil {
 		structMap["version_eos_time"] = j.VersionEosTime
 	}
@@ -154,7 +164,7 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "claimed", "device_name", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "claimed", "device_name", "eol_psn", "eol_time", "eos_time", "has_support", "master", "model", "org_id", "serial", "sku", "status", "suggested_version", "type", "version", "version_description", "version_eos_time", "version_time", "warranty", "warranty_time", "warranty_type")
 	if err != nil {
 		return err
 	}
@@ -162,6 +172,7 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 
 	j.Claimed = temp.Claimed
 	j.DeviceName = temp.DeviceName
+	j.EolPsn = temp.EolPsn
 	j.EolTime = temp.EolTime
 	j.EosTime = temp.EosTime
 	j.HasSupport = temp.HasSupport
@@ -174,6 +185,7 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 	j.SuggestedVersion = temp.SuggestedVersion
 	j.Type = temp.Type
 	j.Version = temp.Version
+	j.VersionDescription = temp.VersionDescription
 	j.VersionEosTime = temp.VersionEosTime
 	j.VersionTime = temp.VersionTime
 	j.Warranty = temp.Warranty
@@ -184,23 +196,25 @@ func (j *JsInventoryItem) UnmarshalJSON(input []byte) error {
 
 // tempJsInventoryItem is a temporary struct used for validating the fields of JsInventoryItem.
 type tempJsInventoryItem struct {
-	Claimed          *bool                `json:"claimed,omitempty"`
-	DeviceName       *string              `json:"device_name,omitempty"`
-	EolTime          *int                 `json:"eol_time,omitempty"`
-	EosTime          *int                 `json:"eos_time,omitempty"`
-	HasSupport       *bool                `json:"has_support,omitempty"`
-	Master           *bool                `json:"master,omitempty"`
-	Model            *string              `json:"model,omitempty"`
-	OrgId            *uuid.UUID           `json:"org_id,omitempty"`
-	Serial           *string              `json:"serial,omitempty"`
-	Sku              *string              `json:"sku,omitempty"`
-	Status           *string              `json:"status,omitempty"`
-	SuggestedVersion *string              `json:"suggested_version,omitempty"`
-	Type             *DeviceTypeEnum      `json:"type,omitempty"`
-	Version          *string              `json:"version,omitempty"`
-	VersionEosTime   *int                 `json:"version_eos_time,omitempty"`
-	VersionTime      *int                 `json:"version_time,omitempty"`
-	Warranty         *string              `json:"warranty,omitempty"`
-	WarrantyTime     *int                 `json:"warranty_time,omitempty"`
-	WarrantyType     *JsiWarrantyTypeEnum `json:"warranty_type,omitempty"`
+	Claimed            *bool                `json:"claimed,omitempty"`
+	DeviceName         *string              `json:"device_name,omitempty"`
+	EolPsn             *string              `json:"eol_psn,omitempty"`
+	EolTime            *int                 `json:"eol_time,omitempty"`
+	EosTime            *int                 `json:"eos_time,omitempty"`
+	HasSupport         *bool                `json:"has_support,omitempty"`
+	Master             *bool                `json:"master,omitempty"`
+	Model              *string              `json:"model,omitempty"`
+	OrgId              *uuid.UUID           `json:"org_id,omitempty"`
+	Serial             *string              `json:"serial,omitempty"`
+	Sku                *string              `json:"sku,omitempty"`
+	Status             *string              `json:"status,omitempty"`
+	SuggestedVersion   *string              `json:"suggested_version,omitempty"`
+	Type               *DeviceTypeEnum      `json:"type,omitempty"`
+	Version            *string              `json:"version,omitempty"`
+	VersionDescription *string              `json:"version_description,omitempty"`
+	VersionEosTime     *int                 `json:"version_eos_time,omitempty"`
+	VersionTime        *int                 `json:"version_time,omitempty"`
+	Warranty           *string              `json:"warranty,omitempty"`
+	WarrantyTime       *int                 `json:"warranty_time,omitempty"`
+	WarrantyType       *JsiWarrantyTypeEnum `json:"warranty_type,omitempty"`
 }

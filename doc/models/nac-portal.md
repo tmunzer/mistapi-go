@@ -13,6 +13,7 @@
 |  --- | --- | --- | --- |
 | `AccessType` | [`*models.NacPortalAccessTypeEnum`](../../doc/models/nac-portal-access-type-enum.md) | Optional | if `type`==`marvis_client`. enum: `wireless`, `wireless+wired`<br><br>**Default**: `"wireless"` |
 | `AdditionalCacerts` | `[]string` | Optional | Optional list of additional CA certificates to be used |
+| `AdditionalNacServerName` | `[]string` | Optional | Optional list of additional NAC server names |
 | `BgImageUrl` | `*string` | Optional | Background image |
 | `CertExpireTime` | `*int` | Optional | In days |
 | `EapType` | [`*models.NacPortalEapTypeEnum`](../../doc/models/nac-portal-eap-type-enum.md) | Optional | enum: `wpa2`, `wpa3`<br><br>**Default**: `"wpa2"` |
@@ -40,6 +41,10 @@
   "access_type": "wireless",
   "additional_cacerts": [
     "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----"
+  ],
+  "additional_nac_server_name": [
+    "nac1.corp.com",
+    "nac2.corp.com"
   ],
   "cert_expire_time": 365,
   "eap_type": "wpa2",

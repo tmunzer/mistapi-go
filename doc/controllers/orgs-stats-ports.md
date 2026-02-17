@@ -211,52 +211,39 @@ if err != nil {
 
 # Search Org Sw or Gw Ports
 
-Search Switch / Gateway Ports
+Search Switch / Gateway Ports Stats.
+Returns a list of switch/gateway ports stats that match the search criteria.
+
+The response provide current/last port status and statistics within the hour.
+Traffic information (Tx/Rx) are cumulative counters since the last device reboot.
 
 ```go
 SearchOrgSwOrGwPorts(
     ctx context.Context,
     orgId uuid.UUID,
+    siteId *string,
+    deviceType *models.SearchOrgSwOrGwPortsTypeEnum,
+    authState *models.PortAuthStateEnum,
     fullDuplex *bool,
+    lteImsi *string,
+    lteIccid *string,
+    lteImei *string,
     mac *string,
     neighborMac *string,
     neighborPortDesc *string,
     neighborSystemName *string,
     poeDisabled *bool,
-    poePriority *models.PoePriorityEnum,
     poeMode *string,
     poeOn *bool,
+    poePriority *models.PoePriorityEnum,
     portId *string,
     portMac *string,
-    powerDraw *float64,
-    txPkts *int,
-    rxPkts *int,
-    rxBytes *int,
-    txBps *int,
-    rxBps *int,
-    txErrors *int,
-    rxErrors *int,
-    txMcastPkts *int,
-    txBcastPkts *int,
-    rxMcastPkts *int,
-    rxBcastPkts *int,
     speed *int,
-    macLimit *int,
-    macCount *int,
-    up *bool,
     stpState *models.PortStpStateEnum,
     stpRole *models.PortStpRoleEnum,
-    authState *models.PortAuthStateEnum,
-    opticsBiasCurrent *float64,
-    opticsTxPower *float64,
-    opticsRxPower *float64,
-    opticsModuleTemperature *float64,
-    opticsModuleVoltage *float64,
-    mType *models.SearchOrgSwOrGwPortsTypeEnum,
+    up *bool,
+    xcvrPartNumber *string,
     limit *int,
-    start *string,
-    end *string,
-    duration *string,
     sort *string,
     searchAfter *string) (
     models.ApiResponse[models.ResponsePortStatsSearch],
@@ -268,46 +255,29 @@ SearchOrgSwOrGwPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `siteId` | `*string` | Query, Optional | Site ID |
+| `deviceType` | [`*models.SearchOrgSwOrGwPortsTypeEnum`](../../doc/models/search-org-sw-or-gw-ports-type-enum.md) | Query, Optional | Type of device. enum: `switch`, `gateway`, `all`<br><br>**Default**: `"all"` |
+| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
+| `lteImsi` | `*string` | Query, Optional | LTE IMSI value, Check for null/empty |
+| `lteIccid` | `*string` | Query, Optional | LTE ICCID value, Check for null/empty |
+| `lteImei` | `*string` | Query, Optional | LTE IMEI value, Check for null/empty |
 | `mac` | `*string` | Query, Optional | Device identifier |
 | `neighborMac` | `*string` | Query, Optional | Chassis identifier of the chassis type listed |
 | `neighborPortDesc` | `*string` | Query, Optional | Description supplied by the system on the interface E.g. "GigabitEthernet2/0/39" |
 | `neighborSystemName` | `*string` | Query, Optional | Name supplied by the system on the interface E.g. neighbor system name E.g. "Kumar-Acc-SW.mist.local" |
 | `poeDisabled` | `*bool` | Query, Optional | Is the POE configured not be disabled. |
-| `poePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Query, Optional | PoE priority. |
 | `poeMode` | `*string` | Query, Optional | POE mode depending on class E.g. "802.3at" |
 | `poeOn` | `*bool` | Query, Optional | Is the device attached to POE |
+| `poePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Query, Optional | PoE priority. |
 | `portId` | `*string` | Query, Optional | Interface name |
 | `portMac` | `*string` | Query, Optional | Interface mac address |
-| `powerDraw` | `*float64` | Query, Optional | Amount of power being used by the interface at the time the command is executed. Unit in watts. |
-| `txPkts` | `*int` | Query, Optional | Output packets |
-| `rxPkts` | `*int` | Query, Optional | Input packets |
-| `rxBytes` | `*int` | Query, Optional | Input bytes |
-| `txBps` | `*int` | Query, Optional | Output rate |
-| `rxBps` | `*int` | Query, Optional | Input rate |
-| `txErrors` | `*int` | Query, Optional | Output errors |
-| `rxErrors` | `*int` | Query, Optional | Input errors |
-| `txMcastPkts` | `*int` | Query, Optional | Multicast output packets |
-| `txBcastPkts` | `*int` | Query, Optional | Broadcast output packets |
-| `rxMcastPkts` | `*int` | Query, Optional | Multicast input packets |
-| `rxBcastPkts` | `*int` | Query, Optional | Broadcast input packets |
 | `speed` | `*int` | Query, Optional | Port speed |
-| `macLimit` | `*int` | Query, Optional | Limit on number of dynamically learned macs |
-| `macCount` | `*int` | Query, Optional | Number of mac addresses in the forwarding table |
-| `up` | `*bool` | Query, Optional | Indicates if interface is up |
 | `stpState` | [`*models.PortStpStateEnum`](../../doc/models/port-stp-state-enum.md) | Query, Optional | If `up`==`true` |
 | `stpRole` | [`*models.PortStpRoleEnum`](../../doc/models/port-stp-role-enum.md) | Query, Optional | If `up`==`true` |
-| `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
-| `opticsBiasCurrent` | `*float64` | Query, Optional | Bias current of the optics in mA |
-| `opticsTxPower` | `*float64` | Query, Optional | Transmit power of the optics in dBm |
-| `opticsRxPower` | `*float64` | Query, Optional | Receive power of the optics in dBm |
-| `opticsModuleTemperature` | `*float64` | Query, Optional | Temperature of the optics module in Celsius |
-| `opticsModuleVoltage` | `*float64` | Query, Optional | Voltage of the optics module in mV |
-| `mType` | [`*models.SearchOrgSwOrGwPortsTypeEnum`](../../doc/models/search-org-sw-or-gw-ports-type-enum.md) | Query, Optional | Type of device. enum: `switch`, `gateway`, `all`<br><br>**Default**: `"all"` |
+| `up` | `*bool` | Query, Optional | Indicates if interface is up |
+| `xcvrPartNumber` | `*string` | Query, Optional | Optic Slot Partnumber, Check for null/empty |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 
@@ -322,15 +292,21 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.SearchOrgSwOrGwPortsTypeEnum_ALL
+deviceType := models.SearchOrgSwOrGwPortsTypeEnum_ALL
+
+lteImsi := "310260000000001"
+
+lteIccid := "89014103211118510720"
+
+lteImei := "123456789012345"
+
+xcvrPartNumber := "SFP-10G-SR"
 
 limit := 100
 
-duration := "10m"
-
 sort := "-site_id"
 
-apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

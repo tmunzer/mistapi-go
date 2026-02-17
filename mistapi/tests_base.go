@@ -88,6 +88,8 @@ var orgsDevices OrgsDevices
 
 var orgsDevicesSsr OrgsDevicesSSR
 
+var orgsDevicesAos OrgsDevicesAOS
+
 var orgsEvpnTopologies OrgsEVPNTopologies
 
 var orgsIntegrationJuniper OrgsIntegrationJuniper
@@ -456,6 +458,7 @@ func init() {
 	orgsDeviceProfiles = *client.OrgsDeviceProfiles()
 	orgsDevices = *client.OrgsDevices()
 	orgsDevicesSsr = *client.OrgsDevicesSSR()
+	orgsDevicesAos = *client.OrgsDevicesAOS()
 	orgsEvpnTopologies = *client.OrgsEVPNTopologies()
 	orgsIntegrationJuniper = *client.OrgsIntegrationJuniper()
 	orgsDevicesOthers = *client.OrgsDevicesOthers()

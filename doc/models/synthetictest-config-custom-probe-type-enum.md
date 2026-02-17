@@ -1,7 +1,7 @@
 
 # Synthetictest Config Custom Probe Type Enum
 
-enum: `curl`, `icmp`, `tcp`
+enum: `application`, `curl`, `icmp`, `reachability`, `tcp`
 
 ## Enumeration
 
@@ -11,7 +11,9 @@ enum: `curl`, `icmp`, `tcp`
 
 | Name |
 |  --- |
+| `application` |
 | `curl` |
 | `icmp` |
+| `reachability` |
 | `tcp` |
 

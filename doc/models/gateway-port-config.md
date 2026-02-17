@@ -49,7 +49,6 @@ Gateway port config
 | `VlanId` | [`*models.GatewayPortVlanIdWithVariable`](../../doc/models/containers/gateway-port-vlan-id-with-variable.md) | Optional | If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}") |
 | `VpnPaths` | [`map[string]models.GatewayPortVpnPath`](../../doc/models/gateway-port-vpn-path.md) | Optional | Property key is the VPN name |
 | `WanArpPolicer` | [`*models.GatewayPortWanArpPolicerEnum`](../../doc/models/gateway-port-wan-arp-policer-enum.md) | Optional | Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`<br><br>**Default**: `"default"` |
-| `WanDisableSpeedtest` | `*bool` | Optional | If `wan_type`==`wan`, disable speedtest<br><br>**Default**: `false` |
 | `WanExtIp` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IP |
 | `WanExtIp6` | `*string` | Optional | Only if `usage`==`wan`, optional. If spoke should reach this port by a different IPv6 |
 | `WanExtraRoutes` | [`map[string]models.WanExtraRoutes`](../../doc/models/wan-extra-routes.md) | Optional | Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "100.100.100.0/24") |
@@ -57,6 +56,7 @@ Gateway port config
 | `WanNetworks` | `[]string` | Optional | Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined |
 | `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | Only if `usage`==`wan` |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip |
+| `WanSpeedtestMode` | [`*models.WanSpeedtestModeEnum`](../../doc/models/wan-speedtest-mode-enum.md) | Optional | Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`<br><br>**Default**: `"auto"` |
 | `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br><br>**Default**: `"broadband"` |
 
 ## Example (as JSON)
@@ -85,9 +85,9 @@ Gateway port config
   "svr_port_range": "60000-60005",
   "usage": "lan",
   "wan_arp_policer": "default",
-  "wan_disable_speedtest": false,
   "wan_ext_ip": "64.2.4.3",
   "wan_ext_ip6": "2601:1700:43c0:dc0::10",
+  "wan_speedtest_mode": "auto",
   "wan_type": "broadband",
   "ae_idx": "ae_idx6"
 }

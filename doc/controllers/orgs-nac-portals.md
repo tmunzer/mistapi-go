@@ -59,6 +59,10 @@ body := models.NacPortal{
     AdditionalCacerts:        []string{
         "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
     },
+    AdditionalNacServerName:  []string{
+        "nac1.corp.com",
+        "nac2.corp.com",
+    },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),
     Name:                     models.ToPointer("get-wifi"),
@@ -757,6 +761,10 @@ body := models.NacPortal{
     AccessType:               models.ToPointer(models.NacPortalAccessTypeEnum_WIRELESS),
     AdditionalCacerts:        []string{
         "-----BEGIN CERTIFICATE-----\\nMIIFZjCCA06gAwIBAgIIP61/1qm/uDowDQYJKoZIhvcNAQELBQE\\n-----END CERTIFICATE-----",
+    },
+    AdditionalNacServerName:  []string{
+        "nac1.corp.com",
+        "nac2.corp.com",
     },
     CertExpireTime:           models.ToPointer(365),
     EapType:                  models.ToPointer(models.NacPortalEapTypeEnum_WPA2),

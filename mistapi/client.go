@@ -57,6 +57,7 @@ type ClientInterface interface {
 	OrgsDeviceProfiles() *OrgsDeviceProfiles
 	OrgsDevices() *OrgsDevices
 	OrgsDevicesSSR() *OrgsDevicesSSR
+	OrgsDevicesAOS() *OrgsDevicesAOS
 	OrgsEVPNTopologies() *OrgsEVPNTopologies
 	OrgsIntegrationJuniper() *OrgsIntegrationJuniper
 	OrgsDevicesOthers() *OrgsDevicesOthers
@@ -269,6 +270,7 @@ type client struct {
 	orgsDeviceProfiles               OrgsDeviceProfiles
 	orgsDevices                      OrgsDevices
 	orgsDevicesSSR                   OrgsDevicesSSR
+	orgsDevicesAOS                   OrgsDevicesAOS
 	orgsEVPNTopologies               OrgsEVPNTopologies
 	orgsIntegrationJuniper           OrgsIntegrationJuniper
 	orgsDevicesOthers                OrgsDevicesOthers
@@ -500,6 +502,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsDeviceProfiles = *NewOrgsDeviceProfiles(*baseController)
 	client.orgsDevices = *NewOrgsDevices(*baseController)
 	client.orgsDevicesSSR = *NewOrgsDevicesSSR(*baseController)
+	client.orgsDevicesAOS = *NewOrgsDevicesAOS(*baseController)
 	client.orgsEVPNTopologies = *NewOrgsEVPNTopologies(*baseController)
 	client.orgsIntegrationJuniper = *NewOrgsIntegrationJuniper(*baseController)
 	client.orgsDevicesOthers = *NewOrgsDevicesOthers(*baseController)
@@ -891,6 +894,11 @@ func (c *client) OrgsDevices() *OrgsDevices {
 // OrgsDevicesSSR returns the orgsDevicesSSR instance of the client.
 func (c *client) OrgsDevicesSSR() *OrgsDevicesSSR {
 	return &c.orgsDevicesSSR
+}
+
+// OrgsDevicesAOS returns the orgsDevicesAOS instance of the client.
+func (c *client) OrgsDevicesAOS() *OrgsDevicesAOS {
+	return &c.orgsDevicesAOS
 }
 
 // OrgsEVPNTopologies returns the orgsEVPNTopologies instance of the client.

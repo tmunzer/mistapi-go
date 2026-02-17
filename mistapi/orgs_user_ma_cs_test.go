@@ -6,6 +6,7 @@ import (
 	"context"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
 
@@ -91,6 +92,48 @@ func TestOrgsUserMACsTestUpdateOrgMultipleUserMacs1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"errors":["2feacc8e-5893-418a-acaa-4d7c1afd01fe - invalid id"],"updated":["1041c16c-ca87-4d3f-bb94-b97c5819fc09","a016cc8e-5893-418a-acaa-4d7c1af6ac0f"]}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsUserMACsTestCountOrgUserMacs tests the behavior of the OrgsUserMACs
+func TestOrgsUserMACsTestCountOrgUserMacs(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.Distinct2Enum("org_id")
+	limit := int(100)
+
+	apiResponse, err := orgsUserMaCs.CountOrgUserMacs(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsUserMACsTestCountOrgUserMacs1 tests the behavior of the OrgsUserMACs
+func TestOrgsUserMACsTestCountOrgUserMacs1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.Distinct2Enum("org_id")
+	limit := int(100)
+
+	apiResponse, err := orgsUserMaCs.CountOrgUserMacs(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
 // TestOrgsUserMACsTestDeleteOrgMultipleUserMacs tests the behavior of the OrgsUserMACs

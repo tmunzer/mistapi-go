@@ -9,10 +9,18 @@ import (
 
 // StatsApEslStat represents a StatsApEslStat struct.
 type StatsApEslStat struct {
-	Channel              Optional[int]          `json:"channel"`
-	Connected            Optional[bool]         `json:"connected"`
-	Type                 Optional[string]       `json:"type"`
-	Up                   Optional[bool]         `json:"up"`
+	Channel   Optional[int]  `json:"channel"`
+	Connected Optional[bool] `json:"connected"`
+	// IP address of Hanshow and SoluM dongles
+	Ip Optional[string] `json:"ip"`
+	// MAC address of Hanshow and SoluM dongles
+	Mac Optional[string] `json:"mac"`
+	// Product ID of Hanshow and SoluM dongles
+	ProductId Optional[string] `json:"product_id"`
+	Type      Optional[string] `json:"type"`
+	Up        Optional[bool]   `json:"up"`
+	// Vendor ID of Hanshow and SoluM dongles
+	VendorId             Optional[string]       `json:"vendor_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -20,8 +28,8 @@ type StatsApEslStat struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsApEslStat) String() string {
 	return fmt.Sprintf(
-		"StatsApEslStat[Channel=%v, Connected=%v, Type=%v, Up=%v, AdditionalProperties=%v]",
-		s.Channel, s.Connected, s.Type, s.Up, s.AdditionalProperties)
+		"StatsApEslStat[Channel=%v, Connected=%v, Ip=%v, Mac=%v, ProductId=%v, Type=%v, Up=%v, VendorId=%v, AdditionalProperties=%v]",
+		s.Channel, s.Connected, s.Ip, s.Mac, s.ProductId, s.Type, s.Up, s.VendorId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsApEslStat.
@@ -30,7 +38,7 @@ func (s StatsApEslStat) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"channel", "connected", "type", "up"); err != nil {
+		"channel", "connected", "ip", "mac", "product_id", "type", "up", "vendor_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -54,6 +62,27 @@ func (s StatsApEslStat) toMap() map[string]any {
 			structMap["connected"] = nil
 		}
 	}
+	if s.Ip.IsValueSet() {
+		if s.Ip.Value() != nil {
+			structMap["ip"] = s.Ip.Value()
+		} else {
+			structMap["ip"] = nil
+		}
+	}
+	if s.Mac.IsValueSet() {
+		if s.Mac.Value() != nil {
+			structMap["mac"] = s.Mac.Value()
+		} else {
+			structMap["mac"] = nil
+		}
+	}
+	if s.ProductId.IsValueSet() {
+		if s.ProductId.Value() != nil {
+			structMap["product_id"] = s.ProductId.Value()
+		} else {
+			structMap["product_id"] = nil
+		}
+	}
 	if s.Type.IsValueSet() {
 		if s.Type.Value() != nil {
 			structMap["type"] = s.Type.Value()
@@ -68,6 +97,13 @@ func (s StatsApEslStat) toMap() map[string]any {
 			structMap["up"] = nil
 		}
 	}
+	if s.VendorId.IsValueSet() {
+		if s.VendorId.Value() != nil {
+			structMap["vendor_id"] = s.VendorId.Value()
+		} else {
+			structMap["vendor_id"] = nil
+		}
+	}
 	return structMap
 }
 
@@ -79,7 +115,7 @@ func (s *StatsApEslStat) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "connected", "type", "up")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "connected", "ip", "mac", "product_id", "type", "up", "vendor_id")
 	if err != nil {
 		return err
 	}
@@ -87,8 +123,12 @@ func (s *StatsApEslStat) UnmarshalJSON(input []byte) error {
 
 	s.Channel = temp.Channel
 	s.Connected = temp.Connected
+	s.Ip = temp.Ip
+	s.Mac = temp.Mac
+	s.ProductId = temp.ProductId
 	s.Type = temp.Type
 	s.Up = temp.Up
+	s.VendorId = temp.VendorId
 	return nil
 }
 
@@ -96,6 +136,10 @@ func (s *StatsApEslStat) UnmarshalJSON(input []byte) error {
 type tempStatsApEslStat struct {
 	Channel   Optional[int]    `json:"channel"`
 	Connected Optional[bool]   `json:"connected"`
+	Ip        Optional[string] `json:"ip"`
+	Mac       Optional[string] `json:"mac"`
+	ProductId Optional[string] `json:"product_id"`
 	Type      Optional[string] `json:"type"`
 	Up        Optional[bool]   `json:"up"`
+	VendorId  Optional[string] `json:"vendor_id"`
 }

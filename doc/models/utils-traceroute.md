@@ -17,6 +17,7 @@
 | `Port` | `*int` | Optional | When `protocol`==`udp`, not supported in SSR. The udp port to use<br><br>**Default**: `33434` |
 | `Protocol` | [`*models.UtilsTracerouteProtocolEnum`](../../doc/models/utils-traceroute-protocol-enum.md) | Optional | enum: `icmp` (Only supported by AP/MxEdge), `udp`<br><br>**Default**: `"udp"` |
 | `Timeout` | `*int` | Optional | Not supported in SSR. Maximum time in seconds to wait for the response<br><br>**Default**: `60` |
+| `UseIpv6` | `*bool` | Optional | **Default**: `false` |
 | `Vrf` | `*string` | Optional | For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
@@ -28,6 +29,7 @@
   "port": 33434,
   "protocol": "udp",
   "timeout": 60,
+  "use_ipv6": false,
   "host": "host2",
   "node": "node0",
   "exampleAdditionalProperty": {

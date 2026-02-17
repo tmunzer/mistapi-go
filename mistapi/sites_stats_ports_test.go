@@ -111,51 +111,17 @@ func TestSitesStatsPortsTestSearchSiteSwOrGwPorts(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	fullDuplex := bool(true)
-	disabled := bool(false)
-	mac := "5c5b350e0410"
-
-	neighborMac := "5c5b350e0410"
-	neighborPortDesc := "ge-2/0/39"
-	neighborSystemName := "Kumar-Acc-SW.mist.local"
-	poeDisabled := bool(false)
-	poeMode := "802.3at"
-	poeOn := bool(true)
-	portId := "ge-2/0/39"
-	portMac := "5c5b350e0410"
-	powerDraw := float64(15.4)
-	txPkts := int(1000000)
-	rxPkts := int(1000000)
-	rxBytes := int(1000000)
-	txBps := int(1000000)
-	rxBps := int(1000000)
-	txErrors := int(0)
-	rxErrors := int(0)
-	txMcastPkts := int(100)
-	txBcastPkts := int(100)
-	rxMcastPkts := int(100)
-	rxBcastPkts := int(100)
-	speed := int(1000)
-	macLimit := int(1000)
-	macCount := int(10)
-	up := bool(true)
-	active := bool(true)
-	jitter := float64(0.456)
-	loss := float64(0.01)
-	latency := float64(0.123)
-
-	xcvrPartNumber := "SFP-10G-SR"
+	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
 	lteImsi := "310260000000001"
 	lteIccid := "89014103211118510720"
 	lteImei := "123456789012345"
 
+	xcvrPartNumber := "SFP-10G-SR"
 	limit := int(100)
-
-	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -175,51 +141,17 @@ func TestSitesStatsPortsTestSearchSiteSwOrGwPorts1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	fullDuplex := bool(true)
-	disabled := bool(false)
-	mac := "5c5b350e0410"
-
-	neighborMac := "5c5b350e0410"
-	neighborPortDesc := "ge-2/0/39"
-	neighborSystemName := "Kumar-Acc-SW.mist.local"
-	poeDisabled := bool(false)
-	poeMode := "802.3at"
-	poeOn := bool(true)
-	portId := "ge-2/0/39"
-	portMac := "5c5b350e0410"
-	powerDraw := float64(15.4)
-	txPkts := int(1000000)
-	rxPkts := int(1000000)
-	rxBytes := int(1000000)
-	txBps := int(1000000)
-	rxBps := int(1000000)
-	txErrors := int(0)
-	rxErrors := int(0)
-	txMcastPkts := int(100)
-	txBcastPkts := int(100)
-	rxMcastPkts := int(100)
-	rxBcastPkts := int(100)
-	speed := int(1000)
-	macLimit := int(1000)
-	macCount := int(10)
-	up := bool(true)
-	active := bool(true)
-	jitter := float64(0.456)
-	loss := float64(0.01)
-	latency := float64(0.123)
-
-	xcvrPartNumber := "SFP-10G-SR"
+	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
 	lteImsi := "310260000000001"
 	lteIccid := "89014103211118510720"
 	lteImei := "123456789012345"
 
+	xcvrPartNumber := "SFP-10G-SR"
 	limit := int(100)
-
-	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &fullDuplex, &disabled, &mac, nil, &neighborMac, &neighborPortDesc, &neighborSystemName, &poeDisabled, &poeMode, &poeOn, &portId, &portMac, &powerDraw, &txPkts, &rxPkts, &rxBytes, &txBps, &rxBps, &txErrors, &rxErrors, &txMcastPkts, &txBcastPkts, &rxMcastPkts, &rxBcastPkts, &speed, &macLimit, &macCount, &up, &active, &jitter, &loss, &latency, nil, nil, &xcvrPartNumber, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesStatsPorts.SearchSiteSwOrGwPorts(ctx, siteId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

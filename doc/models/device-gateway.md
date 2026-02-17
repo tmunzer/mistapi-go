@@ -31,7 +31,7 @@ Device gateway
 | `Image3Url` | `models.Optional[string]` | Optional | - |
 | `IpConfigs` | [`map[string]models.GatewayIpConfigProperty`](../../doc/models/gateway-ip-config-property.md) | Optional | Property key is the network name |
 | `Mac` | `*string` | Optional | Device MAC address |
-| `Managed` | `*bool` | Optional | - |
+| `Managed` | `*bool` | Optional | Whether the device is managed by Mist. Deprecated in favour of mist_configured. |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
 | `Model` | `*string` | Optional | Device Model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

@@ -23,6 +23,7 @@ orgsMxEdges := client.OrgsMxEdges()
 * [Disconnect Org Mx Edge Tunterm Aps](../../doc/controllers/orgs-mx-edges.md#disconnect-org-mx-edge-tunterm-aps)
 * [Get Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#get-org-mx-edge)
 * [Get Org Mx Edge Upgrade Info](../../doc/controllers/orgs-mx-edges.md#get-org-mx-edge-upgrade-info)
+* [Get Org Mx Edge Vm Params](../../doc/controllers/orgs-mx-edges.md#get-org-mx-edge-vm-params)
 * [List Org Mx Edges](../../doc/controllers/orgs-mx-edges.md#list-org-mx-edges)
 * [Restart Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#restart-org-mx-edge)
 * [Search Org Mist Edge Events](../../doc/controllers/orgs-mx-edges.md#search-org-mist-edge-events)
@@ -1193,6 +1194,73 @@ if err != nil {
     "version": "1.0.0"
   }
 ]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Org Mx Edge Vm Params
+
+Get Mist Edge VM parameters
+
+```go
+GetOrgMxEdgeVmParams(
+    ctx context.Context,
+    orgId uuid.UUID,
+    mxedgeId uuid.UUID) (
+    models.ApiResponse[models.MxedgeVmParams],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `mxedgeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.MxedgeVmParams](../../doc/models/mxedge-vm-params.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := orgsMxEdges.GetOrgMxEdgeVmParams(ctx, orgId, mxedgeId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
 ```
 
 ## Errors

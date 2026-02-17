@@ -25,7 +25,8 @@
       "key0": "custom_versions3",
       "key1": "custom_versions2"
     },
-    "enabled": false
+    "enabled": false,
+    "version": "version2"
   },
   "conductor_hosts": [
     "conductor_hosts4",

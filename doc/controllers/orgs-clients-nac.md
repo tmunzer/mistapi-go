@@ -431,6 +431,7 @@ SearchOrgNacClients(
     orgId uuid.UUID,
     ap *string,
     authType *string,
+    certExpiryDuration *string,
     edrManaged *bool,
     edrProvider *models.EdrProviderEnum,
     edrStatus *models.EdrStatusEnum,
@@ -476,6 +477,7 @@ SearchOrgNacClients(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `ap` | `*string` | Query, Optional | AP MAC connected to by client |
 | `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `certExpiryDuration` | `*string` | Query, Optional | Filter by certificate expiry within a specific duration from now (e.g., "7d" for 7 days, "1m" for 1 month) |
 | `edrManaged` | `*bool` | Query, Optional | Filters NAC clients that are integrated with EDR providers |
 | `edrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Query, Optional | EDR provider of client's organization |
 | `edrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Query, Optional | EDR Status of the NAC client |
@@ -522,6 +524,8 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+certExpiryDuration := "7d"
+
 status := models.NacClientLastStatusEnum_PERMITTED
 
 limit := 100
@@ -530,7 +534,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsNAC.SearchOrgNacClients(ctx, orgId, nil, nil, &certExpiryDuration, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

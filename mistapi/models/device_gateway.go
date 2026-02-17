@@ -41,8 +41,9 @@ type DeviceGateway struct {
 	// Property key is the network name
 	IpConfigs map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
 	// Device MAC address
-	Mac     *string `json:"mac,omitempty"`
-	Managed *bool   `json:"managed,omitempty"`
+	Mac *string `json:"mac,omitempty"`
+	// Whether the device is managed by Mist. Deprecated in favour of mist_configured.
+	Managed *bool `json:"managed,omitempty"` // Deprecated
 	// Map where the device belongs to
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// Device Model

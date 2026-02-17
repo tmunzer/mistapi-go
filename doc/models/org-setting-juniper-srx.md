@@ -21,7 +21,8 @@
       "key1": "custom_versions2"
     },
     "enabled": false,
-    "snapshot": false
+    "snapshot": false,
+    "version": "version2"
   }
 }
 ```
