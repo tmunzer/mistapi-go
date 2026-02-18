@@ -33,6 +33,7 @@ Device gateway
 | `Mac` | `*string` | Optional | Device MAC address |
 | `Managed` | `*bool` | Optional | Whether the device is managed by Mist. Deprecated in favour of mist_configured. |
 | `MapId` | `*uuid.UUID` | Optional | Map where the device belongs to |
+| `MistConfigured` | `*bool` | Optional | whether the device can be configured by Mist or not. This deprecates `managed` |
 | `Model` | `*string` | Optional | Device Model |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `MspId` | `*uuid.UUID` | Optional | - |
