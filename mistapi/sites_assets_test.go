@@ -241,3 +241,21 @@ func TestSitesAssetsTestUpdateSiteAsset1(t *testing.T) {
 	expected := `{"created_time":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","mac":"string","map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","modified_time":0,"name":"string","org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","tag_id":"6f4bf402-45f9-2a56-6c8b-7f83d3bc98e9"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
+
+// TestSitesAssetsTestDeleteSiteAssetImage tests the behavior of the SitesAssets
+func TestSitesAssetsTestDeleteSiteAssetImage(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	assetId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := sitesAssets.DeleteSiteAssetImage(ctx, siteId, assetId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}

@@ -368,7 +368,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgNacClients takes context, orgId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, siteId, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgNacClients takes context, orgId, ap, authType, certExpiryDuration, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, siteId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Org NAC Clients
@@ -377,6 +377,7 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	orgId uuid.UUID,
 	ap *string,
 	authType *string,
+	certExpiryDuration *string,
 	edrManaged *bool,
 	edrProvider *models.EdrProviderEnum,
 	edrStatus *models.EdrStatusEnum,
@@ -437,6 +438,9 @@ func (o *OrgsClientsNAC) SearchOrgNacClients(
 	}
 	if authType != nil {
 		req.QueryParam("auth_type", *authType)
+	}
+	if certExpiryDuration != nil {
+		req.QueryParam("cert_expiry_duration", *certExpiryDuration)
 	}
 	if edrManaged != nil {
 		req.QueryParam("edr_managed", *edrManaged)

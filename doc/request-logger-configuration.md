@@ -10,7 +10,7 @@ Represents the logging configurations for API requests.
 | includeQueryInPath | `bool` | Toggles the inclusion of query parameters in the logged request path. **Default : `false`** | `WithIncludeQueryInPath` |
 | body | `bool` | Toggles the logging of the request body. **Default : `false`** | `WithRequestBody` |
 | headers | `bool` | Toggles the logging of the request headers. **Default : `false`** | `WithRequestHeaders` |
-| includeHeaders | `[]string` | Includes only specified request headers in the log output. **Default : `[]string{}`** | `WithIncludeRequestHeaders` |
-| excludeHeaders | `[]string` | Excludes specified request headers from the log output. **Default : `[]string{}`** | `WithExcludeRequestHeaders` |
-| whitelistHeaders | `[]string` | Logs specified request headers without masking, revealing their actual values. **Default : `[]string{}`** | `WithWhitelistRequestHeaders` |
+| includeHeaders | `[]string` | Includes only specified request headers (provided as variadic string arguments) in the log output. **Default : `[]string{}`** | `WithIncludeRequestHeaders(...string)` |
+| excludeHeaders | `[]string` | Excludes specified request headers (provided as variadic string arguments) from the log output. **Default : `[]string{}`** | `WithExcludeRequestHeaders(...string)` |
+| whitelistHeaders | `[]string` | Logs specified request headers (provided as variadic string arguments) without masking, revealing their actual values. **Default : `[]string{}`** | `WithWhitelistRequestHeaders(...string)` |
 

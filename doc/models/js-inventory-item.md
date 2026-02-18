@@ -11,6 +11,7 @@
 |  --- | --- | --- | --- |
 | `Claimed` | `*bool` | Optional | Indicates if the device is claimed by any org |
 | `DeviceName` | `*string` | Optional | Name of the device |
+| `EolPsn` | `*string` | Optional | EOL PSN |
 | `EolTime` | `*int` | Optional | End of life time |
 | `EosTime` | `*int` | Optional | End of support time |
 | `HasSupport` | `*bool` | Optional | Indicates if the device is covered under active support contract |
@@ -23,6 +24,7 @@
 | `SuggestedVersion` | `*string` | Optional | Suggested SW version |
 | `Type` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 | `Version` | `*string` | Optional | SW version running |
+| `VersionDescription` | `*string` | Optional | Version description |
 | `VersionEosTime` | `*int` | Optional | End of Service of version |
 | `VersionTime` | `*int` | Optional | FRS date of the version |
 | `Warranty` | `*string` | Optional | warranty description |
@@ -33,12 +35,12 @@
 
 ```json
 {
+  "eol_psn": "TSB18097",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "claimed": false,
   "device_name": "device_name8",
   "eol_time": 58,
-  "eos_time": 104,
-  "has_support": false
+  "eos_time": 104
 }
 ```
 

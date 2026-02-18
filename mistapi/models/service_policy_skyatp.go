@@ -10,15 +10,11 @@ import (
 // ServicePolicySkyatp represents a ServicePolicySkyatp struct.
 // SRX only
 type ServicePolicySkyatp struct {
-	// enum: `disabled`, `default`, `standard`, `strict`
-	DnsDgaDetection *ServicePolicySkyatpDnsDgaDetectionEnum `json:"dns_dga_detection,omitempty"`
-	// enum: `disabled`, `default`, `standard`, `strict`
-	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
-	// enum: `disabled`, `standard`
-	HttpInspection *ServicePolicySkyatpHttpInspectionEnum `json:"http_inspection,omitempty"`
-	// enum: `disabled`, `enabled`
-	IotDevicePolicy      *ServicePolicySkyatpIotDevicePolicyEnum `json:"iot_device_policy,omitempty"`
-	AdditionalProperties map[string]interface{}                  `json:"_"`
+	DnsDgaDetection      *ServicePolicySkyatpDnsDgaDetection    `json:"dns_dga_detection,omitempty"`
+	DnsTunnelDetection   *ServicePolicySkyatpDnsTunnelDetection `json:"dns_tunnel_detection,omitempty"`
+	HttpInspection       *ServicePolicySkyatpHttpInspection     `json:"http_inspection,omitempty"`
+	IotDevicePolicy      *ServicePolicySkyatpIotDevicePolicy    `json:"iot_device_policy,omitempty"`
+	AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatp,
@@ -46,16 +42,16 @@ func (s ServicePolicySkyatp) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	if s.DnsDgaDetection != nil {
-		structMap["dns_dga_detection"] = s.DnsDgaDetection
+		structMap["dns_dga_detection"] = s.DnsDgaDetection.toMap()
 	}
 	if s.DnsTunnelDetection != nil {
-		structMap["dns_tunnel_detection"] = s.DnsTunnelDetection
+		structMap["dns_tunnel_detection"] = s.DnsTunnelDetection.toMap()
 	}
 	if s.HttpInspection != nil {
-		structMap["http_inspection"] = s.HttpInspection
+		structMap["http_inspection"] = s.HttpInspection.toMap()
 	}
 	if s.IotDevicePolicy != nil {
-		structMap["iot_device_policy"] = s.IotDevicePolicy
+		structMap["iot_device_policy"] = s.IotDevicePolicy.toMap()
 	}
 	return structMap
 }
@@ -83,8 +79,8 @@ func (s *ServicePolicySkyatp) UnmarshalJSON(input []byte) error {
 
 // tempServicePolicySkyatp is a temporary struct used for validating the fields of ServicePolicySkyatp.
 type tempServicePolicySkyatp struct {
-	DnsDgaDetection    *ServicePolicySkyatpDnsDgaDetectionEnum    `json:"dns_dga_detection,omitempty"`
-	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetectionEnum `json:"dns_tunnel_detection,omitempty"`
-	HttpInspection     *ServicePolicySkyatpHttpInspectionEnum     `json:"http_inspection,omitempty"`
-	IotDevicePolicy    *ServicePolicySkyatpIotDevicePolicyEnum    `json:"iot_device_policy,omitempty"`
+	DnsDgaDetection    *ServicePolicySkyatpDnsDgaDetection    `json:"dns_dga_detection,omitempty"`
+	DnsTunnelDetection *ServicePolicySkyatpDnsTunnelDetection `json:"dns_tunnel_detection,omitempty"`
+	HttpInspection     *ServicePolicySkyatpHttpInspection     `json:"http_inspection,omitempty"`
+	IotDevicePolicy    *ServicePolicySkyatpIotDevicePolicy    `json:"iot_device_policy,omitempty"`
 }

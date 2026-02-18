@@ -638,6 +638,7 @@ body := models.SiteSetting{
     SwitchUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
     TrackAnonymousDevices:           models.ToPointer(false),
     TuntermMonitoringDisabled:       models.ToPointer(false),
+    UsesDescriptionFromPortUsage:    models.ToPointer(false),
     Vars:                            map[string]string{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",

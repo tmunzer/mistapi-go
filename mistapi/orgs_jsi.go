@@ -363,3 +363,263 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	result, err = utilities.DecodeResults[models.JsInventorySearch](decoder)
 	return models.NewApiResponse(result, resp), err
 }
+
+// CountOrgJsiPbn takes context, orgId, distinct, limit, start, end as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
+// an error if there was an issue with the request or response.
+// Get count of PBN advisories grouped by specified field
+func (o *OrgsJSI) CountOrgJsiPbn(
+	ctx context.Context,
+	orgId uuid.UUID,
+	distinct models.DistinctEnum,
+	limit *int,
+	start *string,
+	end *string) (
+	models.ApiResponse[models.ResponseCount],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/pbn/count")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.QueryParam("distinct", distinct)
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+
+	var result models.ResponseCount
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// SearchOrgJsiPbn takes context, orgId, versions, mModels, customerRisk, id, bugType, limit, page, searchAfter, start, end as parameters and
+// returns an models.ApiResponse with models.JsiPbnSearch data and
+// an error if there was an issue with the request or response.
+// Text search for PBN (Problem Bug Notification) advisories. Search can be done on versions, models, customer_risk, id, and bug_type fields.
+func (o *OrgsJSI) SearchOrgJsiPbn(
+	ctx context.Context,
+	orgId uuid.UUID,
+	versions *string,
+	mModels *string,
+	customerRisk *string,
+	id *string,
+	bugType *string,
+	limit *int,
+	page *int,
+	searchAfter *string,
+	start *string,
+	end *string) (
+	models.ApiResponse[models.JsiPbnSearch],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/pbn/search")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if versions != nil {
+		req.QueryParam("versions", *versions)
+	}
+	if mModels != nil {
+		req.QueryParam("models", *mModels)
+	}
+	if customerRisk != nil {
+		req.QueryParam("customer_risk", *customerRisk)
+	}
+	if id != nil {
+		req.QueryParam("id", *id)
+	}
+	if bugType != nil {
+		req.QueryParam("bug_type", *bugType)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+
+	var result models.JsiPbnSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.JsiPbnSearch](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// CountOrgJsiSirt takes context, orgId, distinct, limit, start, end as parameters and
+// returns an models.ApiResponse with models.ResponseCount data and
+// an error if there was an issue with the request or response.
+// Get count of SIRT advisories grouped by specified field
+func (o *OrgsJSI) CountOrgJsiSirt(
+	ctx context.Context,
+	orgId uuid.UUID,
+	distinct models.Distinct1Enum,
+	limit *int,
+	start *string,
+	end *string) (
+	models.ApiResponse[models.ResponseCount],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/sirt/count")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.QueryParam("distinct", distinct)
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+
+	var result models.ResponseCount
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// SearchOrgJsiSirt takes context, orgId, versions, mModels, severity, id, limit, page, searchAfter, start, end as parameters and
+// returns an models.ApiResponse with models.JsiSirtSearch data and
+// an error if there was an issue with the request or response.
+// Text search for SIRT (Security Incident Response Team) advisories. Search can be done on versions, models, severity, and id fields.
+func (o *OrgsJSI) SearchOrgJsiSirt(
+	ctx context.Context,
+	orgId uuid.UUID,
+	versions *string,
+	mModels *string,
+	severity *string,
+	id *string,
+	limit *int,
+	page *int,
+	searchAfter *string,
+	start *string,
+	end *string) (
+	models.ApiResponse[models.JsiSirtSearch],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/jsi/sirt/search")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if versions != nil {
+		req.QueryParam("versions", *versions)
+	}
+	if mModels != nil {
+		req.QueryParam("models", *mModels)
+	}
+	if severity != nil {
+		req.QueryParam("severity", *severity)
+	}
+	if id != nil {
+		req.QueryParam("id", *id)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+	if searchAfter != nil {
+		req.QueryParam("search_after", *searchAfter)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+
+	var result models.JsiSirtSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.JsiSirtSearch](decoder)
+	return models.NewApiResponse(result, resp), err
+}

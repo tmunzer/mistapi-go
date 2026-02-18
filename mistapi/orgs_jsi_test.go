@@ -295,3 +295,185 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
 	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","eol_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
+
+// TestOrgsJSITestCountOrgJsiPbn tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiPbn(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.DistinctEnum("versions")
+	limit := int(100)
+
+	apiResponse, err := orgsJsi.CountOrgJsiPbn(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestCountOrgJsiPbn1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiPbn1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.DistinctEnum("versions")
+	limit := int(100)
+
+	apiResponse, err := orgsJsi.CountOrgJsiPbn(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestSearchOrgJsiPbn tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiPbn(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	versions := "20.4R3"
+
+	id := "1403338"
+
+	limit := int(100)
+	page := int(1)
+
+	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, &limit, &page, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestSearchOrgJsiPbn1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiPbn1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	versions := "20.4R3"
+
+	id := "1403338"
+
+	limit := int(100)
+	page := int(1)
+
+	apiResponse, err := orgsJsi.SearchOrgJsiPbn(ctx, orgId, &versions, nil, nil, &id, nil, &limit, &page, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestCountOrgJsiSirt tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiSirt(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.Distinct1Enum("versions")
+	limit := int(100)
+
+	apiResponse, err := orgsJsi.CountOrgJsiSirt(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestCountOrgJsiSirt1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestCountOrgJsiSirt1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	distinct := models.Distinct1Enum("versions")
+	limit := int(100)
+
+	apiResponse, err := orgsJsi.CountOrgJsiSirt(ctx, orgId, distinct, &limit, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestSearchOrgJsiSirt tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiSirt(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	versions := "20.4R3"
+
+	id := "JSA100053"
+	limit := int(100)
+	page := int(1)
+
+	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, &versions, nil, nil, &id, &limit, &page, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestOrgsJSITestSearchOrgJsiSirt1 tests the behavior of the OrgsJSI
+func TestOrgsJSITestSearchOrgJsiSirt1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	versions := "20.4R3"
+
+	id := "JSA100053"
+	limit := int(100)
+	page := int(1)
+
+	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, &versions, nil, nil, &id, &limit, &page, nil, nil, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}

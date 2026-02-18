@@ -6,7 +6,7 @@ The following parameters are configurable for the API Client:
 | Parameter | Type | Description |
 |  --- | --- | --- |
 | accept | `string` | *Default*: `"application/json, application/vnd.api+json"` |
-| environment | `Environment` | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
+| environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.MIST_GLOBAL_01`** |
 | httpConfiguration | [`HttpConfiguration`](../doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](../doc/logger-configuration.md) | Represents the logger configurations for API calls |
 | apiTokenCredentials | [`ApiTokenCredentials`](auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
@@ -110,6 +110,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsDeviceProfiles() | Gets OrgsDeviceProfiles |
 | OrgsDevices() | Gets OrgsDevices |
 | OrgsDevicesSSR() | Gets OrgsDevicesSSR |
+| OrgsDevicesAOS() | Gets OrgsDevicesAOS |
 | OrgsEVPNTopologies() | Gets OrgsEVPNTopologies |
 | OrgsIntegrationJuniper() | Gets OrgsIntegrationJuniper |
 | OrgsDevicesOthers() | Gets OrgsDevicesOthers |

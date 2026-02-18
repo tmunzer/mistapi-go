@@ -254,7 +254,6 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.HaClusterConfig{
     DisableAutoConfig:    models.ToPointer(true),
-    Managed:              models.ToPointer(true),
     Nodes:                []models.HaClusterConfigNode{
         models.HaClusterConfigNode{
             Mac:                  models.ToPointer("aff827549235"),
@@ -264,6 +263,9 @@ body := models.HaClusterConfig{
         },
     },
     SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),
+    AdditionalProperties: map[string]interface{}{
+        "mist_configured": interface{}("true"),
+    },
 }
 
 resp, err := orgsInventory.CreateOrgGatewayHaCluster(ctx, orgId, &body)
@@ -851,7 +853,6 @@ body := models.InventoryUpdate{
     Macs:                 []string{
         "5c5b350e0001",
     },
-    Managed:              models.ToPointer(false),
     NoReassign:           models.ToPointer(false),
     Op:                   models.InventoryUpdateOperationEnum_ASSIGN,
     SiteId:               models.ToPointer(uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")),

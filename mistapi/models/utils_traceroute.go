@@ -20,7 +20,8 @@ type UtilsTraceroute struct {
 	// enum: `icmp` (Only supported by AP/MxEdge), `udp`
 	Protocol *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
 	// Not supported in SSR. Maximum time in seconds to wait for the response
-	Timeout *int `json:"timeout,omitempty"`
+	Timeout *int  `json:"timeout,omitempty"`
+	UseIpv6 *bool `json:"use_ipv6,omitempty"`
 	// For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -30,8 +31,8 @@ type UtilsTraceroute struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UtilsTraceroute) String() string {
 	return fmt.Sprintf(
-		"UtilsTraceroute[Host=%v, Network=%v, Node=%v, Port=%v, Protocol=%v, Timeout=%v, Vrf=%v, AdditionalProperties=%v]",
-		u.Host, u.Network, u.Node, u.Port, u.Protocol, u.Timeout, u.Vrf, u.AdditionalProperties)
+		"UtilsTraceroute[Host=%v, Network=%v, Node=%v, Port=%v, Protocol=%v, Timeout=%v, UseIpv6=%v, Vrf=%v, AdditionalProperties=%v]",
+		u.Host, u.Network, u.Node, u.Port, u.Protocol, u.Timeout, u.UseIpv6, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsTraceroute.
@@ -40,7 +41,7 @@ func (u UtilsTraceroute) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"host", "network", "node", "port", "protocol", "timeout", "vrf"); err != nil {
+		"host", "network", "node", "port", "protocol", "timeout", "use_ipv6", "vrf"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -68,6 +69,9 @@ func (u UtilsTraceroute) toMap() map[string]any {
 	if u.Timeout != nil {
 		structMap["timeout"] = u.Timeout
 	}
+	if u.UseIpv6 != nil {
+		structMap["use_ipv6"] = u.UseIpv6
+	}
 	if u.Vrf != nil {
 		structMap["vrf"] = u.Vrf
 	}
@@ -82,7 +86,7 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "network", "node", "port", "protocol", "timeout", "vrf")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "host", "network", "node", "port", "protocol", "timeout", "use_ipv6", "vrf")
 	if err != nil {
 		return err
 	}
@@ -94,6 +98,7 @@ func (u *UtilsTraceroute) UnmarshalJSON(input []byte) error {
 	u.Port = temp.Port
 	u.Protocol = temp.Protocol
 	u.Timeout = temp.Timeout
+	u.UseIpv6 = temp.UseIpv6
 	u.Vrf = temp.Vrf
 	return nil
 }
@@ -106,5 +111,6 @@ type tempUtilsTraceroute struct {
 	Port     *int                         `json:"port,omitempty"`
 	Protocol *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
 	Timeout  *int                         `json:"timeout,omitempty"`
+	UseIpv6  *bool                        `json:"use_ipv6,omitempty"`
 	Vrf      *string                      `json:"vrf,omitempty"`
 }

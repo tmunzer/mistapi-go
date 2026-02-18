@@ -289,3 +289,82 @@ func (s *SitesAssets) UpdateSiteAsset(
 	result, err = utilities.DecodeResults[models.Asset](decoder)
 	return models.NewApiResponse(result, resp), err
 }
+
+// DeleteSiteAssetImage takes context, siteId, assetId as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Delete Site Asset Image
+func (s *SitesAssets) DeleteSiteAssetImage(
+	ctx context.Context,
+	siteId uuid.UUID,
+	assetId uuid.UUID) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "DELETE", "/api/v1/sites/%v/assets/%v/image")
+	req.AppendTemplateParams(siteId, assetId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}
+
+// AttachSiteAssetImage takes context, siteId, assetId, file as parameters and
+// returns an *Response and
+// an error if there was an issue with the request or response.
+// Attach Image to Site Asset
+func (s *SitesAssets) AttachSiteAssetImage(
+	ctx context.Context,
+	siteId uuid.UUID,
+	assetId uuid.UUID,
+	file models.FileWrapper) (
+	*http.Response,
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/assets/%v/image")
+	req.AppendTemplateParams(siteId, assetId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	formFields := []https.FormParam{}
+	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+	formFields = append(formFields, fileParam)
+	req.FormData(formFields)
+
+	httpCtx, err := req.Call()
+	if err != nil {
+		return httpCtx.Response, err
+	}
+	return httpCtx.Response, err
+}

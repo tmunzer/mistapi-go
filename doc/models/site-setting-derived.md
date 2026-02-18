@@ -91,6 +91,7 @@
 | `TuntermMonitoringDisabled` | `*bool` | Optional | **Default**: `false` |
 | `TuntermMulticastConfig` | [`*models.SiteSettingTuntermMulticastConfig`](../../doc/models/site-setting-tunterm-multicast-config.md) | Optional | - |
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
+| `UsesDescriptionFromPortUsage` | `*bool` | Optional | by default, we only honor description provided in port_config. This allows fallback to those defined in port_usages<br><br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | - |
 | `VpnPathUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn path down delivery.<br><br>**Constraints**: `>= 0` |
@@ -130,10 +131,12 @@
 | `SmartgroupName` | `*string` | Optional | Smart group membership for determining compliance status |
 | `TsgId` | `*string` | Optional | For Prisma accounts only, Prisma Tenant Service Group id |
 | `Username` | `*string` | Optional | Customer account username |
-| `WebhookAuthType` | `*string` | Optional | For VMWare accounts only |
-| `WebhookEnabled` | `*bool` | Optional | For VMWare accounts only |
+| `WebhookAuthType` | `*string` | Optional | For Crowdstrike, JAMF, SentinelOne and VMWare accounts only |
+| `WebhookEnabled` | `*bool` | Optional | For Crowdstrike, JAMF, SentinelOne and VMWare accounts only |
 | `WebhookPassword` | `*string` | Optional | For VMWare accounts only |
-| `WebhookUrl` | `*string` | Optional | For VMWare accounts only |
+| `WebhookSecret` | `*string` | Optional | For Crowdstrike accounts only |
+| `WebhookToken` | `*string` | Optional | For JAMF and SentinelOne accounts only |
+| `WebhookUrl` | `*string` | Optional | For Crowdstrike, JAMF, SentinelOne and VMWare accounts only |
 | `WebhookUsername` | `*string` | Optional | For VMWare accounts only |
 | `ZdxOrgId` | `*string` | Optional | For ZDX Account only, ZDX organization id |
 | `AdditionalProperties` | [`map[string]models.AccountOauthInfoAccount`](../../doc/models/account-oauth-info-account.md) | Optional | OAuth linked apps account info |
@@ -168,6 +171,7 @@
   "switch_updown_threshold": 0,
   "track_anonymous_devices": false,
   "tunterm_monitoring_disabled": false,
+  "uses_description_from_port_usage": false,
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"
@@ -209,7 +213,9 @@
   "tsg_id": "189953456",
   "webhook_auth_type": "Basic",
   "webhook_password": "password_1234",
-  "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_41b2525af1d8dcbe9005/f43ea4c48f22/vmware/mdm",
+  "webhook_secret": "secret-value",
+  "webhook_token": "token-value",
+  "webhook_url": "https://websync.nac-staging.mistsys.com/v1/S_org-8dcbe9005/ae9dee49-69e7-4710-a114-5b827a777738/crowdstrike/edr",
   "webhook_username": "username_1234",
   "zdx_org_id": "123456",
   "acl_policies": [

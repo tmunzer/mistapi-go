@@ -168,6 +168,8 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	certExpiryDuration := "7d"
+
 	status := models.NacClientLastStatusEnum("permitted")
 
 	limit := int(100)
@@ -175,7 +177,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, &certExpiryDuration, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -196,6 +198,8 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	certExpiryDuration := "7d"
+
 	status := models.NacClientLastStatusEnum("permitted")
 
 	limit := int(100)
@@ -203,7 +207,7 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, &certExpiryDuration, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

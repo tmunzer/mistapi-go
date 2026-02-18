@@ -27,9 +27,7 @@ Guest portal configuration when `type`==`guest_portal`. If
 | `ForceReconnect` | `*bool` | Optional | Disconnect client (workaround for reauth issues) |
 | `Forward` | `*bool` | Optional | If `auth`==`none` or `auth`==`multi`, whether to forward the user to the guest portal after authentication |
 | `ForwardUrl` | `*string` | Optional | If `auth`==`none` or `auth`==`multi`, URL to forward the user to after authentication |
-| `PortalAllowedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring) |
-| `PortalAllowedSubnets` | `[]string` | Optional | List of CIDRs |
-| `PortalDeniedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames |
+| `MaxNumDevices` | `*int` | Optional | Maximum number of clients allowed per guest. 0 (default, unlimited), 1-100 range<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 100` |
 | `Privacy` | `*bool` | Optional | If `auth`==`none` or `auth`==`multi`, whether to show the privacy policy |
 
 ## Example (as JSON)
@@ -40,16 +38,7 @@ Guest portal configuration when `type`==`guest_portal`. If
   "external_portal_url": "https://yourorg.com/external-guest-portal",
   "forward": true,
   "forward_url": "https://yourorg.com/guest-portal-redirect",
-  "portal_allowed_hostnames": [
-    "snapchat.com",
-    "ibm.com"
-  ],
-  "portal_allowed_subnets": [
-    "63.5.3.0/24"
-  ],
-  "portal_denied_hostnames": [
-    "msg.snapchat.com"
-  ],
+  "max_num_devices": 10,
   "privacy": true,
   "auth": "external",
   "force_reconnect": false

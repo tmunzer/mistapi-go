@@ -13,8 +13,10 @@ type SettingSsrAutoUpgrade struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`
 	// Property key is the SSR model (e.g. "SSR130").
-	CustomVersions       map[string]string      `json:"custom_versions,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	CustomVersions map[string]string `json:"custom_versions,omitempty"`
+	Enabled        *bool             `json:"enabled,omitempty"`
+	// Firmware version to deploy (e.g. 6.3.0-107.r1). Optional, used when custom_versions not specified
+	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -22,8 +24,8 @@ type SettingSsrAutoUpgrade struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SettingSsrAutoUpgrade) String() string {
 	return fmt.Sprintf(
-		"SettingSsrAutoUpgrade[Channel=%v, CustomVersions=%v, Enabled=%v, AdditionalProperties=%v]",
-		s.Channel, s.CustomVersions, s.Enabled, s.AdditionalProperties)
+		"SettingSsrAutoUpgrade[Channel=%v, CustomVersions=%v, Enabled=%v, Version=%v, AdditionalProperties=%v]",
+		s.Channel, s.CustomVersions, s.Enabled, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SettingSsrAutoUpgrade.
@@ -32,7 +34,7 @@ func (s SettingSsrAutoUpgrade) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"channel", "custom_versions", "enabled"); err != nil {
+		"channel", "custom_versions", "enabled", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -51,6 +53,9 @@ func (s SettingSsrAutoUpgrade) toMap() map[string]any {
 	if s.Enabled != nil {
 		structMap["enabled"] = s.Enabled
 	}
+	if s.Version != nil {
+		structMap["version"] = s.Version
+	}
 	return structMap
 }
 
@@ -62,7 +67,7 @@ func (s *SettingSsrAutoUpgrade) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "custom_versions", "enabled")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "channel", "custom_versions", "enabled", "version")
 	if err != nil {
 		return err
 	}
@@ -71,6 +76,7 @@ func (s *SettingSsrAutoUpgrade) UnmarshalJSON(input []byte) error {
 	s.Channel = temp.Channel
 	s.CustomVersions = temp.CustomVersions
 	s.Enabled = temp.Enabled
+	s.Version = temp.Version
 	return nil
 }
 
@@ -79,4 +85,5 @@ type tempSettingSsrAutoUpgrade struct {
 	Channel        *SsrUpgradeChannelEnum `json:"channel,omitempty"`
 	CustomVersions map[string]string      `json:"custom_versions,omitempty"`
 	Enabled        *bool                  `json:"enabled,omitempty"`
+	Version        *string                `json:"version,omitempty"`
 }

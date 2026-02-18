@@ -2364,10 +2364,10 @@ siteName := "site_name8"
 mapId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.Map{
-    GroupIdx:             models.ToPointer(1),
-    GroupName:            models.ToPointer("East Wing"),
     Height:               models.ToPointer(1500),
     Locked:               models.ToPointer(false),
+    MapstackFloor:        models.ToPointer(1),
+    MapstackId:           models.ToPointer(uuid.MustParse("424ef025-a5c0-9a8f-62a8-e6fcbb6a0fc2")),
     Name:                 models.ToPointer("Mist Office"),
     Orientation:          models.ToPointer(30),
     OriginX:              models.ToPointer(35),

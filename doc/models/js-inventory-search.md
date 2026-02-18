@@ -27,9 +27,9 @@
     {
       "claimed": false,
       "device_name": "device_name6",
+      "eol_psn": "eol_psn8",
       "eol_time": 174,
-      "eos_time": 220,
-      "has_support": false
+      "eos_time": 220
     }
   ],
   "start": 40

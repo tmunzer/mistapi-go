@@ -10,6 +10,7 @@ orgsUserMACs := client.OrgsUserMACs()
 
 ## Methods
 
+* [Count Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#count-org-user-macs)
 * [Create Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#create-org-user-mac)
 * [Delete Org Multiple User Macs](../../doc/controllers/orgs-user-ma-cs.md#delete-org-multiple-user-macs)
 * [Delete Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#delete-org-user-mac)
@@ -18,6 +19,81 @@ orgsUserMACs := client.OrgsUserMACs()
 * [Search Org User Macs](../../doc/controllers/orgs-user-ma-cs.md#search-org-user-macs)
 * [Update Org Multiple User Macs](../../doc/controllers/orgs-user-ma-cs.md#update-org-multiple-user-macs)
 * [Update Org User Mac](../../doc/controllers/orgs-user-ma-cs.md#update-org-user-mac)
+
+
+# Count Org User Macs
+
+Count by Distinct Attributes of User MACs
+
+```go
+CountOrgUserMacs(
+    ctx context.Context,
+    orgId uuid.UUID,
+    distinct models.Distinct2Enum,
+    limit *int,
+    start *string,
+    end *string) (
+    models.ApiResponse[models.UserMacsCount],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `distinct` | [`models.Distinct2Enum`](../../doc/models/distinct-2-enum.md) | Query, Required | Attribute to count by. enum: `mac`, `name`, `labels`, `org_id` |
+| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.UserMacsCount](../../doc/models/user-macs-count.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+distinct := models.Distinct2Enum_ORGID
+
+limit := 100
+
+apiResponse, err := orgsUserMACs.CountOrgUserMacs(ctx, orgId, distinct, &limit, nil, nil)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Create Org User Mac

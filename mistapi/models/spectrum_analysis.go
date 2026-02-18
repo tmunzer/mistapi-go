@@ -14,6 +14,8 @@ import (
 type SpectrumAnalysis struct {
 	// Band for spectrum analysis. enum: `24`, `5`, `6`
 	Band SpectrumAnalysisBandEnum `json:"band"`
+	// Optional list of channels to scan. If not specified, all supported channels will be scanned
+	Channels []string `json:"channels,omitempty"`
 	// Device ID of the AP that is performing spectrum analysis
 	DeviceId *uuid.UUID `json:"device_id,omitempty"`
 	// Duration of the spectrum analysis in seconds
@@ -27,8 +29,8 @@ type SpectrumAnalysis struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SpectrumAnalysis) String() string {
 	return fmt.Sprintf(
-		"SpectrumAnalysis[Band=%v, DeviceId=%v, Duration=%v, Format=%v, AdditionalProperties=%v]",
-		s.Band, s.DeviceId, s.Duration, s.Format, s.AdditionalProperties)
+		"SpectrumAnalysis[Band=%v, Channels=%v, DeviceId=%v, Duration=%v, Format=%v, AdditionalProperties=%v]",
+		s.Band, s.Channels, s.DeviceId, s.Duration, s.Format, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SpectrumAnalysis.
@@ -37,7 +39,7 @@ func (s SpectrumAnalysis) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"band", "device_id", "duration", "format"); err != nil {
+		"band", "channels", "device_id", "duration", "format"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -48,6 +50,9 @@ func (s SpectrumAnalysis) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	structMap["band"] = s.Band
+	if s.Channels != nil {
+		structMap["channels"] = s.Channels
+	}
 	if s.DeviceId != nil {
 		structMap["device_id"] = s.DeviceId
 	}
@@ -72,13 +77,14 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "device_id", "duration", "format")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "band", "channels", "device_id", "duration", "format")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.Band = *temp.Band
+	s.Channels = temp.Channels
 	s.DeviceId = temp.DeviceId
 	s.Duration = temp.Duration
 	s.Format = temp.Format
@@ -88,6 +94,7 @@ func (s *SpectrumAnalysis) UnmarshalJSON(input []byte) error {
 // tempSpectrumAnalysis is a temporary struct used for validating the fields of SpectrumAnalysis.
 type tempSpectrumAnalysis struct {
 	Band     *SpectrumAnalysisBandEnum   `json:"band"`
+	Channels []string                    `json:"channels,omitempty"`
 	DeviceId *uuid.UUID                  `json:"device_id,omitempty"`
 	Duration *int                        `json:"duration,omitempty"`
 	Format   *SpectrumAnalysisFormatEnum `json:"format,omitempty"`

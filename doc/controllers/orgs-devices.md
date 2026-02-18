@@ -284,7 +284,7 @@ CountOrgDevices(
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site id |
 | `model` | `*string` | Query, Optional | Device model |
-| `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. enum: `true`, `false` |
+| `managed` | `*string` | Query, Optional | for switches and gateways, to filter on managed/unmanaged devices. Deprecated in favour of mist_configured. enum: `true`, `false` |
 | `mac` | `*string` | Query, Optional | AP mac |
 | `version` | `*string` | Query, Optional | Version |
 | `ip` | `*string` | Query, Optional | - |

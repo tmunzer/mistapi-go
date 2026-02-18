@@ -31,12 +31,8 @@ type NacPortalGuestPortal struct {
 	Forward *bool `json:"forward,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, URL to forward the user to after authentication
 	ForwardUrl *string `json:"forward_url,omitempty"`
-	// List of hostnames without http(s):// (matched by substring)
-	PortalAllowedHostnames []string `json:"portal_allowed_hostnames,omitempty"`
-	// List of CIDRs
-	PortalAllowedSubnets []string `json:"portal_allowed_subnets,omitempty"`
-	// List of hostnames without http(s):// (matched by substring), this takes precedence over portal_allowed_hostnames
-	PortalDeniedHostnames []string `json:"portal_denied_hostnames,omitempty"`
+	// Maximum number of clients allowed per guest. 0 (default, unlimited), 1-100 range
+	MaxNumDevices *int `json:"max_num_devices,omitempty"`
 	// If `auth`==`none` or `auth`==`multi`, whether to show the privacy policy
 	Privacy              *bool                  `json:"privacy,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -46,8 +42,8 @@ type NacPortalGuestPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (n NacPortalGuestPortal) String() string {
 	return fmt.Sprintf(
-		"NacPortalGuestPortal[Auth=%v, Expire=%v, ExternalPortalUrl=%v, ForceReconnect=%v, Forward=%v, ForwardUrl=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalDeniedHostnames=%v, Privacy=%v, AdditionalProperties=%v]",
-		n.Auth, n.Expire, n.ExternalPortalUrl, n.ForceReconnect, n.Forward, n.ForwardUrl, n.PortalAllowedHostnames, n.PortalAllowedSubnets, n.PortalDeniedHostnames, n.Privacy, n.AdditionalProperties)
+		"NacPortalGuestPortal[Auth=%v, Expire=%v, ExternalPortalUrl=%v, ForceReconnect=%v, Forward=%v, ForwardUrl=%v, MaxNumDevices=%v, Privacy=%v, AdditionalProperties=%v]",
+		n.Auth, n.Expire, n.ExternalPortalUrl, n.ForceReconnect, n.Forward, n.ForwardUrl, n.MaxNumDevices, n.Privacy, n.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for NacPortalGuestPortal.
@@ -56,7 +52,7 @@ func (n NacPortalGuestPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(n.AdditionalProperties,
-		"auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy"); err != nil {
+		"auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "max_num_devices", "privacy"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(n.toMap())
@@ -84,14 +80,8 @@ func (n NacPortalGuestPortal) toMap() map[string]any {
 	if n.ForwardUrl != nil {
 		structMap["forward_url"] = n.ForwardUrl
 	}
-	if n.PortalAllowedHostnames != nil {
-		structMap["portal_allowed_hostnames"] = n.PortalAllowedHostnames
-	}
-	if n.PortalAllowedSubnets != nil {
-		structMap["portal_allowed_subnets"] = n.PortalAllowedSubnets
-	}
-	if n.PortalDeniedHostnames != nil {
-		structMap["portal_denied_hostnames"] = n.PortalDeniedHostnames
+	if n.MaxNumDevices != nil {
+		structMap["max_num_devices"] = n.MaxNumDevices
 	}
 	if n.Privacy != nil {
 		structMap["privacy"] = n.Privacy
@@ -107,7 +97,7 @@ func (n *NacPortalGuestPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_denied_hostnames", "privacy")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auth", "expire", "external_portal_url", "force_reconnect", "forward", "forward_url", "max_num_devices", "privacy")
 	if err != nil {
 		return err
 	}
@@ -119,23 +109,19 @@ func (n *NacPortalGuestPortal) UnmarshalJSON(input []byte) error {
 	n.ForceReconnect = temp.ForceReconnect
 	n.Forward = temp.Forward
 	n.ForwardUrl = temp.ForwardUrl
-	n.PortalAllowedHostnames = temp.PortalAllowedHostnames
-	n.PortalAllowedSubnets = temp.PortalAllowedSubnets
-	n.PortalDeniedHostnames = temp.PortalDeniedHostnames
+	n.MaxNumDevices = temp.MaxNumDevices
 	n.Privacy = temp.Privacy
 	return nil
 }
 
 // tempNacPortalGuestPortal is a temporary struct used for validating the fields of NacPortalGuestPortal.
 type tempNacPortalGuestPortal struct {
-	Auth                   *NacPortalGuestPortalAuthEnum `json:"auth,omitempty"`
-	Expire                 *int                          `json:"expire,omitempty"`
-	ExternalPortalUrl      *string                       `json:"external_portal_url,omitempty"`
-	ForceReconnect         *bool                         `json:"force_reconnect,omitempty"`
-	Forward                *bool                         `json:"forward,omitempty"`
-	ForwardUrl             *string                       `json:"forward_url,omitempty"`
-	PortalAllowedHostnames []string                      `json:"portal_allowed_hostnames,omitempty"`
-	PortalAllowedSubnets   []string                      `json:"portal_allowed_subnets,omitempty"`
-	PortalDeniedHostnames  []string                      `json:"portal_denied_hostnames,omitempty"`
-	Privacy                *bool                         `json:"privacy,omitempty"`
+	Auth              *NacPortalGuestPortalAuthEnum `json:"auth,omitempty"`
+	Expire            *int                          `json:"expire,omitempty"`
+	ExternalPortalUrl *string                       `json:"external_portal_url,omitempty"`
+	ForceReconnect    *bool                         `json:"force_reconnect,omitempty"`
+	Forward           *bool                         `json:"forward,omitempty"`
+	ForwardUrl        *string                       `json:"forward_url,omitempty"`
+	MaxNumDevices     *int                          `json:"max_num_devices,omitempty"`
+	Privacy           *bool                         `json:"privacy,omitempty"`
 }
