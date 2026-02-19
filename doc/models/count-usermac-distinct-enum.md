@@ -1,9 +1,9 @@
 
-# Distinct 2 Enum
+# Count Usermac Distinct Enum
 
 ## Enumeration
 
-`Distinct2Enum`
+`CountUsermacDistinctEnum`
 
 ## Fields
 

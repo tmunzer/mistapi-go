@@ -11,8 +11,8 @@ import (
 type ServicePolicySkyatpDnsDgaDetection struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`
-	Profile              *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	Profile              *ServicePolicySkyatpDnsDgaDetectionProfileEnum `json:"profile,omitempty"`
+	AdditionalProperties map[string]interface{}                         `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatpDnsDgaDetection,
@@ -69,6 +69,6 @@ func (s *ServicePolicySkyatpDnsDgaDetection) UnmarshalJSON(input []byte) error {
 
 // tempServicePolicySkyatpDnsDgaDetection is a temporary struct used for validating the fields of ServicePolicySkyatpDnsDgaDetection.
 type tempServicePolicySkyatpDnsDgaDetection struct {
-	Enabled *bool                             `json:"enabled,omitempty"`
-	Profile *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
+	Enabled *bool                                          `json:"enabled,omitempty"`
+	Profile *ServicePolicySkyatpDnsDgaDetectionProfileEnum `json:"profile,omitempty"`
 }

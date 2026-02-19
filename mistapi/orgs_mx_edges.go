@@ -798,7 +798,7 @@ func (o *OrgsMxEdges) DeleteOrgMxEdgeImage(
 	return httpCtx.Response, err
 }
 
-// AddOrgMxEdgeImage takes context, orgId, mxedgeId, imageNumber, body as parameters and
+// AddOrgMxEdgeImage takes context, orgId, mxedgeId, imageNumber, file, json as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Attach up to 3 images to a mxedge
@@ -807,7 +807,8 @@ func (o *OrgsMxEdges) AddOrgMxEdgeImage(
 	orgId uuid.UUID,
 	mxedgeId uuid.UUID,
 	imageNumber int,
-	body *models.ImageImport) (
+	file models.FileWrapper,
+	json *string) (
 	*http.Response,
 	error) {
 	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/mxedges/%v/image/%v")
@@ -829,10 +830,14 @@ func (o *OrgsMxEdges) AddOrgMxEdgeImage(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
+	formFields := []https.FormParam{}
+	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
+	formFields = append(formFields, fileParam)
+	if json != nil {
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
 	}
+	req.FormData(formFields)
 
 	httpCtx, err := req.Call()
 	if err != nil {

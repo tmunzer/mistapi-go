@@ -1,11 +1,11 @@
 
-# Profile 2 Enum
+# Service Policy Skyatp Http Inspection Profile Enum
 
 enum: `standard`, `strict`
 
 ## Enumeration
 
-`Profile2Enum`
+`ServicePolicySkyatpHttpInspectionProfileEnum`
 
 ## Fields
 

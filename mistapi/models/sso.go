@@ -84,7 +84,7 @@ type Sso struct {
 	OauthDiscoveryUrl *string `json:"oauth_discovery_url,omitempty"`
 	// enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)
 	OauthPingIdentityRegion *OauthPingIdentityRegionEnum `json:"oauth_ping_identity_region,omitempty"`
-	// If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain
+	// If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain. enum: `okta.com`, `oktapreview.com`, `okta-emea.com`, `okta-gov.com`, `okta.mil`, `mtls.okta.com`
 	OauthProviderDomain *OauthProviderDomainEnum `json:"oauth_provider_domain,omitempty"`
 	// If `idp_type`==`oauth`, ropc = Resource Owner Password Credentials
 	OauthRopcClientId *string `json:"oauth_ropc_client_id,omitempty"`

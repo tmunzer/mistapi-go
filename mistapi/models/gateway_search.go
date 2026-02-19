@@ -12,28 +12,30 @@ import (
 
 // GatewaySearch represents a GatewaySearch struct.
 type GatewaySearch struct {
-	Clustered            *bool      `json:"clustered,omitempty"`
-	EvpnMissingLinks     *bool      `json:"evpn_missing_links,omitempty"`
-	EvpntopoId           *string    `json:"evpntopo_id,omitempty"`
-	ExtIp                *string    `json:"ext_ip,omitempty"`
-	Hostname             []string   `json:"hostname,omitempty"`
-	Ip                   *string    `json:"ip,omitempty"`
-	LastConfigStatus     *string    `json:"last_config_status,omitempty"`
-	LastHostname         *string    `json:"last_hostname,omitempty"`
-	LastTroubleCode      *string    `json:"last_trouble_code,omitempty"`
-	LastTroubleTimestamp *int       `json:"last_trouble_timestamp,omitempty"`
-	Mac                  *string    `json:"mac,omitempty"`
-	Managed              *bool      `json:"managed,omitempty"`
-	Model                *string    `json:"model,omitempty"`
-	Node                 *string    `json:"node,omitempty"`
-	Node0Mac             *string    `json:"node0_mac,omitempty"`
-	Node1Mac             *string    `json:"node1_mac,omitempty"`
-	NumMembers           *int       `json:"num_members,omitempty"`
-	OrgId                *uuid.UUID `json:"org_id,omitempty"`
-	Role                 *string    `json:"role,omitempty"`
-	SiteId               *uuid.UUID `json:"site_id,omitempty"`
-	T128agentVersion     *string    `json:"t128agent_version,omitempty"`
-	TimeDrifted          *bool      `json:"time_drifted,omitempty"`
+	Clustered            *bool    `json:"clustered,omitempty"`
+	EvpnMissingLinks     *bool    `json:"evpn_missing_links,omitempty"`
+	EvpntopoId           *string  `json:"evpntopo_id,omitempty"`
+	ExtIp                *string  `json:"ext_ip,omitempty"`
+	Hostname             []string `json:"hostname,omitempty"`
+	Ip                   *string  `json:"ip,omitempty"`
+	LastConfigStatus     *string  `json:"last_config_status,omitempty"`
+	LastHostname         *string  `json:"last_hostname,omitempty"`
+	LastTroubleCode      *string  `json:"last_trouble_code,omitempty"`
+	LastTroubleTimestamp *int     `json:"last_trouble_timestamp,omitempty"`
+	Mac                  *string  `json:"mac,omitempty"`
+	Managed              *bool    `json:"managed,omitempty"` // Deprecated
+	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
+	MistConfigured   *bool      `json:"mist_configured,omitempty"`
+	Model            *string    `json:"model,omitempty"`
+	Node             *string    `json:"node,omitempty"`
+	Node0Mac         *string    `json:"node0_mac,omitempty"`
+	Node1Mac         *string    `json:"node1_mac,omitempty"`
+	NumMembers       *int       `json:"num_members,omitempty"`
+	OrgId            *uuid.UUID `json:"org_id,omitempty"`
+	Role             *string    `json:"role,omitempty"`
+	SiteId           *uuid.UUID `json:"site_id,omitempty"`
+	T128agentVersion *string    `json:"t128agent_version,omitempty"`
+	TimeDrifted      *bool      `json:"time_drifted,omitempty"`
 	// Epoch (seconds)
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Device Type. enum: `gateway`
@@ -47,8 +49,8 @@ type GatewaySearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewaySearch) String() string {
 	return fmt.Sprintf(
-		"GatewaySearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, Node=%v, Node0Mac=%v, Node1Mac=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, T128agentVersion=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
-		g.Clustered, g.EvpnMissingLinks, g.EvpntopoId, g.ExtIp, g.Hostname, g.Ip, g.LastConfigStatus, g.LastHostname, g.LastTroubleCode, g.LastTroubleTimestamp, g.Mac, g.Managed, g.Model, g.Node, g.Node0Mac, g.Node1Mac, g.NumMembers, g.OrgId, g.Role, g.SiteId, g.T128agentVersion, g.TimeDrifted, g.Timestamp, g.Type, g.Uptime, g.Version, g.AdditionalProperties)
+		"GatewaySearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, MistConfigured=%v, Model=%v, Node=%v, Node0Mac=%v, Node1Mac=%v, NumMembers=%v, OrgId=%v, Role=%v, SiteId=%v, T128agentVersion=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+		g.Clustered, g.EvpnMissingLinks, g.EvpntopoId, g.ExtIp, g.Hostname, g.Ip, g.LastConfigStatus, g.LastHostname, g.LastTroubleCode, g.LastTroubleTimestamp, g.Mac, g.Managed, g.MistConfigured, g.Model, g.Node, g.Node0Mac, g.Node1Mac, g.NumMembers, g.OrgId, g.Role, g.SiteId, g.T128agentVersion, g.TimeDrifted, g.Timestamp, g.Type, g.Uptime, g.Version, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewaySearch.
@@ -57,7 +59,7 @@ func (g GatewaySearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
+		"clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "mist_configured", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -102,6 +104,9 @@ func (g GatewaySearch) toMap() map[string]any {
 	}
 	if g.Managed != nil {
 		structMap["managed"] = g.Managed
+	}
+	if g.MistConfigured != nil {
+		structMap["mist_configured"] = g.MistConfigured
 	}
 	if g.Model != nil {
 		structMap["model"] = g.Model
@@ -158,7 +163,7 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "mist_configured", "model", "node", "node0_mac", "node1_mac", "num_members", "org_id", "role", "site_id", "t128agent_version", "time_drifted", "timestamp", "type", "uptime", "version")
 	if err != nil {
 		return err
 	}
@@ -176,6 +181,7 @@ func (g *GatewaySearch) UnmarshalJSON(input []byte) error {
 	g.LastTroubleTimestamp = temp.LastTroubleTimestamp
 	g.Mac = temp.Mac
 	g.Managed = temp.Managed
+	g.MistConfigured = temp.MistConfigured
 	g.Model = temp.Model
 	g.Node = temp.Node
 	g.Node0Mac = temp.Node0Mac
@@ -207,6 +213,7 @@ type tempGatewaySearch struct {
 	LastTroubleTimestamp *int       `json:"last_trouble_timestamp,omitempty"`
 	Mac                  *string    `json:"mac,omitempty"`
 	Managed              *bool      `json:"managed,omitempty"`
+	MistConfigured       *bool      `json:"mist_configured,omitempty"`
 	Model                *string    `json:"model,omitempty"`
 	Node                 *string    `json:"node,omitempty"`
 	Node0Mac             *string    `json:"node0_mac,omitempty"`

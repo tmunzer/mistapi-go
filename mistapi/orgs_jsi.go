@@ -371,7 +371,7 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 func (o *OrgsJSI) CountOrgJsiPbn(
 	ctx context.Context,
 	orgId uuid.UUID,
-	distinct models.DistinctEnum,
+	distinct models.CountPbnDistinctEnum,
 	limit *int,
 	start *string,
 	end *string) (
@@ -503,7 +503,7 @@ func (o *OrgsJSI) SearchOrgJsiPbn(
 func (o *OrgsJSI) CountOrgJsiSirt(
 	ctx context.Context,
 	orgId uuid.UUID,
-	distinct models.Distinct1Enum,
+	distinct models.CountSirtDistinctEnum,
 	limit *int,
 	start *string,
 	end *string) (

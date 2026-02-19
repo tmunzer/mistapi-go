@@ -695,12 +695,42 @@ const (
 	CountOrgDevicesMxtunnelStatusEnum_UP   CountOrgDevicesMxtunnelStatusEnum = "up"
 )
 
+// CountPbnDistinctEnum is a string enum.
+type CountPbnDistinctEnum string
+
+const (
+	CountPbnDistinctEnum_VERSIONS     CountPbnDistinctEnum = "versions"
+	CountPbnDistinctEnum_ENUMMODELS   CountPbnDistinctEnum = "models"
+	CountPbnDistinctEnum_CUSTOMERRISK CountPbnDistinctEnum = "customer_risk"
+	CountPbnDistinctEnum_BUGTYPE      CountPbnDistinctEnum = "bug_type"
+)
+
+// CountSirtDistinctEnum is a string enum.
+type CountSirtDistinctEnum string
+
+const (
+	CountSirtDistinctEnum_VERSIONS       CountSirtDistinctEnum = "versions"
+	CountSirtDistinctEnum_ENUMMODELS     CountSirtDistinctEnum = "models"
+	CountSirtDistinctEnum_SEVERITY       CountSirtDistinctEnum = "severity"
+	CountSirtDistinctEnum_JSAUPDATEDDATE CountSirtDistinctEnum = "jsa_updated_date"
+)
+
 // CountSiteCallsDistinctEnum is a string enum.
 // enum: `mac`
 type CountSiteCallsDistinctEnum string
 
 const (
 	CountSiteCallsDistinctEnum_MAC CountSiteCallsDistinctEnum = "mac"
+)
+
+// CountUsermacDistinctEnum is a string enum.
+type CountUsermacDistinctEnum string
+
+const (
+	CountUsermacDistinctEnum_MAC    CountUsermacDistinctEnum = "mac"
+	CountUsermacDistinctEnum_NAME   CountUsermacDistinctEnum = "name"
+	CountUsermacDistinctEnum_LABELS CountUsermacDistinctEnum = "labels"
+	CountUsermacDistinctEnum_ORGID  CountUsermacDistinctEnum = "org_id"
 )
 
 // DayOfWeekEnum is a string enum.
@@ -1066,6 +1096,16 @@ const (
 	GatewayPathTypeEnum_TUNNEL GatewayPathTypeEnum = "tunnel"
 	GatewayPathTypeEnum_VPN    GatewayPathTypeEnum = "vpn"
 	GatewayPathTypeEnum_WAN    GatewayPathTypeEnum = "wan"
+)
+
+// GatewayPortConfigWanSpeedtestModeEnum is a string enum.
+// Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`
+type GatewayPortConfigWanSpeedtestModeEnum string
+
+const (
+	GatewayPortConfigWanSpeedtestModeEnum_AUTO     GatewayPortConfigWanSpeedtestModeEnum = "auto"
+	GatewayPortConfigWanSpeedtestModeEnum_ENABLED  GatewayPortConfigWanSpeedtestModeEnum = "enabled"
+	GatewayPortConfigWanSpeedtestModeEnum_DISABLED GatewayPortConfigWanSpeedtestModeEnum = "disabled"
 )
 
 // GatewayPortDslTypeEnum is a string enum.
@@ -1961,6 +2001,19 @@ const (
 	OauthPingIdentityRegionEnum_US   OauthPingIdentityRegionEnum = "us"
 )
 
+// OauthProviderDomainEnum is a string enum.
+// If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain. enum: `okta.com`, `oktapreview.com`, `okta-emea.com`, `okta-gov.com`, `okta.mil`, `mtls.okta.com`
+type OauthProviderDomainEnum string
+
+const (
+	OauthProviderDomainEnum_ENUMOKTACOM        OauthProviderDomainEnum = "okta.com"
+	OauthProviderDomainEnum_ENUMOKTAPREVIEWCOM OauthProviderDomainEnum = "oktapreview.com"
+	OauthProviderDomainEnum_ENUMOKTAEMEACOM    OauthProviderDomainEnum = "okta-emea.com"
+	OauthProviderDomainEnum_ENUMOKTAGOVCOM     OauthProviderDomainEnum = "okta-gov.com"
+	OauthProviderDomainEnum_ENUMOKTAMIL        OauthProviderDomainEnum = "okta.mil"
+	OauthProviderDomainEnum_ENUMMTLSOKTACOM    OauthProviderDomainEnum = "mtls.okta.com"
+)
+
 // OrgAssetCountDistinctEnum is a string enum.
 // enum: `ibeacon_major`, `ibeacon_minor`, `ibeacon_uuid`, `mac`, `map_id`, `site_id`
 type OrgAssetCountDistinctEnum string
@@ -2243,6 +2296,15 @@ const (
 	OrgSettingJunosShellAccessWriteEnum_ADMIN  OrgSettingJunosShellAccessWriteEnum = "admin"
 	OrgSettingJunosShellAccessWriteEnum_NONE   OrgSettingJunosShellAccessWriteEnum = "none"
 	OrgSettingJunosShellAccessWriteEnum_VIEWER OrgSettingJunosShellAccessWriteEnum = "viewer"
+)
+
+// OrgSettingMistNacFingerprintingWirelessCoaEnum is a string enum.
+// enum: `reauth`, `disconnect`
+type OrgSettingMistNacFingerprintingWirelessCoaEnum string
+
+const (
+	OrgSettingMistNacFingerprintingWirelessCoaEnum_REAUTH     OrgSettingMistNacFingerprintingWirelessCoaEnum = "reauth"
+	OrgSettingMistNacFingerprintingWirelessCoaEnum_DISCONNECT OrgSettingMistNacFingerprintingWirelessCoaEnum = "disconnect"
 )
 
 // OrgSettingMistNacIpVersionEnum is a string enum.
@@ -2932,19 +2994,6 @@ const (
 	SearchSiteDevicesSortEnum_TIMESTAMP SearchSiteDevicesSortEnum = "timestamp"
 )
 
-// SearchSiteSwOrGwPortsDeviceTypeEnum is a string enum.
-// enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
-type SearchSiteSwOrGwPortsDeviceTypeEnum string
-
-const (
-	SearchSiteSwOrGwPortsDeviceTypeEnum_AP         SearchSiteSwOrGwPortsDeviceTypeEnum = "ap"
-	SearchSiteSwOrGwPortsDeviceTypeEnum_BLE        SearchSiteSwOrGwPortsDeviceTypeEnum = "ble"
-	SearchSiteSwOrGwPortsDeviceTypeEnum_GATEWAY    SearchSiteSwOrGwPortsDeviceTypeEnum = "gateway"
-	SearchSiteSwOrGwPortsDeviceTypeEnum_MXEDGE     SearchSiteSwOrGwPortsDeviceTypeEnum = "mxedge"
-	SearchSiteSwOrGwPortsDeviceTypeEnum_NAC        SearchSiteSwOrGwPortsDeviceTypeEnum = "nac"
-	SearchSiteSwOrGwPortsDeviceTypeEnum_ENUMSWITCH SearchSiteSwOrGwPortsDeviceTypeEnum = "switch"
-)
-
 // SecintelProfileProfileActionEnum is a string enum.
 // enum: `default`, `standard`, `strict`
 type SecintelProfileProfileActionEnum string
@@ -3003,6 +3052,35 @@ const (
 	ServicePolicySecintelProfileEnum_ENUMDEFAULT ServicePolicySecintelProfileEnum = "default"
 	ServicePolicySecintelProfileEnum_STANDARD    ServicePolicySecintelProfileEnum = "standard"
 	ServicePolicySecintelProfileEnum_STRICT      ServicePolicySecintelProfileEnum = "strict"
+)
+
+// ServicePolicySkyatpDnsDgaDetectionProfileEnum is a string enum.
+// enum: `default`, `standard`, `strict`
+type ServicePolicySkyatpDnsDgaDetectionProfileEnum string
+
+const (
+	ServicePolicySkyatpDnsDgaDetectionProfileEnum_ENUMDEFAULT ServicePolicySkyatpDnsDgaDetectionProfileEnum = "default"
+	ServicePolicySkyatpDnsDgaDetectionProfileEnum_STANDARD    ServicePolicySkyatpDnsDgaDetectionProfileEnum = "standard"
+	ServicePolicySkyatpDnsDgaDetectionProfileEnum_STRICT      ServicePolicySkyatpDnsDgaDetectionProfileEnum = "strict"
+)
+
+// ServicePolicySkyatpDnsTunnelDetectionProfileEnum is a string enum.
+// enum: `default`, `standard`, `strict`
+type ServicePolicySkyatpDnsTunnelDetectionProfileEnum string
+
+const (
+	ServicePolicySkyatpDnsTunnelDetectionProfileEnum_ENUMDEFAULT ServicePolicySkyatpDnsTunnelDetectionProfileEnum = "default"
+	ServicePolicySkyatpDnsTunnelDetectionProfileEnum_STANDARD    ServicePolicySkyatpDnsTunnelDetectionProfileEnum = "standard"
+	ServicePolicySkyatpDnsTunnelDetectionProfileEnum_STRICT      ServicePolicySkyatpDnsTunnelDetectionProfileEnum = "strict"
+)
+
+// ServicePolicySkyatpHttpInspectionProfileEnum is a string enum.
+// enum: `standard`, `strict`
+type ServicePolicySkyatpHttpInspectionProfileEnum string
+
+const (
+	ServicePolicySkyatpHttpInspectionProfileEnum_STANDARD ServicePolicySkyatpHttpInspectionProfileEnum = "standard"
+	ServicePolicySkyatpHttpInspectionProfileEnum_STRICT   ServicePolicySkyatpHttpInspectionProfileEnum = "strict"
 )
 
 // ServiceTrafficClassEnum is a string enum.
@@ -5327,75 +5405,4 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
-)
-
-// DistinctEnum is a string enum.
-type DistinctEnum string
-
-const (
-	DistinctEnum_VERSIONS     DistinctEnum = "versions"
-	DistinctEnum_ENUMMODELS   DistinctEnum = "models"
-	DistinctEnum_CUSTOMERRISK DistinctEnum = "customer_risk"
-	DistinctEnum_BUGTYPE      DistinctEnum = "bug_type"
-)
-
-// Distinct1Enum is a string enum.
-type Distinct1Enum string
-
-const (
-	Distinct1Enum_VERSIONS       Distinct1Enum = "versions"
-	Distinct1Enum_ENUMMODELS     Distinct1Enum = "models"
-	Distinct1Enum_SEVERITY       Distinct1Enum = "severity"
-	Distinct1Enum_JSAUPDATEDDATE Distinct1Enum = "jsa_updated_date"
-)
-
-// Distinct2Enum is a string enum.
-type Distinct2Enum string
-
-const (
-	Distinct2Enum_MAC    Distinct2Enum = "mac"
-	Distinct2Enum_NAME   Distinct2Enum = "name"
-	Distinct2Enum_LABELS Distinct2Enum = "labels"
-	Distinct2Enum_ORGID  Distinct2Enum = "org_id"
-)
-
-// OauthProviderDomainEnum is a string enum.
-// If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain
-type OauthProviderDomainEnum string
-
-const (
-	OauthProviderDomainEnum_ENUMOKTACOM        OauthProviderDomainEnum = "okta.com"
-	OauthProviderDomainEnum_ENUMOKTAPREVIEWCOM OauthProviderDomainEnum = "oktapreview.com"
-	OauthProviderDomainEnum_ENUMOKTAEMEACOM    OauthProviderDomainEnum = "okta-emea.com"
-	OauthProviderDomainEnum_ENUMOKTAGOVCOM     OauthProviderDomainEnum = "okta-gov.com"
-	OauthProviderDomainEnum_ENUMOKTAMIL        OauthProviderDomainEnum = "okta.mil"
-	OauthProviderDomainEnum_ENUMMTLSOKTACOM    OauthProviderDomainEnum = "mtls.okta.com"
-)
-
-// Profile2Enum is a string enum.
-// enum: `standard`, `strict`
-type Profile2Enum string
-
-const (
-	Profile2Enum_STANDARD Profile2Enum = "standard"
-	Profile2Enum_STRICT   Profile2Enum = "strict"
-)
-
-// WanSpeedtestModeEnum is a string enum.
-// Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`
-type WanSpeedtestModeEnum string
-
-const (
-	WanSpeedtestModeEnum_AUTO     WanSpeedtestModeEnum = "auto"
-	WanSpeedtestModeEnum_ENABLED  WanSpeedtestModeEnum = "enabled"
-	WanSpeedtestModeEnum_DISABLED WanSpeedtestModeEnum = "disabled"
-)
-
-// WirelessCoaTypeEnum is a string enum.
-// type of CoA trigger for wireless clients
-type WirelessCoaTypeEnum string
-
-const (
-	WirelessCoaTypeEnum_REAUTH     WirelessCoaTypeEnum = "reauth"
-	WirelessCoaTypeEnum_DISCONNECT WirelessCoaTypeEnum = "disconnect"
 )

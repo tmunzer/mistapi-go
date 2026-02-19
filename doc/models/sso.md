@@ -47,7 +47,7 @@ SSO
 | `OauthCcClientSecret` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_cc_client_secret is RSA private key, of the form "-----BEGIN RSA PRIVATE KEY--...." |
 | `OauthDiscoveryUrl` | `*string` | Optional | If `idp_type`==`oauth` |
 | `OauthPingIdentityRegion` | [`*models.OauthPingIdentityRegionEnum`](../../doc/models/oauth-ping-identity-region-enum.md) | Optional | enum: `us` (United States, default), `ca` (Canada), `eu` (Europe), `asia` (Asia), `au` (Australia)<br><br>**Default**: `"us"` |
-| `OauthProviderDomain` | [`*models.OauthProviderDomainEnum`](../../doc/models/oauth-provider-domain-enum.md) | Optional | If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain<br><br>**Default**: `"okta.com"` |
+| `OauthProviderDomain` | [`*models.OauthProviderDomainEnum`](../../doc/models/oauth-provider-domain-enum.md) | Optional | If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain. enum: `okta.com`, `oktapreview.com`, `okta-emea.com`, `okta-gov.com`, `okta.mil`, `mtls.okta.com`<br><br>**Default**: `"okta.com"` |
 | `OauthRopcClientId` | `*string` | Optional | If `idp_type`==`oauth`, ropc = Resource Owner Password Credentials |
 | `OauthRopcClientSecret` | `*string` | Optional | If `oauth_type`==`azure` or `oauth_type`==`azure-gov`. oauth_ropc_client_secret can be empty |
 | `OauthTenantId` | `*string` | Optional | Required if `idp_type`==`oauth`, oauth_tenant_id |

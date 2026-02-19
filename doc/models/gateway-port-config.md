@@ -56,7 +56,7 @@ Gateway port config
 | `WanNetworks` | `[]string` | Optional | Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined |
 | `WanProbeOverride` | [`*models.GatewayWanProbeOverride`](../../doc/models/gateway-wan-probe-override.md) | Optional | Only if `usage`==`wan` |
 | `WanSourceNat` | [`*models.GatewayPortWanSourceNat`](../../doc/models/gateway-port-wan-source-nat.md) | Optional | Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip |
-| `WanSpeedtestMode` | [`*models.WanSpeedtestModeEnum`](../../doc/models/wan-speedtest-mode-enum.md) | Optional | Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`<br><br>**Default**: `"auto"` |
+| `WanSpeedtestMode` | [`*models.GatewayPortConfigWanSpeedtestModeEnum`](../../doc/models/gateway-port-config-wan-speedtest-mode-enum.md) | Optional | Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`<br><br>**Default**: `"auto"` |
 | `WanType` | [`*models.GatewayPortWanTypeEnum`](../../doc/models/gateway-port-wan-type-enum.md) | Optional | Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`<br><br>**Default**: `"broadband"` |
 
 ## Example (as JSON)

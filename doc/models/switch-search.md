@@ -23,6 +23,7 @@
 | `LastTroubleTimestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Mac` | `*string` | Optional | - |
 | `Managed` | `*bool` | Optional | - |
+| `MistConfigured` | `*bool` | Optional | whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device) |
 | `Model` | `*string` | Optional | - |
 | `NumMembers` | `*int` | Optional | - |
 | `OrgId` | `*uuid.UUID` | Optional | - |

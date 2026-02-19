@@ -17,7 +17,7 @@ type Map struct {
 	Flags   map[string]int `json:"flags,omitempty"`
 	ForSite *bool          `json:"for_site,omitempty"`
 	// List of geofences for the map
-	Geofences []Geofence `json:"geofences,omitempty"`
+	Geofences []MapGeofence `json:"geofences,omitempty"`
 	// When type=image, height of the image map
 	Height  *int     `json:"height,omitempty"`
 	HeightM *float64 `json:"height_m,omitempty"`
@@ -247,7 +247,7 @@ type tempMap struct {
 	CreatedTime    *float64                 `json:"created_time,omitempty"`
 	Flags          map[string]int           `json:"flags,omitempty"`
 	ForSite        *bool                    `json:"for_site,omitempty"`
-	Geofences      []Geofence               `json:"geofences,omitempty"`
+	Geofences      []MapGeofence            `json:"geofences,omitempty"`
 	Height         *int                     `json:"height,omitempty"`
 	HeightM        *float64                 `json:"height_m,omitempty"`
 	Id             *uuid.UUID               `json:"id,omitempty"`

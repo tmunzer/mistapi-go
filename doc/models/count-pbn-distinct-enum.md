@@ -1,9 +1,9 @@
 
-# Distinct 1 Enum
+# Count Pbn Distinct Enum
 
 ## Enumeration
 
-`Distinct1Enum`
+`CountPbnDistinctEnum`
 
 ## Fields
 
@@ -11,8 +11,8 @@
 |  --- |
 | `versions` |
 | `models` |
-| `severity` |
-| `jsa_updated_date` |
+| `customer_risk` |
+| `bug_type` |
 
 ## Example
 

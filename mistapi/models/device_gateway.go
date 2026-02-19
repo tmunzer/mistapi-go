@@ -46,7 +46,7 @@ type DeviceGateway struct {
 	Managed *bool `json:"managed,omitempty"` // Deprecated
 	// Map where the device belongs to
 	MapId *uuid.UUID `json:"map_id,omitempty"`
-	// whether the device can be configured by Mist or not. This deprecates `managed`
+	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
 	MistConfigured *bool `json:"mist_configured,omitempty"`
 	// Device Model
 	Model *string `json:"model,omitempty"`

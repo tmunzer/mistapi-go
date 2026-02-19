@@ -221,7 +221,6 @@ Traffic information (Tx/Rx) are cumulative counters since the last device reboot
 SearchOrgSwOrGwPorts(
     ctx context.Context,
     orgId uuid.UUID,
-    siteId *string,
     deviceType *models.SearchOrgSwOrGwPortsTypeEnum,
     authState *models.PortAuthStateEnum,
     fullDuplex *bool,
@@ -255,7 +254,6 @@ SearchOrgSwOrGwPorts(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `siteId` | `*string` | Query, Optional | Site ID |
 | `deviceType` | [`*models.SearchOrgSwOrGwPortsTypeEnum`](../../doc/models/search-org-sw-or-gw-ports-type-enum.md) | Query, Optional | Type of device. enum: `switch`, `gateway`, `all`<br><br>**Default**: `"all"` |
 | `authState` | [`*models.PortAuthStateEnum`](../../doc/models/port-auth-state-enum.md) | Query, Optional | If `up`==`true` && has Authenticator role |
 | `fullDuplex` | `*bool` | Query, Optional | Indicates full or half duplex |
@@ -306,7 +304,7 @@ limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
+apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

@@ -16,9 +16,9 @@ type OrgSettingMistNacFingerprinting struct {
 	GenerateCoa *bool `json:"generate_coa,omitempty"`
 	// enable/disable CoA triggers on fingerprint change for wireless clients
 	GenerateWirelessCoa *bool `json:"generate_wireless_coa,omitempty"`
-	// type of CoA trigger for wireless clients
-	WirelessCoaType      *WirelessCoaTypeEnum   `json:"wireless_coa_type,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	// enum: `reauth`, `disconnect`
+	WirelessCoaType      *OrgSettingMistNacFingerprintingWirelessCoaEnum `json:"wireless_coa_type,omitempty"`
+	AdditionalProperties map[string]interface{}                          `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingMistNacFingerprinting,
@@ -83,8 +83,8 @@ func (o *OrgSettingMistNacFingerprinting) UnmarshalJSON(input []byte) error {
 
 // tempOrgSettingMistNacFingerprinting is a temporary struct used for validating the fields of OrgSettingMistNacFingerprinting.
 type tempOrgSettingMistNacFingerprinting struct {
-	Enabled             *bool                `json:"enabled,omitempty"`
-	GenerateCoa         *bool                `json:"generate_coa,omitempty"`
-	GenerateWirelessCoa *bool                `json:"generate_wireless_coa,omitempty"`
-	WirelessCoaType     *WirelessCoaTypeEnum `json:"wireless_coa_type,omitempty"`
+	Enabled             *bool                                           `json:"enabled,omitempty"`
+	GenerateCoa         *bool                                           `json:"generate_coa,omitempty"`
+	GenerateWirelessCoa *bool                                           `json:"generate_wireless_coa,omitempty"`
+	WirelessCoaType     *OrgSettingMistNacFingerprintingWirelessCoaEnum `json:"wireless_coa_type,omitempty"`
 }

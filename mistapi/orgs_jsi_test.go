@@ -303,7 +303,7 @@ func TestOrgsJSITestCountOrgJsiPbn(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.DistinctEnum("versions")
+	distinct := models.CountPbnDistinctEnum("versions")
 	limit := int(100)
 
 	apiResponse, err := orgsJsi.CountOrgJsiPbn(ctx, orgId, distinct, &limit, nil, nil)
@@ -324,7 +324,7 @@ func TestOrgsJSITestCountOrgJsiPbn1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.DistinctEnum("versions")
+	distinct := models.CountPbnDistinctEnum("versions")
 	limit := int(100)
 
 	apiResponse, err := orgsJsi.CountOrgJsiPbn(ctx, orgId, distinct, &limit, nil, nil)
@@ -395,7 +395,7 @@ func TestOrgsJSITestCountOrgJsiSirt(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.Distinct1Enum("versions")
+	distinct := models.CountSirtDistinctEnum("versions")
 	limit := int(100)
 
 	apiResponse, err := orgsJsi.CountOrgJsiSirt(ctx, orgId, distinct, &limit, nil, nil)
@@ -416,7 +416,7 @@ func TestOrgsJSITestCountOrgJsiSirt1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.Distinct1Enum("versions")
+	distinct := models.CountSirtDistinctEnum("versions")
 	limit := int(100)
 
 	apiResponse, err := orgsJsi.CountOrgJsiSirt(ctx, orgId, distinct, &limit, nil, nil)

@@ -188,7 +188,7 @@ Get count of PBN advisories grouped by specified field
 CountOrgJsiPbn(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct models.DistinctEnum,
+    distinct models.CountPbnDistinctEnum,
     limit *int,
     start *string,
     end *string) (
@@ -201,7 +201,7 @@ CountOrgJsiPbn(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`models.DistinctEnum`](../../doc/models/distinct-enum.md) | Query, Required | Field to group by enum: `versions`, `models`, `customer_risk`, `bug_type` |
+| `distinct` | [`models.CountPbnDistinctEnum`](../../doc/models/count-pbn-distinct-enum.md) | Query, Required | Field to group by enum: `versions`, `models`, `customer_risk`, `bug_type` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -217,7 +217,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.DistinctEnum_VERSIONS
+distinct := models.CountPbnDistinctEnum_VERSIONS
 
 limit := 100
 
@@ -263,7 +263,7 @@ Get count of SIRT advisories grouped by specified field
 CountOrgJsiSirt(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct models.Distinct1Enum,
+    distinct models.CountSirtDistinctEnum,
     limit *int,
     start *string,
     end *string) (
@@ -276,7 +276,7 @@ CountOrgJsiSirt(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`models.Distinct1Enum`](../../doc/models/distinct-1-enum.md) | Query, Required | Field to group by |
+| `distinct` | [`models.CountSirtDistinctEnum`](../../doc/models/count-sirt-distinct-enum.md) | Query, Required | Field to group by. enum: `jsa_updated_date`, `models`, `severity`, `versions` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -292,7 +292,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.Distinct1Enum_VERSIONS
+distinct := models.CountSirtDistinctEnum_VERSIONS
 
 limit := 100
 

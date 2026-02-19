@@ -14,7 +14,7 @@ Allows customer to enable client fingerprinting for policy enforcement
 | `Enabled` | `*bool` | Optional | enable/disable writes to NAC DDB fingerprint table<br><br>**Default**: `false` |
 | `GenerateCoa` | `*bool` | Optional | enable/disable CoA triggers on fingerprint change for wired clients, always port-bounce<br><br>**Default**: `false` |
 | `GenerateWirelessCoa` | `*bool` | Optional | enable/disable CoA triggers on fingerprint change for wireless clients<br><br>**Default**: `false` |
-| `WirelessCoaType` | [`*models.WirelessCoaTypeEnum`](../../doc/models/wireless-coa-type-enum.md) | Optional | type of CoA trigger for wireless clients<br><br>**Default**: `"reauth"` |
+| `WirelessCoaType` | [`*models.OrgSettingMistNacFingerprintingWirelessCoaEnum`](../../doc/models/org-setting-mist-nac-fingerprinting-wireless-coa-enum.md) | Optional | enum: `reauth`, `disconnect` |
 
 ## Example (as JSON)
 

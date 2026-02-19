@@ -22,12 +22,14 @@ type SwitchSearch struct {
 	LastHostname     *string  `json:"last_hostname,omitempty"`
 	LastTroubleCode  *string  `json:"last_trouble_code,omitempty"`
 	// Epoch (seconds)
-	LastTroubleTimestamp *float64   `json:"last_trouble_timestamp,omitempty"`
-	Mac                  *string    `json:"mac,omitempty"`
-	Managed              *bool      `json:"managed,omitempty"`
-	Model                *string    `json:"model,omitempty"`
-	NumMembers           *int       `json:"num_members,omitempty"`
-	OrgId                *uuid.UUID `json:"org_id,omitempty"`
+	LastTroubleTimestamp *float64 `json:"last_trouble_timestamp,omitempty"`
+	Mac                  *string  `json:"mac,omitempty"`
+	Managed              *bool    `json:"managed,omitempty"` // Deprecated
+	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
+	MistConfigured *bool      `json:"mist_configured,omitempty"`
+	Model          *string    `json:"model,omitempty"`
+	NumMembers     *int       `json:"num_members,omitempty"`
+	OrgId          *uuid.UUID `json:"org_id,omitempty"`
 	// Property key is the RADIUS server IP Address
 	RadiusStats map[string]DeviceSearchRadiusStat `json:"radius_stats,omitempty"`
 	Role        *string                           `json:"role,omitempty"`
@@ -46,8 +48,8 @@ type SwitchSearch struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchSearch) String() string {
 	return fmt.Sprintf(
-		"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, Model=%v, NumMembers=%v, OrgId=%v, RadiusStats=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
-		s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastConfigStatus, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.Model, s.NumMembers, s.OrgId, s.RadiusStats, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
+		"SwitchSearch[Clustered=%v, EvpnMissingLinks=%v, EvpntopoId=%v, ExtIp=%v, Hostname=%v, Ip=%v, LastConfigStatus=%v, LastHostname=%v, LastTroubleCode=%v, LastTroubleTimestamp=%v, Mac=%v, Managed=%v, MistConfigured=%v, Model=%v, NumMembers=%v, OrgId=%v, RadiusStats=%v, Role=%v, SiteId=%v, TimeDrifted=%v, Timestamp=%v, Type=%v, Uptime=%v, Version=%v, AdditionalProperties=%v]",
+		s.Clustered, s.EvpnMissingLinks, s.EvpntopoId, s.ExtIp, s.Hostname, s.Ip, s.LastConfigStatus, s.LastHostname, s.LastTroubleCode, s.LastTroubleTimestamp, s.Mac, s.Managed, s.MistConfigured, s.Model, s.NumMembers, s.OrgId, s.RadiusStats, s.Role, s.SiteId, s.TimeDrifted, s.Timestamp, s.Type, s.Uptime, s.Version, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchSearch.
@@ -56,7 +58,7 @@ func (s SwitchSearch) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
+		"clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "mist_configured", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -101,6 +103,9 @@ func (s SwitchSearch) toMap() map[string]any {
 	}
 	if s.Managed != nil {
 		structMap["managed"] = s.Managed
+	}
+	if s.MistConfigured != nil {
+		structMap["mist_configured"] = s.MistConfigured
 	}
 	if s.Model != nil {
 		structMap["model"] = s.Model
@@ -148,7 +153,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "clustered", "evpn_missing_links", "evpntopo_id", "ext_ip", "hostname", "ip", "last_config_status", "last_hostname", "last_trouble_code", "last_trouble_timestamp", "mac", "managed", "mist_configured", "model", "num_members", "org_id", "radius_stats", "role", "site_id", "time_drifted", "timestamp", "type", "uptime", "version")
 	if err != nil {
 		return err
 	}
@@ -166,6 +171,7 @@ func (s *SwitchSearch) UnmarshalJSON(input []byte) error {
 	s.LastTroubleTimestamp = temp.LastTroubleTimestamp
 	s.Mac = temp.Mac
 	s.Managed = temp.Managed
+	s.MistConfigured = temp.MistConfigured
 	s.Model = temp.Model
 	s.NumMembers = temp.NumMembers
 	s.OrgId = temp.OrgId
@@ -194,6 +200,7 @@ type tempSwitchSearch struct {
 	LastTroubleTimestamp *float64                          `json:"last_trouble_timestamp,omitempty"`
 	Mac                  *string                           `json:"mac,omitempty"`
 	Managed              *bool                             `json:"managed,omitempty"`
+	MistConfigured       *bool                             `json:"mist_configured,omitempty"`
 	Model                *string                           `json:"model,omitempty"`
 	NumMembers           *int                              `json:"num_members,omitempty"`
 	OrgId                *uuid.UUID                        `json:"org_id,omitempty"`

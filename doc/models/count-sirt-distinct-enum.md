@@ -1,9 +1,9 @@
 
-# Distinct Enum
+# Count Sirt Distinct Enum
 
 ## Enumeration
 
-`DistinctEnum`
+`CountSirtDistinctEnum`
 
 ## Fields
 
@@ -11,8 +11,8 @@
 |  --- |
 | `versions` |
 | `models` |
-| `customer_risk` |
-| `bug_type` |
+| `severity` |
+| `jsa_updated_date` |
 
 ## Example
 
