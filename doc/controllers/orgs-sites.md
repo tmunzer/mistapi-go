@@ -379,7 +379,7 @@ SearchOrgSites(
 | `id` | `*string` | Query, Optional | Site id |
 | `locateUnconnected` | `*bool` | Query, Optional | If unconnected client are located |
 | `meshEnabled` | `*bool` | Query, Optional | If Mesh feature is enabled |
-| `name` | `*string` | Query, Optional | Site name |
+| `name` | `*string` | Query, Optional | Site name. Case insensitive. Add a wildcard (`*`) at the end for partial search |
 | `rogueEnabled` | `*bool` | Query, Optional | If Rogue detection is enabled |
 | `remoteSyslogEnabled` | `*bool` | Query, Optional | If Remote Syslog is enabled |
 | `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled |

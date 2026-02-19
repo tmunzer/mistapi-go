@@ -327,7 +327,7 @@ func (s *SitesAssets) DeleteSiteAssetImage(
 	return httpCtx.Response, err
 }
 
-// AttachSiteAssetImage takes context, siteId, assetId, file as parameters and
+// AttachSiteAssetImage takes context, siteId, assetId, file, json as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
 // Attach Image to Site Asset
@@ -335,7 +335,8 @@ func (s *SitesAssets) AttachSiteAssetImage(
 	ctx context.Context,
 	siteId uuid.UUID,
 	assetId uuid.UUID,
-	file models.FileWrapper) (
+	file models.FileWrapper,
+	json *string) (
 	*http.Response,
 	error) {
 	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/assets/%v/image")
@@ -360,6 +361,10 @@ func (s *SitesAssets) AttachSiteAssetImage(
 	formFields := []https.FormParam{}
 	fileParam := https.FormParam{Key: "file", Value: file, Headers: http.Header{}}
 	formFields = append(formFields, fileParam)
+	if json != nil {
+		jsonParam := https.FormParam{Key: "json", Value: *json, Headers: http.Header{}}
+		formFields = append(formFields, jsonParam)
+	}
 	req.FormData(formFields)
 
 	httpCtx, err := req.Call()

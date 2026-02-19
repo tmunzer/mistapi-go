@@ -29,7 +29,7 @@ Count by Distinct Attributes of User MACs
 CountOrgUserMacs(
     ctx context.Context,
     orgId uuid.UUID,
-    distinct models.Distinct2Enum,
+    distinct models.CountUsermacDistinctEnum,
     limit *int,
     start *string,
     end *string) (
@@ -42,7 +42,7 @@ CountOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `distinct` | [`models.Distinct2Enum`](../../doc/models/distinct-2-enum.md) | Query, Required | Attribute to count by. enum: `mac`, `name`, `labels`, `org_id` |
+| `distinct` | [`models.CountUsermacDistinctEnum`](../../doc/models/count-usermac-distinct-enum.md) | Query, Required | Attribute to count by. enum: `mac`, `name`, `labels`, `org_id` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -58,7 +58,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-distinct := models.Distinct2Enum_ORGID
+distinct := models.CountUsermacDistinctEnum_ORGID
 
 limit := 100
 

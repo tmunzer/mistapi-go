@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `Profile` | [`*models.SecintelProfileProfileActionEnum`](../../doc/models/secintel-profile-profile-action-enum.md) | Optional | enum: `default`, `standard`, `strict` |
+| `Profile` | [`*models.ServicePolicySkyatpDnsTunnelDetectionProfileEnum`](../../doc/models/service-policy-skyatp-dns-tunnel-detection-profile-enum.md) | Optional | enum: `default`, `standard`, `strict` |
 
 ## Example (as JSON)
 

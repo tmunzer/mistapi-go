@@ -13,11 +13,13 @@ import (
 // InventoryUpdate represents a InventoryUpdate struct.
 type InventoryUpdate struct {
 	// If `op`==`assign`, this disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.
-	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"`
+	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"` // Deprecated
 	// If `op`==`assign`, `op`==`unassign`, `op`==`upgrade_to_mist`or `op`==`downgrade_to_jsi` , list of MAC, e.g. ["5c5b350e0001"]
 	Macs []string `json:"macs,omitempty"`
 	// If `op`==`assign`. An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.
-	Managed *bool `json:"managed,omitempty"`
+	Managed *bool `json:"managed,omitempty"` // Deprecated
+	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
+	MistConfigured *bool `json:"mist_configured,omitempty"`
 	// If `op`==`assign`, if true, treat site assignment against an already assigned AP as error
 	NoReassign *bool `json:"no_reassign,omitempty"`
 	// enum:
@@ -38,8 +40,8 @@ type InventoryUpdate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i InventoryUpdate) String() string {
 	return fmt.Sprintf(
-		"InventoryUpdate[DisableAutoConfig=%v, Macs=%v, Managed=%v, NoReassign=%v, Op=%v, Serials=%v, SiteId=%v, AdditionalProperties=%v]",
-		i.DisableAutoConfig, i.Macs, i.Managed, i.NoReassign, i.Op, i.Serials, i.SiteId, i.AdditionalProperties)
+		"InventoryUpdate[DisableAutoConfig=%v, Macs=%v, Managed=%v, MistConfigured=%v, NoReassign=%v, Op=%v, Serials=%v, SiteId=%v, AdditionalProperties=%v]",
+		i.DisableAutoConfig, i.Macs, i.Managed, i.MistConfigured, i.NoReassign, i.Op, i.Serials, i.SiteId, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for InventoryUpdate.
@@ -48,7 +50,7 @@ func (i InventoryUpdate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"disable_auto_config", "macs", "managed", "no_reassign", "op", "serials", "site_id"); err != nil {
+		"disable_auto_config", "macs", "managed", "mist_configured", "no_reassign", "op", "serials", "site_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -66,6 +68,9 @@ func (i InventoryUpdate) toMap() map[string]any {
 	}
 	if i.Managed != nil {
 		structMap["managed"] = i.Managed
+	}
+	if i.MistConfigured != nil {
+		structMap["mist_configured"] = i.MistConfigured
 	}
 	if i.NoReassign != nil {
 		structMap["no_reassign"] = i.NoReassign
@@ -92,7 +97,7 @@ func (i *InventoryUpdate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "macs", "managed", "no_reassign", "op", "serials", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "macs", "managed", "mist_configured", "no_reassign", "op", "serials", "site_id")
 	if err != nil {
 		return err
 	}
@@ -101,6 +106,7 @@ func (i *InventoryUpdate) UnmarshalJSON(input []byte) error {
 	i.DisableAutoConfig = temp.DisableAutoConfig
 	i.Macs = temp.Macs
 	i.Managed = temp.Managed
+	i.MistConfigured = temp.MistConfigured
 	i.NoReassign = temp.NoReassign
 	i.Op = *temp.Op
 	i.Serials = temp.Serials
@@ -113,6 +119,7 @@ type tempInventoryUpdate struct {
 	DisableAutoConfig *bool                         `json:"disable_auto_config,omitempty"`
 	Macs              []string                      `json:"macs,omitempty"`
 	Managed           *bool                         `json:"managed,omitempty"`
+	MistConfigured    *bool                         `json:"mist_configured,omitempty"`
 	NoReassign        *bool                         `json:"no_reassign,omitempty"`
 	Op                *InventoryUpdateOperationEnum `json:"op"`
 	Serials           []string                      `json:"serials,omitempty"`

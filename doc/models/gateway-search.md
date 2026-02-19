@@ -21,6 +21,7 @@
 | `LastTroubleTimestamp` | `*int` | Optional | - |
 | `Mac` | `*string` | Optional | - |
 | `Managed` | `*bool` | Optional | - |
+| `MistConfigured` | `*bool` | Optional | whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device) |
 | `Model` | `*string` | Optional | - |
 | `Node` | `*string` | Optional | - |
 | `Node0Mac` | `*string` | Optional | - |

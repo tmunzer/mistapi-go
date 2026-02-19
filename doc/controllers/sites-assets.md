@@ -29,7 +29,8 @@ AttachSiteAssetImage(
     ctx context.Context,
     siteId uuid.UUID,
     assetId uuid.UUID,
-    file models.FileWrapper) (
+    file models.FileWrapper,
+    json *string) (
     http.Response,
     error)
 ```
@@ -41,6 +42,7 @@ AttachSiteAssetImage(
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `assetId` | `uuid.UUID` | Template, Required | - |
 | `file` | `models.FileWrapper` | Form, Required | Binary file |
+| `json` | `*string` | Form, Optional | - |
 
 ## Response Type
 
@@ -57,7 +59,7 @@ assetId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
 
-resp, err := sitesAssets.AttachSiteAssetImage(ctx, siteId, assetId, file)
+resp, err := sitesAssets.AttachSiteAssetImage(ctx, siteId, assetId, file, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

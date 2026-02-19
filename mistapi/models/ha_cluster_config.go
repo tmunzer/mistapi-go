@@ -11,9 +11,11 @@ import (
 // HaClusterConfig represents a HaClusterConfig struct.
 type HaClusterConfig struct {
 	// This disables the default behavior of a cloud-ready switch/gateway being managed/configured by Mist. Setting this to `true` means you want to disable the default behavior and do not want the device to be Mist-managed.
-	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"`
+	DisableAutoConfig *bool `json:"disable_auto_config,omitempty"` // Deprecated
 	// An adopted switch/gateway will not be managed/configured by Mist by default. Setting this parameter to `true` enables the adopted switch/gateway to be managed/configured by Mist.
-	Managed              *bool                  `json:"managed,omitempty"`
+	Managed *bool `json:"managed,omitempty"` // Deprecated
+	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
+	MistConfigured       *bool                  `json:"mist_configured,omitempty"`
 	Nodes                []HaClusterConfigNode  `json:"nodes,omitempty"`
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -23,8 +25,8 @@ type HaClusterConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (h HaClusterConfig) String() string {
 	return fmt.Sprintf(
-		"HaClusterConfig[DisableAutoConfig=%v, Managed=%v, Nodes=%v, SiteId=%v, AdditionalProperties=%v]",
-		h.DisableAutoConfig, h.Managed, h.Nodes, h.SiteId, h.AdditionalProperties)
+		"HaClusterConfig[DisableAutoConfig=%v, Managed=%v, MistConfigured=%v, Nodes=%v, SiteId=%v, AdditionalProperties=%v]",
+		h.DisableAutoConfig, h.Managed, h.MistConfigured, h.Nodes, h.SiteId, h.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for HaClusterConfig.
@@ -33,7 +35,7 @@ func (h HaClusterConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(h.AdditionalProperties,
-		"disable_auto_config", "managed", "nodes", "site_id"); err != nil {
+		"disable_auto_config", "managed", "mist_configured", "nodes", "site_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(h.toMap())
@@ -48,6 +50,9 @@ func (h HaClusterConfig) toMap() map[string]any {
 	}
 	if h.Managed != nil {
 		structMap["managed"] = h.Managed
+	}
+	if h.MistConfigured != nil {
+		structMap["mist_configured"] = h.MistConfigured
 	}
 	if h.Nodes != nil {
 		structMap["nodes"] = h.Nodes
@@ -66,7 +71,7 @@ func (h *HaClusterConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "managed", "nodes", "site_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_auto_config", "managed", "mist_configured", "nodes", "site_id")
 	if err != nil {
 		return err
 	}
@@ -74,6 +79,7 @@ func (h *HaClusterConfig) UnmarshalJSON(input []byte) error {
 
 	h.DisableAutoConfig = temp.DisableAutoConfig
 	h.Managed = temp.Managed
+	h.MistConfigured = temp.MistConfigured
 	h.Nodes = temp.Nodes
 	h.SiteId = temp.SiteId
 	return nil
@@ -83,6 +89,7 @@ func (h *HaClusterConfig) UnmarshalJSON(input []byte) error {
 type tempHaClusterConfig struct {
 	DisableAutoConfig *bool                 `json:"disable_auto_config,omitempty"`
 	Managed           *bool                 `json:"managed,omitempty"`
+	MistConfigured    *bool                 `json:"mist_configured,omitempty"`
 	Nodes             []HaClusterConfigNode `json:"nodes,omitempty"`
 	SiteId            *uuid.UUID            `json:"site_id,omitempty"`
 }

@@ -44,7 +44,8 @@ AddOrgMxEdgeImage(
     orgId uuid.UUID,
     mxedgeId uuid.UUID,
     imageNumber int,
-    body *models.ImageImport) (
+    file models.FileWrapper,
+    json *string) (
     http.Response,
     error)
 ```
@@ -56,7 +57,8 @@ AddOrgMxEdgeImage(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mxedgeId` | `uuid.UUID` | Template, Required | - |
 | `imageNumber` | `int` | Template, Required | **Constraints**: `>= 1`, `<= 3` |
-| `body` | [`*models.ImageImport`](../../doc/models/image-import.md) | Body, Optional | - |
+| `file` | `models.FileWrapper` | Form, Required | Binary file |
+| `json` | `*string` | Form, Optional | - |
 
 ## Response Type
 
@@ -73,7 +75,9 @@ mxedgeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 imageNumber := 3
 
-resp, err := orgsMxEdges.AddOrgMxEdgeImage(ctx, orgId, mxedgeId, imageNumber, nil)
+file := getFile("dummy_file", func(err error) { log.Fatalln(err) })
+
+resp, err := orgsMxEdges.AddOrgMxEdgeImage(ctx, orgId, mxedgeId, imageNumber, file, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

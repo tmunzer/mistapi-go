@@ -11,8 +11,8 @@ import (
 type ServicePolicySkyatpHttpInspection struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `standard`, `strict`
-	Profile              *Profile2Enum          `json:"profile,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	Profile              *ServicePolicySkyatpHttpInspectionProfileEnum `json:"profile,omitempty"`
+	AdditionalProperties map[string]interface{}                        `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatpHttpInspection,
@@ -69,6 +69,6 @@ func (s *ServicePolicySkyatpHttpInspection) UnmarshalJSON(input []byte) error {
 
 // tempServicePolicySkyatpHttpInspection is a temporary struct used for validating the fields of ServicePolicySkyatpHttpInspection.
 type tempServicePolicySkyatpHttpInspection struct {
-	Enabled *bool         `json:"enabled,omitempty"`
-	Profile *Profile2Enum `json:"profile,omitempty"`
+	Enabled *bool                                         `json:"enabled,omitempty"`
+	Profile *ServicePolicySkyatpHttpInspectionProfileEnum `json:"profile,omitempty"`
 }

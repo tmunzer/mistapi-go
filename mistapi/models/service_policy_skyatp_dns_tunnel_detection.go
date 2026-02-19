@@ -11,8 +11,8 @@ import (
 type ServicePolicySkyatpDnsTunnelDetection struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`
-	Profile              *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	Profile              *ServicePolicySkyatpDnsTunnelDetectionProfileEnum `json:"profile,omitempty"`
+	AdditionalProperties map[string]interface{}                            `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ServicePolicySkyatpDnsTunnelDetection,
@@ -69,6 +69,6 @@ func (s *ServicePolicySkyatpDnsTunnelDetection) UnmarshalJSON(input []byte) erro
 
 // tempServicePolicySkyatpDnsTunnelDetection is a temporary struct used for validating the fields of ServicePolicySkyatpDnsTunnelDetection.
 type tempServicePolicySkyatpDnsTunnelDetection struct {
-	Enabled *bool                             `json:"enabled,omitempty"`
-	Profile *SecintelProfileProfileActionEnum `json:"profile,omitempty"`
+	Enabled *bool                                             `json:"enabled,omitempty"`
+	Profile *ServicePolicySkyatpDnsTunnelDetectionProfileEnum `json:"profile,omitempty"`
 }

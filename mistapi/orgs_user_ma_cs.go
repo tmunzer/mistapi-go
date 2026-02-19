@@ -126,7 +126,7 @@ func (o *OrgsUserMACs) UpdateOrgMultipleUserMacs(
 func (o *OrgsUserMACs) CountOrgUserMacs(
 	ctx context.Context,
 	orgId uuid.UUID,
-	distinct models.Distinct2Enum,
+	distinct models.CountUsermacDistinctEnum,
 	limit *int,
 	start *string,
 	end *string) (

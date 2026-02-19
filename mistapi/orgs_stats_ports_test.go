@@ -119,7 +119,6 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
 	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
 	lteImsi := "310260000000001"
@@ -130,7 +129,7 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts(t *testing.T) {
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -148,7 +147,6 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
 	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
 
 	lteImsi := "310260000000001"
@@ -159,7 +157,7 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts1(t *testing.T) {
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, nil, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

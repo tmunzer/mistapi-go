@@ -10,7 +10,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | - |
-| `Profile` | [`*models.Profile2Enum`](../../doc/models/profile-2-enum.md) | Optional | enum: `standard`, `strict` |
+| `Profile` | [`*models.ServicePolicySkyatpHttpInspectionProfileEnum`](../../doc/models/service-policy-skyatp-http-inspection-profile-enum.md) | Optional | enum: `standard`, `strict` |
 
 ## Example (as JSON)
 

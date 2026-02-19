@@ -101,7 +101,7 @@ func TestOrgsUserMACsTestCountOrgUserMacs(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.Distinct2Enum("org_id")
+	distinct := models.CountUsermacDistinctEnum("org_id")
 	limit := int(100)
 
 	apiResponse, err := orgsUserMaCs.CountOrgUserMacs(ctx, orgId, distinct, &limit, nil, nil)
@@ -122,7 +122,7 @@ func TestOrgsUserMACsTestCountOrgUserMacs1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	distinct := models.Distinct2Enum("org_id")
+	distinct := models.CountUsermacDistinctEnum("org_id")
 	limit := int(100)
 
 	apiResponse, err := orgsUserMaCs.CountOrgUserMacs(ctx, orgId, distinct, &limit, nil, nil)

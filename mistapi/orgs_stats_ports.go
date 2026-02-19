@@ -186,7 +186,7 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgSwOrGwPorts takes context, orgId, siteId, deviceType, authState, fullDuplex, lteImsi, lteIccid, lteImei, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, poePriority, portId, portMac, speed, stpState, stpRole, up, xcvrPartNumber, limit, sort, searchAfter as parameters and
+// SearchOrgSwOrGwPorts takes context, orgId, deviceType, authState, fullDuplex, lteImsi, lteIccid, lteImei, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, poePriority, portId, portMac, speed, stpState, stpRole, up, xcvrPartNumber, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponsePortStatsSearch data and
 // an error if there was an issue with the request or response.
 // Search Switch / Gateway Ports Stats.
@@ -196,7 +196,6 @@ func (o *OrgsStatsPorts) CountOrgSwOrGwPorts(
 func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 	ctx context.Context,
 	orgId uuid.UUID,
-	siteId *string,
 	deviceType *models.SearchOrgSwOrGwPortsTypeEnum,
 	authState *models.PortAuthStateEnum,
 	fullDuplex *bool,
@@ -242,9 +241,6 @@ func (o *OrgsStatsPorts) SearchOrgSwOrGwPorts(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if siteId != nil {
-		req.QueryParam("site_id", *siteId)
-	}
 	if deviceType != nil {
 		req.QueryParam("device_type", *deviceType)
 	}

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2602.1.0**
+> Version: **2602.1.1**
 > 
-> Date: **February 10, 2026**
+> Date: **February 18, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 

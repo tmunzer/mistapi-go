@@ -96,7 +96,7 @@ type GatewayPortConfig struct {
 	// Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip
 	WanSourceNat *GatewayPortWanSourceNat `json:"wan_source_nat,omitempty"`
 	// Controls whether Marvis/scheduler can run speedtest on this port. enum: `auto`, `enabled`, `disabled`
-	WanSpeedtestMode *WanSpeedtestModeEnum `json:"wan_speedtest_mode,omitempty"`
+	WanSpeedtestMode *GatewayPortConfigWanSpeedtestModeEnum `json:"wan_speedtest_mode,omitempty"`
 	// Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
 	WanType              *GatewayPortWanTypeEnum `json:"wan_type,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
@@ -342,53 +342,53 @@ func (g *GatewayPortConfig) UnmarshalJSON(input []byte) error {
 
 // tempGatewayPortConfig is a temporary struct used for validating the fields of GatewayPortConfig.
 type tempGatewayPortConfig struct {
-	AeDisableLacp    *bool                          `json:"ae_disable_lacp,omitempty"`
-	AeIdx            Optional[string]               `json:"ae_idx"`
-	AeLacpForceUp    *bool                          `json:"ae_lacp_force_up,omitempty"`
-	Aggregated       *bool                          `json:"aggregated,omitempty"`
-	Critical         *bool                          `json:"critical,omitempty"`
-	Description      *string                        `json:"description,omitempty"`
-	DisableAutoneg   *bool                          `json:"disable_autoneg,omitempty"`
-	Disabled         *bool                          `json:"disabled,omitempty"`
-	DslType          *GatewayPortDslTypeEnum        `json:"dsl_type,omitempty"`
-	DslVci           *int                           `json:"dsl_vci,omitempty"`
-	DslVpi           *int                           `json:"dsl_vpi,omitempty"`
-	Duplex           *GatewayPortDuplexEnum         `json:"duplex,omitempty"`
-	IpConfig         *GatewayPortConfigIpConfig     `json:"ip_config,omitempty"`
-	LteApn           *string                        `json:"lte_apn,omitempty"`
-	LteAuth          *GatewayPortLteAuthEnum        `json:"lte_auth,omitempty"`
-	LteBackup        *bool                          `json:"lte_backup,omitempty"`
-	LtePassword      *string                        `json:"lte_password,omitempty"`
-	LteUsername      *string                        `json:"lte_username,omitempty"`
-	Mtu              *int                           `json:"mtu,omitempty"`
-	Name             *string                        `json:"name,omitempty"`
-	Networks         []string                       `json:"networks,omitempty"`
-	OuterVlanId      *int                           `json:"outer_vlan_id,omitempty"`
-	PoeDisabled      *bool                          `json:"poe_disabled,omitempty"`
-	PortNetwork      *string                        `json:"port_network,omitempty"`
-	PreserveDscp     *bool                          `json:"preserve_dscp,omitempty"`
-	Redundant        *bool                          `json:"redundant,omitempty"`
-	RedundantGroup   *int                           `json:"redundant_group,omitempty"`
-	RethIdx          *GatewayPortConfigRethIdx      `json:"reth_idx,omitempty"`
-	RethNode         *string                        `json:"reth_node,omitempty"`
-	RethNodes        []string                       `json:"reth_nodes,omitempty"`
-	Speed            *string                        `json:"speed,omitempty"`
-	SsrNoVirtualMac  *bool                          `json:"ssr_no_virtual_mac,omitempty"`
-	SvrPortRange     *string                        `json:"svr_port_range,omitempty"`
-	TrafficShaping   *GatewayTrafficShaping         `json:"traffic_shaping,omitempty"`
-	Usage            *GatewayPortUsageEnum          `json:"usage"`
-	VlanId           *GatewayPortVlanIdWithVariable `json:"vlan_id,omitempty"`
-	VpnPaths         map[string]GatewayPortVpnPath  `json:"vpn_paths,omitempty"`
-	WanArpPolicer    *GatewayPortWanArpPolicerEnum  `json:"wan_arp_policer,omitempty"`
-	WanExtIp         *string                        `json:"wan_ext_ip,omitempty"`
-	WanExtIp6        *string                        `json:"wan_ext_ip6,omitempty"`
-	WanExtraRoutes   map[string]WanExtraRoutes      `json:"wan_extra_routes,omitempty"`
-	WanExtraRoutes6  map[string]WanExtraRoutes      `json:"wan_extra_routes6,omitempty"`
-	WanNetworks      []string                       `json:"wan_networks,omitempty"`
-	WanProbeOverride *GatewayWanProbeOverride       `json:"wan_probe_override,omitempty"`
-	WanSourceNat     *GatewayPortWanSourceNat       `json:"wan_source_nat,omitempty"`
-	WanSpeedtestMode *WanSpeedtestModeEnum          `json:"wan_speedtest_mode,omitempty"`
-	WanType          *GatewayPortWanTypeEnum        `json:"wan_type,omitempty"`
+	AeDisableLacp    *bool                                  `json:"ae_disable_lacp,omitempty"`
+	AeIdx            Optional[string]                       `json:"ae_idx"`
+	AeLacpForceUp    *bool                                  `json:"ae_lacp_force_up,omitempty"`
+	Aggregated       *bool                                  `json:"aggregated,omitempty"`
+	Critical         *bool                                  `json:"critical,omitempty"`
+	Description      *string                                `json:"description,omitempty"`
+	DisableAutoneg   *bool                                  `json:"disable_autoneg,omitempty"`
+	Disabled         *bool                                  `json:"disabled,omitempty"`
+	DslType          *GatewayPortDslTypeEnum                `json:"dsl_type,omitempty"`
+	DslVci           *int                                   `json:"dsl_vci,omitempty"`
+	DslVpi           *int                                   `json:"dsl_vpi,omitempty"`
+	Duplex           *GatewayPortDuplexEnum                 `json:"duplex,omitempty"`
+	IpConfig         *GatewayPortConfigIpConfig             `json:"ip_config,omitempty"`
+	LteApn           *string                                `json:"lte_apn,omitempty"`
+	LteAuth          *GatewayPortLteAuthEnum                `json:"lte_auth,omitempty"`
+	LteBackup        *bool                                  `json:"lte_backup,omitempty"`
+	LtePassword      *string                                `json:"lte_password,omitempty"`
+	LteUsername      *string                                `json:"lte_username,omitempty"`
+	Mtu              *int                                   `json:"mtu,omitempty"`
+	Name             *string                                `json:"name,omitempty"`
+	Networks         []string                               `json:"networks,omitempty"`
+	OuterVlanId      *int                                   `json:"outer_vlan_id,omitempty"`
+	PoeDisabled      *bool                                  `json:"poe_disabled,omitempty"`
+	PortNetwork      *string                                `json:"port_network,omitempty"`
+	PreserveDscp     *bool                                  `json:"preserve_dscp,omitempty"`
+	Redundant        *bool                                  `json:"redundant,omitempty"`
+	RedundantGroup   *int                                   `json:"redundant_group,omitempty"`
+	RethIdx          *GatewayPortConfigRethIdx              `json:"reth_idx,omitempty"`
+	RethNode         *string                                `json:"reth_node,omitempty"`
+	RethNodes        []string                               `json:"reth_nodes,omitempty"`
+	Speed            *string                                `json:"speed,omitempty"`
+	SsrNoVirtualMac  *bool                                  `json:"ssr_no_virtual_mac,omitempty"`
+	SvrPortRange     *string                                `json:"svr_port_range,omitempty"`
+	TrafficShaping   *GatewayTrafficShaping                 `json:"traffic_shaping,omitempty"`
+	Usage            *GatewayPortUsageEnum                  `json:"usage"`
+	VlanId           *GatewayPortVlanIdWithVariable         `json:"vlan_id,omitempty"`
+	VpnPaths         map[string]GatewayPortVpnPath          `json:"vpn_paths,omitempty"`
+	WanArpPolicer    *GatewayPortWanArpPolicerEnum          `json:"wan_arp_policer,omitempty"`
+	WanExtIp         *string                                `json:"wan_ext_ip,omitempty"`
+	WanExtIp6        *string                                `json:"wan_ext_ip6,omitempty"`
+	WanExtraRoutes   map[string]WanExtraRoutes              `json:"wan_extra_routes,omitempty"`
+	WanExtraRoutes6  map[string]WanExtraRoutes              `json:"wan_extra_routes6,omitempty"`
+	WanNetworks      []string                               `json:"wan_networks,omitempty"`
+	WanProbeOverride *GatewayWanProbeOverride               `json:"wan_probe_override,omitempty"`
+	WanSourceNat     *GatewayPortWanSourceNat               `json:"wan_source_nat,omitempty"`
+	WanSpeedtestMode *GatewayPortConfigWanSpeedtestModeEnum `json:"wan_speedtest_mode,omitempty"`
+	WanType          *GatewayPortWanTypeEnum                `json:"wan_type,omitempty"`
 }
 
 func (g *tempGatewayPortConfig) validate() error {

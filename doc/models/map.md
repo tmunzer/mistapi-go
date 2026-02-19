@@ -16,7 +16,7 @@ Map
 | `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
 | `Flags` | `map[string]int` | Optional | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
-| `Geofences` | [`[]models.Geofence`](../../doc/models/geofence.md) | Optional | List of geofences for the map |
+| `Geofences` | [`[]models.MapGeofence`](../../doc/models/map-geofence.md) | Optional | List of geofences for the map |
 | `Height` | `*int` | Optional | When type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
@@ -78,33 +78,17 @@ Map
       "vertices": [
         {
           "X": 86.66,
-          "Y": 252.2,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "Y": 252.2
         },
         {
           "X": 86.66,
-          "Y": 252.2,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "Y": 252.2
         },
         {
           "X": 86.66,
-          "Y": 252.2,
-          "exampleAdditionalProperty": {
-            "key1": "val1",
-            "key2": "val2"
-          }
+          "Y": 252.2
         }
-      ],
-      "exampleAdditionalProperty": {
-        "key1": "val1",
-        "key2": "val2"
-      }
+      ]
     }
   ],
   "exampleAdditionalProperty": {
