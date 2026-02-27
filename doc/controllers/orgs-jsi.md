@@ -621,9 +621,15 @@ SearchOrgJsiAssetsAndContracts(
     sku *string,
     status *models.DeviceStatusEnum,
     warrantyType *models.JsiWarrantyTypeEnum,
-    eolDuration *string,
-    eosDuration *string,
+    eolAfter *string,
+    eolBefore *string,
+    eosAfter *string,
+    eosBefore *string,
+    versionEosAfter *string,
+    versionEosBefore *string,
     hasSupport *bool,
+    sirtId *string,
+    pbnId *string,
     text *string,
     limit *int,
     sort *string,
@@ -643,10 +649,16 @@ SearchOrgJsiAssetsAndContracts(
 | `sku` | `*string` | Query, Optional | SKU name of the device |
 | `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | Device status<br><br>**Default**: `"all"` |
 | `warrantyType` | [`*models.JsiWarrantyTypeEnum`](../../doc/models/jsi-warranty-type-enum.md) | Query, Optional | Device warranty type |
-| `eolDuration` | `*string` | Query, Optional | Device EOL duration in days |
-| `eosDuration` | `*string` | Query, Optional | Device EOS duration in days |
+| `eolAfter` | `*string` | Query, Optional | Filter devices with End Of Life date after this date |
+| `eolBefore` | `*string` | Query, Optional | Filter devices with End Of Life date before this date |
+| `eosAfter` | `*string` | Query, Optional | Filter devices with End Of Support date after this date |
+| `eosBefore` | `*string` | Query, Optional | Filter devices with End Of Support date before this date |
+| `versionEosAfter` | `*string` | Query, Optional | Filter devices with OS Version End Of Support date after this date |
+| `versionEosBefore` | `*string` | Query, Optional | Filter devices with OS Version End Of Support date before this date |
 | `hasSupport` | `*bool` | Query, Optional | Indicates if the device is covered under active support contract |
-| `text` | `*string` | Query, Optional | Wildcards for `model`, `serial`, `account_id`, `status`, `warranty_type` |
+| `sirtId` | `*string` | Query, Optional | To get the onboarded devices that are affected by the SIRT ID |
+| `pbnId` | `*string` | Query, Optional | To get the onboarded devices that are affected by the PBN ID |
+| `text` | `*string` | Query, Optional | Wildcards for `serial`, `model`, `account_id` |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
@@ -672,17 +684,29 @@ sku := "EX2300"
 
 status := models.DeviceStatusEnum_ALL
 
-eolDuration := "30d"
+eolAfter := "2024-01-01"
 
-eosDuration := "30d"
+eolBefore := "2025-12-31"
+
+eosAfter := "2024-01-01"
+
+eosBefore := "2025-12-31"
+
+versionEosAfter := "2024-01-01"
+
+versionEosBefore := "2025-12-31"
 
 hasSupport := true
+
+sirtId := "JSA12345"
+
+pbnId := "PBN67890"
 
 limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, &hasSupport, nil, &limit, &sort, nil)
+apiResponse, err := orgsJSI.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolAfter, &eolBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseDetailString:

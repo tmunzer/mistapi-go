@@ -15,10 +15,14 @@ type SiteSetting struct {
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags map[string]AclTag `json:"acl_tags,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
-	AdditionalConfigCmds []string                 `json:"additional_config_cmds,omitempty"`
-	Analytic             *SiteSettingAnalytic     `json:"analytic,omitempty"`
-	ApMatching           *SiteSettingApMatching   `json:"ap_matching,omitempty"`
-	ApPortConfig         *SiteSettingApPortConfig `json:"ap_port_config,omitempty"`
+	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
+	// whether to allow Mist to look at this org
+	AllowMist    *bool                    `json:"allow_mist,omitempty"`
+	Analytic     *SiteSettingAnalytic     `json:"analytic,omitempty"`
+	ApMatching   *SiteSettingApMatching   `json:"ap_matching,omitempty"`
+	ApPortConfig *SiteSettingApPortConfig `json:"ap_port_config,omitempty"`
+	// AP Synthetic Test configuration
+	ApSyntheticTest *SiteSettingApSyntheticTest `json:"ap_synthetic_test,omitempty"`
 	// Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
 	ApUpdownThreshold Optional[int] `json:"ap_updown_threshold"`
 	// If we're able to determine its x/y/orientation, this will be populated
@@ -68,6 +72,8 @@ type SiteSetting struct {
 	GatewayAdditionalConfigCmds []string `json:"gateway_additional_config_cmds,omitempty"`
 	// Gateway Site settings
 	GatewayMgmt *SiteSettingGatewayMgmt `json:"gateway_mgmt,omitempty"`
+	// enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.
+	GatewayTunnelUpdownThreshold Optional[int] `json:"gateway_tunnel_updown_threshold"`
 	// Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
 	GatewayUpdownThreshold Optional[int] `json:"gateway_updown_threshold"`
 	// Unique ID of the object instance in the Mist Organization
@@ -177,8 +183,8 @@ type SiteSetting struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSetting) String() string {
 	return fmt.Sprintf(
-		"SiteSetting[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeEsl=%v, AutoUpgradeLinecard=%v, BgpNeighborUpdownThreshold=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, RoutingPolicies=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, UsesDescriptionFromPortUsage=%v, Vars=%v, Vna=%v, VpnPathUpdownThreshold=%v, VpnPeerUpdownThreshold=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AdditionalProperties=%v]",
-		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeEsl, s.AutoUpgradeLinecard, s.BgpNeighborUpdownThreshold, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.RoutingPolicies, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.UsesDescriptionFromPortUsage, s.Vars, s.Vna, s.VpnPathUpdownThreshold, s.VpnPeerUpdownThreshold, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AdditionalProperties)
+		"SiteSetting[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AllowMist=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApSyntheticTest=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeEsl=%v, AutoUpgradeLinecard=%v, BgpNeighborUpdownThreshold=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayTunnelUpdownThreshold=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, RoutingPolicies=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, UsesDescriptionFromPortUsage=%v, Vars=%v, Vna=%v, VpnPathUpdownThreshold=%v, VpnPeerUpdownThreshold=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AdditionalProperties=%v]",
+		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.AllowMist, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApSyntheticTest, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeEsl, s.AutoUpgradeLinecard, s.BgpNeighborUpdownThreshold, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayTunnelUpdownThreshold, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.RoutingPolicies, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.UsesDescriptionFromPortUsage, s.Vars, s.Vna, s.VpnPathUpdownThreshold, s.VpnPeerUpdownThreshold, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSetting.
@@ -187,7 +193,7 @@ func (s SiteSetting) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -206,6 +212,9 @@ func (s SiteSetting) toMap() map[string]any {
 	if s.AdditionalConfigCmds != nil {
 		structMap["additional_config_cmds"] = s.AdditionalConfigCmds
 	}
+	if s.AllowMist != nil {
+		structMap["allow_mist"] = s.AllowMist
+	}
 	if s.Analytic != nil {
 		structMap["analytic"] = s.Analytic.toMap()
 	}
@@ -214,6 +223,9 @@ func (s SiteSetting) toMap() map[string]any {
 	}
 	if s.ApPortConfig != nil {
 		structMap["ap_port_config"] = s.ApPortConfig.toMap()
+	}
+	if s.ApSyntheticTest != nil {
+		structMap["ap_synthetic_test"] = s.ApSyntheticTest.toMap()
 	}
 	if s.ApUpdownThreshold.IsValueSet() {
 		if s.ApUpdownThreshold.Value() != nil {
@@ -307,6 +319,13 @@ func (s SiteSetting) toMap() map[string]any {
 	}
 	if s.GatewayMgmt != nil {
 		structMap["gateway_mgmt"] = s.GatewayMgmt.toMap()
+	}
+	if s.GatewayTunnelUpdownThreshold.IsValueSet() {
+		if s.GatewayTunnelUpdownThreshold.Value() != nil {
+			structMap["gateway_tunnel_updown_threshold"] = s.GatewayTunnelUpdownThreshold.Value()
+		} else {
+			structMap["gateway_tunnel_updown_threshold"] = nil
+		}
 	}
 	if s.GatewayUpdownThreshold.IsValueSet() {
 		if s.GatewayUpdownThreshold.Value() != nil {
@@ -524,7 +543,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "analytic", "ap_matching", "ap_port_config", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert")
 	if err != nil {
 		return err
 	}
@@ -533,9 +552,11 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
 	s.AclPolicies = temp.AclPolicies
 	s.AclTags = temp.AclTags
 	s.AdditionalConfigCmds = temp.AdditionalConfigCmds
+	s.AllowMist = temp.AllowMist
 	s.Analytic = temp.Analytic
 	s.ApMatching = temp.ApMatching
 	s.ApPortConfig = temp.ApPortConfig
+	s.ApSyntheticTest = temp.ApSyntheticTest
 	s.ApUpdownThreshold = temp.ApUpdownThreshold
 	s.AutoPlacement = temp.AutoPlacement
 	s.AutoUpgrade = temp.AutoUpgrade
@@ -563,6 +584,7 @@ func (s *SiteSetting) UnmarshalJSON(input []byte) error {
 	s.Gateway = temp.Gateway
 	s.GatewayAdditionalConfigCmds = temp.GatewayAdditionalConfigCmds
 	s.GatewayMgmt = temp.GatewayMgmt
+	s.GatewayTunnelUpdownThreshold = temp.GatewayTunnelUpdownThreshold
 	s.GatewayUpdownThreshold = temp.GatewayUpdownThreshold
 	s.Id = temp.Id
 	s.JuniperSrx = temp.JuniperSrx
@@ -634,9 +656,11 @@ type tempSiteSetting struct {
 	AclPolicies                     []AclPolicy                            `json:"acl_policies,omitempty"`
 	AclTags                         map[string]AclTag                      `json:"acl_tags,omitempty"`
 	AdditionalConfigCmds            []string                               `json:"additional_config_cmds,omitempty"`
+	AllowMist                       *bool                                  `json:"allow_mist,omitempty"`
 	Analytic                        *SiteSettingAnalytic                   `json:"analytic,omitempty"`
 	ApMatching                      *SiteSettingApMatching                 `json:"ap_matching,omitempty"`
 	ApPortConfig                    *SiteSettingApPortConfig               `json:"ap_port_config,omitempty"`
+	ApSyntheticTest                 *SiteSettingApSyntheticTest            `json:"ap_synthetic_test,omitempty"`
 	ApUpdownThreshold               Optional[int]                          `json:"ap_updown_threshold"`
 	AutoPlacement                   *SiteSettingAutoPlacement              `json:"auto_placement,omitempty"`
 	AutoUpgrade                     *SiteSettingAutoUpgrade                `json:"auto_upgrade,omitempty"`
@@ -664,6 +688,7 @@ type tempSiteSetting struct {
 	Gateway                         *GatewayTemplate                       `json:"gateway,omitempty"`
 	GatewayAdditionalConfigCmds     []string                               `json:"gateway_additional_config_cmds,omitempty"`
 	GatewayMgmt                     *SiteSettingGatewayMgmt                `json:"gateway_mgmt,omitempty"`
+	GatewayTunnelUpdownThreshold    Optional[int]                          `json:"gateway_tunnel_updown_threshold"`
 	GatewayUpdownThreshold          Optional[int]                          `json:"gateway_updown_threshold"`
 	Id                              *uuid.UUID                             `json:"id,omitempty"`
 	JuniperSrx                      *SiteSettingJuniperSrx                 `json:"juniper_srx,omitempty"`

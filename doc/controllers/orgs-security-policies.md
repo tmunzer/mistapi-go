@@ -140,7 +140,7 @@ body := models.Secpolicy{
             },
             BlockBlacklistClients:                models.ToPointer(false),
             Bonjour:                              models.ToPointer(models.WlanBonjour{
-                AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIdsContainer.FromString("10,20")),
+                AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIds2Container.FromString("10,20")),
                 Enabled:              models.ToPointer(false),
                 Services:             map[string]models.WlanBonjourServiceProperties{
                     "airplay": models.WlanBonjourServiceProperties{

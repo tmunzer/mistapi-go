@@ -15,8 +15,8 @@ type ExtraRoute6 struct {
 	NextQualified map[string]ExtraRoute6NextQualifiedProperties `json:"next_qualified,omitempty"`
 	NoResolve     *bool                                         `json:"no_resolve,omitempty"`
 	Preference    Optional[int]                                 `json:"preference"`
-	// Next-hop IP Address
-	Via                  *string                `json:"via,omitempty"`
+	// Next-hop IP Address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
+	Via                  *NextHopVia            `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -68,7 +68,7 @@ func (e ExtraRoute6) toMap() map[string]any {
 		}
 	}
 	if e.Via != nil {
-		structMap["via"] = e.Via
+		structMap["via"] = e.Via.toMap()
 	}
 	return structMap
 }
@@ -103,5 +103,5 @@ type tempExtraRoute6 struct {
 	NextQualified map[string]ExtraRoute6NextQualifiedProperties `json:"next_qualified,omitempty"`
 	NoResolve     *bool                                         `json:"no_resolve,omitempty"`
 	Preference    Optional[int]                                 `json:"preference"`
-	Via           *string                                       `json:"via,omitempty"`
+	Via           *NextHopVia                                   `json:"via,omitempty"`
 }

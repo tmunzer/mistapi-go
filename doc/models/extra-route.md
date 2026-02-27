@@ -14,7 +14,7 @@
 | `NextQualified` | [`map[string]models.ExtraRouteNextQualifiedProperties`](../../doc/models/extra-route-next-qualified-properties.md) | Optional | - |
 | `NoResolve` | `*bool` | Optional | **Default**: `false` |
 | `Preference` | `models.Optional[int]` | Optional | **Constraints**: `>= 0`, `<= 2147483647` |
-| `Via` | `*string` | Optional | Next-hop IP Address |
+| `Via` | [`*models.NextHopVia`](../../doc/models/containers/next-hop-via.md) | Optional | Next-hop IP Address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops. |
 
 ## Example (as JSON)
 

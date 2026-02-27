@@ -334,6 +334,7 @@ Search Org WAN Clients
 SearchOrgWanClients(
     ctx context.Context,
     orgId uuid.UUID,
+    siteId *uuid.UUID,
     mac *string,
     hostname *string,
     ip *string,
@@ -355,6 +356,7 @@ SearchOrgWanClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
 | `mac` | `*string` | Query, Optional | Partial / full MAC address |
 | `hostname` | `*string` | Query, Optional | Partial / full hostname |
 | `ip` | `*string` | Query, Optional | Client IP |
@@ -379,13 +381,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

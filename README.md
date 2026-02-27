@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2602.1.1**
+> Version: **2602.1.4**
 > 
-> Date: **February 18, 2026**
+> Date: **February 26, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -315,6 +315,7 @@ This API uses the following authentication schemes.
 * [Sites Maps](doc/controllers/sites-maps.md)
 * [Sites Maps-Auto-Placement](doc/controllers/sites-maps-auto-placement.md)
 * [Sites Maps-Auto-Zone](doc/controllers/sites-maps-auto-zone.md)
+* [Sites Map Stacks](doc/controllers/sites-map-stacks.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
 * [Sites Networks](doc/controllers/sites-networks.md)
 * [Sites Network Templates](doc/controllers/sites-network-templates.md)

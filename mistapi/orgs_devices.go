@@ -273,7 +273,7 @@ func (o *OrgsDevices) SearchOrgDeviceEvents(
 	orgId uuid.UUID,
 	mac *string,
 	model *string,
-	deviceType *models.DeviceTypeWithAllEnum,
+	deviceType *string,
 	text *string,
 	timestamp *string,
 	mType *string,

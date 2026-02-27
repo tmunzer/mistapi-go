@@ -22,13 +22,15 @@ func NewSelfAuditLogs(baseController baseController) *SelfAuditLogs {
 	return &selfAuditLogs
 }
 
-// ListSelfAuditLogs takes context, start, end, duration, limit, page as parameters and
+// ListSelfAuditLogs takes context, message, sort, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSelfAuditLogs data and
 // an error if there was an issue with the request or response.
 // Get List of change logs across all Orgs for current admin
 // Audit logs records all administrative activities done by current admin across all orgs
 func (s *SelfAuditLogs) ListSelfAuditLogs(
 	ctx context.Context,
+	message *string,
+	sort *models.ListOrgLogsSortEnum,
 	start *string,
 	end *string,
 	duration *string,
@@ -55,6 +57,12 @@ func (s *SelfAuditLogs) ListSelfAuditLogs(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if message != nil {
+		req.QueryParam("message", *message)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
 	if start != nil {
 		req.QueryParam("start", *start)
 	}

@@ -29,6 +29,7 @@ type WebhooksParsingResult struct {
 	isLocationClient      bool
 	isLocationSdk         bool
 	isLocationUnclient    bool
+	isMinisReachability   bool
 	isMxedgeEvents        bool
 	isNacAccounting       bool
 	isNacEvents           bool
@@ -81,6 +82,7 @@ func (w *WebhooksParsingResult) UnmarshalJSON(input []byte) error {
 		models.NewTypeHolder(&models.WebhookLocationClient{}, true, &w.isLocationClient),
 		models.NewTypeHolder(&models.WebhookLocationSdk{}, true, &w.isLocationSdk),
 		models.NewTypeHolder(&models.WebhookLocationUnclient{}, true, &w.isLocationUnclient),
+		models.NewTypeHolder(&models.WebhookMinisReachability{}, true, &w.isMinisReachability),
 		models.NewTypeHolder(&models.WebhookMxedgeEvents{}, true, &w.isMxedgeEvents),
 		models.NewTypeHolder(&models.WebhookNacAccounting{}, true, &w.isNacAccounting),
 		models.NewTypeHolder(&models.WebhookNacEvents{}, true, &w.isNacEvents),
@@ -300,6 +302,18 @@ func (w *WebhooksParsingResult) AsLocationUnclient() (
 		return nil, true
 	}
 	return w.value.(*models.WebhookLocationUnclient), true
+}
+
+func (w *WebhooksParsingResult) AsMinisReachability() (
+	*models.WebhookMinisReachability,
+	bool) {
+	if !w.isMinisReachability {
+		return nil, false
+	}
+	if w.value == nil {
+		return nil, true
+	}
+	return w.value.(*models.WebhookMinisReachability), true
 }
 
 func (w *WebhooksParsingResult) AsMxedgeEvents() (
@@ -525,6 +539,11 @@ func (w *internalWebhooksParsingResult) FromLocationSdk(val *models.WebhookLocat
 
 // The internalWebhooksParsingResult instance, wrapping the provided models.WebhookLocationUnclient value.
 func (w *internalWebhooksParsingResult) FromLocationUnclient(val *models.WebhookLocationUnclient) WebhooksParsingResult {
+	return WebhooksParsingResult{value: &val}
+}
+
+// The internalWebhooksParsingResult instance, wrapping the provided models.WebhookMinisReachability value.
+func (w *internalWebhooksParsingResult) FromMinisReachability(val *models.WebhookMinisReachability) WebhooksParsingResult {
 	return WebhooksParsingResult{value: &val}
 }
 

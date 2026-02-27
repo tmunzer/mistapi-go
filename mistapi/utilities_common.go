@@ -1101,7 +1101,30 @@ func (u *UtilitiesCommon) ShowSiteDeviceForwardingTable(
 // ```json
 // {
 // "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+// ```
+// #### Example output from ws stream
+// ```json
+// {
+// "event": "data",
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/00000000-0000-0000-1000-209339xxxxxx/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/209339xxxxxx/cmd\", \"data\": {\"session\": \"eec2b6e4-1e63-4f9f-9cf8-ef7f9632861e\", \"raw\": \"\\nMAC flags (S - static MAC, D - dynamic MAC, L - locally learned, P - Persistent static, C - Control MAC\\n           SE - statistics enabled, NM - non configured MAC, R - remote PE MAC, O - ovsdb MAC\\n           GBP - group based policy, B - Blocked MAC)\\n\\n\\nE\"}}"
 // }
+// {
+// "event": "data",
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/00000000-0000-0000-1000-209339xxxxxx/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/209339xxxxxx/cmd\", \"data\": {\"session\": \"eec2b6e4-1e63-4f9f-9cf8-ef7f9632861e\", \"raw\": \"thernet switching table : 59 entries, 59 learned\\nRouting instance : default-switch\\n    Vlan                MAC                 MAC         Age   GBP     Logical                NH        MAC        RTR\\n    name                address             flags      \"}}"
+// }
+// {
+// "event": "data",
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/00000000-0000-0000-1000-209339xxxxxx/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/209339xxxxxx/cmd\", \"data\": {\"session\": \"eec2b6e4-1e63-4f9f-9cf8-ef7f9632861e\", \"raw\": \"       Tag     interface              Index     property   ID\\n    corp                00:50:56:87:4f:69   D             -           xe-0/1/3.0             0                    0       \\n    corp                00:50:56:87:ce:f5   D             -           x\"}}"
+// }
+// {
+// "event": "data",
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/00000000-0000-0000-1000-209339xxxxxx/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/209339xxxxxx/cmd\", \"data\": {\"session\": \"eec2b6e4-1e63-4f9f-9cf8-ef7f9632861e\", \"raw\": \"e-0/1/3.0             0                    0       \\n    corp                20:93:39:0f:62:00   D             -           xe-0/1/3.0             0                    0       \\n    ifo                 00:50:56:87:2d:42   D             -           xe-0/1/3.0 \"}}"
+// }
+// ...
 // ```
 func (u *UtilitiesCommon) ShowSiteDeviceMacTable(
 	ctx context.Context,
@@ -1211,7 +1234,8 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
 // ```json
 // {
 // "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-// }```
+// }
+// ```
 // #### Example output from ws stream
 // ```json
 // {
@@ -1221,9 +1245,7 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
 // "session": "9106e908-74dc-4a4f-9050-9c2adcaf44a5",
 // "raw": "Running traceroute...\ntraceroute to 8.8.8.8, 64 hops max\n 0  192.168.1.1 1 ms  192.168.1.1 1 ms  192.168.1.1 1 ms\n 1  80.10.236.81 2 ms  80.10.236.81 4 ms  80.10.236.81 2 ms\n 2  193.253.80.250 3 ms  193.253.80.250 2 ms  193.253.80.250 2 ms\n 3  193.252.159.41 2 ms  193.252.159.41 1 ms  193.252.159.41 3 ms\n"
 // }
-// }
 // ```
-// "
 func (u *UtilitiesCommon) TracerouteFromDevice(
 	ctx context.Context,
 	siteId uuid.UUID,

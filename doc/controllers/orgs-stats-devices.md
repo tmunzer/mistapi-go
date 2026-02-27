@@ -18,7 +18,7 @@ This API renders some high-level device stats, pagination is assumed and returne
 ListOrgDevicesStats(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeWithAllEnum,
+    mType *string,
     status *models.DeviceStatusEnum,
     siteId *string,
     mac *string,
@@ -39,7 +39,7 @@ ListOrgDevicesStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | `*string` | Query, Optional | **Default**: `"ap"` |
 | `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | **Default**: `"all"` |
 | `siteId` | `*string` | Query, Optional | - |
 | `mac` | `*string` | Query, Optional | - |
@@ -63,7 +63,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeWithAllEnum_AP
+mType := "ap"
 
 status := models.DeviceStatusEnum_ALL
 

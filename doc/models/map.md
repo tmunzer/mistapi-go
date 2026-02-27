@@ -17,14 +17,14 @@ Map
 | `Flags` | `map[string]int` | Optional | Name/val pair objects for location engine to use |
 | `ForSite` | `*bool` | Optional | - |
 | `Geofences` | [`[]models.MapGeofence`](../../doc/models/map-geofence.md) | Optional | List of geofences for the map |
+| `GroupIdx` | `*int` | Optional | maps grouping, typically used for floor, optional |
+| `GroupName` | `*string` | Optional | maps grouping, optional |
 | `Height` | `*int` | Optional | When type=image, height of the image map |
 | `HeightM` | `*float64` | Optional | - |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `LatlngBr` | [`*models.LatlngBr`](../../doc/models/latlng-br.md) | Optional | When type=google, latitude / longitude of the bottom-right corner |
 | `LatlngTl` | [`*models.LatlngTl`](../../doc/models/latlng-tl.md) | Optional | When type=google, latitude / longitude of the top-left corner |
 | `Locked` | `*bool` | Optional | Whether this map is considered locked down<br><br>**Default**: `false` |
-| `MapstackFloor` | `*int` | Optional | maps stack, optional |
-| `MapstackId` | `*uuid.UUID` | Optional | maps stack, optional |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
 | `Name` | `*string` | Optional | The name of the map |
 | `OccupancyLimit` | `*int` | Optional | - |
@@ -54,11 +54,11 @@ Map
     "assetHoldTime": 5,
     "storeTime": 10
   },
+  "group_idx": 1,
+  "group_name": "East Wing",
   "height": 1500,
   "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
   "locked": false,
-  "mapstack_floor": 1,
-  "mapstack_id": "424ef025-a5c0-9a8f-62a8-e6fcbb6a0fc2",
   "name": "Mist Office",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "orientation": 30,

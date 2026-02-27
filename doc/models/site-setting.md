@@ -16,9 +16,11 @@ Site Settings
 | `AclPolicies` | [`[]models.AclPolicy`](../../doc/models/acl-policy.md) | Optional | - |
 | `AclTags` | [`map[string]models.AclTag`](../../doc/models/acl-tag.md) | Optional | ACL Tags to identify traffic source or destination. Key name is the tag name |
 | `AdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
+| `AllowMist` | `*bool` | Optional | whether to allow Mist to look at this org<br><br>**Default**: `false` |
 | `Analytic` | [`*models.SiteSettingAnalytic`](../../doc/models/site-setting-analytic.md) | Optional | - |
 | `ApMatching` | [`*models.SiteSettingApMatching`](../../doc/models/site-setting-ap-matching.md) | Optional | - |
 | `ApPortConfig` | [`*models.SiteSettingApPortConfig`](../../doc/models/site-setting-ap-port-config.md) | Optional | - |
+| `ApSyntheticTest` | [`*models.SiteSettingApSyntheticTest`](../../doc/models/site-setting-ap-synthetic-test.md) | Optional | AP Synthetic Test configuration |
 | `ApUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `AutoPlacement` | [`*models.SiteSettingAutoPlacement`](../../doc/models/site-setting-auto-placement.md) | Optional | If we're able to determine its x/y/orientation, this will be populated |
 | `AutoUpgrade` | [`*models.SiteSettingAutoUpgrade`](../../doc/models/site-setting-auto-upgrade.md) | Optional | Auto Upgrade Settings |
@@ -46,6 +48,7 @@ Site Settings
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |
 | `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
 | `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
+| `GatewayTunnelUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.<br><br>**Constraints**: `>= 0` |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
 | `JuniperSrx` | [`*models.SiteSettingJuniperSrx`](../../doc/models/site-setting-juniper-srx.md) | Optional | - |
@@ -115,6 +118,7 @@ Site Settings
 
 ```json
 {
+  "allow_mist": false,
   "ap_updown_threshold": 0,
   "auto_upgrade_linecard": true,
   "blacklist_url": "https://papi.s3.amazonaws.com/blacklist/xxx...",
@@ -223,113 +227,6 @@ Site Settings
   ],
   "analytic": {
     "enabled": false
-  },
-  "ap_matching": {
-    "enabled": false,
-    "rules": [
-      {
-        "match_model": "match_model0",
-        "name": "name8",
-        "port_config": {
-          "key0": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          },
-          "key1": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          }
-        }
-      },
-      {
-        "match_model": "match_model0",
-        "name": "name8",
-        "port_config": {
-          "key0": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          },
-          "key1": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          }
-        }
-      },
-      {
-        "match_model": "match_model0",
-        "name": "name8",
-        "port_config": {
-          "key0": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          },
-          "key1": {
-            "disabled": false,
-            "dynamic_vlan": {
-              "default_vlan_id": 34,
-              "enabled": false,
-              "type": "type6",
-              "vlans": {
-                "key0": "vlans1"
-              }
-            },
-            "enable_mac_auth": false,
-            "forwarding": "site_mxedge",
-            "mac_auth_preferred": false
-          }
-        }
-      }
-    ]
   },
   "exampleAdditionalProperty": {
     "key1": "val1",

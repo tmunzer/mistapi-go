@@ -159,6 +159,7 @@ type ClientInterface interface {
 	SitesMaps() *SitesMaps
 	SitesMapsAutoPlacement() *SitesMapsAutoPlacement
 	SitesMapsAutoZone() *SitesMapsAutoZone
+	SitesMapStacks() *SitesMapStacks
 	SitesMxEdges() *SitesMxEdges
 	SitesNetworkTemplates() *SitesNetworkTemplates
 	SitesNetworks() *SitesNetworks
@@ -372,6 +373,7 @@ type client struct {
 	sitesMaps                        SitesMaps
 	sitesMapsAutoPlacement           SitesMapsAutoPlacement
 	sitesMapsAutoZone                SitesMapsAutoZone
+	sitesMapStacks                   SitesMapStacks
 	sitesMxEdges                     SitesMxEdges
 	sitesNetworkTemplates            SitesNetworkTemplates
 	sitesNetworks                    SitesNetworks
@@ -604,6 +606,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.sitesMaps = *NewSitesMaps(*baseController)
 	client.sitesMapsAutoPlacement = *NewSitesMapsAutoPlacement(*baseController)
 	client.sitesMapsAutoZone = *NewSitesMapsAutoZone(*baseController)
+	client.sitesMapStacks = *NewSitesMapStacks(*baseController)
 	client.sitesMxEdges = *NewSitesMxEdges(*baseController)
 	client.sitesNetworkTemplates = *NewSitesNetworkTemplates(*baseController)
 	client.sitesNetworks = *NewSitesNetworks(*baseController)
@@ -1404,6 +1407,11 @@ func (c *client) SitesMapsAutoPlacement() *SitesMapsAutoPlacement {
 // SitesMapsAutoZone returns the sitesMapsAutoZone instance of the client.
 func (c *client) SitesMapsAutoZone() *SitesMapsAutoZone {
 	return &c.sitesMapsAutoZone
+}
+
+// SitesMapStacks returns the sitesMapStacks instance of the client.
+func (c *client) SitesMapStacks() *SitesMapStacks {
+	return &c.sitesMapStacks
 }
 
 // SitesMxEdges returns the sitesMxEdges instance of the client.

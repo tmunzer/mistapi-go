@@ -31,7 +31,7 @@ func NewOrgsStatsDevices(baseController baseController) *OrgsStatsDevices {
 func (o *OrgsStatsDevices) ListOrgDevicesStats(
 	ctx context.Context,
 	orgId uuid.UUID,
-	mType *models.DeviceTypeWithAllEnum,
+	mType *string,
 	status *models.DeviceStatusEnum,
 	siteId *string,
 	mac *string,

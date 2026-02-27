@@ -165,13 +165,17 @@ func TestOrgsClientsWanTestSearchOrgWanClients(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -191,13 +195,17 @@ func TestOrgsClientsWanTestSearchOrgWanClients1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	siteId, errUUID := uuid.Parse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

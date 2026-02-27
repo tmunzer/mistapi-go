@@ -17,7 +17,7 @@ func TestSitesStatsDevicesTestListSiteDevicesStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 	status := models.StatDeviceStatusFilterEnum("all")
 	limit := int(100)
 	page := int(1)
@@ -41,7 +41,7 @@ func TestSitesStatsDevicesTestListSiteDevicesStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 	status := models.StatDeviceStatusFilterEnum("all")
 	limit := int(100)
 	page := int(1)

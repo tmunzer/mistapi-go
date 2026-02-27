@@ -31,7 +31,7 @@ func NewSitesDevices(baseController baseController) *SitesDevices {
 func (s *SitesDevices) ListSiteDevices(
 	ctx context.Context,
 	siteId uuid.UUID,
-	mType *models.DeviceTypeWithAllEnum,
+	mType *string,
 	name *string,
 	limit *int,
 	page *int) (

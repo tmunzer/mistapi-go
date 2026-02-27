@@ -241,7 +241,34 @@ if err != nil {
 
 # Start Site Switch Radius Synthetic Test
 
-Ping test from the AP to confirm ‘reachability’ of the Radius server. Utilize Juniper EX switch(to which an AP is connected to) radius test capabilities to get details on the Radius Server ‘availability’ .
+Ping test from the AP to confirm 'reachability' of the Radius server.
+
+Utilize Juniper EX switch(to which an AP is connected to) radius test capabilities to get details on the Radius Server 'availability'.
+
+#### Subscribe to Device Command outputs
+
+`WS /api-ws/v1/stream`
+
+```json
+{
+    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
+}
+```
+
+#### Example output from ws stream
+
+```json
+{
+  "event": "data",
+  "channel": "/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/00000000-0000-0000-1000-2093390b3580/cmd",
+  "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/2093390b3580/cmd\", \"data\": {\"session\": \"6043daff-884e-48bc-aa9a-810d268aceb1\", \"raw\": \"    Reason : fail\"}}"
+}
+{
+  "event": "data",
+  "channel": "/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/00000000-0000-0000-1000-2093390b3580/cmd",
+  "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/2093390b3580/cmd\", \"data\": {\"session\": \"6043daff-884e-48bc-aa9a-810d268aceb1\", \"raw\": \"    Test complete. Exiting\"}}"
+}
+```
 
 ```go
 StartSiteSwitchRadiusSyntheticTest(

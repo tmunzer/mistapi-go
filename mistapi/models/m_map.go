@@ -18,6 +18,10 @@ type Map struct {
 	ForSite *bool          `json:"for_site,omitempty"`
 	// List of geofences for the map
 	Geofences []MapGeofence `json:"geofences,omitempty"`
+	// maps grouping, typically used for floor, optional
+	GroupIdx *int `json:"group_idx,omitempty"`
+	// maps grouping, optional
+	GroupName *string `json:"group_name,omitempty"`
 	// When type=image, height of the image map
 	Height  *int     `json:"height,omitempty"`
 	HeightM *float64 `json:"height_m,omitempty"`
@@ -29,10 +33,6 @@ type Map struct {
 	LatlngTl *LatlngTl `json:"latlng_tl,omitempty"`
 	// Whether this map is considered locked down
 	Locked *bool `json:"locked,omitempty"`
-	// maps stack, optional
-	MapstackFloor *int `json:"mapstack_floor,omitempty"`
-	// maps stack, optional
-	MapstackId *uuid.UUID `json:"mapstack_id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// The name of the map
@@ -74,8 +74,8 @@ type Map struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m Map) String() string {
 	return fmt.Sprintf(
-		"Map[CreatedTime=%v, Flags=%v, ForSite=%v, Geofences=%v, Height=%v, HeightM=%v, Id=%v, LatlngBr=%v, LatlngTl=%v, Locked=%v, MapstackFloor=%v, MapstackId=%v, ModifiedTime=%v, Name=%v, OccupancyLimit=%v, OrgId=%v, Orientation=%v, OriginX=%v, OriginY=%v, Ppm=%v, SiteId=%v, SitesurveyPath=%v, ThumbnailUrl=%v, Type=%v, Url=%v, View=%v, WallPath=%v, Wayfinding=%v, WayfindingPath=%v, Width=%v, WidthM=%v, AdditionalProperties=%v]",
-		m.CreatedTime, m.Flags, m.ForSite, m.Geofences, m.Height, m.HeightM, m.Id, m.LatlngBr, m.LatlngTl, m.Locked, m.MapstackFloor, m.MapstackId, m.ModifiedTime, m.Name, m.OccupancyLimit, m.OrgId, m.Orientation, m.OriginX, m.OriginY, m.Ppm, m.SiteId, m.SitesurveyPath, m.ThumbnailUrl, m.Type, m.Url, m.View, m.WallPath, m.Wayfinding, m.WayfindingPath, m.Width, m.WidthM, m.AdditionalProperties)
+		"Map[CreatedTime=%v, Flags=%v, ForSite=%v, Geofences=%v, GroupIdx=%v, GroupName=%v, Height=%v, HeightM=%v, Id=%v, LatlngBr=%v, LatlngTl=%v, Locked=%v, ModifiedTime=%v, Name=%v, OccupancyLimit=%v, OrgId=%v, Orientation=%v, OriginX=%v, OriginY=%v, Ppm=%v, SiteId=%v, SitesurveyPath=%v, ThumbnailUrl=%v, Type=%v, Url=%v, View=%v, WallPath=%v, Wayfinding=%v, WayfindingPath=%v, Width=%v, WidthM=%v, AdditionalProperties=%v]",
+		m.CreatedTime, m.Flags, m.ForSite, m.Geofences, m.GroupIdx, m.GroupName, m.Height, m.HeightM, m.Id, m.LatlngBr, m.LatlngTl, m.Locked, m.ModifiedTime, m.Name, m.OccupancyLimit, m.OrgId, m.Orientation, m.OriginX, m.OriginY, m.Ppm, m.SiteId, m.SitesurveyPath, m.ThumbnailUrl, m.Type, m.Url, m.View, m.WallPath, m.Wayfinding, m.WayfindingPath, m.Width, m.WidthM, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Map.
@@ -84,7 +84,7 @@ func (m Map) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"created_time", "flags", "for_site", "geofences", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "mapstack_floor", "mapstack_id", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m"); err != nil {
+		"created_time", "flags", "for_site", "geofences", "group_idx", "group_name", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -106,6 +106,12 @@ func (m Map) toMap() map[string]any {
 	if m.Geofences != nil {
 		structMap["geofences"] = m.Geofences
 	}
+	if m.GroupIdx != nil {
+		structMap["group_idx"] = m.GroupIdx
+	}
+	if m.GroupName != nil {
+		structMap["group_name"] = m.GroupName
+	}
 	if m.Height != nil {
 		structMap["height"] = m.Height
 	}
@@ -123,12 +129,6 @@ func (m Map) toMap() map[string]any {
 	}
 	if m.Locked != nil {
 		structMap["locked"] = m.Locked
-	}
-	if m.MapstackFloor != nil {
-		structMap["mapstack_floor"] = m.MapstackFloor
-	}
-	if m.MapstackId != nil {
-		structMap["mapstack_id"] = m.MapstackId
 	}
 	if m.ModifiedTime != nil {
 		structMap["modified_time"] = m.ModifiedTime
@@ -202,7 +202,7 @@ func (m *Map) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "flags", "for_site", "geofences", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "mapstack_floor", "mapstack_id", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "flags", "for_site", "geofences", "group_idx", "group_name", "height", "height_m", "id", "latlng_br", "latlng_tl", "locked", "modified_time", "name", "occupancy_limit", "org_id", "orientation", "origin_x", "origin_y", "ppm", "site_id", "sitesurvey_path", "thumbnail_url", "type", "url", "view", "wall_path", "wayfinding", "wayfinding_path", "width", "width_m")
 	if err != nil {
 		return err
 	}
@@ -212,14 +212,14 @@ func (m *Map) UnmarshalJSON(input []byte) error {
 	m.Flags = temp.Flags
 	m.ForSite = temp.ForSite
 	m.Geofences = temp.Geofences
+	m.GroupIdx = temp.GroupIdx
+	m.GroupName = temp.GroupName
 	m.Height = temp.Height
 	m.HeightM = temp.HeightM
 	m.Id = temp.Id
 	m.LatlngBr = temp.LatlngBr
 	m.LatlngTl = temp.LatlngTl
 	m.Locked = temp.Locked
-	m.MapstackFloor = temp.MapstackFloor
-	m.MapstackId = temp.MapstackId
 	m.ModifiedTime = temp.ModifiedTime
 	m.Name = temp.Name
 	m.OccupancyLimit = temp.OccupancyLimit
@@ -248,14 +248,14 @@ type tempMap struct {
 	Flags          map[string]int           `json:"flags,omitempty"`
 	ForSite        *bool                    `json:"for_site,omitempty"`
 	Geofences      []MapGeofence            `json:"geofences,omitempty"`
+	GroupIdx       *int                     `json:"group_idx,omitempty"`
+	GroupName      *string                  `json:"group_name,omitempty"`
 	Height         *int                     `json:"height,omitempty"`
 	HeightM        *float64                 `json:"height_m,omitempty"`
 	Id             *uuid.UUID               `json:"id,omitempty"`
 	LatlngBr       *LatlngBr                `json:"latlng_br,omitempty"`
 	LatlngTl       *LatlngTl                `json:"latlng_tl,omitempty"`
 	Locked         *bool                    `json:"locked,omitempty"`
-	MapstackFloor  *int                     `json:"mapstack_floor,omitempty"`
-	MapstackId     *uuid.UUID               `json:"mapstack_id,omitempty"`
 	ModifiedTime   *float64                 `json:"modified_time,omitempty"`
 	Name           *string                  `json:"name,omitempty"`
 	OccupancyLimit *int                     `json:"occupancy_limit,omitempty"`

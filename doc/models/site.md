@@ -27,6 +27,7 @@ Site
 | `Notes` | `models.Optional[string]` | Optional | Optional, any notes about the site |
 | `OrgId` | `*uuid.UUID` | Optional | - |
 | `RftemplateId` | `models.Optional[uuid.UUID]` | Optional | RF Template ID, this takes precedence over Site Settings |
+| `RoutertemplateId` | `models.Optional[uuid.UUID]` | Optional | Router Template ID, used by gateways |
 | `SecpolicyId` | `models.Optional[uuid.UUID]` | Optional | SecPolicy ID |
 | `SitegroupIds` | `[]uuid.UUID` | Optional | Sitegroups this site belongs to |
 | `SitetemplateId` | `models.Optional[uuid.UUID]` | Optional | Site Template ID |
@@ -48,6 +49,7 @@ Site
   "networktemplate_id": "12ae9bd2-e0ab-107b-72e8-a7a005565ec2",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "rftemplate_id": "bb8a9017-1e36-5d6c-6f2b-551abe8a76a2",
+  "routertemplate_id": "6f9b2e75-9b2f-b5ae-81e3-e14c76f1a90f",
   "secpolicy_id": "3bcd0beb-5d0a-4cbd-92c1-14aea91e98ef",
   "timezone": "America/Los_Angeles",
   "tzoffset": 0,

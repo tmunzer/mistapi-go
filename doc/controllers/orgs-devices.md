@@ -730,7 +730,7 @@ SearchOrgDeviceEvents(
     orgId uuid.UUID,
     mac *string,
     model *string,
-    deviceType *models.DeviceTypeWithAllEnum,
+    deviceType *string,
     text *string,
     timestamp *string,
     mType *string,
@@ -753,7 +753,7 @@ SearchOrgDeviceEvents(
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mac` | `*string` | Query, Optional | Device mac |
 | `model` | `*string` | Query, Optional | Device model |
-| `deviceType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `deviceType` | `*string` | Query, Optional | **Default**: `"ap"` |
 | `text` | `*string` | Query, Optional | Event message |
 | `timestamp` | `*string` | Query, Optional | Event time |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
@@ -781,7 +781,7 @@ mac := "5c5b53010101"
 
 model := "AP43"
 
-deviceType := models.DeviceTypeWithAllEnum_AP
+deviceType := "ap"
 
 text := "Device connected"
 

@@ -459,14 +459,15 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.OrgSetting{
-    ApUpdownThreshold:           models.NewOptional(models.ToPointer(0)),
-    DeviceUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
-    DisablePcap:                 models.ToPointer(false),
-    DisableRemoteShell:          models.ToPointer(false),
-    GatewayUpdownThreshold:      models.NewOptional(models.ToPointer(10)),
-    SwitchUpdownThreshold:       models.NewOptional(models.ToPointer(0)),
-    UiIdleTimeout:               models.ToPointer(10),
-    UiNoTracking:                models.ToPointer(false),
+    AllowMist:                    models.ToPointer(false),
+    ApUpdownThreshold:            models.NewOptional(models.ToPointer(0)),
+    DeviceUpdownThreshold:        models.NewOptional(models.ToPointer(0)),
+    DisablePcap:                  models.ToPointer(false),
+    DisableRemoteShell:           models.ToPointer(false),
+    GatewayUpdownThreshold:       models.NewOptional(models.ToPointer(10)),
+    SwitchUpdownThreshold:        models.NewOptional(models.ToPointer(0)),
+    UiIdleTimeout:                models.ToPointer(10),
+    UiNoTracking:                 models.ToPointer(false),
 }
 
 apiResponse, err := orgsSetting.UpdateOrgSettings(ctx, orgId, &body)
