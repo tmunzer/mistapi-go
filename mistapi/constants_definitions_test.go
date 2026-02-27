@@ -474,7 +474,7 @@ func TestConstantsDefinitionsTestListWebhookTopics(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"allows_single_event_per_message":true,"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"}]`
+	expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"allows_single_event_per_message":true,"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"},{"for_org":true,"key":"minis-reachability"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -490,6 +490,6 @@ func TestConstantsDefinitionsTestListWebhookTopics1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"allows_single_event_per_message":true,"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"}]`
+	expected := `[{"for_org":true,"has_delivery_results":true,"key":"alarms"},{"key":"asset-raw-rssi"},{"for_org":true,"has_delivery_results":true,"key":"audits"},{"for_org":true,"key":"client-info"},{"for_org":true,"key":"client-join"},{"key":"client-latency"},{"for_org":true,"key":"client-sessions"},{"allows_single_event_per_message":true,"for_org":true,"key":"device-events"},{"for_org":true,"has_delivery_results":true,"key":"device-updowns"},{"for_org":true,"key":"minis-reachability"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

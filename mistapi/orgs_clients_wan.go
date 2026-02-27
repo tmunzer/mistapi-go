@@ -232,13 +232,14 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWanClients takes context, orgId, mac, hostname, ip, network, ipSrc, mfg, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgWanClients takes context, orgId, siteId, mac, hostname, ip, network, ipSrc, mfg, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Org WAN Clients
 func (o *OrgsClientsWan) SearchOrgWanClients(
 	ctx context.Context,
 	orgId uuid.UUID,
+	siteId *uuid.UUID,
 	mac *string,
 	hostname *string,
 	ip *string,
@@ -272,6 +273,9 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
+	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}

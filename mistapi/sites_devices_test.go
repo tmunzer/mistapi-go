@@ -17,7 +17,7 @@ func TestSitesDevicesTestListSiteDevices(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 
 	limit := int(100)
 	page := int(1)
@@ -39,7 +39,7 @@ func TestSitesDevicesTestListSiteDevices1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 
 	limit := int(100)
 	page := int(1)

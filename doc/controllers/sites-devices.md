@@ -1012,7 +1012,7 @@ Get list of devices on the site.
 ListSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    mType *models.DeviceTypeWithAllEnum,
+    mType *string,
     name *string,
     limit *int,
     page *int) (
@@ -1025,7 +1025,7 @@ ListSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeWithAllEnum`](../../doc/models/device-type-with-all-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `mType` | `*string` | Query, Optional | **Default**: `"ap"` |
 | `name` | `*string` | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
@@ -1041,7 +1041,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeWithAllEnum_AP
+mType := "ap"
 
 limit := 100
 

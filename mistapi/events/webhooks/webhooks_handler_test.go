@@ -269,6 +269,21 @@ func TestOnLocationUnclient_WebhooksHandler_ReturnsLocationUnclientEvent(t *test
 	}
 }
 
+func TestOnMinisReachability_WebhooksHandler_ReturnsMinisReachabilityEvent(t *testing.T) {
+	// Arrange
+	bodyBytes := []byte(`{"events":[{"avg_latency":12.5,"device_mac":"7cb68d8f0440","loss_percentage":0.0,"max_latency":15.2,"min_latency":10.1,"org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","probe_name":"google ping","probe_target":"google.com","probe_type":"reachability","protocol":"icmp","site_id":"4ac1dcf4-9d8b-7211-65c4-057819f0862b","test_type":"ping","timestamp":1547235620.89,"vlan":12}],"topic":"minis-reachability"}`)
+	request := newWebhooksHandlerRequest(bodyBytes)
+	handler := NewWebhooksHandler()
+
+	// Act
+	result := handler.ParseEvent(request)
+
+	// Assert
+	if _, ok := result.AsMinisReachability(); !ok {
+		t.Fatal("expected MinisReachabilityEvent")
+	}
+}
+
 func TestOnMxedgeEvents_WebhooksHandler_ReturnsMxedgeEventsEvent(t *testing.T) {
 	// Arrange
 	bodyBytes := []byte(`{"events":[{"audit_id":"8912e5cb-8ddd-41f7-be5f-476a7abbf658","component":null,"mxedge_id":"00000000-0000-0000-1000-020000230522","mxedge_name":"demo123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":1763546876.209649,"type":"ME_CONFIG_CHANGED_BY_USER"},{"audit_id":"48efa5bf-d290-4e93-80ca-4dbf72f4187a","component":null,"mxedge_id":"00000000-0000-0000-1000-020000a5fca1","mxedge_name":"test123","org_id":"203d3d02-dbc0-4c1b-9f41-76896a3330f4","timestamp":1763546876.417778,"type":"ME_CONFIG_CHANGED_BY_USER"}],"topic":"mxedge-events"}`)

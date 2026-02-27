@@ -17,6 +17,8 @@ Audit logs records all administrative activities done by current admin across al
 ```go
 ListSelfAuditLogs(
     ctx context.Context,
+    message *string,
+    sort *models.ListOrgLogsSortEnum,
     start *string,
     end *string,
     duration *string,
@@ -30,6 +32,8 @@ ListSelfAuditLogs(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `message` | `*string` | Query, Optional | Message |
+| `sort` | [`*models.ListOrgLogsSortEnum`](../../doc/models/list-org-logs-sort-enum.md) | Query, Optional | Sort order |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
 | `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
@@ -45,13 +49,15 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```go
 ctx := context.Background()
 
+message := "Created a new site"
+
 duration := "10m"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, nil, nil, &duration, &limit, &page)
+apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, &message, nil, nil, nil, &duration, &limit, &page)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

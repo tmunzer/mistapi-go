@@ -11,11 +11,12 @@ import (
 // TestSelfAuditLogsTestListSelfAuditLogs tests the behavior of the SelfAuditLogs
 func TestSelfAuditLogsTestListSelfAuditLogs(t *testing.T) {
 	ctx := context.Background()
+	message := "Created a new site"
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, nil, nil, &duration, &limit, &page)
+	apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, &message, nil, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -31,11 +32,12 @@ func TestSelfAuditLogsTestListSelfAuditLogs(t *testing.T) {
 // TestSelfAuditLogsTestListSelfAuditLogs1 tests the behavior of the SelfAuditLogs
 func TestSelfAuditLogsTestListSelfAuditLogs1(t *testing.T) {
 	ctx := context.Background()
+	message := "Created a new site"
 
 	duration := "1d"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, nil, nil, &duration, &limit, &page)
+	apiResponse, err := selfAuditLogs.ListSelfAuditLogs(ctx, &message, nil, nil, nil, &duration, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

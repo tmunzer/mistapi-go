@@ -1645,6 +1645,10 @@ if err != nil {
     "for_org": true,
     "has_delivery_results": true,
     "key": "device-updowns"
+  },
+  {
+    "for_org": true,
+    "key": "minis-reachability"
   }
 ]
 ```

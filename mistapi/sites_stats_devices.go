@@ -30,7 +30,7 @@ func NewSitesStatsDevices(baseController baseController) *SitesStatsDevices {
 func (s *SitesStatsDevices) ListSiteDevicesStats(
 	ctx context.Context,
 	siteId uuid.UUID,
-	mType *models.DeviceTypeWithAllEnum,
+	mType *string,
 	status *models.StatDeviceStatusFilterEnum,
 	limit *int,
 	page *int) (

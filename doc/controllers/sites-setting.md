@@ -616,6 +616,7 @@ ctx := context.Background()
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.SiteSetting{
+    AllowMist:                       models.ToPointer(false),
     ApUpdownThreshold:               models.NewOptional(models.ToPointer(0)),
     AutoUpgradeLinecard:             models.ToPointer(true),
     ConfigAutoRevert:                models.ToPointer(false),
@@ -623,12 +624,12 @@ body := models.SiteSetting{
     EnableUnii4:                     models.ToPointer(false),
     ExtraRoutes:                     map[string]models.ExtraRoute{
         "0.0.0.0/0": models.ExtraRoute{
-            Via:                  models.ToPointer("192.168.1.10"),
+            Via:                  models.ToPointer(models.NextHopViaContainer.FromString("192.168.1.10")),
         },
     },
     ExtraRoutes6:                    map[string]models.ExtraRoute6{
         "2a02:1234:420a:10c9::/64": models.ExtraRoute6{
-            Via:                  models.ToPointer("2a02:1234:200a::100"),
+            Via:                  models.ToPointer(models.NextHopViaContainer.FromString("2a02:1234:200a::100")),
         },
     },
     GatewayUpdownThreshold:          models.NewOptional(models.ToPointer(0)),

@@ -270,7 +270,7 @@ func (o *OrgsJSI) CountOrgJsiAssetsAndContracts(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiAssetsAndContracts takes context, orgId, claimed, model, serial, sku, status, warrantyType, eolDuration, eosDuration, hasSupport, text, limit, sort, searchAfter as parameters and
+// SearchOrgJsiAssetsAndContracts takes context, orgId, claimed, model, serial, sku, status, warrantyType, eolAfter, eolBefore, eosAfter, eosBefore, versionEosAfter, versionEosBefore, hasSupport, sirtId, pbnId, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.JsInventorySearch data and
 // an error if there was an issue with the request or response.
 // This gets all devices purchased from the accounts associated with the Org
@@ -286,9 +286,15 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	sku *string,
 	status *models.DeviceStatusEnum,
 	warrantyType *models.JsiWarrantyTypeEnum,
-	eolDuration *string,
-	eosDuration *string,
+	eolAfter *string,
+	eolBefore *string,
+	eosAfter *string,
+	eosBefore *string,
+	versionEosAfter *string,
+	versionEosBefore *string,
 	hasSupport *bool,
+	sirtId *string,
+	pbnId *string,
 	text *string,
 	limit *int,
 	sort *string,
@@ -332,14 +338,32 @@ func (o *OrgsJSI) SearchOrgJsiAssetsAndContracts(
 	if warrantyType != nil {
 		req.QueryParam("warranty_type", *warrantyType)
 	}
-	if eolDuration != nil {
-		req.QueryParam("eol_duration", *eolDuration)
+	if eolAfter != nil {
+		req.QueryParam("eol_after", *eolAfter)
 	}
-	if eosDuration != nil {
-		req.QueryParam("eos_duration", *eosDuration)
+	if eolBefore != nil {
+		req.QueryParam("eol_before", *eolBefore)
+	}
+	if eosAfter != nil {
+		req.QueryParam("eos_after", *eosAfter)
+	}
+	if eosBefore != nil {
+		req.QueryParam("eos_before", *eosBefore)
+	}
+	if versionEosAfter != nil {
+		req.QueryParam("version_eos_after", *versionEosAfter)
+	}
+	if versionEosBefore != nil {
+		req.QueryParam("version_eos_before", *versionEosBefore)
 	}
 	if hasSupport != nil {
 		req.QueryParam("has_support", *hasSupport)
+	}
+	if sirtId != nil {
+		req.QueryParam("sirt_id", *sirtId)
+	}
+	if pbnId != nil {
+		req.QueryParam("pbn_id", *pbnId)
 	}
 	if text != nil {
 		req.QueryParam("text", *text)

@@ -17,7 +17,7 @@ func TestOrgsStatsDevicesTestListOrgDevicesStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 	status := models.DeviceStatusEnum("all")
 
 	fields := "field1,field2"
@@ -45,7 +45,7 @@ func TestOrgsStatsDevicesTestListOrgDevicesStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeWithAllEnum("ap")
+	mType := "ap"
 	status := models.DeviceStatusEnum("all")
 
 	fields := "field1,field2"

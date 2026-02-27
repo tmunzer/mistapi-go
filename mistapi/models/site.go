@@ -38,6 +38,8 @@ type Site struct {
 	OrgId *uuid.UUID       `json:"org_id,omitempty"`
 	// RF Template ID, this takes precedence over Site Settings
 	RftemplateId Optional[uuid.UUID] `json:"rftemplate_id"`
+	// Router Template ID, used by gateways
+	RoutertemplateId Optional[uuid.UUID] `json:"routertemplate_id"`
 	// SecPolicy ID
 	SecpolicyId Optional[uuid.UUID] `json:"secpolicy_id"`
 	// Sitegroups this site belongs to
@@ -54,8 +56,8 @@ type Site struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s Site) String() string {
 	return fmt.Sprintf(
-		"Site[Address=%v, AlarmtemplateId=%v, AptemplateId=%v, CountryCode=%v, CreatedTime=%v, GatewaytemplateId=%v, Id=%v, Latlng=%v, ModifiedTime=%v, Name=%v, NetworktemplateId=%v, Notes=%v, OrgId=%v, RftemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, SitetemplateId=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
-		s.Address, s.AlarmtemplateId, s.AptemplateId, s.CountryCode, s.CreatedTime, s.GatewaytemplateId, s.Id, s.Latlng, s.ModifiedTime, s.Name, s.NetworktemplateId, s.Notes, s.OrgId, s.RftemplateId, s.SecpolicyId, s.SitegroupIds, s.SitetemplateId, s.Timezone, s.Tzoffset, s.AdditionalProperties)
+		"Site[Address=%v, AlarmtemplateId=%v, AptemplateId=%v, CountryCode=%v, CreatedTime=%v, GatewaytemplateId=%v, Id=%v, Latlng=%v, ModifiedTime=%v, Name=%v, NetworktemplateId=%v, Notes=%v, OrgId=%v, RftemplateId=%v, RoutertemplateId=%v, SecpolicyId=%v, SitegroupIds=%v, SitetemplateId=%v, Timezone=%v, Tzoffset=%v, AdditionalProperties=%v]",
+		s.Address, s.AlarmtemplateId, s.AptemplateId, s.CountryCode, s.CreatedTime, s.GatewaytemplateId, s.Id, s.Latlng, s.ModifiedTime, s.Name, s.NetworktemplateId, s.Notes, s.OrgId, s.RftemplateId, s.RoutertemplateId, s.SecpolicyId, s.SitegroupIds, s.SitetemplateId, s.Timezone, s.Tzoffset, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Site.
@@ -64,7 +66,7 @@ func (s Site) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset"); err != nil {
+		"address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "routertemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -142,6 +144,13 @@ func (s Site) toMap() map[string]any {
 			structMap["rftemplate_id"] = nil
 		}
 	}
+	if s.RoutertemplateId.IsValueSet() {
+		if s.RoutertemplateId.Value() != nil {
+			structMap["routertemplate_id"] = s.RoutertemplateId.Value()
+		} else {
+			structMap["routertemplate_id"] = nil
+		}
+	}
 	if s.SecpolicyId.IsValueSet() {
 		if s.SecpolicyId.Value() != nil {
 			structMap["secpolicy_id"] = s.SecpolicyId.Value()
@@ -180,7 +189,7 @@ func (s *Site) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "address", "alarmtemplate_id", "aptemplate_id", "country_code", "created_time", "gatewaytemplate_id", "id", "latlng", "modified_time", "name", "networktemplate_id", "notes", "org_id", "rftemplate_id", "routertemplate_id", "secpolicy_id", "sitegroup_ids", "sitetemplate_id", "timezone", "tzoffset")
 	if err != nil {
 		return err
 	}
@@ -200,6 +209,7 @@ func (s *Site) UnmarshalJSON(input []byte) error {
 	s.Notes = temp.Notes
 	s.OrgId = temp.OrgId
 	s.RftemplateId = temp.RftemplateId
+	s.RoutertemplateId = temp.RoutertemplateId
 	s.SecpolicyId = temp.SecpolicyId
 	s.SitegroupIds = temp.SitegroupIds
 	s.SitetemplateId = temp.SitetemplateId
@@ -224,6 +234,7 @@ type tempSite struct {
 	Notes             Optional[string]    `json:"notes"`
 	OrgId             *uuid.UUID          `json:"org_id,omitempty"`
 	RftemplateId      Optional[uuid.UUID] `json:"rftemplate_id"`
+	RoutertemplateId  Optional[uuid.UUID] `json:"routertemplate_id"`
 	SecpolicyId       Optional[uuid.UUID] `json:"secpolicy_id"`
 	SitegroupIds      []uuid.UUID         `json:"sitegroup_ids,omitempty"`
 	SitetemplateId    Optional[uuid.UUID] `json:"sitetemplate_id"`

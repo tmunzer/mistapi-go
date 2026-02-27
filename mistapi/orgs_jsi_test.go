@@ -243,14 +243,20 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
 	sku := "EX2300"
 	status := models.DeviceStatusEnum("all")
 
-	eolDuration := "30d"
-	eosDuration := "30d"
+	eolAfter := "2024-01-01"
+	eolBefore := "2025-12-31"
+	eosAfter := "2024-01-01"
+	eosBefore := "2025-12-31"
+	versionEosAfter := "2024-01-01"
+	versionEosBefore := "2025-12-31"
 	hasSupport := bool(true)
+	sirtId := "JSA12345"
+	pbnId := "PBN67890"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, &hasSupport, nil, &limit, &sort, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolAfter, &eolBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -276,14 +282,20 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
 	sku := "EX2300"
 	status := models.DeviceStatusEnum("all")
 
-	eolDuration := "30d"
-	eosDuration := "30d"
+	eolAfter := "2024-01-01"
+	eolBefore := "2025-12-31"
+	eosAfter := "2024-01-01"
+	eosBefore := "2025-12-31"
+	versionEosAfter := "2024-01-01"
+	versionEosBefore := "2025-12-31"
 	hasSupport := bool(true)
+	sirtId := "JSA12345"
+	pbnId := "PBN67890"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolDuration, &eosDuration, &hasSupport, nil, &limit, &sort, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolAfter, &eolBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -368,7 +368,7 @@ SearchSiteAlarms(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `group` | [`*models.AlarmGroupEnum`](../../doc/models/alarm-group-enum.md) | Query, Optional | Alarm group. enum: `infrastructure`, `marvis`, `security` |
+| `group` | [`*models.AlarmGroupEnum`](../../doc/models/alarm-group-enum.md) | Query, Optional | Alarm group. enum: `infrastructure`, `marvis`, `security`.<br>The `marvis` group is used to retrieve AI-driven network issue detections.<br>Known Marvis alarm types include: `bad_cable`, `bad_wan_uplink`, `dns_failure`,<br>`arp_failure`, `auth_failure`, `dhcp_failure`, `missing_vlan`,<br>`negotiation_mismatch`, `port_flap`. Results include resolution status<br>(`status`, `resolved_time`) and affected entity details." |
 | `severity` | [`*models.AlarmSeverityEnum`](../../doc/models/alarm-severity-enum.md) | Query, Optional | Severity of the alarm. enum: `critical`, `info`, `warn` |
 | `mType` | `*string` | Query, Optional | Type of the alarm. Accepts multiple values separated by comma. Use [List Alarm Definitions](/#operations/listAlarmDefinitions) to get the list of possible alarm types. |
 | `ackAdminName` | `*string` | Query, Optional | Name of the admins who have acked the alarms; accepts multiple values separated by comma |

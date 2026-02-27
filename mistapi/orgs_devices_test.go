@@ -213,7 +213,7 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents(t *testing.T) {
 	}
 	mac := "5c5b53010101"
 	model := "AP43"
-	deviceType := models.DeviceTypeWithAllEnum("ap")
+	deviceType := "ap"
 	text := "Device connected"
 	timestamp := "1703003296"
 
@@ -246,7 +246,7 @@ func TestOrgsDevicesTestSearchOrgDeviceEvents1(t *testing.T) {
 	}
 	mac := "5c5b53010101"
 	model := "AP43"
-	deviceType := models.DeviceTypeWithAllEnum("ap")
+	deviceType := "ap"
 	text := "Device connected"
 	timestamp := "1703003296"
 

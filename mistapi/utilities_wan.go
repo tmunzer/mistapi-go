@@ -162,25 +162,28 @@ func (u *UtilitiesWAN) ClearSiteDeviceSession(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
-// The output will be available through websocket. As there can be multiple command issued  against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket.
+// As there can be multiple command issued  against the same Device at the same
+// time and the output all goes through the same websocket stream, session is
+// introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
-// {
-// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-// }```
+// { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" }
+// ```
 // #### Example output from ws stream
 // ```json
 // {
-// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
 // "event": "data",
-// "data": {
-// "session": "9106e908-74dc-4a4f-9050-9c2adcaf44a5",
-// "raw": "Running traceroute...\ntraceroute to 8.8.8.8, 64 hops max\n 0  192.168.1.1 1 ms  192.168.1.1 1 ms  192.168.1.1 1 ms\n 1  80.10.236.81 2 ms  80.10.236.81 4 ms  80.10.236.81 2 ms\n 2  193.253.80.250 3 ms  193.253.80.250 2 ms  193.253.80.250 2 ms\n 3  193.252.159.41 2 ms  193.252.159.41 1 ms  193.252.159.41 3 ms\n"
+// "channel": "/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/00000000-0000-0000-1000-0200010edbca/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/0200010edbca/cmd\",\"data\": {\"session\": \"356b2150-7307-4165-8411-52794c1ee8b0\",\"raw\": \"Releasing dhcp...\"}}"
 // }
+// {
+// "event": "data",
+// "channel": "/sites/d6fb4f96-3ba4-4cf5-8af2-a8d7b85087ac/devices/00000000-0000-0000-1000-0200010edbca/cmd",
+// "data": "{\"event\": \"data\", \"channel\": \"/sites/d6fb4f96-xxxx-xxxx-xxxx-a8d7b85087ac/devices/0200010edbca/cmd\",\"data\": {\"session\": \"356b2150-7307-4165-8411-52794c1ee8b0\",\"raw\": \"Successfully released DHCP lease.\"}}"
 // }
 // ```
-// "
 func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -730,12 +733,25 @@ func (u *UtilitiesWAN) ShowSiteSsrAndSrxRoutes(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get service path information of the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket. As there can be multiple command
+// issued against the same device at the same time and the output all goes through
+// the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
-// ```json { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" } ```
+// ```json
+// { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" }
+// ```
 // #### Example output from ws stream
-// ```json { "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd", "event": "data", "data": { "session":"5cb8a6db-d11a-42cd-bed7-19e9f29e637", "raw":"{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/0\",\"destination\":\"\",\"gateway_ip\":\"192.168.1.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"},{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/1\",\"destination\":\"\",\"gateway_ip\":\"192.168.0.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"}]}" } } ```
+// ```json
+// {
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
+// "event": "data",
+// "data": {
+// "session": "5cb8a6db-d11a-42cd-bed7-19e9f29e637",
+// "raw": "{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/0\",\"destination\":\"\",\"gateway_ip\":\"192.168.1.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"},{\"service\":\"management\",\"type\":\"service-agent\",\"network_interface\":\"ge-0/0/1\",\"destination\":\"\",\"gateway_ip\":\"192.168.0.1\",\"vector\":\"\",\"cost\":0,\"rate\":0,\"state\":\"Up\",\"capacity\":\"0/unlimited\",\"meetsSLA\":\"Yes\"}]}"
+// }
+// }
+// ```
 func (u *UtilitiesWAN) ShowSiteSsrServicePath(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -785,12 +801,25 @@ func (u *UtilitiesWAN) ShowSiteSsrServicePath(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get active sessions passing through the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket. As there can be multiple command
+// issued against the same device at the same time and the output all goes through
+// the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
-// ```json { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" }```
+// ```json
+// { "subscribe": "/sites/{site_id}/devices/{device_id}/cmd" }
+// ```
 // #### Example output from ws stream
-// ```json { "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd", "event": "data", "data": { "session": "f517bf29-1141-41ae-a084-17cacb0ccb57", "raw": "{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"forward\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/3\",\"network_interface\":\"ge-0/0/3.100\",\"protocol\":\"TCP\",\"source_ip\":\"10.3.20.101\",\"source_port\":45733,\"destination_ip\":\"13.38.46.35\",\"destination_port\":443,\"nat_ip\":\"192.168.1.115\",\"nat_port\":45256,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319},{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"reverse\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/0\",\"network_interface\":\"ge-0/0/0\",\"protocol\":\"TCP\",\"source_ip\":\"13.38.46.35\",\"source_port\":443,\"destination_ip\":\"192.168.1.115\",\"destination_port\":45256,\"nat_ip\":\"0.0.0.0\",\"nat_port\":0,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319}]}\n" } } ```
+// ```json
+// {
+// "channel": "/sites/d6fb4f96-xxxx-xxxx-xxxx-xxxxxxxxxxxx/devices/00000000-0000-0000-1000-xxxxxxxxxxxx/cmd",
+// "event": "data",
+// "data": {
+// "session": "f517bf29-1141-41ae-a084-17cacb0ccb57",
+// "raw": "{\"status\":\"SUCCESS\",\"finished\":true,\"rows\":[{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"forward\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/3\",\"network_interface\":\"ge-0/0/3.100\",\"protocol\":\"TCP\",\"source_ip\":\"10.3.20.101\",\"source_port\":45733,\"destination_ip\":\"13.38.46.35\",\"destination_port\":443,\"nat_ip\":\"192.168.1.115\",\"nat_port\":45256,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319},{\"session_id\":\"a04b1cc7-dcc1-40a6-a010-0fe46ca38551\",\"direction\":\"reverse\",\"service\":\"internet\",\"tenant\":\"SRV.PRD-Core\",\"device_interface\":\"ge-0/0/0\",\"network_interface\":\"ge-0/0/0\",\"protocol\":\"TCP\",\"source_ip\":\"13.38.46.35\",\"source_port\":443,\"destination_ip\":\"192.168.1.115\",\"destination_port\":45256,\"nat_ip\":\"0.0.0.0\",\"nat_port\":0,\"payload_encrypted\":false,\"timeout\":1581,\"uptime\":319}]}\n"
+// }
+// }
+// ```
 func (u *UtilitiesWAN) ShowSiteSsrAndSrxSessions(
 	ctx context.Context,
 	siteId uuid.UUID,

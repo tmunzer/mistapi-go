@@ -48,6 +48,7 @@
 | `Disable11ax` | `*bool` | Optional | Some old WLAN drivers may not be compatible<br><br>**Default**: `false` |
 | `Disable11be` | `*bool` | Optional | To disable Wi-Fi 7 EHT IEs<br><br>**Default**: `false` |
 | `DisableHtVhtRates` | `*bool` | Optional | To disable ht or vht rates<br><br>**Default**: `false` |
+| `DisableMessageAuthenticatorCheck` | `*bool` | Optional | whether to disable Message-Authenticator Check, which is used to verify the integrity of RADIUS messages, default is false (i.e. for better security)<br><br>**Default**: `false` |
 | `DisableUapsd` | `*bool` | Optional | Whether to disable U-APSD<br><br>**Default**: `false` |
 | `DisableV1RoamNotify` | `*bool` | Optional | Disable sending v2 roam notification messages<br><br>**Default**: `false` |
 | `DisableV2RoamNotify` | `*bool` | Optional | Disable sending v2 roam notification messages<br><br>**Default**: `false` |
@@ -142,6 +143,7 @@
   "disable_11ax": false,
   "disable_11be": false,
   "disable_ht_vht_rates": false,
+  "disable_message_authenticator_check": false,
   "disable_uapsd": false,
   "disable_v1_roam_notify": false,
   "disable_v2_roam_notify": false,

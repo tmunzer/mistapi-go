@@ -212,6 +212,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesMaps() | Gets SitesMaps |
 | SitesMapsAutoPlacement() | Gets SitesMapsAutoPlacement |
 | SitesMapsAutoZone() | Gets SitesMapsAutoZone |
+| SitesMapStacks() | Gets SitesMapStacks |
 | SitesMxEdges() | Gets SitesMxEdges |
 | SitesNetworkTemplates() | Gets SitesNetworkTemplates |
 | SitesNetworks() | Gets SitesNetworks |

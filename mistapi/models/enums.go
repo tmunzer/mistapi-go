@@ -812,17 +812,6 @@ const (
 	DeviceTypeSwitchEnum_ENUMSWITCH DeviceTypeSwitchEnum = "switch"
 )
 
-// DeviceTypeWithAllEnum is a string enum.
-// enum: `all`, `ap`, `gateway`, `switch`
-type DeviceTypeWithAllEnum string
-
-const (
-	DeviceTypeWithAllEnum_ALL        DeviceTypeWithAllEnum = "all"
-	DeviceTypeWithAllEnum_AP         DeviceTypeWithAllEnum = "ap"
-	DeviceTypeWithAllEnum_GATEWAY    DeviceTypeWithAllEnum = "gateway"
-	DeviceTypeWithAllEnum_ENUMSWITCH DeviceTypeWithAllEnum = "switch"
-)
-
 // DhcpdConfigOptionTypeEnum is a string enum.
 // enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
 type DhcpdConfigOptionTypeEnum string
@@ -4953,6 +4942,14 @@ type WebhookLocationUnclientTopicEnum string
 
 const (
 	WebhookLocationUnclientTopicEnum_LOCATIONUNCLIENT WebhookLocationUnclientTopicEnum = "location-unclient"
+)
+
+// WebhookMinisReachabilityTopicEnum is a string enum.
+// enum: `minis-reachability`
+type WebhookMinisReachabilityTopicEnum string
+
+const (
+	WebhookMinisReachabilityTopicEnum_MINISREACHABILITY WebhookMinisReachabilityTopicEnum = "minis-reachability"
 )
 
 // WebhookMxedgeEventTopicEnum is a string enum.

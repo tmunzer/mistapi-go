@@ -1030,10 +1030,10 @@ body := models.NetworkTemplate{
     },
     ExtraRoutes:           map[string]models.ExtraRoute{
         "property1": models.ExtraRoute{
-            Via:                  models.ToPointer("string"),
+            Via:                  models.ToPointer(models.NextHopViaContainer.FromString("string")),
         },
         "property2": models.ExtraRoute{
-            Via:                  models.ToPointer("string"),
+            Via:                  models.ToPointer(models.NextHopViaContainer.FromString("string")),
         },
     },
     ImportOrgNetworks:     []string{

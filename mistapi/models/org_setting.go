@@ -11,6 +11,8 @@ import (
 // OrgSetting represents a OrgSetting struct.
 // Org Settings
 type OrgSetting struct {
+	// whether to allow Mist to look at this org
+	AllowMist *bool `json:"allow_mist,omitempty"`
 	// Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
 	ApUpdownThreshold           Optional[int]                          `json:"ap_updown_threshold"`
 	ApiPolicy                   *OrgSettingApiPolicy                   `json:"api_policy,omitempty"`
@@ -37,6 +39,8 @@ type OrgSetting struct {
 	DisableRemoteShell *bool                  `json:"disable_remote_shell,omitempty"`
 	ForSite            *bool                  `json:"for_site,omitempty"`
 	GatewayMgmt        *OrgSettingGatewayMgmt `json:"gateway_mgmt,omitempty"`
+	// enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.
+	GatewayTunnelUpdownThreshold Optional[int] `json:"gateway_tunnel_updown_threshold"`
 	// Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
 	GatewayUpdownThreshold Optional[int] `json:"gateway_updown_threshold"`
 	// Unique ID of the object instance in the Mist Organization
@@ -91,8 +95,8 @@ type OrgSetting struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSetting) String() string {
 	return fmt.Sprintf(
-		"OrgSetting[ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JuniperSrx=%v, JunosShellAccess=%v, Marvis=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, Ssr=%v, Switch=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, UiNoTracking=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
-		o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JuniperSrx, o.JunosShellAccess, o.Marvis, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.Ssr, o.Switch, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.UiNoTracking, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
+		"OrgSetting[AllowMist=%v, ApUpdownThreshold=%v, ApiPolicy=%v, AutoDeviceNaming=%v, AutoDeviceprofileAssignment=%v, AutoSiteAssignment=%v, BlacklistUrl=%v, Cacerts=%v, Celona=%v, Cloudshark=%v, Cradlepoint=%v, CreatedTime=%v, DeviceCert=%v, DeviceUpdownThreshold=%v, DisablePcap=%v, DisableRemoteShell=%v, ForSite=%v, GatewayMgmt=%v, GatewayTunnelUpdownThreshold=%v, GatewayUpdownThreshold=%v, Id=%v, Installer=%v, Jcloud=%v, JcloudRa=%v, Juniper=%v, JuniperSrx=%v, JunosShellAccess=%v, Marvis=%v, Mgmt=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxedgeMgmt=%v, OpticPortConfig=%v, OrgId=%v, PasswordPolicy=%v, Pcap=%v, PcapBucketVerified=%v, Security=%v, SimpleAlert=%v, Ssr=%v, Switch=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, Tags=%v, UiIdleTimeout=%v, UiNoTracking=%v, VpnOptions=%v, WanPma=%v, WiredPma=%v, WirelessPma=%v, AdditionalProperties=%v]",
+		o.AllowMist, o.ApUpdownThreshold, o.ApiPolicy, o.AutoDeviceNaming, o.AutoDeviceprofileAssignment, o.AutoSiteAssignment, o.BlacklistUrl, o.Cacerts, o.Celona, o.Cloudshark, o.Cradlepoint, o.CreatedTime, o.DeviceCert, o.DeviceUpdownThreshold, o.DisablePcap, o.DisableRemoteShell, o.ForSite, o.GatewayMgmt, o.GatewayTunnelUpdownThreshold, o.GatewayUpdownThreshold, o.Id, o.Installer, o.Jcloud, o.JcloudRa, o.Juniper, o.JuniperSrx, o.JunosShellAccess, o.Marvis, o.Mgmt, o.MistNac, o.ModifiedTime, o.MspId, o.MxedgeMgmt, o.OpticPortConfig, o.OrgId, o.PasswordPolicy, o.Pcap, o.PcapBucketVerified, o.Security, o.SimpleAlert, o.Ssr, o.Switch, o.SwitchMgmt, o.SwitchUpdownThreshold, o.SyntheticTest, o.Tags, o.UiIdleTimeout, o.UiNoTracking, o.VpnOptions, o.WanPma, o.WiredPma, o.WirelessPma, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSetting.
@@ -101,7 +105,7 @@ func (o OrgSetting) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
+		"allow_mist", "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -111,6 +115,9 @@ func (o OrgSetting) MarshalJSON() (
 func (o OrgSetting) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, o.AdditionalProperties)
+	if o.AllowMist != nil {
+		structMap["allow_mist"] = o.AllowMist
+	}
 	if o.ApUpdownThreshold.IsValueSet() {
 		if o.ApUpdownThreshold.Value() != nil {
 			structMap["ap_updown_threshold"] = o.ApUpdownThreshold.Value()
@@ -169,6 +176,13 @@ func (o OrgSetting) toMap() map[string]any {
 	}
 	if o.GatewayMgmt != nil {
 		structMap["gateway_mgmt"] = o.GatewayMgmt.toMap()
+	}
+	if o.GatewayTunnelUpdownThreshold.IsValueSet() {
+		if o.GatewayTunnelUpdownThreshold.Value() != nil {
+			structMap["gateway_tunnel_updown_threshold"] = o.GatewayTunnelUpdownThreshold.Value()
+		} else {
+			structMap["gateway_tunnel_updown_threshold"] = nil
+		}
 	}
 	if o.GatewayUpdownThreshold.IsValueSet() {
 		if o.GatewayUpdownThreshold.Value() != nil {
@@ -288,12 +302,13 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_mist", "ap_updown_threshold", "api_policy", "auto_device_naming", "auto_deviceprofile_assignment", "auto_site_assignment", "blacklist_url", "cacerts", "celona", "cloudshark", "cradlepoint", "created_time", "device_cert", "device_updown_threshold", "disable_pcap", "disable_remote_shell", "for_site", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "installer", "jcloud", "jcloud_ra", "juniper", "juniper_srx", "junos_shell_access", "marvis", "mgmt", "mist_nac", "modified_time", "msp_id", "mxedge_mgmt", "optic_port_config", "org_id", "password_policy", "pcap", "pcap_bucket_verified", "security", "simple_alert", "ssr", "switch", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "tags", "ui_idle_timeout", "ui_no_tracking", "vpn_options", "wan_pma", "wired_pma", "wireless_pma")
 	if err != nil {
 		return err
 	}
 	o.AdditionalProperties = additionalProperties
 
+	o.AllowMist = temp.AllowMist
 	o.ApUpdownThreshold = temp.ApUpdownThreshold
 	o.ApiPolicy = temp.ApiPolicy
 	o.AutoDeviceNaming = temp.AutoDeviceNaming
@@ -311,6 +326,7 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 	o.DisableRemoteShell = temp.DisableRemoteShell
 	o.ForSite = temp.ForSite
 	o.GatewayMgmt = temp.GatewayMgmt
+	o.GatewayTunnelUpdownThreshold = temp.GatewayTunnelUpdownThreshold
 	o.GatewayUpdownThreshold = temp.GatewayUpdownThreshold
 	o.Id = temp.Id
 	o.Installer = temp.Installer
@@ -349,54 +365,56 @@ func (o *OrgSetting) UnmarshalJSON(input []byte) error {
 
 // tempOrgSetting is a temporary struct used for validating the fields of OrgSetting.
 type tempOrgSetting struct {
-	ApUpdownThreshold           Optional[int]                          `json:"ap_updown_threshold"`
-	ApiPolicy                   *OrgSettingApiPolicy                   `json:"api_policy,omitempty"`
-	AutoDeviceNaming            *OrgSettingAutoDeviceNaming            `json:"auto_device_naming,omitempty"`
-	AutoDeviceprofileAssignment *OrgSettingAutoDeviceprofileAssignment `json:"auto_deviceprofile_assignment,omitempty"`
-	AutoSiteAssignment          *OrgSettingAutoSiteAssignment          `json:"auto_site_assignment,omitempty"`
-	BlacklistUrl                *string                                `json:"blacklist_url,omitempty"`
-	Cacerts                     []string                               `json:"cacerts,omitempty"`
-	Celona                      *OrgSettingCelona                      `json:"celona,omitempty"`
-	Cloudshark                  *OrgSettingCloudshark                  `json:"cloudshark,omitempty"`
-	Cradlepoint                 *OrgSettingCradlepoint                 `json:"cradlepoint,omitempty"`
-	CreatedTime                 *float64                               `json:"created_time,omitempty"`
-	DeviceCert                  *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
-	DeviceUpdownThreshold       Optional[int]                          `json:"device_updown_threshold"`
-	DisablePcap                 *bool                                  `json:"disable_pcap,omitempty"`
-	DisableRemoteShell          *bool                                  `json:"disable_remote_shell,omitempty"`
-	ForSite                     *bool                                  `json:"for_site,omitempty"`
-	GatewayMgmt                 *OrgSettingGatewayMgmt                 `json:"gateway_mgmt,omitempty"`
-	GatewayUpdownThreshold      Optional[int]                          `json:"gateway_updown_threshold"`
-	Id                          *uuid.UUID                             `json:"id,omitempty"`
-	Installer                   *OrgSettingInstaller                   `json:"installer,omitempty"`
-	Jcloud                      *OrgSettingJcloud                      `json:"jcloud,omitempty"`
-	JcloudRa                    *OrgSettingJcloudRa                    `json:"jcloud_ra,omitempty"`
-	Juniper                     *AccountJuniperInfo                    `json:"juniper,omitempty"`
-	JuniperSrx                  *OrgSettingJuniperSrx                  `json:"juniper_srx,omitempty"`
-	JunosShellAccess            *OrgSettingJunosShellAccess            `json:"junos_shell_access,omitempty"`
-	Marvis                      *Marvis                                `json:"marvis,omitempty"`
-	Mgmt                        *OrgSettingMgmt                        `json:"mgmt,omitempty"`
-	MistNac                     *OrgSettingMistNac                     `json:"mist_nac,omitempty"`
-	ModifiedTime                *float64                               `json:"modified_time,omitempty"`
-	MspId                       *uuid.UUID                             `json:"msp_id,omitempty"`
-	MxedgeMgmt                  *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
-	OpticPortConfig             map[string]OpticPortConfigPort         `json:"optic_port_config,omitempty"`
-	OrgId                       *uuid.UUID                             `json:"org_id,omitempty"`
-	PasswordPolicy              *OrgSettingPasswordPolicy              `json:"password_policy,omitempty"`
-	Pcap                        *OrgSettingPcap                        `json:"pcap,omitempty"`
-	PcapBucketVerified          *bool                                  `json:"pcap_bucket_verified,omitempty"`
-	Security                    *OrgSettingSecurity                    `json:"security,omitempty"`
-	SimpleAlert                 *SimpleAlert                           `json:"simple_alert,omitempty"`
-	Ssr                         *SettingSsr                            `json:"ssr,omitempty"`
-	Switch                      *OrgSettingSwitch                      `json:"switch,omitempty"`
-	SwitchMgmt                  *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
-	SwitchUpdownThreshold       Optional[int]                          `json:"switch_updown_threshold"`
-	SyntheticTest               *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
-	Tags                        []string                               `json:"tags,omitempty"`
-	UiIdleTimeout               *int                                   `json:"ui_idle_timeout,omitempty"`
-	UiNoTracking                *bool                                  `json:"ui_no_tracking,omitempty"`
-	VpnOptions                  *OrgSettingVpnOptions                  `json:"vpn_options,omitempty"`
-	WanPma                      *OrgSettingWanPma                      `json:"wan_pma,omitempty"`
-	WiredPma                    *OrgSettingWiredPma                    `json:"wired_pma,omitempty"`
-	WirelessPma                 *OrgSettingWirelessPma                 `json:"wireless_pma,omitempty"`
+	AllowMist                    *bool                                  `json:"allow_mist,omitempty"`
+	ApUpdownThreshold            Optional[int]                          `json:"ap_updown_threshold"`
+	ApiPolicy                    *OrgSettingApiPolicy                   `json:"api_policy,omitempty"`
+	AutoDeviceNaming             *OrgSettingAutoDeviceNaming            `json:"auto_device_naming,omitempty"`
+	AutoDeviceprofileAssignment  *OrgSettingAutoDeviceprofileAssignment `json:"auto_deviceprofile_assignment,omitempty"`
+	AutoSiteAssignment           *OrgSettingAutoSiteAssignment          `json:"auto_site_assignment,omitempty"`
+	BlacklistUrl                 *string                                `json:"blacklist_url,omitempty"`
+	Cacerts                      []string                               `json:"cacerts,omitempty"`
+	Celona                       *OrgSettingCelona                      `json:"celona,omitempty"`
+	Cloudshark                   *OrgSettingCloudshark                  `json:"cloudshark,omitempty"`
+	Cradlepoint                  *OrgSettingCradlepoint                 `json:"cradlepoint,omitempty"`
+	CreatedTime                  *float64                               `json:"created_time,omitempty"`
+	DeviceCert                   *OrgSettingDeviceCert                  `json:"device_cert,omitempty"`
+	DeviceUpdownThreshold        Optional[int]                          `json:"device_updown_threshold"`
+	DisablePcap                  *bool                                  `json:"disable_pcap,omitempty"`
+	DisableRemoteShell           *bool                                  `json:"disable_remote_shell,omitempty"`
+	ForSite                      *bool                                  `json:"for_site,omitempty"`
+	GatewayMgmt                  *OrgSettingGatewayMgmt                 `json:"gateway_mgmt,omitempty"`
+	GatewayTunnelUpdownThreshold Optional[int]                          `json:"gateway_tunnel_updown_threshold"`
+	GatewayUpdownThreshold       Optional[int]                          `json:"gateway_updown_threshold"`
+	Id                           *uuid.UUID                             `json:"id,omitempty"`
+	Installer                    *OrgSettingInstaller                   `json:"installer,omitempty"`
+	Jcloud                       *OrgSettingJcloud                      `json:"jcloud,omitempty"`
+	JcloudRa                     *OrgSettingJcloudRa                    `json:"jcloud_ra,omitempty"`
+	Juniper                      *AccountJuniperInfo                    `json:"juniper,omitempty"`
+	JuniperSrx                   *OrgSettingJuniperSrx                  `json:"juniper_srx,omitempty"`
+	JunosShellAccess             *OrgSettingJunosShellAccess            `json:"junos_shell_access,omitempty"`
+	Marvis                       *Marvis                                `json:"marvis,omitempty"`
+	Mgmt                         *OrgSettingMgmt                        `json:"mgmt,omitempty"`
+	MistNac                      *OrgSettingMistNac                     `json:"mist_nac,omitempty"`
+	ModifiedTime                 *float64                               `json:"modified_time,omitempty"`
+	MspId                        *uuid.UUID                             `json:"msp_id,omitempty"`
+	MxedgeMgmt                   *MxedgeMgmt                            `json:"mxedge_mgmt,omitempty"`
+	OpticPortConfig              map[string]OpticPortConfigPort         `json:"optic_port_config,omitempty"`
+	OrgId                        *uuid.UUID                             `json:"org_id,omitempty"`
+	PasswordPolicy               *OrgSettingPasswordPolicy              `json:"password_policy,omitempty"`
+	Pcap                         *OrgSettingPcap                        `json:"pcap,omitempty"`
+	PcapBucketVerified           *bool                                  `json:"pcap_bucket_verified,omitempty"`
+	Security                     *OrgSettingSecurity                    `json:"security,omitempty"`
+	SimpleAlert                  *SimpleAlert                           `json:"simple_alert,omitempty"`
+	Ssr                          *SettingSsr                            `json:"ssr,omitempty"`
+	Switch                       *OrgSettingSwitch                      `json:"switch,omitempty"`
+	SwitchMgmt                   *OrgSettingSwitchMgmt                  `json:"switch_mgmt,omitempty"`
+	SwitchUpdownThreshold        Optional[int]                          `json:"switch_updown_threshold"`
+	SyntheticTest                *SynthetictestConfig                   `json:"synthetic_test,omitempty"`
+	Tags                         []string                               `json:"tags,omitempty"`
+	UiIdleTimeout                *int                                   `json:"ui_idle_timeout,omitempty"`
+	UiNoTracking                 *bool                                  `json:"ui_no_tracking,omitempty"`
+	VpnOptions                   *OrgSettingVpnOptions                  `json:"vpn_options,omitempty"`
+	WanPma                       *OrgSettingWanPma                      `json:"wan_pma,omitempty"`
+	WiredPma                     *OrgSettingWiredPma                    `json:"wired_pma,omitempty"`
+	WirelessPma                  *OrgSettingWirelessPma                 `json:"wireless_pma,omitempty"`
 }

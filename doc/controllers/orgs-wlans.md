@@ -71,6 +71,7 @@ body := models.Wlan{
     Disable11ax:                          models.ToPointer(false),
     Disable11be:                          models.ToPointer(false),
     DisableHtVhtRates:                    models.ToPointer(false),
+    DisableMessageAuthenticatorCheck:     models.ToPointer(false),
     DisableUapsd:                         models.ToPointer(false),
     DisableV1RoamNotify:                  models.ToPointer(false),
     DisableV2RoamNotify:                  models.ToPointer(false),
@@ -585,7 +586,7 @@ body := models.Wlan{
     },
     BlockBlacklistClients:                models.ToPointer(false),
     Bonjour:                              models.ToPointer(models.WlanBonjour{
-        AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIdsContainer.FromString("10,20")),
+        AdditionalVlanIds:    models.ToPointer(models.AdditionalVlanIds2Container.FromString("10,20")),
         Enabled:              models.ToPointer(false),
         Services:             map[string]models.WlanBonjourServiceProperties{
             "airplay": models.WlanBonjourServiceProperties{
