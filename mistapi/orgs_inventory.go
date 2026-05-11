@@ -210,15 +210,19 @@ func (o *OrgsInventory) UpdateOrgInventoryAssignment(
 	return models.NewApiResponse(result, resp), err
 }
 
-// CountOrgInventory takes context, orgId, mType, distinct, limit as parameters and
+// CountOrgInventory takes context, orgId, distinct, mType, siteId, model, version, status, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of in the Org Inventory
 func (o *OrgsInventory) CountOrgInventory(
 	ctx context.Context,
 	orgId uuid.UUID,
-	mType *models.DeviceTypeDefaultApEnum,
 	distinct *models.InventoryCountDistinctEnum,
+	mType *models.DeviceTypeDefaultApEnum,
+	siteId *string,
+	model *string,
+	version *string,
+	status *models.DeviceStatusFilterEnum,
 	limit *int) (
 	models.ApiResponse[models.ResponseCount],
 	error) {
@@ -241,11 +245,23 @@ func (o *OrgsInventory) CountOrgInventory(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if distinct != nil {
+		req.QueryParam("distinct", *distinct)
+	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
 	}
-	if distinct != nil {
-		req.QueryParam("distinct", *distinct)
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
+	}
+	if model != nil {
+		req.QueryParam("model", *model)
+	}
+	if version != nil {
+		req.QueryParam("version", *version)
+	}
+	if status != nil {
+		req.QueryParam("status", *status)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -440,7 +456,7 @@ func (o *OrgsInventory) ReplaceOrgDevices(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgInventory takes context, orgId, mType, mac, vcMac, masterMac, siteId, serial, master, sku, version, status, text, limit, sort, searchAfter as parameters and
+// SearchOrgInventory takes context, orgId, mType, mac, model, name, siteId, serial, master, sku, version, status, text, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.InventorySearch data and
 // an error if there was an issue with the request or response.
 // Search in the Org Inventory
@@ -449,14 +465,14 @@ func (o *OrgsInventory) SearchOrgInventory(
 	orgId uuid.UUID,
 	mType *models.DeviceTypeDefaultApEnum,
 	mac *string,
-	vcMac *string,
-	masterMac *string,
+	model *string,
+	name *string,
 	siteId *uuid.UUID,
 	serial *string,
 	master *string,
 	sku *string,
 	version *string,
-	status *string,
+	status *models.DeviceStatusFilterEnum,
 	text *string,
 	limit *int,
 	sort *string,
@@ -488,11 +504,11 @@ func (o *OrgsInventory) SearchOrgInventory(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
-	if vcMac != nil {
-		req.QueryParam("vc_mac", *vcMac)
+	if model != nil {
+		req.QueryParam("model", *model)
 	}
-	if masterMac != nil {
-		req.QueryParam("master_mac", *masterMac)
+	if name != nil {
+		req.QueryParam("name", *name)
 	}
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)

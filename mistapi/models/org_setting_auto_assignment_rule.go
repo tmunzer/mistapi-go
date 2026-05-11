@@ -14,7 +14,7 @@ import (
 type OrgSettingAutoAssignmentRule struct {
 	// If `src`==`geoip`. By default, a claimed device only gets assigned if the site exists to auto-create the site, enable this
 	CreateNewSiteIfNeeded *bool `json:"create_new_site_if_needed,omitempty"`
-	// If `src`==`name`, `src`==`lldp_system_name`,  `src`==`dns_suffix`
+	// If `src`==`name`, `src`==`lldp_system_name`, `src`==`dns_suffix`
 	// "[0:3]"            // "abcdef" -> "abc"
 	// "split(.)[1]"      // "a.b.c" -> "b"
 	// "split(-)[1][0:3]" // "a1234-b5678-c90" -> "b56"'

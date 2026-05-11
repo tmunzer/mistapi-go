@@ -66,7 +66,9 @@ type DeviceprofileAp struct {
 	// - Note: legacy, new config moved to ESL Config.
 	UsbConfig *ApUsb `json:"usb_config,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
-	Vars                 map[string]string      `json:"vars,omitempty"`
+	Vars map[string]string `json:"vars,omitempty"`
+	// Zigbee AP settings
+	ZigbeeConfig         *ApZigbee              `json:"zigbee_config,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -74,8 +76,8 @@ type DeviceprofileAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceprofileAp) String() string {
 	return fmt.Sprintf(
-		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, AdditionalProperties=%v]",
-		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.AdditionalProperties)
+		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
+		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.ZigbeeConfig, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.
@@ -84,7 +86,7 @@ func (d DeviceprofileAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars"); err != nil {
+		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -186,6 +188,9 @@ func (d DeviceprofileAp) toMap() map[string]any {
 	if d.Vars != nil {
 		structMap["vars"] = d.Vars
 	}
+	if d.ZigbeeConfig != nil {
+		structMap["zigbee_config"] = d.ZigbeeConfig.toMap()
+	}
 	return structMap
 }
 
@@ -201,7 +206,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config")
 	if err != nil {
 		return err
 	}
@@ -237,6 +242,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	d.UplinkPortConfig = temp.UplinkPortConfig
 	d.UsbConfig = temp.UsbConfig
 	d.Vars = temp.Vars
+	d.ZigbeeConfig = temp.ZigbeeConfig
 	return nil
 }
 
@@ -272,6 +278,7 @@ type tempDeviceprofileAp struct {
 	UplinkPortConfig *ApUplinkPortConfig     `json:"uplink_port_config,omitempty"`
 	UsbConfig        *ApUsb                  `json:"usb_config,omitempty"`
 	Vars             map[string]string       `json:"vars,omitempty"`
+	ZigbeeConfig     *ApZigbee               `json:"zigbee_config,omitempty"`
 }
 
 func (d *tempDeviceprofileAp) validate() error {

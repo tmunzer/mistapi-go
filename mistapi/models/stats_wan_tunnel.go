@@ -32,7 +32,7 @@ type StatsWanTunnel struct {
 	// Peer ip address
 	PeerIp string `json:"peer_ip"`
 	// enum: `primary`, `secondary`
-	Priority *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
+	Priority *TunnelPriorityEnum `json:"priority,omitempty"`
 	// enum: `gre`, `ipsec`
 	Protocol *WanTunnelProtocolEnum `json:"protocol,omitempty"`
 	// Amount of traffic received since connection
@@ -202,27 +202,27 @@ func (s *StatsWanTunnel) UnmarshalJSON(input []byte) error {
 
 // tempStatsWanTunnel is a temporary struct used for validating the fields of StatsWanTunnel.
 type tempStatsWanTunnel struct {
-	AuthAlgo    *string                     `json:"auth_algo,omitempty"`
-	EncryptAlgo *string                     `json:"encrypt_algo,omitempty"`
-	IkeVersion  *string                     `json:"ike_version,omitempty"`
-	Ip          *string                     `json:"ip,omitempty"`
-	LastEvent   *string                     `json:"last_event,omitempty"`
-	Mac         *string                     `json:"mac,omitempty"`
-	Node        *string                     `json:"node,omitempty"`
-	OrgId       *uuid.UUID                  `json:"org_id,omitempty"`
-	PeerHost    *string                     `json:"peer_host,omitempty"`
-	PeerIp      *string                     `json:"peer_ip"`
-	Priority    *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
-	Protocol    *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
-	RxBytes     Optional[int64]             `json:"rx_bytes"`
-	RxPkts      Optional[int64]             `json:"rx_pkts"`
-	SiteId      *uuid.UUID                  `json:"site_id,omitempty"`
-	TunnelName  *string                     `json:"tunnel_name,omitempty"`
-	TxBytes     Optional[int64]             `json:"tx_bytes"`
-	TxPkts      Optional[int64]             `json:"tx_pkts"`
-	Up          *bool                       `json:"up,omitempty"`
-	Uptime      *int                        `json:"uptime,omitempty"`
-	WanName     *string                     `json:"wan_name,omitempty"`
+	AuthAlgo    *string                `json:"auth_algo,omitempty"`
+	EncryptAlgo *string                `json:"encrypt_algo,omitempty"`
+	IkeVersion  *string                `json:"ike_version,omitempty"`
+	Ip          *string                `json:"ip,omitempty"`
+	LastEvent   *string                `json:"last_event,omitempty"`
+	Mac         *string                `json:"mac,omitempty"`
+	Node        *string                `json:"node,omitempty"`
+	OrgId       *uuid.UUID             `json:"org_id,omitempty"`
+	PeerHost    *string                `json:"peer_host,omitempty"`
+	PeerIp      *string                `json:"peer_ip"`
+	Priority    *TunnelPriorityEnum    `json:"priority,omitempty"`
+	Protocol    *WanTunnelProtocolEnum `json:"protocol,omitempty"`
+	RxBytes     Optional[int64]        `json:"rx_bytes"`
+	RxPkts      Optional[int64]        `json:"rx_pkts"`
+	SiteId      *uuid.UUID             `json:"site_id,omitempty"`
+	TunnelName  *string                `json:"tunnel_name,omitempty"`
+	TxBytes     Optional[int64]        `json:"tx_bytes"`
+	TxPkts      Optional[int64]        `json:"tx_pkts"`
+	Up          *bool                  `json:"up,omitempty"`
+	Uptime      *int                   `json:"uptime,omitempty"`
+	WanName     *string                `json:"wan_name,omitempty"`
 }
 
 func (s *tempStatsWanTunnel) validate() error {

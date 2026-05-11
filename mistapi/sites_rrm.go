@@ -23,6 +23,58 @@ func NewSitesRRM(baseController baseController) *SitesRRM {
 	return &sitesRRM
 }
 
+// GetSiteChannelScores takes context, siteId, band, start, end as parameters and
+// returns an models.ApiResponse with models.ResponseRrmChannelScores data and
+// an error if there was an issue with the request or response.
+// Get Site Channel Scores
+func (s *SitesRRM) GetSiteChannelScores(
+	ctx context.Context,
+	siteId uuid.UUID,
+	band models.Dot11BandEnum,
+	start *string,
+	end *string) (
+	models.ApiResponse[models.ResponseRrmChannelScores],
+	error) {
+	req := s.prepareRequest(
+		ctx,
+		"GET",
+		"/api/v1/sites/%v/rrm/channel_scores/band/%v",
+	)
+	req.AppendTemplateParams(siteId, band)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+
+	var result models.ResponseRrmChannelScores
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseRrmChannelScores](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // GetSiteCurrentChannelPlanning takes context, siteId as parameters and
 // returns an models.ApiResponse with models.Rrm data and
 // an error if there was an issue with the request or response.

@@ -9,17 +9,19 @@ import (
 
 // AccountSkyatpInfo represents a AccountSkyatpInfo struct.
 type AccountSkyatpInfo struct {
-	Realm                *string                `json:"realm,omitempty"`
-	Username             *string                `json:"username,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	// Sky ATP cloud name. enum: `www.amerskyatp.com`, `www.apacskyatp.com`, `www.euroskyatp.com`, `www.canadaskyatp.com`
+	CloudName            *AccountSkyatpCloudNameEnum `json:"cloud_name,omitempty"`
+	Realm                *string                     `json:"realm,omitempty"`
+	Username             *string                     `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AccountSkyatpInfo,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a AccountSkyatpInfo) String() string {
 	return fmt.Sprintf(
-		"AccountSkyatpInfo[Realm=%v, Username=%v, AdditionalProperties=%v]",
-		a.Realm, a.Username, a.AdditionalProperties)
+		"AccountSkyatpInfo[CloudName=%v, Realm=%v, Username=%v, AdditionalProperties=%v]",
+		a.CloudName, a.Realm, a.Username, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for AccountSkyatpInfo.
@@ -28,7 +30,7 @@ func (a AccountSkyatpInfo) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"realm", "username"); err != nil {
+		"cloud_name", "realm", "username"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -38,6 +40,9 @@ func (a AccountSkyatpInfo) MarshalJSON() (
 func (a AccountSkyatpInfo) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, a.AdditionalProperties)
+	if a.CloudName != nil {
+		structMap["cloud_name"] = a.CloudName
+	}
 	if a.Realm != nil {
 		structMap["realm"] = a.Realm
 	}
@@ -55,12 +60,13 @@ func (a *AccountSkyatpInfo) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "realm", "username")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "cloud_name", "realm", "username")
 	if err != nil {
 		return err
 	}
 	a.AdditionalProperties = additionalProperties
 
+	a.CloudName = temp.CloudName
 	a.Realm = temp.Realm
 	a.Username = temp.Username
 	return nil
@@ -68,6 +74,7 @@ func (a *AccountSkyatpInfo) UnmarshalJSON(input []byte) error {
 
 // tempAccountSkyatpInfo is a temporary struct used for validating the fields of AccountSkyatpInfo.
 type tempAccountSkyatpInfo struct {
-	Realm    *string `json:"realm,omitempty"`
-	Username *string `json:"username,omitempty"`
+	CloudName *AccountSkyatpCloudNameEnum `json:"cloud_name,omitempty"`
+	Realm     *string                     `json:"realm,omitempty"`
+	Username  *string                     `json:"username,omitempty"`
 }

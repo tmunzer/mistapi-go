@@ -133,7 +133,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsMxEdges() | Gets OrgsMxEdges |
 | OrgsMxTunnels() | Gets OrgsMxTunnels |
 | OrgsNACIDP() | Gets OrgsNACIDP |
-| OrgsNACFingerprints() | Gets OrgsNACFingerprints |
+| SitesNACFingerprints() | Gets SitesNACFingerprints |
 | OrgsNACTags() | Gets OrgsNACTags |
 | OrgsNACPortals() | Gets OrgsNACPortals |
 | OrgsNACCRL() | Gets OrgsNACCRL |
@@ -154,6 +154,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | OrgsPremiumAnalytics() | Gets OrgsPremiumAnalytics |
 | OrgsPsks() | Gets OrgsPsks |
 | OrgsPskPortals() | Gets OrgsPskPortals |
+| OrgsReports() | Gets OrgsReports |
 | OrgsRFTemplates() | Gets OrgsRFTemplates |
 | OrgsSDKInvites() | Gets OrgsSDKInvites |
 | OrgsSDKTemplates() | Gets OrgsSDKTemplates |
@@ -183,6 +184,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesAPTemplates() | Gets SitesAPTemplates |
 | SitesApplications() | Gets SitesApplications |
 | SitesAnomaly() | Gets SitesAnomaly |
+| SitesAutoMapAssignment() | Gets SitesAutoMapAssignment |
 | SitesAssetFilters() | Gets SitesAssetFilters |
 | SitesAssets() | Gets SitesAssets |
 | SitesBeacons() | Gets SitesBeacons |
@@ -255,6 +257,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesStatsWxRules() | Gets SitesStatsWxRules |
 | SitesStatsZones() | Gets SitesStatsZones |
 | SitesStatsDiscoveredSwitches() | Gets SitesStatsDiscoveredSwitches |
+| SitesStatsIoTEndpoints() | Gets SitesStatsIoTEndpoints |
 | ConstantsDefinitions() | Gets ConstantsDefinitions |
 | ConstantsEvents() | Gets ConstantsEvents |
 | ConstantsModels() | Gets ConstantsModels |

@@ -69,7 +69,7 @@ func TestSitesRRMTestListSiteRrmEvents(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1428954000,"limit":100,"next":"/api/v1/sites/dca0a44b-324c-11e6-a776-0243ad110007/events/rrm?start=1428939600&end=1428949600&limit=200&token=001a0010000000120010000005005880ec18000004776c616e007fffffeb067ab8e29c1d659b6a7c8cf698bf81490003","results":[{"ap_id":"00000000-0000-0000-1000-5c5b359e4fe0","band":"24","bandwidth":20,"channel":6,"event":"scheduled-site_rrm","power":5,"pre_bandwidth":20,"pre_channel":1,"pre_power":11,"pre_usage":"24","timestamp":1428939600,"usage":"24"}],"start":1428939600}`
+	expected := `{"end":1428954000,"limit":100,"next":"/api/v1/sites/dca0a44b-324c-11e6-a776-0243ad110007/events/rrm?start=1428939600&end=1428949600&limit=200&token=001a0010000000120010000005005880ec18000004776c616e007fffffeb067ab8e29c1d659b6a7c8cf698bf81490003","results":[{"ap":"5c5b359e4fe0","band":"24","bandwidth":20,"channel":6,"event":"scheduled-site_rrm","power":5,"pre_bandwidth":20,"pre_channel":1,"pre_power":11,"pre_usage":"24","timestamp":1428939600,"usage":"24"}],"start":1428939600}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -93,6 +93,6 @@ func TestSitesRRMTestListSiteRrmEvents1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1428954000,"limit":100,"next":"/api/v1/sites/dca0a44b-324c-11e6-a776-0243ad110007/events/rrm?start=1428939600&end=1428949600&limit=200&token=001a0010000000120010000005005880ec18000004776c616e007fffffeb067ab8e29c1d659b6a7c8cf698bf81490003","results":[{"ap_id":"00000000-0000-0000-1000-5c5b359e4fe0","band":"24","bandwidth":20,"channel":6,"event":"scheduled-site_rrm","power":5,"pre_bandwidth":20,"pre_channel":1,"pre_power":11,"pre_usage":"24","timestamp":1428939600,"usage":"24"}],"start":1428939600}`
+	expected := `{"end":1428954000,"limit":100,"next":"/api/v1/sites/dca0a44b-324c-11e6-a776-0243ad110007/events/rrm?start=1428939600&end=1428949600&limit=200&token=001a0010000000120010000005005880ec18000004776c616e007fffffeb067ab8e29c1d659b6a7c8cf698bf81490003","results":[{"ap":"5c5b359e4fe0","band":"24","bandwidth":20,"channel":6,"event":"scheduled-site_rrm","power":5,"pre_bandwidth":20,"pre_channel":1,"pre_power":11,"pre_usage":"24","timestamp":1428939600,"usage":"24"}],"start":1428939600}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

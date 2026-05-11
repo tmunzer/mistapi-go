@@ -10,24 +10,27 @@ import (
 )
 
 // CaptureMxedge represents a CaptureMxedge struct.
-// Initiate a Wireless Packet Capture
+// Initiate a Mist Edge Packet Capture
 type CaptureMxedge struct {
-	// Duration of the capture, in seconds
+	// Duration of the capture, in seconds. Default is 600, minimum is 60 and maximum is 10800 (3h)
 	Duration *int `json:"duration,omitempty"`
 	// PCAP format. enum:
 	// * `stream`: to Mist cloud
 	// * `tzsp`: stream packets (over UDP as TZSP packets) to a remote host (typically running Wireshark)
 	Format *CaptureMxedgeFormatEnum `json:"format,omitempty"`
-	// Max_len of each packet to capture
-	MaxPktLen *int                            `json:"max_pkt_len,omitempty"`
-	Mxedges   map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
-	// Number of packets to capture, 0 for unlimited
+	// Max_len of each packet to capture. Default is 512, minimum is 64 and maximum is 2048
+	MaxPktLen *int `json:"max_pkt_len,omitempty"`
+	// Dict of Mist Edges to capture on, property key is the Mist Edge ID. Property value is a dict of interfaces to capture for the given mxedge (e.g. port1, kni0, lacp0, ipsec, drop, oobm)
+	Mxedges map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
+	// Number of packets to capture. Default is 1024, maximum is 10000, minimum 1, or 0 for unlimited (local/remote streaming only)
 	NumPackets *int `json:"num_packets,omitempty"`
+	// tcpdump expression, applicable across all interfaces if specified at top level. An interface-specific value (under the `interfaces` dict) overrides this top-level value.
+	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
 	// enum: `mxedge`
 	Type string `json:"type"`
-	// Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
+	// Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets
 	TzspHost *string `json:"tzsp_host,omitempty"`
-	// If `format`==`tzsp`. Port on remote host for receiving the captured packets
+	// Optional port on remote host for receiving the captured packets. Default is 37008 (TZSP)
 	TzspPort             *int                   `json:"tzsp_port,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -36,8 +39,8 @@ type CaptureMxedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c CaptureMxedge) String() string {
 	return fmt.Sprintf(
-		"CaptureMxedge[Duration=%v, Format=%v, MaxPktLen=%v, Mxedges=%v, NumPackets=%v, Type=%v, TzspHost=%v, TzspPort=%v, AdditionalProperties=%v]",
-		c.Duration, c.Format, c.MaxPktLen, c.Mxedges, c.NumPackets, c.Type, c.TzspHost, c.TzspPort, c.AdditionalProperties)
+		"CaptureMxedge[Duration=%v, Format=%v, MaxPktLen=%v, Mxedges=%v, NumPackets=%v, TcpdumpExpression=%v, Type=%v, TzspHost=%v, TzspPort=%v, AdditionalProperties=%v]",
+		c.Duration, c.Format, c.MaxPktLen, c.Mxedges, c.NumPackets, c.TcpdumpExpression, c.Type, c.TzspHost, c.TzspPort, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for CaptureMxedge.
@@ -46,7 +49,7 @@ func (c CaptureMxedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port"); err != nil {
+		"duration", "format", "max_pkt_len", "mxedges", "num_packets", "tcpdump_expression", "type", "tzsp_host", "tzsp_port"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -71,6 +74,9 @@ func (c CaptureMxedge) toMap() map[string]any {
 	if c.NumPackets != nil {
 		structMap["num_packets"] = c.NumPackets
 	}
+	if c.TcpdumpExpression != nil {
+		structMap["tcpdump_expression"] = c.TcpdumpExpression
+	}
 	structMap["type"] = c.Type
 	if c.TzspHost != nil {
 		structMap["tzsp_host"] = c.TzspHost
@@ -93,7 +99,7 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "type", "tzsp_host", "tzsp_port")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "format", "max_pkt_len", "mxedges", "num_packets", "tcpdump_expression", "type", "tzsp_host", "tzsp_port")
 	if err != nil {
 		return err
 	}
@@ -104,6 +110,7 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
 	c.MaxPktLen = temp.MaxPktLen
 	c.Mxedges = temp.Mxedges
 	c.NumPackets = temp.NumPackets
+	c.TcpdumpExpression = temp.TcpdumpExpression
 	c.Type = *temp.Type
 	c.TzspHost = temp.TzspHost
 	c.TzspPort = temp.TzspPort
@@ -112,14 +119,15 @@ func (c *CaptureMxedge) UnmarshalJSON(input []byte) error {
 
 // tempCaptureMxedge is a temporary struct used for validating the fields of CaptureMxedge.
 type tempCaptureMxedge struct {
-	Duration   *int                            `json:"duration,omitempty"`
-	Format     *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
-	MaxPktLen  *int                            `json:"max_pkt_len,omitempty"`
-	Mxedges    map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
-	NumPackets *int                            `json:"num_packets,omitempty"`
-	Type       *string                         `json:"type"`
-	TzspHost   *string                         `json:"tzsp_host,omitempty"`
-	TzspPort   *int                            `json:"tzsp_port,omitempty"`
+	Duration          *int                            `json:"duration,omitempty"`
+	Format            *CaptureMxedgeFormatEnum        `json:"format,omitempty"`
+	MaxPktLen         *int                            `json:"max_pkt_len,omitempty"`
+	Mxedges           map[string]CaptureMxedgeMxedges `json:"mxedges,omitempty"`
+	NumPackets        *int                            `json:"num_packets,omitempty"`
+	TcpdumpExpression *string                         `json:"tcpdump_expression,omitempty"`
+	Type              *string                         `json:"type"`
+	TzspHost          *string                         `json:"tzsp_host,omitempty"`
+	TzspPort          *int                            `json:"tzsp_port,omitempty"`
 }
 
 func (c *tempCaptureMxedge) validate() error {

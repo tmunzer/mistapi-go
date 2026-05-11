@@ -469,17 +469,26 @@ func TestSitesDevicesTestSearchSiteDevices(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mType := models.DeviceTypeDefaultApEnum("ap")
+	eth0PortSpeed := int(100)
 
-	ip := "192.168.1.1"
+	extIp := "1.2.3.4"
+	hostname := "my-london-1"
+	ip := "10.100.10.54"
+	lastConfigStatus := "success"
+
+	mac := "aabbccddeeff"
+	model := "AP43"
 
 	stats := bool(false)
+
+	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := models.SearchSiteDevicesSortEnum("timestamp")
 
-	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
+	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -500,17 +509,26 @@ func TestSitesDevicesTestSearchSiteDevices1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mType := models.DeviceTypeDefaultApEnum("ap")
+	eth0PortSpeed := int(100)
 
-	ip := "192.168.1.1"
+	extIp := "1.2.3.4"
+	hostname := "my-london-1"
+	ip := "10.100.10.54"
+	lastConfigStatus := "success"
+
+	mac := "aabbccddeeff"
+	model := "AP43"
 
 	stats := bool(false)
+
+	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := models.SearchSiteDevicesSortEnum("timestamp")
 
-	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
+	apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

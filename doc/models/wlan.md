@@ -30,12 +30,12 @@
 | `AuthServers` | [`[]models.RadiusAuthServer`](../../doc/models/radius-auth-server.md) | Optional | List of RADIUS authentication servers, at least one is needed if `auth type`==`eap`, order matters where the first one is treated as primary |
 | `AuthServersNasId` | `models.Optional[string]` | Optional | Optional, up to 48 bytes, will be dynamically generated if not provided. used only for authentication servers |
 | `AuthServersNasIp` | `models.Optional[string]` | Optional | Optional, NAS-IP-ADDRESS to use |
-| `AuthServersRetries` | `*int` | Optional | Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.<br><br>**Default**: `2` |
+| `AuthServersRetries` | `*int` | Optional | Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’ are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.<br><br>**Default**: `2` |
 | `AuthServersTimeout` | `*int` | Optional | Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.<br><br>**Default**: `5` |
 | `Band` | `*string` | Optional | `band` is deprecated and kept for backward compatibility. Use bands instead |
 | `BandSteer` | `*bool` | Optional | Whether to enable band_steering, this works only when band==both<br><br>**Default**: `false` |
 | `BandSteerForceBand5` | `*bool` | Optional | Force dual_band capable client to connect to 5G<br><br>**Default**: `false` |
-| `Bands` | [`[]models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Optional | List of radios that the wlan should apply to. |
+| `Bands` | [`[]models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Optional | List of radios that the wlan should apply to. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
 | `BlockBlacklistClients` | `*bool` | Optional | Whether to block the clients in the blacklist (up to first 256 macs)<br><br>**Default**: `false` |
 | `Bonjour` | [`*models.WlanBonjour`](../../doc/models/wlan-bonjour.md) | Optional | Bonjour gateway wlan settings |
 | `CiscoCwa` | [`*models.WlanCiscoCwa`](../../doc/models/wlan-cisco-cwa.md) | Optional | Cisco CWA (central web authentication) required RADIUS with COA in order to work. See CWA: https://www.cisco.com/c/en/us/support/docs/security/identity-services-engine/115732-central-web-auth-00.html |

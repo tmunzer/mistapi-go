@@ -28,7 +28,7 @@ orgsMxEdges := client.OrgsMxEdges()
 * [Restart Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#restart-org-mx-edge)
 * [Search Org Mist Edge Events](../../doc/controllers/orgs-mx-edges.md#search-org-mist-edge-events)
 * [Search Org Mx Edges](../../doc/controllers/orgs-mx-edges.md#search-org-mx-edges)
-* [Unassign Org Mx Edge From Site](../../doc/controllers/orgs-mx-edges.md#unassign-org-mx-edge-from-site)
+* [Unassign Org Mx Edge from Site](../../doc/controllers/orgs-mx-edges.md#unassign-org-mx-edge-from-site)
 * [Unregister Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#unregister-org-mx-edge)
 * [Update Org Mx Edge](../../doc/controllers/orgs-mx-edges.md#update-org-mx-edge)
 * [Upload Org Mx Edge Support Files](../../doc/controllers/orgs-mx-edges.md#upload-org-mx-edge-support-files)
@@ -1639,12 +1639,13 @@ Search Org Mist Edges
 SearchOrgMxEdges(
     ctx context.Context,
     orgId uuid.UUID,
+    hostname *string,
     mxedgeId *string,
-    siteId *string,
     mxclusterId *string,
     model *string,
     distro *string,
     tuntermVersion *string,
+    siteId *string,
     stats *bool,
     limit *int,
     start *string,
@@ -1661,12 +1662,13 @@ SearchOrgMxEdges(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
+| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported |
 | `mxedgeId` | `*string` | Query, Optional | Mist edge id |
-| `siteId` | `*string` | Query, Optional | Mist edge site id |
 | `mxclusterId` | `*string` | Query, Optional | Mist edge cluster id |
-| `model` | `*string` | Query, Optional | Model name |
+| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported |
 | `distro` | `*string` | Query, Optional | Debian code name (buster, bullseye) |
 | `tuntermVersion` | `*string` | Query, Optional | tunterm version |
+| `siteId` | `*string` | Query, Optional | Mist edge site id |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats, default is false |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
@@ -1686,13 +1688,17 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+hostname := "my-london-1"
+
+model := "AP43"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, &hostname, nil, nil, &model, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -1748,7 +1754,7 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Unassign Org Mx Edge From Site
+# Unassign Org Mx Edge from Site
 
 Unassign Org MxEdge from Site
 

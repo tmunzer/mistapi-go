@@ -13,7 +13,7 @@ Latest Authentication status of the client. enum: `denied`, `permitted`, `sessio
 |  --- |
 | `permitted` |
 | `session_started` |
-| `session_ended` |
+| `session_stopped` |
 | `denied` |
 
 ## Example

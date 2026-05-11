@@ -68,7 +68,7 @@ func (u *UtilitiesCommon) RestartSiteMultipleDevices(
 // ArpFromDevice takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// ARP can be performed on the Device. The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// ARP can be performed on the Device. The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -134,7 +134,7 @@ func (u *UtilitiesCommon) ArpFromDevice(
 // an error if there was an issue with the request or response.
 // Port Bounce can be performed from Switch/Gateway.
 // **Note:** Ports starting with vme, ae, irb, and HA control ports (for SSR only) are not supported
-// The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -195,7 +195,7 @@ func (u *UtilitiesCommon) BounceDevicePort(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Clear MAC Table from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -248,14 +248,15 @@ func (u *UtilitiesCommon) ClearSiteDeviceMacTable(
 	return models.NewApiResponse(result, resp), err
 }
 
-// ClearSiteDevicePolicyHitCount takes context, siteId, deviceId as parameters and
+// ClearSiteDevicePolicyHitCount takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSessionWithUrl data and
 // an error if there was an issue with the request or response.
-// Clear application policy hit counts for all the policies
+// Clear application policy hit counts for the specified policy.
 func (u *UtilitiesCommon) ClearSiteDevicePolicyHitCount(
 	ctx context.Context,
 	siteId uuid.UUID,
-	deviceId uuid.UUID) (
+	deviceId uuid.UUID,
+	body *models.ClearPolicyHitCount) (
 	models.ApiResponse[models.WebsocketSessionWithUrl],
 	error) {
 	req := u.prepareRequest(
@@ -281,6 +282,10 @@ func (u *UtilitiesCommon) ClearSiteDevicePolicyHitCount(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
 
 	var result models.WebsocketSessionWithUrl
 	decoder, resp, err := req.CallAsJson()
@@ -445,7 +450,7 @@ func (u *UtilitiesCommon) MonitorSiteDeviceTraffic(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Ping from AP, Switch and SSR
-// Ping can be performed from the Device. The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// Ping can be performed from the Device. The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -756,64 +761,11 @@ func (u *UtilitiesCommon) CreateSiteDeviceShellSession(
 	return models.NewApiResponse(result, resp), err
 }
 
-// ShowSiteDeviceArpTable takes context, siteId, deviceId, body as parameters and
-// returns an models.ApiResponse with models.WebsocketSession data and
-// an error if there was an issue with the request or response.
-// Get ARP Table from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-// #### Subscribe to Device Command outputs
-// `WS /api-ws/v1/stream`
-// ```json
-// {
-// "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-// }
-// ```
-func (u *UtilitiesCommon) ShowSiteDeviceArpTable(
-	ctx context.Context,
-	siteId uuid.UUID,
-	deviceId uuid.UUID,
-	body *models.UtilsShowArp) (
-	models.ApiResponse[models.WebsocketSession],
-	error) {
-	req := u.prepareRequest(ctx, "POST", "/api/v1/sites/%v/devices/%v/show_arp")
-	req.AppendTemplateParams(siteId, deviceId)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
-	req.AppendErrors(map[string]https.ErrorBuilder[error]{
-		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
-		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
-	})
-	req.Header("Content-Type", "application/json")
-	if body != nil {
-		req.Json(body)
-	}
-
-	var result models.WebsocketSession
-	decoder, resp, err := req.CallAsJson()
-	if err != nil {
-		return models.NewApiResponse(result, resp), err
-	}
-
-	result, err = utilities.DecodeResults[models.WebsocketSession](decoder)
-	return models.NewApiResponse(result, resp), err
-}
-
 // ShowSiteDeviceBgpSummary takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get BGP Summary from SSR, SRX and Switch.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -933,7 +885,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceDhcpLeases(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get Dot1X Table from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -1034,7 +986,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceEvpnDatabase(
 // ShowSiteDeviceForwardingTable takes context, siteId, deviceId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// Get forwarding table from the Device. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// Get forwarding table from the Device. The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -1095,7 +1047,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceForwardingTable(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get MAC Table from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -1181,7 +1133,7 @@ func (u *UtilitiesCommon) ShowSiteDeviceMacTable(
 // | process | string | Upload 1 file with output of show system processes extensive |
 // | outbound-ssh | string | Upload 1 file that concatenates all /var/log/outbound-ssh.log* files |
 // | messages | string | Upload 1 to 10 /var/log/messages* files |
-// | core-dumps | string | Upload all core dump files, if any |
+// | core-dumps | string | Upload all core dump files, if any. Uploads for all members of VC on switches.|
 // | full | string | Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent) |
 // | var-logs | string | Upload all non-empty files in the /var/log/ directory |
 // | jma-logs | string | Upload Mist agent logs (for Junos devices running the Mist agent only) |
@@ -1228,7 +1180,7 @@ func (u *UtilitiesCommon) UploadSiteDeviceSupportFile(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Traceroute can be performed from the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json

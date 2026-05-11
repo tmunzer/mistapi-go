@@ -13,6 +13,8 @@ Authentication wlan settings
 |  --- | --- | --- | --- |
 | `AnticlogThreshold` | `*int` | Optional | SAE anti-clogging token threshold<br><br>**Default**: `16`<br><br>**Constraints**: `>= 16`, `<= 32` |
 | `EapReauth` | `*bool` | Optional | Whether to trigger EAP reauth when the session ends<br><br>**Default**: `false` |
+| `EnableBeaconProtection` | `*bool` | Optional | Enable Beacon Protection; default is false for better compatibility<br><br>**Default**: `false` |
+| `EnableGcmp256` | `*bool` | Optional | Enable GCMP-256 encryption suite; default is false for better compatibility<br><br>**Default**: `false` |
 | `EnableMacAuth` | `*bool` | Optional | Whether to enable MAC Auth, uses the same auth_servers<br><br>**Default**: `false` |
 | `KeyIdx` | `*int` | Optional | When `type`==`wep`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 4` |
 | `Keys` | `[]string` | Optional | When type=wep, four 10-character or 26-character hex string, null can be used. All keys, if provided, have to be in the same length |
@@ -30,6 +32,8 @@ Authentication wlan settings
 {
   "anticlog_threshold": 16,
   "eap_reauth": false,
+  "enable_beacon_protection": false,
+  "enable_gcmp256": false,
   "enable_mac_auth": false,
   "key_idx": 1,
   "keys": null,

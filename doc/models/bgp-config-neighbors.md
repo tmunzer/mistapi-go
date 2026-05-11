@@ -15,6 +15,7 @@
 | `ImportPolicy` | `*string` | Optional | - |
 | `MultihopTtl` | `*int` | Optional | Assuming BGP neighbor is directly connected<br><br>**Constraints**: `>= 0`, `<= 255` |
 | `NeighborAs` | [`models.BgpAs`](../../doc/models/containers/bgp-as.md) | Required | BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` ) |
+| `TunnelVia` | [`*models.TunnelViaEnum`](../../doc/models/tunnel-via-enum.md) | Optional | If `via`==`tunnel`, specifies which tunnel (primary/secondary) this neighbor is associated with. enum: `primary`, `secondary`<br><br>**Default**: `"primary"` |
 
 ## Example (as JSON)
 
@@ -23,6 +24,7 @@
   "disabled": false,
   "hold_time": 90,
   "neighbor_as": 65000,
+  "tunnel_via": "primary",
   "export_policy": "export_policy4",
   "import_policy": "import_policy8",
   "multihop_ttl": 72

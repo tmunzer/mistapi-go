@@ -28,7 +28,7 @@ type StatsGatewayWanTunnel struct {
 	// Peer ip address
 	PeerIp *string `json:"peer_ip,omitempty"`
 	// enum: `primary`, `secondary`
-	Priority *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
+	Priority *TunnelPriorityEnum `json:"priority,omitempty"`
 	// enum: `gre`, `ipsec`
 	Protocol *WanTunnelProtocolEnum `json:"protocol,omitempty"`
 	// Amount of traffic received since connection
@@ -187,23 +187,23 @@ func (s *StatsGatewayWanTunnel) UnmarshalJSON(input []byte) error {
 
 // tempStatsGatewayWanTunnel is a temporary struct used for validating the fields of StatsGatewayWanTunnel.
 type tempStatsGatewayWanTunnel struct {
-	AuthAlgo    *string                     `json:"auth_algo,omitempty"`
-	EncryptAlgo *string                     `json:"encrypt_algo,omitempty"`
-	IkeVersion  *string                     `json:"ike_version,omitempty"`
-	Ip          *string                     `json:"ip,omitempty"`
-	LastEvent   *string                     `json:"last_event,omitempty"`
-	LastFlapped *float64                    `json:"last_flapped,omitempty"`
-	Node        *string                     `json:"node,omitempty"`
-	PeerHost    *string                     `json:"peer_host,omitempty"`
-	PeerIp      *string                     `json:"peer_ip,omitempty"`
-	Priority    *StatsWanTunnelPriorityEnum `json:"priority,omitempty"`
-	Protocol    *WanTunnelProtocolEnum      `json:"protocol,omitempty"`
-	RxBytes     Optional[int64]             `json:"rx_bytes"`
-	RxPkts      Optional[int64]             `json:"rx_pkts"`
-	TunnelName  *string                     `json:"tunnel_name,omitempty"`
-	TxBytes     Optional[int64]             `json:"tx_bytes"`
-	TxPkts      Optional[int64]             `json:"tx_pkts"`
-	Up          *bool                       `json:"up,omitempty"`
-	Uptime      *int                        `json:"uptime,omitempty"`
-	WanName     *string                     `json:"wan_name,omitempty"`
+	AuthAlgo    *string                `json:"auth_algo,omitempty"`
+	EncryptAlgo *string                `json:"encrypt_algo,omitempty"`
+	IkeVersion  *string                `json:"ike_version,omitempty"`
+	Ip          *string                `json:"ip,omitempty"`
+	LastEvent   *string                `json:"last_event,omitempty"`
+	LastFlapped *float64               `json:"last_flapped,omitempty"`
+	Node        *string                `json:"node,omitempty"`
+	PeerHost    *string                `json:"peer_host,omitempty"`
+	PeerIp      *string                `json:"peer_ip,omitempty"`
+	Priority    *TunnelPriorityEnum    `json:"priority,omitempty"`
+	Protocol    *WanTunnelProtocolEnum `json:"protocol,omitempty"`
+	RxBytes     Optional[int64]        `json:"rx_bytes"`
+	RxPkts      Optional[int64]        `json:"rx_pkts"`
+	TunnelName  *string                `json:"tunnel_name,omitempty"`
+	TxBytes     Optional[int64]        `json:"tx_bytes"`
+	TxPkts      Optional[int64]        `json:"tx_pkts"`
+	Up          *bool                  `json:"up,omitempty"`
+	Uptime      *int                   `json:"uptime,omitempty"`
+	WanName     *string                `json:"wan_name,omitempty"`
 }

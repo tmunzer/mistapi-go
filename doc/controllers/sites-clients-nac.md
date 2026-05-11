@@ -14,6 +14,7 @@ sitesClientsNAC := client.SitesClientsNAC()
 * [Count Site Nac Clients](../../doc/controllers/sites-clients-nac.md#count-site-nac-clients)
 * [Search Site Nac Client Events](../../doc/controllers/sites-clients-nac.md#search-site-nac-client-events)
 * [Search Site Nac Clients](../../doc/controllers/sites-clients-nac.md#search-site-nac-clients)
+* [Send Site Nac Client Co A](../../doc/controllers/sites-clients-nac.md#send-site-nac-client-co-a)
 
 
 # Count Site Nac Client Events
@@ -306,7 +307,7 @@ SearchSiteNacClientEvents(
 | `mac` | `*string` | Query, Optional | MAC address |
 | `timestamp` | `*float64` | Query, Optional | Time, in epoch |
 | `usermacLabel` | `*string` | Query, Optional | Labels derived from usermac entry |
-| `text` | `*string` | Query, Optional | Partial / full MAC address, username, device_mac or ap |
+| `text` | `*string` | Query, Optional | Partial / full MAC address, username, device_mac or ap. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
 | `nasIp` | `*string` | Query, Optional | IP address of NAS device |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
@@ -427,6 +428,7 @@ SearchSiteNacClients(
     siteId uuid.UUID,
     ap *string,
     authType *string,
+    certExpiryDuration *string,
     edrManaged *bool,
     edrProvider *models.EdrProviderEnum,
     edrStatus *models.EdrStatusEnum,
@@ -434,15 +436,14 @@ SearchSiteNacClients(
     hostname *string,
     idpId *string,
     mac *string,
-    mdmManaged *bool,
     mdmCompliance *string,
     mdmProvider *string,
+    mdmManaged *bool,
     mfg *string,
     model *string,
-    mxedgeId *string,
+    nacruleName *string,
     nacruleId *string,
     nacruleMatched *bool,
-    nacruleName *string,
     nasVendor *string,
     nasIp *string,
     ingressVlan *string,
@@ -470,31 +471,31 @@ SearchSiteNacClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `ap` | `*string` | Query, Optional | AP MAC connected to by client |
+| `ap` | `*string` | Query, Optional | MAC Address of the AP the client is/was connected to |
 | `authType` | `*string` | Query, Optional | Authentication type, e.g. "eap-tls", "eap-peap", "eap-ttls", "eap-teap", "mab", "psk", "device-auth" |
+| `certExpiryDuration` | `*string` | Query, Optional | Filter by certificate expiry within a specific duration from now (e.g., "7d" for 7 days, "1m" for 1 month) |
 | `edrManaged` | `*bool` | Query, Optional | Filters NAC clients that are integrated with EDR providers |
 | `edrProvider` | [`*models.EdrProviderEnum`](../../doc/models/edr-provider-enum.md) | Query, Optional | EDR provider of client's organization |
 | `edrStatus` | [`*models.EdrStatusEnum`](../../doc/models/edr-status-enum.md) | Query, Optional | EDR Status of the NAC client |
-| `family` | `*string` | Query, Optional | Client family, e.g. "Phone/Tablet/Wearable", "Access Point" |
-| `hostname` | `*string` | Query, Optional | Client hostname, e.g. "my-laptop", "my-phone" |
+| `family` | `*string` | Query, Optional | Partial / full Client family (e.g. "Phone/Tablet/Wearable", "Access Point"). Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Surveillance*` and `*urveillance*` match `Surveillance Camera`). Suffix-only wildcards (e.g. `*Camera`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
 | `idpId` | `*string` | Query, Optional | SSO ID, if present and used |
-| `mac` | `*string` | Query, Optional | MAC address |
-| `mdmManaged` | `*bool` | Query, Optional | Filters NAC clients that are managed by MDM providers |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
 | `mdmCompliance` | `*string` | Query, Optional | MDM compliance of client i.e "compliant", "not compliant" |
-| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organisation eg "intune", "jamf" |
-| `mfg` | `*string` | Query, Optional | Client manufacturer, e.g. "apple", "cisco", "juniper" |
+| `mdmProvider` | `*string` | Query, Optional | MDM provider of client’s organization eg "intune", "jamf" |
+| `mdmManaged` | `*bool` | Query, Optional | Filters NAC clients that are managed by MDM providers |
+| `mfg` | `*string` | Query, Optional | Partial / full Client manufacturer (e.g. "apple", "cisco", "juniper"). Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Raspberry Pi*` and `*Pi*` match `Raspberry Pi Trading Ltd`). Suffix-only wildcards (e.g. `*Ltd`) are not supported |
 | `model` | `*string` | Query, Optional | Client model, e.g. "iPhone 12", "MX100" |
-| `mxedgeId` | `*string` | Query, Optional | ID of Mist Edge that the client is connected through |
+| `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
 | `nacruleId` | `*string` | Query, Optional | NAC Policy Rule ID, if matched |
 | `nacruleMatched` | `*bool` | Query, Optional | NAC Policy Rule Matched |
-| `nacruleName` | `*string` | Query, Optional | NAC Policy Rule Name matched |
 | `nasVendor` | `*string` | Query, Optional | Vendor of NAS device |
 | `nasIp` | `*string` | Query, Optional | IP address of NAS device |
 | `ingressVlan` | `*string` | Query, Optional | Vendor specific Vlan ID in radius requests |
 | `os` | `*string` | Query, Optional | Client OS, e.g. "iOS 18.1", "Android", "Windows", "Linux" |
 | `ssid` | `*string` | Query, Optional | SSID |
-| `status` | [`*models.NacClientLastStatusEnum`](../../doc/models/nac-client-last-status-enum.md) | Query, Optional | Connection status of client i.e "permitted", "denied, "session_ended" |
-| `text` | `*string` | Query, Optional | partial / full MAC address, last_username, device_mac, nas_ip or last_ap |
+| `status` | [`*models.NacClientLastStatusEnum`](../../doc/models/nac-client-last-status-enum.md) | Query, Optional | Connection status of client i.e "permitted", "denied, "session_started", "session_stopped" |
+| `text` | `*string` | Query, Optional | partial / full MAC address, last_username, device_mac, nas_ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported. |
 | `timestamp` | `*float64` | Query, Optional | Start time, in epoch |
 | `mType` | `*string` | Query, Optional | Client type i.e. "wireless", "wired" etc. |
 | `usermacLabel` | `[]string` | Query, Optional | Labels derived from usermac entry<br><br>**Constraints**: *Unique Items Required* |
@@ -518,6 +519,16 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+certExpiryDuration := "7d"
+
+family := "Surveillance Camera"
+
+hostname := "my-everest-client"
+
+mac := "aabbccddeeff"
+
+mfg := "Raspberry Pi Trading Ltd"
+
 status := models.NacClientLastStatusEnum_PERMITTED
 
 limit := 100
@@ -526,7 +537,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := sitesClientsNAC.SearchSiteNacClients(ctx, siteId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -618,6 +629,79 @@ if err != nil {
   ],
   "start": 1513276353,
   "total": 2
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Send Site Nac Client Co A
+
+Sends CoA (Change of Authorization) command to a NAC client.
+
+```go
+SendSiteNacClientCoA(
+    ctx context.Context,
+    siteId uuid.UUID,
+    clientMac string,
+    body *models.NacClientCoa) (
+    models.ApiResponse[models.NacClientCoaResponse],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `clientMac` | `string` | Template, Required | **Constraints**: *Pattern*: `^[0-9a-fA-F]{12}$` |
+| `body` | [`*models.NacClientCoa`](../../doc/models/nac-client-coa.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.NacClientCoaResponse](../../doc/models/nac-client-coa-response.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+clientMac := "0000000000ab"
+
+body := models.NacClientCoa{
+    CoaType:              models.ToPointer(models.NacCoaTypeEnum_REAUTH),
+}
+
+apiResponse, err := sitesClientsNAC.SendSiteNacClientCoA(ctx, siteId, clientMac, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 

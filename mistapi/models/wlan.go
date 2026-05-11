@@ -47,7 +47,7 @@ type Wlan struct {
 	AuthServersNasId Optional[string] `json:"auth_servers_nas_id"`
 	// Optional, NAS-IP-ADDRESS to use
 	AuthServersNasIp Optional[string] `json:"auth_servers_nas_ip"`
-	// Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’  are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
+	// Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’ are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
 	AuthServersRetries *int `json:"auth_servers_retries,omitempty"`
 	// Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
 	AuthServersTimeout *int `json:"auth_servers_timeout,omitempty"`
@@ -57,7 +57,7 @@ type Wlan struct {
 	BandSteer *bool `json:"band_steer,omitempty"`
 	// Force dual_band capable client to connect to 5G
 	BandSteerForceBand5 *bool `json:"band_steer_force_band5,omitempty"`
-	// List of radios that the wlan should apply to.
+	// List of radios that the wlan should apply to. enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 	Bands []Dot11BandEnum `json:"bands,omitempty"`
 	// Whether to block the clients in the blacklist (up to first 256 macs)
 	BlockBlacklistClients *bool `json:"block_blacklist_clients,omitempty"`

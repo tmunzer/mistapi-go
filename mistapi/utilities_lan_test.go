@@ -206,7 +206,7 @@ func TestUtilitiesLANTestClearSiteDeviceDot1xSession(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.ClearDot1xSession
-	errBody := json.Unmarshal([]byte(`{"port_id":"ge-0/0/0"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"ports":["ge-0/0/0"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -233,7 +233,7 @@ func TestUtilitiesLANTestClearSiteDeviceDot1xSession1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.ClearDot1xSession
-	errBody := json.Unmarshal([]byte(`{"port_id":"ge-0/0/0"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"ports":["ge-0/0/0"]}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -323,6 +323,52 @@ func TestUtilitiesLANTestRestoreSiteDeviceBackupVersion(t *testing.T) {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
 	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestUtilitiesLANTestShowSiteDeviceArpTable tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestShowSiteDeviceArpTable(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesLan.ShowSiteDeviceArpTable(ctx, siteId, deviceId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesLANTestShowSiteDeviceArpTable1 tests the behavior of the UtilitiesLAN
+func TestUtilitiesLANTestShowSiteDeviceArpTable1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesLan.ShowSiteDeviceArpTable(ctx, siteId, deviceId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
 // TestUtilitiesLANTestCreateSiteDeviceSnapshot tests the behavior of the UtilitiesLAN

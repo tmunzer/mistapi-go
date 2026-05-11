@@ -1,5 +1,5 @@
 
-# Gateway Port Vlan Id With Variable
+# Gateway Port Vlan Id with Variable
 
 ## Class Name
 

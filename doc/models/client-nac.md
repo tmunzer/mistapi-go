@@ -45,11 +45,11 @@
 | `NasIp` | `*string` | Optional | - |
 | `NasVendor` | `[]string` | Optional | Vendor name of the NAS for the specified duration |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `PortId` | `[]string` | Optional | Port-ids the client was connected to  for the specified duration |
+| `PortId` | `[]string` | Optional | Port-ids the client was connected to for the specified duration |
 | `RandomMac` | [`*models.RandomMacEnum`](../../doc/models/random-mac-enum.md) | Optional | Whether the client is using randomized MAC Address or not |
 | `RespAttrs` | `[]string` | Optional | List of Radius AVP returned by the Authentication Server<br><br>**Constraints**: *Unique Items Required* |
 | `SiteId` | `*uuid.UUID` | Optional | - |
-| `Ssid` | `[]string` | Optional | SSIDs the client was connected to  for the specified duration |
+| `Ssid` | `[]string` | Optional | SSIDs the client was connected to for the specified duration |
 | `Timestamp` | `*float64` | Optional | Epoch (seconds) |
 | `Type` | [`*models.NacAccessTypeEnum`](../../doc/models/nac-access-type-enum.md) | Optional | Type of network access. enum: `wireless`, `wired`, `vty` |
 | `UsermacLabel` | `[]string` | Optional | **Constraints**: *Unique Items Required* |

@@ -18,7 +18,7 @@
 | `ApId` | `uuid.UUID` | Required | AP ID the client is connected to |
 | `ApMac` | `string` | Required | AP the client is connected to |
 | `AssocTime` | `*int` | Optional | - |
-| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
+| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
 | `Bssid` | `*string` | Optional | - |
 | `Channel` | `int` | Required | Current channel |
 | `DualBand` | `*bool` | Optional | Whether the client is dual_band capable (determined by whether we’ve seen probe requests from both bands) |

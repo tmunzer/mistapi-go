@@ -11,7 +11,7 @@ import (
 
 // UtilsClearBgp represents a UtilsClearBgp struct.
 type UtilsClearBgp struct {
-	// Neighbor ip-address or 'all'
+	// can be ip, ipv6, all
 	Neighbor string `json:"neighbor"`
 	// only for HA. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`

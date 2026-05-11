@@ -57,7 +57,7 @@ type SiteSettingSwitch struct {
 	SnmpConfig      *SnmpConfig                `json:"snmp_config,omitempty"`
 	// Defines custom switch configuration based on different criteria
 	SwitchMatching *SwitchMatching `json:"switch_matching,omitempty"`
-	// Switch settings
+	// Switch Management settings
 	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	VrfConfig  *VrfConfig  `json:"vrf_config,omitempty"`
 	// Property key is the network name

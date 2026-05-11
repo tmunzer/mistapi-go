@@ -17,7 +17,9 @@ type ApMesh struct {
 	// Mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional
 	Group Optional[int] `json:"group"`
 	// enum: `base`, `remote`
-	Role                 *ApMeshRoleEnum        `json:"role,omitempty"`
+	Role *ApMeshRoleEnum `json:"role,omitempty"`
+	// Whether to use WPA3 on the 5 GHz band for mesh links
+	UseWpa3On5           *bool                  `json:"use_wpa3_on_5,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -25,8 +27,8 @@ type ApMesh struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (a ApMesh) String() string {
 	return fmt.Sprintf(
-		"ApMesh[Bands=%v, Enabled=%v, Group=%v, Role=%v, AdditionalProperties=%v]",
-		a.Bands, a.Enabled, a.Group, a.Role, a.AdditionalProperties)
+		"ApMesh[Bands=%v, Enabled=%v, Group=%v, Role=%v, UseWpa3On5=%v, AdditionalProperties=%v]",
+		a.Bands, a.Enabled, a.Group, a.Role, a.UseWpa3On5, a.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ApMesh.
@@ -35,7 +37,7 @@ func (a ApMesh) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(a.AdditionalProperties,
-		"bands", "enabled", "group", "role"); err != nil {
+		"bands", "enabled", "group", "role", "use_wpa3_on_5"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(a.toMap())
@@ -61,6 +63,9 @@ func (a ApMesh) toMap() map[string]any {
 	if a.Role != nil {
 		structMap["role"] = a.Role
 	}
+	if a.UseWpa3On5 != nil {
+		structMap["use_wpa3_on_5"] = a.UseWpa3On5
+	}
 	return structMap
 }
 
@@ -72,7 +77,7 @@ func (a *ApMesh) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bands", "enabled", "group", "role")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "bands", "enabled", "group", "role", "use_wpa3_on_5")
 	if err != nil {
 		return err
 	}
@@ -82,13 +87,15 @@ func (a *ApMesh) UnmarshalJSON(input []byte) error {
 	a.Enabled = temp.Enabled
 	a.Group = temp.Group
 	a.Role = temp.Role
+	a.UseWpa3On5 = temp.UseWpa3On5
 	return nil
 }
 
 // tempApMesh is a temporary struct used for validating the fields of ApMesh.
 type tempApMesh struct {
-	Bands   []Dot11BandEnum `json:"bands,omitempty"`
-	Enabled *bool           `json:"enabled,omitempty"`
-	Group   Optional[int]   `json:"group"`
-	Role    *ApMeshRoleEnum `json:"role,omitempty"`
+	Bands      []Dot11BandEnum `json:"bands,omitempty"`
+	Enabled    *bool           `json:"enabled,omitempty"`
+	Group      Optional[int]   `json:"group"`
+	Role       *ApMeshRoleEnum `json:"role,omitempty"`
+	UseWpa3On5 *bool           `json:"use_wpa3_on_5,omitempty"`
 }

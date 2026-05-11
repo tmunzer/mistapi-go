@@ -159,32 +159,32 @@ body := models.GatewayTemplate{
     },
     PortConfig:              map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:           models.ToPointer(false),
-            IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
+            Aggregated:             models.ToPointer(false),
+            IpConfig:               models.ToPointer(models.GatewayPortConfigIpConfig{
                 Gateway:              models.ToPointer("192.168.1.1"),
                 Ip:                   models.ToPointer("192.168.1.9"),
                 Netmask:              models.ToPointer("/24"),
                 Type:                 models.ToPointer(models.GatewayWanTypeEnum_STATIC),
             }),
-            Name:                 models.ToPointer("wan"),
-            Redundant:            models.ToPointer(false),
-            TrafficShaping:       models.ToPointer(models.GatewayTrafficShaping{
+            Name:                   models.ToPointer("wan"),
+            Redundant:              models.ToPointer(false),
+            TrafficShaping:         models.ToPointer(models.GatewayTrafficShaping{
                 Enabled:              models.ToPointer(false),
             }),
-            Usage:                models.GatewayPortUsageEnum_WAN,
-            WanType:              models.ToPointer(models.GatewayPortWanTypeEnum_BROADBAND),
+            Usage:                  models.GatewayPortUsageEnum_WAN,
+            WanType:                models.ToPointer(models.GatewayPortWanTypeEnum_BROADBAND),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:        models.ToPointer(false),
-            AeIdx:                models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:        models.ToPointer(true),
-            Aggregated:           models.ToPointer(true),
-            Networks:             []string{
+            AeDisableLacp:          models.ToPointer(false),
+            AeIdx:                  models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:          models.ToPointer(true),
+            Aggregated:             models.ToPointer(true),
+            Networks:               []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:                models.GatewayPortUsageEnum_LAN,
+            Usage:                  models.GatewayPortUsageEnum_LAN,
         },
     },
     ServicePolicies:         []models.ServicePolicy{
@@ -604,32 +604,32 @@ body := models.GatewayTemplate{
     },
     PortConfig:              map[string]models.GatewayPortConfig{
         "ge-0/0/0": models.GatewayPortConfig{
-            Aggregated:           models.ToPointer(false),
-            IpConfig:             models.ToPointer(models.GatewayPortConfigIpConfig{
+            Aggregated:             models.ToPointer(false),
+            IpConfig:               models.ToPointer(models.GatewayPortConfigIpConfig{
                 Gateway:              models.ToPointer("192.168.1.1"),
                 Ip:                   models.ToPointer("192.168.1.9"),
                 Netmask:              models.ToPointer("/24"),
                 Type:                 models.ToPointer(models.GatewayWanTypeEnum_STATIC),
             }),
-            Name:                 models.ToPointer("wan"),
-            Redundant:            models.ToPointer(false),
-            TrafficShaping:       models.ToPointer(models.GatewayTrafficShaping{
+            Name:                   models.ToPointer("wan"),
+            Redundant:              models.ToPointer(false),
+            TrafficShaping:         models.ToPointer(models.GatewayTrafficShaping{
                 Enabled:              models.ToPointer(false),
             }),
-            Usage:                models.GatewayPortUsageEnum_WAN,
-            WanType:              models.ToPointer(models.GatewayPortWanTypeEnum_BROADBAND),
+            Usage:                  models.GatewayPortUsageEnum_WAN,
+            WanType:                models.ToPointer(models.GatewayPortWanTypeEnum_BROADBAND),
         },
         "ge-0/0/6-7": models.GatewayPortConfig{
-            AeDisableLacp:        models.ToPointer(false),
-            AeIdx:                models.NewOptional(models.ToPointer("0")),
-            AeLacpForceUp:        models.ToPointer(true),
-            Aggregated:           models.ToPointer(true),
-            Networks:             []string{
+            AeDisableLacp:          models.ToPointer(false),
+            AeIdx:                  models.NewOptional(models.ToPointer("0")),
+            AeLacpForceUp:          models.ToPointer(true),
+            Aggregated:             models.ToPointer(true),
+            Networks:               []string{
                 "Corp-lan",
                 "Corp-Mgmt",
                 "Corp-Core",
             },
-            Usage:                models.GatewayPortUsageEnum_LAN,
+            Usage:                  models.GatewayPortUsageEnum_LAN,
         },
     },
     ServicePolicies:         []models.ServicePolicy{

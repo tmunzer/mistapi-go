@@ -17,8 +17,12 @@ type ResponsePcapSearchItem struct {
 	Duration *float64 `json:"duration,omitempty"`
 	Format   *string  `json:"format,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                *uuid.UUID                                   `json:"id,omitempty"`
-	MaxNumPackets     *float64                                     `json:"max_num_packets,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Last seen timestamp of the capture
+	LastSeen      *float64 `json:"last_seen,omitempty"`
+	MaxNumPackets *float64 `json:"max_num_packets,omitempty"`
+	// List of Mist Edge IDs included in the capture
+	Mxedges           []string                                     `json:"mxedges,omitempty"`
 	OrgId             *uuid.UUID                                   `json:"org_id,omitempty"`
 	PcapAps           map[string]ResponsePcapSearchItemPcapApsItem `json:"pcap_aps,omitempty"`
 	PcapUrl           *string                                      `json:"pcap_url,omitempty"`
@@ -35,8 +39,8 @@ type ResponsePcapSearchItem struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponsePcapSearchItem) String() string {
 	return fmt.Sprintf(
-		"ResponsePcapSearchItem[ApMacs=%v, Aps=%v, Duration=%v, Format=%v, Id=%v, MaxNumPackets=%v, OrgId=%v, PcapAps=%v, PcapUrl=%v, SiteId=%v, TerminationReason=%v, Timestamp=%v, Type=%v, Url=%v, AdditionalProperties=%v]",
-		r.ApMacs, r.Aps, r.Duration, r.Format, r.Id, r.MaxNumPackets, r.OrgId, r.PcapAps, r.PcapUrl, r.SiteId, r.TerminationReason, r.Timestamp, r.Type, r.Url, r.AdditionalProperties)
+		"ResponsePcapSearchItem[ApMacs=%v, Aps=%v, Duration=%v, Format=%v, Id=%v, LastSeen=%v, MaxNumPackets=%v, Mxedges=%v, OrgId=%v, PcapAps=%v, PcapUrl=%v, SiteId=%v, TerminationReason=%v, Timestamp=%v, Type=%v, Url=%v, AdditionalProperties=%v]",
+		r.ApMacs, r.Aps, r.Duration, r.Format, r.Id, r.LastSeen, r.MaxNumPackets, r.Mxedges, r.OrgId, r.PcapAps, r.PcapUrl, r.SiteId, r.TerminationReason, r.Timestamp, r.Type, r.Url, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapSearchItem.
@@ -45,7 +49,7 @@ func (r ResponsePcapSearchItem) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"ap_macs", "aps", "duration", "format", "id", "max_num_packets", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url"); err != nil {
+		"ap_macs", "aps", "duration", "format", "id", "last_seen", "max_num_packets", "mxedges", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -70,8 +74,14 @@ func (r ResponsePcapSearchItem) toMap() map[string]any {
 	if r.Id != nil {
 		structMap["id"] = r.Id
 	}
+	if r.LastSeen != nil {
+		structMap["last_seen"] = r.LastSeen
+	}
 	if r.MaxNumPackets != nil {
 		structMap["max_num_packets"] = r.MaxNumPackets
+	}
+	if r.Mxedges != nil {
+		structMap["mxedges"] = r.Mxedges
 	}
 	if r.OrgId != nil {
 		structMap["org_id"] = r.OrgId
@@ -106,7 +116,7 @@ func (r *ResponsePcapSearchItem) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_macs", "aps", "duration", "format", "id", "max_num_packets", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_macs", "aps", "duration", "format", "id", "last_seen", "max_num_packets", "mxedges", "org_id", "pcap_aps", "pcap_url", "site_id", "termination_reason", "timestamp", "type", "url")
 	if err != nil {
 		return err
 	}
@@ -117,7 +127,9 @@ func (r *ResponsePcapSearchItem) UnmarshalJSON(input []byte) error {
 	r.Duration = temp.Duration
 	r.Format = temp.Format
 	r.Id = temp.Id
+	r.LastSeen = temp.LastSeen
 	r.MaxNumPackets = temp.MaxNumPackets
+	r.Mxedges = temp.Mxedges
 	r.OrgId = temp.OrgId
 	r.PcapAps = temp.PcapAps
 	r.PcapUrl = temp.PcapUrl
@@ -136,7 +148,9 @@ type tempResponsePcapSearchItem struct {
 	Duration          *float64                                     `json:"duration,omitempty"`
 	Format            *string                                      `json:"format,omitempty"`
 	Id                *uuid.UUID                                   `json:"id,omitempty"`
+	LastSeen          *float64                                     `json:"last_seen,omitempty"`
 	MaxNumPackets     *float64                                     `json:"max_num_packets,omitempty"`
+	Mxedges           []string                                     `json:"mxedges,omitempty"`
 	OrgId             *uuid.UUID                                   `json:"org_id,omitempty"`
 	PcapAps           map[string]ResponsePcapSearchItemPcapApsItem `json:"pcap_aps,omitempty"`
 	PcapUrl           *string                                      `json:"pcap_url,omitempty"`

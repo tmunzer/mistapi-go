@@ -16,7 +16,7 @@ type SwitchDhcpdConfigProperty struct {
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
 	// If `type`==`server` or `type6`==`server`. Property key is the MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b")
 	FixedBindings map[string]DhcpdConfigFixedBinding `json:"fixed_bindings,omitempty"`
-	// If `type`==`server`  - optional, `ip` will be used if not provided
+	// If `type`==`server` - optional, `ip` will be used if not provided
 	Gateway *string `json:"gateway,omitempty"`
 	// If `type`==`server`
 	IpEnd *string `json:"ip_end,omitempty"`

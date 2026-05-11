@@ -16,12 +16,7 @@ Get Org Stats
 ```go
 GetOrgStats(
     ctx context.Context,
-    orgId uuid.UUID,
-    start *string,
-    end *string,
-    duration *string,
-    limit *int,
-    page *int) (
+    orgId uuid.UUID) (
     models.ApiResponse[models.StatsOrg],
     error)
 ```
@@ -31,11 +26,6 @@ GetOrgStats(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
 
@@ -48,13 +38,7 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-duration := "10m"
-
-limit := 100
-
-page := 1
-
-apiResponse, err := orgsStats.GetOrgStats(ctx, orgId, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsStats.GetOrgStats(ctx, orgId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

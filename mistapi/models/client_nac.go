@@ -74,14 +74,14 @@ type ClientNac struct {
 	// Vendor name of the NAS for the specified duration
 	NasVendor []string   `json:"nas_vendor,omitempty"`
 	OrgId     *uuid.UUID `json:"org_id,omitempty"`
-	// Port-ids the client was connected to  for the specified duration
+	// Port-ids the client was connected to for the specified duration
 	PortId []string `json:"port_id,omitempty"`
 	// Whether the client is using randomized MAC Address or not
 	RandomMac *RandomMacEnum `json:"random_mac,omitempty"`
 	// List of Radius AVP returned by the Authentication Server
 	RespAttrs []string   `json:"resp_attrs,omitempty"`
 	SiteId    *uuid.UUID `json:"site_id,omitempty"`
-	// SSIDs the client was connected to  for the specified duration
+	// SSIDs the client was connected to for the specified duration
 	Ssid []string `json:"ssid,omitempty"`
 	// Epoch (seconds)
 	Timestamp *float64 `json:"timestamp,omitempty"`

@@ -9,7 +9,7 @@ import (
 )
 
 // SwitchPortUsageReauthInterval represents a SwitchPortUsageReauthInterval struct.
-// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
+// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600). Set to 0 to disable reauthentication (no-reauthentication).
 type SwitchPortUsageReauthInterval struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (s *SwitchPortUsageReauthInterval) AsString() (
 }
 
 // internalSwitchPortUsageReauthInterval represents a switchPortUsageReauthInterval struct.
-// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
+// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600). Set to 0 to disable reauthentication (no-reauthentication).
 type internalSwitchPortUsageReauthInterval struct{}
 
 var SwitchPortUsageReauthIntervalContainer internalSwitchPortUsageReauthInterval

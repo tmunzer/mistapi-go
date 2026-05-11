@@ -37,10 +37,11 @@ Junos port usages
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
 | `PersistMac` | `*bool` | Optional | Only if `mode`==`access` and `port_auth`!=`dot1x`. Whether the port should retain dynamically learned MAC addresses<br><br>**Default**: `false` |
 | `PoeDisabled` | `*bool` | Optional | Only if `mode`!=`dynamic`. Whether PoE capabilities are disabled for a port<br><br>**Default**: `false` |
+| `PoeKeepStateWhenReboot` | `*bool` | Optional | Only if `mode`!=`dynamic`. Whether Perpetual PoE is enabled; keeps PoE state across reboots<br><br>**Default**: `false` |
 | `PoePriority` | [`*models.PoePriorityEnum`](../../doc/models/poe-priority-enum.md) | Optional | PoE priority. enum: `low`, `high` |
 | `PortAuth` | [`models.Optional[models.SwitchPortUsageDot1xEnum]`](../../doc/models/switch-port-usage-dot-1-x-enum.md) | Optional | Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x` |
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic`. Native network/vlan for untagged traffic |
-| `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600) |
+| `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600). Set to 0 to disable reauthentication (no-reauthentication). |
 | `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)<br><br>**Default**: `"link_down"` |
 | `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic` |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Sets server fail fallback vlan |
@@ -79,6 +80,7 @@ Junos port usages
   "mac_auth_protocol": "eap-md5",
   "persist_mac": false,
   "poe_disabled": false,
+  "poe_keep_state_when_reboot": false,
   "reset_default_when": "link_down",
   "speed": "auto",
   "stp_disable": false,

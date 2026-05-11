@@ -15,6 +15,7 @@ Mesh AP settings
 | `Enabled` | `*bool` | Optional | Whether mesh is enabled on this AP<br><br>**Default**: `false` |
 | `Group` | `models.Optional[int]` | Optional | Mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional<br><br>**Constraints**: `>= 1`, `<= 9` |
 | `Role` | [`*models.ApMeshRoleEnum`](../../doc/models/ap-mesh-role-enum.md) | Optional | enum: `base`, `remote` |
+| `UseWpa3On5` | `*bool` | Optional | Whether to use WPA3 on the 5 GHz band for mesh links<br><br>**Default**: `false` |
 
 ## Example (as JSON)
 
@@ -23,8 +24,9 @@ Mesh AP settings
   "enabled": false,
   "group": 1,
   "role": "base",
+  "use_wpa3_on_5": false,
   "bands": [
-    "6"
+    "6-dedicated"
   ]
 }
 ```

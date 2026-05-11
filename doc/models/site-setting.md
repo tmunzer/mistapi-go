@@ -47,10 +47,11 @@ Site Settings
 | `ForSite` | `*bool` | Optional | - |
 | `Gateway` | [`*models.GatewayTemplate`](../../doc/models/gateway-template.md) | Optional | Gateway Template is applied to a site for gateway(s) in a site. |
 | `GatewayAdditionalConfigCmds` | `[]string` | Optional | additional CLI commands to append to the generated Junos config. **Note**: no check is done |
-| `GatewayMgmt` | [`*models.SiteSettingGatewayMgmt`](../../doc/models/site-setting-gateway-mgmt.md) | Optional | Gateway Site settings |
+| `GatewayMgmt` | [`*models.GatewayMgmt`](../../doc/models/gateway-mgmt.md) | Optional | Gateway Management settings |
 | `GatewayTunnelUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.<br><br>**Constraints**: `>= 0` |
 | `GatewayUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
+| `Iotproxy` | [`*models.Iotproxy`](../../doc/models/iotproxy.md) | Optional | IoT proxy configuration for the site |
 | `JuniperSrx` | [`*models.SiteSettingJuniperSrx`](../../doc/models/site-setting-juniper-srx.md) | Optional | - |
 | `Led` | [`*models.ApLed`](../../doc/models/ap-led.md) | Optional | LED AP settings |
 | `Marvis` | [`*models.Marvis`](../../doc/models/marvis.md) | Optional | - |
@@ -88,7 +89,7 @@ Site Settings
 | `StatusPortal` | [`*models.SiteSettingStatusPortal`](../../doc/models/site-setting-status-portal.md) | Optional | - |
 | `Switch` | [`*models.SiteSettingSwitch`](../../doc/models/site-setting-switch.md) | Optional | - |
 | `SwitchMatching` | [`*models.SwitchMatching`](../../doc/models/switch-matching.md) | Optional | Defines custom switch configuration based on different criteria |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch settings |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch Management settings |
 | `SwitchUpdownThreshold` | `models.Optional[int]` | Optional | Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 240` |
 | `SyntheticTest` | [`*models.SynthetictestConfig`](../../doc/models/synthetictest-config.md) | Optional | - |
 | `TrackAnonymousDevices` | `*bool` | Optional | Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)<br><br>**Default**: `false` |
@@ -98,6 +99,7 @@ Site Settings
 | `UplinkPortConfig` | [`*models.ApUplinkPortConfig`](../../doc/models/ap-uplink-port-config.md) | Optional | AP Uplink port configuration |
 | `UsesDescriptionFromPortUsage` | `*bool` | Optional | by default, we only honor description provided in port_config. This allows fallback to those defined in port_usages<br><br>**Default**: `false` |
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
+| `VarsAnnotations` | [`map[string]models.VarsAnnotation`](../../doc/models/vars-annotation.md) | Optional | Optional annotations for vars defined in this site. Keys match var names; values describe the var purpose and type for UI auto-complete. |
 | `Vna` | [`*models.SiteSettingVna`](../../doc/models/site-setting-vna.md) | Optional | - |
 | `VpnPathUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn path down delivery.<br><br>**Constraints**: `>= 0` |
 | `VpnPeerUpdownThreshold` | `models.Optional[int]` | Optional | enable threshold-based vpn peer down delivery.<br><br>**Constraints**: `>= 0` |
@@ -149,6 +151,14 @@ Site Settings
   "vars": {
     "RADIUS_IP1": "172.31.2.5",
     "RADIUS_SECRET": "11s64632d"
+  },
+  "vars_annotations": {
+    "MXTUNNEL_GUEST": {
+      "type": "mxtunnel_id"
+    },
+    "RADIUS_IP1": {
+      "note": "RADIUS server IP address for US East Campus"
+    }
   },
   "vrf_instances": {
     "guest": {

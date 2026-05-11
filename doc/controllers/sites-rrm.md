@@ -10,10 +10,101 @@ sitesRRM := client.SitesRRM()
 
 ## Methods
 
+* [Get Site Channel Scores](../../doc/controllers/sites-rrm.md#get-site-channel-scores)
 * [Get Site Current Channel Planning](../../doc/controllers/sites-rrm.md#get-site-current-channel-planning)
 * [Get Site Current Rrm Considerations](../../doc/controllers/sites-rrm.md#get-site-current-rrm-considerations)
 * [List Site Current Rrm Neighbors](../../doc/controllers/sites-rrm.md#list-site-current-rrm-neighbors)
 * [List Site Rrm Events](../../doc/controllers/sites-rrm.md#list-site-rrm-events)
+
+
+# Get Site Channel Scores
+
+Get Site Channel Scores
+
+```go
+GetSiteChannelScores(
+    ctx context.Context,
+    siteId uuid.UUID,
+    band models.Dot11BandEnum,
+    start *string,
+    end *string) (
+    models.ApiResponse[models.ResponseRrmChannelScores],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Template, Required | 802.11 Band |
+| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
+| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseRrmChannelScores](../../doc/models/response-rrm-channel-scores.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+band := models.Dot11BandEnum_ENUM5
+
+apiResponse, err := sitesRRM.GetSiteChannelScores(ctx, siteId, band, nil, nil)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "results": [
+    {
+      "channel": 36,
+      "util_score": 0.009,
+      "util_score_noise_floor": 0.001,
+      "util_score_non_wifi": 0.003,
+      "util_score_other": 0.002,
+      "util_score_radar": 0.0,
+      "util_score_undecodable_wifi": 0.004,
+      "util_score_unknown_wifi": 0.0
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
 # Get Site Current Channel Planning
@@ -238,7 +329,7 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-band := models.Dot11BandEnum_ENUM6
+band := models.Dot11BandEnum_ENUM5
 
 apiResponse, err := sitesRRM.GetSiteCurrentRrmConsiderations(ctx, siteId, deviceId, band)
 if err != nil {
@@ -328,7 +419,7 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-band := models.Dot11BandEnum_ENUM6
+band := models.Dot11BandEnum_ENUM5
 
 limit := 100
 
@@ -469,7 +560,7 @@ if err != nil {
   "next": "/api/v1/sites/dca0a44b-324c-11e6-a776-0243ad110007/events/rrm?start=1428939600&end=1428949600&limit=200&token=001a0010000000120010000005005880ec18000004776c616e007fffffeb067ab8e29c1d659b6a7c8cf698bf81490003",
   "results": [
     {
-      "ap_id": "00000000-0000-0000-1000-5c5b359e4fe0",
+      "ap": "5c5b359e4fe0",
       "band": "24",
       "bandwidth": 20,
       "channel": 6,

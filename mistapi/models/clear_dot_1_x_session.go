@@ -9,8 +9,8 @@ import (
 
 // ClearDot1xSession represents a ClearDot1xSession struct.
 type ClearDot1xSession struct {
-	// ID of the port where the dot1x session must be cleared. If not provided, the sessions on all the port will be cleared.
-	PortId               *string                `json:"port_id,omitempty"`
+	// List of port IDs where the dot1x session must be cleared. Use `all` to clear sessions on all ports.
+	Ports                []string               `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type ClearDot1xSession struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ClearDot1xSession) String() string {
 	return fmt.Sprintf(
-		"ClearDot1xSession[PortId=%v, AdditionalProperties=%v]",
-		c.PortId, c.AdditionalProperties)
+		"ClearDot1xSession[Ports=%v, AdditionalProperties=%v]",
+		c.Ports, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClearDot1xSession.
@@ -28,7 +28,7 @@ func (c ClearDot1xSession) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"port_id"); err != nil {
+		"ports"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -38,8 +38,8 @@ func (c ClearDot1xSession) MarshalJSON() (
 func (c ClearDot1xSession) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, c.AdditionalProperties)
-	if c.PortId != nil {
-		structMap["port_id"] = c.PortId
+	if c.Ports != nil {
+		structMap["ports"] = c.Ports
 	}
 	return structMap
 }
@@ -52,17 +52,17 @@ func (c *ClearDot1xSession) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ports")
 	if err != nil {
 		return err
 	}
 	c.AdditionalProperties = additionalProperties
 
-	c.PortId = temp.PortId
+	c.Ports = temp.Ports
 	return nil
 }
 
 // tempClearDot1xSession is a temporary struct used for validating the fields of ClearDot1xSession.
 type tempClearDot1xSession struct {
-	PortId *string `json:"port_id,omitempty"`
+	Ports []string `json:"ports,omitempty"`
 }

@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2602.1.4**
+> Version: **2604.1.0**
 > 
-> Date: **February 26, 2026**
+> Date: **April 28, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -229,7 +229,6 @@ This API uses the following authentication schemes.
 * [Orgs Mx Edges](doc/controllers/orgs-mx-edges.md)
 * [Orgs Mx Tunnels](doc/controllers/orgs-mx-tunnels.md)
 * [Orgs NACCRL](doc/controllers/orgs-naccrl.md)
-* [Orgs NAC Fingerprints](doc/controllers/orgs-nac-fingerprints.md)
 * [Orgs NACIDP](doc/controllers/orgs-nacidp.md)
 * [Orgs NAC Portals](doc/controllers/orgs-nac-portals.md)
 * [Orgs NAC Rules](doc/controllers/orgs-nac-rules.md)
@@ -239,6 +238,7 @@ This API uses the following authentication schemes.
 * [Orgs Premium Analytics](doc/controllers/orgs-premium-analytics.md)
 * [Orgs Psk Portals](doc/controllers/orgs-psk-portals.md)
 * [Orgs Psks](doc/controllers/orgs-psks.md)
+* [Orgs Reports](doc/controllers/orgs-reports.md)
 * [Orgs RF Templates](doc/controllers/orgs-rf-templates.md)
 * [Orgs SCEP](doc/controllers/orgs-scep.md)
 * [Orgs SDK Invites](doc/controllers/orgs-sdk-invites.md)
@@ -291,6 +291,7 @@ This API uses the following authentication schemes.
 * [Sites AP Templates](doc/controllers/sites-ap-templates.md)
 * [Sites Asset Filters](doc/controllers/sites-asset-filters.md)
 * [Sites Assets](doc/controllers/sites-assets.md)
+* [Sites Auto Map Assignment](doc/controllers/sites-auto-map-assignment.md)
 * [Sites Beacons](doc/controllers/sites-beacons.md)
 * [Sites Clients-NAC](doc/controllers/sites-clients-nac.md)
 * [Sites Clients-Wan](doc/controllers/sites-clients-wan.md)
@@ -317,6 +318,7 @@ This API uses the following authentication schemes.
 * [Sites Maps-Auto-Zone](doc/controllers/sites-maps-auto-zone.md)
 * [Sites Map Stacks](doc/controllers/sites-map-stacks.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
+* [Sites NAC Fingerprints](doc/controllers/sites-nac-fingerprints.md)
 * [Sites Networks](doc/controllers/sites-networks.md)
 * [Sites Network Templates](doc/controllers/sites-network-templates.md)
 * [Sites Psks](doc/controllers/sites-psks.md)
@@ -343,6 +345,7 @@ This API uses the following authentication schemes.
 * [Sites Stats-Clients Wireless](doc/controllers/sites-stats-clients-wireless.md)
 * [Sites Stats-Devices](doc/controllers/sites-stats-devices.md)
 * [Sites Stats-Discovered Switches](doc/controllers/sites-stats-discovered-switches.md)
+* [Sites Stats-Io T Endpoints](doc/controllers/sites-stats-io-t-endpoints.md)
 * [Sites Stats-Mx Edges](doc/controllers/sites-stats-mx-edges.md)
 * [Sites Stats-Ospf](doc/controllers/sites-stats-ospf.md)
 * [Sites Stats-Ports](doc/controllers/sites-stats-ports.md)

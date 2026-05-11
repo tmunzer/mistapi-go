@@ -20,7 +20,7 @@
 | `Band6Power` | `*int` | Optional | - |
 | `Eth0PortSpeed` | `*int` | Optional | Port speed of eth0 |
 | `ExtIp` | `*string` | Optional | - |
-| `Hostname` | `[]string` | Optional | Partial / full hostname |
+| `Hostname` | `[]string` | Optional | List of hostnames detected for the AP |
 | `InactiveWiredVlans` | `[]int` | Optional | - |
 | `Ip` | `*string` | Optional | IP Address |
 | `LastHostname` | `*string` | Optional | - |

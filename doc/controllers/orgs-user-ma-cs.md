@@ -525,7 +525,7 @@ SearchOrgUserMacs(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | Partial/full MAC address |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
 | `labels` | `[]string` | Query, Optional | Optional, array of strings of labels |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
@@ -542,13 +542,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "aabbccddeeff"
+
 limit := 100
 
 page := 1
 
 sort := "-site_id"
 
-apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, nil, nil, &limit, &page, &sort)
+apiResponse, err := orgsUserMACs.SearchOrgUserMacs(ctx, orgId, &mac, nil, &limit, &page, &sort)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

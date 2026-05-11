@@ -1,8 +1,6 @@
 module github.com/tmunzer/mistapi-go
 
-go 1.24.0
-
-toolchain go1.24.13
+go 1.25.0
 
 require (
 	github.com/apimatic/go-core-runtime v0.0.29

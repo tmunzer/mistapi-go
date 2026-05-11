@@ -322,6 +322,70 @@ func TestUtilitiesUpgradeTestGetOrgMxEdgeUpgrade1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 }
 
+// TestUtilitiesUpgradeTestUpdateOrgMxEdgeUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestUpdateOrgMxEdgeUpgrade(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesUpgrade.UpdateOrgMxEdgeUpgrade(ctx, orgId, upgradeId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestUpdateOrgMxEdgeUpgrade1 tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestUpdateOrgMxEdgeUpgrade1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesUpgrade.UpdateOrgMxEdgeUpgrade(ctx, orgId, upgradeId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestCancelOrgMxEdgeUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestCancelOrgMxEdgeUpgrade(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := utilitiesUpgrade.CancelOrgMxEdgeUpgrade(ctx, orgId, upgradeId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
 // TestUtilitiesUpgradeTestListOrgSsrUpgrades tests the behavior of the UtilitiesUpgrade
 func TestUtilitiesUpgradeTestListOrgSsrUpgrades(t *testing.T) {
 	ctx := context.Background()
@@ -772,6 +836,169 @@ func TestUtilitiesUpgradeTestUpgradeDevice1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"status":"inprogress","timestamp":1428949501}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestUtilitiesUpgradeTestListSiteMxEdgeUpgrades tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestListSiteMxEdgeUpgrades(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesUpgrade.ListSiteMxEdgeUpgrades(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestListSiteMxEdgeUpgrades1 tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestListSiteMxEdgeUpgrades1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesUpgrade.ListSiteMxEdgeUpgrades(ctx, siteId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestUpgradeSiteMxEdges tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestUpgradeSiteMxEdges(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.MxedgeUpgradeMulti
+	errBody := json.Unmarshal([]byte(`{"allow_downgrades":{"mxagent":false,"tunterm":true},"canary_phases":[5,25,50,100],"channel":"stable","max_failure_percentage":5,"max_failures":[1,1,5,5],"mxedge_ids":["387804a7-3474-85ce-15a2-f9a9684c9c90"],"start_time":1624399840,"strategy":"serial","versions":{"mxagent":"latest","radsecproxy":"<version>","tunterm":"default"}}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	resp, err := utilitiesUpgrade.UpgradeSiteMxEdges(ctx, siteId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
+}
+
+// TestUtilitiesUpgradeTestGetSiteMxEdgeUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestGetSiteMxEdgeUpgrade(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesUpgrade.GetSiteMxEdgeUpgrade(ctx, siteId, upgradeId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestGetSiteMxEdgeUpgrade1 tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestGetSiteMxEdgeUpgrade1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	apiResponse, err := utilitiesUpgrade.GetSiteMxEdgeUpgrade(ctx, siteId, upgradeId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestUpdateSiteMxEdgeUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestUpdateSiteMxEdgeUpgrade(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesUpgrade.UpdateSiteMxEdgeUpgrade(ctx, siteId, upgradeId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestUpdateSiteMxEdgeUpgrade1 tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestUpdateSiteMxEdgeUpgrade1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+
+	apiResponse, err := utilitiesUpgrade.UpdateSiteMxEdgeUpgrade(ctx, siteId, upgradeId, nil)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
+// TestUtilitiesUpgradeTestCancelSiteMxEdgeUpgrade tests the behavior of the UtilitiesUpgrade
+func TestUtilitiesUpgradeTestCancelSiteMxEdgeUpgrade(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	upgradeId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	resp, err := utilitiesUpgrade.CancelSiteMxEdgeUpgrade(ctx, siteId, upgradeId)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, resp.StatusCode, 200)
 }
 
 // TestUtilitiesUpgradeTestGetSiteSsrUpgrade tests the behavior of the UtilitiesUpgrade

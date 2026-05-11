@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `Alignment` | [`*models.PortalTemplateAlignmentEnum`](../../doc/models/portal-template-alignment-enum.md) | Optional | defines alignment on portal. enum: `center`, `left`, `right`<br><br>**Default**: `"center"` |
 | `Color` | `*string` | Optional | **Default**: `"#1074bc"` |
-| `Logo` | `models.Optional[string]` | Optional | Custom logo with "data:image/png;base64," format.  default null, uses Juniper Mist Logo |
+| `Logo` | `models.Optional[string]` | Optional | Custom logo with "data:image/png;base64," format. default null, uses Juniper Mist Logo |
 | `PoweredBy` | `*bool` | Optional | Whether to hide "Powered by Juniper Mist" and email footers<br><br>**Default**: `false` |
 | `Tos` | `*bool` | Optional | Whether to show Terms of Service |
 | `TosAcceptLabel` | `*string` | Optional | Terms of Service accept button label<br><br>**Default**: `"I accept the Terms of Service"` |

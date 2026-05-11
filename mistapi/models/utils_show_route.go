@@ -16,13 +16,13 @@ type UtilsShowRoute struct {
 	// IP of the neighbor
 	Neighbor *string        `json:"neighbor,omitempty"`
 	Node     *HaClusterNode `json:"node,omitempty"`
-	// Route prefix
+	// can be ip, ipv6 prefix
 	Prefix *string `json:"prefix,omitempty"`
-	// enum: `any`, `bgp`, `direct`, `evpn`, `ospf`, `static`
-	Protocol *UtilsShowRouteProtocolEnum `json:"protocol,omitempty"`
-	// If specified, dump bot received and advertised, if not specified, both will be shown
+	// (optional) Supported only for bgp
+	Protocol *UtilsShowRouteProtocol2Enum `json:"protocol,omitempty"`
+	// if neighbor is specified, received / advertised; if not specified, both will be shown
 	// * for SSR, show bgp neighbors 10.250.18.202 received-routes/advertised-routes
-	// * for SRX and Switches, show route receive_protocol/advertise_protocol bgp 192.168.255.12'
+	// * for SRX and Switches, show route receive-protocol/advertise-protocol bgp 192.168.255.12
 	Route *string `json:"route,omitempty"`
 	// VRF name
 	Vrf                  *string                `json:"vrf,omitempty"`
@@ -107,12 +107,12 @@ func (u *UtilsShowRoute) UnmarshalJSON(input []byte) error {
 
 // tempUtilsShowRoute is a temporary struct used for validating the fields of UtilsShowRoute.
 type tempUtilsShowRoute struct {
-	Duration *int                        `json:"duration,omitempty"`
-	Interval *int                        `json:"interval,omitempty"`
-	Neighbor *string                     `json:"neighbor,omitempty"`
-	Node     *HaClusterNode              `json:"node,omitempty"`
-	Prefix   *string                     `json:"prefix,omitempty"`
-	Protocol *UtilsShowRouteProtocolEnum `json:"protocol,omitempty"`
-	Route    *string                     `json:"route,omitempty"`
-	Vrf      *string                     `json:"vrf,omitempty"`
+	Duration *int                         `json:"duration,omitempty"`
+	Interval *int                         `json:"interval,omitempty"`
+	Neighbor *string                      `json:"neighbor,omitempty"`
+	Node     *HaClusterNode               `json:"node,omitempty"`
+	Prefix   *string                      `json:"prefix,omitempty"`
+	Protocol *UtilsShowRouteProtocol2Enum `json:"protocol,omitempty"`
+	Route    *string                      `json:"route,omitempty"`
+	Vrf      *string                      `json:"vrf,omitempty"`
 }

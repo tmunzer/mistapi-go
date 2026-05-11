@@ -15,7 +15,7 @@ utilitiesWAN := client.UtilitiesWAN()
 * [Clear Site Ssr Bgp Routes](../../doc/controllers/utilities-wan.md#clear-site-ssr-bgp-routes)
 * [Release Site Ssr Dhcp Lease](../../doc/controllers/utilities-wan.md#release-site-ssr-dhcp-lease)
 * [Run Site Srx Top Command](../../doc/controllers/utilities-wan.md#run-site-srx-top-command)
-* [Service Ping From Ssr](../../doc/controllers/utilities-wan.md#service-ping-from-ssr)
+* [Service Ping from Ssr](../../doc/controllers/utilities-wan.md#service-ping-from-ssr)
 * [Show Site Gateway Ospf Database](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-database)
 * [Show Site Gateway Ospf Interfaces](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-interfaces)
 * [Show Site Gateway Ospf Neighbors](../../doc/controllers/utilities-wan.md#show-site-gateway-ospf-neighbors)
@@ -258,7 +258,7 @@ Releases an active DHCP lease.
 
 The output will be available through websocket.
 
-As there can be multiple command issued  against the same Device at the same
+As there can be multiple commands issued against the same Device at the same
 time and the output all goes through the same websocket stream, session is
 introduced for demux.
 
@@ -358,7 +358,7 @@ if err != nil {
 
 Run top command on switches and SRX. The output will be available through websocket.
 
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -433,7 +433,7 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Service Ping From Ssr
+# Service Ping from Ssr
 
 Ping from SSR
 
@@ -537,7 +537,7 @@ if err != nil {
 
 Get OSPF Database from SSR and SRX. The output will be available through websocket.
 
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -635,7 +635,7 @@ if err != nil {
 
 Get OSPF interfaces from SSR and SRX. The output will be available through websocket.
 
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -732,7 +732,7 @@ if err != nil {
 
 Get OSPF Neighbors from SSR and SRX. The output will be available through websocket.
 
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -831,7 +831,7 @@ if err != nil {
 
 Get OSPF summary from SSR and SRX. The output will be available through websocket.
 
-As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -927,7 +927,7 @@ if err != nil {
 
 Get routes from SSR, SRX and Switch.
 
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -996,7 +996,7 @@ body := models.UtilsShowRoute{
     Interval:             models.ToPointer(0),
     Neighbor:             models.ToPointer("192.168.4.1"),
     Prefix:               models.ToPointer("192.168.0.5/30"),
-    Protocol:             models.ToPointer(models.UtilsShowRouteProtocolEnum_BGP),
+    Protocol:             models.ToPointer(models.UtilsShowRouteProtocol2Enum_BGP),
     Route:                models.ToPointer("advertised"),
     Vrf:                  models.ToPointer("default"),
 }
@@ -1237,7 +1237,7 @@ if err != nil {
 
 DNS resolutions are performed on the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
 
 #### Subscribe to Device Command outputs
 

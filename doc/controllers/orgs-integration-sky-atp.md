@@ -195,6 +195,7 @@ ctx := context.Background()
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.AccountSkyatpConfig{
+    CloudName:            models.ToPointer(models.AccountSkyatpCloudNameEnum_ENUMWWWAMERSKYATPCOM),
     Password:             "foryoureyesonly",
     Realm:                "mist-team",
     Username:             "john@abc.com",

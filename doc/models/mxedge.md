@@ -24,7 +24,7 @@ MxEdge
 | `MxclusterId` | `*uuid.UUID` | Optional | MxCluster this MxEdge belongs to |
 | `MxedgeMgmt` | [`*models.MxedgeMgmt`](../../doc/models/mxedge-mgmt.md) | Optional | - |
 | `Name` | `string` | Required | - |
-| `Note` | `*string` | Optional | - |
+| `Notes` | `*string` | Optional | - |
 | `NtpServers` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
 | `OobIpConfig` | [`*models.MxedgeOobIpConfig`](../../doc/models/mxedge-oob-ip-config.md) | Optional | IPconfiguration of the Mist Edge out-of_band management interface |
 | `OrgId` | `*uuid.UUID` | Optional | - |
@@ -54,7 +54,7 @@ MxEdge
   "model": "ME-100",
   "mxcluster_id": "572586b7-f97b-a22b-526c-8b97a3f609c4",
   "name": "Guest",
-  "note": "note for mxedge",
+  "notes": "note for mxedge",
   "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
   "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
   "created_time": 184.84,

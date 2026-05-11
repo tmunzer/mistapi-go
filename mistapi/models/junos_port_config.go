@@ -16,7 +16,9 @@ type JunosPortConfig struct {
 	AeDisableLacp *bool `json:"ae_disable_lacp,omitempty"`
 	// Users could force to use the designated AE name
 	AeIdx *int `json:"ae_idx,omitempty"`
-	// To use fast timeout
+	// If `aggregated`==`true`, sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
+	AeLacpForceUp *bool `json:"ae_lacp_force_up,omitempty"`
+	// To use slow timeout
 	AeLacpSlow *bool `json:"ae_lacp_slow,omitempty"`
 	Aggregated *bool `json:"aggregated,omitempty"`
 	// To generate port up/down alarm
@@ -49,8 +51,8 @@ type JunosPortConfig struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (j JunosPortConfig) String() string {
 	return fmt.Sprintf(
-		"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, Networks=%v, NoLocalOverwrite=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
-		j.AeDisableLacp, j.AeIdx, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.Networks, j.NoLocalOverwrite, j.PoeDisabled, j.PortNetwork, j.Speed, j.Usage, j.AdditionalProperties)
+		"JunosPortConfig[AeDisableLacp=%v, AeIdx=%v, AeLacpForceUp=%v, AeLacpSlow=%v, Aggregated=%v, Critical=%v, Description=%v, DisableAutoneg=%v, Duplex=%v, DynamicUsage=%v, Esilag=%v, Mtu=%v, Networks=%v, NoLocalOverwrite=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, Usage=%v, AdditionalProperties=%v]",
+		j.AeDisableLacp, j.AeIdx, j.AeLacpForceUp, j.AeLacpSlow, j.Aggregated, j.Critical, j.Description, j.DisableAutoneg, j.Duplex, j.DynamicUsage, j.Esilag, j.Mtu, j.Networks, j.NoLocalOverwrite, j.PoeDisabled, j.PortNetwork, j.Speed, j.Usage, j.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for JunosPortConfig.
@@ -59,7 +61,7 @@ func (j JunosPortConfig) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(j.AdditionalProperties,
-		"ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage"); err != nil {
+		"ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(j.toMap())
@@ -74,6 +76,9 @@ func (j JunosPortConfig) toMap() map[string]any {
 	}
 	if j.AeIdx != nil {
 		structMap["ae_idx"] = j.AeIdx
+	}
+	if j.AeLacpForceUp != nil {
+		structMap["ae_lacp_force_up"] = j.AeLacpForceUp
 	}
 	if j.AeLacpSlow != nil {
 		structMap["ae_lacp_slow"] = j.AeLacpSlow
@@ -137,7 +142,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ae_disable_lacp", "ae_idx", "ae_lacp_force_up", "ae_lacp_slow", "aggregated", "critical", "description", "disable_autoneg", "duplex", "dynamic_usage", "esilag", "mtu", "networks", "no_local_overwrite", "poe_disabled", "port_network", "speed", "usage")
 	if err != nil {
 		return err
 	}
@@ -145,6 +150,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
 
 	j.AeDisableLacp = temp.AeDisableLacp
 	j.AeIdx = temp.AeIdx
+	j.AeLacpForceUp = temp.AeLacpForceUp
 	j.AeLacpSlow = temp.AeLacpSlow
 	j.Aggregated = temp.Aggregated
 	j.Critical = temp.Critical
@@ -167,6 +173,7 @@ func (j *JunosPortConfig) UnmarshalJSON(input []byte) error {
 type tempJunosPortConfig struct {
 	AeDisableLacp    *bool                      `json:"ae_disable_lacp,omitempty"`
 	AeIdx            *int                       `json:"ae_idx,omitempty"`
+	AeLacpForceUp    *bool                      `json:"ae_lacp_force_up,omitempty"`
 	AeLacpSlow       *bool                      `json:"ae_lacp_slow,omitempty"`
 	Aggregated       *bool                      `json:"aggregated,omitempty"`
 	Critical         *bool                      `json:"critical,omitempty"`

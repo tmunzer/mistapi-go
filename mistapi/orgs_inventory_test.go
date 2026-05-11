@@ -178,10 +178,11 @@ func TestOrgsInventoryTestCountOrgInventory(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeDefaultApEnum("ap")
 	distinct := models.InventoryCountDistinctEnum("model")
+	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
-	apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit)
+	apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -201,10 +202,11 @@ func TestOrgsInventoryTestCountOrgInventory1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mType := models.DeviceTypeDefaultApEnum("ap")
 	distinct := models.InventoryCountDistinctEnum("model")
+	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
-	apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit)
+	apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -324,22 +326,21 @@ func TestOrgsInventoryTestSearchOrgInventory(t *testing.T) {
 	}
 	mType := models.DeviceTypeDefaultApEnum("ap")
 	mac := "5c5b350e0001"
-	vcMac := "5c5b350e0001"
-	masterMac := "5c5b350e0001"
+	model := "AP43"
+	name := "london"
 	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	serial := "FXLH2015150025"
+	serial := "AB123CD"
 	master := "true"
-	sku := "AP43-WW"
-	version := "1.0.0"
-	status := "connected"
+	sku := "EX2300-F-12P"
+	version := "21.2R3-S3.5"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &master, &sku, &version, nil, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -361,22 +362,21 @@ func TestOrgsInventoryTestSearchOrgInventory1(t *testing.T) {
 	}
 	mType := models.DeviceTypeDefaultApEnum("ap")
 	mac := "5c5b350e0001"
-	vcMac := "5c5b350e0001"
-	masterMac := "5c5b350e0001"
+	model := "AP43"
+	name := "london"
 	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	serial := "FXLH2015150025"
+	serial := "AB123CD"
 	master := "true"
-	sku := "AP43-WW"
-	version := "1.0.0"
-	status := "connected"
+	sku := "EX2300-F-12P"
+	version := "21.2R3-S3.5"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+	apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &master, &sku, &version, nil, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

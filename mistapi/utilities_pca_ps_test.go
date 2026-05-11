@@ -11,54 +11,6 @@ import (
 	"testing"
 )
 
-// TestUtilitiesPCAPsTestListOrgPacketCaptures tests the behavior of the UtilitiesPCAPs
-func TestUtilitiesPCAPsTestListOrgPacketCaptures(t *testing.T) {
-	ctx := context.Background()
-	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := utilitiesPcaPs.ListOrgPacketCaptures(ctx, orgId, nil, nil, &duration, &limit, &page)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1461089816,"limit":100,"next":"/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816","results":[{"ap_macs":["5c5b35000010"],"timestamp":1461869041,"type":"new_assoc","url":"https://..."}],"start":1461099816}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestUtilitiesPCAPsTestListOrgPacketCaptures1 tests the behavior of the UtilitiesPCAPs
-func TestUtilitiesPCAPsTestListOrgPacketCaptures1(t *testing.T) {
-	ctx := context.Background()
-	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := utilitiesPcaPs.ListOrgPacketCaptures(ctx, orgId, nil, nil, &duration, &limit, &page)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1461089816,"limit":100,"next":"/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816","results":[{"ap_macs":["5c5b35000010"],"timestamp":1461869041,"type":"new_assoc","url":"https://..."}],"start":1461099816}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
 // TestUtilitiesPCAPsTestStopOrgPacketCapture tests the behavior of the UtilitiesPCAPs
 func TestUtilitiesPCAPsTestStopOrgPacketCapture(t *testing.T) {
 	ctx := context.Background()
@@ -160,54 +112,6 @@ func TestUtilitiesPCAPsTestStartOrgPacketCapture1(t *testing.T) {
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"ap_count":3,"aps":[],"duration":600,"enabled":true,"expiry":1614886726.5411825,"format":"stream","id":"a9a84e13-a714-b1eb-152f-a434416217d5","include_mcast":false,"max_pkt_len":68,"num_packets":100,"org_id":"a9346fba-f920-e99a-cc51-2e8dcc57fa3c","raw":true,"site_id":"67970e46-4e12-11e6-9188-0242ac110007","ssid":"","timestamp":1614886126.5411825,"type":"radiotap"}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestUtilitiesPCAPsTestListSitePacketCaptures tests the behavior of the UtilitiesPCAPs
-func TestUtilitiesPCAPsTestListSitePacketCaptures(t *testing.T) {
-	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := utilitiesPcaPs.ListSitePacketCaptures(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1461089816,"limit":100,"next":"/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816","results":[{"ap_macs":["5c5b35000010"],"timestamp":1461869041,"type":"new_assoc","url":"https://..."}],"start":1461099816}`
-	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
-}
-
-// TestUtilitiesPCAPsTestListSitePacketCaptures1 tests the behavior of the UtilitiesPCAPs
-func TestUtilitiesPCAPsTestListSitePacketCaptures1(t *testing.T) {
-	ctx := context.Background()
-	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := utilitiesPcaPs.ListSitePacketCaptures(ctx, siteId, nil, nil, nil, &duration, &limit, &page)
-	if err != nil {
-		t.Errorf("Endpoint call failed: %v", err)
-	}
-	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
-	expectedHeaders := []testHelper.TestHeader{
-		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
-	}
-	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1461089816,"limit":100,"next":"/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816","results":[{"ap_macs":["5c5b35000010"],"timestamp":1461869041,"type":"new_assoc","url":"https://..."}],"start":1461099816}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

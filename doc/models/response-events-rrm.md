@@ -23,8 +23,8 @@
   "limit": 192,
   "results": [
     {
-      "ap_id": "00001b9c-0000-0000-0000-000000000000",
-      "band": "6",
+      "ap": "5c5b350e0001",
+      "band": "5",
       "bandwidth": 20,
       "channel": 30,
       "event": "radar-detected",

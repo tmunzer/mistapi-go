@@ -99,6 +99,8 @@ type StatsSwitchPort struct {
 	Unconfigured *bool `json:"unconfigured,omitempty"`
 	// Indicates if interface is up
 	Up *bool `json:"up,omitempty"`
+	// Indicates if interface is an uplink port
+	Uplink *bool `json:"uplink,omitempty"`
 	// Optic Slot ModelName, Check for null/empty
 	XcvrModel *string `json:"xcvr_model,omitempty"`
 	// Optic Slot Partnumber, Check for null/empty
@@ -112,8 +114,8 @@ type StatsSwitchPort struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsSwitchPort) String() string {
 	return fmt.Sprintf(
-		"StatsSwitchPort[Active=%v, AuthState=%v, Disabled=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PoePriority=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
-		s.Active, s.AuthState, s.Disabled, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PoePriority, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
+		"StatsSwitchPort[Active=%v, AuthState=%v, Disabled=%v, ForSite=%v, FullDuplex=%v, Jitter=%v, LastFlapped=%v, Latency=%v, Loss=%v, LteIccid=%v, LteImei=%v, LteImsi=%v, Mac=%v, MacCount=%v, MacLimit=%v, NeighborMac=%v, NeighborPortDesc=%v, NeighborSystemName=%v, OrgId=%v, PoeDisabled=%v, PoeMode=%v, PoeOn=%v, PoePriority=%v, PortId=%v, PortMac=%v, PortUsage=%v, PowerDraw=%v, RxBcastPkts=%v, RxBps=%v, RxBytes=%v, RxErrors=%v, RxMcastPkts=%v, RxPkts=%v, SiteId=%v, Speed=%v, StpRole=%v, StpState=%v, TxBcastPkts=%v, TxBps=%v, TxBytes=%v, TxErrors=%v, TxMcastPkts=%v, TxPkts=%v, Type=%v, Unconfigured=%v, Up=%v, Uplink=%v, XcvrModel=%v, XcvrPartNumber=%v, XcvrSerial=%v, AdditionalProperties=%v]",
+		s.Active, s.AuthState, s.Disabled, s.ForSite, s.FullDuplex, s.Jitter, s.LastFlapped, s.Latency, s.Loss, s.LteIccid, s.LteImei, s.LteImsi, s.Mac, s.MacCount, s.MacLimit, s.NeighborMac, s.NeighborPortDesc, s.NeighborSystemName, s.OrgId, s.PoeDisabled, s.PoeMode, s.PoeOn, s.PoePriority, s.PortId, s.PortMac, s.PortUsage, s.PowerDraw, s.RxBcastPkts, s.RxBps, s.RxBytes, s.RxErrors, s.RxMcastPkts, s.RxPkts, s.SiteId, s.Speed, s.StpRole, s.StpState, s.TxBcastPkts, s.TxBps, s.TxBytes, s.TxErrors, s.TxMcastPkts, s.TxPkts, s.Type, s.Unconfigured, s.Up, s.Uplink, s.XcvrModel, s.XcvrPartNumber, s.XcvrSerial, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsSwitchPort.
@@ -122,7 +124,7 @@ func (s StatsSwitchPort) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
+		"active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "uplink", "xcvr_model", "xcvr_part_number", "xcvr_serial"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -298,6 +300,9 @@ func (s StatsSwitchPort) toMap() map[string]any {
 	if s.Up != nil {
 		structMap["up"] = s.Up
 	}
+	if s.Uplink != nil {
+		structMap["uplink"] = s.Uplink
+	}
 	if s.XcvrModel != nil {
 		structMap["xcvr_model"] = s.XcvrModel
 	}
@@ -322,7 +327,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "xcvr_model", "xcvr_part_number", "xcvr_serial")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "active", "auth_state", "disabled", "for_site", "full_duplex", "jitter", "last_flapped", "latency", "loss", "lte_iccid", "lte_imei", "lte_imsi", "mac", "mac_count", "mac_limit", "neighbor_mac", "neighbor_port_desc", "neighbor_system_name", "org_id", "poe_disabled", "poe_mode", "poe_on", "poe_priority", "port_id", "port_mac", "port_usage", "power_draw", "rx_bcast_pkts", "rx_bps", "rx_bytes", "rx_errors", "rx_mcast_pkts", "rx_pkts", "site_id", "speed", "stp_role", "stp_state", "tx_bcast_pkts", "tx_bps", "tx_bytes", "tx_errors", "tx_mcast_pkts", "tx_pkts", "type", "unconfigured", "up", "uplink", "xcvr_model", "xcvr_part_number", "xcvr_serial")
 	if err != nil {
 		return err
 	}
@@ -374,6 +379,7 @@ func (s *StatsSwitchPort) UnmarshalJSON(input []byte) error {
 	s.Type = temp.Type
 	s.Unconfigured = temp.Unconfigured
 	s.Up = temp.Up
+	s.Uplink = temp.Uplink
 	s.XcvrModel = temp.XcvrModel
 	s.XcvrPartNumber = temp.XcvrPartNumber
 	s.XcvrSerial = temp.XcvrSerial
@@ -428,6 +434,7 @@ type tempStatsSwitchPort struct {
 	Type               *StatsSwitchPortTypeEnum    `json:"type,omitempty"`
 	Unconfigured       *bool                       `json:"unconfigured,omitempty"`
 	Up                 *bool                       `json:"up,omitempty"`
+	Uplink             *bool                       `json:"uplink,omitempty"`
 	XcvrModel          *string                     `json:"xcvr_model,omitempty"`
 	XcvrPartNumber     *string                     `json:"xcvr_part_number,omitempty"`
 	XcvrSerial         *string                     `json:"xcvr_serial,omitempty"`

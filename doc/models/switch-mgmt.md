@@ -1,7 +1,7 @@
 
 # Switch Mgmt
 
-Switch settings
+Switch Management settings
 
 ## Structure
 

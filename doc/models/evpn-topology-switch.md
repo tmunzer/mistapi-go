@@ -111,17 +111,17 @@
       "key0": {
         "ae_disable_lacp": false,
         "ae_idx": 230,
+        "ae_lacp_force_up": false,
         "ae_lacp_slow": false,
         "aggregated": false,
-        "critical": false,
         "usage": "usage6"
       },
       "key1": {
         "ae_disable_lacp": false,
         "ae_idx": 230,
+        "ae_lacp_force_up": false,
         "ae_lacp_slow": false,
         "aggregated": false,
-        "critical": false,
         "usage": "usage6"
       }
     },

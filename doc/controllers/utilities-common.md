@@ -10,7 +10,7 @@ utilitiesCommon := client.UtilitiesCommon()
 
 ## Methods
 
-* [Arp From Device](../../doc/controllers/utilities-common.md#arp-from-device)
+* [Arp from Device](../../doc/controllers/utilities-common.md#arp-from-device)
 * [Bounce Device Port](../../doc/controllers/utilities-common.md#bounce-device-port)
 * [Clear Site Device Mac Table](../../doc/controllers/utilities-common.md#clear-site-device-mac-table)
 * [Clear Site Device Policy Hit Count](../../doc/controllers/utilities-common.md#clear-site-device-policy-hit-count)
@@ -18,13 +18,12 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Get Site Device Config Cmd](../../doc/controllers/utilities-common.md#get-site-device-config-cmd)
 * [Get Site Device Ztp Password](../../doc/controllers/utilities-common.md#get-site-device-ztp-password)
 * [Monitor Site Device Traffic](../../doc/controllers/utilities-common.md#monitor-site-device-traffic)
-* [Ping From Device](../../doc/controllers/utilities-common.md#ping-from-device)
+* [Ping from Device](../../doc/controllers/utilities-common.md#ping-from-device)
 * [Readopt Site Octerm Device](../../doc/controllers/utilities-common.md#readopt-site-octerm-device)
 * [Release Site Device Dhcp Lease](../../doc/controllers/utilities-common.md#release-site-device-dhcp-lease)
 * [Reprovision Site Octerm Device](../../doc/controllers/utilities-common.md#reprovision-site-octerm-device)
 * [Restart Site Device](../../doc/controllers/utilities-common.md#restart-site-device)
 * [Restart Site Multiple Devices](../../doc/controllers/utilities-common.md#restart-site-multiple-devices)
-* [Show Site Device Arp Table](../../doc/controllers/utilities-common.md#show-site-device-arp-table)
 * [Show Site Device Bgp Summary](../../doc/controllers/utilities-common.md#show-site-device-bgp-summary)
 * [Show Site Device Dhcp Leases](../../doc/controllers/utilities-common.md#show-site-device-dhcp-leases)
 * [Show Site Device Dot 1 X Table](../../doc/controllers/utilities-common.md#show-site-device-dot-1-x-table)
@@ -33,13 +32,13 @@ utilitiesCommon := client.UtilitiesCommon()
 * [Show Site Device Mac Table](../../doc/controllers/utilities-common.md#show-site-device-mac-table)
 * [Start Site Locate Device](../../doc/controllers/utilities-common.md#start-site-locate-device)
 * [Stop Site Locate Device](../../doc/controllers/utilities-common.md#stop-site-locate-device)
-* [Traceroute From Device](../../doc/controllers/utilities-common.md#traceroute-from-device)
+* [Traceroute from Device](../../doc/controllers/utilities-common.md#traceroute-from-device)
 * [Upload Site Device Support File](../../doc/controllers/utilities-common.md#upload-site-device-support-file)
 
 
-# Arp From Device
+# Arp from Device
 
-ARP can be performed on the Device. The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+ARP can be performed on the Device. The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -140,7 +139,7 @@ Port Bounce can be performed from Switch/Gateway.
 
 **Note:** Ports starting with vme, ae, irb, and HA control ports (for SSR only) are not supported
 
-The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -239,7 +238,7 @@ if err != nil {
 
 Clear MAC Table from the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -324,13 +323,14 @@ if err != nil {
 
 # Clear Site Device Policy Hit Count
 
-Clear application policy hit counts for all the policies
+Clear application policy hit counts for the specified policy.
 
 ```go
 ClearSiteDevicePolicyHitCount(
     ctx context.Context,
     siteId uuid.UUID,
-    deviceId uuid.UUID) (
+    deviceId uuid.UUID,
+    body *models.ClearPolicyHitCount) (
     models.ApiResponse[models.WebsocketSessionWithUrl],
     error)
 ```
@@ -341,6 +341,7 @@ ClearSiteDevicePolicyHitCount(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `deviceId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.ClearPolicyHitCount`](../../doc/models/clear-policy-hit-count.md) | Body, Optional | - |
 
 ## Response Type
 
@@ -355,7 +356,11 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-apiResponse, err := utilitiesCommon.ClearSiteDevicePolicyHitCount(ctx, siteId, deviceId)
+body := models.ClearPolicyHitCount{
+    PolicyName:           "http",
+}
+
+apiResponse, err := utilitiesCommon.ClearSiteDevicePolicyHitCount(ctx, siteId, deviceId, &body)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -693,11 +698,11 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Ping From Device
+# Ping from Device
 
 Ping from AP, Switch and SSR
 
-Ping can be performed from the Device. The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+Ping can be performed from the Device. The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1128,100 +1133,11 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Show Site Device Arp Table
-
-Get ARP Table from the Device.
-
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
-
-#### Subscribe to Device Command outputs
-
-`WS /api-ws/v1/stream`
-
-```json
-{
-    "subscribe": "/sites/{site_id}/devices/{device_id}/cmd"
-}
-```
-
-```go
-ShowSiteDeviceArpTable(
-    ctx context.Context,
-    siteId uuid.UUID,
-    deviceId uuid.UUID,
-    body *models.UtilsShowArp) (
-    models.ApiResponse[models.WebsocketSession],
-    error)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `siteId` | `uuid.UUID` | Template, Required | - |
-| `deviceId` | `uuid.UUID` | Template, Required | - |
-| `body` | [`*models.UtilsShowArp`](../../doc/models/utils-show-arp.md) | Body, Optional | All attributes are optional |
-
-## Response Type
-
-This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.WebsocketSession](../../doc/models/websocket-session.md).
-
-## Example Usage
-
-```go
-ctx := context.Background()
-
-siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-deviceId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
-
-body := models.UtilsShowArp{
-    Duration:             models.ToPointer(0),
-    Interval:             models.ToPointer(0),
-    Ip:                   models.ToPointer("192.168.30.7"),
-    PortId:               models.ToPointer("ge-0/0/0.0"),
-    Vrf:                  models.ToPointer("guest"),
-}
-
-apiResponse, err := utilitiesCommon.ShowSiteDeviceArpTable(ctx, siteId, deviceId, &body)
-if err != nil {
-    switch typedErr := err.(type) {
-        case *errors.ResponseHttp400:
-            log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
-        case *errors.ResponseHttp404:
-            log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
-        default:
-            log.Fatalln(err)
-    }
-} else {
-    // Printing the result and response
-    fmt.Println(apiResponse.Data)
-    fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
-| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
-
-
 # Show Site Device Bgp Summary
 
 Get BGP Summary from SSR, SRX and Switch.
 
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1394,7 +1310,7 @@ if err != nil {
 
 Get Dot1X Table from the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1555,7 +1471,7 @@ if err != nil {
 
 # Show Site Device Forwarding Table
 
-Get forwarding table from the Device. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+Get forwarding table from the Device. The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1653,7 +1569,7 @@ if err != nil {
 
 Get MAC Table from the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -1911,11 +1827,11 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Traceroute From Device
+# Traceroute from Device
 
 Traceroute can be performed from the Device.
 
-The output will be available through websocket. As there can be multiple command issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same Device at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -2021,7 +1937,7 @@ Support / Upload device support files
 | process | string | Upload 1 file with output of show system processes extensive |
 | outbound-ssh | string | Upload 1 file that concatenates all /var/log/outbound-ssh.log* files |
 | messages | string | Upload 1 to 10 /var/log/messages* files |
-| core-dumps | string | Upload all core dump files, if any |
+| core-dumps | string | Upload all core dump files, if any. Uploads for all members of VC on switches.|
 | full | string | Upload 1 file with output of request support information, 1 file that concatenates all /var/log/outbound-ssh.log files, all core dump files, the 3 most recent /var/log/messages files, and Mist agent logs (for Junos devices running the Mist agent) |
 | var-logs | string | Upload all non-empty files in the /var/log/ directory |
 | jma-logs | string | Upload Mist agent logs (for Junos devices running the Mist agent only) |

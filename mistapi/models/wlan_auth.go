@@ -16,6 +16,10 @@ type WlanAuth struct {
 	AnticlogThreshold *int `json:"anticlog_threshold,omitempty"`
 	// Whether to trigger EAP reauth when the session ends
 	EapReauth *bool `json:"eap_reauth,omitempty"`
+	// Enable Beacon Protection; default is false for better compatibility
+	EnableBeaconProtection *bool `json:"enable_beacon_protection,omitempty"`
+	// Enable GCMP-256 encryption suite; default is false for better compatibility
+	EnableGcmp256 *bool `json:"enable_gcmp256,omitempty"`
 	// Whether to enable MAC Auth, uses the same auth_servers
 	EnableMacAuth *bool `json:"enable_mac_auth,omitempty"`
 	// When `type`==`wep`
@@ -43,8 +47,8 @@ type WlanAuth struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanAuth) String() string {
 	return fmt.Sprintf(
-		"WlanAuth[AnticlogThreshold=%v, EapReauth=%v, EnableMacAuth=%v, KeyIdx=%v, Keys=%v, MultiPskOnly=%v, Owe=%v, Pairwise=%v, PrivateWlan=%v, Psk=%v, Type=%v, WepAsSecondaryAuth=%v, AdditionalProperties=%v]",
-		w.AnticlogThreshold, w.EapReauth, w.EnableMacAuth, w.KeyIdx, w.Keys, w.MultiPskOnly, w.Owe, w.Pairwise, w.PrivateWlan, w.Psk, w.Type, w.WepAsSecondaryAuth, w.AdditionalProperties)
+		"WlanAuth[AnticlogThreshold=%v, EapReauth=%v, EnableBeaconProtection=%v, EnableGcmp256=%v, EnableMacAuth=%v, KeyIdx=%v, Keys=%v, MultiPskOnly=%v, Owe=%v, Pairwise=%v, PrivateWlan=%v, Psk=%v, Type=%v, WepAsSecondaryAuth=%v, AdditionalProperties=%v]",
+		w.AnticlogThreshold, w.EapReauth, w.EnableBeaconProtection, w.EnableGcmp256, w.EnableMacAuth, w.KeyIdx, w.Keys, w.MultiPskOnly, w.Owe, w.Pairwise, w.PrivateWlan, w.Psk, w.Type, w.WepAsSecondaryAuth, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanAuth.
@@ -53,7 +57,7 @@ func (w WlanAuth) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(w.AdditionalProperties,
-		"anticlog_threshold", "eap_reauth", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth"); err != nil {
+		"anticlog_threshold", "eap_reauth", "enable_beacon_protection", "enable_gcmp256", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(w.toMap())
@@ -68,6 +72,12 @@ func (w WlanAuth) toMap() map[string]any {
 	}
 	if w.EapReauth != nil {
 		structMap["eap_reauth"] = w.EapReauth
+	}
+	if w.EnableBeaconProtection != nil {
+		structMap["enable_beacon_protection"] = w.EnableBeaconProtection
+	}
+	if w.EnableGcmp256 != nil {
+		structMap["enable_gcmp256"] = w.EnableGcmp256
 	}
 	if w.EnableMacAuth != nil {
 		structMap["enable_mac_auth"] = w.EnableMacAuth
@@ -116,7 +126,7 @@ func (w *WlanAuth) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "anticlog_threshold", "eap_reauth", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "anticlog_threshold", "eap_reauth", "enable_beacon_protection", "enable_gcmp256", "enable_mac_auth", "key_idx", "keys", "multi_psk_only", "owe", "pairwise", "private_wlan", "psk", "type", "wep_as_secondary_auth")
 	if err != nil {
 		return err
 	}
@@ -124,6 +134,8 @@ func (w *WlanAuth) UnmarshalJSON(input []byte) error {
 
 	w.AnticlogThreshold = temp.AnticlogThreshold
 	w.EapReauth = temp.EapReauth
+	w.EnableBeaconProtection = temp.EnableBeaconProtection
+	w.EnableGcmp256 = temp.EnableGcmp256
 	w.EnableMacAuth = temp.EnableMacAuth
 	w.KeyIdx = temp.KeyIdx
 	w.Keys = temp.Keys
@@ -139,18 +151,20 @@ func (w *WlanAuth) UnmarshalJSON(input []byte) error {
 
 // tempWlanAuth is a temporary struct used for validating the fields of WlanAuth.
 type tempWlanAuth struct {
-	AnticlogThreshold  *int                       `json:"anticlog_threshold,omitempty"`
-	EapReauth          *bool                      `json:"eap_reauth,omitempty"`
-	EnableMacAuth      *bool                      `json:"enable_mac_auth,omitempty"`
-	KeyIdx             *int                       `json:"key_idx,omitempty"`
-	Keys               []string                   `json:"keys,omitempty"`
-	MultiPskOnly       *bool                      `json:"multi_psk_only,omitempty"`
-	Owe                *WlanAuthOweEnum           `json:"owe,omitempty"`
-	Pairwise           []WlanAuthPairwiseItemEnum `json:"pairwise,omitempty"`
-	PrivateWlan        *bool                      `json:"private_wlan,omitempty"`
-	Psk                Optional[string]           `json:"psk"`
-	Type               *WlanAuthTypeEnum          `json:"type"`
-	WepAsSecondaryAuth *bool                      `json:"wep_as_secondary_auth,omitempty"`
+	AnticlogThreshold      *int                       `json:"anticlog_threshold,omitempty"`
+	EapReauth              *bool                      `json:"eap_reauth,omitempty"`
+	EnableBeaconProtection *bool                      `json:"enable_beacon_protection,omitempty"`
+	EnableGcmp256          *bool                      `json:"enable_gcmp256,omitempty"`
+	EnableMacAuth          *bool                      `json:"enable_mac_auth,omitempty"`
+	KeyIdx                 *int                       `json:"key_idx,omitempty"`
+	Keys                   []string                   `json:"keys,omitempty"`
+	MultiPskOnly           *bool                      `json:"multi_psk_only,omitempty"`
+	Owe                    *WlanAuthOweEnum           `json:"owe,omitempty"`
+	Pairwise               []WlanAuthPairwiseItemEnum `json:"pairwise,omitempty"`
+	PrivateWlan            *bool                      `json:"private_wlan,omitempty"`
+	Psk                    Optional[string]           `json:"psk"`
+	Type                   *WlanAuthTypeEnum          `json:"type"`
+	WepAsSecondaryAuth     *bool                      `json:"wep_as_secondary_auth,omitempty"`
 }
 
 func (w *tempWlanAuth) validate() error {

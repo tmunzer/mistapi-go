@@ -449,13 +449,16 @@ func TestOrgsJSITestSearchOrgJsiSirt(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	versions := "20.4R3"
 
 	id := "JSA100053"
+
+	versions := "20.4R3"
+
 	limit := int(100)
 	page := int(1)
+	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, &versions, nil, nil, &id, &limit, &page, nil, nil, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, nil, &id, nil, nil, nil, nil, nil, &versions, nil, &limit, &page, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -473,13 +476,16 @@ func TestOrgsJSITestSearchOrgJsiSirt1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	versions := "20.4R3"
 
 	id := "JSA100053"
+
+	versions := "20.4R3"
+
 	limit := int(100)
 	page := int(1)
+	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, &versions, nil, nil, &id, &limit, &page, nil, nil, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiSirt(ctx, orgId, nil, &id, nil, nil, nil, nil, nil, &versions, nil, &limit, &page, &sort, nil, nil, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

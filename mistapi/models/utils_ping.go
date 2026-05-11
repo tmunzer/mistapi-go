@@ -14,11 +14,13 @@ type UtilsPing struct {
 	Count *int `json:"count,omitempty"`
 	// Interface through which packet needs to egress
 	EgressInterface *string `json:"egress_interface,omitempty"`
-	Host            string  `json:"host"`
+	// can be ip, ipv6, hostname
+	Host string `json:"host"`
 	// only for HA. enum: `node0`, `node1`
-	Node    *HaClusterNodeEnum `json:"node,omitempty"`
-	Size    *int               `json:"size,omitempty"`
-	UseIpv6 *bool              `json:"use_ipv6,omitempty"`
+	Node *HaClusterNodeEnum `json:"node,omitempty"`
+	Size *int               `json:"size,omitempty"`
+	// applicable when host is hostname
+	UseIpv6 *bool `json:"use_ipv6,omitempty"`
 	// VRF/Routing instance through which the packet needs to be sent
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

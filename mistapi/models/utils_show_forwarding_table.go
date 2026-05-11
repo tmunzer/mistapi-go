@@ -11,7 +11,7 @@ import (
 type UtilsShowForwardingTable struct {
 	// only for HA. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// IP Prefix
+	// can be ip, ipv6 prefix
 	Prefix *string `json:"prefix,omitempty"`
 	// Only supported with SSR
 	ServiceIp *string `json:"service_ip,omitempty"`

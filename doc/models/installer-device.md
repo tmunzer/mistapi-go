@@ -9,6 +9,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
+| `BleStat` | [`*models.InstallerDeviceBleStat`](../../doc/models/installer-device-ble-stat.md) | Optional | BLE statistics for the device |
 | `Connected` | `*bool` | Optional | - |
 | `DeviceprofileName` | `*string` | Optional | - |
 | `ExtIp` | `*string` | Optional | - |
@@ -48,7 +49,15 @@
   "uptime": 12345,
   "version": "0.10.24362",
   "x": 150,
-  "y": 300
+  "y": 300,
+  "ble_stat": {
+    "major": 210,
+    "minors": [
+      237,
+      238
+    ],
+    "uuid": "00001d0e-0000-0000-0000-000000000000"
+  }
 }
 ```
 

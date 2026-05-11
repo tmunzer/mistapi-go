@@ -197,7 +197,7 @@ if err != nil {
 
 # List Org Packet Captures
 
-Get List of Org  Packet Captures
+Get List of Org Packet Captures
 
 ```go
 ListOrgPacketCaptures(
@@ -260,27 +260,6 @@ if err != nil {
     // Printing the result and response
     fmt.Println(apiResponse.Data)
     fmt.Println(apiResponse.Response.StatusCode)
-}
-```
-
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1461089816,
-  "limit": 100,
-  "next": "/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816",
-  "results": [
-    {
-      "ap_macs": [
-        "5c5b35000010"
-      ],
-      "timestamp": 1461869041,
-      "type": "new_assoc",
-      "url": "https://..."
-    }
-  ],
-  "start": 1461099816
 }
 ```
 
@@ -365,27 +344,6 @@ if err != nil {
 }
 ```
 
-## Example Response *(as JSON)*
-
-```json
-{
-  "end": 1461089816,
-  "limit": 100,
-  "next": "/api/v1/sites/67970e46-4e12-11e6-9188-0242ac110007/pcaps?start=1461099816&search_after=%5B1694537121217%5D&limit=100&end=1461089816",
-  "results": [
-    {
-      "ap_macs": [
-        "5c5b35000010"
-      ],
-      "timestamp": 1461869041,
-      "type": "new_assoc",
-      "url": "https://..."
-    }
-  ],
-  "start": 1461099816
-}
-```
-
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
@@ -403,7 +361,7 @@ Initiate a Packet Capture
 
 **NOTE**: For packet captures of org level Mist Edges only. Use [Start Site Packet Capture](../../doc/controllers/utilities-pca-ps.md#start-site-packet-capture) for site level Mist Edges.
 
-The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 
@@ -411,11 +369,11 @@ The output will be available through websocket. As there can be multiple command
 
 ```json
 {
-    "subscribe": "/sites/{site_id}/pcaps"
+    "subscribe": "/orgs/:org_id/pcaps"
 }
 ```
 
-#### Response (Wireless/RadioTap)
+#### Response (MxEdge)
 
 ```json
 {
@@ -436,12 +394,25 @@ The output will be available through websocket. As there can be multiple command
           "direction": "tx", 
           "timestamp": 1652247615, 
           "length": 159.0, 
+          "lost_messages": 0,
           "interface": "port0",
-          "info": "1652247616.007409 IP ec2-34-224-147-117.compute-1.amazonaws.com.https > ip-192-168-1-55.ec2.internal.51635: Flags [P.], seq 
-                    2192123968:2192124057, ack 4035166782, win 12, options [nop,nop,TS val 597467050 ecr 740580660], length 89\\n",
+          "info": "1652247616.007409 IP ec2-34-224-147-117.compute-1.amazonaws.com.https > ip-192-168-1-55.ec2.internal.51635: Flags [P.], seq \n                    2192123968:2192124057, ack 4035166782, win 12, options [nop,nop,TS val 597467050 ecr 740580660], length 89\\n",
           }, 
-      "pcap_raw": "1MOyoQIABAAAAAAAAAAAAP//AAABAAAAQEx7YhMzAACfAAAAnwAAAGjsxQkuh4w7reBHQIEAAAEIAEUAAI1bLEAAKAZ/CiLgk3XAqAE3AbvJs4KpKEDwg8I+gBgADFf9AAABAQgKI5yfqiwkXTQXAwMAVKY5JopoKQrVEn0/3ld4YntctGEH/rTZuwtCvzSncFw71QJveJi9uxHs57KC8w9Apph3YvXJrmWg7M37+o+YV0KH/xmr626s5Bkhb3QhKOu+NoNEmA==\"
+      "pcap_raw": "1MOyoQIABAAAAAAAAAAAAP//AAABAAAAQEx7YhMzAACfAAAAnwAAAGjsxQkuh4w7reBHQIEAAAEIAEUAAI1bLEAAKAZ/CiLgk3XAqAE3AbvJs4KpKEDwg8I+gBgADFf9AAABAQgKI5yfqiwkXTQXAwMAVKY5JopoKQrVEn0/3ld4YntctGEH/rTZuwtCvzSncFw71QJveJi9uxHs57KC8w9Apph3YvXJrmWg7M37+o+YV0KH/xmr626s5Bkhb3QhKOu+NoNEmA=="
     }
+}
+```
+
+#### Stop Response
+
+```json
+{
+  "event": "data"
+  "channel": "/orgs/67970e46-4e12-11e6-9188-0242ac110007/pcaps"
+  "data": {
+      "capture_id": "a2f7374d-6a70-41fd-8a3f-71e42573baaf",
+      "pcap_dict": null
+  }
 }
 ```
 
@@ -550,7 +521,7 @@ if err != nil {
 
 Initiate a Site Packet Capture
 
-The output will be available through websocket. As there can be multiple command issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
+The output will be available through websocket. As there can be multiple commands issued against the same AP at the same time and the output all goes through the same websocket stream, session is introduced for demux.
 
 #### Subscribe to Device Command outputs
 

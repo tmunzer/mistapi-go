@@ -132,7 +132,7 @@ var orgsMxTunnels OrgsMxTunnels
 
 var orgsNacidp OrgsNACIDP
 
-var orgsNacFingerprints OrgsNACFingerprints
+var sitesNacFingerprints SitesNACFingerprints
 
 var orgsNacTags OrgsNACTags
 
@@ -173,6 +173,8 @@ var orgsPremiumAnalytics OrgsPremiumAnalytics
 var orgsPsks OrgsPsks
 
 var orgsPskPortals OrgsPskPortals
+
+var orgsReports OrgsReports
 
 var orgsRfTemplates OrgsRFTemplates
 
@@ -230,6 +232,8 @@ var sitesApTemplates SitesAPTemplates
 
 var sitesApplications SitesApplications
 
+var sitesAutoMapAssignment SitesAutoMapAssignment
+
 var sitesAssetFilters SitesAssetFilters
 
 var sitesAssets SitesAssets
@@ -273,6 +277,8 @@ var sitesAdvancedAntiMalwareProfiles SitesAdvancedAntiMalwareProfiles
 var sitesAntivirusProfiles SitesAntivirusProfiles
 
 var sitesGuests SitesGuests
+
+var sitesInsights SitesInsights
 
 var sitesJse SitesJSE
 
@@ -369,6 +375,8 @@ var sitesStatsWxRules SitesStatsWxRules
 var sitesStatsZones SitesStatsZones
 
 var sitesStatsDiscoveredSwitches SitesStatsDiscoveredSwitches
+
+var sitesStatsIoTEndpoints SitesStatsIoTEndpoints
 
 var constantsDefinitions ConstantsDefinitions
 
@@ -482,7 +490,7 @@ func init() {
 	orgsMxEdges = *client.OrgsMxEdges()
 	orgsMxTunnels = *client.OrgsMxTunnels()
 	orgsNacidp = *client.OrgsNACIDP()
-	orgsNacFingerprints = *client.OrgsNACFingerprints()
+	sitesNacFingerprints = *client.SitesNACFingerprints()
 	orgsNacTags = *client.OrgsNACTags()
 	orgsNacPortals = *client.OrgsNACPortals()
 	orgsNaccrl = *client.OrgsNACCRL()
@@ -503,6 +511,7 @@ func init() {
 	orgsPremiumAnalytics = *client.OrgsPremiumAnalytics()
 	orgsPsks = *client.OrgsPsks()
 	orgsPskPortals = *client.OrgsPskPortals()
+	orgsReports = *client.OrgsReports()
 	orgsRfTemplates = *client.OrgsRFTemplates()
 	orgsSdkInvites = *client.OrgsSDKInvites()
 	orgsSdkTemplates = *client.OrgsSDKTemplates()
@@ -531,6 +540,7 @@ func init() {
 	sitesAlarms = *client.SitesAlarms()
 	sitesApTemplates = *client.SitesAPTemplates()
 	sitesApplications = *client.SitesApplications()
+	sitesAutoMapAssignment = *client.SitesAutoMapAssignment()
 	sitesAssetFilters = *client.SitesAssetFilters()
 	sitesAssets = *client.SitesAssets()
 	sitesBeacons = *client.SitesBeacons()
@@ -553,6 +563,7 @@ func init() {
 	sitesAdvancedAntiMalwareProfiles = *client.SitesAdvancedAntiMalwareProfiles()
 	sitesAntivirusProfiles = *client.SitesAntivirusProfiles()
 	sitesGuests = *client.SitesGuests()
+	sitesInsights = *client.SitesInsights()
 	sitesJse = *client.SitesJSE()
 	sitesLicenses = *client.SitesLicenses()
 	sitesLocation = *client.SitesLocation()
@@ -601,6 +612,7 @@ func init() {
 	sitesStatsWxRules = *client.SitesStatsWxRules()
 	sitesStatsZones = *client.SitesStatsZones()
 	sitesStatsDiscoveredSwitches = *client.SitesStatsDiscoveredSwitches()
+	sitesStatsIoTEndpoints = *client.SitesStatsIoTEndpoints()
 	constantsDefinitions = *client.ConstantsDefinitions()
 	constantsEvents = *client.ConstantsEvents()
 	constantsModels = *client.ConstantsModels()

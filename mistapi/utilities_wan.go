@@ -163,7 +163,7 @@ func (u *UtilitiesWAN) ClearSiteDeviceSession(
 // an error if there was an issue with the request or response.
 // Releases an active DHCP lease.
 // The output will be available through websocket.
-// As there can be multiple command issued  against the same Device at the same
+// As there can be multiple commands issued against the same Device at the same
 // time and the output all goes through the same websocket stream, session is
 // introduced for demux.
 // #### Subscribe to Device Command outputs
@@ -229,7 +229,7 @@ func (u *UtilitiesWAN) ReleaseSiteSsrDhcpLease(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // DNS resolutions are performed on the Device.
-// The output will be available through websocket. As there can be multiple command issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same SSR at the same time and the output all goes through the same websocket stream, `session` is used for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -283,7 +283,7 @@ func (u *UtilitiesWAN) TestSiteSsrDnsResolution(
 // returns an models.ApiResponse with models.WebsocketSessionWithUrl data and
 // an error if there was an issue with the request or response.
 // Run top command on switches and SRX. The output will be available through websocket.
-// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -395,7 +395,7 @@ func (u *UtilitiesWAN) ServicePingFromSsr(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF Database from SSR and SRX. The output will be available through websocket.
-// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -462,7 +462,7 @@ func (u *UtilitiesWAN) ShowSiteGatewayOspfDatabase(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF interfaces from SSR and SRX. The output will be available through websocket.
-// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -528,7 +528,7 @@ func (u *UtilitiesWAN) ShowSiteGatewayOspfInterfaces(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF Neighbors from SSR and SRX. The output will be available through websocket.
-// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -595,7 +595,7 @@ func (u *UtilitiesWAN) ShowSiteGatewayOspfNeighbors(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get OSPF summary from SSR and SRX. The output will be available through websocket.
-// As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json
@@ -661,7 +661,7 @@ func (u *UtilitiesWAN) ShowSiteGatewayOspfSummary(
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
 // Get routes from SSR, SRX and Switch.
-// The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ```json

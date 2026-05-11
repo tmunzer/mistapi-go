@@ -15,6 +15,8 @@ type UtilsShowArp struct {
 	Interval *int `json:"interval,omitempty"`
 	// IP Address
 	Ip *string `json:"ip,omitempty"`
+	// HA cluster node to run the command on, required for Gateways
+	Node *HaClusterNodeEnum1Enum `json:"node,omitempty"`
 	// Device Port ID
 	PortId *string `json:"port_id,omitempty"`
 	// VRF Name
@@ -26,8 +28,8 @@ type UtilsShowArp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UtilsShowArp) String() string {
 	return fmt.Sprintf(
-		"UtilsShowArp[Duration=%v, Interval=%v, Ip=%v, PortId=%v, Vrf=%v, AdditionalProperties=%v]",
-		u.Duration, u.Interval, u.Ip, u.PortId, u.Vrf, u.AdditionalProperties)
+		"UtilsShowArp[Duration=%v, Interval=%v, Ip=%v, Node=%v, PortId=%v, Vrf=%v, AdditionalProperties=%v]",
+		u.Duration, u.Interval, u.Ip, u.Node, u.PortId, u.Vrf, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsShowArp.
@@ -36,7 +38,7 @@ func (u UtilsShowArp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"duration", "interval", "ip", "port_id", "vrf"); err != nil {
+		"duration", "interval", "ip", "node", "port_id", "vrf"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -55,6 +57,9 @@ func (u UtilsShowArp) toMap() map[string]any {
 	if u.Ip != nil {
 		structMap["ip"] = u.Ip
 	}
+	if u.Node != nil {
+		structMap["node"] = u.Node
+	}
 	if u.PortId != nil {
 		structMap["port_id"] = u.PortId
 	}
@@ -72,7 +77,7 @@ func (u *UtilsShowArp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "interval", "ip", "port_id", "vrf")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "duration", "interval", "ip", "node", "port_id", "vrf")
 	if err != nil {
 		return err
 	}
@@ -81,6 +86,7 @@ func (u *UtilsShowArp) UnmarshalJSON(input []byte) error {
 	u.Duration = temp.Duration
 	u.Interval = temp.Interval
 	u.Ip = temp.Ip
+	u.Node = temp.Node
 	u.PortId = temp.PortId
 	u.Vrf = temp.Vrf
 	return nil
@@ -88,9 +94,10 @@ func (u *UtilsShowArp) UnmarshalJSON(input []byte) error {
 
 // tempUtilsShowArp is a temporary struct used for validating the fields of UtilsShowArp.
 type tempUtilsShowArp struct {
-	Duration *int    `json:"duration,omitempty"`
-	Interval *int    `json:"interval,omitempty"`
-	Ip       *string `json:"ip,omitempty"`
-	PortId   *string `json:"port_id,omitempty"`
-	Vrf      *string `json:"vrf,omitempty"`
+	Duration *int                    `json:"duration,omitempty"`
+	Interval *int                    `json:"interval,omitempty"`
+	Ip       *string                 `json:"ip,omitempty"`
+	Node     *HaClusterNodeEnum1Enum `json:"node,omitempty"`
+	PortId   *string                 `json:"port_id,omitempty"`
+	Vrf      *string                 `json:"vrf,omitempty"`
 }

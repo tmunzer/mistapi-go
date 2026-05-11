@@ -577,7 +577,7 @@ body := models.Mxedge{
     Model:                     "ME-100",
     MxclusterId:               models.ToPointer(uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4")),
     Name:                      "Guest",
-    Note:                      models.ToPointer("note for mxedge"),
+    Notes:                     models.ToPointer("note for mxedge"),
 }
 
 apiResponse, err := sitesMxEdges.UpdateSiteMxEdge(ctx, siteId, mxedgeId, &body)

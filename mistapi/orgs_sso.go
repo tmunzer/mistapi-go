@@ -237,6 +237,51 @@ func (o *OrgsSSO) UpdateOrgSso(
 	return models.NewApiResponse(result, resp), err
 }
 
+// DeleteOrgSsoAdmins takes context, orgId, ssoId, body as parameters and
+// returns an models.ApiResponse with models.SsoDeleteAdminsResponse data and
+// an error if there was an issue with the request or response.
+// Delete SSO Admin users by email. This removes SSO-linked admin accounts from the organization.
+func (o *OrgsSSO) DeleteOrgSsoAdmins(
+	ctx context.Context,
+	orgId uuid.UUID,
+	ssoId uuid.UUID,
+	body *models.SsoDeleteAdmins) (
+	models.ApiResponse[models.SsoDeleteAdminsResponse],
+	error) {
+	req := o.prepareRequest(ctx, "POST", "/api/v1/orgs/%v/ssos/%v/delete_admins")
+	req.AppendTemplateParams(orgId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.SsoDeleteAdminsResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SsoDeleteAdminsResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // ListOrgSsoLatestFailures takes context, orgId, ssoId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseSsoFailureSearch data and
 // an error if there was an issue with the request or response.

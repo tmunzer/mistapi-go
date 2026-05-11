@@ -99,21 +99,21 @@ body := models.Secpolicy{
             }),
             ArpFilter:                            models.ToPointer(false),
             Auth:                                 models.ToPointer(models.WlanAuth{
-                AnticlogThreshold:    models.ToPointer(16),
-                EapReauth:            models.ToPointer(false),
-                EnableMacAuth:        models.ToPointer(false),
-                KeyIdx:               models.ToPointer(1),
-                Keys:                 []string{
+                AnticlogThreshold:      models.ToPointer(16),
+                EapReauth:              models.ToPointer(false),
+                EnableMacAuth:          models.ToPointer(false),
+                KeyIdx:                 models.ToPointer(1),
+                Keys:                   []string{
                     "string",
                 },
-                MultiPskOnly:         models.ToPointer(false),
-                Pairwise:             []models.WlanAuthPairwiseItemEnum{
+                MultiPskOnly:           models.ToPointer(false),
+                Pairwise:               []models.WlanAuthPairwiseItemEnum{
                     models.WlanAuthPairwiseItemEnum_WPA2CCMP,
                 },
-                PrivateWlan:          models.ToPointer(true),
-                Psk:                  models.NewOptional(models.ToPointer("foryoureyesonly")),
-                Type:                 models.WlanAuthTypeEnum_PSK,
-                WepAsSecondaryAuth:   models.ToPointer(true),
+                PrivateWlan:            models.ToPointer(true),
+                Psk:                    models.NewOptional(models.ToPointer("foryoureyesonly")),
+                Type:                   models.WlanAuthTypeEnum_PSK,
+                WepAsSecondaryAuth:     models.ToPointer(true),
             }),
             AuthServerSelection:                  models.ToPointer(models.WlanAuthServerSelectionEnum_ORDERED),
             AuthServers:                          []models.RadiusAuthServer{

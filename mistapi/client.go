@@ -80,7 +80,7 @@ type ClientInterface interface {
 	OrgsMxEdges() *OrgsMxEdges
 	OrgsMxTunnels() *OrgsMxTunnels
 	OrgsNACIDP() *OrgsNACIDP
-	OrgsNACFingerprints() *OrgsNACFingerprints
+	SitesNACFingerprints() *SitesNACFingerprints
 	OrgsNACTags() *OrgsNACTags
 	OrgsNACPortals() *OrgsNACPortals
 	OrgsNACCRL() *OrgsNACCRL
@@ -101,6 +101,7 @@ type ClientInterface interface {
 	OrgsPremiumAnalytics() *OrgsPremiumAnalytics
 	OrgsPsks() *OrgsPsks
 	OrgsPskPortals() *OrgsPskPortals
+	OrgsReports() *OrgsReports
 	OrgsRFTemplates() *OrgsRFTemplates
 	OrgsSDKInvites() *OrgsSDKInvites
 	OrgsSDKTemplates() *OrgsSDKTemplates
@@ -130,6 +131,7 @@ type ClientInterface interface {
 	SitesAPTemplates() *SitesAPTemplates
 	SitesApplications() *SitesApplications
 	SitesAnomaly() *SitesAnomaly
+	SitesAutoMapAssignment() *SitesAutoMapAssignment
 	SitesAssetFilters() *SitesAssetFilters
 	SitesAssets() *SitesAssets
 	SitesBeacons() *SitesBeacons
@@ -202,6 +204,7 @@ type ClientInterface interface {
 	SitesStatsWxRules() *SitesStatsWxRules
 	SitesStatsZones() *SitesStatsZones
 	SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches
+	SitesStatsIoTEndpoints() *SitesStatsIoTEndpoints
 	ConstantsDefinitions() *ConstantsDefinitions
 	ConstantsEvents() *ConstantsEvents
 	ConstantsModels() *ConstantsModels
@@ -294,7 +297,7 @@ type client struct {
 	orgsMxEdges                      OrgsMxEdges
 	orgsMxTunnels                    OrgsMxTunnels
 	orgsNACIDP                       OrgsNACIDP
-	orgsNACFingerprints              OrgsNACFingerprints
+	sitesNACFingerprints             SitesNACFingerprints
 	orgsNACTags                      OrgsNACTags
 	orgsNACPortals                   OrgsNACPortals
 	orgsNACCRL                       OrgsNACCRL
@@ -315,6 +318,7 @@ type client struct {
 	orgsPremiumAnalytics             OrgsPremiumAnalytics
 	orgsPsks                         OrgsPsks
 	orgsPskPortals                   OrgsPskPortals
+	orgsReports                      OrgsReports
 	orgsRFTemplates                  OrgsRFTemplates
 	orgsSDKInvites                   OrgsSDKInvites
 	orgsSDKTemplates                 OrgsSDKTemplates
@@ -344,6 +348,7 @@ type client struct {
 	sitesAPTemplates                 SitesAPTemplates
 	sitesApplications                SitesApplications
 	sitesAnomaly                     SitesAnomaly
+	sitesAutoMapAssignment           SitesAutoMapAssignment
 	sitesAssetFilters                SitesAssetFilters
 	sitesAssets                      SitesAssets
 	sitesBeacons                     SitesBeacons
@@ -416,6 +421,7 @@ type client struct {
 	sitesStatsWxRules                SitesStatsWxRules
 	sitesStatsZones                  SitesStatsZones
 	sitesStatsDiscoveredSwitches     SitesStatsDiscoveredSwitches
+	sitesStatsIoTEndpoints           SitesStatsIoTEndpoints
 	constantsDefinitions             ConstantsDefinitions
 	constantsEvents                  ConstantsEvents
 	constantsModels                  ConstantsModels
@@ -527,7 +533,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsMxEdges = *NewOrgsMxEdges(*baseController)
 	client.orgsMxTunnels = *NewOrgsMxTunnels(*baseController)
 	client.orgsNACIDP = *NewOrgsNACIDP(*baseController)
-	client.orgsNACFingerprints = *NewOrgsNACFingerprints(*baseController)
+	client.sitesNACFingerprints = *NewSitesNACFingerprints(*baseController)
 	client.orgsNACTags = *NewOrgsNACTags(*baseController)
 	client.orgsNACPortals = *NewOrgsNACPortals(*baseController)
 	client.orgsNACCRL = *NewOrgsNACCRL(*baseController)
@@ -548,6 +554,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.orgsPremiumAnalytics = *NewOrgsPremiumAnalytics(*baseController)
 	client.orgsPsks = *NewOrgsPsks(*baseController)
 	client.orgsPskPortals = *NewOrgsPskPortals(*baseController)
+	client.orgsReports = *NewOrgsReports(*baseController)
 	client.orgsRFTemplates = *NewOrgsRFTemplates(*baseController)
 	client.orgsSDKInvites = *NewOrgsSDKInvites(*baseController)
 	client.orgsSDKTemplates = *NewOrgsSDKTemplates(*baseController)
@@ -577,6 +584,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.sitesAPTemplates = *NewSitesAPTemplates(*baseController)
 	client.sitesApplications = *NewSitesApplications(*baseController)
 	client.sitesAnomaly = *NewSitesAnomaly(*baseController)
+	client.sitesAutoMapAssignment = *NewSitesAutoMapAssignment(*baseController)
 	client.sitesAssetFilters = *NewSitesAssetFilters(*baseController)
 	client.sitesAssets = *NewSitesAssets(*baseController)
 	client.sitesBeacons = *NewSitesBeacons(*baseController)
@@ -649,6 +657,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.sitesStatsWxRules = *NewSitesStatsWxRules(*baseController)
 	client.sitesStatsZones = *NewSitesStatsZones(*baseController)
 	client.sitesStatsDiscoveredSwitches = *NewSitesStatsDiscoveredSwitches(*baseController)
+	client.sitesStatsIoTEndpoints = *NewSitesStatsIoTEndpoints(*baseController)
 	client.constantsDefinitions = *NewConstantsDefinitions(*baseController)
 	client.constantsEvents = *NewConstantsEvents(*baseController)
 	client.constantsModels = *NewConstantsModels(*baseController)
@@ -1014,9 +1023,9 @@ func (c *client) OrgsNACIDP() *OrgsNACIDP {
 	return &c.orgsNACIDP
 }
 
-// OrgsNACFingerprints returns the orgsNACFingerprints instance of the client.
-func (c *client) OrgsNACFingerprints() *OrgsNACFingerprints {
-	return &c.orgsNACFingerprints
+// SitesNACFingerprints returns the sitesNACFingerprints instance of the client.
+func (c *client) SitesNACFingerprints() *SitesNACFingerprints {
+	return &c.sitesNACFingerprints
 }
 
 // OrgsNACTags returns the orgsNACTags instance of the client.
@@ -1117,6 +1126,11 @@ func (c *client) OrgsPsks() *OrgsPsks {
 // OrgsPskPortals returns the orgsPskPortals instance of the client.
 func (c *client) OrgsPskPortals() *OrgsPskPortals {
 	return &c.orgsPskPortals
+}
+
+// OrgsReports returns the orgsReports instance of the client.
+func (c *client) OrgsReports() *OrgsReports {
+	return &c.orgsReports
 }
 
 // OrgsRFTemplates returns the orgsRFTemplates instance of the client.
@@ -1262,6 +1276,11 @@ func (c *client) SitesApplications() *SitesApplications {
 // SitesAnomaly returns the sitesAnomaly instance of the client.
 func (c *client) SitesAnomaly() *SitesAnomaly {
 	return &c.sitesAnomaly
+}
+
+// SitesAutoMapAssignment returns the sitesAutoMapAssignment instance of the client.
+func (c *client) SitesAutoMapAssignment() *SitesAutoMapAssignment {
+	return &c.sitesAutoMapAssignment
 }
 
 // SitesAssetFilters returns the sitesAssetFilters instance of the client.
@@ -1622,6 +1641,11 @@ func (c *client) SitesStatsZones() *SitesStatsZones {
 // SitesStatsDiscoveredSwitches returns the sitesStatsDiscoveredSwitches instance of the client.
 func (c *client) SitesStatsDiscoveredSwitches() *SitesStatsDiscoveredSwitches {
 	return &c.sitesStatsDiscoveredSwitches
+}
+
+// SitesStatsIoTEndpoints returns the sitesStatsIoTEndpoints instance of the client.
+func (c *client) SitesStatsIoTEndpoints() *SitesStatsIoTEndpoints {
+	return &c.sitesStatsIoTEndpoints
 }
 
 // ConstantsDefinitions returns the constantsDefinitions instance of the client.

@@ -18,7 +18,9 @@ func TestOrgsSecIntelProfilesTestListOrgSecIntelProfiles(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := orgsSecIntelProfiles.ListOrgSecIntelProfiles(ctx, orgId)
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := orgsSecIntelProfiles.ListOrgSecIntelProfiles(ctx, orgId, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -38,7 +40,9 @@ func TestOrgsSecIntelProfilesTestListOrgSecIntelProfiles1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	apiResponse, err := orgsSecIntelProfiles.ListOrgSecIntelProfiles(ctx, orgId)
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := orgsSecIntelProfiles.ListOrgSecIntelProfiles(ctx, orgId, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

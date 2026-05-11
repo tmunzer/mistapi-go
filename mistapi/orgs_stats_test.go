@@ -16,11 +16,7 @@ func TestOrgsStatsTestGetOrgStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := orgsStats.GetOrgStats(ctx, orgId, nil, nil, &duration, &limit, &page)
+	apiResponse, err := orgsStats.GetOrgStats(ctx, orgId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -40,11 +36,7 @@ func TestOrgsStatsTestGetOrgStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	duration := "1d"
-	limit := int(100)
-	page := int(1)
-	apiResponse, err := orgsStats.GetOrgStats(ctx, orgId, nil, nil, &duration, &limit, &page)
+	apiResponse, err := orgsStats.GetOrgStats(ctx, orgId)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

@@ -160,12 +160,12 @@ SearchOrgWiredClients(
 | `source` | [`*models.ClientInfoSourceEnum`](../../doc/models/client-info-source-enum.md) | Query, Optional | source from where the client was learned (lldp, mac) |
 | `siteId` | `*string` | Query, Optional | Site ID |
 | `deviceMac` | `*string` | Query, Optional | Device mac (Gateway/Switch) where the client has connected to |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
 | `portId` | `*string` | Query, Optional | Port id where the client has connected to |
 | `vlan` | `*int` | Query, Optional | VLAN |
 | `ip` | `*string` | Query, Optional | - |
 | `manufacture` | `*string` | Query, Optional | Client manufacturer |
-| `text` | `*string` | Query, Optional | Partial / full MAC address, hostname or username |
+| `text` | `*string` | Query, Optional | Partial / full Client MAC Address, hostname or username. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*ddeeff`) are not supported |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `dhcpHostname` | `*string` | Query, Optional | DHCP Hostname |
 | `dhcpFqdn` | `*string` | Query, Optional | DHCP FQDN |
@@ -190,6 +190,8 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "aabbccddeeff"
+
 ip := "192.168.1.1"
 
 limit := 100
@@ -198,7 +200,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsWired.SearchOrgWiredClients(ctx, orgId, nil, nil, nil, nil, nil, &mac, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

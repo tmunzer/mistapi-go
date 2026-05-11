@@ -354,13 +354,16 @@ func TestOrgsMxEdgesTestSearchOrgMxEdges(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	hostname := "my-london-1"
+
+	model := "AP43"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, &hostname, nil, nil, &model, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -380,13 +383,16 @@ func TestOrgsMxEdgesTestSearchOrgMxEdges1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	hostname := "my-london-1"
+
+	model := "AP43"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsMxEdges.SearchOrgMxEdges(ctx, orgId, &hostname, nil, nil, &model, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

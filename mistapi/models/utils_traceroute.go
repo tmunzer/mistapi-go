@@ -9,7 +9,7 @@ import (
 
 // UtilsTraceroute represents a UtilsTraceroute struct.
 type UtilsTraceroute struct {
-	// Host name
+	// can be ip, ipv6, hostname
 	Host *string `json:"host,omitempty"`
 	// For SSR, optional, the source to initiate traceroute from
 	Network *string `json:"network,omitempty"`
@@ -20,7 +20,8 @@ type UtilsTraceroute struct {
 	// enum: `icmp` (Only supported by AP/MxEdge), `udp`
 	Protocol *UtilsTracerouteProtocolEnum `json:"protocol,omitempty"`
 	// Not supported in SSR. Maximum time in seconds to wait for the response
-	Timeout *int  `json:"timeout,omitempty"`
+	Timeout *int `json:"timeout,omitempty"`
+	// applicable when host is hostname
 	UseIpv6 *bool `json:"use_ipv6,omitempty"`
 	// For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed
 	Vrf                  *string                `json:"vrf,omitempty"`

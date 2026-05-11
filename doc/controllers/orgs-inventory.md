@@ -136,8 +136,12 @@ Count by Distinct Attributes of in the Org Inventory
 CountOrgInventory(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *models.DeviceTypeDefaultApEnum,
     distinct *models.InventoryCountDistinctEnum,
+    mType *models.DeviceTypeDefaultApEnum,
+    siteId *string,
+    model *string,
+    version *string,
+    status *models.DeviceStatusFilterEnum,
     limit *int) (
     models.ApiResponse[models.ResponseCount],
     error)
@@ -148,8 +152,12 @@ CountOrgInventory(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
 | `distinct` | [`*models.InventoryCountDistinctEnum`](../../doc/models/inventory-count-distinct-enum.md) | Query, Optional | **Default**: `"model"` |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
+| `siteId` | `*string` | Query, Optional | Site ID |
+| `model` | `*string` | Query, Optional | Device model |
+| `version` | `*string` | Query, Optional | Software version |
+| `status` | [`*models.DeviceStatusFilterEnum`](../../doc/models/device-status-filter-enum.md) | Query, Optional | - |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 
 ## Response Type
@@ -163,13 +171,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeDefaultApEnum_AP
-
 distinct := models.InventoryCountDistinctEnum_MODEL
+
+mType := models.DeviceTypeDefaultApEnum_AP
 
 limit := 100
 
-apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &mType, &distinct, &limit)
+apiResponse, err := orgsInventory.CountOrgInventory(ctx, orgId, &distinct, &mType, nil, nil, nil, nil, &limit)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -678,14 +686,14 @@ SearchOrgInventory(
     orgId uuid.UUID,
     mType *models.DeviceTypeDefaultApEnum,
     mac *string,
-    vcMac *string,
-    masterMac *string,
+    model *string,
+    name *string,
     siteId *uuid.UUID,
     serial *string,
     master *string,
     sku *string,
     version *string,
-    status *string,
+    status *models.DeviceStatusFilterEnum,
     text *string,
     limit *int,
     sort *string,
@@ -700,15 +708,15 @@ SearchOrgInventory(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `mac` | `*string` | Query, Optional | MAC address |
-| `vcMac` | `*string` | Query, Optional | Virtual Chassis MAC Address |
-| `masterMac` | `*string` | Query, Optional | Master device mac for virtual mac cluster |
+| `mac` | `*string` | Query, Optional | MAC address. Partial match allowed with wildcard * (e.g. `*5b35*` will match `5c5b350e0001` and `5c5b35000301`). |
+| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported |
+| `name` | `*string` | Query, Optional | Device name. Always a partial match (e.g. `london` will match `london-1`, `london-2`, `my-london-device`...) |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site id if assigned, null if not assigned |
-| `serial` | `*string` | Query, Optional | Device serial |
+| `serial` | `*string` | Query, Optional | Device serial number. Partial match allowed with wildcard * (e.g. `*123*` will match `AB123CD`, `12345`, `XY123`) |
 | `master` | `*string` | Query, Optional | true / false |
-| `sku` | `*string` | Query, Optional | Device sku |
-| `version` | `*string` | Query, Optional | Device version |
-| `status` | `*string` | Query, Optional | Device status |
+| `sku` | `*string` | Query, Optional | Device SKU. Partial match allowed with wildcard * (e.g. `*2300*` will match `EX2300-F-12P`) |
+| `version` | `*string` | Query, Optional | Device version. Partial match allowed with wildcard * (e.g. `2R3` will match `21.2R3-S3.5`) |
+| `status` | [`*models.DeviceStatusFilterEnum`](../../doc/models/device-status-filter-enum.md) | Query, Optional | Device status. enum: `connected`, `disconnected` |
 | `text` | `*string` | Query, Optional | Wildcards for name, mac, serial |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
@@ -729,27 +737,25 @@ mType := models.DeviceTypeDefaultApEnum_AP
 
 mac := "5c5b350e0001"
 
-vcMac := "5c5b350e0001"
+model := "AP43"
 
-masterMac := "5c5b350e0001"
+name := "london"
 
 siteId := uuid.MustParse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
 
-serial := "FXLH2015150025"
+serial := "AB123CD"
 
 master := "true"
 
-sku := "AP43-WW"
+sku := "EX2300-F-12P"
 
-version := "1.0.0"
-
-status := "connected"
+version := "21.2R3-S3.5"
 
 limit := 100
 
 sort := "-site_id"
 
-apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &vcMac, &masterMac, &siteId, &serial, &master, &sku, &version, &status, nil, &limit, &sort, nil)
+apiResponse, err := orgsInventory.SearchOrgInventory(ctx, orgId, &mType, &mac, &model, &name, &siteId, &serial, &master, &sku, &version, nil, nil, &limit, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

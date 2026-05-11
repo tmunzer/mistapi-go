@@ -12,6 +12,7 @@ orgsSSO := client.OrgsSSO()
 
 * [Create Org Sso](../../doc/controllers/orgs-sso.md#create-org-sso)
 * [Delete Org Sso](../../doc/controllers/orgs-sso.md#delete-org-sso)
+* [Delete Org Sso Admins](../../doc/controllers/orgs-sso.md#delete-org-sso-admins)
 * [Download Org Saml Metadata](../../doc/controllers/orgs-sso.md#download-org-saml-metadata)
 * [Get Org Saml Metadata](../../doc/controllers/orgs-sso.md#get-org-saml-metadata)
 * [Get Org Sso](../../doc/controllers/orgs-sso.md#get-org-sso)
@@ -171,6 +172,82 @@ if err != nil {
     }
 } else {
     fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Delete Org Sso Admins
+
+Delete SSO Admin users by email. This removes SSO-linked admin accounts from the organization.
+
+```go
+DeleteOrgSsoAdmins(
+    ctx context.Context,
+    orgId uuid.UUID,
+    ssoId uuid.UUID,
+    body *models.SsoDeleteAdmins) (
+    models.ApiResponse[models.SsoDeleteAdminsResponse],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `ssoId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.SsoDeleteAdmins`](../../doc/models/sso-delete-admins.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.SsoDeleteAdminsResponse](../../doc/models/sso-delete-admins-response.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+ssoId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.SsoDeleteAdmins{
+    Emails:               []string{
+        "john@abc.com",
+        "may@abc.com",
+    },
+}
+
+apiResponse, err := orgsSSO.DeleteOrgSsoAdmins(ctx, orgId, ssoId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 

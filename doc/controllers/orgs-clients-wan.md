@@ -242,10 +242,10 @@ SearchOrgWanClientEvents(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `ip` | `*string` | Query, Optional | Client IP |
-| `mfg` | `*string` | Query, Optional | Manufacture |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
+| `ip` | `*string` | Query, Optional | Partial / full Client IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
+| `mfg` | `*string` | Query, Optional | Partial / full Client manufacturer (e.g. "apple", "cisco", "juniper"). Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Raspberry Pi*` and `*Pi*` match `Raspberry Pi Trading Ltd`). Suffix-only wildcards (e.g. `*Ltd`) are not supported |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
@@ -265,13 +265,21 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+mac := "aabbccddeeff"
+
+hostname := "my-everest-client"
+
+ip := "10.100.10.54"
+
+mfg := "Raspberry Pi Trading Ltd"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, &mac, &hostname, &ip, &mfg, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -335,12 +343,12 @@ SearchOrgWanClients(
     ctx context.Context,
     orgId uuid.UUID,
     siteId *uuid.UUID,
-    mac *string,
     hostname *string,
     ip *string,
-    network *string,
     ipSrc *string,
+    mac *string,
     mfg *string,
+    network *string,
     limit *int,
     start *string,
     end *string,
@@ -357,12 +365,12 @@ SearchOrgWanClients(
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
 | `siteId` | `*uuid.UUID` | Query, Optional | Site ID |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `ip` | `*string` | Query, Optional | Client IP |
-| `network` | `*string` | Query, Optional | Network |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
+| `ip` | `*string` | Query, Optional | Partial / full Client IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
 | `ipSrc` | `*string` | Query, Optional | IP source |
+| `mac` | `*string` | Query, Optional | Client MAC Address. |
 | `mfg` | `*string` | Query, Optional | Manufacture |
+| `network` | `*string` | Query, Optional | Partial / full Name of the network the client is/was connected to. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-corp*` and `*corp*` match `my-corp-network`). Suffix-only wildcards (e.g. `*corp`) are not supported |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -383,13 +391,23 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 siteId := uuid.MustParse("72771e6a-6f5e-4de4-a5b9-1266c4197811")
 
+hostname := "my-everest-client"
+
+ip := "10.100.10.54"
+
+ipSrc := "dhcp"
+
+mac := "5c5b53010101"
+
+network := "my-corp-network"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

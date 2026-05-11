@@ -19,6 +19,8 @@ type SwitchPortConfigOverwrite struct {
 	MacLimit *SwitchPortUsageMacLimitOverwrite `json:"mac_limit,omitempty"`
 	// Whether PoE capabilities are disabled for a port
 	PoeDisabled *bool `json:"poe_disabled,omitempty"`
+	// Whether Perpetual PoE is enabled; keeps PoE state across reboots
+	PoeKeepStateWhenReboot *bool `json:"poe_keep_state_when_reboot,omitempty"`
 	// Native network/vlan for untagged traffic
 	PortNetwork *string `json:"port_network,omitempty"`
 	// Port Speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
@@ -30,8 +32,8 @@ type SwitchPortConfigOverwrite struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SwitchPortConfigOverwrite) String() string {
 	return fmt.Sprintf(
-		"SwitchPortConfigOverwrite[Description=%v, Disabled=%v, Duplex=%v, MacLimit=%v, PoeDisabled=%v, PortNetwork=%v, Speed=%v, AdditionalProperties=%v]",
-		s.Description, s.Disabled, s.Duplex, s.MacLimit, s.PoeDisabled, s.PortNetwork, s.Speed, s.AdditionalProperties)
+		"SwitchPortConfigOverwrite[Description=%v, Disabled=%v, Duplex=%v, MacLimit=%v, PoeDisabled=%v, PoeKeepStateWhenReboot=%v, PortNetwork=%v, Speed=%v, AdditionalProperties=%v]",
+		s.Description, s.Disabled, s.Duplex, s.MacLimit, s.PoeDisabled, s.PoeKeepStateWhenReboot, s.PortNetwork, s.Speed, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SwitchPortConfigOverwrite.
@@ -40,7 +42,7 @@ func (s SwitchPortConfigOverwrite) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"description", "disabled", "duplex", "mac_limit", "poe_disabled", "port_network", "speed"); err != nil {
+		"description", "disabled", "duplex", "mac_limit", "poe_disabled", "poe_keep_state_when_reboot", "port_network", "speed"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -65,6 +67,9 @@ func (s SwitchPortConfigOverwrite) toMap() map[string]any {
 	if s.PoeDisabled != nil {
 		structMap["poe_disabled"] = s.PoeDisabled
 	}
+	if s.PoeKeepStateWhenReboot != nil {
+		structMap["poe_keep_state_when_reboot"] = s.PoeKeepStateWhenReboot
+	}
 	if s.PortNetwork != nil {
 		structMap["port_network"] = s.PortNetwork
 	}
@@ -82,7 +87,7 @@ func (s *SwitchPortConfigOverwrite) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "disabled", "duplex", "mac_limit", "poe_disabled", "port_network", "speed")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "description", "disabled", "duplex", "mac_limit", "poe_disabled", "poe_keep_state_when_reboot", "port_network", "speed")
 	if err != nil {
 		return err
 	}
@@ -93,6 +98,7 @@ func (s *SwitchPortConfigOverwrite) UnmarshalJSON(input []byte) error {
 	s.Duplex = temp.Duplex
 	s.MacLimit = temp.MacLimit
 	s.PoeDisabled = temp.PoeDisabled
+	s.PoeKeepStateWhenReboot = temp.PoeKeepStateWhenReboot
 	s.PortNetwork = temp.PortNetwork
 	s.Speed = temp.Speed
 	return nil
@@ -100,11 +106,12 @@ func (s *SwitchPortConfigOverwrite) UnmarshalJSON(input []byte) error {
 
 // tempSwitchPortConfigOverwrite is a temporary struct used for validating the fields of SwitchPortConfigOverwrite.
 type tempSwitchPortConfigOverwrite struct {
-	Description *string                             `json:"description,omitempty"`
-	Disabled    *bool                               `json:"disabled,omitempty"`
-	Duplex      *SwitchPortUsageDuplexOverwriteEnum `json:"duplex,omitempty"`
-	MacLimit    *SwitchPortUsageMacLimitOverwrite   `json:"mac_limit,omitempty"`
-	PoeDisabled *bool                               `json:"poe_disabled,omitempty"`
-	PortNetwork *string                             `json:"port_network,omitempty"`
-	Speed       *SwitchPortUsageSpeedOverwriteEnum  `json:"speed,omitempty"`
+	Description            *string                             `json:"description,omitempty"`
+	Disabled               *bool                               `json:"disabled,omitempty"`
+	Duplex                 *SwitchPortUsageDuplexOverwriteEnum `json:"duplex,omitempty"`
+	MacLimit               *SwitchPortUsageMacLimitOverwrite   `json:"mac_limit,omitempty"`
+	PoeDisabled            *bool                               `json:"poe_disabled,omitempty"`
+	PoeKeepStateWhenReboot *bool                               `json:"poe_keep_state_when_reboot,omitempty"`
+	PortNetwork            *string                             `json:"port_network,omitempty"`
+	Speed                  *SwitchPortUsageSpeedOverwriteEnum  `json:"speed,omitempty"`
 }

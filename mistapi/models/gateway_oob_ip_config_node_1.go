@@ -20,9 +20,10 @@ type GatewayOobIpConfigNode1 struct {
 	// If supported on the platform. If enabled, DNS will be using this routing-instance, too
 	UseMgmtVrf *bool `json:"use_mgmt_vrf,omitempty"`
 	// Whether to use `mgmt_junos` for host-out traffic (NTP/TACPLUS/RADIUS/SYSLOG/SNMP), if alternative source network/ip is desired
-	UseMgmtVrfForHostOut *bool                  `json:"use_mgmt_vrf_for_host_out,omitempty"`
-	VlanId               *string                `json:"vlan_id,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	UseMgmtVrfForHostOut *bool `json:"use_mgmt_vrf_for_host_out,omitempty"`
+	// If WAN interface is on a VLAN. Can be the VLAN ID (i.e. "10") or a Variable (i.e. "{{myvar}}")
+	VlanId               *GatewayPortVlanIdWithVariable `json:"vlan_id,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for GatewayOobIpConfigNode1,
@@ -68,7 +69,7 @@ func (g GatewayOobIpConfigNode1) toMap() map[string]any {
 		structMap["use_mgmt_vrf_for_host_out"] = g.UseMgmtVrfForHostOut
 	}
 	if g.VlanId != nil {
-		structMap["vlan_id"] = g.VlanId
+		structMap["vlan_id"] = g.VlanId.toMap()
 	}
 	return structMap
 }
@@ -99,11 +100,11 @@ func (g *GatewayOobIpConfigNode1) UnmarshalJSON(input []byte) error {
 
 // tempGatewayOobIpConfigNode1 is a temporary struct used for validating the fields of GatewayOobIpConfigNode1.
 type tempGatewayOobIpConfigNode1 struct {
-	Gateway              *string     `json:"gateway,omitempty"`
-	Ip                   *string     `json:"ip,omitempty"`
-	Netmask              *string     `json:"netmask,omitempty"`
-	Type                 *IpTypeEnum `json:"type,omitempty"`
-	UseMgmtVrf           *bool       `json:"use_mgmt_vrf,omitempty"`
-	UseMgmtVrfForHostOut *bool       `json:"use_mgmt_vrf_for_host_out,omitempty"`
-	VlanId               *string     `json:"vlan_id,omitempty"`
+	Gateway              *string                        `json:"gateway,omitempty"`
+	Ip                   *string                        `json:"ip,omitempty"`
+	Netmask              *string                        `json:"netmask,omitempty"`
+	Type                 *IpTypeEnum                    `json:"type,omitempty"`
+	UseMgmtVrf           *bool                          `json:"use_mgmt_vrf,omitempty"`
+	UseMgmtVrfForHostOut *bool                          `json:"use_mgmt_vrf_for_host_out,omitempty"`
+	VlanId               *GatewayPortVlanIdWithVariable `json:"vlan_id,omitempty"`
 }

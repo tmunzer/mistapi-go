@@ -11,12 +11,15 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 ## Methods
 
 * [Cancel Org Device Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-org-device-upgrade)
+* [Cancel Org Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-org-mx-edge-upgrade)
 * [Cancel Org Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-org-ssr-upgrade)
 * [Cancel Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-site-device-upgrade)
+* [Cancel Site Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#cancel-site-mx-edge-upgrade)
 * [Get Org Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-device-upgrade)
 * [Get Org Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-mx-edge-upgrade)
 * [Get Org Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#get-org-ssr-upgrade)
 * [Get Site Device Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-device-upgrade)
+* [Get Site Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-mx-edge-upgrade)
 * [Get Site Ssr Upgrade](../../doc/controllers/utilities-upgrade.md#get-site-ssr-upgrade)
 * [List Org Available Device Versions](../../doc/controllers/utilities-upgrade.md#list-org-available-device-versions)
 * [List Org Available Ssr Versions](../../doc/controllers/utilities-upgrade.md#list-org-available-ssr-versions)
@@ -25,12 +28,16 @@ utilitiesUpgrade := client.UtilitiesUpgrade()
 * [List Org Ssr Upgrades](../../doc/controllers/utilities-upgrade.md#list-org-ssr-upgrades)
 * [List Site Available Device Versions](../../doc/controllers/utilities-upgrade.md#list-site-available-device-versions)
 * [List Site Device Upgrades](../../doc/controllers/utilities-upgrade.md#list-site-device-upgrades)
+* [List Site Mx Edge Upgrades](../../doc/controllers/utilities-upgrade.md#list-site-mx-edge-upgrades)
+* [Update Org Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#update-org-mx-edge-upgrade)
+* [Update Site Mx Edge Upgrade](../../doc/controllers/utilities-upgrade.md#update-site-mx-edge-upgrade)
 * [Upgrade Device](../../doc/controllers/utilities-upgrade.md#upgrade-device)
 * [Upgrade Org Devices](../../doc/controllers/utilities-upgrade.md#upgrade-org-devices)
 * [Upgrade Org Jsi Device](../../doc/controllers/utilities-upgrade.md#upgrade-org-jsi-device)
 * [Upgrade Org Mx Edges](../../doc/controllers/utilities-upgrade.md#upgrade-org-mx-edges)
 * [Upgrade Org Ssrs](../../doc/controllers/utilities-upgrade.md#upgrade-org-ssrs)
 * [Upgrade Site Devices](../../doc/controllers/utilities-upgrade.md#upgrade-site-devices)
+* [Upgrade Site Mx Edges](../../doc/controllers/utilities-upgrade.md#upgrade-site-mx-edges)
 * [Upgrade Ssr](../../doc/controllers/utilities-upgrade.md#upgrade-ssr)
 
 
@@ -68,6 +75,71 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := utilitiesUpgrade.CancelOrgDeviceUpgrade(ctx, orgId, upgradeId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Cancel Org Mx Edge Upgrade
+
+Cancel Mist Edge Upgrade. Best effort to cancel an upgrade. Devices which are already upgraded won't be touched.
+
+```go
+CancelOrgMxEdgeUpgrade(
+    ctx context.Context,
+    orgId uuid.UUID,
+    upgradeId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesUpgrade.CancelOrgMxEdgeUpgrade(ctx, orgId, upgradeId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -198,6 +270,71 @@ siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 resp, err := utilitiesUpgrade.CancelSiteDeviceUpgrade(ctx, siteId, upgradeId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Cancel Site Mx Edge Upgrade
+
+Cancel Mist Edge Upgrade. Best effort to cancel an upgrade. MxEdges which are already upgraded won't be touched.
+
+```go
+CancelSiteMxEdgeUpgrade(
+    ctx context.Context,
+    siteId uuid.UUID,
+    upgradeId uuid.UUID) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+resp, err := utilitiesUpgrade.CancelSiteMxEdgeUpgrade(ctx, siteId, upgradeId)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
@@ -586,6 +723,73 @@ if err != nil {
       "a8378280da5e"
     ]
   }
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Get Site Mx Edge Upgrade
+
+Get Mist Edge Upgrade
+
+```go
+GetSiteMxEdgeUpgrade(
+    ctx context.Context,
+    siteId uuid.UUID,
+    upgradeId uuid.UUID) (
+    models.ApiResponse[models.ResponseMxedgeUpgrade],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := utilitiesUpgrade.GetSiteMxEdgeUpgrade(ctx, siteId, upgradeId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
 }
 ```
 
@@ -1256,6 +1460,229 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
+# List Site Mx Edge Upgrades
+
+Get List of Site Mist Edge Upgrades
+
+```go
+ListSiteMxEdgeUpgrades(
+    ctx context.Context,
+    siteId uuid.UUID) (
+    models.ApiResponse[[]models.ResponseMxedgeUpgrade],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+apiResponse, err := utilitiesUpgrade.ListSiteMxEdgeUpgrades(ctx, siteId)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Update Org Mx Edge Upgrade
+
+Update Mist Edge Upgrade. Only upgrades in `queued` state can be updated.
+
+```go
+UpdateOrgMxEdgeUpgrade(
+    ctx context.Context,
+    orgId uuid.UUID,
+    upgradeId uuid.UUID,
+    body *models.MxedgeUpgradeMulti) (
+    models.ApiResponse[models.ResponseMxedgeUpgrade],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `orgId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.MxedgeUpgradeMulti`](../../doc/models/mxedge-upgrade-multi.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.MxedgeUpgradeMulti{
+    CanaryPhases:         nil,
+    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum_STABLE),
+    MaxFailurePercentage: models.ToPointer(5),
+    MxedgeIds:            []uuid.UUID{
+        uuid.MustParse("00000e7c-0000-0000-0000-000000000000"),
+        uuid.MustParse("00000e7b-0000-0000-0000-000000000000"),
+    },
+    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum_BIGBANG),
+}
+
+apiResponse, err := utilitiesUpgrade.UpdateOrgMxEdgeUpgrade(ctx, orgId, upgradeId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Update Site Mx Edge Upgrade
+
+Update Mist Edge Upgrade. Only upgrades in `queued` state can be updated.
+
+```go
+UpdateSiteMxEdgeUpgrade(
+    ctx context.Context,
+    siteId uuid.UUID,
+    upgradeId uuid.UUID,
+    body *models.MxedgeUpgradeMulti) (
+    models.ApiResponse[models.ResponseMxedgeUpgrade],
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `upgradeId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.MxedgeUpgradeMulti`](../../doc/models/mxedge-upgrade-multi.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ResponseMxedgeUpgrade](../../doc/models/response-mxedge-upgrade.md).
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+upgradeId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.MxedgeUpgradeMulti{
+    CanaryPhases:         nil,
+    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum_STABLE),
+    MaxFailurePercentage: models.ToPointer(5),
+    MxedgeIds:            []uuid.UUID{
+        uuid.MustParse("00000e7c-0000-0000-0000-000000000000"),
+        uuid.MustParse("00000e7b-0000-0000-0000-000000000000"),
+    },
+    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum_BIGBANG),
+}
+
+apiResponse, err := utilitiesUpgrade.UpdateSiteMxEdgeUpgrade(ctx, siteId, upgradeId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    // Printing the result and response
+    fmt.Println(apiResponse.Data)
+    fmt.Println(apiResponse.Response.StatusCode)
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
 # Upgrade Device
 
 Device Upgrade
@@ -1815,6 +2242,101 @@ if err != nil {
 ```json
 {
   "upgrade_id": "4316c116-0acb-4c43-8f06-6723154e741e"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+
+
+# Upgrade Site Mx Edges
+
+Upgrade Mist Edges in a Site.
+
+See [Org Mist Edges](/#tag/Utilities-Upgrade/operation/upgradeOrgMxEdges) for package upgrades
+
+See [Org Mist Edges Distro](/#tag/Utilities-Upgrade/operation/upgradeOrgMxEdges) for distro upgrades
+
+```go
+UpgradeSiteMxEdges(
+    ctx context.Context,
+    siteId uuid.UUID,
+    body *models.MxedgeUpgradeMulti) (
+    http.Response,
+    error)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `siteId` | `uuid.UUID` | Template, Required | - |
+| `body` | [`*models.MxedgeUpgradeMulti`](../../doc/models/mxedge-upgrade-multi.md) | Body, Optional | Request Body |
+
+## Response Type
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
+
+## Example Usage
+
+```go
+ctx := context.Background()
+
+siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
+
+body := models.MxedgeUpgradeMulti{
+    AllowDowngrades:      models.ToPointer(models.MxedgeUpgradeMultiAllowDowngrades{
+        Mxagent:              models.ToPointer(false),
+        Tunterm:              models.ToPointer(true),
+    }),
+    CanaryPhases:         []int{
+        5,
+        25,
+        50,
+        100,
+    },
+    Channel:              models.ToPointer(models.MxedgeUpgradeChannelEnum_STABLE),
+    MaxFailurePercentage: models.ToPointer(5),
+    MxedgeIds:            []uuid.UUID{
+        uuid.MustParse("387804a7-3474-85ce-15a2-f9a9684c9c90"),
+    },
+    StartTime:            models.ToPointer(1624399840),
+    Strategy:             models.ToPointer(models.MxedgeUpgradeStrategyEnum_SERIAL),
+    Versions:             models.ToPointer(models.MxedgeUpgradeVersion{
+        Mxagent:              "latest",
+        Radsecproxy:          models.ToPointer("<version>"),
+        Tunterm:              "default",
+    }),
+    AdditionalProperties: map[string]interface{}{
+        "max_failures": interface{}("1155"),
+    },
+}
+
+resp, err := utilitiesUpgrade.UpgradeSiteMxEdges(ctx, siteId, &body)
+if err != nil {
+    switch typedErr := err.(type) {
+        case *errors.ResponseHttp400:
+            log.Fatalln("ResponseHttp400Exception: ", typedErr)
+        case *errors.ResponseHttp401Error:
+            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
+        case *errors.ResponseHttp403Error:
+            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp404:
+            log.Fatalln("ResponseHttp404Exception: ", typedErr)
+        case *errors.ResponseHttp429Error:
+            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        default:
+            log.Fatalln(err)
+    }
+} else {
+    fmt.Println(resp.StatusCode)
 }
 ```
 

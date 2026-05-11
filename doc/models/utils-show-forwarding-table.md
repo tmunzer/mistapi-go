@@ -12,7 +12,7 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
-| `Prefix` | `*string` | Optional | IP Prefix |
+| `Prefix` | `*string` | Optional | can be ip, ipv6 prefix |
 | `ServiceIp` | `*string` | Optional | Only supported with SSR |
 | `ServiceName` | `*string` | Optional | Only supported with SSR |
 | `ServicePort` | `*int` | Optional | Only supported with SSR |

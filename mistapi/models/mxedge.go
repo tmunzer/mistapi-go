@@ -28,7 +28,7 @@ type Mxedge struct {
 	MxclusterId *uuid.UUID  `json:"mxcluster_id,omitempty"`
 	MxedgeMgmt  *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
 	Name        string      `json:"name"`
-	Note        *string     `json:"note,omitempty"`
+	Notes       *string     `json:"notes,omitempty"`
 	NtpServers  []string    `json:"ntp_servers,omitempty"`
 	// IPconfiguration of the Mist Edge out-of_band management interface
 	OobIpConfig *MxedgeOobIpConfig `json:"oob_ip_config,omitempty"`
@@ -62,8 +62,8 @@ type Mxedge struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m Mxedge) String() string {
 	return fmt.Sprintf(
-		"Mxedge[CreatedTime=%v, ForSite=%v, Id=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, MxedgeMgmt=%v, Name=%v, Note=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, Proxy=%v, Services=%v, SiteId=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermIgmpSnoopingConfig=%v, TuntermIpConfig=%v, TuntermMonitoring=%v, TuntermMulticastConfig=%v, TuntermOtherIpConfigs=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermSwitchConfig=%v, Versions=%v, AdditionalProperties=%v]",
-		m.CreatedTime, m.ForSite, m.Id, m.Mac, m.Magic, m.Model, m.ModifiedTime, m.MxagentRegistered, m.MxclusterId, m.MxedgeMgmt, m.Name, m.Note, m.NtpServers, m.OobIpConfig, m.OrgId, m.Proxy, m.Services, m.SiteId, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermIgmpSnoopingConfig, m.TuntermIpConfig, m.TuntermMonitoring, m.TuntermMulticastConfig, m.TuntermOtherIpConfigs, m.TuntermPortConfig, m.TuntermRegistered, m.TuntermSwitchConfig, m.Versions, m.AdditionalProperties)
+		"Mxedge[CreatedTime=%v, ForSite=%v, Id=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, MxagentRegistered=%v, MxclusterId=%v, MxedgeMgmt=%v, Name=%v, Notes=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, Proxy=%v, Services=%v, SiteId=%v, TuntermDhcpdConfig=%v, TuntermExtraRoutes=%v, TuntermIgmpSnoopingConfig=%v, TuntermIpConfig=%v, TuntermMonitoring=%v, TuntermMulticastConfig=%v, TuntermOtherIpConfigs=%v, TuntermPortConfig=%v, TuntermRegistered=%v, TuntermSwitchConfig=%v, Versions=%v, AdditionalProperties=%v]",
+		m.CreatedTime, m.ForSite, m.Id, m.Mac, m.Magic, m.Model, m.ModifiedTime, m.MxagentRegistered, m.MxclusterId, m.MxedgeMgmt, m.Name, m.Notes, m.NtpServers, m.OobIpConfig, m.OrgId, m.Proxy, m.Services, m.SiteId, m.TuntermDhcpdConfig, m.TuntermExtraRoutes, m.TuntermIgmpSnoopingConfig, m.TuntermIpConfig, m.TuntermMonitoring, m.TuntermMulticastConfig, m.TuntermOtherIpConfigs, m.TuntermPortConfig, m.TuntermRegistered, m.TuntermSwitchConfig, m.Versions, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Mxedge.
@@ -72,7 +72,7 @@ func (m Mxedge) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions"); err != nil {
+		"created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "notes", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -111,8 +111,8 @@ func (m Mxedge) toMap() map[string]any {
 		structMap["mxedge_mgmt"] = m.MxedgeMgmt.toMap()
 	}
 	structMap["name"] = m.Name
-	if m.Note != nil {
-		structMap["note"] = m.Note
+	if m.Notes != nil {
+		structMap["notes"] = m.Notes
 	}
 	if m.NtpServers != nil {
 		structMap["ntp_servers"] = m.NtpServers
@@ -180,7 +180,7 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "note", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "created_time", "for_site", "id", "mac", "magic", "model", "modified_time", "mxagent_registered", "mxcluster_id", "mxedge_mgmt", "name", "notes", "ntp_servers", "oob_ip_config", "org_id", "proxy", "services", "site_id", "tunterm_dhcpd_config", "tunterm_extra_routes", "tunterm_igmp_snooping_config", "tunterm_ip_config", "tunterm_monitoring", "tunterm_multicast_config", "tunterm_other_ip_configs", "tunterm_port_config", "tunterm_registered", "tunterm_switch_config", "versions")
 	if err != nil {
 		return err
 	}
@@ -197,7 +197,7 @@ func (m *Mxedge) UnmarshalJSON(input []byte) error {
 	m.MxclusterId = temp.MxclusterId
 	m.MxedgeMgmt = temp.MxedgeMgmt
 	m.Name = *temp.Name
-	m.Note = temp.Note
+	m.Notes = temp.Notes
 	m.NtpServers = temp.NtpServers
 	m.OobIpConfig = temp.OobIpConfig
 	m.OrgId = temp.OrgId
@@ -231,7 +231,7 @@ type tempMxedge struct {
 	MxclusterId               *uuid.UUID                            `json:"mxcluster_id,omitempty"`
 	MxedgeMgmt                *MxedgeMgmt                           `json:"mxedge_mgmt,omitempty"`
 	Name                      *string                               `json:"name"`
-	Note                      *string                               `json:"note,omitempty"`
+	Notes                     *string                               `json:"notes,omitempty"`
 	NtpServers                []string                              `json:"ntp_servers,omitempty"`
 	OobIpConfig               *MxedgeOobIpConfig                    `json:"oob_ip_config,omitempty"`
 	OrgId                     *uuid.UUID                            `json:"org_id,omitempty"`

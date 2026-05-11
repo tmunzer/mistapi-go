@@ -22,7 +22,7 @@ import (
 // * if network or port_id is specified and macs is empty, it means all clients under network or port_id
 type UtilsReleaseDhcpLeases struct {
 	// A list of client macs to be released
-	Mac []string `json:"mac,omitempty"`
+	Macs []string `json:"macs,omitempty"`
 	// The network for the leases IPs to be released
 	Network *string `json:"network,omitempty"`
 	// only for HA. enum: `node0`, `node1`
@@ -36,8 +36,8 @@ type UtilsReleaseDhcpLeases struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UtilsReleaseDhcpLeases) String() string {
 	return fmt.Sprintf(
-		"UtilsReleaseDhcpLeases[Mac=%v, Network=%v, Node=%v, PortId=%v, AdditionalProperties=%v]",
-		u.Mac, u.Network, u.Node, u.PortId, u.AdditionalProperties)
+		"UtilsReleaseDhcpLeases[Macs=%v, Network=%v, Node=%v, PortId=%v, AdditionalProperties=%v]",
+		u.Macs, u.Network, u.Node, u.PortId, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsReleaseDhcpLeases.
@@ -46,7 +46,7 @@ func (u UtilsReleaseDhcpLeases) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"mac", "network", "node", "port_id"); err != nil {
+		"macs", "network", "node", "port_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -56,8 +56,8 @@ func (u UtilsReleaseDhcpLeases) MarshalJSON() (
 func (u UtilsReleaseDhcpLeases) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, u.AdditionalProperties)
-	if u.Mac != nil {
-		structMap["mac"] = u.Mac
+	if u.Macs != nil {
+		structMap["macs"] = u.Macs
 	}
 	if u.Network != nil {
 		structMap["network"] = u.Network
@@ -81,13 +81,13 @@ func (u *UtilsReleaseDhcpLeases) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "mac", "network", "node", "port_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "macs", "network", "node", "port_id")
 	if err != nil {
 		return err
 	}
 	u.AdditionalProperties = additionalProperties
 
-	u.Mac = temp.Mac
+	u.Macs = temp.Macs
 	u.Network = temp.Network
 	u.Node = temp.Node
 	u.PortId = *temp.PortId
@@ -96,7 +96,7 @@ func (u *UtilsReleaseDhcpLeases) UnmarshalJSON(input []byte) error {
 
 // tempUtilsReleaseDhcpLeases is a temporary struct used for validating the fields of UtilsReleaseDhcpLeases.
 type tempUtilsReleaseDhcpLeases struct {
-	Mac     []string           `json:"mac,omitempty"`
+	Macs    []string           `json:"macs,omitempty"`
 	Network *string            `json:"network,omitempty"`
 	Node    *HaClusterNodeEnum `json:"node,omitempty"`
 	PortId  *string            `json:"port_id"`

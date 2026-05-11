@@ -18,7 +18,7 @@
 | `Node` | `*string` | Optional | Node0/node1 |
 | `PeerHost` | `*string` | Optional | Peer host |
 | `PeerIp` | `*string` | Optional | Peer ip address |
-| `Priority` | [`*models.StatsWanTunnelPriorityEnum`](../../doc/models/stats-wan-tunnel-priority-enum.md) | Optional | enum: `primary`, `secondary` |
+| `Priority` | [`*models.TunnelPriorityEnum`](../../doc/models/tunnel-priority-enum.md) | Optional | enum: `primary`, `secondary` |
 | `Protocol` | [`*models.WanTunnelProtocolEnum`](../../doc/models/wan-tunnel-protocol-enum.md) | Optional | enum: `gre`, `ipsec` |
 | `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
 | `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |

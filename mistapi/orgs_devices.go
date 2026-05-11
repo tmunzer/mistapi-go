@@ -553,26 +553,25 @@ func (o *OrgsDevices) ListOrgApsMacs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgDevices takes context, orgId, band24Bandwidth, band24Channel, band24Power, band5Bandwidth, band5Channel, band5Power, band6Bandwidth, band6Channel, band6Power, cpu, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpPowerAllocated, lldpPowerDraw, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, siteId, t128agentVersion, version, mType, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgDevices takes context, orgId, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Power, band5Power, band6Power, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, radiusStats, siteId, stats, t128agentVersion, mType, version, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Devices
 func (o *OrgsDevices) SearchOrgDevices(
 	ctx context.Context,
 	orgId uuid.UUID,
-	band24Bandwidth *int,
 	band24Channel *int,
-	band24Power *int,
-	band5Bandwidth *int,
 	band5Channel *int,
-	band5Power *int,
-	band6Bandwidth *int,
 	band6Channel *int,
+	band24Bandwidth *int,
+	band5Bandwidth *int,
+	band6Bandwidth *int,
+	band24Power *int,
+	band5Power *int,
 	band6Power *int,
-	cpu *string,
-	clustered *string,
+	clustered *bool,
 	eth0PortSpeed *int,
-	evpntopoId *string,
+	evpntopoId *uuid.UUID,
 	extIp *string,
 	hostname *string,
 	ip *string,
@@ -580,23 +579,23 @@ func (o *OrgsDevices) SearchOrgDevices(
 	lastHostname *string,
 	lldpMgmtAddr *string,
 	lldpPortId *string,
-	lldpPowerAllocated *int,
-	lldpPowerDraw *int,
 	lldpSystemDesc *string,
 	lldpSystemName *string,
 	mac *string,
 	model *string,
-	mxedgeId *string,
+	mxedgeId *uuid.UUID,
 	mxedgeIds *string,
 	mxtunnelStatus *models.SearchOrgDevicesMxtunnelStatusEnum,
-	node *string,
+	node *models.HaClusterNodeEnum,
 	node0Mac *string,
 	node1Mac *string,
 	powerConstrained *bool,
+	radiusStats *string,
 	siteId *string,
+	stats *bool,
 	t128agentVersion *string,
-	version *string,
 	mType *models.DeviceTypeDefaultApEnum,
+	version *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -624,35 +623,32 @@ func (o *OrgsDevices) SearchOrgDevices(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if band24Bandwidth != nil {
-		req.QueryParam("band_24_bandwidth", *band24Bandwidth)
-	}
 	if band24Channel != nil {
 		req.QueryParam("band_24_channel", *band24Channel)
-	}
-	if band24Power != nil {
-		req.QueryParam("band_24_power", *band24Power)
-	}
-	if band5Bandwidth != nil {
-		req.QueryParam("band_5_bandwidth", *band5Bandwidth)
 	}
 	if band5Channel != nil {
 		req.QueryParam("band_5_channel", *band5Channel)
 	}
-	if band5Power != nil {
-		req.QueryParam("band_5_power", *band5Power)
+	if band6Channel != nil {
+		req.QueryParam("band_6_channel", *band6Channel)
+	}
+	if band24Bandwidth != nil {
+		req.QueryParam("band_24_bandwidth", *band24Bandwidth)
+	}
+	if band5Bandwidth != nil {
+		req.QueryParam("band_5_bandwidth", *band5Bandwidth)
 	}
 	if band6Bandwidth != nil {
 		req.QueryParam("band_6_bandwidth", *band6Bandwidth)
 	}
-	if band6Channel != nil {
-		req.QueryParam("band_6_channel", *band6Channel)
+	if band24Power != nil {
+		req.QueryParam("band_24_power", *band24Power)
+	}
+	if band5Power != nil {
+		req.QueryParam("band_5_power", *band5Power)
 	}
 	if band6Power != nil {
 		req.QueryParam("band_6_power", *band6Power)
-	}
-	if cpu != nil {
-		req.QueryParam("cpu", *cpu)
 	}
 	if clustered != nil {
 		req.QueryParam("clustered", *clustered)
@@ -683,12 +679,6 @@ func (o *OrgsDevices) SearchOrgDevices(
 	}
 	if lldpPortId != nil {
 		req.QueryParam("lldp_port_id", *lldpPortId)
-	}
-	if lldpPowerAllocated != nil {
-		req.QueryParam("lldp_power_allocated", *lldpPowerAllocated)
-	}
-	if lldpPowerDraw != nil {
-		req.QueryParam("lldp_power_draw", *lldpPowerDraw)
 	}
 	if lldpSystemDesc != nil {
 		req.QueryParam("lldp_system_desc", *lldpSystemDesc)
@@ -723,17 +713,23 @@ func (o *OrgsDevices) SearchOrgDevices(
 	if powerConstrained != nil {
 		req.QueryParam("power_constrained", *powerConstrained)
 	}
+	if radiusStats != nil {
+		req.QueryParam("radius_stats", *radiusStats)
+	}
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)
+	}
+	if stats != nil {
+		req.QueryParam("stats", *stats)
 	}
 	if t128agentVersion != nil {
 		req.QueryParam("t128agent_version", *t128agentVersion)
 	}
-	if version != nil {
-		req.QueryParam("version", *version)
-	}
 	if mType != nil {
 		req.QueryParam("type", *mType)
+	}
+	if version != nil {
+		req.QueryParam("version", *version)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
