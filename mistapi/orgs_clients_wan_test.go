@@ -114,12 +114,17 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mac := "aabbccddeeff"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	mfg := "Raspberry Pi Trading Ltd"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, &mac, &hostname, &ip, &mfg, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -140,12 +145,17 @@ func TestOrgsClientsWanTestSearchOrgWanClientEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mac := "aabbccddeeff"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	mfg := "Raspberry Pi Trading Ltd"
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClientEvents(ctx, orgId, nil, &mac, &hostname, &ip, &mfg, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -169,13 +179,18 @@ func TestOrgsClientsWanTestSearchOrgWanClients(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	ipSrc := "dhcp"
+	mac := "5c5b53010101"
 
+	network := "my-corp-network"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -199,13 +214,18 @@ func TestOrgsClientsWanTestSearchOrgWanClients1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	ipSrc := "dhcp"
+	mac := "5c5b53010101"
 
+	network := "my-corp-network"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsWan.SearchOrgWanClients(ctx, orgId, &siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

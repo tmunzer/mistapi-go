@@ -114,8 +114,8 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mac := "0011223"
-	hostname := "test-hostname"
+	mac := "aabbccddeeff"
+	hostname := "my-everest-client"
 	ip := "10.4.2.4"
 	mfg := "Juniper"
 	nacruleId := "00000000-0000-0000-0000-000000000000"
@@ -145,8 +145,8 @@ func TestSitesClientsWanTestSearchSiteWanClientEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	mac := "0011223"
-	hostname := "test-hostname"
+	mac := "aabbccddeeff"
+	hostname := "my-everest-client"
 	ip := "10.4.2.4"
 	mfg := "Juniper"
 	nacruleId := "00000000-0000-0000-0000-000000000000"
@@ -175,16 +175,18 @@ func TestSitesClientsWanTestSearchSiteWanClients(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mac := "001122334455"
-	hostname := "test-hostname"
-	ip := "10.2.52.4"
-	mfg := "Cisco"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	ipSrc := "dhcp"
+	mac := "5c5b53010101"
+
+	network := "my-corp-network"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -204,16 +206,18 @@ func TestSitesClientsWanTestSearchSiteWanClients1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	mac := "001122334455"
-	hostname := "test-hostname"
-	ip := "10.2.52.4"
-	mfg := "Cisco"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	ipSrc := "dhcp"
+	mac := "5c5b53010101"
+
+	network := "my-corp-network"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

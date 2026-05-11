@@ -429,49 +429,28 @@ func TestOrgsDevicesTestSearchOrgDevices(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	band24Bandwidth := int(20)
-	band24Channel := int(6)
-	band24Power := int(8)
-	band5Bandwidth := int(20)
-	band5Channel := int(50)
-	band5Power := int(8)
-	band6Bandwidth := int(20)
-	band6Channel := int(100)
-	band6Power := int(8)
-	cpu := "50"
-	clustered := "true"
-	eth0PortSpeed := int(1000)
-	evpntopoId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	extIp := "83.42.53.1"
-	hostname := "my-hostname"
-	ip := "192.168.1.1"
-	lastConfigStatus := "success"
-	lastHostname := "my-last-hostname"
-	lldpMgmtAddr := "10.4.2.3"
-	lldpPortId := "ge-0/0/1"
-	lldpPowerAllocated := int(15)
-	lldpPowerDraw := int(12)
-	lldpSystemDesc := "my-lldp-system-description"
-	lldpSystemName := "my-lldp-system"
-	mac := "5c5b53010101"
-	model := "AP43"
-	mxedgeId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	mxedgeIds := "7dae216d-7c98-a51b-e068-dd7d477b7216,7dae216d-7c98-a51b-e068-dd7d477b7217"
 
-	node := "node0"
-	node0Mac := "5c5b350e0001"
-	node1Mac := "5c5b350e0002"
-	powerConstrained := bool(true)
+	eth0PortSpeed := int(100)
+
+	extIp := "1.2.3.4"
+	hostname := "my-london-1"
+	ip := "10.100.10.54"
+	lastConfigStatus := "success"
+
+	mac := "aabbccddeeff"
+	model := "AP43"
+
 	siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	t128agentVersion := "1.2.3"
-	version := "10.0.0"
+	stats := bool(false)
+
 	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -491,49 +470,28 @@ func TestOrgsDevicesTestSearchOrgDevices1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	band24Bandwidth := int(20)
-	band24Channel := int(6)
-	band24Power := int(8)
-	band5Bandwidth := int(20)
-	band5Channel := int(50)
-	band5Power := int(8)
-	band6Bandwidth := int(20)
-	band6Channel := int(100)
-	band6Power := int(8)
-	cpu := "50"
-	clustered := "true"
-	eth0PortSpeed := int(1000)
-	evpntopoId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	extIp := "83.42.53.1"
-	hostname := "my-hostname"
-	ip := "192.168.1.1"
-	lastConfigStatus := "success"
-	lastHostname := "my-last-hostname"
-	lldpMgmtAddr := "10.4.2.3"
-	lldpPortId := "ge-0/0/1"
-	lldpPowerAllocated := int(15)
-	lldpPowerDraw := int(12)
-	lldpSystemDesc := "my-lldp-system-description"
-	lldpSystemName := "my-lldp-system"
-	mac := "5c5b53010101"
-	model := "AP43"
-	mxedgeId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	mxedgeIds := "7dae216d-7c98-a51b-e068-dd7d477b7216,7dae216d-7c98-a51b-e068-dd7d477b7217"
 
-	node := "node0"
-	node0Mac := "5c5b350e0001"
-	node1Mac := "5c5b350e0002"
-	powerConstrained := bool(true)
+	eth0PortSpeed := int(100)
+
+	extIp := "1.2.3.4"
+	hostname := "my-london-1"
+	ip := "10.100.10.54"
+	lastConfigStatus := "success"
+
+	mac := "aabbccddeeff"
+	model := "AP43"
+
 	siteId := "7dae216d-7c98-a51b-e068-dd7d477b7216"
-	t128agentVersion := "1.2.3"
-	version := "10.0.0"
+	stats := bool(false)
+
 	mType := models.DeviceTypeDefaultApEnum("ap")
+
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, &band24Bandwidth, &band24Channel, &band24Power, &band5Bandwidth, &band5Channel, &band5Power, &band6Bandwidth, &band6Channel, &band6Power, &cpu, &clustered, &eth0PortSpeed, &evpntopoId, &extIp, &hostname, &ip, &lastConfigStatus, &lastHostname, &lldpMgmtAddr, &lldpPortId, &lldpPowerAllocated, &lldpPowerDraw, &lldpSystemDesc, &lldpSystemName, &mac, &model, &mxedgeId, &mxedgeIds, nil, &node, &node0Mac, &node1Mac, &powerConstrained, &siteId, &t128agentVersion, &version, &mType, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsDevices.SearchOrgDevices(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &siteId, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

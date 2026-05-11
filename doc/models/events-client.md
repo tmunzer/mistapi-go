@@ -12,7 +12,7 @@ Client events
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Ap` | `*string` | Optional | - |
-| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
+| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
 | `Bssid` | `*string` | Optional | - |
 | `Channel` | `*int` | Optional | - |
 | `KeyMgmt` | [`*models.ClientKeyMgmtEnum`](../../doc/models/client-key-mgmt-enum.md) | Optional | Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK` |
@@ -28,7 +28,7 @@ Client events
 
 ```json
 {
-  "band": "5",
+  "band": "6",
   "key_mgmt": "WPA2-PSK",
   "timestamp": 36.2,
   "ap": "ap2",

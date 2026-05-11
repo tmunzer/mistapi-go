@@ -11,7 +11,7 @@ orgsIntegrationJuniper := client.OrgsIntegrationJuniper()
 ## Methods
 
 * [Link Org to Juniper Juniper Account](../../doc/controllers/orgs-integration-juniper.md#link-org-to-juniper-juniper-account)
-* [Unlink Org From Juniper Customer Id](../../doc/controllers/orgs-integration-juniper.md#unlink-org-from-juniper-customer-id)
+* [Unlink Org from Juniper Customer Id](../../doc/controllers/orgs-integration-juniper.md#unlink-org-from-juniper-customer-id)
 
 
 # Link Org to Juniper Juniper Account
@@ -95,7 +95,7 @@ if err != nil {
 | 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
 
 
-# Unlink Org From Juniper Customer Id
+# Unlink Org from Juniper Customer Id
 
 Unlink Juniper Customer ID
 `linked_by` field is only required if there are duplicate account_names.

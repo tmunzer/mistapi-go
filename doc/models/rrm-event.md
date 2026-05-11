@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApId` | `uuid.UUID` | Required | - |
-| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `6` |
+| `Ap` | `string` | Required | AP MAC |
+| `Band` | [`models.Dot11BandEnum`](../../doc/models/dot-11-band-enum.md) | Required | enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable` |
 | `Bandwidth` | [`models.Dot11BandwidthEnum`](../../doc/models/dot-11-bandwidth-enum.md) | Required | channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6) |
 | `Channel` | `int` | Required | Channel for the band from rrm |
 | `Event` | [`models.RrmEventTypeEnum`](../../doc/models/rrm-event-type-enum.md) | Required | enum: `interference-ap-co-channel`, `interference-ap-non-wifi`, `neighbor-ap-down`, `neighbor-ap-recovered`, `radar-detected`, `rrm-radar`, `scheduled-site_rrm`, `triggered-site_rrm` |
@@ -26,8 +26,8 @@
 
 ```json
 {
-  "ap_id": "00000c18-0000-0000-0000-000000000000",
-  "band": "5",
+  "ap": "5c5b350e0001",
+  "band": "6-selectable",
   "bandwidth": 20,
   "channel": 130,
   "event": "interference-ap-co-channel",

@@ -51,7 +51,9 @@ type Psk struct {
 	// enum: `macs`, `multi`, `single`
 	Usage *PskUsageEnum `json:"usage,omitempty"`
 	// VLAN for this PSK key
-	VlanId               *PskVlanId             `json:"vlan_id,omitempty"`
+	VlanId *PskVlanId `json:"vlan_id,omitempty"`
+	// VLAN name to be assigned. Optional, `vlan_id` takes precedence if both are provided
+	VlanName             *string                `json:"vlan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -59,8 +61,8 @@ type Psk struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (p Psk) String() string {
 	return fmt.Sprintf(
-		"Psk[AdminSsoId=%v, CreatedTime=%v, Email=%v, ExpireTime=%v, ExpiryNotificationTime=%v, Id=%v, Mac=%v, Macs=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, Note=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OldPassphrase=%v, OrgId=%v, Passphrase=%v, Role=%v, SiteId=%v, Ssid=%v, Usage=%v, VlanId=%v, AdditionalProperties=%v]",
-		p.AdminSsoId, p.CreatedTime, p.Email, p.ExpireTime, p.ExpiryNotificationTime, p.Id, p.Mac, p.Macs, p.MaxUsage, p.ModifiedTime, p.Name, p.Note, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OldPassphrase, p.OrgId, p.Passphrase, p.Role, p.SiteId, p.Ssid, p.Usage, p.VlanId, p.AdditionalProperties)
+		"Psk[AdminSsoId=%v, CreatedTime=%v, Email=%v, ExpireTime=%v, ExpiryNotificationTime=%v, Id=%v, Mac=%v, Macs=%v, MaxUsage=%v, ModifiedTime=%v, Name=%v, Note=%v, NotifyExpiry=%v, NotifyOnCreateOrEdit=%v, OldPassphrase=%v, OrgId=%v, Passphrase=%v, Role=%v, SiteId=%v, Ssid=%v, Usage=%v, VlanId=%v, VlanName=%v, AdditionalProperties=%v]",
+		p.AdminSsoId, p.CreatedTime, p.Email, p.ExpireTime, p.ExpiryNotificationTime, p.Id, p.Mac, p.Macs, p.MaxUsage, p.ModifiedTime, p.Name, p.Note, p.NotifyExpiry, p.NotifyOnCreateOrEdit, p.OldPassphrase, p.OrgId, p.Passphrase, p.Role, p.SiteId, p.Ssid, p.Usage, p.VlanId, p.VlanName, p.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Psk.
@@ -69,7 +71,7 @@ func (p Psk) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(p.AdditionalProperties,
-		"admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id"); err != nil {
+		"admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id", "vlan_name"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(p.toMap())
@@ -143,6 +145,9 @@ func (p Psk) toMap() map[string]any {
 	if p.VlanId != nil {
 		structMap["vlan_id"] = p.VlanId.toMap()
 	}
+	if p.VlanName != nil {
+		structMap["vlan_name"] = p.VlanName
+	}
 	return structMap
 }
 
@@ -158,7 +163,7 @@ func (p *Psk) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "admin_sso_id", "created_time", "email", "expire_time", "expiry_notification_time", "id", "mac", "macs", "max_usage", "modified_time", "name", "note", "notify_expiry", "notify_on_create_or_edit", "old_passphrase", "org_id", "passphrase", "role", "site_id", "ssid", "usage", "vlan_id", "vlan_name")
 	if err != nil {
 		return err
 	}
@@ -186,6 +191,7 @@ func (p *Psk) UnmarshalJSON(input []byte) error {
 	p.Ssid = *temp.Ssid
 	p.Usage = temp.Usage
 	p.VlanId = temp.VlanId
+	p.VlanName = temp.VlanName
 	return nil
 }
 
@@ -213,6 +219,7 @@ type tempPsk struct {
 	Ssid                   *string       `json:"ssid"`
 	Usage                  *PskUsageEnum `json:"usage,omitempty"`
 	VlanId                 *PskVlanId    `json:"vlan_id,omitempty"`
+	VlanName               *string       `json:"vlan_name,omitempty"`
 }
 
 func (p *tempPsk) validate() error {

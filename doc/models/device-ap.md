@@ -57,6 +57,7 @@ AP
 | `Vars` | `map[string]string` | Optional | Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars |
 | `X` | `*float64` | Optional | X in pixel |
 | `Y` | `*float64` | Optional | Y in pixel |
+| `ZigbeeConfig` | [`*models.ApZigbee`](../../doc/models/ap-zigbee.md) | Optional | Zigbee AP settings |
 
 ## Example (as JSON)
 

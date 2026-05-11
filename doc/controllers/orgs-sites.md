@@ -379,7 +379,7 @@ SearchOrgSites(
 | `id` | `*string` | Query, Optional | Site id |
 | `locateUnconnected` | `*bool` | Query, Optional | If unconnected client are located |
 | `meshEnabled` | `*bool` | Query, Optional | If Mesh feature is enabled |
-| `name` | `*string` | Query, Optional | Site name. Case insensitive. Add a wildcard (`*`) at the end for partial search |
+| `name` | `*string` | Query, Optional | Partial / full Site name. Case insensitive. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-site*` and `*site*` match `my-site-01`). Suffix-only wildcards (e.g. `*site-01`) are not supported |
 | `rogueEnabled` | `*bool` | Query, Optional | If Rogue detection is enabled |
 | `remoteSyslogEnabled` | `*bool` | Query, Optional | If Remote Syslog is enabled |
 | `rtsaEnabled` | `*bool` | Query, Optional | If managed mobility feature is enabled |
@@ -403,13 +403,15 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
+name := "my-site-01"
+
 limit := 100
 
 duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := orgsSites.SearchOrgSites(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &name, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

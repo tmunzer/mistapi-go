@@ -1,5 +1,5 @@
 
-# Bgp Config Via Enum
+# Bgp Config via Enum
 
 enum: `lan`, `tunnel`, `vpn`, `wan`
 

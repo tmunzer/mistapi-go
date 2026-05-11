@@ -25,6 +25,7 @@ Events available in this group. Subscribe to receive webhook notifications when 
 | [location_client](../../../doc/events/webhooks/webhooks/location-client.md) |
 | [location_sdk](../../../doc/events/webhooks/webhooks/location-sdk.md) |
 | [location_unclient](../../../doc/events/webhooks/webhooks/location-unclient.md) |
+| [minis_application](../../../doc/events/webhooks/webhooks/minis-application.md) |
 | [minis_reachability](../../../doc/events/webhooks/webhooks/minis-reachability.md) |
 | [mxedge_events](../../../doc/events/webhooks/webhooks/mxedge-events.md) |
 | [nac_accounting](../../../doc/events/webhooks/webhooks/nac-accounting.md) |

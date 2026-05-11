@@ -40,7 +40,7 @@ Org Settings
 | `Juniper` | [`*models.AccountJuniperInfo`](../../doc/models/account-juniper-info.md) | Optional | - |
 | `JuniperSrx` | [`*models.OrgSettingJuniperSrx`](../../doc/models/org-setting-juniper-srx.md) | Optional | - |
 | `JunosShellAccess` | [`*models.OrgSettingJunosShellAccess`](../../doc/models/org-setting-junos-shell-access.md) | Optional | junos_shell_access: Manages role-based web-shell access.  <br>When junos_shell access is not defined (Default) - No additional users are configured and web-shell uses default `mist` user to login.  <br>When junos_shell_access is defined - Additional users mist-web-admin (admin permission), mist-web-viewer(viewer permission) are configured on the device and web-shell logs in with the mist-web-admin/mist-web-viewer user depending upon the shell access level. Setting the shell access level to "none", disables web-shell access for that specific role. |
-| `Marvis` | [`*models.Marvis`](../../doc/models/marvis.md) | Optional | - |
+| `Marvis` | [`*models.OrgSettingMarvis`](../../doc/models/org-setting-marvis.md) | Optional | - |
 | `Mgmt` | [`*models.OrgSettingMgmt`](../../doc/models/org-setting-mgmt.md) | Optional | management-related properties |
 | `MistNac` | [`*models.OrgSettingMistNac`](../../doc/models/org-setting-mist-nac.md) | Optional | - |
 | `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |

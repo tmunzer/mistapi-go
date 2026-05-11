@@ -232,17 +232,19 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWanClients takes context, siteId, mac, hostname, ip, mfg, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteWanClients takes context, siteId, hostname, ip, ipSrc, mac, mfg, network, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Site WAN Clients
 func (s *SitesClientsWan) SearchSiteWanClients(
 	ctx context.Context,
 	siteId uuid.UUID,
-	mac *string,
 	hostname *string,
 	ip *string,
+	ipSrc *string,
+	mac *string,
 	mfg *string,
+	network *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -270,17 +272,23 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if mac != nil {
-		req.QueryParam("mac", *mac)
-	}
 	if hostname != nil {
 		req.QueryParam("hostname", *hostname)
 	}
 	if ip != nil {
 		req.QueryParam("ip", *ip)
 	}
+	if ipSrc != nil {
+		req.QueryParam("ip_src", *ipSrc)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
 	if mfg != nil {
 		req.QueryParam("mfg", *mfg)
+	}
+	if network != nil {
+		req.QueryParam("network", *network)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

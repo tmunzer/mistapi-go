@@ -24,7 +24,7 @@
   "limit": 134,
   "results": [
     {
-      "band": "6",
+      "band": "5",
       "key_mgmt": "WPA2-PSK",
       "timestamp": 2.64,
       "ap": "ap8",

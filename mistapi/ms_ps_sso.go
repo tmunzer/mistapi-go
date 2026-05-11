@@ -229,6 +229,51 @@ func (m *MSPsSSO) UpdateMspSso(
 	return models.NewApiResponse(result, resp), err
 }
 
+// DeleteMspSsoAdmins takes context, mspId, ssoId, body as parameters and
+// returns an models.ApiResponse with models.SsoDeleteAdminsResponse data and
+// an error if there was an issue with the request or response.
+// Delete MSP SSO Admin users by email. This removes SSO-linked admin accounts from the organization.
+func (m *MSPsSSO) DeleteMspSsoAdmins(
+	ctx context.Context,
+	mspId uuid.UUID,
+	ssoId uuid.UUID,
+	body *models.SsoDeleteAdmins) (
+	models.ApiResponse[models.SsoDeleteAdminsResponse],
+	error) {
+	req := m.prepareRequest(ctx, "POST", "/api/v1/msps/%v/ssos/%v/delete_admins")
+	req.AppendTemplateParams(mspId, ssoId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.SsoDeleteAdminsResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.SsoDeleteAdminsResponse](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
 // ListMspSsoLatestFailures takes context, mspId, ssoId as parameters and
 // returns an models.ApiResponse with models.ResponseSsoFailureSearch data and
 // an error if there was an issue with the request or response.

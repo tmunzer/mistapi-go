@@ -6,14 +6,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/google/uuid"
 	"strings"
 )
 
 // RrmEvent represents a RrmEvent struct.
 type RrmEvent struct {
-	ApId uuid.UUID `json:"ap_id"`
-	// enum: `24`, `5`, `6`
+	// AP MAC
+	Ap string `json:"ap"`
+	// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 	Band Dot11BandEnum `json:"band"`
 	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth Dot11BandwidthEnum `json:"bandwidth"`
@@ -40,8 +40,8 @@ type RrmEvent struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r RrmEvent) String() string {
 	return fmt.Sprintf(
-		"RrmEvent[ApId=%v, Band=%v, Bandwidth=%v, Channel=%v, Event=%v, Power=%v, PreBandwidth=%v, PreChannel=%v, PrePower=%v, PreUsage=%v, Timestamp=%v, Usage=%v, AdditionalProperties=%v]",
-		r.ApId, r.Band, r.Bandwidth, r.Channel, r.Event, r.Power, r.PreBandwidth, r.PreChannel, r.PrePower, r.PreUsage, r.Timestamp, r.Usage, r.AdditionalProperties)
+		"RrmEvent[Ap=%v, Band=%v, Bandwidth=%v, Channel=%v, Event=%v, Power=%v, PreBandwidth=%v, PreChannel=%v, PrePower=%v, PreUsage=%v, Timestamp=%v, Usage=%v, AdditionalProperties=%v]",
+		r.Ap, r.Band, r.Bandwidth, r.Channel, r.Event, r.Power, r.PreBandwidth, r.PreChannel, r.PrePower, r.PreUsage, r.Timestamp, r.Usage, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for RrmEvent.
@@ -50,7 +50,7 @@ func (r RrmEvent) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"ap_id", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage"); err != nil {
+		"ap", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -60,7 +60,7 @@ func (r RrmEvent) MarshalJSON() (
 func (r RrmEvent) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, r.AdditionalProperties)
-	structMap["ap_id"] = r.ApId
+	structMap["ap"] = r.Ap
 	structMap["band"] = r.Band
 	structMap["bandwidth"] = r.Bandwidth
 	structMap["channel"] = r.Channel
@@ -87,13 +87,13 @@ func (r *RrmEvent) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_id", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap", "band", "bandwidth", "channel", "event", "power", "pre_bandwidth", "pre_channel", "pre_power", "pre_usage", "timestamp", "usage")
 	if err != nil {
 		return err
 	}
 	r.AdditionalProperties = additionalProperties
 
-	r.ApId = *temp.ApId
+	r.Ap = *temp.Ap
 	r.Band = *temp.Band
 	r.Bandwidth = *temp.Bandwidth
 	r.Channel = *temp.Channel
@@ -110,7 +110,7 @@ func (r *RrmEvent) UnmarshalJSON(input []byte) error {
 
 // tempRrmEvent is a temporary struct used for validating the fields of RrmEvent.
 type tempRrmEvent struct {
-	ApId         *uuid.UUID                `json:"ap_id"`
+	Ap           *string                   `json:"ap"`
 	Band         *Dot11BandEnum            `json:"band"`
 	Bandwidth    *Dot11BandwidthEnum       `json:"bandwidth"`
 	Channel      *int                      `json:"channel"`
@@ -126,8 +126,8 @@ type tempRrmEvent struct {
 
 func (r *tempRrmEvent) validate() error {
 	var errs []string
-	if r.ApId == nil {
-		errs = append(errs, "required field `ap_id` is missing for type `rrm_event`")
+	if r.Ap == nil {
+		errs = append(errs, "required field `ap` is missing for type `rrm_event`")
 	}
 	if r.Band == nil {
 		errs = append(errs, "required field `band` is missing for type `rrm_event`")

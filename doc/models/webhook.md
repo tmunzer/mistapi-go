@@ -27,7 +27,7 @@
 | `Oauth2TokenUrl` | `*string` | Optional | Required when `type`==`oauth2` |
 | `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
 | `OrgId` | `*uuid.UUID` | Optional | - |
-| `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two  HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
+| `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics))<br><br>**Default**: `false` |
 | `SiteId` | `*uuid.UUID` | Optional | - |
 | `SplunkToken` | `models.Optional[string]` | Optional | Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it. |

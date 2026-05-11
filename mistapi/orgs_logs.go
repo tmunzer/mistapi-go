@@ -23,11 +23,12 @@ func NewOrgsLogs(baseController baseController) *OrgsLogs {
 	return &orgsLogs
 }
 
-// ListOrgAuditLogs takes context, orgId, siteId, adminName, message, sort, start, end, duration, limit, page as parameters and
+// ListOrgAuditLogsLegacy takes context, orgId, siteId, adminName, message, sort, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseLogSearch data and
 // an error if there was an issue with the request or response.
+// Deprecated: listOrgAuditLogsLegacy is deprecated
 // Get List of change logs for the current Org
-func (o *OrgsLogs) ListOrgAuditLogs(
+func (o *OrgsLogs) ListOrgAuditLogsLegacy(
 	ctx context.Context,
 	orgId uuid.UUID,
 	siteId *uuid.UUID,
@@ -170,5 +171,80 @@ func (o *OrgsLogs) CountOrgAuditLogs(
 	}
 
 	result, err = utilities.DecodeResults[models.ResponseCount](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// ListOrgAuditLogs takes context, orgId, siteId, adminName, message, sort, start, end, duration, limit, page as parameters and
+// returns an models.ApiResponse with models.ResponseLogSearch data and
+// an error if there was an issue with the request or response.
+// Get a list of change logs for the current Org
+func (o *OrgsLogs) ListOrgAuditLogs(
+	ctx context.Context,
+	orgId uuid.UUID,
+	siteId *uuid.UUID,
+	adminName *string,
+	message *string,
+	sort *models.ListOrgLogsSortEnum,
+	start *string,
+	end *string,
+	duration *string,
+	limit *int,
+	page *int) (
+	models.ApiResponse[models.ResponseLogSearch],
+	error) {
+	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/logs/search")
+	req.AppendTemplateParams(orgId)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
+	}
+	if adminName != nil {
+		req.QueryParam("admin_name", *adminName)
+	}
+	if message != nil {
+		req.QueryParam("message", *message)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
+	}
+	if start != nil {
+		req.QueryParam("start", *start)
+	}
+	if end != nil {
+		req.QueryParam("end", *end)
+	}
+	if duration != nil {
+		req.QueryParam("duration", *duration)
+	}
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
+
+	var result models.ResponseLogSearch
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.ResponseLogSearch](decoder)
 	return models.NewApiResponse(result, resp), err
 }

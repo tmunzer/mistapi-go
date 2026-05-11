@@ -456,19 +456,20 @@ func (o *OrgsMxEdges) SearchOrgMistEdgeEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgMxEdges takes context, orgId, mxedgeId, siteId, mxclusterId, model, distro, tuntermVersion, stats, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgMxEdges takes context, orgId, hostname, mxedgeId, mxclusterId, model, distro, tuntermVersion, siteId, stats, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseMxedgeSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Mist Edges
 func (o *OrgsMxEdges) SearchOrgMxEdges(
 	ctx context.Context,
 	orgId uuid.UUID,
+	hostname *string,
 	mxedgeId *string,
-	siteId *string,
 	mxclusterId *string,
 	model *string,
 	distro *string,
 	tuntermVersion *string,
+	siteId *string,
 	stats *bool,
 	limit *int,
 	start *string,
@@ -497,11 +498,11 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if hostname != nil {
+		req.QueryParam("hostname", *hostname)
+	}
 	if mxedgeId != nil {
 		req.QueryParam("mxedge_id", *mxedgeId)
-	}
-	if siteId != nil {
-		req.QueryParam("site_id", *siteId)
 	}
 	if mxclusterId != nil {
 		req.QueryParam("mxcluster_id", *mxclusterId)
@@ -514,6 +515,9 @@ func (o *OrgsMxEdges) SearchOrgMxEdges(
 	}
 	if tuntermVersion != nil {
 		req.QueryParam("tunterm_version", *tuntermVersion)
+	}
+	if siteId != nil {
+		req.QueryParam("site_id", *siteId)
 	}
 	if stats != nil {
 		req.QueryParam("stats", *stats)

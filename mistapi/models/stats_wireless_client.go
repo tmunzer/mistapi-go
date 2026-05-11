@@ -23,7 +23,7 @@ type StatsWirelessClient struct {
 	// AP the client is connected to
 	ApMac     string `json:"ap_mac"`
 	AssocTime *int   `json:"assoc_time,omitempty"`
-	// enum: `24`, `5`, `6`
+	// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 	Band  Dot11BandEnum `json:"band"`
 	Bssid *string       `json:"bssid,omitempty"`
 	// Current channel

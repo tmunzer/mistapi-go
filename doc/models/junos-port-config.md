@@ -13,7 +13,8 @@ Switch port config
 |  --- | --- | --- | --- |
 | `AeDisableLacp` | `*bool` | Optional | To disable LACP support for the AE interface |
 | `AeIdx` | `*int` | Optional | Users could force to use the designated AE name |
-| `AeLacpSlow` | `*bool` | Optional | To use fast timeout |
+| `AeLacpForceUp` | `*bool` | Optional | If `aggregated`==`true`, sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only<br><br>**Default**: `false` |
+| `AeLacpSlow` | `*bool` | Optional | To use slow timeout |
 | `Aggregated` | `*bool` | Optional | **Default**: `false` |
 | `Critical` | `*bool` | Optional | To generate port up/down alarm<br><br>**Default**: `false` |
 | `Description` | `*string` | Optional | - |
@@ -33,6 +34,7 @@ Switch port config
 
 ```json
 {
+  "ae_lacp_force_up": false,
   "aggregated": false,
   "critical": false,
   "disable_autoneg": false,

@@ -747,16 +747,20 @@ Search Wireless Clients
 SearchSiteWirelessClients(
     ctx context.Context,
     siteId uuid.UUID,
-    mac *string,
-    ip *string,
-    hostname *string,
-    device *string,
-    os *string,
-    model *string,
     ap *string,
+    band *string,
+    device *string,
+    hostname *string,
+    ip *string,
+    mac *string,
+    model *string,
+    os *string,
+    pskId *string,
+    pskName *string,
     ssid *string,
     text *string,
-    nacruleId *string,
+    username *string,
+    vlan *string,
     limit *int,
     start *string,
     end *string,
@@ -772,16 +776,20 @@ SearchSiteWirelessClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `ip` | `*string` | Query, Optional | - |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `device` | `*string` | Query, Optional | Device type, e.g. Mac, Nvidia, iPhone |
-| `os` | `*string` | Query, Optional | OS, e.g. Sierra, Yosemite, Windows 10 |
-| `model` | `*string` | Query, Optional | model, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
-| `ap` | `*string` | Query, Optional | AP mac where the client has connected to |
-| `ssid` | `*string` | Query, Optional | - |
-| `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip |
-| `nacruleId` | `*string` | Query, Optional | nacrule_id |
+| `ap` | `*string` | Query, Optional | AP MAC address of the AP where the client has connected to |
+| `band` | `*string` | Query, Optional | Comma separated list of Radio band (e.g. `24,5`). enum: `24`, `5`, `6` |
+| `device` | `*string` | Query, Optional | Comma separated list of Device type (e.g. `Mac,iPhone`). Case sensitive |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
+| `ip` | `*string` | Query, Optional | Partial / full Client IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
+| `model` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, model, e.g. "MBP 15 late 2013", 6, 6s, "8+ GSM" |
+| `os` | `*string` | Query, Optional | Only available for clients running the Marvis Client app, os, e.g. Sierra, Yosemite, Windows 10 |
+| `pskId` | `*string` | Query, Optional | PSK ID |
+| `pskName` | `*string` | Query, Optional | Only available for clients using PPSK authentication, the Name of the PSK |
+| `ssid` | `*string` | Query, Optional | SSID |
+| `text` | `*string` | Query, Optional | Partial / full MAC address, hostname, username, psk_name or ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*client`) are not supported |
+| `username` | `*string` | Query, Optional | Partial / full username. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `johndoe*` and `*mycorp*` match `johndoe@mycorp.com`). Suffix-only wildcards (e.g. `*mycorp.com`) are not supported |
+| `vlan` | `*string` | Query, Optional | VLAN |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -800,7 +808,33 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-ip := "192.168.1.1"
+ap := "5c5b53010101"
+
+band := "5"
+
+device := "iPhone"
+
+hostname := "my-everest-client"
+
+ip := "10.100.10.54"
+
+mac := "aabbccddeeff"
+
+model := "iPhone 8"
+
+os := "Windows 10"
+
+pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
+
+pskName := "MyPPSK"
+
+ssid := "MySSID"
+
+text := "5c5b530"
+
+username := "johndoe"
+
+vlan := "10"
 
 limit := 100
 
@@ -808,7 +842,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, &ap, &band, &device, &hostname, &ip, &mac, &model, &os, &pskId, &pskName, &ssid, &text, &username, &vlan, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

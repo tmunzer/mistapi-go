@@ -11,7 +11,7 @@ orgsNACIDP := client.OrgsNACIDP()
 
 # Validate Org Idp Credential
 
-IDP Credential Validation. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+IDP Credential Validation. The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 
 #### Subscribe to Device Command outputs
 

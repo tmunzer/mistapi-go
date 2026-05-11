@@ -24,13 +24,15 @@ func NewOrgsSecIntelProfiles(baseController baseController) *OrgsSecIntelProfile
 	return &orgsSecIntelProfiles
 }
 
-// ListOrgSecIntelProfiles takes context, orgId as parameters and
+// ListOrgSecIntelProfiles takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.SecintelProfile data and
 // an error if there was an issue with the request or response.
 // Get List of Sec Intel Profiles
 func (o *OrgsSecIntelProfiles) ListOrgSecIntelProfiles(
 	ctx context.Context,
-	orgId uuid.UUID) (
+	orgId uuid.UUID,
+	limit *int,
+	page *int) (
 	models.ApiResponse[[]models.SecintelProfile],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/secintelprofiles")
@@ -52,6 +54,12 @@ func (o *OrgsSecIntelProfiles) ListOrgSecIntelProfiles(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
+	if limit != nil {
+		req.QueryParam("limit", *limit)
+	}
+	if page != nil {
+		req.QueryParam("page", *page)
+	}
 
 	var result []models.SecintelProfile
 	decoder, resp, err := req.CallAsJson()

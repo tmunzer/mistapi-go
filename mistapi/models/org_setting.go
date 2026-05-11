@@ -55,7 +55,7 @@ type OrgSetting struct {
 	// When junos_shell access is not defined (Default) - No additional users are configured and web-shell uses default `mist` user to login.
 	// When junos_shell_access is defined - Additional users mist-web-admin (admin permission), mist-web-viewer(viewer permission) are configured on the device and web-shell logs in with the mist-web-admin/mist-web-viewer user depending upon the shell access level. Setting the shell access level to "none", disables web-shell access for that specific role.
 	JunosShellAccess *OrgSettingJunosShellAccess `json:"junos_shell_access,omitempty"`
-	Marvis           *Marvis                     `json:"marvis,omitempty"`
+	Marvis           *OrgSettingMarvis           `json:"marvis,omitempty"`
 	// management-related properties
 	Mgmt    *OrgSettingMgmt    `json:"mgmt,omitempty"`
 	MistNac *OrgSettingMistNac `json:"mist_nac,omitempty"`
@@ -392,7 +392,7 @@ type tempOrgSetting struct {
 	Juniper                      *AccountJuniperInfo                    `json:"juniper,omitempty"`
 	JuniperSrx                   *OrgSettingJuniperSrx                  `json:"juniper_srx,omitempty"`
 	JunosShellAccess             *OrgSettingJunosShellAccess            `json:"junos_shell_access,omitempty"`
-	Marvis                       *Marvis                                `json:"marvis,omitempty"`
+	Marvis                       *OrgSettingMarvis                      `json:"marvis,omitempty"`
 	Mgmt                         *OrgSettingMgmt                        `json:"mgmt,omitempty"`
 	MistNac                      *OrgSettingMistNac                     `json:"mist_nac,omitempty"`
 	ModifiedTime                 *float64                               `json:"modified_time,omitempty"`

@@ -1,7 +1,7 @@
 
 # Evpn Config Role Enum
 
-enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
+enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 
 ## Enumeration
 
@@ -12,6 +12,7 @@ enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none
 | Name |
 |  --- |
 | `access` |
+| `border` |
 | `collapsed-core` |
 | `core` |
 | `distribution` |

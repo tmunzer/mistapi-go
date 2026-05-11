@@ -20,6 +20,8 @@ type EvpnOptions struct {
 	AutoRouterIdSubnet6 *string `json:"auto_router_id_subnet6,omitempty"`
 	// Optional, for ERB or CLOS, you can either use esilag to upstream routers or to also be the virtual-gateway. When `routed_at` != `core`, whether to do virtual-gateway at core as well
 	CoreAsBorder *bool `json:"core_as_border,omitempty"`
+	// Whether to route management traffic inband; routes will be propagated to downstream switches
+	EnableInbandMgmt *bool `json:"enable_inband_mgmt,omitempty"`
 	// if the mangement traffic goes inbnd, during installation, only the border/core switches are connected to the Internet to allow initial configuration to be pushed down and leave the downstream access switches stay in the Factory Default state enabling inband-ztp allows upstream switches to use LLDP to assign IP and gives Internet to downstream switches in that state
 	EnableInbandZtp *bool               `json:"enable_inband_ztp,omitempty"`
 	Overlay         *EvpnOptionsOverlay `json:"overlay,omitempty"`
@@ -39,8 +41,8 @@ type EvpnOptions struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (e EvpnOptions) String() string {
 	return fmt.Sprintf(
-		"EvpnOptions[AutoLoopbackSubnet=%v, AutoLoopbackSubnet6=%v, AutoRouterIdSubnet=%v, AutoRouterIdSubnet6=%v, CoreAsBorder=%v, EnableInbandZtp=%v, Overlay=%v, PerVlanVgaV4Mac=%v, PerVlanVgaV6Mac=%v, RoutedAt=%v, Underlay=%v, VsInstances=%v, AdditionalProperties=%v]",
-		e.AutoLoopbackSubnet, e.AutoLoopbackSubnet6, e.AutoRouterIdSubnet, e.AutoRouterIdSubnet6, e.CoreAsBorder, e.EnableInbandZtp, e.Overlay, e.PerVlanVgaV4Mac, e.PerVlanVgaV6Mac, e.RoutedAt, e.Underlay, e.VsInstances, e.AdditionalProperties)
+		"EvpnOptions[AutoLoopbackSubnet=%v, AutoLoopbackSubnet6=%v, AutoRouterIdSubnet=%v, AutoRouterIdSubnet6=%v, CoreAsBorder=%v, EnableInbandMgmt=%v, EnableInbandZtp=%v, Overlay=%v, PerVlanVgaV4Mac=%v, PerVlanVgaV6Mac=%v, RoutedAt=%v, Underlay=%v, VsInstances=%v, AdditionalProperties=%v]",
+		e.AutoLoopbackSubnet, e.AutoLoopbackSubnet6, e.AutoRouterIdSubnet, e.AutoRouterIdSubnet6, e.CoreAsBorder, e.EnableInbandMgmt, e.EnableInbandZtp, e.Overlay, e.PerVlanVgaV4Mac, e.PerVlanVgaV6Mac, e.RoutedAt, e.Underlay, e.VsInstances, e.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for EvpnOptions.
@@ -49,7 +51,7 @@ func (e EvpnOptions) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(e.AdditionalProperties,
-		"auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "enable_inband_ztp", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances"); err != nil {
+		"auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "enable_inband_mgmt", "enable_inband_ztp", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(e.toMap())
@@ -73,6 +75,9 @@ func (e EvpnOptions) toMap() map[string]any {
 	}
 	if e.CoreAsBorder != nil {
 		structMap["core_as_border"] = e.CoreAsBorder
+	}
+	if e.EnableInbandMgmt != nil {
+		structMap["enable_inband_mgmt"] = e.EnableInbandMgmt
 	}
 	if e.EnableInbandZtp != nil {
 		structMap["enable_inband_ztp"] = e.EnableInbandZtp
@@ -106,7 +111,7 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "enable_inband_ztp", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "auto_loopback_subnet", "auto_loopback_subnet6", "auto_router_id_subnet", "auto_router_id_subnet6", "core_as_border", "enable_inband_mgmt", "enable_inband_ztp", "overlay", "per_vlan_vga_v4_mac", "per_vlan_vga_v6_mac", "routed_at", "underlay", "vs_instances")
 	if err != nil {
 		return err
 	}
@@ -117,6 +122,7 @@ func (e *EvpnOptions) UnmarshalJSON(input []byte) error {
 	e.AutoRouterIdSubnet = temp.AutoRouterIdSubnet
 	e.AutoRouterIdSubnet6 = temp.AutoRouterIdSubnet6
 	e.CoreAsBorder = temp.CoreAsBorder
+	e.EnableInbandMgmt = temp.EnableInbandMgmt
 	e.EnableInbandZtp = temp.EnableInbandZtp
 	e.Overlay = temp.Overlay
 	e.PerVlanVgaV4Mac = temp.PerVlanVgaV4Mac
@@ -134,6 +140,7 @@ type tempEvpnOptions struct {
 	AutoRouterIdSubnet  *string                          `json:"auto_router_id_subnet,omitempty"`
 	AutoRouterIdSubnet6 *string                          `json:"auto_router_id_subnet6,omitempty"`
 	CoreAsBorder        *bool                            `json:"core_as_border,omitempty"`
+	EnableInbandMgmt    *bool                            `json:"enable_inband_mgmt,omitempty"`
 	EnableInbandZtp     *bool                            `json:"enable_inband_ztp,omitempty"`
 	Overlay             *EvpnOptionsOverlay              `json:"overlay,omitempty"`
 	PerVlanVgaV4Mac     *bool                            `json:"per_vlan_vga_v4_mac,omitempty"`

@@ -11,7 +11,7 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Neighbor` | `string` | Required | Neighbor ip-address or 'all' |
+| `Neighbor` | `string` | Required | can be ip, ipv6, all<br><br>**Default**: `"all"` |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Type` | [`models.UtilsClearBgpTypeEnum`](../../doc/models/utils-clear-bgp-type-enum.md) | Required | enum: `hard`, `in`, `out`, `soft`<br><br>**Default**: `"hard"` |
 | `Vrf` | `*string` | Optional | VRF name |
@@ -21,7 +21,7 @@
 
 ```json
 {
-  "neighbor": "neighbor0",
+  "neighbor": "all",
   "type": "hard",
   "node": "node0",
   "vrf": "vrf4",

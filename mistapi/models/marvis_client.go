@@ -11,11 +11,15 @@ import (
 // MarvisClient represents a MarvisClient struct.
 type MarvisClient struct {
 	Disabled *bool `json:"disabled,omitempty"`
+	// In MDM, add `--enrollment_url <enrollment_url>` to the install command
+	EnrollmentUrl *string `json:"enrollment_url,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id   *uuid.UUID `json:"id,omitempty"`
-	Name *string    `json:"name,omitempty"`
-	// In MDM, add `--provision_url <provision_url>` to the install command
-	ProvisionUrl         *string                `json:"provision_url,omitempty"`
+	Id            *uuid.UUID                 `json:"id,omitempty"`
+	Location      *MarvisClientLocation      `json:"location,omitempty"`
+	Name          *string                    `json:"name,omitempty"`
+	SyntheticTest *MarvisClientSyntheticTest `json:"synthetic_test,omitempty"`
+	// Note: some stats are not collected when it's not connected to Mist infrastructure
+	Telemetry            *MarvisClientTelemetry `json:"telemetry,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -23,8 +27,8 @@ type MarvisClient struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (m MarvisClient) String() string {
 	return fmt.Sprintf(
-		"MarvisClient[Disabled=%v, Id=%v, Name=%v, ProvisionUrl=%v, AdditionalProperties=%v]",
-		m.Disabled, m.Id, m.Name, m.ProvisionUrl, m.AdditionalProperties)
+		"MarvisClient[Disabled=%v, EnrollmentUrl=%v, Id=%v, Location=%v, Name=%v, SyntheticTest=%v, Telemetry=%v, AdditionalProperties=%v]",
+		m.Disabled, m.EnrollmentUrl, m.Id, m.Location, m.Name, m.SyntheticTest, m.Telemetry, m.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for MarvisClient.
@@ -33,7 +37,7 @@ func (m MarvisClient) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(m.AdditionalProperties,
-		"disabled", "id", "name", "provision_url"); err != nil {
+		"disabled", "enrollment_url", "id", "location", "name", "synthetic_test", "telemetry"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(m.toMap())
@@ -46,14 +50,23 @@ func (m MarvisClient) toMap() map[string]any {
 	if m.Disabled != nil {
 		structMap["disabled"] = m.Disabled
 	}
+	if m.EnrollmentUrl != nil {
+		structMap["enrollment_url"] = m.EnrollmentUrl
+	}
 	if m.Id != nil {
 		structMap["id"] = m.Id
+	}
+	if m.Location != nil {
+		structMap["location"] = m.Location.toMap()
 	}
 	if m.Name != nil {
 		structMap["name"] = m.Name
 	}
-	if m.ProvisionUrl != nil {
-		structMap["provision_url"] = m.ProvisionUrl
+	if m.SyntheticTest != nil {
+		structMap["synthetic_test"] = m.SyntheticTest.toMap()
+	}
+	if m.Telemetry != nil {
+		structMap["telemetry"] = m.Telemetry.toMap()
 	}
 	return structMap
 }
@@ -66,23 +79,29 @@ func (m *MarvisClient) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "id", "name", "provision_url")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "enrollment_url", "id", "location", "name", "synthetic_test", "telemetry")
 	if err != nil {
 		return err
 	}
 	m.AdditionalProperties = additionalProperties
 
 	m.Disabled = temp.Disabled
+	m.EnrollmentUrl = temp.EnrollmentUrl
 	m.Id = temp.Id
+	m.Location = temp.Location
 	m.Name = temp.Name
-	m.ProvisionUrl = temp.ProvisionUrl
+	m.SyntheticTest = temp.SyntheticTest
+	m.Telemetry = temp.Telemetry
 	return nil
 }
 
 // tempMarvisClient is a temporary struct used for validating the fields of MarvisClient.
 type tempMarvisClient struct {
-	Disabled     *bool      `json:"disabled,omitempty"`
-	Id           *uuid.UUID `json:"id,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	ProvisionUrl *string    `json:"provision_url,omitempty"`
+	Disabled      *bool                      `json:"disabled,omitempty"`
+	EnrollmentUrl *string                    `json:"enrollment_url,omitempty"`
+	Id            *uuid.UUID                 `json:"id,omitempty"`
+	Location      *MarvisClientLocation      `json:"location,omitempty"`
+	Name          *string                    `json:"name,omitempty"`
+	SyntheticTest *MarvisClientSyntheticTest `json:"synthetic_test,omitempty"`
+	Telemetry     *MarvisClientTelemetry     `json:"telemetry,omitempty"`
 }

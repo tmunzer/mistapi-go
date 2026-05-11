@@ -77,7 +77,7 @@ type DeviceprofileSwitch struct {
 	SiteId          *uuid.UUID                 `json:"site_id,omitempty"`
 	SnmpConfig      *SnmpConfig                `json:"snmp_config,omitempty"`
 	StpConfig       *SwitchStpConfig           `json:"stp_config,omitempty"`
-	// Switch settings
+	// Switch Management settings
 	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	// Device Type. enum: `switch`
 	Type string `json:"type"`

@@ -11,13 +11,13 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Host` | `*string` | Optional | Host name |
+| `Host` | `*string` | Optional | can be ip, ipv6, hostname |
 | `Network` | `*string` | Optional | For SSR, optional, the source to initiate traceroute from<br><br>**Default**: `"internal"` |
 | `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
 | `Port` | `*int` | Optional | When `protocol`==`udp`, not supported in SSR. The udp port to use<br><br>**Default**: `33434` |
 | `Protocol` | [`*models.UtilsTracerouteProtocolEnum`](../../doc/models/utils-traceroute-protocol-enum.md) | Optional | enum: `icmp` (Only supported by AP/MxEdge), `udp`<br><br>**Default**: `"udp"` |
 | `Timeout` | `*int` | Optional | Not supported in SSR. Maximum time in seconds to wait for the response<br><br>**Default**: `60` |
-| `UseIpv6` | `*bool` | Optional | **Default**: `false` |
+| `UseIpv6` | `*bool` | Optional | applicable when host is hostname<br><br>**Default**: `false` |
 | `Vrf` | `*string` | Optional | For SRX, optional, the source to initiate traceroute from. by default, master VRF/RI is assumed |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 

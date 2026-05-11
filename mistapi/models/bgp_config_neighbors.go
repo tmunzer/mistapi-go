@@ -19,7 +19,9 @@ type BgpConfigNeighbors struct {
 	// Assuming BGP neighbor is directly connected
 	MultihopTtl *int `json:"multihop_ttl,omitempty"`
 	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
-	NeighborAs           BgpAs                  `json:"neighbor_as"`
+	NeighborAs BgpAs `json:"neighbor_as"`
+	// If `via`==`tunnel`, specifies which tunnel (primary/secondary) this neighbor is associated with. enum: `primary`, `secondary`
+	TunnelVia            *TunnelViaEnum         `json:"tunnel_via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -27,8 +29,8 @@ type BgpConfigNeighbors struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (b BgpConfigNeighbors) String() string {
 	return fmt.Sprintf(
-		"BgpConfigNeighbors[Disabled=%v, ExportPolicy=%v, HoldTime=%v, ImportPolicy=%v, MultihopTtl=%v, NeighborAs=%v, AdditionalProperties=%v]",
-		b.Disabled, b.ExportPolicy, b.HoldTime, b.ImportPolicy, b.MultihopTtl, b.NeighborAs, b.AdditionalProperties)
+		"BgpConfigNeighbors[Disabled=%v, ExportPolicy=%v, HoldTime=%v, ImportPolicy=%v, MultihopTtl=%v, NeighborAs=%v, TunnelVia=%v, AdditionalProperties=%v]",
+		b.Disabled, b.ExportPolicy, b.HoldTime, b.ImportPolicy, b.MultihopTtl, b.NeighborAs, b.TunnelVia, b.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for BgpConfigNeighbors.
@@ -37,7 +39,7 @@ func (b BgpConfigNeighbors) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(b.AdditionalProperties,
-		"disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as"); err != nil {
+		"disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as", "tunnel_via"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(b.toMap())
@@ -63,6 +65,9 @@ func (b BgpConfigNeighbors) toMap() map[string]any {
 		structMap["multihop_ttl"] = b.MultihopTtl
 	}
 	structMap["neighbor_as"] = b.NeighborAs.toMap()
+	if b.TunnelVia != nil {
+		structMap["tunnel_via"] = b.TunnelVia
+	}
 	return structMap
 }
 
@@ -78,7 +83,7 @@ func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disabled", "export_policy", "hold_time", "import_policy", "multihop_ttl", "neighbor_as", "tunnel_via")
 	if err != nil {
 		return err
 	}
@@ -90,17 +95,19 @@ func (b *BgpConfigNeighbors) UnmarshalJSON(input []byte) error {
 	b.ImportPolicy = temp.ImportPolicy
 	b.MultihopTtl = temp.MultihopTtl
 	b.NeighborAs = *temp.NeighborAs
+	b.TunnelVia = temp.TunnelVia
 	return nil
 }
 
 // tempBgpConfigNeighbors is a temporary struct used for validating the fields of BgpConfigNeighbors.
 type tempBgpConfigNeighbors struct {
-	Disabled     *bool   `json:"disabled,omitempty"`
-	ExportPolicy *string `json:"export_policy,omitempty"`
-	HoldTime     *int    `json:"hold_time,omitempty"`
-	ImportPolicy *string `json:"import_policy,omitempty"`
-	MultihopTtl  *int    `json:"multihop_ttl,omitempty"`
-	NeighborAs   *BgpAs  `json:"neighbor_as"`
+	Disabled     *bool          `json:"disabled,omitempty"`
+	ExportPolicy *string        `json:"export_policy,omitempty"`
+	HoldTime     *int           `json:"hold_time,omitempty"`
+	ImportPolicy *string        `json:"import_policy,omitempty"`
+	MultihopTtl  *int           `json:"multihop_ttl,omitempty"`
+	NeighborAs   *BgpAs         `json:"neighbor_as"`
+	TunnelVia    *TunnelViaEnum `json:"tunnel_via,omitempty"`
 }
 
 func (b *tempBgpConfigNeighbors) validate() error {

@@ -29,6 +29,7 @@ type WebhooksParsingResult struct {
 	isLocationClient      bool
 	isLocationSdk         bool
 	isLocationUnclient    bool
+	isMinisApplication    bool
 	isMinisReachability   bool
 	isMxedgeEvents        bool
 	isNacAccounting       bool
@@ -82,6 +83,7 @@ func (w *WebhooksParsingResult) UnmarshalJSON(input []byte) error {
 		models.NewTypeHolder(&models.WebhookLocationClient{}, true, &w.isLocationClient),
 		models.NewTypeHolder(&models.WebhookLocationSdk{}, true, &w.isLocationSdk),
 		models.NewTypeHolder(&models.WebhookLocationUnclient{}, true, &w.isLocationUnclient),
+		models.NewTypeHolder(&models.WebhookMinisApplication{}, true, &w.isMinisApplication),
 		models.NewTypeHolder(&models.WebhookMinisReachability{}, true, &w.isMinisReachability),
 		models.NewTypeHolder(&models.WebhookMxedgeEvents{}, true, &w.isMxedgeEvents),
 		models.NewTypeHolder(&models.WebhookNacAccounting{}, true, &w.isNacAccounting),
@@ -302,6 +304,18 @@ func (w *WebhooksParsingResult) AsLocationUnclient() (
 		return nil, true
 	}
 	return w.value.(*models.WebhookLocationUnclient), true
+}
+
+func (w *WebhooksParsingResult) AsMinisApplication() (
+	*models.WebhookMinisApplication,
+	bool) {
+	if !w.isMinisApplication {
+		return nil, false
+	}
+	if w.value == nil {
+		return nil, true
+	}
+	return w.value.(*models.WebhookMinisApplication), true
 }
 
 func (w *WebhooksParsingResult) AsMinisReachability() (
@@ -539,6 +553,11 @@ func (w *internalWebhooksParsingResult) FromLocationSdk(val *models.WebhookLocat
 
 // The internalWebhooksParsingResult instance, wrapping the provided models.WebhookLocationUnclient value.
 func (w *internalWebhooksParsingResult) FromLocationUnclient(val *models.WebhookLocationUnclient) WebhooksParsingResult {
+	return WebhooksParsingResult{value: &val}
+}
+
+// The internalWebhooksParsingResult instance, wrapping the provided models.WebhookMinisApplication value.
+func (w *internalWebhooksParsingResult) FromMinisApplication(val *models.WebhookMinisApplication) WebhooksParsingResult {
 	return WebhooksParsingResult{value: &val}
 }
 

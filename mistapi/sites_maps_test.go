@@ -11,6 +11,50 @@ import (
 	"testing"
 )
 
+// TestSitesMapsTestListSiteMaps tests the behavior of the SitesMaps
+func TestSitesMapsTestListSiteMaps(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, &limit, &page)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `[{"created_time":0,"flags":{},"group_idx":1,"group_name":"East Wing","height":0,"height_m":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","latlng_br":{"lat":"string","lng":"string"},"latlng_tl":{"lat":"string","lng":"string"},"locked":true,"modified_time":0,"name":"string","occupancy_limit":0,"org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","orientation":0,"origin_x":0,"origin_y":0,"ppm":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitesurvey_path":[{"coordinate":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]}],"thumbnail_url":"string","type":"image","url":"string","view":"roadmap","wall_path":{"coordinate":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]},"wayfinding":{"micello":{"account_key":"string","default_level_id":0,"map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"},"snap_to_path":true},"wayfinding_path":{"coordinate":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]},"width":0,"width_m":0}]`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesMapsTestListSiteMaps1 tests the behavior of the SitesMaps
+func TestSitesMapsTestListSiteMaps1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	limit := int(100)
+	page := int(1)
+	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, &limit, &page)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `[{"created_time":0,"flags":{},"group_idx":1,"group_name":"East Wing","height":0,"height_m":0,"id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","latlng_br":{"lat":"string","lng":"string"},"latlng_tl":{"lat":"string","lng":"string"},"locked":true,"modified_time":0,"name":"string","occupancy_limit":0,"org_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","orientation":0,"origin_x":0,"origin_y":0,"ppm":0,"site_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","sitesurvey_path":[{"coordinate":"string","id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1","name":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]}],"thumbnail_url":"string","type":"image","url":"string","view":"roadmap","wall_path":{"coordinate":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]},"wayfinding":{"micello":{"account_key":"string","default_level_id":0,"map_id":"b069b358-4c97-5319-1f8c-7c5ca64d6ab1"},"snap_to_path":true},"wayfinding_path":{"coordinate":"string","nodes":[{"edges":{"N2":"string"},"name":"string","position":{"x":0,"y":0}}]},"width":0,"width_m":0}]`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestSitesMapsTestCreateSiteMap tests the behavior of the SitesMaps
 func TestSitesMapsTestCreateSiteMap(t *testing.T) {
 	ctx := context.Background()

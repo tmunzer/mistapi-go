@@ -1,5 +1,5 @@
 
-# Wlan Vlan Id With Variable
+# Wlan Vlan Id with Variable
 
 ## Class Name
 

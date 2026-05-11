@@ -169,15 +169,26 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	ip := "192.168.1.1"
-
+	ap := "5c5b53010101"
+	band := "5"
+	device := "iPhone"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	mac := "aabbccddeeff"
+	model := "iPhone 8"
+	os := "Windows 10"
+	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
+	pskName := "MyPPSK"
+	ssid := "MySSID"
+	text := "5c5b530"
+	username := "johndoe"
+	vlan := "10"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, &ap, &band, &device, &hostname, &ip, &mac, &model, &os, &pskId, &pskName, &ssid, &text, &username, &vlan, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -197,15 +208,26 @@ func TestSitesClientsWirelessTestSearchSiteWirelessClients1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
-	ip := "192.168.1.1"
-
+	ap := "5c5b53010101"
+	band := "5"
+	device := "iPhone"
+	hostname := "my-everest-client"
+	ip := "10.100.10.54"
+	mac := "aabbccddeeff"
+	model := "iPhone 8"
+	os := "Windows 10"
+	pskId := "000000ab-00ab-00ab-00ab-0000000000ab"
+	pskName := "MyPPSK"
+	ssid := "MySSID"
+	text := "5c5b530"
+	username := "johndoe"
+	vlan := "10"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsWireless.SearchSiteWirelessClients(ctx, siteId, &ap, &band, &device, &hostname, &ip, &mac, &model, &os, &pskId, &pskName, &ssid, &text, &username, &vlan, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

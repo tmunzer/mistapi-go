@@ -16,16 +16,18 @@ type VirtualChassisUpdate struct {
 	// Only if `op`==`renumber`
 	NewMember *int `json:"new-member,omitempty"`
 	// enum: `add`, `preprovision`, `remove`, `renumber`
-	Op                   *VirtualChassisUpdateOpEnum `json:"op,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Op *VirtualChassisUpdateOpEnum `json:"op,omitempty"`
+	// Only if `op`==`preprovision`. When removing members from a pre-provisioned VC, set to `true` to delete the inventory records for removed members (e.g. for RMA). Members being removed must be in "not-present" state.
+	RemoveInventory      *bool                  `json:"remove_inventory,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for VirtualChassisUpdate,
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (v VirtualChassisUpdate) String() string {
 	return fmt.Sprintf(
-		"VirtualChassisUpdate[Member=%v, Members=%v, NewMember=%v, Op=%v, AdditionalProperties=%v]",
-		v.Member, v.Members, v.NewMember, v.Op, v.AdditionalProperties)
+		"VirtualChassisUpdate[Member=%v, Members=%v, NewMember=%v, Op=%v, RemoveInventory=%v, AdditionalProperties=%v]",
+		v.Member, v.Members, v.NewMember, v.Op, v.RemoveInventory, v.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for VirtualChassisUpdate.
@@ -34,7 +36,7 @@ func (v VirtualChassisUpdate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(v.AdditionalProperties,
-		"member", "members", "new-member", "op"); err != nil {
+		"member", "members", "new-member", "op", "remove_inventory"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(v.toMap())
@@ -56,6 +58,9 @@ func (v VirtualChassisUpdate) toMap() map[string]any {
 	if v.Op != nil {
 		structMap["op"] = v.Op
 	}
+	if v.RemoveInventory != nil {
+		structMap["remove_inventory"] = v.RemoveInventory
+	}
 	return structMap
 }
 
@@ -67,7 +72,7 @@ func (v *VirtualChassisUpdate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "member", "members", "new-member", "op")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "member", "members", "new-member", "op", "remove_inventory")
 	if err != nil {
 		return err
 	}
@@ -77,13 +82,15 @@ func (v *VirtualChassisUpdate) UnmarshalJSON(input []byte) error {
 	v.Members = temp.Members
 	v.NewMember = temp.NewMember
 	v.Op = temp.Op
+	v.RemoveInventory = temp.RemoveInventory
 	return nil
 }
 
 // tempVirtualChassisUpdate is a temporary struct used for validating the fields of VirtualChassisUpdate.
 type tempVirtualChassisUpdate struct {
-	Member    *int                         `json:"member,omitempty"`
-	Members   []VirtualChassisMemberUpdate `json:"members,omitempty"`
-	NewMember *int                         `json:"new-member,omitempty"`
-	Op        *VirtualChassisUpdateOpEnum  `json:"op,omitempty"`
+	Member          *int                         `json:"member,omitempty"`
+	Members         []VirtualChassisMemberUpdate `json:"members,omitempty"`
+	NewMember       *int                         `json:"new-member,omitempty"`
+	Op              *VirtualChassisUpdateOpEnum  `json:"op,omitempty"`
+	RemoveInventory *bool                        `json:"remove_inventory,omitempty"`
 }

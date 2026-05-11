@@ -867,18 +867,24 @@ if err != nil {
 
 # Search Org Jsi Sirt
 
-Text search for SIRT (Security Incident Response Team) advisories. Search can be done on versions, models, severity, and id fields.
+Search and get all the SIRT for the onboarded devices. Search can be done on severity, id, updated_after, updated_before, published_after, published_before, models, versions, and text fields.
 
 ```go
 SearchOrgJsiSirt(
     ctx context.Context,
     orgId uuid.UUID,
-    versions *string,
-    mModels *string,
     severity *string,
     id *string,
+    updatedAfter *string,
+    updatedBefore *string,
+    publishedAfter *string,
+    publishedBefore *string,
+    mModels *string,
+    versions *string,
+    text *string,
     limit *int,
     page *int,
+    sort *string,
     searchAfter *string,
     start *string,
     end *string) (
@@ -891,12 +897,18 @@ SearchOrgJsiSirt(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `versions` | `*string` | Query, Optional | OS versions to search for |
-| `mModels` | `*string` | Query, Optional | Device models to search for |
-| `severity` | `*string` | Query, Optional | Severity level to filter by |
-| `id` | `*string` | Query, Optional | SIRT ID to search for |
+| `severity` | `*string` | Query, Optional | Severity of the SIRT (Critical, High, Medium, Low) |
+| `id` | `*string` | Query, Optional | JSA number |
+| `updatedAfter` | `*string` | Query, Optional | JSA Updated date to be filtered after this date |
+| `updatedBefore` | `*string` | Query, Optional | JSA Updated date to be filtered before this date |
+| `publishedAfter` | `*string` | Query, Optional | JSA Published date to be filtered after this date |
+| `publishedBefore` | `*string` | Query, Optional | JSA Published date to be filtered before this date |
+| `mModels` | `*string` | Query, Optional | Models affected by the SIRT |
+| `versions` | `*string` | Query, Optional | Software version affected by the SIRT |
+| `text` | `*string` | Query, Optional | Wildcards search on os_version_affected, affected_models, severity, jsa_id |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `sort` | `*string` | Query, Optional | On which field the list should be sorted, -prefix represents DESC order<br><br>**Default**: `"timestamp"` |
 | `searchAfter` | `*string` | Query, Optional | Pagination cursor for retrieving subsequent pages of results. This value is automatically populated by Mist in the `next` URL from the previous response and should not be manually constructed. |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -912,15 +924,17 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-versions := "20.4R3"
-
 id := "JSA100053"
+
+versions := "20.4R3"
 
 limit := 100
 
 page := 1
 
-apiResponse, err := orgsJSI.SearchOrgJsiSirt(ctx, orgId, &versions, nil, nil, &id, &limit, &page, nil, nil, nil)
+sort := "-site_id"
+
+apiResponse, err := orgsJSI.SearchOrgJsiSirt(ctx, orgId, nil, &id, nil, nil, nil, nil, nil, &versions, nil, &limit, &page, &sort, nil, nil, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

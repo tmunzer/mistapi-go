@@ -9,15 +9,15 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | [`*models.MxedgeTuntermIgmpSnoopingConfigEnabled`](../../doc/models/containers/mxedge-tunterm-igmp-snooping-config-enabled.md) | Optional | This is a container for any-of cases. |
 | `Querier` | [`*models.MxedgeTuntermIgmpSnoopingQuerier`](../../doc/models/mxedge-tunterm-igmp-snooping-querier.md) | Optional | - |
-| `VlanIds` | `[]int` | Optional | List of vlans on which tunterm performs IGMP snooping<br><br>**Constraints**: `>= 0`, `<= 4096` |
+| `VlanIds` | [`*models.MxedgeTuntermIgmpSnoopingConfigVlanIds`](../../doc/models/containers/mxedge-tunterm-igmp-snooping-config-vlan-ids.md) | Optional | List of vlans on which tunterm performs IGMP snooping |
 
 ## Example (as JSON)
 
 ```json
 {
-  "enabled": false,
+  "enabled": true,
   "querier": {
     "max_response_time": 136,
     "mtu": 120,
@@ -26,7 +26,8 @@
     "version": 0
   },
   "vlan_ids": [
-    232
+    16,
+    17
   ]
 }
 ```

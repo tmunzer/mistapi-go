@@ -217,6 +217,33 @@ func TestMSPsSSOTestUpdateMspSso1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestMSPsSSOTestDeleteMspSsoAdmins tests the behavior of the MSPsSSO
+func TestMSPsSSOTestDeleteMspSsoAdmins(t *testing.T) {
+	ctx := context.Background()
+	mspId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	ssoId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.SsoDeleteAdmins
+	errBody := json.Unmarshal([]byte(`{"emails":["john@abc.com","may@abc.com"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := msPsSso.DeleteMspSsoAdmins(ctx, mspId, ssoId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestMSPsSSOTestListMspSsoLatestFailures tests the behavior of the MSPsSSO
 func TestMSPsSSOTestListMspSsoLatestFailures(t *testing.T) {
 	ctx := context.Background()

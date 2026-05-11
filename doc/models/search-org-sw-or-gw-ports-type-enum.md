@@ -1,7 +1,7 @@
 
 # Search Org Sw or Gw Ports Type Enum
 
-enum: `switch`,  `gateway`, `all`
+enum: `switch`, `gateway`, `all`
 
 ## Enumeration
 

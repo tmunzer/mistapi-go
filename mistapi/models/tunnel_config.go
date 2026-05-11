@@ -19,7 +19,7 @@ type TunnelConfig struct {
 	IkeProposals []TunnelConfigIkeProposal `json:"ike_proposals,omitempty"`
 	// If `provider`==`custom-ipsec`
 	IpsecLifetime *int `json:"ipsec_lifetime,omitempty"`
-	// Only if  `provider`==`custom-ipsec`
+	// Only if `provider`==`custom-ipsec`
 	IpsecProposals []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
 	// Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 	LocalId *string `json:"local_id,omitempty"`

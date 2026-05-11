@@ -14,7 +14,7 @@
 | `IkeMode` | [`*models.TunnelConfigIkeModeEnum`](../../doc/models/tunnel-config-ike-mode-enum.md) | Optional | Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`<br><br>**Default**: `"main"` |
 | `IkeProposals` | [`[]models.TunnelConfigIkeProposal`](../../doc/models/tunnel-config-ike-proposal.md) | Optional | If `provider`==`custom-ipsec` |
 | `IpsecLifetime` | `*int` | Optional | If `provider`==`custom-ipsec` |
-| `IpsecProposals` | [`[]models.TunnelConfigIpsecProposal`](../../doc/models/tunnel-config-ipsec-proposal.md) | Optional | Only if  `provider`==`custom-ipsec` |
+| `IpsecProposals` | [`[]models.TunnelConfigIpsecProposal`](../../doc/models/tunnel-config-ipsec-proposal.md) | Optional | Only if `provider`==`custom-ipsec` |
 | `LocalId` | `*string` | Optional | Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec` |
 | `LocalSubnets` | `[]string` | Optional | List of Local protected subnet for policy-based IPSec negotiation |
 | `Mode` | [`*models.TunnelConfigTunnelModeEnum`](../../doc/models/tunnel-config-tunnel-mode-enum.md) | Optional | Required if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`. enum: `active-active`, `active-standby`<br><br>**Default**: `"active-standby"` |

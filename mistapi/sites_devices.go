@@ -758,46 +758,48 @@ func (s *SitesDevices) SearchSiteDeviceLastConfigs(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteDevices takes context, siteId, hostname, mType, model, mac, extIp, version, powerConstrained, ip, mxtunnelStatus, mxedgeId, mxedgeIds, lastHostname, lastConfigStatus, radiusStats, cpu, node0Mac, clustered, t128agentVersion, node1Mac, node, evpntopoId, lldpSystemName, lldpSystemDesc, lldpPortId, lldpMgmtAddr, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, eth0PortSpeed, stats, limit, start, end, duration, sort, descSort, searchAfter as parameters and
+// SearchSiteDevices takes context, siteId, band24Channel, band5Channel, band6Channel, band24Bandwidth, band5Bandwidth, band6Bandwidth, band24Power, band5Power, band6Power, clustered, eth0PortSpeed, evpntopoId, extIp, hostname, ip, lastConfigStatus, lastHostname, lldpMgmtAddr, lldpPortId, lldpSystemDesc, lldpSystemName, mac, model, mxedgeId, mxedgeIds, mxtunnelStatus, node, node0Mac, node1Mac, powerConstrained, radiusStats, stats, t128agentVersion, mType, version, limit, start, end, duration, sort, descSort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseDeviceSearch data and
 // an error if there was an issue with the request or response.
 // Search Device
 func (s *SitesDevices) SearchSiteDevices(
 	ctx context.Context,
 	siteId uuid.UUID,
-	hostname *string,
-	mType *models.DeviceTypeDefaultApEnum,
-	model *string,
-	mac *string,
-	extIp *string,
-	version *string,
-	powerConstrained *bool,
-	ip *string,
-	mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
-	mxedgeId *uuid.UUID,
-	mxedgeIds []uuid.UUID,
-	lastHostname *string,
-	lastConfigStatus *string,
-	radiusStats *string,
-	cpu *string,
-	node0Mac *string,
-	clustered *bool,
-	t128agentVersion *string,
-	node1Mac *string,
-	node *models.HaClusterNodeEnum,
-	evpntopoId *string,
-	lldpSystemName *string,
-	lldpSystemDesc *string,
-	lldpPortId *string,
-	lldpMgmtAddr *string,
 	band24Channel *int,
 	band5Channel *int,
 	band6Channel *int,
 	band24Bandwidth *int,
 	band5Bandwidth *int,
 	band6Bandwidth *int,
+	band24Power *int,
+	band5Power *int,
+	band6Power *int,
+	clustered *bool,
 	eth0PortSpeed *int,
+	evpntopoId *uuid.UUID,
+	extIp *string,
+	hostname *string,
+	ip *string,
+	lastConfigStatus *string,
+	lastHostname *string,
+	lldpMgmtAddr *string,
+	lldpPortId *string,
+	lldpSystemDesc *string,
+	lldpSystemName *string,
+	mac *string,
+	model *string,
+	mxedgeId *uuid.UUID,
+	mxedgeIds *string,
+	mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
+	node *models.HaClusterNodeEnum,
+	node0Mac *string,
+	node1Mac *string,
+	powerConstrained *bool,
+	radiusStats *string,
 	stats *bool,
+	t128agentVersion *string,
+	mType *models.DeviceTypeDefaultApEnum,
+	version *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -826,81 +828,6 @@ func (s *SitesDevices) SearchSiteDevices(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if hostname != nil {
-		req.QueryParam("hostname", *hostname)
-	}
-	if mType != nil {
-		req.QueryParam("type", *mType)
-	}
-	if model != nil {
-		req.QueryParam("model", *model)
-	}
-	if mac != nil {
-		req.QueryParam("mac", *mac)
-	}
-	if extIp != nil {
-		req.QueryParam("ext_ip", *extIp)
-	}
-	if version != nil {
-		req.QueryParam("version", *version)
-	}
-	if powerConstrained != nil {
-		req.QueryParam("power_constrained", *powerConstrained)
-	}
-	if ip != nil {
-		req.QueryParam("ip", *ip)
-	}
-	if mxtunnelStatus != nil {
-		req.QueryParam("mxtunnel_status", *mxtunnelStatus)
-	}
-	if mxedgeId != nil {
-		req.QueryParam("mxedge_id", *mxedgeId)
-	}
-	if mxedgeIds != nil {
-		req.QueryParam("mxedge_ids", mxedgeIds)
-	}
-	if lastHostname != nil {
-		req.QueryParam("last_hostname", *lastHostname)
-	}
-	if lastConfigStatus != nil {
-		req.QueryParam("last_config_status", *lastConfigStatus)
-	}
-	if radiusStats != nil {
-		req.QueryParam("radius_stats", *radiusStats)
-	}
-	if cpu != nil {
-		req.QueryParam("cpu", *cpu)
-	}
-	if node0Mac != nil {
-		req.QueryParam("node0_mac", *node0Mac)
-	}
-	if clustered != nil {
-		req.QueryParam("clustered", *clustered)
-	}
-	if t128agentVersion != nil {
-		req.QueryParam("t128agent_version", *t128agentVersion)
-	}
-	if node1Mac != nil {
-		req.QueryParam("node1_mac", *node1Mac)
-	}
-	if node != nil {
-		req.QueryParam("node", *node)
-	}
-	if evpntopoId != nil {
-		req.QueryParam("evpntopo_id", *evpntopoId)
-	}
-	if lldpSystemName != nil {
-		req.QueryParam("lldp_system_name", *lldpSystemName)
-	}
-	if lldpSystemDesc != nil {
-		req.QueryParam("lldp_system_desc", *lldpSystemDesc)
-	}
-	if lldpPortId != nil {
-		req.QueryParam("lldp_port_id", *lldpPortId)
-	}
-	if lldpMgmtAddr != nil {
-		req.QueryParam("lldp_mgmt_addr", *lldpMgmtAddr)
-	}
 	if band24Channel != nil {
 		req.QueryParam("band_24_channel", *band24Channel)
 	}
@@ -919,11 +846,92 @@ func (s *SitesDevices) SearchSiteDevices(
 	if band6Bandwidth != nil {
 		req.QueryParam("band_6_bandwidth", *band6Bandwidth)
 	}
+	if band24Power != nil {
+		req.QueryParam("band_24_power", *band24Power)
+	}
+	if band5Power != nil {
+		req.QueryParam("band_5_power", *band5Power)
+	}
+	if band6Power != nil {
+		req.QueryParam("band_6_power", *band6Power)
+	}
+	if clustered != nil {
+		req.QueryParam("clustered", *clustered)
+	}
 	if eth0PortSpeed != nil {
 		req.QueryParam("eth0_port_speed", *eth0PortSpeed)
 	}
+	if evpntopoId != nil {
+		req.QueryParam("evpntopo_id", *evpntopoId)
+	}
+	if extIp != nil {
+		req.QueryParam("ext_ip", *extIp)
+	}
+	if hostname != nil {
+		req.QueryParam("hostname", *hostname)
+	}
+	if ip != nil {
+		req.QueryParam("ip", *ip)
+	}
+	if lastConfigStatus != nil {
+		req.QueryParam("last_config_status", *lastConfigStatus)
+	}
+	if lastHostname != nil {
+		req.QueryParam("last_hostname", *lastHostname)
+	}
+	if lldpMgmtAddr != nil {
+		req.QueryParam("lldp_mgmt_addr", *lldpMgmtAddr)
+	}
+	if lldpPortId != nil {
+		req.QueryParam("lldp_port_id", *lldpPortId)
+	}
+	if lldpSystemDesc != nil {
+		req.QueryParam("lldp_system_desc", *lldpSystemDesc)
+	}
+	if lldpSystemName != nil {
+		req.QueryParam("lldp_system_name", *lldpSystemName)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
+	if model != nil {
+		req.QueryParam("model", *model)
+	}
+	if mxedgeId != nil {
+		req.QueryParam("mxedge_id", *mxedgeId)
+	}
+	if mxedgeIds != nil {
+		req.QueryParam("mxedge_ids", *mxedgeIds)
+	}
+	if mxtunnelStatus != nil {
+		req.QueryParam("mxtunnel_status", *mxtunnelStatus)
+	}
+	if node != nil {
+		req.QueryParam("node", *node)
+	}
+	if node0Mac != nil {
+		req.QueryParam("node0_mac", *node0Mac)
+	}
+	if node1Mac != nil {
+		req.QueryParam("node1_mac", *node1Mac)
+	}
+	if powerConstrained != nil {
+		req.QueryParam("power_constrained", *powerConstrained)
+	}
+	if radiusStats != nil {
+		req.QueryParam("radius_stats", *radiusStats)
+	}
 	if stats != nil {
 		req.QueryParam("stats", *stats)
+	}
+	if t128agentVersion != nil {
+		req.QueryParam("t128agent_version", *t128agentVersion)
+	}
+	if mType != nil {
+		req.QueryParam("type", *mType)
+	}
+	if version != nil {
+		req.QueryParam("version", *version)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

@@ -9,11 +9,11 @@ import (
 
 // MxedgeTuntermIgmpSnoopingConfig represents a MxedgeTuntermIgmpSnoopingConfig struct.
 type MxedgeTuntermIgmpSnoopingConfig struct {
-	Enabled *bool                             `json:"enabled,omitempty"`
-	Querier *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
+	Enabled *MxedgeTuntermIgmpSnoopingConfigEnabled `json:"enabled,omitempty"`
+	Querier *MxedgeTuntermIgmpSnoopingQuerier       `json:"querier,omitempty"`
 	// List of vlans on which tunterm performs IGMP snooping
-	VlanIds              []int                  `json:"vlan_ids,omitempty"`
-	AdditionalProperties map[string]interface{} `json:"_"`
+	VlanIds              *MxedgeTuntermIgmpSnoopingConfigVlanIds `json:"vlan_ids,omitempty"`
+	AdditionalProperties map[string]interface{}                  `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxedgeTuntermIgmpSnoopingConfig,
@@ -41,13 +41,13 @@ func (m MxedgeTuntermIgmpSnoopingConfig) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, m.AdditionalProperties)
 	if m.Enabled != nil {
-		structMap["enabled"] = m.Enabled
+		structMap["enabled"] = m.Enabled.toMap()
 	}
 	if m.Querier != nil {
 		structMap["querier"] = m.Querier.toMap()
 	}
 	if m.VlanIds != nil {
-		structMap["vlan_ids"] = m.VlanIds
+		structMap["vlan_ids"] = m.VlanIds.toMap()
 	}
 	return structMap
 }
@@ -74,7 +74,7 @@ func (m *MxedgeTuntermIgmpSnoopingConfig) UnmarshalJSON(input []byte) error {
 
 // tempMxedgeTuntermIgmpSnoopingConfig is a temporary struct used for validating the fields of MxedgeTuntermIgmpSnoopingConfig.
 type tempMxedgeTuntermIgmpSnoopingConfig struct {
-	Enabled *bool                             `json:"enabled,omitempty"`
-	Querier *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
-	VlanIds []int                             `json:"vlan_ids,omitempty"`
+	Enabled *MxedgeTuntermIgmpSnoopingConfigEnabled `json:"enabled,omitempty"`
+	Querier *MxedgeTuntermIgmpSnoopingQuerier       `json:"querier,omitempty"`
+	VlanIds *MxedgeTuntermIgmpSnoopingConfigVlanIds `json:"vlan_ids,omitempty"`
 }

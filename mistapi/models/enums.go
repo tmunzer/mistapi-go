@@ -29,6 +29,17 @@ const (
 	AamwProfileCategoryCategoryEnum_SCRIPT          AamwProfileCategoryCategoryEnum = "script"
 )
 
+// AccountSkyatpCloudNameEnum is a string enum.
+// Sky ATP cloud name. enum: `www.amerskyatp.com`, `www.apacskyatp.com`, `www.euroskyatp.com`, `www.canadaskyatp.com`
+type AccountSkyatpCloudNameEnum string
+
+const (
+	AccountSkyatpCloudNameEnum_ENUMWWWAMERSKYATPCOM   AccountSkyatpCloudNameEnum = "www.amerskyatp.com"
+	AccountSkyatpCloudNameEnum_ENUMWWWAPACSKYATPCOM   AccountSkyatpCloudNameEnum = "www.apacskyatp.com"
+	AccountSkyatpCloudNameEnum_ENUMWWWEUROSKYATPCOM   AccountSkyatpCloudNameEnum = "www.euroskyatp.com"
+	AccountSkyatpCloudNameEnum_ENUMWWWCANADASKYATPCOM AccountSkyatpCloudNameEnum = "www.canadaskyatp.com"
+)
+
 // AclTagTypeEnum is a string enum.
 // enum:
 // * `any`: matching anything not identified
@@ -192,13 +203,17 @@ const (
 )
 
 // Dot11BandEnum is a string enum.
-// enum: `24`, `5`, `6`
+// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 type Dot11BandEnum string
 
 const (
-	Dot11BandEnum_ENUM24 Dot11BandEnum = "24"
-	Dot11BandEnum_ENUM5  Dot11BandEnum = "5"
-	Dot11BandEnum_ENUM6  Dot11BandEnum = "6"
+	Dot11BandEnum_ENUM24          Dot11BandEnum = "24"
+	Dot11BandEnum_ENUM5           Dot11BandEnum = "5"
+	Dot11BandEnum_ENUM5DEDICATED  Dot11BandEnum = "5-dedicated"
+	Dot11BandEnum_ENUM5SELECTABLE Dot11BandEnum = "5-selectable"
+	Dot11BandEnum_ENUM6           Dot11BandEnum = "6"
+	Dot11BandEnum_ENUM6DEDICATED  Dot11BandEnum = "6-dedicated"
+	Dot11BandEnum_ENUM6SELECTABLE Dot11BandEnum = "6-selectable"
 )
 
 // ApMeshRoleEnum is a string enum.
@@ -266,6 +281,15 @@ const (
 	ApUsbTypeEnum_HANSHOW  ApUsbTypeEnum = "hanshow"
 	ApUsbTypeEnum_IMAGOTAG ApUsbTypeEnum = "imagotag"
 	ApUsbTypeEnum_SOLUM    ApUsbTypeEnum = "solum"
+)
+
+// ApZigbeeAllowJoinEnum is a string enum.
+// Controls whether new Zigbee devices are allowed to join the network. enum: `always`, `manual`
+type ApZigbeeAllowJoinEnum string
+
+const (
+	ApZigbeeAllowJoinEnum_ALWAYS ApZigbeeAllowJoinEnum = "always"
+	ApZigbeeAllowJoinEnum_MANUAL ApZigbeeAllowJoinEnum = "manual"
 )
 
 // AppProbingCustomAppProtocolEnum is a string enum.
@@ -768,6 +792,15 @@ const (
 	DeviceStatusEnum_DISCONNECTED DeviceStatusEnum = "disconnected"
 )
 
+// DeviceStatusFilterEnum is a string enum.
+// Filter devices based on their status. enum: `connected`, `disconnected`
+type DeviceStatusFilterEnum string
+
+const (
+	DeviceStatusFilterEnum_CONNECTED    DeviceStatusFilterEnum = "connected"
+	DeviceStatusFilterEnum_DISCONNECTED DeviceStatusFilterEnum = "disconnected"
+)
+
 // DeviceTypeEnum is a string enum.
 // enum: `ap`, `gateway`, `switch`
 type DeviceTypeEnum string
@@ -987,11 +1020,12 @@ const (
 )
 
 // EvpnConfigRoleEnum is a string enum.
-// enum: `access`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
+// enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-access`, `none`
 type EvpnConfigRoleEnum string
 
 const (
 	EvpnConfigRoleEnum_ACCESS        EvpnConfigRoleEnum = "access"
+	EvpnConfigRoleEnum_BORDER        EvpnConfigRoleEnum = "border"
 	EvpnConfigRoleEnum_COLLAPSEDCORE EvpnConfigRoleEnum = "collapsed-core"
 	EvpnConfigRoleEnum_CORE          EvpnConfigRoleEnum = "core"
 	EvpnConfigRoleEnum_DISTRIBUTION  EvpnConfigRoleEnum = "distribution"
@@ -1822,8 +1856,17 @@ type NacClientLastStatusEnum string
 const (
 	NacClientLastStatusEnum_PERMITTED      NacClientLastStatusEnum = "permitted"
 	NacClientLastStatusEnum_SESSIONSTARTED NacClientLastStatusEnum = "session_started"
-	NacClientLastStatusEnum_SESSIONENDED   NacClientLastStatusEnum = "session_ended"
+	NacClientLastStatusEnum_SESSIONSTOPPED NacClientLastStatusEnum = "session_stopped"
 	NacClientLastStatusEnum_DENIED         NacClientLastStatusEnum = "denied"
+)
+
+// NacCoaTypeEnum is a string enum.
+// CoA type to send. enum: `reauth`, `disconnect`
+type NacCoaTypeEnum string
+
+const (
+	NacCoaTypeEnum_REAUTH     NacCoaTypeEnum = "reauth"
+	NacCoaTypeEnum_DISCONNECT NacCoaTypeEnum = "disconnect"
 )
 
 // NacPortalAccessTypeEnum is a string enum.
@@ -2090,6 +2133,16 @@ const (
 	OrgDevicesLastConfigsCountDistinctEnum_NAME    OrgDevicesLastConfigsCountDistinctEnum = "name"
 	OrgDevicesLastConfigsCountDistinctEnum_SITEID  OrgDevicesLastConfigsCountDistinctEnum = "site_id"
 	OrgDevicesLastConfigsCountDistinctEnum_VERSION OrgDevicesLastConfigsCountDistinctEnum = "version"
+)
+
+// OrgE911ReportStatusEnum is a string enum.
+// Current status of E911 report generation. enum: `disabled`, `scheduled`, `available`
+type OrgE911ReportStatusEnum string
+
+const (
+	OrgE911ReportStatusEnum_DISABLED  OrgE911ReportStatusEnum = "disabled"
+	OrgE911ReportStatusEnum_SCHEDULED OrgE911ReportStatusEnum = "scheduled"
+	OrgE911ReportStatusEnum_AVAILABLE OrgE911ReportStatusEnum = "available"
 )
 
 // OrgGuestsCountDistinctEnum is a string enum.
@@ -2812,6 +2865,21 @@ const (
 	ResponseAsyncLicenseStatusEnum_DONE     ResponseAsyncLicenseStatusEnum = "done"
 )
 
+// ResponseAutoMapAssignmentInfoStatusEnum is a string enum.
+// The status of auto map assignment for a given site. enum:
+// * `not_started`: Auto map assignment has not been requested
+// * `in_progress`: Auto map assignment is currently processing
+// * `completed`: The auto map assignment process has completed
+// * `error`: There was an error in the auto map assignment process
+type ResponseAutoMapAssignmentInfoStatusEnum string
+
+const (
+	ResponseAutoMapAssignmentInfoStatusEnum_NOTSTARTED ResponseAutoMapAssignmentInfoStatusEnum = "not_started"
+	ResponseAutoMapAssignmentInfoStatusEnum_INPROGRESS ResponseAutoMapAssignmentInfoStatusEnum = "in_progress"
+	ResponseAutoMapAssignmentInfoStatusEnum_COMPLETED  ResponseAutoMapAssignmentInfoStatusEnum = "completed"
+	ResponseAutoMapAssignmentInfoStatusEnum_ENUMERROR  ResponseAutoMapAssignmentInfoStatusEnum = "error"
+)
+
 // ResponseAutoOrientationInfoStatusEnum is a string enum.
 // The status of auto orient for a given map. enum:
 // * `pending`: Auto orient has not been requested for this map
@@ -2943,7 +3011,7 @@ const (
 )
 
 // SearchOrgSwOrGwPortsTypeEnum is a string enum.
-// enum: `switch`,  `gateway`, `all`
+// enum: `switch`, `gateway`, `all`
 type SearchOrgSwOrGwPortsTypeEnum string
 
 const (
@@ -3935,15 +4003,6 @@ const (
 	StatsSwitchPortTypeEnum_ENUMSWITCH StatsSwitchPortTypeEnum = "switch"
 )
 
-// StatsWanTunnelPriorityEnum is a string enum.
-// enum: `primary`, `secondary`
-type StatsWanTunnelPriorityEnum string
-
-const (
-	StatsWanTunnelPriorityEnum_PRIMARY   StatsWanTunnelPriorityEnum = "primary"
-	StatsWanTunnelPriorityEnum_SECONDARY StatsWanTunnelPriorityEnum = "secondary"
-)
-
 // StatsWxruleActionEnum is a string enum.
 // enum: `allow`, `block`
 type StatsWxruleActionEnum string
@@ -4447,6 +4506,15 @@ const (
 	TunnelConfigVersionEnum_ENUM2 TunnelConfigVersionEnum = "2"
 )
 
+// TunnelPriorityEnum is a string enum.
+// enum: `primary`, `secondary`
+type TunnelPriorityEnum string
+
+const (
+	TunnelPriorityEnum_PRIMARY   TunnelPriorityEnum = "primary"
+	TunnelPriorityEnum_SECONDARY TunnelPriorityEnum = "secondary"
+)
+
 // TunnelTypeEnum is a string enum.
 // enum: `wan`, `wxtunnel`
 type TunnelTypeEnum string
@@ -4454,6 +4522,15 @@ type TunnelTypeEnum string
 const (
 	TunnelTypeEnum_WAN      TunnelTypeEnum = "wan"
 	TunnelTypeEnum_WXTUNNEL TunnelTypeEnum = "wxtunnel"
+)
+
+// TunnelViaEnum is a string enum.
+// If `via`==`tunnel`, specifies which tunnel (primary/secondary) this neighbor is associated with. enum: `primary`, `secondary`
+type TunnelViaEnum string
+
+const (
+	TunnelViaEnum_PRIMARY   TunnelViaEnum = "primary"
+	TunnelViaEnum_SECONDARY TunnelViaEnum = "secondary"
 )
 
 // TuntermDhcpdTypeEnum is a string enum.
@@ -4583,7 +4660,7 @@ const (
 
 // UtilsSendSupportLogsInfoEnum is a string enum.
 // Optional, enum:
-// * `code-dumps`: Upload all core dump files, if any found
+// * `code-dumps`: Upload all core dump files, if any found. Uploads for all members of VC on switches.
 // * `full`: Upload 1 file with output of `request support information`, 1 file that concatenates all `/var/log/outbound-ssh.log*` files, all core dump files, the 5 most recent `/var/log/messages*` files, and Mist agent logs
 // * `messages`: Upload 1 to 10 `/var/log/messages*` files
 // * `outbound-ssh`: Upload 1 file that concatenates all `/var/log/outbound-ssh.log*` files
@@ -4942,6 +5019,14 @@ type WebhookLocationUnclientTopicEnum string
 
 const (
 	WebhookLocationUnclientTopicEnum_LOCATIONUNCLIENT WebhookLocationUnclientTopicEnum = "location-unclient"
+)
+
+// WebhookMinisApplicationTopicEnum is a string enum.
+// enum: `minis-application`
+type WebhookMinisApplicationTopicEnum string
+
+const (
+	WebhookMinisApplicationTopicEnum_MINISAPPLICATION WebhookMinisApplicationTopicEnum = "minis-application"
 )
 
 // WebhookMinisReachabilityTopicEnum is a string enum.
@@ -5402,4 +5487,26 @@ type ZoneTypeEnum string
 const (
 	ZoneTypeEnum_RSSIZONES ZoneTypeEnum = "rssizones"
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
+)
+
+// HaClusterNodeEnum1Enum is a string enum.
+// HA cluster node to run the command on, required for Gateways
+type HaClusterNodeEnum1Enum string
+
+const (
+	HaClusterNodeEnum1Enum_NODE0 HaClusterNodeEnum1Enum = "node0"
+	HaClusterNodeEnum1Enum_NODE1 HaClusterNodeEnum1Enum = "node1"
+)
+
+// UtilsShowRouteProtocol2Enum is a string enum.
+// (optional) Supported only for bgp
+type UtilsShowRouteProtocol2Enum string
+
+const (
+	UtilsShowRouteProtocol2Enum_ANY    UtilsShowRouteProtocol2Enum = "any"
+	UtilsShowRouteProtocol2Enum_BGP    UtilsShowRouteProtocol2Enum = "bgp"
+	UtilsShowRouteProtocol2Enum_DIRECT UtilsShowRouteProtocol2Enum = "direct"
+	UtilsShowRouteProtocol2Enum_EVPN   UtilsShowRouteProtocol2Enum = "evpn"
+	UtilsShowRouteProtocol2Enum_OSPF   UtilsShowRouteProtocol2Enum = "ospf"
+	UtilsShowRouteProtocol2Enum_STATIC UtilsShowRouteProtocol2Enum = "static"
 )

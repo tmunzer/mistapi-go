@@ -57,6 +57,7 @@ Switch port statistics
 | `Type` | [`*models.StatsSwitchPortTypeEnum`](../../doc/models/stats-switch-port-type-enum.md) | Optional | device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch` |
 | `Unconfigured` | `*bool` | Optional | Indicates if interface is unconfigured |
 | `Up` | `*bool` | Optional | Indicates if interface is up |
+| `Uplink` | `*bool` | Optional | Indicates if interface is an uplink port |
 | `XcvrModel` | `*string` | Optional | Optic Slot ModelName, Check for null/empty |
 | `XcvrPartNumber` | `*string` | Optional | Optic Slot Partnumber, Check for null/empty |
 | `XcvrSerial` | `*string` | Optional | Optic Slot SerialNumber, Check for null/empty |

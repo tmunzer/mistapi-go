@@ -27,7 +27,7 @@ func TestOrgsMarvisInvitesTestListOrgMarvisClientInvites(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}]`
+	expected := `[{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -47,7 +47,7 @@ func TestOrgsMarvisInvitesTestListOrgMarvisClientInvites1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}]`
+	expected := `[{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -59,7 +59,7 @@ func TestOrgsMarvisInvitesTestCreateOrgMarvisClientInvite(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.MarvisClient
-	errBody := json.Unmarshal([]byte(`{"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"location":{"enabled":true},"name":"Handhelds","synthetic_test":{"enabled":true},"telemetry":{"enabled":true}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -72,7 +72,7 @@ func TestOrgsMarvisInvitesTestCreateOrgMarvisClientInvite(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -84,7 +84,7 @@ func TestOrgsMarvisInvitesTestCreateOrgMarvisClientInvite1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.MarvisClient
-	errBody := json.Unmarshal([]byte(`{"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"location":{"enabled":true},"name":"Handhelds","synthetic_test":{"enabled":true},"telemetry":{"enabled":true}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -97,7 +97,7 @@ func TestOrgsMarvisInvitesTestCreateOrgMarvisClientInvite1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -139,7 +139,7 @@ func TestOrgsMarvisInvitesTestGetOrgMarvisClientInvite(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -163,7 +163,7 @@ func TestOrgsMarvisInvitesTestGetOrgMarvisClientInvite1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -179,7 +179,7 @@ func TestOrgsMarvisInvitesTestUpdateOrgMarvisClientInvite(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.MarvisClient
-	errBody := json.Unmarshal([]byte(`{"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"location":{"enabled":true},"name":"Handhelds","synthetic_test":{"enabled":true},"telemetry":{"enabled":true}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -192,7 +192,7 @@ func TestOrgsMarvisInvitesTestUpdateOrgMarvisClientInvite(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -208,7 +208,7 @@ func TestOrgsMarvisInvitesTestUpdateOrgMarvisClientInvite1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.MarvisClient
-	errBody := json.Unmarshal([]byte(`{"name":"string"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"location":{"enabled":true},"name":"Handhelds","synthetic_test":{"enabled":true},"telemetry":{"enabled":true}}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -221,6 +221,6 @@ func TestOrgsMarvisInvitesTestUpdateOrgMarvisClientInvite1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
+	expected := `{"enrollment_url":"marvisclient://api.mist.com/path/to/url","id":"3a14098f-b995-7552-b0a4-b8ee39b337a6","name":"Handhelds"}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

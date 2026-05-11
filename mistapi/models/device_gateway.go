@@ -29,7 +29,7 @@ type DeviceGateway struct {
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64"), the destination Network name or a variable (e.g. "{{myvar}}")
 	ExtraRoutes6 map[string]GatewayExtraRoute `json:"extra_routes6,omitempty"`
 	ForSite      *bool                        `json:"for_site,omitempty"`
-	// Gateway settings
+	// Gateway Management settings
 	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`

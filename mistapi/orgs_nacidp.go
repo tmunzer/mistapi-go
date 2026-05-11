@@ -26,7 +26,7 @@ func NewOrgsNACIDP(baseController baseController) *OrgsNACIDP {
 // ValidateOrgIdpCredential takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.WebsocketSession data and
 // an error if there was an issue with the request or response.
-// IDP Credential Validation. The output will be available through websocket. As there can be multiple command issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
+// IDP Credential Validation. The output will be available through websocket. As there can be multiple commands issued against the same device at the same time and the output all goes through the same websocket stream, `session` is introduced for demux.
 // #### Subscribe to Device Command outputs
 // `WS /api-ws/v1/stream`
 // ``` json

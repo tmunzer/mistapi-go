@@ -10,9 +10,9 @@ import (
 
 // ConstInsightMetricsPropertyExampleAnyOf2 represents a ConstInsightMetricsPropertyExampleAnyOf2 struct.
 type ConstInsightMetricsPropertyExampleAnyOf2 struct {
-	value                                                   any
-	isArrayOfConstInsightMetricsPropertyExample             bool
-	isMapOfArrayOfConstInsightMetricsPropertyExamplesObject bool
+	value                                             any
+	isArrayOfConstInsightMetricsPropertyExample       bool
+	isMapOfArrayOfConstInsightMetricsPropertyExample2 bool
 }
 
 // String implements the fmt.Stringer interface for ConstInsightMetricsPropertyExampleAnyOf2,
@@ -37,7 +37,7 @@ func (c *ConstInsightMetricsPropertyExampleAnyOf2) toMap() any {
 	switch obj := c.value.(type) {
 	case *[]ConstInsightMetricsPropertyExample:
 		return *obj
-	case *map[string][]ConstInsightMetricsPropertyExamplesObject:
+	case *map[string][]ConstInsightMetricsPropertyExample:
 		return *obj
 	}
 	return nil
@@ -48,7 +48,7 @@ func (c *ConstInsightMetricsPropertyExampleAnyOf2) toMap() any {
 func (c *ConstInsightMetricsPropertyExampleAnyOf2) UnmarshalJSON(input []byte) error {
 	result, err := UnmarshallAnyOf(input,
 		NewTypeHolder(&[]ConstInsightMetricsPropertyExample{}, false, &c.isArrayOfConstInsightMetricsPropertyExample),
-		NewTypeHolder(&map[string][]ConstInsightMetricsPropertyExamplesObject{}, false, &c.isMapOfArrayOfConstInsightMetricsPropertyExamplesObject),
+		NewTypeHolder(&map[string][]ConstInsightMetricsPropertyExample{}, false, &c.isMapOfArrayOfConstInsightMetricsPropertyExample2),
 	)
 
 	c.value = result
@@ -64,13 +64,13 @@ func (c *ConstInsightMetricsPropertyExampleAnyOf2) AsArrayOfConstInsightMetricsP
 	return c.value.(*[]ConstInsightMetricsPropertyExample), true
 }
 
-func (c *ConstInsightMetricsPropertyExampleAnyOf2) AsMapOfArrayOfConstInsightMetricsPropertyExamplesObject() (
-	*map[string][]ConstInsightMetricsPropertyExamplesObject,
+func (c *ConstInsightMetricsPropertyExampleAnyOf2) AsMapOfArrayOfConstInsightMetricsPropertyExample2() (
+	*map[string][]ConstInsightMetricsPropertyExample,
 	bool) {
-	if !c.isMapOfArrayOfConstInsightMetricsPropertyExamplesObject {
+	if !c.isMapOfArrayOfConstInsightMetricsPropertyExample2 {
 		return nil, false
 	}
-	return c.value.(*map[string][]ConstInsightMetricsPropertyExamplesObject), true
+	return c.value.(*map[string][]ConstInsightMetricsPropertyExample), true
 }
 
 // internalConstInsightMetricsPropertyExampleAnyOf2 represents a constInsightMetricsPropertyExampleAnyOf2 struct.
@@ -83,7 +83,7 @@ func (c *internalConstInsightMetricsPropertyExampleAnyOf2) FromArrayOfConstInsig
 	return ConstInsightMetricsPropertyExampleAnyOf2{value: &val}
 }
 
-// The internalConstInsightMetricsPropertyExampleAnyOf2 instance, wrapping the provided map[string][]ConstInsightMetricsPropertyExamplesObject value.
-func (c *internalConstInsightMetricsPropertyExampleAnyOf2) FromMapOfArrayOfConstInsightMetricsPropertyExamplesObject(val map[string][]ConstInsightMetricsPropertyExamplesObject) ConstInsightMetricsPropertyExampleAnyOf2 {
+// The internalConstInsightMetricsPropertyExampleAnyOf2 instance, wrapping the provided map[string][]ConstInsightMetricsPropertyExample value.
+func (c *internalConstInsightMetricsPropertyExampleAnyOf2) FromMapOfArrayOfConstInsightMetricsPropertyExample2(val map[string][]ConstInsightMetricsPropertyExample) ConstInsightMetricsPropertyExampleAnyOf2 {
 	return ConstInsightMetricsPropertyExampleAnyOf2{value: &val}
 }

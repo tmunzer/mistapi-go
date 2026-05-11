@@ -171,7 +171,7 @@ func TestOrgsIntegrationSkyATPTestSetupOrgAtpIntegration(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AccountSkyatpConfig
-	errBody := json.Unmarshal([]byte(`{"password":"foryoureyesonly","realm":"mist-team","username":"john@abc.com"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"cloud_name":"www.amerskyatp.com","password":"foryoureyesonly","realm":"mist-team","username":"john@abc.com"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -196,7 +196,7 @@ func TestOrgsIntegrationSkyATPTestSetupOrgAtpIntegration1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.AccountSkyatpConfig
-	errBody := json.Unmarshal([]byte(`{"password":"foryoureyesonly","realm":"mist-team","username":"john@abc.com"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"cloud_name":"www.amerskyatp.com","password":"foryoureyesonly","realm":"mist-team","username":"john@abc.com"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

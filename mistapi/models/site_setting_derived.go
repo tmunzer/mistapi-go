@@ -69,14 +69,16 @@ type SiteSettingDerived struct {
 	Gateway *GatewayTemplate `json:"gateway,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
 	GatewayAdditionalConfigCmds []string `json:"gateway_additional_config_cmds,omitempty"`
-	// Gateway Site settings
-	GatewayMgmt *SiteSettingGatewayMgmt `json:"gateway_mgmt,omitempty"`
+	// Gateway Management settings
+	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.
 	GatewayTunnelUpdownThreshold Optional[int] `json:"gateway_tunnel_updown_threshold"`
 	// Enable threshold-based device down delivery for Gateway devices only. When configured it takes effect for GW devices and `device_updown_threshold` is ignored.
 	GatewayUpdownThreshold Optional[int] `json:"gateway_updown_threshold"`
 	// Unique ID of the object instance in the Mist Organization
-	Id         *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// IoT proxy configuration for the site
+	Iotproxy   *Iotproxy              `json:"iotproxy,omitempty"`
 	JuniperSrx *SiteSettingJuniperSrx `json:"juniper_srx,omitempty"`
 	// LED AP settings
 	Led    *ApLed  `json:"led,omitempty"`
@@ -137,7 +139,7 @@ type SiteSettingDerived struct {
 	Switch       *SiteSettingSwitch       `json:"switch,omitempty"`
 	// Defines custom switch configuration based on different criteria
 	SwitchMatching *SwitchMatching `json:"switch_matching,omitempty"`
-	// Switch settings
+	// Switch Management settings
 	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	// Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
 	SwitchUpdownThreshold Optional[int]        `json:"switch_updown_threshold"`
@@ -153,7 +155,9 @@ type SiteSettingDerived struct {
 	UsesDescriptionFromPortUsage *bool `json:"uses_description_from_port_usage,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars map[string]string `json:"vars,omitempty"`
-	Vna  *SiteSettingVna   `json:"vna,omitempty"`
+	// Optional annotations for vars defined in this site. Keys match var names; values describe the var purpose and type for UI auto-complete.
+	VarsAnnotations map[string]VarsAnnotation `json:"vars_annotations,omitempty"`
+	Vna             *SiteSettingVna           `json:"vna,omitempty"`
 	// enable threshold-based vpn path down delivery.
 	VpnPathUpdownThreshold Optional[int] `json:"vpn_path_updown_threshold"`
 	// enable threshold-based vpn peer down delivery.
@@ -244,8 +248,8 @@ type SiteSettingDerived struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s SiteSettingDerived) String() string {
 	return fmt.Sprintf(
-		"SiteSettingDerived[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AllowMist=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApSyntheticTest=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeEsl=%v, AutoUpgradeLinecard=%v, BgpNeighborUpdownThreshold=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayTunnelUpdownThreshold=%v, GatewayUpdownThreshold=%v, Id=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, RoutingPolicies=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, UsesDescriptionFromPortUsage=%v, Vars=%v, Vna=%v, VpnPathUpdownThreshold=%v, VpnPeerUpdownThreshold=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, KeyId=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, WebhookAuthType=%v, WebhookEnabled=%v, WebhookPassword=%v, WebhookSecret=%v, WebhookToken=%v, WebhookUrl=%v, WebhookUsername=%v, ZdxOrgId=%v, AdditionalProperties=%v]",
-		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.AllowMist, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApSyntheticTest, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeEsl, s.AutoUpgradeLinecard, s.BgpNeighborUpdownThreshold, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayTunnelUpdownThreshold, s.GatewayUpdownThreshold, s.Id, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.RoutingPolicies, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.UsesDescriptionFromPortUsage, s.Vars, s.Vna, s.VpnPathUpdownThreshold, s.VpnPeerUpdownThreshold, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AccountId, s.AutoProbeSubnet, s.ClientId, s.CloudName, s.Company, s.EnableProbe, s.Error, s.Errors, s.InstanceUrl, s.KeyId, s.LastStatus, s.LastSync, s.LinkedBy, s.LinkedTimestamp, s.MaxDailyApiRequests, s.Name, s.Password, s.Region, s.Regions, s.ServiceAccountName, s.ServiceConnections, s.SmartgroupName, s.TsgId, s.Username, s.WebhookAuthType, s.WebhookEnabled, s.WebhookPassword, s.WebhookSecret, s.WebhookToken, s.WebhookUrl, s.WebhookUsername, s.ZdxOrgId, s.AdditionalProperties)
+		"SiteSettingDerived[AclPolicies=%v, AclTags=%v, AdditionalConfigCmds=%v, AllowMist=%v, Analytic=%v, ApMatching=%v, ApPortConfig=%v, ApSyntheticTest=%v, ApUpdownThreshold=%v, AutoPlacement=%v, AutoUpgrade=%v, AutoUpgradeEsl=%v, AutoUpgradeLinecard=%v, BgpNeighborUpdownThreshold=%v, BlacklistUrl=%v, BleConfig=%v, ConfigAutoRevert=%v, ConfigPushPolicy=%v, CreatedTime=%v, CriticalUrlMonitoring=%v, DeviceUpdownThreshold=%v, DhcpSnooping=%v, DisabledSystemDefinedPortUsages=%v, DnsServers=%v, DnsSuffix=%v, EnableUnii4=%v, Engagement=%v, EvpnOptions=%v, ExtraRoutes=%v, ExtraRoutes6=%v, Flags=%v, ForSite=%v, Gateway=%v, GatewayAdditionalConfigCmds=%v, GatewayMgmt=%v, GatewayTunnelUpdownThreshold=%v, GatewayUpdownThreshold=%v, Id=%v, Iotproxy=%v, JuniperSrx=%v, Led=%v, Marvis=%v, MistNac=%v, ModifiedTime=%v, Mxedge=%v, MxedgeMgmt=%v, Mxtunnels=%v, Networks=%v, NtpServers=%v, Occupancy=%v, OrgId=%v, OspfAreas=%v, PaloaltoNetworks=%v, PersistConfigOnDevice=%v, PortMirroring=%v, PortUsages=%v, Proxy=%v, RadioConfig=%v, RadiusConfig=%v, RemoteSyslog=%v, RemoveExistingConfigs=%v, ReportGatt=%v, Rogue=%v, RoutingPolicies=%v, Rtsa=%v, SimpleAlert=%v, SiteId=%v, Skyatp=%v, SleThresholds=%v, SnmpConfig=%v, SrxApp=%v, SshKeys=%v, Ssr=%v, StatusPortal=%v, Switch=%v, SwitchMatching=%v, SwitchMgmt=%v, SwitchUpdownThreshold=%v, SyntheticTest=%v, TrackAnonymousDevices=%v, TuntermMonitoring=%v, TuntermMonitoringDisabled=%v, TuntermMulticastConfig=%v, UplinkPortConfig=%v, UsesDescriptionFromPortUsage=%v, Vars=%v, VarsAnnotations=%v, Vna=%v, VpnPathUpdownThreshold=%v, VpnPeerUpdownThreshold=%v, VrfConfig=%v, VrfInstances=%v, VrrpGroups=%v, VsInstance=%v, WanVna=%v, WatchedStationUrl=%v, WhitelistUrl=%v, Wids=%v, Wifi=%v, WiredVna=%v, ZoneOccupancyAlert=%v, AccountId=%v, AutoProbeSubnet=%v, ClientId=%v, CloudName=%v, Company=%v, EnableProbe=%v, Error=%v, Errors=%v, InstanceUrl=%v, KeyId=%v, LastStatus=%v, LastSync=%v, LinkedBy=%v, LinkedTimestamp=%v, MaxDailyApiRequests=%v, Name=%v, Password=%v, Region=%v, Regions=%v, ServiceAccountName=%v, ServiceConnections=%v, SmartgroupName=%v, TsgId=%v, Username=%v, WebhookAuthType=%v, WebhookEnabled=%v, WebhookPassword=%v, WebhookSecret=%v, WebhookToken=%v, WebhookUrl=%v, WebhookUsername=%v, ZdxOrgId=%v, AdditionalProperties=%v]",
+		s.AclPolicies, s.AclTags, s.AdditionalConfigCmds, s.AllowMist, s.Analytic, s.ApMatching, s.ApPortConfig, s.ApSyntheticTest, s.ApUpdownThreshold, s.AutoPlacement, s.AutoUpgrade, s.AutoUpgradeEsl, s.AutoUpgradeLinecard, s.BgpNeighborUpdownThreshold, s.BlacklistUrl, s.BleConfig, s.ConfigAutoRevert, s.ConfigPushPolicy, s.CreatedTime, s.CriticalUrlMonitoring, s.DeviceUpdownThreshold, s.DhcpSnooping, s.DisabledSystemDefinedPortUsages, s.DnsServers, s.DnsSuffix, s.EnableUnii4, s.Engagement, s.EvpnOptions, s.ExtraRoutes, s.ExtraRoutes6, s.Flags, s.ForSite, s.Gateway, s.GatewayAdditionalConfigCmds, s.GatewayMgmt, s.GatewayTunnelUpdownThreshold, s.GatewayUpdownThreshold, s.Id, s.Iotproxy, s.JuniperSrx, s.Led, s.Marvis, s.MistNac, s.ModifiedTime, s.Mxedge, s.MxedgeMgmt, s.Mxtunnels, s.Networks, s.NtpServers, s.Occupancy, s.OrgId, s.OspfAreas, s.PaloaltoNetworks, s.PersistConfigOnDevice, s.PortMirroring, s.PortUsages, s.Proxy, s.RadioConfig, s.RadiusConfig, s.RemoteSyslog, s.RemoveExistingConfigs, s.ReportGatt, s.Rogue, s.RoutingPolicies, s.Rtsa, s.SimpleAlert, s.SiteId, s.Skyatp, s.SleThresholds, s.SnmpConfig, s.SrxApp, s.SshKeys, s.Ssr, s.StatusPortal, s.Switch, s.SwitchMatching, s.SwitchMgmt, s.SwitchUpdownThreshold, s.SyntheticTest, s.TrackAnonymousDevices, s.TuntermMonitoring, s.TuntermMonitoringDisabled, s.TuntermMulticastConfig, s.UplinkPortConfig, s.UsesDescriptionFromPortUsage, s.Vars, s.VarsAnnotations, s.Vna, s.VpnPathUpdownThreshold, s.VpnPeerUpdownThreshold, s.VrfConfig, s.VrfInstances, s.VrrpGroups, s.VsInstance, s.WanVna, s.WatchedStationUrl, s.WhitelistUrl, s.Wids, s.Wifi, s.WiredVna, s.ZoneOccupancyAlert, s.AccountId, s.AutoProbeSubnet, s.ClientId, s.CloudName, s.Company, s.EnableProbe, s.Error, s.Errors, s.InstanceUrl, s.KeyId, s.LastStatus, s.LastSync, s.LinkedBy, s.LinkedTimestamp, s.MaxDailyApiRequests, s.Name, s.Password, s.Region, s.Regions, s.ServiceAccountName, s.ServiceConnections, s.SmartgroupName, s.TsgId, s.Username, s.WebhookAuthType, s.WebhookEnabled, s.WebhookPassword, s.WebhookSecret, s.WebhookToken, s.WebhookUrl, s.WebhookUsername, s.ZdxOrgId, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for SiteSettingDerived.
@@ -254,7 +258,7 @@ func (s SiteSettingDerived) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id"); err != nil {
+		"acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "iotproxy", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vars_annotations", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -397,6 +401,9 @@ func (s SiteSettingDerived) toMap() map[string]any {
 	}
 	if s.Id != nil {
 		structMap["id"] = s.Id
+	}
+	if s.Iotproxy != nil {
+		structMap["iotproxy"] = s.Iotproxy.toMap()
 	}
 	if s.JuniperSrx != nil {
 		structMap["juniper_srx"] = s.JuniperSrx.toMap()
@@ -542,6 +549,9 @@ func (s SiteSettingDerived) toMap() map[string]any {
 	}
 	if s.Vars != nil {
 		structMap["vars"] = s.Vars
+	}
+	if s.VarsAnnotations != nil {
+		structMap["vars_annotations"] = s.VarsAnnotations
 	}
 	if s.Vna != nil {
 		structMap["vna"] = s.Vna.toMap()
@@ -700,7 +710,7 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[AccountOauthInfoAccount](input, "acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id")
+	additionalProperties, err := ExtractAdditionalProperties[AccountOauthInfoAccount](input, "acl_policies", "acl_tags", "additional_config_cmds", "allow_mist", "analytic", "ap_matching", "ap_port_config", "ap_synthetic_test", "ap_updown_threshold", "auto_placement", "auto_upgrade", "auto_upgrade_esl", "auto_upgrade_linecard", "bgp_neighbor_updown_threshold", "blacklist_url", "ble_config", "config_auto_revert", "config_push_policy", "created_time", "critical_url_monitoring", "device_updown_threshold", "dhcp_snooping", "disabled_system_defined_port_usages", "dns_servers", "dns_suffix", "enable_unii_4", "engagement", "evpn_options", "extra_routes", "extra_routes6", "flags", "for_site", "gateway", "gateway_additional_config_cmds", "gateway_mgmt", "gateway_tunnel_updown_threshold", "gateway_updown_threshold", "id", "iotproxy", "juniper_srx", "led", "marvis", "mist_nac", "modified_time", "mxedge", "mxedge_mgmt", "mxtunnels", "networks", "ntp_servers", "occupancy", "org_id", "ospf_areas", "paloalto_networks", "persist_config_on_device", "port_mirroring", "port_usages", "proxy", "radio_config", "radius_config", "remote_syslog", "remove_existing_configs", "report_gatt", "rogue", "routing_policies", "rtsa", "simple_alert", "site_id", "skyatp", "sle_thresholds", "snmp_config", "srx_app", "ssh_keys", "ssr", "status_portal", "switch", "switch_matching", "switch_mgmt", "switch_updown_threshold", "synthetic_test", "track_anonymous_devices", "tunterm_monitoring", "tunterm_monitoring_disabled", "tunterm_multicast_config", "uplink_port_config", "uses_description_from_port_usage", "vars", "vars_annotations", "vna", "vpn_path_updown_threshold", "vpn_peer_updown_threshold", "vrf_config", "vrf_instances", "vrrp_groups", "vs_instance", "wan_vna", "watched_station_url", "whitelist_url", "wids", "wifi", "wired_vna", "zone_occupancy_alert", "account_id", "auto_probe_subnet", "client_id", "cloud_name", "company", "enable_probe", "error", "errors", "instance_url", "key_id", "last_status", "last_sync", "linked_by", "linked_timestamp", "max_daily_api_requests", "name", "password", "region", "regions", "service_account_name", "service_connections", "smartgroup_name", "tsg_id", "username", "webhook_auth_type", "webhook_enabled", "webhook_password", "webhook_secret", "webhook_token", "webhook_url", "webhook_username", "zdx_org_id")
 	if err != nil {
 		return err
 	}
@@ -744,6 +754,7 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
 	s.GatewayTunnelUpdownThreshold = temp.GatewayTunnelUpdownThreshold
 	s.GatewayUpdownThreshold = temp.GatewayUpdownThreshold
 	s.Id = temp.Id
+	s.Iotproxy = temp.Iotproxy
 	s.JuniperSrx = temp.JuniperSrx
 	s.Led = temp.Led
 	s.Marvis = temp.Marvis
@@ -791,6 +802,7 @@ func (s *SiteSettingDerived) UnmarshalJSON(input []byte) error {
 	s.UplinkPortConfig = temp.UplinkPortConfig
 	s.UsesDescriptionFromPortUsage = temp.UsesDescriptionFromPortUsage
 	s.Vars = temp.Vars
+	s.VarsAnnotations = temp.VarsAnnotations
 	s.Vna = temp.Vna
 	s.VpnPathUpdownThreshold = temp.VpnPathUpdownThreshold
 	s.VpnPeerUpdownThreshold = temp.VpnPeerUpdownThreshold
@@ -876,10 +888,11 @@ type tempSiteSettingDerived struct {
 	ForSite                         *bool                                               `json:"for_site,omitempty"`
 	Gateway                         *GatewayTemplate                                    `json:"gateway,omitempty"`
 	GatewayAdditionalConfigCmds     []string                                            `json:"gateway_additional_config_cmds,omitempty"`
-	GatewayMgmt                     *SiteSettingGatewayMgmt                             `json:"gateway_mgmt,omitempty"`
+	GatewayMgmt                     *GatewayMgmt                                        `json:"gateway_mgmt,omitempty"`
 	GatewayTunnelUpdownThreshold    Optional[int]                                       `json:"gateway_tunnel_updown_threshold"`
 	GatewayUpdownThreshold          Optional[int]                                       `json:"gateway_updown_threshold"`
 	Id                              *uuid.UUID                                          `json:"id,omitempty"`
+	Iotproxy                        *Iotproxy                                           `json:"iotproxy,omitempty"`
 	JuniperSrx                      *SiteSettingJuniperSrx                              `json:"juniper_srx,omitempty"`
 	Led                             *ApLed                                              `json:"led,omitempty"`
 	Marvis                          *Marvis                                             `json:"marvis,omitempty"`
@@ -927,6 +940,7 @@ type tempSiteSettingDerived struct {
 	UplinkPortConfig                *ApUplinkPortConfig                                 `json:"uplink_port_config,omitempty"`
 	UsesDescriptionFromPortUsage    *bool                                               `json:"uses_description_from_port_usage,omitempty"`
 	Vars                            map[string]string                                   `json:"vars,omitempty"`
+	VarsAnnotations                 map[string]VarsAnnotation                           `json:"vars_annotations,omitempty"`
 	Vna                             *SiteSettingVna                                     `json:"vna,omitempty"`
 	VpnPathUpdownThreshold          Optional[int]                                       `json:"vpn_path_updown_threshold"`
 	VpnPeerUpdownThreshold          Optional[int]                                       `json:"vpn_peer_updown_threshold"`

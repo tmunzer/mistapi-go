@@ -232,7 +232,7 @@ func (o *OrgsClientsWan) SearchOrgWanClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWanClients takes context, orgId, siteId, mac, hostname, ip, network, ipSrc, mfg, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgWanClients takes context, orgId, siteId, hostname, ip, ipSrc, mac, mfg, network, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
 // Search Org WAN Clients
@@ -240,12 +240,12 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	ctx context.Context,
 	orgId uuid.UUID,
 	siteId *uuid.UUID,
-	mac *string,
 	hostname *string,
 	ip *string,
-	network *string,
 	ipSrc *string,
+	mac *string,
 	mfg *string,
+	network *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -276,23 +276,23 @@ func (o *OrgsClientsWan) SearchOrgWanClients(
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)
 	}
-	if mac != nil {
-		req.QueryParam("mac", *mac)
-	}
 	if hostname != nil {
 		req.QueryParam("hostname", *hostname)
 	}
 	if ip != nil {
 		req.QueryParam("ip", *ip)
 	}
-	if network != nil {
-		req.QueryParam("network", *network)
-	}
 	if ipSrc != nil {
 		req.QueryParam("ip_src", *ipSrc)
 	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
+	}
 	if mfg != nil {
 		req.QueryParam("mfg", *mfg)
+	}
+	if network != nil {
+		req.QueryParam("network", *network)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

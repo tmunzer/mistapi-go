@@ -16,7 +16,7 @@ type TunnelConfigNode struct {
 	// Only if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`, `provider`==`custom-ipsec` or `provider`==`custom-gre`
 	InternalIps []string `json:"internal_ips,omitempty"`
 	ProbeIps    []string `json:"probe_ips,omitempty"`
-	// Only if  `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
+	// Only if `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 	RemoteIds            []string               `json:"remote_ids,omitempty"`
 	WanNames             []string               `json:"wan_names"`
 	AdditionalProperties map[string]interface{} `json:"_"`

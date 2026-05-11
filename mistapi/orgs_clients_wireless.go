@@ -308,7 +308,7 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgWirelessClients takes context, orgId, siteId, mac, ip, hostname, band, device, os, model, ap, pskId, pskName, username, vlan, ssid, text, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchOrgWirelessClients takes context, orgId, siteId, ap, band, device, hostname, ip, mac, model, os, pskId, pskName, ssid, text, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
 // Search Org Wireless Clients
@@ -316,20 +316,20 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	ctx context.Context,
 	orgId uuid.UUID,
 	siteId *uuid.UUID,
-	mac *string,
-	ip *string,
-	hostname *string,
+	ap *string,
 	band *string,
 	device *string,
-	os *string,
+	hostname *string,
+	ip *string,
+	mac *string,
 	model *string,
-	ap *string,
+	os *string,
 	pskId *string,
 	pskName *string,
-	username *string,
-	vlan *string,
 	ssid *string,
 	text *string,
+	username *string,
+	vlan *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -360,14 +360,8 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)
 	}
-	if mac != nil {
-		req.QueryParam("mac", *mac)
-	}
-	if ip != nil {
-		req.QueryParam("ip", *ip)
-	}
-	if hostname != nil {
-		req.QueryParam("hostname", *hostname)
+	if ap != nil {
+		req.QueryParam("ap", *ap)
 	}
 	if band != nil {
 		req.QueryParam("band", *band)
@@ -375,14 +369,20 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	if device != nil {
 		req.QueryParam("device", *device)
 	}
-	if os != nil {
-		req.QueryParam("os", *os)
+	if hostname != nil {
+		req.QueryParam("hostname", *hostname)
+	}
+	if ip != nil {
+		req.QueryParam("ip", *ip)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
 	}
 	if model != nil {
 		req.QueryParam("model", *model)
 	}
-	if ap != nil {
-		req.QueryParam("ap", *ap)
+	if os != nil {
+		req.QueryParam("os", *os)
 	}
 	if pskId != nil {
 		req.QueryParam("psk_id", *pskId)
@@ -390,17 +390,17 @@ func (o *OrgsClientsWireless) SearchOrgWirelessClients(
 	if pskName != nil {
 		req.QueryParam("psk_name", *pskName)
 	}
-	if username != nil {
-		req.QueryParam("username", *username)
-	}
-	if vlan != nil {
-		req.QueryParam("vlan", *vlan)
-	}
 	if ssid != nil {
 		req.QueryParam("ssid", *ssid)
 	}
 	if text != nil {
 		req.QueryParam("text", *text)
+	}
+	if username != nil {
+		req.QueryParam("username", *username)
+	}
+	if vlan != nil {
+		req.QueryParam("vlan", *vlan)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

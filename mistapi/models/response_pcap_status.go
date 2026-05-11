@@ -17,6 +17,9 @@ type ResponsePcapStatus struct {
 	Aps       []string         `json:"aps,omitempty"`
 	ClientMac Optional[string] `json:"client_mac"`
 	Duration  *int             `json:"duration,omitempty"`
+	Enabled   *bool            `json:"enabled,omitempty"`
+	// Expiry time of the capture session, in epoch seconds
+	Expiry *float64 `json:"expiry,omitempty"`
 	// List of APs where configuration attempt failed
 	Failed []string `json:"failed,omitempty"`
 	// PCAP format. enum:
@@ -28,26 +31,35 @@ type ResponsePcapStatus struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id            uuid.UUID `json:"id"`
 	IncludesMcast *bool     `json:"includes_mcast,omitempty"`
+	// Map of Mist Edge IDs that could not be configured for capture
+	InvalidMxedges *interface{} `json:"invalid_mxedges,omitempty"`
 	// Max number of packets configured by user
 	MaxNumPackets *int `json:"max_num_packets,omitempty"`
 	MaxPktLen     *int `json:"max_pkt_len,omitempty"`
-	// Information on mxedges to capture packets on if a mxedge capture type is specified
-	Mxedges []string `json:"mxedges,omitempty"`
+	// Number of Mist Edges in the capture session
+	MxedgeCount *int `json:"mxedge_count,omitempty"`
+	// Dict of Mist Edges to capture on, property key is the Mist Edge ID
+	Mxedges map[string]ResponsePcapStatusMxedgesItem `json:"mxedges,omitempty"`
 	// total number of packets captured by all AP, not applicable for type [client, new_assoc]
 	NumPackets *int `json:"num_packets,omitempty"`
 	// List of target APs successfully configured to capture packets
 	Ok      []string                  `json:"ok,omitempty"`
+	OrgId   *uuid.UUID                `json:"org_id,omitempty"`
 	PcapAps map[string]ResponsePcapAp `json:"pcap_aps,omitempty"`
 	// When `type`==`radiotap`, radiotap_tcpdump_expression expression provided by the user
 	RadiotapTcpdumpExpression *string `json:"radiotap_tcpdump_expression,omitempty"`
+	Raw                       *bool   `json:"raw,omitempty"`
 	// When `type`==`scan`, scan_tcpdump_expression provided by the user
 	ScanTcpdumpExpression *string          `json:"scan_tcpdump_expression,omitempty"`
+	SiteId                *uuid.UUID       `json:"site_id,omitempty"`
 	Ssid                  Optional[string] `json:"ssid"`
 	StartedTime           *int             `json:"started_time,omitempty"`
 	// Information on switches to capture packets on if a switch capture type is specified. irb port interface is automatically added to capture as needed to ensure all desired packets are captured.
 	Switches []string `json:"switches,omitempty"`
 	// tcpdump expression provided by the user (common)
 	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
+	// Epoch (seconds)
+	Timestamp *float64 `json:"timestamp,omitempty"`
 	// enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless`
 	Type PcapTypeEnum `json:"type"`
 	// Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
@@ -65,8 +77,8 @@ type ResponsePcapStatus struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (r ResponsePcapStatus) String() string {
 	return fmt.Sprintf(
-		"ResponsePcapStatus[ApMac=%v, Aps=%v, ClientMac=%v, Duration=%v, Failed=%v, Format=%v, Gateways=%v, Id=%v, IncludesMcast=%v, MaxNumPackets=%v, MaxPktLen=%v, Mxedges=%v, NumPackets=%v, Ok=%v, PcapAps=%v, RadiotapTcpdumpExpression=%v, ScanTcpdumpExpression=%v, Ssid=%v, StartedTime=%v, Switches=%v, TcpdumpExpression=%v, Type=%v, TzspHost=%v, TzspPort=%v, WiredTcpdumpExpression=%v, WirelessTcpdumpExpression=%v, AdditionalProperties=%v]",
-		r.ApMac, r.Aps, r.ClientMac, r.Duration, r.Failed, r.Format, r.Gateways, r.Id, r.IncludesMcast, r.MaxNumPackets, r.MaxPktLen, r.Mxedges, r.NumPackets, r.Ok, r.PcapAps, r.RadiotapTcpdumpExpression, r.ScanTcpdumpExpression, r.Ssid, r.StartedTime, r.Switches, r.TcpdumpExpression, r.Type, r.TzspHost, r.TzspPort, r.WiredTcpdumpExpression, r.WirelessTcpdumpExpression, r.AdditionalProperties)
+		"ResponsePcapStatus[ApMac=%v, Aps=%v, ClientMac=%v, Duration=%v, Enabled=%v, Expiry=%v, Failed=%v, Format=%v, Gateways=%v, Id=%v, IncludesMcast=%v, InvalidMxedges=%v, MaxNumPackets=%v, MaxPktLen=%v, MxedgeCount=%v, Mxedges=%v, NumPackets=%v, Ok=%v, OrgId=%v, PcapAps=%v, RadiotapTcpdumpExpression=%v, Raw=%v, ScanTcpdumpExpression=%v, SiteId=%v, Ssid=%v, StartedTime=%v, Switches=%v, TcpdumpExpression=%v, Timestamp=%v, Type=%v, TzspHost=%v, TzspPort=%v, WiredTcpdumpExpression=%v, WirelessTcpdumpExpression=%v, AdditionalProperties=%v]",
+		r.ApMac, r.Aps, r.ClientMac, r.Duration, r.Enabled, r.Expiry, r.Failed, r.Format, r.Gateways, r.Id, r.IncludesMcast, r.InvalidMxedges, r.MaxNumPackets, r.MaxPktLen, r.MxedgeCount, r.Mxedges, r.NumPackets, r.Ok, r.OrgId, r.PcapAps, r.RadiotapTcpdumpExpression, r.Raw, r.ScanTcpdumpExpression, r.SiteId, r.Ssid, r.StartedTime, r.Switches, r.TcpdumpExpression, r.Timestamp, r.Type, r.TzspHost, r.TzspPort, r.WiredTcpdumpExpression, r.WirelessTcpdumpExpression, r.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ResponsePcapStatus.
@@ -75,7 +87,7 @@ func (r ResponsePcapStatus) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(r.AdditionalProperties,
-		"ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "mxedges", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression"); err != nil {
+		"ap_mac", "aps", "client_mac", "duration", "enabled", "expiry", "failed", "format", "gateways", "id", "includes_mcast", "invalid_mxedges", "max_num_packets", "max_pkt_len", "mxedge_count", "mxedges", "num_packets", "ok", "org_id", "pcap_aps", "radiotap_tcpdump_expression", "raw", "scan_tcpdump_expression", "site_id", "ssid", "started_time", "switches", "tcpdump_expression", "timestamp", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(r.toMap())
@@ -105,6 +117,12 @@ func (r ResponsePcapStatus) toMap() map[string]any {
 	if r.Duration != nil {
 		structMap["duration"] = r.Duration
 	}
+	if r.Enabled != nil {
+		structMap["enabled"] = r.Enabled
+	}
+	if r.Expiry != nil {
+		structMap["expiry"] = r.Expiry
+	}
 	if r.Failed != nil {
 		structMap["failed"] = r.Failed
 	}
@@ -118,11 +136,17 @@ func (r ResponsePcapStatus) toMap() map[string]any {
 	if r.IncludesMcast != nil {
 		structMap["includes_mcast"] = r.IncludesMcast
 	}
+	if r.InvalidMxedges != nil {
+		structMap["invalid_mxedges"] = r.InvalidMxedges
+	}
 	if r.MaxNumPackets != nil {
 		structMap["max_num_packets"] = r.MaxNumPackets
 	}
 	if r.MaxPktLen != nil {
 		structMap["max_pkt_len"] = r.MaxPktLen
+	}
+	if r.MxedgeCount != nil {
+		structMap["mxedge_count"] = r.MxedgeCount
 	}
 	if r.Mxedges != nil {
 		structMap["mxedges"] = r.Mxedges
@@ -133,14 +157,23 @@ func (r ResponsePcapStatus) toMap() map[string]any {
 	if r.Ok != nil {
 		structMap["ok"] = r.Ok
 	}
+	if r.OrgId != nil {
+		structMap["org_id"] = r.OrgId
+	}
 	if r.PcapAps != nil {
 		structMap["pcap_aps"] = r.PcapAps
 	}
 	if r.RadiotapTcpdumpExpression != nil {
 		structMap["radiotap_tcpdump_expression"] = r.RadiotapTcpdumpExpression
 	}
+	if r.Raw != nil {
+		structMap["raw"] = r.Raw
+	}
 	if r.ScanTcpdumpExpression != nil {
 		structMap["scan_tcpdump_expression"] = r.ScanTcpdumpExpression
+	}
+	if r.SiteId != nil {
+		structMap["site_id"] = r.SiteId
 	}
 	if r.Ssid.IsValueSet() {
 		if r.Ssid.Value() != nil {
@@ -157,6 +190,9 @@ func (r ResponsePcapStatus) toMap() map[string]any {
 	}
 	if r.TcpdumpExpression != nil {
 		structMap["tcpdump_expression"] = r.TcpdumpExpression
+	}
+	if r.Timestamp != nil {
+		structMap["timestamp"] = r.Timestamp
 	}
 	structMap["type"] = r.Type
 	if r.TzspHost != nil {
@@ -186,7 +222,7 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "aps", "client_mac", "duration", "failed", "format", "gateways", "id", "includes_mcast", "max_num_packets", "max_pkt_len", "mxedges", "num_packets", "ok", "pcap_aps", "radiotap_tcpdump_expression", "scan_tcpdump_expression", "ssid", "started_time", "switches", "tcpdump_expression", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ap_mac", "aps", "client_mac", "duration", "enabled", "expiry", "failed", "format", "gateways", "id", "includes_mcast", "invalid_mxedges", "max_num_packets", "max_pkt_len", "mxedge_count", "mxedges", "num_packets", "ok", "org_id", "pcap_aps", "radiotap_tcpdump_expression", "raw", "scan_tcpdump_expression", "site_id", "ssid", "started_time", "switches", "tcpdump_expression", "timestamp", "type", "tzsp_host", "tzsp_port", "wired_tcpdump_expression", "wireless_tcpdump_expression")
 	if err != nil {
 		return err
 	}
@@ -196,23 +232,31 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
 	r.Aps = temp.Aps
 	r.ClientMac = temp.ClientMac
 	r.Duration = temp.Duration
+	r.Enabled = temp.Enabled
+	r.Expiry = temp.Expiry
 	r.Failed = temp.Failed
 	r.Format = temp.Format
 	r.Gateways = temp.Gateways
 	r.Id = *temp.Id
 	r.IncludesMcast = temp.IncludesMcast
+	r.InvalidMxedges = temp.InvalidMxedges
 	r.MaxNumPackets = temp.MaxNumPackets
 	r.MaxPktLen = temp.MaxPktLen
+	r.MxedgeCount = temp.MxedgeCount
 	r.Mxedges = temp.Mxedges
 	r.NumPackets = temp.NumPackets
 	r.Ok = temp.Ok
+	r.OrgId = temp.OrgId
 	r.PcapAps = temp.PcapAps
 	r.RadiotapTcpdumpExpression = temp.RadiotapTcpdumpExpression
+	r.Raw = temp.Raw
 	r.ScanTcpdumpExpression = temp.ScanTcpdumpExpression
+	r.SiteId = temp.SiteId
 	r.Ssid = temp.Ssid
 	r.StartedTime = temp.StartedTime
 	r.Switches = temp.Switches
 	r.TcpdumpExpression = temp.TcpdumpExpression
+	r.Timestamp = temp.Timestamp
 	r.Type = *temp.Type
 	r.TzspHost = temp.TzspHost
 	r.TzspPort = temp.TzspPort
@@ -223,32 +267,40 @@ func (r *ResponsePcapStatus) UnmarshalJSON(input []byte) error {
 
 // tempResponsePcapStatus is a temporary struct used for validating the fields of ResponsePcapStatus.
 type tempResponsePcapStatus struct {
-	ApMac                     Optional[string]          `json:"ap_mac"`
-	Aps                       []string                  `json:"aps,omitempty"`
-	ClientMac                 Optional[string]          `json:"client_mac"`
-	Duration                  *int                      `json:"duration,omitempty"`
-	Failed                    []string                  `json:"failed,omitempty"`
-	Format                    *CaptureMxedgeFormatEnum  `json:"format,omitempty"`
-	Gateways                  []string                  `json:"gateways,omitempty"`
-	Id                        *uuid.UUID                `json:"id"`
-	IncludesMcast             *bool                     `json:"includes_mcast,omitempty"`
-	MaxNumPackets             *int                      `json:"max_num_packets,omitempty"`
-	MaxPktLen                 *int                      `json:"max_pkt_len,omitempty"`
-	Mxedges                   []string                  `json:"mxedges,omitempty"`
-	NumPackets                *int                      `json:"num_packets,omitempty"`
-	Ok                        []string                  `json:"ok,omitempty"`
-	PcapAps                   map[string]ResponsePcapAp `json:"pcap_aps,omitempty"`
-	RadiotapTcpdumpExpression *string                   `json:"radiotap_tcpdump_expression,omitempty"`
-	ScanTcpdumpExpression     *string                   `json:"scan_tcpdump_expression,omitempty"`
-	Ssid                      Optional[string]          `json:"ssid"`
-	StartedTime               *int                      `json:"started_time,omitempty"`
-	Switches                  []string                  `json:"switches,omitempty"`
-	TcpdumpExpression         *string                   `json:"tcpdump_expression,omitempty"`
-	Type                      *PcapTypeEnum             `json:"type"`
-	TzspHost                  *string                   `json:"tzsp_host,omitempty"`
-	TzspPort                  *int                      `json:"tzsp_port,omitempty"`
-	WiredTcpdumpExpression    *string                   `json:"wired_tcpdump_expression,omitempty"`
-	WirelessTcpdumpExpression *string                   `json:"wireless_tcpdump_expression,omitempty"`
+	ApMac                     Optional[string]                         `json:"ap_mac"`
+	Aps                       []string                                 `json:"aps,omitempty"`
+	ClientMac                 Optional[string]                         `json:"client_mac"`
+	Duration                  *int                                     `json:"duration,omitempty"`
+	Enabled                   *bool                                    `json:"enabled,omitempty"`
+	Expiry                    *float64                                 `json:"expiry,omitempty"`
+	Failed                    []string                                 `json:"failed,omitempty"`
+	Format                    *CaptureMxedgeFormatEnum                 `json:"format,omitempty"`
+	Gateways                  []string                                 `json:"gateways,omitempty"`
+	Id                        *uuid.UUID                               `json:"id"`
+	IncludesMcast             *bool                                    `json:"includes_mcast,omitempty"`
+	InvalidMxedges            *interface{}                             `json:"invalid_mxedges,omitempty"`
+	MaxNumPackets             *int                                     `json:"max_num_packets,omitempty"`
+	MaxPktLen                 *int                                     `json:"max_pkt_len,omitempty"`
+	MxedgeCount               *int                                     `json:"mxedge_count,omitempty"`
+	Mxedges                   map[string]ResponsePcapStatusMxedgesItem `json:"mxedges,omitempty"`
+	NumPackets                *int                                     `json:"num_packets,omitempty"`
+	Ok                        []string                                 `json:"ok,omitempty"`
+	OrgId                     *uuid.UUID                               `json:"org_id,omitempty"`
+	PcapAps                   map[string]ResponsePcapAp                `json:"pcap_aps,omitempty"`
+	RadiotapTcpdumpExpression *string                                  `json:"radiotap_tcpdump_expression,omitempty"`
+	Raw                       *bool                                    `json:"raw,omitempty"`
+	ScanTcpdumpExpression     *string                                  `json:"scan_tcpdump_expression,omitempty"`
+	SiteId                    *uuid.UUID                               `json:"site_id,omitempty"`
+	Ssid                      Optional[string]                         `json:"ssid"`
+	StartedTime               *int                                     `json:"started_time,omitempty"`
+	Switches                  []string                                 `json:"switches,omitempty"`
+	TcpdumpExpression         *string                                  `json:"tcpdump_expression,omitempty"`
+	Timestamp                 *float64                                 `json:"timestamp,omitempty"`
+	Type                      *PcapTypeEnum                            `json:"type"`
+	TzspHost                  *string                                  `json:"tzsp_host,omitempty"`
+	TzspPort                  *int                                     `json:"tzsp_port,omitempty"`
+	WiredTcpdumpExpression    *string                                  `json:"wired_tcpdump_expression,omitempty"`
+	WirelessTcpdumpExpression *string                                  `json:"wireless_tcpdump_expression,omitempty"`
 }
 
 func (r *tempResponsePcapStatus) validate() error {

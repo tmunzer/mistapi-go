@@ -1556,39 +1556,41 @@ Search Device
 SearchSiteDevices(
     ctx context.Context,
     siteId uuid.UUID,
-    hostname *string,
-    mType *models.DeviceTypeDefaultApEnum,
-    model *string,
-    mac *string,
-    extIp *string,
-    version *string,
-    powerConstrained *bool,
-    ip *string,
-    mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
-    mxedgeId *uuid.UUID,
-    mxedgeIds []uuid.UUID,
-    lastHostname *string,
-    lastConfigStatus *string,
-    radiusStats *string,
-    cpu *string,
-    node0Mac *string,
-    clustered *bool,
-    t128agentVersion *string,
-    node1Mac *string,
-    node *models.HaClusterNodeEnum,
-    evpntopoId *string,
-    lldpSystemName *string,
-    lldpSystemDesc *string,
-    lldpPortId *string,
-    lldpMgmtAddr *string,
     band24Channel *int,
     band5Channel *int,
     band6Channel *int,
     band24Bandwidth *int,
     band5Bandwidth *int,
     band6Bandwidth *int,
+    band24Power *int,
+    band5Power *int,
+    band6Power *int,
+    clustered *bool,
     eth0PortSpeed *int,
+    evpntopoId *uuid.UUID,
+    extIp *string,
+    hostname *string,
+    ip *string,
+    lastConfigStatus *string,
+    lastHostname *string,
+    lldpMgmtAddr *string,
+    lldpPortId *string,
+    lldpSystemDesc *string,
+    lldpSystemName *string,
+    mac *string,
+    model *string,
+    mxedgeId *uuid.UUID,
+    mxedgeIds *string,
+    mxtunnelStatus *models.SearchSiteDevicesMxtunnelStatusEnum,
+    node *models.HaClusterNodeEnum,
+    node0Mac *string,
+    node1Mac *string,
+    powerConstrained *bool,
+    radiusStats *string,
     stats *bool,
+    t128agentVersion *string,
+    mType *models.DeviceTypeDefaultApEnum,
+    version *string,
     limit *int,
     start *string,
     end *string,
@@ -1605,39 +1607,41 @@ SearchSiteDevices(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | **Default**: `"ap"` |
-| `model` | `*string` | Query, Optional | Device model |
-| `mac` | `*string` | Query, Optional | Device MAC |
-| `extIp` | `*string` | Query, Optional | Device external ip |
-| `version` | `*string` | Query, Optional | Version |
-| `powerConstrained` | `*bool` | Query, Optional | power_constrained |
-| `ip` | `*string` | Query, Optional | - |
-| `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | For APs only, MxTunnel status, up / down. |
-| `mxedgeId` | `*uuid.UUID` | Query, Optional | For APs only, Mist Edge id, if AP is connecting to a Mist Edge |
-| `mxedgeIds` | `[]uuid.UUID` | Query, Optional | For APs only, list of Mist Edge id, if AP is connecting to a Mist Edge |
-| `lastHostname` | `*string` | Query, Optional | For Switches and Gateways only, last hostname |
-| `lastConfigStatus` | `*string` | Query, Optional | For Switches and Gateways only, last configuration status of the switch/gateway |
-| `radiusStats` | `*string` | Query, Optional | For Switches and Gateways only, Key-value pairs where the key<br>is the RADIUS server address and the value contains authentication statistics:<br><br>* <server_address> (string): IP address of the RADIUS server as the key<br>* `auth_accepts` (long): Number of accepted authentication requests<br>* `auth_rejects` (long): Number of rejected authentication requests<br>* `auth_timeouts` (long): Number of authentication timeouts<br>* `auth_server_status` (string): Status of the server. Possible values: `up`, `down`, `unreachable` |
-| `cpu` | `*string` | Query, Optional | For Switches and Gateways only, max cpu usage |
-| `node0Mac` | `*string` | Query, Optional | For Gateways only, node0 MAC Address |
-| `clustered` | `*bool` | Query, Optional | For Gateways only |
-| `t128agentVersion` | `*string` | Query, Optional | For Gateways (SSR) only, version of 128T agent |
-| `node1Mac` | `*string` | Query, Optional | For Gateways only, node1 MAC Address |
-| `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | For Gateways only. enum: `node0`, `node1` |
-| `evpntopoId` | `*string` | Query, Optional | For Switches only, EVPN topology id |
-| `lldpSystemName` | `*string` | Query, Optional | For APs only, LLDP system name |
-| `lldpSystemDesc` | `*string` | Query, Optional | For APs only, LLDP system description |
-| `lldpPortId` | `*string` | Query, Optional | For APs only, LLDP port id |
-| `lldpMgmtAddr` | `*string` | Query, Optional | For APs only, LLDP management ip address |
-| `band24Channel` | `*int` | Query, Optional | Channel of band_24 |
-| `band5Channel` | `*int` | Query, Optional | Channel of band_5 |
-| `band6Channel` | `*int` | Query, Optional | Channel of band_6 |
-| `band24Bandwidth` | `*int` | Query, Optional | Bandwidth of band_24 |
-| `band5Bandwidth` | `*int` | Query, Optional | Bandwidth of band_5 |
-| `band6Bandwidth` | `*int` | Query, Optional | Bandwidth of band_6 |
-| `eth0PortSpeed` | `*int` | Query, Optional | Port speed of eth0 |
+| `band24Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_24 |
+| `band5Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_5 |
+| `band6Channel` | `*int` | Query, Optional | When `type`==`ap`, Channel of band_6 |
+| `band24Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_24 |
+| `band5Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_5 |
+| `band6Bandwidth` | `*int` | Query, Optional | When `type`==`ap`, Bandwidth of band_6 |
+| `band24Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_24 |
+| `band5Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_5 |
+| `band6Power` | `*int` | Query, Optional | When `type`==`ap`, Power of band_6 |
+| `clustered` | `*bool` | Query, Optional | When `type`==`gateway`, true / false |
+| `eth0PortSpeed` | `*int` | Query, Optional | When `type`==`ap`, Port speed of eth0 |
+| `evpntopoId` | `*uuid.UUID` | Query, Optional | When `type`==`switch`, EVPN topology id |
+| `extIp` | `*string` | Query, Optional | Partial / full Device external ip. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `1.2.3.*` and `*.2.3.*` match `1.2.3.4`). Suffix-only wildcards (e.g. `*.2.3.4`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Device hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-london*` and `*london*` match `my-london-1`). Suffix-only wildcards (e.g. `*london-1`) are not supported |
+| `ip` | `*string` | Query, Optional | Partial / full Device IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
+| `lastConfigStatus` | `*string` | Query, Optional | When `type`==`switch` or `type`==`gateway`, last configuration status |
+| `lastHostname` | `*string` | Query, Optional | Last hostname of the device. |
+| `lldpMgmtAddr` | `*string` | Query, Optional | When `type`==`ap`, LLDP management ip address |
+| `lldpPortId` | `*string` | Query, Optional | When `type`==`ap`, LLDP port id. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `ge-0/0/*` and `*-0/0/*` match `ge-0/0/30`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
+| `lldpSystemDesc` | `*string` | Query, Optional | When `type`==`ap`, LLDP system description. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `Juniper Networks*` and `*Networks*` match `Juniper Networks, Inc.`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
+| `lldpSystemName` | `*string` | Query, Optional | When `type`==`ap`, LLDP system name. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-switch*` and `*switch*` match `my-switch-01`). Suffix-only wildcards (e.g. `*switch-01`) are not supported |
+| `mac` | `*string` | Query, Optional | Partial / full Device MAC address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `001122*` and `*1122*` match `001122334455`). Suffix-only wildcards (e.g. `*4455`) are not supported |
+| `model` | `*string` | Query, Optional | Partial / full Device model. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `AP4*` and `*P4*` match `AP43`). Suffix-only wildcards (e.g. `*43`) are not supported |
+| `mxedgeId` | `*uuid.UUID` | Query, Optional | When `type`==`ap`, Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxedgeIds` | `*string` | Query, Optional | When `type`==`ap`, Comma separated list of Mist Edge id, if AP is connecting to a Mist Edge |
+| `mxtunnelStatus` | [`*models.SearchSiteDevicesMxtunnelStatusEnum`](../../doc/models/search-site-devices-mxtunnel-status-enum.md) | Query, Optional | When `type`==`ap`, MxTunnel status, up / down. |
+| `node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Query, Optional | When `type`==`gateway`. enum: `node0`, `node1` |
+| `node0Mac` | `*string` | Query, Optional | When `type`==`gateway`, node0 MAC Address |
+| `node1Mac` | `*string` | Query, Optional | When `type`==`gateway`, node1 MAC Address |
+| `powerConstrained` | `*bool` | Query, Optional | When `type`==`ap`, whether the AP is power constrained |
+| `radiusStats` | `*string` | Query, Optional | When `type`==`switch` or `type`==`gateway`, Key-value pairs where the key<br>is the RADIUS server address and the value contains authentication statistics:<br><br>* <server_address> (string): IP address of the RADIUS server as the key<br>* `auth_accepts` (long): Number of accepted authentication requests<br>* `auth_rejects` (long): Number of rejected authentication requests<br>* `auth_timeouts` (long): Number of authentication timeouts<br>* `auth_server_status` (string): Status of the server. Possible values: `up`, `down`, `unreachable` |
 | `stats` | `*bool` | Query, Optional | Whether to return device stats<br><br>**Default**: `false` |
+| `t128agentVersion` | `*string` | Query, Optional | When `type`==`gateway` (SSR only), version of 128T agent |
+| `mType` | [`*models.DeviceTypeDefaultApEnum`](../../doc/models/device-type-default-ap-enum.md) | Query, Optional | Type of device. enum: `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `version` | `*string` | Query, Optional | Version |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -1657,11 +1661,23 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := models.DeviceTypeDefaultApEnum_AP
+eth0PortSpeed := 100
 
-ip := "192.168.1.1"
+extIp := "1.2.3.4"
+
+hostname := "my-london-1"
+
+ip := "10.100.10.54"
+
+lastConfigStatus := "success"
+
+mac := "aabbccddeeff"
+
+model := "AP43"
 
 stats := false
+
+mType := models.DeviceTypeDefaultApEnum_AP
 
 limit := 100
 
@@ -1669,7 +1685,7 @@ duration := "10m"
 
 sort := models.SearchSiteDevicesSortEnum_TIMESTAMP
 
-apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, &mType, nil, nil, nil, nil, nil, &ip, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &stats, &limit, nil, nil, &duration, &sort, nil, nil)
+apiResponse, err := sitesDevices.SearchSiteDevices(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &eth0PortSpeed, nil, &extIp, &hostname, &ip, &lastConfigStatus, nil, nil, nil, nil, nil, &mac, &model, nil, nil, nil, nil, nil, nil, nil, nil, &stats, nil, &mType, nil, &limit, nil, nil, &duration, &sort, nil, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

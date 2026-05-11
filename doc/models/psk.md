@@ -35,6 +35,7 @@ PSK
 | `Ssid` | `string` | Required | SSID this PSK should be applicable to |
 | `Usage` | [`*models.PskUsageEnum`](../../doc/models/psk-usage-enum.md) | Optional | enum: `macs`, `multi`, `single`<br><br>**Default**: `"multi"` |
 | `VlanId` | [`*models.PskVlanId`](../../doc/models/containers/psk-vlan-id.md) | Optional | VLAN for this PSK key |
+| `VlanName` | `*string` | Optional | VLAN name to be assigned. Optional, `vlan_id` takes precedence if both are provided |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
 ## Example (as JSON)

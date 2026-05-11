@@ -573,19 +573,25 @@ func (o *OrgsJSI) CountOrgJsiSirt(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchOrgJsiSirt takes context, orgId, versions, mModels, severity, id, limit, page, searchAfter, start, end as parameters and
+// SearchOrgJsiSirt takes context, orgId, severity, id, updatedAfter, updatedBefore, publishedAfter, publishedBefore, mModels, versions, text, limit, page, sort, searchAfter, start, end as parameters and
 // returns an models.ApiResponse with models.JsiSirtSearch data and
 // an error if there was an issue with the request or response.
-// Text search for SIRT (Security Incident Response Team) advisories. Search can be done on versions, models, severity, and id fields.
+// Search and get all the SIRT for the onboarded devices. Search can be done on severity, id, updated_after, updated_before, published_after, published_before, models, versions, and text fields.
 func (o *OrgsJSI) SearchOrgJsiSirt(
 	ctx context.Context,
 	orgId uuid.UUID,
-	versions *string,
-	mModels *string,
 	severity *string,
 	id *string,
+	updatedAfter *string,
+	updatedBefore *string,
+	publishedAfter *string,
+	publishedBefore *string,
+	mModels *string,
+	versions *string,
+	text *string,
 	limit *int,
 	page *int,
+	sort *string,
 	searchAfter *string,
 	start *string,
 	end *string) (
@@ -610,23 +616,41 @@ func (o *OrgsJSI) SearchOrgJsiSirt(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if versions != nil {
-		req.QueryParam("versions", *versions)
-	}
-	if mModels != nil {
-		req.QueryParam("models", *mModels)
-	}
 	if severity != nil {
 		req.QueryParam("severity", *severity)
 	}
 	if id != nil {
 		req.QueryParam("id", *id)
 	}
+	if updatedAfter != nil {
+		req.QueryParam("updated_after", *updatedAfter)
+	}
+	if updatedBefore != nil {
+		req.QueryParam("updated_before", *updatedBefore)
+	}
+	if publishedAfter != nil {
+		req.QueryParam("published_after", *publishedAfter)
+	}
+	if publishedBefore != nil {
+		req.QueryParam("published_before", *publishedBefore)
+	}
+	if mModels != nil {
+		req.QueryParam("models", *mModels)
+	}
+	if versions != nil {
+		req.QueryParam("versions", *versions)
+	}
+	if text != nil {
+		req.QueryParam("text", *text)
+	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)
 	}
 	if page != nil {
 		req.QueryParam("page", *page)
+	}
+	if sort != nil {
+		req.QueryParam("sort", *sort)
 	}
 	if searchAfter != nil {
 		req.QueryParam("search_after", *searchAfter)

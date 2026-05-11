@@ -61,7 +61,7 @@ type JunosLocalPortConfig struct {
 	PortAuth Optional[SwitchPortLocalUsageDot1xEnum] `json:"port_auth"`
 	// Native network/vlan for untagged traffic
 	PortNetwork *string `json:"port_network,omitempty"`
-	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600)
+	// Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600). Set to 0 to disable reauthentication (no-reauthentication).
 	ReauthInterval *SwitchPortUsageReauthInterval `json:"reauth_interval,omitempty"`
 	// Only if `port_auth`==`dot1x` sets server fail fallback vlan
 	ServerFailNetwork Optional[string] `json:"server_fail_network"`

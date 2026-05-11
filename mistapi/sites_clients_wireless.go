@@ -296,7 +296,7 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteWirelessClients takes context, siteId, mac, ip, hostname, device, os, model, ap, ssid, text, nacruleId, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteWirelessClients takes context, siteId, ap, band, device, hostname, ip, mac, model, os, pskId, pskName, ssid, text, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientSearch data and
 // an error if there was an issue with the request or response.
 // Search Wireless Clients
@@ -304,16 +304,20 @@ func (s *SitesClientsWireless) SearchSiteWirelessClientEvents(
 func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	ctx context.Context,
 	siteId uuid.UUID,
-	mac *string,
-	ip *string,
-	hostname *string,
-	device *string,
-	os *string,
-	model *string,
 	ap *string,
+	band *string,
+	device *string,
+	hostname *string,
+	ip *string,
+	mac *string,
+	model *string,
+	os *string,
+	pskId *string,
+	pskName *string,
 	ssid *string,
 	text *string,
-	nacruleId *string,
+	username *string,
+	vlan *string,
 	limit *int,
 	start *string,
 	end *string,
@@ -341,26 +345,35 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if mac != nil {
-		req.QueryParam("mac", *mac)
+	if ap != nil {
+		req.QueryParam("ap", *ap)
 	}
-	if ip != nil {
-		req.QueryParam("ip", *ip)
-	}
-	if hostname != nil {
-		req.QueryParam("hostname", *hostname)
+	if band != nil {
+		req.QueryParam("band", *band)
 	}
 	if device != nil {
 		req.QueryParam("device", *device)
 	}
-	if os != nil {
-		req.QueryParam("os", *os)
+	if hostname != nil {
+		req.QueryParam("hostname", *hostname)
+	}
+	if ip != nil {
+		req.QueryParam("ip", *ip)
+	}
+	if mac != nil {
+		req.QueryParam("mac", *mac)
 	}
 	if model != nil {
 		req.QueryParam("model", *model)
 	}
-	if ap != nil {
-		req.QueryParam("ap", *ap)
+	if os != nil {
+		req.QueryParam("os", *os)
+	}
+	if pskId != nil {
+		req.QueryParam("psk_id", *pskId)
+	}
+	if pskName != nil {
+		req.QueryParam("psk_name", *pskName)
 	}
 	if ssid != nil {
 		req.QueryParam("ssid", *ssid)
@@ -368,8 +381,11 @@ func (s *SitesClientsWireless) SearchSiteWirelessClients(
 	if text != nil {
 		req.QueryParam("text", *text)
 	}
-	if nacruleId != nil {
-		req.QueryParam("nacrule_id", *nacruleId)
+	if username != nil {
+		req.QueryParam("username", *username)
+	}
+	if vlan != nil {
+		req.QueryParam("vlan", *vlan)
 	}
 	if limit != nil {
 		req.QueryParam("limit", *limit)

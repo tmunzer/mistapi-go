@@ -221,6 +221,33 @@ func TestOrgsSSOTestUpdateOrgSso1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestOrgsSSOTestDeleteOrgSsoAdmins tests the behavior of the OrgsSSO
+func TestOrgsSSOTestDeleteOrgSsoAdmins(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	ssoId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.SsoDeleteAdmins
+	errBody := json.Unmarshal([]byte(`{"emails":["john@abc.com","may@abc.com"]}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := orgsSso.DeleteOrgSsoAdmins(ctx, orgId, ssoId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+}
+
 // TestOrgsSSOTestListOrgSsoLatestFailures tests the behavior of the OrgsSSO
 func TestOrgsSSOTestListOrgSsoLatestFailures(t *testing.T) {
 	ctx := context.Background()

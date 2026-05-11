@@ -1,7 +1,7 @@
 
 # Dot 11 Band Enum
 
-enum: `24`, `5`, `6`
+enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 
 ## Enumeration
 
@@ -13,5 +13,9 @@ enum: `24`, `5`, `6`
 |  --- |
 | `24` |
 | `5` |
+| `5-dedicated` |
+| `5-selectable` |
 | `6` |
+| `6-dedicated` |
+| `6-selectable` |
 

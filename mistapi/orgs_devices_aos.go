@@ -26,7 +26,7 @@ func NewOrgsDevicesAOS(baseController baseController) *OrgsDevicesAOS {
 // GetOrgAosRegisterCmd takes context, orgId as parameters and
 // returns an models.ApiResponse with models.AosRegisterCmd data and
 // an error if there was an issue with the request or response.
-// Generates a registration challenge token and AOS-specific CLI commands for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
+// Generates a registration challenge token for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
 func (o *OrgsDevicesAOS) GetOrgAosRegisterCmd(
 	ctx context.Context,
 	orgId uuid.UUID) (

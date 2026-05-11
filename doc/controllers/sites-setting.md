@@ -644,6 +644,14 @@ body := models.SiteSetting{
         "RADIUS_IP1": "172.31.2.5",
         "RADIUS_SECRET": "11s64632d",
     },
+    VarsAnnotations:                 map[string]models.VarsAnnotation{
+        "MXTUNNEL_GUEST": models.VarsAnnotation{
+            Type:                 models.ToPointer("mxtunnel_id"),
+        },
+        "RADIUS_IP1": models.VarsAnnotation{
+            Note:                 models.ToPointer("RADIUS server IP address for US East Campus"),
+        },
+    },
     VrfInstances:                    map[string]models.SwitchVrfInstance{
         "guest": models.SwitchVrfInstance{
             ExtraRoutes:             map[string]models.VrfExtraRoute{

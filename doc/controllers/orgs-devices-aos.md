@@ -11,7 +11,7 @@ orgsDevicesAOS := client.OrgsDevicesAOS()
 
 # Get Org Aos Register Cmd
 
-Generates a registration challenge token and AOS-specific CLI commands for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
+Generates a registration challenge token for TPM-based brownfield registration of AOS devices. The returned command string can be copied and pasted directly into an AOS device to register it with Mist.
 
 ```go
 GetOrgAosRegisterCmd(

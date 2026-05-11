@@ -242,8 +242,8 @@ SearchSiteWanClientEvents(
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
 | `mType` | `*string` | Query, Optional | See [List Device Events Definitions](../../doc/controllers/constants-events.md#list-device-events-definitions) |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
+| `mac` | `*string` | Query, Optional | Partial / full Client MAC Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `aabbcc*` and `*bbcc*` match `aabbccddeeff`). Suffix-only wildcards (e.g. `*bccddeeff`) are not supported |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
 | `ip` | `*string` | Query, Optional | Client IP |
 | `mfg` | `*string` | Query, Optional | Manufacture |
 | `nacruleId` | `*string` | Query, Optional | nacrule_id |
@@ -265,9 +265,9 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mac := "0011223"
+mac := "aabbccddeeff"
 
-hostname := "test-hostname"
+hostname := "my-everest-client"
 
 ip := "10.4.2.4"
 
@@ -344,10 +344,12 @@ Search Site WAN Clients
 SearchSiteWanClients(
     ctx context.Context,
     siteId uuid.UUID,
-    mac *string,
     hostname *string,
     ip *string,
+    ipSrc *string,
+    mac *string,
     mfg *string,
+    network *string,
     limit *int,
     start *string,
     end *string,
@@ -363,10 +365,12 @@ SearchSiteWanClients(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `siteId` | `uuid.UUID` | Template, Required | - |
-| `mac` | `*string` | Query, Optional | Partial / full MAC address |
-| `hostname` | `*string` | Query, Optional | Partial / full hostname |
-| `ip` | `*string` | Query, Optional | Client IP |
+| `hostname` | `*string` | Query, Optional | Partial / full Client hostname. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `everest*` and `*rest*` match `my-everest-client`). Suffix-only wildcards (e.g. `*everest`) are not supported |
+| `ip` | `*string` | Query, Optional | Partial / full Client IP Address. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `10.100.10.*` and `*100.10.*` match `10.100.10.54`). Suffix-only wildcards (e.g. `*.54`) are not supported |
+| `ipSrc` | `*string` | Query, Optional | IP source |
+| `mac` | `*string` | Query, Optional | Client MAC Address. |
 | `mfg` | `*string` | Query, Optional | Manufacture |
+| `network` | `*string` | Query, Optional | Partial / full Name of the network the client is/was connected to. Use `prefix*` for prefix search or `*substring*` for contains search (e.g. `my-corp*` and `*corp*` match `my-corp-network`). Suffix-only wildcards (e.g. `*corp`) are not supported |
 | `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
 | `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
 | `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
@@ -385,13 +389,15 @@ ctx := context.Background()
 
 siteId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mac := "001122334455"
+hostname := "my-everest-client"
 
-hostname := "test-hostname"
+ip := "10.100.10.54"
 
-ip := "10.2.52.4"
+ipSrc := "dhcp"
 
-mfg := "Cisco"
+mac := "5c5b53010101"
+
+network := "my-corp-network"
 
 limit := 100
 
@@ -399,7 +405,7 @@ duration := "10m"
 
 sort := "-site_id"
 
-apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &mac, &hostname, &ip, &mfg, &limit, nil, nil, &duration, &sort, nil)
+apiResponse, err := sitesClientsWan.SearchSiteWanClients(ctx, siteId, &hostname, &ip, &ipSrc, &mac, nil, &network, &limit, nil, nil, &duration, &sort, nil)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:

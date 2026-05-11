@@ -9,8 +9,8 @@ import (
 
 // UtilsClearBpdu represents a UtilsClearBpdu struct.
 type UtilsClearBpdu struct {
-	// Port on which to clear the detected BPDU error, or `all` for all ports
-	Port                 *string                `json:"port,omitempty"`
+	// List of ports on which to clear the detected BPDU error, or `all` for all ports
+	Ports                []string               `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -18,8 +18,8 @@ type UtilsClearBpdu struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UtilsClearBpdu) String() string {
 	return fmt.Sprintf(
-		"UtilsClearBpdu[Port=%v, AdditionalProperties=%v]",
-		u.Port, u.AdditionalProperties)
+		"UtilsClearBpdu[Ports=%v, AdditionalProperties=%v]",
+		u.Ports, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UtilsClearBpdu.
@@ -28,7 +28,7 @@ func (u UtilsClearBpdu) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"port"); err != nil {
+		"ports"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -38,8 +38,8 @@ func (u UtilsClearBpdu) MarshalJSON() (
 func (u UtilsClearBpdu) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, u.AdditionalProperties)
-	if u.Port != nil {
-		structMap["port"] = u.Port
+	if u.Ports != nil {
+		structMap["ports"] = u.Ports
 	}
 	return structMap
 }
@@ -52,17 +52,17 @@ func (u *UtilsClearBpdu) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "port")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ports")
 	if err != nil {
 		return err
 	}
 	u.AdditionalProperties = additionalProperties
 
-	u.Port = temp.Port
+	u.Ports = temp.Ports
 	return nil
 }
 
 // tempUtilsClearBpdu is a temporary struct used for validating the fields of UtilsClearBpdu.
 type tempUtilsClearBpdu struct {
-	Port *string `json:"port,omitempty"`
+	Ports []string `json:"ports,omitempty"`
 }

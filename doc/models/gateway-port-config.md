@@ -34,11 +34,12 @@ Gateway port config
 | `Networks` | `[]string` | Optional | If `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface |
 | `OuterVlanId` | `*int` | Optional | For Q-in-Q |
 | `PoeDisabled` | `*bool` | Optional | **Default**: `false` |
+| `PoeKeepStateWhenReboot` | `*bool` | Optional | Whether Perpetual PoE capabilities are enabled for a port<br><br>**Default**: `false` |
 | `PortNetwork` | `*string` | Optional | Only for SRX and if `usage`==`lan`, the name of the Network to be used as the Untagged VLAN |
 | `PreserveDscp` | `*bool` | Optional | Whether to preserve dscp when sending traffic over VPN (SSR-only)<br><br>**Default**: `true` |
 | `Redundant` | `*bool` | Optional | If HA mode |
 | `RedundantGroup` | `*int` | Optional | If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX<br><br>**Constraints**: `>= 1`, `<= 128` |
-| `RethIdx` | [`*models.GatewayPortConfigRethIdx`](../../doc/models/containers/gateway-port-config-reth-idx.md) | Optional | For SRX only and if HA Mode |
+| `RethIdx` | [`*models.GatewayPortConfigRethIdx`](../../doc/models/containers/gateway-port-config-reth-idx.md) | Optional | For SRX only and if HA Mode. `-1` means it will be managed by the device. Use `>= 0` values to manage it manually. Ensure no conflicting values are assigned across all ports. |
 | `RethNode` | `*string` | Optional | If HA mode |
 | `RethNodes` | `[]string` | Optional | SSR only - supporting vlan-based redundancy (matching the size of `networks`) |
 | `Speed` | `*string` | Optional | **Default**: `"auto"` |
@@ -75,6 +76,7 @@ Gateway port config
   "duplex": "full",
   "lte_auth": "none",
   "poe_disabled": false,
+  "poe_keep_state_when_reboot": false,
   "preserve_dscp": true,
   "reth_nodes": [
     "node0",

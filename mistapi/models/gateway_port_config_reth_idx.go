@@ -9,7 +9,7 @@ import (
 )
 
 // GatewayPortConfigRethIdx represents a GatewayPortConfigRethIdx struct.
-// For SRX only and if HA Mode
+// For SRX only and if HA Mode. `-1` means it will be managed by the device. Use `>= 0` values to manage it manually. Ensure no conflicting values are assigned across all ports.
 type GatewayPortConfigRethIdx struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (g *GatewayPortConfigRethIdx) AsString() (
 }
 
 // internalGatewayPortConfigRethIdx represents a gatewayPortConfigRethIdx struct.
-// For SRX only and if HA Mode
+// For SRX only and if HA Mode. `-1` means it will be managed by the device. Use `>= 0` values to manage it manually. Ensure no conflicting values are assigned across all ports.
 type internalGatewayPortConfigRethIdx struct{}
 
 var GatewayPortConfigRethIdxContainer internalGatewayPortConfigRethIdx

@@ -23,18 +23,13 @@ func NewOrgsStats(baseController baseController) *OrgsStats {
 	return &orgsStats
 }
 
-// GetOrgStats takes context, orgId, start, end, duration, limit, page as parameters and
+// GetOrgStats takes context, orgId as parameters and
 // returns an models.ApiResponse with models.StatsOrg data and
 // an error if there was an issue with the request or response.
 // Get Org Stats
 func (o *OrgsStats) GetOrgStats(
 	ctx context.Context,
-	orgId uuid.UUID,
-	start *string,
-	end *string,
-	duration *string,
-	limit *int,
-	page *int) (
+	orgId uuid.UUID) (
 	models.ApiResponse[models.StatsOrg],
 	error) {
 	req := o.prepareRequest(ctx, "GET", "/api/v1/orgs/%v/stats")
@@ -56,21 +51,6 @@ func (o *OrgsStats) GetOrgStats(
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
 		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
 	})
-	if start != nil {
-		req.QueryParam("start", *start)
-	}
-	if end != nil {
-		req.QueryParam("end", *end)
-	}
-	if duration != nil {
-		req.QueryParam("duration", *duration)
-	}
-	if limit != nil {
-		req.QueryParam("limit", *limit)
-	}
-	if page != nil {
-		req.QueryParam("page", *page)
-	}
 
 	var result models.StatsOrg
 	decoder, resp, err := req.CallAsJson()

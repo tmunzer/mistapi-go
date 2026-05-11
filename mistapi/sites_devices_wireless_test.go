@@ -4,8 +4,10 @@ package mistapi
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/apimatic/go-core-runtime/testHelper"
 	"github.com/google/uuid"
+	"github.com/tmunzer/mistapi-go/mistapi/models"
 	"testing"
 )
 
@@ -147,4 +149,62 @@ func TestSitesDevicesWirelessTestSetSiteDeviceIotPort1(t *testing.T) {
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
 	expected := `{"A1":1,"DO":0}`
 	testHelper.RawBodyMatcher(t, expected, apiResponse.Response.Body)
+}
+
+// TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.UtilsZigbeeJoin
+	errBody := json.Unmarshal([]byte(`{"duration":600}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := sitesDevicesWireless.EnableSiteDeviceZigbeeJoin(ctx, siteId, deviceId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session_id":"19e73828-937f-05e6-f709-e29efdb0a82b"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin1 tests the behavior of the SitesDevicesWireless
+func TestSitesDevicesWirelessTestEnableSiteDeviceZigbeeJoin1(t *testing.T) {
+	ctx := context.Background()
+	siteId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	deviceId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.UtilsZigbeeJoin
+	errBody := json.Unmarshal([]byte(`{"duration":600}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := sitesDevicesWireless.EnableSiteDeviceZigbeeJoin(ctx, siteId, deviceId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"session_id":"19e73828-937f-05e6-f709-e29efdb0a82b"}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }

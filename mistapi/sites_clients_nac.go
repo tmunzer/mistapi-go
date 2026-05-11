@@ -360,7 +360,7 @@ func (s *SitesClientsNAC) SearchSiteNacClientEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteNacClients takes context, siteId, ap, authType, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmManaged, mdmCompliance, mdmProvider, mfg, model, mxedgeId, nacruleId, nacruleMatched, nacruleName, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteNacClients takes context, siteId, ap, authType, certExpiryDuration, edrManaged, edrProvider, edrStatus, family, hostname, idpId, mac, mdmCompliance, mdmProvider, mdmManaged, mfg, model, nacruleName, nacruleId, nacruleMatched, nasVendor, nasIp, ingressVlan, os, ssid, status, text, timestamp, mType, usermacLabel, username, vlan, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseClientNacSearch data and
 // an error if there was an issue with the request or response.
 // Search Site NAC Clients
@@ -369,6 +369,7 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	siteId uuid.UUID,
 	ap *string,
 	authType *string,
+	certExpiryDuration *string,
 	edrManaged *bool,
 	edrProvider *models.EdrProviderEnum,
 	edrStatus *models.EdrStatusEnum,
@@ -376,15 +377,14 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	hostname *string,
 	idpId *string,
 	mac *string,
-	mdmManaged *bool,
 	mdmCompliance *string,
 	mdmProvider *string,
+	mdmManaged *bool,
 	mfg *string,
 	model *string,
-	mxedgeId *string,
+	nacruleName *string,
 	nacruleId *string,
 	nacruleMatched *bool,
-	nacruleName *string,
 	nasVendor *string,
 	nasIp *string,
 	ingressVlan *string,
@@ -430,6 +430,9 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	if authType != nil {
 		req.QueryParam("auth_type", *authType)
 	}
+	if certExpiryDuration != nil {
+		req.QueryParam("cert_expiry_duration", *certExpiryDuration)
+	}
 	if edrManaged != nil {
 		req.QueryParam("edr_managed", *edrManaged)
 	}
@@ -451,14 +454,14 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
-	if mdmManaged != nil {
-		req.QueryParam("mdm_managed", *mdmManaged)
-	}
 	if mdmCompliance != nil {
 		req.QueryParam("mdm_compliance", *mdmCompliance)
 	}
 	if mdmProvider != nil {
 		req.QueryParam("mdm_provider", *mdmProvider)
+	}
+	if mdmManaged != nil {
+		req.QueryParam("mdm_managed", *mdmManaged)
 	}
 	if mfg != nil {
 		req.QueryParam("mfg", *mfg)
@@ -466,17 +469,14 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	if model != nil {
 		req.QueryParam("model", *model)
 	}
-	if mxedgeId != nil {
-		req.QueryParam("mxedge_id", *mxedgeId)
+	if nacruleName != nil {
+		req.QueryParam("nacrule_name", *nacruleName)
 	}
 	if nacruleId != nil {
 		req.QueryParam("nacrule_id", *nacruleId)
 	}
 	if nacruleMatched != nil {
 		req.QueryParam("nacrule_matched", *nacruleMatched)
-	}
-	if nacruleName != nil {
-		req.QueryParam("nacrule_name", *nacruleName)
 	}
 	if nasVendor != nil {
 		req.QueryParam("nas_vendor", *nasVendor)
@@ -540,5 +540,50 @@ func (s *SitesClientsNAC) SearchSiteNacClients(
 	}
 
 	result, err = utilities.DecodeResults[models.ResponseClientNacSearch](decoder)
+	return models.NewApiResponse(result, resp), err
+}
+
+// SendSiteNacClientCoA takes context, siteId, clientMac, body as parameters and
+// returns an models.ApiResponse with models.NacClientCoaResponse data and
+// an error if there was an issue with the request or response.
+// Sends CoA (Change of Authorization) command to a NAC client.
+func (s *SitesClientsNAC) SendSiteNacClientCoA(
+	ctx context.Context,
+	siteId uuid.UUID,
+	clientMac string,
+	body *models.NacClientCoa) (
+	models.ApiResponse[models.NacClientCoaResponse],
+	error) {
+	req := s.prepareRequest(ctx, "POST", "/api/v1/sites/%v/nac_clients/%v/coa")
+	req.AppendTemplateParams(siteId, clientMac)
+	req.Authenticate(
+		NewOrAuth(
+			NewAuth("apiToken"),
+			NewAuth("basicAuth"),
+			NewAndAuth(
+				NewAuth("basicAuth"),
+				NewAuth("csrfToken"),
+			),
+		),
+	)
+	req.AppendErrors(map[string]https.ErrorBuilder[error]{
+		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+	})
+	req.Header("Content-Type", "application/json")
+	if body != nil {
+		req.Json(body)
+	}
+
+	var result models.NacClientCoaResponse
+	decoder, resp, err := req.CallAsJson()
+	if err != nil {
+		return models.NewApiResponse(result, resp), err
+	}
+
+	result, err = utilities.DecodeResults[models.NacClientCoaResponse](decoder)
 	return models.NewApiResponse(result, resp), err
 }

@@ -30,6 +30,8 @@ type GatewayTemplate struct {
 	ExtraRoutes6 map[string]GatewayExtraRoute `json:"extra_routes6,omitempty"`
 	// Gateway matching
 	GatewayMatching *GatewayMatching `json:"gateway_matching,omitempty"`
+	// Gateway Management settings
+	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Property key is the profile name
@@ -74,8 +76,8 @@ type GatewayTemplate struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (g GatewayTemplate) String() string {
 	return fmt.Sprintf(
-		"GatewayTemplate[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpdConfig=%v, DnsOverride=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, GatewayMatching=%v, Id=%v, IdpProfiles=%v, IpConfigs=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpOverride=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, RouterId=%v, RoutingPolicies=%v, ServicePolicies=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, UrlFilteringDenyMsg=%v, VrfConfig=%v, VrfInstances=%v, SsrAdditionalConfigCmds=%v, AdditionalProperties=%v]",
-		g.AdditionalConfigCmds, g.BgpConfig, g.CreatedTime, g.DhcpdConfig, g.DnsOverride, g.DnsServers, g.DnsSuffix, g.ExtraRoutes, g.ExtraRoutes6, g.GatewayMatching, g.Id, g.IdpProfiles, g.IpConfigs, g.ModifiedTime, g.Name, g.Networks, g.NtpOverride, g.NtpServers, g.OobIpConfig, g.OrgId, g.PathPreferences, g.PortConfig, g.RouterId, g.RoutingPolicies, g.ServicePolicies, g.TunnelConfigs, g.TunnelProviderOptions, g.Type, g.UrlFilteringDenyMsg, g.VrfConfig, g.VrfInstances, g.SsrAdditionalConfigCmds, g.AdditionalProperties)
+		"GatewayTemplate[AdditionalConfigCmds=%v, BgpConfig=%v, CreatedTime=%v, DhcpdConfig=%v, DnsOverride=%v, DnsServers=%v, DnsSuffix=%v, ExtraRoutes=%v, ExtraRoutes6=%v, GatewayMatching=%v, GatewayMgmt=%v, Id=%v, IdpProfiles=%v, IpConfigs=%v, ModifiedTime=%v, Name=%v, Networks=%v, NtpOverride=%v, NtpServers=%v, OobIpConfig=%v, OrgId=%v, PathPreferences=%v, PortConfig=%v, RouterId=%v, RoutingPolicies=%v, ServicePolicies=%v, TunnelConfigs=%v, TunnelProviderOptions=%v, Type=%v, UrlFilteringDenyMsg=%v, VrfConfig=%v, VrfInstances=%v, SsrAdditionalConfigCmds=%v, AdditionalProperties=%v]",
+		g.AdditionalConfigCmds, g.BgpConfig, g.CreatedTime, g.DhcpdConfig, g.DnsOverride, g.DnsServers, g.DnsSuffix, g.ExtraRoutes, g.ExtraRoutes6, g.GatewayMatching, g.GatewayMgmt, g.Id, g.IdpProfiles, g.IpConfigs, g.ModifiedTime, g.Name, g.Networks, g.NtpOverride, g.NtpServers, g.OobIpConfig, g.OrgId, g.PathPreferences, g.PortConfig, g.RouterId, g.RoutingPolicies, g.ServicePolicies, g.TunnelConfigs, g.TunnelProviderOptions, g.Type, g.UrlFilteringDenyMsg, g.VrfConfig, g.VrfInstances, g.SsrAdditionalConfigCmds, g.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for GatewayTemplate.
@@ -84,7 +86,7 @@ func (g GatewayTemplate) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(g.AdditionalProperties,
-		"additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vrf_config", "vrf_instances", "ssr_additional_config_cmds"); err != nil {
+		"additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "gateway_mgmt", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vrf_config", "vrf_instances", "ssr_additional_config_cmds"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(g.toMap())
@@ -123,6 +125,9 @@ func (g GatewayTemplate) toMap() map[string]any {
 	}
 	if g.GatewayMatching != nil {
 		structMap["gateway_matching"] = g.GatewayMatching.toMap()
+	}
+	if g.GatewayMgmt != nil {
+		structMap["gateway_mgmt"] = g.GatewayMgmt.toMap()
 	}
 	if g.Id != nil {
 		structMap["id"] = g.Id
@@ -203,7 +208,7 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vrf_config", "vrf_instances", "ssr_additional_config_cmds")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "additional_config_cmds", "bgp_config", "created_time", "dhcpd_config", "dnsOverride", "dns_servers", "dns_suffix", "extra_routes", "extra_routes6", "gateway_matching", "gateway_mgmt", "id", "idp_profiles", "ip_configs", "modified_time", "name", "networks", "ntpOverride", "ntp_servers", "oob_ip_config", "org_id", "path_preferences", "port_config", "router_id", "routing_policies", "service_policies", "tunnel_configs", "tunnel_provider_options", "type", "url_filtering_deny_msg", "vrf_config", "vrf_instances", "ssr_additional_config_cmds")
 	if err != nil {
 		return err
 	}
@@ -219,6 +224,7 @@ func (g *GatewayTemplate) UnmarshalJSON(input []byte) error {
 	g.ExtraRoutes = temp.ExtraRoutes
 	g.ExtraRoutes6 = temp.ExtraRoutes6
 	g.GatewayMatching = temp.GatewayMatching
+	g.GatewayMgmt = temp.GatewayMgmt
 	g.Id = temp.Id
 	g.IdpProfiles = temp.IdpProfiles
 	g.IpConfigs = temp.IpConfigs
@@ -256,6 +262,7 @@ type tempGatewayTemplate struct {
 	ExtraRoutes             map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
 	ExtraRoutes6            map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
 	GatewayMatching         *GatewayMatching                   `json:"gateway_matching,omitempty"`
+	GatewayMgmt             *GatewayMgmt                       `json:"gateway_mgmt,omitempty"`
 	Id                      *uuid.UUID                         `json:"id,omitempty"`
 	IdpProfiles             map[string]IdpProfile              `json:"idp_profiles,omitempty"`
 	IpConfigs               map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`

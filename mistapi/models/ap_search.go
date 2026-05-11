@@ -29,7 +29,7 @@ type ApSearch struct {
 	// Port speed of eth0
 	Eth0PortSpeed *int    `json:"eth0_port_speed,omitempty"`
 	ExtIp         *string `json:"ext_ip,omitempty"`
-	// Partial / full hostname
+	// List of hostnames detected for the AP
 	Hostname           []string `json:"hostname,omitempty"`
 	InactiveWiredVlans []int    `json:"inactive_wired_vlans,omitempty"`
 	// IP Address
