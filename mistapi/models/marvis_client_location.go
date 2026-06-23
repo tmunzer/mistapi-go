@@ -8,7 +8,9 @@ import (
 )
 
 // MarvisClientLocation represents a MarvisClientLocation struct.
+// Location collection settings for Marvis Client
 type MarvisClientLocation struct {
+	// Whether location collection is enabled for Marvis Client
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

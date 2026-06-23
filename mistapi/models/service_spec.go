@@ -8,6 +8,7 @@ import (
 )
 
 // ServiceSpec represents a ServiceSpec struct.
+// Protocol and port match rule for a custom service
 type ServiceSpec struct {
 	// Port number, port range, or variable
 	PortRange *string `json:"port_range,omitempty"`

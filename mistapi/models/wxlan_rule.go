@@ -11,11 +11,12 @@ import (
 )
 
 // WxlanRule represents a WxlanRule struct.
-// WXlan
+// WxLAN policy rule controlling traffic between WxLAN tags
 type WxlanRule struct {
 	// type of action, allow / block. enum: `allow`, `block`
-	Action    *WxlanRuleActionEnum `json:"action,omitempty"`
-	ApplyTags []string             `json:"apply_tags,omitempty"`
+	Action *WxlanRuleActionEnum `json:"action,omitempty"`
+	// WxLAN tag identifiers applied when a rule matches
+	ApplyTags []string `json:"apply_tags,omitempty"`
 	// Blocked apps (always blocking, ignoring action), the key of Get Application List
 	BlockedApps []string `json:"blocked_apps,omitempty"`
 	// When the object has been created, in epoch
@@ -26,15 +27,19 @@ type WxlanRule struct {
 	DstDenyWxtags []string `json:"dst_deny_wxtags,omitempty"`
 	// List of WxTag UUID
 	DstWxtags []string `json:"dst_wxtags,omitempty"`
-	Enabled   *bool    `json:"enabled,omitempty"`
-	ForSite   *bool    `json:"for_site,omitempty"`
+	// Whether this WxLAN rule is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether this WxLAN rule is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Order how rules would be looked up, > 0 and bigger order got matched first, -1 means LAST, uniqueness not checked
-	Order  int        `json:"order"`
-	OrgId  *uuid.UUID `json:"org_id,omitempty"`
+	// Lookup priority for WxLAN rules; larger positive values match first, and -1 means LAST. Uniqueness is not checked
+	Order int `json:"order"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// List of WxTag UUID to determine if this rule would match
 	SrcWxtags []string `json:"src_wxtags"`

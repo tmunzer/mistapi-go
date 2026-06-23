@@ -10,10 +10,15 @@ import (
 )
 
 // MxedgeUpgradeResponseCounts represents a MxedgeUpgradeResponseCounts struct.
+// Counts of Mist Edge upgrades by current status
 type MxedgeUpgradeResponseCounts struct {
-	Failed               int                    `json:"failed"`
-	Queued               int                    `json:"queued"`
-	Success              int                    `json:"success"`
+	// Number of Mist Edge upgrades that failed
+	Failed int `json:"failed"`
+	// Number of Mist Edge upgrades waiting to run
+	Queued int `json:"queued"`
+	// Number of Mist Edge upgrades completed successfully
+	Success int `json:"success"`
+	// Number of Mist Edge upgrades currently in progress
 	Upgrading            int                    `json:"upgrading"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

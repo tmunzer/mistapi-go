@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseGuestSearch represents a ResponseGuestSearch struct.
+// Paginated response for guest authorization search results
 type ResponseGuestSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []Guest                `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the guest authorization search window
+	End int `json:"end"`
+	// Maximum number of guest authorization records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of guest authorization records
+	Next *string `json:"next,omitempty"`
+	// Guest authorization records returned by a search response
+	Results []Guest `json:"results"`
+	// Epoch timestamp for the start of the guest authorization search window
+	Start int `json:"start"`
+	// Number of guest authorization records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

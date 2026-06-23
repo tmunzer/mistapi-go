@@ -8,17 +8,21 @@ import (
 )
 
 // JunosIpConfig represents a JunosIpConfig struct.
-// Junos IP Config
+// Junos management IP configuration
 type JunosIpConfig struct {
-	Dns       []string `json:"dns,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Dns []string `json:"dns,omitempty"`
+	// Unique string values returned or accepted by this schema
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	Gateway   *string  `json:"gateway,omitempty"`
-	Ip        *string  `json:"ip,omitempty"`
+	// Default gateway IPv4 address for this Junos IP configuration
+	Gateway *string `json:"gateway,omitempty"`
+	// Configured IPv4 address for this Junos IP configuration
+	Ip *string `json:"ip,omitempty"`
 	// Used only if `subnet` is not specified in `networks`
 	Netmask *string `json:"netmask,omitempty"`
-	// Network where this mgmt IP reside, this will be used as default network for outbound-ssh, dns, ntp, dns, tacplus, radius, syslog, snmp
+	// Management network for this IP configuration; used as the default source network for outbound SSH, DNS, NTP, TACACS+, RADIUS, syslog, and SNMP
 	Network *string `json:"network,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type                 *IpTypeEnum            `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

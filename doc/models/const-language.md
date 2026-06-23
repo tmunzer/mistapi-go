@@ -1,6 +1,8 @@
 
 # Const Language
 
+Language option returned by the constants API
+
 ## Structure
 
 `ConstLanguage`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Display` | `string` | Required | - |
-| `DisplayNative` | `string` | Required | - |
-| `Key` | `string` | Required | - |
+| `Display` | `string` | Required | Localized language display name in the API default locale |
+| `DisplayNative` | `string` | Required | Language display name in its native locale |
+| `Key` | `string` | Required | Locale key used to select this language |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "display": "English (US)",
-  "display_native": "English (US)",
-  "key": "en-US"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constLanguage := models.ConstLanguage{
+        Display:              "English (US)",
+        DisplayNative:        "English (US)",
+        Key:                  "en-US",
+    }
+
 }
 ```
 

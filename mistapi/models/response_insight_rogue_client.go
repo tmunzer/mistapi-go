@@ -10,11 +10,17 @@ import (
 )
 
 // ResponseInsightRogueClient represents a ResponseInsightRogueClient struct.
+// Paginated response for rogue client insight results
 type ResponseInsightRogueClient struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []InsightRogueClient   `json:"results"`
+	// Epoch timestamp for the end of the rogue client insight window
+	End int `json:"end"`
+	// Maximum number of rogue client observations returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of rogue client observations
+	Next *string `json:"next,omitempty"`
+	// Rogue client insight observations returned by a query
+	Results []InsightRogueClient `json:"results"`
+	// Epoch timestamp for the start of the rogue client insight window
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,6 +8,7 @@ import (
 )
 
 // NoteString represents a NoteString struct.
+// Request body containing a note value
 type NoteString struct {
 	// Some text note describing the intent
 	Note                 *string                `json:"note,omitempty"`

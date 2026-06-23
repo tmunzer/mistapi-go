@@ -11,13 +11,13 @@ import (
 )
 
 // Psk represents a Psk struct.
-// PSK
+// Personal pre-shared key configuration for WLAN access
 type Psk struct {
 	// sso id for psk created from psk portal
 	AdminSsoId *string `json:"admin_sso_id,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// email to send psk expiring notifications to
+	// Notification recipient email address for PSK creation notification and expiration reminders
 	Email *string `json:"email,omitempty"`
 	// Expire time for this PSK key (epoch time in seconds). Default `null` (as no expiration)
 	ExpireTime Optional[int] `json:"expire_time"`
@@ -25,28 +25,33 @@ type Psk struct {
 	ExpiryNotificationTime *int `json:"expiry_notification_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// If `usage`==`single`, the mac that this PSK ties to, empty if `auto-binding`
+	// If `usage`==`single`, client MAC address this PSK is bound to; empty when auto-binding is used
 	Mac *string `json:"mac,omitempty"`
-	// If `usage`==`macs`, this list contains N number of client mac addresses or mac patterns(1122*) or both. This list is capped at 5000
+	// If `usage`==`macs`, this list contains client MAC addresses, MAC patterns such as `1122*`, or both. This list is capped at 5000 entries
 	Macs []string `json:"macs,omitempty"`
 	// For Org PSK Only. Max concurrent users for this PSK key. Default is 0 (unlimited)
 	MaxUsage *int `json:"max_usage,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	Name         string   `json:"name"`
-	Note         *string  `json:"note,omitempty"`
+	// Display name of the PSK
+	Name string `json:"name"`
+	// Admin note or description stored with the PSK
+	Note *string `json:"note,omitempty"`
 	// If set to true, reminder notification will be sent when psk is about to expire
 	NotifyExpiry *bool `json:"notify_expiry,omitempty"`
 	// If set to true, notification will be sent when psk is created or edited
 	NotifyOnCreateOrEdit *bool `json:"notify_on_create_or_edit,omitempty"`
 	// previous passphrase of the PSK if it has been rotated
-	OldPassphrase *string    `json:"old_passphrase,omitempty"`
-	OrgId         *uuid.UUID `json:"org_id,omitempty"`
-	// passphrase of the PSK (8-63 character or 64 in hex)
-	Passphrase string     `json:"passphrase"`
-	Role       *string    `json:"role,omitempty"`
-	SiteId     *uuid.UUID `json:"site_id,omitempty"`
-	// SSID this PSK should be applicable to
+	OldPassphrase *string `json:"old_passphrase,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// PSK passphrase, 8-63 characters or 64 hexadecimal characters
+	Passphrase string `json:"passphrase"`
+	// Client role applied to users authenticated with this PSK
+	Role *string `json:"role,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// WLAN SSID where this PSK can be used
 	Ssid string `json:"ssid"`
 	// enum: `macs`, `multi`, `single`
 	Usage *PskUsageEnum `json:"usage,omitempty"`

@@ -1,6 +1,8 @@
 
 # Utils Zeroize Fips
 
+Request body for confirming FIPS AP zeroize operations
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Password` | `string` | Required | FIPS zeroize password |
+| `Password` | `string` | Required | Confirmation password for the FIPS zeroize operation |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "password": "password6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsZeroizeFips := models.UtilsZeroizeFips{
+        Password:             "password4",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

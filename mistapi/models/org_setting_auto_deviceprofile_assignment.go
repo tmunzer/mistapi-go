@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingAutoDeviceprofileAssignment represents a OrgSettingAutoDeviceprofileAssignment struct.
+// Automatic device profile assignment configuration
 type OrgSettingAutoDeviceprofileAssignment struct {
-	Enable               *bool                                    `json:"enable,omitempty"`
+	// Whether automatic device profile assignment is enabled
+	Enable *bool `json:"enable,omitempty"`
+	// Automatic device profile assignment rules, or null when automatic assignment is not configured
 	Rules                Optional[[]OrgSettingAutoAssignmentRule] `json:"rules"`
 	AdditionalProperties map[string]interface{}                   `json:"_"`
 }

@@ -8,6 +8,7 @@ import (
 )
 
 // SiteSettingAnalytic represents a SiteSettingAnalytic struct.
+// Advanced analytics feature settings for a site
 type SiteSettingAnalytic struct {
 	// Enable Advanced Analytic feature (using SUB-ANA license)
 	Enabled              *bool                  `json:"enabled,omitempty"`

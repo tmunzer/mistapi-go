@@ -16,7 +16,16 @@ webhook delivery status. enum: `failure`, `success`
 
 ## Example
 
-```
-failure
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookDeliveryStatus := models.WebhookDeliveryStatusEnum_FAILURE
+
+}
 ```
 

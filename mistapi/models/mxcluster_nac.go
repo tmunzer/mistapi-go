@@ -8,14 +8,19 @@ import (
 )
 
 // MxclusterNac represents a MxclusterNac struct.
+// Mist NAC RADIUS settings for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and the Mist NAC
 type MxclusterNac struct {
+	// RADIUS accounting port used by Mist NAC on the cluster
 	AcctServerPort *int `json:"acct_server_port,omitempty"`
+	// RADIUS authentication port used by Mist NAC on the cluster
 	AuthServerPort *int `json:"auth_server_port,omitempty"`
 	// Property key is the RADIUS Client IP/Subnet.
-	ClientIps            map[string]MxclusterNacClientIp `json:"client_ips,omitempty"`
-	Enabled              *bool                           `json:"enabled,omitempty"`
-	Secret               *string                         `json:"secret,omitempty"`
-	AdditionalProperties map[string]interface{}          `json:"_"`
+	ClientIps map[string]MxclusterNacClientIp `json:"client_ips,omitempty"`
+	// Whether Mist NAC is enabled on the cluster
+	Enabled *bool `json:"enabled,omitempty"`
+	// Shared RADIUS secret used by Mist NAC clients
+	Secret               *string                `json:"secret,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxclusterNac,

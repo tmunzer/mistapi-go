@@ -12,8 +12,9 @@ import (
 type WlanAppLimit struct {
 	// Map from app key to bandwidth in kbps.
 	// Property key is the app key, defined in Get Application List
-	Apps    map[string]int `json:"apps,omitempty"`
-	Enabled *bool          `json:"enabled,omitempty"`
+	Apps map[string]int `json:"apps,omitempty"`
+	// Whether application bandwidth limits are enabled for this WLAN
+	Enabled *bool `json:"enabled,omitempty"`
 	// Map from wxtag_id of Hostname Wxlan Tags to bandwidth in kbps. Property key is the `wxtag_id`
 	WxtagIds             map[string]int         `json:"wxtag_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

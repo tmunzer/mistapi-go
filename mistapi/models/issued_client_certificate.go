@@ -9,14 +9,19 @@ import (
 )
 
 // IssuedClientCertificate represents a IssuedClientCertificate struct.
+// Issued Mist SCEP client certificate metadata
 type IssuedClientCertificate struct {
+	// Certificate provider that issued this client certificate
 	CertProvider *string `json:"cert_provider,omitempty"`
-	CommonName   *string `json:"common_name,omitempty"`
-	// When the certificate has been created
-	CreatedTime *string    `json:"created_time,omitempty"`
-	DeviceId    *uuid.UUID `json:"device_id,omitempty"`
-	// When the certificate will expire
-	ExpireTime           *string                `json:"expire_time,omitempty"`
+	// Subject common name encoded in the issued client certificate
+	CommonName *string `json:"common_name,omitempty"`
+	// Certificate issuance time, in epoch seconds
+	CreatedTime *int `json:"created_time,omitempty"`
+	// Read-only UUID identifier for a device
+	DeviceId *uuid.UUID `json:"device_id,omitempty"`
+	// Certificate expiry time, in epoch seconds
+	ExpireTime *int `json:"expire_time,omitempty"`
+	// Certificate serial number used for lookup or revocation
 	SerialNumber         *string                `json:"serial_number,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -93,8 +98,8 @@ func (i *IssuedClientCertificate) UnmarshalJSON(input []byte) error {
 type tempIssuedClientCertificate struct {
 	CertProvider *string    `json:"cert_provider,omitempty"`
 	CommonName   *string    `json:"common_name,omitempty"`
-	CreatedTime  *string    `json:"created_time,omitempty"`
+	CreatedTime  *int       `json:"created_time,omitempty"`
 	DeviceId     *uuid.UUID `json:"device_id,omitempty"`
-	ExpireTime   *string    `json:"expire_time,omitempty"`
+	ExpireTime   *int       `json:"expire_time,omitempty"`
 	SerialNumber *string    `json:"serial_number,omitempty"`
 }

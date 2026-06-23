@@ -17,3 +17,18 @@ enum: `aggregate`, `bgp`, `direct`, `ospf`, `static` (SRX Only)
 | `ospf` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gwRoutingPolicyTermMatchingProtocolEnum := models.GwRoutingPolicyTermMatchingProtocolEnum_AGGREGATE
+
+}
+```
+

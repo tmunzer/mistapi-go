@@ -294,6 +294,8 @@ var sitesMapsAutoZone SitesMapsAutoZone
 
 var sitesMapStacks SitesMapStacks
 
+var sitesMarvisConfigs SitesMarvisConfigs
+
 var sitesMxEdges SitesMxEdges
 
 var sitesNetworkTemplates SitesNetworkTemplates
@@ -409,6 +411,8 @@ var utilitiesLocation UtilitiesLocation
 var utilitiesMxEdge UtilitiesMxEdge
 
 var utilitiesUpgrade UtilitiesUpgrade
+
+var orgsStatsMarvisClients OrgsStatsMarvisClients
 
 // init is an initialization function that sets up the controllers.
 // It creates a configuration from the environment with a specified HTTP configuration and initializes the client.
@@ -571,6 +575,7 @@ func init() {
 	sitesMapsAutoPlacement = *client.SitesMapsAutoPlacement()
 	sitesMapsAutoZone = *client.SitesMapsAutoZone()
 	sitesMapStacks = *client.SitesMapStacks()
+	sitesMarvisConfigs = *client.SitesMarvisConfigs()
 	sitesMxEdges = *client.SitesMxEdges()
 	sitesNetworkTemplates = *client.SitesNetworkTemplates()
 	sitesNetworks = *client.SitesNetworks()
@@ -629,4 +634,5 @@ func init() {
 	utilitiesLocation = *client.UtilitiesLocation()
 	utilitiesMxEdge = *client.UtilitiesMxEdge()
 	utilitiesUpgrade = *client.UtilitiesUpgrade()
+	orgsStatsMarvisClients = *client.OrgsStatsMarvisClients()
 }

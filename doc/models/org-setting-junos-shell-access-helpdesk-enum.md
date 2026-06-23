@@ -15,3 +15,18 @@ enum: `admin`, `viewer`, `none`
 | `none` |
 | `viewer` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingJunosShellAccessHelpdesk := models.OrgSettingJunosShellAccessHelpdeskEnum_VIEWER
+
+}
+```
+

@@ -30,18 +30,27 @@ Guest portal configuration when `type`==`guest_portal`. If
 | `MaxNumDevices` | `*int` | Optional | Maximum number of clients allowed per guest. 0 (default, unlimited), 1-100 range<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 100` |
 | `Privacy` | `*bool` | Optional | If `auth`==`none` or `auth`==`multi`, whether to show the privacy policy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "expire": 1440,
-  "external_portal_url": "https://yourorg.com/external-guest-portal",
-  "forward": true,
-  "forward_url": "https://yourorg.com/guest-portal-redirect",
-  "max_num_devices": 10,
-  "privacy": true,
-  "auth": "external",
-  "force_reconnect": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacPortalGuestPortal := models.NacPortalGuestPortal{
+        Auth:                 models.ToPointer(models.NacPortalGuestPortalAuthEnum_MULTI),
+        Expire:               models.ToPointer(1440),
+        ExternalPortalUrl:    models.ToPointer("https://yourorg.com/external-guest-portal"),
+        ForceReconnect:       models.ToPointer(false),
+        Forward:              models.ToPointer(true),
+        ForwardUrl:           models.ToPointer("https://yourorg.com/guest-portal-redirect"),
+        MaxNumDevices:        models.ToPointer(10),
+        Privacy:              models.ToPointer(true),
+    }
+
 }
 ```
 

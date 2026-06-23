@@ -1,6 +1,8 @@
 
 # Response Ssr Upgrade Status Targets
 
+SSR device IDs grouped by upgrade status
+
 ## Structure
 
 `ResponseSsrUpgradeStatusTargets`
@@ -9,33 +11,38 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Failed` | `[]string` | Required | **Constraints**: *Unique Items Required* |
-| `Queued` | `[]string` | Required | **Constraints**: *Unique Items Required* |
-| `Success` | `[]string` | Required | **Constraints**: *Unique Items Required* |
-| `Upgrading` | `[]string` | Required | **Constraints**: *Unique Items Required* |
+| `Failed` | `[]string` | Required | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Queued` | `[]string` | Required | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Success` | `[]string` | Required | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Upgrading` | `[]string` | Required | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "failed": [
-    "failed6",
-    "failed5"
-  ],
-  "queued": [
-    "queued8",
-    "queued9",
-    "queued0"
-  ],
-  "success": [
-    "success2",
-    "success3"
-  ],
-  "upgrading": [
-    "upgrading9",
-    "upgrading0",
-    "upgrading1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseSsrUpgradeStatusTargets := models.ResponseSsrUpgradeStatusTargets{
+        Failed:               []string{
+            "failed4",
+        },
+        Queued:               []string{
+            "queued6",
+        },
+        Success:              []string{
+            "success0",
+            "success1",
+            "success2",
+        },
+        Upgrading:            []string{
+            "upgrading7",
+        },
+    }
+
 }
 ```
 

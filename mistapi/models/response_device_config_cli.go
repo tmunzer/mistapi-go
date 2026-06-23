@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseDeviceConfigCli represents a ResponseDeviceConfigCli struct.
+// Device configuration rendered as CLI commands
 type ResponseDeviceConfigCli struct {
+	// Unique string values returned or accepted by this schema
 	Cli                  []string               `json:"cli"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

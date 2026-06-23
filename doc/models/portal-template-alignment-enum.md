@@ -15,3 +15,18 @@ defines alignment on portal. enum: `center`, `left`, `right`
 | `left` |
 | `right` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    portalTemplateAlignment := models.PortalTemplateAlignmentEnum_CENTER
+
+}
+```
+

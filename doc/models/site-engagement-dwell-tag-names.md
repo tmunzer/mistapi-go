@@ -1,7 +1,7 @@
 
 # Site Engagement Dwell Tag Names
 
-Name associated to each tag
+Display labels for engagement dwell-time categories
 
 ## Structure
 
@@ -11,19 +11,28 @@ Name associated to each tag
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Bounce` | `*string` | Optional | **Default**: `"Visitor"` |
-| `Engaged` | `*string` | Optional | **Default**: `"Associates"` |
-| `Passerby` | `*string` | Optional | **Default**: `"Passerby"` |
-| `Stationed` | `*string` | Optional | **Default**: `"Assets"` |
+| `Bounce` | `*string` | Optional | Display label for bounce visits<br><br>**Default**: `"Visitor"` |
+| `Engaged` | `*string` | Optional | Display label for engaged visits<br><br>**Default**: `"Associates"` |
+| `Passerby` | `*string` | Optional | Display label for passerby visits<br><br>**Default**: `"Passerby"` |
+| `Stationed` | `*string` | Optional | Display label for stationed visits<br><br>**Default**: `"Assets"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "bounce": "Bounce",
-  "engaged": "Engaged",
-  "passerby": "Passer By",
-  "stationed": "Stationed"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteEngagementDwellTagNames := models.SiteEngagementDwellTagNames{
+        Bounce:               models.ToPointer("Bounce"),
+        Engaged:              models.ToPointer("Engaged"),
+        Passerby:             models.ToPointer("Passer By"),
+        Stationed:            models.ToPointer("Stationed"),
+    }
+
 }
 ```
 

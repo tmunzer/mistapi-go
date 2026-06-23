@@ -1,6 +1,8 @@
 
 # Stats Mxedge Lag Stat
 
+Link aggregation group status for a Mist Edge
+
 ## Structure
 
 `StatsMxedgeLagStat`
@@ -11,15 +13,22 @@
 |  --- | --- | --- | --- |
 | `ActivePorts` | `[]string` | Optional | List of ports active on the LAG defined by the LACP |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "active_ports": [
-    "active_ports9",
-    "active_ports8",
-    "active_ports7"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgeLagStat := models.StatsMxedgeLagStat{
+        ActivePorts:          []string{
+            "active_ports9",
+        },
+    }
+
 }
 ```
 

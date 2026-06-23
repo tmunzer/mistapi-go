@@ -8,6 +8,7 @@ import (
 )
 
 // UpgradeSiteDevicesCounts represents a UpgradeSiteDevicesCounts struct.
+// Device counts grouped by status for a site upgrade job
 type UpgradeSiteDevicesCounts struct {
 	// Count of devices which cloud has requested to download firmware
 	DownloadRequested *int `json:"download_requested,omitempty"`

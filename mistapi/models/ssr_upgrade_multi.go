@@ -11,6 +11,7 @@ import (
 )
 
 // SsrUpgradeMulti represents a SsrUpgradeMulti struct.
+// Request to upgrade multiple SSR devices
 type SsrUpgradeMulti struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`

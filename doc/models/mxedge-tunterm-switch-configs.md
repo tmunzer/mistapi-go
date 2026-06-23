@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Switch Configs
 
-If custom vlan settings are desired
+Custom VLAN settings for tunnel termination switch ports, if desired; property key is the port identifier
 
 *This model accepts additional fields of type [models.MxedgeTuntermSwitchConfig](../../doc/models/mxedge-tunterm-switch-config.md).*
 
@@ -13,21 +13,32 @@ If custom vlan settings are desired
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
-| `AdditionalProperties` | [`map[string]models.MxedgeTuntermSwitchConfig`](../../doc/models/mxedge-tunterm-switch-config.md) | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether custom tunnel termination switch VLAN settings are enabled |
+| `AdditionalProperties` | [`map[string]models.MxedgeTuntermSwitchConfig`](../../doc/models/mxedge-tunterm-switch-config.md) | Optional | Switch VLAN settings for one tunnel termination port |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "exampleAdditionalProperty": {
-    "port_vlan_id": 176,
-    "vlan_ids": [
-      "String7",
-      "String8"
-    ]
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermSwitchConfigs := models.MxedgeTuntermSwitchConfigs{
+        Enabled:              models.ToPointer(false),
+        AdditionalProperties: map[string]models.MxedgeTuntermSwitchConfig{
+            "exampleAdditionalProperty": models.MxedgeTuntermSwitchConfig{
+                PortVlanId:           models.ToPointer(176),
+                VlanIds:              []models.VlanIdWithVariable{
+                    models.VlanIdWithVariableContainer.FromString("String7"),
+                    models.VlanIdWithVariableContainer.FromString("String8"),
+                },
+            },
+        },
+    }
+
 }
 ```
 

@@ -9,7 +9,9 @@ import (
 )
 
 // Msp represents a Msp struct.
+// Managed service provider account
 type Msp struct {
+	// Whether Mist support access is allowed for this MSP account
 	AllowMist *bool `json:"allow_mist,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -19,8 +21,9 @@ type Msp struct {
 	LogoUrl *string `json:"logo_url,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	Name         *string  `json:"name,omitempty"`
-	// enum: `advanced`, `base`
+	// Display name of the MSP account
+	Name *string `json:"name,omitempty"`
+	// Service tier for the MSP account. enum: `advanced`, `base`
 	Tier *MspTierEnum `json:"tier,omitempty"`
 	// For advanced tier (uMSPs) only
 	Url                  *string                `json:"url,omitempty"`

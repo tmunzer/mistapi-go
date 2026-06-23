@@ -1,7 +1,7 @@
 
 # Ip Type Enum
 
-enum: `dhcp`, `static`
+IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `dhcp`, `static`
 
 ## Example
 
-```
-static
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ipType := models.IpTypeEnum_DHCP
+
+}
 ```
 

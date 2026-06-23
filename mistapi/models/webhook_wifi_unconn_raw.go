@@ -20,8 +20,9 @@ import (
 // In order to get the location data for a client please see our location webhooks.
 // Clients can be identified uniquely across these client raw data topics and location webhook topic using MAC address as the Unique identifier (client identifier).
 type WebhookWifiUnconnRaw struct {
+	// Unconnected Wi-Fi raw packet events included in a webhook delivery
 	Events []WebhookWifiUnconnRawEvent `json:"events"`
-	// enum: `wifi-unconn-raw`
+	// Webhook topic name for unconnected Wi-Fi raw packet deliveries. enum: `wifi-unconn-raw`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

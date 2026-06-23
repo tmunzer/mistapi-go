@@ -12,31 +12,31 @@ import (
 type JsiPbnItem struct {
 	// Type of the bug (Day-1, Regression)
 	BugType *string `json:"bug_type,omitempty"`
-	// Risk level
+	// Customer impact risk level for the PBN advisory
 	CustomerRisk *string `json:"customer_risk,omitempty"`
 	// Release in which the issue was fixed
 	FixedIn *string `json:"fixed_in,omitempty"`
-	// ID of the PBN
+	// Unique PBN advisory identifier from Juniper Support Insights
 	Id *string `json:"id,omitempty"`
-	// Release introduced in
+	// Release where the PBN issue was introduced
 	IntroducedIn *string `json:"introduced_in,omitempty"`
-	// OS models affected
+	// Device models affected by the PBN issue
 	Models []string `json:"models,omitempty"`
-	// Product family affected
+	// Product family affected by the PBN issue
 	ProductFamily *string `json:"product_family,omitempty"`
 	// Release notes for this PBN
 	ReleaseNotes *string `json:"release_notes,omitempty"`
-	// Restoration steps
+	// Steps recommended to restore service or recover from the PBN issue
 	Restoration *string `json:"restoration,omitempty"`
-	// Title of the issue
+	// Summary title for the PBN issue
 	Title *string `json:"title,omitempty"`
-	// PBN updated timestamp
+	// Time when the PBN advisory was last updated
 	UpdatedDate *int `json:"updated_date,omitempty"`
-	// OS versions affected
+	// Software versions affected by the PBN issue
 	Versions []string `json:"versions,omitempty"`
-	// Workaround for this issue
+	// Mitigation or workaround guidance for the PBN issue
 	Workaround *string `json:"workaround,omitempty"`
-	// Any workaround available
+	// Indicator of whether workaround guidance is available
 	WorkaroundProvided   *string                `json:"workaround_provided,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

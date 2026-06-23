@@ -17,3 +17,18 @@
 | `80` |
 | `160` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rrmEventPreBandwidth := models.RrmEventPreBandwidthEnum_ENUM20
+
+}
+```
+

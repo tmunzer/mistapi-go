@@ -17,3 +17,18 @@ enum: `model`, `status`, `site_id`, `sku`, `version`
 | `sku` |
 | `version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    inventoryCountDistinct := models.InventoryCountDistinctEnum_SKU
+
+}
+```
+

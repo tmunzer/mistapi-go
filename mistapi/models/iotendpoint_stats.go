@@ -8,7 +8,7 @@ import (
 )
 
 // IotendpointStats represents a IotendpointStats struct.
-// IoT endpoint statistics
+// IoT endpoint statistics returned by a search response
 type IotendpointStats struct {
 	// MAC address of the AP the endpoint was seen on
 	ApMac *string `json:"ap_mac,omitempty"`
@@ -16,11 +16,11 @@ type IotendpointStats struct {
 	Id *string `json:"id,omitempty"`
 	// Link Quality Indicator (0–255)
 	Lqi *int `json:"lqi,omitempty"`
-	// MAC address of the IoT endpoint
+	// Endpoint MAC address reported in IoT statistics
 	Mac *string `json:"mac,omitempty"`
-	// Manufacturer name
+	// Manufacturer name reported for the IoT endpoint
 	Mfg *string `json:"mfg,omitempty"`
-	// Model name
+	// Device model reported for the IoT endpoint
 	Model *string `json:"model,omitempty"`
 	// Epoch timestamp of the last observation, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`

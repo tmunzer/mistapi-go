@@ -1,6 +1,8 @@
 
 # Sle Impact Summary Wlan Item
 
+SLE impact summary row for a WLAN
+
 ## Structure
 
 `SleImpactSummaryWlanItem`
@@ -9,21 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Degraded` | `float64` | Required | - |
-| `Duration` | `float64` | Required | - |
-| `Name` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Total` | `float64` | Required | - |
-| `WlanId` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
+| `Degraded` | `float64` | Required | Portion of the SLE total that was degraded for this WLAN |
+| `Duration` | `float64` | Required | Observation time represented by this WLAN impact row |
+| `Name` | `string` | Required | Display name for the WLAN impact row<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Total` | `float64` | Required | Overall SLE total measured for this WLAN impact row |
+| `WlanId` | `string` | Required | Identifier of the WLAN represented by this impact row<br><br>**Constraints**: *Minimum Length*: `1` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "degraded": 245.48,
-  "duration": 118.54,
-  "name": "name8",
-  "total": 238.52,
-  "wlan_id": "wlan_id0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sleImpactSummaryWlanItem := models.SleImpactSummaryWlanItem{
+        Degraded:             float64(133.6),
+        Duration:             float64(6.66),
+        Name:                 "name0",
+        Total:                float64(94.4),
+        WlanId:               "wlan_id2",
+    }
+
 }
 ```
 

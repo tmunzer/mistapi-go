@@ -8,10 +8,11 @@ import (
 )
 
 // UtilsClearArp represents a UtilsClearArp struct.
+// Request to clear ARP entries on a device
 type UtilsClearArp struct {
 	// The IP address for which to clear an ARP entry. port_id must be specified.
 	Ip *string `json:"ip,omitempty"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
 	// The device interface on which to clear the ARP cache.
 	PortId *string `json:"port_id,omitempty"`

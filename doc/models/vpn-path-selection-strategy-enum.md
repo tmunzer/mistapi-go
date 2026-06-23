@@ -15,3 +15,18 @@ enum: `disabled`, `simple`, `manual`
 | `simple` |
 | `manual` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vpnPathSelectionStrategy := models.VpnPathSelectionStrategyEnum_DISABLED
+
+}
+```
+

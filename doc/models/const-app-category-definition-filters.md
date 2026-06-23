@@ -1,6 +1,8 @@
 
 # Const App Category Definition Filters
 
+Platform-specific application category filters
+
 ## Structure
 
 `ConstAppCategoryDefinitionFilters`
@@ -9,22 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Srx` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Ssr` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Srx` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Ssr` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "srx": [
-    "Enhanced_Images_Media",
-    "Enhanced_Web_Images",
-    "Enhanced_Image_Servers"
-  ],
-  "ssr": [
-    "ssr8",
-    "ssr9"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constAppCategoryDefinitionFilters := models.ConstAppCategoryDefinitionFilters{
+        Srx:                  []string{
+            "Enhanced_Images_Media",
+            "Enhanced_Web_Images",
+            "Enhanced_Image_Servers",
+        },
+        Ssr:                  []string{
+            "ssr6",
+        },
+    }
+
 }
 ```
 

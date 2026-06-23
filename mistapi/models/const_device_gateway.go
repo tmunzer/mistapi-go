@@ -10,31 +10,50 @@ import (
 )
 
 // ConstDeviceGateway represents a ConstDeviceGateway struct.
+// Gateway model capability definition returned by the constants API
 type ConstDeviceGateway struct {
 	// Object Key is the interface type name (e.g. "lan_ports", "wan_ports", ...)
-	Defaults             map[string]string `json:"defaults,omitempty"`
-	Description          *string           `json:"description,omitempty"`
-	Experimental         *bool             `json:"experimental,omitempty"`
-	FansPluggable        *bool             `json:"fans_pluggable,omitempty"`
-	HaNode0Fpc           *int              `json:"ha_node0_fpc,omitempty"`
-	HaNode1Fpc           *int              `json:"ha_node1_fpc,omitempty"`
-	HasBgp               *bool             `json:"has_bgp,omitempty"`
-	HasFxp0              *bool             `json:"has_fxp0,omitempty"`
-	HasHaControl         *bool             `json:"has_ha_control,omitempty"`
-	HasHaData            *bool             `json:"has_ha_data,omitempty"`
-	HasIrb               *bool             `json:"has_irb,omitempty"`
-	HasPoeOut            *bool             `json:"has_poe_out,omitempty"`
-	HasSnapshot          *bool             `json:"has_snapshot,omitempty"`
-	IrbDisabledByDefault *bool             `json:"irb_disabled_by_default,omitempty"`
-	Model                *string           `json:"model,omitempty"`
-	NumberFans           *int              `json:"number_fans,omitempty"`
-	OcDevice             *bool             `json:"oc_device,omitempty"`
+	Defaults map[string]string `json:"defaults,omitempty"`
+	// Product description for the gateway model
+	Description *string `json:"description,omitempty"`
+	// Whether this gateway model is marked experimental in the constants catalog
+	Experimental *bool `json:"experimental,omitempty"`
+	// Whether the gateway model has field-replaceable fans
+	FansPluggable *bool `json:"fans_pluggable,omitempty"`
+	// FPC number used for node0 in HA deployments
+	HaNode0Fpc *int `json:"ha_node0_fpc,omitempty"`
+	// FPC number used for node1 in HA deployments
+	HaNode1Fpc *int `json:"ha_node1_fpc,omitempty"`
+	// Whether the gateway model supports BGP
+	HasBgp *bool `json:"has_bgp,omitempty"`
+	// Whether the gateway model includes an fxp0 management interface
+	HasFxp0 *bool `json:"has_fxp0,omitempty"`
+	// Whether the gateway model has a dedicated HA control port
+	HasHaControl *bool `json:"has_ha_control,omitempty"`
+	// Whether the gateway model has dedicated HA data ports
+	HasHaData *bool `json:"has_ha_data,omitempty"`
+	// Whether the gateway model supports IRB interfaces
+	HasIrb *bool `json:"has_irb,omitempty"`
+	// Whether the gateway model supports PoE output
+	HasPoeOut *bool `json:"has_poe_out,omitempty"`
+	// Whether the gateway model supports configuration snapshots
+	HasSnapshot *bool `json:"has_snapshot,omitempty"`
+	// Whether IRB interfaces are disabled by default on this gateway model
+	IrbDisabledByDefault *bool `json:"irb_disabled_by_default,omitempty"`
+	// Gateway model identifier for this capability definition
+	Model *string `json:"model,omitempty"`
+	// Number of fans in the gateway model
+	NumberFans *int `json:"number_fans,omitempty"`
+	// Whether this gateway model is identified as an OpenConfig-managed device
+	OcDevice *bool `json:"oc_device,omitempty"`
 	// Object Key is the PIC number
 	Pic map[string]string `json:"pic,omitempty"`
 	// Object Key is the interface name (e.g. "ge-0/0/1", ...)
-	Ports       *ConstDeviceGatewayPorts `json:"ports,omitempty"`
-	SubRequired *string                  `json:"sub_required,omitempty"`
-	T128Device  *bool                    `json:"t128_device,omitempty"`
+	Ports *ConstDeviceGatewayPorts `json:"ports,omitempty"`
+	// Subscription type required for this gateway model
+	SubRequired *string `json:"sub_required,omitempty"`
+	// Whether this gateway model is a 128 Technology or SSR device
+	T128Device *bool `json:"t128_device,omitempty"`
 	// Device Type. enum: `gateway`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`

@@ -10,7 +10,7 @@ import (
 )
 
 // WlanAuth represents a WlanAuth struct.
-// Authentication wlan settings
+// WLAN client authentication settings
 type WlanAuth struct {
 	// SAE anti-clogging token threshold
 	AnticlogThreshold *int `json:"anticlog_threshold,omitempty"`
@@ -22,7 +22,7 @@ type WlanAuth struct {
 	EnableGcmp256 *bool `json:"enable_gcmp256,omitempty"`
 	// Whether to enable MAC Auth, uses the same auth_servers
 	EnableMacAuth *bool `json:"enable_mac_auth,omitempty"`
-	// When `type`==`wep`
+	// When `type`==`wep`, index of the WEP key used as the default transmit key
 	KeyIdx *int `json:"key_idx,omitempty"`
 	// When type=wep, four 10-character or 26-character hex string, null can be used. All keys, if provided, have to be in the same length
 	Keys []string `json:"keys,omitempty"`

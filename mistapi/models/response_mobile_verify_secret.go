@@ -11,9 +11,13 @@ import (
 )
 
 // ResponseMobileVerifySecret represents a ResponseMobileVerifySecret struct.
+// Mobile SDK invite verification response
 type ResponseMobileVerifySecret struct {
-	Name                 string                 `json:"name"`
-	OrgId                uuid.UUID              `json:"org_id"`
+	// Organization display name associated with the verified SDK invite
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Device-specific secret returned for mobile SDK activation
 	Secret               string                 `json:"secret"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

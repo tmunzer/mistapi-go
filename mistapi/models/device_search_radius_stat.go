@@ -8,12 +8,13 @@ import (
 )
 
 // DeviceSearchRadiusStat represents a DeviceSearchRadiusStat struct.
+// RADIUS authentication counters and server status for a device search result
 type DeviceSearchRadiusStat struct {
 	// Number of accepted authentication requests
 	AuthAccepts *int `json:"auth_accepts,omitempty"`
 	// Number of rejected authentication requests
 	AuthRejects *int `json:"auth_rejects,omitempty"`
-	// Status of the device search radius filter. enum: `up`, `down`, `unreachable`
+	// Status of the device search RADIUS filter. enum: `up`, `down`, `unreachable`
 	AuthServerStatus *DeviceSearchRadiusFilterStatusEnum `json:"auth_server_status,omitempty"`
 	// Number of authentication timeouts
 	AuthTimeouts         *int                   `json:"auth_timeouts,omitempty"`

@@ -8,10 +8,13 @@ import (
 )
 
 // MxedgeTuntermIgmpSnoopingConfig represents a MxedgeTuntermIgmpSnoopingConfig struct.
+// IGMP snooping settings for Mist Tunnel VLANs
 type MxedgeTuntermIgmpSnoopingConfig struct {
+	// Whether IGMP snooping is enabled for the configured VLANs
 	Enabled *MxedgeTuntermIgmpSnoopingConfigEnabled `json:"enabled,omitempty"`
-	Querier *MxedgeTuntermIgmpSnoopingQuerier       `json:"querier,omitempty"`
-	// List of vlans on which tunterm performs IGMP snooping
+	// IGMP querier settings for tunnel termination
+	Querier *MxedgeTuntermIgmpSnoopingQuerier `json:"querier,omitempty"`
+	// List of VLAN IDs where tunnel termination performs IGMP snooping
 	VlanIds              *MxedgeTuntermIgmpSnoopingConfigVlanIds `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{}                  `json:"_"`
 }

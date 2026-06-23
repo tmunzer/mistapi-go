@@ -8,6 +8,7 @@ import (
 )
 
 // NetworkVpnAccessConfig represents a NetworkVpnAccessConfig struct.
+// VPN access settings for a network and VPN pair
 type NetworkVpnAccessConfig struct {
 	// If `routed`==`true`, whether to advertise an aggregated subnet toward HUB this is useful when there are multiple networks on SPOKE's side
 	AdvertisedSubnet *string `json:"advertised_subnet,omitempty"`
@@ -29,7 +30,7 @@ type NetworkVpnAccessConfig struct {
 	Routed *bool `json:"routed,omitempty"`
 	// If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable from Hub
 	SourceNat *NetworkSourceNat `json:"source_nat,omitempty"`
-	// Property key may be an External IP Address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}")
+	// Property key may be an External IP address (i.e. "63.16.0.3"), a CIDR (i.e. "63.16.0.12/20") or a Variable (i.e. "{{myvar}}")
 	StaticNat map[string]NetworkVpnAccessStaticNatProperty `json:"static_nat,omitempty"`
 	// toward overlay, how HUB should deal with routes it received from Spokes
 	SummarizedSubnet *string `json:"summarized_subnet,omitempty"`

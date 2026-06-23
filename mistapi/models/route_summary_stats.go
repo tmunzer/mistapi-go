@@ -8,12 +8,17 @@ import (
 )
 
 // RouteSummaryStats represents a RouteSummaryStats struct.
+// Route table capacity and usage summary
 type RouteSummaryStats struct {
-	FibRoutes                 *int                   `json:"fib_routes,omitempty"`
-	MaxUnicastRoutesSupported *int                   `json:"max_unicast_routes_supported,omitempty"`
-	RibRoutes                 *int                   `json:"rib_routes,omitempty"`
-	TotalRoutes               *int                   `json:"total_routes,omitempty"`
-	AdditionalProperties      map[string]interface{} `json:"_"`
+	// Number of routes installed in the forwarding information base
+	FibRoutes *int `json:"fib_routes,omitempty"`
+	// Supported maximum number of unicast routes
+	MaxUnicastRoutesSupported *int `json:"max_unicast_routes_supported,omitempty"`
+	// Number of routes present in the routing information base
+	RibRoutes *int `json:"rib_routes,omitempty"`
+	// Aggregate number of routes reported by the device
+	TotalRoutes          *int                   `json:"total_routes,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for RouteSummaryStats,

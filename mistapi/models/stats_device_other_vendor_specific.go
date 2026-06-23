@@ -8,9 +8,11 @@ import (
 )
 
 // StatsDeviceOtherVendorSpecific represents a StatsDeviceOtherVendorSpecific struct.
-// When `vendor`==`cradlepoint`
+// When `vendor`==`cradlepoint`, contains Cradlepoint-specific statistics reported for the other device
 type StatsDeviceOtherVendorSpecific struct {
+    // Cradlepoint interface statistics keyed by vendor interface identifier
     Interfaces           map[string]StatsDeviceOtherVendorSpecificPort `json:"interfaces,omitempty"`
+    // Cradlepoint software version targeted for the device
     TargetVersion        *string                                       `json:"target_version,omitempty"`
     AdditionalProperties map[string]interface{}                        `json:"_"`
 }

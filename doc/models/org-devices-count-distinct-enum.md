@@ -24,3 +24,18 @@ enum: `hostname`, `ip`, `lldp_mgmt_addr`, `lldp_port_id`, `lldp_system_desc`, `l
 | `site_id` |
 | `version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgDevicesCountDistinct := models.OrgDevicesCountDistinctEnum_LLDPSYSTEMDESC
+
+}
+```
+

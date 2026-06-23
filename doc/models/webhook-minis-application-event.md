@@ -1,6 +1,8 @@
 
 # Webhook Minis Application Event
 
+Marvis Minis application synthetic test result
+
 ## Structure
 
 `WebhookMinisApplicationEvent`
@@ -10,31 +12,41 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DeviceMac` | `*string` | Optional | MAC address of the device |
-| `Ip` | `*string` | Optional | IP address test was performed to |
-| `Latency` | `*int` | Optional | latency in milliseconds |
-| `OrgId` | `*uuid.UUID` | Optional | - |
+| `Ip` | `*string` | Optional | Destination IP address used for the application test |
+| `Latency` | `*int` | Optional | Application test latency measured in milliseconds |
+| `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
 | `ProbeName` | `*string` | Optional | Name of the probe |
-| `ProbeType` | `*string` | Optional | Type of probe |
-| `SiteId` | `*uuid.UUID` | Optional | - |
+| `ProbeType` | `*string` | Optional | Probe category used for the Minis application test |
+| `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `SrcIp` | `*string` | Optional | Source IP address of the test |
 | `Success` | `*bool` | Optional | Whether the test was successful |
 | `TestType` | [`*models.SynthetictestConfigCustomProbeTypeEnum`](../../doc/models/synthetictest-config-custom-probe-type-enum.md) | Optional | enum: `application`, `curl`, `icmp`, `reachability`, `tcp`<br><br>**Default**: `"icmp"` |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `Vlan` | `*int` | Optional | VLAN ID used for the test |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
+| `Vlan` | `*int` | Optional | Network VLAN ID used for the application test |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "probe_name": "connectivitycheck.gstatic.com",
-  "probe_type": "application",
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "test_type": "icmp",
-  "vlan": 12,
-  "device_mac": "device_mac2",
-  "ip": "ip2",
-  "latency": 36
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookMinisApplicationEvent := models.WebhookMinisApplicationEvent{
+        DeviceMac:            models.ToPointer("device_mac0"),
+        Ip:                   models.ToPointer("ip0"),
+        Latency:              models.ToPointer(106),
+        OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+        ProbeName:            models.ToPointer("connectivitycheck.gstatic.com"),
+        ProbeType:            models.ToPointer("application"),
+        SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+        TestType:             models.ToPointer(models.SynthetictestConfigCustomProbeTypeEnum_ICMP),
+        Vlan:                 models.ToPointer(12),
+    }
+
 }
 ```
 

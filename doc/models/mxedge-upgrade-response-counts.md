@@ -1,6 +1,8 @@
 
 # Mxedge Upgrade Response Counts
 
+Counts of Mist Edge upgrades by current status
+
 ## Structure
 
 `MxedgeUpgradeResponseCounts`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Failed` | `int` | Required | - |
-| `Queued` | `int` | Required | - |
-| `Success` | `int` | Required | - |
-| `Upgrading` | `int` | Required | - |
+| `Failed` | `int` | Required | Number of Mist Edge upgrades that failed |
+| `Queued` | `int` | Required | Number of Mist Edge upgrades waiting to run |
+| `Success` | `int` | Required | Number of Mist Edge upgrades completed successfully |
+| `Upgrading` | `int` | Required | Number of Mist Edge upgrades currently in progress |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "failed": 68,
-  "queued": 120,
-  "success": 188,
-  "upgrading": 210
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeUpgradeResponseCounts := models.MxedgeUpgradeResponseCounts{
+        Failed:               142,
+        Queued:               46,
+        Success:              114,
+        Upgrading:            136,
+    }
+
 }
 ```
 

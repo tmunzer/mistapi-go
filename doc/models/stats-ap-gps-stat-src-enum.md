@@ -15,3 +15,18 @@ The origin of the GPS data. enum: `gps`: from this device GPS estimates, `other_
 | `other_ap` |
 | `other_aps` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApGpsStatSrc := models.StatsApGpsStatSrcEnum_OTHERAP
+
+}
+```
+

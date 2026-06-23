@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseCount represents a ResponseCount struct.
+// Distinct count response for time-bounded search results
 type ResponseCount struct {
-	Distinct             string                 `json:"distinct"`
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Results              []CountResult          `json:"results"`
-	Start                int                    `json:"start"`
+	// Field used to group the count results
+	Distinct string `json:"distinct"`
+	// Search window end timestamp for the count request, in epoch seconds
+	End int `json:"end"`
+	// Maximum number of distinct count results requested
+	Limit int `json:"limit"`
+	// List of count result rows
+	Results []CountResult `json:"results"`
+	// Search window start timestamp for the count request, in epoch seconds
+	Start int `json:"start"`
+	// Number of distinct result buckets returned
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

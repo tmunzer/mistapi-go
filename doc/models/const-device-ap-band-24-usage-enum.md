@@ -15,3 +15,18 @@ enum: `24`, `5`, `6`
 | `5` |
 | `6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constDeviceApBand24Usage := models.ConstDeviceApBand24UsageEnum_ENUM24
+
+}
+```
+

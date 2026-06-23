@@ -13,3 +13,18 @@ Device Type. enum: `switch`
 |  --- |
 | `switch` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constDeviceTypeSwitch := models.ConstDeviceTypeSwitchEnum_ENUMSWITCH
+
+}
+```
+

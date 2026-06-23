@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseAssignSuccess represents a ResponseAssignSuccess struct.
+// Assignment operation success response
 type ResponseAssignSuccess struct {
+	// Unique string values returned or accepted by this schema
 	Success              []string               `json:"success"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

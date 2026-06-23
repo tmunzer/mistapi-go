@@ -8,6 +8,7 @@ import (
 )
 
 // TicketUploadAttachmentsFile represents a TicketUploadAttachmentsFile struct.
+// Multipart upload payload containing a ticket attachment file
 type TicketUploadAttachmentsFile struct {
 	// Ekahau or ibwave file
 	File                 *[]byte                `json:"file,omitempty"`

@@ -22,3 +22,18 @@ enum: `crowdstrike`, `intune`, `jamf`, `mobicontrol`, `prisma`, `sentinelone`, `
 | `zdx` |
 | `zoom` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    oauthAppName := models.OauthAppNameEnum_CROWDSTRIKE
+
+}
+```
+

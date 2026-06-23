@@ -8,8 +8,11 @@ import (
 )
 
 // StatsClusterConfigEthernetConnectionItem represents a StatsClusterConfigEthernetConnectionItem struct.
+// Ethernet interface connection state for a gateway cluster member
 type StatsClusterConfigEthernetConnectionItem struct {
-	Name                 *string                `json:"name,omitempty"`
+	// Ethernet interface name reported for cluster connectivity
+	Name *string `json:"name,omitempty"`
+	// Operational state reported for the Ethernet interface
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

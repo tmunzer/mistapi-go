@@ -11,29 +11,31 @@ import (
 )
 
 // StatsWiredClient represents a StatsWiredClient struct.
+// Wired client statistics for a client connected through an AP Ethernet port
 type StatsWiredClient struct {
-	// Client authorization status
+	// Authorization state reported for the wired client
 	AuthState *string `json:"auth_state,omitempty"`
-	// Device ID the client is connected to
+	// Identifier of the AP the wired client is connected to
 	DeviceId *string `json:"device_id,omitempty"`
-	// Port on AP where the wired client is connected
+	// AP Ethernet port where the wired client is connected
 	EthPort *string `json:"eth_port,omitempty"`
-	// Time when last Tx/Rx observed
+	// Time when transmit or receive traffic was last observed for the wired client
 	LastSeen *float64 `json:"last_seen,omitempty"`
-	// Client mac
+	// Wired client MAC address observed on the AP Ethernet port
 	Mac string `json:"mac"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	SiteId *uuid.UUID      `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
-	// How long, in seconds, has the client been connected
+	// Elapsed time since the wired client connected, in seconds
 	Uptime *float64 `json:"uptime,omitempty"`
-	// VLAN id, could be empty
+	// VLAN identifier used by the wired client, when present
 	VlanId               *float64               `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

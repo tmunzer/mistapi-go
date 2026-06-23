@@ -11,48 +11,67 @@ import (
 )
 
 // DeviceEvent represents a DeviceEvent struct.
+// Device event payload returned by search and webhook APIs
 type DeviceEvent struct {
-	// (will be deprecated soon; please use mac instead) ap mac
-	Ap *string `json:"ap,omitempty"`
-	// (will be deprecated soon; please use device_name instead) ap name
-	ApName *string `json:"ap_name,omitempty"`
-	Apfw   *string `json:"apfw,omitempty"`
+	// Deprecated AP MAC address field; use `mac` instead
+	Ap *string `json:"ap,omitempty"` // Deprecated
+	// Deprecated AP name field; use `device_name` instead
+	ApName *string `json:"ap_name,omitempty"` // Deprecated
+	// AP firmware version associated with the device event
+	Apfw *string `json:"apfw,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	AuditId    *uuid.UUID `json:"audit_id,omitempty"`
-	Bandwidth  *int       `json:"bandwidth,omitempty"`
-	Channel    *int       `json:"channel,omitempty"`
-	ChassisMac *string    `json:"chassis_mac,omitempty"`
-	Count      *int       `json:"count,omitempty"`
-	// Device name
+	AuditId *uuid.UUID `json:"audit_id,omitempty"`
+	// Channel bandwidth associated with a radio event, in MHz
+	Bandwidth *int `json:"bandwidth,omitempty"`
+	// RF channel associated with the device event
+	Channel *int `json:"channel,omitempty"`
+	// Chassis MAC address associated with the device event
+	ChassisMac *string `json:"chassis_mac,omitempty"`
+	// Event count reported in the device event payload
+	Count *int `json:"count,omitempty"`
+	// Name of the device associated with the event
 	DeviceName *string `json:"device_name,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	DeviceType *DeviceTypeEnum `json:"device_type,omitempty"`
 	// (optional) event advisory. enum: `notice`, `warn`
 	EvType *WebhookDeviceEventsEventEvTypeEnum `json:"ev_type,omitempty"`
-	ExtIp  *string                             `json:"ext_ip,omitempty"`
-	// Device mac
-	Mac          *string   `json:"mac,omitempty"`
-	Model        *string   `json:"model,omitempty"`
-	Node         *string   `json:"node,omitempty"`
-	OrgId        uuid.UUID `json:"org_id"`
-	PortId       *string   `json:"port_id,omitempty"`
-	Power        *int      `json:"power,omitempty"`
-	PreBandwidth *int      `json:"pre_bandwidth,omitempty"`
-	PreChannel   *int      `json:"pre_channel,omitempty"`
-	PrePower     *int      `json:"pre_power,omitempty"`
-	PreUsage     *int      `json:"pre_usage,omitempty"`
-	// (optional) event reason
-	Reason *string    `json:"reason,omitempty"`
+	// External IP address reported for the device event
+	ExtIp *string `json:"ext_ip,omitempty"`
+	// Device MAC address associated with the event
+	Mac *string `json:"mac,omitempty"`
+	// Device model associated with the event
+	Model *string `json:"model,omitempty"`
+	// Cluster node identifier associated with the device event
+	Node *string `json:"node,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Port identifier associated with the device event
+	PortId *string `json:"port_id,omitempty"`
+	// Transmit power associated with a radio event
+	Power *int `json:"power,omitempty"`
+	// Previous channel bandwidth before an RRM change, in MHz
+	PreBandwidth *int `json:"pre_bandwidth,omitempty"`
+	// Previous RF channel before an RRM change
+	PreChannel *int `json:"pre_channel,omitempty"`
+	// Previous transmit power before an RRM change
+	PrePower *int `json:"pre_power,omitempty"`
+	// Previous radio usage band before an RRM change
+	PreUsage *int `json:"pre_usage,omitempty"`
+	// Optional reason text reported for the device event
+	Reason *string `json:"reason,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// Site name
+	// Name of the site associated with the event
 	SiteName *string `json:"site_name,omitempty"`
-	// (optional) event description
+	// Optional human-readable text for the device event
 	Text *string `json:"text,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	// Event type
-	Type                 string                 `json:"type"`
-	Usage                *int                   `json:"usage,omitempty"`
+	// Device event type key
+	Type string `json:"type"`
+	// Current radio usage band for an RRM event
+	Usage *int `json:"usage,omitempty"`
+	// Firmware or software version associated with the device event
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

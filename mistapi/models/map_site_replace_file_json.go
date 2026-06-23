@@ -8,6 +8,7 @@ import (
 )
 
 // MapSiteReplaceFileJson represents a MapSiteReplaceFileJson struct.
+// Options for replacing a site map image
 type MapSiteReplaceFileJson struct {
 	// If `transform` is provided, all the locations of the objects on the map (AP, Zone, Vbeacon, Beacon) will be transformed as well (relative to the new Map)
 	Transform            *MapSiteReplaceFileJsonTransform `json:"transform,omitempty"`

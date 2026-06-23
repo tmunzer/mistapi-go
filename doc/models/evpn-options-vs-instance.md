@@ -1,6 +1,8 @@
 
 # Evpn Options Vs Instance
 
+EVPN virtual-switch instance network mapping
+
 ## Structure
 
 `EvpnOptionsVsInstance`
@@ -9,16 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Networks` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Networks` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "networks": [
-    "networks0",
-    "networks1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnOptionsVsInstance := models.EvpnOptionsVsInstance{
+        Networks:             []string{
+            "networks0",
+        },
+    }
+
 }
 ```
 

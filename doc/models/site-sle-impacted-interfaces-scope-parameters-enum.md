@@ -15,3 +15,18 @@ enum: `gateway`, `site`, `switch`
 | `site` |
 | `switch` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSleImpactedInterfacesScopeParameters := models.SiteSleImpactedInterfacesScopeParametersEnum_SITE
+
+}
+```
+

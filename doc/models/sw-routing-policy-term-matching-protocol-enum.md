@@ -17,3 +17,18 @@ enum: `bgp`, `direct`, `evpn`, `ospf`, `static`
 | `ospf` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    swRoutingPolicyTermMatchingProtocolEnum := models.SwRoutingPolicyTermMatchingProtocolEnum_DIRECT
+
+}
+```
+

@@ -26,7 +26,7 @@ func NewSitesClientsWan(baseController baseController) *SitesClientsWan {
 // CountSiteWanClientEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Site WAN Client-Events
+// Count WAN client events for a site, optionally grouped by the `distinct` field and filtered by event type and time range. Use [Count Org WAN Client Events]($e/Orgs%20Clients%20-%20Wan/countOrgWanClientEvents) to count WAN client events across the organization.
 func (s *SitesClientsWan) CountSiteWanClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -43,19 +43,15 @@ func (s *SitesClientsWan) CountSiteWanClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -89,7 +85,7 @@ func (s *SitesClientsWan) CountSiteWanClientEvents(
 // CountSiteWanClients takes context, siteId, distinct, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Site WAN Clients
+// Count WAN clients for a site, optionally grouped by the `distinct` field and filtered by time range. Use [Count Org WAN Clients]($e/Orgs%20Clients%20-%20Wan/countOrgWanClients) to count WAN clients across the organization.
 func (s *SitesClientsWan) CountSiteWanClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -105,19 +101,15 @@ func (s *SitesClientsWan) CountSiteWanClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -148,7 +140,7 @@ func (s *SitesClientsWan) CountSiteWanClients(
 // SearchSiteWanClientEvents takes context, siteId, mType, mac, hostname, ip, mfg, nacruleId, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchEventsWanClient data and
 // an error if there was an issue with the request or response.
-// Search Site WAN Client Events
+// Search WAN client events for a site with filters for client identity, manufacturer, NAC rule, event type, and time range. Use [Search Org WAN Client Events]($e/Orgs%20Clients%20-%20Wan/searchOrgWanClientEvents) to search WAN client events across the organization.
 func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -171,19 +163,15 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)
@@ -235,7 +223,7 @@ func (s *SitesClientsWan) SearchSiteWanClientEvents(
 // SearchSiteWanClients takes context, siteId, hostname, ip, ipSrc, mac, mfg, network, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.SearchWanClient data and
 // an error if there was an issue with the request or response.
-// Search Site WAN Clients
+// Search WAN clients for a site with filters for hostname, IP address, source IP, MAC address, manufacturer, network, and time range. Use [Search Org WAN Clients]($e/Orgs%20Clients%20-%20Wan/searchOrgWanClients) to search WAN clients across the organization.
 func (s *SitesClientsWan) SearchSiteWanClients(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -258,19 +246,15 @@ func (s *SitesClientsWan) SearchSiteWanClients(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if hostname != nil {
 		req.QueryParam("hostname", *hostname)

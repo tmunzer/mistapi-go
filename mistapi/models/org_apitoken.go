@@ -11,21 +11,23 @@ import (
 )
 
 // OrgApitoken represents a OrgApitoken struct.
-// Org API Token
+// Organization API token with scoped privileges
 // **Note:**
-// `privilege` field is required to create the object, but may not be
-// returned in the POST API Response (only in the afterward GET)
+// `privileges` is required to create the object, but may not be returned in the POST API response. Retrieve the token afterward to inspect it.
 type OrgApitoken struct {
 	// email of the token creator / null if creator is deleted
 	CreatedBy Optional[string] `json:"created_by"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id       *uuid.UUID        `json:"id,omitempty"`
-	Key      *string           `json:"key,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Token secret key. The full API Token is only returned when the API token is created and can only be partially retrieved afterward
+	Key *string `json:"key,omitempty"`
+	// Epoch timestamp when the token was last used, or null if it has not been used
 	LastUsed Optional[float64] `json:"last_used"`
-	// Name of the token
-	Name  string     `json:"name"`
+	// Display name of the organization API token
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// List of privileges the token has on the orgs/sites
 	Privileges []PrivilegeOrg `json:"privileges,omitempty"`

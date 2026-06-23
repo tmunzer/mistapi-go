@@ -16,7 +16,16 @@ When ordered, AP will prefer and go back to the first server if possible. enum: 
 
 ## Example
 
-```
-ordered
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAuthServerSelection := models.WlanAuthServerSelectionEnum_ORDERED
+
+}
 ```
 

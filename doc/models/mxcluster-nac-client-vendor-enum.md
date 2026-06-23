@@ -23,7 +23,16 @@ convention to be followed is : "<vendor>-<variant>", <variant> could be an os/pl
 
 ## Example
 
-```
-cisco-ios
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterNacClientVendor := models.MxclusterNacClientVendorEnum_GENERIC
+
+}
 ```
 

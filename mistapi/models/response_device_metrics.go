@@ -10,15 +10,23 @@ import (
 )
 
 // ResponseDeviceMetrics represents a ResponseDeviceMetrics struct.
+// Time-series insight metric response for a device
 type ResponseDeviceMetrics struct {
-	End                  int                                 `json:"end"`
-	Interval             int                                 `json:"interval"`
-	Limit                *int                                `json:"limit,omitempty"`
-	Page                 *int                                `json:"page,omitempty"`
-	Results              []ResponseDeviceMetricsResultsItems `json:"results"`
-	Rt                   []string                            `json:"rt,omitempty"`
-	Start                int                                 `json:"start"`
-	AdditionalProperties map[string]interface{}              `json:"_"`
+	// Epoch timestamp for the end of the metric query window
+	End int `json:"end"`
+	// Aggregation interval in seconds for each metric sample
+	Interval int `json:"interval"`
+	// Maximum number of metric samples returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// Returned page number for paginated metric samples
+	Page *int `json:"page,omitempty"`
+	// Device metric result values aligned with the response timestamps
+	Results []ResponseDeviceMetricsResultsItems `json:"results"`
+	// Unique string values returned or accepted by this schema
+	Rt []string `json:"rt,omitempty"`
+	// Epoch timestamp for the start of the metric query window
+	Start                int                    `json:"start"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseDeviceMetrics,

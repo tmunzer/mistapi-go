@@ -8,20 +8,33 @@ import (
 )
 
 // ApTemplateWifi represents a ApTemplateWifi struct.
+// Wi-Fi behavior settings applied by an AP template
 type ApTemplateWifi struct {
-	CiscoEnabled                      *bool                  `json:"cisco_enabled,omitempty"`
-	Disable11k                        *bool                  `json:"disable_11k,omitempty"`
-	DisableRadiosWhenPowerConstrained *bool                  `json:"disable_radios_when_power_constrained,omitempty"`
-	EnableArpSpoof                    *bool                  `json:"enable_arp_spoof,omitempty"`
-	EnableSharedRadioScanning         *bool                  `json:"enable_shared_radio_scanning,omitempty"`
-	Enabled                           *bool                  `json:"enabled,omitempty"`
-	LocateConnected                   *bool                  `json:"locate_connected,omitempty"`
-	LocateUnconnected                 *bool                  `json:"locate_unconnected,omitempty"`
-	MeshAllowDfs                      *bool                  `json:"mesh_allow_dfs,omitempty"`
-	MeshEnableCrm                     *bool                  `json:"mesh_enable_crm,omitempty"`
-	MeshEnabled                       *bool                  `json:"mesh_enabled,omitempty"`
-	ProxyArp                          *bool                  `json:"proxy_arp,omitempty"`
-	AdditionalProperties              map[string]interface{} `json:"_"`
+	// Whether Cisco-specific Wi-Fi compatibility behavior is enabled
+	CiscoEnabled *bool `json:"cisco_enabled,omitempty"`
+	// Whether 802.11k neighbor reports are disabled
+	Disable11k *bool `json:"disable_11k,omitempty"`
+	// Whether AP radios are disabled when power is constrained
+	DisableRadiosWhenPowerConstrained *bool `json:"disable_radios_when_power_constrained,omitempty"`
+	// Whether ARP spoofing checks are enabled when proxy ARP is used
+	EnableArpSpoof *bool `json:"enable_arp_spoof,omitempty"`
+	// Whether shared radio scanning is enabled for AP radio scanning
+	EnableSharedRadioScanning *bool `json:"enable_shared_radio_scanning,omitempty"`
+	// Whether Wi-Fi settings in this AP template are enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether location tracking is enabled for connected clients
+	LocateConnected *bool `json:"locate_connected,omitempty"`
+	// Whether location tracking is enabled for unconnected clients
+	LocateUnconnected *bool `json:"locate_unconnected,omitempty"`
+	// Whether mesh links may use DFS channels, which can add CAC delays during scanning
+	MeshAllowDfs *bool `json:"mesh_allow_dfs,omitempty"`
+	// Whether CRM is enabled for mesh networking in this AP template
+	MeshEnableCrm *bool `json:"mesh_enable_crm,omitempty"`
+	// Whether mesh networking is enabled by this AP template
+	MeshEnabled *bool `json:"mesh_enabled,omitempty"`
+	// Whether proxy ARP is enabled for Wi-Fi clients
+	ProxyArp             *bool                  `json:"proxy_arp,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ApTemplateWifi,

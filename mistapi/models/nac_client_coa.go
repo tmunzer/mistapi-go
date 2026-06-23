@@ -8,6 +8,7 @@ import (
 )
 
 // NacClientCoa represents a NacClientCoa struct.
+// Change of Authorization request for a NAC client
 type NacClientCoa struct {
 	// CoA type to send. enum: `reauth`, `disconnect`
 	CoaType              *NacCoaTypeEnum        `json:"coa_type,omitempty"`

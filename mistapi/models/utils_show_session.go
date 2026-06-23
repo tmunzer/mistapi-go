@@ -8,12 +8,13 @@ import (
 )
 
 // UtilsShowSession represents a UtilsShowSession struct.
+// Active session lookup request for device command output
 type UtilsShowSession struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
 	// The exact service name for which to display the active sessions
 	ServiceName *string `json:"service_name,omitempty"`
-	// Show session details by session_id
+	// Identifier of the session to show in detail
 	SessionId            *string                `json:"session_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

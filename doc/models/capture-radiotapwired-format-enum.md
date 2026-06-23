@@ -1,7 +1,7 @@
 
 # Capture Radiotapwired Format Enum
 
-enum: `pcap`, `stream`
+Output format for the combined packet capture. enum: `pcap`, `stream`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `pcap`, `stream`
 
 ## Example
 
-```
-stream
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureRadiotapwiredFormat := models.CaptureRadiotapwiredFormatEnum_PCAP
+
+}
 ```
 

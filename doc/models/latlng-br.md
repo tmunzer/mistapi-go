@@ -1,7 +1,7 @@
 
 # Latlng Br
 
-When type=google, latitude / longitude of the bottom-right corner
+When `type`==`google`, latitude and longitude of the bottom-right corner
 
 ## Structure
 
@@ -11,15 +11,24 @@ When type=google, latitude / longitude of the bottom-right corner
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Lat` | `*string` | Optional | - |
-| `Lng` | `*string` | Optional | - |
+| `Lat` | `*string` | Optional | Bottom-right latitude for the Google map bounds |
+| `Lng` | `*string` | Optional | Bottom-right longitude for the Google map bounds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "lat": "lat2",
-  "lng": "lng4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    latlngBr := models.LatlngBr{
+        Lat:                  models.ToPointer("lat4"),
+        Lng:                  models.ToPointer("lng2"),
+    }
+
 }
 ```
 

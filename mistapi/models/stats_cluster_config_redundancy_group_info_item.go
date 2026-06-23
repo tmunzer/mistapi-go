@@ -8,9 +8,13 @@ import (
 )
 
 // StatsClusterConfigRedundancyGroupInfoItem represents a StatsClusterConfigRedundancyGroupInfoItem struct.
+// Redundancy group monitoring entry for a gateway cluster
 type StatsClusterConfigRedundancyGroupInfoItem struct {
-	Id                   *int                   `json:"Id,omitempty"`
-	MonitoringFailure    *string                `json:"MonitoringFailure,omitempty"`
+	// Redundancy group identifier reported by the gateway
+	Id *int `json:"Id,omitempty"`
+	// Detected monitoring failure condition for the redundancy group
+	MonitoringFailure *string `json:"MonitoringFailure,omitempty"`
+	// Configured monitoring threshold for the redundancy group
 	Threshold            *int                   `json:"Threshold,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

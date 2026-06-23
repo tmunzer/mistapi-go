@@ -1,7 +1,7 @@
 
 # Webhook Location Client Topic Enum
 
-enum: `location-client`
+Webhook topic name for connected client location deliveries. enum: `location-client`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `location-client`
 | Name |
 |  --- |
 | `location-client` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookLocationClientTopic := models.WebhookLocationClientTopicEnum_LOCATIONCLIENT
+
+}
+```
 

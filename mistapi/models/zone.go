@@ -9,20 +9,23 @@ import (
 )
 
 // Zone represents a Zone struct.
-// Zone
+// Zone defined on a site map
 type Zone struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this zone is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Map where this zone is defined
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// The name of the zone
-	Name   *string    `json:"name,omitempty"`
-	OrgId  *uuid.UUID `json:"org_id,omitempty"`
+	// Display name of the zone
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
 	Vertices             []ZoneVertex           `json:"vertices,omitempty"`

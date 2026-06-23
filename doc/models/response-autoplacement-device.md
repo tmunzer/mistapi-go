@@ -1,6 +1,8 @@
 
 # Response Autoplacement Device
 
+Per-AP validation result for autoplacement
+
 ## Structure
 
 `ResponseAutoplacementDevice`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Reason` | `*string` | Optional | Provides the reason for the status if the AP is invalid. |
-| `Valid` | `*bool` | Optional | Indicates whether the ap is valid. |
+| `Reason` | `*string` | Optional, Read-only | Provides the reason for the status if the AP is invalid. |
+| `Valid` | `*bool` | Optional, Read-only | Indicates whether the ap is valid. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reason": "reason0",
-  "valid": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoplacementDevice := models.ResponseAutoplacementDevice{
+        Reason:               models.ToPointer("reason6"),
+        Valid:                models.ToPointer(false),
+    }
+
 }
 ```
 

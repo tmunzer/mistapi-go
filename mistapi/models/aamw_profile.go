@@ -9,21 +9,27 @@ import (
 )
 
 // AamwProfile represents a AamwProfile struct.
+// Advanced Anti Malware profile that controls Sky ATP file verdict handling
 type AamwProfile struct {
+	// File category rules included in an Advanced Anti Malware profile
 	Categories []AamwProfileCategory `json:"categories,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// enum: `block`, `permit`
+	// Action applied to files by an Advanced Anti Malware profile. enum: `block`, `permit`
 	FallbackAction *AamwProfileActionEnum `json:"fallback_action,omitempty"`
-	// enum: `block`, `permit`
+	// Action applied to files by an Advanced Anti Malware profile. enum: `block`, `permit`
 	FileAction *AamwProfileActionEnum `json:"file_action,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the Advanced Anti Malware profile
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Minimum Sky ATP verdict score that triggers the configured file action
 	VerdictThreshold     *int                   `json:"verdict_threshold,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

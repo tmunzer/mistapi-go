@@ -11,23 +11,33 @@ Sample of the `location-centrak` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | List of events<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
-| `Topic` | `string` | Required, Constant | enum: `location-centrak`<br><br>**Value**: `"location-centrak"` |
+| `Events` | [`[]models.WebhookLocationCentrakEvent`](../../doc/models/webhook-location-centrak-event.md) | Required | CenTrak location events included in this webhook delivery<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `Topic` | `string` | Required, Constant | Webhook topic name for CenTrak location deliveries. enum: `location-centrak`<br><br>**Value**: `"location-centrak"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "mac": "mac4",
-      "map_id": "map_id4",
-      "mfg_company_id": 234,
-      "mfg_data": "mfg_data2",
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookLocationCentrak := models.WebhookLocationCentrak{
+        Events:               []models.WebhookLocationCentrakEvent{
+            models.WebhookLocationCentrakEvent{
+                Mac:                    models.ToPointer("mac4"),
+                MapId:                  models.ToPointer("map_id4"),
+                MfgCompanyId:           models.ToPointer(234),
+                MfgData:                models.ToPointer("mfg_data2"),
+                SiteId:                 models.ToPointer(uuid.MustParse("0000245a-0000-0000-0000-000000000000")),
+            },
+        },
+        Topic:                "location-centrak",
     }
-  ],
-  "topic": "location-centrak"
+
 }
 ```
 

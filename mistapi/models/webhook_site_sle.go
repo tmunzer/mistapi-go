@@ -12,7 +12,9 @@ import (
 // WebhookSiteSle represents a WebhookSiteSle struct.
 // Sample of the `site-sle` webhook payload.
 type WebhookSiteSle struct {
-	Events               []WebhookSiteSleEvent  `json:"events"`
+	// Site SLE score events included in a webhook delivery
+	Events []WebhookSiteSleEvent `json:"events"`
+	// Webhook topic name for site SLE score deliveries. enum: `site-sle`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

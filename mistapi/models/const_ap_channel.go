@@ -8,24 +8,33 @@ import (
 )
 
 // ConstApChannel represents a ConstApChannel struct.
+// Country and regulatory-domain channel capabilities for AP radios
 type ConstApChannel struct {
+	// Whether 40 MHz channels are allowed on the 2.4 GHz band
 	Band2440mhzAllowed *bool `json:"band24_40mhz_allowed,omitempty"`
 	// Property key is the channel width
 	Band24Channels map[string][]int `json:"band24_channels,omitempty"`
-	Band24Enabled  *bool            `json:"band24_enabled,omitempty"`
+	// Whether the 2.4 GHz band is enabled for this country or regulatory domain
+	Band24Enabled *bool `json:"band24_enabled,omitempty"`
 	// Property key is the channel width
 	Band5Channels map[string][]int `json:"band5_channels,omitempty"`
-	Band5Enabled  *bool            `json:"band5_enabled,omitempty"`
+	// Whether the 5 GHz band is enabled for this country or regulatory domain
+	Band5Enabled *bool `json:"band5_enabled,omitempty"`
 	// Property key is the channel width
 	Band6Channels map[string][]int `json:"band6_channels,omitempty"`
-	Band6Enabled  *bool            `json:"band6_enabled,omitempty"`
-	Certified     *bool            `json:"certified,omitempty"`
+	// Whether the 6 GHz band is enabled for this country or regulatory domain
+	Band6Enabled *bool `json:"band6_enabled,omitempty"`
+	// Whether AP operation is certified for this country or regulatory domain
+	Certified *bool `json:"certified,omitempty"`
 	// Country code, ISO 3166-1 numeric
-	Code  *int  `json:"code,omitempty"`
+	Code *int `json:"code,omitempty"`
+	// Whether DFS channels are allowed in this country or regulatory domain
 	DfsOk *bool `json:"dfs_ok,omitempty"`
 	// Country code, in two-character
-	Key                  *string                `json:"key,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	Key *string `json:"key,omitempty"`
+	// Country or regulatory-domain display name
+	Name *string `json:"name,omitempty"`
+	// Regulatory ruleset used for AP channel validation
 	Uses                 *string                `json:"uses,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

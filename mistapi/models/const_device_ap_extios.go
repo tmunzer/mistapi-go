@@ -8,12 +8,15 @@ import (
 )
 
 // ConstDeviceApExtios represents a ConstDeviceApExtios struct.
+// External I/O port capabilities for an AP model
 type ConstDeviceApExtios struct {
-	// enum: `IN`, `OUT`
-	DefaultDir           *ConstDeviceApExtiosDefaultDirEnum `json:"default_dir,omitempty"`
-	Input                *bool                              `json:"input,omitempty"`
-	Output               *bool                              `json:"output,omitempty"`
-	AdditionalProperties map[string]interface{}             `json:"_"`
+	// Default direction for this external I/O port. enum: `IN`, `OUT`
+	DefaultDir *ConstDeviceApExtiosDefaultDirEnum `json:"default_dir,omitempty"`
+	// Whether this external I/O port supports input mode
+	Input *bool `json:"input,omitempty"`
+	// Whether this external I/O port supports output mode
+	Output               *bool                  `json:"output,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ConstDeviceApExtios,

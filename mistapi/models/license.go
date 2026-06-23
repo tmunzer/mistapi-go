@@ -8,17 +8,19 @@ import (
 )
 
 // License represents a License struct.
-// License
+// Organization license entitlement, subscription, and usage summary
 type License struct {
+	// Read-only list of license amendments
 	Amendments []LicenseAmendment `json:"amendments,omitempty"`
 	// Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses entitled.
 	Entitled map[string]int `json:"entitled,omitempty"`
 	// Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN").
 	FullyLoaded map[string]int `json:"fully_loaded,omitempty"`
-	Licenses    []LicenseSub   `json:"licenses,omitempty"`
+	// License subscriptions for the organization
+	Licenses []LicenseSub `json:"licenses,omitempty"`
 	// Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN).
 	Summary map[string]int `json:"summary,omitempty"`
-	// Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN")
+	// Number of available licenses. Property key is the service name (e.g. "SUB-MAN").
 	Usages               map[string]int         `json:"usages,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Stats Wireless Client Rssi Zone
 
+RSSI zone currently containing a wireless client
+
 ## Structure
 
 `StatsWirelessClientRssiZone`
@@ -9,15 +11,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `Since` | `*float64` | Optional | - |
+| `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
+| `Since` | `*float64` | Optional | Time when the wireless client entered the RSSI zone, in epoch seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "since": 210.04
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    statsWirelessClientRssiZone := models.StatsWirelessClientRssiZone{
+        Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+        Since:                models.ToPointer(float64(108.64)),
+    }
+
 }
 ```
 

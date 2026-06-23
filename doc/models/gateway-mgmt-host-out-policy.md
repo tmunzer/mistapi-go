@@ -1,6 +1,8 @@
 
 # Gateway Mgmt Host Out Policy
 
+Host-out path policy for gateway-originated management traffic
+
 ## Structure
 
 `GatewayMgmtHostOutPolicy`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `PathPreference` | `*string` | Optional | - |
+| `PathPreference` | `*string` | Optional | Preferred path name for this gateway-originated service traffic |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "path_preference": "path_preference0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayMgmtHostOutPolicy := models.GatewayMgmtHostOutPolicy{
+        PathPreference:       models.ToPointer("path_preference8"),
+    }
+
 }
 ```
 

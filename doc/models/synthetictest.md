@@ -1,6 +1,8 @@
 
 # Synthetictest
 
+Request body for triggering a site synthetic test
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Email` | `*string` | Optional | - |
+| `Email` | `*string` | Optional | Contact email address supplied when triggering the site synthetic test |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email": "test@mist.com",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictest := models.Synthetictest{
+        Email:                models.ToPointer("test@mist.com"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

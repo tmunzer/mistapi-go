@@ -9,12 +9,13 @@ import (
 )
 
 // ServicePolicyAntivirus represents a ServicePolicyAntivirus struct.
-// For SRX-only
+// SRX antivirus inspection settings for a service policy
 type ServicePolicyAntivirus struct {
-	// org-level AV Profile can be used, this takes precedence over 'profile'
+	// Organization-level antivirus profile ID; takes precedence over inline `profile` settings
 	AvprofileId *uuid.UUID `json:"avprofile_id,omitempty"`
-	Enabled     *bool      `json:"enabled,omitempty"`
-	// Default / noftp / httponly / or keys from av_profiles
+	// Whether antivirus inspection is enabled for the service policy
+	Enabled *bool `json:"enabled,omitempty"`
+	// Antivirus profile name to apply, such as `default`, `noftp`, `httponly`, or an AV profile key
 	Profile              *string                `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,3 +16,18 @@ if `idp_type`==`oauth`. enum: `azure`, `azure-gov`, `okta`, `ping_identity`
 | `okta` |
 | `ping_identity` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoOauthType := models.SsoOauthTypeEnum_AZURE
+
+}
+```
+

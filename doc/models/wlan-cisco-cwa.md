@@ -12,27 +12,35 @@ Cisco CWA (central web authentication) required RADIUS with COA in order to work
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AllowedHostnames` | `[]string` | Optional | List of hostnames without http(s):// (matched by substring) |
-| `AllowedSubnets` | `[]string` | Optional | List of CIDRs |
+| `AllowedSubnets` | `[]string` | Optional | CIDR subnets allowed for Cisco CWA client access before authorization |
 | `BlockedSubnets` | `[]string` | Optional | List of blocked CIDRs |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether Cisco CWA is enabled for this WLAN<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "allowed_hostnames": [
-    "allowed_hostnames0"
-  ],
-  "allowed_subnets": [
-    "allowed_subnets6",
-    "allowed_subnets7"
-  ],
-  "blocked_subnets": [
-    "blocked_subnets4",
-    "blocked_subnets5",
-    "blocked_subnets6"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanCiscoCwa := models.WlanCiscoCwa{
+        AllowedHostnames:     []string{
+            "allowed_hostnames6",
+        },
+        AllowedSubnets:       []string{
+            "allowed_subnets2",
+            "allowed_subnets3",
+        },
+        BlockedSubnets:       []string{
+            "blocked_subnets6",
+            "blocked_subnets7",
+        },
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

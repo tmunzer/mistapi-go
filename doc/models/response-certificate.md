@@ -11,17 +11,26 @@ If the current Org CA certificate is set to expire within 30 days, a pending cer
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Cert` | `string` | Required | - |
-| `PendingCert` | `*string` | Optional | - |
-| `PendingCertExpiry` | `*int` | Optional | - |
+| `Cert` | `string` | Required | Current organization CA certificate in PEM format |
+| `PendingCert` | `*string` | Optional | Pending auto-renewed organization CA certificate returned when the current certificate nears expiry |
+| `PendingCertExpiry` | `*int` | Optional | Epoch timestamp when the pending certificate is expected to replace the current certificate |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cert": "cert4",
-  "pending_cert": "pending_cert8",
-  "pending_cert_expiry": 96
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseCertificate := models.ResponseCertificate{
+        Cert:                 "cert6",
+        PendingCert:          models.ToPointer("pending_cert8"),
+        PendingCertExpiry:    models.ToPointer(248),
+    }
+
 }
 ```
 

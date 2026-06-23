@@ -8,10 +8,11 @@ import (
 )
 
 // UtilsShowForwardingTable represents a UtilsShowForwardingTable struct.
+// Forwarding table lookup request for device command output
 type UtilsShowForwardingTable struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// can be ip, ipv6 prefix
+	// IPv4 or IPv6 prefix filter for forwarding table entries
 	Prefix *string `json:"prefix,omitempty"`
 	// Only supported with SSR
 	ServiceIp *string `json:"service_ip,omitempty"`
@@ -23,7 +24,7 @@ type UtilsShowForwardingTable struct {
 	ServiceProtocol *string `json:"service_protocol,omitempty"`
 	// Only supported with SSR
 	ServiceTenant *string `json:"service_tenant,omitempty"`
-	// VRF Name
+	// Routing instance or VRF filter for forwarding table entries
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

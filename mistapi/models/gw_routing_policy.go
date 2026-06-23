@@ -8,6 +8,7 @@ import (
 )
 
 // GwRoutingPolicy represents a GwRoutingPolicy struct.
+// Gateway routing policy made of ordered match-action terms
 type GwRoutingPolicy struct {
 	// zero or more criteria/filter can be specified to match the term, all criteria have to be met
 	Terms                []GwRoutingPolicyTerm  `json:"terms,omitempty"`

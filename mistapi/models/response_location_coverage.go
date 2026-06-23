@@ -10,16 +10,19 @@ import (
 )
 
 // ResponseLocationCoverage represents a ResponseLocationCoverage struct.
+// Beam coverage overview for a site location map
 type ResponseLocationCoverage struct {
 	// List of [x, y, mean]s, x/y are in meters (UI would need to use map.ppm to calculate the pixel location from top-left).
 	BeamsMeans [][]float64 `json:"beams_means"`
-	End        int         `json:"end"`
-	// Size of grid, in meter
+	// Epoch timestamp for the end of the coverage analysis window
+	End int `json:"end"`
+	// Grid cell size in meters for coverage samples
 	Gridsize float64 `json:"gridsize"`
 	// List of names annotating the fields in results
 	ResultDef []string `json:"result_def"`
 	// List of results, see result_def.
-	Results              [][]float64            `json:"results"`
+	Results [][]float64 `json:"results"`
+	// Epoch timestamp for the start of the coverage analysis window
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

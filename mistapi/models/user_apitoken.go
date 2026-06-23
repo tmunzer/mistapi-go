@@ -9,15 +9,17 @@ import (
 )
 
 // UserApitoken represents a UserApitoken struct.
-// User API Token
+// User API token metadata
 type UserApitoken struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id       *uuid.UUID    `json:"id,omitempty"`
-	Key      *string       `json:"key,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Secret API token value returned for this token
+	Key *string `json:"key,omitempty"`
+	// Time when this user API token was last used, in epoch seconds; null if never used
 	LastUsed Optional[int] `json:"last_used"`
-	// Name of the token
+	// Display label for this user API token
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

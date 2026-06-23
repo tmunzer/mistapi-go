@@ -1,6 +1,8 @@
 
 # Wlan App Qos Apps Properties
 
+QoS rewrite settings for traffic matching a named application
+
 ## Structure
 
 `WlanAppQosAppsProperties`
@@ -13,13 +15,22 @@
 | `DstSubnet` | `*string` | Optional | Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
 | `SrcSubnet` | `*string` | Optional | Subnet filter is not required but helps AP to only inspect certain traffic (thus reducing AP load) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "dscp": "String3",
-  "dst_subnet": "dst_subnet0",
-  "src_subnet": "src_subnet8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAppQosAppsProperties := models.WlanAppQosAppsProperties{
+        Dscp:                 models.ToPointer(models.DscpContainer.FromString("String3")),
+        DstSubnet:            models.ToPointer("dst_subnet6"),
+        SrcSubnet:            models.ToPointer("src_subnet4"),
+    }
+
 }
 ```
 

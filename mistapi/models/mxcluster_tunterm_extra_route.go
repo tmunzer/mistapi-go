@@ -8,7 +8,9 @@ import (
 )
 
 // MxclusterTuntermExtraRoute represents a MxclusterTuntermExtraRoute struct.
+// Extra route for Mist Tunneled VLAN traffic
 type MxclusterTuntermExtraRoute struct {
+	// Next-hop IP address for this extra route
 	Via                  *string                `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

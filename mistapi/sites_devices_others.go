@@ -26,7 +26,7 @@ func NewSitesDevicesOthers(baseController baseController) *SitesDevicesOthers {
 // ListSiteOtherDevices takes context, siteId, vendor, mac, serial, model, name, limit, page as parameters and
 // returns an models.ApiResponse with []models.DeviceOther data and
 // an error if there was an issue with the request or response.
-// Get List of Site other devices (3rd party devices)
+// List third-party devices in a site, such as devices discovered or tracked outside the managed Mist device inventory. Use [List Org Other Devices]($e/Orgs%20Devices%20-%20Others/listOrgOtherDevices) to retrieve third-party devices across the organization.
 func (s *SitesDevicesOthers) ListSiteOtherDevices(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -44,19 +44,15 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if vendor != nil {
 		req.QueryParam("vendor", *vendor)
@@ -93,7 +89,7 @@ func (s *SitesDevicesOthers) ListSiteOtherDevices(
 // CountSiteOtherDeviceEvents takes context, siteId, distinct, mType, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Site OtherDevices Events
+// Count third-party device events for a site, optionally grouped by the `distinct` field and filtered by event type and time range. Use [Count Org Other Device Events]($e/Orgs%20Devices%20-%20Others/countOrgOtherDeviceEvents) to count third-party device events across the organization.
 func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -110,19 +106,15 @@ func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -156,7 +148,7 @@ func (s *SitesDevicesOthers) CountSiteOtherDeviceEvents(
 // SearchSiteOtherDeviceEvents takes context, siteId, mac, deviceMac, vendor, mType, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsOtherDevicesSearch data and
 // an error if there was an issue with the request or response.
-// Search Site OtherDevices Events
+// Search third-party device events for a site with filters for device identifiers, model, vendor, event type, and time range. Use [Search Org Other Device Events]($e/Orgs%20Devices%20-%20Others/searchOrgOtherDeviceEvents) to search third-party device events across the organization.
 func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -181,19 +173,15 @@ func (s *SitesDevicesOthers) SearchSiteOtherDeviceEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mac != nil {
 		req.QueryParam("mac", *mac)

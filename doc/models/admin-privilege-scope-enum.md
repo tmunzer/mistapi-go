@@ -17,3 +17,18 @@ enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
 | `site` |
 | `sitegroup` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    adminPrivilegeScope := models.AdminPrivilegeScopeEnum_ORG
+
+}
+```
+

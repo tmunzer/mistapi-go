@@ -8,9 +8,13 @@ import (
 )
 
 // StatsMxedgeTuntermIpConfig represents a StatsMxedgeTuntermIpConfig struct.
+// Tunnel termination IP configuration reported by a Mist Edge
 type StatsMxedgeTuntermIpConfig struct {
-	Gateway              *string                `json:"gateway,omitempty"`
-	Ip                   *string                `json:"ip,omitempty"`
+	// IPv4 default gateway for tunnel termination traffic
+	Gateway *string `json:"gateway,omitempty"`
+	// Tunnel termination IPv4 address used by the Mist Edge
+	Ip *string `json:"ip,omitempty"`
+	// IPv4 netmask for the tunnel termination address
 	Netmask              *string                `json:"netmask,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

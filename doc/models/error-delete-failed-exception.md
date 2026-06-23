@@ -1,6 +1,8 @@
 
 # Error Delete Failed Exception
 
+Error response returned when an organization delete request is blocked
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,20 +13,20 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Detail` | `string` | Required | - |
-| `OrgId` | `uuid.UUID` | Required | - |
+| `Detail` | `string` | Required | Reason the delete request failed |
+| `OrgId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist organization |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "detail": "inventory not empty",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ErrorDeleteFailedException:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

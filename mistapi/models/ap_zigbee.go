@@ -8,7 +8,7 @@ import (
 )
 
 // ApZigbee represents a ApZigbee struct.
-// Zigbee AP settings
+// Zigbee radio and network settings applied to an AP or AP profile
 type ApZigbee struct {
 	// Controls whether new Zigbee devices are allowed to join the network. enum: `always`, `manual`
 	AllowJoin *ApZigbeeAllowJoinEnum `json:"allow_join,omitempty"`

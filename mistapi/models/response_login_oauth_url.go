@@ -10,8 +10,11 @@ import (
 )
 
 // ResponseLoginOauthUrl represents a ResponseLoginOauthUrl struct.
+// OAuth2 authorization URL response for login
 type ResponseLoginOauthUrl struct {
-	AuthorizationUrl     string                 `json:"authorization_url"`
+	// OAuth2 provider authorization URL to open for login
+	AuthorizationUrl string `json:"authorization_url"`
+	// OAuth2 client identifier used for the authorization request
 	ClientId             string                 `json:"client_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

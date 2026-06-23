@@ -8,11 +8,17 @@ import (
 )
 
 // OrgSettingCradlepoint represents a OrgSettingCradlepoint struct.
+// Read-only Cradlepoint integration settings stored for the organization
 type OrgSettingCradlepoint struct {
-	CpApiId              *string                `json:"cp_api_id,omitempty"`
-	CpApiKey             *string                `json:"cp_api_key,omitempty"`
-	EcmApiId             *string                `json:"ecm_api_id,omitempty"`
-	EcmApiKey            *string                `json:"ecm_api_key,omitempty"`
+	// Cradlepoint API ID used by Mist for the integration
+	CpApiId *string `json:"cp_api_id,omitempty"`
+	// Cradlepoint API key paired with the Cradlepoint API ID
+	CpApiKey *string `json:"cp_api_key,omitempty"`
+	// Cradlepoint ECM API ID used by Mist for the integration
+	EcmApiId *string `json:"ecm_api_id,omitempty"`
+	// Cradlepoint ECM API key paired with the ECM API ID
+	EcmApiKey *string `json:"ecm_api_key,omitempty"`
+	// Whether Mist uses Cradlepoint LLDP data to link routers to Mist sites and devices
 	EnableLldp           *bool                  `json:"enable_lldp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

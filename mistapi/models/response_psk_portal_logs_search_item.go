@@ -9,16 +9,23 @@ import (
 )
 
 // ResponsePskPortalLogsSearchItem represents a ResponsePskPortalLogsSearchItem struct.
+// PSK Portal log entry returned by organization log search
 type ResponsePskPortalLogsSearchItem struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id          *uuid.UUID `json:"id,omitempty"`
-	Message     *string    `json:"message,omitempty"`
-	NameId      *string    `json:"name_id,omitempty"`
-	OrgId       *uuid.UUID `json:"org_id,omitempty"`
-	PskId       *uuid.UUID `json:"psk_id,omitempty"`
-	PskName     *string    `json:"psk_name,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Human-readable message describing the PSK Portal action
+	Message *string `json:"message,omitempty"`
+	// SSO NameID value associated with the PSK Portal action
+	NameId *string `json:"name_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Identifier of the PSK associated with the log entry
+	PskId *uuid.UUID `json:"psk_id,omitempty"`
+	// Display name of the PSK associated with the log entry
+	PskName *string `json:"psk_name,omitempty"`
+	// Identifier of the PSK Portal associated with the log entry
 	PskportalId *uuid.UUID `json:"pskportal_id,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

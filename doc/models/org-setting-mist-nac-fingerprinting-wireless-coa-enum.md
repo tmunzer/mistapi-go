@@ -1,7 +1,7 @@
 
 # Org Setting Mist Nac Fingerprinting Wireless Coa Enum
 
-enum: `reauth`, `disconnect`
+Change of Authorization action sent to wireless clients when fingerprints change. enum: `reauth`, `disconnect`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `reauth`, `disconnect`
 |  --- |
 | `reauth` |
 | `disconnect` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingMistNacFingerprintingWirelessCoa := models.OrgSettingMistNacFingerprintingWirelessCoaEnum_REAUTH
+
+}
+```
 

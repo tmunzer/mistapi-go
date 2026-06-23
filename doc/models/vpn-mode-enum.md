@@ -1,7 +1,7 @@
 
 # Vpn Mode Enum
 
-enum: `hub_spoke`, `mesh`
+VPN topology mode for this configuration. enum: `hub_spoke`, `mesh`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `hub_spoke`, `mesh`
 |  --- |
 | `hub_spoke` |
 | `mesh` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vpnMode := models.VpnModeEnum_HUBSPOKE
+
+}
+```
 

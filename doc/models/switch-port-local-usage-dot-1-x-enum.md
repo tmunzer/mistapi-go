@@ -13,3 +13,18 @@ if dot1x is desired, set to dot1x. enum: `dot1x`
 |  --- |
 | `dot1x` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortLocalUsageDot1x := models.SwitchPortLocalUsageDot1xEnum_DOT1X
+
+}
+```
+

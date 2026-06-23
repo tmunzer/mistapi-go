@@ -11,15 +11,17 @@ import (
 // ResponsePastSpectrumAnalysisResult represents a ResponsePastSpectrumAnalysisResult struct.
 // Result of a past spectrum analysis
 type ResponsePastSpectrumAnalysisResult struct {
-	// Band on which the spectrum analysis was run (e.g., 24, 5, 6)
-	Band         *string                                    `json:"band,omitempty"`
+	// Radio band on which the spectrum analysis was run (for example, 24, 5, or 6)
+	Band *string `json:"band,omitempty"`
+	// Per-channel utilization measurements captured during spectrum analysis
 	ChannelUsage []ResponsePastSpectrumAnalysisChannelUsage `json:"channel_usage,omitempty"`
 	// List of FFT samples for the spectrum analysis
 	FftSamples []ResponsePastSpectrumAnalysisFftSample `json:"fft_samples,omitempty"`
-	// MAC Address of the AP that ran the spectrum analysis
-	Mac   *string    `json:"mac,omitempty"`
+	// AP MAC address for the access point that ran the spectrum analysis
+	Mac *string `json:"mac,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// Timestamp when the spectrum analysis was run in epoch seconds
+	// Epoch timestamp, in seconds, when the spectrum analysis was run
 	Timestamp            *int                   `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

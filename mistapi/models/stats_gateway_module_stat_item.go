@@ -8,40 +8,69 @@ import (
 )
 
 // StatsGatewayModuleStatItem represents a StatsGatewayModuleStatItem struct.
+// Hardware module status and firmware inventory for a gateway
 type StatsGatewayModuleStatItem struct {
-	BackupVersion Optional[string]          `json:"backup_version"`
-	BiosVersion   Optional[string]          `json:"bios_version"`
-	BootPartition *string                   `json:"boot_partition,omitempty"`
-	CpldVersion   Optional[string]          `json:"cpld_version"`
-	Fans          []ModuleStatItemFansItems `json:"fans,omitempty"`
-	FpgaVersion   Optional[string]          `json:"fpga_version"`
-	// Last seen timestamp
+	// Backup software version stored on the gateway module
+	BackupVersion Optional[string] `json:"backup_version"`
+	// BIOS firmware version reported for the gateway module
+	BiosVersion Optional[string] `json:"bios_version"`
+	// Active boot partition used by the gateway module
+	BootPartition *string `json:"boot_partition,omitempty"`
+	// CPLD firmware version reported for the gateway module
+	CpldVersion Optional[string] `json:"cpld_version"`
+	// Cooling fan status records for a device module
+	Fans []ModuleStatItemFansItems `json:"fans,omitempty"`
+	// FPGA firmware version reported for the gateway module
+	FpgaVersion Optional[string] `json:"fpga_version"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	Locating *bool             `json:"locating,omitempty"`
-	Mac      *string           `json:"mac,omitempty"`
-	// Memory usage stat (for virtual chassis, memory usage of master RE)
-	MemoryStat        *MemoryStat                      `json:"memory_stat,omitempty"`
-	Model             Optional[string]                 `json:"model"`
-	NetworkResources  []ModuleStatItemNetworkResource  `json:"network_resources,omitempty"`
-	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
-	PendingVersion    Optional[string]                 `json:"pending_version"`
-	Poe               *ModuleStatItemPoe               `json:"poe,omitempty"`
-	PoeVersion        Optional[string]                 `json:"poe_version"`
-	PowerCpldVersion  Optional[string]                 `json:"power_cpld_version"`
-	Psus              []ModuleStatItemPsusItem         `json:"psus,omitempty"`
-	ReFpgaVersion     Optional[string]                 `json:"re_fpga_version"`
-	RecoveryVersion   Optional[string]                 `json:"recovery_version"`
-	Serial            Optional[string]                 `json:"serial"`
-	Status            Optional[string]                 `json:"status"`
-	Temperatures      []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
-	TmcFpgaVersion    Optional[string]                 `json:"tmc_fpga_version"`
-	UbootVersion      Optional[string]                 `json:"uboot_version"`
-	Uptime            Optional[int]                    `json:"uptime"`
-	VcLinks           []ModuleStatItemVcLinksItem      `json:"vc_links,omitempty"`
-	VcMode            Optional[string]                 `json:"vc_mode"`
-	// enum: `master`, `backup`, `linecard`
-	VcRole               Optional[string]       `json:"vc_role"`
-	VcState              Optional[string]       `json:"vc_state"`
+	// Whether the gateway module locator indicator is active
+	Locating *bool `json:"locating,omitempty"`
+	// Gateway module MAC address reported by Mist
+	Mac *string `json:"mac,omitempty"`
+	// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
+	MemoryStat *MemoryStat `json:"memory_stat,omitempty"`
+	// Gateway module model name reported by Mist
+	Model Optional[string] `json:"model"`
+	// Network resource usage counters reported by a device module
+	NetworkResources []ModuleStatItemNetworkResource `json:"network_resources,omitempty"`
+	// Optics CPLD firmware version reported for the gateway module
+	OpticsCpldVersion Optional[string] `json:"optics_cpld_version"`
+	// Pending software version staged for the gateway module
+	PendingVersion Optional[string] `json:"pending_version"`
+	// Power over Ethernet telemetry for a device module
+	Poe *ModuleStatItemPoe `json:"poe,omitempty"`
+	// PoE controller firmware version reported for the gateway module
+	PoeVersion Optional[string] `json:"poe_version"`
+	// Power CPLD firmware version reported for the gateway module
+	PowerCpldVersion Optional[string] `json:"power_cpld_version"`
+	// Power supply status records for a device module
+	Psus []ModuleStatItemPsusItem `json:"psus,omitempty"`
+	// Routing Engine FPGA firmware version reported for the gateway module
+	ReFpgaVersion Optional[string] `json:"re_fpga_version"`
+	// Recovery software version stored on the gateway module
+	RecoveryVersion Optional[string] `json:"recovery_version"`
+	// Gateway module serial number reported by Mist
+	Serial Optional[string] `json:"serial"`
+	// Connection status reported for the gateway module
+	Status Optional[string] `json:"status"`
+	// Temperature sensor readings for a device module
+	Temperatures []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
+	// TMC FPGA firmware version reported for the gateway module
+	TmcFpgaVersion Optional[string] `json:"tmc_fpga_version"`
+	// U-Boot firmware version reported for the gateway module
+	UbootVersion Optional[string] `json:"uboot_version"`
+	// Elapsed time since the gateway module last booted, in seconds
+	Uptime Optional[int] `json:"uptime"`
+	// Virtual chassis link records for a device module
+	VcLinks []ModuleStatItemVcLinksItem `json:"vc_links,omitempty"`
+	// Virtual chassis mode reported for the gateway module
+	VcMode Optional[string] `json:"vc_mode"`
+	// Virtual chassis role reported for the gateway module. enum: `master`, `backup`, `linecard`
+	VcRole Optional[string] `json:"vc_role"`
+	// Virtual chassis state reported for the gateway module
+	VcState Optional[string] `json:"vc_state"`
+	// Software version running on the gateway module
 	Version              Optional[string]       `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,28 +9,47 @@ import (
 )
 
 // UiSettingsTile represents a UiSettingsTile struct.
+// Tile shown on a site UI databoard
 type UiSettingsTile struct {
-	ChartBand      *string `json:"chartBand,omitempty"`
-	ChartColor     *string `json:"chartColor,omitempty"`
+	// Band or category filter applied to the tile chart
+	ChartBand *string `json:"chartBand,omitempty"`
+	// Hex color used to render the tile chart
+	ChartColor *string `json:"chartColor,omitempty"`
+	// Traffic direction displayed by the tile chart
 	ChartDirection *string `json:"chartDirection,omitempty"`
-	ChartRankBy    *string `json:"chartRankBy,omitempty"`
-	ChartType      *string `json:"chartType,omitempty"`
-	Colspan        *int    `json:"colspan,omitempty"`
-	Column         *int    `json:"column,omitempty"`
-	HideEmptyRows  *bool   `json:"hideEmptyRows,omitempty"`
+	// Ranking field used by the tile chart
+	ChartRankBy *string `json:"chartRankBy,omitempty"`
+	// Visualization chart type for this tile
+	ChartType *string `json:"chartType,omitempty"`
+	// Number of grid columns spanned by this tile
+	Colspan *int `json:"colspan,omitempty"`
+	// Grid column where this tile starts
+	Column *int `json:"column,omitempty"`
+	// Whether empty rows are hidden in this tile
+	HideEmptyRows *bool `json:"hideEmptyRows,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID               `json:"id,omitempty"`
-	Metric               *UiSettingsTileMetric    `json:"metric,omitempty"`
-	Name                 *string                  `json:"name,omitempty"`
-	Row                  *int                     `json:"row,omitempty"`
-	Rowspan              *int                     `json:"rowspan,omitempty"`
-	ScopeId              *string                  `json:"scopeId,omitempty"`
-	ScopeType            *string                  `json:"scopeType,omitempty"`
-	SortedColumnIds      []string                 `json:"sortedColumnIds,omitempty"`
-	TimeRange            *UiSettingsTileTimeRange `json:"timeRange,omitempty"`
-	TrendType            *string                  `json:"trendType,omitempty"`
-	VizType              *string                  `json:"vizType,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Metric selected for a site UI databoard tile
+	Metric *UiSettingsTileMetric `json:"metric,omitempty"`
+	// Display name of this databoard tile
+	Name *string `json:"name,omitempty"`
+	// Grid row where this tile starts
+	Row *int `json:"row,omitempty"`
+	// Number of grid rows spanned by this tile
+	Rowspan *int `json:"rowspan,omitempty"`
+	// Identifier of the scope used by this tile
+	ScopeId *string `json:"scopeId,omitempty"`
+	// Type of scope used by this tile
+	ScopeType *string `json:"scopeType,omitempty"`
+	// Ordered tile table column identifiers used for sorting
+	SortedColumnIds []string `json:"sortedColumnIds,omitempty"`
+	// Time range override for a site UI databoard tile
+	TimeRange *UiSettingsTileTimeRange `json:"timeRange,omitempty"`
+	// Rendering style for trend data in this tile
+	TrendType *string `json:"trendType,omitempty"`
+	// Display visualization type used by this tile
+	VizType              *string                `json:"vizType,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for UiSettingsTile,

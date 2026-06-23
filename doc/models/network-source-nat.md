@@ -11,13 +11,22 @@ If `routed`==`false` (usually at Spoke), but some hosts needs to be reachable fr
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ExternalIp` | `*string` | Optional | - |
+| `ExternalIp` | `*string` | Optional | External source NAT IP or subnet used when spoke hosts must be reachable from the hub |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "external_ip": "172.16.0.8/30"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkSourceNat := models.NetworkSourceNat{
+        ExternalIp:           models.ToPointer("172.16.0.8/30"),
+    }
+
 }
 ```
 

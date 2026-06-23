@@ -15,3 +15,18 @@ enum: `all`, `connected`, `disconnected`
 | `connected` |
 | `disconnected` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceStatus := models.DeviceStatusEnum_CONNECTED
+
+}
+```
+

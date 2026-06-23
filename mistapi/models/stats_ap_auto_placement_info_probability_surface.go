@@ -8,13 +8,13 @@ import (
 )
 
 // StatsApAutoPlacementInfoProbabilitySurface represents a StatsApAutoPlacementInfoProbabilitySurface struct.
-// Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result
+// Circular uncertainty area for an AP auto placement result
 type StatsApAutoPlacementInfoProbabilitySurface struct {
-	// The radius representing placement uncertainty, measured in pixels
+	// The RADIUS representing placement uncertainty, measured in pixels
 	Radius *float64 `json:"radius,omitempty"`
-	// The radius representing placement uncertainty, measured in meters
+	// The RADIUS representing placement uncertainty, measured in meters
 	RadiusM *float64 `json:"radius_m,omitempty"`
-	// Y-coordinate of the potential placement’s center, measured in pixels
+	// Potential placement center X coordinate, in pixels
 	X                    *float64               `json:"x,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

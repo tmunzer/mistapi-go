@@ -3,9 +3,9 @@
 
 ## Introduction
 
-> Version: **2604.1.0**
+> Version: **2605.1.0**
 > 
-> Date: **April 28, 2026**
+> Date: **June 8, 2026**
 
 <div class="notification"> NOTE:<br>Some important API changes will be introduced. Please make sure to read the <a href="https://www.juniper.net/documentation/us/en/software/mist/api/http/guides/important-api-changes">announcements</a> </div>
 
@@ -82,7 +82,6 @@ The following parameters are configurable for the API Client:
 | httpConfiguration | [`HttpConfiguration`](doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](doc/logger-configuration.md) | Represents the logger configurations for API calls |
 | apiTokenCredentials | [`ApiTokenCredentials`](doc/auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
-| basicAuthCredentials | [`BasicAuthCredentials`](doc/auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
 | csrfTokenCredentials | [`CsrfTokenCredentials`](doc/auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
@@ -105,12 +104,6 @@ func main() {
             mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
             mistapi.WithApiTokenCredentials(
                 mistapi.NewApiTokenCredentials("Authorization"),
-            ),
-            mistapi.WithBasicAuthCredentials(
-                mistapi.NewBasicAuthCredentials(
-                    "Username",
-                    "Password",
-                ),
             ),
             mistapi.WithCsrfTokenCredentials(
                 mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
@@ -156,7 +149,6 @@ The SDK can be configured to use a different environment for making API calls. A
 This API uses the following authentication schemes.
 
 * [`apiToken (Custom Header Signature)`](doc/auth/custom-header-signature.md)
-* [`basicAuth (Basic Authentication)`](doc/auth/basic-authentication.md)
 * [`csrfToken (Custom Header Signature)`](doc/auth/custom-header-signature-1.md)
 
 ## List of APIs
@@ -258,6 +250,7 @@ This API uses the following authentication schemes.
 * [Orgs Stats-Assets](doc/controllers/orgs-stats-assets.md)
 * [Orgs Stats-BGP Peers](doc/controllers/orgs-stats-bgp-peers.md)
 * [Orgs Stats-Devices](doc/controllers/orgs-stats-devices.md)
+* [Orgs Stats-Marvis Clients](doc/controllers/orgs-stats-marvis-clients.md)
 * [Orgs Stats-Mx Edges](doc/controllers/orgs-stats-mx-edges.md)
 * [Orgs Stats-Ospf](doc/controllers/orgs-stats-ospf.md)
 * [Orgs Stats-Other Devices](doc/controllers/orgs-stats-other-devices.md)
@@ -317,6 +310,7 @@ This API uses the following authentication schemes.
 * [Sites Maps-Auto-Placement](doc/controllers/sites-maps-auto-placement.md)
 * [Sites Maps-Auto-Zone](doc/controllers/sites-maps-auto-zone.md)
 * [Sites Map Stacks](doc/controllers/sites-map-stacks.md)
+* [Sites Marvis Configs](doc/controllers/sites-marvis-configs.md)
 * [Sites Mx Edges](doc/controllers/sites-mx-edges.md)
 * [Sites NAC Fingerprints](doc/controllers/sites-nac-fingerprints.md)
 * [Sites Networks](doc/controllers/sites-networks.md)

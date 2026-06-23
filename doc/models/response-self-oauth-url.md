@@ -1,6 +1,8 @@
 
 # Response Self Oauth Url
 
+OAuth2 authorization URL response for linking the current Mist account
+
 ## Structure
 
 `ResponseSelfOauthUrl`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthorizationUrl` | `string` | Required | - |
-| `Linked` | `bool` | Required | - |
+| `AuthorizationUrl` | `string` | Required | OAuth2 provider authorization URL used to link the Mist account |
+| `Linked` | `bool` | Required | Whether the Mist account is already linked with this OAuth2 provider |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "authorization_url": "authorization_url8",
-  "linked": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseSelfOauthUrl := models.ResponseSelfOauthUrl{
+        AuthorizationUrl:     "authorization_url0",
+        Linked:               false,
+    }
+
 }
 ```
 

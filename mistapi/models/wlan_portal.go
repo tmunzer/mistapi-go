@@ -8,7 +8,7 @@ import (
 )
 
 // WlanPortal represents a WlanPortal struct.
-// Portal wlan settings
+// Guest portal settings for the WLAN
 type WlanPortal struct {
 	// Optional if `amazon_enabled`==`true`. Whether to allow guest to connect to other Guest WLANs (with different `WLAN.ssid`) of same org without reauthentication (disable random_mac for seamless roaming)
 	AllowWlanIdRoam *bool `json:"allow_wlan_id_roam,omitempty"`
@@ -34,15 +34,15 @@ type WlanPortal struct {
 	AzureExpire Optional[int] `json:"azure_expire"`
 	// Required if `azure_enabled`==`true`. Azure active directory tenant id.
 	AzureTenantId Optional[string] `json:"azure_tenant_id"`
-	// Required if `sms_provider`==`broadnet`
+	// Required if `sms_provider`==`broadnet`. Password for the Broadnet SMS provider account
 	BroadnetPassword *string `json:"broadnet_password,omitempty"`
-	// Required if `sms_provider`==`broadnet`
+	// Required if `sms_provider`==`broadnet`. SID for the Broadnet SMS provider account
 	BroadnetSid *string `json:"broadnet_sid,omitempty"`
-	// Required if `sms_provider`==`broadnet`
+	// Required if `sms_provider`==`broadnet`. User ID for the Broadnet SMS provider account
 	BroadnetUserId *string `json:"broadnet_user_id,omitempty"`
 	// Whether to bypass the guest portal when cloud not reachable (and apply the default policies)
 	BypassWhenCloudDown *bool `json:"bypass_when_cloud_down,omitempty"`
-	// Required if `sms_provider`==`clickatell`
+	// Required if `sms_provider`==`clickatell`. API key for the Clickatell SMS provider account
 	ClickatellApiKey *string `json:"clickatell_api_key,omitempty"`
 	// Whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)
 	CrossSite *bool `json:"cross_site,omitempty"`
@@ -78,9 +78,9 @@ type WlanPortal struct {
 	GoogleEnabled *bool `json:"google_enabled,omitempty"`
 	// Optional if `google_enabled`==`true`. Interval for which guest remains authorized using Google Auth (in minutes), if not provided, uses expire`
 	GoogleExpire Optional[int] `json:"google_expire"`
-	// Required if `sms_provider`==`gupshup`
+	// Required if `sms_provider`==`gupshup`. Password for the Gupshup SMS provider account
 	GupshupPassword *string `json:"gupshup_password,omitempty"`
-	// Required if `sms_provider`==`gupshup`
+	// Required if `sms_provider`==`gupshup`. User ID for the Gupshup SMS provider account
 	GupshupUserid *string `json:"gupshup_userid,omitempty"`
 	// Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one.
 	MicrosoftClientId Optional[string] `json:"microsoft_client_id"`
@@ -96,18 +96,19 @@ type WlanPortal struct {
 	PassphraseEnabled *bool `json:"passphrase_enabled,omitempty"`
 	// Optional if `passphrase_enabled`==`true`. Interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire`
 	PassphraseExpire Optional[int] `json:"passphrase_expire"`
-	// Required if `passphrase_enabled`==`true`.
+	// Required if `passphrase_enabled`==`true`. Passphrase guests must enter when passphrase authentication is enabled
 	Password Optional[string] `json:"password"`
 	// Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behavior is acc to `sponsor_email_domains`
 	PredefinedSponsorsEnabled *bool `json:"predefined_sponsors_enabled,omitempty"`
 	// Whether to hide sponsor’s email from list of sponsors
 	PredefinedSponsorsHideEmail *bool `json:"predefined_sponsors_hide_email,omitempty"`
-	Privacy                     *bool `json:"privacy,omitempty"`
-	// Required if `sms_provider`==`puzzel`
+	// Whether to show the privacy policy in the WLAN guest portal
+	Privacy *bool `json:"privacy,omitempty"`
+	// Required if `sms_provider`==`puzzel`. Password for the Puzzel SMS provider account
 	PuzzelPassword *string `json:"puzzel_password,omitempty"`
-	// Required if `sms_provider`==`puzzel`
+	// Required if `sms_provider`==`puzzel`. Service ID for the Puzzel SMS provider account
 	PuzzelServiceId *string `json:"puzzel_service_id,omitempty"`
-	// Required if `sms_provider`==`puzzel`
+	// Required if `sms_provider`==`puzzel`. Username for the Puzzel SMS provider account
 	PuzzelUsername *string `json:"puzzel_username,omitempty"`
 	// Optional if `sms_enabled`==`true`. SMS Message format
 	SmsMessageFormat *string `json:"smsMessageFormat,omitempty"`
@@ -121,6 +122,8 @@ type WlanPortal struct {
 	SmsglobalApiKey *string `json:"smsglobal_api_key,omitempty"`
 	// Required if `sms_provider`==`smsglobal`, Client secret
 	SmsglobalApiSecret *string `json:"smsglobal_api_secret,omitempty"`
+	// Optional sender's number or sender ID for SMSGlobal. If not provided, uses the default number associated with the account
+	SmsglobalSender *string `json:"smsglobal_sender,omitempty"`
 	// Optional if `sponsor_enabled`==`true`. Whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled
 	SponsorAutoApprove *bool `json:"sponsor_auto_approve,omitempty"`
 	// List of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty.
@@ -139,7 +142,7 @@ type WlanPortal struct {
 	Sponsors *WlanPortalSponsors `json:"sponsors,omitempty"`
 	// Optional if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched
 	SsoDefaultRole *string `json:"sso_default_role,omitempty"`
-	// Optional if `wlan_portal_auth`==`sso`
+	// Optional if `wlan_portal_auth`==`sso`. Role assigned to authenticated users when guest SSO is used
 	SsoForcedRole *string `json:"sso_forced_role,omitempty"`
 	// Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response)
 	SsoIdpCert *string `json:"sso_idp_cert,omitempty"`
@@ -168,8 +171,8 @@ type WlanPortal struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w WlanPortal) String() string {
 	return fmt.Sprintf(
-		"WlanPortal[AllowWlanIdRoam=%v, AmazonClientId=%v, AmazonClientSecret=%v, AmazonEmailDomains=%v, AmazonEnabled=%v, AmazonExpire=%v, Auth=%v, AzureClientId=%v, AzureClientSecret=%v, AzureEnabled=%v, AzureExpire=%v, AzureTenantId=%v, BroadnetPassword=%v, BroadnetSid=%v, BroadnetUserId=%v, BypassWhenCloudDown=%v, ClickatellApiKey=%v, CrossSite=%v, EmailEnabled=%v, Enabled=%v, Expire=%v, ExternalPortalUrl=%v, FacebookClientId=%v, FacebookClientSecret=%v, FacebookEmailDomains=%v, FacebookEnabled=%v, FacebookExpire=%v, Forward=%v, ForwardUrl=%v, GoogleClientId=%v, GoogleClientSecret=%v, GoogleEmailDomains=%v, GoogleEnabled=%v, GoogleExpire=%v, GupshupPassword=%v, GupshupUserid=%v, MicrosoftClientId=%v, MicrosoftClientSecret=%v, MicrosoftEmailDomains=%v, MicrosoftEnabled=%v, MicrosoftExpire=%v, PassphraseEnabled=%v, PassphraseExpire=%v, Password=%v, PredefinedSponsorsEnabled=%v, PredefinedSponsorsHideEmail=%v, Privacy=%v, PuzzelPassword=%v, PuzzelServiceId=%v, PuzzelUsername=%v, SmsMessageFormat=%v, SmsEnabled=%v, SmsExpire=%v, SmsProvider=%v, SmsglobalApiKey=%v, SmsglobalApiSecret=%v, SponsorAutoApprove=%v, SponsorEmailDomains=%v, SponsorEnabled=%v, SponsorExpire=%v, SponsorLinkValidityDuration=%v, SponsorNotifyAll=%v, SponsorStatusNotify=%v, Sponsors=%v, SsoDefaultRole=%v, SsoForcedRole=%v, SsoIdpCert=%v, SsoIdpSignAlgo=%v, SsoIdpSsoUrl=%v, SsoIssuer=%v, SsoNameidFormat=%v, TelstraClientId=%v, TelstraClientSecret=%v, TwilioAuthToken=%v, TwilioPhoneNumber=%v, TwilioSid=%v, AdditionalProperties=%v]",
-		w.AllowWlanIdRoam, w.AmazonClientId, w.AmazonClientSecret, w.AmazonEmailDomains, w.AmazonEnabled, w.AmazonExpire, w.Auth, w.AzureClientId, w.AzureClientSecret, w.AzureEnabled, w.AzureExpire, w.AzureTenantId, w.BroadnetPassword, w.BroadnetSid, w.BroadnetUserId, w.BypassWhenCloudDown, w.ClickatellApiKey, w.CrossSite, w.EmailEnabled, w.Enabled, w.Expire, w.ExternalPortalUrl, w.FacebookClientId, w.FacebookClientSecret, w.FacebookEmailDomains, w.FacebookEnabled, w.FacebookExpire, w.Forward, w.ForwardUrl, w.GoogleClientId, w.GoogleClientSecret, w.GoogleEmailDomains, w.GoogleEnabled, w.GoogleExpire, w.GupshupPassword, w.GupshupUserid, w.MicrosoftClientId, w.MicrosoftClientSecret, w.MicrosoftEmailDomains, w.MicrosoftEnabled, w.MicrosoftExpire, w.PassphraseEnabled, w.PassphraseExpire, w.Password, w.PredefinedSponsorsEnabled, w.PredefinedSponsorsHideEmail, w.Privacy, w.PuzzelPassword, w.PuzzelServiceId, w.PuzzelUsername, w.SmsMessageFormat, w.SmsEnabled, w.SmsExpire, w.SmsProvider, w.SmsglobalApiKey, w.SmsglobalApiSecret, w.SponsorAutoApprove, w.SponsorEmailDomains, w.SponsorEnabled, w.SponsorExpire, w.SponsorLinkValidityDuration, w.SponsorNotifyAll, w.SponsorStatusNotify, w.Sponsors, w.SsoDefaultRole, w.SsoForcedRole, w.SsoIdpCert, w.SsoIdpSignAlgo, w.SsoIdpSsoUrl, w.SsoIssuer, w.SsoNameidFormat, w.TelstraClientId, w.TelstraClientSecret, w.TwilioAuthToken, w.TwilioPhoneNumber, w.TwilioSid, w.AdditionalProperties)
+		"WlanPortal[AllowWlanIdRoam=%v, AmazonClientId=%v, AmazonClientSecret=%v, AmazonEmailDomains=%v, AmazonEnabled=%v, AmazonExpire=%v, Auth=%v, AzureClientId=%v, AzureClientSecret=%v, AzureEnabled=%v, AzureExpire=%v, AzureTenantId=%v, BroadnetPassword=%v, BroadnetSid=%v, BroadnetUserId=%v, BypassWhenCloudDown=%v, ClickatellApiKey=%v, CrossSite=%v, EmailEnabled=%v, Enabled=%v, Expire=%v, ExternalPortalUrl=%v, FacebookClientId=%v, FacebookClientSecret=%v, FacebookEmailDomains=%v, FacebookEnabled=%v, FacebookExpire=%v, Forward=%v, ForwardUrl=%v, GoogleClientId=%v, GoogleClientSecret=%v, GoogleEmailDomains=%v, GoogleEnabled=%v, GoogleExpire=%v, GupshupPassword=%v, GupshupUserid=%v, MicrosoftClientId=%v, MicrosoftClientSecret=%v, MicrosoftEmailDomains=%v, MicrosoftEnabled=%v, MicrosoftExpire=%v, PassphraseEnabled=%v, PassphraseExpire=%v, Password=%v, PredefinedSponsorsEnabled=%v, PredefinedSponsorsHideEmail=%v, Privacy=%v, PuzzelPassword=%v, PuzzelServiceId=%v, PuzzelUsername=%v, SmsMessageFormat=%v, SmsEnabled=%v, SmsExpire=%v, SmsProvider=%v, SmsglobalApiKey=%v, SmsglobalApiSecret=%v, SmsglobalSender=%v, SponsorAutoApprove=%v, SponsorEmailDomains=%v, SponsorEnabled=%v, SponsorExpire=%v, SponsorLinkValidityDuration=%v, SponsorNotifyAll=%v, SponsorStatusNotify=%v, Sponsors=%v, SsoDefaultRole=%v, SsoForcedRole=%v, SsoIdpCert=%v, SsoIdpSignAlgo=%v, SsoIdpSsoUrl=%v, SsoIssuer=%v, SsoNameidFormat=%v, TelstraClientId=%v, TelstraClientSecret=%v, TwilioAuthToken=%v, TwilioPhoneNumber=%v, TwilioSid=%v, AdditionalProperties=%v]",
+		w.AllowWlanIdRoam, w.AmazonClientId, w.AmazonClientSecret, w.AmazonEmailDomains, w.AmazonEnabled, w.AmazonExpire, w.Auth, w.AzureClientId, w.AzureClientSecret, w.AzureEnabled, w.AzureExpire, w.AzureTenantId, w.BroadnetPassword, w.BroadnetSid, w.BroadnetUserId, w.BypassWhenCloudDown, w.ClickatellApiKey, w.CrossSite, w.EmailEnabled, w.Enabled, w.Expire, w.ExternalPortalUrl, w.FacebookClientId, w.FacebookClientSecret, w.FacebookEmailDomains, w.FacebookEnabled, w.FacebookExpire, w.Forward, w.ForwardUrl, w.GoogleClientId, w.GoogleClientSecret, w.GoogleEmailDomains, w.GoogleEnabled, w.GoogleExpire, w.GupshupPassword, w.GupshupUserid, w.MicrosoftClientId, w.MicrosoftClientSecret, w.MicrosoftEmailDomains, w.MicrosoftEnabled, w.MicrosoftExpire, w.PassphraseEnabled, w.PassphraseExpire, w.Password, w.PredefinedSponsorsEnabled, w.PredefinedSponsorsHideEmail, w.Privacy, w.PuzzelPassword, w.PuzzelServiceId, w.PuzzelUsername, w.SmsMessageFormat, w.SmsEnabled, w.SmsExpire, w.SmsProvider, w.SmsglobalApiKey, w.SmsglobalApiSecret, w.SmsglobalSender, w.SponsorAutoApprove, w.SponsorEmailDomains, w.SponsorEnabled, w.SponsorExpire, w.SponsorLinkValidityDuration, w.SponsorNotifyAll, w.SponsorStatusNotify, w.Sponsors, w.SsoDefaultRole, w.SsoForcedRole, w.SsoIdpCert, w.SsoIdpSignAlgo, w.SsoIdpSsoUrl, w.SsoIssuer, w.SsoNameidFormat, w.TelstraClientId, w.TelstraClientSecret, w.TwilioAuthToken, w.TwilioPhoneNumber, w.TwilioSid, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for WlanPortal.
@@ -178,7 +181,7 @@ func (w WlanPortal) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(w.AdditionalProperties,
-		"allow_wlan_id_roam", "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "predefined_sponsors_hide_email", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "smsglobal_api_key", "smsglobal_api_secret", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid"); err != nil {
+		"allow_wlan_id_roam", "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "predefined_sponsors_hide_email", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "smsglobal_api_key", "smsglobal_api_secret", "smsglobal_sender", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(w.toMap())
@@ -436,6 +439,9 @@ func (w WlanPortal) toMap() map[string]any {
 	if w.SmsglobalApiSecret != nil {
 		structMap["smsglobal_api_secret"] = w.SmsglobalApiSecret
 	}
+	if w.SmsglobalSender != nil {
+		structMap["smsglobal_sender"] = w.SmsglobalSender
+	}
 	if w.SponsorAutoApprove != nil {
 		structMap["sponsor_auto_approve"] = w.SponsorAutoApprove
 	}
@@ -523,7 +529,7 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_wlan_id_roam", "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "predefined_sponsors_hide_email", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "smsglobal_api_key", "smsglobal_api_secret", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "allow_wlan_id_roam", "amazon_client_id", "amazon_client_secret", "amazon_email_domains", "amazon_enabled", "amazon_expire", "auth", "azure_client_id", "azure_client_secret", "azure_enabled", "azure_expire", "azure_tenant_id", "broadnet_password", "broadnet_sid", "broadnet_user_id", "bypass_when_cloud_down", "clickatell_api_key", "cross_site", "email_enabled", "enabled", "expire", "external_portal_url", "facebook_client_id", "facebook_client_secret", "facebook_email_domains", "facebook_enabled", "facebook_expire", "forward", "forward_url", "google_client_id", "google_client_secret", "google_email_domains", "google_enabled", "google_expire", "gupshup_password", "gupshup_userid", "microsoft_client_id", "microsoft_client_secret", "microsoft_email_domains", "microsoft_enabled", "microsoft_expire", "passphrase_enabled", "passphrase_expire", "password", "predefined_sponsors_enabled", "predefined_sponsors_hide_email", "privacy", "puzzel_password", "puzzel_service_id", "puzzel_username", "smsMessageFormat", "sms_enabled", "sms_expire", "sms_provider", "smsglobal_api_key", "smsglobal_api_secret", "smsglobal_sender", "sponsor_auto_approve", "sponsor_email_domains", "sponsor_enabled", "sponsor_expire", "sponsor_link_validity_duration", "sponsor_notify_all", "sponsor_status_notify", "sponsors", "sso_default_role", "sso_forced_role", "sso_idp_cert", "sso_idp_sign_algo", "sso_idp_sso_url", "sso_issuer", "sso_nameid_format", "telstra_client_id", "telstra_client_secret", "twilio_auth_token", "twilio_phone_number", "twilio_sid")
 	if err != nil {
 		return err
 	}
@@ -585,6 +591,7 @@ func (w *WlanPortal) UnmarshalJSON(input []byte) error {
 	w.SmsProvider = temp.SmsProvider
 	w.SmsglobalApiKey = temp.SmsglobalApiKey
 	w.SmsglobalApiSecret = temp.SmsglobalApiSecret
+	w.SmsglobalSender = temp.SmsglobalSender
 	w.SponsorAutoApprove = temp.SponsorAutoApprove
 	w.SponsorEmailDomains = temp.SponsorEmailDomains
 	w.SponsorEnabled = temp.SponsorEnabled
@@ -666,6 +673,7 @@ type tempWlanPortal struct {
 	SmsProvider                 *WlanPortalSmsProviderEnum     `json:"sms_provider,omitempty"`
 	SmsglobalApiKey             *string                        `json:"smsglobal_api_key,omitempty"`
 	SmsglobalApiSecret          *string                        `json:"smsglobal_api_secret,omitempty"`
+	SmsglobalSender             *string                        `json:"smsglobal_sender,omitempty"`
 	SponsorAutoApprove          *bool                          `json:"sponsor_auto_approve,omitempty"`
 	SponsorEmailDomains         []string                       `json:"sponsor_email_domains,omitempty"`
 	SponsorEnabled              *bool                          `json:"sponsor_enabled,omitempty"`

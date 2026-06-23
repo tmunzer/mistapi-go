@@ -10,9 +10,11 @@ import (
 // TuntermDhcpdConfig represents a TuntermDhcpdConfig struct.
 // DHCP server/relay configuration of Mist Tunneled VLANs. Property key is the VLAN ID
 type TuntermDhcpdConfig struct {
-	Enabled *bool    `json:"enabled,omitempty"`
+	// Whether DHCP relay is enabled for tunnel termination VLANs
+	Enabled *bool `json:"enabled,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Servers []string `json:"servers,omitempty"`
-	// enum: `relay`
+	// DHCP handling mode for tunnel termination. enum: `relay`
 	Type                 *TuntermDhcpdTypeEnum                 `json:"type,omitempty"`
 	AdditionalProperties map[string]TuntermDhcpdConfigProperty `json:"_"`
 }

@@ -8,6 +8,7 @@ import (
 )
 
 // CaptureSwitchPortsTcpdumpExpression represents a CaptureSwitchPortsTcpdumpExpression struct.
+// Per-port tcpdump filter for a switch packet capture
 type CaptureSwitchPortsTcpdumpExpression struct {
 	// tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
 	TcpdumpExpression    *string                `json:"tcpdump_expression,omitempty"`

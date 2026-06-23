@@ -17,7 +17,16 @@ OSPF type. enum: `default`, `nssa`, `stub`
 
 ## Example
 
-```
-default
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ospfAreaType := models.OspfAreaTypeEnum_NSSA
+
+}
 ```
 

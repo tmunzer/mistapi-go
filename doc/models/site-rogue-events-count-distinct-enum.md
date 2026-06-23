@@ -16,3 +16,18 @@ enum: `ap`, `bssid`, `ssid`, `type`
 | `ssid` |
 | `type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteRogueEventsCountDistinct := models.SiteRogueEventsCountDistinctEnum_SSID
+
+}
+```
+

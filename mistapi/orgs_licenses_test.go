@@ -103,6 +103,98 @@ func TestOrgsLicensesTestGetOrgLicenseAsyncClaimStatus1(t *testing.T) {
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
+// TestOrgsLicensesTestListOrgAsyncClaims tests the behavior of the OrgsLicenses
+func TestOrgsLicensesTestListOrgAsyncClaims(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	detail := bool(true)
+	apiResponse, err := orgsLicenses.ListOrgAsyncClaims(ctx, orgId, &detail)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"claims":[{"claim_id":"8e2a0c6f-6f3c-4c4e-9c72-8c5b1c1b6b9b","completed":["000000000022","000000000011"],"failed":0,"incompleted":[],"org_id":"44fe2c6b-7d7d-46e6-8d4f-5ce6a7c6b01a","processed":2,"scheduled_at":1709598052,"status":"done","succeed":2,"timestamp":1709598053,"total":2},{"claim_id":"3a7b6c1e-4e5a-4eaa-9c7f-9a9c62b7f402","completed":["000000000044"],"failed":0,"incompleted":["000000000033"],"org_id":"44fe2c6b-7d7d-46e6-8d4f-5ce6a7c6b01a","processed":1,"scheduled_at":1709598070,"status":"ongoing","succeed":1,"timestamp":1709598075,"total":2}]}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsLicensesTestListOrgAsyncClaims1 tests the behavior of the OrgsLicenses
+func TestOrgsLicensesTestListOrgAsyncClaims1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	detail := bool(true)
+	apiResponse, err := orgsLicenses.ListOrgAsyncClaims(ctx, orgId, &detail)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"claims":[{"claim_id":"8e2a0c6f-6f3c-4c4e-9c72-8c5b1c1b6b9b","completed":["000000000022","000000000011"],"failed":0,"incompleted":[],"org_id":"44fe2c6b-7d7d-46e6-8d4f-5ce6a7c6b01a","processed":2,"scheduled_at":1709598052,"status":"done","succeed":2,"timestamp":1709598053,"total":2},{"claim_id":"3a7b6c1e-4e5a-4eaa-9c7f-9a9c62b7f402","completed":["000000000044"],"failed":0,"incompleted":["000000000033"],"org_id":"44fe2c6b-7d7d-46e6-8d4f-5ce6a7c6b01a","processed":1,"scheduled_at":1709598070,"status":"ongoing","succeed":1,"timestamp":1709598075,"total":2}]}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsLicensesTestCreateOrgAsyncClaim tests the behavior of the OrgsLicenses
+func TestOrgsLicensesTestCreateOrgAsyncClaim(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.ClaimActivationAsync
+	errBody := json.Unmarshal([]byte(`{"code":"ZHT3K-H36DT-MG85D-M61AC","type":"inventory"}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := orgsLicenses.CreateOrgAsyncClaim(ctx, orgId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"claim_id":"8e2a0c6f-6f3c-4c4e-9c72-8c5b1c1b6b9b","inventory_pending":[{"mac":"5c5b35000012"},{"mac":"5c5b35000018"}]}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
+// TestOrgsLicensesTestCreateOrgAsyncClaim1 tests the behavior of the OrgsLicenses
+func TestOrgsLicensesTestCreateOrgAsyncClaim1(t *testing.T) {
+	ctx := context.Background()
+	orgId, errUUID := uuid.Parse("000000ab-00ab-00ab-00ab-0000000000ab")
+	if errUUID != nil {
+		t.Error(errUUID)
+	}
+	var body models.ClaimActivationAsync
+	errBody := json.Unmarshal([]byte(`{"code":"ZHT3K-H36DT-MG85D-M61AC","type":"inventory"}`), &body)
+	if errBody != nil {
+		t.Errorf("Cannot parse the model object.")
+	}
+	apiResponse, err := orgsLicenses.CreateOrgAsyncClaim(ctx, orgId, &body)
+	if err != nil {
+		t.Errorf("Endpoint call failed: %v", err)
+	}
+	testHelper.CheckResponseStatusCode(t, apiResponse.Response.StatusCode, 200)
+	expectedHeaders := []testHelper.TestHeader{
+		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
+	}
+	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
+	expected := `{"claim_id":"8e2a0c6f-6f3c-4c4e-9c72-8c5b1c1b6b9b","inventory_pending":[{"mac":"5c5b35000012"},{"mac":"5c5b35000018"}]}`
+	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
+}
+
 // TestOrgsLicensesTestGetOrgLicensesSummary tests the behavior of the OrgsLicenses
 func TestOrgsLicensesTestGetOrgLicensesSummary(t *testing.T) {
 	ctx := context.Background()

@@ -11,9 +11,11 @@ import (
 )
 
 // SdkstatsWirelessClientZone represents a SdkstatsWirelessClientZone struct.
+// Zone currently containing an SDK client
 type SdkstatsWirelessClientZone struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
+	Id uuid.UUID `json:"id"`
+	// Time when the SDK client entered the zone, in epoch seconds
 	Since                float64                `json:"since"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

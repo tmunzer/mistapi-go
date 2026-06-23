@@ -191,7 +191,7 @@ func TestUtilitiesWiFiTestOptimizeSiteRrm(t *testing.T) {
 func TestUtilitiesWiFiTestTestSiteWlanSmsGlobal(t *testing.T) {
 	ctx := context.Background()
 	var body models.TestSmsGlobal
-	errBody := json.Unmarshal([]byte(`{"smsglobal_api_key":"123456","smsglobal_api_secret":"abcdef","to":"+911122334455"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"smsglobal_api_key":"123456","smsglobal_api_secret":"abcdef","smsglobal_sender":"61400000002","to":"+911122334455"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

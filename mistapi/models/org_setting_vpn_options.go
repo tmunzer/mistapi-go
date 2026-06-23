@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingVpnOptions represents a OrgSettingVpnOptions struct.
+// Organization VPN behavior options
 type OrgSettingVpnOptions struct {
-	AsBase     *int  `json:"as_base,omitempty"`
+	// Base BGP autonomous system number used for generated VPN configurations
+	AsBase *int `json:"as_base,omitempty"`
+	// Whether IPv6 is enabled for organization VPN configuration
 	EnableIpv6 *bool `json:"enable_ipv6,omitempty"`
 	// requiring /12 or bigger to support 16 private IPs for 65535 gateways
 	StSubnet             *string                `json:"st_subnet,omitempty"`

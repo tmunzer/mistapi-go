@@ -8,12 +8,13 @@ import (
 )
 
 // ServicePolicySecintel represents a ServicePolicySecintel struct.
-// SRX only
+// SRX SecIntel settings for a service policy
 type ServicePolicySecintel struct {
+	// Whether SecIntel inspection is enabled for the service policy
 	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `default`, `standard`, `strict`
 	Profile *ServicePolicySecintelProfileEnum `json:"profile,omitempty"`
-	// org-level secintel Profile can be used, this takes precedence over 'profile'
+	// Organization-level SecIntel profile ID; takes precedence over inline `profile` settings
 	SecintelprofileId    *string                `json:"secintelprofile_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

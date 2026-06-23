@@ -1,6 +1,8 @@
 
 # Network Multicast Group
 
+Multicast group rendezvous point mapping
+
 ## Structure
 
 `NetworkMulticastGroup`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `RpIp` | `*string` | Optional | RP (rendezvous point) IP Address |
+| `RpIp` | `*string` | Optional | RP (rendezvous point) IP address |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "rp_ip": "rp_ip4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkMulticastGroup := models.NetworkMulticastGroup{
+        RpIp:                 models.ToPointer("rp_ip0"),
+    }
+
 }
 ```
 

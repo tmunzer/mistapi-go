@@ -19,7 +19,16 @@ channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` 
 
 ## Example
 
-```
-20
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dot11Bandwidth := models.Dot11BandwidthEnum_ENUM40
+
+}
 ```
 

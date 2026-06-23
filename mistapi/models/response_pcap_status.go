@@ -11,14 +11,19 @@ import (
 )
 
 // ResponsePcapStatus represents a ResponsePcapStatus struct.
+// Current status of a packet capture session
 type ResponsePcapStatus struct {
+	// AP MAC address targeted by the packet capture, or null when no single AP filter is set
 	ApMac Optional[string] `json:"ap_mac"`
 	// List of target APs to capture packets
-	Aps       []string         `json:"aps,omitempty"`
+	Aps []string `json:"aps,omitempty"`
+	// Client MAC address filter applied to the packet capture, or null when no client filter is used
 	ClientMac Optional[string] `json:"client_mac"`
-	Duration  *int             `json:"duration,omitempty"`
-	Enabled   *bool            `json:"enabled,omitempty"`
-	// Expiry time of the capture session, in epoch seconds
+	// Configured packet capture duration, in seconds
+	Duration *int `json:"duration,omitempty"`
+	// Whether the packet capture session is currently enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Epoch timestamp, in seconds, when the capture session expires
 	Expiry *float64 `json:"expiry,omitempty"`
 	// List of APs where configuration attempt failed
 	Failed []string `json:"failed,omitempty"`
@@ -29,13 +34,15 @@ type ResponsePcapStatus struct {
 	// Information on gateways to capture packets on if a gateway capture type is specified
 	Gateways []string `json:"gateways,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id            uuid.UUID `json:"id"`
-	IncludesMcast *bool     `json:"includes_mcast,omitempty"`
+	Id uuid.UUID `json:"id"`
+	// Whether multicast traffic is included in the packet capture
+	IncludesMcast *bool `json:"includes_mcast,omitempty"`
 	// Map of Mist Edge IDs that could not be configured for capture
 	InvalidMxedges *interface{} `json:"invalid_mxedges,omitempty"`
 	// Max number of packets configured by user
 	MaxNumPackets *int `json:"max_num_packets,omitempty"`
-	MaxPktLen     *int `json:"max_pkt_len,omitempty"`
+	// Maximum number of bytes captured from each packet
+	MaxPktLen *int `json:"max_pkt_len,omitempty"`
 	// Number of Mist Edges in the capture session
 	MxedgeCount *int `json:"mxedge_count,omitempty"`
 	// Dict of Mist Edges to capture on, property key is the Mist Edge ID
@@ -43,26 +50,32 @@ type ResponsePcapStatus struct {
 	// total number of packets captured by all AP, not applicable for type [client, new_assoc]
 	NumPackets *int `json:"num_packets,omitempty"`
 	// List of target APs successfully configured to capture packets
-	Ok      []string                  `json:"ok,omitempty"`
-	OrgId   *uuid.UUID                `json:"org_id,omitempty"`
+	Ok []string `json:"ok,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Per-AP radio capture settings keyed by AP MAC address
 	PcapAps map[string]ResponsePcapAp `json:"pcap_aps,omitempty"`
 	// When `type`==`radiotap`, radiotap_tcpdump_expression expression provided by the user
 	RadiotapTcpdumpExpression *string `json:"radiotap_tcpdump_expression,omitempty"`
-	Raw                       *bool   `json:"raw,omitempty"`
+	// Whether raw packet data is included in the capture output
+	Raw *bool `json:"raw,omitempty"`
 	// When `type`==`scan`, scan_tcpdump_expression provided by the user
-	ScanTcpdumpExpression *string          `json:"scan_tcpdump_expression,omitempty"`
-	SiteId                *uuid.UUID       `json:"site_id,omitempty"`
-	Ssid                  Optional[string] `json:"ssid"`
-	StartedTime           *int             `json:"started_time,omitempty"`
+	ScanTcpdumpExpression *string `json:"scan_tcpdump_expression,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wireless network SSID filter applied to the packet capture, or null when no SSID filter is used
+	Ssid Optional[string] `json:"ssid"`
+	// Epoch timestamp, in seconds, when the capture session started
+	StartedTime *int `json:"started_time,omitempty"`
 	// Information on switches to capture packets on if a switch capture type is specified. irb port interface is automatically added to capture as needed to ensure all desired packets are captured.
 	Switches []string `json:"switches,omitempty"`
 	// tcpdump expression provided by the user (common)
 	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// enum: `client`, `gateway`, `new_assoc`, `radiotap`, `radiotap,wired`, `wired`, `wireless`
 	Type PcapTypeEnum `json:"type"`
-	// Required if `format`==`tzsp`. Remote host accessible to mxedges over the network for receiving the captured packets.
+	// Required if `format`==`tzsp`. Remote host accessible to Mist Edges over the network for receiving the captured packets.
 	TzspHost *string `json:"tzsp_host,omitempty"`
 	// If `format`==`tzsp`. Port on remote host for receiving the captured packets
 	TzspPort *int `json:"tzsp_port,omitempty"`

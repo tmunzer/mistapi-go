@@ -17,7 +17,16 @@ Type of network access. enum: `wireless`, `wired`, `vty`
 
 ## Example
 
-```
-wireless
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacAccessType := models.NacAccessTypeEnum_WIRELESS
+
+}
 ```
 

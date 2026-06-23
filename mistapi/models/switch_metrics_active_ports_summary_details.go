@@ -8,8 +8,11 @@ import (
 )
 
 // SwitchMetricsActivePortsSummaryDetails represents a SwitchMetricsActivePortsSummaryDetails struct.
+// Port counts used by the active-port switch metric
 type SwitchMetricsActivePortsSummaryDetails struct {
-	ActivePortCount      *int                   `json:"active_port_count,omitempty"`
+	// Number of active ports observed across evaluated switches
+	ActivePortCount *int `json:"active_port_count,omitempty"`
+	// Total number of ports evaluated for the active-port metric
 	TotalPortCount       *int                   `json:"total_port_count,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Ap Esl Config
 
+Electronic shelf label integration settings for an AP
+
 ## Structure
 
 `ApEslConfig`
@@ -18,18 +20,27 @@
 | `VerifyCert` | `*bool` | Optional | Only if `type`==`imagotag` or `type`==`native` |
 | `VlanId` | `*int` | Optional | Only if `type`==`solum` or `type`==`hanshow`<br><br>**Default**: `1` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cacert": "--BEGIN CERTIFICATE--\nMIIDXTCCAkWgAwIBAgIJAL5b1z4f3k2TMA0GCSqGSIb3DQEBCwUAMIGVMQsw\n",
-  "channel": 3,
-  "enabled": false,
-  "host": "1.1.1.1",
-  "port": 0,
-  "type": "imagotag",
-  "verify_cert": true,
-  "vlan_id": 1
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apEslConfig := models.ApEslConfig{
+        Cacert:               models.ToPointer("--BEGIN CERTIFICATE--\nMIIDXTCCAkWgAwIBAgIJAL5b1z4f3k2TMA0GCSqGSIb3DQEBCwUAMIGVMQsw\n"),
+        Channel:              models.ToPointer(3),
+        Enabled:              models.ToPointer(false),
+        Host:                 models.ToPointer("1.1.1.1"),
+        Port:                 models.ToPointer(0),
+        Type:                 models.ToPointer(models.ApEslTypeEnum_IMAGOTAG),
+        VerifyCert:           models.ToPointer(true),
+        VlanId:               models.ToPointer(1),
+    }
+
 }
 ```
 

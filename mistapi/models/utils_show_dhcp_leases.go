@@ -10,10 +10,11 @@ import (
 )
 
 // UtilsShowDhcpLeases represents a UtilsShowDhcpLeases struct.
+// DHCP leases command request
 type UtilsShowDhcpLeases struct {
 	// DHCP network for the leases, returns full table if not specified
 	Network string `json:"network"`
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Response Pcap Search Item Pcap Aps Item
 
+AP radio settings captured for a packet capture record
+
 ## Structure
 
 `ResponsePcapSearchItemPcapApsItem`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band` | `*string` | Optional | - |
-| `Bandwidth` | `*string` | Optional | - |
-| `Channel` | `*int` | Optional | - |
-| `TcpdumpExpression` | `models.Optional[string]` | Optional | - |
+| `Band` | `*string` | Optional | Radio band used for this AP capture |
+| `Bandwidth` | `*string` | Optional | Channel bandwidth used for this AP capture, in MHz |
+| `Channel` | `*int` | Optional | Radio channel used for this AP capture |
+| `TcpdumpExpression` | `models.Optional[string]` | Optional | Tcpdump filter expression applied to this AP capture, or null when no filter is applied |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "band": "band4",
-  "bandwidth": "bandwidth6",
-  "channel": 16,
-  "tcpdump_expression": "tcpdump_expression2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responsePcapSearchItemPcapApsItem := models.ResponsePcapSearchItemPcapApsItem{
+        Band:                 models.ToPointer("band6"),
+        Bandwidth:            models.ToPointer("bandwidth8"),
+        Channel:              models.ToPointer(190),
+        TcpdumpExpression:    models.NewOptional(models.ToPointer("tcpdump_expression4")),
+    }
+
 }
 ```
 

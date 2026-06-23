@@ -8,8 +8,11 @@ import (
 )
 
 // OrgSettingAutoDeviceNaming represents a OrgSettingAutoDeviceNaming struct.
+// Automatic device naming configuration for claimed devices
 type OrgSettingAutoDeviceNaming struct {
-	Enable               *bool                                      `json:"enable,omitempty"`
+	// Whether automatic device naming is enabled
+	Enable *bool `json:"enable,omitempty"`
+	// Automatic device naming rules, or null when automatic naming is not configured
 	Rules                Optional[[]OrgSettingAutoDeviceNamingRule] `json:"rules"`
 	AdditionalProperties map[string]interface{}                     `json:"_"`
 }

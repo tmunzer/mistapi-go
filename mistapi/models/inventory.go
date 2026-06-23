@@ -9,10 +9,11 @@ import (
 )
 
 // Inventory represents a Inventory struct.
+// Organization inventory record for a claimed device
 type Inventory struct {
 	// Only if `type`==`switch` or `type`==`gateway`, whether the switch/gateway is adopted
 	Adopted *bool `json:"adopted,omitempty"`
-	// For Virtual Chassis only, the MAC Address of the FPC0
+	// For Virtual Chassis only, MAC address of the FPC0 member
 	ChassisMac *string `json:"chassis_mac,omitempty"`
 	// For Virtual Chassis only, the Serial Number of the FPC0
 	ChassisSerial *string `json:"chassis_serial,omitempty"`
@@ -22,32 +23,37 @@ type Inventory struct {
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Deviceprofile id if assigned, null if not assigned
 	DeviceprofileId Optional[string] `json:"deviceprofile_id"`
-	// Hostname reported by the device
+	// Inventory hostname value reported by the device
 	Hostname *string `json:"hostname,omitempty"`
 	// Device hardware revision number
 	HwRev *string `json:"hw_rev,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id  *uuid.UUID `json:"id,omitempty"`
-	Jsi *bool      `json:"jsi,omitempty"`
-	// Device MAC address
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Whether the inventory device is in JSI mode
+	Jsi *bool `json:"jsi,omitempty"`
+	// Timestamp when the device last disconnected, in epoch seconds
+	LastDisconnected *int `json:"last_disconnected,omitempty"`
+	// Device MAC address for this inventory record
 	Mac *string `json:"mac,omitempty"`
-	// Device claim code
+	// Claim code used to add this device to inventory
 	Magic *string `json:"magic,omitempty"`
-	// Device model
+	// Device model reported in inventory
 	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// Device name if configured
-	Name  *string    `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// Device serial
-	Serial *string    `json:"serial,omitempty"`
+	// Device serial number reported in inventory
+	Serial *string `json:"serial,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Device stock keeping unit
 	Sku *string `json:"sku,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	Type *DeviceTypeDefaultApEnum `json:"type,omitempty"`
-	// If `type`==`switch` and device part of a Virtual Chassis, MAC Address of the Virtual Chassis. if `type`==`gateway` and device part of a Cluster, MAC Address of the Cluster
+	// If `type`==`switch` and the device is part of a Virtual Chassis, MAC address of the Virtual Chassis. If `type`==`gateway` and the device is part of a cluster, MAC address of the cluster
 	VcMac                *string                `json:"vc_mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -56,8 +62,8 @@ type Inventory struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i Inventory) String() string {
 	return fmt.Sprintf(
-		"Inventory[Adopted=%v, ChassisMac=%v, ChassisSerial=%v, Connected=%v, CreatedTime=%v, DeviceprofileId=%v, Hostname=%v, HwRev=%v, Id=%v, Jsi=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
-		i.Adopted, i.ChassisMac, i.ChassisSerial, i.Connected, i.CreatedTime, i.DeviceprofileId, i.Hostname, i.HwRev, i.Id, i.Jsi, i.Mac, i.Magic, i.Model, i.ModifiedTime, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Type, i.VcMac, i.AdditionalProperties)
+		"Inventory[Adopted=%v, ChassisMac=%v, ChassisSerial=%v, Connected=%v, CreatedTime=%v, DeviceprofileId=%v, Hostname=%v, HwRev=%v, Id=%v, Jsi=%v, LastDisconnected=%v, Mac=%v, Magic=%v, Model=%v, ModifiedTime=%v, Name=%v, OrgId=%v, Serial=%v, SiteId=%v, Sku=%v, Type=%v, VcMac=%v, AdditionalProperties=%v]",
+		i.Adopted, i.ChassisMac, i.ChassisSerial, i.Connected, i.CreatedTime, i.DeviceprofileId, i.Hostname, i.HwRev, i.Id, i.Jsi, i.LastDisconnected, i.Mac, i.Magic, i.Model, i.ModifiedTime, i.Name, i.OrgId, i.Serial, i.SiteId, i.Sku, i.Type, i.VcMac, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Inventory.
@@ -66,7 +72,7 @@ func (i Inventory) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac"); err != nil {
+		"adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "last_disconnected", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -109,6 +115,9 @@ func (i Inventory) toMap() map[string]any {
 	}
 	if i.Jsi != nil {
 		structMap["jsi"] = i.Jsi
+	}
+	if i.LastDisconnected != nil {
+		structMap["last_disconnected"] = i.LastDisconnected
 	}
 	if i.Mac != nil {
 		structMap["mac"] = i.Mac
@@ -154,7 +163,7 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "adopted", "chassis_mac", "chassis_serial", "connected", "created_time", "deviceprofile_id", "hostname", "hw_rev", "id", "jsi", "last_disconnected", "mac", "magic", "model", "modified_time", "name", "org_id", "serial", "site_id", "sku", "type", "vc_mac")
 	if err != nil {
 		return err
 	}
@@ -170,6 +179,7 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 	i.HwRev = temp.HwRev
 	i.Id = temp.Id
 	i.Jsi = temp.Jsi
+	i.LastDisconnected = temp.LastDisconnected
 	i.Mac = temp.Mac
 	i.Magic = temp.Magic
 	i.Model = temp.Model
@@ -186,25 +196,26 @@ func (i *Inventory) UnmarshalJSON(input []byte) error {
 
 // tempInventory is a temporary struct used for validating the fields of Inventory.
 type tempInventory struct {
-	Adopted         *bool                    `json:"adopted,omitempty"`
-	ChassisMac      *string                  `json:"chassis_mac,omitempty"`
-	ChassisSerial   *string                  `json:"chassis_serial,omitempty"`
-	Connected       *bool                    `json:"connected,omitempty"`
-	CreatedTime     *float64                 `json:"created_time,omitempty"`
-	DeviceprofileId Optional[string]         `json:"deviceprofile_id"`
-	Hostname        *string                  `json:"hostname,omitempty"`
-	HwRev           *string                  `json:"hw_rev,omitempty"`
-	Id              *uuid.UUID               `json:"id,omitempty"`
-	Jsi             *bool                    `json:"jsi,omitempty"`
-	Mac             *string                  `json:"mac,omitempty"`
-	Magic           *string                  `json:"magic,omitempty"`
-	Model           *string                  `json:"model,omitempty"`
-	ModifiedTime    *float64                 `json:"modified_time,omitempty"`
-	Name            *string                  `json:"name,omitempty"`
-	OrgId           *uuid.UUID               `json:"org_id,omitempty"`
-	Serial          *string                  `json:"serial,omitempty"`
-	SiteId          *uuid.UUID               `json:"site_id,omitempty"`
-	Sku             *string                  `json:"sku,omitempty"`
-	Type            *DeviceTypeDefaultApEnum `json:"type,omitempty"`
-	VcMac           *string                  `json:"vc_mac,omitempty"`
+	Adopted          *bool                    `json:"adopted,omitempty"`
+	ChassisMac       *string                  `json:"chassis_mac,omitempty"`
+	ChassisSerial    *string                  `json:"chassis_serial,omitempty"`
+	Connected        *bool                    `json:"connected,omitempty"`
+	CreatedTime      *float64                 `json:"created_time,omitempty"`
+	DeviceprofileId  Optional[string]         `json:"deviceprofile_id"`
+	Hostname         *string                  `json:"hostname,omitempty"`
+	HwRev            *string                  `json:"hw_rev,omitempty"`
+	Id               *uuid.UUID               `json:"id,omitempty"`
+	Jsi              *bool                    `json:"jsi,omitempty"`
+	LastDisconnected *int                     `json:"last_disconnected,omitempty"`
+	Mac              *string                  `json:"mac,omitempty"`
+	Magic            *string                  `json:"magic,omitempty"`
+	Model            *string                  `json:"model,omitempty"`
+	ModifiedTime     *float64                 `json:"modified_time,omitempty"`
+	Name             *string                  `json:"name,omitempty"`
+	OrgId            *uuid.UUID               `json:"org_id,omitempty"`
+	Serial           *string                  `json:"serial,omitempty"`
+	SiteId           *uuid.UUID               `json:"site_id,omitempty"`
+	Sku              *string                  `json:"sku,omitempty"`
+	Type             *DeviceTypeDefaultApEnum `json:"type,omitempty"`
+	VcMac            *string                  `json:"vc_mac,omitempty"`
 }

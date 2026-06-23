@@ -8,6 +8,7 @@ import (
 )
 
 // EvpnTopologySwitchConfigVrfConfig represents a EvpnTopologySwitchConfigVrfConfig struct.
+// VRF enablement for an EVPN topology switch override
 type EvpnTopologySwitchConfigVrfConfig struct {
 	// Whether to enable VRF (when supported on the device)
 	Enabled              *bool                  `json:"enabled,omitempty"`

@@ -9,8 +9,11 @@ import (
 )
 
 // StatsRssiZonesDevice represents a StatsRssiZonesDevice struct.
+// AP device and RSSI threshold used by an RSSI zone
 type StatsRssiZonesDevice struct {
-	DeviceId             *uuid.UUID             `json:"device_id,omitempty"`
+	// Identifier of the AP device used by this RSSI zone
+	DeviceId *uuid.UUID `json:"device_id,omitempty"`
+	// Minimum RSSI threshold for considering a device inside the zone
 	Rssi                 *int                   `json:"rssi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

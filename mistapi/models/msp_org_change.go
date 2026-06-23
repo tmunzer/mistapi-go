@@ -10,10 +10,11 @@ import (
 )
 
 // MspOrgChange represents a MspOrgChange struct.
+// Request to assign or unassign orgs for an MSP account
 type MspOrgChange struct {
-	// enum: `assign`, `unassign`
+	// Assignment operation to apply to the listed org IDs. enum: `assign`, `unassign`
 	Op MspOrgChangeOperationEnum `json:"op"`
-	// List of org_id
+	// List of org IDs to assign to or unassign from an MSP account
 	OrgIds               []string               `json:"org_ids"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

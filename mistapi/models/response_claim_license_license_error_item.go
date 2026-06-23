@@ -10,8 +10,11 @@ import (
 )
 
 // ResponseClaimLicenseLicenseErrorItem represents a ResponseClaimLicenseLicenseErrorItem struct.
+// License order that could not be claimed
 type ResponseClaimLicenseLicenseErrorItem struct {
-	Order                string                 `json:"order"`
+	// License order number or claim identifier that failed
+	Order string `json:"order"`
+	// Explanation of why the license order could not be claimed
 	Reason               string                 `json:"reason"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

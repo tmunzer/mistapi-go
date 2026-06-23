@@ -8,6 +8,7 @@ import (
 )
 
 // ClearDot1xSession represents a ClearDot1xSession struct.
+// Request body for clearing dot1x sessions on switch ports
 type ClearDot1xSession struct {
 	// List of port IDs where the dot1x session must be cleared. Use `all` to clear sessions on all ports.
 	Ports                []string               `json:"ports,omitempty"`

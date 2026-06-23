@@ -33,3 +33,18 @@ enum: `ap`, `auth_algo`, `encrypt_algo`, `ike_version`, `ip`, `last_event`, `mac
 | `up` |
 | `wxtunnel_id` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgTunnelCountDistinct := models.OrgTunnelCountDistinctEnum_MXCLUSTERID
+
+}
+```
+

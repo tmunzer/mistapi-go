@@ -8,8 +8,11 @@ import (
 )
 
 // MlOverwriteAdditionalProperties represents a MlOverwriteAdditionalProperties struct.
+// Location machine learning parameter overwrite values for one client model
 type MlOverwriteAdditionalProperties struct {
-	Int                  *int                   `json:"int,omitempty"`
+	// Location ML intercept value to use for the model
+	Int *int `json:"int,omitempty"`
+	// Path-loss estimate value to use for the location machine learning model
 	Ple                  *int                   `json:"ple,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

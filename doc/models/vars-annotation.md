@@ -14,12 +14,21 @@ Annotation for a single var, helping identify its purpose and enabling auto-comp
 | `Note` | `*string` | Optional | User-provided note to describe what this var was created for |
 | `Type` | `*string` | Optional | Used to identify where to enumerate / auto-complete the field from. Default is `generic` (plain string, no special handling).<br><br>enum: `generic`, `mxtunnel_id`<br><br>**Default**: `"generic"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "type": "generic",
-  "note": "note4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    varsAnnotation := models.VarsAnnotation{
+        Note:                 models.ToPointer("note4"),
+        Type:                 models.ToPointer("generic"),
+    }
+
 }
 ```
 

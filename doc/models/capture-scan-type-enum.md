@@ -1,7 +1,7 @@
 
 # Capture Scan Type Enum
 
-enum: `scan`
+Packet capture type discriminator for scan radio captures. enum: `scan`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `scan`
 
 ## Example
 
-```
-scan
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureScanType := models.CaptureScanTypeEnum_SCAN
+
+}
 ```
 

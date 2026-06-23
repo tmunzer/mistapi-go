@@ -8,6 +8,7 @@ import (
 )
 
 // SwitchPortMirroringProperty represents a SwitchPortMirroringProperty struct.
+// Input and output settings for one switch port mirroring session
 type SwitchPortMirroringProperty struct {
 	// At least one of the `input_port_ids_ingress`, `input_port_ids_egress` or `input_networks_ingress ` should be specified
 	InputNetworksIngress []string `json:"input_networks_ingress,omitempty"`

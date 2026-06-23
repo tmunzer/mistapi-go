@@ -20,7 +20,16 @@ device type. enum: `ap`, `ble`, `gateway`, `mxedge`, `nac`, `switch`
 
 ## Example
 
-```
-gateway
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsSwitchPortType := models.StatsSwitchPortTypeEnum_AP
+
+}
 ```
 

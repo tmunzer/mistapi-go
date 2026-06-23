@@ -8,7 +8,7 @@ import (
 )
 
 // StatsMxedgeMemoryStat represents a StatsMxedgeMemoryStat struct.
-// Memory usage
+// Memory usage counters reported by a Mist Edge
 type StatsMxedgeMemoryStat struct {
 	// The amount of memory, in kilobytes, that has been used more recently and is usually not reclaimed unless absolutely necessary.
 	Active *int `json:"active,omitempty"`
@@ -28,8 +28,9 @@ type StatsMxedgeMemoryStat struct {
 	SwapFree *int `json:"swap_free,omitempty"`
 	// The total amount of swap available, in kilobytes.
 	SwapTotal *int `json:"swap_total,omitempty"`
-	// Total amount of usable RAM, in kilobytes, which is physical RAM minus a number of reserved bits and the kernel binary code
-	Total                *int64                 `json:"total,omitempty"`
+	// Usable RAM total, in kilobytes, which is physical RAM minus a number of reserved bits and the kernel binary code
+	Total *int64 `json:"total,omitempty"`
+	// Memory utilization percentage reported by the Mist Edge
 	Usage                *int                   `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

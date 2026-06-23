@@ -13,11 +13,20 @@ MDM (Mobile Device Management) CoA configuration
 |  --- | --- | --- | --- |
 | `CoaType` | [`*models.NacCoaTypeEnum`](../../doc/models/nac-coa-type-enum.md) | Optional | CoA type to send. enum: `reauth`, `disconnect`<br><br>**Default**: `"reauth"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "coa_type": "reauth"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingMistNacMdm := models.OrgSettingMistNacMdm{
+        CoaType:              models.ToPointer(models.NacCoaTypeEnum_REAUTH),
+    }
+
 }
 ```
 

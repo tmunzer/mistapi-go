@@ -8,9 +8,11 @@ import (
 )
 
 // OrgSettingPcap represents a OrgSettingPcap struct.
+// Packet capture export settings for the organization
 type OrgSettingPcap struct {
+	// Storage bucket name used for organization packet capture files
 	Bucket *string `json:"bucket,omitempty"`
-	// Max_len of non-management packets to capture
+	// Maximum length of non-management packets to capture, in bytes
 	MaxPktLen            *int                   `json:"max_pkt_len,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

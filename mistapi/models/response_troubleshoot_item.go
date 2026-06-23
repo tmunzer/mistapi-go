@@ -8,10 +8,15 @@ import (
 )
 
 // ResponseTroubleshootItem represents a ResponseTroubleshootItem struct.
+// Troubleshooting finding with reason and remediation guidance
 type ResponseTroubleshootItem struct {
-	Category             *string                `json:"category,omitempty"`
-	Reason               *string                `json:"reason,omitempty"`
-	Recommendation       *string                `json:"recommendation,omitempty"`
+	// Entity category associated with the troubleshooting finding
+	Category *string `json:"category,omitempty"`
+	// Issue reason identified by the troubleshooting analysis
+	Reason *string `json:"reason,omitempty"`
+	// Recommended remediation guidance for the troubleshooting finding
+	Recommendation *string `json:"recommendation,omitempty"`
+	// Human-readable explanation of the troubleshooting finding
 	Text                 *string                `json:"text,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

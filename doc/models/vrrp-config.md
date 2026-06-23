@@ -1,7 +1,7 @@
 
 # Vrrp Config
 
-Junos VRRP config
+Junos VRRP configuration applied to a switch or switch profile
 
 ## Structure
 
@@ -11,20 +11,29 @@ Junos VRRP config
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether VRRP configuration is enabled |
 | `Groups` | [`map[string]models.VrrpConfigGroup`](../../doc/models/vrrp-config-group.md) | Optional | Property key is the VRRP name |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "groups": {
-    "key0": {
-      "preempt": false,
-      "priority": 102
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrrpConfig := models.VrrpConfig{
+        Enabled:              models.ToPointer(false),
+        Groups:               map[string]models.VrrpConfigGroup{
+            "key0": models.VrrpConfigGroup{
+                Preempt:              models.ToPointer(false),
+                Priority:             models.ToPointer(102),
+            },
+        },
     }
-  }
+
 }
 ```
 

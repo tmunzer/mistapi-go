@@ -9,8 +9,11 @@ import (
 )
 
 // StatsWirelessClientWxruleUsage represents a StatsWirelessClientWxruleUsage struct.
+// WxLAN rule usage counter for one wireless tag
 type StatsWirelessClientWxruleUsage struct {
-	TagId                *uuid.UUID             `json:"tag_id,omitempty"`
+	// WxLAN tag identifier for this rule usage entry
+	TagId *uuid.UUID `json:"tag_id,omitempty"`
+	// Count recorded for this WxLAN rule usage entry
 	Usage                *int                   `json:"usage,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

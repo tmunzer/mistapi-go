@@ -8,10 +8,15 @@ import (
 )
 
 // ResponsePcapSearchItemPcapApsItem represents a ResponsePcapSearchItemPcapApsItem struct.
+// AP radio settings captured for a packet capture record
 type ResponsePcapSearchItemPcapApsItem struct {
-	Band                 *string                `json:"band,omitempty"`
-	Bandwidth            *string                `json:"bandwidth,omitempty"`
-	Channel              *int                   `json:"channel,omitempty"`
+	// Radio band used for this AP capture
+	Band *string `json:"band,omitempty"`
+	// Channel bandwidth used for this AP capture, in MHz
+	Bandwidth *string `json:"bandwidth,omitempty"`
+	// Radio channel used for this AP capture
+	Channel *int `json:"channel,omitempty"`
+	// Tcpdump filter expression applied to this AP capture, or null when no filter is applied
 	TcpdumpExpression    Optional[string]       `json:"tcpdump_expression"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

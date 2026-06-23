@@ -10,6 +10,7 @@ import (
 // MarvisClientTelemetry represents a MarvisClientTelemetry struct.
 // Note: some stats are not collected when it's not connected to Mist infrastructure
 type MarvisClientTelemetry struct {
+	// Whether telemetry collection is enabled for Marvis Client
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

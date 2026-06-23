@@ -10,12 +10,17 @@ import (
 )
 
 // ResponseRrmNeighbors represents a ResponseRrmNeighbors struct.
+// Paginated response for current RRM neighbor observations
 type ResponseRrmNeighbors struct {
-	End   int `json:"end"`
+	// Epoch timestamp, in seconds, for the end of the RRM neighbor observation window
+	End int `json:"end"`
+	// Maximum number of RRM neighbor records returned in this page
 	Limit int `json:"limit"`
 	// Link to query next set of results. value is null if no next page exists.
-	Next                 *string                `json:"next,omitempty"`
-	Results              []RrmNeighbors         `json:"results"`
+	Next *string `json:"next,omitempty"`
+	// RRM neighbor records returned for the requested site and band
+	Results []RrmNeighbors `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the RRM neighbor observation window
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

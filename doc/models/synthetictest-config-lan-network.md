@@ -14,17 +14,26 @@ configure minis probes to be tested on lan networks of gateways
 | `Networks` | `[]string` | Optional | List of networks to be used for synthetic tests |
 | `Probes` | `[]string` | Optional | app name comes from `custom_probes` above or /const/synthetic_test_probes |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "networks": [
-    "pos-stations",
-    "pos-machines"
-  ],
-  "probes": [
-    "probes7"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestConfigLanNetwork := models.SynthetictestConfigLanNetwork{
+        Networks:             []string{
+            "pos-stations",
+            "pos-machines",
+        },
+        Probes:               []string{
+            "probes9",
+        },
+    }
+
 }
 ```
 

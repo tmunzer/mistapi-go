@@ -1,6 +1,8 @@
 
 # Vrf Extra Route
 
+Additional IPv4 static route for a VRF instance
+
 ## Structure
 
 `VrfExtraRoute`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Via` | `*string` | Optional | Next-hop address |
+| `Via` | `*string` | Optional | IPv4 next-hop address for this VRF extra route |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "via": "via8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vrfExtraRoute := models.VrfExtraRoute{
+        Via:                  models.ToPointer("via8"),
+    }
+
 }
 ```
 

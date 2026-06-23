@@ -9,19 +9,31 @@ import (
 )
 
 // WebhookClientLatencyEvent represents a WebhookClientLatencyEvent struct.
+// Site-level client latency metrics for authentication, DHCP, and DNS operations
 type WebhookClientLatencyEvent struct {
-	AvgAuth *float64   `json:"avg_auth,omitempty"`
-	AvgDhcp *float64   `json:"avg_dhcp,omitempty"`
-	AvgDns  *float64   `json:"avg_dns,omitempty"`
-	MaxAuth *float64   `json:"max_auth,omitempty"`
-	MaxDhcp *float64   `json:"max_dhcp,omitempty"`
-	MaxDns  *float64   `json:"max_dns,omitempty"`
-	MinAuth *float64   `json:"min_auth,omitempty"`
-	MinDhcp *float64   `json:"min_dhcp,omitempty"`
-	MinDns  *float64   `json:"min_dns,omitempty"`
-	OrgId   *uuid.UUID `json:"org_id,omitempty"`
-	SiteId  *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	// Average authentication latency observed during the reporting interval
+	AvgAuth *float64 `json:"avg_auth,omitempty"`
+	// Average DHCP latency observed during the reporting interval
+	AvgDhcp *float64 `json:"avg_dhcp,omitempty"`
+	// Average DNS latency observed during the reporting interval
+	AvgDns *float64 `json:"avg_dns,omitempty"`
+	// Maximum authentication latency observed during the reporting interval
+	MaxAuth *float64 `json:"max_auth,omitempty"`
+	// Maximum DHCP latency observed during the reporting interval
+	MaxDhcp *float64 `json:"max_dhcp,omitempty"`
+	// Maximum DNS latency observed during the reporting interval
+	MaxDns *float64 `json:"max_dns,omitempty"`
+	// Minimum authentication latency observed during the reporting interval
+	MinAuth *float64 `json:"min_auth,omitempty"`
+	// Minimum DHCP latency observed during the reporting interval
+	MinDhcp *float64 `json:"min_dhcp,omitempty"`
+	// Minimum DNS latency observed during the reporting interval
+	MinDns *float64 `json:"min_dns,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,8 +10,9 @@ import (
 )
 
 // GatewayCluster represents a GatewayCluster struct.
+// Gateway HA cluster request or response body
 type GatewayCluster struct {
-	// When replacing a node, either mac has to remain the same as existing cluster
+	// Gateway cluster nodes. When replacing a node, one node MAC address must remain the same as the existing cluster
 	Nodes                []GatewayClusterNode   `json:"nodes"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

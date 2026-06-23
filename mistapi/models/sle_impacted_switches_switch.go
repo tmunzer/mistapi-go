@@ -8,14 +8,23 @@ import (
 )
 
 // SleImpactedSwitchesSwitch represents a SleImpactedSwitchesSwitch struct.
+// SLE impact row for a switch
 type SleImpactedSwitchesSwitch struct {
-	Degraded             *float64               `json:"degraded,omitempty"`
-	Duration             *float64               `json:"duration,omitempty"`
-	Interface            []string               `json:"interface,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	SwitchMac            *string                `json:"switch_mac,omitempty"`
-	SwitchModel          *string                `json:"switch_model,omitempty"`
-	SwitchVersion        *string                `json:"switch_version,omitempty"`
+	// Portion of the SLE total that was degraded for this switch
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Observation time represented by this switch impact row
+	Duration *float64 `json:"duration,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Interface []string `json:"interface,omitempty"`
+	// Display name for the switch impact row
+	Name *string `json:"name,omitempty"`
+	// MAC address of the switch represented by this impacted row
+	SwitchMac *string `json:"switch_mac,omitempty"`
+	// Model of the switch represented by this impacted row
+	SwitchModel *string `json:"switch_model,omitempty"`
+	// Firmware version of the switch represented by this impacted row
+	SwitchVersion *string `json:"switch_version,omitempty"`
+	// Overall SLE total measured for this switch impact row
 	Total                *float64               `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

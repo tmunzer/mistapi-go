@@ -15,3 +15,18 @@ enum: `dhcp`, `disabled`, `static`
 | `disabled` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeMgmtOobIpType := models.MxedgeMgmtOobIpTypeEnum_DISABLED
+
+}
+```
+

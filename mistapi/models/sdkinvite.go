@@ -11,23 +11,27 @@ import (
 )
 
 // Sdkinvite represents a Sdkinvite struct.
-// SDK invite
+// SDK invite configuration used to onboard mobile SDK clients to an organization
 type Sdkinvite struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	Enabled     *bool    `json:"enabled,omitempty"`
-	ExpireTime  *int     `json:"expire_time,omitempty"`
+	// Whether the SDK invite can currently be used
+	Enabled *bool `json:"enabled,omitempty"`
+	// Expiration time for the SDK invite, in epoch seconds
+	ExpireTime *int `json:"expire_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name, will show up in mobile
-	Name  string     `json:"name"`
+	// Display name shown for the SDK invite in the mobile experience
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// Number of time this invite can be used
+	// Number of times this SDK invite can be used
 	Quota *int `json:"quota,omitempty"`
-	// Whether quota limiting is enabled
-	QuotaLimited         *bool                  `json:"quota_limited,omitempty"`
+	// Whether use of the SDK invite is limited by the quota value
+	QuotaLimited *bool `json:"quota_limited,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Msp Org Change Operation Enum
 
-enum: `assign`, `unassign`
+Assignment operation to apply to the listed org IDs. enum: `assign`, `unassign`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `assign`, `unassign`
 |  --- |
 | `assign` |
 | `unassign` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mspOrgChangeOperation := models.MspOrgChangeOperationEnum_ASSIGN
+
+}
+```
 

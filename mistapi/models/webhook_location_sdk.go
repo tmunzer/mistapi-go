@@ -12,9 +12,9 @@ import (
 // WebhookLocationSdk represents a WebhookLocationSdk struct.
 // Sample of the `location-sdk` webhook payload.
 type WebhookLocationSdk struct {
-	// List of events
+	// SDK client location events included in this webhook delivery
 	Events []WebhookLocationSdkEvent `json:"events"`
-	// enum: `location-sdk`
+	// Webhook topic name for SDK client location deliveries. enum: `location-sdk`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

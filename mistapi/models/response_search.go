@@ -10,11 +10,17 @@ import (
 )
 
 // ResponseSearch represents a ResponseSearch struct.
+// Paginated response for MSP organization search results
 type ResponseSearch struct {
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Page                 int                    `json:"page"`
-	Results              []ResponseSearchItem   `json:"results"`
+	// Maximum number of MSP search results returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of MSP search results
+	Next *string `json:"next,omitempty"`
+	// Current page number returned for the MSP search results
+	Page int `json:"page"`
+	// MSP search result entries returned by search
+	Results []ResponseSearchItem `json:"results"`
+	// Number of MSP search results matching the query across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Site Setting Paloalto Networks
 
+Palo Alto Networks integration settings for the site
+
 ## Structure
 
 `SiteSettingPaloaltoNetworks`
@@ -9,20 +11,29 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Gateways` | [`[]models.SiteSettingPaloaltoNetworkGateway`](../../doc/models/site-setting-paloalto-network-gateway.md) | Optional | - |
-| `SendMistNacUserInfo` | `*bool` | Optional | **Default**: `false` |
+| `Gateways` | [`[]models.SiteSettingPaloaltoNetworkGateway`](../../doc/models/site-setting-paloalto-network-gateway.md) | Optional | Palo Alto Networks gateways integrated with a site |
+| `SendMistNacUserInfo` | `*bool` | Optional | Whether Mist NAC user information is sent to Palo Alto Networks gateways<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "send_mist_nac_user_info": false,
-  "gateways": [
-    {
-      "api_key": "api_key8",
-      "api_url": "api_url0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSettingPaloaltoNetworks := models.SiteSettingPaloaltoNetworks{
+        Gateways:             []models.SiteSettingPaloaltoNetworkGateway{
+            models.SiteSettingPaloaltoNetworkGateway{
+                ApiKey:               models.ToPointer("api_key8"),
+                ApiUrl:               models.ToPointer("api_url0"),
+            },
+        },
+        SendMistNacUserInfo:  models.ToPointer(false),
     }
-  ]
+
 }
 ```
 

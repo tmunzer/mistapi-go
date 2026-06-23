@@ -8,25 +8,45 @@ import (
 )
 
 // StatsDeviceOtherVendorSpecificPort represents a StatsDeviceOtherVendorSpecificPort struct.
+// Cradlepoint interface statistics for a device tracked by Mist
 type StatsDeviceOtherVendorSpecificPort struct {
+    // Total bytes received on the Cradlepoint interface
     BytesIn              *int64                 `json:"bytes_in,omitempty"`
+    // Total bytes transmitted from the Cradlepoint interface
     BytesOut             *int64                 `json:"bytes_out,omitempty"`
+    // Cellular carrier name reported for the Cradlepoint interface, when applicable
     Carrier              *string                `json:"carrier,omitempty"`
+    // Human-readable interface name reported by Cradlepoint
     DisplayName          *string                `json:"display_name,omitempty"`
+    // Modem IMEI serving the Cradlepoint interface, when applicable
     Imei                 *string                `json:"imei,omitempty"`
+    // Subscriber IMSI associated with the Cradlepoint interface, when applicable
     Imsi                 *string                `json:"imsi,omitempty"`
+    // Cradlepoint interface IP address reported by the vendor
     Ip                   *string                `json:"ip,omitempty"`
+    // Whether the Cradlepoint interface link is up
     Link                 *bool                  `json:"link,omitempty"`
+    // Interface role reported by Cradlepoint, such as wan or lan
     Mode                 *string                `json:"mode,omitempty"`
+    // Maximum transmission unit configured on the Cradlepoint interface, in bytes
     Mtu                  *int                   `json:"mtu,omitempty"`
+    // Parent Cradlepoint port or interface group for this interface
     PortParent           *string                `json:"port_parent,omitempty"`
+    // Reference signal received power for a Cradlepoint cellular interface, in dBm
     Rsrp                 *float64               `json:"rsrp,omitempty"`
+    // Reference signal received quality for a Cradlepoint cellular interface, in dB
     Rsrq                 *float64               `json:"rsrq,omitempty"`
+    // Received signal strength indicator for a Cradlepoint cellular interface, in dBm
     Rssi                 *int                   `json:"rssi,omitempty"`
+    // Cellular service mode reported for the Cradlepoint interface, such as 5G NSA
     ServiceMode          *string                `json:"service_mode,omitempty"`
+    // Signal-to-interference-plus-noise ratio for a Cradlepoint cellular interface, in dB
     Sinr                 *float64               `json:"sinr,omitempty"`
+    // Operational state reported for the Cradlepoint interface
     State                *string                `json:"state,omitempty"`
+    // Interface type reported by Cradlepoint, such as mdm or ethernet
     Type                 *string                `json:"type,omitempty"`
+    // Elapsed time since the Cradlepoint interface last became active, in seconds
     Uptime               *int                   `json:"uptime,omitempty"`
     AdditionalProperties map[string]interface{} `json:"_"`
 }

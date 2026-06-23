@@ -10,8 +10,11 @@ import (
 )
 
 // MapSiteReplaceFile represents a MapSiteReplaceFile struct.
+// Multipart payload for replacing a site map image
 type MapSiteReplaceFile struct {
-	File                 []byte                  `json:"file"`
+	// Map image file used to replace the existing site map
+	File []byte `json:"file"`
+	// Options for replacing a site map image
 	Json                 *MapSiteReplaceFileJson `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }

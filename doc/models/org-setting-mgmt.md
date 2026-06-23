@@ -1,7 +1,7 @@
 
 # Org Setting Mgmt
 
-management-related properties
+Organization management connectivity settings
 
 ## Structure
 
@@ -11,20 +11,31 @@ management-related properties
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MxtunnelIds` | `[]uuid.UUID` | Optional | List of Mist Tunnels |
+| `MxtunnelIds` | `[]uuid.UUID` | Optional | Mist Tunnel IDs available for organization management connectivity |
 | `UseMxtunnel` | `*bool` | Optional | Whether to use Mist Tunnel for mgmt connectivity, this takes precedence over use_wxtunnel<br><br>**Default**: `false` |
 | `UseWxtunnel` | `*bool` | Optional | Whether to use wxtunnel for mgmt connectivity<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "use_mxtunnel": false,
-  "use_wxtunnel": false,
-  "mxtunnel_ids": [
-    "000015a6-0000-0000-0000-000000000000",
-    "000015a7-0000-0000-0000-000000000000"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    orgSettingMgmt := models.OrgSettingMgmt{
+        MxtunnelIds:          []uuid.UUID{
+            uuid.MustParse("0000201e-0000-0000-0000-000000000000"),
+            uuid.MustParse("0000201f-0000-0000-0000-000000000000"),
+            uuid.MustParse("00002020-0000-0000-0000-000000000000"),
+        },
+        UseMxtunnel:          models.ToPointer(false),
+        UseWxtunnel:          models.ToPointer(false),
+    }
+
 }
 ```
 

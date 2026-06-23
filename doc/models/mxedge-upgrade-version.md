@@ -11,21 +11,30 @@ Version to upgrade for each service, `current` / `latest` / `default` / specific
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mxagent` | `string` | Required | **Default**: `"current"` |
-| `Mxdas` | `*string` | Optional | **Default**: `"current"` |
-| `Mxocproxy` | `*string` | Optional | **Default**: `"current"` |
-| `Radsecproxy` | `*string` | Optional | **Default**: `"current"` |
-| `Tunterm` | `string` | Required | **Default**: `"current"` |
+| `Mxagent` | `string` | Required | Target version for the mxagent service<br><br>**Default**: `"current"` |
+| `Mxdas` | `*string` | Optional | Target version for the mxdas service<br><br>**Default**: `"current"` |
+| `Mxocproxy` | `*string` | Optional | Target version for the mxocproxy service<br><br>**Default**: `"current"` |
+| `Radsecproxy` | `*string` | Optional | Target version for the radsecproxy service<br><br>**Default**: `"current"` |
+| `Tunterm` | `string` | Required | Target version for the tunterm service<br><br>**Default**: `"current"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mxagent": "current",
-  "mxdas": "current",
-  "mxocproxy": "current",
-  "radsecproxy": "current",
-  "tunterm": "current"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeUpgradeVersion := models.MxedgeUpgradeVersion{
+        Mxagent:              "current",
+        Mxdas:                models.ToPointer("current"),
+        Mxocproxy:            models.ToPointer("current"),
+        Radsecproxy:          models.ToPointer("current"),
+        Tunterm:              "current",
+    }
+
 }
 ```
 

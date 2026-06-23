@@ -1,6 +1,8 @@
 
 # Ssr Version
 
+SSR firmware version available for upgrade
+
 ## Structure
 
 `SsrVersion`
@@ -9,23 +11,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Default` | `*bool` | Optional | - |
-| `Package` | `string` | Required | - |
-| `Tags` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `Version` | `string` | Required | - |
+| `Default` | `*bool` | Optional, Read-only | Whether this is the default SSR firmware version for its channel |
+| `Package` | `string` | Required, Read-only | Firmware package name for this SSR version |
+| `Tags` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Version` | `string` | Required, Read-only | Firmware version string available for SSR upgrades |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "default": false,
-  "package": "package4",
-  "tags": [
-    "tags9",
-    "tags0",
-    "tags1"
-  ],
-  "version": "version0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssrVersion := models.SsrVersion{
+        Default:              models.ToPointer(false),
+        Package:              "package4",
+        Tags:                 []string{
+            "tags7",
+        },
+        Version:              "version8",
+    }
+
 }
 ```
 

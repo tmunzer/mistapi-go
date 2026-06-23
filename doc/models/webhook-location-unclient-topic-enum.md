@@ -1,7 +1,7 @@
 
 # Webhook Location Unclient Topic Enum
 
-enum: `location-unclient`
+Webhook topic name for unconnected client location deliveries. enum: `location-unclient`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `location-unclient`
 | Name |
 |  --- |
 | `location-unclient` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookLocationUnclientTopic := models.WebhookLocationUnclientTopicEnum_LOCATIONUNCLIENT
+
+}
+```
 

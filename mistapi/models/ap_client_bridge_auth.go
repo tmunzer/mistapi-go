@@ -8,7 +8,9 @@ import (
 )
 
 // ApClientBridgeAuth represents a ApClientBridgeAuth struct.
+// Authentication settings for the AP client bridge uplink
 type ApClientBridgeAuth struct {
+	// Pre-shared key used when `type`==`psk` for client bridge authentication
 	Psk *string `json:"psk,omitempty"`
 	// wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
 	Type                 *ApClientBridgeAuthTypeEnum `json:"type,omitempty"`

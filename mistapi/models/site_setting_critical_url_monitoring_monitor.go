@@ -8,8 +8,11 @@ import (
 )
 
 // SiteSettingCriticalUrlMonitoringMonitor represents a SiteSettingCriticalUrlMonitoringMonitor struct.
+// Critical URL monitor definition for site health
 type SiteSettingCriticalUrlMonitoringMonitor struct {
-	Url                  *string                `json:"url,omitempty"`
+	// Monitored HTTP or HTTPS URL used for site health latency
+	Url *string `json:"url,omitempty"`
+	// VLAN ID, either numeric or expressed as a template variable string
 	VlanId               *VlanIdWithVariable    `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

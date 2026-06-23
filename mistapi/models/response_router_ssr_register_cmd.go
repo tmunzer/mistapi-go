@@ -8,9 +8,13 @@ import (
 )
 
 // ResponseRouterSsrRegisterCmd represents a ResponseRouterSsrRegisterCmd struct.
+// SSR registration token and commands used to register the router with Mist
 type ResponseRouterSsrRegisterCmd struct {
-	ConductorCmd         *string                `json:"conductor_cmd,omitempty"`
-	RegistrationCode     *string                `json:"registration_code,omitempty"`
+	// Command to run in the SSR conductor CLI for Mist registration
+	ConductorCmd *string `json:"conductor_cmd,omitempty"`
+	// Registration token used by the SSR registration commands
+	RegistrationCode *string `json:"registration_code,omitempty"`
+	// Shell command to run on the SSR router for Mist registration
 	RouterShellCmd       *string                `json:"router_shell_cmd,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

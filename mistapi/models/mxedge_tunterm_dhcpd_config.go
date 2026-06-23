@@ -8,12 +8,13 @@ import (
 )
 
 // MxedgeTuntermDhcpdConfig represents a MxedgeTuntermDhcpdConfig struct.
-// Global and per-VLAN. Property key is the VLAN ID
+// Global and per-VLAN DHCP relay settings for Mist Tunneled VLANs; property key is the VLAN ID
 type MxedgeTuntermDhcpdConfig struct {
+	// Whether DHCP relay is enabled for Mist Tunneled VLANs
 	Enabled *bool `json:"enabled,omitempty"`
 	// List of DHCP servers; required if `type`==`relay`
 	Servers []string `json:"servers,omitempty"`
-	// enum: `relay`
+	// DHCP handling mode for the global tunnel termination config. enum: `relay`
 	Type                 *MxedgeTuntermDhcpdTypeEnum                 `json:"type,omitempty"`
 	AdditionalProperties map[string]MxedgeTuntermDhcpdConfigProperty `json:"_"`
 }

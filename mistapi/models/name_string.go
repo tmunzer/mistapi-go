@@ -8,7 +8,9 @@ import (
 )
 
 // NameString represents a NameString struct.
+// Request body containing a name value
 type NameString struct {
+	// Value to create or update as the target resource name
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

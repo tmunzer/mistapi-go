@@ -8,18 +8,19 @@ import (
 )
 
 // TunnelConfig represents a TunnelConfig struct.
+// Gateway tunnel configuration for provider-managed or custom tunnels
 type TunnelConfig struct {
-	// Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
+	// Auto-provisioning configuration for the tunnel. This takes precedence over the `primary` and `secondary` nodes.
 	AutoProvision *TunnelConfigAutoProvision `json:"auto_provision,omitempty"`
-	// Only if `provider`==`custom-ipsec`
+	// Only if `provider`==`custom-ipsec`. IKE lifetime configured for the custom IPsec tunnel
 	IkeLifetime *int `json:"ike_lifetime,omitempty"`
 	// Only if `provider`==`custom-ipsec`. enum: `aggressive`, `main`
 	IkeMode *TunnelConfigIkeModeEnum `json:"ike_mode,omitempty"`
-	// If `provider`==`custom-ipsec`
+	// If `provider`==`custom-ipsec`, IKE proposals used for custom IPsec negotiation
 	IkeProposals []TunnelConfigIkeProposal `json:"ike_proposals,omitempty"`
-	// If `provider`==`custom-ipsec`
+	// If `provider`==`custom-ipsec`, IPsec lifetime configured for the custom tunnel
 	IpsecLifetime *int `json:"ipsec_lifetime,omitempty"`
-	// Only if `provider`==`custom-ipsec`
+	// Only if `provider`==`custom-ipsec`. IPsec proposals used for custom IPsec negotiation
 	IpsecProposals []TunnelConfigIpsecProposal `json:"ipsec_proposals,omitempty"`
 	// Required if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 	LocalId *string `json:"local_id,omitempty"`
@@ -31,7 +32,7 @@ type TunnelConfig struct {
 	Networks []string `json:"networks,omitempty"`
 	// Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 	Primary *TunnelConfigNode `json:"primary,omitempty"`
-	// Only if `provider`==`custom-ipsec`
+	// Tunnel health probe settings
 	Probe *TunnelConfigProbe `json:"probe,omitempty"`
 	// Only if `provider`==`custom-ipsec`. enum: `gre`, `ipsec`
 	Protocol *TunnelConfigProtocolEnum `json:"protocol,omitempty"`

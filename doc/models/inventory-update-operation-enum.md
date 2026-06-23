@@ -23,3 +23,18 @@ enum:
 | `unassign` |
 | `upgrade_to_mist` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    inventoryUpdateOperation := models.InventoryUpdateOperationEnum_DELETE
+
+}
+```
+

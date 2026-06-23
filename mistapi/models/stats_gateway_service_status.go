@@ -8,18 +8,29 @@ import (
 )
 
 // StatsGatewayServiceStatus represents a StatsGatewayServiceStatus struct.
+// Gateway security service installation and runtime status
 type StatsGatewayServiceStatus struct {
-	AppidInstallResult    *string                `json:"appid_install_result,omitempty"`
-	AppidInstallTimestamp *string                `json:"appid_install_timestamp,omitempty"`
-	AppidStatus           *string                `json:"appid_status,omitempty"`
-	AppidVersion          *int                   `json:"appid_version,omitempty"`
-	EwfStatus             *string                `json:"ewf_status,omitempty"`
-	IdpInstallResult      *string                `json:"idp_install_result,omitempty"`
-	IdpInstallTimestamp   *string                `json:"idp_install_timestamp,omitempty"`
-	IdpPolicy             *string                `json:"idp_policy,omitempty"`
-	IdpStatus             *string                `json:"idp_status,omitempty"`
-	IdpUpdateTimestamp    *string                `json:"idp_update_timestamp,omitempty"`
-	AdditionalProperties  map[string]interface{} `json:"_"`
+	// Installation result reported for the AppID package
+	AppidInstallResult *string `json:"appid_install_result,omitempty"`
+	// Installation time reported for the AppID package
+	AppidInstallTimestamp *string `json:"appid_install_timestamp,omitempty"`
+	// Operational status of the AppID service on the gateway
+	AppidStatus *string `json:"appid_status,omitempty"`
+	// Installed AppID package version number
+	AppidVersion *int `json:"appid_version,omitempty"`
+	// Enhanced Web Filtering service status reported by the gateway
+	EwfStatus *string `json:"ewf_status,omitempty"`
+	// Installation result reported for the intrusion detection and prevention package
+	IdpInstallResult *string `json:"idp_install_result,omitempty"`
+	// Installation time reported for the intrusion detection and prevention package
+	IdpInstallTimestamp *string `json:"idp_install_timestamp,omitempty"`
+	// Intrusion detection and prevention policy applied to the gateway
+	IdpPolicy *string `json:"idp_policy,omitempty"`
+	// Intrusion detection and prevention service status reported by the gateway
+	IdpStatus *string `json:"idp_status,omitempty"`
+	// Last update time reported for the intrusion detection and prevention package
+	IdpUpdateTimestamp   *string                `json:"idp_update_timestamp,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsGatewayServiceStatus,

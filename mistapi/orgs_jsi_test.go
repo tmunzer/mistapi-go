@@ -158,7 +158,7 @@ func TestOrgsJSITestListOrgJsiPastPurchases(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"device_name":"name1","eol_time":1561507200,"eos_time":1672012800,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}]`
+	expected := `[{"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -182,7 +182,7 @@ func TestOrgsJSITestListOrgJsiPastPurchases1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `[{"device_name":"name1","eol_time":1561507200,"eos_time":1672012800,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}]`
+	expected := `[{"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}]`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -237,26 +237,26 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	claimed := bool(true)
-	model := "AP43"
-	serial := "FXLH2015150025"
-	sku := "EX2300"
+
+	model := "QFX10000-36Q,QFX10000-30C"
+	serial := "ACNP4666,ACNP6969"
+	sku := "QFX10000-36Q,QFX10000-30C"
 	status := models.DeviceStatusEnum("all")
 
-	eolAfter := "2024-01-01"
-	eolBefore := "2025-12-31"
+	endOfSaleAfter := "2024-01-01"
+	endOfSaleBefore := "2025-12-31"
 	eosAfter := "2024-01-01"
 	eosBefore := "2025-12-31"
 	versionEosAfter := "2024-01-01"
 	versionEosBefore := "2025-12-31"
-	hasSupport := bool(true)
+
 	sirtId := "JSA12345"
 	pbnId := "PBN67890"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolAfter, &eolBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -265,7 +265,7 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","eol_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
+	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -276,26 +276,26 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	claimed := bool(true)
-	model := "AP43"
-	serial := "FXLH2015150025"
-	sku := "EX2300"
+
+	model := "QFX10000-36Q,QFX10000-30C"
+	serial := "ACNP4666,ACNP6969"
+	sku := "QFX10000-36Q,QFX10000-30C"
 	status := models.DeviceStatusEnum("all")
 
-	eolAfter := "2024-01-01"
-	eolBefore := "2025-12-31"
+	endOfSaleAfter := "2024-01-01"
+	endOfSaleBefore := "2025-12-31"
 	eosAfter := "2024-01-01"
 	eosBefore := "2025-12-31"
 	versionEosAfter := "2024-01-01"
 	versionEosBefore := "2025-12-31"
-	hasSupport := bool(true)
+
 	sirtId := "JSA12345"
 	pbnId := "PBN67890"
 
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, &claimed, &model, &serial, &sku, &status, nil, &eolAfter, &eolBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, &hasSupport, &sirtId, &pbnId, nil, &limit, &sort, nil)
+	apiResponse, err := orgsJsi.SearchOrgJsiAssetsAndContracts(ctx, orgId, nil, &model, &serial, &sku, &status, nil, &endOfSaleAfter, &endOfSaleBefore, &eosAfter, &eosBefore, &versionEosAfter, &versionEosBefore, nil, &sirtId, &pbnId, nil, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -304,7 +304,7 @@ func TestOrgsJSITestSearchOrgJsiAssetsAndContracts1(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","eol_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
+	expected := `{"end":1748023308,"limit":1000,"results":[{"claimed":true,"device_name":"name1","end_of_sale_time":1561507200,"eos_time":1672012800,"has_support":true,"master":true,"model":"EX2300-24MP","org_id":"6e843b41-f953-4af9-80e5-e1a70f65754a","serial":"XN3123300095","sku":"EX2300","status":"connected","suggested_version":"Latest 21.4R3-Sx","type":"switch","version":"23.4R2-S4.11","version_eos_time":1672012800,"version_time":1561507200,"warranty":"Enhanced Hardware Warranty","warranty_time":1672012800,"warranty_type":"Enhanced Hardware Warranty"}],"start":1748019708,"total":1}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 

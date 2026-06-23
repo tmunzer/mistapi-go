@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeTuntermMulticastSsdp represents a MxedgeTuntermMulticastSsdp struct.
+// SSDP forwarding settings for tunnel termination
 type MxedgeTuntermMulticastSsdp struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether SSDP forwarding is enabled for the configured VLANs
+	Enabled *bool `json:"enabled,omitempty"`
+	// Unique string values returned or accepted by this schema
 	VlanIds              []string               `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -11,12 +11,13 @@ import (
 )
 
 // MapMicello represents a MapMicello struct.
+// Micello map import configuration
 type MapMicello struct {
 	// Account key that has access to the map
 	AccountKey string `json:"account_key"`
-	// Micello floor/level id
+	// Micello default floor or level identifier
 	DefaultLevelId int `json:"default_level_id"`
-	// Micello map id
+	// Micello map identifier to import
 	MapId uuid.UUID `json:"map_id"`
 	// The vendor ‘micello’. enum: `micello`
 	VendorName           string                 `json:"vendor_name"`

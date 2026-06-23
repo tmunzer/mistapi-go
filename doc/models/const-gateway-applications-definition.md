@@ -1,6 +1,8 @@
 
 # Const Gateway Applications Definition
 
+Gateway application definition returned by the constants API
+
 ## Structure
 
 `ConstGatewayApplicationsDefinition`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AppId` | `*bool` | Optional | - |
-| `Key` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | - |
-| `SsrAppId` | `*bool` | Optional | - |
+| `AppId` | `*bool` | Optional | Whether an AppID is defined for this gateway application |
+| `Key` | `*string` | Optional | Machine-readable key that identifies the gateway application |
+| `Name` | `*string` | Optional | Display name of the gateway application |
+| `SsrAppId` | `*bool` | Optional | Whether an SSR AppID is defined for this gateway application |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "app_id": true,
-  "key": "4shared",
-  "name": "4shared",
-  "ssr_app_id": true
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constGatewayApplicationsDefinition := models.ConstGatewayApplicationsDefinition{
+        AppId:                models.ToPointer(true),
+        Key:                  models.ToPointer("4shared"),
+        Name:                 models.ToPointer("4shared"),
+        SsrAppId:             models.ToPointer(true),
+    }
+
 }
 ```
 

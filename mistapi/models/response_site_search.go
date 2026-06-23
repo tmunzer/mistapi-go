@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseSiteSearch represents a ResponseSiteSearch struct.
+// Paginated response for organization site search results
 type ResponseSiteSearch struct {
-	End                  int                      `json:"end"`
-	Limit                int                      `json:"limit"`
-	Next                 *string                  `json:"next,omitempty"`
-	Results              []ResponseSiteSearchItem `json:"results"`
-	Start                int                      `json:"start"`
-	Total                int                      `json:"total"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the site search window
+	End int `json:"end"`
+	// Maximum number of site records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of site search results
+	Next *string `json:"next,omitempty"`
+	// Site records returned by organization site search
+	Results []ResponseSiteSearchItem `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the site search window
+	Start int `json:"start"`
+	// Number of site records matching the search filters across all pages
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseSiteSearch,

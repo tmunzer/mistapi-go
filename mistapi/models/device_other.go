@@ -9,22 +9,33 @@ import (
 )
 
 // DeviceOther represents a DeviceOther struct.
+// Third-party device discovered or managed through an external vendor integration
 type DeviceOther struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	DeviceMac   *string  `json:"device_mac,omitempty"`
+	// MAC address of the Mist device this third-party device is attached to
+	DeviceMac *string `json:"device_mac,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id    *uuid.UUID `json:"id,omitempty"`
-	Mac   *string    `json:"mac,omitempty"`
-	Model *string    `json:"model,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Third-party device MAC address
+	Mac *string `json:"mac,omitempty"`
+	// Third-party device model reported by the vendor integration
+	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	Serial               *string                `json:"serial,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	State                *string                `json:"state,omitempty"`
-	Vendor               *string                `json:"vendor,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name reported or configured for the third-party device
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Manufacturer serial number reported for the third-party device
+	Serial *string `json:"serial,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Operational state reported for the third-party device
+	State *string `json:"state,omitempty"`
+	// External vendor integration that reported the third-party device
+	Vendor *string `json:"vendor,omitempty"`
+	// Identifier assigned by the vendor API for this third-party device
 	VendorApiId          *string                `json:"vendor_api_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

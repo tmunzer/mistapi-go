@@ -1,6 +1,8 @@
 
 # Org Setting Installer
 
+Organization-level permissions and grace period for installer workflows
+
 ## Structure
 
 `OrgSettingInstaller`
@@ -9,23 +11,31 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AllowAllDevices` | `*bool` | Optional | - |
-| `AllowAllSites` | `*bool` | Optional | - |
-| `ExtraSiteIds` | `[]uuid.UUID` | Optional | - |
-| `GracePeriod` | `*int` | Optional | - |
+| `AllowAllDevices` | `*bool` | Optional | Whether installers may work with all eligible devices |
+| `AllowAllSites` | `*bool` | Optional | Whether installers may work with all sites |
+| `ExtraSiteIds` | `[]uuid.UUID` | Optional | Additional site IDs that installers may access |
+| `GracePeriod` | `*int` | Optional | Grace period, in days, during which installers can modify recent sites or devices |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "allow_all_devices": false,
-  "allow_all_sites": false,
-  "extra_site_ids": [
-    "00000448-0000-0000-0000-000000000000",
-    "00000449-0000-0000-0000-000000000000",
-    "0000044a-0000-0000-0000-000000000000"
-  ],
-  "grace_period": 126
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    orgSettingInstaller := models.OrgSettingInstaller{
+        AllowAllDevices:      models.ToPointer(false),
+        AllowAllSites:        models.ToPointer(false),
+        ExtraSiteIds:         []uuid.UUID{
+            uuid.MustParse("000010a0-0000-0000-0000-000000000000"),
+        },
+        GracePeriod:          models.ToPointer(38),
+    }
+
 }
 ```
 

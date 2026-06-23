@@ -16,7 +16,8 @@ type AclPolicy struct {
 	// - for GBP-based policy, all src_tags and dst_tags have to be gbp-based
 	// - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to
 	Actions []AclPolicyAction `json:"actions,omitempty"`
-	Name    *string           `json:"name,omitempty"`
+	// Display name of the ACL policy
+	Name *string `json:"name,omitempty"`
 	// ACL Policy Source Tags:
 	// - for GBP-based policy, all src_tags and dst_tags have to be gbp-based
 	// - for ACL-based policy, `network` is required in either the source or destination so that we know where to attach the policy to

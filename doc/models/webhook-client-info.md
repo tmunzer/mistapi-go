@@ -11,23 +11,40 @@ Sample of the `client-info` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookClientInfoEvent`](../../doc/models/webhook-client-info-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookClientInfoTopicEnum`](../../doc/models/webhook-client-info-topic-enum.md) | Optional | enum: `client-info` |
+| `Events` | [`[]models.WebhookClientInfoEvent`](../../doc/models/webhook-client-info-event.md) | Optional | Client information events included in a webhook delivery |
+| `Topic` | [`*models.WebhookClientInfoTopicEnum`](../../doc/models/webhook-client-info-topic-enum.md) | Optional | Webhook topic name for client information deliveries. enum: `client-info` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "hostname": "hostname6",
-      "ip": "ip4",
-      "mac": "mac4",
-      "org_id": "00000dbc-0000-0000-0000-000000000000",
-      "site_id": "0000245a-0000-0000-0000-000000000000"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookClientInfo := models.WebhookClientInfo{
+        Events:               []models.WebhookClientInfoEvent{
+            models.WebhookClientInfoEvent{
+                Hostname:             models.ToPointer("hostname6"),
+                Ip:                   models.ToPointer("ip4"),
+                Mac:                  models.ToPointer("mac4"),
+                OrgId:                models.ToPointer(uuid.MustParse("00000dbc-0000-0000-0000-000000000000")),
+                SiteId:               models.ToPointer(uuid.MustParse("0000245a-0000-0000-0000-000000000000")),
+            },
+            models.WebhookClientInfoEvent{
+                Hostname:             models.ToPointer("hostname6"),
+                Ip:                   models.ToPointer("ip4"),
+                Mac:                  models.ToPointer("mac4"),
+                OrgId:                models.ToPointer(uuid.MustParse("00000dbc-0000-0000-0000-000000000000")),
+                SiteId:               models.ToPointer(uuid.MustParse("0000245a-0000-0000-0000-000000000000")),
+            },
+        },
+        Topic:                models.ToPointer(models.WebhookClientInfoTopicEnum_CLIENTINFO),
     }
-  ],
-  "topic": "client-info"
+
 }
 ```
 

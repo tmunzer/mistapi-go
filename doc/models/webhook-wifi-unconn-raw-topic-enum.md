@@ -1,7 +1,7 @@
 
 # Webhook Wifi Unconn Raw Topic Enum
 
-enum: `wifi-unconn-raw`
+Webhook topic name for unconnected Wi-Fi raw packet deliveries. enum: `wifi-unconn-raw`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `wifi-unconn-raw`
 | Name |
 |  --- |
 | `wifi-unconn-raw` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookWifiUnconnRawTopic := models.WebhookWifiUnconnRawTopicEnum_WIFIUNCONNRAW
+
+}
+```
 

@@ -10,9 +10,11 @@ import (
 )
 
 // TunnelConfigAutoProvisionLatLng represents a TunnelConfigAutoProvisionLatLng struct.
-// API override for POP selection
+// Geographic coordinate override for tunnel POP selection
 type TunnelConfigAutoProvisionLatLng struct {
-	Lat                  float64                `json:"lat"`
+	// Geographic latitude used for POP selection override
+	Lat float64 `json:"lat"`
+	// Geographic longitude used for POP selection override
 	Lng                  float64                `json:"lng"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,8 +8,9 @@ import (
 )
 
 // ResponseAutoplacement represents a ResponseAutoplacement struct.
+// Auto-placement start response returned after scheduling the run
 type ResponseAutoplacement struct {
-	// Property key is the AP MAC Address. Contains the validation status of each device.
+	// Property key is the AP MAC address. Contains the validation status of each device.
 	Devices map[string]ResponseAutoplacementDevice `json:"devices,omitempty"`
 	// Estimated runtime for the process in seconds.
 	EstimatedRuntime *int `json:"estimated_runtime,omitempty"`

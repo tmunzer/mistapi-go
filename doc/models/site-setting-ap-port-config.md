@@ -1,6 +1,8 @@
 
 # Site Setting Ap Port Config
 
+AP Ethernet port configuration overrides by model
+
 ## Structure
 
 `SiteSettingApPortConfig`
@@ -11,40 +13,63 @@
 |  --- | --- | --- | --- |
 | `ModelSpecific` | [`map[string]models.ApPortConfig`](../../doc/models/ap-port-config.md) | Optional | Property key is the AP model (e.g. "AP32") |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "model_specific": {
-    "key0": {
-      "disabled": false,
-      "dynamic_vlan": {
-        "default_vlan_id": 34,
-        "enabled": false,
-        "type": "type6",
-        "vlans": {
-          "key0": "vlans1"
-        }
-      },
-      "enable_mac_auth": false,
-      "forwarding": "wxtunnel",
-      "mac_auth_preferred": false
-    },
-    "key1": {
-      "disabled": false,
-      "dynamic_vlan": {
-        "default_vlan_id": 34,
-        "enabled": false,
-        "type": "type6",
-        "vlans": {
-          "key0": "vlans1"
-        }
-      },
-      "enable_mac_auth": false,
-      "forwarding": "wxtunnel",
-      "mac_auth_preferred": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSettingApPortConfig := models.SiteSettingApPortConfig{
+        ModelSpecific:        map[string]models.ApPortConfig{
+            "key0": models.ApPortConfig{
+                Disabled:             models.ToPointer(false),
+                DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                    DefaultVlanId:        models.ToPointer(34),
+                    Enabled:              models.ToPointer(false),
+                    Type:                 models.ToPointer(models.ApPortConfigDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
+                    Vlans:                map[string]string{
+                        "key0": "vlans1",
+                    },
+                }),
+                EnableMacAuth:        models.ToPointer(false),
+                Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_WXTUNNEL),
+                MacAuthPreferred:     models.ToPointer(false),
+            },
+            "key1": models.ApPortConfig{
+                Disabled:             models.ToPointer(false),
+                DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                    DefaultVlanId:        models.ToPointer(34),
+                    Enabled:              models.ToPointer(false),
+                    Type:                 models.ToPointer(models.ApPortConfigDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
+                    Vlans:                map[string]string{
+                        "key0": "vlans1",
+                    },
+                }),
+                EnableMacAuth:        models.ToPointer(false),
+                Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_WXTUNNEL),
+                MacAuthPreferred:     models.ToPointer(false),
+            },
+            "key2": models.ApPortConfig{
+                Disabled:             models.ToPointer(false),
+                DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
+                    DefaultVlanId:        models.ToPointer(34),
+                    Enabled:              models.ToPointer(false),
+                    Type:                 models.ToPointer(models.ApPortConfigDynamicVlanTypeEnum_AIRESPACEINTERFACENAME),
+                    Vlans:                map[string]string{
+                        "key0": "vlans1",
+                    },
+                }),
+                EnableMacAuth:        models.ToPointer(false),
+                Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_WXTUNNEL),
+                MacAuthPreferred:     models.ToPointer(false),
+            },
+        },
     }
-  }
+
 }
 ```
 

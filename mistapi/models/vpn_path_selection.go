@@ -8,7 +8,7 @@ import (
 )
 
 // VpnPathSelection represents a VpnPathSelection struct.
-// Only if `type`==`hub_spoke`
+// Only if `type`==`hub_spoke`; path selection behavior for VPN paths
 type VpnPathSelection struct {
 	// enum: `disabled`, `simple`, `manual`
 	Strategy             *VpnPathSelectionStrategyEnum `json:"strategy,omitempty"`

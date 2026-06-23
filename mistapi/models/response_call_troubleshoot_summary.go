@@ -9,9 +9,13 @@ import (
 )
 
 // ResponseCallTroubleshootSummary represents a ResponseCallTroubleshootSummary struct.
+// Site call troubleshooting summary response
 type ResponseCallTroubleshootSummary struct {
-	Mac                  *string                   `json:"mac,omitempty"`
-	MeetingId            *uuid.UUID                `json:"meeting_id,omitempty"`
+	// Client MAC address for the summarized call troubleshooting result
+	Mac *string `json:"mac,omitempty"`
+	// Meeting identifier for the summarized call troubleshooting result
+	MeetingId *uuid.UUID `json:"meeting_id,omitempty"`
+	// List of call troubleshooting summary records
 	Results              []CallTroubleshootSummary `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"_"`
 }

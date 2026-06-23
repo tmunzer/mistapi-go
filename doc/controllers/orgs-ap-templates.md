@@ -19,7 +19,7 @@ orgsAPTemplates := client.OrgsAPTemplates()
 
 # Create Org Aptemplate
 
-Create Org AP Template
+Create an organization AP template with AP matching rules, port configuration, Wi-Fi settings, and mesh settings.
 
 ```go
 CreateOrgAptemplate(
@@ -30,6 +30,10 @@ CreateOrgAptemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -38,6 +42,8 @@ CreateOrgAptemplate(
 | `body` | [`*models.ApTemplate`](../../doc/models/ap-template.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: AP Template
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
@@ -50,174 +56,7 @@ orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
 body := models.ApTemplate{
     ApMatching:           models.ApTemplateMatching{
-        Enabled:              models.ToPointer(true),
-        Rules:                []models.ApTemplateMatchingRule{
-            models.ApTemplateMatchingRule{
-                MatchModel:           models.ToPointer("string"),
-                Name:                 models.ToPointer("string"),
-                PortConfig:           map[string]models.ApPortConfig{
-                    "property1": models.ApPortConfig{
-                        Disabled:             models.ToPointer(true),
-                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId:        models.ToPointer(999),
-                            Enabled:              models.ToPointer(true),
-                            Type:                 models.ToPointer("string"),
-                            Vlans:                map[string]string{
-                                "1-10": "",
-                                "user": "",
-                            },
-                        }),
-                        EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
-                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
-                        PortVlanId:           models.ToPointer(1),
-                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval:  models.ToPointer(0),
-                            AcctServers:          []models.RadiusAcctServer{
-                                models.RadiusAcctServer{
-                                    Host:                 "1.2.3.4",
-                                    KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
-                                    KeywrapKek:           models.ToPointer("1122334455"),
-                                    KeywrapMack:          models.ToPointer("1122334455"),
-                                    Port:                 models.ToPointer(models.RadiusAcctPortContainer.FromNumber(1813)),
-                                    Secret:               "testing123",
-                                },
-                            },
-                            AuthServers:          []models.RadiusAuthServer{
-                                models.RadiusAuthServer{
-                                    Host:                        "1.2.3.4",
-                                    KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
-                                    KeywrapKek:                  models.ToPointer("1122334455"),
-                                    KeywrapMack:                 models.ToPointer("1122334455"),
-                                    Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(1812)),
-                                    Secret:                      "testing123",
-                                },
-                            },
-                            AuthServersRetries:   models.ToPointer(3),
-                            AuthServersTimeout:   models.ToPointer(5),
-                            CoaEnabled:           models.ToPointer(false),
-                            CoaPort:              models.ToPointer(3799),
-                            Network:              models.ToPointer("string"),
-                            SourceIp:             models.ToPointer("string"),
-                        }),
-                        Radsec:               models.ToPointer(models.Radsec{
-                            Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
-                            MxclusterIds:         []uuid.UUID{
-                                uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
-                            },
-                            ProxyHosts:           []string{
-                                "mxedge1.local",
-                            },
-                            ServerName:           models.ToPointer("radsec.abc.com"),
-                            Servers:              []models.RadsecServer{
-                                models.RadsecServer{
-                                    Host:                 models.ToPointer("1.1.1.1"),
-                                    Port:                 models.ToPointer(1812),
-                                },
-                            },
-                            UseMxedge:            models.ToPointer(true),
-                            UseSiteMxedge:        models.ToPointer(false),
-                        }),
-                        VlanId:               models.ToPointer(9),
-                        VlanIds:              models.ToPointer("1, 10, 50"),
-                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
-                    },
-                    "property2": models.ApPortConfig{
-                        Disabled:             models.ToPointer(true),
-                        DynamicVlan:          models.ToPointer(models.ApPortConfigDynamicVlan{
-                            DefaultVlanId:        models.ToPointer(999),
-                            Enabled:              models.ToPointer(true),
-                            Type:                 models.ToPointer("string"),
-                            Vlans:                map[string]string{
-                                "1-10": "",
-                                "user": "",
-                            },
-                        }),
-                        EnableMacAuth:        models.ToPointer(false),
-                        Forwarding:           models.ToPointer(models.ApPortConfigForwardingEnum_ALL),
-                        MxTunnelId:           models.ToPointer(uuid.MustParse("08cd7499-5841-51c8-e663-fb16b6f3b45e")),
-                        MxtunnelName:         models.ToPointer("string"),
-                        PortAuth:             models.ToPointer(models.ApPortConfigPortAuthEnum_NONE),
-                        PortVlanId:           models.ToPointer(1),
-                        RadiusConfig:         models.ToPointer(models.RadiusConfig{
-                            AcctInterimInterval:  models.ToPointer(0),
-                            AcctServers:          []models.RadiusAcctServer{
-                                models.RadiusAcctServer{
-                                    Host:                 "1.2.3.4",
-                                    KeywrapEnabled:       models.ToPointer(true),
-                                    KeywrapFormat:        models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
-                                    KeywrapKek:           models.ToPointer("1122334455"),
-                                    KeywrapMack:          models.ToPointer("1122334455"),
-                                    Port:                 models.ToPointer(models.RadiusAcctPortContainer.FromNumber(1813)),
-                                    Secret:               "testing123",
-                                },
-                            },
-                            AuthServers:          []models.RadiusAuthServer{
-                                models.RadiusAuthServer{
-                                    Host:                        "1.2.3.4",
-                                    KeywrapEnabled:              models.ToPointer(true),
-                                    KeywrapFormat:               models.ToPointer(models.RadiusKeywrapFormatEnum_HEX),
-                                    KeywrapKek:                  models.ToPointer("1122334455"),
-                                    KeywrapMack:                 models.ToPointer("1122334455"),
-                                    Port:                        models.ToPointer(models.RadiusAuthPortContainer.FromNumber(1812)),
-                                    Secret:                      "testing123",
-                                },
-                            },
-                            AuthServersRetries:   models.ToPointer(3),
-                            AuthServersTimeout:   models.ToPointer(5),
-                            CoaEnabled:           models.ToPointer(false),
-                            CoaPort:              models.ToPointer(3799),
-                            Network:              models.ToPointer("string"),
-                            SourceIp:             models.ToPointer("string"),
-                        }),
-                        Radsec:               models.ToPointer(models.Radsec{
-                            Enabled:              models.ToPointer(true),
-                            IdleTimeout:          models.ToPointer(models.RadsecIdleTimeoutContainer.FromNumber(60)),
-                            MxclusterIds:         []uuid.UUID{
-                                uuid.MustParse("572586b7-f97b-a22b-526c-8b97a3f609c4"),
-                            },
-                            ProxyHosts:           []string{
-                                "mxedge1.local",
-                            },
-                            ServerName:           models.ToPointer("radsec.abc.com"),
-                            Servers:              []models.RadsecServer{
-                                models.RadsecServer{
-                                    Host:                 models.ToPointer("1.1.1.1"),
-                                    Port:                 models.ToPointer(1812),
-                                },
-                            },
-                            UseMxedge:            models.ToPointer(true),
-                            UseSiteMxedge:        models.ToPointer(false),
-                        }),
-                        VlanId:               models.ToPointer(9),
-                        VlanIds:              models.ToPointer("1, 10, 50"),
-                        WxtunnelId:           models.ToPointer(uuid.MustParse("7dae216d-7c98-a51b-e068-dd7d477b7216")),
-                        WxtunnelRemoteId:     models.ToPointer("wifiguest"),
-                    },
-                },
-            },
-        },
     },
-    Wifi:                 models.ToPointer(models.ApTemplateWifi{
-        CiscoEnabled:                      models.ToPointer(true),
-        Disable11k:                        models.ToPointer(false),
-        DisableRadiosWhenPowerConstrained: models.ToPointer(true),
-        EnableArpSpoof:                    models.ToPointer(true),
-        EnableSharedRadioScanning:         models.ToPointer(false),
-        Enabled:                           models.ToPointer(true),
-        LocateConnected:                   models.ToPointer(false),
-        LocateUnconnected:                 models.ToPointer(false),
-        MeshAllowDfs:                      models.ToPointer(false),
-        MeshEnableCrm:                     models.ToPointer(true),
-        MeshEnabled:                       models.ToPointer(true),
-        ProxyArp:                          models.ToPointer(false),
-    }),
 }
 
 apiResponse, err := orgsAPTemplates.CreateOrgAptemplate(ctx, orgId, &body)
@@ -225,14 +64,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -296,15 +135,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Delete Org Aptemplate
 
-Delete existing AP Template
+Delete an organization AP template by template ID from this organization.
 
 ```go
 DeleteOrgAptemplate(
@@ -315,6 +154,10 @@ DeleteOrgAptemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -323,6 +166,8 @@ DeleteOrgAptemplate(
 | `aptemplateId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
@@ -340,14 +185,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -361,15 +206,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Get Org Aptemplate
 
-Get AP Template
+Return one organization AP template, including AP matching rules, port configuration, Wi-Fi settings, and mesh settings.
 
 ```go
 GetOrgAptemplate(
@@ -380,6 +225,10 @@ GetOrgAptemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -388,6 +237,8 @@ GetOrgAptemplate(
 | `aptemplateId` | `uuid.UUID` | Template, Required | - |
 
 ## Response Type
+
+**200**: AP Template
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
@@ -405,14 +256,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -476,15 +327,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # List Org Aptemplates
 
-Get List of Org AP Templates
+List organization AP templates that define AP matching rules, port configuration, Wi-Fi, and mesh settings for assignment to sites.
 
 ```go
 ListOrgAptemplates(
@@ -496,15 +347,21 @@ ListOrgAptemplates(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: Example response
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [[]models.ApTemplate](../../doc/models/ap-template.md).
 
@@ -524,14 +381,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -597,15 +454,15 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 
 
 # Update Org Aptemplate
 
-Update AP Template
+Update an organization AP template's AP matching rules, port configuration, Wi-Fi settings, or mesh settings.
 
 ```go
 UpdateOrgAptemplate(
@@ -617,6 +474,10 @@ UpdateOrgAptemplate(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -626,6 +487,8 @@ UpdateOrgAptemplate(
 | `body` | [`*models.ApTemplate`](../../doc/models/ap-template.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: AP Template
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [models.ApTemplate](../../doc/models/ap-template.md).
 
@@ -681,14 +544,14 @@ if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -752,8 +615,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

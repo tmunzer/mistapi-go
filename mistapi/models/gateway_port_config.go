@@ -10,7 +10,7 @@ import (
 )
 
 // GatewayPortConfig represents a GatewayPortConfig struct.
-// Gateway port config
+// Gateway port configuration for LAN, WAN, tunnel, and HA interfaces
 type GatewayPortConfig struct {
 	// If `aggregated`==`true`. To disable LCP support for the AE interface
 	AeDisableLacp *bool `json:"ae_disable_lacp,omitempty"`
@@ -18,12 +18,14 @@ type GatewayPortConfig struct {
 	AeIdx Optional[string] `json:"ae_idx"`
 	// For SRX only, if `aggregated`==`true`.Sets the state of the interface as UP when the peer has limited LACP capability. Use case: When a device connected to this AE port is ZTPing for the first time, it will not have LACP configured on the other end. **Note:** Turning this on will enable force-up on one of the interfaces in the bundle only
 	AeLacpForceUp *bool `json:"ae_lacp_force_up,omitempty"`
-	Aggregated    *bool `json:"aggregated,omitempty"`
+	// Whether the port participates in an aggregated Ethernet interface
+	Aggregated *bool `json:"aggregated,omitempty"`
 	// To generate port up/down alarm, set it to true
 	Critical *bool `json:"critical,omitempty"`
 	// Interface Description. Can be a variable (i.e. "{{myvar}}")
-	Description    *string `json:"description,omitempty"`
-	DisableAutoneg *bool   `json:"disable_autoneg,omitempty"`
+	Description *string `json:"description,omitempty"`
+	// Whether Ethernet autonegotiation is disabled on the port
+	DisableAutoneg *bool `json:"disable_autoneg,omitempty"`
 	// Port admin up (true) / down (false)
 	Disabled *bool `json:"disabled,omitempty"`
 	// if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
@@ -34,24 +36,27 @@ type GatewayPortConfig struct {
 	DslVpi *int `json:"dsl_vpi,omitempty"`
 	// enum: `auto`, `full`, `half`
 	Duplex *GatewayPortDuplexEnum `json:"duplex,omitempty"`
-	// Junos IP Config
+	// Junos IP configuration for a gateway port interface
 	IpConfig *GatewayPortConfigIpConfig `json:"ip_config,omitempty"`
-	// If `wan_type`==`lte`
+	// If `wan_type`==`lte`. APN used by the LTE uplink
 	LteApn *string `json:"lte_apn,omitempty"`
 	// if `wan_type`==`lte`. enum: `chap`, `none`, `pap`
-	LteAuth   *GatewayPortLteAuthEnum `json:"lte_auth,omitempty"`
-	LteBackup *bool                   `json:"lte_backup,omitempty"`
-	// If `wan_type`==`lte`
+	LteAuth *GatewayPortLteAuthEnum `json:"lte_auth,omitempty"`
+	// Whether the LTE uplink is used as a backup WAN connection
+	LteBackup *bool `json:"lte_backup,omitempty"`
+	// If `wan_type`==`lte`. Password used for LTE uplink authentication
 	LtePassword *string `json:"lte_password,omitempty"`
-	// If `wan_type`==`lte`
+	// If `wan_type`==`lte`. Username used for LTE uplink authentication
 	LteUsername *string `json:"lte_username,omitempty"`
-	Mtu         *int    `json:"mtu,omitempty"`
-	// Name that we'll use to derive config
+	// Layer 3 MTU configured on the port
+	Mtu *int `json:"mtu,omitempty"`
+	// Interface name used to derive device configuration
 	Name *string `json:"name,omitempty"`
 	// If `usage`==`lan`, name of the [networks]($h/Orgs%20Networks/_overview) to attach to the interface
 	Networks []string `json:"networks,omitempty"`
-	// For Q-in-Q
-	OuterVlanId *int  `json:"outer_vlan_id,omitempty"`
+	// For Q-in-Q. Outer VLAN ID used for QinQ encapsulation
+	OuterVlanId *int `json:"outer_vlan_id,omitempty"`
+	// Whether PoE output is disabled on the port
 	PoeDisabled *bool `json:"poe_disabled,omitempty"`
 	// Whether Perpetual PoE capabilities are enabled for a port
 	PoeKeepStateWhenReboot *bool `json:"poe_keep_state_when_reboot,omitempty"`
@@ -59,21 +64,23 @@ type GatewayPortConfig struct {
 	PortNetwork *string `json:"port_network,omitempty"`
 	// Whether to preserve dscp when sending traffic over VPN (SSR-only)
 	PreserveDscp *bool `json:"preserve_dscp,omitempty"`
-	// If HA mode
+	// If HA mode. Whether the port participates in the redundant Ethernet configuration
 	Redundant *bool `json:"redundant,omitempty"`
 	// If HA mode, SRX Only - support redundancy-group. 1-128 for physical SRX, 1-64 for virtual SRX
 	RedundantGroup *int `json:"redundant_group,omitempty"`
 	// For SRX only and if HA Mode. `-1` means it will be managed by the device. Use `>= 0` values to manage it manually. Ensure no conflicting values are assigned across all ports.
 	RethIdx *GatewayPortConfigRethIdx `json:"reth_idx,omitempty"`
-	// If HA mode
+	// If HA mode. Node associated with the redundant Ethernet interface
 	RethNode *string `json:"reth_node,omitempty"`
 	// SSR only - supporting vlan-based redundancy (matching the size of `networks`)
 	RethNodes []string `json:"reth_nodes,omitempty"`
-	Speed     *string  `json:"speed,omitempty"`
+	// Link speed configured on the port
+	Speed *string `json:"speed,omitempty"`
 	// When SSR is running as VM, this is required on certain hosting platforms
 	SsrNoVirtualMac *bool `json:"ssr_no_virtual_mac,omitempty"`
-	// For SSR only
-	SvrPortRange   *string                `json:"svr_port_range,omitempty"`
+	// For SSR only. Port range configured on the interface
+	SvrPortRange *string `json:"svr_port_range,omitempty"`
+	// Traffic shaping settings for a gateway interface or VPN path
 	TrafficShaping *GatewayTrafficShaping `json:"traffic_shaping,omitempty"`
 	// port usage name. enum: `ha_control`, `ha_data`, `lan`, `wan`
 	Usage GatewayPortUsageEnum `json:"usage"`
@@ -90,10 +97,10 @@ type GatewayPortConfig struct {
 	// Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "100.100.100.0/24")
 	WanExtraRoutes map[string]WanExtraRoutes `json:"wan_extra_routes,omitempty"`
 	// Only if `usage`==`wan`. Property Key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
-	WanExtraRoutes6 map[string]WanExtraRoutes `json:"wan_extra_routes6,omitempty"`
+	WanExtraRoutes6 map[string]WanExtraRoutes6 `json:"wan_extra_routes6,omitempty"`
 	// Only if `usage`==`wan`. If some networks are connected to this WAN port, it can be added here so policies can be defined
 	WanNetworks []string `json:"wan_networks,omitempty"`
-	// Only if `usage`==`wan`
+	// Only if `usage`==`wan`. WAN health probe override for this gateway port
 	WanProbeOverride *GatewayWanProbeOverride `json:"wan_probe_override,omitempty"`
 	// Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN Ports using the interface-ip
 	WanSourceNat *GatewayPortWanSourceNat `json:"wan_source_nat,omitempty"`
@@ -390,7 +397,7 @@ type tempGatewayPortConfig struct {
 	WanExtIp               *string                                `json:"wan_ext_ip,omitempty"`
 	WanExtIp6              *string                                `json:"wan_ext_ip6,omitempty"`
 	WanExtraRoutes         map[string]WanExtraRoutes              `json:"wan_extra_routes,omitempty"`
-	WanExtraRoutes6        map[string]WanExtraRoutes              `json:"wan_extra_routes6,omitempty"`
+	WanExtraRoutes6        map[string]WanExtraRoutes6             `json:"wan_extra_routes6,omitempty"`
 	WanNetworks            []string                               `json:"wan_networks,omitempty"`
 	WanProbeOverride       *GatewayWanProbeOverride               `json:"wan_probe_override,omitempty"`
 	WanSourceNat           *GatewayPortWanSourceNat               `json:"wan_source_nat,omitempty"`

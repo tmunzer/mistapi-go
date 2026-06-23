@@ -8,7 +8,7 @@ import (
 )
 
 // SwitchPortLocalUsageStormControl represents a SwitchPortLocalUsageStormControl struct.
-// Switch storm control
+// Storm-control settings for this local port configuration
 type SwitchPortLocalUsageStormControl struct {
 	// Whether to disable the port when storm control is triggered
 	DisablePort *bool `json:"disable_port,omitempty"`

@@ -9,44 +9,47 @@ import (
 )
 
 // WebhookGuestAuthorizationsEvent represents a WebhookGuestAuthorizationsEvent struct.
+// Guest portal authorization event with registration and WLAN context
 type WebhookGuestAuthorizationsEvent struct {
-	// mac address of the AP the guest is connected to
+	// MAC address of the AP handling the guest authorization
 	Ap *string `json:"ap,omitempty"`
-	// authentication method used
+	// Guest portal authentication method used for this authorization event
 	AuthMethod *string `json:"auth_method,omitempty"`
-	// expiry time for guest
+	// Unix timestamp when the guest authorization expires
 	AuthorizedExpiringTime *int `json:"authorized_expiring_time,omitempty"`
-	// time of authorization of guest
+	// Unix timestamp when the guest authorization was granted
 	AuthorizedTime *int `json:"authorized_time,omitempty"`
-	// carrier used when authentication by free cell provider
+	// Mobile carrier used when authentication relies on a cellular provider
 	Carrier *string `json:"carrier,omitempty"`
-	// client mac
+	// MAC address of the guest client device
 	Client *string `json:"client,omitempty"`
-	// guest company
+	// Guest company name provided during registration
 	Company *string `json:"company,omitempty"`
-	// guest email
+	// Guest email address provided during registration
 	Email *string `json:"email,omitempty"`
-	// field1 value
+	// Value submitted for custom guest field 1
 	Field1 *string `json:"field1,omitempty"`
-	// field2 value
+	// Value submitted for custom guest field 2
 	Field2 *string `json:"field2,omitempty"`
-	// field3 value
+	// Value submitted for custom guest field 3
 	Field3 *string `json:"field3,omitempty"`
-	// field4 value
+	// Value submitted for custom guest field 4
 	Field4 *string `json:"field4,omitempty"`
-	// guest mobile number
+	// Guest mobile phone number provided during registration
 	Mobile *string `json:"mobile,omitempty"`
-	// guest name
-	Name   *string    `json:"name,omitempty"`
-	OrgId  *uuid.UUID `json:"org_id,omitempty"`
+	// Full name provided by the guest during registration
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// sms gateway used via text auth paid service
+	// SMS provider used for text-message authentication
 	SmsGateway *string `json:"sms_gateway,omitempty"`
-	// guest sponsor email
+	// Sponsor email address associated with the guest authorization
 	SponsorEmail *string `json:"sponsor_email,omitempty"`
-	// ssid
+	// WLAN SSID on which the guest was authorized
 	Ssid *string `json:"ssid,omitempty"`
-	// wlan id
+	// WLAN identifier on which the guest was authorized
 	WlanId               *string                `json:"wlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

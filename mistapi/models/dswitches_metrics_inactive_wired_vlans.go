@@ -10,8 +10,11 @@ import (
 )
 
 // DswitchesMetricsInactiveWiredVlans represents a DswitchesMetricsInactiveWiredVlans struct.
+// Inactive wired VLAN metric for APs connected to discovered switches
 type DswitchesMetricsInactiveWiredVlans struct {
-	Details              interface{}            `json:"details"`
+	// Metric-specific details for inactive wired VLAN findings
+	Details interface{} `json:"details"`
+	// Compliance score for the inactive wired VLAN metric
 	Score                float64                `json:"score"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

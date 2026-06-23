@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseAnomalySearch represents a ResponseAnomalySearch struct.
+// Paginated anomaly search response
 type ResponseAnomalySearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Page                 int                    `json:"page"`
-	Results              []Anomaly              `json:"results"`
-	Start                int                    `json:"start"`
+	// Search window end timestamp for anomaly results, in epoch seconds
+	End int `json:"end"`
+	// Maximum number of anomaly results requested per page
+	Limit int `json:"limit"`
+	// Current page number in the anomaly search results
+	Page int `json:"page"`
+	// Anomaly records returned by a search response
+	Results []Anomaly `json:"results"`
+	// Search window start timestamp for anomaly results, in epoch seconds
+	Start int `json:"start"`
+	// Number of anomaly records matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

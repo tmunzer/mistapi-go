@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseSynthetictestSearch represents a ResponseSynthetictestSearch struct.
+// Paginated response for site synthetic test search results
 type ResponseSynthetictestSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []SynthetictestInfo    `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp, in seconds, for the end of the synthetic test search window
+	End int `json:"end"`
+	// Maximum number of synthetic test results returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of synthetic test results
+	Next *string `json:"next,omitempty"`
+	// Synthetic test result records returned by search
+	Results []SynthetictestInfo `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the synthetic test search window
+	Start int `json:"start"`
+	// Number of synthetic test results matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

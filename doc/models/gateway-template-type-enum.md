@@ -1,7 +1,7 @@
 
 # Gateway Template Type Enum
 
-enum: `spoke`, `standalone`
+Gateway template deployment type. enum: `spoke`, `standalone`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `spoke`, `standalone`
 
 ## Example
 
-```
-standalone
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayTemplateType := models.GatewayTemplateTypeEnum_SPOKE
+
+}
 ```
 

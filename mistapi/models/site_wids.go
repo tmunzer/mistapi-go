@@ -8,8 +8,9 @@ import (
 )
 
 // SiteWids represents a SiteWids struct.
-// WIDS site settings
+// Wireless intrusion detection settings for a site
 type SiteWids struct {
+	// Detection settings for repeated authentication failures
 	RepeatedAuthFailures *SiteWidsRepeatedAuthFailures `json:"repeated_auth_failures,omitempty"`
 	AdditionalProperties map[string]interface{}        `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Var Source Enum
 
-enum: `deviceprofile`, `site`
+Source level where a variable is defined. enum: `deviceprofile`, `site`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `deviceprofile`, `site`
 |  --- |
 | `deviceprofile` |
 | `site` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    varSource := models.VarSourceEnum_DEVICEPROFILE
+
+}
+```
 

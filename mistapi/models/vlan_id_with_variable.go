@@ -9,6 +9,7 @@ import (
 )
 
 // VlanIdWithVariable represents a VlanIdWithVariable struct.
+// VLAN ID, either numeric or expressed as a template variable string
 type VlanIdWithVariable struct {
 	value    any
 	isString bool
@@ -74,6 +75,7 @@ func (v *VlanIdWithVariable) AsNumber() (
 }
 
 // internalVlanIdWithVariable represents a vlanIdWithVariable struct.
+// VLAN ID, either numeric or expressed as a template variable string
 type internalVlanIdWithVariable struct{}
 
 var VlanIdWithVariableContainer internalVlanIdWithVariable

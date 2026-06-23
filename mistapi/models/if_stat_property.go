@@ -8,26 +8,39 @@ import (
 )
 
 // IfStatProperty represents a IfStatProperty struct.
+// Interface statistics and metadata reported by a device
 type IfStatProperty struct {
-	AddressMode     *string  `json:"address_mode,omitempty"`
-	Ips             []string `json:"ips,omitempty"`
-	NatAddresses    []string `json:"nat_addresses,omitempty"`
-	NetworkName     *string  `json:"network_name,omitempty"`
-	PortId          *string  `json:"port_id,omitempty"`
-	PortUsage       *string  `json:"port_usage,omitempty"`
-	RedundancyState *string  `json:"redundancy_state,omitempty"`
+	// Address assignment mode reported for the interface
+	AddressMode *string `json:"address_mode,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Ips []string `json:"ips,omitempty"`
+	// Unique string values returned or accepted by this schema
+	NatAddresses []string `json:"nat_addresses,omitempty"`
+	// Mist network name associated with this interface
+	NetworkName *string `json:"network_name,omitempty"`
+	// Physical or logical port identifier for this interface
+	PortId *string `json:"port_id,omitempty"`
+	// Configured usage for this interface, such as LAN or WAN
+	PortUsage *string `json:"port_usage,omitempty"`
+	// Redundancy state reported for this interface
+	RedundancyState *string `json:"redundancy_state,omitempty"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
-	RxPkts    Optional[int64]          `json:"rx_pkts"`
+	RxPkts Optional[int64] `json:"rx_pkts"`
+	// Service-provider and geolocation details associated with an interface address
 	ServpInfo *IfStatPropertyServpInfo `json:"servp_info,omitempty"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
-	TxPkts               Optional[int64]        `json:"tx_pkts"`
-	Up                   *bool                  `json:"up,omitempty"`
-	Vlan                 *int                   `json:"vlan,omitempty"`
-	WanName              *string                `json:"wan_name,omitempty"`
+	TxPkts Optional[int64] `json:"tx_pkts"`
+	// Whether the interface is operationally up
+	Up *bool `json:"up,omitempty"`
+	// Associated VLAN ID for this interface
+	Vlan *int `json:"vlan,omitempty"`
+	// Configured WAN name associated with this interface
+	WanName *string `json:"wan_name,omitempty"`
+	// Configured WAN uplink type associated with this interface
 	WanType              *string                `json:"wan_type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,6 +8,7 @@ import (
 )
 
 // VrfConfig represents a VrfConfig struct.
+// VRF enablement settings applied when supported on the device
 type VrfConfig struct {
 	// Whether to enable VRF (when supported on the device)
 	Enabled              *bool                  `json:"enabled,omitempty"`

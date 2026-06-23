@@ -8,19 +8,19 @@ import (
 )
 
 // ApUsb represents a ApUsb struct.
-// USB AP settings
+// Legacy USB integration settings for an access point
 // - Note: if native imagotag is enabled, BLE will be disabled automatically
 // - Note: legacy, new config moved to ESL Config.
 type ApUsb struct {
-	// Only if `type`==`imagotag`
+	// Only if `type`==`imagotag`. CA certificate used to validate the Imagotag service certificate
 	Cacert Optional[string] `json:"cacert"`
 	// Only if `type`==`imagotag`, channel selection, not needed by default, required for manual channel override only
 	Channel *int `json:"channel,omitempty"`
 	// Whether to enable any usb config
 	Enabled *bool `json:"enabled,omitempty"`
-	// Only if `type`==`imagotag`
+	// Only if `type`==`imagotag`. Imagotag service host or IP address contacted by the AP
 	Host *string `json:"host,omitempty"`
-	// Only if `type`==`imagotag`
+	// Only if `type`==`imagotag`. TCP port used to reach the Imagotag service
 	Port *int `json:"port,omitempty"`
 	// usb config type. enum: `hanshow`, `imagotag`, `solum`
 	Type *ApUsbTypeEnum `json:"type,omitempty"`

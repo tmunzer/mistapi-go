@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeVersions represents a MxedgeVersions struct.
+// Read-only Mist Edge service versions
 type MxedgeVersions struct {
-	Mxagent              *string                `json:"mxagent,omitempty"`
+	// Reported version of the mxagent service
+	Mxagent *string `json:"mxagent,omitempty"`
+	// Reported version of the tunnel termination service
 	Tunterm              *string                `json:"tunterm,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

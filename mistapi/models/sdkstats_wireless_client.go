@@ -11,27 +11,27 @@ import (
 )
 
 // SdkstatsWirelessClient represents a SdkstatsWirelessClient struct.
-// SDK Client Details statistics
+// Detailed statistics for an individual SDK client
 type SdkstatsWirelessClient struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Map_id of the sdk client (if known), or null
+	// Map identifier for the SDK client's location, if known
 	MapId Optional[uuid.UUID] `json:"map_id"`
-	// Name of the sdk client (if provided)
+	// Display name provided for the SDK client
 	Name *string `json:"name,omitempty"`
-	// Various network connection info for the SDK client (if known, else omitted), with RSSI in dBm, and signal level as
+	// Current network connection details reported for an SDK client
 	NetworkConnection *StatsSdkclientNetworkConnection `json:"network_connection,omitempty"`
-	// UUID of the sdk client
+	// Application UUID for the SDK client
 	Uuid uuid.UUID `json:"uuid"`
-	// List of beacon_id’s of the sdk client is in and since when (if known)
+	// Virtual beacon associations for the SDK client, including when each began
 	Vbeacons []SdkstatsWirelessClientVbeacon `json:"vbeacons,omitempty"`
-	// X (in pixels) of user location on the map (if known)
+	// Horizontal map coordinate of the SDK client location, in pixels, if known
 	X *float64 `json:"x,omitempty"`
-	// Y (in pixels) of user location on the map (if known)
+	// Vertical map coordinate of the SDK client location, in pixels, if known
 	Y *float64 `json:"y,omitempty"`
-	// List of zone_id’s of the sdk client is in and since when (if known)
+	// Zone memberships for the SDK client, including when each membership began
 	Zones                []SdkstatsWirelessClientZone `json:"zones,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"_"`
 }

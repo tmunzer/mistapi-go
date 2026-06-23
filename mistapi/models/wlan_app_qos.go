@@ -10,10 +10,13 @@ import (
 // WlanAppQos represents a WlanAppQos struct.
 // APP qos wlan settings
 type WlanAppQos struct {
-	Apps                 map[string]WlanAppQosAppsProperties `json:"apps,omitempty"`
-	Enabled              *bool                               `json:"enabled,omitempty"`
-	Others               []WlanAppQosOthersItem              `json:"others,omitempty"`
-	AdditionalProperties map[string]interface{}              `json:"_"`
+	// Map of application keys to QoS rewrite settings
+	Apps map[string]WlanAppQosAppsProperties `json:"apps,omitempty"`
+	// Whether application QoS rewrite rules are enabled for this WLAN
+	Enabled *bool `json:"enabled,omitempty"`
+	// Custom application QoS rules for traffic matched by subnet, port, and protocol
+	Others               []WlanAppQosOthersItem `json:"others,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WlanAppQos,

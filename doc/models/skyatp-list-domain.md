@@ -1,6 +1,8 @@
 
 # Skyatp List Domain
 
+Domain entry in a Sky ATP SecIntel list
+
 ## Structure
 
 `SkyatpListDomain`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Comment` | `*string` | Optional | - |
-| `Value` | `string` | Required | - |
+| `Comment` | `*string` | Optional | Optional note describing the domain list entry |
+| `Value` | `string` | Required | Domain name included in the Sky ATP SecIntel list |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "comment": "restricted",
-  "value": "unsafe.com"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    skyatpListDomain := models.SkyatpListDomain{
+        Comment:              models.ToPointer("restricted"),
+        Value:                "unsafe.com",
+    }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Response Port Stats Search
 
+Paginated response for switch and gateway port statistics search results
+
 ## Structure
 
 `ResponsePortStatsSearch`
@@ -9,51 +11,61 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `*int` | Optional | - |
-| `Limit` | `int` | Required | - |
-| `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Required | - |
-| `Start` | `*int` | Optional | - |
-| `Total` | `int` | Required | - |
+| `End` | `*int` | Optional | Epoch timestamp, in seconds, for the end of the port statistics reporting window |
+| `Limit` | `int` | Required | Maximum number of port statistics records returned in this page |
+| `Next` | `*string` | Optional | URL for retrieving the next page of port statistics search results |
+| `Results` | [`[]models.StatsSwitchPort`](../../doc/models/stats-switch-port.md) | Required | Switch port statistics records returned by a stats response |
+| `Start` | `*int` | Optional | Epoch timestamp, in seconds, for the start of the port statistics reporting window |
+| `Total` | `int` | Required | Number of port statistics records matching the search filters across all pages |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "limit": 222,
-  "results": [
-    {
-      "full_duplex": true,
-      "mac": "5c4527a96580",
-      "neighbor_mac": "64d814353400",
-      "neighbor_port_desc": "GigabitEthernet1/0/21",
-      "neighbor_system_name": "CORP-D-SW-2",
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "port_id": "ge-0/0/0",
-      "port_mac": "5c4527a96580",
-      "port_usage": "lan",
-      "rx_bps": 60003,
-      "rx_bytes": 8515104416,
-      "rx_pkts": 57770567,
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "speed": 1000,
-      "tx_bps": 634301,
-      "tx_bytes": 211217389682,
-      "tx_pkts": 812204062,
-      "type": "gateway",
-      "xcvr_model": "SFP+-10G-SR",
-      "xcvr_part_number": "740-021487",
-      "xcvr_serial": "N6AA9HT",
-      "active": false,
-      "auth_state": "authenticated",
-      "disabled": false,
-      "for_site": false
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responsePortStatsSearch := models.ResponsePortStatsSearch{
+        End:                  models.ToPointer(58),
+        Limit:                112,
+        Next:                 models.ToPointer("next4"),
+        Results:              []models.StatsSwitchPort{
+            models.StatsSwitchPort{
+                Active:               models.ToPointer(false),
+                AuthState:            models.ToPointer(models.PortAuthStateEnum_AUTHENTICATED),
+                Disabled:             models.ToPointer(false),
+                ForSite:              models.ToPointer(false),
+                FullDuplex:           models.ToPointer(true),
+                Mac:                  "5c4527a96580",
+                NeighborMac:          models.ToPointer("64d814353400"),
+                NeighborPortDesc:     models.ToPointer("GigabitEthernet1/0/21"),
+                NeighborSystemName:   models.ToPointer("CORP-D-SW-2"),
+                OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
+                PortId:               "ge-0/0/0",
+                PortMac:              models.ToPointer("5c4527a96580"),
+                PortUsage:            models.ToPointer("lan"),
+                RxBps:                models.NewOptional(models.ToPointer(int64(60003))),
+                RxBytes:              models.NewOptional(models.ToPointer(int64(8515104416))),
+                RxPkts:               models.NewOptional(models.ToPointer(int64(57770567))),
+                SiteId:               uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6"),
+                Speed:                models.ToPointer(1000),
+                TxBps:                models.NewOptional(models.ToPointer(int64(634301))),
+                TxBytes:              models.NewOptional(models.ToPointer(int64(211217389682))),
+                TxPkts:               models.NewOptional(models.ToPointer(int64(812204062))),
+                Type:                 models.ToPointer(models.StatsSwitchPortTypeEnum_GATEWAY),
+                XcvrModel:            models.ToPointer("SFP+-10G-SR"),
+                XcvrPartNumber:       models.ToPointer("740-021487"),
+                XcvrSerial:           models.ToPointer("N6AA9HT"),
+            },
+        },
+        Start:                models.ToPointer(16),
+        Total:                206,
     }
-  ],
-  "total": 196,
-  "end": 204,
-  "next": "next8",
-  "start": 162
+
 }
 ```
 

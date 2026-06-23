@@ -11,37 +11,32 @@ Sample of the `nac-accounting` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookNacAccountingEvent`](../../doc/models/webhook-nac-accounting-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookNacAccountingTopicEnum`](../../doc/models/webhook-nac-accounting-topic-enum.md) | Optional | enum: `nac-accounting` |
+| `Events` | [`[]models.WebhookNacAccountingEvent`](../../doc/models/webhook-nac-accounting-event.md) | Optional | NAC accounting events included in a webhook delivery |
+| `Topic` | [`*models.WebhookNacAccountingTopicEnum`](../../doc/models/webhook-nac-accounting-topic-enum.md) | Optional | Webhook topic name for NAC accounting deliveries. enum: `nac-accounting` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "ap": "ap6",
-      "auth_type": "cert",
-      "bssid": "bssid4",
-      "client_ip": "client_ip0",
-      "client_type": "client_type6"
-    },
-    {
-      "ap": "ap6",
-      "auth_type": "cert",
-      "bssid": "bssid4",
-      "client_ip": "client_ip0",
-      "client_type": "client_type6"
-    },
-    {
-      "ap": "ap6",
-      "auth_type": "cert",
-      "bssid": "bssid4",
-      "client_ip": "client_ip0",
-      "client_type": "client_type6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookNacAccounting := models.WebhookNacAccounting{
+        Events:               []models.WebhookNacAccountingEvent{
+            models.WebhookNacAccountingEvent{
+                Ap:                   models.ToPointer("ap6"),
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_CERT),
+                Bssid:                models.ToPointer("bssid4"),
+                ClientIp:             models.ToPointer("client_ip0"),
+                ClientType:           models.ToPointer("client_type6"),
+            },
+        },
+        Topic:                models.ToPointer(models.WebhookNacAccountingTopicEnum_NACACCOUNTING),
     }
-  ],
-  "topic": "nac-accounting"
+
 }
 ```
 

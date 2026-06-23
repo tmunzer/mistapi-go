@@ -1,6 +1,8 @@
 
 # Dhcpd Stat Lan
 
+DHCP lease statistics for one network
+
 ## Structure
 
 `DhcpdStatLan`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumIps` | `*int` | Optional | - |
-| `NumLeased` | `*int` | Optional | - |
+| `NumIps` | `*int` | Optional | Total number of IP addresses in the DHCP pool |
+| `NumLeased` | `*int` | Optional | Number of DHCP pool addresses currently leased |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_ips": 100,
-  "num_leased": 20
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dhcpdStatLan := models.DhcpdStatLan{
+        NumIps:               models.ToPointer(100),
+        NumLeased:            models.ToPointer(20),
+    }
+
 }
 ```
 

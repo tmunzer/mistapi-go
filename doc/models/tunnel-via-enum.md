@@ -14,3 +14,18 @@ If `via`==`tunnel`, specifies which tunnel (primary/secondary) this neighbor is 
 | `primary` |
 | `secondary` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelVia := models.TunnelViaEnum_PRIMARY
+
+}
+```
+

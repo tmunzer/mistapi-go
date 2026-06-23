@@ -1,7 +1,7 @@
 
 # Avprofile Fallback Action Enum
 
-enum: `block`, `log-and-permit`, `permit`
+Action applied when antivirus scanning cannot complete. enum: `block`, `log-and-permit`, `permit`
 
 ## Enumeration
 
@@ -14,4 +14,19 @@ enum: `block`, `log-and-permit`, `permit`
 | `block` |
 | `log-and-permit` |
 | `permit` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    avprofileFallbackAction := models.AvprofileFallbackActionEnum_PERMIT
+
+}
+```
 

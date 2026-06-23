@@ -18,3 +18,18 @@ enum: `any`, `bgp`, `direct`, `evpn`, `ospf`, `static`
 | `ospf` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsShowRouteProtocol := models.UtilsShowRouteProtocolEnum_ANY
+
+}
+```
+

@@ -27,7 +27,7 @@ func NewMSPsLicenses(baseController baseController) *MSPsLicenses {
 // ClaimMspLicense takes context, mspId, body as parameters and
 // returns an models.ApiResponse with models.ResponseClaimLicense data and
 // an error if there was an issue with the request or response.
-// Claim an Order by Activation Code
+// Claim a license order for this MSP by submitting the activation code from the order.
 func (m *MSPsLicenses) ClaimMspLicense(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -39,19 +39,15 @@ func (m *MSPsLicenses) ClaimMspLicense(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Response when the key is invalid (or already used)"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -71,7 +67,7 @@ func (m *MSPsLicenses) ClaimMspLicense(
 // ListMspLicenses takes context, mspId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.
-// Get List of Msp Licenses
+// Return MSP license entitlement, subscription, amendment, and usage summary information.
 func (m *MSPsLicenses) ListMspLicenses(
 	ctx context.Context,
 	mspId uuid.UUID) (
@@ -82,19 +78,15 @@ func (m *MSPsLicenses) ListMspLicenses(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.License
@@ -110,7 +102,7 @@ func (m *MSPsLicenses) ListMspLicenses(
 // MoveOrDeleteMspLicenseToAnotherOrg takes context, mspId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Move or Delete MSP Licenses
+// Perform an MSP license action, such as amending license quantity to an organization, deleting a subscription, undoing an amendment, or annotating a subscription.
 func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -122,19 +114,15 @@ func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -151,7 +139,7 @@ func (m *MSPsLicenses) MoveOrDeleteMspLicenseToAnotherOrg(
 // ListMspOrgLicenses takes context, mspId as parameters and
 // returns an models.ApiResponse with models.License data and
 // an error if there was an issue with the request or response.
-// Get List of MSP Licenses
+// Return license entitlement, subscription, amendment, and usage statistics for organizations managed by this MSP.
 func (m *MSPsLicenses) ListMspOrgLicenses(
 	ctx context.Context,
 	mspId uuid.UUID) (
@@ -162,19 +150,15 @@ func (m *MSPsLicenses) ListMspOrgLicenses(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.License

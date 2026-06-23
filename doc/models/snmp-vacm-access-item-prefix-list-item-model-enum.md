@@ -16,3 +16,18 @@ enum: `any`, `usm`, `v1`, `v2c`
 | `v1` |
 | `v2c` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpVacmAccessItemPrefixListItemModel := models.SnmpVacmAccessItemPrefixListItemModelEnum_V1
+
+}
+```
+

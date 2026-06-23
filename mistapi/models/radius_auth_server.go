@@ -10,20 +10,23 @@ import (
 )
 
 // RadiusAuthServer represents a RadiusAuthServer struct.
-// Authentication Server
+// RADIUS authentication server settings
 type RadiusAuthServer struct {
-	// IP/ hostname of RADIUS server
-	Host           string `json:"host"`
-	KeywrapEnabled *bool  `json:"keywrap_enabled,omitempty"`
-	// enum: `ascii`, `hex`
+	// Address or hostname of the RADIUS authentication server
+	Host string `json:"host"`
+	// Whether RADIUS keywrap is enabled for messages sent to this authentication server
+	KeywrapEnabled *bool `json:"keywrap_enabled,omitempty"`
+	// Encoding format for RADIUS keywrap KEK and MACK values. enum: `ascii`, `hex`
 	KeywrapFormat *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
-	KeywrapKek    *string                  `json:"keywrap_kek,omitempty"`
-	KeywrapMack   *string                  `json:"keywrap_mack,omitempty"`
-	// Radius Auth Port, value from 1 to 65535, default is 1812
+	// RADIUS keywrap key encryption key (KEK)
+	KeywrapKek *string `json:"keywrap_kek,omitempty"`
+	// RADIUS keywrap message authentication code key (MACK)
+	KeywrapMack *string `json:"keywrap_mack,omitempty"`
+	// RADIUS Auth Port, value from 1 to 65535, default is 1812
 	Port *RadiusAuthPort `json:"port,omitempty"`
 	// Whether to require Message-Authenticator in requests
 	RequireMessageAuthenticator *bool `json:"require_message_authenticator,omitempty"`
-	// Secret of RADIUS server
+	// Shared secret used with this RADIUS authentication server
 	Secret               string                 `json:"secret"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

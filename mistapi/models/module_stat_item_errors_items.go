@@ -10,11 +10,17 @@ import (
 )
 
 // ModuleStatItemErrorsItems represents a ModuleStatItemErrorsItems struct.
+// Error condition reported for a device module
 type ModuleStatItemErrorsItems struct {
-	Feature              *string                `json:"feature,omitempty"`
-	MinimumVersion       *string                `json:"minimum_version,omitempty"`
-	Reason               *string                `json:"reason,omitempty"`
-	Since                int                    `json:"since"`
+	// Affected feature associated with this module error condition
+	Feature *string `json:"feature,omitempty"`
+	// Minimum software version associated with this module error
+	MinimumVersion *string `json:"minimum_version,omitempty"`
+	// Human-readable reason for the module error condition
+	Reason *string `json:"reason,omitempty"`
+	// Epoch timestamp when the module error condition began
+	Since int `json:"since"`
+	// Module error type code reported by the device
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

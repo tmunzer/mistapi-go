@@ -10,17 +10,21 @@ import (
 )
 
 // RadiusAcctServer represents a RadiusAcctServer struct.
+// RADIUS accounting server settings
 type RadiusAcctServer struct {
-	// IP/ hostname of RADIUS server
-	Host           string `json:"host"`
-	KeywrapEnabled *bool  `json:"keywrap_enabled,omitempty"`
-	// enum: `ascii`, `hex`
+	// Address or hostname of the RADIUS accounting server
+	Host string `json:"host"`
+	// Whether RADIUS keywrap is enabled for messages sent to this accounting server
+	KeywrapEnabled *bool `json:"keywrap_enabled,omitempty"`
+	// Encoding format for RADIUS keywrap KEK and MACK values. enum: `ascii`, `hex`
 	KeywrapFormat *RadiusKeywrapFormatEnum `json:"keywrap_format,omitempty"`
-	KeywrapKek    *string                  `json:"keywrap_kek,omitempty"`
-	KeywrapMack   *string                  `json:"keywrap_mack,omitempty"`
-	// Radius Auth Port, value from 1 to 65535, default is 1813
+	// RADIUS keywrap key encryption key (KEK)
+	KeywrapKek *string `json:"keywrap_kek,omitempty"`
+	// RADIUS keywrap message authentication code key (MACK)
+	KeywrapMack *string `json:"keywrap_mack,omitempty"`
+	// RADIUS Auth Port, value from 1 to 65535, default is 1813
 	Port *RadiusAcctPort `json:"port,omitempty"`
-	// Secret of RADIUS server
+	// Shared secret used with this RADIUS accounting server
 	Secret               string                 `json:"secret"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

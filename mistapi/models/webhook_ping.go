@@ -12,8 +12,9 @@ import (
 // WebhookPing represents a WebhookPing struct.
 // Sample of the `ping` webhook payload.\n\nThe `ping` webhook can be manually sent with the following API calls:\n- for a Site level webhook with the [Ping Site Webhook]($e/Orgs%20Webhooks/pingOrgWebhook) endpoint\n- for an Org level webhook with the [Ping Org Webhook]($e/Orgs%20Webhooks/pingOrgWebhook) endpoint
 type WebhookPing struct {
+	// Ping events included in a webhook delivery
 	Events []WebhookPingEvent `json:"events"`
-	// enum: `ping`
+	// Webhook topic name for ping deliveries. enum: `ping`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

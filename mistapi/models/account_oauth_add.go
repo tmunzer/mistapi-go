@@ -9,6 +9,7 @@ import (
 )
 
 // AccountOauthAdd represents a AccountOauthAdd struct.
+// Account configuration payload for adding a supported OAuth-linked application
 type AccountOauthAdd struct {
 	value                      any
 	isAccountJamfConfig        bool
@@ -139,6 +140,7 @@ func (a *AccountOauthAdd) AsAccountSentineloneConfig() (
 }
 
 // internalAccountOauthAdd represents a accountOauthAdd struct.
+// Account configuration payload for adding a supported OAuth-linked application
 type internalAccountOauthAdd struct{}
 
 var AccountOauthAddContainer internalAccountOauthAdd

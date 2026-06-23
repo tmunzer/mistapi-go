@@ -18,3 +18,18 @@ enum: `admin_id`, `admin_name`, `psk_id`, `psk_name`, `pskportal_id`, `user_id`
 | `pskportal_id` |
 | `user_id` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgPskPortalLogsCountDistinct := models.OrgPskPortalLogsCountDistinctEnum_ADMINID
+
+}
+```
+

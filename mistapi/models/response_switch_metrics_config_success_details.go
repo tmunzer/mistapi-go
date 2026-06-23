@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseSwitchMetricsConfigSuccessDetails represents a ResponseSwitchMetricsConfigSuccessDetails struct.
+// Detail values for the switch configuration success metric
 type ResponseSwitchMetricsConfigSuccessDetails struct {
+	// Number of switches with successful configuration status
 	ConfigSuccessCount   *int                   `json:"config_success_count,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -16,3 +16,18 @@ enum: `mac`, `model`, `sku`, `timestamp`
 | `sku` |
 | `timestamp` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    searchSiteDevicesDescSort := models.SearchSiteDevicesDescSortEnum_SKU
+
+}
+```
+

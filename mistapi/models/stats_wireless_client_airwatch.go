@@ -10,8 +10,9 @@ import (
 )
 
 // StatsWirelessClientAirwatch represents a StatsWirelessClientAirwatch struct.
-// Information if airwatch enabled
+// AirWatch authorization information reported for a wireless client
 type StatsWirelessClientAirwatch struct {
+	// Whether the wireless client is authorized by AirWatch
 	Authorized           bool                   `json:"authorized"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

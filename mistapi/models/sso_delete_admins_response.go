@@ -8,6 +8,7 @@ import (
 )
 
 // SsoDeleteAdminsResponse represents a SsoDeleteAdminsResponse struct.
+// Result of deleting SSO admin accounts
 type SsoDeleteAdminsResponse struct {
 	// List of email addresses that were successfully deleted
 	Deleted []string `json:"deleted,omitempty"`

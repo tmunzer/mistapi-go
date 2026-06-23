@@ -15,3 +15,18 @@ Only if `usage`==`wan`. enum: `broadband`, `dsl`, `lte`
 | `dsl` |
 | `lte` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortWanType := models.GatewayPortWanTypeEnum_DSL
+
+}
+```
+

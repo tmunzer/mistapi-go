@@ -10,7 +10,7 @@ import (
 // MxedgeVmParams represents a MxedgeVmParams struct.
 // Mist Edge VM parameters
 type MxedgeVmParams struct {
-	// SKU
+	// Mist Edge VM SKU or model to deploy
 	Model *string `json:"model,omitempty"`
 	// User given name (optional)
 	Name *string `json:"name,omitempty"`

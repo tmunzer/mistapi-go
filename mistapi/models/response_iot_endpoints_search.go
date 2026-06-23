@@ -10,10 +10,15 @@ import (
 )
 
 // ResponseIotEndpointsSearch represents a ResponseIotEndpointsSearch struct.
+// Time-bounded response for IoT endpoint search results
 type ResponseIotEndpointsSearch struct {
-	End                  float64                `json:"end"`
-	Results              []IotendpointStats     `json:"results"`
-	Start                float64                `json:"start"`
+	// Epoch timestamp, in seconds, for the end of the IoT endpoint search window
+	End float64 `json:"end"`
+	// IoT endpoint statistics returned by a search response
+	Results []IotendpointStats `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the IoT endpoint search window
+	Start float64 `json:"start"`
+	// Number of IoT endpoint records matching the search filters
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

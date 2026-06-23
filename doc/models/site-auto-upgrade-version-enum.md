@@ -17,7 +17,16 @@ desired version. enum: `beta`, `custom`, `stable`
 
 ## Example
 
-```
-beta
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteAutoUpgradeVersion := models.SiteAutoUpgradeVersionEnum_STABLE
+
+}
 ```
 

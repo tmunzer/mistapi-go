@@ -16,16 +16,24 @@ third party:
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ThirdPartyThreatFeeds` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `ThirdPartyThreatFeeds` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "third_party_threat_feeds": [
-    "third_party_threat_feeds4",
-    "third_party_threat_feeds3"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountSkyatpDataSecintel := models.AccountSkyatpDataSecintel{
+        ThirdPartyThreatFeeds: []string{
+            "third_party_threat_feeds0",
+        },
+    }
+
 }
 ```
 

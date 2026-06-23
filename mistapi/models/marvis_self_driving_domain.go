@@ -8,7 +8,9 @@ import (
 )
 
 // MarvisSelfDrivingDomain represents a MarvisSelfDrivingDomain struct.
+// Self-driving automation settings for one Marvis domain
 type MarvisSelfDrivingDomain struct {
+	// Whether self-driving automation is enabled for this domain
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

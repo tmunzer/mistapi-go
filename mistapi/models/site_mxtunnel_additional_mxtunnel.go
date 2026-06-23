@@ -8,16 +8,19 @@ import (
 )
 
 // SiteMxtunnelAdditionalMxtunnel represents a SiteMxtunnelAdditionalMxtunnel struct.
+// Additional named Mist Tunnel configuration for a site
 type SiteMxtunnelAdditionalMxtunnel struct {
-	// For AP, how to connect to tunterm or RadSec Proxy
+	// Tunnel peer cluster definitions APs use for an additional Mist Tunnel
 	Clusters []SiteMxtunnelCluster `json:"clusters,omitempty"`
 	// In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
 	HelloInterval *int `json:"hello_interval,omitempty"`
-	HelloRetries  *int `json:"hello_retries,omitempty"`
-	// enum: `ip`, `udp`
-	Protocol             *SiteMxtunnelProtocolEnum `json:"protocol,omitempty"`
-	VlanIds              []int                     `json:"vlan_ids,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	// Number of missed hello heartbeats before an AP tries another tunnel peer
+	HelloRetries *int `json:"hello_retries,omitempty"`
+	// Encapsulation protocol used for this additional Mist Tunnel. enum: `ip`, `udp`
+	Protocol *SiteMxtunnelProtocolEnum `json:"protocol,omitempty"`
+	// VLAN IDs carried by an additional site Mist Tunnel
+	VlanIds              []int                  `json:"vlan_ids,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SiteMxtunnelAdditionalMxtunnel,

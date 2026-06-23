@@ -27,7 +27,7 @@ func NewOrgsIntegrationSkyATP(baseController baseController) *OrgsIntegrationSky
 // UdpateOrgAtpAllowedList takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.SkyatpList data and
 // an error if there was an issue with the request or response.
-// Update Sky ATP Allowed List
+// Update the Sky ATP SecIntel allowlist with domain and IP address entries for the organization.
 func (o *OrgsIntegrationSkyATP) UdpateOrgAtpAllowedList(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -43,19 +43,15 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpAllowedList(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -75,7 +71,7 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpAllowedList(
 // UdpateOrgAtpBlockedList takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.SkyatpList data and
 // an error if there was an issue with the request or response.
-// Update Sky ATP Blocked List
+// Update the Sky ATP SecIntel blocklist with domain and IP address entries for the organization.
 func (o *OrgsIntegrationSkyATP) UdpateOrgAtpBlockedList(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -91,19 +87,15 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpBlockedList(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -123,7 +115,7 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpBlockedList(
 // DeleteOrgSkyAtpIntegration takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete SkyATP Integration
+// Remove the Sky ATP integration configuration from the organization.
 func (o *OrgsIntegrationSkyATP) DeleteOrgSkyAtpIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -134,19 +126,15 @@ func (o *OrgsIntegrationSkyATP) DeleteOrgSkyAtpIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -159,7 +147,7 @@ func (o *OrgsIntegrationSkyATP) DeleteOrgSkyAtpIntegration(
 // GetOrgSkyAtpIntegration takes context, orgId as parameters and
 // returns an models.ApiResponse with models.AccountSkyatpData data and
 // an error if there was an issue with the request or response.
-// Get Org SkyATP Integration
+// Return the Sky ATP integration configuration, including linked realm information and generated SecIntel allowlist and blocklist URLs.
 func (o *OrgsIntegrationSkyATP) GetOrgSkyAtpIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -170,19 +158,15 @@ func (o *OrgsIntegrationSkyATP) GetOrgSkyAtpIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AccountSkyatpData
@@ -198,10 +182,7 @@ func (o *OrgsIntegrationSkyATP) GetOrgSkyAtpIntegration(
 // SetupOrgAtpIntegration takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AccountSkyatpData data and
 // an error if there was an issue with the request or response.
-// 1. Login to the Sky ATP realm through the Mist UI by providing the realm, username and password.
-// 2. Sky ATP API is invoked which creates the realm using above details.
-// 3. Sky ATP by default will provide functionality for Security-Intelligence and Advanced Anti Malware.
-// 4. Security Intelligence will provide configuration for CC, DNS Feeds, Infected Host, Blocklists and Allowlists.
+// Configure the Sky ATP integration by linking or creating the Sky ATP realm with the supplied cloud, realm, username, and password. The integration enables Security Intelligence and Advanced Anti-Malware features, with SecIntel configuration for command-and-control, DNS feeds, infected hosts, blocklists, and allowlists.
 func (o *OrgsIntegrationSkyATP) SetupOrgAtpIntegration(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -213,19 +194,15 @@ func (o *OrgsIntegrationSkyATP) SetupOrgAtpIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -245,7 +222,7 @@ func (o *OrgsIntegrationSkyATP) SetupOrgAtpIntegration(
 // UdpateOrgAtpIntegration takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AccountSkyatpInfo data and
 // an error if there was an issue with the request or response.
-// Update Sky ATP config
+// Update Sky ATP SecIntel feed configuration, including the third-party threat feeds enabled for the organization.
 func (o *OrgsIntegrationSkyATP) UdpateOrgAtpIntegration(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -257,19 +234,15 @@ func (o *OrgsIntegrationSkyATP) UdpateOrgAtpIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

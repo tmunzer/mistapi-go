@@ -10,7 +10,6 @@ The following parameters are configurable for the API Client:
 | httpConfiguration | [`HttpConfiguration`](../doc/http-configuration.md) | Configurable http client options like timeout and retries. |
 | loggerConfiguration | [`LoggerConfiguration`](../doc/logger-configuration.md) | Represents the logger configurations for API calls |
 | apiTokenCredentials | [`ApiTokenCredentials`](auth/custom-header-signature.md) | The Credentials Setter for Custom Header Signature |
-| basicAuthCredentials | [`BasicAuthCredentials`](auth/basic-authentication.md) | The Credentials Setter for Basic Authentication |
 | csrfTokenCredentials | [`CsrfTokenCredentials`](auth/custom-header-signature-1.md) | The Credentials Setter for Custom Header Signature |
 
 The API client can be initialized as follows:
@@ -33,12 +32,6 @@ func main() {
             mistapi.WithEnvironment(mistapi.MIST_GLOBAL_01),
             mistapi.WithApiTokenCredentials(
                 mistapi.NewApiTokenCredentials("Authorization"),
-            ),
-            mistapi.WithBasicAuthCredentials(
-                mistapi.NewBasicAuthCredentials(
-                    "Username",
-                    "Password",
-                ),
             ),
             mistapi.WithCsrfTokenCredentials(
                 mistapi.NewCsrfTokenCredentials("X-CSRFToken"),
@@ -215,6 +208,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | SitesMapsAutoPlacement() | Gets SitesMapsAutoPlacement |
 | SitesMapsAutoZone() | Gets SitesMapsAutoZone |
 | SitesMapStacks() | Gets SitesMapStacks |
+| SitesMarvisConfigs() | Gets SitesMarvisConfigs |
 | SitesMxEdges() | Gets SitesMxEdges |
 | SitesNetworkTemplates() | Gets SitesNetworkTemplates |
 | SitesNetworks() | Gets SitesNetworks |
@@ -275,4 +269,5 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | UtilitiesLocation() | Gets UtilitiesLocation |
 | UtilitiesMxEdge() | Gets UtilitiesMxEdge |
 | UtilitiesUpgrade() | Gets UtilitiesUpgrade |
+| OrgsStatsMarvisClients() | Gets OrgsStatsMarvisClients |
 

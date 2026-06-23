@@ -10,12 +10,15 @@ import (
 )
 
 // AccountOauthInfo represents a AccountOauthInfo struct.
+// OAuth-linked application account status and authorization details
 type AccountOauthInfo struct {
 	// List of linked account details
-	Accounts             []AccountOauthInfoAccount `json:"accounts"`
-	AuthorizationUrl     *string                   `json:"authorization_url,omitempty"`
-	Linked               bool                      `json:"linked"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	Accounts []AccountOauthInfoAccount `json:"accounts"`
+	// OAuth authorization URL to open when linking an account
+	AuthorizationUrl *string `json:"authorization_url,omitempty"`
+	// Whether at least one account is linked for this OAuth application
+	Linked               bool                   `json:"linked"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AccountOauthInfo,

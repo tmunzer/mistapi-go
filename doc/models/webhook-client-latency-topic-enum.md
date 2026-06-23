@@ -1,7 +1,7 @@
 
 # Webhook Client Latency Topic Enum
 
-enum: `client-latency`
+Webhook topic name for client latency deliveries. enum: `client-latency`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `client-latency`
 | Name |
 |  --- |
 | `client-latency` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookClientLatencyTopic := models.WebhookClientLatencyTopicEnum_CLIENTLATENCY
+
+}
+```
 

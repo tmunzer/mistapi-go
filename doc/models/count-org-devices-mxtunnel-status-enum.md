@@ -1,7 +1,7 @@
 
 # Count Org Devices Mxtunnel Status Enum
 
-enum: `down`, `up`
+Mist Tunnel status value used when counting organization devices. enum: `down`, `up`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `down`, `up`
 |  --- |
 | `down` |
 | `up` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    countOrgDevicesMxtunnelStatus := models.CountOrgDevicesMxtunnelStatusEnum_DOWN
+
+}
+```
 

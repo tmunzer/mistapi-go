@@ -15,3 +15,18 @@ enum: `alpha`, `beta`, `stable`
 | `beta` |
 | `stable` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    getOrgMxedgeUpgradeInfoChannel := models.GetOrgMxedgeUpgradeInfoChannelEnum_STABLE
+
+}
+```
+

@@ -8,6 +8,7 @@ import (
 )
 
 // EvpnOptionsOverlay represents a EvpnOptionsOverlay struct.
+// EVPN overlay BGP settings
 type EvpnOptionsOverlay struct {
 	// Overlay BGP Local AS Number
 	As                   *int                   `json:"as,omitempty"`

@@ -19,3 +19,18 @@ sha224, sha256, sha384, sha512 are supported in 21.1 and newer release. enum: `a
 | `authentication-sha384` |
 | `authentication-sha512` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpUsmUserAuthenticationType := models.SnmpUsmUserAuthenticationTypeEnum_AUTHENTICATIONSHA256
+
+}
+```
+

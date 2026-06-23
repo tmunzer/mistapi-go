@@ -1,6 +1,8 @@
 
 # Other Device Update Multi
 
+Bulk site assignment update for other devices
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,25 +13,33 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Macs` | `[]string` | Optional | MAC address of the peer device. |
+| `Macs` | `[]string` | Optional | Other-device MAC addresses included in the bulk update |
 | `Op` | [`models.OtherDeviceUpdateOperationEnum`](../../doc/models/other-device-update-operation-enum.md) | Required | The operation being performed. enum: `assign`, `unassign` |
-| `SiteId` | `*uuid.UUID` | Optional | - |
+| `SiteId` | `*uuid.UUID` | Optional | Site ID used when assigning other devices |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "macs": [
-    "macs3",
-    "macs2"
-  ],
-  "op": "assign",
-  "site_id": "000007ac-0000-0000-0000-000000000000",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    otherDeviceUpdateMulti := models.OtherDeviceUpdateMulti{
+        Macs:                 []string{
+            "macs1",
+        },
+        Op:                   models.OtherDeviceUpdateOperationEnum_ASSIGN,
+        SiteId:               models.ToPointer(uuid.MustParse("000024c2-0000-0000-0000-000000000000")),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

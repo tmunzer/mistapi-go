@@ -16,3 +16,18 @@ enum: `family`, `model`, `os`, `os_type`
 | `os` |
 | `os_type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    fingerprintsCountDistinct := models.FingerprintsCountDistinctEnum_FAMILY
+
+}
+```
+

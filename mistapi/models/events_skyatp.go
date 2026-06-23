@@ -11,17 +11,25 @@ import (
 )
 
 // EventsSkyatp represents a EventsSkyatp struct.
-// SkyATP events
+// SkyATP threat event returned by SkyATP event search APIs
 type EventsSkyatp struct {
-	DeviceMac   string    `json:"device_mac"`
-	ForSite     *bool     `json:"for_site,omitempty"`
-	Ip          string    `json:"ip"`
-	Mac         string    `json:"mac"`
-	OrgId       uuid.UUID `json:"org_id"`
-	SiteId      uuid.UUID `json:"site_id"`
-	ThreatLevel int       `json:"threat_level"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
+	// Network device MAC address that reported the SkyATP event
+	DeviceMac string `json:"device_mac"`
+	// Whether the SkyATP event is scoped to a site rather than only the organization
+	ForSite *bool `json:"for_site,omitempty"`
+	// Client IP address associated with the SkyATP event
+	Ip string `json:"ip"`
+	// Client MAC address associated with the SkyATP event
+	Mac string `json:"mac"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Numeric SkyATP threat level reported for the event
+	ThreatLevel int `json:"threat_level"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// SkyATP event type, such as `cc`, `fs`, or `mw`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

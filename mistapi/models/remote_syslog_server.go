@@ -8,25 +8,33 @@ import (
 )
 
 // RemoteSyslogServer represents a RemoteSyslogServer struct.
+// Remote syslog server destination settings
 type RemoteSyslogServer struct {
-	Contents         []RemoteSyslogContent `json:"contents,omitempty"`
-	ExplicitPriority *bool                 `json:"explicit_priority,omitempty"`
+	// List of syslog content selectors
+	Contents []RemoteSyslogContent `json:"contents,omitempty"`
+	// Whether to include explicit syslog priority values in messages sent to this server
+	ExplicitPriority *bool `json:"explicit_priority,omitempty"`
 	// enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, `dfc`, `external`, `firewall`, `ftp`, `interactive-commands`, `kernel`, `ntp`, `pfe`, `security`, `user`
 	Facility *RemoteSyslogFacilityEnum `json:"facility,omitempty"`
-	Host     *string                   `json:"host,omitempty"`
-	Match    *string                   `json:"match,omitempty"`
+	// Address or hostname of the remote syslog server
+	Host *string `json:"host,omitempty"`
+	// Expression used to filter log messages sent to this server
+	Match *string `json:"match,omitempty"`
 	// Syslog Service Port, value from 1 to 65535
 	Port *RemoteSyslogServerPort `json:"port,omitempty"`
-	// enum: `tcp`, `udp`
-	Protocol        *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
-	RoutingInstance *string                         `json:"routing_instance,omitempty"`
-	// Name of the server
+	// Transport protocol used for this remote syslog server. enum: `tcp`, `udp`
+	Protocol *RemoteSyslogServerProtocolEnum `json:"protocol,omitempty"`
+	// Routing instance used to reach this remote syslog server
+	RoutingInstance *string `json:"routing_instance,omitempty"`
+	// TLS server name used when verifying the remote syslog server certificate
 	ServerName *string `json:"server_name,omitempty"`
 	// enum: `alert`, `any`, `critical`, `emergency`, `error`, `info`, `notice`, `warning`
 	Severity *RemoteSyslogSeverityEnum `json:"severity,omitempty"`
-	// If source_address is configured, will use the vlan firstly otherwise use source_ip
-	SourceAddress        *string                `json:"source_address,omitempty"`
-	StructuredData       *bool                  `json:"structured_data,omitempty"`
+	// Source address for syslog traffic. If configured, Mist uses the VLAN first; otherwise it uses `source_ip`
+	SourceAddress *string `json:"source_address,omitempty"`
+	// Whether to include structured syslog data in messages sent to this server
+	StructuredData *bool `json:"structured_data,omitempty"`
+	// Syslog tag value added to messages sent to this server
 	Tag                  *string                `json:"tag,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

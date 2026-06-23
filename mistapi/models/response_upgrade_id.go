@@ -11,7 +11,9 @@ import (
 )
 
 // ResponseUpgradeId represents a ResponseUpgradeId struct.
+// Response containing an upgrade job identifier
 type ResponseUpgradeId struct {
+	// Unique value identifying the queued upgrade job
 	UpgradeId            uuid.UUID              `json:"upgrade_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

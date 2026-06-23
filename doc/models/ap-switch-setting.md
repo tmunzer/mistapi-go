@@ -1,6 +1,8 @@
 
 # Ap Switch Setting
 
+VLAN settings for one deprecated AP switch-config port
+
 ## Structure
 
 `ApSwitchSetting`
@@ -9,21 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `EnableVlan` | `*bool` | Optional | - |
-| `PortVlanId` | [`*models.ApSwitchSettingPortVlanId`](../../doc/models/containers/ap-switch-setting-port-vlan-id.md) | Optional | Native VLAN id, optional |
-| `VlanIds` | `[]int` | Optional | List of VLAN ids<br><br>**Constraints**: `>= 1`, `<= 4094` |
+| `EnableVlan` | `*bool` | Optional | Whether VLAN tagging is enabled for this AP switch-config port |
+| `PortVlanId` | [`*models.ApSwitchSettingPortVlanId`](../../doc/models/containers/ap-switch-setting-port-vlan-id.md) | Optional | Native VLAN ID, optional |
+| `VlanIds` | `[]int` | Optional | List of VLAN IDs<br><br>**Constraints**: `>= 1`, `<= 4094` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enable_vlan": false,
-  "port_vlan_id": 34,
-  "vlan_ids": [
-    1,
-    1,
-    2
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apSwitchSetting := models.ApSwitchSetting{
+        EnableVlan:           models.ToPointer(false),
+        PortVlanId:           models.ToPointer(models.ApSwitchSettingPortVlanIdContainer.FromNumber(226)),
+        VlanIds:              []int{
+            56,
+        },
+    }
+
 }
 ```
 

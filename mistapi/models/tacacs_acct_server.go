@@ -8,10 +8,15 @@ import (
 )
 
 // TacacsAcctServer represents a TacacsAcctServer struct.
+// TACACS+ accounting server settings
 type TacacsAcctServer struct {
-	Host                 *string                `json:"host,omitempty"`
-	Port                 *string                `json:"port,omitempty"`
-	Secret               *string                `json:"secret,omitempty"`
+	// Address or hostname of the TACACS+ accounting server
+	Host *string `json:"host,omitempty"`
+	// TCP port used by the TACACS+ accounting server
+	Port *string `json:"port,omitempty"`
+	// Shared secret used with this TACACS+ accounting server
+	Secret *string `json:"secret,omitempty"`
+	// TACACS+ accounting server timeout, in seconds
 	Timeout              *int                   `json:"timeout,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Lat Lng
 
+Geographic latitude and longitude coordinate pair
+
 ## Structure
 
 `LatLng`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Lat` | `float64` | Required | - |
-| `Lng` | `float64` | Required | - |
+| `Lat` | `float64` | Required | Geographic latitude in decimal degrees |
+| `Lng` | `float64` | Required | Geographic longitude in decimal degrees |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "lat": 37.295833,
-  "lng": -122.032946
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    latLng := models.LatLng{
+        Lat:                  float64(37.295833),
+        Lng:                  float64(-122.032946),
+    }
+
 }
 ```
 

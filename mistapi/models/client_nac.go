@@ -9,7 +9,9 @@ import (
 )
 
 // ClientNac represents a ClientNac struct.
+// NAC client authentication and access state
 type ClientNac struct {
+	// AP MAC addresses observed for the NAC client during the selected time range
 	Ap []string `json:"ap,omitempty"`
 	// enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `eap-peap`
 	AuthType *NacAuthTypeEnum `json:"auth_type,omitempty"`
@@ -21,18 +23,22 @@ type ClientNac struct {
 	CertSerial []string `json:"cert_serial,omitempty"`
 	// When certificate based authentication is used, the Subject from the certificates used for the specified duration
 	CertSubject []string `json:"cert_subject,omitempty"`
-	// The known IP Addresses used by the client for the specified duration
+	// The known IP addresses used by the client for the specified duration
 	ClientIp []string `json:"client_ip,omitempty"`
-	// MAC Address of the device (AP, Switch) the client is connected to
-	DeviceMac  *string `json:"device_mac,omitempty"`
-	EdrManaged *bool   `json:"edr_managed,omitempty"`
-	// `enum: `sentinelone`, `crowdstrike`
+	// MAC address of the AP or switch the client is connected to
+	DeviceMac *string `json:"device_mac,omitempty"`
+	// Whether the NAC client is managed by an EDR provider
+	EdrManaged *bool `json:"edr_managed,omitempty"`
+	// EDR provider associated with the NAC client. enum: `crowdstrike`, `sentinelone`
 	EdrProvider *EdrProviderEnum `json:"edr_provider,omitempty"`
 	// EDR Status of the NAC client. enum: `sentinelone_healthy`, `sentinelone_infected`, `crowdstrike_low`, `crowdstrike_medium`, `crowdstrike_high`, `crowdstrike_critical`, `crowdstrike_informational`
 	EdrStatus *EdrStatusEnum `json:"edr_status,omitempty"`
-	Group     *string        `json:"group,omitempty"`
-	IdpId     *string        `json:"idp_id,omitempty"`
-	IdpRole   []string       `json:"idp_role,omitempty"`
+	// User group associated with the NAC client
+	Group *string `json:"group,omitempty"`
+	// Identity Provider identifier used during NAC authentication
+	IdpId *string `json:"idp_id,omitempty"`
+	// Unique string values returned or accepted by this schema
+	IdpRole []string `json:"idp_role,omitempty"`
 	// Latest AP where the client is/was connected to
 	LastAp *string `json:"last_ap,omitempty"`
 	// When certificate based authentication is used, the CN from the latest certificate used
@@ -45,7 +51,7 @@ type ClientNac struct {
 	LastCertSerial *string `json:"last_cert_serial,omitempty"`
 	// When certificate based authentication is used, the Subject from the latest certificate used
 	LastCertSubject *string `json:"last_cert_subject,omitempty"`
-	// The last known IP Address for the client
+	// The last known IP address for the client
 	LastClientIp *string `json:"last_client_ip,omitempty"`
 	// ID of the latest NAC Rule used to authenticate the client
 	LastNacruleId *string `json:"last_nacrule_id,omitempty"`
@@ -63,31 +69,36 @@ type ClientNac struct {
 	LastUsername *string `json:"last_username,omitempty"`
 	// Latest VLAN ID assigned to the client
 	LastVlan *int `json:"last_vlan,omitempty"`
-	// Client MAC address
+	// Client MAC address observed in the NAC event
 	Mac *string `json:"mac,omitempty"`
 	// IDs of the NAC Rules used to authenticate the client for the specified duration
-	NacruleId      []string `json:"nacrule_id,omitempty"`
-	NacruleMatched *bool    `json:"nacrule_matched,omitempty"`
+	NacruleId []string `json:"nacrule_id,omitempty"`
+	// Whether a NAC policy rule matched the client
+	NacruleMatched *bool `json:"nacrule_matched,omitempty"`
 	// Name of the NAC Rules used to authenticate the client for the specified duration
 	NacruleName []string `json:"nacrule_name,omitempty"`
-	NasIp       *string  `json:"nas_ip,omitempty"`
+	// IP address of the NAS device used for authentication
+	NasIp *string `json:"nas_ip,omitempty"`
 	// Vendor name of the NAS for the specified duration
-	NasVendor []string   `json:"nas_vendor,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
+	NasVendor []string `json:"nas_vendor,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Port-ids the client was connected to for the specified duration
 	PortId []string `json:"port_id,omitempty"`
-	// Whether the client is using randomized MAC Address or not
+	// Whether the client is using randomized MAC address or not. enum: `true`, `false`
 	RandomMac *RandomMacEnum `json:"random_mac,omitempty"`
-	// List of Radius AVP returned by the Authentication Server
-	RespAttrs []string   `json:"resp_attrs,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
+	// List of RADIUS AVP returned by the Authentication Server
+	RespAttrs []string `json:"resp_attrs,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// SSIDs the client was connected to for the specified duration
 	Ssid []string `json:"ssid,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Type of network access. enum: `wireless`, `wired`, `vty`
-	Type         *NacAccessTypeEnum `json:"type,omitempty"`
-	UsermacLabel []string           `json:"usermac_label,omitempty"`
+	Type *NacAccessTypeEnum `json:"type,omitempty"`
+	// Unique string values returned or accepted by this schema
+	UsermacLabel []string `json:"usermac_label,omitempty"`
 	// List of usernames that have been assigned to the client
 	Username []string `json:"username,omitempty"`
 	// List of vlans that have been assigned to the client

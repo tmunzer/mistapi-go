@@ -18,17 +18,25 @@ OAuth linked apps (zoom/teams/intune) account details
 | `MaxDailyApiRequests` | `*int` | Optional | Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/ |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "account_id": "iojzXIJWEuiD73ZvydOfg",
-  "max_daily_api_requests": 5000,
-  "discard_guest_info": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountOauthConfig := models.AccountOauthConfig{
+        AccountId:            "iojzXIJWEuiD73ZvydOfg",
+        DiscardGuestInfo:     models.ToPointer(false),
+        MaxDailyApiRequests:  models.ToPointer(5000),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

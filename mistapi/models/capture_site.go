@@ -9,6 +9,7 @@ import (
 )
 
 // CaptureSite represents a CaptureSite struct.
+// Packet capture request payload for site-level captures
 type CaptureSite struct {
 	value                  any
 	isCaptureClient        bool
@@ -165,6 +166,7 @@ func (c *CaptureSite) AsCaptureWireless() (
 }
 
 // internalCaptureSite represents a captureSite struct.
+// Packet capture request payload for site-level captures
 type internalCaptureSite struct{}
 
 var CaptureSiteContainer internalCaptureSite

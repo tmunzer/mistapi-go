@@ -17,3 +17,18 @@ enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `pl
 | `named-placed` |
 | `placed` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseMapImportApAction := models.ResponseMapImportApActionEnum_NAMEDPLACED
+
+}
+```
+

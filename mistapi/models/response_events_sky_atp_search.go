@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseEventsSkyAtpSearch represents a ResponseEventsSkyAtpSearch struct.
+// Paginated response for Sky ATP event search results
 type ResponseEventsSkyAtpSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsSkyatp         `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the Sky ATP event search window
+	End int `json:"end"`
+	// Maximum number of Sky ATP event records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of Sky ATP event records
+	Next *string `json:"next,omitempty"`
+	// Sky ATP event records returned by a search response
+	Results []EventsSkyatp `json:"results"`
+	// Epoch timestamp for the start of the Sky ATP event search window
+	Start int `json:"start"`
+	// Number of Sky ATP event records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

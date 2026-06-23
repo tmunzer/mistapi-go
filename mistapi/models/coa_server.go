@@ -10,14 +10,17 @@ import (
 )
 
 // CoaServer represents a CoaServer struct.
-// CoA Server
+// RADIUS Change of Authorization (CoA) server settings
 type CoaServer struct {
 	// Whether to disable Event-Timestamp Check
-	DisableEventTimestampCheck *bool  `json:"disable_event_timestamp_check,omitempty"`
-	Enabled                    *bool  `json:"enabled,omitempty"`
-	Ip                         string `json:"ip"`
-	// Radius CoA Port, value from 1 to 65535, default is 3799
-	Port                 *RadiusCoaPort         `json:"port,omitempty"`
+	DisableEventTimestampCheck *bool `json:"disable_event_timestamp_check,omitempty"`
+	// Whether this RADIUS CoA server is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Server IPv4 address for RADIUS CoA messages
+	Ip string `json:"ip"`
+	// RADIUS CoA Port, value from 1 to 65535, default is 3799
+	Port *RadiusCoaPort `json:"port,omitempty"`
+	// Shared secret used to authenticate RADIUS CoA messages
 	Secret               string                 `json:"secret"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

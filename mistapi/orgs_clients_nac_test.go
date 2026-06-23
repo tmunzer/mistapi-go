@@ -19,9 +19,11 @@ func TestOrgsClientsNACTestCountOrgNacClients(t *testing.T) {
 	}
 	distinct := models.OrgNacClientsCountDistinctEnum("type")
 
+	mType := "wired,wireless"
+
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsNac.CountOrgNacClients(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsNac.CountOrgNacClients(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -43,9 +45,11 @@ func TestOrgsClientsNACTestCountOrgNacClients1(t *testing.T) {
 	}
 	distinct := models.OrgNacClientsCountDistinctEnum("type")
 
+	mType := "wired,wireless"
+
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsNac.CountOrgNacClients(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsNac.CountOrgNacClients(ctx, orgId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &mType, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -66,9 +70,11 @@ func TestOrgsClientsNACTestCountOrgNacClientEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mType := "NAC_CLIENT_PERMIT,NAC_SESSION_STARTED"
+
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsNac.CountOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsNac.CountOrgNacClientEvents(ctx, orgId, nil, &mType, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -89,9 +95,11 @@ func TestOrgsClientsNACTestCountOrgNacClientEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	mType := "NAC_CLIENT_PERMIT,NAC_SESSION_STARTED"
+
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := orgsClientsNac.CountOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := orgsClientsNac.CountOrgNacClientEvents(ctx, orgId, nil, &mType, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -111,15 +119,22 @@ func TestOrgsClientsNACTestSearchOrgNacClientEvents(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mType := "NAC_CLIENT_PERMIT,NAC_SESSION_STARTED"
+
+	authType := "mab,eap-tls"
 
 	respAttrs := []string{"Tunnel-Type=VLAN", "Tunnel-Medium-Type=IEEE-802", "Tunnel-Private-Group-Id=750", "User-Name=anonymous"}
+
+	username := "john.doe,jane.doe"
+
+	nasIp := "192.0.2.10,192.0.2.11"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, &mType, nil, nil, nil, nil, &authType, nil, nil, nil, nil, nil, nil, respAttrs, nil, &username, nil, nil, nil, nil, nil, nil, &nasIp, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -139,15 +154,22 @@ func TestOrgsClientsNACTestSearchOrgNacClientEvents1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mType := "NAC_CLIENT_PERMIT,NAC_SESSION_STARTED"
+
+	authType := "mab,eap-tls"
 
 	respAttrs := []string{"Tunnel-Type=VLAN", "Tunnel-Medium-Type=IEEE-802", "Tunnel-Private-Group-Id=750", "User-Name=anonymous"}
+
+	username := "john.doe,jane.doe"
+
+	nasIp := "192.0.2.10,192.0.2.11"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClientEvents(ctx, orgId, &mType, nil, nil, nil, nil, &authType, nil, nil, nil, nil, nil, nil, respAttrs, nil, &username, nil, nil, nil, nil, nil, nil, &nasIp, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -168,23 +190,28 @@ func TestOrgsClientsNACTestSearchOrgNacClients(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	certExpiryDuration := "7d"
+	authType := "mab,eap-tls"
+	certExpiryDuration := "7d,1m"
 
-	family := "Surveillance Camera"
-	hostname := "my-everest-client"
+	family := "Surveillance Camera,Surveillance*"
+	hostname := "my-everest-client,my-everest*"
 
 	mac := "aabbccddeeff"
 
-	mfg := "Raspberry Pi Trading Ltd"
+	mfg := "Raspberry Pi Trading Ltd,Raspberry Pi*"
+
+	nasIp := "192.0.2.10,192.0.2.11"
 
 	status := models.NacClientLastStatusEnum("permitted")
+
+	mType := "wired,wireless"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, &authType, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, &nasIp, nil, nil, nil, &status, nil, &mType, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -205,23 +232,28 @@ func TestOrgsClientsNACTestSearchOrgNacClients1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
-	certExpiryDuration := "7d"
+	authType := "mab,eap-tls"
+	certExpiryDuration := "7d,1m"
 
-	family := "Surveillance Camera"
-	hostname := "my-everest-client"
+	family := "Surveillance Camera,Surveillance*"
+	hostname := "my-everest-client,my-everest*"
 
 	mac := "aabbccddeeff"
 
-	mfg := "Raspberry Pi Trading Ltd"
+	mfg := "Raspberry Pi Trading Ltd,Raspberry Pi*"
+
+	nasIp := "192.0.2.10,192.0.2.11"
 
 	status := models.NacClientLastStatusEnum("permitted")
+
+	mType := "wired,wireless"
 
 	limit := int(100)
 
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsClientsNac.SearchOrgNacClients(ctx, orgId, nil, &authType, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, &nasIp, nil, nil, nil, &status, nil, &mType, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

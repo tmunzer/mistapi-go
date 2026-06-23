@@ -1,7 +1,7 @@
 
 # Capture Wireless Type Enum
 
-enum: `wireless`
+Packet capture type discriminator for wireless captures. enum: `wireless`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `wireless`
 
 ## Example
 
-```
-wireless
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureWirelessType := models.CaptureWirelessTypeEnum_WIRELESS
+
+}
 ```
 

@@ -26,7 +26,7 @@ func NewAdminsLoginOAuth2(baseController baseController) *AdminsLoginOAuth2 {
 // UnlinkOauth2Provider takes context, provider as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Unlink OAuth2 Provider
+// Unlink the specified OAuth2 provider from the authenticated administrator account so it can no longer be used for that account's OAuth login.
 func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
 	ctx context.Context,
 	provider string) (
@@ -37,19 +37,15 @@ func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -62,7 +58,7 @@ func (a *AdminsLoginOAuth2) UnlinkOauth2Provider(
 // GetOauth2AuthorizationUrlForLogin takes context, provider, forward as parameters and
 // returns an models.ApiResponse with models.ResponseLoginOauthUrl data and
 // an error if there was an issue with the request or response.
-// Obtain Authorization URL for Login
+// Return the provider authorization URL used to start an OAuth2 login or account-linking flow. When `forward` is provided, the provider redirects back to that callback URL after authorization.
 func (a *AdminsLoginOAuth2) GetOauth2AuthorizationUrlForLogin(
 	ctx context.Context,
 	provider string,
@@ -71,22 +67,12 @@ func (a *AdminsLoginOAuth2) GetOauth2AuthorizationUrlForLogin(
 	error) {
 	req := a.prepareRequest(ctx, "GET", "/api/v1/login/oauth/%v")
 	req.AppendTemplateParams(provider)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if forward != nil {
 		req.QueryParam("forward", *forward)
@@ -105,7 +91,7 @@ func (a *AdminsLoginOAuth2) GetOauth2AuthorizationUrlForLogin(
 // LoginOauth2 takes context, provider, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Login via OAuth2
+// Complete an OAuth2 login by exchanging the provider authorization code for a Mist administrator session.
 func (a *AdminsLoginOAuth2) LoginOauth2(
 	ctx context.Context,
 	provider string,
@@ -114,22 +100,12 @@ func (a *AdminsLoginOAuth2) LoginOauth2(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/login/oauth/%v")
 	req.AppendTemplateParams(provider)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

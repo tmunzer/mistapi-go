@@ -1,6 +1,8 @@
 
 # Mxcluster Radsec Auth Server
 
+RadSec authentication server settings for a Mist Edge cluster
+
 ## Structure
 
 `MxclusterRadsecAuthServer`
@@ -17,23 +19,32 @@
 | `KeywrapKek` | `*string` | Optional | If used for Mist APs, encryption key |
 | `KeywrapMack` | `*string` | Optional | If used for Mist APs, Message Authentication Code Key |
 | `Port` | `*int` | Optional | Auth port of RADIUS server<br><br>**Default**: `1812` |
-| `Retry` | `*int` | Optional | Authentication request retry<br><br>**Default**: `2` |
-| `Secret` | `*string` | Optional | Secret of RADIUS server |
+| `Retry` | `*int` | Optional | Number of authentication request retries before failing over<br><br>**Default**: `2` |
+| `Secret` | `*string` | Optional | Shared secret used with this RADIUS authentication server |
 | `Ssids` | `[]string` | Optional | List of ssids that will use this server if match_ssid is true and match is found |
 | `Timeout` | `*int` | Optional | Authentication request timeout, in seconds<br><br>**Default**: `5` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "inband_status_check": false,
-  "inband_status_interval": 300,
-  "keywrap_format": "ascii",
-  "port": 1812,
-  "retry": 2,
-  "timeout": 5,
-  "host": "host6",
-  "keywrap_enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterRadsecAuthServer := models.MxclusterRadsecAuthServer{
+        Host:                 models.ToPointer("host2"),
+        InbandStatusCheck:    models.ToPointer(false),
+        InbandStatusInterval: models.ToPointer(300),
+        KeywrapEnabled:       models.ToPointer(false),
+        KeywrapFormat:        models.NewOptional(models.ToPointer(models.MxclusterRadAuthServerKeywrapFormatEnum_ASCII)),
+        Port:                 models.ToPointer(1812),
+        Retry:                models.ToPointer(2),
+        Timeout:              models.ToPointer(5),
+    }
+
 }
 ```
 

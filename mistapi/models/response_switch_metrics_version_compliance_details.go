@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseSwitchMetricsVersionComplianceDetails represents a ResponseSwitchMetricsVersionComplianceDetails struct.
+// Detail values for the switch software version compliance metric
 type ResponseSwitchMetricsVersionComplianceDetails struct {
+	// Software version compliance groupings by switch model and version
 	MajorVersions        []SwitchMetricsComplianceMajorVersion `json:"major_versions,omitempty"`
 	AdditionalProperties map[string]interface{}                `json:"_"`
 }

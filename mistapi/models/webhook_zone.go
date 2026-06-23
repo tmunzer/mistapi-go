@@ -12,9 +12,9 @@ import (
 // WebhookZone represents a WebhookZone struct.
 // Sample of the `zone` webhook payload.
 type WebhookZone struct {
-	// List of events
+	// Zone transition events included in this webhook delivery
 	Events []WebhookZoneEvent `json:"events"`
-	// enum: `zone`
+	// Webhook topic name for zone transition deliveries. enum: `zone`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

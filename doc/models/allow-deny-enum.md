@@ -1,7 +1,7 @@
 
 # Allow Deny Enum
 
-enum: `allow`, `deny`
+Policy action value that either allows or denies matching traffic. enum: `allow`, `deny`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `allow`, `deny`
 |  --- |
 | `allow` |
 | `deny` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    allowDeny := models.AllowDenyEnum_ALLOW
+
+}
+```
 

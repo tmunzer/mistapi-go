@@ -8,10 +8,12 @@ import (
 )
 
 // GatewayMatchingRule represents a GatewayMatchingRule struct.
+// Gateway matching rule that applies settings when its match keys select a gateway
 type GatewayMatchingRule struct {
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
 	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
-	Name                 *string  `json:"name,omitempty"`
+	// Display name for the gateway matching rule
+	Name *string `json:"name,omitempty"`
 	// Property key is the port(s) name or range (e.g. "ge-0/0/0-10").
 	PortConfig           map[string]GatewayPortConfig `json:"port_config,omitempty"`
 	AdditionalProperties map[string]string            `json:"_"`

@@ -8,12 +8,19 @@ import (
 )
 
 // StatsSwitchVcSetupInfo represents a StatsSwitchVcSetupInfo struct.
+// Virtual Chassis setup request and status details reported by a switch
 type StatsSwitchVcSetupInfo struct {
-	ConfigType           *string                `json:"config_type,omitempty"`
-	CurrentStats         *string                `json:"current_stats,omitempty"`
-	ErrMissingDevIdFpc   *bool                  `json:"err_missing_dev_id_fpc,omitempty"`
-	LastUpdate           *float64               `json:"last_update,omitempty"`
-	RequestTime          *float64               `json:"request_time,omitempty"`
+	// Provisioning mode used for the Virtual Chassis setup
+	ConfigType *string `json:"config_type,omitempty"`
+	// Status currently reported for the Virtual Chassis setup workflow
+	CurrentStats *string `json:"current_stats,omitempty"`
+	// Whether the Virtual Chassis setup is missing a device ID for an FPC member
+	ErrMissingDevIdFpc *bool `json:"err_missing_dev_id_fpc,omitempty"`
+	// Most recent update time for the Virtual Chassis setup status
+	LastUpdate *float64 `json:"last_update,omitempty"`
+	// Time when the Virtual Chassis setup request was submitted
+	RequestTime *float64 `json:"request_time,omitempty"`
+	// Virtual Chassis setup request type
 	RequestType          *string                `json:"request_type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

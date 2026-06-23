@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseTroubleshoot represents a ResponseTroubleshoot struct.
+// Organization troubleshooting response for the requested time window
 type ResponseTroubleshoot struct {
-	End                  *int                       `json:"end,omitempty"`
-	Results              []ResponseTroubleshootItem `json:"results,omitempty"`
-	Start                *int                       `json:"start,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the troubleshooting window
+	End *int `json:"end,omitempty"`
+	// Troubleshooting findings returned by the organization troubleshoot API
+	Results []ResponseTroubleshootItem `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the troubleshooting window
+	Start                *int                   `json:"start,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseTroubleshoot,

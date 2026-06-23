@@ -8,20 +8,11 @@ import (
 )
 
 // TunnelConfigIpsecProposal represents a TunnelConfigIpsecProposal struct.
+// IPsec proposal settings for custom IPsec tunnels
 type TunnelConfigIpsecProposal struct {
 	// enum: `md5`, `sha1`, `sha2`
 	AuthAlgo *TunnelConfigAuthAlgoEnum `json:"auth_algo,omitempty"`
-	// Only if `provider`==`custom-ipsec`. enum:
-	// * 1
-	// * 2 (1024-bit)
-	// * 5
-	// * 14 (default, 2048-bit)
-	// * 15 (3072-bit)
-	// * 16 (4096-bit)
-	// * 19 (256-bit ECP)
-	// * 20 (384-bit ECP)
-	// * 21 (521-bit ECP)
-	// * 24 (2048-bit ECP)
+	// Only if `provider`==`custom-ipsec`. Diffie-Hellman group for IPsec phase 2. enum: `1`, `14`, `15`, `16`, `19`, `2`, `20`, `21`, `24`, `5`. `14` is the default 2048-bit group; `19`, `20`, `21`, and `24` are ECP groups
 	DhGroup *TunnelConfigDhGroupEnum `json:"dh_group,omitempty"`
 	// enum: `3des`, `aes128`, `aes256`, `aes_gcm128`, `aes_gcm256`
 	EncAlgo              Optional[TunnelConfigEncAlgoEnum] `json:"enc_algo"`

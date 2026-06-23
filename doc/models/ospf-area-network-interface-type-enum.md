@@ -16,3 +16,18 @@ interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `
 | `p2mp` |
 | `p2p` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ospfAreaNetworkInterfaceType := models.OspfAreaNetworkInterfaceTypeEnum_BROADCAST
+
+}
+```
+

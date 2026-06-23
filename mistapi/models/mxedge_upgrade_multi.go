@@ -11,6 +11,7 @@ import (
 )
 
 // MxedgeUpgradeMulti represents a MxedgeUpgradeMulti struct.
+// Request to schedule upgrades for one or more Mist Edges
 type MxedgeUpgradeMulti struct {
 	// Whether downgrade is allowed when running version is higher than expected version for each service
 	AllowDowngrades *MxedgeUpgradeMultiAllowDowngrades `json:"allow_downgrades,omitempty"`
@@ -18,11 +19,11 @@ type MxedgeUpgradeMulti struct {
 	CanaryPhases []int `json:"canary_phases,omitempty"`
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *MxedgeUpgradeChannelEnum `json:"channel,omitempty"`
-	// Distro upgrade, optional, to specific codename (e.g. bullseye) with highest qualified versions
+	// Linux distribution codename for an optional distro upgrade, such as bullseye or `next` to upgrade to the next distro version. Uses highest qualified versions
 	Distro *string `json:"distro,omitempty"`
 	// Failure threshold before we stop the upgrade and mark it as failed
 	MaxFailurePercentage *int `json:"max_failure_percentage,omitempty"`
-	// List of mxedge IDs to upgrade. If not specified, it means all the org mxedges.
+	// List of Mist Edge IDs to upgrade. If not specified, it means all the org Mist Edges.
 	MxedgeIds []uuid.UUID `json:"mxedge_ids"`
 	// Upgrade start time in epoch seconds, default is now
 	StartTime *int `json:"start_time,omitempty"`

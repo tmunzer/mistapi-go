@@ -9,18 +9,25 @@ import (
 )
 
 // WebhookWifiUnconnRawEvent represents a WebhookWifiUnconnRawEvent struct.
+// Raw packet observation for an unconnected Wi-Fi client
 type WebhookWifiUnconnRawEvent struct {
+	// AP MAC address that reported the unconnected client packet
 	ApId *string `json:"ap_id,omitempty"`
 	// optional, coordinates (if any) of reporting AP (updated once in 60s per client)
-	ApLoc         []float64 `json:"ap_loc,omitempty"`
-	ClientId      *string   `json:"client_id,omitempty"`
-	ConnectedSite *bool     `json:"connected_site,omitempty"`
+	ApLoc []float64 `json:"ap_loc,omitempty"`
+	// Client MAC address that emitted the unconnected Wi-Fi packet
+	ClientId *string `json:"client_id,omitempty"`
+	// Whether the observed client is connected to the reporting site
+	ConnectedSite *bool `json:"connected_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	MapId                *uuid.UUID                        `json:"map_id,omitempty"`
-	OrgId                *uuid.UUID                        `json:"org_id,omitempty"`
-	Packets              []WebhookWifiUnconnRawEventPacket `json:"packets,omitempty"`
-	SiteId               *uuid.UUID                        `json:"site_id,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	MapId *uuid.UUID `json:"map_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// RSSI packet observations for an unconnected Wi-Fi raw event
+	Packets []WebhookWifiUnconnRawEventPacket `json:"packets,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookWifiUnconnRawEvent,

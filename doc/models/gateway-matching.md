@@ -1,7 +1,7 @@
 
 # Gateway Matching
 
-Gateway matching
+Gateway matching configuration used to apply gateway-specific settings
 
 ## Structure
 
@@ -11,91 +11,52 @@ Gateway matching
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enable` | `*bool` | Optional | - |
-| `Rules` | [`[]models.GatewayMatchingRule`](../../doc/models/gateway-matching-rule.md) | Optional | **Constraints**: *Unique Items Required* |
+| `Enable` | `*bool` | Optional | Whether gateway matching is enabled |
+| `Rules` | [`[]models.GatewayMatchingRule`](../../doc/models/gateway-matching-rule.md) | Optional | Gateway matching rules used by a gateway matching configuration<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enable": false,
-  "rules": [
-    {
-      "additional_config_cmds": [
-        "additional_config_cmds8"
-      ],
-      "name": "name8",
-      "port_config": {
-        "key0": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayMatching := models.GatewayMatching{
+        Enable:               models.ToPointer(false),
+        Rules:                []models.GatewayMatchingRule{
+            models.GatewayMatchingRule{
+                AdditionalConfigCmds: []string{
+                    "additional_config_cmds8",
+                },
+                Name:                 models.ToPointer("name8"),
+                PortConfig:           map[string]models.GatewayPortConfig{
+                    "key0": models.GatewayPortConfig{
+                        AeDisableLacp:          models.ToPointer(false),
+                        AeIdx:                  models.NewOptional(models.ToPointer("ae_idx8")),
+                        AeLacpForceUp:          models.ToPointer(false),
+                        Aggregated:             models.ToPointer(false),
+                        Critical:               models.ToPointer(false),
+                        Usage:                  models.GatewayPortUsageEnum_LAN,
+                    },
+                    "key1": models.GatewayPortConfig{
+                        AeDisableLacp:          models.ToPointer(false),
+                        AeIdx:                  models.NewOptional(models.ToPointer("ae_idx8")),
+                        AeLacpForceUp:          models.ToPointer(false),
+                        Aggregated:             models.ToPointer(false),
+                        Critical:               models.ToPointer(false),
+                        Usage:                  models.GatewayPortUsageEnum_LAN,
+                    },
+                },
+                AdditionalProperties: map[string]string{
+                    "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8",
+                },
+            },
         },
-        "key1": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
-        }
-      },
-      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
-    },
-    {
-      "additional_config_cmds": [
-        "additional_config_cmds8"
-      ],
-      "name": "name8",
-      "port_config": {
-        "key0": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
-        },
-        "key1": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
-        }
-      },
-      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
-    },
-    {
-      "additional_config_cmds": [
-        "additional_config_cmds8"
-      ],
-      "name": "name8",
-      "port_config": {
-        "key0": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
-        },
-        "key1": {
-          "ae_disable_lacp": false,
-          "ae_idx": "ae_idx8",
-          "ae_lacp_force_up": false,
-          "aggregated": false,
-          "critical": false,
-          "usage": "lan"
-        }
-      },
-      "exampleAdditionalProperty": "gateway_matching_rule_additionalProperties8"
     }
-  ]
+
 }
 ```
 

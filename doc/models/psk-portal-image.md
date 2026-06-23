@@ -1,6 +1,8 @@
 
 # Psk Portal Image
 
+PSK portal image upload payload
+
 ## Structure
 
 `PskPortalImage`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*[]byte` | Optional | Binary file |
-| `Json` | `*string` | Optional | JSON string describing the upload |
+| `File` | `*[]byte` | Optional | Image binary payload to upload for the PSK portal |
+| `Json` | `*string` | Optional | Metadata JSON string describing the PSK portal image upload |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,",
-  "json": "json0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    pskPortalImage := models.PskPortalImage{
+        File:                 models.ToPointer(nil),
+        Json:                 models.ToPointer("json6"),
+    }
+
 }
 ```
 

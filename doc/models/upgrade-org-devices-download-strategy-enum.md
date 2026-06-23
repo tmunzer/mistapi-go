@@ -19,3 +19,18 @@ enum:
 | `big_bang` |
 | `serial` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeOrgDevicesDownloadStrategy := models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG
+
+}
+```
+

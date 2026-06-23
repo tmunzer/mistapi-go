@@ -1,7 +1,7 @@
 
 # Auto Preemption
 
-Schedule to preempt ap’s which are not connected to preferred peer
+Schedule to preempt AP tunnels that are not connected to their preferred peer
 
 ## Structure
 
@@ -12,16 +12,25 @@ Schedule to preempt ap’s which are not connected to preferred peer
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
-| `Enabled` | `*bool` | Optional | Whether auto preemption should happen<br><br>**Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether auto preemption is enabled<br><br>**Default**: `false` |
 | `TimeOfDay` | `*string` | Optional | `any` / HH:MM (24-hour format)<br><br>**Default**: `"any"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "time_of_day": "12:00",
-  "day_of_week": "mon"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    autoPreemption := models.AutoPreemption{
+        DayOfWeek:            models.ToPointer(models.DayOfWeekEnum_TUE),
+        Enabled:              models.ToPointer(false),
+        TimeOfDay:            models.ToPointer("12:00"),
+    }
+
 }
 ```
 

@@ -8,11 +8,13 @@ import (
 )
 
 // AamwProfileCategory represents a AamwProfileCategory struct.
+// File category rule for Advanced Anti Malware inspection
 type AamwProfileCategory struct {
 	// enum: `archive`, `document`, `pdf`, `executable`, `rich_application`, `library`, `os_package`, `mobile`, `java`, `configuration`, `script`
-	Category             *AamwProfileCategoryCategoryEnum `json:"category,omitempty"`
-	HashLookupOnly       *bool                            `json:"hash_lookup_only,omitempty"`
-	AdditionalProperties map[string]interface{}           `json:"_"`
+	Category *AamwProfileCategoryCategoryEnum `json:"category,omitempty"`
+	// Whether files in this category use hash lookup without full file analysis
+	HashLookupOnly       *bool                  `json:"hash_lookup_only,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AamwProfileCategory,

@@ -1,6 +1,8 @@
 
 # Org Setting Auto Device Naming
 
+Automatic device naming configuration for claimed devices
+
 ## Structure
 
 `OrgSettingAutoDeviceNaming`
@@ -9,30 +11,39 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enable` | `*bool` | Optional | - |
-| `Rules` | [`models.Optional[[]models.OrgSettingAutoDeviceNamingRule]`](../../doc/models/org-setting-auto-device-naming-rule.md) | Optional | - |
+| `Enable` | `*bool` | Optional | Whether automatic device naming is enabled |
+| `Rules` | [`models.Optional[[]models.OrgSettingAutoDeviceNamingRule]`](../../doc/models/org-setting-auto-device-naming-rule.md) | Optional | Automatic device naming rules, or null when automatic naming is not configured |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enable": false,
-  "rules": [
-    {
-      "expression": "expression4",
-      "match_device": "ap",
-      "prefix": "prefix6",
-      "src": "lldp_port_desc",
-      "suffix": "suffix2"
-    },
-    {
-      "expression": "expression4",
-      "match_device": "ap",
-      "prefix": "prefix6",
-      "src": "lldp_port_desc",
-      "suffix": "suffix2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingAutoDeviceNaming := models.OrgSettingAutoDeviceNaming{
+        Enable:               models.ToPointer(false),
+        Rules:                models.NewOptional(models.ToPointer([]models.OrgSettingAutoDeviceNamingRule{
+            models.OrgSettingAutoDeviceNamingRule{
+                Expression:           models.ToPointer("expression4"),
+                MatchDevice:          models.ToPointer(models.DeviceTypeDefaultApEnum_AP),
+                Prefix:               models.ToPointer("prefix6"),
+                Src:                  models.ToPointer(models.OrgSettingAutoDeviceNamingRuleSrcEnum_LLDPPORTDESC),
+                Suffix:               models.ToPointer("suffix2"),
+            },
+            models.OrgSettingAutoDeviceNamingRule{
+                Expression:           models.ToPointer("expression4"),
+                MatchDevice:          models.ToPointer(models.DeviceTypeDefaultApEnum_AP),
+                Prefix:               models.ToPointer("prefix6"),
+                Src:                  models.ToPointer(models.OrgSettingAutoDeviceNamingRuleSrcEnum_LLDPPORTDESC),
+                Suffix:               models.ToPointer("suffix2"),
+            },
+        })),
     }
-  ]
+
 }
 ```
 

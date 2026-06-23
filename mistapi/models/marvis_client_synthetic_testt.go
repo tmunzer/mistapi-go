@@ -8,7 +8,9 @@ import (
 )
 
 // MarvisClientSyntheticTest represents a MarvisClientSyntheticTest struct.
+// Synthetic test settings for Marvis Client
 type MarvisClientSyntheticTest struct {
+	// Whether synthetic testing is enabled for Marvis Client
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

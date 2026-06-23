@@ -8,10 +8,13 @@ import (
 )
 
 // SimpleAlertDnsFailure represents a SimpleAlertDnsFailure struct.
+// Thresholds for DNS failure heuristic alerts
 type SimpleAlertDnsFailure struct {
+	// Number of distinct clients that must encounter DNS failures before alerting
 	ClientCount *int `json:"client_count,omitempty"`
-	// failing within minutes
-	Duration             *int                   `json:"duration,omitempty"`
+	// Time window in minutes for evaluating DNS failures
+	Duration *int `json:"duration,omitempty"`
+	// Number of DNS failure incidents required within the duration window
 	IncidentCount        *int                   `json:"incident_count,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

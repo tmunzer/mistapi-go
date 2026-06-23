@@ -1,7 +1,7 @@
 
 # Switch Bgp Config Type Enum
 
-enum: `external`, `internal`
+BGP session type for this switch BGP configuration. enum: `external`, `internal`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `external`, `internal`
 |  --- |
 | `external` |
 | `internal` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchBgpConfigType := models.SwitchBgpConfigTypeEnum_EXTERNAL
+
+}
+```
 

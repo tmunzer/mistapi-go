@@ -8,7 +8,9 @@ import (
 )
 
 // StatsApSwitchRedundancy represents a StatsApSwitchRedundancy struct.
+// Switch redundancy status reported by an AP
 type StatsApSwitchRedundancy struct {
+	// Number of redundant APs available for switch redundancy
 	NumRedundantAps      Optional[int]          `json:"num_redundant_aps"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

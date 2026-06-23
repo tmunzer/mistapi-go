@@ -36,3 +36,18 @@ enum: `1`, `11`, `11b`, `12`, `12b`, `18`, `18b`, `1b`, `2`, `24`, `24b`, `2b`, 
 | `9` |
 | `9b` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanDataratesLegacyItem := models.WlanDataratesLegacyItemEnum_ENUM11B
+
+}
+```
+

@@ -1,6 +1,8 @@
 
 # Gateway Mgmt Auto Signature Update
 
+Automatic security signature update schedule
+
 ## Structure
 
 `GatewayMgmtAutoSignatureUpdate`
@@ -10,16 +12,25 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `DayOfWeek` | [`*models.DayOfWeekEnum`](../../doc/models/day-of-week-enum.md) | Optional | enum: `any`, `fri`, `mon`, `sat`, `sun`, `thu`, `tue`, `wed` |
-| `Enable` | `*bool` | Optional | **Default**: `true` |
+| `Enable` | `*bool` | Optional | Whether automatic security signature updates are enabled<br><br>**Default**: `true` |
 | `TimeOfDay` | `*string` | Optional | Optional, Mist will decide the timing |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enable": true,
-  "day_of_week": "tue",
-  "time_of_day": "time_of_day8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayMgmtAutoSignatureUpdate := models.GatewayMgmtAutoSignatureUpdate{
+        DayOfWeek:            models.ToPointer(models.DayOfWeekEnum_ANY),
+        Enable:               models.ToPointer(true),
+        TimeOfDay:            models.ToPointer("time_of_day6"),
+    }
+
 }
 ```
 

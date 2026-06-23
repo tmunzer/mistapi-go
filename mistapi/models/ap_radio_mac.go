@@ -10,8 +10,11 @@ import (
 )
 
 // ApRadioMac represents a ApRadioMac struct.
+// Access point MAC address and its related radio MAC addresses
 type ApRadioMac struct {
-	Mac                  string                 `json:"mac"`
+	// Access point MAC address for this radio MAC mapping
+	Mac string `json:"mac"`
+	// Radio MAC addresses associated with an access point
 	RadioMacs            []string               `json:"radio_macs"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

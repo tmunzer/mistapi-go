@@ -9,7 +9,7 @@ import (
 )
 
 // Beacon represents a Beacon struct.
-// Beacon
+// Beacon configuration and placement data
 type Beacon struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -17,33 +17,37 @@ type Beacon struct {
 	EddystoneInstance *string `json:"eddystone_instance,omitempty"`
 	// Eddystone-UID namespace (10 bytes) in hexstring format
 	EddystoneNamespace *string `json:"eddystone_namespace,omitempty"`
-	// Eddystone-URL url
+	// Eddystone-URL value broadcast by the beacon
 	EddystoneUrl *string `json:"eddystone_url,omitempty"`
-	ForSite      *bool   `json:"for_site,omitempty"`
+	// Whether this beacon is scoped directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Optional, MAC of the beacon, currently used only to identify battery voltage
+	// Optional beacon MAC address, currently used only to identify battery voltage
 	Mac *string `json:"mac,omitempty"`
-	// Map where the device belongs to
+	// Map where the beacon is placed
 	MapId *uuid.UUID `json:"map_id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name / label of the device
-	Name  *string    `json:"name,omitempty"`
+	// Display name of the beacon
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// In dBm
-	Power  *int       `json:"power,omitempty"`
+	// Beacon transmit power, in dBm
+	Power *int `json:"power,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// enum: `eddystone-uid`, `eddystone-url`, `ibeacon`
 	Type *BeaconTypeEnum `json:"type,omitempty"`
-	// X in pixel
+	// Horizontal map position of the beacon, in pixels
 	X *float64 `json:"x,omitempty"`
-	// Y in pixel
+	// Vertical map position of the beacon, in pixels
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

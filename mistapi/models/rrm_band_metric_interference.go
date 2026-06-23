@@ -8,7 +8,9 @@ import (
 )
 
 // RrmBandMetricInterference represents a RrmBandMetricInterference struct.
+// Interference metrics observed for one channel
 type RrmBandMetricInterference struct {
+	// Interference value attributed to radar on the channel
 	Radar                *float64               `json:"radar,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

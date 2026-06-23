@@ -11,21 +11,35 @@ import (
 )
 
 // WirelessClientSession represents a WirelessClientSession struct.
+// Wireless client session record returned by a session search
 type WirelessClientSession struct {
-	Ap                string           `json:"ap"`
-	Band              string           `json:"band"`
+	// MAC address of the access point associated with the client session
+	Ap string `json:"ap"`
+	// Radio band used by the client session
+	Band string `json:"band"`
+	// Manufacturer reported for the client device, when available
 	ClientManufacture Optional[string] `json:"client_manufacture"`
-	Connect           int              `json:"connect"`
-	Disconnect        int              `json:"disconnect"`
-	Duration          float64          `json:"duration"`
-	ForSite           *bool            `json:"for_site,omitempty"`
-	Mac               string           `json:"mac"`
-	OrgId             uuid.UUID        `json:"org_id"`
-	SiteId            uuid.UUID        `json:"site_id"`
-	Ssid              string           `json:"ssid"`
-	Tags              []string         `json:"tags,omitempty"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
+	// Time when the client session connected, in epoch seconds
+	Connect int `json:"connect"`
+	// Time when the client session disconnected, in epoch seconds
+	Disconnect int `json:"disconnect"`
+	// Length of the client session, in seconds
+	Duration float64 `json:"duration"`
+	// Whether this client session record is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Client MAC address for the session
+	Mac string `json:"mac"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// WLAN SSID used by the client session
+	Ssid string `json:"ssid"`
+	// Tags attached to a wireless client session
+	Tags []string `json:"tags,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Identifier of the WLAN associated with the client session
 	WlanId               uuid.UUID              `json:"wlan_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,15 +8,15 @@ import (
 )
 
 // ApMesh represents a ApMesh struct.
-// Mesh AP settings
+// Wireless mesh settings for an access point
 type ApMesh struct {
-	// List of bands that the mesh should apply to. For relay, the first viable one will be picked. For relay, the first viable one will be picked. enum: `24`, `5`, `6`
+	// List of bands that mesh should use. For relay, the first viable one will be picked. enum: `24`, `5`, `6`
 	Bands []Dot11BandEnum `json:"bands,omitempty"`
 	// Whether mesh is enabled on this AP
 	Enabled *bool `json:"enabled,omitempty"`
 	// Mesh group, base AP(s) will only allow remote AP(s) in the same mesh group to join, 1-9, optional
 	Group Optional[int] `json:"group"`
-	// enum: `base`, `remote`
+	// Mesh role for this AP, either base or remote. enum: `base`, `remote`
 	Role *ApMeshRoleEnum `json:"role,omitempty"`
 	// Whether to use WPA3 on the 5 GHz band for mesh links
 	UseWpa3On5           *bool                  `json:"use_wpa3_on_5,omitempty"`

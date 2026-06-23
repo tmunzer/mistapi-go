@@ -1,6 +1,8 @@
 
 # Ui Settings Tile Metric
 
+Metric selected for a site UI databoard tile
+
 ## Structure
 
 `UiSettingsTileMetric`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `ApiName` | `*string` | Optional | - |
+| `ApiName` | `*string` | Optional | Metric API name requested by this tile |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "apiName": "client_dhcp_latency"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    uiSettingsTileMetric := models.UiSettingsTileMetric{
+        ApiName:              models.ToPointer("client_dhcp_latency"),
+    }
+
 }
 ```
 

@@ -8,8 +8,9 @@ import (
 )
 
 // AssetsImportFile represents a AssetsImportFile struct.
+// CSV file upload payload for importing BLE assets
 type AssetsImportFile struct {
-	// CSV file
+	// CSV file containing asset records to import
 	File                 *[]byte                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

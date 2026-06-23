@@ -1,6 +1,8 @@
 
 # Response Switch Metrics Version Compliance
 
+Version compliance metric for switches in the requested scope
+
 ## Structure
 
 `ResponseSwitchMetricsVersionCompliance`
@@ -9,29 +11,38 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Details` | [`*models.ResponseSwitchMetricsVersionComplianceDetails`](../../doc/models/response-switch-metrics-version-compliance-details.md) | Optional | - |
-| `Score` | `*int` | Optional | - |
-| `TotalSwitchCount` | `*int` | Optional | - |
+| `Details` | [`*models.ResponseSwitchMetricsVersionComplianceDetails`](../../doc/models/response-switch-metrics-version-compliance-details.md) | Optional | Detail values for the switch software version compliance metric |
+| `Score` | `*int` | Optional | Reported metric score for switch software version compliance |
+| `TotalSwitchCount` | `*int` | Optional | Number of switches included in the version compliance metric |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "details": {
-    "major_versions": [
-      {
-        "major_count": 170,
-        "major_version": "major_version0",
-        "model": "model6",
-        "system_names": [
-          "system_names6",
-          "system_names7"
-        ]
-      }
-    ]
-  },
-  "score": 228,
-  "total_switch_count": 16
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseSwitchMetricsVersionCompliance := models.ResponseSwitchMetricsVersionCompliance{
+        Details:              models.ToPointer(models.ResponseSwitchMetricsVersionComplianceDetails{
+            MajorVersions:        []models.SwitchMetricsComplianceMajorVersion{
+                models.SwitchMetricsComplianceMajorVersion{
+                    MajorCount:           models.ToPointer(170),
+                    MajorVersion:         models.ToPointer("major_version0"),
+                    Model:                models.ToPointer("model6"),
+                    SystemNames:          []string{
+                        "system_names6",
+                        "system_names7",
+                    },
+                },
+            },
+        }),
+        Score:                models.ToPointer(96),
+        TotalSwitchCount:     models.ToPointer(140),
+    }
+
 }
 ```
 

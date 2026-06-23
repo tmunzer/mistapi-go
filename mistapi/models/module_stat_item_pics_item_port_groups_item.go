@@ -8,8 +8,11 @@ import (
 )
 
 // ModuleStatItemPicsItemPortGroupsItem represents a ModuleStatItemPicsItemPortGroupsItem struct.
+// Port group summary for a PIC
 type ModuleStatItemPicsItemPortGroupsItem struct {
-	Count                *int                   `json:"count,omitempty"`
+	// Number of ports in this PIC port group
+	Count *int `json:"count,omitempty"`
+	// Port media or interface type for this PIC port group
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

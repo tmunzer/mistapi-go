@@ -8,13 +8,15 @@ import (
 )
 
 // GatewayMgmt represents a GatewayMgmt struct.
-// Gateway Management settings
+// Gateway management-plane and access settings
 type GatewayMgmt struct {
 	// For SSR only, as direct root access is not allowed
-	AdminSshkeys []string    `json:"admin_sshkeys,omitempty"`
-	AppProbing   *AppProbing `json:"app_probing,omitempty"`
+	AdminSshkeys []string `json:"admin_sshkeys,omitempty"`
+	// Application reachability probing settings for gateway management
+	AppProbing *AppProbing `json:"app_probing,omitempty"`
 	// Consumes uplink bandwidth, requires WA license
-	AppUsage            *bool                           `json:"app_usage,omitempty"`
+	AppUsage *bool `json:"app_usage,omitempty"`
+	// Automatic security signature update schedule
 	AutoSignatureUpdate *GatewayMgmtAutoSignatureUpdate `json:"auto_signature_update,omitempty"`
 	// Rollback timer for commit confirmed
 	ConfigRevertTimer *int `json:"config_revert_timer,omitempty"`
@@ -23,17 +25,22 @@ type GatewayMgmt struct {
 	// For SSR and SRX, disable management interface
 	DisableOob *bool `json:"disable_oob,omitempty"`
 	// For SSR and SRX, disable usb interface
-	DisableUsb   *bool    `json:"disable_usb,omitempty"`
-	FipsEnabled  *bool    `json:"fips_enabled,omitempty"`
-	ProbeHosts   []string `json:"probe_hosts,omitempty"`
+	DisableUsb *bool `json:"disable_usb,omitempty"`
+	// Whether FIPS mode is enabled on the gateway
+	FipsEnabled *bool `json:"fips_enabled,omitempty"`
+	// IPv4 probe hosts used for gateway connectivity checks
+	ProbeHosts []string `json:"probe_hosts,omitempty"`
+	// IPv6 probe hosts used for gateway connectivity checks
 	ProbeHostsv6 []string `json:"probe_hostsv6,omitempty"`
 	// Restrict inbound-traffic to host
 	// when enabled, all traffic that is not essential to our operation will be dropped
 	// e.g. ntp / dns / traffic to mist will be allowed by default, if dhcpd is enabled, we'll make sure it works
 	ProtectRe *ProtectRe `json:"protect_re,omitempty"`
-	// SRX only
-	RootPassword               *string                `json:"root_password,omitempty"`
-	SecurityLogSourceAddress   *string                `json:"security_log_source_address,omitempty"`
+	// SRX only. Root password for local gateway access
+	RootPassword *string `json:"root_password,omitempty"`
+	// IPv4 source address used for gateway security log traffic
+	SecurityLogSourceAddress *string `json:"security_log_source_address,omitempty"`
+	// Source interface used for gateway security log traffic
 	SecurityLogSourceInterface *string                `json:"security_log_source_interface,omitempty"`
 	AdditionalProperties       map[string]interface{} `json:"_"`
 }

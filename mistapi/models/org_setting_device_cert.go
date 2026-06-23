@@ -8,9 +8,11 @@ import (
 )
 
 // OrgSettingDeviceCert represents a OrgSettingDeviceCert struct.
-// common device cert, optional
+// Optional common device certificate configuration for organization settings
 type OrgSettingDeviceCert struct {
-	Cert                 *string                `json:"cert,omitempty"`
+	// PEM-encoded common device certificate used by organization settings
+	Cert *string `json:"cert,omitempty"`
+	// Private key paired with the common device certificate
 	Key                  *string                `json:"key,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

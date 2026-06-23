@@ -11,9 +11,9 @@ import (
 )
 
 // AdminPrivilege represents a AdminPrivilege struct.
-// Privilieges settings
+// Admin privilege scope, role, and UI access settings
 type AdminPrivilege struct {
-	// Required if `scope`==`msp`
+	// Required if `scope`==`msp`. MSP granted by this privilege
 	MspId *uuid.UUID `json:"msp_id,omitempty"`
 	// Logo of the MSP (if the MSP belongs to an Advanced tier)
 	MspLogoUrl *string `json:"msp_logo_url,omitempty"`
@@ -21,20 +21,21 @@ type AdminPrivilege struct {
 	MspName Optional[string] `json:"msp_name"`
 	// Custom url of the MSP (if the MSP belongs to an Advanced tier)
 	MspUrl *string `json:"msp_url,omitempty"`
-	// Name of the org/site/MSP depending on object scope
+	// Display name of the object for this privilege scope
 	Name *string `json:"name,omitempty"`
-	// Required if `scope`==`org`
+	// Required if `scope`==`org`. Organization granted by this privilege
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Name of the org (for a site belonging to org)
 	OrgName *string `json:"org_name,omitempty"`
-	// If `scope`==`orggroup`
+	// If `scope`==`orggroup`. Organization groups granted by this privilege
 	OrggroupIds []uuid.UUID `json:"orggroup_ids,omitempty"`
 	// access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 	Role AdminPrivilegeRoleEnum `json:"role"`
 	// enum: `msp`, `org`, `orggroup`, `site`, `sitegroup`
 	Scope AdminPrivilegeScopeEnum `json:"scope"`
-	// Required if `scope`==`site`
-	SiteId       *uuid.UUID  `json:"site_id,omitempty"`
+	// Required if `scope`==`site`. Site granted by this privilege
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Site group identifiers granted by an admin privilege when scope is `sitegroup`
 	SitegroupIds []uuid.UUID `json:"sitegroup_ids,omitempty"`
 	// Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users. Custom roles restrict Org users to specific UI views. This is useful for limiting UI access of Org users.
 	// You can define custom roles by adding the `views` attribute along with `role` when assigning privileges.

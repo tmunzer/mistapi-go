@@ -10,15 +10,16 @@ import (
 )
 
 // StatsGatewayPort represents a StatsGatewayPort struct.
-// Port statistics
+// Gateway port statistics record returned by stats APIs
 type StatsGatewayPort struct {
 	// Indicates if interface is active/inactive
 	Active *bool `json:"active,omitempty"`
-	// enum: `authenticated`, `authenticating`, `held`, `init`
+	// Port authentication state. enum: `""`, `authenticated`, `authenticating`, `held`, `init`
 	AuthState *PortAuthStateEnum `json:"auth_state,omitempty"`
 	// Indicates if interface is disabled
 	Disabled *bool `json:"disabled,omitempty"`
-	ForSite  *bool `json:"for_site,omitempty"`
+	// Whether the reporting device is scoped to a specific site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Indicates full or half duplex
 	FullDuplex *bool `json:"full_duplex,omitempty"`
 	// Last sampled jitter of the interface
@@ -33,7 +34,7 @@ type StatsGatewayPort struct {
 	LteImei Optional[string] `json:"lte_imei"`
 	// LTE IMSI value, Check for null/empty
 	LteImsi Optional[string] `json:"lte_imsi"`
-	// Number of mac addresses in the forwarding table
+	// Number of MAC addresses in the forwarding table
 	MacCount *int `json:"mac_count,omitempty"`
 	// Limit on number of dynamically learned macs
 	MacLimit *int `json:"mac_limit,omitempty"`
@@ -48,40 +49,42 @@ type StatsGatewayPort struct {
 	// enum: `802.3af`, `802.3at`, `802.3bt`
 	PoeMode *StatsSwitchPortPoeModeEnum `json:"poe_mode,omitempty"`
 	// Is the device attached to POE
-	PoeOn  *bool  `json:"poe_on,omitempty"`
+	PoeOn *bool `json:"poe_on,omitempty"`
+	// Identifier of the port reporting these statistics
 	PortId string `json:"port_id"`
-	// Interface mac address
-	PortMac   string  `json:"port_mac"`
+	// MAC address assigned to the interface
+	PortMac string `json:"port_mac"`
+	// Logical usage assigned to the port
 	PortUsage *string `json:"port_usage,omitempty"`
 	// Amount of power being used by the interface at the time the command is executed. Unit in watts.
 	PowerDraw *float64 `json:"power_draw,omitempty"`
-	// Broadcast input packets
+	// Number of broadcast packets received on the interface
 	RxBcastPkts *int `json:"rx_bcast_pkts,omitempty"`
 	// Rate of receiving traffic, bits/seconds, last known
 	RxBps Optional[int64] `json:"rx_bps"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
-	// Input errors
+	// Number of receive errors observed on the interface
 	RxErrors *int `json:"rx_errors,omitempty"`
-	// Multicast input packets
+	// Number of multicast packets received on the interface
 	RxMcastPkts *int `json:"rx_mcast_pkts,omitempty"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	// Port speed
+	// Current link speed of the port, in Mbps
 	Speed *int `json:"speed,omitempty"`
-	// enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+	// Spanning Tree Protocol role for the port. enum: `""`, `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
 	StpRole *PortStpRoleEnum `json:"stp_role,omitempty"`
-	// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+	// Spanning Tree Protocol state for the port. enum: `""`, `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 	StpState *PortStpStateEnum `json:"stp_state,omitempty"`
-	// Broadcast output packets
+	// Number of broadcast packets transmitted on the interface
 	TxBcastPkts *int `json:"tx_bcast_pkts,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
 	TxBps Optional[int64] `json:"tx_bps"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
-	// Output errors
+	// Number of transmit errors observed on the interface
 	TxErrors *int `json:"tx_errors,omitempty"`
-	// Multicast output packets
+	// Number of multicast packets transmitted on the interface
 	TxMcastPkts *int `json:"tx_mcast_pkts,omitempty"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`

@@ -1,7 +1,7 @@
 
 # Ap Mesh Role Enum
 
-enum: `base`, `remote`
+Mesh role for this AP, either base or remote. enum: `base`, `remote`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `base`, `remote`
 
 ## Example
 
-```
-base
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apMeshRole := models.ApMeshRoleEnum_BASE
+
+}
 ```
 

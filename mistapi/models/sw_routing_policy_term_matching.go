@@ -8,12 +8,15 @@ import (
 )
 
 // SwRoutingPolicyTermMatching represents a SwRoutingPolicyTermMatching struct.
-// zero or more criteria/filter can be specified to match the term, all criteria have to be met
+// Route match criteria for a switch routing policy term; all specified criteria must match
 type SwRoutingPolicyTermMatching struct {
-	AsPath    []BgpAs  `json:"as_path,omitempty"`
+	// BGP AS path values used as routing-policy match criteria
+	AsPath []BgpAs `json:"as_path,omitempty"`
+	// BGP community values used as routing-policy match criteria
 	Community []string `json:"community,omitempty"`
 	// zero or more criteria/filter can be specified to match the term, all criteria have to be met
-	Prefix               []string                                  `json:"prefix,omitempty"`
+	Prefix []string `json:"prefix,omitempty"`
+	// Routing protocols that can match a switch routing policy term
 	Protocol             []SwRoutingPolicyTermMatchingProtocolEnum `json:"protocol,omitempty"`
 	AdditionalProperties map[string]interface{}                    `json:"_"`
 }

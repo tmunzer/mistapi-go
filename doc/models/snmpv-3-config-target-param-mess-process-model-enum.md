@@ -15,3 +15,18 @@ enum: `v1`, `v2c`, `v3`
 | `v2c` |
 | `v3` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpv3ConfigTargetParamMessProcessModel := models.Snmpv3ConfigTargetParamMessProcessModelEnum_V2C
+
+}
+```
+

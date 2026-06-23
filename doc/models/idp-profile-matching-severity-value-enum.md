@@ -18,7 +18,16 @@ enum: `critical`, `info`, `major`, `minor`
 
 ## Example
 
-```
-major
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    idpProfileMatchingSeverityValue := models.IdpProfileMatchingSeverityValueEnum_MAJOR
+
+}
 ```
 

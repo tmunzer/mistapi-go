@@ -1,6 +1,8 @@
 
 # Response Self Oauth Link Failure Exception
 
+OAuth2 account-linking failure response
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,20 +13,20 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Error` | `string` | Required | - |
-| `ErrorDescription` | `string` | Required | - |
+| `Error` | `string` | Required | OAuth2 error code returned during account linking |
+| `ErrorDescription` | `string` | Required | Human-readable description of the OAuth2 account-linking failure |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "error": "error0",
-  "error_description": "error_description6",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ResponseSelfOauthLinkFailureException:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

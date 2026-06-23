@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseRrmConsideration represents a ResponseRrmConsideration struct.
+// Response containing current RRM considerations for an AP radio band
 type ResponseRrmConsideration struct {
+	// RRM channel consideration records returned for an AP radio band
 	Results              []RrmConsideration     `json:"results"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

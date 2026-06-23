@@ -8,7 +8,7 @@ import (
 )
 
 // WlanDynamicPsk represents a WlanDynamicPsk struct.
-// For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
+// For dynamic PSK where we get per_user PSK from RADIUS. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
 // * PSK will come from RADIUS server
 // * AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)
 // * AP sends BSSID:SSID as Caller-Station-ID
@@ -19,12 +19,14 @@ import (
 // * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 type WlanDynamicPsk struct {
 	// Default PSK to use if cloud WLC is not available, 8-63 characters
-	DefaultPsk    *string             `json:"default_psk,omitempty"`
+	DefaultPsk *string `json:"default_psk,omitempty"`
+	// VLAN ID, either numeric or expressed as a template variable string
 	DefaultVlanId *VlanIdWithVariable `json:"default_vlan_id,omitempty"`
-	Enabled       *bool               `json:"enabled,omitempty"`
+	// Whether dynamic PSK is enabled for this WLAN
+	Enabled *bool `json:"enabled,omitempty"`
 	// When 11r is enabled, we'll try to use the cached PMK, this can be disabled. `false` means auto
 	ForceLookup *bool `json:"force_lookup,omitempty"`
-	// enum: `cloud_psks`, `radius`
+	// Origin used to retrieve per-user PSKs. enum: `cloud_psks`, `radius`
 	Source               *DynamicPskSourceEnum  `json:"source,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

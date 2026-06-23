@@ -8,8 +8,9 @@ import (
 )
 
 // ShellNode represents a ShellNode struct.
+// Request body for creating a shell session on a specific HA node
 type ShellNode struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node                 *HaClusterNodeEnum     `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

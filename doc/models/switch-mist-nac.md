@@ -1,7 +1,7 @@
 
 # Switch Mist Nac
 
-Enable mist_nac to use RadSec
+Mist NAC RadSec settings for a switch
 
 ## Structure
 
@@ -11,15 +11,24 @@ Enable mist_nac to use RadSec
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
-| `Network` | `*string` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether Mist NAC RadSec is enabled for the switch |
+| `Network` | `*string` | Optional | Switch network used for Mist NAC RadSec connectivity |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "network": "network4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchMistNac := models.SwitchMistNac{
+        Enabled:              models.ToPointer(false),
+        Network:              models.ToPointer("network8"),
+    }
+
 }
 ```
 

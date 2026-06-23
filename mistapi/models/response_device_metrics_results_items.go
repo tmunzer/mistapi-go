@@ -9,6 +9,7 @@ import (
 )
 
 // ResponseDeviceMetricsResultsItems represents a ResponseDeviceMetricsResultsItems struct.
+// Device metric result value, returned as a string or integer
 type ResponseDeviceMetricsResultsItems struct {
 	value    any
 	isString bool
@@ -74,6 +75,7 @@ func (r *ResponseDeviceMetricsResultsItems) AsNumber() (
 }
 
 // internalResponseDeviceMetricsResultsItems represents a responseDeviceMetricsResultsItems struct.
+// Device metric result value, returned as a string or integer
 type internalResponseDeviceMetricsResultsItems struct{}
 
 var ResponseDeviceMetricsResultsItemsContainer internalResponseDeviceMetricsResultsItems

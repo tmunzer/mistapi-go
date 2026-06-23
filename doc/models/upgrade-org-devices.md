@@ -1,6 +1,8 @@
 
 # Upgrade Org Devices
 
+Organization-wide device upgrade request
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -34,43 +36,54 @@
 | `StartDatetime` | `*string` | Optional | Process start date and time, ISO8601 format |
 | `StartTime` | `*int` | Optional | Upgrade start time in epoch seconds, default is now |
 | `Strategy` | [`*models.UpgradeDeviceStrategyEnum`](../../doc/models/upgrade-device-strategy-enum.md) | Optional | enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (one at a time)<br><br>**Default**: `"big_bang"` |
-| `Versions` | [`[]models.UpgradeOrgDevicesVersion`](../../doc/models/upgrade-org-devices-version.md) | Optional | - |
+| `Versions` | [`[]models.UpgradeOrgDevicesVersion`](../../doc/models/upgrade-org-devices-version.md) | Optional | Target firmware version entries for an organization upgrade request |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "all_sites": false,
-  "canary_phases": null,
-  "download_strategy": "big_bang",
-  "max_failure_percentage": 5,
-  "p2p_cluster_size": 0,
-  "reboot_at": 1624399840,
-  "reboot_datetime": "2024-06-13 15:00:00-07:00",
-  "reboot_strategy": "big_bang",
-  "rrm_first_batch_percentage": 2,
-  "rrm_max_batch_percentage": 10,
-  "rrm_mesh_upgrade": "sequential",
-  "rrm_node_order": "fringe_to_center",
-  "rules": [
-    {
-      "match_model": "AP43",
-      "match_name[2:8]": "access"
-    },
-    {
-      "match_model": "AP45"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeOrgDevices := models.UpgradeOrgDevices{
+        AllSites:                models.ToPointer(false),
+        CanaryPhases:            nil,
+        DeviceType:              models.ToPointer(models.DeviceTypeEnum_AP),
+        DownloadStrategy:        models.ToPointer(models.UpgradeOrgDevicesDownloadStrategyEnum_BIGBANG),
+        MaxFailurePercentage:    models.ToPointer(5),
+        P2pClusterSize:          models.ToPointer(0),
+        RebootAt:                models.ToPointer(1624399840),
+        RebootDatetime:          models.ToPointer("2024-06-13 15:00:00-07:00"),
+        RebootStrategy:          models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
+        RrmFirstBatchPercentage: models.ToPointer(2),
+        RrmMaxBatchPercentage:   models.ToPointer(10),
+        RrmMeshUpgrade:          models.ToPointer(models.UpgradeDeviceRrmMeshUpgradeEnum_SEQUENTIAL),
+        RrmNodeOrder:            models.ToPointer(models.UpgradeDeviceRrmNodeOrderEnum_FRINGETOCENTER),
+        Rules:                   []map[string]string{
+            []map[string]string{
+                []map[string]string{
+                },
+                []map[string]string{
+                },
+            },
+            []map[string]string{
+                []map[string]string{
+                },
+            },
+        },
+        Snapshot:                models.ToPointer(false),
+        StartDatetime:           models.ToPointer("2024-06-13 15:00:00-07:00"),
+        StartTime:               models.ToPointer(1624399840),
+        Strategy:                models.ToPointer(models.UpgradeDeviceStrategyEnum_BIGBANG),
+        AdditionalProperties:    map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
     }
-  ],
-  "snapshot": false,
-  "start_datetime": "2024-06-13 15:00:00-07:00",
-  "start_time": 1624399840,
-  "strategy": "big_bang",
-  "device_type": "gateway",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+
 }
 ```
 

@@ -1,7 +1,7 @@
 
 # Dynamic Psk Source Enum
 
-enum: `cloud_psks`, `radius`
+Origin used to retrieve per-user PSKs. enum: `cloud_psks`, `radius`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `cloud_psks`, `radius`
 
 ## Example
 
-```
-cloud_psks
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dynamicPskSource := models.DynamicPskSourceEnum_CLOUDPSKS
+
+}
 ```
 

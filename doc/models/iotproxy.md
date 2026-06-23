@@ -11,21 +11,34 @@ IoT proxy configuration for the site
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether the site IoT proxy is enabled<br><br>**Default**: `false` |
 | `Visionline` | [`*models.IotproxyVisionline`](../../doc/models/iotproxy-visionline.md) | Optional | Visionline integration settings for IoT proxy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "visionline": {
-    "access_id": "access_id8",
-    "enabled": false,
-    "host": "host4",
-    "password": "password8",
-    "port": 8
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    iotproxy := models.Iotproxy{
+        Enabled:              models.ToPointer(false),
+        Visionline:           models.ToPointer(models.IotproxyVisionline{
+            AccessId:             models.ToPointer("access_id8"),
+            Cacerts:              []string{
+                "cacerts4",
+                "cacerts3",
+                "cacerts2",
+            },
+            Enabled:              models.ToPointer(false),
+            Host:                 models.ToPointer("host4"),
+            Password:             models.ToPointer("password8"),
+        }),
+    }
+
 }
 ```
 

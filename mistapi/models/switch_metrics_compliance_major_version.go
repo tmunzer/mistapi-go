@@ -8,10 +8,15 @@ import (
 )
 
 // SwitchMetricsComplianceMajorVersion represents a SwitchMetricsComplianceMajorVersion struct.
+// Version compliance grouping for one switch model
 type SwitchMetricsComplianceMajorVersion struct {
-	MajorCount           *int                   `json:"major_count,omitempty"`
-	MajorVersion         *string                `json:"major_version,omitempty"`
-	Model                *string                `json:"model,omitempty"`
+	// Number of switches in this software version grouping
+	MajorCount *int `json:"major_count,omitempty"`
+	// Software version represented by this compliance grouping
+	MajorVersion *string `json:"major_version,omitempty"`
+	// Switch model represented by this compliance grouping
+	Model *string `json:"model,omitempty"`
+	// Unique string values returned or accepted by this schema
 	SystemNames          []string               `json:"system_names,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

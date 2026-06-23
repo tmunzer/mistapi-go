@@ -8,16 +8,17 @@ import (
 )
 
 // ConstWebhookTopic represents a ConstWebhookTopic struct.
+// Webhook topic definition returned by the constants API
 type ConstWebhookTopic struct {
-	// supports single event per message results
+	// Whether this topic can be configured to enforce one event per webhook message
 	AllowsSingleEventPerMessage *bool `json:"allows_single_event_per_message,omitempty"`
-	// Can be used in org webhooks, optional
+	// Whether this topic can be used in organization-level webhooks
 	ForOrg *bool `json:"for_org,omitempty"`
-	// Supports webhook delivery results /api/v1/:scope/:scope_id/webhooks/:webhook_id/events/search
+	// Whether delivery-result search is available for this webhook topic
 	HasDeliveryResults *bool `json:"has_delivery_results,omitempty"`
-	// Internal topic (not selectable in site/org webhooks)
+	// Whether this topic is internal and not selectable in site or organization webhooks
 	Internal *bool `json:"internal,omitempty"`
-	// Webhook topic name
+	// Machine-readable key that identifies the webhook topic
 	Key                  *string                `json:"key,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

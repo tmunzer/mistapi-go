@@ -1,6 +1,8 @@
 
 # Mxedge Tunterm Igmp Snooping Querier
 
+IGMP querier settings for tunnel termination
+
 ## Structure
 
 `MxedgeTuntermIgmpSnoopingQuerier`
@@ -12,18 +14,27 @@
 | `MaxResponseTime` | `*int` | Optional | Querier's query response interval, in tenths-of-seconds |
 | `Mtu` | `*int` | Optional | The MTU we use (needed when forming large IGMPv3 Reports) |
 | `QueryInterval` | `*int` | Optional | Querier's query interval, in seconds |
-| `Robustness` | `*int` | Optional | Querier's robustness<br><br>**Constraints**: `>= 1`, `<= 7` |
+| `Robustness` | `*int` | Optional | IGMP querier robustness variable<br><br>**Constraints**: `>= 1`, `<= 7` |
 | `Version` | `*int` | Optional | Querier's maximum protocol version |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "max_response_time": 10,
-  "mtu": 1500,
-  "query_interval": 125,
-  "version": 3,
-  "robustness": 7
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermIgmpSnoopingQuerier := models.MxedgeTuntermIgmpSnoopingQuerier{
+        MaxResponseTime:      models.ToPointer(10),
+        Mtu:                  models.ToPointer(1500),
+        QueryInterval:        models.ToPointer(125),
+        Robustness:           models.ToPointer(7),
+        Version:              models.ToPointer(3),
+    }
+
 }
 ```
 

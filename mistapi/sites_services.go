@@ -38,19 +38,15 @@ func (s *SitesServices) ListSiteServicesDerived(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if resolve != nil {
 		req.QueryParam("resolve", *resolve)
@@ -66,7 +62,7 @@ func (s *SitesServices) ListSiteServicesDerived(
 	return models.NewApiResponse(result, resp), err
 }
 
-// CountSiteServicePathEvents takes context, siteId, distinct, mType, text, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, start, end, duration, limit as parameters and
+// CountSiteServicePathEvents takes context, siteId, distinct, mType, text, vpnName, vpnPath, policy, portId, model, version, mac, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
 // Count by Distinct Attributes of Service Path Events
@@ -82,7 +78,6 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	portId *string,
 	model *string,
 	version *string,
-	timestamp *float64,
 	mac *string,
 	start *string,
 	end *string,
@@ -95,19 +90,15 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -136,9 +127,6 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	if version != nil {
 		req.QueryParam("version", *version)
 	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
-	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)
 	}
@@ -165,7 +153,7 @@ func (s *SitesServices) CountSiteServicePathEvents(
 	return models.NewApiResponse(result, resp), err
 }
 
-// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, timestamp, mac, limit, start, end, duration, sort, searchAfter as parameters and
+// SearchSiteServicePathEvents takes context, siteId, mType, text, peerPortId, peerMac, vpnName, vpnPath, policy, portId, model, version, mac, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseEventsPathSearch data and
 // an error if there was an issue with the request or response.
 // Search Service Path Events
@@ -182,7 +170,6 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	portId *string,
 	model *string,
 	version *string,
-	timestamp *float64,
 	mac *string,
 	limit *int,
 	start *string,
@@ -197,19 +184,15 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mType != nil {
 		req.QueryParam("type", *mType)
@@ -240,9 +223,6 @@ func (s *SitesServices) SearchSiteServicePathEvents(
 	}
 	if version != nil {
 		req.QueryParam("version", *version)
-	}
-	if timestamp != nil {
-		req.QueryParam("timestamp", *timestamp)
 	}
 	if mac != nil {
 		req.QueryParam("mac", *mac)

@@ -1,7 +1,7 @@
 
 # Tunnel Config Auto Provision Lat Lng
 
-API override for POP selection
+Geographic coordinate override for tunnel POP selection
 
 ## Structure
 
@@ -11,15 +11,24 @@ API override for POP selection
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Lat` | `float64` | Required | - |
-| `Lng` | `float64` | Required | - |
+| `Lat` | `float64` | Required | Geographic latitude used for POP selection override |
+| `Lng` | `float64` | Required | Geographic longitude used for POP selection override |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "lat": 37.295833,
-  "lng": -122.032946
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigAutoProvisionLatLng := models.TunnelConfigAutoProvisionLatLng{
+        Lat:                  float64(37.295833),
+        Lng:                  float64(-122.032946),
+    }
+
 }
 ```
 

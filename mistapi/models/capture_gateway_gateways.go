@@ -8,6 +8,7 @@ import (
 )
 
 // CaptureGatewayGateways represents a CaptureGatewayGateways struct.
+// Gateway-specific packet capture settings keyed under a gateway MAC address
 type CaptureGatewayGateways struct {
 	// Property key is the port ID
 	Ports                map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`

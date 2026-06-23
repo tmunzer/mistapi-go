@@ -11,96 +11,129 @@ import (
 )
 
 // StatsAp represents a StatsAp struct.
-// AP statistics
+// AP runtime statistics, placement data, and inventory metadata
 type StatsAp struct {
 	// Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal`
-	AntennaSelect   *AntennaSelectEnum    `json:"antenna_select,omitempty"`
-	AutoPlacement   *StatsApAutoPlacement `json:"auto_placement,omitempty"`
-	AutoUpgradeStat *StatsApAutoUpgrade   `json:"auto_upgrade_stat,omitempty"`
-	BleStat         *StatsApBle           `json:"ble_stat,omitempty"`
-	CertExpiry      Optional[float64]     `json:"cert_expiry"`
-	ConfigReverted  Optional[bool]        `json:"config_reverted"`
-	CpuSystem       Optional[int64]       `json:"cpu_system"`
-	CpuUser         Optional[int]         `json:"cpu_user"`
-	CpuUtil         Optional[int]         `json:"cpu_util"`
+	AntennaSelect *AntennaSelectEnum `json:"antenna_select,omitempty"`
+	// Auto placement result and status for an AP
+	AutoPlacement *StatsApAutoPlacement `json:"auto_placement,omitempty"`
+	// Auto-upgrade status for an AP
+	AutoUpgradeStat *StatsApAutoUpgrade `json:"auto_upgrade_stat,omitempty"`
+	// BLE beacon and traffic statistics reported by an AP
+	BleStat *StatsApBle `json:"ble_stat,omitempty"`
+	// Certificate expiry timestamp for the AP, in epoch seconds
+	CertExpiry Optional[float64] `json:"cert_expiry"`
+	// Whether the AP configuration was reverted by the device
+	ConfigReverted Optional[bool] `json:"config_reverted"`
+	// CPU system utilization reported by the AP
+	CpuSystem Optional[int64] `json:"cpu_system"`
+	// CPU user utilization reported by the AP
+	CpuUser Optional[int] `json:"cpu_user"`
+	// Total CPU utilization reported by the AP
+	CpuUtil Optional[int] `json:"cpu_util"`
 	// When the object has been created, in epoch
-	CreatedTime     *float64            `json:"created_time,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Device profile identifier applied to the AP, when present
 	DeviceprofileId Optional[uuid.UUID] `json:"deviceprofile_id"`
 	// Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
-	EnvStat    *StatsApEnvStat          `json:"env_stat,omitempty"`
-	EslStat    Optional[StatsApEslStat] `json:"esl_stat"`
-	EvpntopoId Optional[uuid.UUID]      `json:"evpntopo_id"`
+	EnvStat *StatsApEnvStat `json:"env_stat,omitempty"`
+	// Electronic shelf label dongle status reported by an AP
+	EslStat Optional[StatsApEslStat] `json:"esl_stat"`
+	// EVPN topology identifier associated with the AP, when present
+	EvpntopoId Optional[uuid.UUID] `json:"evpntopo_id"`
 	// Map of certificate serial numbers to their expiry timestamps (in epoch) for certificates expiring within 30 days. Property key is the certificate serial number
-	ExpiringCerts map[string]int   `json:"expiring_certs,omitempty"`
-	ExtIp         Optional[string] `json:"ext_ip"`
-	Fwupdate      *FwupdateStat    `json:"fwupdate,omitempty"`
-	GpsStat       *StatsApGpsStat  `json:"gps_stat,omitempty"`
-	HwRev         Optional[string] `json:"hw_rev"`
+	ExpiringCerts map[string]int `json:"expiring_certs,omitempty"`
+	// Public IP address observed for the AP
+	ExtIp Optional[string] `json:"ext_ip"`
+	// Firmware update status for a device
+	Fwupdate *FwupdateStat `json:"fwupdate,omitempty"`
+	// GPS location data reported by an AP
+	GpsStat *StatsApGpsStat `json:"gps_stat,omitempty"`
+	// Hardware revision reported by the AP
+	HwRev Optional[string] `json:"hw_rev"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                 *uuid.UUID                                    `json:"id,omitempty"`
-	InactiveWiredVlans []int                                         `json:"inactive_wired_vlans,omitempty"`
-	IotStat            map[string]StatsApIotStatAdditionalProperties `json:"iot_stat,omitempty"`
-	Ip                 Optional[string]                              `json:"ip"`
-	// IP AP settings
+	Id *uuid.UUID `json:"id,omitempty"`
+	// List of integer values
+	InactiveWiredVlans []int `json:"inactive_wired_vlans,omitempty"`
+	// IoT input statistics reported by an AP
+	IotStat map[string]StatsApIotStatAdditionalProperties `json:"iot_stat,omitempty"`
+	// Management IP address currently reported by the AP
+	Ip Optional[string] `json:"ip"`
+	// Management IP addressing settings for an access point
 	IpConfig *ApIpConfig `json:"ip_config,omitempty"`
-	IpStat   *IpStat     `json:"ip_stat,omitempty"`
+	// Read-only IP addressing status reported by a device interface
+	IpStat *IpStat `json:"ip_stat,omitempty"`
 	// L2TP tunnel status (key is the wxtunnel_id)
 	L2tpStat map[string]StatsApL2tpStat `json:"l2tp_stat,omitempty"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Last trouble code of switch
+	// Last trouble indicator reported by a switch
 	LastTrouble *LastTrouble `json:"last_trouble,omitempty"`
-	// LED AP settings
+	// Indicator light settings for an access point
 	Led *ApLed `json:"led,omitempty"`
 	// LLDP neighbor information and power negotiations. For backward compatibility, when multiple neighbors exist, only information from the first neighbor is displayed.
 	LldpStat *StatsApLldpStat `json:"lldp_stat,omitempty"`
 	// Property key is the port name (e.g. "eth0", "eth1", ...). Map of ethernet ports to their respective LLDP neighbor information and power negotiations. Only present when multiple neighbors exist.
 	LldpStats map[string]StatsApLldpStat `json:"lldp_stats,omitempty"`
-	Locating  Optional[bool]             `json:"locating"`
+	// Whether AP locating mode is currently active
+	Locating Optional[bool] `json:"locating"`
 	// Whether this AP is considered locked (placement / orientation has been vetted)
 	Locked Optional[bool] `json:"locked"`
-	// Device mac
-	Mac        Optional[string]    `json:"mac"`
-	MapId      Optional[uuid.UUID] `json:"map_id"`
-	MemTotalKb Optional[int64]     `json:"mem_total_kb"`
-	MemUsedKb  Optional[int64]     `json:"mem_used_kb"`
+	// AP MAC address reported by Mist
+	Mac Optional[string] `json:"mac"`
+	// Map identifier where the AP is placed, when available
+	MapId Optional[uuid.UUID] `json:"map_id"`
+	// Total memory available on the AP, in kilobytes
+	MemTotalKb Optional[int64] `json:"mem_total_kb"`
+	// Memory currently used on the AP, in kilobytes
+	MemUsedKb Optional[int64] `json:"mem_used_kb"`
 	// Property key is the mesh downlink id (e.g. `00000000-0000-0000-1000-5c5b35000010`)
 	MeshDownlinks map[string]ApStatMeshDownlink `json:"mesh_downlinks,omitempty"`
-	MeshUplink    *ApStatMeshUplink             `json:"mesh_uplink,omitempty"`
-	// Device model
+	// Runtime statistics for this AP's mesh uplink
+	MeshUplink *ApStatMeshUplink `json:"mesh_uplink,omitempty"`
+	// AP model identifier reported by Mist
 	Model Optional[string] `json:"model"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64         `json:"modified_time,omitempty"`
-	Mount        Optional[string] `json:"mount"`
-	Name         Optional[string] `json:"name"`
-	Notes        Optional[string] `json:"notes"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Orientation configured for the AP mount
+	Mount Optional[string] `json:"mount"`
+	// Display name of the AP
+	Name Optional[string] `json:"name"`
+	// Free-form notes configured on the AP record
+	Notes Optional[string] `json:"notes"`
 	// How many wireless clients are currently connected
 	NumClients Optional[int] `json:"num_clients"`
 	// How many WLANs are applied to the device
-	NumWlans *int       `json:"num_wlans,omitempty"`
-	OrgId    *uuid.UUID `json:"org_id,omitempty"`
+	NumWlans *int `json:"num_wlans,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Property key is the port name (e.g. `eth0`)
 	PortStat Optional[map[string]StatsApPortStat] `json:"port_stat"`
 	// In mW, surplus if positive or deficit if negative
 	PowerBudget Optional[int] `json:"power_budget"`
-	// Whether insufficient power
+	// Whether the AP is operating with insufficient power
 	PowerConstrained Optional[bool] `json:"power_constrained"`
-	// Constrained mode
+	// Operating mode used while AP power is constrained
 	PowerOpmode Optional[string] `json:"power_opmode"`
 	// DC Input / PoE 802.3at / PoE 802.3af / LLDP / ? (unknown)
-	PowerSrc    Optional[string]    `json:"power_src"`
+	PowerSrc Optional[string] `json:"power_src"`
+	// Radio configuration reported by an AP
 	RadioConfig *StatsApRadioConfig `json:"radio_config,omitempty"`
-	RadioStat   *StatsApRadioStat   `json:"radio_stat,omitempty"`
+	// Per-band radio statistics reported by an AP
+	RadioStat *StatsApRadioStat `json:"radio_stat,omitempty"`
 	// Rate of receiving traffic, bits/seconds, last known
 	RxBps Optional[int64] `json:"rx_bps"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	// Serial Number
-	Serial           Optional[string]         `json:"serial"`
-	SiteId           *uuid.UUID               `json:"site_id,omitempty"`
-	Status           Optional[string]         `json:"status"`
+	// Device serial number for the AP
+	Serial Optional[string] `json:"serial"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Connection status reported for the AP
+	Status Optional[string] `json:"status"`
+	// Switch redundancy status reported by an AP
 	SwitchRedundancy *StatsApSwitchRedundancy `json:"switch_redundancy,omitempty"`
 	// Rate of transmitting traffic, bits/seconds, last known
 	TxBps Optional[int64] `json:"tx_bps"`
@@ -111,10 +144,14 @@ type StatsAp struct {
 	// Device Type. enum: `ap`
 	Type string `json:"type"`
 	// How long, in seconds, has the device been up (or rebooted)
-	Uptime               Optional[float64]      `json:"uptime"`
-	UsbStat              *StatsApUsbStat        `json:"usb_stat,omitempty"`
-	Version              Optional[string]       `json:"version"`
-	X                    Optional[float64]      `json:"x"`
+	Uptime Optional[float64] `json:"uptime"`
+	// USB peripheral status reported by an AP
+	UsbStat *StatsApUsbStat `json:"usb_stat,omitempty"`
+	// Firmware version running on the AP
+	Version Optional[string] `json:"version"`
+	// Map X coordinate of the AP placement, in pixels
+	X Optional[float64] `json:"x"`
+	// Map Y coordinate of the AP placement, in pixels
 	Y                    Optional[float64]      `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

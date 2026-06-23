@@ -8,8 +8,9 @@ import (
 )
 
 // WlanPortalTemplate represents a WlanPortalTemplate struct.
+// Guest portal template payload for a WLAN
 type WlanPortalTemplate struct {
-	// Portal template wlan settings
+	// Portal template settings for the WLAN guest portal
 	PortalTemplate       *WlanPortalTemplateSetting `json:"portal_template,omitempty"`
 	AdditionalProperties map[string]interface{}     `json:"_"`
 }

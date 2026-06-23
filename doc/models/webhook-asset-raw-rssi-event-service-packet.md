@@ -1,6 +1,8 @@
 
 # Webhook Asset Raw Rssi Event Service Packet
 
+BLE service data decoded from an asset raw RSSI packet
+
 ## Structure
 
 `WebhookAssetRawRssiEventServicePacket`
@@ -12,12 +14,21 @@
 | `ServiceData` | `models.Optional[string]` | Optional | optional, data from service data |
 | `ServiceUuid` | `models.Optional[string]` | Optional | optional, UUID from service data |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "service_data": "service_data0",
-  "service_uuid": "service_uuid8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookAssetRawRssiEventServicePacket := models.WebhookAssetRawRssiEventServicePacket{
+        ServiceData:          models.NewOptional(models.ToPointer("service_data2")),
+        ServiceUuid:          models.NewOptional(models.ToPointer("service_uuid0")),
+    }
+
 }
 ```
 

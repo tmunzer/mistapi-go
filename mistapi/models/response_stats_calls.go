@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseStatsCalls represents a ResponseStatsCalls struct.
+// Paginated response for site call statistics search results
 type ResponseStatsCalls struct {
-	End                  *float64               `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []StatsCall            `json:"results,omitempty"`
-	Start                *float64               `json:"start,omitempty"`
+	// Epoch timestamp, in seconds, for the end of the call statistics search window
+	End *float64 `json:"end,omitempty"`
+	// Maximum number of call statistics records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for retrieving the next page of call statistics results
+	Next *string `json:"next,omitempty"`
+	// Collaboration call statistics returned by search
+	Results []StatsCall `json:"results,omitempty"`
+	// Epoch timestamp, in seconds, for the start of the call statistics search window
+	Start *float64 `json:"start,omitempty"`
+	// Number of call statistics records matching the search filters across all pages
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

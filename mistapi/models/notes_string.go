@@ -8,7 +8,9 @@ import (
 )
 
 // NotesString represents a NotesString struct.
+// Request body containing notes text
 type NotesString struct {
+	// Text to attach to the target resource as notes
 	Notes                *string                `json:"notes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

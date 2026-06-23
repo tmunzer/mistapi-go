@@ -1,6 +1,8 @@
 
 # Auto Placement
 
+Request options for validating or starting AP auto-placement
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -17,22 +19,30 @@
 | `Override` | `*bool` | Optional | Set to `true` to run auto placement even if there are invalid APs in the selected APs.<br><br>**Default**: `false` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "dryrun": false,
-  "force_collection": false,
-  "override": false,
-  "macs": [
-    "macs9",
-    "macs8",
-    "macs7"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    autoPlacement := models.AutoPlacement{
+        Dryrun:               models.ToPointer(false),
+        ForceCollection:      models.ToPointer(false),
+        Macs:                 []string{
+            "macs5",
+            "macs4",
+            "macs3",
+        },
+        Override:             models.ToPointer(false),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

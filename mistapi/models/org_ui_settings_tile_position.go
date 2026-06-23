@@ -8,10 +8,15 @@ import (
 )
 
 // OrgUiSettingsTilePosition represents a OrgUiSettingsTilePosition struct.
+// Grid position for a databoard tile
 type OrgUiSettingsTilePosition struct {
-	Col                  *int                   `json:"col,omitempty"`
-	ColSpan              *int                   `json:"colSpan,omitempty"`
-	Row                  *int                   `json:"row,omitempty"`
+	// Grid column index for the tile
+	Col *int `json:"col,omitempty"`
+	// Grid column span for the tile
+	ColSpan *int `json:"colSpan,omitempty"`
+	// Grid row index for the tile
+	Row *int `json:"row,omitempty"`
+	// Grid row span for the tile
 	RowSpan              *int                   `json:"rowSpan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

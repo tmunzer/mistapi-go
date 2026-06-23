@@ -15,3 +15,18 @@ enum: `ready`, `unknown`, `updating`
 | `unknown` |
 | `updating` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rrmStatus := models.RrmStatusEnum_UNKNOWN
+
+}
+```
+

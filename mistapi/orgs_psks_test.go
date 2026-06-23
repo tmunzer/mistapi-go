@@ -18,11 +18,12 @@ func TestOrgsPsksTestListOrgPsks(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	name := "psk_name"
-
+	name := "psk-a,psk-b"
+	ssid := "Corp,Guest"
+	role := "employee,contractor"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, nil, nil, &limit, &page)
+	apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, &ssid, &role, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -42,11 +43,12 @@ func TestOrgsPsksTestListOrgPsks1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	name := "psk_name"
-
+	name := "psk-a,psk-b"
+	ssid := "Corp,Guest"
+	role := "employee,contractor"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, nil, nil, &limit, &page)
+	apiResponse, err := orgsPsks.ListOrgPsks(ctx, orgId, &name, &ssid, &role, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

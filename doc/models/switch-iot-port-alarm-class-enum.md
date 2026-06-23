@@ -14,3 +14,18 @@ Alarm class for the switch iot port in. enum: `minor`, `major`
 | `minor` |
 | `major` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchIotPortAlarmClass := models.SwitchIotPortAlarmClassEnum_MINOR
+
+}
+```
+

@@ -15,3 +15,18 @@ enum: `narrow`, `medium`, `wide`
 | `medium` |
 | `wide` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    radioBandAntennaBeamPattern := models.RadioBandAntennaBeamPatternEnum_MEDIUM
+
+}
+```
+

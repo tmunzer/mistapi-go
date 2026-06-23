@@ -1,6 +1,8 @@
 
 # Utils Cable Tests
 
+Request body for running a switch cable test on a port
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -14,15 +16,23 @@
 | `Port` | `string` | Required | The port to run the cable test |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "port": "port2",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsCableTests := models.UtilsCableTests{
+        Port:                 "port0",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

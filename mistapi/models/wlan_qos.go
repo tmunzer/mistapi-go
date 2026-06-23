@@ -8,6 +8,7 @@ import (
 )
 
 // WlanQos represents a WlanQos struct.
+// QoS override settings for WLAN client traffic
 type WlanQos struct {
 	// enum: `background`, `best_effort`, `video`, `voice`
 	Class *WlanQosClassEnum `json:"class,omitempty"`

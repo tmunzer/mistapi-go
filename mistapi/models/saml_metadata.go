@@ -8,16 +8,17 @@ import (
 )
 
 // SamlMetadata represents a SamlMetadata struct.
+// Read-only SAML and SCIM metadata generated for an SSO configuration
 type SamlMetadata struct {
-	// If `idp_type`==`saml`
+	// If `idp_type`==`saml`, Assertion Consumer Service URL that receives SAML responses for this Mist SSO configuration
 	AcsUrl *string `json:"acs_url,omitempty"`
-	// If `idp_type`==`saml`
+	// If `idp_type`==`saml`, service provider entity ID for this Mist SSO configuration
 	EntityId *string `json:"entity_id,omitempty"`
-	// If `idp_type`==`saml`
+	// If `idp_type`==`saml`, Single Logout URL used by the identity provider to end the Mist SSO session
 	LogoutUrl *string `json:"logout_url,omitempty"`
-	// If `idp_type`==`saml`
+	// If `idp_type`==`saml`, service provider metadata XML for configuring the identity provider
 	Metadata *string `json:"metadata,omitempty"`
-	// If `idp_type`==`oauth` and `scim_enabled`==`true`
+	// If `idp_type`==`oauth` and `scim_enabled`==`true`, SCIM base URL that the identity provider uses to send provisioning requests to Mist
 	ScimBaseUrl          *string                `json:"scim_base_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

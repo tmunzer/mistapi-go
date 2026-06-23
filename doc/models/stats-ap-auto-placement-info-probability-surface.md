@@ -1,7 +1,7 @@
 
 # Stats Ap Auto Placement Info Probability Surface
 
-Coordinates representing a circle where the AP is most likely exists in the event of an inaccurate placement result
+Circular uncertainty area for an AP auto placement result
 
 ## Structure
 
@@ -11,17 +11,26 @@ Coordinates representing a circle where the AP is most likely exists in the even
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Radius` | `*float64` | Optional | The radius representing placement uncertainty, measured in pixels |
-| `RadiusM` | `*float64` | Optional | The radius representing placement uncertainty, measured in meters |
-| `X` | `*float64` | Optional | Y-coordinate of the potential placement’s center, measured in pixels |
+| `Radius` | `*float64` | Optional | The RADIUS representing placement uncertainty, measured in pixels |
+| `RadiusM` | `*float64` | Optional | The RADIUS representing placement uncertainty, measured in meters |
+| `X` | `*float64` | Optional | Potential placement center X coordinate, in pixels |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "radius": 2.1,
-  "x": 17.0,
-  "radius_m": 200.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApAutoPlacementInfoProbabilitySurface := models.StatsApAutoPlacementInfoProbabilitySurface{
+        Radius:               models.ToPointer(float64(2.1)),
+        RadiusM:              models.ToPointer(float64(75.58)),
+        X:                    models.ToPointer(float64(17)),
+    }
+
 }
 ```
 

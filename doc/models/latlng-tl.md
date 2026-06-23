@@ -1,7 +1,7 @@
 
 # Latlng Tl
 
-When type=google, latitude / longitude of the top-left corner
+When `type`==`google`, latitude and longitude of the top-left corner
 
 ## Structure
 
@@ -11,15 +11,24 @@ When type=google, latitude / longitude of the top-left corner
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Lat` | `*string` | Optional | - |
-| `Lng` | `*string` | Optional | - |
+| `Lat` | `*string` | Optional | Top-left latitude for the Google map bounds |
+| `Lng` | `*string` | Optional | Top-left longitude for the Google map bounds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "lat": "lat4",
-  "lng": "lng2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    latlngTl := models.LatlngTl{
+        Lat:                  models.ToPointer("lat0"),
+        Lng:                  models.ToPointer("lng6"),
+    }
+
 }
 ```
 

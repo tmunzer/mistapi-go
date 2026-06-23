@@ -1,7 +1,7 @@
 
 # Capture Client Type Enum
 
-enum: `client`
+Packet capture type discriminator for client captures. enum: `client`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `client`
 
 ## Example
 
-```
-client
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureClientType := models.CaptureClientTypeEnum_CLIENT
+
+}
 ```
 

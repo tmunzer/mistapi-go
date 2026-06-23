@@ -9,27 +9,45 @@ import (
 )
 
 // InstallerDevice represents a InstallerDevice struct.
+// Recently claimed device visible to installer workflows
 type InstallerDevice struct {
 	// BLE statistics for the device
-	BleStat           *InstallerDeviceBleStat `json:"ble_stat,omitempty"`
-	Connected         *bool                   `json:"connected,omitempty"`
-	DeviceprofileName *string                 `json:"deviceprofile_name,omitempty"`
-	ExtIp             *string                 `json:"ext_ip,omitempty"`
-	Height            *float64                `json:"height,omitempty"`
-	Ip                *string                 `json:"ip,omitempty"`
-	// Last seen timestamp
-	LastSeen             Optional[float64]      `json:"last_seen"`
-	Mac                  *string                `json:"mac,omitempty"`
-	MapId                *uuid.UUID             `json:"map_id,omitempty"`
-	Model                *string                `json:"model,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	Orientation          *int                   `json:"orientation,omitempty"`
-	Serial               *string                `json:"serial,omitempty"`
-	SiteName             *string                `json:"site_name,omitempty"`
-	Uptime               *int                   `json:"uptime,omitempty"`
-	VcMac                Optional[string]       `json:"vc_mac"`
-	Version              *string                `json:"version,omitempty"`
-	X                    *float64               `json:"x,omitempty"`
+	BleStat *InstallerDeviceBleStat `json:"ble_stat,omitempty"`
+	// Whether the device is currently connected to Mist
+	Connected *bool `json:"connected,omitempty"`
+	// Device profile name associated with this installer device
+	DeviceprofileName *string `json:"deviceprofile_name,omitempty"`
+	// External IP address observed for device management traffic
+	ExtIp *string `json:"ext_ip,omitempty"`
+	// Mounting height recorded for map placement
+	Height *float64 `json:"height,omitempty"`
+	// Management IP address currently reported for the device
+	Ip *string `json:"ip,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Device MAC address shown to installers
+	Mac *string `json:"mac,omitempty"`
+	// Map where the installer placed this device
+	MapId *uuid.UUID `json:"map_id,omitempty"`
+	// Device model reported for this installer device
+	Model *string `json:"model,omitempty"`
+	// Device name configured through the installer workflow
+	Name *string `json:"name,omitempty"`
+	// Device orientation in degrees from 0 to 359, where 0 is up and 90 is right
+	Orientation *int `json:"orientation,omitempty"`
+	// Device serial number reported to installer workflows
+	Serial *string `json:"serial,omitempty"`
+	// Site name associated with this installer device
+	SiteName *string `json:"site_name,omitempty"`
+	// Device uptime, in seconds
+	Uptime *int `json:"uptime,omitempty"`
+	// Virtual Chassis MAC address when this device is part of a VC
+	VcMac Optional[string] `json:"vc_mac"`
+	// Software version currently running on the device
+	Version *string `json:"version,omitempty"`
+	// Horizontal map position of the device, in pixels
+	X *float64 `json:"x,omitempty"`
+	// Vertical map position of the device, in pixels
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

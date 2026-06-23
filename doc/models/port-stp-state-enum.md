@@ -1,7 +1,7 @@
 
 # Port Stp State Enum
 
-enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+Spanning Tree Protocol state for the port. enum: `""`, `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 
 ## Enumeration
 
@@ -16,4 +16,19 @@ enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 | `forwarding` |
 | `learning` |
 | `listening` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    portStpState := models.PortStpStateEnum_FORWARDING
+
+}
+```
 

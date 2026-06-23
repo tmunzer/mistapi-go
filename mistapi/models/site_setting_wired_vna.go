@@ -8,7 +8,9 @@ import (
 )
 
 // SiteSettingWiredVna represents a SiteSettingWiredVna struct.
+// Wired Virtual Network Assistant settings for the site
 type SiteSettingWiredVna struct {
+	// Whether Wired VNA is enabled for the site
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

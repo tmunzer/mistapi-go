@@ -11,31 +11,41 @@ Sample of the `minis-reachability` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookMinisReachabilityEvent`](../../doc/models/webhook-minis-reachability-event.md) | Required | - |
-| `Topic` | `string` | Required, Constant | enum: `minis-reachability`<br><br>**Value**: `"minis-reachability"` |
+| `Events` | [`[]models.WebhookMinisReachabilityEvent`](../../doc/models/webhook-minis-reachability-event.md) | Required | Marvis Minis reachability test events included in a webhook delivery |
+| `Topic` | `string` | Required, Constant | Webhook topic name for Minis reachability test deliveries. enum: `minis-reachability`<br><br>**Value**: `"minis-reachability"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "device_mac": "7cb68d8f0440",
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "probe_name": "google ping",
-      "probe_target": "google.com",
-      "probe_type": "reachability",
-      "protocol": "icmp",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "test_type": "ping",
-      "vlan": 12,
-      "avg_latency": 11.76,
-      "loss_percentage": 105.92,
-      "max_latency": 79.28,
-      "min_latency": 246.38
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookMinisReachability := models.WebhookMinisReachability{
+        Events:               []models.WebhookMinisReachabilityEvent{
+            models.WebhookMinisReachabilityEvent{
+                AvgLatency:           models.ToPointer(float64(11.76)),
+                DeviceMac:            models.ToPointer("7cb68d8f0440"),
+                LossPercentage:       models.ToPointer(float64(105.92)),
+                MaxLatency:           models.ToPointer(float64(79.28)),
+                MinLatency:           models.ToPointer(float64(246.38)),
+                OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+                ProbeName:            models.ToPointer("google ping"),
+                ProbeTarget:          models.ToPointer("google.com"),
+                ProbeType:            models.ToPointer("reachability"),
+                Protocol:             models.ToPointer("icmp"),
+                SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+                TestType:             models.ToPointer("ping"),
+                Vlan:                 models.ToPointer(12),
+            },
+        },
+        Topic:                "minis-reachability",
     }
-  ],
-  "topic": "minis-reachability"
+
 }
 ```
 

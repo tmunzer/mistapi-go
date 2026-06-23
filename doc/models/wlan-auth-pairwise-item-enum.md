@@ -19,7 +19,16 @@ enum: `wpa1-ccmp`, `wpa1-tkip`, `wpa2-ccmp`, `wpa2-tkip`, `wpa3`
 
 ## Example
 
-```
-wpa3
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAuthPairwiseItem := models.WlanAuthPairwiseItemEnum_WPA1CCMP
+
+}
 ```
 

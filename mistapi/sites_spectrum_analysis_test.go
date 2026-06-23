@@ -27,7 +27,7 @@ func TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis(t *testing.T) {
 		testHelper.NewTestHeader(true, "Content-Type", "application/json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"band":"5","device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream","started_time":1435080709}`
+	expected := `{"band":"5","channels":[36,40,44,48],"device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream","started_time":1435080709,"width":20}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -47,7 +47,7 @@ func TestSitesSpectrumAnalysisTestGetSiteRunningSpectrumAnalysis1(t *testing.T) 
 		testHelper.NewTestHeader(true, "Content-Type", "application/vnd.api+json"),
 	}
 	testHelper.CheckResponseHeaders(t, apiResponse.Response.Header, expectedHeaders, true)
-	expected := `{"band":"5","device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream","started_time":1435080709}`
+	expected := `{"band":"5","channels":[36,40,44,48],"device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream","started_time":1435080709,"width":20}`
 	testHelper.KeysBodyMatcher(t, expected, apiResponse.Response.Body, false, false)
 }
 
@@ -59,7 +59,7 @@ func TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.SpectrumAnalysis
-	errBody := json.Unmarshal([]byte(`{"band":"5","device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"band":"5","channels":[36,40,44,48],"device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}
@@ -82,7 +82,7 @@ func TestSitesSpectrumAnalysisTestInitiateSiteAnalyzeSpectrum1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	var body models.SpectrumAnalysis
-	errBody := json.Unmarshal([]byte(`{"band":"5","device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream"}`), &body)
+	errBody := json.Unmarshal([]byte(`{"band":"5","channels":[36,40,44,48],"device_id":"00000000-0000-0000-1000-5c5b35bd76bb","duration":600,"format":"stream"}`), &body)
 	if errBody != nil {
 		t.Errorf("Cannot parse the model object.")
 	}

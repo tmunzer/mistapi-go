@@ -8,6 +8,7 @@ import (
 )
 
 // ResponseAutoOrientationDevice represents a ResponseAutoOrientationDevice struct.
+// Per-device validation result for auto orientation
 type ResponseAutoOrientationDevice struct {
 	// Provides the reason for the status if the AP is invalid.
 	Reason *string `json:"reason,omitempty"`

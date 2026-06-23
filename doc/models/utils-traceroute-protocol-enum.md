@@ -14,3 +14,18 @@ enum: `icmp` (Only supported by AP/MxEdge), `udp`
 | `icmp` |
 | `udp` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsTracerouteProtocol := models.UtilsTracerouteProtocolEnum_ICMP
+
+}
+```
+

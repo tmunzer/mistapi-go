@@ -8,6 +8,7 @@ import (
 )
 
 // DhcpdConfig represents a DhcpdConfig struct.
+// DHCP server configuration map with a global enable flag
 type DhcpdConfig struct {
 	// If set to `false`, disable the DHCP server
 	Enabled              *bool                          `json:"enabled,omitempty"`

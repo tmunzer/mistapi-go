@@ -10,9 +10,9 @@ import (
 // WebhookGuestAuthorizations represents a WebhookGuestAuthorizations struct.
 // Sample of the `guest-authorizations` webhook payload.
 type WebhookGuestAuthorizations struct {
-	// List of events
+	// Guest authorization events included in this webhook delivery
 	Events []WebhookGuestAuthorizationsEvent `json:"events,omitempty"`
-	// enum: `guest-authorizations`
+	// Webhook topic name for guest authorization deliveries. enum: `guest-authorizations`
 	Topic                *WebhookGuestAuthorizationsTopicEnum `json:"topic,omitempty"`
 	AdditionalProperties map[string]interface{}               `json:"_"`
 }

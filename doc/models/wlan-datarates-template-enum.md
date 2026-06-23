@@ -23,3 +23,18 @@ Data Rates template to apply. enum:
 | `no-legacy` |
 | `high-density` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanDataratesTemplate := models.WlanDataratesTemplateEnum_CUSTOM
+
+}
+```
+

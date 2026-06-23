@@ -1,6 +1,8 @@
 
 # Map Org Import File
 
+Multipart payload for importing map files at organization scope
+
 ## Structure
 
 `MapOrgImportFile`
@@ -10,24 +12,34 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AutoDeviceprofileAssignment` | `*bool` | Optional | Whether to auto assign device to deviceprofile by name |
-| `Csv` | `*[]byte` | Optional | CSV file for ap name mapping, optional |
-| `File` | `*[]byte` | Optional | Ekahau or ibwave file |
-| `Json` | [`*models.MapOrgImportFileJson`](../../doc/models/map-org-import-file-json.md) | Optional | - |
+| `Csv` | `*[]byte` | Optional | Optional AP name-mapping CSV file |
+| `File` | `*[]byte` | Optional | Ekahau or iBwave floorplan file to import |
+| `Json` | [`*models.MapOrgImportFileJson`](../../doc/models/map-org-import-file-json.md) | Optional | Options for importing map files at organization scope |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auto_deviceprofile_assignment": true,
-  "csv": "data:text/plain;name=dummy_file;base64,",
-  "file": "data:text/plain;name=dummy_file;base64,",
-  "json": {
-    "import_all_floorplans": false,
-    "import_height": false,
-    "import_orientation": false,
-    "site_id": "00001f12-0000-0000-0000-000000000000",
-    "vendor_name": "ekahau"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    mapOrgImportFile := models.MapOrgImportFile{
+        AutoDeviceprofileAssignment: models.ToPointer(true),
+        Csv:                         models.ToPointer(nil),
+        File:                        models.ToPointer(nil),
+        Json:                        models.ToPointer(models.MapOrgImportFileJson{
+            ImportAllFloorplans:  models.ToPointer(false),
+            ImportHeight:         models.ToPointer(false),
+            ImportOrientation:    models.ToPointer(false),
+            SiteId:               models.ToPointer(uuid.MustParse("00001f12-0000-0000-0000-000000000000")),
+            VendorName:           models.MapOrgImportFileJsonVendorNameEnum_EKAHAU,
+        }),
+    }
+
 }
 ```
 

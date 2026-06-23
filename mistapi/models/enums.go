@@ -3,7 +3,7 @@
 package models
 
 // AamwProfileActionEnum is a string enum.
-// enum: `block`, `permit`
+// Action applied to files by an Advanced Anti Malware profile. enum: `block`, `permit`
 type AamwProfileActionEnum string
 
 const (
@@ -101,6 +101,7 @@ const (
 )
 
 // AdminPrivilegeViewEnum is a string enum.
+// UI view name allowed by a custom admin role. enum: `lobby_admin`, `location`, `marketing`, `mxedge_admin`, `reporting`, `security`, `super_observer`, `switch_admin`
 type AdminPrivilegeViewEnum string
 
 const (
@@ -126,13 +127,14 @@ const (
 )
 
 // AlarmGroupEnum is a string enum.
-// Alarm group. enum: `infrastructure`, `marvis`, `security`
+// Alarm group. enum: `certificate_expiry`, `infrastructure`, `marvis`, `security`
 type AlarmGroupEnum string
 
 const (
-	AlarmGroupEnum_INFRASTRUCTURE AlarmGroupEnum = "infrastructure"
-	AlarmGroupEnum_MARVIS         AlarmGroupEnum = "marvis"
-	AlarmGroupEnum_SECURITY       AlarmGroupEnum = "security"
+	AlarmGroupEnum_CERTIFICATEEXPIRY AlarmGroupEnum = "certificate_expiry"
+	AlarmGroupEnum_INFRASTRUCTURE    AlarmGroupEnum = "infrastructure"
+	AlarmGroupEnum_MARVIS            AlarmGroupEnum = "marvis"
+	AlarmGroupEnum_SECURITY          AlarmGroupEnum = "security"
 )
 
 // AlarmSeverityEnum is a string enum.
@@ -146,7 +148,7 @@ const (
 )
 
 // AlarmStatusEnum is a string enum.
-// enum: `open`, `resolved`
+// Current lifecycle status of this alarm. enum: `open`, `resolved`
 type AlarmStatusEnum string
 
 const (
@@ -155,7 +157,7 @@ const (
 )
 
 // AllowDenyEnum is a string enum.
-// enum: `allow`, `deny`
+// Policy action value that either allows or denies matching traffic. enum: `allow`, `deny`
 type AllowDenyEnum string
 
 const (
@@ -217,12 +219,39 @@ const (
 )
 
 // ApMeshRoleEnum is a string enum.
-// enum: `base`, `remote`
+// Mesh role for this AP, either base or remote. enum: `base`, `remote`
 type ApMeshRoleEnum string
 
 const (
 	ApMeshRoleEnum_BASE   ApMeshRoleEnum = "base"
 	ApMeshRoleEnum_REMOTE ApMeshRoleEnum = "remote"
+)
+
+// ApMqttBrokerProtoEnum is a string enum.
+// MQTT broker transport protocol. enum: `ssl`, `tcp`
+type ApMqttBrokerProtoEnum string
+
+const (
+	ApMqttBrokerProtoEnum_SSL ApMqttBrokerProtoEnum = "ssl"
+	ApMqttBrokerProtoEnum_TCP ApMqttBrokerProtoEnum = "tcp"
+)
+
+// ApMqttFormatEnum is a string enum.
+// Payload format for MQTT published messages. enum: `json`, `raw`
+type ApMqttFormatEnum string
+
+const (
+	ApMqttFormatEnum_JSON ApMqttFormatEnum = "json"
+	ApMqttFormatEnum_RAW  ApMqttFormatEnum = "raw"
+)
+
+// ApPortConfigDynamicVlanTypeEnum is a string enum.
+// Mapping mode for interpreting dynamic VLAN attributes returned by RADIUS.\ \ enum: `airespace-interface-name`, where the VLAN is determined by parsing\ \ the RADIUS attribute as an Airespace interface name (e.g. "guest"\ \ would map to VLAN 100), or `standard`, where the VLAN is determined by parsing\ \ the RADIUS attribute as a standard VLAN ID number
+type ApPortConfigDynamicVlanTypeEnum string
+
+const (
+	ApPortConfigDynamicVlanTypeEnum_AIRESPACEINTERFACENAME ApPortConfigDynamicVlanTypeEnum = "airespace-interface-name"
+	ApPortConfigDynamicVlanTypeEnum_STANDARD               ApPortConfigDynamicVlanTypeEnum = "standard"
 )
 
 // ApPortConfigForwardingEnum is a string enum.
@@ -293,7 +322,7 @@ const (
 )
 
 // AppProbingCustomAppProtocolEnum is a string enum.
-// enum: `http`, `icmp`
+// Probe protocol for a custom application. enum: `http`, `icmp`
 type AppProbingCustomAppProtocolEnum string
 
 const (
@@ -313,7 +342,7 @@ const (
 )
 
 // AvprofileFallbackActionEnum is a string enum.
-// enum: `block`, `log-and-permit`, `permit`
+// Action applied when antivirus scanning cannot complete. enum: `block`, `log-and-permit`, `permit`
 type AvprofileFallbackActionEnum string
 
 const (
@@ -323,6 +352,7 @@ const (
 )
 
 // AvprofileProtocolEnum is a string enum.
+// Protocol that can be inspected by an antivirus profile. enum: `ftp`, `http`, `imap`, `pop3`, `smtp`
 type AvprofileProtocolEnum string
 
 const (
@@ -377,7 +407,7 @@ const (
 )
 
 // BleConfigBeaconRateModeEnum is a string enum.
-// enum: `custom`, `default`
+// Beacon rate mode for Mist BLE beacons; use custom to set beacon_rate. enum: `custom`, `default`
 type BleConfigBeaconRateModeEnum string
 
 const (
@@ -386,7 +416,7 @@ const (
 )
 
 // BleConfigPowerModeEnum is a string enum.
-// enum: `custom`, `default`
+// Transmit power mode for BLE beacons; use `custom` to set explicit power. enum: `custom`, `default`
 type BleConfigPowerModeEnum string
 
 const (
@@ -395,7 +425,7 @@ const (
 )
 
 // CaptureClientTypeEnum is a string enum.
-// enum: `client`
+// Packet capture type discriminator for client captures. enum: `client`
 type CaptureClientTypeEnum string
 
 const (
@@ -403,7 +433,7 @@ const (
 )
 
 // CaptureGatewayFormatEnum is a string enum.
-// enum: `stream`
+// Output format for the gateway packet capture. enum: `stream`
 type CaptureGatewayFormatEnum string
 
 const (
@@ -411,7 +441,7 @@ const (
 )
 
 // CaptureGatewayTypeEnum is a string enum.
-// enum: `gateway`
+// Packet capture type discriminator for gateway captures. enum: `gateway`
 type CaptureGatewayTypeEnum string
 
 const (
@@ -430,7 +460,7 @@ const (
 )
 
 // CaptureMxedgeTypeEnum is a string enum.
-// enum: `mxedge`
+// Packet capture type discriminator for Mist Edge captures. enum: `mxedge`
 type CaptureMxedgeTypeEnum string
 
 const (
@@ -438,7 +468,7 @@ const (
 )
 
 // CaptureNewAssocTypeEnum is a string enum.
-// enum: `new_assoc`
+// Packet capture type discriminator for new association captures. enum: `new_assoc`
 type CaptureNewAssocTypeEnum string
 
 const (
@@ -457,7 +487,7 @@ const (
 )
 
 // CaptureRadiotapFormatEnum is a string enum.
-// enum: `pcap`, `stream`
+// Output format for the radiotap packet capture. enum: `pcap`, `stream`
 type CaptureRadiotapFormatEnum string
 
 const (
@@ -466,7 +496,7 @@ const (
 )
 
 // CaptureRadiotapTypeEnum is a string enum.
-// enum: `radiotap`
+// Packet capture type discriminator for radiotap captures. enum: `radiotap`
 type CaptureRadiotapTypeEnum string
 
 const (
@@ -485,7 +515,7 @@ const (
 )
 
 // CaptureRadiotapwiredFormatEnum is a string enum.
-// enum: `pcap`, `stream`
+// Output format for the combined packet capture. enum: `pcap`, `stream`
 type CaptureRadiotapwiredFormatEnum string
 
 const (
@@ -494,7 +524,7 @@ const (
 )
 
 // CaptureRadiotapwiredTypeEnum is a string enum.
-// enum: `radiotap,wired`
+// Packet capture type discriminator for combined radiotap and wired captures. enum: `radiotap,wired`
 type CaptureRadiotapwiredTypeEnum string
 
 const (
@@ -522,7 +552,7 @@ const (
 )
 
 // CaptureScanFormatEnum is a string enum.
-// enum: `pcap`, `stream`
+// Output format for the scan radio packet capture. enum: `pcap`, `stream`
 type CaptureScanFormatEnum string
 
 const (
@@ -531,7 +561,7 @@ const (
 )
 
 // CaptureScanTypeEnum is a string enum.
-// enum: `scan`
+// Packet capture type discriminator for scan radio captures. enum: `scan`
 type CaptureScanTypeEnum string
 
 const (
@@ -539,7 +569,7 @@ const (
 )
 
 // CaptureSwitchFormatEnum is a string enum.
-// enum: `stream`
+// Output format for the switch packet capture. enum: `stream`
 type CaptureSwitchFormatEnum string
 
 const (
@@ -547,7 +577,7 @@ const (
 )
 
 // CaptureSwitchTypeEnum is a string enum.
-// enum: `switch`
+// Packet capture type discriminator for switch captures. enum: `switch`
 type CaptureSwitchTypeEnum string
 
 const (
@@ -564,7 +594,7 @@ const (
 )
 
 // CaptureWiredTypeEnum is a string enum.
-// enum: `wired`
+// Packet capture type discriminator for wired captures. enum: `wired`
 type CaptureWiredTypeEnum string
 
 const (
@@ -591,7 +621,7 @@ const (
 )
 
 // CaptureWirelessTypeEnum is a string enum.
-// enum: `wireless`
+// Packet capture type discriminator for wireless captures. enum: `wireless`
 type CaptureWirelessTypeEnum string
 
 const (
@@ -608,6 +638,15 @@ const (
 	ClaimTypeEnum_LICENSE   ClaimTypeEnum = "license"
 )
 
+// ClaimTypeAsyncEnum is a string enum.
+// Claim scope for async inventory claiming. enum: `all`, `inventory`
+type ClaimTypeAsyncEnum string
+
+const (
+	ClaimTypeAsyncEnum_ALL       ClaimTypeAsyncEnum = "all"
+	ClaimTypeAsyncEnum_INVENTORY ClaimTypeAsyncEnum = "inventory"
+)
+
 // ClientInfoSourceEnum is a string enum.
 // source from where the client was learned (lldp, mac). enum: `lldp`, `mac`
 type ClientInfoSourceEnum string
@@ -618,7 +657,7 @@ const (
 )
 
 // ClientKeyMgmtEnum is a string enum.
-// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
+// Key management protocol used for the latest authentication. enum: `WPA2-PSK`, `WPA2-PSK/CCMP`, `WPA2-PSK-FT`, `WPA2-PSK-SHA256`, `WPA3-EAP-SHA256`, `WPA3-EAP-SHA256/CCMP`, `WPA3-EAP-FT/GCMP256`, `WPA3-SAE-FT`, `WPA3-SAE-PSK`
 type ClientKeyMgmtEnum string
 
 const (
@@ -655,7 +694,7 @@ const (
 )
 
 // ConstDeviceApExtiosDefaultDirEnum is a string enum.
-// enum: `IN`, `OUT`
+// Default direction for this external I/O port. enum: `IN`, `OUT`
 type ConstDeviceApExtiosDefaultDirEnum string
 
 const (
@@ -711,7 +750,7 @@ const (
 )
 
 // CountOrgDevicesMxtunnelStatusEnum is a string enum.
-// enum: `down`, `up`
+// Mist Tunnel status value used when counting organization devices. enum: `down`, `up`
 type CountOrgDevicesMxtunnelStatusEnum string
 
 const (
@@ -720,6 +759,7 @@ const (
 )
 
 // CountPbnDistinctEnum is a string enum.
+// Fields that can be used to group PBN advisory count results. enum: `versions`, `models`, `customer_risk`, `bug_type`
 type CountPbnDistinctEnum string
 
 const (
@@ -730,6 +770,7 @@ const (
 )
 
 // CountSirtDistinctEnum is a string enum.
+// Fields that can be used to group SIRT advisory count results. enum: `versions`, `models`, `severity`, `jsa_updated_date`
 type CountSirtDistinctEnum string
 
 const (
@@ -740,7 +781,7 @@ const (
 )
 
 // CountSiteCallsDistinctEnum is a string enum.
-// enum: `mac`
+// Distinct field used when counting site call statistics. enum: `mac`
 type CountSiteCallsDistinctEnum string
 
 const (
@@ -748,6 +789,7 @@ const (
 )
 
 // CountUsermacDistinctEnum is a string enum.
+// Fields that can be used to group user MAC count results. enum: `mac`, `name`, `labels`, `org_id`
 type CountUsermacDistinctEnum string
 
 const (
@@ -772,8 +814,19 @@ const (
 	DayOfWeekEnum_WED DayOfWeekEnum = "wed"
 )
 
+// DeviceEnumWithAllEnum is a string enum.
+// device type. enum: `all`, `ap`, `gateway`, `switch`. Default is `ap`
+type DeviceEnumWithAllEnum string
+
+const (
+	DeviceEnumWithAllEnum_ALL        DeviceEnumWithAllEnum = "all"
+	DeviceEnumWithAllEnum_AP         DeviceEnumWithAllEnum = "ap"
+	DeviceEnumWithAllEnum_ENUMSWITCH DeviceEnumWithAllEnum = "switch"
+	DeviceEnumWithAllEnum_GATEWAY    DeviceEnumWithAllEnum = "gateway"
+)
+
 // DeviceSearchRadiusFilterStatusEnum is a string enum.
-// Status of the device search radius filter. enum: `up`, `down`, `unreachable`
+// Status of the device search RADIUS filter. enum: `up`, `down`, `unreachable`
 type DeviceSearchRadiusFilterStatusEnum string
 
 const (
@@ -897,7 +950,7 @@ const (
 )
 
 // DiscoveredSwitchesMetricScopeEnum is a string enum.
-// enum: `site`, `switch`
+// Scope level used when querying discovered switch metrics. enum: `site`, `switch`
 type DiscoveredSwitchesMetricScopeEnum string
 
 const (
@@ -965,7 +1018,7 @@ const (
 )
 
 // DynamicPskSourceEnum is a string enum.
-// enum: `cloud_psks`, `radius`
+// Origin used to retrieve per-user PSKs. enum: `cloud_psks`, `radius`
 type DynamicPskSourceEnum string
 
 const (
@@ -974,7 +1027,7 @@ const (
 )
 
 // EdrProviderEnum is a string enum.
-// `enum: `sentinelone`, `crowdstrike`
+// EDR provider associated with the NAC client. enum: `crowdstrike`, `sentinelone`
 type EdrProviderEnum string
 
 const (
@@ -1010,6 +1063,7 @@ const (
 )
 
 // EventSeverityEnum is a string enum.
+// Severity level for an event. enum: `normal`, `critical`, `high`, `warning`
 type EventSeverityEnum string
 
 const (
@@ -1211,7 +1265,7 @@ const (
 )
 
 // GatewayTemplateTypeEnum is a string enum.
-// enum: `spoke`, `standalone`
+// Gateway template deployment type. enum: `spoke`, `standalone`
 type GatewayTemplateTypeEnum string
 
 const (
@@ -1230,7 +1284,7 @@ const (
 )
 
 // GatewayWanProbeOverrideProbeProfileEnum is a string enum.
-// enum: `broadband`, `lte`
+// WAN probe profile used for health checks on this port. enum: `broadband`, `lte`
 type GatewayWanProbeOverrideProbeProfileEnum string
 
 const (
@@ -1281,7 +1335,7 @@ const (
 )
 
 // HaClusterNodeEnum is a string enum.
-// only for HA. enum: `node0`, `node1`
+// HA cluster node selector. enum: `node0`, `node1`
 type HaClusterNodeEnum string
 
 const (
@@ -1300,10 +1354,7 @@ const (
 )
 
 // IdpProfileActionEnum is a string enum.
-// enum:
-// * alert (default)
-// * drop: silently dropping packets
-// * close: notify client/server to close connection
+// IDP profile action. enum: `alert`, `close`, `drop`. `alert` is the default, `drop` silently drops packets, and `close` asks the client/server to close the connection
 type IdpProfileActionEnum string
 
 const (
@@ -1345,7 +1396,7 @@ const (
 )
 
 // ImportSiteAssetsUpsertEnum is a string enum.
-// enum: `False`, `True`
+// Whether site asset import should update matching existing assets. enum: `False`, `True`
 type ImportSiteAssetsUpsertEnum string
 
 const (
@@ -1383,7 +1434,7 @@ const (
 )
 
 // IpTypeEnum is a string enum.
-// enum: `dhcp`, `static`
+// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 type IpTypeEnum string
 
 const (
@@ -1403,38 +1454,26 @@ const (
 )
 
 // JsiInventoryCountDistinctEnum is a string enum.
-// enum: `account_id`, `claimed`, `eol_time`, `eos_time`, `has_support`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type
+// Distinct field used when counting Juniper Support Insight inventory records. enum: `account_id`, `claimed`, `has_support`, `end_of_sale_time`, `eos_time`, `version_time`, `model`, `sku`, `status`, `type`, `version`, `warranty_type`
 type JsiInventoryCountDistinctEnum string
 
 const (
-	JsiInventoryCountDistinctEnum_ACCOUNTID    JsiInventoryCountDistinctEnum = "account_id"
-	JsiInventoryCountDistinctEnum_CLAIMED      JsiInventoryCountDistinctEnum = "claimed"
-	JsiInventoryCountDistinctEnum_HASSUPPORT   JsiInventoryCountDistinctEnum = "has_support"
-	JsiInventoryCountDistinctEnum_EOLTIME      JsiInventoryCountDistinctEnum = "eol_time"
-	JsiInventoryCountDistinctEnum_EOSTIME      JsiInventoryCountDistinctEnum = "eos_time"
-	JsiInventoryCountDistinctEnum_VERSIONTIME  JsiInventoryCountDistinctEnum = "version_time"
-	JsiInventoryCountDistinctEnum_MODEL        JsiInventoryCountDistinctEnum = "model"
-	JsiInventoryCountDistinctEnum_SKU          JsiInventoryCountDistinctEnum = "sku"
-	JsiInventoryCountDistinctEnum_STATUS       JsiInventoryCountDistinctEnum = "status"
-	JsiInventoryCountDistinctEnum_ENUMTYPE     JsiInventoryCountDistinctEnum = "type"
-	JsiInventoryCountDistinctEnum_VERSION      JsiInventoryCountDistinctEnum = "version"
-	JsiInventoryCountDistinctEnum_WARRANTYTYPE JsiInventoryCountDistinctEnum = "warranty_type"
+	JsiInventoryCountDistinctEnum_ACCOUNTID     JsiInventoryCountDistinctEnum = "account_id"
+	JsiInventoryCountDistinctEnum_CLAIMED       JsiInventoryCountDistinctEnum = "claimed"
+	JsiInventoryCountDistinctEnum_HASSUPPORT    JsiInventoryCountDistinctEnum = "has_support"
+	JsiInventoryCountDistinctEnum_ENDOFSALETIME JsiInventoryCountDistinctEnum = "end_of_sale_time"
+	JsiInventoryCountDistinctEnum_EOSTIME       JsiInventoryCountDistinctEnum = "eos_time"
+	JsiInventoryCountDistinctEnum_VERSIONTIME   JsiInventoryCountDistinctEnum = "version_time"
+	JsiInventoryCountDistinctEnum_MODEL         JsiInventoryCountDistinctEnum = "model"
+	JsiInventoryCountDistinctEnum_SKU           JsiInventoryCountDistinctEnum = "sku"
+	JsiInventoryCountDistinctEnum_STATUS        JsiInventoryCountDistinctEnum = "status"
+	JsiInventoryCountDistinctEnum_ENUMTYPE      JsiInventoryCountDistinctEnum = "type"
+	JsiInventoryCountDistinctEnum_VERSION       JsiInventoryCountDistinctEnum = "version"
+	JsiInventoryCountDistinctEnum_WARRANTYTYPE  JsiInventoryCountDistinctEnum = "warranty_type"
 )
 
 // JsiWarrantyTypeEnum is a string enum.
-// Warranty type for Juniper Support Insight (JSI) devices. The warranty type
-// is used to determine the support level and duration of the warranty for the
-// device. enum:
-// * WTY00001: Standard Hardware Warranty
-// * WTY00002: Enhanced Hardware Warranty
-// * WTY00003: Dead On Arrival Warranty
-// * WTY00004: Limited Lifetime Warranty
-// * WTY00005: Software Warranty
-// * WTY00006: Limited Lifetime Warranty for WLA
-// * WTY00007: Warranty-JCPO EOL (DOA Not Included)
-// * WTY00008: MIST Enhanced Hardware Warranty
-// * WTY00009: MIST Standard Warranty
-// * WTY00099: Determine Lifetime warranty
+// Warranty type label for Juniper Support Insight (JSI) devices. enum: `Standard Hardware Warranty`, `Enhanced Hardware Warranty`, `Dead On Arrival Warranty`, `Limited Lifetime Warranty`, `Software Warranty`, `Limited Lifetime Warranty for WLA`, `Warranty-JCPO EOL (DOA Not Included)`, `MIST Enhanced Hardware Warranty`, `MIST Standard Warranty`, `Determine Lifetime warranty`
 type JsiWarrantyTypeEnum string
 
 const (
@@ -1523,7 +1562,7 @@ const (
 )
 
 // MapImportJsonVendorNameEnum is a string enum.
-// enum: `ekahau`, `ibwave`
+// Map import vendor for the uploaded JSON. enum: `ekahau`, `ibwave`
 type MapImportJsonVendorNameEnum string
 
 const (
@@ -1548,7 +1587,7 @@ const (
 )
 
 // MapOrgImportFileJsonVendorNameEnum is a string enum.
-// enum: `ekahau`, `ibwave`
+// Map import vendor for the uploaded file. enum: `ekahau`, `ibwave`
 type MapOrgImportFileJsonVendorNameEnum string
 
 const (
@@ -1557,7 +1596,7 @@ const (
 )
 
 // MapTypeEnum is a string enum.
-// enum: `google`, `image`
+// Map type, such as `image` or `google`. enum: `google`, `image`
 type MapTypeEnum string
 
 const (
@@ -1577,7 +1616,7 @@ const (
 )
 
 // MfaSecretTypeEnum is a string enum.
-// enum: `qrcode`
+// MFA secret representation format for enrollment. enum: `qrcode`
 type MfaSecretTypeEnum string
 
 const (
@@ -1607,7 +1646,7 @@ const (
 )
 
 // MspMarvisSuggestionsCountDistinctEnum is a string enum.
-// enum: `org_id`, `status`
+// Distinct field used when counting MSP Marvis suggestions. enum: `org_id`, `status`
 type MspMarvisSuggestionsCountDistinctEnum string
 
 const (
@@ -1616,7 +1655,7 @@ const (
 )
 
 // MspOrgChangeOperationEnum is a string enum.
-// enum: `assign`, `unassign`
+// Assignment operation to apply to the listed org IDs. enum: `assign`, `unassign`
 type MspOrgChangeOperationEnum string
 
 const (
@@ -1625,7 +1664,7 @@ const (
 )
 
 // MspSearchTypeEnum is a string enum.
-// enum: `orgs`
+// Search result type returned by MSP organization search. enum: `orgs`
 type MspSearchTypeEnum string
 
 const (
@@ -1643,7 +1682,7 @@ const (
 )
 
 // MspTierEnum is a string enum.
-// enum: `advanced`, `base`
+// Service tier for the MSP account. enum: `advanced`, `base`
 type MspTierEnum string
 
 const (
@@ -1689,7 +1728,7 @@ const (
 )
 
 // MxclusterRadsecServerSelectionEnum is a string enum.
-// When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
+// When ordered, Mist Edge will prefer and go back to the first RADIUS server if possible. enum: `ordered`, `unordered`
 type MxclusterRadsecServerSelectionEnum string
 
 const (
@@ -1710,7 +1749,7 @@ const (
 )
 
 // MxclusterTuntermHostsSelectionEnum is a string enum.
-// Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
+// Ordering of tunterm_hosts for Mist Edge within the same mxcluster. enum:
 // * `shuffle`: the ordering of tunterm_hosts is randomized by the device”s MAC
 // * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
 // * `ordered`: order decided by tunterm_hosts_order
@@ -1764,7 +1803,7 @@ const (
 )
 
 // MxedgeServiceNameEnum is a string enum.
-// enum: `mxagent`, `mxdas`, `mxocproxy`, `radsecproxy`, `tunterm`
+// Mist Edge service name. enum: `mxagent`, `mxdas`, `mxnacedge`, `mxocproxy`, `radsecproxy`, `tunterm`
 type MxedgeServiceNameEnum string
 
 const (
@@ -1777,7 +1816,7 @@ const (
 )
 
 // MxedgeTuntermDhcpdConfigTypeEnum is a string enum.
-// enum: `relay`
+// DHCP handling mode for this tunneled VLAN. enum: `relay`
 type MxedgeTuntermDhcpdConfigTypeEnum string
 
 const (
@@ -1785,7 +1824,7 @@ const (
 )
 
 // MxedgeTuntermDhcpdTypeEnum is a string enum.
-// enum: `relay`
+// DHCP handling mode for the global tunnel termination config. enum: `relay`
 type MxedgeTuntermDhcpdTypeEnum string
 
 const (
@@ -1816,7 +1855,7 @@ const (
 )
 
 // MxtunnelProtocolEnum is a string enum.
-// enum: `ip`, `udp`
+// Encapsulation protocol used for Mist Tunnel traffic. enum: `ip`, `udp`
 type MxtunnelProtocolEnum string
 
 const (
@@ -1879,7 +1918,7 @@ const (
 )
 
 // NacPortalEapTypeEnum is a string enum.
-// enum: `wpa2`, `wpa3`
+// EAP mode used when onboarding wireless clients through the NAC portal. enum: `wpa2`, `wpa3`
 type NacPortalEapTypeEnum string
 
 const (
@@ -1922,7 +1961,7 @@ const (
 )
 
 // NacRuleActionEnum is a string enum.
-// enum: `allow`, `block`
+// Allow or block decision applied when the NAC rule matches. enum: `allow`, `block`
 type NacRuleActionEnum string
 
 const (
@@ -1940,7 +1979,7 @@ const (
 )
 
 // NacRuleMatchingPortTypeEnum is a string enum.
-// enum: `wired`, `wireless`
+// Port attachment type matched by a NAC rule. enum: `wired`, `wireless`
 type NacRuleMatchingPortTypeEnum string
 
 const (
@@ -2277,7 +2316,7 @@ const (
 )
 
 // OrgSettingAutoDeviceNamingRuleSrcEnum is a string enum.
-// enum: `lldp_port_desc`, `mac`
+// Device attribute used to generate the name. enum: `lldp_port_desc`, `mac`
 type OrgSettingAutoDeviceNamingRuleSrcEnum string
 
 const (
@@ -2341,7 +2380,7 @@ const (
 )
 
 // OrgSettingMistNacFingerprintingWirelessCoaEnum is a string enum.
-// enum: `reauth`, `disconnect`
+// Change of Authorization action sent to wireless clients when fingerprints change. enum: `reauth`, `disconnect`
 type OrgSettingMistNacFingerprintingWirelessCoaEnum string
 
 const (
@@ -2402,7 +2441,7 @@ const (
 )
 
 // OrgTicketsCountDistinctEnum is a string enum.
-// enum: `status`, `type`
+// Distinct field used when counting organization tickets. enum: `status`, `type`
 type OrgTicketsCountDistinctEnum string
 
 const (
@@ -2439,7 +2478,7 @@ const (
 )
 
 // OrgTunnelTypeCountEnum is a string enum.
-// enum: `wan`, `wxtunnel`
+// Tunnel type used when counting organization tunnels. enum: `wan`, `wxtunnel`
 type OrgTunnelTypeCountEnum string
 
 const (
@@ -2448,7 +2487,7 @@ const (
 )
 
 // OrgUiSettingsPurposeEnum is a string enum.
-// enum: `marvisdashboard`
+// UI surface or purpose for this databoard. enum: `marvisdashboard`
 type OrgUiSettingsPurposeEnum string
 
 const (
@@ -2570,7 +2609,7 @@ const (
 )
 
 // PortAuthStateEnum is a string enum.
-// enum: `authenticated`, `authenticating`, `held`, `init`
+// Port authentication state. enum: `""`, `authenticated`, `authenticating`, `held`, `init`
 type PortAuthStateEnum string
 
 const (
@@ -2581,7 +2620,7 @@ const (
 )
 
 // PortStpRoleEnum is a string enum.
-// enum: `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
+// Spanning Tree Protocol role for the port. enum: `""`, `alternate`, `backup`, `designated`, `disabled`, `root`, `root-prevented`
 type PortStpRoleEnum string
 
 const (
@@ -2594,7 +2633,7 @@ const (
 )
 
 // PortStpStateEnum is a string enum.
-// enum: `blocking`, `disabled`, `forwarding`, `learning`, `listening`
+// Spanning Tree Protocol state for the port. enum: `""`, `blocking`, `disabled`, `forwarding`, `learning`, `listening`
 type PortStpStateEnum string
 
 const (
@@ -2661,7 +2700,7 @@ const (
 )
 
 // ProtectReAllowedServiceEnum is a string enum.
-// enum: `icmp`, `ssh`
+// Services allowed through protect-RE filters. enum: `icmp`, `ssh`
 type ProtectReAllowedServiceEnum string
 
 const (
@@ -2681,7 +2720,7 @@ const (
 )
 
 // PskPortalAuthEnum is a string enum.
-// enum: `sponsor`, `sso`
+// Portal access method for guest authentication, either `sponsor` or `sso`. enum: `sponsor`, `sso`
 type PskPortalAuthEnum string
 
 const (
@@ -2763,7 +2802,7 @@ const (
 )
 
 // RadiusKeywrapFormatEnum is a string enum.
-// enum: `ascii`, `hex`
+// Encoding format for RADIUS keywrap KEK and MACK values. enum: `ascii`, `hex`
 type RadiusKeywrapFormatEnum string
 
 const (
@@ -2772,7 +2811,7 @@ const (
 )
 
 // RandomMacEnum is a string enum.
-// Whether the client is using randomized MAC Address or not
+// Whether the client is using randomized MAC address or not. enum: `true`, `false`
 type RandomMacEnum string
 
 const (
@@ -2781,7 +2820,7 @@ const (
 )
 
 // RecaptchaFlavorEnum is a string enum.
-// flavor of the captcha. enum: `google`, `hcaptcha`
+// CAPTCHA provider flavor. enum: `google`, `hcaptcha`
 type RecaptchaFlavorEnum string
 
 const (
@@ -2813,7 +2852,7 @@ const (
 )
 
 // RemoteSyslogServerProtocolEnum is a string enum.
-// enum: `tcp`, `udp`
+// Transport protocol used for this remote syslog server. enum: `tcp`, `udp`
 type RemoteSyslogServerProtocolEnum string
 
 const (
@@ -2847,7 +2886,7 @@ const (
 )
 
 // ResolutionEnum is a string enum.
-// enum: `default`, `fine`
+// Location resolution mode for map or placement calculations. enum: `default`, `fine`
 type ResolutionEnum string
 
 const (
@@ -2856,7 +2895,7 @@ const (
 )
 
 // ResponseAsyncLicenseStatusEnum is a string enum.
-// processing status of async. enum: `prepared`, `ongoing`, `done`
+// Processing state for an asynchronous license claim. enum: `prepared`, `ongoing`, `done`
 type ResponseAsyncLicenseStatusEnum string
 
 const (
@@ -2896,11 +2935,7 @@ const (
 )
 
 // ResponseAutoZoneStatusEnum is a string enum.
-// The status for the auto zones service for a given map. enum:
-// * not_started: The auto zones service has not been run on this map or the results were cleared by the user
-// * in_progress: The auto zones service is currently in progress
-// * awaiting_review: The auto zones service has completed and suggested location zones to be added to the map
-// * error: There was an error with the auto zones service
+// Status of auto-zone generation for a map. enum: `in_progress`, `awaiting_review`, `not_started`, `error`. `not_started` means the service has not run or results were cleared, `in_progress` means generation is active, `awaiting_review` means suggested zones are ready for review, and `error` means generation failed
 type ResponseAutoZoneStatusEnum string
 
 const (
@@ -3002,7 +3037,7 @@ const (
 )
 
 // SearchOrgDevicesMxtunnelStatusEnum is a string enum.
-// enum: `down`, `up`
+// Mist Tunnel status filter for organization device search. enum: `down`, `up`
 type SearchOrgDevicesMxtunnelStatusEnum string
 
 const (
@@ -3032,7 +3067,7 @@ const (
 )
 
 // SearchSiteDevicesMxtunnelStatusEnum is a string enum.
-// enum: `down`, `up`
+// Mist Tunnel status filter for site device search. enum: `down`, `up`
 type SearchSiteDevicesMxtunnelStatusEnum string
 
 const (
@@ -3132,7 +3167,7 @@ const (
 )
 
 // ServicePolicySkyatpHttpInspectionProfileEnum is a string enum.
-// enum: `standard`, `strict`
+// Sky ATP HTTP inspection profile to apply. enum: `standard`, `strict`
 type ServicePolicySkyatpHttpInspectionProfileEnum string
 
 const (
@@ -3322,7 +3357,7 @@ const (
 )
 
 // SiteMxtunnelProtocolEnum is a string enum.
-// enum: `ip`, `udp`
+// Encapsulation protocol used for this additional Mist Tunnel. enum: `ip`, `udp`
 type SiteMxtunnelProtocolEnum string
 
 const (
@@ -3505,7 +3540,7 @@ const (
 )
 
 // SiteSleImpactedApsScopeParametersEnum is a string enum.
-// enum: `site`
+// Scope parameter value for impacted AP SLE queries. enum: `site`
 type SiteSleImpactedApsScopeParametersEnum string
 
 const (
@@ -3533,7 +3568,7 @@ const (
 )
 
 // SiteSleImpactedGatewaysScopeParametersEnum is a string enum.
-// enum: `site`
+// Scope parameter value for impacted gateway SLE queries. enum: `site`
 type SiteSleImpactedGatewaysScopeParametersEnum string
 
 const (
@@ -3551,7 +3586,7 @@ const (
 )
 
 // SiteSleImpactedSwitchesScopeParametersEnum is a string enum.
-// enum: `site`
+// Scope parameter value for impacted switch SLE queries. enum: `site`
 type SiteSleImpactedSwitchesScopeParametersEnum string
 
 const (
@@ -3559,7 +3594,7 @@ const (
 )
 
 // SiteSleImpactedUsersScopeParameterEnum is a string enum.
-// enum: `ap`, `site`
+// Scope parameter value for impacted user SLE queries. enum: `ap`, `site`
 type SiteSleImpactedUsersScopeParameterEnum string
 
 const (
@@ -3626,7 +3661,7 @@ const (
 )
 
 // SiteSystemEventsCountDistinctEnum is a string enum.
-// enum: `type`
+// Distinct field used when counting site system events. enum: `type`
 type SiteSystemEventsCountDistinctEnum string
 
 const (
@@ -3700,7 +3735,7 @@ const (
 )
 
 // SnmpConfigEngineIdTypeEnum is a string enum.
-// enum: `local`, `use_mac_address`
+// Method used to derive the SNMP engine ID. enum: `local`, `use_mac_address`
 type SnmpConfigEngineIdTypeEnum string
 
 const (
@@ -3719,7 +3754,7 @@ const (
 )
 
 // SnmpUsmEngineTypeEnum is a string enum.
-// enum: `local_engine`, `remote_engine`
+// SNMP engine type used for this USM configuration. enum: `local_engine`, `remote_engine`
 type SnmpUsmEngineTypeEnum string
 
 const (
@@ -3774,7 +3809,7 @@ const (
 )
 
 // SnmpVacmAccessItemTypeEnum is a string enum.
-// enum: `context_prefix`, `default_context_prefix`
+// VACM context matching type for this access rule. enum: `context_prefix`, `default_context_prefix`
 type SnmpVacmAccessItemTypeEnum string
 
 const (
@@ -3793,7 +3828,7 @@ const (
 )
 
 // Snmpv3ConfigNotifyTypeEnum is a string enum.
-// enum: `inform`, `trap`
+// Delivery mode for this SNMPv3 notification, such as trap or inform. enum: `inform`, `trap`
 type Snmpv3ConfigNotifyTypeEnum string
 
 const (
@@ -4004,7 +4039,7 @@ const (
 )
 
 // StatsWxruleActionEnum is a string enum.
-// enum: `allow`, `block`
+// Allow or block behavior enforced by this WxLAN rule. enum: `allow`, `block`
 type StatsWxruleActionEnum string
 
 const (
@@ -4034,6 +4069,7 @@ const (
 )
 
 // SwitchBgpConfigHoldTimeZeroEnum is a int enum.
+// BGP hold time value of 0
 type SwitchBgpConfigHoldTimeZeroEnum int
 
 const (
@@ -4041,7 +4077,7 @@ const (
 )
 
 // SwitchBgpConfigTypeEnum is a string enum.
-// enum: `external`, `internal`
+// BGP session type for this switch BGP configuration. enum: `external`, `internal`
 type SwitchBgpConfigTypeEnum string
 
 const (
@@ -4078,7 +4114,7 @@ const (
 )
 
 // SwitchMetricScopeEnum is a string enum.
-// enum: `site`, `switch`
+// Scope level used when querying switch metrics. enum: `site`, `switch`
 type SwitchMetricScopeEnum string
 
 const (
@@ -4087,7 +4123,7 @@ const (
 )
 
 // SwitchMetricTypeEnum is a string enum.
-// enum: `active_ports_summary`
+// Switch metric type requested for active port summaries. enum: `active_ports_summary`
 type SwitchMetricTypeEnum string
 
 const (
@@ -4243,7 +4279,7 @@ const (
 )
 
 // SwitchRadiusConfigAuthServerSelectionEnum is a string enum.
-// enum: `ordered`, `unordered`
+// Selection strategy for RADIUS authentication servers. enum: `ordered`, `unordered`
 type SwitchRadiusConfigAuthServerSelectionEnum string
 
 const (
@@ -4262,7 +4298,7 @@ const (
 )
 
 // SynthetictestConfigAggressivenessEnum is a string enum.
-// enum: `auto`, `high`, `low`
+// Aggressiveness level for a synthetic test. enum: `auto`, `high`, `med`, `low`
 type SynthetictestConfigAggressivenessEnum string
 
 const (
@@ -4285,7 +4321,7 @@ const (
 )
 
 // SynthetictestDeviceProtocolEnum is a string enum.
-// if `type`==`lan_connectivity`. enum: `ping`, `traceroute`, `ping+traceroute`
+// If `type`==`lan_connectivity`. Protocol or protocol combination used by the LAN connectivity test. enum: `ping`, `traceroute`, `ping+traceroute`
 type SynthetictestDeviceProtocolEnum string
 
 const (
@@ -4295,7 +4331,7 @@ const (
 )
 
 // SynthetictestProtocolEnum is a string enum.
-// enum: `ping`, `traceroute`
+// Protocol used by a synthetic test probe. enum: `ping`, `traceroute`
 type SynthetictestProtocolEnum string
 
 const (
@@ -4339,11 +4375,7 @@ const (
 )
 
 // TicketStatusEnum is a string enum.
-// Ticket status. enum:
-// * open: ticket is open, Mist is working on it
-// * pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
-// * solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
-// * closed: ticket is archived and cannot be changed.
+// Ticket status. enum: `closed`, `open`, `pending`, `solved`. `open` means Mist is working on it, `pending` means requester attention is needed, `solved` means Mist considers it resolved but it can still be updated or rated, and `closed` means it is archived
 type TicketStatusEnum string
 
 const (
@@ -4374,7 +4406,7 @@ const (
 )
 
 // TunnelConfigAutoProvisionProviderEnum is a string enum.
-// enum: `jse-ipsec`, `zscaler-ipsec`
+// Tunnel provider used for automatic endpoint provisioning. enum: `jse-ipsec`, `zscaler-ipsec`
 type TunnelConfigAutoProvisionProviderEnum string
 
 const (
@@ -4383,17 +4415,7 @@ const (
 )
 
 // TunnelConfigDhGroupEnum is a string enum.
-// Only if `provider`==`custom-ipsec`. enum:
-// * 1
-// * 2 (1024-bit)
-// * 5
-// * 14 (default, 2048-bit)
-// * 15 (3072-bit)
-// * 16 (4096-bit)
-// * 19 (256-bit ECP)
-// * 20 (384-bit ECP)
-// * 21 (521-bit ECP)
-// * 24 (2048-bit ECP)
+// Only if `provider`==`custom-ipsec`. Diffie-Hellman group for IPsec phase 2. enum: `1`, `14`, `15`, `16`, `19`, `2`, `20`, `21`, `24`, `5`. `14` is the default 2048-bit group; `19`, `20`, `21`, and `24` are ECP groups
 type TunnelConfigDhGroupEnum string
 
 const (
@@ -4422,17 +4444,7 @@ const (
 )
 
 // TunnelConfigIkeDhGroupEnum is a string enum.
-// enum:
-// * 1
-// * 2 (1024-bit)
-// * 5
-// * 14 (default, 2048-bit)
-// * 15 (3072-bit)
-// * 16 (4096-bit)
-// * 19 (256-bit ECP)
-// * 20 (384-bit ECP)
-// * 21 (521-bit ECP)
-// * 24 (2048-bit ECP)
+// Diffie-Hellman group for IKE phase 1. enum: `1`, `14`, `15`, `16`, `19`, `2`, `20`, `21`, `24`, `5`. `14` is the default 2048-bit group; `19`, `20`, `21`, and `24` are ECP groups
 type TunnelConfigIkeDhGroupEnum string
 
 const (
@@ -4458,7 +4470,7 @@ const (
 )
 
 // TunnelConfigProbeTypeEnum is a string enum.
-// enum: `http`, `icmp`
+// Protocol used by the custom IPsec tunnel health probe. enum: `http`, `icmp`
 type TunnelConfigProbeTypeEnum string
 
 const (
@@ -4507,7 +4519,7 @@ const (
 )
 
 // TunnelPriorityEnum is a string enum.
-// enum: `primary`, `secondary`
+// Relative preference assigned to the tunnel. enum: `primary`, `secondary`
 type TunnelPriorityEnum string
 
 const (
@@ -4516,7 +4528,7 @@ const (
 )
 
 // TunnelTypeEnum is a string enum.
-// enum: `wan`, `wxtunnel`
+// Tunnel category, either WAN tunnel or WxLAN tunnel. enum: `wan`, `wxtunnel`
 type TunnelTypeEnum string
 
 const (
@@ -4534,7 +4546,7 @@ const (
 )
 
 // TuntermDhcpdTypeEnum is a string enum.
-// enum: `relay`
+// DHCP handling mode for tunnel termination. enum: `relay`
 type TuntermDhcpdTypeEnum string
 
 const (
@@ -4621,7 +4633,7 @@ const (
 )
 
 // UpgradeOrgDevicesVersionFirmwareTypeEnum is a string enum.
-// enum: `ap`, `junos`
+// Firmware family this version entry applies to. enum: `ap`, `junos`
 type UpgradeOrgDevicesVersionFirmwareTypeEnum string
 
 const (
@@ -4650,7 +4662,7 @@ const (
 )
 
 // UtilsDevicesRestartNodeEnum is a string enum.
-// only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
+// only for SRX/SSR: if node is not present, both nodes are restarted. For other devices: node should not be present. enum: `node0`, `node1`
 type UtilsDevicesRestartNodeEnum string
 
 const (
@@ -4700,7 +4712,7 @@ const (
 )
 
 // VarSourceEnum is a string enum.
-// enum: `deviceprofile`, `site`
+// Source level where a variable is defined. enum: `deviceprofile`, `site`
 type VarSourceEnum string
 
 const (
@@ -4739,7 +4751,7 @@ const (
 )
 
 // VirtualChassisPortOperationEnum is a string enum.
-// enum: `delete`, `set`
+// Action to perform on the specified Virtual Chassis ports. enum: `delete`, `set`
 type VirtualChassisPortOperationEnum string
 
 const (
@@ -4770,7 +4782,7 @@ const (
 )
 
 // VpnModeEnum is a string enum.
-// enum: `hub_spoke`, `mesh`
+// VPN topology mode for this configuration. enum: `hub_spoke`, `mesh`
 type VpnModeEnum string
 
 const (
@@ -4779,7 +4791,7 @@ const (
 )
 
 // VpnPathBfdProfileEnum is a string enum.
-// enum: `broadband`, `lte`
+// BFD profile used for this VPN path. enum: `broadband`, `lte`
 type VpnPathBfdProfileEnum string
 
 const (
@@ -4798,6 +4810,7 @@ const (
 )
 
 // VpnTypeEnum is a string enum.
+// VPN type for tunnel or peer configuration. enum: `ipsec`, `svr`
 type VpnTypeEnum string
 
 const (
@@ -4806,7 +4819,7 @@ const (
 )
 
 // VrrpGroupAuthTypeEnum is a string enum.
-// enum: `md5`, `simple`
+// Authentication method used by the VRRP group. enum: `md5`, `simple`
 type VrrpGroupAuthTypeEnum string
 
 const (
@@ -4815,7 +4828,7 @@ const (
 )
 
 // WanTunnelProtocolEnum is a string enum.
-// enum: `gre`, `ipsec`
+// Tunnel protocol used for the connection. enum: `gre`, `ipsec`
 type WanTunnelProtocolEnum string
 
 const (
@@ -4838,7 +4851,7 @@ const (
 )
 
 // WebhookAlarmsTopicEnum is a string enum.
-// enum: `alarms`
+// Webhook topic name for alarm event deliveries. enum: `alarms`
 type WebhookAlarmsTopicEnum string
 
 const (
@@ -4846,7 +4859,7 @@ const (
 )
 
 // WebhookAssetRawRssiTopicEnum is a string enum.
-// enum: `asset-raw-rssi`
+// Webhook topic name for asset raw RSSI deliveries. enum: `asset-raw-rssi`
 type WebhookAssetRawRssiTopicEnum string
 
 const (
@@ -4854,7 +4867,7 @@ const (
 )
 
 // WebhookAuditsTopicEnum is a string enum.
-// enum: `audits`
+// Webhook topic name for audit event deliveries. enum: `audits`
 type WebhookAuditsTopicEnum string
 
 const (
@@ -4862,7 +4875,7 @@ const (
 )
 
 // WebhookClientInfoTopicEnum is a string enum.
-// enum: `client-info`
+// Webhook topic name for client information deliveries. enum: `client-info`
 type WebhookClientInfoTopicEnum string
 
 const (
@@ -4870,7 +4883,7 @@ const (
 )
 
 // WebhookClientJoinTopicEnum is a string enum.
-// enum: `client-join`
+// Webhook topic name for client join deliveries. enum: `client-join`
 type WebhookClientJoinTopicEnum string
 
 const (
@@ -4878,7 +4891,7 @@ const (
 )
 
 // WebhookClientLatencyTopicEnum is a string enum.
-// enum: `client-latency`
+// Webhook topic name for client latency deliveries. enum: `client-latency`
 type WebhookClientLatencyTopicEnum string
 
 const (
@@ -4886,7 +4899,7 @@ const (
 )
 
 // WebhookClientSessionsTopicEnum is a string enum.
-// enum: `client-sessions`
+// Webhook topic name for client session deliveries. enum: `client-sessions`
 type WebhookClientSessionsTopicEnum string
 
 const (
@@ -4935,7 +4948,7 @@ const (
 )
 
 // WebhookDeviceEventsTopicEnum is a string enum.
-// enum: `device-events`
+// Webhook topic name for device event deliveries. enum: `device-events`
 type WebhookDeviceEventsTopicEnum string
 
 const (
@@ -4943,7 +4956,7 @@ const (
 )
 
 // WebhookDeviceUpdownsTopicEnum is a string enum.
-// enum: `device-updowns`
+// Webhook topic name for device up/down deliveries. enum: `device-updowns`
 type WebhookDeviceUpdownsTopicEnum string
 
 const (
@@ -4951,7 +4964,7 @@ const (
 )
 
 // WebhookDiscoveredRawRssiTopicEnum is a string enum.
-// enum: `discovered-raw-rssi`
+// Webhook topic name for discovered raw RSSI deliveries. enum: `discovered-raw-rssi`
 type WebhookDiscoveredRawRssiTopicEnum string
 
 const (
@@ -4959,7 +4972,7 @@ const (
 )
 
 // WebhookGuestAuthorizationsTopicEnum is a string enum.
-// enum: `guest-authorizations`
+// Webhook topic name for guest authorization deliveries. enum: `guest-authorizations`
 type WebhookGuestAuthorizationsTopicEnum string
 
 const (
@@ -4967,7 +4980,7 @@ const (
 )
 
 // WebhookLocationAssetTopicEnum is a string enum.
-// enum: `location-asset`
+// Webhook topic name for asset location deliveries. enum: `location-asset`
 type WebhookLocationAssetTopicEnum string
 
 const (
@@ -4975,6 +4988,7 @@ const (
 )
 
 // WebhookLocationCentrakEventTypeEnum is a string enum.
+// Location object type for CenTrak Wi-Fi beacon events. enum: `wifi`
 type WebhookLocationCentrakEventTypeEnum string
 
 const (
@@ -4982,7 +4996,7 @@ const (
 )
 
 // WebhookLocationCentrakTopicEnum is a string enum.
-// enum: `location-centrak`
+// Webhook topic name for CenTrak location deliveries. enum: `location-centrak`
 type WebhookLocationCentrakTopicEnum string
 
 const (
@@ -4990,7 +5004,7 @@ const (
 )
 
 // WebhookLocationClientTopicEnum is a string enum.
-// enum: `location-client`
+// Webhook topic name for connected client location deliveries. enum: `location-client`
 type WebhookLocationClientTopicEnum string
 
 const (
@@ -4998,7 +5012,7 @@ const (
 )
 
 // WebhookLocationSdkTopicEnum is a string enum.
-// enum: `location-sdk`
+// Webhook topic name for SDK client location deliveries. enum: `location-sdk`
 type WebhookLocationSdkTopicEnum string
 
 const (
@@ -5006,7 +5020,7 @@ const (
 )
 
 // WebhookLocationTopicEnum is a string enum.
-// enum: `location`
+// Webhook topic name for generic location deliveries. enum: `location`
 type WebhookLocationTopicEnum string
 
 const (
@@ -5014,7 +5028,7 @@ const (
 )
 
 // WebhookLocationUnclientTopicEnum is a string enum.
-// enum: `location-unclient`
+// Webhook topic name for unconnected client location deliveries. enum: `location-unclient`
 type WebhookLocationUnclientTopicEnum string
 
 const (
@@ -5022,7 +5036,7 @@ const (
 )
 
 // WebhookMinisApplicationTopicEnum is a string enum.
-// enum: `minis-application`
+// Webhook topic name for Minis application test deliveries. enum: `minis-application`
 type WebhookMinisApplicationTopicEnum string
 
 const (
@@ -5030,7 +5044,7 @@ const (
 )
 
 // WebhookMinisReachabilityTopicEnum is a string enum.
-// enum: `minis-reachability`
+// Webhook topic name for Minis reachability test deliveries. enum: `minis-reachability`
 type WebhookMinisReachabilityTopicEnum string
 
 const (
@@ -5038,7 +5052,7 @@ const (
 )
 
 // WebhookMxedgeEventTopicEnum is a string enum.
-// enum: `mxedge-events`
+// Webhook topic name for Mist Edge event deliveries. enum: `mxedge-events`
 type WebhookMxedgeEventTopicEnum string
 
 const (
@@ -5046,7 +5060,7 @@ const (
 )
 
 // WebhookNacAccountingTopicEnum is a string enum.
-// enum: `nac-accounting`
+// Webhook topic name for NAC accounting deliveries. enum: `nac-accounting`
 type WebhookNacAccountingTopicEnum string
 
 const (
@@ -5054,7 +5068,7 @@ const (
 )
 
 // WebhookNacEventsTopicEnum is a string enum.
-// enum: `nac-events`
+// Webhook topic name for NAC event deliveries. enum: `nac-events`
 type WebhookNacEventsTopicEnum string
 
 const (
@@ -5071,7 +5085,7 @@ const (
 )
 
 // WebhookOccupancyAlertTypeEnum is a string enum.
-// enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
+// Occupancy compliance state reported for the zone. enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
 type WebhookOccupancyAlertTypeEnum string
 
 const (
@@ -5080,7 +5094,7 @@ const (
 )
 
 // WebhookOccupancyAlertsTopicEnum is a string enum.
-// enum: `occupeancy-alerts`
+// Webhook topic name for occupancy alert deliveries. enum: `occupancy-alerts`
 type WebhookOccupancyAlertsTopicEnum string
 
 const (
@@ -5088,7 +5102,7 @@ const (
 )
 
 // WebhookPingTopicEnum is a string enum.
-// enum: `ping`
+// Webhook topic name for ping deliveries. enum: `ping`
 type WebhookPingTopicEnum string
 
 const (
@@ -5096,7 +5110,7 @@ const (
 )
 
 // WebhookRssizoneTopicEnum is a string enum.
-// enum: `rssizone`
+// Webhook topic name for RSSI zone event deliveries. enum: `rssizone`
 type WebhookRssizoneTopicEnum string
 
 const (
@@ -5104,7 +5118,7 @@ const (
 )
 
 // WebhookSdkclientScanDataTopicEnum is a string enum.
-// enum: `sdkclient-scan-data`
+// Webhook topic name for SDK client scan data deliveries. enum: `sdkclient-scan-data`
 type WebhookSdkclientScanDataTopicEnum string
 
 const (
@@ -5112,6 +5126,7 @@ const (
 )
 
 // WebhookSiteSleTopicEnum is a string enum.
+// Webhook topic name for site SLE score deliveries. enum: `site-sle`
 type WebhookSiteSleTopicEnum string
 
 const (
@@ -5131,7 +5146,7 @@ const (
 )
 
 // WebhookWifiConnRawTopicEnum is a string enum.
-// enum: `wifi-conn-raw`
+// Webhook topic name for connected Wi-Fi raw packet deliveries. enum: `wifi-conn-raw`
 type WebhookWifiConnRawTopicEnum string
 
 const (
@@ -5139,7 +5154,7 @@ const (
 )
 
 // WebhookWifiUnconnRawTopicEnum is a string enum.
-// enum: `wifi-unconn-raw`
+// Webhook topic name for unconnected Wi-Fi raw packet deliveries. enum: `wifi-unconn-raw`
 type WebhookWifiUnconnRawTopicEnum string
 
 const (
@@ -5147,7 +5162,7 @@ const (
 )
 
 // WebhookZoneEventTriggerEnum is a string enum.
-// enum: `enter`, `exit`
+// Zone transition direction, either enter or exit. enum: `enter`, `exit`
 type WebhookZoneEventTriggerEnum string
 
 const (
@@ -5166,7 +5181,7 @@ const (
 )
 
 // WebhookZoneTopicEnum is a string enum.
-// enum: `zone`
+// Webhook topic name for zone transition deliveries. enum: `zone`
 type WebhookZoneTopicEnum string
 
 const (
@@ -5461,7 +5476,7 @@ const (
 )
 
 // WxlanTunnelSessionEthertypeEnum is a string enum.
-// enum: `ethernet`, `vlan`
+// Frame type carried by this tunnel session. enum: `ethernet`, `vlan`
 type WxlanTunnelSessionEthertypeEnum string
 
 const (
@@ -5481,7 +5496,7 @@ const (
 )
 
 // ZoneTypeEnum is a string enum.
-// enum: `rssizones`, `zones`
+// Zone collection type, either regular zones or RSSI zones. enum: `rssizones`, `zones`
 type ZoneTypeEnum string
 
 const (
@@ -5489,24 +5504,10 @@ const (
 	ZoneTypeEnum_ZONES     ZoneTypeEnum = "zones"
 )
 
-// HaClusterNodeEnum1Enum is a string enum.
-// HA cluster node to run the command on, required for Gateways
-type HaClusterNodeEnum1Enum string
+// TypeEnum is a string enum.
+// Feedback type. enum: `invalid`
+type TypeEnum string
 
 const (
-	HaClusterNodeEnum1Enum_NODE0 HaClusterNodeEnum1Enum = "node0"
-	HaClusterNodeEnum1Enum_NODE1 HaClusterNodeEnum1Enum = "node1"
-)
-
-// UtilsShowRouteProtocol2Enum is a string enum.
-// (optional) Supported only for bgp
-type UtilsShowRouteProtocol2Enum string
-
-const (
-	UtilsShowRouteProtocol2Enum_ANY    UtilsShowRouteProtocol2Enum = "any"
-	UtilsShowRouteProtocol2Enum_BGP    UtilsShowRouteProtocol2Enum = "bgp"
-	UtilsShowRouteProtocol2Enum_DIRECT UtilsShowRouteProtocol2Enum = "direct"
-	UtilsShowRouteProtocol2Enum_EVPN   UtilsShowRouteProtocol2Enum = "evpn"
-	UtilsShowRouteProtocol2Enum_OSPF   UtilsShowRouteProtocol2Enum = "ospf"
-	UtilsShowRouteProtocol2Enum_STATIC UtilsShowRouteProtocol2Enum = "static"
+	TypeEnum_INVALID TypeEnum = "invalid"
 )

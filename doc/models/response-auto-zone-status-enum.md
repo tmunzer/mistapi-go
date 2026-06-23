@@ -1,12 +1,7 @@
 
 # Response Auto Zone Status Enum
 
-The status for the auto zones service for a given map. enum:
-
-* not_started: The auto zones service has not been run on this map or the results were cleared by the user
-* in_progress: The auto zones service is currently in progress
-* awaiting_review: The auto zones service has completed and suggested location zones to be added to the map
-* error: There was an error with the auto zones service
+Status of auto-zone generation for a map. enum: `in_progress`, `awaiting_review`, `not_started`, `error`. `not_started` means the service has not run or results were cleared, `in_progress` means generation is active, `awaiting_review` means suggested zones are ready for review, and `error` means generation failed
 
 ## Enumeration
 
@@ -20,4 +15,19 @@ The status for the auto zones service for a given map. enum:
 | `awaiting_review` |
 | `not_started` |
 | `error` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoZoneStatus := models.ResponseAutoZoneStatusEnum_NOTSTARTED
+
+}
+```
 

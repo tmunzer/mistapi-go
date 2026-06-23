@@ -8,16 +8,21 @@ import (
 )
 
 // OrgSettingGatewayMgmt represents a OrgSettingGatewayMgmt struct.
+// Organization-level gateway management settings
 type OrgSettingGatewayMgmt struct {
+	// Application probing settings for organization gateway management
 	AppProbing *OrgSettingGatewayMgmtAppProbing `json:"app_probing,omitempty"`
-	// consumes uplink bandwidth, requires WA license
-	AppUsage       *bool                                `json:"app_usage,omitempty"`
-	FipsEnabled    *bool                                `json:"fips_enabled,omitempty"`
+	// For SRX only, whether gateway application usage collection is enabled; requires App Track license
+	AppUsage *bool `json:"app_usage,omitempty"`
+	// Whether FIPS mode is enabled for managed gateways
+	FipsEnabled *bool `json:"fips_enabled,omitempty"`
+	// Host-in access policies for gateway management services
 	HostInPolicies *OrgSettingGatewayMgmtHostInPolicies `json:"host_in_policies,omitempty"`
-	// optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
-	HostOutPolicies      *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`
-	OverlayIp            *OrgSettingGatewayMgmtOverlayIp       `json:"overlay_ip,omitempty"`
-	AdditionalProperties map[string]interface{}                `json:"_"`
+	// Optional path preferences for gateway-originated management traffic; ECMP is used across available paths when no preference is specified
+	HostOutPolicies *OrgSettingGatewayMgmtHostOutPolicies `json:"host_out_policies,omitempty"`
+	// Overlay IP configuration used for gateway management traffic
+	OverlayIp            *OrgSettingGatewayMgmtOverlayIp `json:"overlay_ip,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OrgSettingGatewayMgmt,

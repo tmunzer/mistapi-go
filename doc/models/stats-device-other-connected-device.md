@@ -1,6 +1,8 @@
 
 # Stats Device Other Connected Device
 
+LLDP neighbor device discovered from an other-device statistics record
+
 ## Structure
 
 `StatsDeviceOtherConnectedDevice`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | - |
-| `Name` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
-| `Type` | `*string` | Optional | - |
+| `Mac` | `*string` | Optional | Connected device MAC address learned from LLDP |
+| `Name` | `*string` | Optional | LLDP system name reported for the connected device |
+| `PortId` | `*string` | Optional | LLDP port identifier reported for the connected device |
+| `Type` | `*string` | Optional | Detected Mist device type for the connected neighbor |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "020001abcdef",
-  "name": "DNT-NTR-GWE",
-  "port_id": "ge-0/0/1",
-  "type": "gateway"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsDeviceOtherConnectedDevice := models.StatsDeviceOtherConnectedDevice{
+        Mac:                  models.ToPointer("020001abcdef"),
+        Name:                 models.ToPointer("DNT-NTR-GWE"),
+        PortId:               models.ToPointer("ge-0/0/1"),
+        Type:                 models.ToPointer("gateway"),
+    }
+
 }
 ```
 

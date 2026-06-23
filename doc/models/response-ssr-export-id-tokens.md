@@ -1,6 +1,8 @@
 
 # Response Ssr Export Id Tokens
 
+Response containing SSR ID tokens exported for device onboarding
+
 ## Structure
 
 `ResponseSsrExportIdTokens`
@@ -9,22 +11,27 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Results` | [`[]models.ResponseSsrExportIdTokensResultsItem`](../../doc/models/response-ssr-export-id-tokens-results-item.md) | Optional | - |
+| `Results` | [`[]models.ResponseSsrExportIdTokensResultsItem`](../../doc/models/response-ssr-export-id-tokens-results-item.md) | Optional | Exported SSR ID token records |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "results": [
-    {
-      "mac": "mac0",
-      "token": "token0"
-    },
-    {
-      "mac": "mac0",
-      "token": "token0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseSsrExportIdTokens := models.ResponseSsrExportIdTokens{
+        Results:              []models.ResponseSsrExportIdTokensResultsItem{
+            models.ResponseSsrExportIdTokensResultsItem{
+                Mac:                  models.ToPointer("mac0"),
+                Token:                models.ToPointer("token0"),
+            },
+        },
     }
-  ]
+
 }
 ```
 

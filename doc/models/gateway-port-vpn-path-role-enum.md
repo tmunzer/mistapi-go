@@ -15,3 +15,18 @@ If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`,
 | `mesh` |
 | `spoke` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortVpnPathRole := models.GatewayPortVpnPathRoleEnum_MESH
+
+}
+```
+

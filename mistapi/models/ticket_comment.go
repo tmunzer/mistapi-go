@@ -11,13 +11,19 @@ import (
 )
 
 // TicketComment represents a TicketComment struct.
+// Comment on a support ticket
 type TicketComment struct {
-	AttachmentIds        []uuid.UUID                `json:"attachment_ids,omitempty"`
-	Attachments          []TicketCommentsAttachment `json:"attachments,omitempty"`
-	Author               string                     `json:"author"`
-	Comment              string                     `json:"comment"`
-	CreatedAt            int                        `json:"created_at"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	// List of ticket comment attachment identifiers
+	AttachmentIds []uuid.UUID `json:"attachment_ids,omitempty"`
+	// List of attachment metadata objects for a ticket comment
+	Attachments []TicketCommentsAttachment `json:"attachments,omitempty"`
+	// User who wrote this ticket comment
+	Author string `json:"author"`
+	// Text body of this ticket comment
+	Comment string `json:"comment"`
+	// Time when this ticket comment was created, in epoch seconds
+	CreatedAt            int                    `json:"created_at"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for TicketComment,

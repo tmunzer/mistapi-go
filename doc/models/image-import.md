@@ -1,6 +1,8 @@
 
 # Image Import
 
+Multipart image upload payload
+
 ## Structure
 
 `ImageImport`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `[]byte` | Required | Binary file |
-| `Json` | `*string` | Optional | - |
+| `File` | `[]byte` | Required | Image file content uploaded as multipart form data |
+| `Json` | `*string` | Optional | Optional JSON metadata submitted with the image upload |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,",
-  "json": "json8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    imageImport := models.ImageImport{
+        File:                 nil,
+        Json:                 models.ToPointer("json2"),
+    }
+
 }
 ```
 

@@ -10,8 +10,11 @@ import (
 )
 
 // ResponseSelfOauthUrl represents a ResponseSelfOauthUrl struct.
+// OAuth2 authorization URL response for linking the current Mist account
 type ResponseSelfOauthUrl struct {
-	AuthorizationUrl     string                 `json:"authorization_url"`
+	// OAuth2 provider authorization URL used to link the Mist account
+	AuthorizationUrl string `json:"authorization_url"`
+	// Whether the Mist account is already linked with this OAuth2 provider
 	Linked               bool                   `json:"linked"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

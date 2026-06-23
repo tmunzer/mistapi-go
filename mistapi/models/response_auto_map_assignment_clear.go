@@ -11,6 +11,7 @@ import (
 )
 
 // ResponseAutoMapAssignmentClear represents a ResponseAutoMapAssignmentClear struct.
+// Result returned after clearing auto map assignment candidates
 type ResponseAutoMapAssignmentClear struct {
 	// Human-readable description of the operation result
 	Message string `json:"message"`

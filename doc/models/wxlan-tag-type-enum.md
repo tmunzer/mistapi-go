@@ -18,3 +18,18 @@ enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan`
 | `subnet` |
 | `vlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanTagType := models.WxlanTagTypeEnum_RESOURCE
+
+}
+```
+

@@ -8,8 +8,9 @@ import (
 )
 
 // NetworkMulticastGroup represents a NetworkMulticastGroup struct.
+// Multicast group rendezvous point mapping
 type NetworkMulticastGroup struct {
-	// RP (rendezvous point) IP Address
+	// RP (rendezvous point) IP address
 	RpIp                 *string                `json:"rp_ip,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

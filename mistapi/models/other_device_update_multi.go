@@ -11,13 +11,15 @@ import (
 )
 
 // OtherDeviceUpdateMulti represents a OtherDeviceUpdateMulti struct.
+// Bulk site assignment update for other devices
 type OtherDeviceUpdateMulti struct {
-	// MAC address of the peer device.
+	// Other-device MAC addresses included in the bulk update
 	Macs []string `json:"macs,omitempty"`
 	// The operation being performed. enum: `assign`, `unassign`
-	Op                   OtherDeviceUpdateOperationEnum `json:"op"`
-	SiteId               *uuid.UUID                     `json:"site_id,omitempty"`
-	AdditionalProperties map[string]interface{}         `json:"_"`
+	Op OtherDeviceUpdateOperationEnum `json:"op"`
+	// Site ID used when assigning other devices
+	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OtherDeviceUpdateMulti,

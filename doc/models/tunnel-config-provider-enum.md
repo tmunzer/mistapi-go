@@ -18,3 +18,18 @@ Only if `auto_provision.enabled`==`false`. enum: `custom-ipsec`, `custom-gre`, `
 | `zscaler-gre` |
 | `zscaler-ipsec` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigProvider := models.TunnelConfigProviderEnum_CUSTOMIPSEC
+
+}
+```
+

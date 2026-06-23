@@ -10,24 +10,25 @@ import (
 )
 
 // InsightRogueAp represents a InsightRogueAp struct.
+// Rogue or neighbor AP observation returned by site insights
 type InsightRogueAp struct {
-	// MAC of the device that had strongest signal strength for ssid/bssid pair
+	// Reporting AP MAC address with the strongest signal for the SSID/BSSID pair
 	ApMac string `json:"ap_mac"`
-	// Average signal strength of ap_mac for ssid/bssid pair
+	// Average RSSI for the SSID/BSSID pair as heard by the reporting AP
 	AvgRssi float64 `json:"avg_rssi"`
-	// BSSID of the network detected as threat
+	// Rogue or neighbor BSSID detected as a threat
 	Bssid string `json:"bssid"`
-	// Channel over which ap_mac heard ssid/bssid pair
+	// Radio channel where the reporting AP heard the SSID/BSSID pair
 	Channel string `json:"channel"`
 	// X position relative to the reporting AP (`ap_mac`)
 	DeltaX *float64 `json:"delta_x,omitempty"`
 	// Y position relative to the reporting AP (`ap_mac`)
 	DeltaY *float64 `json:"delta_y,omitempty"`
-	// Num of aps that heard the ssid/bssid pair
+	// Number of APs that heard the SSID/BSSID pair
 	NumAps int `json:"num_aps"`
-	// Whether the reporting AP see a wireless client (on LAN) connecting to it
+	// Whether the reporting AP sees a LAN-side client associated with the BSSID
 	SeenOnLan *bool `json:"seen_on_lan,omitempty"`
-	// SSID of the network detected as threat
+	// Wireless SSID detected for the rogue or neighbor BSSID
 	Ssid *string `json:"ssid,omitempty"`
 	// Represents number of times the pair was heard in the interval. Each count roughly corresponds to a minute.
 	TimesHeard           *int                   `json:"times_heard,omitempty"`

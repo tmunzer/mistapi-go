@@ -1,6 +1,8 @@
 
 # Psks Import File
 
+Multipart upload payload for importing PSKs
+
 ## Structure
 
 `PsksImportFile`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*[]byte` | Optional | - |
+| `File` | `*[]byte` | Optional | Uploaded CSV or binary file containing PSKs to import |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    psksImportFile := models.PsksImportFile{
+        File:                 models.ToPointer(nil),
+    }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # If Stat Property
 
+Interface statistics and metadata reported by a device
+
 ## Structure
 
 `IfStatProperty`
@@ -9,44 +11,53 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AddressMode` | `*string` | Optional | - |
-| `Ips` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `NatAddresses` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
-| `NetworkName` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
-| `PortUsage` | `*string` | Optional | - |
-| `RedundancyState` | `*string` | Optional | - |
-| `RxBytes` | `models.Optional[int64]` | Optional | Amount of traffic received since connection |
-| `RxPkts` | `models.Optional[int64]` | Optional | Amount of packets received since connection |
-| `ServpInfo` | [`*models.IfStatPropertyServpInfo`](../../doc/models/if-stat-property-servp-info.md) | Optional | - |
-| `TxBytes` | `models.Optional[int64]` | Optional | Amount of traffic sent since connection |
-| `TxPkts` | `models.Optional[int64]` | Optional | Amount of packets sent since connection |
-| `Up` | `*bool` | Optional | - |
-| `Vlan` | `*int` | Optional | - |
-| `WanName` | `*string` | Optional | - |
-| `WanType` | `*string` | Optional | - |
+| `AddressMode` | `*string` | Optional | Address assignment mode reported for the interface |
+| `Ips` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `NatAddresses` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `NetworkName` | `*string` | Optional | Mist network name associated with this interface |
+| `PortId` | `*string` | Optional | Physical or logical port identifier for this interface |
+| `PortUsage` | `*string` | Optional | Configured usage for this interface, such as LAN or WAN |
+| `RedundancyState` | `*string` | Optional | Redundancy state reported for this interface |
+| `RxBytes` | `models.Optional[int64]` | Optional, Read-only | Amount of traffic received since connection |
+| `RxPkts` | `models.Optional[int64]` | Optional, Read-only | Amount of packets received since connection |
+| `ServpInfo` | [`*models.IfStatPropertyServpInfo`](../../doc/models/if-stat-property-servp-info.md) | Optional | Service-provider and geolocation details associated with an interface address |
+| `TxBytes` | `models.Optional[int64]` | Optional, Read-only | Amount of traffic sent since connection |
+| `TxPkts` | `models.Optional[int64]` | Optional, Read-only | Amount of packets sent since connection |
+| `Up` | `*bool` | Optional | Whether the interface is operationally up |
+| `Vlan` | `*int` | Optional | Associated VLAN ID for this interface |
+| `WanName` | `*string` | Optional | Configured WAN name associated with this interface |
+| `WanType` | `*string` | Optional | Configured WAN uplink type associated with this interface |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "rx_bytes": 8515104416,
-  "rx_pkts": 57770567,
-  "tx_bytes": 211217389682,
-  "tx_pkts": 812204062,
-  "address_mode": "address_mode4",
-  "ips": [
-    "ips8",
-    "ips9",
-    "ips0"
-  ],
-  "nat_addresses": [
-    "nat_addresses7",
-    "nat_addresses8",
-    "nat_addresses9"
-  ],
-  "network_name": "network_name2",
-  "port_id": "port_id4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ifStatProperty := models.IfStatProperty{
+        AddressMode:          models.ToPointer("address_mode2"),
+        Ips:                  []string{
+            "ips4",
+            "ips5",
+            "ips6",
+        },
+        NatAddresses:         []string{
+            "nat_addresses3",
+            "nat_addresses4",
+            "nat_addresses5",
+        },
+        NetworkName:          models.ToPointer("network_name8"),
+        PortId:               models.ToPointer("port_id0"),
+        RxBytes:              models.NewOptional(models.ToPointer(int64(8515104416))),
+        RxPkts:               models.NewOptional(models.ToPointer(int64(57770567))),
+        TxBytes:              models.NewOptional(models.ToPointer(int64(211217389682))),
+        TxPkts:               models.NewOptional(models.ToPointer(int64(812204062))),
+    }
+
 }
 ```
 

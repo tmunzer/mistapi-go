@@ -8,9 +8,11 @@ import (
 )
 
 // AlarmTemplateRule represents a AlarmTemplateRule struct.
+// Per-alarm enablement and delivery override in an alarm template
 type AlarmTemplateRule struct {
 	// Delivery object to configure the alarm delivery
-	Delivery             *Delivery              `json:"delivery,omitempty"`
+	Delivery *Delivery `json:"delivery,omitempty"`
+	// Whether this alarm rule is enabled in the template
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,45 +8,77 @@ import (
 )
 
 // StatsSwitchModuleStatItem represents a StatsSwitchModuleStatItem struct.
+// Hardware module status and firmware inventory for a switch
 type StatsSwitchModuleStatItem struct {
+	// Backup software version stored on the switch module
 	BackupVersion Optional[string] `json:"backup_version"`
-	BiosVersion   Optional[string] `json:"bios_version"`
-	BootPartition *string          `json:"boot_partition,omitempty"`
-	CpldVersion   Optional[string] `json:"cpld_version"`
-	CpuStat       *CpuStat         `json:"cpu_stat,omitempty"`
+	// BIOS firmware version reported for the switch module
+	BiosVersion Optional[string] `json:"bios_version"`
+	// Active boot partition used by the switch module
+	BootPartition *string `json:"boot_partition,omitempty"`
+	// CPLD firmware version reported for the switch module
+	CpldVersion Optional[string] `json:"cpld_version"`
+	// CPU utilization breakdown for a device
+	CpuStat *CpuStat `json:"cpu_stat,omitempty"`
 	// Used to report all error states the device node is running into. An error should always have `type` and `since` fields, and could have some other fields specific to that type.
-	Errors      []ModuleStatItemErrorsItems `json:"errors,omitempty"`
-	Fans        []ModuleStatItemFansItems   `json:"fans,omitempty"`
-	FpcIdx      *int                        `json:"fpc_idx,omitempty"`
-	FpgaVersion Optional[string]            `json:"fpga_version"`
-	// Last seen timestamp
+	Errors []ModuleStatItemErrorsItems `json:"errors,omitempty"`
+	// Cooling fan status records for a device module
+	Fans []ModuleStatItemFansItems `json:"fans,omitempty"`
+	// FPC index identifying this switch module
+	FpcIdx *int `json:"fpc_idx,omitempty"`
+	// FPGA firmware version reported for the switch module
+	FpgaVersion Optional[string] `json:"fpga_version"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	Locating *bool             `json:"locating,omitempty"`
-	Mac      *string           `json:"mac,omitempty"`
-	// Memory usage stat (for virtual chassis, memory usage of master RE)
-	MemoryStat        *MemoryStat                      `json:"memory_stat,omitempty"`
-	Model             Optional[string]                 `json:"model"`
-	OpticsCpldVersion Optional[string]                 `json:"optics_cpld_version"`
-	PendingVersion    Optional[string]                 `json:"pending_version"`
-	Pics              []ModuleStatItemPicsItem         `json:"pics,omitempty"`
-	Poe               *ModuleStatItemPoe               `json:"poe,omitempty"`
-	PoeVersion        Optional[string]                 `json:"poe_version"`
-	PowerCpldVersion  Optional[string]                 `json:"power_cpld_version"`
-	Psus              []ModuleStatItemPsusItem         `json:"psus,omitempty"`
-	ReFpgaVersion     Optional[string]                 `json:"re_fpga_version"`
-	RecoveryVersion   Optional[string]                 `json:"recovery_version"`
-	Serial            Optional[string]                 `json:"serial"`
-	Status            Optional[string]                 `json:"status"`
-	Temperatures      []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
-	TmcFpgaVersion    Optional[string]                 `json:"tmc_fpga_version"`
-	Type              Optional[string]                 `json:"type"`
-	UbootVersion      Optional[string]                 `json:"uboot_version"`
-	Uptime            Optional[int]                    `json:"uptime"`
-	VcLinks           []ModuleStatItemVcLinksItem      `json:"vc_links,omitempty"`
-	VcMode            Optional[string]                 `json:"vc_mode"`
+	// Whether the switch module locator indicator is active
+	Locating *bool `json:"locating,omitempty"`
+	// Switch module MAC address reported by Mist
+	Mac *string `json:"mac,omitempty"`
+	// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
+	MemoryStat *MemoryStat `json:"memory_stat,omitempty"`
+	// Switch module model name reported by Mist
+	Model Optional[string] `json:"model"`
+	// Optics CPLD firmware version reported for the switch module
+	OpticsCpldVersion Optional[string] `json:"optics_cpld_version"`
+	// Pending software version staged for the switch module
+	PendingVersion Optional[string] `json:"pending_version"`
+	// Physical Interface Card summaries for a device module
+	Pics []ModuleStatItemPicsItem `json:"pics,omitempty"`
+	// Power over Ethernet telemetry for a device module
+	Poe *ModuleStatItemPoe `json:"poe,omitempty"`
+	// PoE controller firmware version reported for the switch module
+	PoeVersion Optional[string] `json:"poe_version"`
+	// Power CPLD firmware version reported for the switch module
+	PowerCpldVersion Optional[string] `json:"power_cpld_version"`
+	// Power supply status records for a device module
+	Psus []ModuleStatItemPsusItem `json:"psus,omitempty"`
+	// Routing Engine FPGA firmware version reported for the switch module
+	ReFpgaVersion Optional[string] `json:"re_fpga_version"`
+	// Recovery software version stored on the switch module
+	RecoveryVersion Optional[string] `json:"recovery_version"`
+	// Switch module serial number reported by Mist
+	Serial Optional[string] `json:"serial"`
+	// Connection status reported for the switch module
+	Status Optional[string] `json:"status"`
+	// Temperature sensor readings for a device module
+	Temperatures []ModuleStatItemTemperaturesItem `json:"temperatures,omitempty"`
+	// TMC FPGA firmware version reported for the switch module
+	TmcFpgaVersion Optional[string] `json:"tmc_fpga_version"`
+	// Module type reported for the switch module
+	Type Optional[string] `json:"type"`
+	// U-Boot firmware version reported for the switch module
+	UbootVersion Optional[string] `json:"uboot_version"`
+	// Elapsed time since the switch module last booted, in seconds
+	Uptime Optional[int] `json:"uptime"`
+	// Virtual chassis link records for a device module
+	VcLinks []ModuleStatItemVcLinksItem `json:"vc_links,omitempty"`
+	// Virtual chassis mode reported for the switch module
+	VcMode Optional[string] `json:"vc_mode"`
 	// enum: `master`, `backup`, `linecard`
-	VcRole               Optional[string]       `json:"vc_role"`
-	VcState              Optional[string]       `json:"vc_state"`
+	VcRole Optional[string] `json:"vc_role"`
+	// Virtual chassis state reported for the switch module
+	VcState Optional[string] `json:"vc_state"`
+	// Software version running on the switch module
 	Version              Optional[string]       `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

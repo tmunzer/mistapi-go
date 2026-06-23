@@ -17,7 +17,16 @@ enum: `auto`, `full`, `half`
 
 ## Example
 
-```
-full
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortDuplex := models.GatewayPortDuplexEnum_HALF
+
+}
 ```
 

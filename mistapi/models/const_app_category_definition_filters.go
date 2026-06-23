@@ -8,8 +8,11 @@ import (
 )
 
 // ConstAppCategoryDefinitionFilters represents a ConstAppCategoryDefinitionFilters struct.
+// Platform-specific application category filters
 type ConstAppCategoryDefinitionFilters struct {
-	Srx                  []string               `json:"srx,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Srx []string `json:"srx,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Ssr                  []string               `json:"ssr,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

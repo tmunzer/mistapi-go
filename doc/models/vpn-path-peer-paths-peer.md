@@ -1,7 +1,7 @@
 
 # Vpn Path Peer Paths Peer
 
-Preference indicates which outgoing wan should be preferred
+Peer path preference settings for mesh VPN routing
 
 ## Structure
 
@@ -11,13 +11,22 @@ Preference indicates which outgoing wan should be preferred
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Preference` | `*int` | Optional | - |
+| `Preference` | `*int` | Optional | Lower numeric value makes this outgoing WAN path more preferred |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "preference": 48
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vpnPathPeerPathsPeer := models.VpnPathPeerPathsPeer{
+        Preference:           models.ToPointer(10),
+    }
+
 }
 ```
 

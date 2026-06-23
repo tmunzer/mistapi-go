@@ -10,11 +10,13 @@ import (
 )
 
 // LicenseUsageSite represents a LicenseUsageSite struct.
+// Site license usage and entitlement response
 type LicenseUsageSite struct {
 	// License entitlement for the entire org
 	OrgEntitled map[string]int `json:"org_entitled"`
 	// Eligibility for the Switch SLE
-	SvnaEnabled  bool `json:"svna_enabled"`
+	SvnaEnabled bool `json:"svna_enabled"`
+	// Whether trial licensing is enabled for the site
 	TrialEnabled bool `json:"trial_enabled"`
 	// Subscriptions and their quantities
 	Usages map[string]int `json:"usages"`

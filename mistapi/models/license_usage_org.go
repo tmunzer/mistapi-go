@@ -11,15 +11,19 @@ import (
 )
 
 // LicenseUsageOrg represents a LicenseUsageOrg struct.
+// License usage record for an organization usage scope
 type LicenseUsageOrg struct {
+	// Whether this license usage record is scoped to a site
 	ForSite *bool `json:"for_site,omitempty"`
 	// Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN").
 	FullyLoaded map[string]int `json:"fully_loaded,omitempty"`
-	NumDevices  int            `json:"num_devices"`
-	SiteId      uuid.UUID      `json:"site_id"`
+	// Number of devices counted in this license usage scope
+	NumDevices int `json:"num_devices"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
 	// Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN).
 	Summary map[string]int `json:"summary,omitempty"`
-	// Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN")
+	// Number of available licenses. Property key is the service name (e.g. "SUB-MAN").
 	Usages               map[string]int         `json:"usages"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

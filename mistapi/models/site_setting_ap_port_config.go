@@ -8,6 +8,7 @@ import (
 )
 
 // SiteSettingApPortConfig represents a SiteSettingApPortConfig struct.
+// AP Ethernet port configuration overrides by model
 type SiteSettingApPortConfig struct {
 	// Property key is the AP model (e.g. "AP32")
 	ModelSpecific        map[string]ApPortConfig `json:"model_specific,omitempty"`

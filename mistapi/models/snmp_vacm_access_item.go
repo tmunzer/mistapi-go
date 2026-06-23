@@ -8,8 +8,11 @@ import (
 )
 
 // SnmpVacmAccessItem represents a SnmpVacmAccessItem struct.
+// VACM access rule for an SNMP group
 type SnmpVacmAccessItem struct {
-	GroupName            *string                            `json:"group_name,omitempty"`
+	// SNMP VACM group name
+	GroupName *string `json:"group_name,omitempty"`
+	// Context prefix rules for a VACM access entry
 	PrefixList           []SnmpVacmAccessItemPrefixListItem `json:"prefix_list,omitempty"`
 	AdditionalProperties map[string]interface{}             `json:"_"`
 }

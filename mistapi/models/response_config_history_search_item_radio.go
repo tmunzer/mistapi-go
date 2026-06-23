@@ -10,8 +10,11 @@ import (
 )
 
 // ResponseConfigHistorySearchItemRadio represents a ResponseConfigHistorySearchItemRadio struct.
+// Radio config history detail
 type ResponseConfigHistorySearchItemRadio struct {
-	Band                 string                 `json:"band"`
+	// Radio band for this config history detail
+	Band string `json:"band"`
+	// Configured channel for this radio
 	Channel              int                    `json:"channel"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

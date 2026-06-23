@@ -9,7 +9,7 @@ import (
 )
 
 // SwitchPortUsageMacLimitOverwrite represents a SwitchPortUsageMacLimitOverwrite struct.
-// Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+// Max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
 type SwitchPortUsageMacLimitOverwrite struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (s *SwitchPortUsageMacLimitOverwrite) AsString() (
 }
 
 // internalSwitchPortUsageMacLimitOverwrite represents a switchPortUsageMacLimitOverwrite struct.
-// Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
+// Max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform)
 type internalSwitchPortUsageMacLimitOverwrite struct{}
 
 var SwitchPortUsageMacLimitOverwriteContainer internalSwitchPortUsageMacLimitOverwrite

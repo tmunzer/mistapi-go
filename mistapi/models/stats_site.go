@@ -11,43 +11,73 @@ import (
 )
 
 // StatsSite represents a StatsSite struct.
-// Site statistics
+// Site metadata and aggregate device/client counts returned by organization site stats endpoints
 type StatsSite struct {
-	Address         *string             `json:"address,omitempty"`
+	// Configured physical address for the site
+	Address *string `json:"address,omitempty"`
+	// Alarm template applied to the site, when one overrides the organization-level alarm template
 	AlarmtemplateId Optional[uuid.UUID] `json:"alarmtemplate_id"`
-	AnalyticEnabled *bool               `json:"analyticEnabled,omitempty"`
-	AptemplateId    Optional[uuid.UUID] `json:"aptemplate_id"`
-	CountryCode     string              `json:"country_code"`
+	// Whether analytics features are enabled for the site
+	AnalyticEnabled *bool `json:"analyticEnabled,omitempty"`
+	// AP template applied to access points in the site, when configured
+	AptemplateId Optional[uuid.UUID] `json:"aptemplate_id"`
+	// Two-letter country code used for site configuration generation
+	CountryCode string `json:"country_code"`
 	// When the object has been created, in epoch
-	CreatedTime       float64             `json:"created_time"`
-	EngagementEnabled *bool               `json:"engagementEnabled,omitempty"`
+	CreatedTime float64 `json:"created_time"`
+	// Whether engagement features are enabled for the site
+	EngagementEnabled *bool `json:"engagementEnabled,omitempty"`
+	// Gateway template applied to gateways in the site, when configured
 	GatewaytemplateId Optional[uuid.UUID] `json:"gatewaytemplate_id"`
 	// Unique ID of the object instance in the Mist Organization
-	Id     uuid.UUID `json:"id"`
-	Lat    *float64  `json:"lat,omitempty"`
-	Latlng LatLng    `json:"latlng"`
-	Lng    *float64  `json:"lng,omitempty"`
+	Id uuid.UUID `json:"id"`
+	// Geographic latitude coordinate for the site location
+	Lat *float64 `json:"lat,omitempty"`
+	// Geographic latitude and longitude coordinate pair
+	Latlng LatLng `json:"latlng"`
+	// Longitude coordinate for the site location
+	Lng *float64 `json:"lng,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         float64                `json:"modified_time"`
-	MspId                *uuid.UUID             `json:"msp_id,omitempty"`
-	Name                 string                 `json:"name"`
-	NetworktemplateId    Optional[uuid.UUID]    `json:"networktemplate_id"`
-	Notes                *string                `json:"notes,omitempty"`
-	NumAp                int                    `json:"num_ap"`
-	NumApConnected       int                    `json:"num_ap_connected"`
-	NumClients           int                    `json:"num_clients"`
-	NumDevices           int                    `json:"num_devices"`
-	NumDevicesConnected  int                    `json:"num_devices_connected"`
-	NumGateway           int                    `json:"num_gateway"`
-	NumGatewayConnected  int                    `json:"num_gateway_connected"`
-	NumSwitch            int                    `json:"num_switch"`
-	NumSwitchConnected   int                    `json:"num_switch_connected"`
-	OrgId                uuid.UUID              `json:"org_id"`
-	RftemplateId         Optional[uuid.UUID]    `json:"rftemplate_id"`
-	SecpolicyId          Optional[uuid.UUID]    `json:"secpolicy_id"`
-	SitegroupIds         []uuid.UUID            `json:"sitegroup_ids,omitempty"`
-	SitetemplateId       Optional[uuid.UUID]    `json:"sitetemplate_id"`
-	Timezone             string                 `json:"timezone"`
+	ModifiedTime float64 `json:"modified_time"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
+	// Display name of the site
+	Name string `json:"name"`
+	// Network template applied to the site, when configured
+	NetworktemplateId Optional[uuid.UUID] `json:"networktemplate_id"`
+	// Free-form notes configured for the site
+	Notes *string `json:"notes,omitempty"`
+	// Number of access points in the site
+	NumAp int `json:"num_ap"`
+	// Number of access points currently connected in the site
+	NumApConnected int `json:"num_ap_connected"`
+	// Number of clients currently counted in the site
+	NumClients int `json:"num_clients"`
+	// Number of managed devices in the site
+	NumDevices int `json:"num_devices"`
+	// Number of managed devices currently connected in the site
+	NumDevicesConnected int `json:"num_devices_connected"`
+	// Number of gateways in the site
+	NumGateway int `json:"num_gateway"`
+	// Number of gateways currently connected in the site
+	NumGatewayConnected int `json:"num_gateway_connected"`
+	// Number of switches in the site
+	NumSwitch int `json:"num_switch"`
+	// Number of switches currently connected in the site
+	NumSwitchConnected int `json:"num_switch_connected"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// RF template applied to the site, when configured
+	RftemplateId Optional[uuid.UUID] `json:"rftemplate_id"`
+	// Security policy applied to the site, when configured
+	SecpolicyId Optional[uuid.UUID] `json:"secpolicy_id"`
+	// Site group identifiers associated with a site statistics record
+	SitegroupIds []uuid.UUID `json:"sitegroup_ids,omitempty"`
+	// Site template applied to the site, when configured
+	SitetemplateId Optional[uuid.UUID] `json:"sitetemplate_id"`
+	// IANA time zone name for the site
+	Timezone string `json:"timezone"`
+	// Time zone offset value derived from the site's timezone
 	Tzoffset             int                    `json:"tzoffset"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

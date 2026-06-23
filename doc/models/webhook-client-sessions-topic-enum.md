@@ -1,7 +1,7 @@
 
 # Webhook Client Sessions Topic Enum
 
-enum: `client-sessions`
+Webhook topic name for client session deliveries. enum: `client-sessions`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `client-sessions`
 | Name |
 |  --- |
 | `client-sessions` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookClientSessionsTopic := models.WebhookClientSessionsTopicEnum_CLIENTSESSIONS
+
+}
+```
 

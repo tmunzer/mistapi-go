@@ -1,7 +1,7 @@
 
 # Capture Switch Format Enum
 
-enum: `stream`
+Output format for the switch packet capture. enum: `stream`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `stream`
 | Name |
 |  --- |
 | `stream` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureSwitchFormat := models.CaptureSwitchFormatEnum_STREAM
+
+}
+```
 

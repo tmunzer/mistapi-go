@@ -1,6 +1,8 @@
 
 # Sso Delete Admins
 
+Request body listing SSO admin email addresses to delete
+
 ## Structure
 
 `SsoDeleteAdmins`
@@ -11,15 +13,22 @@
 |  --- | --- | --- | --- |
 | `Emails` | `[]string` | Required | List of admin email addresses to delete |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "emails": [
-    "emails7",
-    "emails8",
-    "emails9"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssoDeleteAdmins := models.SsoDeleteAdmins{
+        Emails:               []string{
+            "emails1",
+        },
+    }
+
 }
 ```
 

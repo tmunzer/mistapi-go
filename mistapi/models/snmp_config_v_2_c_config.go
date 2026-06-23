@@ -8,12 +8,15 @@ import (
 )
 
 // SnmpConfigV2cConfig represents a SnmpConfigV2cConfig struct.
+// SNMPv2c community configuration entry
 type SnmpConfigV2cConfig struct {
+	// Access level for the SNMPv2c community
 	Authorization *string `json:"authorization,omitempty"`
-	// Client_list_name here should refer to client_list above
+	// SNMP client list name referenced by this community
 	ClientListName *string `json:"client_list_name,omitempty"`
-	CommunityName  *string `json:"community_name,omitempty"`
-	// View name here should be defined in views above
+	// SNMPv2c community string name
+	CommunityName *string `json:"community_name,omitempty"`
+	// SNMP view name that must be defined in the views list
 	View                 *string                `json:"view,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

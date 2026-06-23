@@ -11,45 +11,49 @@ import (
 )
 
 // StatsWanTunnel represents a StatsWanTunnel struct.
+// WAN tunnel statistics record returned by tunnel search
 type StatsWanTunnel struct {
-	// Authentication algorithm
+	// Authentication algorithm negotiated for the tunnel
 	AuthAlgo *string `json:"auth_algo,omitempty"`
-	// Encryption algorithm
+	// Encryption algorithm negotiated for the tunnel
 	EncryptAlgo *string `json:"encrypt_algo,omitempty"`
-	// IKE version
+	// IKE version used to establish the tunnel
 	IkeVersion *string `json:"ike_version,omitempty"`
-	// IP Address
+	// Local IP address used by the tunnel
 	Ip *string `json:"ip,omitempty"`
-	// Reason of why the tunnel is down
+	// Most recent reason the tunnel went down
 	LastEvent *string `json:"last_event,omitempty"`
-	// Router mac address
+	// Router MAC address reporting the tunnel statistics
 	Mac *string `json:"mac,omitempty"`
-	// Node0/node1
-	Node  *string    `json:"node,omitempty"`
+	// HA node handling the tunnel, such as node0 or node1
+	Node *string `json:"node,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// Peer host
+	// Hostname or configured peer host of the remote tunnel endpoint
 	PeerHost *string `json:"peer_host,omitempty"`
-	// Peer ip address
+	// IP address of the remote tunnel endpoint
 	PeerIp string `json:"peer_ip"`
-	// enum: `primary`, `secondary`
+	// Relative preference assigned to the tunnel. enum: `primary`, `secondary`
 	Priority *TunnelPriorityEnum `json:"priority,omitempty"`
-	// enum: `gre`, `ipsec`
+	// Tunnel protocol used for the connection. enum: `gre`, `ipsec`
 	Protocol *WanTunnelProtocolEnum `json:"protocol,omitempty"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
-	SiteId *uuid.UUID      `json:"site_id,omitempty"`
-	// Mist Tunnel Name
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Name of the Mist-managed WAN tunnel
 	TunnelName *string `json:"tunnel_name,omitempty"`
 	// Amount of traffic sent since connection
 	TxBytes Optional[int64] `json:"tx_bytes"`
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
-	Up     *bool           `json:"up,omitempty"`
-	// Duration from first (or last) SA was established
+	// Indicates whether the tunnel is currently up
+	Up *bool `json:"up,omitempty"`
+	// Duration since the tunnel security association was established
 	Uptime *int `json:"uptime,omitempty"`
-	// WAN interface name
+	// Name of the WAN interface carrying the tunnel
 	WanName              *string                `json:"wan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

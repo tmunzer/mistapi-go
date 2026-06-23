@@ -18,7 +18,16 @@ Sky ATP cloud name. enum: `www.amerskyatp.com`, `www.apacskyatp.com`, `www.euros
 
 ## Example
 
-```
-www.amerskyatp.com
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountSkyatpCloudName := models.AccountSkyatpCloudNameEnum_ENUMWWWEUROSKYATPCOM
+
+}
 ```
 

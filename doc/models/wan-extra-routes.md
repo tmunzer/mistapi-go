@@ -1,6 +1,8 @@
 
 # Wan Extra Routes
 
+Additional IPv4 route for a WAN interface
+
 ## Structure
 
 `WanExtraRoutes`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Via` | `*string` | Optional | - |
+| `Via` | `*string` | Optional | IPv4 next-hop address for this WAN extra route |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "via": "via8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wanExtraRoutes := models.WanExtraRoutes{
+        Via:                  models.ToPointer("via6"),
+    }
+
 }
 ```
 

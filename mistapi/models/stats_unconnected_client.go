@@ -11,23 +11,23 @@ import (
 )
 
 // StatsUnconnectedClient represents a StatsUnconnectedClient struct.
-// Unconnected clients statistics
+// Location statistics for an unconnected Wi-Fi client observed by an AP
 type StatsUnconnectedClient struct {
 	// MAC address of the AP that heard the client
 	ApMac string `json:"ap_mac"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// MAC address of the (unconnected) client
+	// Unconnected client MAC address observed by an AP
 	Mac string `json:"mac"`
 	// Device manufacture, through fingerprinting or OUI
 	Manufacture string `json:"manufacture"`
-	// Map_id of the client (if known), or null
+	// Map identifier for the unconnected client's location, if known
 	MapId Optional[uuid.UUID] `json:"map_id"`
 	// Client RSSI observed by the AP that heard the client (in dBm)
 	Rssi int `json:"rssi"`
-	// X (in pixels) of user location on the map (if known)
+	// Horizontal map coordinate of the unconnected client location, in pixels, if known
 	X *float64 `json:"x,omitempty"`
-	// Y (in pixels) of user location on the map (if known)
+	// Vertical map coordinate of the unconnected client location, in pixels, if known
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

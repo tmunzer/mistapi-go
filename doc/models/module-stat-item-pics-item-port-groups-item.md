@@ -1,6 +1,8 @@
 
 # Module Stat Item Pics Item Port Groups Item
 
+Port group summary for a PIC
+
 ## Structure
 
 `ModuleStatItemPicsItemPortGroupsItem`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Count` | `*int` | Optional | - |
-| `Type` | `*string` | Optional | - |
+| `Count` | `*int` | Optional | Number of ports in this PIC port group |
+| `Type` | `*string` | Optional | Port media or interface type for this PIC port group |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "count": 2,
-  "type": "type2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    moduleStatItemPicsItemPortGroupsItem := models.ModuleStatItemPicsItemPortGroupsItem{
+        Count:                models.ToPointer(38),
+        Type:                 models.ToPointer("type8"),
+    }
+
 }
 ```
 

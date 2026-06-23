@@ -8,12 +8,19 @@ import (
 )
 
 // SearchWebhookDelivery represents a SearchWebhookDelivery struct.
+// Paginated response for webhook delivery searches
 type SearchWebhookDelivery struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []WebhookDelivery      `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Upper bound timestamp of the webhook delivery search window, in epoch seconds
+	End *int `json:"end,omitempty"`
+	// Maximum number of webhook delivery records returned by this page
+	Limit *int `json:"limit,omitempty"`
+	// URL for the next page of webhook delivery records, when more results are available
+	Next *string `json:"next,omitempty"`
+	// Webhook delivery records returned by a search response
+	Results []WebhookDelivery `json:"results,omitempty"`
+	// Lower bound timestamp of the webhook delivery search window, in epoch seconds
+	Start *int `json:"start,omitempty"`
+	// Count of webhook delivery records matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

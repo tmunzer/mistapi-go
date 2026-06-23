@@ -18,3 +18,18 @@ enum: `fail`, `none`, `pingpong`, `poor`, `slow`, `success`
 | `slow` |
 | `success` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    eventFastroamType := models.EventFastroamTypeEnum_PINGPONG
+
+}
+```
+

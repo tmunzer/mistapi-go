@@ -15,3 +15,18 @@ enum: `default`, `standard`, `strict`
 | `standard` |
 | `strict` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicySecintelProfile := models.ServicePolicySecintelProfileEnum_ENUMDEFAULT
+
+}
+```
+

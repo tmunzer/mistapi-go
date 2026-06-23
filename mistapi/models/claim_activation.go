@@ -10,10 +10,9 @@ import (
 )
 
 // ClaimActivation represents a ClaimActivation struct.
+// Request to claim organization licenses or activation codes
 type ClaimActivation struct {
-	// Whether to do a async claim process
-	Async *bool `json:"async,omitempty"`
-	// Activation code
+	// Activation or license claim code to redeem
 	Code string `json:"code"`
 	// enum: `ap`, `gateway`, `switch`
 	DeviceType *DeviceTypeDefaultApEnum `json:"device_type,omitempty"`
@@ -26,8 +25,8 @@ type ClaimActivation struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (c ClaimActivation) String() string {
 	return fmt.Sprintf(
-		"ClaimActivation[Async=%v, Code=%v, DeviceType=%v, Type=%v, AdditionalProperties=%v]",
-		c.Async, c.Code, c.DeviceType, c.Type, c.AdditionalProperties)
+		"ClaimActivation[Code=%v, DeviceType=%v, Type=%v, AdditionalProperties=%v]",
+		c.Code, c.DeviceType, c.Type, c.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for ClaimActivation.
@@ -36,7 +35,7 @@ func (c ClaimActivation) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(c.AdditionalProperties,
-		"async", "code", "device_type", "type"); err != nil {
+		"code", "device_type", "type"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(c.toMap())
@@ -46,9 +45,6 @@ func (c ClaimActivation) MarshalJSON() (
 func (c ClaimActivation) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, c.AdditionalProperties)
-	if c.Async != nil {
-		structMap["async"] = c.Async
-	}
 	structMap["code"] = c.Code
 	if c.DeviceType != nil {
 		structMap["device_type"] = c.DeviceType
@@ -69,13 +65,12 @@ func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "async", "code", "device_type", "type")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "code", "device_type", "type")
 	if err != nil {
 		return err
 	}
 	c.AdditionalProperties = additionalProperties
 
-	c.Async = temp.Async
 	c.Code = *temp.Code
 	c.DeviceType = temp.DeviceType
 	c.Type = *temp.Type
@@ -84,7 +79,6 @@ func (c *ClaimActivation) UnmarshalJSON(input []byte) error {
 
 // tempClaimActivation is a temporary struct used for validating the fields of ClaimActivation.
 type tempClaimActivation struct {
-	Async      *bool                    `json:"async,omitempty"`
 	Code       *string                  `json:"code"`
 	DeviceType *DeviceTypeDefaultApEnum `json:"device_type,omitempty"`
 	Type       *ClaimTypeEnum           `json:"type"`

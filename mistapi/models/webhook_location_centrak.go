@@ -12,9 +12,9 @@ import (
 // WebhookLocationCentrak represents a WebhookLocationCentrak struct.
 // Sample of the `location-centrak` webhook payload.
 type WebhookLocationCentrak struct {
-	// List of events
+	// CenTrak location events included in this webhook delivery
 	Events []WebhookLocationCentrakEvent `json:"events"`
-	// enum: `location-centrak`
+	// Webhook topic name for CenTrak location deliveries. enum: `location-centrak`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

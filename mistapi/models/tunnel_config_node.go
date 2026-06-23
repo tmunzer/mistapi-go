@@ -12,12 +12,15 @@ import (
 // TunnelConfigNode represents a TunnelConfigNode struct.
 // Only if `provider`==`zscaler-ipsec`, `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
 type TunnelConfigNode struct {
+	// Remote gateway host addresses for a tunnel node
 	Hosts []string `json:"hosts"`
 	// Only if `provider`==`zscaler-gre`, `provider`==`jse-ipsec`, `provider`==`custom-ipsec` or `provider`==`custom-gre`
 	InternalIps []string `json:"internal_ips,omitempty"`
-	ProbeIps    []string `json:"probe_ips,omitempty"`
+	// Unique string values returned or accepted by this schema
+	ProbeIps []string `json:"probe_ips,omitempty"`
 	// Only if `provider`==`jse-ipsec` or `provider`==`custom-ipsec`
-	RemoteIds            []string               `json:"remote_ids,omitempty"`
+	RemoteIds []string `json:"remote_ids,omitempty"`
+	// Interface names that source tunnel traffic for a tunnel node
 	WanNames             []string               `json:"wan_names"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

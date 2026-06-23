@@ -1,6 +1,8 @@
 
 # Webhook
 
+Webhook configuration for delivering selected Mist events to an external destination
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -12,56 +14,65 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `AssetfilterIds` | `[]uuid.UUID` | Optional | Only if `type`==`asset-raw-rssi`. List of ids to associated asset filters. These filters will be applied to messages routed to a filtered-asset-rssi webhook |
-| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
+| `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
 | `Enabled` | `*bool` | Optional | Whether webhook is enabled<br><br>**Default**: `true` |
-| `ForSite` | `*bool` | Optional | - |
+| `ForSite` | `*bool` | Optional, Read-only | Whether this webhook is scoped to a site rather than the organization |
 | `Headers` | `models.Optional[map[string]string]` | Optional | If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000 |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `Name` | `models.Optional[string]` | Optional | Name of the webhook |
-| `Oauth2ClientId` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials` |
-| `Oauth2ClientSecret` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials` |
+| `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
+| `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
+| `Name` | `models.Optional[string]` | Optional | Display name of the webhook |
+| `Oauth2ClientId` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials`; OAuth2 client identifier used to request an access token |
+| `Oauth2ClientSecret` | `*string` | Optional | Required when `oauth2_grant_type`==`client_credentials`; OAuth2 client secret used to request an access token |
 | `Oauth2GrantType` | [`*models.WebhookOauth2GrantTypeEnum`](../../doc/models/webhook-oauth-2-grant-type-enum.md) | Optional | required when `type`==`oauth2`. enum: `client_credentials`, `password` |
-| `Oauth2Password` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
+| `Oauth2Password` | `*string` | Optional | Required when `oauth2_grant_type`==`password`; password used for the OAuth2 token request |
 | `Oauth2Scopes` | `[]string` | Optional | Required when `type`==`oauth2`, if provided, will be used in the token request |
-| `Oauth2TokenUrl` | `*string` | Optional | Required when `type`==`oauth2` |
-| `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password` |
-| `OrgId` | `*uuid.UUID` | Optional | - |
+| `Oauth2TokenUrl` | `*string` | Optional | Required when `type`==`oauth2`; token endpoint URL used to obtain the OAuth2 access token |
+| `Oauth2Username` | `*string` | Optional | Required when `oauth2_grant_type`==`password`; username used for the OAuth2 token request |
+| `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
 | `Secret` | `models.Optional[string]` | Optional | Only if `type`=`http-post`<br><br>when `secret` is provided, two HTTP headers will be added:<br><br>* X-Mist-Signature-v2: HMAC_SHA256(secret, body)<br>* X-Mist-Signature: HMAC_SHA1(secret, body) |
 | `SingleEventPerMessage` | `*bool` | Optional | Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics))<br><br>**Default**: `false` |
-| `SiteId` | `*uuid.UUID` | Optional | - |
+| `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `SplunkToken` | `models.Optional[string]` | Optional | Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it. |
 | `Topics` | `[]string` | Optional | List of supported webhook topics available with the API Call [List Webhook Topics](../../doc/controllers/constants-definitions.md#list-webhook-topics) |
 | `Type` | [`*models.WebhookTypeEnum`](../../doc/models/webhook-type-enum.md) | Optional | enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`<br><br>**Default**: `"http-post"` |
-| `Url` | `*string` | Optional | - |
+| `Url` | `*string` | Optional | Destination URL that receives webhook deliveries |
 | `VerifyCert` | `*bool` | Optional | When url uses HTTPS, whether to verify the certificate<br><br>**Default**: `true` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": true,
-  "headers": {
-    "x-custom-1": "your_custom_header_value1",
-    "x-custom-2": "your_custom_header_value2"
-  },
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "single_event_per_message": false,
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "type": "http-post",
-  "verify_cert": true,
-  "assetfilter_ids": [
-    "00001203-0000-0000-0000-000000000000",
-    "00001204-0000-0000-0000-000000000000"
-  ],
-  "created_time": 238.32,
-  "for_site": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhook := models.Webhook{
+        AssetfilterIds:        []uuid.UUID{
+            uuid.MustParse("00001203-0000-0000-0000-000000000000"),
+            uuid.MustParse("00001204-0000-0000-0000-000000000000"),
+        },
+        CreatedTime:           models.ToPointer(float64(238.32)),
+        Enabled:               models.ToPointer(true),
+        ForSite:               models.ToPointer(false),
+        Headers:               models.NewOptional(models.ToPointer(map[string]string{
+            "x-custom-1": "your_custom_header_value1",
+            "x-custom-2": "your_custom_header_value2",
+        })),
+        Id:                    models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+        OrgId:                 models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+        SingleEventPerMessage: models.ToPointer(false),
+        SiteId:                models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+        Type:                  models.ToPointer(models.WebhookTypeEnum_HTTPPOST),
+        VerifyCert:            models.ToPointer(true),
+        AdditionalProperties:  map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

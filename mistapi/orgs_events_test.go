@@ -16,13 +16,13 @@ func TestOrgsEventsTestSearchOrgEvents(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
+	mType := "CRADLEPOINT_MAINTENANCE_COMPLETED,CRADLEPOINT_MAINTENANCE_STARTED"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, &mType, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -40,13 +40,13 @@ func TestOrgsEventsTestSearchOrgEvents1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
+	mType := "CRADLEPOINT_MAINTENANCE_COMPLETED,CRADLEPOINT_MAINTENANCE_STARTED"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsEvents.SearchOrgEvents(ctx, orgId, &mType, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

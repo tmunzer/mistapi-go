@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseCountMarvisActionsResult represents a ResponseCountMarvisActionsResult struct.
+// Marvis action count result for one distinct value
 type ResponseCountMarvisActionsResult struct {
+	// Number of Marvis actions matching this distinct value
 	Count                *int              `json:"count,omitempty"`
 	AdditionalProperties map[string]string `json:"_"`
 }

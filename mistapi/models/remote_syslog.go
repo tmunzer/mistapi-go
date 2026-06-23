@@ -8,20 +8,29 @@ import (
 )
 
 // RemoteSyslog represents a RemoteSyslog struct.
+// Remote syslog forwarding settings
 type RemoteSyslog struct {
-	Archive *RemoteSyslogArchive     `json:"archive,omitempty"`
-	Cacerts []string                 `json:"cacerts,omitempty"`
-	Console *RemoteSyslogConsole     `json:"console,omitempty"`
-	Enabled *bool                    `json:"enabled,omitempty"`
-	Files   []RemoteSyslogFileConfig `json:"files,omitempty"`
-	// If source_address is configured, will use the vlan firstly otherwise use source_ip
-	Network          *string              `json:"network,omitempty"`
-	SendToAllServers *bool                `json:"send_to_all_servers,omitempty"`
-	Servers          []RemoteSyslogServer `json:"servers,omitempty"`
+	// Syslog file archive retention settings
+	Archive *RemoteSyslogArchive `json:"archive,omitempty"`
+	// CA certificates used to verify TLS syslog servers
+	Cacerts []string `json:"cacerts,omitempty"`
+	// Console log forwarding filters for remote syslog
+	Console *RemoteSyslogConsole `json:"console,omitempty"`
+	// Whether remote syslog forwarding is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Generated syslog file output definitions
+	Files []RemoteSyslogFileConfig `json:"files,omitempty"`
+	// Source network used for syslog traffic. If `source_address` is configured, Mist uses the VLAN first; otherwise it uses `source_ip`
+	Network *string `json:"network,omitempty"`
+	// Whether each log entry is sent to all configured remote syslog servers
+	SendToAllServers *bool `json:"send_to_all_servers,omitempty"`
+	// Remote syslog server destination list
+	Servers []RemoteSyslogServer `json:"servers,omitempty"`
 	// enum: `millisecond`, `year`, `year millisecond`
-	TimeFormat           *RemoteSyslogTimeFormatEnum `json:"time_format,omitempty"`
-	Users                []RemoteSyslogUser          `json:"users,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	TimeFormat *RemoteSyslogTimeFormatEnum `json:"time_format,omitempty"`
+	// User-specific syslog logging rules
+	Users                []RemoteSyslogUser     `json:"users,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for RemoteSyslog,

@@ -16,3 +16,18 @@ enum: `hard`, `in`, `out`, `soft`
 | `out` |
 | `soft` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsClearBgpType := models.UtilsClearBgpTypeEnum_HARD
+
+}
+```
+

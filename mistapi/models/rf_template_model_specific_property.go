@@ -8,10 +8,14 @@ import (
 )
 
 // RfTemplateModelSpecificProperty represents a RfTemplateModelSpecificProperty struct.
+// AP model-specific RF overrides for an RF template
 type RfTemplateModelSpecificProperty struct {
+	// Model-specific external antenna gain for the 2.4 GHz radio
 	AntGain24 *int `json:"ant_gain_24,omitempty"`
-	AntGain5  *int `json:"ant_gain_5,omitempty"`
-	AntGain6  *int `json:"ant_gain_6,omitempty"`
+	// Model-specific external antenna gain for the 5 GHz radio
+	AntGain5 *int `json:"ant_gain_5,omitempty"`
+	// Model-specific external antenna gain for the 6 GHz radio
+	AntGain6 *int `json:"ant_gain_6,omitempty"`
 	// Radio Band AP settings
 	Band24 *RftemplateRadioBand24 `json:"band_24,omitempty"`
 	// enum: `24`, `5`, `6`, `auto`

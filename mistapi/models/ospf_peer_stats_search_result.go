@@ -8,14 +8,21 @@ import (
 )
 
 // OspfPeerStatsSearchResult represents a OspfPeerStatsSearchResult struct.
+// Paginated OSPF peer statistics search result
 type OspfPeerStatsSearchResult struct {
-	End                  *int                              `json:"end,omitempty"`
-	Limit                *int                              `json:"limit,omitempty"`
-	Next                 *string                           `json:"next,omitempty"`
-	Results              []OspfPeerStatsSearchResultsItems `json:"results,omitempty"`
-	Start                *int                              `json:"start,omitempty"`
-	Total                *int                              `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	// Query end timestamp for the OSPF peer statistics search
+	End *int `json:"end,omitempty"`
+	// Maximum number of OSPF peer statistics returned per page
+	Limit *int `json:"limit,omitempty"`
+	// URL for the next page of OSPF peer statistics, when available
+	Next *string `json:"next,omitempty"`
+	// List of OSPF peer statistic records
+	Results []OspfPeerStatsSearchResultsItems `json:"results,omitempty"`
+	// Query start timestamp for the OSPF peer statistics search
+	Start *int `json:"start,omitempty"`
+	// Number of OSPF peer statistic records matching the search
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for OspfPeerStatsSearchResult,

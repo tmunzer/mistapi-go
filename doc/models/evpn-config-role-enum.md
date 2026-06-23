@@ -19,3 +19,18 @@ enum: `access`, `border`, `collapsed-core`, `core`, `distribution`, `esilag-acce
 | `esilag-access` |
 | `none` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnConfigRole := models.EvpnConfigRoleEnum_ESILAGACCESS
+
+}
+```
+

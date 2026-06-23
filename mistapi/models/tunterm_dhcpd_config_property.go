@@ -8,10 +8,13 @@ import (
 )
 
 // TuntermDhcpdConfigProperty represents a TuntermDhcpdConfigProperty struct.
+// Per-VLAN DHCP relay configuration for tunnel termination
 type TuntermDhcpdConfigProperty struct {
-	Enabled *bool    `json:"enabled,omitempty"`
+	// Whether DHCP relay is enabled for this tunneled VLAN
+	Enabled *bool `json:"enabled,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Servers []string `json:"servers,omitempty"`
-	// enum: `relay`
+	// DHCP handling mode for tunnel termination. enum: `relay`
 	Type                 *TuntermDhcpdTypeEnum  `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

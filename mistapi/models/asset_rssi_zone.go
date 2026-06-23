@@ -9,9 +9,11 @@ import (
 )
 
 // AssetRssiZone represents a AssetRssiZone struct.
+// RSSI zone membership for an individual asset statistic
 type AssetRssiZone struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Timestamp when the asset entered this RSSI zone
 	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

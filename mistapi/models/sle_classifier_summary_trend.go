@@ -10,10 +10,15 @@ import (
 )
 
 // SleClassifierSummaryTrend represents a SleClassifierSummaryTrend struct.
+// Time-series trend response for an SLE classifier
 type SleClassifierSummaryTrend struct {
-	Classifier           SleTrendClassifier     `json:"classifier"`
-	End                  float64                `json:"end"`
-	Metric               string                 `json:"metric"`
+	// Time-series classifier trend detail for an SLE metric
+	Classifier SleTrendClassifier `json:"classifier"`
+	// Last timestamp in the classifier trend window
+	End float64 `json:"end"`
+	// SLE metric name represented by the trend
+	Metric string `json:"metric"`
+	// First timestamp in the classifier trend window
 	Start                float64                `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

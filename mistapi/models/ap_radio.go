@@ -8,8 +8,9 @@ import (
 )
 
 // ApRadio represents a ApRadio struct.
-// Radio AP settings
+// Radio configuration settings for an access point
 type ApRadio struct {
+	// Whether RRM can be disabled for individual radio-band settings
 	AllowRrmDisable *bool `json:"allow_rrm_disable,omitempty"`
 	// Antenna gain for 2.4G - for models with external antenna only
 	AntGain24 *int `json:"ant_gain_24,omitempty"`
@@ -21,15 +22,15 @@ type ApRadio struct {
 	AntennaMode *ApRadioAntennaModeEnum `json:"antenna_mode,omitempty"`
 	// Antenna Mode for AP which supports selectable antennas. enum: `""` (default), `external`, `internal`
 	AntennaSelect *AntennaSelectEnum `json:"antenna_select,omitempty"`
-	// Radio Band AP settings
+	// 2.4 GHz radio settings for an access point
 	Band24 *ApRadioBand24 `json:"band_24,omitempty"`
 	// enum: `24`, `5`, `6`, `auto`
 	Band24Usage *RadioBand24UsageEnum `json:"band_24_usage,omitempty"`
-	// Radio Band AP settings
+	// 5 GHz radio settings for an access point
 	Band5 *ApRadioBand5 `json:"band_5,omitempty"`
-	// Radio Band AP settings
+	// 5 GHz radio settings for an access point
 	Band5On24Radio *ApRadioBand5 `json:"band_5_on_24_radio,omitempty"`
-	// Radio Band AP settings
+	// 6 GHz radio settings for an access point
 	Band6 *ApRadioBand6 `json:"band_6,omitempty"`
 	// Let RRM control everything, only the `channels` and `ant_gain` will be honored (i.e. disabled/bandwidth/power/band_24_usage are all controlled by RRM)
 	FullAutomaticRrm *bool `json:"full_automatic_rrm,omitempty"`

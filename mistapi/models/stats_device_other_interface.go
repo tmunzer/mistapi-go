@@ -8,23 +8,41 @@ import (
 )
 
 // StatsDeviceOtherInterface represents a StatsDeviceOtherInterface struct.
+// Network interface statistics for a third-party device tracked by Mist
 type StatsDeviceOtherInterface struct {
-	BytesIn              *int64                 `json:"bytes_in,omitempty"`
-	BytesOut             *int64                 `json:"bytes_out,omitempty"`
-	Carrier              *string                `json:"carrier,omitempty"`
-	Imei                 *string                `json:"imei,omitempty"`
-	Imsi                 *string                `json:"imsi,omitempty"`
-	Ip                   *string                `json:"ip,omitempty"`
-	Link                 *bool                  `json:"link,omitempty"`
-	Mode                 *string                `json:"mode,omitempty"`
-	Mtu                  *int                   `json:"mtu,omitempty"`
-	Rsrp                 *float64               `json:"rsrp,omitempty"`
-	Rsrq                 *float64               `json:"rsrq,omitempty"`
-	Rssi                 *int                   `json:"rssi,omitempty"`
-	ServiceMode          *string                `json:"service_mode,omitempty"`
-	Sinr                 *float64               `json:"sinr,omitempty"`
-	State                *string                `json:"state,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
+	// Total bytes received on the interface
+	BytesIn *int64 `json:"bytes_in,omitempty"`
+	// Total bytes transmitted from the interface
+	BytesOut *int64 `json:"bytes_out,omitempty"`
+	// Cellular carrier name reported for the interface, when applicable
+	Carrier *string `json:"carrier,omitempty"`
+	// Modem IMEI serving the interface, when applicable
+	Imei *string `json:"imei,omitempty"`
+	// Subscriber IMSI associated with the interface, when applicable
+	Imsi *string `json:"imsi,omitempty"`
+	// Interface IP address reported by the vendor
+	Ip *string `json:"ip,omitempty"`
+	// Whether the interface link is up
+	Link *bool `json:"link,omitempty"`
+	// Interface role reported by the vendor, such as wan or lan
+	Mode *string `json:"mode,omitempty"`
+	// Maximum transmission unit configured on the interface, in bytes
+	Mtu *int `json:"mtu,omitempty"`
+	// Reference signal received power for a cellular interface, in dBm
+	Rsrp *float64 `json:"rsrp,omitempty"`
+	// Reference signal received quality for a cellular interface, in dB
+	Rsrq *float64 `json:"rsrq,omitempty"`
+	// Received signal strength indicator for a cellular interface, in dBm
+	Rssi *int `json:"rssi,omitempty"`
+	// Cellular service mode reported for the interface, such as 5G NSA
+	ServiceMode *string `json:"service_mode,omitempty"`
+	// Signal-to-interference-plus-noise ratio for a cellular interface, in dB
+	Sinr *float64 `json:"sinr,omitempty"`
+	// Operational state reported for the interface
+	State *string `json:"state,omitempty"`
+	// Interface type reported by the vendor, such as mdm or ethernet
+	Type *string `json:"type,omitempty"`
+	// Elapsed time since the interface last became active, in seconds
 	Uptime               *int                   `json:"uptime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

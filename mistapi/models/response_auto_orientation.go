@@ -8,8 +8,9 @@ import (
 )
 
 // ResponseAutoOrientation represents a ResponseAutoOrientation struct.
+// Auto orientation start response
 type ResponseAutoOrientation struct {
-	// Contains the validation status of each device. The Property Key is the device MAC Address.
+	// Contains the validation status of each device. The property key is the device MAC address.
 	Devices map[string]ResponseAutoOrientationDevice `json:"devices,omitempty"`
 	// Estimated runtime for the process in seconds
 	EstimatedRuntime *int `json:"estimated_runtime,omitempty"`

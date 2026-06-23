@@ -12,7 +12,7 @@ import (
 type SwitchMatchingRuleIpConfig struct {
 	// VLAN Name for the management interface
 	Network *string `json:"network,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type                 *IpTypeEnum            `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

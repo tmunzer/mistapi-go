@@ -1,6 +1,8 @@
 
 # Stats Wxrule Usage Properties
 
+Usage counters for one WxLAN rule destination tag
+
 ## Structure
 
 `StatsWxruleUsageProperties`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumFlows` | `*int` | Optional | - |
+| `NumFlows` | `*int` | Optional | Number of flows counted for this WxLAN rule and destination tag |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_flows": 210
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsWxruleUsageProperties := models.StatsWxruleUsageProperties{
+        NumFlows:             models.ToPointer(24),
+    }
+
 }
 ```
 

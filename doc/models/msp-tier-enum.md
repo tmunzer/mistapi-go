@@ -1,7 +1,7 @@
 
 # Msp Tier Enum
 
-enum: `advanced`, `base`
+Service tier for the MSP account. enum: `advanced`, `base`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `advanced`, `base`
 |  --- |
 | `advanced` |
 | `base` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mspTier := models.MspTierEnum_ADVANCED
+
+}
+```
 

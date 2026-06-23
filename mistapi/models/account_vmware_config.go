@@ -10,6 +10,7 @@ import (
 )
 
 // AccountVmwareConfig represents a AccountVmwareConfig struct.
+// VMware account credentials and webhook settings for OAuth application linking
 type AccountVmwareConfig struct {
 	// Customer account Client ID
 	ClientId string `json:"client_id"`

@@ -10,7 +10,7 @@ import (
 )
 
 // BgpConfig represents a BgpConfig struct.
-// BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
+// BGP session configuration. BFD is enabled when either bfd_minimum_interval or bfd_multiplier is configured
 type BgpConfig struct {
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`
 	AuthKey *string `json:"auth_key,omitempty"`
@@ -21,8 +21,9 @@ type BgpConfig struct {
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`, when bfd_minimum_interval_is_configured alone
 	BfdMultiplier Optional[int] `json:"bfd_multiplier"`
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BFD provides faster path failure detection and is enabled by default
-	DisableBfd *bool   `json:"disable_bfd,omitempty"`
-	Export     *string `json:"export,omitempty"`
+	DisableBfd *bool `json:"disable_bfd,omitempty"`
+	// Routing policy applied to routes exported by this BGP session
+	Export *string `json:"export,omitempty"`
 	// Default export policies if no per-neighbor policies defined
 	ExportPolicy *string `json:"export_policy,omitempty"`
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. By default, either inet/net6 unicast depending on neighbor IP family (v4 or v6). For v6 neighbors, to exchange v4 nexthop, which allows dual-stack support, enable this
@@ -30,8 +31,9 @@ type BgpConfig struct {
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. `0` means disable
 	GracefulRestartTime *int `json:"graceful_restart_time,omitempty"`
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. Default is 90.
-	HoldTime *int    `json:"hold_time,omitempty"`
-	Import   *string `json:"import,omitempty"`
+	HoldTime *int `json:"hold_time,omitempty"`
+	// Routing policy applied to routes imported by this BGP session
+	Import *string `json:"import,omitempty"`
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. Default import policies if no per-neighbor policies defined
 	ImportPolicy *string `json:"import_policy,omitempty"`
 	// Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. BGP AS, value in range 1-4294967295
@@ -46,15 +48,15 @@ type BgpConfig struct {
 	NoPrivateAs *bool `json:"no_private_as,omitempty"`
 	// Optional if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. By default, we'll re-advertise all learned BGP routers toward overlay
 	NoReadvertiseToOverlay *bool `json:"no_readvertise_to_overlay,omitempty"`
-	// Optional if `via`==`tunnel`
+	// Optional if `via`==`tunnel`; tunnel name used for this BGP session
 	TunnelName *string `json:"tunnel_name,omitempty"`
 	// Required if `via`==`lan`, `via`==`tunnel` or `via`==`wan`. enum: `external`, `internal`
 	Type *BgpConfigTypeEnum `json:"type,omitempty"`
 	// enum: `lan`, `tunnel`, `vpn`, `wan`
 	Via BgpConfigViaEnum `json:"via"`
-	// Optional if `via`==`vpn`
+	// Optional if `via`==`vpn`; VPN name used for this BGP session
 	VpnName *string `json:"vpn_name,omitempty"`
-	// Optional if `via`==`wan`
+	// Optional if `via`==`wan`; WAN interface name used for this BGP session
 	WanName              *string                `json:"wan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

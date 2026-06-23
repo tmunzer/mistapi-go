@@ -11,21 +11,27 @@ import (
 )
 
 // AuditLog represents a AuditLog struct.
+// Administrative audit log entry
 type AuditLog struct {
 	// ID of the administrator
-	AdminId   uuid.UUID `json:"admin_id"`
-	AdminName string    `json:"admin_name"`
+	AdminId uuid.UUID `json:"admin_id"`
+	// Name or email of the administrator associated with the audited action
+	AdminName string `json:"admin_name"`
 	// Field values after the change
 	After *interface{} `json:"after,omitempty"`
 	// Field values prior to the change
-	Before  *interface{} `json:"before,omitempty"`
-	ForSite *bool        `json:"for_site,omitempty"`
+	Before *interface{} `json:"before,omitempty"`
+	// Whether this audit log entry is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id      uuid.UUID `json:"id"`
-	Message string    `json:"message"`
-	OrgId   uuid.UUID `json:"org_id"`
-	SiteId  uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
+	Id uuid.UUID `json:"id"`
+	// Human-readable audit message describing the action
+	Message string `json:"message"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

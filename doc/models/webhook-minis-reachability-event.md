@@ -1,6 +1,8 @@
 
 # Webhook Minis Reachability Event
 
+Marvis Minis reachability synthetic test result
+
 ## Structure
 
 `WebhookMinisReachabilityEvent`
@@ -11,36 +13,46 @@
 |  --- | --- | --- | --- |
 | `AvgLatency` | `*float64` | Optional | Average latency in milliseconds |
 | `DeviceMac` | `*string` | Optional | MAC address of the device performing the test |
-| `LossPercentage` | `*float64` | Optional | Packet loss percentage |
+| `LossPercentage` | `*float64` | Optional | Percentage of packets lost during the reachability test |
 | `MaxLatency` | `*float64` | Optional | Maximum latency in milliseconds |
 | `MinLatency` | `*float64` | Optional | Minimum latency in milliseconds |
-| `OrgId` | `*uuid.UUID` | Optional | - |
+| `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
 | `ProbeName` | `*string` | Optional | Name of the probe |
 | `ProbeTarget` | `*string` | Optional | Target host or IP for the probe |
-| `ProbeType` | `*string` | Optional | Type of probe |
-| `Protocol` | `*string` | Optional | Protocol used for the test |
-| `SiteId` | `*uuid.UUID` | Optional | - |
+| `ProbeType` | `*string` | Optional | Probe category used for the Minis reachability test |
+| `Protocol` | `*string` | Optional | Network protocol used for the reachability test |
+| `SiteId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist site |
 | `TestType` | `*string` | Optional | Type of test performed |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `Vlan` | `*int` | Optional | VLAN ID used for the test |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
+| `Vlan` | `*int` | Optional | Network VLAN ID used for the reachability test |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "device_mac": "7cb68d8f0440",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "probe_name": "google ping",
-  "probe_target": "google.com",
-  "probe_type": "reachability",
-  "protocol": "icmp",
-  "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-  "test_type": "ping",
-  "vlan": 12,
-  "avg_latency": 229.9,
-  "loss_percentage": 135.74,
-  "max_latency": 93.62,
-  "min_latency": 4.72
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookMinisReachabilityEvent := models.WebhookMinisReachabilityEvent{
+        AvgLatency:           models.ToPointer(float64(224.12)),
+        DeviceMac:            models.ToPointer("7cb68d8f0440"),
+        LossPercentage:       models.ToPointer(float64(129.96)),
+        MaxLatency:           models.ToPointer(float64(99.4)),
+        MinLatency:           models.ToPointer(float64(10.5)),
+        OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+        ProbeName:            models.ToPointer("google ping"),
+        ProbeTarget:          models.ToPointer("google.com"),
+        ProbeType:            models.ToPointer("reachability"),
+        Protocol:             models.ToPointer("icmp"),
+        SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+        TestType:             models.ToPointer("ping"),
+        Vlan:                 models.ToPointer(12),
+    }
+
 }
 ```
 

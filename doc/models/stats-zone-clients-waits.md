@@ -16,14 +16,23 @@ Client wait time right now
 | `Min` | `*float64` | Optional | Shortest wait time in seconds |
 | `P95` | `*float64` | Optional | 95th percentile of all the wait time(s) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "avg": 1200.0,
-  "max": 3610.0,
-  "min": 600.0,
-  "p95": 2800.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsZoneClientsWaits := models.StatsZoneClientsWaits{
+        Avg:                  models.ToPointer(float64(1200)),
+        Max:                  models.ToPointer(float64(3610)),
+        Min:                  models.ToPointer(float64(600)),
+        P95:                  models.ToPointer(float64(2800)),
+    }
+
 }
 ```
 

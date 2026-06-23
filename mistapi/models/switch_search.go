@@ -11,35 +11,55 @@ import (
 )
 
 // SwitchSearch represents a SwitchSearch struct.
+// Switch record returned by device search endpoints
 type SwitchSearch struct {
-	Clustered        *bool    `json:"clustered,omitempty"`
-	EvpnMissingLinks *bool    `json:"evpn_missing_links,omitempty"`
-	EvpntopoId       *string  `json:"evpntopo_id,omitempty"`
-	ExtIp            *string  `json:"ext_ip,omitempty"`
-	Hostname         []string `json:"hostname,omitempty"`
-	Ip               *string  `json:"ip,omitempty"`
-	LastConfigStatus *string  `json:"last_config_status,omitempty"`
-	LastHostname     *string  `json:"last_hostname,omitempty"`
-	LastTroubleCode  *string  `json:"last_trouble_code,omitempty"`
-	// Epoch (seconds)
+	// Whether the switch is part of a virtual chassis or cluster
+	Clustered *bool `json:"clustered,omitempty"`
+	// Whether EVPN topology links are missing for this switch
+	EvpnMissingLinks *bool `json:"evpn_missing_links,omitempty"`
+	// EVPN topology ID associated with this switch
+	EvpntopoId *string `json:"evpntopo_id,omitempty"`
+	// External IP address observed for switch management traffic
+	ExtIp *string `json:"ext_ip,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Hostname []string `json:"hostname,omitempty"`
+	// Management IP address currently reported for the switch
+	Ip *string `json:"ip,omitempty"`
+	// Most recent configuration status reported for the switch
+	LastConfigStatus *string `json:"last_config_status,omitempty"`
+	// Most recent hostname detected for the switch
+	LastHostname *string `json:"last_hostname,omitempty"`
+	// Most recent trouble code reported for the switch
+	LastTroubleCode *string `json:"last_trouble_code,omitempty"`
+	// Epoch timestamp, in seconds
 	LastTroubleTimestamp *float64 `json:"last_trouble_timestamp,omitempty"`
-	Mac                  *string  `json:"mac,omitempty"`
-	Managed              *bool    `json:"managed,omitempty"` // Deprecated
+	// Switch MAC address reported in search results
+	Mac *string `json:"mac,omitempty"`
+	// Whether the switch is managed by Mist. Deprecated in favor of `mist_configured`
+	Managed *bool `json:"managed,omitempty"` // Deprecated
 	// whether the device can be configured by Mist or not. This deprecates `managed` (for adopted device) and `disable_auto_config` for claimed device)
-	MistConfigured *bool      `json:"mist_configured,omitempty"`
-	Model          *string    `json:"model,omitempty"`
-	NumMembers     *int       `json:"num_members,omitempty"`
-	OrgId          *uuid.UUID `json:"org_id,omitempty"`
-	// Property key is the RADIUS server IP Address
+	MistConfigured *bool `json:"mist_configured,omitempty"`
+	// Switch model reported for this search result
+	Model *string `json:"model,omitempty"`
+	// Number of members in the switch virtual chassis, when applicable
+	NumMembers *int `json:"num_members,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Property key is the RADIUS server IP address
 	RadiusStats map[string]DeviceSearchRadiusStat `json:"radius_stats,omitempty"`
-	Role        *string                           `json:"role,omitempty"`
-	SiteId      *uuid.UUID                        `json:"site_id,omitempty"`
-	TimeDrifted *bool                             `json:"time_drifted,omitempty"`
-	// Epoch (seconds)
+	// Switch role reported for this search result
+	Role *string `json:"role,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Whether the switch clock has drifted from the expected time
+	TimeDrifted *bool `json:"time_drifted,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Device Type. enum: `switch`
-	Type                 string                 `json:"type"`
-	Uptime               *int                   `json:"uptime,omitempty"`
+	Type string `json:"type"`
+	// Device uptime for the switch, in seconds
+	Uptime *int `json:"uptime,omitempty"`
+	// Software version currently running on the switch
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

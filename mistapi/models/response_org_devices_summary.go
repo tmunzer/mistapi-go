@@ -8,13 +8,21 @@ import (
 )
 
 // ResponseOrgDevicesSummary represents a ResponseOrgDevicesSummary struct.
+// Organization device count summary
 type ResponseOrgDevicesSummary struct {
-	NumAps                *int                   `json:"num_aps,omitempty"`
-	NumGateways           *int                   `json:"num_gateways,omitempty"`
-	NumMxedges            *int                   `json:"num_mxedges,omitempty"`
-	NumSwitches           *int                   `json:"num_switches,omitempty"`
-	NumUnassignedAps      *int                   `json:"num_unassigned_aps,omitempty"`
-	NumUnassignedGateways *int                   `json:"num_unassigned_gateways,omitempty"`
+	// Number of APs in the organization
+	NumAps *int `json:"num_aps,omitempty"`
+	// Number of gateways in the organization
+	NumGateways *int `json:"num_gateways,omitempty"`
+	// Number of Mist Edges in the organization
+	NumMxedges *int `json:"num_mxedges,omitempty"`
+	// Number of switches in the organization
+	NumSwitches *int `json:"num_switches,omitempty"`
+	// Number of APs in organization inventory that are not assigned to a site
+	NumUnassignedAps *int `json:"num_unassigned_aps,omitempty"`
+	// Number of gateways in organization inventory that are not assigned to a site
+	NumUnassignedGateways *int `json:"num_unassigned_gateways,omitempty"`
+	// Number of switches in organization inventory that are not assigned to a site
 	NumUnassignedSwitches *int                   `json:"num_unassigned_switches,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"_"`
 }

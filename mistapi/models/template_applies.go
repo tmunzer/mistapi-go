@@ -11,6 +11,7 @@ import (
 // TemplateApplies represents a TemplateApplies struct.
 // Where this template should be applied to, can be org_id, site_ids, sitegroup_ids
 type TemplateApplies struct {
+	// Organization included in the WLAN template application scope
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// List of site ids
 	SiteIds []uuid.UUID `json:"site_ids,omitempty"`

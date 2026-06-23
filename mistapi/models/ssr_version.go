@@ -10,10 +10,15 @@ import (
 )
 
 // SsrVersion represents a SsrVersion struct.
+// SSR firmware version available for upgrade
 type SsrVersion struct {
-	Default              *bool                  `json:"default,omitempty"`
-	Package              string                 `json:"package"`
-	Tags                 []string               `json:"tags,omitempty"`
+	// Whether this is the default SSR firmware version for its channel
+	Default *bool `json:"default,omitempty"`
+	// Firmware package name for this SSR version
+	Package string `json:"package"`
+	// Unique string values returned or accepted by this schema
+	Tags []string `json:"tags,omitempty"`
+	// Firmware version string available for SSR upgrades
 	Version              string                 `json:"version"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

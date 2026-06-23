@@ -8,8 +8,11 @@ import (
 )
 
 // ResponseAutoZoneZoneVertex represents a ResponseAutoZoneZoneVertex struct.
+// Pixel coordinate for a suggested zone vertex
 type ResponseAutoZoneZoneVertex struct {
-	X                    *int                   `json:"x,omitempty"`
+	// Horizontal pixel coordinate of the vertex
+	X *int `json:"x,omitempty"`
+	// Vertical pixel coordinate of the vertex
 	Y                    *int                   `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

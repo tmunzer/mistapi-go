@@ -1,6 +1,8 @@
 
 # Evpn Topology Switch Config
 
+Per-switch configuration used by an EVPN topology member
+
 ## Structure
 
 `EvpnTopologySwitchConfig`
@@ -9,92 +11,101 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DhcpdConfig` | [`*models.EvpnTopologySwitchConfigDhcpdConfig`](../../doc/models/evpn-topology-switch-config-dhcpd-config.md) | Optional | - |
+| `DhcpdConfig` | [`*models.EvpnTopologySwitchConfigDhcpdConfig`](../../doc/models/evpn-topology-switch-config-dhcpd-config.md) | Optional | DHCP server enablement for an EVPN topology switch override |
 | `Networks` | [`map[string]models.SwitchNetwork`](../../doc/models/switch-network.md) | Optional | Property key is network name |
-| `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Additional IP Addresses configured on the switch. Property key is the port network name |
+| `OtherIpConfigs` | [`map[string]models.JunosOtherIpConfig`](../../doc/models/junos-other-ip-config.md) | Optional | Additional IP addresses configured on the switch. Property key is the port network name |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `PortUsages` | [`map[string]models.SwitchPortUsage`](../../doc/models/switch-port-usage.md) | Optional | Property key is the port usage name. Defines the profiles of port configuration configured on the switch |
 | `RouterId` | `*string` | Optional | Used for OSPF / BGP / EVPN |
-| `VrfConfig` | [`*models.EvpnTopologySwitchConfigVrfConfig`](../../doc/models/evpn-topology-switch-config-vrf-config.md) | Optional | - |
+| `VrfConfig` | [`*models.EvpnTopologySwitchConfigVrfConfig`](../../doc/models/evpn-topology-switch-config-vrf-config.md) | Optional | VRF enablement for an EVPN topology switch override |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "router_id": "10.2.1.10",
-  "dhcpd_config": {
-    "enabled": false
-  },
-  "networks": {
-    "key0": {
-      "gateway": "gateway8",
-      "gateway6": "gateway64",
-      "isolation": false,
-      "isolation_vlan_id": "isolation_vlan_id8",
-      "subnet": "subnet6",
-      "vlan_id": "String7"
-    },
-    "key1": {
-      "gateway": "gateway8",
-      "gateway6": "gateway64",
-      "isolation": false,
-      "isolation_vlan_id": "isolation_vlan_id8",
-      "subnet": "subnet6",
-      "vlan_id": "String7"
-    },
-    "key2": {
-      "gateway": "gateway8",
-      "gateway6": "gateway64",
-      "isolation": false,
-      "isolation_vlan_id": "isolation_vlan_id8",
-      "subnet": "subnet6",
-      "vlan_id": "String7"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnTopologySwitchConfig := models.EvpnTopologySwitchConfig{
+        DhcpdConfig:          models.ToPointer(models.EvpnTopologySwitchConfigDhcpdConfig{
+            Enabled:              models.ToPointer(false),
+        }),
+        Networks:             map[string]models.SwitchNetwork{
+            "key0": models.SwitchNetwork{
+                Gateway:              models.ToPointer("gateway8"),
+                Gateway6:             models.ToPointer("gateway64"),
+                Isolation:            models.ToPointer(false),
+                IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
+                Subnet:               models.ToPointer("subnet6"),
+                VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
+            },
+            "key1": models.SwitchNetwork{
+                Gateway:              models.ToPointer("gateway8"),
+                Gateway6:             models.ToPointer("gateway64"),
+                Isolation:            models.ToPointer(false),
+                IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
+                Subnet:               models.ToPointer("subnet6"),
+                VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
+            },
+            "key2": models.SwitchNetwork{
+                Gateway:              models.ToPointer("gateway8"),
+                Gateway6:             models.ToPointer("gateway64"),
+                Isolation:            models.ToPointer(false),
+                IsolationVlanId:      models.ToPointer("isolation_vlan_id8"),
+                Subnet:               models.ToPointer("subnet6"),
+                VlanId:               models.VlanIdWithVariableContainer.FromString("String7"),
+            },
+        },
+        OtherIpConfigs:       map[string]models.JunosOtherIpConfig{
+            "key0": models.JunosOtherIpConfig{
+                EvpnAnycast:          models.ToPointer(false),
+                Ip:                   models.ToPointer("ip4"),
+                Ip6:                  models.ToPointer("ip60"),
+                Netmask:              models.ToPointer("netmask0"),
+                Netmask6:             models.ToPointer("netmask60"),
+            },
+        },
+        PortConfig:           map[string]models.JunosPortConfig{
+            "key0": models.JunosPortConfig{
+                AeDisableLacp:        models.ToPointer(false),
+                AeIdx:                models.ToPointer(230),
+                AeLacpForceUp:        models.ToPointer(false),
+                AeLacpPassive:        models.ToPointer(false),
+                AeLacpSlow:           models.ToPointer(false),
+                Usage:                "usage6",
+            },
+            "key1": models.JunosPortConfig{
+                AeDisableLacp:        models.ToPointer(false),
+                AeIdx:                models.ToPointer(230),
+                AeLacpForceUp:        models.ToPointer(false),
+                AeLacpPassive:        models.ToPointer(false),
+                AeLacpSlow:           models.ToPointer(false),
+                Usage:                "usage6",
+            },
+            "key2": models.JunosPortConfig{
+                AeDisableLacp:        models.ToPointer(false),
+                AeIdx:                models.ToPointer(230),
+                AeLacpForceUp:        models.ToPointer(false),
+                AeLacpPassive:        models.ToPointer(false),
+                AeLacpSlow:           models.ToPointer(false),
+                Usage:                "usage6",
+            },
+        },
+        PortUsages:           map[string]models.SwitchPortUsage{
+            "key0": models.SwitchPortUsage{
+                AllNetworks:                              models.ToPointer(false),
+                AllowDhcpd:                               models.ToPointer(false),
+                AllowMultipleSupplicants:                 models.ToPointer(false),
+                BypassAuthWhenServerDown:                 models.ToPointer(false),
+                BypassAuthWhenServerDownForUnknownClient: models.ToPointer(false),
+            },
+        },
+        RouterId:             models.ToPointer("10.2.1.10"),
     }
-  },
-  "other_ip_configs": {
-    "key0": {
-      "evpn_anycast": false,
-      "ip": "ip4",
-      "ip6": "ip60",
-      "netmask": "netmask0",
-      "netmask6": "netmask60"
-    }
-  },
-  "port_config": {
-    "key0": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_force_up": false,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "usage": "usage6"
-    },
-    "key1": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_force_up": false,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "usage": "usage6"
-    },
-    "key2": {
-      "ae_disable_lacp": false,
-      "ae_idx": 230,
-      "ae_lacp_force_up": false,
-      "ae_lacp_slow": false,
-      "aggregated": false,
-      "usage": "usage6"
-    }
-  },
-  "port_usages": {
-    "key0": {
-      "all_networks": false,
-      "allow_dhcpd": false,
-      "allow_multiple_supplicants": false,
-      "bypass_auth_when_server_down": false,
-      "bypass_auth_when_server_down_for_unknown_client": false
-    }
-  }
+
 }
 ```
 

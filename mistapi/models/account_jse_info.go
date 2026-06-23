@@ -8,9 +8,13 @@ import (
 )
 
 // AccountJseInfo represents a AccountJseInfo struct.
+// Linked Juniper Security Exchange account information
 type AccountJseInfo struct {
-	CloudName            *string                `json:"cloud_name,omitempty"`
-	OrgNames             []string               `json:"org_names,omitempty"`
+	// JSE cloud hostname configured for the integration
+	CloudName *string `json:"cloud_name,omitempty"`
+	// Unique string values returned or accepted by this schema
+	OrgNames []string `json:"org_names,omitempty"`
+	// JSE integration username configured for the linked account
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

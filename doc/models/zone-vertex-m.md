@@ -1,6 +1,8 @@
 
 # Zone Vertex M
 
+Zone polygon vertex expressed in meters
+
 ## Structure
 
 `ZoneVertexM`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `X` | `float64` | Required | X in pixel |
-| `Y` | `float64` | Required | Y in pixel |
+| `X` | `float64` | Required | Horizontal coordinate of the zone vertex, in meters |
+| `Y` | `float64` | Required | Vertical coordinate of the zone vertex, in meters |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "x": 248.7,
-  "y": 123.98
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    zoneVertexM := models.ZoneVertexM{
+        X:                    float64(161.44),
+        Y:                    float64(36.72),
+    }
+
 }
 ```
 

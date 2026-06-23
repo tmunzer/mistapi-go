@@ -62,13 +62,15 @@ func TestOrgsStatsBGPPeersTestSearchOrgBgpStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mac := "5c5b53010101,5c5b53020202"
 
+	vrfName := "default,vpn_OrgOverlay"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, &mac, nil, nil, &vrfName, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -88,13 +90,15 @@ func TestOrgsStatsBGPPeersTestSearchOrgBgpStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mac := "5c5b53010101,5c5b53020202"
 
+	vrfName := "default,vpn_OrgOverlay"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsBgpPeers.SearchOrgBgpStats(ctx, orgId, &mac, nil, nil, &vrfName, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

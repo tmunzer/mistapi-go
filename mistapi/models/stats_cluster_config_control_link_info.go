@@ -8,8 +8,11 @@ import (
 )
 
 // StatsClusterConfigControlLinkInfo represents a StatsClusterConfigControlLinkInfo struct.
+// Control link status details for a gateway cluster
 type StatsClusterConfigControlLinkInfo struct {
-	Name                 *string                `json:"name,omitempty"`
+	// Control link interface name reported by the gateway cluster
+	Name *string `json:"name,omitempty"`
+	// Operational state reported for the control link
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Mxcluster Tunterm Hosts Selection Enum
 
-Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
+Ordering of tunterm_hosts for Mist Edge within the same mxcluster. enum:
 
 * `shuffle`: the ordering of tunterm_hosts is randomized by the device''s MAC
 * `shuffle-by-site`: shuffle by site_id+tunnel_id (so when client connects to a specific Tunnel, it will go to the same (order of) mxedge, and we load-balancing between tunnels)
@@ -18,4 +18,19 @@ Ordering of tunterm_hosts for mxedge within the same mxcluster. enum:
 | `ordered` |
 | `shuffle` |
 | `shuffle-by-site` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterTuntermHostsSelection := models.MxclusterTuntermHostsSelectionEnum_SHUFFLEBYSITE
+
+}
+```
 

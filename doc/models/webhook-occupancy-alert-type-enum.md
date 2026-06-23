@@ -1,7 +1,7 @@
 
 # Webhook Occupancy Alert Type Enum
 
-enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
+Occupancy compliance state reported for the zone. enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
 |  --- |
 | `COMPLIANCE-OK` |
 | `COMPLIANCE-VIOLATION` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookOccupancyAlertType := models.WebhookOccupancyAlertTypeEnum_COMPLIANCEOK
+
+}
+```
 

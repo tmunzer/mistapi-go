@@ -8,18 +8,21 @@ import (
 )
 
 // MxedgeDasCoaServer represents a MxedgeDasCoaServer struct.
+// CoA or Disconnect-Message client allowed to contact Mist Edge DAS
 type MxedgeDasCoaServer struct {
 	// Whether to disable Event-Timestamp Check
 	DisableEventTimestampCheck *bool `json:"disable_event_timestamp_check,omitempty"`
-	Enabled                    *bool `json:"enabled,omitempty"`
-	// This server configured to send CoA|DM to mist edges
+	// Whether this DAS CoA or Disconnect-Message client is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Server host allowed to send CoA or Disconnect-Message requests to Mist Edges
 	Host *string `json:"host,omitempty"`
-	// Mist edges will allow this host on this port
+	// UDP port where Mist Edges accept CoA or Disconnect-Message requests from this host
 	Port *int `json:"port,omitempty"`
 	// Whether to require Message-Authenticator in requests
-	RequireMessageAuthenticator *bool                  `json:"require_message_authenticator,omitempty"`
-	Secret                      *string                `json:"secret,omitempty"`
-	AdditionalProperties        map[string]interface{} `json:"_"`
+	RequireMessageAuthenticator *bool `json:"require_message_authenticator,omitempty"`
+	// Shared secret used by this DAS CoA or Disconnect-Message client
+	Secret               *string                `json:"secret,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxedgeDasCoaServer,

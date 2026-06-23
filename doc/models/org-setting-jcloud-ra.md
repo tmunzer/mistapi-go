@@ -15,13 +15,22 @@ JCloud Routing Assurance connexion
 | `OrgApitokenName` | `*string` | Optional | JCloud Routing Assurance Org Token Name |
 | `OrgId` | `*string` | Optional | JCloud Routing Assurance Org ID |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "org_apitoken": "org_apitoken4",
-  "org_apitoken_name": "org_apitoken_name2",
-  "org_id": "org_id2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingJcloudRa := models.OrgSettingJcloudRa{
+        OrgApitoken:          models.ToPointer("org_apitoken4"),
+        OrgApitokenName:      models.ToPointer("org_apitoken_name0"),
+        OrgId:                models.ToPointer("org_id0"),
+    }
+
 }
 ```
 

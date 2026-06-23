@@ -14,12 +14,15 @@ import (
 // Gateway Template is applied to a site for gateway(s) in a site.
 type DeviceprofileGateway struct {
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
-	AdditionalConfigCmds []string             `json:"additional_config_cmds,omitempty"`
-	BgpConfig            map[string]BgpConfig `json:"bgp_config,omitempty"`
+	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
+	// BGP routing defaults for this gateway profile. Property key is the BGP session name
+	BgpConfig map[string]BgpConfig `json:"bgp_config,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime *float64     `json:"created_time,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// DHCP server configuration map with a global enable flag
 	DhcpdConfig *DhcpdConfig `json:"dhcpd_config,omitempty"`
-	DnsOverride *bool        `json:"dnsOverride,omitempty"`
+	// Whether DNS server and suffix settings in this profile override inherited values
+	DnsOverride *bool `json:"dnsOverride,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
@@ -27,8 +30,8 @@ type DeviceprofileGateway struct {
 	// Property key is the destination CIDR (e.g. "10.0.0.0/8"), the destination Network name or a variable (e.g. "{{myvar}}")
 	ExtraRoutes map[string]GatewayExtraRoute `json:"extra_routes,omitempty"`
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64"), the destination Network name or a variable (e.g. "{{myvar}}")
-	ExtraRoutes6 map[string]GatewayExtraRoute `json:"extra_routes6,omitempty"`
-	// Gateway matching
+	ExtraRoutes6 map[string]GatewayExtraRoute6 `json:"extra_routes6,omitempty"`
+	// Gateway matching configuration used to apply gateway-specific settings
 	GatewayMatching *GatewayMatching `json:"gateway_matching,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
@@ -37,15 +40,19 @@ type DeviceprofileGateway struct {
 	// Property key is the network name
 	IpConfigs map[string]GatewayIpConfigProperty `json:"ip_configs,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64  `json:"modified_time,omitempty"`
-	Name         string    `json:"name"`
-	Networks     []Network `json:"networks,omitempty"`
-	NtpOverride  *bool     `json:"ntpOverride,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the gateway profile
+	Name string `json:"name"`
+	// List of organization network definitions
+	Networks []Network `json:"networks,omitempty"`
+	// Whether NTP servers in this profile override inherited values
+	NtpOverride *bool `json:"ntpOverride,omitempty"`
 	// List of NTP servers specific to this device. By default, those in Site Settings will be used
 	NtpServers []string `json:"ntp_servers,omitempty"`
-	// Out-of-band (vme/em0/fxp0) IP config
+	// Out-of-band management IP configuration for gateway interfaces such as vme, em0, or fxp0
 	OobIpConfig *GatewayOobIpConfig `json:"oob_ip_config,omitempty"`
-	OrgId       *uuid.UUID          `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Property key is the path name
 	PathPreferences map[string]GatewayPathPreferences `json:"path_preferences,omitempty"`
 	// Property key is the port(s) name or range (e.g. "ge-0/0/0-10")
@@ -54,16 +61,19 @@ type DeviceprofileGateway struct {
 	RouterId *string `json:"router_id,omitempty"`
 	// Property key is the routing policy name
 	RoutingPolicies map[string]GwRoutingPolicy `json:"routing_policies,omitempty"`
-	ServicePolicies []ServicePolicy            `json:"service_policies,omitempty"`
+	// Service policies returned by derived site configuration
+	ServicePolicies []ServicePolicy `json:"service_policies,omitempty"`
 	// Property key is the tunnel name
-	TunnelConfigs         map[string]TunnelConfig `json:"tunnel_configs,omitempty"`
-	TunnelProviderOptions *TunnelProviderOptions  `json:"tunnel_provider_options,omitempty"`
+	TunnelConfigs map[string]TunnelConfig `json:"tunnel_configs,omitempty"`
+	// Provider-specific options for gateway tunnel auto provisioning
+	TunnelProviderOptions *TunnelProviderOptions `json:"tunnel_provider_options,omitempty"`
 	// Device Type. enum: `gateway`
 	Type string `json:"type"`
 	// When a service policy denies a app_category, what message to show in user's browser
-	UrlFilteringDenyMsg *string    `json:"url_filtering_deny_msg,omitempty"`
-	VrfConfig           *VrfConfig `json:"vrf_config,omitempty"`
-	// Property key is the network name
+	UrlFilteringDenyMsg *string `json:"url_filtering_deny_msg,omitempty"`
+	// VRF enablement settings applied when supported on the device
+	VrfConfig *VrfConfig `json:"vrf_config,omitempty"`
+	// Property key is the VRF instance name
 	VrfInstances map[string]GatewayVrfInstance `json:"vrf_instances,omitempty"`
 	// additional CLI commands to append to the generated SSR config. **Note**: no check is done
 	SsrAdditionalConfigCmds []string               `json:"ssr_additional_config_cmds,omitempty"`
@@ -252,7 +262,7 @@ type tempDeviceprofileGateway struct {
 	DnsServers              []string                           `json:"dns_servers,omitempty"`
 	DnsSuffix               []string                           `json:"dns_suffix,omitempty"`
 	ExtraRoutes             map[string]GatewayExtraRoute       `json:"extra_routes,omitempty"`
-	ExtraRoutes6            map[string]GatewayExtraRoute       `json:"extra_routes6,omitempty"`
+	ExtraRoutes6            map[string]GatewayExtraRoute6      `json:"extra_routes6,omitempty"`
 	GatewayMatching         *GatewayMatching                   `json:"gateway_matching,omitempty"`
 	Id                      *uuid.UUID                         `json:"id,omitempty"`
 	IdpProfiles             map[string]IdpProfile              `json:"idp_profiles,omitempty"`

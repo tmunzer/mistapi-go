@@ -8,14 +8,17 @@ import (
 )
 
 // ConstMarvisClientVersion represents a ConstMarvisClientVersion struct.
+// Marvis Client version download entry
 type ConstMarvisClientVersion struct {
+	// Release label for this Marvis Client version
 	Label *string `json:"label,omitempty"`
+	// Release notes or extra text for this Marvis Client version
 	Notes *string `json:"notes,omitempty"`
-	// Client OS
+	// Operating system supported by this Marvis Client installer
 	Os *string `json:"os,omitempty"`
-	// Client download url
+	// Download URL for this Marvis Client installer
 	Url *string `json:"url,omitempty"`
-	// Client version
+	// Marvis Client software version for this installer
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

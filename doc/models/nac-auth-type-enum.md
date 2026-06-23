@@ -22,7 +22,16 @@ enum: `cert`, `device-auth`, `eap-teap`, `eap-tls`, `eap-ttls`, `idp`, `mab`, `e
 
 ## Example
 
-```
-eap-tls
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacAuthType := models.NacAuthTypeEnum_CERT
+
+}
 ```
 

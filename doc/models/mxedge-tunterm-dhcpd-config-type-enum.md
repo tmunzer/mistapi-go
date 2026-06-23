@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Dhcpd Config Type Enum
 
-enum: `relay`
+DHCP handling mode for this tunneled VLAN. enum: `relay`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `relay`
 | Name |
 |  --- |
 | `relay` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermDhcpdConfigType := models.MxedgeTuntermDhcpdConfigTypeEnum_RELAY
+
+}
+```
 

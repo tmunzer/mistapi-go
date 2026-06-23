@@ -16,7 +16,16 @@ Controls whether new Zigbee devices are allowed to join the network. enum: `alwa
 
 ## Example
 
-```
-manual
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apZigbeeAllowJoin := models.ApZigbeeAllowJoinEnum_ALWAYS
+
+}
 ```
 

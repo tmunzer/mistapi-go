@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseLoginLookup represents a ResponseLoginLookup struct.
+// Login lookup response indicating whether SSO is available for the account
 type ResponseLoginLookup struct {
+	// URL for SSO login when the account must authenticate through an identity provider
 	SsoUrl               *string                `json:"sso_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Response Claim License Inventory Pending Item
 
+Inventory device pending asynchronous claim processing
+
 ## Structure
 
 `ResponseClaimLicenseInventoryPendingItem`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | - |
+| `Mac` | `*string` | Optional | Device MAC address pending asynchronous inventory claim |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseClaimLicenseInventoryPendingItem := models.ResponseClaimLicenseInventoryPendingItem{
+        Mac:                  models.ToPointer("mac8"),
+    }
+
 }
 ```
 

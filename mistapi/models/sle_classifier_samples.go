@@ -10,9 +10,13 @@ import (
 )
 
 // SleClassifierSamples represents a SleClassifierSamples struct.
+// Per-interval sample arrays for an SLE classifier
 type SleClassifierSamples struct {
-	Degraded             []NumberOrNull         `json:"degraded"`
-	Duration             []float64              `json:"duration"`
+	// Per-interval degraded SLE values for a classifier
+	Degraded []NumberOrNull `json:"degraded"`
+	// Per-interval observation durations for a classifier
+	Duration []float64 `json:"duration"`
+	// Per-interval total SLE values for a classifier
 	Total                []NumberOrNull         `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

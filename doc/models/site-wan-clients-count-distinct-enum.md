@@ -16,3 +16,18 @@ enum: `hostname`, `ip`, `mac`, `mfg`
 | `mac` |
 | `mfg` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteWanClientsCountDistinct := models.SiteWanClientsCountDistinctEnum_HOSTNAME
+
+}
+```
+

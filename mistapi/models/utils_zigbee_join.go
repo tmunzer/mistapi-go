@@ -8,8 +8,9 @@ import (
 )
 
 // UtilsZigbeeJoin represents a UtilsZigbeeJoin struct.
+// Request body for temporarily allowing Zigbee end-device joins
 type UtilsZigbeeJoin struct {
-	// Duration in seconds for which new Zigbee end device joins are permitted. Range is 30–3600
+	// Number of seconds to permit new Zigbee end-device joins; range is 30-3600
 	Duration             *int                   `json:"duration,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

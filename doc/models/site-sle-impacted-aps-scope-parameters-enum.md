@@ -1,7 +1,7 @@
 
 # Site Sle Impacted Aps Scope Parameters Enum
 
-enum: `site`
+Scope parameter value for impacted AP SLE queries. enum: `site`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `site`
 | Name |
 |  --- |
 | `site` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSleImpactedApsScopeParameters := models.SiteSleImpactedApsScopeParametersEnum_SITE
+
+}
+```
 

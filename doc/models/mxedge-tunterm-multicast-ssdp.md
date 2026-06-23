@@ -1,6 +1,8 @@
 
 # Mxedge Tunterm Multicast Ssdp
 
+SSDP forwarding settings for tunnel termination
+
 ## Structure
 
 `MxedgeTuntermMulticastSsdp`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
-| `VlanIds` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Enabled` | `*bool` | Optional | Whether SSDP forwarding is enabled for the configured VLANs |
+| `VlanIds` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "vlan_ids": [
-    "vlan_ids6"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermMulticastSsdp := models.MxedgeTuntermMulticastSsdp{
+        Enabled:              models.ToPointer(false),
+        VlanIds:              []string{
+            "vlan_ids4",
+        },
+    }
+
 }
 ```
 

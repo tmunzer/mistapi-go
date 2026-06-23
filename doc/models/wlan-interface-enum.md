@@ -22,7 +22,16 @@ where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3
 
 ## Example
 
-```
-all
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanInterface := models.WlanInterfaceEnum_ETH1
+
+}
 ```
 

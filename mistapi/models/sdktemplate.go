@@ -11,25 +11,33 @@ import (
 )
 
 // Sdktemplate represents a Sdktemplate struct.
-// SDK Template
+// Visual customization template for the mobile SDK experience
 type Sdktemplate struct {
-	BgImage       *string `json:"bg_image,omitempty"`
+	// Background image URL displayed by the SDK template
+	BgImage *string `json:"bg_image,omitempty"`
+	// Floor button background color used by the SDK template, as a hex color
 	BtnFlrBgcolor *string `json:"btn_flr_bgcolor,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// Whether this is the default template when there are multiple templates
-	Default   *bool   `json:"default,omitempty"`
-	ForSite   *bool   `json:"for_site,omitempty"`
+	// Whether this template is the default among available SDK templates
+	Default *bool `json:"default,omitempty"`
+	// Whether the SDK template is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Header text displayed by the SDK template
 	HeaderTxt *string `json:"header_txt,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name for identification purpose
-	Name                 string                 `json:"name"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SearchTxtcolor       *string                `json:"search_txtcolor,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	// Display name used to identify the SDK template
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Text color used for search controls in the SDK template, as a hex color
+	SearchTxtcolor *string `json:"search_txtcolor,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Welcome message displayed by the SDK template
 	WelcomeMsg           *string                `json:"welcome_msg,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

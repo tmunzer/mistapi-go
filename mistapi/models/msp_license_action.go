@@ -11,18 +11,19 @@ import (
 )
 
 // MspLicenseAction represents a MspLicenseAction struct.
+// License operation request for an MSP account
 type MspLicenseAction struct {
-	// Required if `op`==`unamend`
+	// Required if `op`==`unamend`; identifies the license amendment to undo
 	AmendmentId *string `json:"amendment_id,omitempty"`
-	// Required if `op`==`amend`, destination org id
+	// Required if `op`==`amend`; destination org ID that receives the amended license quantity
 	DstOrgId *uuid.UUID `json:"dst_org_id,omitempty"`
-	// Required if `op`==`annotate`
+	// Required if `op`==`annotate`; note text to attach to the license action
 	Notes *string `json:"notes,omitempty"`
 	// enum: `amend`, `annotate`, `delete`, `unamend`
 	Op MspLicenseActionOperationEnum `json:"op"`
-	// Required if `op`==`amend`
+	// Required if `op`==`amend`; license quantity to move to the destination org
 	Quantity *float64 `json:"quantity,omitempty"`
-	// Required if `op`==`annotate`
+	// Required if `op`==`annotate`; subscription ID for the license action
 	SubscriptionId       *string                `json:"subscription_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,9 +9,11 @@ import (
 )
 
 // StatsWirelessClientVbeacon represents a StatsWirelessClientVbeacon struct.
+// Virtual beacon currently associated with a wireless client
 type StatsWirelessClientVbeacon struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Time when the wireless client began matching the virtual beacon, in epoch seconds
 	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

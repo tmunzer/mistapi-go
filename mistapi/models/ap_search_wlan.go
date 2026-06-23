@@ -9,8 +9,11 @@ import (
 )
 
 // ApSearchWlan represents a ApSearchWlan struct.
+// WLAN summary included in an AP search result
 type ApSearchWlan struct {
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	// WLAN identifier included in the AP search result
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Wireless network SSID shown for this WLAN
 	Ssid                 *string                `json:"ssid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

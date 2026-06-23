@@ -11,35 +11,44 @@ Device environment, including CPU temperature, Ambient temperature, Humidity, At
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AccelX` | `models.Optional[float64]` | Optional | - |
-| `AccelY` | `models.Optional[float64]` | Optional | - |
-| `AccelZ` | `models.Optional[float64]` | Optional | - |
-| `AmbientTemp` | `models.Optional[int]` | Optional | - |
-| `Attitude` | `models.Optional[int]` | Optional | - |
-| `CpuTemp` | `models.Optional[int]` | Optional | - |
-| `Humidity` | `models.Optional[int]` | Optional | - |
-| `MagneX` | `models.Optional[float64]` | Optional | - |
-| `MagneY` | `models.Optional[float64]` | Optional | - |
-| `MagneZ` | `models.Optional[float64]` | Optional | - |
-| `Pressure` | `models.Optional[float64]` | Optional | - |
-| `VcoreVoltage` | `models.Optional[int]` | Optional | - |
+| `AccelX` | `models.Optional[float64]` | Optional, Read-only | X-axis accelerometer reading reported by the AP |
+| `AccelY` | `models.Optional[float64]` | Optional, Read-only | Y-axis accelerometer reading reported by the AP |
+| `AccelZ` | `models.Optional[float64]` | Optional, Read-only | Z-axis accelerometer reading reported by the AP |
+| `AmbientTemp` | `models.Optional[int]` | Optional, Read-only | Temperature reading from the AP ambient sensor |
+| `Attitude` | `models.Optional[int]` | Optional, Read-only | Device attitude or orientation reading reported by the AP |
+| `CpuTemp` | `models.Optional[int]` | Optional, Read-only | Temperature reading from the AP CPU sensor |
+| `Humidity` | `models.Optional[int]` | Optional, Read-only | Relative humidity sensor reading reported by the AP |
+| `MagneX` | `models.Optional[float64]` | Optional, Read-only | X-axis magnetometer reading reported by the AP |
+| `MagneY` | `models.Optional[float64]` | Optional, Read-only | Y-axis magnetometer reading reported by the AP |
+| `MagneZ` | `models.Optional[float64]` | Optional, Read-only | Z-axis magnetometer reading reported by the AP |
+| `Pressure` | `models.Optional[float64]` | Optional, Read-only | Barometric pressure sensor reading reported by the AP |
+| `VcoreVoltage` | `models.Optional[int]` | Optional, Read-only | Core voltage sensor reading reported by the AP |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "accel_x": 0.0,
-  "accel_y": 0.032,
-  "accel_z": -1.088,
-  "ambient_temp": 43,
-  "attitude": 0,
-  "cpu_temp": 61,
-  "humidity": 9,
-  "magne_x": 0,
-  "magne_y": 0,
-  "magne_z": 0,
-  "pressure": 968,
-  "vcore_voltage": 0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApEnvStat := models.StatsApEnvStat{
+        AccelX:               models.NewOptional(models.ToPointer(float64(0))),
+        AccelY:               models.NewOptional(models.ToPointer(float64(0.032))),
+        AccelZ:               models.NewOptional(models.ToPointer(float64(-1.088))),
+        AmbientTemp:          models.NewOptional(models.ToPointer(43)),
+        Attitude:             models.NewOptional(models.ToPointer(0)),
+        CpuTemp:              models.NewOptional(models.ToPointer(61)),
+        Humidity:             models.NewOptional(models.ToPointer(9)),
+        MagneX:               models.NewOptional(models.ToPointer(float64(0))),
+        MagneY:               models.NewOptional(models.ToPointer(float64(0))),
+        MagneZ:               models.NewOptional(models.ToPointer(float64(0))),
+        Pressure:             models.NewOptional(models.ToPointer(float64(968))),
+        VcoreVoltage:         models.NewOptional(models.ToPointer(0)),
+    }
+
 }
 ```
 

@@ -10,7 +10,9 @@ import (
 // MapWallPath represents a MapWallPath struct.
 // JSON blob for wall definition (same format as wayfinding_path)
 type MapWallPath struct {
-	Coordinate           *string                `json:"coordinate,omitempty"`
+	// Wall path coordinate space
+	Coordinate *string `json:"coordinate,omitempty"`
+	// Map nodes included in a wall path
 	Nodes                []MapNode              `json:"nodes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

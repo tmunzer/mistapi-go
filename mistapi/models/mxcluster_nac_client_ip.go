@@ -9,12 +9,13 @@ import (
 )
 
 // MxclusterNacClientIp represents a MxclusterNacClientIp struct.
+// Mist NAC client settings for a RADIUS client IP or subnet
 type MxclusterNacClientIp struct {
 	// Whether to require Message-Authenticator in requests
 	RequireMessageAuthenticator *bool `json:"require_message_authenticator,omitempty"`
-	// If different from above
+	// Client-specific shared secret, if different from the cluster default
 	Secret *string `json:"secret,omitempty"`
-	// Present only for 3rd party clients
+	// Present only for third-party clients, identifies the associated site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// convention to be followed is : "<vendor>-<variant>", <variant> could be an os/platform/model/company. For ex: for cisco vendor, there could variants wrt os (such as ios, nxos etc), platforms (asa etc), or acquired companies (such as meraki, aironet) etc. enum: `aruba`, `cisco-aironet`, `cisco-dnac`, `cisco-ios`, `cisco-meraki`, `brocade`, `generic`, `juniper`, `paloalto`
 	Vendor               *MxclusterNacClientVendorEnum `json:"vendor,omitempty"`

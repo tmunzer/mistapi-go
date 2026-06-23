@@ -21,7 +21,16 @@ enum: `eap`, `eap192`, `open`, `psk`, `psk-tkip`, `psk-wpa2-tkip`, `wep`
 
 ## Example
 
-```
-psk
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanAuthType := models.WlanAuthTypeEnum_EAP192
+
+}
 ```
 

@@ -15,3 +15,18 @@ enum: `authentication`, `none`, `privacy`
 | `none` |
 | `privacy` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpVacmAccessItemPrefixListItemLevel := models.SnmpVacmAccessItemPrefixListItemLevelEnum_AUTHENTICATION
+
+}
+```
+

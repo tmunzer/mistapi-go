@@ -8,11 +8,17 @@ import (
 )
 
 // ConstOtherDeviceModel represents a ConstOtherDeviceModel struct.
+// Other-device model definition returned by the constants API
 type ConstOtherDeviceModel struct {
-	VendorModelId        *string                `json:"_vendor_model_id,omitempty"`
-	Display              *string                `json:"display,omitempty"`
-	Model                *string                `json:"model,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
+	// Vendor-specific model identifier for this other-device model
+	VendorModelId *string `json:"_vendor_model_id,omitempty"`
+	// User-facing model name shown for the other-device model
+	Display *string `json:"display,omitempty"`
+	// Device model identifier for this other-device definition
+	Model *string `json:"model,omitempty"`
+	// Device category for this other-device model
+	Type *string `json:"type,omitempty"`
+	// Manufacturer name for this other-device model
 	Vendor               *string                `json:"vendor,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

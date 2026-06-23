@@ -1,6 +1,8 @@
 
 # Vs Instance Property
 
+EX9200 virtual-switch instance settings
+
 ## Structure
 
 `VsInstanceProperty`
@@ -9,17 +11,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Networks` | `[]string` | Optional | - |
+| `Networks` | `[]string` | Optional | Network names included in a virtual-switch instance |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "networks": [
-    "networks0",
-    "networks1",
-    "networks2"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    vsInstanceProperty := models.VsInstanceProperty{
+        Networks:             []string{
+            "networks8",
+            "networks9",
+        },
+    }
+
 }
 ```
 

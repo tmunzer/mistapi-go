@@ -8,7 +8,7 @@ import (
 )
 
 // MxclusterRadsec represents a MxclusterRadsec struct.
-// MxEdge RadSec Configuration
+// RadSec proxy configuration for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and external RADIUS Server.
 type MxclusterRadsec struct {
 	// List of RADIUS accounting servers, optional, order matters where the first one is treated as primary
 	AcctServers []MxclusterRadsecAcctServer `json:"acct_servers,omitempty"`
@@ -22,7 +22,7 @@ type MxclusterRadsec struct {
 	NasIpSource *MxclusterRadsecNasIpSourceEnum `json:"nas_ip_source,omitempty"`
 	// Hostnames or IPs for Mist AP to use as the TLS Server (i.e. they are reachable from AP) in addition to `tunterm_hosts`
 	ProxyHosts []string `json:"proxy_hosts,omitempty"`
-	// When ordered, Mist Edge will prefer and go back to the first radius server if possible. enum: `ordered`, `unordered`
+	// When ordered, Mist Edge will prefer and go back to the first RADIUS server if possible. enum: `ordered`, `unordered`
 	ServerSelection *MxclusterRadsecServerSelectionEnum `json:"server_selection,omitempty"`
 	// Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oob`, `oob6`, `tunnel`, `tunnel6`
 	SrcIpSource          *MxclusterRadsecSrcIpSourceEnum `json:"src_ip_source,omitempty"`

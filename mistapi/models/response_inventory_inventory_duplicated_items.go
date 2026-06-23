@@ -10,11 +10,17 @@ import (
 )
 
 // ResponseInventoryInventoryDuplicatedItems represents a ResponseInventoryInventoryDuplicatedItems struct.
+// Inventory device already present during the claim operation
 type ResponseInventoryInventoryDuplicatedItems struct {
-	Mac                  string                 `json:"mac"`
-	Magic                string                 `json:"magic"`
-	Model                string                 `json:"model"`
-	Serial               string                 `json:"serial"`
+	// Device MAC address for the duplicate inventory item
+	Mac string `json:"mac"`
+	// Activation code or claim code associated with the duplicate inventory item
+	Magic string `json:"magic"`
+	// Device model for the duplicate inventory item
+	Model string `json:"model"`
+	// Device serial number for the duplicate inventory item
+	Serial string `json:"serial"`
+	// Device type for the duplicate inventory item
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

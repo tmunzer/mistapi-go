@@ -8,12 +8,19 @@ import (
 )
 
 // ResponseEventsOrgsSearch represents a ResponseEventsOrgsSearch struct.
+// Paginated response for organization event search results
 type ResponseEventsOrgsSearch struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                *int                   `json:"limit,omitempty"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []OrgEvent             `json:"results,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Epoch timestamp for the end of the organization event search window
+	End *int `json:"end,omitempty"`
+	// Maximum number of organization event records returned in this page
+	Limit *int `json:"limit,omitempty"`
+	// Pagination cursor or URL for retrieving the next page of organization event records
+	Next *string `json:"next,omitempty"`
+	// Organization event records returned by a search response
+	Results []OrgEvent `json:"results,omitempty"`
+	// Epoch timestamp for the start of the organization event search window
+	Start *int `json:"start,omitempty"`
+	// Number of organization event records matching the search filters across all pages
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Response Async License
 
+Asynchronous license claim progress response
+
 ## Structure
 
 `ResponseAsyncLicense`
@@ -9,45 +11,49 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Completed` | `[]string` | Optional | - |
-| `Details` | [`[]models.ResponseAsyncLicenseDetail`](../../doc/models/response-async-license-detail.md) | Optional | - |
-| `Failed` | `*int` | Optional | Current failed number of device |
-| `Incompleted` | `[]string` | Optional | Current incompleted lists (macs) |
-| `Processed` | `*int` | Optional | Current processed number of device |
-| `ScheduledAt` | `*int` | Optional | epoch time of aysnc claim scheduled |
-| `Status` | [`*models.ResponseAsyncLicenseStatusEnum`](../../doc/models/response-async-license-status-enum.md) | Optional | processing status of async. enum: `prepared`, `ongoing`, `done` |
-| `Succeed` | `*int` | Optional | Current succeed number of device |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
-| `Total` | `*int` | Optional | total number of device included in claim |
+| `Completed` | `[]string` | Optional | Device MAC addresses that completed asynchronous license claim processing |
+| `Details` | [`[]models.ResponseAsyncLicenseDetail`](../../doc/models/response-async-license-detail.md) | Optional | Per-device asynchronous license claim status details |
+| `Failed` | `*int` | Optional | Number of devices that failed license claim processing |
+| `Incompleted` | `[]string` | Optional | Device MAC addresses not yet completed in asynchronous license claim processing |
+| `Processed` | `*int` | Optional | Number of devices processed so far by asynchronous license claim |
+| `ScheduledAt` | `*int` | Optional | Epoch timestamp when the asynchronous license claim was scheduled |
+| `Status` | [`*models.ResponseAsyncLicenseStatusEnum`](../../doc/models/response-async-license-status-enum.md) | Optional | Processing state for an asynchronous license claim. enum: `prepared`, `ongoing`, `done` |
+| `Succeed` | `*int` | Optional | Number of devices that successfully completed license claim processing |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
+| `Total` | `*int` | Optional | Number of devices included in the license claim |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "completed": [
-    "completed8",
-    "completed7",
-    "completed6"
-  ],
-  "details": [
-    {
-      "mac": "mac4",
-      "status": "status2",
-      "timestamp": 235.48
-    },
-    {
-      "mac": "mac4",
-      "status": "status2",
-      "timestamp": 235.48
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAsyncLicense := models.ResponseAsyncLicense{
+        Completed:            []string{
+            "completed0",
+            "completed1",
+            "completed2",
+        },
+        Details:              []models.ResponseAsyncLicenseDetail{
+            models.ResponseAsyncLicenseDetail{
+                Mac:                  models.ToPointer("mac4"),
+                Status:               models.ToPointer("status2"),
+                Timestamp:            models.ToPointer(float64(235.48)),
+            },
+        },
+        Failed:               models.ToPointer(166),
+        Incompleted:          []string{
+            "incompleted0",
+            "incompleted1",
+            "incompleted2",
+        },
+        Processed:            models.ToPointer(72),
     }
-  ],
-  "failed": 170,
-  "incompleted": [
-    "incompleted8",
-    "incompleted7",
-    "incompleted6"
-  ],
-  "processed": 152
+
 }
 ```
 

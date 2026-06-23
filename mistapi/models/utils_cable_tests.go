@@ -10,6 +10,7 @@ import (
 )
 
 // UtilsCableTests represents a UtilsCableTests struct.
+// Request body for running a switch cable test on a port
 type UtilsCableTests struct {
 	// The port to run the cable test
 	Port                 string                 `json:"port"`

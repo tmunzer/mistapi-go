@@ -8,12 +8,13 @@ import (
 )
 
 // UtilsShowOspfInterfaces represents a UtilsShowOspfInterfaces struct.
+// OSPF interfaces command request for SSR and SRX devices
 type UtilsShowOspfInterfaces struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// Network interface
+	// Network interface filter for OSPF interface output
 	PortId *string `json:"port_id,omitempty"`
-	// VRF name
+	// Routing instance or VRF filter for OSPF interface output
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

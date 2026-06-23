@@ -10,6 +10,7 @@ import (
 )
 
 // ResponseAutoMapAssignmentInfo represents a ResponseAutoMapAssignmentInfo struct.
+// Auto map assignment status response
 type ResponseAutoMapAssignmentInfo struct {
 	// Only when `status`==`in_progress`, estimated seconds remaining
 	EstTimeLeft *float64 `json:"est_time_left,omitempty"`

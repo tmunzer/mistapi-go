@@ -8,12 +8,13 @@ import (
 )
 
 // VirtualChassisMemberUpdate represents a VirtualChassisMemberUpdate struct.
+// Member update for a Virtual Chassis add, remove, or preprovision operation
 type VirtualChassisMemberUpdate struct {
-	// Required if `op`==`add` or `op`==`preprovision`.
+	// Required if `op`==`add` or `op`==`preprovision`; MAC address of the member to add or preprovision
 	Mac *string `json:"mac,omitempty"`
-	// Required if `op`==`remove`
+	// Required if `op`==`remove`; member ID to remove from the Virtual Chassis
 	Member *int `json:"member,omitempty"`
-	// Required if `op`==`preprovision`. Optional if `op`==`add`
+	// Required if `op`==`preprovision`. Optional if `op`==`add`; target member ID for the Virtual Chassis member
 	MemberId *int `json:"member_id,omitempty"`
 	// Required if `op`==`add` or `op`==`preprovision`
 	VcPorts []string `json:"vc_ports,omitempty"`

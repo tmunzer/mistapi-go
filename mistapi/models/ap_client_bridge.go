@@ -8,12 +8,15 @@ import (
 )
 
 // ApClientBridge represents a ApClientBridge struct.
+// AP client bridge mode configuration
 type ApClientBridge struct {
+	// Authentication settings for the AP client bridge uplink
 	Auth *ApClientBridgeAuth `json:"auth,omitempty"`
 	// When acted as client bridge:
 	// * only 5G radio can be used
 	// * will not serve as AP on any radios
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	// Uplink SSID used by the AP when client bridge mode is enabled
 	Ssid                 *string                `json:"ssid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

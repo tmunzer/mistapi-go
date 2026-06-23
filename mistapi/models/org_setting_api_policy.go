@@ -8,11 +8,14 @@ import (
 )
 
 // OrgSettingApiPolicy represents a OrgSettingApiPolicy struct.
+// Organization API response policy for hiding secrets and passwords
 type OrgSettingApiPolicy struct {
 	// By default, API hides password/secrets when the user doesn't have write access
 	// * `true`: API will hide passwords/secrets for all users
 	// * `false`: API will hide passwords/secrets for read-only users
-	NoReveal             *bool                  `json:"no_reveal,omitempty"`
+	NoReveal *bool `json:"no_reveal,omitempty"`
+	// Optional list of IP addresses or CIDR subnets from which org API access is allowed. At most 10 entries. The source IP of the request making this update must be within one of the specified subnets.
+	SrcIps               []string               `json:"src_ips,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -20,8 +23,8 @@ type OrgSettingApiPolicy struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingApiPolicy) String() string {
 	return fmt.Sprintf(
-		"OrgSettingApiPolicy[NoReveal=%v, AdditionalProperties=%v]",
-		o.NoReveal, o.AdditionalProperties)
+		"OrgSettingApiPolicy[NoReveal=%v, SrcIps=%v, AdditionalProperties=%v]",
+		o.NoReveal, o.SrcIps, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingApiPolicy.
@@ -30,7 +33,7 @@ func (o OrgSettingApiPolicy) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"no_reveal"); err != nil {
+		"no_reveal", "src_ips"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -43,6 +46,9 @@ func (o OrgSettingApiPolicy) toMap() map[string]any {
 	if o.NoReveal != nil {
 		structMap["no_reveal"] = o.NoReveal
 	}
+	if o.SrcIps != nil {
+		structMap["src_ips"] = o.SrcIps
+	}
 	return structMap
 }
 
@@ -54,17 +60,19 @@ func (o *OrgSettingApiPolicy) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_reveal")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "no_reveal", "src_ips")
 	if err != nil {
 		return err
 	}
 	o.AdditionalProperties = additionalProperties
 
 	o.NoReveal = temp.NoReveal
+	o.SrcIps = temp.SrcIps
 	return nil
 }
 
 // tempOrgSettingApiPolicy is a temporary struct used for validating the fields of OrgSettingApiPolicy.
 type tempOrgSettingApiPolicy struct {
-	NoReveal *bool `json:"no_reveal,omitempty"`
+	NoReveal *bool    `json:"no_reveal,omitempty"`
+	SrcIps   []string `json:"src_ips,omitempty"`
 }

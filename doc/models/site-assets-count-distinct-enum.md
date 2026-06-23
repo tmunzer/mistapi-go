@@ -23,3 +23,18 @@ enum: `by`, `device_name`, `eddystone_uid_instance`, `eddystone_uid_namespace`, 
 | `map_id` |
 | `name` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteAssetsCountDistinct := models.SiteAssetsCountDistinctEnum_IBEACONMAJOR
+
+}
+```
+

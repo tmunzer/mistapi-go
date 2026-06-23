@@ -8,6 +8,7 @@ import (
 )
 
 // TunnelProviderOptionsPrisma represents a TunnelProviderOptionsPrisma struct.
+// Prisma Access provider options for tunnel auto provisioning
 type TunnelProviderOptionsPrisma struct {
 	// For prisma-ipsec, service account name to used for tunnel auto provisioning
 	ServiceAccountName   *string                `json:"service_account_name,omitempty"`

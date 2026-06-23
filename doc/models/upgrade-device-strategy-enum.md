@@ -16,3 +16,18 @@ enum: `big_bang` (upgrade all at once), `canary`, `rrm` (APs only), `serial` (on
 | `rrm` |
 | `serial` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeDeviceStrategy := models.UpgradeDeviceStrategyEnum_RRM
+
+}
+```
+

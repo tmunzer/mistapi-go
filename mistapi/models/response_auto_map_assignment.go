@@ -8,6 +8,7 @@ import (
 )
 
 // ResponseAutoMapAssignment represents a ResponseAutoMapAssignment struct.
+// Auto map assignment start response
 type ResponseAutoMapAssignment struct {
 	// Contains the validation status of each device. The property key is the device MAC address.
 	Devices map[string]ResponseAutoMapAssignmentDevice `json:"devices,omitempty"`

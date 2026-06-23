@@ -10,9 +10,11 @@ import (
 // AccountZscalerInfo represents a AccountZscalerInfo struct.
 // OAuth linked Zscaler apps account details
 type AccountZscalerInfo struct {
-	CloudName  *string `json:"cloud_name,omitempty"`
+	// Zscaler Internet Access cloud name configured for the integration
+	CloudName *string `json:"cloud_name,omitempty"`
+	// Zscaler partner key configured for the Mist integration
 	PartnerKey *string `json:"partner_key,omitempty"`
-	// Customer account user name
+	// Zscaler partner administrator username configured for Mist
 	Username             *string                `json:"username,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

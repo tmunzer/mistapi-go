@@ -10,7 +10,9 @@ import (
 // Proxy represents a Proxy struct.
 // Proxy Configuration to talk to Mist
 type Proxy struct {
-	Disabled             *bool                  `json:"disabled,omitempty"`
+	// Whether this proxy configuration is disabled
+	Disabled *bool `json:"disabled,omitempty"`
+	// Proxy URL used to reach Mist
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

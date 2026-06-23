@@ -10,8 +10,9 @@ import (
 )
 
 // MemoryStat represents a MemoryStat struct.
-// Memory usage stat (for virtual chassis, memory usage of master RE)
+// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
 type MemoryStat struct {
+	// Current memory utilization percentage for the device or master Routing Engine
 	Usage                float64                `json:"usage"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

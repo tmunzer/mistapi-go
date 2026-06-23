@@ -8,9 +8,11 @@ import (
 )
 
 // SiteSettingSkyatp represents a SiteSettingSkyatp struct.
+// Sky ATP threat intelligence settings for the site
 type SiteSettingSkyatp struct {
+	// Whether Sky ATP is enabled for the site
 	Enabled *bool `json:"enabled,omitempty"`
-	// Whether to send IP-MAC mapping to SkyATP
+	// Whether IP-to-MAC mappings are sent to Sky ATP
 	SendIpMacMapping     *bool                  `json:"send_ip_mac_mapping,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

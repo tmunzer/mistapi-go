@@ -16,7 +16,16 @@ wpa2-AES/CCMPp is assumed when `type`==`psk`. enum: `open`, `psk`
 
 ## Example
 
-```
-psk
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apClientBridgeAuthType := models.ApClientBridgeAuthTypeEnum_OPEN
+
+}
 ```
 

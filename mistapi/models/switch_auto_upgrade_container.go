@@ -8,7 +8,9 @@ import (
 )
 
 // SwitchAutoUpgradeContainer represents a SwitchAutoUpgradeContainer struct.
+// Wrapper for switch firmware auto-upgrade settings
 type SwitchAutoUpgradeContainer struct {
+	// Switch firmware auto-upgrade settings
 	AutoUpgrade          *SwitchAutoUpgrade     `json:"auto_upgrade,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

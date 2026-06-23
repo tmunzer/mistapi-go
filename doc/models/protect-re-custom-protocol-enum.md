@@ -16,3 +16,18 @@ enum: `any`, `icmp`, `tcp`, `udp`
 | `tcp` |
 | `udp` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    protectReCustomProtocol := models.ProtectReCustomProtocolEnum_ANY
+
+}
+```
+

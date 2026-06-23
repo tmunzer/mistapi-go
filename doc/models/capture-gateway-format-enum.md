@@ -1,7 +1,7 @@
 
 # Capture Gateway Format Enum
 
-enum: `stream`
+Output format for the gateway packet capture. enum: `stream`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `stream`
 
 ## Example
 
-```
-stream
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureGatewayFormat := models.CaptureGatewayFormatEnum_STREAM
+
+}
 ```
 

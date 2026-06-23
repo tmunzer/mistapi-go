@@ -10,32 +10,56 @@ import (
 )
 
 // ConstDeviceSwitch represents a ConstDeviceSwitch struct.
+// Switch model capability definition returned by the constants API
 type ConstDeviceSwitch struct {
-	Alias                *string                   `json:"alias,omitempty"`
-	Defaults             *ConstDeviceSwitchDefault `json:"defaults,omitempty"`
-	Description          *string                   `json:"description,omitempty"`
-	Display              *string                   `json:"display,omitempty"`
-	EvolvedOs            *bool                     `json:"evolved_os,omitempty"`
-	EvpnRiType           *string                   `json:"evpn_ri_type,omitempty"`
-	Experimental         *bool                     `json:"experimental,omitempty"`
-	FansPluggable        *bool                     `json:"fans_pluggable,omitempty"`
-	HasBgp               *bool                     `json:"has_bgp,omitempty"`
-	HasEts               *bool                     `json:"has_ets,omitempty"`
-	HasEvpn              *bool                     `json:"has_evpn,omitempty"`
-	HasIrb               *bool                     `json:"has_irb,omitempty"`
-	HasPoeOut            *bool                     `json:"has_poe_out,omitempty"`
-	HasSnapshot          *bool                     `json:"has_snapshot,omitempty"`
-	HasVc                *bool                     `json:"has_vc,omitempty"`
-	Model                *string                   `json:"model,omitempty"`
-	Modular              *bool                     `json:"modular,omitempty"`
-	NoShapingRate        *bool                     `json:"no_shaping_rate,omitempty"`
-	NumberFans           *int                      `json:"number_fans,omitempty"`
-	OcDevice             *bool                     `json:"oc_device,omitempty"`
-	OobInterface         *string                   `json:"oob_interface,omitempty"`
-	PacketActionDropOnly *bool                     `json:"packet_action_drop_only,omitempty"`
+	// Alternate model identifier for chassis-based switch definitions
+	Alias *string `json:"alias,omitempty"`
+	// Default switch port ranges for a model
+	Defaults *ConstDeviceSwitchDefault `json:"defaults,omitempty"`
+	// Product description for the switch model
+	Description *string `json:"description,omitempty"`
+	// User-facing model name shown for the switch
+	Display *string `json:"display,omitempty"`
+	// Whether the switch model runs Junos Evolved
+	EvolvedOs *bool `json:"evolved_os,omitempty"`
+	// EVPN routing-instance type used by this switch model
+	EvpnRiType *string `json:"evpn_ri_type,omitempty"`
+	// Whether this switch model is marked experimental in the constants catalog
+	Experimental *bool `json:"experimental,omitempty"`
+	// Whether the switch model has field-replaceable fans
+	FansPluggable *bool `json:"fans_pluggable,omitempty"`
+	// Whether the switch model supports BGP
+	HasBgp *bool `json:"has_bgp,omitempty"`
+	// Whether the switch model supports Enhanced Transmission Selection (ETS)
+	HasEts *bool `json:"has_ets,omitempty"`
+	// Whether the switch model supports EVPN
+	HasEvpn *bool `json:"has_evpn,omitempty"`
+	// Whether the switch model supports IRB interfaces
+	HasIrb *bool `json:"has_irb,omitempty"`
+	// Whether the switch model supports PoE output
+	HasPoeOut *bool `json:"has_poe_out,omitempty"`
+	// Whether the switch model supports configuration snapshots
+	HasSnapshot *bool `json:"has_snapshot,omitempty"`
+	// Whether the switch model supports Virtual Chassis
+	HasVc *bool `json:"has_vc,omitempty"`
+	// Switch model identifier for this capability definition
+	Model *string `json:"model,omitempty"`
+	// Whether the switch model has modular hardware
+	Modular *bool `json:"modular,omitempty"`
+	// Whether the switch model omits shaping-rate support
+	NoShapingRate *bool `json:"no_shaping_rate,omitempty"`
+	// Number of fans in the switch model
+	NumberFans *int `json:"number_fans,omitempty"`
+	// Whether this switch model is identified as an OpenConfig-managed device
+	OcDevice *bool `json:"oc_device,omitempty"`
+	// Out-of-band management interface names for this switch model
+	OobInterface *string `json:"oob_interface,omitempty"`
+	// Whether packet action support is limited to drop-only behavior
+	PacketActionDropOnly *bool `json:"packet_action_drop_only,omitempty"`
 	// Object Key is the PIC number
-	Pic         map[string]string `json:"pic,omitempty"`
-	SubRequired *string           `json:"sub_required,omitempty"`
+	Pic map[string]string `json:"pic,omitempty"`
+	// Subscription type required for this switch model
+	SubRequired *string `json:"sub_required,omitempty"`
 	// Device Type. enum: `switch`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`

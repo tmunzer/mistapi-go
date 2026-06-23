@@ -10,9 +10,12 @@ import (
 )
 
 // RrmConsideration represents a RrmConsideration struct.
+// RRM consideration metrics for one candidate channel
 type RrmConsideration struct {
-	Channel int     `json:"channel"`
-	Noise   float64 `json:"noise"`
+	// Candidate RF channel evaluated by RRM
+	Channel int `json:"channel"`
+	// Observed noise floor for the candidate channel, in dBm
+	Noise float64 `json:"noise"`
 	// Avg RSSI heard from other APs (that does NOT belongs to the same site)
 	OtherRssi *float64 `json:"other_rssi,omitempty"`
 	// SSID from other AP that we heard from with the max RSSI

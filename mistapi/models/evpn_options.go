@@ -8,7 +8,7 @@ import (
 )
 
 // EvpnOptions represents a EvpnOptions struct.
-// EVPN Options
+// EVPN topology generation options for campus fabric configuration
 type EvpnOptions struct {
 	// Optional, for dhcp_relay, unique loopback IPs are required for ERB or IPClos where we can set option-82 server_id-overrides
 	AutoLoopbackSubnet *string `json:"auto_loopback_subnet,omitempty"`
@@ -23,15 +23,17 @@ type EvpnOptions struct {
 	// Whether to route management traffic inband; routes will be propagated to downstream switches
 	EnableInbandMgmt *bool `json:"enable_inband_mgmt,omitempty"`
 	// if the mangement traffic goes inbnd, during installation, only the border/core switches are connected to the Internet to allow initial configuration to be pushed down and leave the downstream access switches stay in the Factory Default state enabling inband-ztp allows upstream switches to use LLDP to assign IP and gives Internet to downstream switches in that state
-	EnableInbandZtp *bool               `json:"enable_inband_ztp,omitempty"`
-	Overlay         *EvpnOptionsOverlay `json:"overlay,omitempty"`
+	EnableInbandZtp *bool `json:"enable_inband_ztp,omitempty"`
+	// EVPN overlay BGP settings
+	Overlay *EvpnOptionsOverlay `json:"overlay,omitempty"`
 	// Only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-01-01 as the virtual-gateway-address's v4_mac. If enabled, 00-00-5e-00-0X-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
 	PerVlanVgaV4Mac *bool `json:"per_vlan_vga_v4_mac,omitempty"`
 	// Only for by Core-Distribution architecture when `evpn_options.routed_at`==`core`. By default, JUNOS uses 00-00-5e-00-02-01 as the virtual-gateway-address's v6_mac. If enabled, 00-00-5e-00-1X-YY will be used (where XX=vlan_id/256, YY=vlan_id%256)
 	PerVlanVgaV6Mac *bool `json:"per_vlan_vga_v6_mac,omitempty"`
 	// optional, where virtual-gateway should reside. enum: `core`, `distribution`, `edge`
 	RoutedAt *EvpnOptionsRoutedAtEnum `json:"routed_at,omitempty"`
-	Underlay *EvpnOptionsUnderlay     `json:"underlay,omitempty"`
+	// EVPN underlay BGP and subnet settings
+	Underlay *EvpnOptionsUnderlay `json:"underlay,omitempty"`
 	// Optional, for EX9200 only to segregate virtual-switches
 	VsInstances          map[string]EvpnOptionsVsInstance `json:"vs_instances,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`

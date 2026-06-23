@@ -8,10 +8,12 @@ import (
 )
 
 // NacPortalTemplate represents a NacPortalTemplate struct.
+// Visual template settings for a NAC portal
 type NacPortalTemplate struct {
 	// defines alignment on portal. enum: `center`, `left`, `right`
 	Alignment *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
-	Color     *string                      `json:"color,omitempty"`
+	// Primary color used by the NAC portal template
+	Color *string `json:"color,omitempty"`
 	// Custom logo custom logo with "data:image/png;base64," format. default null, uses Juniper Mist Logo.
 	Logo *string `json:"logo,omitempty"`
 	// Whether to hide "Powered by Juniper Mist" and email footers

@@ -11,17 +11,25 @@ import (
 )
 
 // StatsWxrule represents a StatsWxrule struct.
-// Wxrule statistics
+// WxLAN rule usage statistics for a site
 type StatsWxrule struct {
-	// enum: `allow`, `block`
-	Action               StatsWxruleActionEnum                 `json:"action"`
-	ClientMac            []string                              `json:"client_mac"`
-	DstAllowWxtags       []uuid.UUID                           `json:"dst_allow_wxtags"`
-	DstDenyWxtags        []uuid.UUID                           `json:"dst_deny_wxtags"`
-	DstWxtags            []uuid.UUID                           `json:"dst_wxtags"`
-	Name                 string                                `json:"name"`
-	Order                int                                   `json:"order"`
-	SrcWxtags            []uuid.UUID                           `json:"src_wxtags"`
+	// Allow or block behavior enforced by this WxLAN rule. enum: `allow`, `block`
+	Action StatsWxruleActionEnum `json:"action"`
+	// Wireless client MAC addresses matching a WxLAN rule
+	ClientMac []string `json:"client_mac"`
+	// Destination WxLAN tag identifiers explicitly allowed by a WxLAN rule
+	DstAllowWxtags []uuid.UUID `json:"dst_allow_wxtags"`
+	// Destination WxLAN tag identifiers denied by a WxLAN rule
+	DstDenyWxtags []uuid.UUID `json:"dst_deny_wxtags"`
+	// Destination WxLAN tag identifiers matched by a WxLAN rule
+	DstWxtags []uuid.UUID `json:"dst_wxtags"`
+	// Display name of the WxLAN rule
+	Name string `json:"name"`
+	// Rule evaluation order for WxLAN matching
+	Order int `json:"order"`
+	// Source WxLAN tag identifiers matched by a WxLAN rule
+	SrcWxtags []uuid.UUID `json:"src_wxtags"`
+	// Flow counts keyed by destination WxLAN tag identifier
 	Usage                map[string]StatsWxruleUsageProperties `json:"usage"`
 	AdditionalProperties map[string]interface{}                `json:"_"`
 }

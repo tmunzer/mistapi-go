@@ -27,7 +27,7 @@ func NewOrgsIntegrationJuniper(baseController baseController) *OrgsIntegrationJu
 // LinkOrgToJuniperJuniperAccount takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AccountJuniperInfo data and
 // an error if there was an issue with the request or response.
-// Link Juniper Accounts
+// Link a Juniper account to the organization using Juniper account credentials. Linked accounts are returned in organization settings and can be used by Juniper integrations.
 func (o *OrgsIntegrationJuniper) LinkOrgToJuniperJuniperAccount(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -43,19 +43,15 @@ func (o *OrgsIntegrationJuniper) LinkOrgToJuniperJuniperAccount(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Account already linked", Unmarshaller: errors.NewResponseDetailString},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -75,8 +71,7 @@ func (o *OrgsIntegrationJuniper) LinkOrgToJuniperJuniperAccount(
 // UnlinkOrgFromJuniperCustomerId takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Unlink Juniper Customer ID
-// `linked_by` field is only required if there are duplicate account_names.
+// Unlink a Juniper customer account from the organization. The `linked_by` field is required only when multiple linked accounts share the same account name.
 func (o *OrgsIntegrationJuniper) UnlinkOrgFromJuniperCustomerId(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -92,19 +87,15 @@ func (o *OrgsIntegrationJuniper) UnlinkOrgFromJuniperCustomerId(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

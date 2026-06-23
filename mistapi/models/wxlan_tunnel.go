@@ -11,7 +11,7 @@ import (
 )
 
 // WxlanTunnel represents a WxlanTunnel struct.
-// WxLAn Tunnel
+// WxLAN tunnel configuration for L2TPv3 or DMVPN connectivity
 type WxlanTunnel struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -19,10 +19,12 @@ type WxlanTunnel struct {
 	Dmvpn *WxlanTunnelDmvpn `json:"dmvpn,omitempty"`
 	// Determined during creation time and cannot be toggled. A management tunnel cannot be used by wxlan rule or by wlan
 	ForMgmt *bool `json:"for_mgmt,omitempty"`
+	// Whether this WxLAN tunnel is scoped to a site
 	ForSite *bool `json:"for_site,omitempty"`
 	// In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries.
 	HelloInterval *int `json:"hello_interval,omitempty"`
-	HelloRetries  *int `json:"hello_retries,omitempty"`
+	// Number of missed hello messages before the AP tries another tunnel peer
+	HelloRetries *int `json:"hello_retries,omitempty"`
 	// Optional, overwrite the hostname in SCCRQ control message, default is or null, %H and %M can be used, which will be replace with corresponding values:
 	// * %H: name of the ap if provided (and will be stripped so it can be used for hostname) and fallbacks to MAC
 	// * %M: MAC (e.g. 5c5b350e0060)
@@ -38,17 +40,19 @@ type WxlanTunnel struct {
 	// 0 to enable PMTU, 552-1500 to start PMTU with a lower MTU
 	Mtu *int `json:"mtu,omitempty"`
 	// The name of the tunnel
-	Name  string     `json:"name"`
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// List of remote peers’ IP or hostname
 	Peers []string `json:"peers,omitempty"`
 	// Optional, overwrite the router-id in SCCRQ control message, default is "" or null, can also be an IPv4 address
 	RouterId *string `json:"router_id,omitempty"`
-	// Secret, ‘’ if no auth is used
+	// Shared secret used for tunnel authentication, ‘’ if no auth is used
 	Secret *string `json:"secret,omitempty"`
 	// Sessions to be established with the tunnel. Has to be >= 1 in order for this tunnel to be useful. For management tunnel, it can only have 1
 	Sessions []WxlanTunnelSession `json:"sessions,omitempty"`
-	SiteId   *uuid.UUID           `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// UDP port if `use_udp`==`true`
 	UdpPort *int `json:"udp_port,omitempty"`
 	// Whether to use UDP instead of IP (proto=115, which is default of L2TPv3)

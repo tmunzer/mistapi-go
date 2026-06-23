@@ -10,7 +10,9 @@ import (
 // MapWayfindingPath represents a MapWayfindingPath struct.
 // JSON blob for wayfinding (using Dijkstra’s algorithm)
 type MapWayfindingPath struct {
-	Coordinate           *string                `json:"coordinate,omitempty"`
+	// Wayfinding path coordinate space
+	Coordinate *string `json:"coordinate,omitempty"`
+	// Map nodes included in a wayfinding path
 	Nodes                []MapNode              `json:"nodes,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

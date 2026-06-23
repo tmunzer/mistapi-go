@@ -10,8 +10,9 @@ import (
 )
 
 // AccountJuniperConfig represents a AccountJuniperConfig struct.
+// Juniper account credentials used to link the integration
 type AccountJuniperConfig struct {
-	// Customer account password
+	// Authentication password for the Juniper account
 	Password string `json:"password"`
 	// Customer account user name
 	Username             string                 `json:"username"`

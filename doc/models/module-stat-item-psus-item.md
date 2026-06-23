@@ -1,6 +1,8 @@
 
 # Module Stat Item Psus Item
 
+Power supply status for a device module
+
 ## Structure
 
 `ModuleStatItemPsusItem`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Name` | `*string` | Optional | - |
-| `Status` | `*string` | Optional | - |
+| `Name` | `*string` | Optional | Power supply label reported by the device |
+| `Status` | `*string` | Optional | Operational status reported for the power supply |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "Power Supply 0",
-  "status": "ok"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    moduleStatItemPsusItem := models.ModuleStatItemPsusItem{
+        Name:                 models.ToPointer("Power Supply 0"),
+        Status:               models.ToPointer("ok"),
+    }
+
 }
 ```
 

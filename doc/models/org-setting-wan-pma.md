@@ -1,6 +1,8 @@
 
 # Org Setting Wan Pma
 
+PMA feature settings for WAN Assurance
+
 ## Structure
 
 `OrgSettingWanPma`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether PMA is enabled for WAN Assurance<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingWanPma := models.OrgSettingWanPma{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

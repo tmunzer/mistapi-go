@@ -10,8 +10,11 @@ import (
 )
 
 // SiteSleMetrics represents a SiteSleMetrics struct.
+// SLE metrics available for a site
 type SiteSleMetrics struct {
-	Enabled              []string               `json:"enabled"`
+	// Unique string values returned or accepted by this schema
+	Enabled []string `json:"enabled"`
+	// Unique string values returned or accepted by this schema
 	Supported            []string               `json:"supported"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

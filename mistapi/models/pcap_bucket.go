@@ -10,7 +10,9 @@ import (
 )
 
 // PcapBucket represents a PcapBucket struct.
+// Request to configure a custom packet capture bucket
 type PcapBucket struct {
+	// Customer bucket name to use for packet capture files
 	Bucket               string                 `json:"bucket"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

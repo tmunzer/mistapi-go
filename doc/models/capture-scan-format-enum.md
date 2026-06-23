@@ -1,7 +1,7 @@
 
 # Capture Scan Format Enum
 
-enum: `pcap`, `stream`
+Output format for the scan radio packet capture. enum: `pcap`, `stream`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ enum: `pcap`, `stream`
 
 ## Example
 
-```
-stream
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureScanFormat := models.CaptureScanFormatEnum_PCAP
+
+}
 ```
 

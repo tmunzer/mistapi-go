@@ -10,11 +10,15 @@ import (
 )
 
 // BgpConfigNeighbors represents a BgpConfigNeighbors struct.
+// Per-neighbor BGP session settings
 type BgpConfigNeighbors struct {
 	// If true, the BGP session to this neighbor will be administratively disabled/shutdown
-	Disabled     *bool   `json:"disabled,omitempty"`
+	Disabled *bool `json:"disabled,omitempty"`
+	// Export policy applied only to this BGP neighbor
 	ExportPolicy *string `json:"export_policy,omitempty"`
-	HoldTime     *int    `json:"hold_time,omitempty"`
+	// BGP hold time for this neighbor, in seconds
+	HoldTime *int `json:"hold_time,omitempty"`
+	// Import policy applied only to this BGP neighbor
 	ImportPolicy *string `json:"import_policy,omitempty"`
 	// Assuming BGP neighbor is directly connected
 	MultihopTtl *int `json:"multihop_ttl,omitempty"`

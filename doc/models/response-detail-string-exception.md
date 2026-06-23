@@ -1,6 +1,8 @@
 
 # Response Detail String Exception
 
+Response containing a human-readable detail message
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,18 +13,19 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Detail` | `*string` | Optional | - |
+| `Detail` | `*string` | Optional | Human-readable detail message returned by the API |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "detail": "detail8",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+if err != nil {
+    switch typedErr := err.(type) {
+    case *errors.ResponseDetailStringException:
+        log.Fatalln(typedErr)
+    default:
+        log.Fatalln(err)
+    }
 }
 ```
 

@@ -8,10 +8,15 @@ import (
 )
 
 // ConstMxedgeModel represents a ConstMxedgeModel struct.
+// Mist Edge model definition returned by the constants API
 type ConstMxedgeModel struct {
-	CustomPorts          *bool                           `json:"custom_ports,omitempty"`
-	Display              *string                         `json:"display,omitempty"`
-	Model                *string                         `json:"model,omitempty"`
+	// Whether this Mist Edge model supports custom port definitions
+	CustomPorts *bool `json:"custom_ports,omitempty"`
+	// User-facing model name shown for the Mist Edge
+	Display *string `json:"display,omitempty"`
+	// Mist Edge model identifier
+	Model *string `json:"model,omitempty"`
+	// Port metadata keyed by interface number for this Mist Edge model
 	Ports                map[string]ConstMxedgeModelPort `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"_"`
 }

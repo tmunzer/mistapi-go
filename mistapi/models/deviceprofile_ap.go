@@ -11,12 +11,13 @@ import (
 )
 
 // DeviceprofileAp represents a DeviceprofileAp struct.
-// Device Profile
+// AP device profile configuration applied to APs at a site or organization
 type DeviceprofileAp struct {
-	// Aeroscout AP settings
+	// AeroScout location integration settings applied to an AP or AP profile
 	Aeroscout *ApAeroscout `json:"aeroscout,omitempty"`
-	Airista   *ApAirista   `json:"airista,omitempty"`
-	// BLE AP settings
+	// Airista RTLS integration settings for an AP
+	Airista *ApAirista `json:"airista,omitempty"`
+	// Bluetooth Low Energy beacon and asset advertising settings for an AP
 	BleConfig *BleConfig `json:"ble_config,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
@@ -27,47 +28,56 @@ type DeviceprofileAp struct {
 	// Whether to disable eth3 port
 	DisableEth3 *bool `json:"disable_eth3,omitempty"`
 	// Whether to disable module port
-	DisableModule *bool        `json:"disable_module,omitempty"`
-	EslConfig     *ApEslConfig `json:"esl_config,omitempty"`
-	ForSite       *bool        `json:"for_site,omitempty"`
+	DisableModule *bool `json:"disable_module,omitempty"`
+	// Electronic shelf label integration settings for an AP
+	EslConfig *ApEslConfig `json:"esl_config,omitempty"`
+	// Whether this AP profile is scoped directly to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// IoT AP settings
+	// Digital and analog IoT port settings applied to an AP or AP profile
 	IotConfig *ApIot `json:"iot_config,omitempty"`
-	// IP AP settings
-	IpConfig   *ApIpConfig         `json:"ip_config,omitempty"`
+	// Management IP addressing settings for an access point
+	IpConfig *ApIpConfig `json:"ip_config,omitempty"`
+	// LACP settings for supported AP Ethernet uplinks
 	LacpConfig *DeviceApLacpConfig `json:"lacp_config,omitempty"`
-	// LED AP settings
+	// Indicator light settings for an access point
 	Led *ApLed `json:"led,omitempty"`
-	// Mesh AP settings
+	// Wireless mesh settings for an access point
 	Mesh *ApMesh `json:"mesh,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64         `json:"modified_time,omitempty"`
-	Name         Optional[string] `json:"name"`
-	NtpServers   []string         `json:"ntp_servers,omitempty"`
-	OrgId        *uuid.UUID       `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// MQTT broker publishing settings for an AP; use `mqtt_topic` on individual AssetFilter entries to specify which MQTT topic each matching BLE advertisement is forwarded to
+	MqttConfig *ApMqtt `json:"mqtt_config,omitempty"`
+	// Display name of the AP device profile
+	Name Optional[string] `json:"name"`
+	// Unique string values returned or accepted by this schema
+	NtpServers []string `json:"ntp_servers,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Whether to enable power out through module port (for APH) or eth1 (for APL/BT11)
 	PoePassthrough *bool `json:"poe_passthrough,omitempty"`
 	// eth0 is not allowed here. Property key is the interface(s) name (e.g. `eth1` or `eth1,eth2`). If specified, this takes precedence over switch_config (deprecated)
 	PortConfig map[string]ApPortConfig `json:"port_config,omitempty"`
-	// Power related configs
+	// Power negotiation and peripheral power settings for an AP or AP profile
 	PwrConfig *ApPwrConfig `json:"pwr_config,omitempty"`
-	// Radio AP settings
-	RadioConfig *ApRadio   `json:"radio_config,omitempty"`
-	SiteId      *uuid.UUID `json:"site_id,omitempty"`
-	// For people who want to fully control the vlans (advanced)
+	// Radio configuration settings for an access point
+	RadioConfig *ApRadio `json:"radio_config,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Deprecated AP switch VLAN control settings for advanced per-port configuration
 	SwitchConfig *ApSwitch `json:"switch_config,omitempty"` // Deprecated
 	// Device Type. enum: `ap`
 	Type string `json:"type"`
 	// AP Uplink port configuration
 	UplinkPortConfig *ApUplinkPortConfig `json:"uplink_port_config,omitempty"`
-	// USB AP settings
+	// Legacy USB integration settings for an access point
 	// - Note: if native imagotag is enabled, BLE will be disabled automatically
 	// - Note: legacy, new config moved to ESL Config.
 	UsbConfig *ApUsb `json:"usb_config,omitempty"`
 	// Dictionary of name->value, the vars can then be used in Wlans. This can overwrite those from Site Vars
 	Vars map[string]string `json:"vars,omitempty"`
-	// Zigbee AP settings
+	// Zigbee radio and network settings applied to an AP or AP profile
 	ZigbeeConfig         *ApZigbee              `json:"zigbee_config,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -76,8 +86,8 @@ type DeviceprofileAp struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (d DeviceprofileAp) String() string {
 	return fmt.Sprintf(
-		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
-		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.ZigbeeConfig, d.AdditionalProperties)
+		"DeviceprofileAp[Aeroscout=%v, Airista=%v, BleConfig=%v, CreatedTime=%v, DisableEth1=%v, DisableEth2=%v, DisableEth3=%v, DisableModule=%v, EslConfig=%v, ForSite=%v, Id=%v, IotConfig=%v, IpConfig=%v, LacpConfig=%v, Led=%v, Mesh=%v, ModifiedTime=%v, MqttConfig=%v, Name=%v, NtpServers=%v, OrgId=%v, PoePassthrough=%v, PortConfig=%v, PwrConfig=%v, RadioConfig=%v, SiteId=%v, SwitchConfig=%v, Type=%v, UplinkPortConfig=%v, UsbConfig=%v, Vars=%v, ZigbeeConfig=%v, AdditionalProperties=%v]",
+		d.Aeroscout, d.Airista, d.BleConfig, d.CreatedTime, d.DisableEth1, d.DisableEth2, d.DisableEth3, d.DisableModule, d.EslConfig, d.ForSite, d.Id, d.IotConfig, d.IpConfig, d.LacpConfig, d.Led, d.Mesh, d.ModifiedTime, d.MqttConfig, d.Name, d.NtpServers, d.OrgId, d.PoePassthrough, d.PortConfig, d.PwrConfig, d.RadioConfig, d.SiteId, d.SwitchConfig, d.Type, d.UplinkPortConfig, d.UsbConfig, d.Vars, d.ZigbeeConfig, d.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for DeviceprofileAp.
@@ -86,7 +96,7 @@ func (d DeviceprofileAp) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(d.AdditionalProperties,
-		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config"); err != nil {
+		"aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(d.toMap())
@@ -147,6 +157,9 @@ func (d DeviceprofileAp) toMap() map[string]any {
 	if d.ModifiedTime != nil {
 		structMap["modified_time"] = d.ModifiedTime
 	}
+	if d.MqttConfig != nil {
+		structMap["mqtt_config"] = d.MqttConfig.toMap()
+	}
 	if d.Name.IsValueSet() {
 		if d.Name.Value() != nil {
 			structMap["name"] = d.Name.Value()
@@ -206,7 +219,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "aeroscout", "airista", "ble_config", "created_time", "disable_eth1", "disable_eth2", "disable_eth3", "disable_module", "esl_config", "for_site", "id", "iot_config", "ip_config", "lacp_config", "led", "mesh", "modified_time", "mqtt_config", "name", "ntp_servers", "org_id", "poe_passthrough", "port_config", "pwr_config", "radio_config", "site_id", "switch_config", "type", "uplink_port_config", "usb_config", "vars", "zigbee_config")
 	if err != nil {
 		return err
 	}
@@ -229,6 +242,7 @@ func (d *DeviceprofileAp) UnmarshalJSON(input []byte) error {
 	d.Led = temp.Led
 	d.Mesh = temp.Mesh
 	d.ModifiedTime = temp.ModifiedTime
+	d.MqttConfig = temp.MqttConfig
 	d.Name = temp.Name
 	d.NtpServers = temp.NtpServers
 	d.OrgId = temp.OrgId
@@ -265,6 +279,7 @@ type tempDeviceprofileAp struct {
 	Led              *ApLed                  `json:"led,omitempty"`
 	Mesh             *ApMesh                 `json:"mesh,omitempty"`
 	ModifiedTime     *float64                `json:"modified_time,omitempty"`
+	MqttConfig       *ApMqtt                 `json:"mqtt_config,omitempty"`
 	Name             Optional[string]        `json:"name"`
 	NtpServers       []string                `json:"ntp_servers,omitempty"`
 	OrgId            *uuid.UUID              `json:"org_id,omitempty"`

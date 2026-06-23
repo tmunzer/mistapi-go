@@ -1,6 +1,8 @@
 
 # Gw Routing Policy Term Matching Vpn Path Sla
 
+SLA thresholds used when matching VPN paths
+
 ## Structure
 
 `GwRoutingPolicyTermMatchingVpnPathSla`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MaxJitter` | `models.Optional[int]` | Optional | - |
-| `MaxLatency` | `models.Optional[int]` | Optional | - |
-| `MaxLoss` | `models.Optional[int]` | Optional | - |
+| `MaxJitter` | `models.Optional[int]` | Optional | Maximum jitter threshold allowed for the VPN path |
+| `MaxLatency` | `models.Optional[int]` | Optional | Maximum latency threshold allowed for the VPN path |
+| `MaxLoss` | `models.Optional[int]` | Optional | Maximum packet-loss threshold allowed for the VPN path |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "max_latency": 1500,
-  "max_loss": 30,
-  "max_jitter": 64
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gwRoutingPolicyTermMatchingVpnPathSla := models.GwRoutingPolicyTermMatchingVpnPathSla{
+        MaxJitter:            models.NewOptional(models.ToPointer(186)),
+        MaxLatency:           models.NewOptional(models.ToPointer(1500)),
+        MaxLoss:              models.NewOptional(models.ToPointer(30)),
+    }
+
 }
 ```
 

@@ -1,6 +1,8 @@
 
 # Gateway Cluster Node
 
+Gateway cluster node identified by MAC address
+
 ## Structure
 
 `GatewayClusterNode`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `string` | Required | Gateway MAC Address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b") |
+| `Mac` | `string` | Required | Gateway device MAC address. Format is `[0-9a-f]{12}` (e.g. "5684dae9ac8b") |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayClusterNode := models.GatewayClusterNode{
+        Mac:                  "mac6",
+    }
+
 }
 ```
 

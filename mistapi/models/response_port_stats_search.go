@@ -10,12 +10,19 @@ import (
 )
 
 // ResponsePortStatsSearch represents a ResponsePortStatsSearch struct.
+// Paginated response for switch and gateway port statistics search results
 type ResponsePortStatsSearch struct {
-	End                  *int                   `json:"end,omitempty"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []StatsSwitchPort      `json:"results"`
-	Start                *int                   `json:"start,omitempty"`
+	// Epoch timestamp, in seconds, for the end of the port statistics reporting window
+	End *int `json:"end,omitempty"`
+	// Maximum number of port statistics records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of port statistics search results
+	Next *string `json:"next,omitempty"`
+	// Switch port statistics records returned by a stats response
+	Results []StatsSwitchPort `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the port statistics reporting window
+	Start *int `json:"start,omitempty"`
+	// Number of port statistics records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

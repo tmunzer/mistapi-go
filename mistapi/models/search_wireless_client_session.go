@@ -10,14 +10,21 @@ import (
 )
 
 // SearchWirelessClientSession represents a SearchWirelessClientSession struct.
+// Paginated response for wireless client session searches
 type SearchWirelessClientSession struct {
-	End                  float64                 `json:"end"`
-	Limit                int                     `json:"limit"`
-	Next                 *string                 `json:"next,omitempty"`
-	Results              []WirelessClientSession `json:"results"`
-	Start                float64                 `json:"start"`
-	Total                int                     `json:"total"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Upper bound timestamp of the wireless client session search window, in epoch seconds
+	End float64 `json:"end"`
+	// Maximum number of wireless client session records returned by this page
+	Limit int `json:"limit"`
+	// URL for the next page of wireless client session records, when more results are available
+	Next *string `json:"next,omitempty"`
+	// Wireless client session records returned by a search response
+	Results []WirelessClientSession `json:"results"`
+	// Lower bound timestamp of the wireless client session search window, in epoch seconds
+	Start float64 `json:"start"`
+	// Count of wireless client session records matching the search
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SearchWirelessClientSession,

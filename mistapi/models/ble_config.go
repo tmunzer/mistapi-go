@@ -9,13 +9,13 @@ import (
 )
 
 // BleConfig represents a BleConfig struct.
-// BLE AP settings
+// Bluetooth Low Energy beacon and asset advertising settings for an AP
 type BleConfig struct {
 	// Whether Mist beacons is enabled
 	BeaconEnabled *bool `json:"beacon_enabled,omitempty"`
 	// Required if `beacon_rate_mode`==`custom`, 1-10, in number-beacons-per-second
 	BeaconRate *int `json:"beacon_rate,omitempty"`
-	// enum: `custom`, `default`
+	// Beacon rate mode for Mist BLE beacons; use custom to set beacon_rate. enum: `custom`, `default`
 	BeaconRateMode *BleConfigBeaconRateModeEnum `json:"beacon_rate_mode,omitempty"`
 	// List of AP BLE location beam numbers (1-8) which should be disabled at the AP and not transmit location information (where beam 1 is oriented at the top the AP, growing counter-clock-wise, with 9 being the omni BLE beam)
 	BeamDisabled []int `json:"beam_disabled,omitempty"`
@@ -26,28 +26,31 @@ type BleConfig struct {
 	// Frequency (msec) of data emitted by custom ble beacon
 	CustomBlePacketFreqMsec *int `json:"custom_ble_packet_freq_msec,omitempty"`
 	// Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
-	EddystoneUidAdvPower *int    `json:"eddystone_uid_adv_power,omitempty"`
-	EddystoneUidBeams    *string `json:"eddystone_uid_beams,omitempty"`
+	EddystoneUidAdvPower *int `json:"eddystone_uid_adv_power,omitempty"`
+	// BLE beams used to transmit Eddystone-UID advertisements, expressed as ranges such as `2-4,7`
+	EddystoneUidBeams *string `json:"eddystone_uid_beams,omitempty"`
 	// Only if `beacon_enabled`==`false`, Whether Eddystone-UID beacon is enabled
 	EddystoneUidEnabled *bool `json:"eddystone_uid_enabled,omitempty"`
 	// Frequency (msec) of data emit by Eddystone-UID beacon
 	EddystoneUidFreqMsec *int `json:"eddystone_uid_freq_msec,omitempty"`
 	// Eddystone-UID instance for the device
 	EddystoneUidInstance *string `json:"eddystone_uid_instance,omitempty"`
-	// Eddystone-UID namespace
+	// Eddystone-UID namespace broadcast by the AP, as a 10-byte hex string
 	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
 	// Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
-	EddystoneUrlAdvPower *int    `json:"eddystone_url_adv_power,omitempty"`
-	EddystoneUrlBeams    *string `json:"eddystone_url_beams,omitempty"`
+	EddystoneUrlAdvPower *int `json:"eddystone_url_adv_power,omitempty"`
+	// BLE beams used to transmit Eddystone-URL advertisements, expressed as ranges such as `2-4,7`
+	EddystoneUrlBeams *string `json:"eddystone_url_beams,omitempty"`
 	// Only if `beacon_enabled`==`false`, Whether Eddystone-URL beacon is enabled
 	EddystoneUrlEnabled *bool `json:"eddystone_url_enabled,omitempty"`
-	// Frequency (msec) of data emit by Eddystone-UID beacon
+	// Frequency (msec) of data emitted by Eddystone-URL beacon
 	EddystoneUrlFreqMsec *int `json:"eddystone_url_freq_msec,omitempty"`
 	// URL pointed by Eddystone-URL beacon
 	EddystoneUrlUrl *string `json:"eddystone_url_url,omitempty"`
 	// Advertised TX Power, -100 to 20 (dBm), omit this attribute to use default
-	IbeaconAdvPower *int    `json:"ibeacon_adv_power,omitempty"`
-	IbeaconBeams    *string `json:"ibeacon_beams,omitempty"`
+	IbeaconAdvPower *int `json:"ibeacon_adv_power,omitempty"`
+	// BLE beams used to transmit iBeacon advertisements, expressed as ranges such as `2-4,7`
+	IbeaconBeams *string `json:"ibeacon_beams,omitempty"`
 	// Can be enabled if `beacon_enabled`==`true`, whether to send iBeacon
 	IbeaconEnabled *bool `json:"ibeacon_enabled,omitempty"`
 	// Frequency (msec) of data emit for iBeacon
@@ -60,7 +63,7 @@ type BleConfig struct {
 	IbeaconUuid *uuid.UUID `json:"ibeacon_uuid,omitempty"`
 	// Required if `power_mode`==`custom`; else use `power_mode` as default
 	Power *int `json:"power,omitempty"`
-	// enum: `custom`, `default`
+	// Transmit power mode for BLE beacons; use `custom` to set explicit power. enum: `custom`, `default`
 	PowerMode            *BleConfigPowerModeEnum `json:"power_mode,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }

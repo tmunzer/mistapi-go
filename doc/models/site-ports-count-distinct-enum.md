@@ -24,3 +24,18 @@ enum: `full_duplex`, `mac`, `neighbor_mac`, `neighbor_port_desc`, `neighbor_syst
 | `speed` |
 | `up` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sitePortsCountDistinct := models.SitePortsCountDistinctEnum_FULLDUPLEX
+
+}
+```
+

@@ -27,7 +27,7 @@ func NewOrgsSiteTemplates(baseController baseController) *OrgsSiteTemplates {
 // ListOrgSiteTemplates takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.SiteTemplate data and
 // an error if there was an issue with the request or response.
-// Get List of Org Site Templates
+// List site templates configured in the organization. Site templates contain automatic upgrade settings and variables available to WLAN configuration.
 func (o *OrgsSiteTemplates) ListOrgSiteTemplates(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsSiteTemplates) ListOrgSiteTemplates(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,9 @@ func (o *OrgsSiteTemplates) ListOrgSiteTemplates(
 // CreateOrgSiteTemplate takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.SiteTemplate data and
 // an error if there was an issue with the request or response.
-// Create Org Site Template
+// Create a site template with automatic upgrade settings and template
+// variables available to WLAN configuration.
+// To assign a Site template to a site, use the [Update Site]($e/Sites/updateSiteInfo) endpoint and specify the Site template ID in the `sitetemplate_id` field of the request body.'
 func (o *OrgsSiteTemplates) CreateOrgSiteTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +84,15 @@ func (o *OrgsSiteTemplates) CreateOrgSiteTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +112,7 @@ func (o *OrgsSiteTemplates) CreateOrgSiteTemplate(
 // DeleteOrgSiteTemplate takes context, orgId, sitetemplateId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Site Template
+// Remove a site template from the organization.
 func (o *OrgsSiteTemplates) DeleteOrgSiteTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +124,15 @@ func (o *OrgsSiteTemplates) DeleteOrgSiteTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +145,7 @@ func (o *OrgsSiteTemplates) DeleteOrgSiteTemplate(
 // GetOrgSiteTemplate takes context, orgId, sitetemplateId as parameters and
 // returns an models.ApiResponse with models.SiteTemplate data and
 // an error if there was an issue with the request or response.
-// Get Org Site Template
+// Return a site template, including automatic upgrade settings and template variables available to WLAN configuration.
 func (o *OrgsSiteTemplates) GetOrgSiteTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +157,15 @@ func (o *OrgsSiteTemplates) GetOrgSiteTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.SiteTemplate
@@ -195,7 +181,7 @@ func (o *OrgsSiteTemplates) GetOrgSiteTemplate(
 // UpdateOrgSiteTemplate takes context, orgId, sitetemplateId, body as parameters and
 // returns an models.ApiResponse with models.SiteTemplate data and
 // an error if there was an issue with the request or response.
-// Update Org Site Template
+// Update a site template's automatic upgrade settings and template variables available to WLAN configuration.
 func (o *OrgsSiteTemplates) UpdateOrgSiteTemplate(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +194,15 @@ func (o *OrgsSiteTemplates) UpdateOrgSiteTemplate(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

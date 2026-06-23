@@ -27,36 +27,43 @@ import (
 type WxlanTag struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this WxLAN tag is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id      *uuid.UUID `json:"id,omitempty"`
-	LastIps []string   `json:"last_ips,omitempty"`
-	// If `type`==`client`, Client MAC Address
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Most recent IP addresses observed for a WxLAN tag
+	LastIps []string `json:"last_ips,omitempty"`
+	// If `type`==`client`, Client MAC address
 	Mac Optional[string] `json:"mac"`
 	// required if `type`==`match`. enum: `ap_id`, `app`, `asset_mac`, `client_mac`, `hostname`, `ip_range_subnet`, `port`, `psk_name`, `psk_role`, `radius_attr`, `radius_class`, `radius_group`, `radius_username`, `sdkclient_uuid`, `wlan_id`
 	Match *WxlanTagMatchEnum `json:"match,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// The name
+	// Display name of the WxLAN tag
 	Name string `json:"name"`
 	// required if `type`==`match`, type of tag (inclusive/exclusive). enum: `in`, `not_in`
-	Op          *WxlanTagOperationEnum `json:"op,omitempty"`
-	OrgId       *uuid.UUID             `json:"org_id,omitempty"`
-	ResourceMac Optional[string]       `json:"resource_mac"`
-	Services    []string               `json:"services,omitempty"`
-	SiteId      *uuid.UUID             `json:"site_id,omitempty"`
-	// If `type`==`spec`
-	Specs  []WxlanTagSpec `json:"specs,omitempty"`
-	Subnet *string        `json:"subnet,omitempty"`
+	Op *WxlanTagOperationEnum `json:"op,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// MAC address of the discovered resource associated with this tag, when applicable
+	ResourceMac Optional[string] `json:"resource_mac"`
+	// Unique string values returned or accepted by this schema
+	Services []string `json:"services,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Traffic match specifications used when `type`==`spec`
+	Specs []WxlanTagSpec `json:"specs,omitempty"`
+	// CIDR subnet associated with this WxLAN tag when `type`==`subnet`
+	Subnet *string `json:"subnet,omitempty"`
 	// enum: `client`, `match`, `resource`, `spec`, `subnet`, `vlan`
 	Type WxlanTagTypeEnum `json:"type"`
 	// Required if `type`==`match` and
 	// * `match`==`ap_id`: list of AP IDs
 	// * `match`==`app`: list of Application Names
-	// * `match`==`asset_mac`: list of Asset MAC Addresses
-	// * `match`==`client_mac`: list of Client MAC Addresses
+	// * `match`==`asset_mac`: list of Asset MAC addresses
+	// * `match`==`client_mac`: list of Client MAC addresses
 	// * `match`==`hostname`: list of Resources Hostnames
-	// * `match`==`ip_range_subnet`: list of IP Addresses and/or CIDRs
+	// * `match`==`ip_range_subnet`: list of IP addresses and/or CIDRs
 	// * `match`==`psk_name`: list of PSK Names
 	// * `match`==`psk_role`: list of PSK Roles
 	// * `match`==`port`: list of Ports or Port Ranges

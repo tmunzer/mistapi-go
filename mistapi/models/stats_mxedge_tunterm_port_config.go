@@ -8,11 +8,15 @@ import (
 )
 
 // StatsMxedgeTuntermPortConfig represents a StatsMxedgeTuntermPortConfig struct.
+// Tunnel termination port role configuration reported by a Mist Edge
 type StatsMxedgeTuntermPortConfig struct {
-	DownstreamPorts            []string               `json:"downstream_ports,omitempty"`
-	SeparateUpstreamDownstream *bool                  `json:"separate_upstream_downstream,omitempty"`
-	UpstreamPorts              []string               `json:"upstream_ports,omitempty"`
-	AdditionalProperties       map[string]interface{} `json:"_"`
+	// Downstream tunnel termination port identifiers
+	DownstreamPorts []string `json:"downstream_ports,omitempty"`
+	// Whether separate port sets are used for upstream and downstream tunnel termination traffic
+	SeparateUpstreamDownstream *bool `json:"separate_upstream_downstream,omitempty"`
+	// Upstream tunnel termination port identifiers
+	UpstreamPorts        []string               `json:"upstream_ports,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsMxedgeTuntermPortConfig,

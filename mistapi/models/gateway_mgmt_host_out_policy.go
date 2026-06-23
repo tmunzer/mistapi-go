@@ -8,7 +8,9 @@ import (
 )
 
 // GatewayMgmtHostOutPolicy represents a GatewayMgmtHostOutPolicy struct.
+// Host-out path policy for gateway-originated management traffic
 type GatewayMgmtHostOutPolicy struct {
+	// Preferred path name for this gateway-originated service traffic
 	PathPreference       *string                `json:"path_preference,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

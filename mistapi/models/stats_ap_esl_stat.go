@@ -8,17 +8,22 @@ import (
 )
 
 // StatsApEslStat represents a StatsApEslStat struct.
+// Electronic shelf label dongle status reported by an AP
 type StatsApEslStat struct {
-	Channel   Optional[int]  `json:"channel"`
+	// Radio channel used by the ESL dongle
+	Channel Optional[int] `json:"channel"`
+	// Whether the ESL dongle is connected
 	Connected Optional[bool] `json:"connected"`
-	// IP address of Hanshow and SoluM dongles
+	// Network IP address of Hanshow and SoluM dongles
 	Ip Optional[string] `json:"ip"`
-	// MAC address of Hanshow and SoluM dongles
+	// Dongle MAC address for Hanshow and SoluM dongles
 	Mac Optional[string] `json:"mac"`
 	// Product ID of Hanshow and SoluM dongles
 	ProductId Optional[string] `json:"product_id"`
-	Type      Optional[string] `json:"type"`
-	Up        Optional[bool]   `json:"up"`
+	// ESL dongle type reported by the AP
+	Type Optional[string] `json:"type"`
+	// Whether the ESL dongle is operational
+	Up Optional[bool] `json:"up"`
 	// Vendor ID of Hanshow and SoluM dongles
 	VendorId             Optional[string]       `json:"vendor_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`

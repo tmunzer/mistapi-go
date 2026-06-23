@@ -9,15 +9,19 @@ import (
 )
 
 // ResponseOrgSuppressAlarmItem represents a ResponseOrgSuppressAlarmItem struct.
+// Suppressed alarm entry for an organization or site alarm scope
 type ResponseOrgSuppressAlarmItem struct {
-	// Duration, in seconds. Maximum duration is 86400 * 14 (14 days). 0 is to un-suppress alarms.
-	Duration      *int `json:"duration,omitempty"`
-	ExpireTime    *int `json:"expire_time,omitempty"`
+	// Number of seconds that alarms remain suppressed. Maximum duration is 86400 * 14 (14 days). Use 0 to remove suppression.
+	Duration *int `json:"duration,omitempty"`
+	// Epoch timestamp, in seconds, when the alarm suppression expires
+	ExpireTime *int `json:"expire_time,omitempty"`
+	// Epoch timestamp, in seconds, when the alarm suppression starts
 	ScheduledTime *int `json:"scheduled_time,omitempty"`
 	// level of scope. enum: `org`, `site`
-	Scope                *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
-	SiteId               *uuid.UUID                `json:"site_id,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	Scope *SuppressedAlarmScopeEnum `json:"scope,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseOrgSuppressAlarmItem,

@@ -10,10 +10,11 @@ import (
 )
 
 // UtilsResetRadioConfig represents a UtilsResetRadioConfig struct.
+// Request to reset AP radio settings to RRM-managed values
 type UtilsResetRadioConfig struct {
-	// List of bands
+	// Radio bands to reset, such as `24`, `5`, or `6`
 	Bands []string `json:"bands"`
-	// Whether to reset those with radio disabled. default is false (i.e. if user intentionally disables a radio, honor it)
+	// Whether to reset radios that are currently disabled; default `false` honors radios intentionally disabled by the user
 	Force                *bool                  `json:"force,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

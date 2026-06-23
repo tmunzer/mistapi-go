@@ -9,10 +9,13 @@ import (
 )
 
 // ResponseSynthetictest represents a ResponseSynthetictest struct.
+// Result returned after a site synthetic test is queued
 type ResponseSynthetictest struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
-	Message              *string                `json:"message,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Human-readable queuing result returned by the API
+	Message *string `json:"message,omitempty"`
+	// Queue status for the synthetic test request
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

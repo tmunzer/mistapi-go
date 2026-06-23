@@ -9,25 +9,43 @@ import (
 )
 
 // ConstNacEvent represents a ConstNacEvent struct.
+// NAC event example payload returned by the constants API
 type ConstNacEvent struct {
-	Ap          *string    `json:"ap,omitempty"`
-	Bssid       *string    `json:"bssid,omitempty"`
-	CertCn      *string    `json:"cert_cn,omitempty"`
-	CertExpiry  *int       `json:"cert_expiry,omitempty"`
-	CertIssuer  *string    `json:"cert_issuer,omitempty"`
-	CertSanUpn  []string   `json:"cert_san_upn,omitempty"`
-	CertSerial  *string    `json:"cert_serial,omitempty"`
-	CertSubject *string    `json:"cert_subject,omitempty"`
-	EapType     *string    `json:"eap_type,omitempty"`
-	NasVendor   *string    `json:"nas_vendor,omitempty"`
-	OrgId       *uuid.UUID `json:"org_id,omitempty"`
-	RandomMac   *bool      `json:"random_mac,omitempty"`
-	SiteId      *uuid.UUID `json:"site_id,omitempty"`
-	Ssid        *string    `json:"ssid,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
-	Username             *string                `json:"username,omitempty"`
+	// Access point MAC address associated with the NAC event
+	Ap *string `json:"ap,omitempty"`
+	// Wireless BSSID associated with the NAC event
+	Bssid *string `json:"bssid,omitempty"`
+	// Certificate common name presented during NAC authentication
+	CertCn *string `json:"cert_cn,omitempty"`
+	// Certificate expiration timestamp presented during NAC authentication
+	CertExpiry *int `json:"cert_expiry,omitempty"`
+	// Certificate issuer presented during NAC authentication
+	CertIssuer *string `json:"cert_issuer,omitempty"`
+	// Certificate Subject Alternative Name UPN values
+	CertSanUpn []string `json:"cert_san_upn,omitempty"`
+	// Certificate serial number presented during NAC authentication
+	CertSerial *string `json:"cert_serial,omitempty"`
+	// Certificate subject presented during NAC authentication
+	CertSubject *string `json:"cert_subject,omitempty"`
+	// EAP method used for the NAC authentication
+	EapType *string `json:"eap_type,omitempty"`
+	// Network access server vendor reported for the NAC event
+	NasVendor *string `json:"nas_vendor,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Whether the client used a randomized MAC address in the NAC event
+	RandomMac *bool `json:"random_mac,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wireless SSID associated with the NAC event
+	Ssid *string `json:"ssid,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// NAC event type key
+	Type *string `json:"type,omitempty"`
+	// User identity associated with the NAC event
+	Username *string `json:"username,omitempty"`
+	// Wireless client identifier associated with the NAC event
 	Wcid                 *uuid.UUID             `json:"wcid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

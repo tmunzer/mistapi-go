@@ -26,7 +26,7 @@ func NewOrgsStatsAssets(baseController baseController) *OrgsStatsAssets {
 // ListOrgAssetsStats takes context, orgId, start, end, duration, limit, page as parameters and
 // returns an models.ApiResponse with []models.StatsAsset data and
 // an error if there was an issue with the request or response.
-// Get List of Org Assets Stats
+// List BLE asset location and advertisement statistics for the organization over an optional time window, including map coordinates, RSSI, zones, and iBeacon or Eddystone fields.
 func (o *OrgsStatsAssets) ListOrgAssetsStats(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -42,19 +42,15 @@ func (o *OrgsStatsAssets) ListOrgAssetsStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if start != nil {
 		req.QueryParam("start", *start)
@@ -85,7 +81,7 @@ func (o *OrgsStatsAssets) ListOrgAssetsStats(
 // CountOrgAssetsByDistanceField takes context, orgId, distinct, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Org Assets
+// Count organization asset statistics grouped by a distinct asset attribute, such as MAC address, site, map, iBeacon UUID, iBeacon major, or iBeacon minor.
 func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -98,19 +94,15 @@ func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -132,7 +124,7 @@ func (o *OrgsStatsAssets) CountOrgAssetsByDistanceField(
 // SearchOrgAssets takes context, orgId, siteId, mac, deviceName, name, mapId, ibeaconUuid, ibeaconMajor, ibeaconMinor, eddystoneUidNamespace, eddystoneUidInstance, eddystoneUrl, apMac, beam, rssi, limit, start, end, duration, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseStatsAssets data and
 // an error if there was an issue with the request or response.
-// Search for Org Assets
+// Search BLE asset statistics with filters for site, MAC address, asset name, map, iBeacon or Eddystone identifiers, reporting AP MAC address, RSSI, beam, and time range. Supports pagination and sorting.
 func (o *OrgsStatsAssets) SearchOrgAssets(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -163,19 +155,15 @@ func (o *OrgsStatsAssets) SearchOrgAssets(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if siteId != nil {
 		req.QueryParam("site_id", *siteId)

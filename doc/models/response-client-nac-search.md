@@ -1,6 +1,8 @@
 
 # Response Client Nac Search
 
+Paginated NAC client search response
+
 ## Structure
 
 `ResponseClientNacSearch`
@@ -9,42 +11,69 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `*int` | Optional | - |
-| `Limit` | `*int` | Optional | - |
-| `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.ClientNac`](../../doc/models/client-nac.md) | Optional | - |
-| `Start` | `*int` | Optional | - |
-| `Total` | `*int` | Optional | - |
+| `End` | `*int` | Optional | Search window end timestamp for NAC clients, in epoch seconds |
+| `Limit` | `*int` | Optional | Maximum number of NAC client results requested |
+| `Next` | `*string` | Optional | URL for the next page of NAC client results |
+| `Results` | [`[]models.ClientNac`](../../doc/models/client-nac.md) | Optional | NAC client records returned by a search response |
+| `Start` | `*int` | Optional | Search window start timestamp for NAC clients, in epoch seconds |
+| `Total` | `*int` | Optional | Number of NAC client records matching the search |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 1513362753,
-  "limit": 3,
-  "start": 1513276353,
-  "total": 2,
-  "next": "next0",
-  "results": [
-    {
-      "ap": [
-        "ap6",
-        "ap7",
-        "ap8"
-      ],
-      "auth_type": "eap-teap",
-      "cert_cn": [
-        "cert_cn9",
-        "cert_cn8"
-      ],
-      "cert_issuer": [
-        "cert_issuer2"
-      ],
-      "cert_serial": [
-        "cert_serial8"
-      ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseClientNacSearch := models.ResponseClientNacSearch{
+        End:                  models.ToPointer(1513362753),
+        Limit:                models.ToPointer(3),
+        Next:                 models.ToPointer("next4"),
+        Results:              []models.ClientNac{
+            models.ClientNac{
+                Ap:                   []string{
+                    "ap6",
+                    "ap7",
+                    "ap8",
+                },
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
+                CertCn:               []string{
+                    "cert_cn9",
+                    "cert_cn8",
+                },
+                CertIssuer:           []string{
+                    "cert_issuer2",
+                },
+                CertSerial:           []string{
+                    "cert_serial8",
+                },
+            },
+            models.ClientNac{
+                Ap:                   []string{
+                    "ap6",
+                    "ap7",
+                    "ap8",
+                },
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_EAPTEAP),
+                CertCn:               []string{
+                    "cert_cn9",
+                    "cert_cn8",
+                },
+                CertIssuer:           []string{
+                    "cert_issuer2",
+                },
+                CertSerial:           []string{
+                    "cert_serial8",
+                },
+            },
+        },
+        Start:                models.ToPointer(1513276353),
+        Total:                models.ToPointer(2),
     }
-  ]
+
 }
 ```
 

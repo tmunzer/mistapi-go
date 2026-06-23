@@ -11,16 +11,19 @@ import (
 )
 
 // WebhookRssizoneEvent represents a WebhookRssizoneEvent struct.
+// RSSI zone transition event for a Wi-Fi, SDK, or asset client
 type WebhookRssizoneEvent struct {
-	// Client MAC address
-	Mac   string    `json:"mac"`
+	// Client MAC address associated with the RSSI zone event
+	Mac string `json:"mac"`
+	// Map associated with the RSSI zone event
 	MapId uuid.UUID `json:"map_id"`
-	// RSSI zone name
+	// RSSI zone identifier associated with the event
 	RssizoneId uuid.UUID `json:"rssizone_id"`
-	SiteId     uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	// enum: `enter`, `exit`
+	// Zone transition direction, either enter or exit. enum: `enter`, `exit`
 	Trigger WebhookZoneEventTriggerEnum `json:"trigger"`
 	// Type of client. enum: `asset` (BLE Tag), `sdk`, `wifi`
 	Type                 WebhookZoneEventTypeEnum `json:"type"`

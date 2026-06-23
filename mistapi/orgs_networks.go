@@ -27,7 +27,7 @@ func NewOrgsNetworks(baseController baseController) *OrgsNetworks {
 // ListOrgNetworks takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.Network data and
 // an error if there was an issue with the request or response.
-// Get List of Org Networks
+// List organization-level Layer 3 network definitions used for service routes and gateway or network template configuration.
 func (o *OrgsNetworks) ListOrgNetworks(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsNetworks) ListOrgNetworks(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -74,7 +70,12 @@ func (o *OrgsNetworks) ListOrgNetworks(
 // CreateOrgNetwork takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.Network data and
 // an error if there was an issue with the request or response.
-// Create Organization Network
+// Create an organization network definition with subnet, gateway,
+// VLAN, access, NAT, multicast, tenant, and VPN access settings used for service
+// routes and gateway or network template configuration.
+// Networks can be used
+// - in the gateway configuration to define Layer 3 network settings and policies for traffic entering or leaving the gateway through a specific interface, such as a corporate LAN, guest Wi-Fi, or DMZ network.
+// - in the service policies to allow or deny traffic matching the network or to apply specific inspection settings or steering rules.
 func (o *OrgsNetworks) CreateOrgNetwork(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -86,19 +87,15 @@ func (o *OrgsNetworks) CreateOrgNetwork(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -118,7 +115,7 @@ func (o *OrgsNetworks) CreateOrgNetwork(
 // DeleteOrgNetwork takes context, orgId, networkId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Organization Network
+// Delete an organization network definition by network ID so it can no longer be referenced by gateway or network template configuration.
 func (o *OrgsNetworks) DeleteOrgNetwork(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -130,19 +127,15 @@ func (o *OrgsNetworks) DeleteOrgNetwork(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -155,7 +148,7 @@ func (o *OrgsNetworks) DeleteOrgNetwork(
 // GetOrgNetwork takes context, orgId, networkId as parameters and
 // returns an models.ApiResponse with models.Network data and
 // an error if there was an issue with the request or response.
-// Get Organization Network Details
+// Retrieve details for a specific organization network, including subnet, gateway, VLAN, access, NAT, multicast, tenant, and VPN access settings.
 func (o *OrgsNetworks) GetOrgNetwork(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -167,19 +160,15 @@ func (o *OrgsNetworks) GetOrgNetwork(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.Network
@@ -195,7 +184,7 @@ func (o *OrgsNetworks) GetOrgNetwork(
 // UpdateOrgNetwork takes context, orgId, networkId, body as parameters and
 // returns an models.ApiResponse with models.Network data and
 // an error if there was an issue with the request or response.
-// Update Organization Network
+// Update an organization network definition, including subnet, gateway, VLAN, access, NAT, multicast, tenant, and VPN access settings.
 func (o *OrgsNetworks) UpdateOrgNetwork(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -208,19 +197,15 @@ func (o *OrgsNetworks) UpdateOrgNetwork(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

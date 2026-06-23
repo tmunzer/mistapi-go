@@ -8,8 +8,11 @@ import (
 )
 
 // StatsGatewayMacTableStats represents a StatsGatewayMacTableStats struct.
+// Gateway MAC table utilization counters
 type StatsGatewayMacTableStats struct {
-	MacTableCount          *int                   `json:"mac_table_count,omitempty"`
+	// Number of MAC table entries currently learned by the gateway
+	MacTableCount *int `json:"mac_table_count,omitempty"`
+	// Maximum MAC table entries supported by the gateway
 	MaxMacEntriesSupported *int                   `json:"max_mac_entries_supported,omitempty"`
 	AdditionalProperties   map[string]interface{} `json:"_"`
 }

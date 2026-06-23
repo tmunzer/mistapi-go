@@ -1,6 +1,8 @@
 
 # Response Ssr Export Id Tokens Results Item
 
+SSR ID token record for a device
+
 ## Structure
 
 `ResponseSsrExportIdTokensResultsItem`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | - |
-| `Token` | `*string` | Optional | - |
+| `Mac` | `*string` | Optional | SSR device MAC address for the exported ID token |
+| `Token` | `*string` | Optional | ID token to import into Conductor for SSR device onboarding |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac8",
-  "token": "token2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseSsrExportIdTokensResultsItem := models.ResponseSsrExportIdTokensResultsItem{
+        Mac:                  models.ToPointer("mac6"),
+        Token:                models.ToPointer("token4"),
+    }
+
 }
 ```
 

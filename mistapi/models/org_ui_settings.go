@@ -9,23 +9,28 @@ import (
 )
 
 // OrgUiSettings represents a OrgUiSettings struct.
+// Organization UI settings databoard
 type OrgUiSettings struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	Description *string  `json:"description,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Text describing the databoard
+	Description *string `json:"description,omitempty"`
+	// Whether this databoard is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Whether this is a custom databoard or not
 	IsCustomDataboard *bool `json:"isCustomDataboard,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name of the databoard
-	Name  *string    `json:"name,omitempty"`
+	// Display name of the databoard
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// enum: `marvisdashboard`
+	// UI surface or purpose for this databoard. enum: `marvisdashboard`
 	Purpose *OrgUiSettingsPurposeEnum `json:"purpose,omitempty"`
-	SiteId  *uuid.UUID                `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// List of tiles in the databoard
 	Tiles                []OrgUiSettingsTile    `json:"tiles,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

@@ -16,7 +16,16 @@ status of integration detected during last sync. enum: `active`, `inactive`
 
 ## Example
 
-```
-inactive
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    testCradlepointLastStatus := models.TestCradlepointLastStatusEnum_ACTIVE
+
+}
 ```
 

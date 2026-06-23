@@ -1,6 +1,8 @@
 
 # Account Vmware Config
 
+VMware account credentials and webhook settings for OAuth application linking
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -17,18 +19,26 @@
 | `WebhookEnabled` | `bool` | Required | Enables or disables the webhook integration |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "client_id": "client_id8",
-  "client_secret": "client_secret4",
-  "instance_url": "instance_url4",
-  "webhook_enabled": false,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountVmwareConfig := models.AccountVmwareConfig{
+        ClientId:             "client_id0",
+        ClientSecret:         "client_secret6",
+        InstanceUrl:          "instance_url2",
+        WebhookEnabled:       false,
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

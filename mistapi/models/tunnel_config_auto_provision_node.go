@@ -8,7 +8,9 @@ import (
 )
 
 // TunnelConfigAutoProvisionNode represents a TunnelConfigAutoProvisionNode struct.
+// Auto-provisioned tunnel endpoint settings
 type TunnelConfigAutoProvisionNode struct {
+	// Unique string values returned or accepted by this schema
 	ProbeIps []string `json:"probe_ips,omitempty"`
 	// Optional, only needed if `vars_only`==`false`
 	WanNames             []string               `json:"wan_names,omitempty"`

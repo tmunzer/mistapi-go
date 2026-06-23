@@ -9,14 +9,19 @@ import (
 )
 
 // MarvisClient represents a MarvisClient struct.
+// Marvis Client configuration profile
 type MarvisClient struct {
+	// Whether this Marvis Client profile is disabled
 	Disabled *bool `json:"disabled,omitempty"`
 	// In MDM, add `--enrollment_url <enrollment_url>` to the install command
 	EnrollmentUrl *string `json:"enrollment_url,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id            *uuid.UUID                 `json:"id,omitempty"`
-	Location      *MarvisClientLocation      `json:"location,omitempty"`
-	Name          *string                    `json:"name,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Location collection settings for Marvis Client
+	Location *MarvisClientLocation `json:"location,omitempty"`
+	// Display name for the Marvis Client profile
+	Name *string `json:"name,omitempty"`
+	// Synthetic test settings for Marvis Client
 	SyntheticTest *MarvisClientSyntheticTest `json:"synthetic_test,omitempty"`
 	// Note: some stats are not collected when it's not connected to Mist infrastructure
 	Telemetry            *MarvisClientTelemetry `json:"telemetry,omitempty"`

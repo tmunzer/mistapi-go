@@ -8,12 +8,14 @@ import (
 )
 
 // JuniperSrxAutoUpgrade represents a JuniperSrxAutoUpgrade struct.
-// auto_upgrade device first time it is onboarded
+// SRX firmware auto-upgrade settings applied when a device is first onboarded
 type JuniperSrxAutoUpgrade struct {
 	// Property key is the SRX Hardware model (e.g. "SRX4600")
 	CustomVersions map[string]string `json:"custom_versions,omitempty"`
-	Enabled        *bool             `json:"enabled,omitempty"`
-	Snapshot       *bool             `json:"snapshot,omitempty"`
+	// Whether SRX auto-upgrade is enabled for newly onboarded devices
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether to take a snapshot during the SRX upgrade process
+	Snapshot *bool `json:"snapshot,omitempty"`
 	// Firmware version to deploy (e.g. 23.4R2-S5.5). Optional, used when custom_versions not specified
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

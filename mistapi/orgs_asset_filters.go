@@ -27,8 +27,7 @@ func NewOrgsAssetFilters(baseController baseController) *OrgsAssetFilters {
 // ListOrgAssetFilters takes context, orgId, limit, page as parameters and
 // returns an models.ApiResponse with []models.AssetFilter data and
 // an error if there was an issue with the request or response.
-// Get List of Org BLE asset filters.
-// Each asset filter in the list operates independently. For a filter object to match an asset, all of the filter properties must match (logical ‘AND’ of each filter property). For example, the "Visitor Tags" filter below will match an asset when both the "ibeacon\_uuid" and "ibeacon_major" properties match the asset. All non-matching assets are ignored.
+// List organization-level BLE asset filters. Each filter operates independently, and an asset must match all specified filter properties for that filter to apply.
 func (o *OrgsAssetFilters) ListOrgAssetFilters(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -41,19 +40,15 @@ func (o *OrgsAssetFilters) ListOrgAssetFilters(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if limit != nil {
 		req.QueryParam("limit", *limit)
@@ -75,8 +70,7 @@ func (o *OrgsAssetFilters) ListOrgAssetFilters(
 // CreateOrgAssetFilter takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
-// Create Asset Filter
-// Creates a single BLE asset filter for the given site. Any subset of filter properties can be included in the filter. A matching asset must meet the conditions of all given filter properties (logical ‘AND’).
+// Create an organization-level BLE asset filter. Any subset of filter properties can be included, and a matching asset must meet all specified conditions.
 func (o *OrgsAssetFilters) CreateOrgAssetFilter(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -88,19 +82,15 @@ func (o *OrgsAssetFilters) CreateOrgAssetFilter(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -120,7 +110,7 @@ func (o *OrgsAssetFilters) CreateOrgAssetFilter(
 // DeleteOrgAssetFilter takes context, orgId, assetfilterId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Deletes an existing BLE asset filter for the given site.
+// Delete an organization-level BLE asset filter by filter ID.
 func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -132,19 +122,15 @@ func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -157,7 +143,7 @@ func (o *OrgsAssetFilters) DeleteOrgAssetFilter(
 // GetOrgAssetFilter takes context, orgId, assetfilterId as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
-// Get Org Asset Filter Details
+// Return one organization-level BLE asset filter, including its name, disabled state, and matching criteria.
 func (o *OrgsAssetFilters) GetOrgAssetFilter(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -169,19 +155,15 @@ func (o *OrgsAssetFilters) GetOrgAssetFilter(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AssetFilter
@@ -197,7 +179,7 @@ func (o *OrgsAssetFilters) GetOrgAssetFilter(
 // UpdateOrgAssetFilter takes context, orgId, assetfilterId, body as parameters and
 // returns an models.ApiResponse with models.AssetFilter data and
 // an error if there was an issue with the request or response.
-// Updates an existing BLE asset filter for the given site.
+// Update an organization-level BLE asset filter's name, disabled state, or matching criteria.
 func (o *OrgsAssetFilters) UpdateOrgAssetFilter(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -210,19 +192,15 @@ func (o *OrgsAssetFilters) UpdateOrgAssetFilter(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

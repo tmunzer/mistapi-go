@@ -11,15 +11,24 @@ Proxy Configuration to talk to Mist
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Disabled` | `*bool` | Optional | **Default**: `false` |
-| `Url` | `*string` | Optional | - |
+| `Disabled` | `*bool` | Optional | Whether this proxy configuration is disabled<br><br>**Default**: `false` |
+| `Url` | `*string` | Optional | Proxy URL used to reach Mist |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "disabled": true,
-  "url": "https://proxy.corp.com:8080/"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    proxy := models.Proxy{
+        Disabled:             models.ToPointer(true),
+        Url:                  models.ToPointer("https://proxy.corp.com:8080/"),
+    }
+
 }
 ```
 

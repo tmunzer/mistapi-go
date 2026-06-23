@@ -1,7 +1,7 @@
 
 # Snmp Vacm Access Item Type Enum
 
-enum: `context_prefix`, `default_context_prefix`
+VACM context matching type for this access rule. enum: `context_prefix`, `default_context_prefix`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `context_prefix`, `default_context_prefix`
 |  --- |
 | `context_prefix` |
 | `default_context_prefix` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpVacmAccessItemType := models.SnmpVacmAccessItemTypeEnum_CONTEXTPREFIX
+
+}
+```
 

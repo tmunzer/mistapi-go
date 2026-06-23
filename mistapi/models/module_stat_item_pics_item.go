@@ -8,9 +8,13 @@ import (
 )
 
 // ModuleStatItemPicsItem represents a ModuleStatItemPicsItem struct.
+// Physical Interface Card summary for a device module
 type ModuleStatItemPicsItem struct {
-	Index                *int                                   `json:"index,omitempty"`
-	ModelNumber          *string                                `json:"model_number,omitempty"`
+	// PIC index within the device module
+	Index *int `json:"index,omitempty"`
+	// Model number reported for the PIC
+	ModelNumber *string `json:"model_number,omitempty"`
+	// Port group summaries for a PIC
 	PortGroups           []ModuleStatItemPicsItemPortGroupsItem `json:"port_groups,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"_"`
 }

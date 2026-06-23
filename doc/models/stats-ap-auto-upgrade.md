@@ -1,6 +1,8 @@
 
 # Stats Ap Auto Upgrade
 
+Auto-upgrade status for an AP
+
 ## Structure
 
 `StatsApAutoUpgrade`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Lastcheck` | `models.Optional[int64]` | Optional | - |
+| `Lastcheck` | `models.Optional[int64]` | Optional, Read-only | Time when the AP last checked for auto-upgrade, in epoch seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "lastcheck": 1720594762
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApAutoUpgrade := models.StatsApAutoUpgrade{
+        Lastcheck:            models.NewOptional(models.ToPointer(int64(1720594762))),
+    }
+
 }
 ```
 

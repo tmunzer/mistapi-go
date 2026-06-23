@@ -1,7 +1,7 @@
 
 # Synthetictest Config Aggressiveness Enum
 
-enum: `auto`, `high`, `low`
+Aggressiveness level for a synthetic test. enum: `auto`, `high`, `med`, `low`
 
 ## Enumeration
 
@@ -15,4 +15,19 @@ enum: `auto`, `high`, `low`
 | `high` |
 | `med` |
 | `low` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestConfigAggressiveness := models.SynthetictestConfigAggressivenessEnum_AUTO
+
+}
+```
 

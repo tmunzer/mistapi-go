@@ -28,8 +28,9 @@ type SwitchMatchingRule struct {
 	PortConfig map[string]JunosPortConfig `json:"port_config,omitempty"`
 	// Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed
 	PortMirroring map[string]SwitchPortMirroringProperty `json:"port_mirroring,omitempty"`
-	StpConfig     *SwitchStpConfig                       `json:"stp_config,omitempty"`
-	// Switch Management settings
+	// Switch spanning-tree protocol configuration
+	StpConfig *SwitchStpConfig `json:"stp_config,omitempty"`
+	// Switch management-plane access and proxy settings
 	SwitchMgmt           *SwitchMgmt       `json:"switch_mgmt,omitempty"`
 	AdditionalProperties map[string]string `json:"_"`
 }

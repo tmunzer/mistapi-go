@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingAutoDeviceNamingRule represents a OrgSettingAutoDeviceNamingRule struct.
+// Automatic device naming rule
 type OrgSettingAutoDeviceNamingRule struct {
 	// "[0:3]"            // "abcdef" -> "abc"
 	// "split(.)[1]"      // "a.b.c" -> "b"
@@ -15,11 +16,11 @@ type OrgSettingAutoDeviceNamingRule struct {
 	Expression *string `json:"expression,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	MatchDevice *DeviceTypeDefaultApEnum `json:"match_device,omitempty"`
-	// Prefix to append to the device name
+	// Text prepended to the generated device name
 	Prefix *string `json:"prefix,omitempty"`
-	// enum: `lldp_port_desc`, `mac`
+	// Device attribute used to generate the name. enum: `lldp_port_desc`, `mac`
 	Src *OrgSettingAutoDeviceNamingRuleSrcEnum `json:"src,omitempty"`
-	// Suffix to append to the device name
+	// Text appended to the generated device name
 	Suffix               *string                `json:"suffix,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

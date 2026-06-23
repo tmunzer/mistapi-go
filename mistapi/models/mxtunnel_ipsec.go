@@ -8,14 +8,21 @@ import (
 )
 
 // MxtunnelIpsec represents a MxtunnelIpsec struct.
+// IPsec settings for a Mist Tunnel
 type MxtunnelIpsec struct {
-	DnsServers           Optional[[]string]        `json:"dns_servers"`
-	DnsSuffix            []string                  `json:"dns_suffix,omitempty"`
-	Enabled              *bool                     `json:"enabled,omitempty"`
-	ExtraRoutes          []MxtunnelIpsecExtraRoute `json:"extra_routes,omitempty"`
-	SplitTunnel          *bool                     `json:"split_tunnel,omitempty"`
-	UseMxedge            *bool                     `json:"use_mxedge,omitempty"`
-	AdditionalProperties map[string]interface{}    `json:"_"`
+	// Name server addresses advertised for IPsec tunnel clients
+	DnsServers Optional[[]string] `json:"dns_servers"`
+	// Unique string values returned or accepted by this schema
+	DnsSuffix []string `json:"dns_suffix,omitempty"`
+	// Whether IPsec support is enabled for this Mist Tunnel
+	Enabled *bool `json:"enabled,omitempty"`
+	// Additional routes advertised for IPsec tunnel clients
+	ExtraRoutes []MxtunnelIpsecExtraRoute `json:"extra_routes,omitempty"`
+	// Whether split tunneling is enabled for IPsec clients
+	SplitTunnel *bool `json:"split_tunnel,omitempty"`
+	// Whether IPsec termination uses Mist Edge
+	UseMxedge            *bool                  `json:"use_mxedge,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for MxtunnelIpsec,

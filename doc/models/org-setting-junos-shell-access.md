@@ -18,14 +18,23 @@ When junos_shell_access is defined - Additional users mist-web-admin (admin perm
 | `Read` | [`*models.OrgSettingJunosShellAccessReadEnum`](../../doc/models/org-setting-junos-shell-access-read-enum.md) | Optional | enum: `admin`, `viewer`, `none`<br><br>**Default**: `"none"` |
 | `Write` | [`*models.OrgSettingJunosShellAccessWriteEnum`](../../doc/models/org-setting-junos-shell-access-write-enum.md) | Optional | enum: `admin`, `viewer`, `none`<br><br>**Default**: `"admin"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "admin": "admin",
-  "helpdesk": "none",
-  "read": "none",
-  "write": "admin"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingJunosShellAccess := models.OrgSettingJunosShellAccess{
+        Admin:                models.ToPointer(models.OrgSettingJunosShellAccessAdminEnum_ADMIN),
+        Helpdesk:             models.ToPointer(models.OrgSettingJunosShellAccessHelpdeskEnum_NONE),
+        Read:                 models.ToPointer(models.OrgSettingJunosShellAccessReadEnum_NONE),
+        Write:                models.ToPointer(models.OrgSettingJunosShellAccessWriteEnum_ADMIN),
+    }
+
 }
 ```
 

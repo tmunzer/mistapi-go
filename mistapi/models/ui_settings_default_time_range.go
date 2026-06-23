@@ -8,13 +8,21 @@ import (
 )
 
 // UiSettingsDefaultTimeRange represents a UiSettingsDefaultTimeRange struct.
+// Default time range applied to a site UI databoard
 type UiSettingsDefaultTimeRange struct {
-	End                  *int                   `json:"end,omitempty"`
-	EndDate              *string                `json:"endDate,omitempty"`
-	Interval             *string                `json:"interval,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	ShortName            *string                `json:"shortName,omitempty"`
-	Start                *int                   `json:"start,omitempty"`
+	// Upper bound of the default databoard time range, in epoch seconds
+	End *int `json:"end,omitempty"`
+	// Display date for the end of the default databoard time range
+	EndDate *string `json:"endDate,omitempty"`
+	// Bucket interval used for the default databoard time range
+	Interval *string `json:"interval,omitempty"`
+	// Display name for the default databoard time range
+	Name *string `json:"name,omitempty"`
+	// Compact display label for the default databoard time range
+	ShortName *string `json:"shortName,omitempty"`
+	// Lower bound of the default databoard time range, in epoch seconds
+	Start *int `json:"start,omitempty"`
+	// Whether the default databoard time range uses a named preset
 	UsePreset            *bool                  `json:"usePreset,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

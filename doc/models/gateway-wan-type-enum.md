@@ -15,3 +15,18 @@ enum: `dhcp`, `pppoe`, `static`
 | `pppoe` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayWanType := models.GatewayWanTypeEnum_DHCP
+
+}
+```
+

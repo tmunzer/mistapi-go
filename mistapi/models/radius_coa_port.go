@@ -9,7 +9,7 @@ import (
 )
 
 // RadiusCoaPort represents a RadiusCoaPort struct.
-// Radius CoA Port, value from 1 to 65535, default is 3799
+// RADIUS CoA Port, value from 1 to 65535, default is 3799
 type RadiusCoaPort struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (r *RadiusCoaPort) AsString() (
 }
 
 // internalRadiusCoaPort represents a radiusCoaPort struct.
-// Radius CoA Port, value from 1 to 65535, default is 3799
+// RADIUS CoA Port, value from 1 to 65535, default is 3799
 type internalRadiusCoaPort struct{}
 
 var RadiusCoaPortContainer internalRadiusCoaPort

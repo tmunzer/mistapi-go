@@ -11,6 +11,7 @@ import (
 )
 
 // ErrorDeleteFailed is a custom error.
+// Error response returned when an organization delete request is blocked
 type ErrorDeleteFailed struct {
 	https.ApiError
 	Detail string    `json:"detail"`
@@ -43,6 +44,7 @@ func (e ErrorDeleteFailed) String() string {
 }
 
 // ResponseDetailString is a custom error.
+// Response containing a human-readable detail message
 type ResponseDetailString struct {
 	https.ApiError
 	Detail *string `json:"detail,omitempty"`
@@ -74,6 +76,7 @@ func (r ResponseDetailString) String() string {
 }
 
 // ResponseHttp400 is a custom error.
+// Standard HTTP 400 bad request error response
 type ResponseHttp400 struct {
 	https.ApiError
 	Detail *string `json:"detail,omitempty"`
@@ -105,6 +108,7 @@ func (r ResponseHttp400) String() string {
 }
 
 // ResponseHttp400Webhook is a custom error.
+// Webhook-specific HTTP 400 bad request error response
 type ResponseHttp400Webhook struct {
 	https.ApiError
 	Detail *string `json:"detail,omitempty"`
@@ -136,7 +140,72 @@ func (r ResponseHttp400Webhook) String() string {
 		prefixTrimmed, r.Detail, r.Reason)
 }
 
+// ResponseHttp401 is a custom error.
+// Standard HTTP 401 authentication error response
+type ResponseHttp401 struct {
+	https.ApiError
+	Detail *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp401 is a constructor for ResponseHttp401.
+// It creates and returns a pointer to a new ResponseHttp401 instance with the given statusCode and body.
+func NewResponseHttp401(apiError https.ApiError) error {
+	return &ResponseHttp401{
+		ApiError: apiError,
+	}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp401.
+func (r ResponseHttp401) Error() string {
+	return fmt.Sprintf("ResponseHttp401 occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp401,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp401) String() string {
+	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+
+	return fmt.Sprintf(
+		"ResponseHttp401[%v, Detail=%v]",
+		prefixTrimmed, r.Detail)
+}
+
+// ResponseHttp403 is a custom error.
+// Standard HTTP 403 permission error response
+type ResponseHttp403 struct {
+	https.ApiError
+	Detail *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp403 is a constructor for ResponseHttp403.
+// It creates and returns a pointer to a new ResponseHttp403 instance with the given statusCode and body.
+func NewResponseHttp403(apiError https.ApiError) error {
+	return &ResponseHttp403{
+		ApiError: apiError,
+	}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp403.
+func (r ResponseHttp403) Error() string {
+	return fmt.Sprintf("ResponseHttp403 occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp403,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp403) String() string {
+	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+
+	return fmt.Sprintf(
+		"ResponseHttp403[%v, Detail=%v]",
+		prefixTrimmed, r.Detail)
+}
+
 // ResponseHttp404 is a custom error.
+// Standard HTTP 404 not found error response
 type ResponseHttp404 struct {
 	https.ApiError
 	Id *string `json:"id,omitempty"`
@@ -167,7 +236,40 @@ func (r ResponseHttp404) String() string {
 		prefixTrimmed, r.Id)
 }
 
+// ResponseHttp429 is a custom error.
+// Standard HTTP 429 rate limit error response
+type ResponseHttp429 struct {
+	https.ApiError
+	Detail *string `json:"detail,omitempty"`
+}
+
+// NewResponseHttp429 is a constructor for ResponseHttp429.
+// It creates and returns a pointer to a new ResponseHttp429 instance with the given statusCode and body.
+func NewResponseHttp429(apiError https.ApiError) error {
+	return &ResponseHttp429{
+		ApiError: apiError,
+	}
+}
+
+// Error implements the Error method for the error interface.
+// It returns a formatted error message for ResponseHttp429.
+func (r ResponseHttp429) Error() string {
+	return fmt.Sprintf("ResponseHttp429 occured: %v", r.Message)
+}
+
+// String implements the fmt.Stringer interface for ResponseHttp429,
+// providing a human-readable string representation useful for logging, debugging or displaying information.
+func (r ResponseHttp429) String() string {
+	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
+	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
+
+	return fmt.Sprintf(
+		"ResponseHttp429[%v, Detail=%v]",
+		prefixTrimmed, r.Detail)
+}
+
 // ResponseLoginFailure is a custom error.
+// Login failure response returned when authentication cannot continue locally
 type ResponseLoginFailure struct {
 	https.ApiError
 	Detail     string  `json:"detail"`
@@ -200,6 +302,7 @@ func (r ResponseLoginFailure) String() string {
 }
 
 // ResponseSelfOauthLinkFailure is a custom error.
+// OAuth2 account-linking failure response
 type ResponseSelfOauthLinkFailure struct {
 	https.ApiError
 	MError           string `json:"error"`
@@ -231,100 +334,8 @@ func (r ResponseSelfOauthLinkFailure) String() string {
 		prefixTrimmed, r.MError, r.ErrorDescription)
 }
 
-// ResponseHttp401Error is a custom error.
-type ResponseHttp401Error struct {
-	https.ApiError
-	Detail *string `json:"detail,omitempty"`
-}
-
-// NewResponseHttp401Error is a constructor for ResponseHttp401Error.
-// It creates and returns a pointer to a new ResponseHttp401Error instance with the given statusCode and body.
-func NewResponseHttp401Error(apiError https.ApiError) error {
-	return &ResponseHttp401Error{
-		ApiError: apiError,
-	}
-}
-
-// Error implements the Error method for the error interface.
-// It returns a formatted error message for ResponseHttp401Error.
-func (r ResponseHttp401Error) Error() string {
-	return fmt.Sprintf("ResponseHttp401Error occured: %v", r.Message)
-}
-
-// String implements the fmt.Stringer interface for ResponseHttp401Error,
-// providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseHttp401Error) String() string {
-	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
-	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
-
-	return fmt.Sprintf(
-		"ResponseHttp401Error[%v, Detail=%v]",
-		prefixTrimmed, r.Detail)
-}
-
-// ResponseHttp403Error is a custom error.
-type ResponseHttp403Error struct {
-	https.ApiError
-	Detail *string `json:"detail,omitempty"`
-}
-
-// NewResponseHttp403Error is a constructor for ResponseHttp403Error.
-// It creates and returns a pointer to a new ResponseHttp403Error instance with the given statusCode and body.
-func NewResponseHttp403Error(apiError https.ApiError) error {
-	return &ResponseHttp403Error{
-		ApiError: apiError,
-	}
-}
-
-// Error implements the Error method for the error interface.
-// It returns a formatted error message for ResponseHttp403Error.
-func (r ResponseHttp403Error) Error() string {
-	return fmt.Sprintf("ResponseHttp403Error occured: %v", r.Message)
-}
-
-// String implements the fmt.Stringer interface for ResponseHttp403Error,
-// providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseHttp403Error) String() string {
-	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
-	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
-
-	return fmt.Sprintf(
-		"ResponseHttp403Error[%v, Detail=%v]",
-		prefixTrimmed, r.Detail)
-}
-
-// ResponseHttp429Error is a custom error.
-type ResponseHttp429Error struct {
-	https.ApiError
-	Detail *string `json:"detail,omitempty"`
-}
-
-// NewResponseHttp429Error is a constructor for ResponseHttp429Error.
-// It creates and returns a pointer to a new ResponseHttp429Error instance with the given statusCode and body.
-func NewResponseHttp429Error(apiError https.ApiError) error {
-	return &ResponseHttp429Error{
-		ApiError: apiError,
-	}
-}
-
-// Error implements the Error method for the error interface.
-// It returns a formatted error message for ResponseHttp429Error.
-func (r ResponseHttp429Error) Error() string {
-	return fmt.Sprintf("ResponseHttp429Error occured: %v", r.Message)
-}
-
-// String implements the fmt.Stringer interface for ResponseHttp429Error,
-// providing a human-readable string representation useful for logging, debugging or displaying information.
-func (r ResponseHttp429Error) String() string {
-	suffixTrimmed := strings.TrimSuffix(r.ApiError.String(), "]")
-	prefixTrimmed := strings.TrimPrefix(suffixTrimmed, "ApiError[")
-
-	return fmt.Sprintf(
-		"ResponseHttp429Error[%v, Detail=%v]",
-		prefixTrimmed, r.Detail)
-}
-
 // ResponseInventoryError is a custom error.
+// Result of adding device claim codes to organization inventory
 type ResponseInventoryError struct {
 	https.ApiError
 	Added               []string                                           `json:"added,omitempty"`

@@ -9,6 +9,7 @@ import (
 )
 
 // WayfindingImportJson represents a WayfindingImportJson struct.
+// Vendor wayfinding map metadata imported from Jibestream or Micello
 type WayfindingImportJson struct {
 	value           any
 	isMapJibestream bool
@@ -74,6 +75,7 @@ func (w *WayfindingImportJson) AsMapMicello() (
 }
 
 // internalWayfindingImportJson represents a wayfindingImportJson struct.
+// Vendor wayfinding map metadata imported from Jibestream or Micello
 type internalWayfindingImportJson struct{}
 
 var WayfindingImportJsonContainer internalWayfindingImportJson

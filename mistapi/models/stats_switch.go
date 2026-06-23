@@ -11,30 +11,45 @@ import (
 )
 
 // StatsSwitch represents a StatsSwitch struct.
-// Switch statistics
+// Switch statistics reported by Mist for a site or organization stats response
 type StatsSwitch struct {
-	ApRedundancy    *StatsSwitchApRedundancy `json:"ap_redundancy,omitempty"`
-	ArpTableStats   *ArpTableStats           `json:"arp_table_stats,omitempty"`
-	AutoUpgradeStat *StatsApAutoUpgrade      `json:"auto_upgrade_stat,omitempty"`
-	CertExpiry      *int64                   `json:"cert_expiry,omitempty"`
-	Clients         []StatsSwitchClientItem  `json:"clients,omitempty"`
-	ClientsStats    *StatsSwitchClientsStats `json:"clients_stats,omitempty"`
-	ConfigStatus    *string                  `json:"config_status,omitempty"`
-	ConfigTimestamp *int                     `json:"config_timestamp,omitempty"`
-	ConfigVersion   *int                     `json:"config_version,omitempty"`
-	CpuStat         *CpuStat                 `json:"cpu_stat,omitempty"`
+	// AP switch redundancy coverage summary for a switch
+	ApRedundancy *StatsSwitchApRedundancy `json:"ap_redundancy,omitempty"`
+	// ARP table usage and capacity statistics
+	ArpTableStats *ArpTableStats `json:"arp_table_stats,omitempty"`
+	// Auto-upgrade status for an AP
+	AutoUpgradeStat *StatsApAutoUpgrade `json:"auto_upgrade_stat,omitempty"`
+	// Time when the switch certificate expires, in epoch seconds
+	CertExpiry *int64 `json:"cert_expiry,omitempty"`
+	// Clients observed on switch ports in switch statistics
+	Clients []StatsSwitchClientItem `json:"clients,omitempty"`
+	// Aggregate switch client counts
+	ClientsStats *StatsSwitchClientsStats `json:"clients_stats,omitempty"`
+	// Configuration synchronization status reported for the switch
+	ConfigStatus *string `json:"config_status,omitempty"`
+	// Time when the switch configuration status was last updated, in epoch seconds
+	ConfigTimestamp *int `json:"config_timestamp,omitempty"`
+	// Currently applied configuration version for the switch
+	ConfigVersion *int `json:"config_version,omitempty"`
+	// CPU utilization breakdown for a device
+	CpuStat *CpuStat `json:"cpu_stat,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime     *float64            `json:"created_time,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Applied device profile identifier for the switch, when present
 	DeviceprofileId Optional[uuid.UUID] `json:"deviceprofile_id"`
 	// Property key is the network name
-	DhcpdStat           map[string]DhcpdStatLan `json:"dhcpd_stat,omitempty"`
-	EvpntopoId          Optional[uuid.UUID]     `json:"evpntopo_id"`
-	ExtIp               *string                 `json:"ext_ip,omitempty"`
-	FwVersionsOutofsync *bool                   `json:"fw_versions_outofsync,omitempty"`
-	Fwupdate            *FwupdateStat           `json:"fwupdate,omitempty"`
+	DhcpdStat map[string]DhcpdStatLan `json:"dhcpd_stat,omitempty"`
+	// Associated EVPN topology identifier for the switch, when present
+	EvpntopoId Optional[uuid.UUID] `json:"evpntopo_id"`
+	// Public IP address observed for the switch
+	ExtIp *string `json:"ext_ip,omitempty"`
+	// Whether firmware versions are out of sync across switch members
+	FwVersionsOutofsync *bool `json:"fw_versions_outofsync,omitempty"`
+	// Firmware update status for a device
+	Fwupdate *FwupdateStat `json:"fwupdate,omitempty"`
 	// Whether the switch supports packet capture
 	HasPcap *bool `json:"has_pcap,omitempty"`
-	// Hostname reported by the device
+	// Device-reported hostname for the switch
 	Hostname *string `json:"hostname,omitempty"`
 	// Device hardware revision number
 	HwRev *string `json:"hw_rev,omitempty"`
@@ -42,39 +57,59 @@ type StatsSwitch struct {
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Property key is the interface name
 	IfStat map[string]IfStatProperty `json:"if_stat,omitempty"`
-	Ip     *string                   `json:"ip,omitempty"`
-	IpStat *IpStat                   `json:"ip_stat,omitempty"`
-	// Last seen timestamp
+	// Management IP address reported for the switch
+	Ip *string `json:"ip,omitempty"`
+	// Read-only IP addressing status reported by a device interface
+	IpStat *IpStat `json:"ip_stat,omitempty"`
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Last trouble code of switch
-	LastTrouble   *LastTrouble        `json:"last_trouble,omitempty"`
-	Mac           *string             `json:"mac,omitempty"`
-	MacTableStats *MacTableStats      `json:"mac_table_stats,omitempty"`
-	MapId         Optional[uuid.UUID] `json:"map_id"`
-	// Memory usage stat (for virtual chassis, memory usage of master RE)
+	// Last trouble indicator reported by a switch
+	LastTrouble *LastTrouble `json:"last_trouble,omitempty"`
+	// Switch MAC address reported by Mist
+	Mac *string `json:"mac,omitempty"`
+	// MAC table capacity and usage statistics
+	MacTableStats *MacTableStats `json:"mac_table_stats,omitempty"`
+	// Placement map identifier associated with the switch, when present
+	MapId Optional[uuid.UUID] `json:"map_id"`
+	// Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
 	MemoryStat *MemoryStat `json:"memory_stat,omitempty"`
-	Model      *string     `json:"model,omitempty"`
+	// Switch model name reported by Mist
+	Model *string `json:"model,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64                    `json:"modified_time,omitempty"`
-	ModuleStat   []StatsSwitchModuleStatItem `json:"module_stat,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Hardware module statistics reported by a switch
+	ModuleStat []StatsSwitchModuleStatItem `json:"module_stat,omitempty"`
 	// Device name if configured
-	Name              *string                        `json:"name,omitempty"`
-	OrgId             *uuid.UUID                     `json:"org_id,omitempty"`
-	Ports             []StatsSwitchPort              `json:"ports,omitempty"`
-	RouteSummaryStats *RouteSummaryStats             `json:"route_summary_stats,omitempty"`
-	Serial            *string                        `json:"serial,omitempty"`
-	ServiceStat       map[string]ServiceStatProperty `json:"service_stat,omitempty"`
-	SiteId            *uuid.UUID                     `json:"site_id,omitempty"`
-	Status            *string                        `json:"status,omitempty"`
-	TagId             *int                           `json:"tag_id,omitempty"`
-	TagUuid           *uuid.UUID                     `json:"tag_uuid,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Switch port statistics records returned by a stats response
+	Ports []StatsSwitchPort `json:"ports,omitempty"`
+	// Route table capacity and usage summary
+	RouteSummaryStats *RouteSummaryStats `json:"route_summary_stats,omitempty"`
+	// Switch serial number reported by Mist
+	Serial *string `json:"serial,omitempty"`
+	// Service version information keyed by service name
+	ServiceStat map[string]ServiceStatProperty `json:"service_stat,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Connection status reported for the switch, such as connected
+	Status *string `json:"status,omitempty"`
+	// Numeric inventory tag identifier associated with the switch
+	TagId *int `json:"tag_id,omitempty"`
+	// Inventory tag UUID associated with the switch
+	TagUuid *uuid.UUID `json:"tag_uuid,omitempty"`
 	// Device Type. enum: `switch`
-	Type                 string                  `json:"type"`
-	Uptime               Optional[float64]       `json:"uptime"`
-	VcMac                Optional[string]        `json:"vc_mac"`
-	VcSetupInfo          *StatsSwitchVcSetupInfo `json:"vc_setup_info,omitempty"`
-	Version              Optional[string]        `json:"version"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	Type string `json:"type"`
+	// Elapsed time since the switch last booted, in seconds
+	Uptime Optional[float64] `json:"uptime"`
+	// Virtual Chassis MAC address reported for the switch, when present
+	VcMac Optional[string] `json:"vc_mac"`
+	// Virtual Chassis setup request and status details reported by a switch
+	VcSetupInfo *StatsSwitchVcSetupInfo `json:"vc_setup_info,omitempty"`
+	// Software version running on the switch
+	Version              Optional[string]       `json:"version"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsSwitch,

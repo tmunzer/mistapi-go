@@ -1,6 +1,8 @@
 
 # Account Jse Config
 
+Juniper Security Exchange account credentials used for integration
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,22 +13,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CloudName` | `*string` | Optional | - |
-| `Password` | `string` | Required | - |
-| `Username` | `string` | Required | - |
+| `CloudName` | `*string` | Optional | JSE cloud hostname used for the integration |
+| `Password` | `string` | Required | Credential password for the JSE integration user |
+| `Username` | `string` | Required | JSE integration username with access to service location, site, and IPsec profile APIs |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cloud_name": "devcentral.juniperclouds.net",
-  "password": "foryoureyesonly",
-  "username": "john@abc.com",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountJseConfig := models.AccountJseConfig{
+        CloudName:            models.ToPointer("devcentral.juniperclouds.net"),
+        Password:             "foryoureyesonly",
+        Username:             "john@abc.com",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

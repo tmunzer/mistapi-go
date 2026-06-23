@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseOrgSystemEventsSearch represents a ResponseOrgSystemEventsSearch struct.
+// Paginated response for organization system event search results
 type ResponseOrgSystemEventsSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []OrgSystemEvent       `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp, in seconds, for the end of the system event search window
+	End int `json:"end"`
+	// Maximum number of system event records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of system event search results
+	Next *string `json:"next,omitempty"`
+	// Organization system event records returned by search
+	Results []OrgSystemEvent `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the system event search window
+	Start int `json:"start"`
+	// Number of system event records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -15,3 +15,18 @@ enum: `any`, `true`, `false`
 | `true` |
 | `false` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    forSite := models.ForSiteEnum_TRUE
+
+}
+```
+

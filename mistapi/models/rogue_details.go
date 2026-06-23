@@ -10,8 +10,11 @@ import (
 )
 
 // RogueDetails represents a RogueDetails struct.
+// Rogue AP detail response
 type RogueDetails struct {
-	Manufacture          string                 `json:"manufacture"`
+	// Vendor or manufacturer name reported for the rogue AP
+	Manufacture string `json:"manufacture"`
+	// Whether this rogue AP was also observed as a client
 	SeenAsClient         bool                   `json:"seen_as_client"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,16 +8,19 @@ import (
 )
 
 // JsInventorySearch represents a JsInventorySearch struct.
+// Paginated JSI inventory search response
 type JsInventorySearch struct {
 	// Offset to end at
 	End *int `json:"end,omitempty"`
 	// Number of results to return
-	Limit   *int              `json:"limit,omitempty"`
-	Next    *string           `json:"next,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	// URL for the next page of JSI inventory results
+	Next *string `json:"next,omitempty"`
+	// JSI inventory items returned for an organization
 	Results []JsInventoryItem `json:"results,omitempty"`
 	// Offset to start from
 	Start *int `json:"start,omitempty"`
-	// Total number of results
+	// Number of JSI inventory records matching the search
 	Total                *int                   `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

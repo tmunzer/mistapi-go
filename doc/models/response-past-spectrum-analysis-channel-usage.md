@@ -11,19 +11,28 @@ Channel usage data for a specific channel
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Channel` | `*int` | Optional | Channel number |
-| `Noise` | `*float64` | Optional | Noise level in dBm |
+| `Channel` | `*int` | Optional | Radio channel measured by this channel usage sample |
+| `Noise` | `*float64` | Optional | Measured noise floor, in dBm, for the channel |
 | `NonWifi` | `*float64` | Optional | Percentage of channel usage by non-WiFi signals in the range [0, 1] |
 | `Wifi` | `*float64` | Optional | Percentage of channel usage by WiFi in the range [0, 1] |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "channel": 36,
-  "noise": -90.0,
-  "non_wifi": 0.87,
-  "wifi": 0.13
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responsePastSpectrumAnalysisChannelUsage := models.ResponsePastSpectrumAnalysisChannelUsage{
+        Channel:              models.ToPointer(36),
+        Noise:                models.ToPointer(float64(-90)),
+        NonWifi:              models.ToPointer(float64(0.87)),
+        Wifi:                 models.ToPointer(float64(0.13)),
+    }
+
 }
 ```
 

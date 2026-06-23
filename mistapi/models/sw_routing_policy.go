@@ -8,8 +8,9 @@ import (
 )
 
 // SwRoutingPolicy represents a SwRoutingPolicy struct.
+// Switch routing policy made of ordered match-action terms
 type SwRoutingPolicy struct {
-	// at least criteria/filter must be specified to match the term, all criteria have to be met
+	// Ordered switch routing policy terms; at least one term is required
 	Terms                []SwRoutingPolicyTerm  `json:"terms,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

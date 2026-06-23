@@ -1,7 +1,7 @@
 
 # Stats Zone Details
 
-Zone details statistics
+Detailed zone statistics and occupants for a site map zone
 
 ## Structure
 
@@ -14,40 +14,48 @@ Zone details statistics
 | `Assets` | `[]string` | Optional | List of ble assets currently in the zone and when they entered |
 | `ClientWaits` | [`models.StatsZoneDetailsClientWaits`](../../doc/models/stats-zone-details-client-waits.md) | Required | Client wait time right now |
 | `Clients` | `[]string` | Optional | List of clients currently in the zone and when they entered |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
-| `MapId` | `uuid.UUID` | Required | Map_id of the zone |
-| `Name` | `string` | Required | Name of the zone |
-| `NumClients` | `int` | Required | - |
-| `NumSdkclients` | `int` | Required | SDK client wait time right now |
+| `Id` | `uuid.UUID` | Required, Read-only | Unique ID of the object instance in the Mist Organization |
+| `MapId` | `uuid.UUID` | Required | Map identifier for the zone |
+| `Name` | `string` | Required | Display name of the zone |
+| `NumClients` | `int` | Required | Number of Wi-Fi clients currently counted in the zone |
+| `NumSdkclients` | `int` | Required | Number of SDK clients currently counted in the zone |
 | `Sdkclients` | `[]string` | Optional | List of SDK Clients currently in the zone and when they entered |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "client_waits": {
-    "avg": 1200,
-    "max": 3610,
-    "min": 600,
-    "p95": 2800
-  },
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "map_id": "63eda950-c6da-11e4-a628-60f81dd250cc",
-  "name": "Board Room",
-  "num_clients": 80,
-  "num_sdkclients": 0,
-  "assets": [
-    "assets2",
-    "assets1",
-    "assets0"
-  ],
-  "clients": [
-    "clients2"
-  ],
-  "sdkclients": [
-    "sdkclients0",
-    "sdkclients1"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    statsZoneDetails := models.StatsZoneDetails{
+        Assets:               []string{
+            "assets2",
+        },
+        ClientWaits:          models.StatsZoneDetailsClientWaits{
+            Avg:                  1200,
+            Max:                  3610,
+            Min:                  600,
+            P95:                  2800,
+        },
+        Clients:              []string{
+            "clients2",
+            "clients3",
+        },
+        Id:                   uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
+        MapId:                uuid.MustParse("63eda950-c6da-11e4-a628-60f81dd250cc"),
+        Name:                 "Board Room",
+        NumClients:           80,
+        NumSdkclients:        0,
+        Sdkclients:           []string{
+            "sdkclients6",
+        },
+    }
+
 }
 ```
 

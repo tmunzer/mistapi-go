@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseMxtunnelsPreemptAps represents a ResponseMxtunnelsPreemptAps struct.
+// Result of preempting APs onto preferred MxTunnel peers
 type ResponseMxtunnelsPreemptAps struct {
+	// Unique string values returned or accepted by this schema
 	PreemptedAps         []string               `json:"preempted_aps"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -27,7 +27,7 @@ func NewMSPsSSORoles(baseController baseController) *MSPsSSORoles {
 // ListMspSsoRoles takes context, mspId as parameters and
 // returns an models.ApiResponse with []models.SsoRoleMsp data and
 // an error if there was an issue with the request or response.
-// Get List of MSP SSO Roles
+// List MSP SSO role definitions that map identity-provider role assertions to MSP privilege scopes.
 func (m *MSPsSSORoles) ListMspSsoRoles(
 	ctx context.Context,
 	mspId uuid.UUID) (
@@ -38,19 +38,15 @@ func (m *MSPsSSORoles) ListMspSsoRoles(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result []models.SsoRoleMsp
@@ -66,7 +62,7 @@ func (m *MSPsSSORoles) ListMspSsoRoles(
 // CreateMspSsoRole takes context, mspId, body as parameters and
 // returns an models.ApiResponse with models.SsoRoleMsp data and
 // an error if there was an issue with the request or response.
-// Create MSP Role
+// Create an MSP SSO role definition with a display name and the MSP privileges granted when the role is matched during SSO.
 func (m *MSPsSSORoles) CreateMspSsoRole(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -78,19 +74,15 @@ func (m *MSPsSSORoles) CreateMspSsoRole(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -110,7 +102,7 @@ func (m *MSPsSSORoles) CreateMspSsoRole(
 // DeleteMspSsoRole takes context, mspId, ssoroleId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete MSP SSO Roles
+// Delete an MSP SSO role definition so it can no longer grant MSP privileges during SSO.
 func (m *MSPsSSORoles) DeleteMspSsoRole(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -122,19 +114,15 @@ func (m *MSPsSSORoles) DeleteMspSsoRole(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -147,7 +135,7 @@ func (m *MSPsSSORoles) DeleteMspSsoRole(
 // UpdateMspSsoRole takes context, mspId, ssoroleId, body as parameters and
 // returns an models.ApiResponse with models.SsoRoleMsp data and
 // an error if there was an issue with the request or response.
-// Update SSO Role
+// Update an MSP SSO role definition, including its display name and granted MSP privileges.
 func (m *MSPsSSORoles) UpdateMspSsoRole(
 	ctx context.Context,
 	mspId uuid.UUID,
@@ -160,19 +148,15 @@ func (m *MSPsSSORoles) UpdateMspSsoRole(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

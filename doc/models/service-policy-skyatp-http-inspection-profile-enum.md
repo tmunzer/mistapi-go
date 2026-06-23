@@ -1,7 +1,7 @@
 
 # Service Policy Skyatp Http Inspection Profile Enum
 
-enum: `standard`, `strict`
+Sky ATP HTTP inspection profile to apply. enum: `standard`, `strict`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `standard`, `strict`
 |  --- |
 | `standard` |
 | `strict` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicySkyatpHttpInspectionProfile := models.ServicePolicySkyatpHttpInspectionProfileEnum_STANDARD
+
+}
+```
 

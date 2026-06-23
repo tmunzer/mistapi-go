@@ -8,10 +8,13 @@ import (
 )
 
 // Snmpv3ConfigNotifyFilterItem represents a Snmpv3ConfigNotifyFilterItem struct.
+// SNMPv3 notification filter profile
 type Snmpv3ConfigNotifyFilterItem struct {
-	Contents             []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
-	ProfileName          *string                               `json:"profile_name,omitempty"`
-	AdditionalProperties map[string]interface{}                `json:"_"`
+	// OID filter rules in an SNMPv3 notification filter profile
+	Contents []Snmpv3ConfigNotifyFilterItemContent `json:"contents,omitempty"`
+	// Notification filter profile name
+	ProfileName          *string                `json:"profile_name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Snmpv3ConfigNotifyFilterItem,

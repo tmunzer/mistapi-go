@@ -1,6 +1,8 @@
 
 # Response Auto Map Assignment
 
+Auto map assignment start response
+
 ## Structure
 
 `ResponseAutoMapAssignment`
@@ -15,20 +17,37 @@
 | `Started` | `*bool` | Optional | Indicates whether the auto map assignment process has started |
 | `Valid` | `*bool` | Optional | Indicates whether the auto map assignment request is valid |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "devices": {
-    "key0": {
-      "reason": "reason0",
-      "valid": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoMapAssignment := models.ResponseAutoMapAssignment{
+        Devices:              map[string]models.ResponseAutoMapAssignmentDevice{
+            "key0": models.ResponseAutoMapAssignmentDevice{
+                Reason:               models.ToPointer("reason0"),
+                Valid:                models.ToPointer(false),
+            },
+            "key1": models.ResponseAutoMapAssignmentDevice{
+                Reason:               models.ToPointer("reason0"),
+                Valid:                models.ToPointer(false),
+            },
+            "key2": models.ResponseAutoMapAssignmentDevice{
+                Reason:               models.ToPointer("reason0"),
+                Valid:                models.ToPointer(false),
+            },
+        },
+        EstimatedRuntime:     models.ToPointer(44),
+        Reason:               models.ToPointer("reason4"),
+        Started:              models.ToPointer(false),
+        Valid:                models.ToPointer(false),
     }
-  },
-  "estimated_runtime": 138,
-  "reason": "reason2",
-  "started": false,
-  "valid": false
+
 }
 ```
 

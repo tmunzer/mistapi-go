@@ -10,11 +10,17 @@ import (
 )
 
 // SleTrendClassifier represents a SleTrendClassifier struct.
+// Time-series classifier trend detail for an SLE metric
 type SleTrendClassifier struct {
-	Interval             float64                `json:"interval"`
-	Name                 string                 `json:"name"`
-	Samples              *SleClassifierSamples  `json:"samples,omitempty"`
-	XLabel               string                 `json:"x_label"`
+	// Sample interval in seconds for classifier trend data
+	Interval float64 `json:"interval"`
+	// Classifier name for the SLE metric trend
+	Name string `json:"name"`
+	// Per-interval sample arrays for an SLE classifier
+	Samples *SleClassifierSamples `json:"samples,omitempty"`
+	// Label for the classifier trend x-axis
+	XLabel string `json:"x_label"`
+	// Label for the classifier trend y-axis
 	YLabel               string                 `json:"y_label"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

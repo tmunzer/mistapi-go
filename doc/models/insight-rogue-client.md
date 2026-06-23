@@ -1,6 +1,8 @@
 
 # Insight Rogue Client
 
+Rogue client observation returned by site insights
+
 ## Structure
 
 `InsightRogueClient`
@@ -9,25 +11,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Annotation` | `string` | Required | - |
-| `ApMac` | `string` | Required | - |
-| `AvgRssi` | `float64` | Required | - |
-| `Band` | `string` | Required | - |
-| `Bssid` | `string` | Required | - |
-| `ClientMac` | `string` | Required | - |
-| `NumAps` | `int` | Required | - |
+| `Annotation` | `string` | Required | Rogue client annotation or classification |
+| `ApMac` | `string` | Required | Reporting AP MAC address that observed the rogue client |
+| `AvgRssi` | `float64` | Required | Average RSSI for the rogue client as heard by reporting APs |
+| `Band` | `string` | Required | Radio band on which the rogue client was observed |
+| `Bssid` | `string` | Required | Rogue BSSID associated with the client |
+| `ClientMac` | `string` | Required | Observed client MAC address on the rogue BSSID |
+| `NumAps` | `int` | Required | Number of APs that observed the rogue client |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "annotation": "annotation4",
-  "ap_mac": "ap_mac2",
-  "avg_rssi": 56.1,
-  "band": "band2",
-  "bssid": "bssid4",
-  "client_mac": "client_mac8",
-  "num_aps": 230
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    insightRogueClient := models.InsightRogueClient{
+        Annotation:           "annotation2",
+        ApMac:                "ap_mac6",
+        AvgRssi:              float64(196.66),
+        Band:                 "band6",
+        Bssid:                "bssid8",
+        ClientMac:            "client_mac2",
+        NumAps:               162,
+    }
+
 }
 ```
 

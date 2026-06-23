@@ -14,3 +14,18 @@ level of scope. enum: `org`, `site`
 | `org` |
 | `site` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    suppressedAlarmScope := models.SuppressedAlarmScopeEnum_ORG
+
+}
+```
+

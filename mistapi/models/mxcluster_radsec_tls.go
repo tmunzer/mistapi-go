@@ -8,7 +8,9 @@ import (
 )
 
 // MxclusterRadsecTls represents a MxclusterRadsecTls struct.
+// TLS settings for RadSec on a Mist Edge cluster
 type MxclusterRadsecTls struct {
+	// Name or identifier of the TLS keypair used by RadSec
 	Keypair              *string                `json:"keypair,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

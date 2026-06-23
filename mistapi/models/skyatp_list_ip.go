@@ -10,8 +10,11 @@ import (
 )
 
 // SkyatpListIp represents a SkyatpListIp struct.
+// IP address entry in a Sky ATP SecIntel list
 type SkyatpListIp struct {
-	Comment              *string                `json:"comment,omitempty"`
+	// Optional note describing the IP address list entry
+	Comment *string `json:"comment,omitempty"`
+	// IP address included in the Sky ATP SecIntel list
 	Value                string                 `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

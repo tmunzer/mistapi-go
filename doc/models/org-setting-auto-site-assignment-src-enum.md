@@ -20,3 +20,18 @@ enum: `ext_ip`, `dns_suffix`, `geoip`, `lldp_port_desc`, `lldp_system_name`, `mo
 | `name` |
 | `subnet` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingAutoSiteAssignmentSrc := models.OrgSettingAutoSiteAssignmentSrcEnum_NAME
+
+}
+```
+

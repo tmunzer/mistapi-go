@@ -15,13 +15,22 @@ Only if `usage`==`wan`, optional. By default, source-NAT is performed on all WAN
 | `Nat6Pool` | `*string` | Optional | If alternative nat_pool is desired |
 | `NatPool` | `*string` | Optional | If alternative nat_pool is desired |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "disabled": false,
-  "nat6_pool": "2601:1700:43c0:dc0:20c:29ff:fea7:93bc/126",
-  "nat_pool": "64.2.4.0/30"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortWanSourceNat := models.GatewayPortWanSourceNat{
+        Disabled:             models.ToPointer(false),
+        Nat6Pool:             models.ToPointer("2601:1700:43c0:dc0:20c:29ff:fea7:93bc/126"),
+        NatPool:              models.ToPointer("64.2.4.0/30"),
+    }
+
 }
 ```
 

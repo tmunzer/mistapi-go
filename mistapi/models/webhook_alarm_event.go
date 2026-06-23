@@ -11,28 +11,35 @@ import (
 )
 
 // WebhookAlarmEvent represents a WebhookAlarmEvent struct.
+// Alarm event delivered inside an `alarms` webhook payload
 type WebhookAlarmEvent struct {
-	Aps    []string `json:"aps,omitempty"`
+	// Representative AP MAC address samples included for an alarm webhook event
+	Aps []string `json:"aps,omitempty"`
+	// Representative BSSID samples included for an alarm webhook event
 	Bssids []string `json:"bssids,omitempty"`
-	// If present, represents number of events of given type occurred in current interval, default=1
+	// If present, number of events of this type that occurred in the current interval; defaults to 1
 	Count *int `json:"count,omitempty"`
-	// Event id
+	// Unique identifier for this alarm webhook event
 	EventId *uuid.UUID `json:"event_id,omitempty"`
-	ForSite *bool      `json:"for_site,omitempty"`
+	// Whether this alarm event is scoped to a site rather than only to the organization
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// only for HA. enum: `node0`, `node1`
-	Node   *HaClusterNodeEnum `json:"node,omitempty"`
-	OrgId  uuid.UUID          `json:"org_id"`
-	SiteId uuid.UUID          `json:"site_id"`
-	Ssids  []string           `json:"ssids,omitempty"`
-	// Epoch (seconds)
+	// HA cluster node selector. enum: `node0`, `node1`
+	Node *HaClusterNodeEnum `json:"node,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Representative wireless SSID samples included for an alarm webhook event
+	Ssids []string `json:"ssids,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	// Event type
+	// Alarm type key for this event
 	Type string `json:"type"`
-	// If presents, represents that this is an update to event with given id sent earlier. default=false
+	// Whether this payload updates an alarm event that was sent earlier; defaults to false
 	Update               *bool                  `json:"update,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

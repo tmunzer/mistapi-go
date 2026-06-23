@@ -1,7 +1,7 @@
 
 # Site Wids
 
-WIDS site settings
+Wireless intrusion detection settings for a site
 
 ## Structure
 
@@ -11,16 +11,25 @@ WIDS site settings
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `RepeatedAuthFailures` | [`*models.SiteWidsRepeatedAuthFailures`](../../doc/models/site-wids-repeated-auth-failures.md) | Optional | - |
+| `RepeatedAuthFailures` | [`*models.SiteWidsRepeatedAuthFailures`](../../doc/models/site-wids-repeated-auth-failures.md) | Optional | Detection settings for repeated authentication failures |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "repeated_auth_failures": {
-    "duration": 58,
-    "threshold": 170
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteWids := models.SiteWids{
+        RepeatedAuthFailures: models.ToPointer(models.SiteWidsRepeatedAuthFailures{
+            Duration:             models.ToPointer(58),
+            Threshold:            models.ToPointer(170),
+        }),
+    }
+
 }
 ```
 

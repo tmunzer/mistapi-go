@@ -25,30 +25,41 @@ Property key defines the type of matching, value is the string to match. e.g:
 | `OobIpConfig` | [`*models.SwitchMatchingRuleOobIpConfig`](../../doc/models/switch-matching-rule-oob-ip-config.md) | Optional | Out-of-Band Management interface configuration |
 | `PortConfig` | [`map[string]models.JunosPortConfig`](../../doc/models/junos-port-config.md) | Optional | Property key is the port name or range (e.g. "ge-0/0/0-10") |
 | `PortMirroring` | [`map[string]models.SwitchPortMirroringProperty`](../../doc/models/switch-port-mirroring-property.md) | Optional | Property key is the port mirroring instance name. `port_mirroring` can be added under device/site settings. It takes interface and ports as input for ingress, interface as input for egress and can take interface and port as output. A maximum 4 mirroring ports is allowed |
-| `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | - |
-| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch Management settings |
+| `StpConfig` | [`*models.SwitchStpConfig`](../../doc/models/switch-stp-config.md) | Optional | Switch spanning-tree protocol configuration |
+| `SwitchMgmt` | [`*models.SwitchMgmt`](../../doc/models/switch-mgmt.md) | Optional | Switch management-plane access and proxy settings |
 | `AdditionalProperties` | `map[string]string` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "match_model": "EX4300",
-  "match_name[0:3]": "abc",
-  "additional_config_cmds": [
-    "additional_config_cmds4"
-  ],
-  "default_port_usage": "default_port_usage8",
-  "ip_config": {
-    "network": "network6",
-    "type": "dhcp"
-  },
-  "name": "name2",
-  "oob_ip_config": {
-    "type": "dhcp",
-    "use_mgmt_vrf": false,
-    "use_mgmt_vrf_for_host_out": false
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchMatchingRule := models.SwitchMatchingRule{
+        AdditionalConfigCmds: []string{
+            "additional_config_cmds8",
+        },
+        DefaultPortUsage:     models.ToPointer("default_port_usage4"),
+        IpConfig:             models.ToPointer(models.SwitchMatchingRuleIpConfig{
+            Network:              models.ToPointer("network6"),
+            Type:                 models.ToPointer(models.IpTypeEnum_DHCP),
+        }),
+        Name:                 models.ToPointer("name8"),
+        OobIpConfig:          models.ToPointer(models.SwitchMatchingRuleOobIpConfig{
+            Type:                 models.ToPointer(models.IpTypeEnum_DHCP),
+            UseMgmtVrf:           models.ToPointer(false),
+            UseMgmtVrfForHostOut: models.ToPointer(false),
+        }),
+        AdditionalProperties: map[string]string{
+            "match_model": "EX4300",
+            "match_name[0:3]": "abc",
+        },
+    }
+
 }
 ```
 

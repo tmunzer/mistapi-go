@@ -13,3 +13,18 @@ Device Type. enum: `ap`
 |  --- |
 | `ap` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceTypeAp := models.DeviceTypeApEnum_AP
+
+}
+```
+

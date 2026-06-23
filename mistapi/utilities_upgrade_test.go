@@ -167,7 +167,7 @@ func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mType := models.DeviceTypeDefaultApEnum("ap")
-	model := "AP43"
+	model := "AP27,AP27E"
 	apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, &model)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
@@ -189,7 +189,7 @@ func TestUtilitiesUpgradeTestListOrgAvailableDeviceVersions1(t *testing.T) {
 		t.Error(errUUID)
 	}
 	mType := models.DeviceTypeDefaultApEnum("ap")
-	model := "AP43"
+	model := "AP27,AP27E"
 	apiResponse, err := utilitiesUpgrade.ListOrgAvailableDeviceVersions(ctx, orgId, &mType, &model)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)

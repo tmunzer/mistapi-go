@@ -16,21 +16,29 @@ OAuth linked ZDX apps account details
 | `CloudName` | `*string` | Optional | ZDX cloud name. Refer https://help.zscaler.com/zdx/getting-started-zdx-api for ZDX cloud name<br><br>**Default**: `"zdxcloud.net"` |
 | `KeyId` | `string` | Required | Customer account API key ID |
 | `KeySecret` | `string` | Required | Customer account API key Secret |
-| `ZdxOrgId` | `string` | Required | ZDX organization id |
+| `ZdxOrgId` | `string` | Required | Organization identifier assigned to the ZDX account |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cloud_name": "zdxcloud.net",
-  "key_id": "K35vrZcK3JvrZc",
-  "key_secret": "K35vrZcK3JvrZcjjswpp2eii1oo100",
-  "zdx_org_id": "123456",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountZdxConfig := models.AccountZdxConfig{
+        CloudName:            models.ToPointer("zdxcloud.net"),
+        KeyId:                "K35vrZcK3JvrZc",
+        KeySecret:            "K35vrZcK3JvrZcjjswpp2eii1oo100",
+        ZdxOrgId:             "123456",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

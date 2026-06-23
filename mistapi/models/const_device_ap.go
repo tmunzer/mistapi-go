@@ -10,46 +10,79 @@ import (
 )
 
 // ConstDeviceAp represents a ConstDeviceAp struct.
+// AP model capability definition returned by the constants API
 type ConstDeviceAp struct {
-	ApType       string                         `json:"ap_type"`
-	Band24       *ConstDeviceApBand24           `json:"band24,omitempty"`
-	Band5        *ConstDeviceApBand5            `json:"band5,omitempty"`
-	Band6        *ConstDeviceApBand5            `json:"band6,omitempty"`
+	// Internal AP platform type identifier
+	ApType string `json:"ap_type"`
+	// 2.4 GHz radio capability limits for an AP model
+	Band24 *ConstDeviceApBand24 `json:"band24,omitempty"`
+	// 5 GHz radio capability limits for an AP model
+	Band5 *ConstDeviceApBand5 `json:"band5,omitempty"`
+	// 6 GHz radio capability limits for an AP model
+	Band6 *ConstDeviceApBand6 `json:"band6,omitempty"`
+	// Supported 2.4 GHz radio usage modes for AP models
 	Band24Usages []ConstDeviceApBand24UsageEnum `json:"band_24_usages,omitempty"`
-	CeDfsOk      *bool                          `json:"ce_dfs_ok,omitempty"`
-	CiscoPace    *bool                          `json:"cisco_pace,omitempty"`
-	Description  *string                        `json:"description,omitempty"`
+	// Whether DFS operation is allowed for this AP model under CE rules
+	CeDfsOk *bool `json:"ce_dfs_ok,omitempty"`
+	// Whether the AP model supports Cisco PACE interoperability
+	CiscoPace *bool `json:"cisco_pace,omitempty"`
+	// Product description for the AP model
+	Description *string `json:"description,omitempty"`
 	// Property key is a list of country codes (e.g. "GB, DE")
 	DisallowedChannels map[string][]int `json:"disallowed_channels,omitempty"`
-	Display            *string          `json:"display,omitempty"`
+	// User-facing model name shown for the AP
+	Display *string `json:"display,omitempty"`
 	// Property key is the GPIO port name (e.g. "D0", "A1")
-	Extio              map[string]ConstDeviceApExtios `json:"extio,omitempty"`
-	FccDfsOk           *bool                          `json:"fcc_dfs_ok,omitempty"`
-	Has11ax            *bool                          `json:"has_11ax,omitempty"`
-	HasCompass         *bool                          `json:"has_compass,omitempty"`
-	HasExtAnt          *bool                          `json:"has_ext_ant,omitempty"`
-	HasExtio           *bool                          `json:"has_extio,omitempty"`
-	HasHeight          *bool                          `json:"has_height,omitempty"`
-	HasModulePort      *bool                          `json:"has_module_port,omitempty"`
-	HasPoeOut          *bool                          `json:"has_poe_out,omitempty"`
-	HasScanningRadio   *bool                          `json:"has_scanning_radio,omitempty"`
-	HasSelectableRadio *bool                          `json:"has_selectable_radio,omitempty"`
-	HasUsb             *bool                          `json:"has_usb,omitempty"`
-	HasVble            *bool                          `json:"has_vble,omitempty"`
-	HasWifiBand24      *bool                          `json:"has_wifi_band24,omitempty"`
-	HasWifiBand5       *bool                          `json:"has_wifi_band5,omitempty"`
-	HasWifiBand6       *bool                          `json:"has_wifi_band6,omitempty"`
-	MaxPoeOut          *int                           `json:"max_poe_out,omitempty"`
-	MaxWlans           *int                           `json:"max_wlans,omitempty"`
-	Model              *string                        `json:"model,omitempty"`
-	OtherDfsOk         *bool                          `json:"other_dfs_ok,omitempty"`
-	Outdoor            *bool                          `json:"outdoor,omitempty"`
+	Extio map[string]ConstDeviceApExtios `json:"extio,omitempty"`
+	// Whether DFS operation is allowed for this AP model under FCC rules
+	FccDfsOk *bool `json:"fcc_dfs_ok,omitempty"`
+	// Whether the AP model supports 802.11ax
+	Has11ax *bool `json:"has_11ax,omitempty"`
+	// Whether the AP model includes a compass sensor
+	HasCompass *bool `json:"has_compass,omitempty"`
+	// Whether the AP model supports external antennas
+	HasExtAnt *bool `json:"has_ext_ant,omitempty"`
+	// Whether the AP model exposes external I/O ports
+	HasExtio *bool `json:"has_extio,omitempty"`
+	// Whether mounting height can be configured for this AP model
+	HasHeight *bool `json:"has_height,omitempty"`
+	// Whether the AP model includes a module port
+	HasModulePort *bool `json:"has_module_port,omitempty"`
+	// Whether the AP model supports PoE output
+	HasPoeOut *bool `json:"has_poe_out,omitempty"`
+	// Whether the AP model has scanning-radio capability
+	HasScanningRadio *bool `json:"has_scanning_radio,omitempty"`
+	// Whether the AP model has selectable radio modes
+	HasSelectableRadio *bool `json:"has_selectable_radio,omitempty"`
+	// Whether the AP model includes a USB port
+	HasUsb *bool `json:"has_usb,omitempty"`
+	// Whether the AP model supports virtual BLE (vBLE)
+	HasVble *bool `json:"has_vble,omitempty"`
+	// Whether the AP model supports 2.4 GHz Wi-Fi
+	HasWifiBand24 *bool `json:"has_wifi_band24,omitempty"`
+	// Whether the AP model supports 5 GHz Wi-Fi
+	HasWifiBand5 *bool `json:"has_wifi_band5,omitempty"`
+	// Whether the AP model supports 6 GHz Wi-Fi
+	HasWifiBand6 *bool `json:"has_wifi_band6,omitempty"`
+	// Maximum PoE-out power budget supported by the AP model, in milliwatts
+	MaxPoeOut *int `json:"max_poe_out,omitempty"`
+	// Maximum number of WLANs supported by this AP model
+	MaxWlans *int `json:"max_wlans,omitempty"`
+	// AP model identifier for this capability definition
+	Model *string `json:"model,omitempty"`
+	// Whether DFS operation is allowed for this AP model in other regulatory domains
+	OtherDfsOk *bool `json:"other_dfs_ok,omitempty"`
+	// Whether the AP model is rated for outdoor deployment
+	Outdoor *bool `json:"outdoor,omitempty"`
 	// Property key is the radio number (e.g. r0, r1, ...). Property value is the RF band (e.g. "24", "5", ...)
-	Radios              map[string]string `json:"radios,omitempty"`
-	SharedScanningRadio *bool             `json:"shared_scanning_radio,omitempty"`
+	Radios map[string]string `json:"radios,omitempty"`
+	// Whether scanning-radio capability shares a radio with client service
+	SharedScanningRadio *bool `json:"shared_scanning_radio,omitempty"`
 	// Device Type. enum: `ap`
-	Type                 string                 `json:"type"`
-	Unmanaged            *bool                  `json:"unmanaged,omitempty"`
+	Type string `json:"type"`
+	// Whether this AP model is listed as unmanaged in the constants catalog
+	Unmanaged *bool `json:"unmanaged,omitempty"`
+	// Virtual BLE (vBLE) capability settings for an AP model
 	Vble                 *ConstDeviceApVble     `json:"vble,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -247,7 +280,7 @@ type tempConstDeviceAp struct {
 	ApType              *string                        `json:"ap_type"`
 	Band24              *ConstDeviceApBand24           `json:"band24,omitempty"`
 	Band5               *ConstDeviceApBand5            `json:"band5,omitempty"`
-	Band6               *ConstDeviceApBand5            `json:"band6,omitempty"`
+	Band6               *ConstDeviceApBand6            `json:"band6,omitempty"`
 	Band24Usages        []ConstDeviceApBand24UsageEnum `json:"band_24_usages,omitempty"`
 	CeDfsOk             *bool                          `json:"ce_dfs_ok,omitempty"`
 	CiscoPace           *bool                          `json:"cisco_pace,omitempty"`

@@ -1,7 +1,7 @@
 
 # Webhook Client Info Topic Enum
 
-enum: `client-info`
+Webhook topic name for client information deliveries. enum: `client-info`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `client-info`
 | Name |
 |  --- |
 | `client-info` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookClientInfoTopic := models.WebhookClientInfoTopicEnum_CLIENTINFO
+
+}
+```
 

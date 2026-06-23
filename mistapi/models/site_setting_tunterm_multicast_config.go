@@ -8,9 +8,13 @@ import (
 )
 
 // SiteSettingTuntermMulticastConfig represents a SiteSettingTuntermMulticastConfig struct.
+// Multicast forwarding settings for tunnel termination at the site
 type SiteSettingTuntermMulticastConfig struct {
-	Mdns                 *SiteSettingTuntermMulticastConfigMdns `json:"mdns,omitempty"`
-	MulticastAll         *bool                                  `json:"multicast_all,omitempty"`
+	// mDNS multicast forwarding settings for tunneled VLANs
+	Mdns *SiteSettingTuntermMulticastConfigMdns `json:"mdns,omitempty"`
+	// Whether all multicast traffic is forwarded through tunnel termination
+	MulticastAll *bool `json:"multicast_all,omitempty"`
+	// SSDP multicast forwarding settings for tunneled VLANs
 	Ssdp                 *SiteSettingTuntermMulticastConfigSsdp `json:"ssdp,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"_"`
 }

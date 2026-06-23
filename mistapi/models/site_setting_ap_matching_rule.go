@@ -8,9 +8,12 @@ import (
 )
 
 // SiteSettingApMatchingRule represents a SiteSettingApMatchingRule struct.
+// AP matching rule for selecting APs and applying port configuration
 type SiteSettingApMatchingRule struct {
+	// AP model matched by this rule
 	MatchModel *string `json:"match_model,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	// Display name of the AP matching rule
+	Name *string `json:"name,omitempty"`
 	// Property key is the interface(s) (e.g. "eth1,eth2")
 	PortConfig           map[string]ApPortConfig `json:"port_config,omitempty"`
 	AdditionalProperties map[string]interface{}  `json:"_"`

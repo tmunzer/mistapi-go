@@ -10,9 +10,11 @@ import (
 )
 
 // ImageImport represents a ImageImport struct.
+// Multipart image upload payload
 type ImageImport struct {
-	// Binary file
-	File                 []byte                 `json:"file"`
+	// Image file content uploaded as multipart form data
+	File []byte `json:"file"`
+	// Optional JSON metadata submitted with the image upload
 	Json                 *string                `json:"json,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

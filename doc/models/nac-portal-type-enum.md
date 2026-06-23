@@ -19,3 +19,18 @@ enum:
 | `guest_portal` |
 | `marvis_client` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacPortalType := models.NacPortalTypeEnum_GUESTADMIN
+
+}
+```
+

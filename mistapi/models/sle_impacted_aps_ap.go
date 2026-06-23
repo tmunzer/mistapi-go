@@ -10,11 +10,17 @@ import (
 )
 
 // SleImpactedApsAp represents a SleImpactedApsAp struct.
+// SLE impact row for an AP
 type SleImpactedApsAp struct {
-	ApMac                string                 `json:"ap_mac"`
-	Degraded             float64                `json:"degraded"`
-	Duration             float64                `json:"duration"`
-	Name                 string                 `json:"name"`
+	// MAC address of the AP represented by this impacted row
+	ApMac string `json:"ap_mac"`
+	// Portion of the SLE total that was degraded for this AP
+	Degraded float64 `json:"degraded"`
+	// Observation time represented by this AP impact row
+	Duration float64 `json:"duration"`
+	// Display name for the AP impact row
+	Name string `json:"name"`
+	// Overall SLE total measured for this AP impact row
 	Total                float64                `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

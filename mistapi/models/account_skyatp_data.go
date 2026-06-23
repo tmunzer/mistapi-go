@@ -8,16 +8,19 @@ import (
 )
 
 // AccountSkyatpData represents a AccountSkyatpData struct.
+// Sky ATP SecIntel feed data and generated list URLs
 type AccountSkyatpData struct {
 	// juniper secintel_feeds are enabled depending on your license tier: infected_host, geo_ip, attacker_ip, command_and_control.
 	// third party:
 	// * ip-based: block_list, threatfox_ip, feodo_tracker, dshield, tor
 	// * url-based: threatfox_url, urlhaus, open_phish
 	// * domain-based: threatfox_domains
-	Secintel             *AccountSkyatpDataSecintel `json:"secintel,omitempty"`
-	SecintelAllowlistUrl *string                    `json:"secintel_allowlist_url,omitempty"`
-	SecintelBlocklistUrl *string                    `json:"secintel_blocklist_url,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	Secintel *AccountSkyatpDataSecintel `json:"secintel,omitempty"`
+	// URL for the Sky ATP SecIntel allowlist
+	SecintelAllowlistUrl *string `json:"secintel_allowlist_url,omitempty"`
+	// URL for the Sky ATP SecIntel blocklist
+	SecintelBlocklistUrl *string                `json:"secintel_blocklist_url,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for AccountSkyatpData,

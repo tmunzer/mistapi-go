@@ -1,7 +1,7 @@
 
 # Const Device Ap Extios Default Dir Enum
 
-enum: `IN`, `OUT`
+Default direction for this external I/O port. enum: `IN`, `OUT`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `IN`, `OUT`
 |  --- |
 | `IN` |
 | `OUT` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    constDeviceApExtiosDefaultDir := models.ConstDeviceApExtiosDefaultDirEnum_IN
+
+}
+```
 

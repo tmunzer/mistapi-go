@@ -8,9 +8,13 @@ import (
 )
 
 // ModuleStatItemPoe represents a ModuleStatItemPoe struct.
+// Power over Ethernet telemetry for a device module
 type ModuleStatItemPoe struct {
-	MaxPower             *float64               `json:"max_power,omitempty"`
-	PowerDraw            *float64               `json:"power_draw,omitempty"`
+	// Total PoE power budget available to the module, in watts
+	MaxPower *float64 `json:"max_power,omitempty"`
+	// Current PoE power draw on the module, in watts
+	PowerDraw *float64 `json:"power_draw,omitempty"`
+	// Operational status of PoE on the module
 	Status               *string                `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

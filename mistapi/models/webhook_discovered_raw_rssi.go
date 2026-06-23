@@ -12,8 +12,9 @@ import (
 // WebhookDiscoveredRawRssi represents a WebhookDiscoveredRawRssi struct.
 // Sample of the `discovered-raw-rssi` webhook payload.
 type WebhookDiscoveredRawRssi struct {
+	// Discovered BLE raw RSSI events included in a webhook delivery
 	Events []WebhookDiscoveredRawRssiEvent `json:"events,omitempty"`
-	// enum: `discovered-raw-rssi`
+	// Webhook topic name for discovered raw RSSI deliveries. enum: `discovered-raw-rssi`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

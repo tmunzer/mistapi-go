@@ -26,7 +26,7 @@ func NewOrgsSLEs(baseController baseController) *OrgsSLEs {
 // GetOrgSitesSle takes context, orgId, sle, start, end, duration, interval, limit, page as parameters and
 // returns an models.ApiResponse with models.ResponseOrgSiteSle data and
 // an error if there was an issue with the request or response.
-// Get Org Sites SLE
+// Return per-site Service-Level Expectation (SLE) scores for Wi-Fi, wired, or WAN service over the requested time window.
 func (o *OrgsSLEs) GetOrgSitesSle(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -44,19 +44,15 @@ func (o *OrgsSLEs) GetOrgSitesSle(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if sle != nil {
 		req.QueryParam("sle", *sle)
@@ -93,7 +89,7 @@ func (o *OrgsSLEs) GetOrgSitesSle(
 // GetOrgSle takes context, orgId, metric, sle, duration, interval, start, end as parameters and
 // returns an models.ApiResponse with models.InsightMetrics data and
 // an error if there was an issue with the request or response.
-// Get Org SLEs (all/worst sites, Mx Edges, ...)
+// Return organization-level insight data for the selected metric, such as all or worst sites, Mist Edge insights, or other supported insight metrics, over the requested time window.
 func (o *OrgsSLEs) GetOrgSle(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -110,19 +106,15 @@ func (o *OrgsSLEs) GetOrgSle(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if sle != nil {
 		req.QueryParam("sle", *sle)

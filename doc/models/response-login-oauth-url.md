@@ -1,6 +1,8 @@
 
 # Response Login Oauth Url
 
+OAuth2 authorization URL response for login
+
 ## Structure
 
 `ResponseLoginOauthUrl`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AuthorizationUrl` | `string` | Required | - |
-| `ClientId` | `string` | Required | - |
+| `AuthorizationUrl` | `string` | Required | OAuth2 provider authorization URL to open for login |
+| `ClientId` | `string` | Required | OAuth2 client identifier used for the authorization request |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "authorization_url": "authorization_url8",
-  "client_id": "client_id0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseLoginOauthUrl := models.ResponseLoginOauthUrl{
+        AuthorizationUrl:     "authorization_url2",
+        ClientId:             "client_id4",
+    }
+
 }
 ```
 

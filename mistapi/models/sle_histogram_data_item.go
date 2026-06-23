@@ -10,8 +10,11 @@ import (
 )
 
 // SleHistogramDataItem represents a SleHistogramDataItem struct.
+// Single bucket in an SLE histogram
 type SleHistogramDataItem struct {
-	Range                []float64              `json:"range,omitempty"`
+	// Lower and upper boundary values for an SLE histogram bucket
+	Range []float64 `json:"range,omitempty"`
+	// Measured amount for this histogram bucket
 	Value                float64                `json:"value"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,11 +8,13 @@ import (
 )
 
 // VirtualChassisConfig represents a VirtualChassisConfig struct.
-// Virtual Chassis
+// Virtual Chassis creation or configuration request
 type VirtualChassisConfig struct {
-	Locating *bool                        `json:"locating,omitempty"`
-	Members  []VirtualChassisConfigMember `json:"members,omitempty"`
-	// To create the Virtual Chassis in Pre-Provisioned mode
+	// Whether the Virtual Chassis is currently in locate mode
+	Locating *bool `json:"locating,omitempty"`
+	// Virtual Chassis member configurations
+	Members []VirtualChassisConfigMember `json:"members,omitempty"`
+	// Whether to create the Virtual Chassis in pre-provisioned mode
 	Preprovisioned       *bool                  `json:"preprovisioned,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

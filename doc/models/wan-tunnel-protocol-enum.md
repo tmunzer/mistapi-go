@@ -1,7 +1,7 @@
 
 # Wan Tunnel Protocol Enum
 
-enum: `gre`, `ipsec`
+Tunnel protocol used for the connection. enum: `gre`, `ipsec`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `gre`, `ipsec`
 |  --- |
 | `gre` |
 | `ipsec` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wanTunnelProtocol := models.WanTunnelProtocolEnum_GRE
+
+}
+```
 

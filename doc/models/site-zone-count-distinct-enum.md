@@ -16,3 +16,18 @@ enum: `scope`, `scope_id`, `user`, `user_type`
 | `user` |
 | `user_type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteZoneCountDistinct := models.SiteZoneCountDistinctEnum_SCOPE
+
+}
+```
+

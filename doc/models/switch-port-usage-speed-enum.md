@@ -22,3 +22,18 @@ Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiat
 | `100g` |
 | `auto` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageSpeed := models.SwitchPortUsageSpeedEnum_ENUM25G1
+
+}
+```
+

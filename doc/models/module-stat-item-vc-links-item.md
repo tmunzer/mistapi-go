@@ -1,6 +1,8 @@
 
 # Module Stat Item Vc Links Item
 
+Virtual chassis link endpoint for a device module
+
 ## Structure
 
 `ModuleStatItemVcLinksItem`
@@ -9,17 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NeighborModuleIdx` | `*int` | Optional | - |
-| `NeighborPortId` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
+| `NeighborModuleIdx` | `*int` | Optional | Index of the neighboring module connected through this virtual chassis link |
+| `NeighborPortId` | `*string` | Optional | Port identifier on the neighboring module for this virtual chassis link |
+| `PortId` | `*string` | Optional | Local port identifier for this virtual chassis link |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "neighbor_module_idx": 1,
-  "neighbor_port_id": "vcp-255/1/0",
-  "port_id": "vcp-255/1/0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    moduleStatItemVcLinksItem := models.ModuleStatItemVcLinksItem{
+        NeighborModuleIdx:    models.ToPointer(1),
+        NeighborPortId:       models.ToPointer("vcp-255/1/0"),
+        PortId:               models.ToPointer("vcp-255/1/0"),
+    }
+
 }
 ```
 

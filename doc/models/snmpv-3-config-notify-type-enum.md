@@ -1,7 +1,7 @@
 
 # Snmpv 3 Config Notify Type Enum
 
-enum: `inform`, `trap`
+Delivery mode for this SNMPv3 notification, such as trap or inform. enum: `inform`, `trap`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `inform`, `trap`
 |  --- |
 | `inform` |
 | `trap` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpv3ConfigNotifyType := models.Snmpv3ConfigNotifyTypeEnum_INFORM
+
+}
+```
 

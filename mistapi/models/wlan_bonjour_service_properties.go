@@ -8,6 +8,7 @@ import (
 )
 
 // WlanBonjourServiceProperties represents a WlanBonjourServiceProperties struct.
+// Bonjour service discovery settings for one advertised service
 type WlanBonjourServiceProperties struct {
 	// Whether to prevent wireless clients to discover bonjour devices on the same WLAN
 	DisableLocal *bool `json:"disable_local,omitempty"`

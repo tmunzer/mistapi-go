@@ -17,3 +17,18 @@ access permissions. enum: `admin`, `helpdesk`, `installer`, `read`, `write`
 | `read` |
 | `write` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    privilegeOrgRole := models.PrivilegeOrgRoleEnum_HELPDESK
+
+}
+```
+

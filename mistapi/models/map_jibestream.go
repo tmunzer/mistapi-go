@@ -11,18 +11,19 @@ import (
 )
 
 // MapJibestream represents a MapJibestream struct.
+// Jibestream map import configuration
 type MapJibestream struct {
-	// Client id
+	// Client identifier for the Jibestream API
 	ClientId uuid.UUID `json:"client_id"`
-	// Client secret
+	// Client secret for the Jibestream API
 	ClientSecret string `json:"client_secret"`
 	// Jibestream customer record id
 	CustomerId int `json:"customer_id"`
 	// Map contents endpoint host
 	EndpointUrl string `json:"endpoint_url"`
-	// Jibestream map id
+	// Jibestream map identifier to import
 	MapId uuid.UUID `json:"map_id"`
-	// Millimeter per pixel
+	// Millimeters per pixel for the Jibestream map
 	Mmpp int `json:"mmpp"`
 	// Pixel per meter, same as the map JSON value.
 	Ppm float64 `json:"ppm"`

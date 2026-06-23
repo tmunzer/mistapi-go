@@ -8,7 +8,9 @@ import (
 )
 
 // DaysNumber represents a DaysNumber struct.
+// Request body specifying CRL truncation retention in days
 type DaysNumber struct {
+	// Number of most recent days of CRL entries to retain after truncation
 	Days                 *int                   `json:"days,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

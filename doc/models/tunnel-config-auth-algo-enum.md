@@ -15,3 +15,18 @@ enum: `md5`, `sha1`, `sha2`
 | `sha1` |
 | `sha2` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigAuthAlgo := models.TunnelConfigAuthAlgoEnum_SHA2
+
+}
+```
+

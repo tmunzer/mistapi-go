@@ -1,7 +1,7 @@
 
 # Switch Port Usage
 
-Junos port usages
+Junos switch port usage template and authentication settings
 
 ## Structure
 
@@ -31,7 +31,7 @@ Junos port usages
 | `MacAuthOnly` | `*bool` | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth`==`true` |
 | `MacAuthPreferred` | `*bool` | Optional | Only if `mode`!=`dynamic` + `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x. |
 | `MacAuthProtocol` | [`*models.SwitchPortUsageMacAuthProtocolEnum`](../../doc/models/switch-port-usage-mac-auth-protocol-enum.md) | Optional | Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`<br><br>**Default**: `"eap-md5"` |
-| `MacLimit` | [`*models.SwitchPortUsageMacLimit`](../../doc/models/containers/switch-port-usage-mac-limit.md) | Optional | Only if `mode`!=`dynamic`, max number of mac addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform) |
+| `MacLimit` | [`*models.SwitchPortUsageMacLimit`](../../doc/models/containers/switch-port-usage-mac-limit.md) | Optional | Only if `mode`!=`dynamic`, max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 to 16383 (upper bound constrained by platform) |
 | `Mode` | [`*models.SwitchPortUsageModeEnum`](../../doc/models/switch-port-usage-mode-enum.md) | Optional | `mode`==`dynamic` must only be used if the port usage name is `dynamic`. enum: `access`, `dynamic`, `inet`, `trunk` |
 | `Mtu` | [`*models.SwitchPortUsageMtu`](../../doc/models/containers/switch-port-usage-mtu.md) | Optional | Only if `mode`!=`dynamic` media maximum transmission unit (MTU) is the largest data unit that can be forwarded without fragmentation. The default value is 1514. |
 | `Networks` | `[]string` | Optional | Only if `mode`==`trunk`, the list of network/vlans |
@@ -43,9 +43,10 @@ Junos port usages
 | `PortNetwork` | `*string` | Optional | Only if `mode`!=`dynamic`. Native network/vlan for untagged traffic |
 | `ReauthInterval` | [`*models.SwitchPortUsageReauthInterval`](../../doc/models/containers/switch-port-usage-reauth-interval.md) | Optional | Only if `mode`!=`dynamic` and `port_auth`=`dot1x` reauthentication interval range (min: 10, max: 65535, default: 3600). Set to 0 to disable reauthentication (no-reauthentication). |
 | `ResetDefaultWhen` | [`*models.SwitchPortUsageDynamicResetDefaultWhenEnum`](../../doc/models/switch-port-usage-dynamic-reset-default-when-enum.md) | Optional | Only if `mode`==`dynamic` Control when the DPC port should be changed to the default port usage. enum: `link_down`, `none` (let the DPC port keep at the current port usage)<br><br>**Default**: `"link_down"` |
-| `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic` |
+| `Rules` | [`[]models.SwitchPortUsageDynamicRule`](../../doc/models/switch-port-usage-dynamic-rule.md) | Optional | Only if `mode`==`dynamic`. Dynamic matching rules that select the port usage to apply |
 | `ServerFailNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Sets server fail fallback vlan |
-| `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. When radius server reject / fails |
+| `ServerFailRetryInterval` | `*int` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. Interval, in seconds. Sets the wait time before retrying authentication after RADIUS failure to reduce client flapping. Range 120-65535<br><br>**Default**: `120`<br><br>**Constraints**: `>= 120`, `<= 65535` |
+| `ServerRejectNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic` and `port_auth`==`dot1x`. When RADIUS server reject / fails |
 | `Speed` | [`*models.SwitchPortUsageSpeedEnum`](../../doc/models/switch-port-usage-speed-enum.md) | Optional | Only if `mode`!=`dynamic`, Port speed, default is auto to automatically negotiate speed enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`<br><br>**Default**: `"auto"` |
 | `StormControl` | [`*models.SwitchPortUsageStormControl`](../../doc/models/switch-port-usage-storm-control.md) | Optional | Switch storm control. Only if `mode`!=`dynamic` |
 | `StpDisable` | `*bool` | Optional | Only if `mode`!=`dynamic` and `stp_required`==`false`. Drop bridge protocol data units (BPDUs ) that enter any interface or a specified interface<br><br>**Default**: `false` |
@@ -57,39 +58,49 @@ Junos port usages
 | `UseVstp` | `*bool` | Optional | If this is connected to a vstp network<br><br>**Default**: `false` |
 | `VoipNetwork` | `models.Optional[string]` | Optional | Only if `mode`!=`dynamic`. Network/vlan for voip traffic, must also set port_network. to authenticate device, set port_auth |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "all_networks": false,
-  "allow_multiple_supplicants": false,
-  "bypass_auth_when_server_down": false,
-  "bypass_auth_when_server_down_for_unknown_client": false,
-  "bypass_auth_when_server_down_for_voip": false,
-  "disable_autoneg": false,
-  "disabled": false,
-  "duplex": "auto",
-  "dynamic_vlan_networks": [
-    "corp",
-    "user"
-  ],
-  "enable_mac_auth": false,
-  "enable_qos": false,
-  "inter_isolation_network_link": false,
-  "inter_switch_link": false,
-  "mac_auth_protocol": "eap-md5",
-  "persist_mac": false,
-  "poe_disabled": false,
-  "poe_keep_state_when_reboot": false,
-  "reset_default_when": "link_down",
-  "speed": "auto",
-  "stp_disable": false,
-  "stp_edge": false,
-  "stp_no_root_port": false,
-  "stp_p2p": false,
-  "stp_required": false,
-  "use_vstp": false,
-  "allow_dhcpd": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsage := models.SwitchPortUsage{
+        AllNetworks:                              models.ToPointer(false),
+        AllowDhcpd:                               models.ToPointer(false),
+        AllowMultipleSupplicants:                 models.ToPointer(false),
+        BypassAuthWhenServerDown:                 models.ToPointer(false),
+        BypassAuthWhenServerDownForUnknownClient: models.ToPointer(false),
+        BypassAuthWhenServerDownForVoip:          models.ToPointer(false),
+        DisableAutoneg:                           models.ToPointer(false),
+        Disabled:                                 models.ToPointer(false),
+        Duplex:                                   models.ToPointer(models.SwitchPortUsageDuplexEnum_AUTO),
+        DynamicVlanNetworks:                      []string{
+            "corp",
+            "user",
+        },
+        EnableMacAuth:                            models.ToPointer(false),
+        EnableQos:                                models.ToPointer(false),
+        InterIsolationNetworkLink:                models.ToPointer(false),
+        InterSwitchLink:                          models.ToPointer(false),
+        MacAuthProtocol:                          models.ToPointer(models.SwitchPortUsageMacAuthProtocolEnum_EAPMD5),
+        PersistMac:                               models.ToPointer(false),
+        PoeDisabled:                              models.ToPointer(false),
+        PoeKeepStateWhenReboot:                   models.ToPointer(false),
+        ResetDefaultWhen:                         models.ToPointer(models.SwitchPortUsageDynamicResetDefaultWhenEnum_LINKDOWN),
+        ServerFailRetryInterval:                  models.ToPointer(120),
+        Speed:                                    models.ToPointer(models.SwitchPortUsageSpeedEnum_AUTO),
+        StpDisable:                               models.ToPointer(false),
+        StpEdge:                                  models.ToPointer(false),
+        StpNoRootPort:                            models.ToPointer(false),
+        StpP2p:                                   models.ToPointer(false),
+        StpRequired:                              models.ToPointer(false),
+        UseVstp:                                  models.ToPointer(false),
+    }
+
 }
 ```
 

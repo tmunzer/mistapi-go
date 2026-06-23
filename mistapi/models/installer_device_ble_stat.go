@@ -11,8 +11,11 @@ import (
 // InstallerDeviceBleStat represents a InstallerDeviceBleStat struct.
 // BLE statistics for the device
 type InstallerDeviceBleStat struct {
-	Major                *int                   `json:"major,omitempty"`
-	Minors               []int                  `json:"minors,omitempty"`
+	// iBeacon major value reported by the device
+	Major *int `json:"major,omitempty"`
+	// iBeacon minor values reported by the device
+	Minors []int `json:"minors,omitempty"`
+	// iBeacon UUID advertised by the device
 	Uuid                 *uuid.UUID             `json:"uuid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

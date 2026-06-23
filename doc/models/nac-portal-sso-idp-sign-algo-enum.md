@@ -16,3 +16,18 @@ Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`
 | `sha384` |
 | `sha512` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacPortalSsoIdpSignAlgo := models.NacPortalSsoIdpSignAlgoEnum_SHA1
+
+}
+```
+

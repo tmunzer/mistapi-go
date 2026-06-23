@@ -15,3 +15,18 @@ enum: `org_id`, `status`, `type`
 | `status` |
 | `type` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mspTicketsCountDistinct := models.MspTicketsCountDistinctEnum_ORGID
+
+}
+```
+

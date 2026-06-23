@@ -8,10 +8,11 @@ import (
 )
 
 // UpgradeFpga represents a UpgradeFpga struct.
+// FPGA upgrade request for a single device
 type UpgradeFpga struct {
-	// Reboot device immediately after upgrade is completed
+	// Whether to restart the device immediately after the upgrade completes
 	Reboot *bool `json:"reboot,omitempty"`
-	// Specific fpga version
+	// FPGA version to install on the device
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

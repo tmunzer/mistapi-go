@@ -8,6 +8,7 @@ import (
 )
 
 // GatewayPortVpnPath represents a GatewayPortVpnPath struct.
+// VPN path settings for traffic that uses a gateway port
 type GatewayPortVpnPath struct {
 	// Only if the VPN `type`==`hub_spoke`. enum: `broadband`, `lte`
 	BfdProfile *GatewayPortVpnPathBfdProfileEnum `json:"bfd_profile,omitempty"`
@@ -16,9 +17,10 @@ type GatewayPortVpnPath struct {
 	// Only if the VPN `type`==`hub_spoke`. For a given VPN, when `path_selection.strategy`==`simple`, the preference for a path (lower is preferred)
 	Preference *int `json:"preference,omitempty"`
 	// If the VPN `type`==`hub_spoke`, enum: `hub`, `spoke`. If the VPN `type`==`mesh`, enum: `mesh`
-	Role                 *GatewayPortVpnPathRoleEnum `json:"role,omitempty"`
-	TrafficShaping       *GatewayTrafficShaping      `json:"traffic_shaping,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	Role *GatewayPortVpnPathRoleEnum `json:"role,omitempty"`
+	// Traffic shaping settings for a gateway interface or VPN path
+	TrafficShaping       *GatewayTrafficShaping `json:"traffic_shaping,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for GatewayPortVpnPath,

@@ -1,7 +1,7 @@
 
 # Gateway Compliance Version
 
-Version compliance score, major version for gateway, type
+Version compliance metric for gateway devices
 
 ## Structure
 
@@ -11,30 +11,31 @@ Version compliance score, major version for gateway, type
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MajorVersion` | [`map[string]models.GatewayComplianceMajorVersionProperties`](../../doc/models/gateway-compliance-major-version-properties.md) | Optional | - |
-| `Score` | `*float64` | Optional | - |
-| `Type` | `*string` | Optional | - |
+| `MajorVersion` | [`map[string]models.GatewayComplianceMajorVersionProperties`](../../doc/models/gateway-compliance-major-version-properties.md) | Optional | Gateway version-compliance entries keyed by gateway model |
+| `Score` | `*float64` | Optional | Gateway software version compliance score |
+| `Type` | `*string` | Optional | Device type represented by the gateway compliance metric |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "score": 99.9,
-  "type": "gateway",
-  "major_version": {
-    "key0": {
-      "major_count": 80,
-      "major_version": "major_version0"
-    },
-    "key1": {
-      "major_count": 80,
-      "major_version": "major_version0"
-    },
-    "key2": {
-      "major_count": 80,
-      "major_version": "major_version0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayComplianceVersion := models.GatewayComplianceVersion{
+        MajorVersion:         map[string]models.GatewayComplianceMajorVersionProperties{
+            "key0": models.GatewayComplianceMajorVersionProperties{
+                MajorCount:           models.ToPointer(80),
+                MajorVersion:         models.ToPointer("major_version0"),
+            },
+        },
+        Score:                models.ToPointer(float64(99.9)),
+        Type:                 models.ToPointer("gateway"),
     }
-  }
+
 }
 ```
 

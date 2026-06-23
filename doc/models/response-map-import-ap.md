@@ -1,6 +1,8 @@
 
 # Response Map Import Ap
 
+AP placement result from a map import
+
 ## Structure
 
 `ResponseMapImportAp`
@@ -10,24 +12,34 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Action` | [`models.ResponseMapImportApActionEnum`](../../doc/models/response-map-import-ap-action-enum.md) | Required | enum: `assigned-named-placed`, `assigned-placed`, `ignored`, `named-placed`, `placed` |
-| `FloorplanId` | `uuid.UUID` | Required | - |
-| `Height` | `*float64` | Optional | - |
-| `Mac` | `string` | Required | - |
-| `MapId` | `uuid.UUID` | Required | - |
-| `Orientation` | `int` | Required | - |
-| `Reason` | `*string` | Optional | - |
+| `FloorplanId` | `uuid.UUID` | Required | Floorplan identifier where the AP placement was imported |
+| `Height` | `*float64` | Optional | Mounting height for the AP on the imported floorplan |
+| `Mac` | `string` | Required | AP MAC address matched from the import file |
+| `MapId` | `uuid.UUID` | Required | Map identifier associated with the imported AP placement |
+| `Orientation` | `int` | Required | AP orientation in degrees on the imported floorplan |
+| `Reason` | `*string` | Optional | Explanation of why the AP import action was not completed, when provided |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "action": "placed",
-  "floorplan_id": "0000110a-0000-0000-0000-000000000000",
-  "height": 41.74,
-  "mac": "mac2",
-  "map_id": "00000f06-0000-0000-0000-000000000000",
-  "orientation": 154,
-  "reason": "reason6"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseMapImportAp := models.ResponseMapImportAp{
+        Action:               models.ResponseMapImportApActionEnum_ASSIGNEDNAMEDPLACED,
+        FloorplanId:          uuid.MustParse("00001bcc-0000-0000-0000-000000000000"),
+        Height:               models.ToPointer(float64(13.28)),
+        Mac:                  "mac6",
+        MapId:                uuid.MustParse("00000444-0000-0000-0000-000000000000"),
+        Orientation:          124,
+        Reason:               models.ToPointer("reason8"),
+    }
+
 }
 ```
 

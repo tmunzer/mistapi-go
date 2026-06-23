@@ -1,6 +1,8 @@
 
 # Snmp Config V2 C Config
 
+SNMPv2c community configuration entry
+
 ## Structure
 
 `SnmpConfigV2cConfig`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Authorization` | `*string` | Optional | - |
-| `ClientListName` | `*string` | Optional | Client_list_name here should refer to client_list above |
-| `CommunityName` | `*string` | Optional | - |
-| `View` | `*string` | Optional | View name here should be defined in views above |
+| `Authorization` | `*string` | Optional | Access level for the SNMPv2c community |
+| `ClientListName` | `*string` | Optional | SNMP client list name referenced by this community |
+| `CommunityName` | `*string` | Optional | SNMPv2c community string name |
+| `View` | `*string` | Optional | SNMP view name that must be defined in the views list |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "authorization": "read-only",
-  "client_list_name": "clist-1",
-  "community_name": "abc123",
-  "view": "all"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpConfigV2cConfig := models.SnmpConfigV2cConfig{
+        Authorization:        models.ToPointer("read-only"),
+        ClientListName:       models.ToPointer("clist-1"),
+        CommunityName:        models.ToPointer("abc123"),
+        View:                 models.ToPointer("all"),
+    }
+
 }
 ```
 

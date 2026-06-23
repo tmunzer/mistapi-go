@@ -1,7 +1,7 @@
 
 # Recaptcha Flavor Enum
 
-flavor of the captcha. enum: `google`, `hcaptcha`
+CAPTCHA provider flavor. enum: `google`, `hcaptcha`
 
 ## Enumeration
 
@@ -16,7 +16,16 @@ flavor of the captcha. enum: `google`, `hcaptcha`
 
 ## Example
 
-```
-hcaptcha
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    recaptchaFlavor := models.RecaptchaFlavorEnum_GOOGLE
+
+}
 ```
 

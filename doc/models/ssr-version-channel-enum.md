@@ -15,3 +15,18 @@ enum: `stable`, `beta`, `alpha`
 | `beta` |
 | `stable` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ssrVersionChannel := models.SsrVersionChannelEnum_STABLE
+
+}
+```
+

@@ -1,6 +1,8 @@
 
 # Nac Client Coa Response
 
+Response returned after sending a NAC client CoA command
+
 ## Structure
 
 `NacClientCoaResponse`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DeviceMac` | `*string` | Optional | MAC address of the target device (AP or switch MAC) |
+| `DeviceMac` | `*string` | Optional | Target AP or switch MAC address for the CoA command |
 | `DeviceType` | [`*models.DeviceTypeEnum`](../../doc/models/device-type-enum.md) | Optional | enum: `ap`, `gateway`, `switch` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "device_mac": "device_mac2",
-  "device_type": "gateway"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacClientCoaResponse := models.NacClientCoaResponse{
+        DeviceMac:            models.ToPointer("device_mac4"),
+        DeviceType:           models.ToPointer(models.DeviceTypeEnum_ENUMSWITCH),
+    }
+
 }
 ```
 

@@ -15,3 +15,18 @@ enum: `non_revertible`, `none`, `revertible`
 | `none` |
 | `revertible` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    serviceFailoverPolicy := models.ServiceFailoverPolicyEnum_NONREVERTIBLE
+
+}
+```
+

@@ -8,8 +8,11 @@ import (
 )
 
 // ResponseSsrExportIdTokensResultsItem represents a ResponseSsrExportIdTokensResultsItem struct.
+// SSR ID token record for a device
 type ResponseSsrExportIdTokensResultsItem struct {
-	Mac                  *string                `json:"mac,omitempty"`
+	// SSR device MAC address for the exported ID token
+	Mac *string `json:"mac,omitempty"`
+	// ID token to import into Conductor for SSR device onboarding
 	Token                *string                `json:"token,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,8 +10,11 @@ import (
 )
 
 // MapNodePosition represents a MapNodePosition struct.
+// Position of a map path node
 type MapNodePosition struct {
-	X                    float64                `json:"x"`
+	// Horizontal coordinate of the map node
+	X float64 `json:"x"`
+	// Vertical coordinate of the map node
 	Y                    float64                `json:"y"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,9 +10,11 @@ import (
 )
 
 // AclPolicyAction represents a AclPolicyAction struct.
+// Action applied to traffic that matches a destination ACL tag
 type AclPolicyAction struct {
-	// enum: `allow`, `deny`
-	Action               *AllowDenyEnum         `json:"action,omitempty"`
+	// Policy action value that either allows or denies matching traffic. enum: `allow`, `deny`
+	Action *AllowDenyEnum `json:"action,omitempty"`
+	// Destination ACL tag matched by this policy action
 	DstTag               string                 `json:"dst_tag"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Service Stat Property
 
+Version information for gateway service packages
+
 ## Structure
 
 `ServiceStatProperty`
@@ -9,24 +11,33 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AshVersion` | `*string` | Optional | - |
-| `CiaVersion` | `*string` | Optional | - |
-| `EmberVersion` | `*string` | Optional | - |
-| `IpsecClientVersion` | `*string` | Optional | - |
-| `MistAgentVersion` | `*string` | Optional | - |
-| `PackageVersion` | `*string` | Optional | - |
-| `TestingToolsVersion` | `*string` | Optional | - |
-| `WheeljackVersion` | `*string` | Optional | - |
+| `AshVersion` | `*string` | Optional | Version of the ASH service package |
+| `CiaVersion` | `*string` | Optional | Version of the CIA service package |
+| `EmberVersion` | `*string` | Optional | Version of the Ember service package |
+| `IpsecClientVersion` | `*string` | Optional | Version of the IPsec client package |
+| `MistAgentVersion` | `*string` | Optional | Version of the Mist agent package |
+| `PackageVersion` | `*string` | Optional | Version of the service package |
+| `TestingToolsVersion` | `*string` | Optional | Version of the testing tools package |
+| `WheeljackVersion` | `*string` | Optional | Version of the Wheeljack service package |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ash_version": "ash_version6",
-  "cia_version": "cia_version8",
-  "ember_version": "ember_version8",
-  "ipsec_client_version": "ipsec_client_version2",
-  "mist_agent_version": "mist_agent_version4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    serviceStatProperty := models.ServiceStatProperty{
+        AshVersion:           models.ToPointer("ash_version8"),
+        CiaVersion:           models.ToPointer("cia_version4"),
+        EmberVersion:         models.ToPointer("ember_version0"),
+        IpsecClientVersion:   models.ToPointer("ipsec_client_version0"),
+        MistAgentVersion:     models.ToPointer("mist_agent_version2"),
+    }
+
 }
 ```
 

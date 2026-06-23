@@ -9,32 +9,39 @@ import (
 )
 
 // SiteSettingDerived represents a SiteSettingDerived struct.
+// Site settings with derived OAuth account integration data
 type SiteSettingDerived struct {
+	// List of ACL policy definitions
 	AclPolicies []AclPolicy `json:"acl_policies,omitempty"`
 	// ACL Tags to identify traffic source or destination. Key name is the tag name
 	AclTags map[string]AclTag `json:"acl_tags,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
 	AdditionalConfigCmds []string `json:"additional_config_cmds,omitempty"`
 	// whether to allow Mist to look at this org
-	AllowMist    *bool                    `json:"allow_mist,omitempty"`
-	Analytic     *SiteSettingAnalytic     `json:"analytic,omitempty"`
-	ApMatching   *SiteSettingApMatching   `json:"ap_matching,omitempty"`
+	AllowMist *bool `json:"allow_mist,omitempty"`
+	// Advanced analytics feature settings for a site
+	Analytic *SiteSettingAnalytic `json:"analytic,omitempty"`
+	// Rules for applying AP port configuration by AP model or name
+	ApMatching *SiteSettingApMatching `json:"ap_matching,omitempty"`
+	// AP Ethernet port configuration overrides by model
 	ApPortConfig *SiteSettingApPortConfig `json:"ap_port_config,omitempty"`
 	// AP Synthetic Test configuration
 	ApSyntheticTest *SiteSettingApSyntheticTest `json:"ap_synthetic_test,omitempty"`
 	// Enable threshold-based device down delivery for AP devices only. When configured it takes effect for AP devices and `device_updown_threshold` is ignored.
 	ApUpdownThreshold Optional[int] `json:"ap_updown_threshold"`
-	// If we're able to determine its x/y/orientation, this will be populated
+	// Automatically determined AP placement coordinates and orientation
 	AutoPlacement *SiteSettingAutoPlacement `json:"auto_placement,omitempty"`
-	// Auto Upgrade Settings
+	// Automatic AP firmware upgrade policy
 	AutoUpgrade *SiteSettingAutoUpgrade `json:"auto_upgrade,omitempty"`
-	// auto upgrade AP ESL. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
-	AutoUpgradeEsl      *SiteSettingAutoUpgradeEsl `json:"auto_upgrade_esl,omitempty"`
-	AutoUpgradeLinecard *bool                      `json:"auto_upgrade_linecard,omitempty"`
+	// Automatic AP ESL firmware upgrade policy. When both firmware and ESL auto-upgrade are enabled, ESL upgrade will be done only after firmware upgrade
+	AutoUpgradeEsl *SiteSettingAutoUpgradeEsl `json:"auto_upgrade_esl,omitempty"`
+	// Whether line cards are included in automatic switch upgrades
+	AutoUpgradeLinecard *bool `json:"auto_upgrade_linecard,omitempty"`
 	// enable threshold-based bgp neighbor down delivery.
 	BgpNeighborUpdownThreshold Optional[int] `json:"bgp_neighbor_updown_threshold"`
-	BlacklistUrl               *string       `json:"blacklist_url,omitempty"`
-	// BLE AP settings
+	// Read-only URL for the site blacklist file
+	BlacklistUrl *string `json:"blacklist_url,omitempty"`
+	// Bluetooth Low Energy beacon and asset advertising settings for an AP
 	BleConfig *BleConfig `json:"ble_config,omitempty"`
 	// Whether to enable ap auto config revert
 	ConfigAutoRevert *bool `json:"config_auto_revert,omitempty"`
@@ -42,34 +49,37 @@ type SiteSettingDerived struct {
 	ConfigPushPolicy *SiteSettingConfigPushPolicy `json:"config_push_policy,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	// You can define some URLs that's critical to site operations the latency will be captured and considered for site health
+	// Critical URLs whose latency is measured and included in site health
 	CriticalUrlMonitoring *SiteSettingCriticalUrlMonitoring `json:"critical_url_monitoring,omitempty"`
 	// By default, device_updown_threshold, if set, will apply to all devices types if different values for specific device type is desired, use the following
 	DeviceUpdownThreshold Optional[int] `json:"device_updown_threshold"`
-	DhcpSnooping          *DhcpSnooping `json:"dhcp_snooping,omitempty"`
+	// DHCP snooping security settings
+	DhcpSnooping *DhcpSnooping `json:"dhcp_snooping,omitempty"`
 	// If some system-default port usages are not desired - namely, ap / iot / uplink
 	DisabledSystemDefinedPortUsages []SystemDefinedPortUsagesEnum `json:"disabled_system_defined_port_usages,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
 	DnsServers []string `json:"dns_servers,omitempty"`
 	// Global dns settings. To keep compatibility, dns settings in `ip_config` and `oob_ip_config` will overwrite this setting
-	DnsSuffix   []string `json:"dns_suffix,omitempty"`
-	EnableUnii4 *bool    `json:"enable_unii_4,omitempty"`
-	// **Note**: if hours does not exist, it's treated as everyday of the week, 00:00-23:59. Currently, we don't allow multiple ranges for the same day
+	DnsSuffix []string `json:"dns_suffix,omitempty"`
+	// Whether UNII-4 channels are enabled for the site
+	EnableUnii4 *bool `json:"enable_unii_4,omitempty"`
+	// Engagement analytics dwell-time rules for classifying site visits. If hours is omitted, rules apply every day from 00:00 to 23:59. Multiple ranges for the same day are not supported.
 	Engagement *SiteEngagement `json:"engagement,omitempty"`
-	// EVPN Options
+	// EVPN topology generation options for campus fabric configuration
 	EvpnOptions *EvpnOptions `json:"evpn_options,omitempty"`
 	// Property key is the destination CIDR (e.g. "10.0.0.0/8")
 	ExtraRoutes map[string]ExtraRoute `json:"extra_routes,omitempty"`
 	// Property key is the destination CIDR (e.g. "2a02:1234:420a:10c9::/64")
 	ExtraRoutes6 map[string]ExtraRoute6 `json:"extra_routes6,omitempty"`
 	// Name/val pair objects for location engine to use
-	Flags   map[string]string `json:"flags,omitempty"`
-	ForSite *bool             `json:"for_site,omitempty"`
+	Flags map[string]string `json:"flags,omitempty"`
+	// Whether this settings object is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Gateway Template is applied to a site for gateway(s) in a site.
 	Gateway *GatewayTemplate `json:"gateway,omitempty"`
 	// additional CLI commands to append to the generated Junos config. **Note**: no check is done
 	GatewayAdditionalConfigCmds []string `json:"gateway_additional_config_cmds,omitempty"`
-	// Gateway Management settings
+	// Gateway management-plane and access settings
 	GatewayMgmt *GatewayMgmt `json:"gateway_mgmt,omitempty"`
 	// enable threshold-based gateway tunnel (secure edge tunnels) up-down delivery.
 	GatewayTunnelUpdownThreshold Optional[int] `json:"gateway_tunnel_updown_threshold"`
@@ -78,29 +88,34 @@ type SiteSettingDerived struct {
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// IoT proxy configuration for the site
-	Iotproxy   *Iotproxy              `json:"iotproxy,omitempty"`
+	Iotproxy *Iotproxy `json:"iotproxy,omitempty"`
+	// Site-level Juniper SRX integration settings
 	JuniperSrx *SiteSettingJuniperSrx `json:"juniper_srx,omitempty"`
-	// LED AP settings
-	Led    *ApLed  `json:"led,omitempty"`
+	// Indicator light settings for an access point
+	Led *ApLed `json:"led,omitempty"`
+	// Marvis automation and client settings
 	Marvis *Marvis `json:"marvis,omitempty"`
-	// Enable mist_nac to use RadSec
+	// Mist NAC RadSec settings for a switch
 	MistNac *SwitchMistNac `json:"mist_nac,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Site Mist Edges form a cluster of RadSec Proxy servers
-	Mxedge     *SiteSettingMxedge `json:"mxedge,omitempty"`
-	MxedgeMgmt *MxedgeMgmt        `json:"mxedge_mgmt,omitempty"`
-	// Site MxTunnel
+	// Service settings for the site Mist Edge cluster
+	Mxedge *SiteSettingMxedge `json:"mxedge,omitempty"`
+	// Management settings for a Mist Edge appliance
+	MxedgeMgmt *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
+	// Site Mist Tunnel configuration for tunneling AP user VLANs to Mist Edge tunnel peers
 	Mxtunnels *SiteMxtunnel `json:"mxtunnels,omitempty"`
 	// Property key is network name
 	Networks map[string]SwitchNetwork `json:"networks,omitempty"`
 	// List of NTP servers
 	NtpServers []string `json:"ntp_servers,omitempty"`
-	// Occupancy Analytics settings
+	// Analytics settings for site occupancy
 	Occupancy *SiteOccupancyAnalytics `json:"occupancy,omitempty"`
-	OrgId     *uuid.UUID              `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Junos OSPF areas. Property key is the OSPF Area (Area should be a number (0-255) / IP address)
-	OspfAreas        map[string]OspfArea          `json:"ospf_areas,omitempty"`
+	OspfAreas map[string]OspfArea `json:"ospf_areas,omitempty"`
+	// Palo Alto Networks integration settings for the site
 	PaloaltoNetworks *SiteSettingPaloaltoNetworks `json:"paloalto_networks,omitempty"`
 	// Whether to store the config on AP
 	PersistConfigOnDevice *bool `json:"persist_config_on_device,omitempty"`
@@ -110,45 +125,58 @@ type SiteSettingDerived struct {
 	PortUsages map[string]SwitchPortUsage `json:"port_usages,omitempty"`
 	// Proxy Configuration to talk to Mist
 	Proxy *Proxy `json:"proxy,omitempty"`
-	// Radio AP settings
+	// Radio configuration settings for an access point
 	RadioConfig *ApRadio `json:"radio_config,omitempty"`
-	// Junos Radius config
+	// Switch RADIUS authentication and accounting configuration
 	RadiusConfig *SwitchRadiusConfig `json:"radius_config,omitempty"`
-	RemoteSyslog *RemoteSyslog       `json:"remote_syslog,omitempty"`
+	// Remote syslog forwarding settings
+	RemoteSyslog *RemoteSyslog `json:"remote_syslog,omitempty"`
 	// By default, only the configuration generated by Mist is cleaned up during the configuration process. If `true`, all the existing configuration will be removed.
 	RemoveExistingConfigs *bool `json:"remove_existing_configs,omitempty"`
 	// Whether AP should periodically connect to BLE devices and report GATT device info (device name, manufacturer name, serial number, battery %, temperature, humidity)
 	ReportGatt *bool `json:"report_gatt,omitempty"`
-	// Rogue site settings
+	// Rogue AP detection settings for a site
 	Rogue *SiteRogue `json:"rogue,omitempty"`
-	// Property key is the routing policy name
+	// Switch routing policies keyed by routing policy name
 	RoutingPolicies map[string]SwRoutingPolicy `json:"routing_policies,omitempty"`
-	// Managed mobility
+	// Managed mobility and asset tracking settings
 	Rtsa *SiteSettingRtsa `json:"rtsa,omitempty"`
-	// Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures
-	SimpleAlert   *SimpleAlert       `json:"simple_alert,omitempty"`
-	SiteId        *uuid.UUID         `json:"site_id,omitempty"`
-	Skyatp        *SiteSettingSkyatp `json:"skyatp,omitempty"`
-	SleThresholds *SleThresholds     `json:"sle_thresholds,omitempty"`
-	SnmpConfig    *SnmpConfig        `json:"snmp_config,omitempty"`
-	SrxApp        *SiteSettingSrxApp `json:"srx_app,omitempty"`
+	// Heuristic alert thresholds used when a Marvis subscription is unavailable
+	SimpleAlert *SimpleAlert `json:"simple_alert,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Sky ATP threat intelligence settings for the site
+	Skyatp *SiteSettingSkyatp `json:"skyatp,omitempty"`
+	// Site SLE threshold overrides for capacity, coverage, throughput, and time to connect
+	SleThresholds *SleThresholds `json:"sle_thresholds,omitempty"`
+	// SNMP configuration for managed network devices
+	SnmpConfig *SnmpConfig `json:"snmp_config,omitempty"`
+	// Juniper SRX application visibility settings for the site
+	SrxApp *SiteSettingSrxApp `json:"srx_app,omitempty"`
 	// When limit_ssh_access = true in Org Setting, list of SSH public keys provided by Mist Support to install onto APs (see Org:Setting)
-	SshKeys      []string                 `json:"ssh_keys,omitempty"`
-	Ssr          *SettingSsr              `json:"ssr,omitempty"`
+	SshKeys []string `json:"ssh_keys,omitempty"`
+	// SSR management settings for device onboarding and connectivity
+	Ssr *SettingSsr `json:"ssr,omitempty"`
+	// End-user status portal settings for the site
 	StatusPortal *SiteSettingStatusPortal `json:"status_portal,omitempty"`
-	Switch       *SiteSettingSwitch       `json:"switch,omitempty"`
+	// Site switch settings combining a network template and auto-upgrade controls
+	Switch *SiteSettingSwitch `json:"switch,omitempty"`
 	// Defines custom switch configuration based on different criteria
 	SwitchMatching *SwitchMatching `json:"switch_matching,omitempty"`
-	// Switch Management settings
+	// Switch management-plane access and proxy settings
 	SwitchMgmt *SwitchMgmt `json:"switch_mgmt,omitempty"`
 	// Enable threshold-based device down delivery for Switch devices only. When configured it takes effect for SW devices and `device_updown_threshold` is ignored.
-	SwitchUpdownThreshold Optional[int]        `json:"switch_updown_threshold"`
-	SyntheticTest         *SynthetictestConfig `json:"synthetic_test,omitempty"`
+	SwitchUpdownThreshold Optional[int] `json:"switch_updown_threshold"`
+	// Synthetic test configuration for Marvis Minis
+	SyntheticTest *SynthetictestConfig `json:"synthetic_test,omitempty"`
 	// Whether to track anonymous BLE assets (requires ‘track_asset’  enabled)
-	TrackAnonymousDevices     *bool                              `json:"track_anonymous_devices,omitempty"`
-	TuntermMonitoring         []TuntermMonitoringItem            `json:"tunterm_monitoring,omitempty"`
-	TuntermMonitoringDisabled *bool                              `json:"tunterm_monitoring_disabled,omitempty"`
-	TuntermMulticastConfig    *SiteSettingTuntermMulticastConfig `json:"tunterm_multicast_config,omitempty"`
+	TrackAnonymousDevices *bool `json:"track_anonymous_devices,omitempty"`
+	// Tunnel termination monitoring checks
+	TuntermMonitoring []TuntermMonitoringItem `json:"tunterm_monitoring,omitempty"`
+	// Whether tunnel termination monitoring is disabled for the site
+	TuntermMonitoringDisabled *bool `json:"tunterm_monitoring_disabled,omitempty"`
+	// Multicast forwarding settings for tunnel termination at the site
+	TuntermMulticastConfig *SiteSettingTuntermMulticastConfig `json:"tunterm_multicast_config,omitempty"`
 	// AP Uplink port configuration
 	UplinkPortConfig *ApUplinkPortConfig `json:"uplink_port_config,omitempty"`
 	// by default, we only honor description provided in port_config. This allows fallback to those defined in port_usages
@@ -157,27 +185,33 @@ type SiteSettingDerived struct {
 	Vars map[string]string `json:"vars,omitempty"`
 	// Optional annotations for vars defined in this site. Keys match var names; values describe the var purpose and type for UI auto-complete.
 	VarsAnnotations map[string]VarsAnnotation `json:"vars_annotations,omitempty"`
-	Vna             *SiteSettingVna           `json:"vna,omitempty"`
+	// Virtual Network Assistant settings for AP, switch, and gateway experiences at a site
+	Vna *SiteSettingVna `json:"vna,omitempty"`
 	// enable threshold-based vpn path down delivery.
 	VpnPathUpdownThreshold Optional[int] `json:"vpn_path_updown_threshold"`
 	// enable threshold-based vpn peer down delivery.
 	VpnPeerUpdownThreshold Optional[int] `json:"vpn_peer_updown_threshold"`
-	VrfConfig              *VrfConfig    `json:"vrf_config,omitempty"`
+	// VRF enablement settings applied when supported on the device
+	VrfConfig *VrfConfig `json:"vrf_config,omitempty"`
 	// Property key is the network name
 	VrfInstances map[string]SwitchVrfInstance `json:"vrf_instances,omitempty"`
 	// Property key is the vrrp group
 	VrrpGroups map[string]VrrpGroup `json:"vrrp_groups,omitempty"`
 	// Optional, for EX9200 only to segregate virtual-switches. Property key is the instance name
-	VsInstance        map[string]VsInstanceProperty `json:"vs_instance,omitempty"`
-	WanVna            *SiteSettingWanVna            `json:"wan_vna,omitempty"`
-	WatchedStationUrl *string                       `json:"watched_station_url,omitempty"`
-	WhitelistUrl      *string                       `json:"whitelist_url,omitempty"`
-	// WIDS site settings
+	VsInstance map[string]VsInstanceProperty `json:"vs_instance,omitempty"`
+	// WAN Virtual Network Assistant settings for the site
+	WanVna *SiteSettingWanVna `json:"wan_vna,omitempty"`
+	// Read-only URL for the watched station list file
+	WatchedStationUrl *string `json:"watched_station_url,omitempty"`
+	// Read-only URL for the site whitelist file
+	WhitelistUrl *string `json:"whitelist_url,omitempty"`
+	// Wireless intrusion detection settings for a site
 	Wids *SiteWids `json:"wids,omitempty"`
-	// Wi-Fi site settings
-	Wifi     *SiteWifi            `json:"wifi,omitempty"`
+	// Wi-Fi configuration settings for a site
+	Wifi *SiteWifi `json:"wifi,omitempty"`
+	// Wired Virtual Network Assistant settings for the site
 	WiredVna *SiteSettingWiredVna `json:"wired_vna,omitempty"`
-	// Zone Occupancy alert site settings
+	// Zone occupancy alert settings for a site
 	ZoneOccupancyAlert *SiteZoneOccupancyAlert `json:"zone_occupancy_alert,omitempty"`
 	// Linked app account id
 	AccountId *string `json:"account_id,omitempty"`
@@ -192,7 +226,8 @@ type SiteSettingDerived struct {
 	// For Prisma accounts only, tunnel probe enable/disable
 	EnableProbe *bool `json:"enable_probe,omitempty"`
 	// This error is provided when the account fails to fetch token/data
-	Error  *string  `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
+	// Read-only OAuth account error messages
 	Errors []string `json:"errors,omitempty"`
 	// Customer account instance URL
 	InstanceUrl *string `json:"instance_url,omitempty"`
@@ -203,11 +238,12 @@ type SiteSettingDerived struct {
 	// Last data pull timestamp, background jobs that pull account data
 	LastSync *int64 `json:"last_sync,omitempty"`
 	// First name of the user who linked the account
-	LinkedBy        *string  `json:"linked_by,omitempty"`
+	LinkedBy *string `json:"linked_by,omitempty"`
+	// Timestamp when this third-party account was linked
 	LinkedTimestamp *float64 `json:"linked_timestamp,omitempty"`
 	// Zoom daily api request quota, https://developers.zoom.us/docs/api/rest/rate-limits/
 	MaxDailyApiRequests *int `json:"max_daily_api_requests,omitempty"`
-	// Name of the company whose account mist has subscribed to
+	// Display name of the linked third-party account or company
 	Name *string `json:"name,omitempty"`
 	// Customer account password instance URL
 	Password *string `json:"password,omitempty"`
@@ -223,7 +259,7 @@ type SiteSettingDerived struct {
 	SmartgroupName *string `json:"smartgroup_name,omitempty"`
 	// For Prisma accounts only, Prisma Tenant Service Group id
 	TsgId *string `json:"tsg_id,omitempty"`
-	// Customer account username
+	// Login name configured for the linked third-party account
 	Username *string `json:"username,omitempty"`
 	// For Crowdstrike, JAMF, SentinelOne and VMWare accounts only
 	WebhookAuthType *string `json:"webhook_auth_type,omitempty"`

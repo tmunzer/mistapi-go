@@ -14,18 +14,27 @@ Required for preprovisioned Virtual Chassis
 | `Members` | [`[]models.SwitchVirtualChassisMember`](../../doc/models/switch-virtual-chassis-member.md) | Optional | List of Virtual Chassis members |
 | `Preprovisioned` | `*bool` | Optional | To configure whether the VC is preprovisioned or nonprovisioned<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "preprovisioned": false,
-  "members": [
-    {
-      "mac": "mac2",
-      "member_id": 58,
-      "vc_role": "master"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchVirtualChassis := models.SwitchVirtualChassis{
+        Members:              []models.SwitchVirtualChassisMember{
+            models.SwitchVirtualChassisMember{
+                Mac:                  "mac2",
+                MemberId:             58,
+                VcRole:               models.SwitchVirtualChassisMemberVcRoleEnum_MASTER,
+            },
+        },
+        Preprovisioned:       models.ToPointer(false),
     }
-  ]
+
 }
 ```
 

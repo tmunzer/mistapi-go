@@ -8,8 +8,11 @@ import (
 )
 
 // SnmpConfigClientList represents a SnmpConfigClientList struct.
+// SNMP client allowlist definition
 type SnmpConfigClientList struct {
-	ClientListName       *string                `json:"client_list_name,omitempty"`
+	// Name of the SNMP client list
+	ClientListName *string `json:"client_list_name,omitempty"`
+	// SNMP client IP addresses or CIDR ranges allowed by a client list
 	Clients              []string               `json:"clients,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

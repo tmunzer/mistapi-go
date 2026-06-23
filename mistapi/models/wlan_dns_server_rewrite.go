@@ -10,6 +10,7 @@ import (
 // WlanDnsServerRewrite represents a WlanDnsServerRewrite struct.
 // For radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
 type WlanDnsServerRewrite struct {
+	// Whether DNS server rewrite by RADIUS group is enabled for this WLAN
 	Enabled *bool `json:"enabled,omitempty"`
 	// Map between radius_group and the desired DNS server (IPv4 only). Property key is the RADIUS group, property value is the desired DNS Server
 	RadiusGroups         map[string]string      `json:"radius_groups,omitempty"`

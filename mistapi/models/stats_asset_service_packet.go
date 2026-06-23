@@ -16,7 +16,7 @@ type StatsAssetServicePacket struct {
 	LastRxTime *int `json:"last_rx_time,omitempty"`
 	// Total number of times this service data was received
 	RxCnt *int `json:"rx_cnt,omitempty"`
-	// Service UUID
+	// BLE service UUID advertised by the asset service packet
 	Uuid                 *string                `json:"uuid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

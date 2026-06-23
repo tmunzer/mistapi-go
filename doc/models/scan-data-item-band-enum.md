@@ -14,3 +14,18 @@
 | `2.4` |
 | `5` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    scanDataItemBand := models.ScanDataItemBandEnum_ENUM24
+
+}
+```
+

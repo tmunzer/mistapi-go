@@ -10,17 +10,29 @@ import (
 // StatsApEnvStat represents a StatsApEnvStat struct.
 // Device environment, including CPU temperature, Ambient temperature, Humidity, Attitude, Pressure, Accelerometers, Magnetometers and vCore Voltage
 type StatsApEnvStat struct {
-	AccelX               Optional[float64]      `json:"accel_x"`
-	AccelY               Optional[float64]      `json:"accel_y"`
-	AccelZ               Optional[float64]      `json:"accel_z"`
-	AmbientTemp          Optional[int]          `json:"ambient_temp"`
-	Attitude             Optional[int]          `json:"attitude"`
-	CpuTemp              Optional[int]          `json:"cpu_temp"`
-	Humidity             Optional[int]          `json:"humidity"`
-	MagneX               Optional[float64]      `json:"magne_x"`
-	MagneY               Optional[float64]      `json:"magne_y"`
-	MagneZ               Optional[float64]      `json:"magne_z"`
-	Pressure             Optional[float64]      `json:"pressure"`
+	// X-axis accelerometer reading reported by the AP
+	AccelX Optional[float64] `json:"accel_x"`
+	// Y-axis accelerometer reading reported by the AP
+	AccelY Optional[float64] `json:"accel_y"`
+	// Z-axis accelerometer reading reported by the AP
+	AccelZ Optional[float64] `json:"accel_z"`
+	// Temperature reading from the AP ambient sensor
+	AmbientTemp Optional[int] `json:"ambient_temp"`
+	// Device attitude or orientation reading reported by the AP
+	Attitude Optional[int] `json:"attitude"`
+	// Temperature reading from the AP CPU sensor
+	CpuTemp Optional[int] `json:"cpu_temp"`
+	// Relative humidity sensor reading reported by the AP
+	Humidity Optional[int] `json:"humidity"`
+	// X-axis magnetometer reading reported by the AP
+	MagneX Optional[float64] `json:"magne_x"`
+	// Y-axis magnetometer reading reported by the AP
+	MagneY Optional[float64] `json:"magne_y"`
+	// Z-axis magnetometer reading reported by the AP
+	MagneZ Optional[float64] `json:"magne_z"`
+	// Barometric pressure sensor reading reported by the AP
+	Pressure Optional[float64] `json:"pressure"`
+	// Core voltage sensor reading reported by the AP
 	VcoreVoltage         Optional[int]          `json:"vcore_voltage"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

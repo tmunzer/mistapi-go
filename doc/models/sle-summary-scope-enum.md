@@ -17,3 +17,18 @@ enum: `ap`, `client`, `gateway`, `site`, `switch`
 | `site` |
 | `switch` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sleSummaryScope := models.SleSummaryScopeEnum_SITE
+
+}
+```
+

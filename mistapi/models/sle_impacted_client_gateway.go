@@ -8,10 +8,15 @@ import (
 )
 
 // SleImpactedClientGateway represents a SleImpactedClientGateway struct.
+// Gateway association for an impacted client
 type SleImpactedClientGateway struct {
-	ChassisMac           *string                `json:"chassis_mac,omitempty"`
-	GatewayMac           *string                `json:"gateway_mac,omitempty"`
-	GatewayName          *string                `json:"gateway_name,omitempty"`
+	// MAC address of the chassis associated with this client gateway row
+	ChassisMac *string `json:"chassis_mac,omitempty"`
+	// MAC address of the gateway associated with this client row
+	GatewayMac *string `json:"gateway_mac,omitempty"`
+	// Display name of the gateway associated with this client row
+	GatewayName *string `json:"gateway_name,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Interfaces           []string               `json:"interfaces,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

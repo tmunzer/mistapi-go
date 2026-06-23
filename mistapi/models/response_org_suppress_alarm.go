@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseOrgSuppressAlarm represents a ResponseOrgSuppressAlarm struct.
+// Response containing currently suppressed organization alarm entries
 type ResponseOrgSuppressAlarm struct {
+	// Suppressed alarm entries returned for the organization
 	Results              []ResponseOrgSuppressAlarmItem `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"_"`
 }

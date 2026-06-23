@@ -1,6 +1,8 @@
 
 # Stats Mxedge Port Stat Sfp
 
+SFP transceiver details reported for a Mist Edge port
+
 ## Structure
 
 `StatsMxedgePortStatSfp`
@@ -9,22 +11,31 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Codes` | `*string` | Optional | - |
-| `Mbps` | `*int` | Optional | - |
-| `PartNo` | `*string` | Optional | - |
-| `SerialNo` | `*string` | Optional | - |
-| `Type` | `*int` | Optional | - |
-| `Vendor` | `*string` | Optional | - |
+| `Codes` | `*string` | Optional | Transceiver capability codes reported by the SFP module |
+| `Mbps` | `*int` | Optional | Nominal transceiver speed, in Mbps |
+| `PartNo` | `*string` | Optional | Manufacturer part number reported by the SFP module |
+| `SerialNo` | `*string` | Optional | Manufacturer serial number reported by the SFP module |
+| `Type` | `*int` | Optional | Transceiver type code reported by the SFP module |
+| `Vendor` | `*string` | Optional | Manufacturer name reported by the SFP module |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "codes": "codes2",
-  "mbps": 150,
-  "part_no": "part_no6",
-  "serial_no": "serial_no6",
-  "type": 22
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsMxedgePortStatSfp := models.StatsMxedgePortStatSfp{
+        Codes:                models.ToPointer("codes2"),
+        Mbps:                 models.ToPointer(158),
+        PartNo:               models.ToPointer("part_no6"),
+        SerialNo:             models.ToPointer("serial_no6"),
+        Type:                 models.ToPointer(14),
+    }
+
 }
 ```
 

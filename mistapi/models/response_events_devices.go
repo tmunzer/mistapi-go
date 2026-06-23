@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseEventsDevices represents a ResponseEventsDevices struct.
+// Paginated response for site device event search results
 type ResponseEventsDevices struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []DeviceEvent          `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the device event search window
+	End int `json:"end"`
+	// Maximum number of device event records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of device event records
+	Next *string `json:"next,omitempty"`
+	// List of device event payloads
+	Results []DeviceEvent `json:"results"`
+	// Epoch timestamp for the start of the device event search window
+	Start int `json:"start"`
+	// Number of device event records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

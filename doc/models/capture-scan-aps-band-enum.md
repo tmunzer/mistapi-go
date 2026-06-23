@@ -15,3 +15,18 @@ Only Single value allowed. enum: `24`, `5`, `6`
 | `5` |
 | `6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureScanApsBand := models.CaptureScanApsBandEnum_ENUM6
+
+}
+```
+

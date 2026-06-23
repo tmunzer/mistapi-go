@@ -1,7 +1,7 @@
 
 # Snmp Usm Engine Type Enum
 
-enum: `local_engine`, `remote_engine`
+SNMP engine type used for this USM configuration. enum: `local_engine`, `remote_engine`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `local_engine`, `remote_engine`
 |  --- |
 | `local_engine` |
 | `remote_engine` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    snmpUsmEngineType := models.SnmpUsmEngineTypeEnum_LOCALENGINE
+
+}
+```
 

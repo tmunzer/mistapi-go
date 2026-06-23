@@ -8,13 +8,21 @@ import (
 )
 
 // StatsGatewaySpuItem represents a StatsGatewaySpuItem struct.
+// Services Processing Unit resource and session counters
 type StatsGatewaySpuItem struct {
-	SpuCpu               *int                   `json:"spu_cpu,omitempty"`
-	SpuCurrentSession    *int                   `json:"spu_current_session,omitempty"`
-	SpuMaxSession        *int                   `json:"spu_max_session,omitempty"`
-	SpuMemory            *int                   `json:"spu_memory,omitempty"`
-	SpuPendingSession    *int                   `json:"spu_pending_session,omitempty"`
-	SpuUptime            *int                   `json:"spu_uptime,omitempty"`
+	// CPU utilization reported for the Services Processing Unit
+	SpuCpu *int `json:"spu_cpu,omitempty"`
+	// Current session count handled by the Services Processing Unit
+	SpuCurrentSession *int `json:"spu_current_session,omitempty"`
+	// Maximum sessions supported by the Services Processing Unit
+	SpuMaxSession *int `json:"spu_max_session,omitempty"`
+	// Memory utilization reported for the Services Processing Unit
+	SpuMemory *int `json:"spu_memory,omitempty"`
+	// Pending session count on the Services Processing Unit
+	SpuPendingSession *int `json:"spu_pending_session,omitempty"`
+	// Elapsed time since the Services Processing Unit started, in seconds
+	SpuUptime *int `json:"spu_uptime,omitempty"`
+	// Valid session count currently tracked by the Services Processing Unit
 	SpuValidSession      *int                   `json:"spu_valid_session,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

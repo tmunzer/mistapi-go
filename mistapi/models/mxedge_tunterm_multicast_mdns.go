@@ -8,8 +8,11 @@ import (
 )
 
 // MxedgeTuntermMulticastMdns represents a MxedgeTuntermMulticastMdns struct.
+// mDNS forwarding settings for tunnel termination
 type MxedgeTuntermMulticastMdns struct {
-	Enabled              *bool                  `json:"enabled,omitempty"`
+	// Whether mDNS forwarding is enabled for the configured VLANs
+	Enabled *bool `json:"enabled,omitempty"`
+	// Unique string values returned or accepted by this schema
 	VlanIds              []string               `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

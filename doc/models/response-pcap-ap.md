@@ -1,6 +1,8 @@
 
 # Response Pcap Ap
 
+AP radio settings used for a packet capture
+
 ## Structure
 
 `ResponsePcapAp`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Band` | `*int` | Optional | - |
-| `Bandwidth` | `*int` | Optional | - |
-| `Channel` | `*int` | Optional | - |
-| `TcpdumpExpression` | `models.Optional[string]` | Optional | - |
+| `Band` | `*int` | Optional | Radio band used for the AP packet capture |
+| `Bandwidth` | `*int` | Optional | Channel bandwidth used for the AP packet capture, in MHz |
+| `Channel` | `*int` | Optional | Radio channel used for the AP packet capture |
+| `TcpdumpExpression` | `models.Optional[string]` | Optional | Tcpdump filter expression applied to the AP packet capture, or null when no filter is applied |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "band": 104,
-  "bandwidth": 38,
-  "channel": 190,
-  "tcpdump_expression": "tcpdump_expression2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responsePcapAp := models.ResponsePcapAp{
+        Band:                 models.ToPointer(122),
+        Bandwidth:            models.ToPointer(56),
+        Channel:              models.ToPointer(172),
+        TcpdumpExpression:    models.NewOptional(models.ToPointer("tcpdump_expression8")),
+    }
+
 }
 ```
 

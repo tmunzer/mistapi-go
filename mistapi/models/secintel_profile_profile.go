@@ -8,6 +8,7 @@ import (
 )
 
 // SecintelProfileProfile represents a SecintelProfileProfile struct.
+// SecIntel action setting for a specific feed category
 type SecintelProfileProfile struct {
 	// enum: `default`, `standard`, `strict`
 	Action *SecintelProfileProfileActionEnum `json:"action,omitempty"`

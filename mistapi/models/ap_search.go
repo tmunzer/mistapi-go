@@ -11,60 +11,79 @@ import (
 )
 
 // ApSearch represents a ApSearch struct.
+// Access point record returned by device search endpoints
 type ApSearch struct {
-	// Bandwidth of band_24
+	// Current channel bandwidth on the AP 2.4 GHz radio
 	Band24Bandwidth *string `json:"band_24_bandwidth,omitempty"`
-	// Channel of band_24
+	// Current channel on the AP 2.4 GHz radio
 	Band24Channel *int `json:"band_24_channel,omitempty"`
-	Band24Power   *int `json:"band_24_power,omitempty"`
-	// Bandwidth of band_5
+	// Current transmit power on the AP 2.4 GHz radio
+	Band24Power *int `json:"band_24_power,omitempty"`
+	// Current channel bandwidth on the AP 5 GHz radio
 	Band5Bandwidth *string `json:"band_5_bandwidth,omitempty"`
-	// Channel of band_5
-	Band5Channel   *int    `json:"band_5_channel,omitempty"`
-	Band5Power     *int    `json:"band_5_power,omitempty"`
+	// Current channel on the AP 5 GHz radio
+	Band5Channel *int `json:"band_5_channel,omitempty"`
+	// Current transmit power on the AP 5 GHz radio
+	Band5Power *int `json:"band_5_power,omitempty"`
+	// Current channel bandwidth on the AP 6 GHz radio
 	Band6Bandwidth *string `json:"band_6_bandwidth,omitempty"`
-	// Channel of band_6
+	// Current channel on the AP 6 GHz radio
 	Band6Channel *int `json:"band_6_channel,omitempty"`
-	Band6Power   *int `json:"band_6_power,omitempty"`
+	// Current transmit power on the AP 6 GHz radio
+	Band6Power *int `json:"band_6_power,omitempty"`
 	// Port speed of eth0
-	Eth0PortSpeed *int    `json:"eth0_port_speed,omitempty"`
-	ExtIp         *string `json:"ext_ip,omitempty"`
+	Eth0PortSpeed *int `json:"eth0_port_speed,omitempty"`
+	// External IP address observed for AP management traffic
+	ExtIp *string `json:"ext_ip,omitempty"`
 	// List of hostnames detected for the AP
-	Hostname           []string `json:"hostname,omitempty"`
-	InactiveWiredVlans []int    `json:"inactive_wired_vlans,omitempty"`
-	// IP Address
-	Ip           *string `json:"ip,omitempty"`
+	Hostname []string `json:"hostname,omitempty"`
+	// Inactive wired VLAN IDs reported for an AP
+	InactiveWiredVlans []int `json:"inactive_wired_vlans,omitempty"`
+	// Management IP address currently assigned to the AP
+	Ip *string `json:"ip,omitempty"`
+	// Most recent hostname detected for the AP
 	LastHostname *string `json:"last_hostname,omitempty"`
-	// LLDP management ip address
+	// LLDP management IP address advertised by the upstream neighbor
 	LldpMgmtAddr *string `json:"lldp_mgmt_addr,omitempty"`
+	// LLDP port description advertised by the upstream neighbor
 	LldpPortDesc *string `json:"lldp_port_desc,omitempty"`
-	// LLDP port id
-	LldpPortId         *string `json:"lldp_port_id,omitempty"`
-	LldpPowerAllocated *int    `json:"lldp_power_allocated,omitempty"`
-	LldpPowerDraw      *int    `json:"lldp_power_draw,omitempty"`
-	// LLDP system description
+	// LLDP port identifier advertised by the upstream neighbor
+	LldpPortId *string `json:"lldp_port_id,omitempty"`
+	// Power allocated to the AP by LLDP, in mW
+	LldpPowerAllocated *int `json:"lldp_power_allocated,omitempty"`
+	// Power drawn by the AP as reported through LLDP, in mW
+	LldpPowerDraw *int `json:"lldp_power_draw,omitempty"`
+	// LLDP system description advertised by the upstream neighbor
 	LldpSystemDesc *string `json:"lldp_system_desc,omitempty"`
-	// LLDP system name
+	// LLDP system name advertised by the upstream neighbor
 	LldpSystemName *string `json:"lldp_system_name,omitempty"`
-	// Device model
-	Mac   *string `json:"mac,omitempty"`
+	// Access point MAC address used to identify the AP in search results
+	Mac *string `json:"mac,omitempty"`
+	// AP hardware model for this search result
 	Model *string `json:"model,omitempty"`
 	// Mist Edge id, if AP is connecting to a Mist Edge
 	MxedgeId *string `json:"mxedge_id,omitempty"`
 	// Comma separated list of Mist Edge ids, if AP is connecting to a Mist Edge
 	MxedgeIds *string `json:"mxedge_ids,omitempty"`
-	// MxTunnel status
-	MxtunnelStatus   string     `json:"mxtunnel_status"`
-	OrgId            *uuid.UUID `json:"org_id,omitempty"`
-	PowerConstrained bool       `json:"power_constrained"`
-	PowerOpmode      string     `json:"power_opmode"`
-	SiteId           *uuid.UUID `json:"site_id,omitempty"`
-	Sku              *string    `json:"sku,omitempty"`
-	// Epoch (seconds)
+	// Current MxTunnel connection status of the AP
+	MxtunnelStatus string `json:"mxtunnel_status"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Whether the AP is operating with insufficient power
+	PowerConstrained bool `json:"power_constrained"`
+	// Operating mode reported when AP power is constrained
+	PowerOpmode string `json:"power_opmode"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Hardware SKU for the AP model
+	Sku *string `json:"sku,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	Uptime    *int     `json:"uptime,omitempty"`
-	// Version
-	Version              *string                `json:"version,omitempty"`
+	// Device uptime for the AP, in seconds
+	Uptime *int `json:"uptime,omitempty"`
+	// Software version currently running on the AP
+	Version *string `json:"version,omitempty"`
+	// WLAN summaries included in an AP search result
 	Wlans                []ApSearchWlan         `json:"wlans"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

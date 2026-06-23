@@ -10,13 +10,21 @@ import (
 )
 
 // InsightRogueClient represents a InsightRogueClient struct.
+// Rogue client observation returned by site insights
 type InsightRogueClient struct {
-	Annotation           string                 `json:"annotation"`
-	ApMac                string                 `json:"ap_mac"`
-	AvgRssi              float64                `json:"avg_rssi"`
-	Band                 string                 `json:"band"`
-	Bssid                string                 `json:"bssid"`
-	ClientMac            string                 `json:"client_mac"`
+	// Rogue client annotation or classification
+	Annotation string `json:"annotation"`
+	// Reporting AP MAC address that observed the rogue client
+	ApMac string `json:"ap_mac"`
+	// Average RSSI for the rogue client as heard by reporting APs
+	AvgRssi float64 `json:"avg_rssi"`
+	// Radio band on which the rogue client was observed
+	Band string `json:"band"`
+	// Rogue BSSID associated with the client
+	Bssid string `json:"bssid"`
+	// Observed client MAC address on the rogue BSSID
+	ClientMac string `json:"client_mac"`
+	// Number of APs that observed the rogue client
 	NumAps               int                    `json:"num_aps"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

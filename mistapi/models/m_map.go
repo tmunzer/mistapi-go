@@ -9,52 +9,57 @@ import (
 )
 
 // Map represents a Map struct.
-// Map
+// Map or floorplan metadata for a site or organization
 type Map struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Name/val pair objects for location engine to use
-	Flags   map[string]int `json:"flags,omitempty"`
-	ForSite *bool          `json:"for_site,omitempty"`
+	Flags map[string]int `json:"flags,omitempty"`
+	// Whether this map belongs to a site scope
+	ForSite *bool `json:"for_site,omitempty"`
 	// List of geofences for the map
 	Geofences []MapGeofence `json:"geofences,omitempty"`
-	// maps grouping, typically used for floor, optional
+	// Optional floor or group ordering index for this map
 	GroupIdx *int `json:"group_idx,omitempty"`
-	// maps grouping, optional
+	// Optional floor or group display name for this map
 	GroupName *string `json:"group_name,omitempty"`
-	// When type=image, height of the image map
-	Height  *int     `json:"height,omitempty"`
+	// When `type`==`image`, height of the map image in pixels
+	Height *int `json:"height,omitempty"`
+	// Physical height of the map in meters
 	HeightM *float64 `json:"height_m,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// When type=google, latitude / longitude of the bottom-right corner
+	// When `type`==`google`, latitude and longitude of the bottom-right corner
 	LatlngBr *LatlngBr `json:"latlng_br,omitempty"`
-	// When type=google, latitude / longitude of the top-left corner
+	// When `type`==`google`, latitude and longitude of the top-left corner
 	LatlngTl *LatlngTl `json:"latlng_tl,omitempty"`
 	// Whether this map is considered locked down
 	Locked *bool `json:"locked,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// The name of the map
-	Name           *string    `json:"name,omitempty"`
-	OccupancyLimit *int       `json:"occupancy_limit,omitempty"`
-	OrgId          *uuid.UUID `json:"org_id,omitempty"`
-	// Orientation of the map, 0 means up is north, 90 means up is west
+	Name *string `json:"name,omitempty"`
+	// Maximum occupancy configured for this map
+	OccupancyLimit *int `json:"occupancy_limit,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Map orientation in degrees; 0 means up is north, 90 means up is west
 	Orientation *int `json:"orientation,omitempty"`
 	// User-annotated X origin, pixels
 	OriginX *int `json:"origin_x,omitempty"`
 	// User-annotated Y origin, pixels
 	OriginY *int `json:"origin_y,omitempty"`
-	// When type=image, pixels per meter
-	Ppm    *float64   `json:"ppm,omitempty"`
+	// When `type`==`image`, pixels per meter for the map image
+	Ppm *float64 `json:"ppm,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// Sitesurvey_path
+	// Site survey path definitions for a map
 	SitesurveyPath []MapSitesurveyPathItems `json:"sitesurvey_path,omitempty"`
-	// When type=image, the url for the thumbnail image / preview
+	// When `type`==`image`, URL for the thumbnail image or preview
 	ThumbnailUrl *string `json:"thumbnail_url,omitempty"`
-	// enum: `google`, `image`
+	// Map type, such as `image` or `google`. enum: `google`, `image`
 	Type *MapTypeEnum `json:"type,omitempty"`
-	// When type=image, the url
+	// When `type`==`image`, URL for the map image
 	Url *string `json:"url,omitempty"`
 	// if `type`==`google`. enum: `hybrid`, `roadmap`, `satellite`, `terrain`
 	View Optional[MapViewEnum] `json:"view"`
@@ -64,8 +69,9 @@ type Map struct {
 	Wayfinding *MapWayfinding `json:"wayfinding,omitempty"`
 	// JSON blob for wayfinding (using Dijkstra’s algorithm)
 	WayfindingPath *MapWayfindingPath `json:"wayfinding_path,omitempty"`
-	// When type=image, width of the image map
-	Width                *int                   `json:"width,omitempty"`
+	// When `type`==`image`, width of the map image in pixels
+	Width *int `json:"width,omitempty"`
+	// Physical width of the map in meters
 	WidthM               *float64               `json:"width_m,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

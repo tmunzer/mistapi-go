@@ -9,24 +9,27 @@ import (
 )
 
 // WebhookLocationCentrakEvent represents a WebhookLocationCentrakEvent struct.
+// CenTrak location update with map coordinates and Wi-Fi beacon metadata
 type WebhookLocationCentrakEvent struct {
-	// MAC address of the device
+	// Device MAC address used as the CenTrak location identifier
 	Mac *string `json:"mac,omitempty"`
-	// Map id
+	// Identifier of the map where the CenTrak location was calculated
 	MapId *string `json:"map_id,omitempty"`
 	// Optional, BLE manufacturing company ID
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// Optional, BLE manufacturing data in hex byte-string format (i.e. "112233AABBCC")
-	MfgData *string    `json:"mfg_data,omitempty"`
-	SiteId  *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
-	Timestamp *float64                             `json:"timestamp,omitempty"`
-	Type      *WebhookLocationCentrakEventTypeEnum `json:"type,omitempty"`
+	MfgData *string `json:"mfg_data,omitempty"`
+	// Site associated with the CenTrak location event
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Location object type for CenTrak Wi-Fi beacon events. enum: `wifi`
+	Type *WebhookLocationCentrakEventTypeEnum `json:"type,omitempty"`
 	// Optional, list of extended beacon info packets heard from the client, frame and sequence control included with the payload
 	WifiBeaconExtendedInfo []WifiBeaconExtendedInfoItems `json:"wifi_beacon_extended_info,omitempty"`
-	// x, in meter
+	// Horizontal map coordinate of the CenTrak device, in meters
 	X *float64 `json:"x,omitempty"`
-	// y, in meter
+	// Vertical map coordinate of the CenTrak device, in meters
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

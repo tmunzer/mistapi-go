@@ -8,14 +8,19 @@ import (
 )
 
 // Snmpv3ConfigTargetAddressItem represents a Snmpv3ConfigTargetAddressItem struct.
+// SNMPv3 notification target address entry
 type Snmpv3ConfigTargetAddressItem struct {
-	Address     *string          `json:"address,omitempty"`
-	AddressMask *string          `json:"address_mask,omitempty"`
-	Port        Optional[string] `json:"port"`
-	// Refer to notify tag, can be multiple with blank
-	TagList           *string `json:"tag_list,omitempty"`
+	// IP address or hostname of the SNMP target
+	Address *string `json:"address,omitempty"`
+	// Mask applied to the SNMP target address
+	AddressMask *string `json:"address_mask,omitempty"`
+	// UDP port used by the SNMP target
+	Port Optional[string] `json:"port"`
+	// Set of notification tags for this target address; use spaces between multiple tags
+	TagList *string `json:"tag_list,omitempty"`
+	// Name of the SNMP target address entry
 	TargetAddressName *string `json:"target_address_name,omitempty"`
-	// Refer to notify target parameters name
+	// Target parameter profile referenced by this target address
 	TargetParameters     *string                `json:"target_parameters,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

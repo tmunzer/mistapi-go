@@ -8,7 +8,9 @@ import (
 )
 
 // ServicePolicySkyatpIotDevicePolicy represents a ServicePolicySkyatpIotDevicePolicy struct.
+// Sky ATP IoT device policy settings
 type ServicePolicySkyatpIotDevicePolicy struct {
+	// Whether Sky ATP IoT device policy inspection is enabled
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

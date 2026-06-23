@@ -8,13 +8,17 @@ import (
 )
 
 // Tacacs represents a Tacacs struct.
+// TACACS+ settings for switch management authentication and accounting
 type Tacacs struct {
+	// List of TACACS+ accounting servers
 	AcctServers []TacacsAcctServer `json:"acct_servers,omitempty"`
 	// enum: `admin`, `helpdesk`, `none`, `read`
 	DefaultRole *TacacsDefaultRoleEnum `json:"default_role,omitempty"`
-	Enabled     *bool                  `json:"enabled,omitempty"`
-	// Which network the TACACS server resides
-	Network              *string                `json:"network,omitempty"`
+	// Whether TACACS+ is enabled for switch management authentication
+	Enabled *bool `json:"enabled,omitempty"`
+	// Source network used for connectivity to the TACACS+ servers
+	Network *string `json:"network,omitempty"`
+	// List of TACACS+ authentication servers
 	TacplusServers       []TacacsAuthServer     `json:"tacplus_servers,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,6 +1,8 @@
 
 # Log Event
 
+Audit log event recorded for an organization or site
+
 ## Structure
 
 `LogEvent`
@@ -9,38 +11,42 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AdminId` | `models.Optional[uuid.UUID]` | Optional | admin id |
-| `AdminName` | `models.Optional[string]` | Optional | Name of the admin that performs the action |
-| `After` | `*interface{}` | Optional | field values after the change |
-| `Before` | `*interface{}` | Optional | field values prior to the change |
-| `DeviceId` | `models.Optional[uuid.UUID]` | Optional | Device id |
-| `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `Message` | `string` | Required | log message |
-| `OrgId` | `uuid.UUID` | Required | - |
-| `SiteId` | `models.Optional[uuid.UUID]` | Optional | - |
-| `SrcIp` | `*string` | Optional | sender source ip address |
-| `Timestamp` | `float64` | Required | Epoch (seconds) |
+| `AdminId` | `models.Optional[uuid.UUID]` | Optional, Read-only | Admin user identifier associated with the log event |
+| `AdminName` | `models.Optional[string]` | Optional, Read-only | Name of the admin that performs the action |
+| `After` | `*interface{}` | Optional, Read-only | field values after the change |
+| `Before` | `*interface{}` | Optional, Read-only | field values prior to the change |
+| `DeviceId` | `models.Optional[uuid.UUID]` | Optional, Read-only | Device identifier associated with the log event |
+| `ForSite` | `*bool` | Optional, Read-only | Whether this log event is scoped to a site |
+| `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
+| `Message` | `string` | Required, Read-only | Human-readable log message describing the event |
+| `OrgId` | `uuid.UUID` | Required, Read-only | Unique identifier of a Mist organization |
+| `SiteId` | `models.Optional[uuid.UUID]` | Optional, Read-only | Site associated with the log event, if any |
+| `SrcIp` | `*string` | Optional | sender source IP address |
+| `Timestamp` | `float64` | Required, Read-only | Epoch timestamp, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "message": "message8",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "timestamp": 29.66,
-  "admin_id": "00002082-0000-0000-0000-000000000000",
-  "admin_name": "admin_name6",
-  "after": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "before": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "device_id": "00000e6e-0000-0000-0000-000000000000"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    logEvent := models.LogEvent{
+        AdminId:              models.NewOptional(models.ToPointer(uuid.MustParse("00000244-0000-0000-0000-000000000000"))),
+        AdminName:            models.NewOptional(models.ToPointer("admin_name4")),
+        After:                models.ToPointer(interface{}("[key1, val1][key2, val2]")),
+        Before:               models.ToPointer(interface{}("[key1, val1][key2, val2]")),
+        DeviceId:             models.NewOptional(models.ToPointer(uuid.MustParse("00001740-0000-0000-0000-000000000000"))),
+        Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+        Message:              "message6",
+        OrgId:                uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61"),
+        Timestamp:            float64(8.24),
+    }
+
 }
 ```
 

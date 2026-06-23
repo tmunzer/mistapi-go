@@ -1,6 +1,8 @@
 
 # Utils Show Arp
 
+ARP table lookup request for device command output
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,28 +13,36 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 300` |
-| `Interval` | `*int` | Optional | Rate at which output will refresh<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 10` |
-| `Ip` | `*string` | Optional | IP Address |
-| `Node` | [`*models.HaClusterNodeEnum1Enum`](../../doc/models/ha-cluster-node-enum-1-enum.md) | Optional | HA cluster node to run the command on, required for Gateways |
-| `PortId` | `*string` | Optional | Device Port ID |
-| `Vrf` | `*string` | Optional | VRF Name |
+| `Duration` | `*int` | Optional | Refresh duration in seconds; set only when `interval` is nonzero<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 300` |
+| `Interval` | `*int` | Optional | Refresh interval in seconds for repeated command output<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0`, `<= 10` |
+| `Ip` | `*string` | Optional | Address filter for the ARP table lookup |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | HA cluster node selector. enum: `node0`, `node1` |
+| `PortId` | `*string` | Optional | Device port identifier filter for the ARP table lookup |
+| `Vrf` | `*string` | Optional | Routing instance or VRF filter for the ARP table lookup |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "duration": 0,
-  "interval": 0,
-  "ip": "192.168.30.7",
-  "port_id": "ge-0/0/0.0",
-  "vrf": "guest",
-  "node": "node0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsShowArp := models.UtilsShowArp{
+        Duration:             models.ToPointer(0),
+        Interval:             models.ToPointer(0),
+        Ip:                   models.ToPointer("192.168.30.7"),
+        Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
+        PortId:               models.ToPointer("ge-0/0/0.0"),
+        Vrf:                  models.ToPointer("guest"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

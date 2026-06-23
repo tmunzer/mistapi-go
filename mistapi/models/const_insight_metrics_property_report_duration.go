@@ -8,8 +8,11 @@ import (
 )
 
 // ConstInsightMetricsPropertyReportDuration represents a ConstInsightMetricsPropertyReportDuration struct.
+// Report duration definition for an insight metric
 type ConstInsightMetricsPropertyReportDuration struct {
-	Duration             *int                   `json:"duration,omitempty"`
+	// Report duration length, in seconds
+	Duration *int `json:"duration,omitempty"`
+	// Sampling interval used for this report duration, in seconds
 	Interval             *int                   `json:"interval,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,7 +8,9 @@ import (
 )
 
 // MspLogo represents a MspLogo struct.
+// Payload for uploading an advanced-tier MSP logo
 type MspLogo struct {
+	// Public URL for the advanced-tier MSP logo image
 	LogoUrl              *string                `json:"logo_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

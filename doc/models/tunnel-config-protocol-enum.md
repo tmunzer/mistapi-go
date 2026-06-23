@@ -14,3 +14,18 @@ Only if `provider`==`custom-ipsec`. enum: `gre`, `ipsec`
 | `gre` |
 | `ipsec` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigProtocol := models.TunnelConfigProtocolEnum_GRE
+
+}
+```
+

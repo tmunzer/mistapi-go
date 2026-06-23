@@ -1,7 +1,7 @@
 
 # Capture Mxedge Type Enum
 
-enum: `mxedge`
+Packet capture type discriminator for Mist Edge captures. enum: `mxedge`
 
 ## Enumeration
 
@@ -15,7 +15,16 @@ enum: `mxedge`
 
 ## Example
 
-```
-mxedge
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureMxedgeType := models.CaptureMxedgeTypeEnum_MXEDGE
+
+}
 ```
 

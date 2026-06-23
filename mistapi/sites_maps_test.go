@@ -18,9 +18,10 @@ func TestSitesMapsTestListSiteMaps(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, &limit, &page)
+	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, nil, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -40,9 +41,10 @@ func TestSitesMapsTestListSiteMaps1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, &limit, &page)
+	apiResponse, err := sitesMaps.ListSiteMaps(ctx, siteId, nil, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

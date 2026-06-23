@@ -10,18 +10,20 @@ import (
 )
 
 // JunosLocalPortConfig represents a JunosLocalPortConfig struct.
-// Switch port config
+// Per-port Switch Port Operator (SPO) override configuration used in `local_port_config` to customize settings inherited from `port_config`
 type JunosLocalPortConfig struct {
 	// Only if `mode`==`trunk` whether to trunk all network/vlans
 	AllNetworks *bool `json:"all_networks,omitempty"`
 	// Controls whether DHCP server traffic is allowed on ports using this configuration if DHCP snooping is enabled. This is a tri-state setting; `true`: ports become trusted ports allowing DHCP server traffic, `false`: ports become untrusted blocking DHCP server traffic, undefined: use system defaults (access ports default to untrusted, trunk ports default to trusted).
-	AllowDhcpd               *bool `json:"allow_dhcpd,omitempty"`
+	AllowDhcpd *bool `json:"allow_dhcpd,omitempty"`
+	// Whether multiple supplicants may authenticate on the port
 	AllowMultipleSupplicants *bool `json:"allow_multiple_supplicants,omitempty"`
 	// Only if `port_auth`==`dot1x` bypass auth for known clients if set to true when RADIUS server is down
 	BypassAuthWhenServerDown *bool `json:"bypass_auth_when_server_down,omitempty"`
 	// Only if `port_auth`=`dot1x` bypass auth for all (including unknown clients) if set to true when RADIUS server is down
-	BypassAuthWhenServerDownForUnknownClient *bool   `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
-	Description                              *string `json:"description,omitempty"`
+	BypassAuthWhenServerDownForUnknownClient *bool `json:"bypass_auth_when_server_down_for_unknown_client,omitempty"`
+	// Human-readable description for this local port configuration
+	Description *string `json:"description,omitempty"`
 	// Only if `mode`!=`dynamic` if speed and duplex are specified, whether to disable autonegotiation
 	DisableAutoneg *bool `json:"disable_autoneg,omitempty"`
 	// Whether the port is disabled
@@ -32,18 +34,19 @@ type JunosLocalPortConfig struct {
 	DynamicVlanNetworks []string `json:"dynamic_vlan_networks,omitempty"`
 	// Only if `port_auth`==`dot1x` whether to enable MAC Auth
 	EnableMacAuth *bool `json:"enable_mac_auth,omitempty"`
-	EnableQos     *bool `json:"enable_qos,omitempty"`
+	// Whether QoS is enabled on ports using this local configuration
+	EnableQos *bool `json:"enable_qos,omitempty"`
 	// Only if `port_auth`==`dot1x` which network to put the device into if the device cannot do dot1x. default is null (i.e. not allowed)
 	GuestNetwork Optional[string] `json:"guest_network"`
-	// inter_switch_link is used together with "isolation" under networks. NOTE: inter_switch_link works only between Juniper devices. This has to be applied to both ports connected together
+	// Used together with "isolation" under networks for links between Juniper devices; must be applied to both connected ports
 	InterSwitchLink *bool `json:"inter_switch_link,omitempty"`
-	// Only if `enable_mac_auth`==`true`
+	// Only if `enable_mac_auth`==`true`, whether to use MAC authentication without 802.1X
 	MacAuthOnly *bool `json:"mac_auth_only,omitempty"`
 	// Only if `enable_mac_auth`==`true` + `mac_auth_only`==`false`, dot1x will be given priority then mac_auth. Enable this to prefer mac_auth over dot1x.
 	MacAuthPreferred *bool `json:"mac_auth_preferred,omitempty"`
 	// Only if `enable_mac_auth` ==`true`. This type is ignored if mist_nac is enabled. enum: `eap-md5`, `eap-peap`, `pap`
 	MacAuthProtocol *SwitchPortLocalUsageMacAuthProtocolEnum `json:"mac_auth_protocol,omitempty"`
-	// Max number of mac addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
+	// Max number of MAC addresses, default is 0 for unlimited, otherwise range is 1 or higher, with upper bound constrained by platform
 	MacLimit *int `json:"mac_limit,omitempty"`
 	// enum: `access`, `inet`, `trunk`
 	Mode *SwitchPortLocalUsageModeEnum `json:"mode,omitempty"`
@@ -65,17 +68,19 @@ type JunosLocalPortConfig struct {
 	ReauthInterval *SwitchPortUsageReauthInterval `json:"reauth_interval,omitempty"`
 	// Only if `port_auth`==`dot1x` sets server fail fallback vlan
 	ServerFailNetwork Optional[string] `json:"server_fail_network"`
-	// Only if `port_auth`==`dot1x` when radius server reject / fails
+	// Only if `port_auth`==`dot1x` when RADIUS server reject / fails
 	ServerRejectNetwork Optional[string] `json:"server_reject_network"`
 	// enum: `100m`, `10m`, `1g`, `2.5g`, `5g`, `10g`, `25g`, `40g`, `100g`,`auto`
 	Speed *JunosPortConfigSpeedEnum `json:"speed,omitempty"`
-	// Switch storm control
+	// Storm-control settings for this local port configuration
 	StormControl *SwitchPortLocalUsageStormControl `json:"storm_control,omitempty"`
 	// When enabled, the port is not expected to receive BPDU frames
-	StpEdge       *bool `json:"stp_edge,omitempty"`
+	StpEdge *bool `json:"stp_edge,omitempty"`
+	// Whether STP should prevent this port from becoming a root port
 	StpNoRootPort *bool `json:"stp_no_root_port,omitempty"`
-	StpP2p        *bool `json:"stp_p2p,omitempty"`
-	// Port usage name.
+	// Whether STP treats this port as a point-to-point link
+	StpP2p *bool `json:"stp_p2p,omitempty"`
+	// Port usage profile name for this local port configuration
 	Usage string `json:"usage"`
 	// If this is connected to a vstp network
 	UseVstp *bool `json:"use_vstp,omitempty"`

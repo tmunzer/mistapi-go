@@ -10,8 +10,11 @@ import (
 )
 
 // WxtagClient represents a WxtagClient struct.
+// Client associated with a WxLAN tag
 type WxtagClient struct {
-	Mac                  string                 `json:"mac"`
+	// Client MAC address associated with the WxLAN tag entry
+	Mac string `json:"mac"`
+	// Time when the client became associated with the WxLAN tag, in epoch seconds
 	Since                float64                `json:"since"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

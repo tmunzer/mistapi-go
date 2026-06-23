@@ -1,6 +1,8 @@
 
 # Stats Switch Clients Stats Total
 
+Total AP and wired-client counts for switch client statistics
+
 ## Structure
 
 `StatsSwitchClientsStatsTotal`
@@ -9,18 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumAps` | `[]int` | Optional | - |
-| `NumWiredClients` | `*int` | Optional | - |
+| `NumAps` | `[]int` | Optional | AP count values included in the aggregate switch client statistics |
+| `NumWiredClients` | `*int` | Optional | Number of wired clients included in the aggregate switch client statistics |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_aps": [
-    19,
-    18
-  ],
-  "num_wired_clients": 218
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsSwitchClientsStatsTotal := models.StatsSwitchClientsStatsTotal{
+        NumAps:               []int{
+            245,
+        },
+        NumWiredClients:      models.ToPointer(188),
+    }
+
 }
 ```
 

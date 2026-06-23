@@ -26,10 +26,8 @@ func NewAdminsLogin(baseController baseController) *AdminsLogin {
 // Login takes context, body as parameters and
 // returns an models.ApiResponse with models.ResponseLoginSuccess data and
 // an error if there was an issue with the request or response.
-// Log in with email/password.
-// When 2FA is enabled, there are two ways to login:
-// 1. login with two_factor token (with Google Authenticator, etc)
-// 2. login with email/password, generate the token, and use /login/two_factor with the token
+// Authenticate an administrator with email and password. A successful login creates the browser session cookies, including the `csrftoken` value used with the `X-CSRFToken` header on later API requests.
+// When 2FA is enabled, either include the `two_factor` code in this request or submit the first factor here and complete the login with [Two Factor]($e/Admins%20Login/twoFactor).
 func (a *AdminsLogin) Login(
 	ctx context.Context,
 	body *models.Login) (
@@ -37,16 +35,6 @@ func (a *AdminsLogin) Login(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/login")
 
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Login Failed", Unmarshaller: errors.NewResponseLoginFailure},
 	})
@@ -67,7 +55,7 @@ func (a *AdminsLogin) Login(
 // TwoFactor takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Send 2FA Code
+// Complete a two-factor login by submitting the 2FA code after the initial email/password step has created a pending login session.
 func (a *AdminsLogin) TwoFactor(
 	ctx context.Context,
 	body *models.TwoFactorString) (
@@ -75,22 +63,12 @@ func (a *AdminsLogin) TwoFactor(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/login/two_factor")
 
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
 		"401": {Message: "two_factor code is incorrect or the user hasn't login yet"},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "The user doesn't have 2FA enabled"},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

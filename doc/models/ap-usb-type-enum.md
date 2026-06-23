@@ -17,7 +17,16 @@ usb config type. enum: `hanshow`, `imagotag`, `solum`
 
 ## Example
 
-```
-imagotag
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    apUsbType := models.ApUsbTypeEnum_HANSHOW
+
+}
 ```
 

@@ -1,6 +1,8 @@
 
 # Assets Import File
 
+CSV file upload payload for importing BLE assets
+
 ## Structure
 
 `AssetsImportFile`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `*[]byte` | Optional | CSV file |
+| `File` | `*[]byte` | Optional | CSV file containing asset records to import |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    assetsImportFile := models.AssetsImportFile{
+        File:                 models.ToPointer(nil),
+    }
+
 }
 ```
 

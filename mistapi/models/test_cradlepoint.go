@@ -8,6 +8,7 @@ import (
 )
 
 // TestCradlepoint represents a TestCradlepoint struct.
+// Cradlepoint integration connectivity test result
 type TestCradlepoint struct {
 	// if status is `inactive` this field returns the reason for it being inactive.
 	Error *string `json:"error,omitempty"`

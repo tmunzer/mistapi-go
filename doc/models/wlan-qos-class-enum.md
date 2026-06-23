@@ -18,7 +18,16 @@ enum: `background`, `best_effort`, `video`, `voice`
 
 ## Example
 
-```
-best_effort
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanQosClass := models.WlanQosClassEnum_BACKGROUND
+
+}
 ```
 

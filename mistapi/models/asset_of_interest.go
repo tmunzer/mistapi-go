@@ -9,20 +9,31 @@ import (
 )
 
 // AssetOfInterest represents a AssetOfInterest struct.
+// BLE beacon that matched a named asset or asset filter
 type AssetOfInterest struct {
-	ApMac      *string  `json:"ap_mac,omitempty"`
-	Beam       *float64 `json:"beam,omitempty"`
-	By         *string  `json:"by,omitempty"`
-	CurrSite   *string  `json:"curr_site,omitempty"`
-	DeviceName *string  `json:"device_name,omitempty"`
+	// Access point MAC address that heard this BLE beacon
+	ApMac *string `json:"ap_mac,omitempty"`
+	// BLE beam number that detected this beacon
+	Beam *float64 `json:"beam,omitempty"`
+	// Match source for this BLE beacon, such as asset or asset filter
+	By *string `json:"by,omitempty"`
+	// Site currently associated with this BLE beacon
+	CurrSite *string `json:"curr_site,omitempty"`
+	// AP name reported for the device that heard this BLE beacon
+	DeviceName *string `json:"device_name,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Last seen timestamp
-	LastSeen             Optional[float64]      `json:"last_seen"`
-	Mac                  *string                `json:"mac,omitempty"`
-	Manufacture          *string                `json:"manufacture,omitempty"`
-	MapId                *string                `json:"map_id,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Bluetooth MAC address of this BLE beacon
+	Mac *string `json:"mac,omitempty"`
+	// BLE manufacturer name resolved for this beacon
+	Manufacture *string `json:"manufacture,omitempty"`
+	// Identifier of the map associated with this BLE beacon observation
+	MapId *string `json:"map_id,omitempty"`
+	// Display name of the matched asset or filter
+	Name *string `json:"name,omitempty"`
+	// Signal strength of this BLE beacon, in dBm
 	Rssi                 *float64               `json:"rssi,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

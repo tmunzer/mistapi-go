@@ -16,3 +16,18 @@ enum: `ap`, `gateway`, `mxedge`, `switch`
 | `switch` |
 | `mxedge` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    lastConfigDeviceType := models.LastConfigDeviceTypeEnum_ENUMSWITCH
+
+}
+```
+

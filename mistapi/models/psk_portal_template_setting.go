@@ -8,10 +8,12 @@ import (
 )
 
 // PskPortalTemplateSetting represents a PskPortalTemplateSetting struct.
+// Custom UI settings for the PSK portal template
 type PskPortalTemplateSetting struct {
 	// defines alignment on portal. enum: `center`, `left`, `right`
 	Alignment *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
-	Color     *string                      `json:"color,omitempty"`
+	// Primary hex color used by the portal template
+	Color *string `json:"color,omitempty"`
 	// Custom logo with "data:image/png;base64," format. default null, uses Juniper Mist Logo
 	Logo Optional[string] `json:"logo"`
 	// Whether to hide "Powered by Juniper Mist" and email footers
@@ -20,12 +22,13 @@ type PskPortalTemplateSetting struct {
 	Tos *bool `json:"tos,omitempty"`
 	// Terms of Service accept button label
 	TosAcceptLabel *string `json:"tosAcceptLabel,omitempty"`
-	// Terror message for not accepting tos
+	// Error message shown when the user has not accepted the Terms of Service
 	TosError *string `json:"tosError,omitempty"`
-	TosLink  *string `json:"tosLink,omitempty"`
-	// terms and service text displayed in footer if tos is enabled
+	// Terms of Service link label displayed in the portal footer
+	TosLink *string `json:"tosLink,omitempty"`
+	// Terms of Service text displayed in the footer when Terms are enabled
 	TosText *string `json:"tosText,omitempty"`
-	// customized url for defining terms of service
+	// Custom URL for the Terms of Service policy
 	TosUrl               *string                `json:"tosUrl,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

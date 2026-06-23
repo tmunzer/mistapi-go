@@ -8,12 +8,13 @@ import (
 )
 
 // UtilsShowOspfDatabase represents a UtilsShowOspfDatabase struct.
+// OSPF database command request for SSR and SRX devices
 type UtilsShowOspfDatabase struct {
-	// only for HA. enum: `node0`, `node1`
+	// HA cluster node selector. enum: `node0`, `node1`
 	Node *HaClusterNodeEnum `json:"node,omitempty"`
-	// Show originating info, default is false
+	// Whether to show only self-originated OSPF database entries
 	SelfOriginate *bool `json:"self_originate,omitempty"`
-	// VRF name
+	// Routing instance or VRF filter for OSPF database output
 	Vrf                  *string                `json:"vrf,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

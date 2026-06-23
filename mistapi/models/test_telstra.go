@@ -10,10 +10,11 @@ import (
 )
 
 // TestTelstra represents a TestTelstra struct.
+// Request body for validating Telstra SMS gateway credentials
 type TestTelstra struct {
-	// Telstra client id
+	// Telstra client identifier used to send the test SMS
 	TelstraClientId string `json:"telstra_client_id"`
-	// Telstra client secret
+	// Telstra client secret used to send the test SMS
 	TelstraClientSecret string `json:"telstra_client_secret"`
 	// Phone number of the recipient of SMS with country code
 	To                   string                 `json:"to"`

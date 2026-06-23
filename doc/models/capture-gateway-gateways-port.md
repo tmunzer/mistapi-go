@@ -1,6 +1,8 @@
 
 # Capture Gateway Gateways Port
 
+Per-port tcpdump filter for a gateway packet capture
+
 ## Structure
 
 `CaptureGatewayGatewaysPort`
@@ -11,11 +13,20 @@
 |  --- | --- | --- | --- |
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression per port |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "tcpdump_expression": "tcpdump_expression2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureGatewayGatewaysPort := models.CaptureGatewayGatewaysPort{
+        TcpdumpExpression:    models.ToPointer("tcpdump_expression2"),
+    }
+
 }
 ```
 

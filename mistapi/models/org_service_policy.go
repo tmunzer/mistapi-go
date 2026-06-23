@@ -9,34 +9,41 @@ import (
 )
 
 // OrgServicePolicy represents a OrgServicePolicy struct.
+// Organization-level service policy that allows or denies traffic for tenants and services
 type OrgServicePolicy struct {
-	// SRX only
+	// SRX advanced anti-malware settings for a service policy
 	Aamw *ServicePolicyAamw `json:"aamw,omitempty"`
-	// enum: `allow`, `deny`
+	// Policy action value that either allows or denies matching traffic. enum: `allow`, `deny`
 	Action *AllowDenyEnum `json:"action,omitempty"`
-	// For SRX-only
+	// SRX antivirus inspection settings for a service policy
 	Antivirus *ServicePolicyAntivirus `json:"antivirus,omitempty"`
-	// SRX only
+	// SRX application QoE settings for a service policy
 	Appqoe *ServicePolicyAppqoe `json:"appqoe,omitempty"`
 	// When the object has been created, in epoch
-	CreatedTime *float64               `json:"created_time,omitempty"`
-	Ewf         []ServicePolicyEwfRule `json:"ewf,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Enhanced web filtering rules applied by a service policy
+	Ewf []ServicePolicyEwfRule `json:"ewf,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id  *uuid.UUID `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Intrusion detection and prevention settings for a service policy
 	Idp *IdpConfig `json:"idp,omitempty"`
-	// access within the same VRF
+	// Whether the policy permits access within the same VRF
 	LocalRouting *bool `json:"local_routing,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         *string    `json:"name,omitempty"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the service policy
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// By default, we derive all paths available and use them, optionally, you can customize by using `path_preference`
 	PathPreference *string `json:"path_preference,omitempty"`
-	// SRX only
+	// SRX SecIntel settings for a service policy
 	Secintel *ServicePolicySecintel `json:"secintel,omitempty"`
-	Services []string               `json:"services,omitempty"`
-	// For SRX-only
-	SslProxy             *ServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Services []string `json:"services,omitempty"`
+	// SRX SSL proxy inspection settings for a service policy
+	SslProxy *ServicePolicySslProxy `json:"ssl_proxy,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Tenants              []string               `json:"tenants,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

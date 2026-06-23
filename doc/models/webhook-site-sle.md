@@ -11,26 +11,36 @@ Sample of the `site-sle` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookSiteSleEvent`](../../doc/models/webhook-site-sle-event.md) | Required | - |
-| `Topic` | `string` | Required, Constant | **Value**: `"site-sle"` |
+| `Events` | [`[]models.WebhookSiteSleEvent`](../../doc/models/webhook-site-sle-event.md) | Required | Site SLE score events included in a webhook delivery |
+| `Topic` | `string` | Required, Constant | Webhook topic name for site SLE score deliveries. enum: `site-sle`<br><br>**Value**: `"site-sle"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "sle": {
-        "ap-availability": 199.22,
-        "successful-connect": 14.8,
-        "time-to-connect": 125.56
-      },
-      "timestamp": 188.18
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookSiteSle := models.WebhookSiteSle{
+        Events:               []models.WebhookSiteSleEvent{
+            models.WebhookSiteSleEvent{
+                OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+                SiteId:               models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+                Sle:                  models.ToPointer(models.WebhookSiteSleEventSle{
+                    ApAvailability:       models.ToPointer(float64(199.22)),
+                    SuccessfulConnect:    models.ToPointer(float64(14.8)),
+                    TimeToConnect:        models.ToPointer(float64(125.56)),
+                }),
+                Timestamp:            models.ToPointer(float64(188.18)),
+            },
+        },
+        Topic:                "site-sle",
     }
-  ],
-  "topic": "site-sle"
+
 }
 ```
 

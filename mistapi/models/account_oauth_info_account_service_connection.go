@@ -8,8 +8,9 @@ import (
 )
 
 // AccountOauthInfoAccountServiceConnection represents a AccountOauthInfoAccountServiceConnection struct.
+// Prisma Access service connection region for a linked OAuth account
 type AccountOauthInfoAccountServiceConnection struct {
-	// Region of the service connection
+	// Prisma Access region where this service connection is provisioned
 	Region               *string                `json:"region,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

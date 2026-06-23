@@ -9,6 +9,7 @@ import (
 )
 
 // Admin represents a Admin struct.
+// Mist administrator account or organization API token details
 type Admin struct {
 	// ID of the administrator
 	AdminId *uuid.UUID `json:"admin_id,omitempty"`
@@ -18,7 +19,8 @@ type Admin struct {
 	Email *string `json:"email,omitempty"`
 	// If admin account is not an Org API Token
 	EnableTwoFactor *bool `json:"enable_two_factor,omitempty"`
-	ExpireTime      *int  `json:"expire_time,omitempty"`
+	// Expiration time for the admin invitation, in epoch seconds
+	ExpireTime *int `json:"expire_time,omitempty"`
 	// If admin account is not an Org API Token. For an invite, this is the original first name used
 	FirstName *string `json:"first_name,omitempty"`
 	// If admin account is not an Org API Token, how long the invite should be valid
@@ -38,9 +40,11 @@ type Admin struct {
 	// If admin account is not an Org API Token. Secondary phone number (numbers only, including country code)
 	Phone2 *string `json:"phone2,omitempty"`
 	// List of privileges the admin has
-	Privileges    []AdminPrivilege `json:"privileges,omitempty"`
-	SessionExpiry *int64           `json:"session_expiry,omitempty"`
-	Tags          []string         `json:"tags,omitempty"`
+	Privileges []AdminPrivilege `json:"privileges,omitempty"`
+	// Session lifetime for the admin, in minutes
+	SessionExpiry *int64 `json:"session_expiry,omitempty"`
+	// Read-only tags associated with an administrator account
+	Tags []string `json:"tags,omitempty"`
 	// If admin account is not an Org API Token. Two factor status
 	TwoFactorVerified *bool `json:"two_factor_verified,omitempty"`
 	// If admin account is not an Org API Token, an admin login via_sso is more restircted. (password and email cannot be changed)

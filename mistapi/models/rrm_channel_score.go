@@ -10,8 +10,9 @@ import (
 )
 
 // RrmChannelScore represents a RrmChannelScore struct.
+// RRM utilization score for a channel
 type RrmChannelScore struct {
-	// Channel number
+	// RF channel number represented by this score record
 	Channel int `json:"channel"`
 	// Utilization score for the channel, 0-1, lower means cleaner RF
 	UtilScore float64 `json:"util_score"`

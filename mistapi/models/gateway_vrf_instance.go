@@ -8,7 +8,9 @@ import (
 )
 
 // GatewayVrfInstance represents a GatewayVrfInstance struct.
+// Gateway VRF instance and its member networks
 type GatewayVrfInstance struct {
+	// Unique string values returned or accepted by this schema
 	Networks             []string               `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

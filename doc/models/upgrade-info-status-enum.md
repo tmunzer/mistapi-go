@@ -17,3 +17,18 @@ enum: `error`, `inprogress`, `scheduled`, `starting`, `success`
 | `starting` |
 | `success` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeInfoStatus := models.UpgradeInfoStatusEnum_STARTING
+
+}
+```
+

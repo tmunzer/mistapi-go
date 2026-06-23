@@ -11,17 +11,26 @@ Mist Edge VM parameters
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Model` | `*string` | Optional | SKU |
+| `Model` | `*string` | Optional | Mist Edge VM SKU or model to deploy |
 | `Name` | `*string` | Optional | User given name (optional) |
 | `UserData` | `*string` | Optional | Base64 encoded user data |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "model": "ME-VM",
-  "name": "name8",
-  "user_data": "user_data8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeVmParams := models.MxedgeVmParams{
+        Model:                models.ToPointer("ME-VM"),
+        Name:                 models.ToPointer("name6"),
+        UserData:             models.ToPointer("user_data0"),
+    }
+
 }
 ```
 

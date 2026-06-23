@@ -17,3 +17,18 @@ enum: `application`, `curl`, `icmp`, `reachability`, `tcp`
 | `reachability` |
 | `tcp` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    synthetictestConfigCustomProbeType := models.SynthetictestConfigCustomProbeTypeEnum_ICMP
+
+}
+```
+

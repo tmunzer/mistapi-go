@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseTwoFactorJson represents a ResponseTwoFactorJson struct.
+// Response body containing a generated two-factor authentication secret
 type ResponseTwoFactorJson struct {
+	// Generated secret key used to enroll a two-factor authentication app
 	TwoFactorSecret      *string                `json:"two_factor_secret,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

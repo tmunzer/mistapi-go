@@ -8,11 +8,15 @@ import (
 )
 
 // ResponseZoneSearchItem represents a ResponseZoneSearchItem struct.
+// Zone visit record for a client, asset, or SDK client
 type ResponseZoneSearchItem struct {
-	Enter *int    `json:"enter,omitempty"`
+	// Epoch timestamp, in seconds, when the zone visit started
+	Enter *int `json:"enter,omitempty"`
+	// Zone scope represented by this visit record
 	Scope *string `json:"scope,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Client, asset, or SDK client identifier for the visit
 	User                 *string                `json:"user,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

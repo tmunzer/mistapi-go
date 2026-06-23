@@ -20,7 +20,16 @@ If `oauth_type`==`okta`, specifies the region-specific OAuth provider domain. en
 
 ## Example
 
-```
-okta.com
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    oauthProviderDomain := models.OauthProviderDomainEnum_ENUMOKTACOM
+
+}
 ```
 

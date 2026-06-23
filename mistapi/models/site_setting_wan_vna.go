@@ -8,7 +8,9 @@ import (
 )
 
 // SiteSettingWanVna represents a SiteSettingWanVna struct.
+// WAN Virtual Network Assistant settings for the site
 type SiteSettingWanVna struct {
+	// Whether WAN VNA is enabled for the site
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

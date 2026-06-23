@@ -4,18 +4,16 @@ package models
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
-	"strings"
 )
 
 // SsoOpenroaming represents a SsoOpenroaming struct.
-// if `idp_type`==`openroaming`
+// Deprecated. OpenRoaming configuration is now expressed as top-level fields on the SSO object: `openroaming_ssids`, `openroaming_wba_client_cert`, and `openroaming_wba_client_key`.
 type SsoOpenroaming struct {
-	// SSIDs that support OpenRoaming
-	Ssids []string `json:"ssids"`
-	// Optional WBA-issued certificate. If not provided, the default WBA-issued certificate for Juniper will be used.
-	WbaCert              *string                `json:"wba_cert,omitempty"`
+	// Network SSID names enabled for OpenRoaming SSO
+	Ssids []string `json:"ssids,omitempty"`
+	// Deprecated. Use `openroaming_wba_client_cert` instead.
+	WbaCert              *string                `json:"wba_cert,omitempty"` // Deprecated
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
@@ -43,7 +41,9 @@ func (s SsoOpenroaming) MarshalJSON() (
 func (s SsoOpenroaming) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
-	structMap["ssids"] = s.Ssids
+	if s.Ssids != nil {
+		structMap["ssids"] = s.Ssids
+	}
 	if s.WbaCert != nil {
 		structMap["wba_cert"] = s.WbaCert
 	}
@@ -58,34 +58,19 @@ func (s *SsoOpenroaming) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	err = temp.validate()
-	if err != nil {
-		return err
-	}
 	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "ssids", "wba_cert")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
-	s.Ssids = *temp.Ssids
+	s.Ssids = temp.Ssids
 	s.WbaCert = temp.WbaCert
 	return nil
 }
 
 // tempSsoOpenroaming is a temporary struct used for validating the fields of SsoOpenroaming.
 type tempSsoOpenroaming struct {
-	Ssids   *[]string `json:"ssids"`
-	WbaCert *string   `json:"wba_cert,omitempty"`
-}
-
-func (s *tempSsoOpenroaming) validate() error {
-	var errs []string
-	if s.Ssids == nil {
-		errs = append(errs, "required field `ssids` is missing for type `sso_openroaming`")
-	}
-	if len(errs) == 0 {
-		return nil
-	}
-	return errors.New(strings.Join(errs, "\n"))
+	Ssids   []string `json:"ssids,omitempty"`
+	WbaCert *string  `json:"wba_cert,omitempty"`
 }

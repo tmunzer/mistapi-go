@@ -16,7 +16,16 @@ type of action, allow / block. enum: `allow`, `block`
 
 ## Example
 
-```
-allow
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanRuleAction := models.WxlanRuleActionEnum_ALLOW
+
+}
 ```
 

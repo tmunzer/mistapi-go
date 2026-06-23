@@ -8,10 +8,12 @@ import (
 )
 
 // NetworkInternetAccessStaticNatProperty represents a NetworkInternetAccessStaticNatProperty struct.
+// Direct-internet static NAT rule target settings
 type NetworkInternetAccessStaticNatProperty struct {
-	// The Static NAT destination IP Address. Must be an IP Address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}")
+	// The Static NAT destination IP address. Must be an IP address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}")
 	InternalIp *string `json:"internal_ip,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	// Label for this direct internet static NAT rule
+	Name *string `json:"name,omitempty"`
 	// SRX Only. If not set, we configure the nat policies against all WAN ports for simplicity. Can be a Variable (i.e. "{{myvar}}")
 	WanName              *string                `json:"wan_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

@@ -12,11 +12,13 @@ import (
 type SwitchIotPort struct {
 	// Alarm class for the switch iot port in. enum: `minor`, `major`
 	AlarmClass *SwitchIotPortAlarmClassEnum `json:"alarm_class,omitempty"`
-	Enabled    *bool                        `json:"enabled,omitempty"`
+	// Whether this switch IOT port is enabled
+	Enabled *bool `json:"enabled,omitempty"`
 	// Only for "OUT" ports, input source for the switch iot port out. enum: `IN0`, `IN1`
-	InputSrc             *SwitchIotPortInputSrcEnum `json:"input_src,omitempty"`
-	Name                 *string                    `json:"name,omitempty"`
-	AdditionalProperties map[string]interface{}     `json:"_"`
+	InputSrc *SwitchIotPortInputSrcEnum `json:"input_src,omitempty"`
+	// Display name for the switch IOT port
+	Name                 *string                `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchIotPort,

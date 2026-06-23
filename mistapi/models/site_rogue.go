@@ -8,7 +8,7 @@ import (
 )
 
 // SiteRogue represents a SiteRogue struct.
-// Rogue site settings
+// Rogue AP detection settings for a site
 type SiteRogue struct {
 	// list of VLAN IDs on which rogue APs are ignored
 	AllowedVlanIds []int `json:"allowed_vlan_ids,omitempty"`
@@ -24,9 +24,9 @@ type SiteRogue struct {
 	MinRogueRssi *int `json:"min_rogue_rssi,omitempty"`
 	// Minimum RSSI for an AP to be considered neighbor (ignoring APs that’s far away)
 	MinRssi *int `json:"min_rssi,omitempty"`
-	// list of BSSIDs to whitelist. Ex: "cc-:8e-:6f-:d4-:bf-:16", "cc-8e-6f-d4-bf-16", "cc-73-*", "cc:82:*"
+	// BSSID values or wildcard patterns excluded from rogue detection
 	WhitelistedBssids []string `json:"whitelisted_bssids,omitempty"`
-	// List of SSIDs to whitelist
+	// SSID names excluded from rogue detection
 	WhitelistedSsids     []string               `json:"whitelisted_ssids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

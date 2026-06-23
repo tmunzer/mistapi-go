@@ -30,7 +30,16 @@ enum: `any`, `authorization`, `change-log`, `config`, `conflict-log`, `daemon`, 
 
 ## Example
 
-```
-config
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    remoteSyslogFacility := models.RemoteSyslogFacilityEnum_CHANGELOG
+
+}
 ```
 

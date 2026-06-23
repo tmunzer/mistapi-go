@@ -10,7 +10,9 @@ import (
 // SwitchMatching represents a SwitchMatching struct.
 // Defines custom switch configuration based on different criteria
 type SwitchMatching struct {
-	Enable               *bool                  `json:"enable,omitempty"`
+	// Whether custom switch matching rules are enabled
+	Enable *bool `json:"enable,omitempty"`
+	// Ordered switch matching rules for conditional configuration
 	Rules                []SwitchMatchingRule   `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

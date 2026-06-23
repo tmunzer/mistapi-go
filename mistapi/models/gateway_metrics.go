@@ -8,10 +8,11 @@ import (
 )
 
 // GatewayMetrics represents a GatewayMetrics struct.
+// Gateway metric scores returned by the site gateway metrics API
 type GatewayMetrics struct {
-	// Config success score
+	// Gateway configuration success score
 	ConfigSuccess *float64 `json:"config_success,omitempty"`
-	// Version compliance score, major version for gateway, type
+	// Version compliance metric for gateway devices
 	VersionCompliance    *GatewayComplianceVersion `json:"version_compliance,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"_"`
 }

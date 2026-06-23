@@ -8,11 +8,17 @@ import (
 )
 
 // StatsApUsbStat represents a StatsApUsbStat struct.
+// USB peripheral status reported by an AP
 type StatsApUsbStat struct {
-	Channel              Optional[int]          `json:"channel"`
-	Connected            Optional[bool]         `json:"connected"`
-	LastActivity         Optional[int]          `json:"last_activity"`
-	Type                 Optional[string]       `json:"type"`
+	// Radio channel used by the USB peripheral
+	Channel Optional[int] `json:"channel"`
+	// Whether the USB peripheral is connected
+	Connected Optional[bool] `json:"connected"`
+	// Time of the last USB peripheral activity, in epoch seconds
+	LastActivity Optional[int] `json:"last_activity"`
+	// USB peripheral type reported by the AP
+	Type Optional[string] `json:"type"`
+	// Whether the USB peripheral is operational
 	Up                   Optional[bool]         `json:"up"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

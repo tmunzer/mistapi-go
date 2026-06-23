@@ -11,51 +11,67 @@ import (
 )
 
 // Mxedge represents a Mxedge struct.
-// MxEdge
+// Mist Edge appliance configuration and registration state
 type Mxedge struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this Mist Edge is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id    *uuid.UUID `json:"id,omitempty"`
-	Mac   *string    `json:"mac,omitempty"`
-	Magic *string    `json:"magic,omitempty"`
-	Model string     `json:"model"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Mist Edge MAC address
+	Mac *string `json:"mac,omitempty"`
+	// Registration claim code for the Mist Edge
+	Magic *string `json:"magic,omitempty"`
+	// Mist Edge hardware or virtual appliance model
+	Model string `json:"model"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime      *float64 `json:"modified_time,omitempty"`
-	MxagentRegistered *bool    `json:"mxagent_registered,omitempty"`
-	// MxCluster this MxEdge belongs to
-	MxclusterId *uuid.UUID  `json:"mxcluster_id,omitempty"`
-	MxedgeMgmt  *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
-	Name        string      `json:"name"`
-	Notes       *string     `json:"notes,omitempty"`
-	NtpServers  []string    `json:"ntp_servers,omitempty"`
-	// IPconfiguration of the Mist Edge out-of_band management interface
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Whether the Mist Edge agent has registered with Mist cloud
+	MxagentRegistered *bool `json:"mxagent_registered,omitempty"`
+	// Mist Edge cluster identifier that this appliance belongs to
+	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
+	// Management settings for a Mist Edge appliance
+	MxedgeMgmt *MxedgeMgmt `json:"mxedge_mgmt,omitempty"`
+	// Display name of the Mist Edge
+	Name string `json:"name"`
+	// Free-form notes for the Mist Edge
+	Notes *string `json:"notes,omitempty"`
+	// Unique string values returned or accepted by this schema
+	NtpServers []string `json:"ntp_servers,omitempty"`
+	// IP configuration for the Mist Edge out-of-band management interface
 	OobIpConfig *MxedgeOobIpConfig `json:"oob_ip_config,omitempty"`
-	OrgId       *uuid.UUID         `json:"org_id,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Proxy Configuration to talk to Mist
 	Proxy *Proxy `json:"proxy,omitempty"`
 	// List of services to run, tunterm only for now
-	Services []string   `json:"services,omitempty"`
-	SiteId   *uuid.UUID `json:"site_id,omitempty"`
-	// Global and per-VLAN. Property key is the VLAN ID
+	Services []string `json:"services,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Global and per-VLAN DHCP relay settings for Mist Tunneled VLANs; property key is the VLAN ID
 	TuntermDhcpdConfig *MxedgeTuntermDhcpdConfig `json:"tunterm_dhcpd_config,omitempty"`
-	// Property key is a CIDR
-	TuntermExtraRoutes        map[string]MxedgeTuntermExtraRoute `json:"tunterm_extra_routes,omitempty"`
-	TuntermIgmpSnoopingConfig *MxedgeTuntermIgmpSnoopingConfig   `json:"tunterm_igmp_snooping_config,omitempty"`
-	// IPconfiguration of the Mist Tunnel interface
-	TuntermIpConfig        *MxedgeTuntermIpConfig        `json:"tunterm_ip_config,omitempty"`
-	TuntermMonitoring      [][]TuntermMonitoringItem     `json:"tunterm_monitoring,omitempty"`
+	// Extra routes for Mist Tunneled VLAN traffic; property key is a CIDR
+	TuntermExtraRoutes map[string]MxedgeTuntermExtraRoute `json:"tunterm_extra_routes,omitempty"`
+	// IGMP snooping settings for Mist Tunnel VLANs
+	TuntermIgmpSnoopingConfig *MxedgeTuntermIgmpSnoopingConfig `json:"tunterm_igmp_snooping_config,omitempty"`
+	// IP configuration for the Mist Tunnel interface
+	TuntermIpConfig *MxedgeTuntermIpConfig `json:"tunterm_ip_config,omitempty"`
+	// Tunnel termination monitoring checks for a Mist Edge
+	TuntermMonitoring [][]TuntermMonitoringItem `json:"tunterm_monitoring,omitempty"`
+	// Multicast forwarding settings for tunnel termination
 	TuntermMulticastConfig *MxedgeTuntermMulticastConfig `json:"tunterm_multicast_config,omitempty"`
 	// IPconfigs by VLAN ID. Property key is the VLAN ID
 	TuntermOtherIpConfigs map[string]MxedgeTuntermOtherIpConfig `json:"tunterm_other_ip_configs,omitempty"`
-	// Ethernet port configurations
+	// Ethernet port configuration for tunnel termination interfaces
 	TuntermPortConfig *TuntermPortConfig `json:"tunterm_port_config,omitempty"`
-	TuntermRegistered *bool              `json:"tunterm_registered,omitempty"`
-	// If custom vlan settings are desired
-	TuntermSwitchConfig  *MxedgeTuntermSwitchConfigs `json:"tunterm_switch_config,omitempty"`
-	Versions             *MxedgeVersions             `json:"versions,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	// Whether the tunnel termination service has registered with Mist cloud
+	TuntermRegistered *bool `json:"tunterm_registered,omitempty"`
+	// Custom VLAN settings for tunnel termination switch ports, if desired; property key is the port identifier
+	TuntermSwitchConfig *MxedgeTuntermSwitchConfigs `json:"tunterm_switch_config,omitempty"`
+	// Read-only Mist Edge service versions
+	Versions             *MxedgeVersions        `json:"versions,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for Mxedge,

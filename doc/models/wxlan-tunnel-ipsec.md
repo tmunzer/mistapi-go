@@ -12,14 +12,23 @@ IPSec-related configurations; requires DMVPN be enabled
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Enabled` | `*bool` | Optional | Whether ipsec is enabled, requires DMVPN be enabled<br><br>**Default**: `false` |
-| `Psk` | `string` | Required | IPSec pre-shared key |
+| `Psk` | `string` | Required | Pre-shared key used for IPsec on this WxLAN tunnel |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "psk": "psk8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanTunnelIpsec := models.WxlanTunnelIpsec{
+        Enabled:              models.ToPointer(false),
+        Psk:                  "psk0",
+    }
+
 }
 ```
 

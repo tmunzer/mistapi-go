@@ -18,3 +18,18 @@ enum: `device_mac`, `mac`, `port_id`, `site_id`, `type`, `vlan`
 | `type` |
 | `vlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgWiredClientsCountDistinct := models.OrgWiredClientsCountDistinctEnum_PORTID
+
+}
+```
+

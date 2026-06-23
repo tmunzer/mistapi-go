@@ -8,12 +8,13 @@ import (
 )
 
 // SwitchAutoUpgrade represents a SwitchAutoUpgrade struct.
+// Switch firmware auto-upgrade settings
 type SwitchAutoUpgrade struct {
 	// Custom version to be used. The Property Key is the switch hardware and the property value is the firmware version
 	CustomVersions map[string]string `json:"custom_versions,omitempty"`
-	// Enable auto upgrade for the switch
+	// Whether switch auto-upgrade is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// Enable snapshot during the upgrade process
+	// Whether to create a recovery snapshot during the upgrade process
 	Snapshot             *bool                  `json:"snapshot,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

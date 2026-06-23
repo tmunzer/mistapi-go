@@ -1,6 +1,8 @@
 
 # Response Login Lookup
 
+Login lookup response indicating whether SSO is available for the account
+
 ## Structure
 
 `ResponseLoginLookup`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `SsoUrl` | `*string` | Optional | - |
+| `SsoUrl` | `*string` | Optional | URL for SSO login when the account must authenticate through an identity provider |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "sso_url": "sso_url6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseLoginLookup := models.ResponseLoginLookup{
+        SsoUrl:               models.ToPointer("sso_url4"),
+    }
+
 }
 ```
 

@@ -9,7 +9,7 @@ import (
 )
 
 // RadiusAuthPort represents a RadiusAuthPort struct.
-// Radius Auth Port, value from 1 to 65535, default is 1812
+// RADIUS Auth Port, value from 1 to 65535, default is 1812
 type RadiusAuthPort struct {
 	value    any
 	isNumber bool
@@ -75,7 +75,7 @@ func (r *RadiusAuthPort) AsString() (
 }
 
 // internalRadiusAuthPort represents a radiusAuthPort struct.
-// Radius Auth Port, value from 1 to 65535, default is 1812
+// RADIUS Auth Port, value from 1 to 65535, default is 1812
 type internalRadiusAuthPort struct{}
 
 var RadiusAuthPortContainer internalRadiusAuthPort

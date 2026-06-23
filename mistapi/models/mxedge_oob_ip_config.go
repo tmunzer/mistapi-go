@@ -8,24 +8,29 @@ import (
 )
 
 // MxedgeOobIpConfig represents a MxedgeOobIpConfig struct.
-// IPconfiguration of the Mist Edge out-of_band management interface
+// IP configuration for the Mist Edge out-of-band management interface
 type MxedgeOobIpConfig struct {
+	// Whether IPv6 autoconfiguration is enabled on the out-of-band management interface
 	Autoconf6 *bool `json:"autoconf6,omitempty"`
-	Dhcp6     *bool `json:"dhcp6,omitempty"`
+	// Whether DHCPv6 is enabled on the out-of-band management interface
+	Dhcp6 *bool `json:"dhcp6,omitempty"`
 	// IPv4 ignored if `type`!=`static`, IPv6 ignored if `type6`!=`static`
 	Dns []string `json:"dns,omitempty"`
-	// If `type`=`static`
-	Gateway  *string `json:"gateway,omitempty"`
+	// If `type`=`static`, IPv4 default gateway for the out-of-band management interface
+	Gateway *string `json:"gateway,omitempty"`
+	// If `type6`=`static`, IPv6 default gateway for the out-of-band management interface
 	Gateway6 *string `json:"gateway6,omitempty"`
-	// If `type`=`static`
-	Ip  *string `json:"ip,omitempty"`
+	// If `type`=`static`, IPv4 address for the out-of-band management interface
+	Ip *string `json:"ip,omitempty"`
+	// If `type6`=`static`, IPv6 address for the out-of-band management interface
 	Ip6 *string `json:"ip6,omitempty"`
-	// If `type`=`static`
-	Netmask  *string `json:"netmask,omitempty"`
+	// If `type`=`static`, IPv4 netmask for the out-of-band management interface
+	Netmask *string `json:"netmask,omitempty"`
+	// If `type6`=`static`, IPv6 prefix length for the out-of-band management interface
 	Netmask6 *string `json:"netmask6,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type6                *IpTypeEnum            `json:"type6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

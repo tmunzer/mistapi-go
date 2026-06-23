@@ -8,12 +8,15 @@ import (
 )
 
 // SimpleAlert represents a SimpleAlert struct.
-// Set of heuristic rules will be enabled when marvis subscription is not available. It triggers when, in a Z minute window, there are more than Y distinct client encountering over X failures
+// Heuristic alert thresholds used when a Marvis subscription is unavailable
 type SimpleAlert struct {
-	ArpFailure           *SimpleAlertArpFailure  `json:"arp_failure,omitempty"`
-	DhcpFailure          *SimpleAlertDhcpFailure `json:"dhcp_failure,omitempty"`
-	DnsFailure           *SimpleAlertDnsFailure  `json:"dns_failure,omitempty"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Thresholds for ARP failure heuristic alerts
+	ArpFailure *SimpleAlertArpFailure `json:"arp_failure,omitempty"`
+	// Thresholds for DHCP failure heuristic alerts
+	DhcpFailure *SimpleAlertDhcpFailure `json:"dhcp_failure,omitempty"`
+	// Thresholds for DNS failure heuristic alerts
+	DnsFailure           *SimpleAlertDnsFailure `json:"dns_failure,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SimpleAlert,

@@ -8,7 +8,10 @@ import (
 )
 
 // OrgSettingMarvis represents a OrgSettingMarvis struct.
+// Organization settings for Marvis automation
 type OrgSettingMarvis struct {
+	// Disable proactive monitoring in Marvis. NOTE: support access must be enabled for the org (`allow_mist`=`true`) for proactive monitoring to function.
+	DisableProactiveMonitoring *bool `json:"disable_proactive_monitoring,omitempty"`
 	// Self-driving network automation settings per domain
 	SelfDriving          *MarvisSelfDriving     `json:"self_driving,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
@@ -18,8 +21,8 @@ type OrgSettingMarvis struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (o OrgSettingMarvis) String() string {
 	return fmt.Sprintf(
-		"OrgSettingMarvis[SelfDriving=%v, AdditionalProperties=%v]",
-		o.SelfDriving, o.AdditionalProperties)
+		"OrgSettingMarvis[DisableProactiveMonitoring=%v, SelfDriving=%v, AdditionalProperties=%v]",
+		o.DisableProactiveMonitoring, o.SelfDriving, o.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for OrgSettingMarvis.
@@ -28,7 +31,7 @@ func (o OrgSettingMarvis) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(o.AdditionalProperties,
-		"self_driving"); err != nil {
+		"disable_proactive_monitoring", "self_driving"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(o.toMap())
@@ -38,6 +41,9 @@ func (o OrgSettingMarvis) MarshalJSON() (
 func (o OrgSettingMarvis) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, o.AdditionalProperties)
+	if o.DisableProactiveMonitoring != nil {
+		structMap["disable_proactive_monitoring"] = o.DisableProactiveMonitoring
+	}
 	if o.SelfDriving != nil {
 		structMap["self_driving"] = o.SelfDriving.toMap()
 	}
@@ -52,17 +58,19 @@ func (o *OrgSettingMarvis) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "self_driving")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "disable_proactive_monitoring", "self_driving")
 	if err != nil {
 		return err
 	}
 	o.AdditionalProperties = additionalProperties
 
+	o.DisableProactiveMonitoring = temp.DisableProactiveMonitoring
 	o.SelfDriving = temp.SelfDriving
 	return nil
 }
 
 // tempOrgSettingMarvis is a temporary struct used for validating the fields of OrgSettingMarvis.
 type tempOrgSettingMarvis struct {
-	SelfDriving *MarvisSelfDriving `json:"self_driving,omitempty"`
+	DisableProactiveMonitoring *bool              `json:"disable_proactive_monitoring,omitempty"`
+	SelfDriving                *MarvisSelfDriving `json:"self_driving,omitempty"`
 }

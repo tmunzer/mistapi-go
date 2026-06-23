@@ -10,8 +10,9 @@ import (
 // PushPolicyPushWindow represents a PushPolicyPushWindow struct.
 // If enabled, new config will only be pushed to device within the specified time window
 type PushPolicyPushWindow struct {
+	// Whether configuration pushes are limited to the configured push window
 	Enabled *bool `json:"enabled,omitempty"`
-	// Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
+	// Day-of-week operating hour filters using hour ranges such as 09:00-17:00
 	Hours                *Hours                 `json:"hours,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

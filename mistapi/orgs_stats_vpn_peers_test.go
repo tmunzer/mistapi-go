@@ -62,13 +62,15 @@ func TestOrgsStatsVPNPeersTestSearchOrgPeerPathStats(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mac := "5c5b53010101,5c5b53020202"
 
+	mType := "svr,ipsec"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, &mac, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -88,13 +90,15 @@ func TestOrgsStatsVPNPeersTestSearchOrgPeerPathStats1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
+	mac := "5c5b53010101,5c5b53020202"
 
+	mType := "svr,ipsec"
 	limit := int(100)
 
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := orgsStatsVpnPeers.SearchOrgPeerPathStats(ctx, orgId, &mac, nil, &mType, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

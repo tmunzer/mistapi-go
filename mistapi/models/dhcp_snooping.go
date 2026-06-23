@@ -8,13 +8,16 @@ import (
 )
 
 // DhcpSnooping represents a DhcpSnooping struct.
+// DHCP snooping security settings
 type DhcpSnooping struct {
+	// Whether DHCP snooping applies to all configured networks
 	AllNetworks *bool `json:"all_networks,omitempty"`
 	// Enable for dynamic ARP inspection check
 	EnableArpSpoofCheck *bool `json:"enable_arp_spoof_check,omitempty"`
 	// Enable for check for forging source IP address
 	EnableIpSourceGuard *bool `json:"enable_ip_source_guard,omitempty"`
-	Enabled             *bool `json:"enabled,omitempty"`
+	// Whether DHCP snooping is enabled
+	Enabled *bool `json:"enabled,omitempty"`
 	// If `all_networks`==`false`, list of network with DHCP snooping enabled
 	Networks             []string               `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

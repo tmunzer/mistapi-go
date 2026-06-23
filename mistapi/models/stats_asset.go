@@ -11,34 +11,43 @@ import (
 )
 
 // StatsAsset represents a StatsAsset struct.
-// Asset statistics
+// BLE asset location and advertisement statistics
 type StatsAsset struct {
 	// Time-to-live in seconds; how long this asset data is valid in cache
 	Ttl *int `json:"_ttl,omitempty"`
+	// Estimated battery level (1–100%); currently supported for Aruba/HPE asset tags
+	BatteryPercent *int `json:"battery_percent,omitempty"`
 	// Battery voltage, in mV
 	BatteryVoltage *float64 `json:"battery_voltage,omitempty"`
-	Beam           *int     `json:"beam,omitempty"`
-	// Source type
+	// BLE beam number where the asset was observed
+	Beam *int `json:"beam,omitempty"`
+	// Observation source type for the asset statistic
 	By *string `json:"by,omitempty"`
 	// Device ID of the loudest AP
-	DeviceId              *uuid.UUID `json:"device_id,omitempty"`
-	DeviceName            *string    `json:"device_name,omitempty"`
-	Duration              *int       `json:"duration,omitempty"`
-	EddystoneUidInstance  *string    `json:"eddystone_uid_instance,omitempty"`
-	EddystoneUidNamespace *string    `json:"eddystone_uid_namespace,omitempty"`
-	EddystoneUrlUrl       *string    `json:"eddystone_url_url,omitempty"`
+	DeviceId *uuid.UUID `json:"device_id,omitempty"`
+	// Display name of the loudest AP observing the asset
+	DeviceName *string `json:"device_name,omitempty"`
+	// Length of the current asset observation, in seconds
+	Duration *int `json:"duration,omitempty"`
+	// Eddystone-UID instance value advertised by the asset
+	EddystoneUidInstance *string `json:"eddystone_uid_instance,omitempty"`
+	// Eddystone-UID namespace value advertised by the asset
+	EddystoneUidNamespace *string `json:"eddystone_uid_namespace,omitempty"`
+	// URL value advertised by the asset through Eddystone-URL
+	EddystoneUrlUrl *string `json:"eddystone_url_url,omitempty"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Bluetooth MAC
+	// Bluetooth MAC address for the asset
 	Mac string `json:"mac"`
-	// Manufacturer name resolved from company ID
+	// Vendor name resolved from the BLE manufacturer company ID
 	Manufacture *string `json:"manufacture,omitempty"`
 	// Map where the device belongs to
 	MapId *uuid.UUID `json:"map_id,omitempty"`
@@ -46,7 +55,7 @@ type StatsAsset struct {
 	MfgCompanyId *int `json:"mfg_company_id,omitempty"`
 	// Manufacturer-specific data (hex encoded)
 	MfgData *string `json:"mfg_data,omitempty"`
-	// Name / label of the device
+	// Display label for the BLE asset
 	Name *string `json:"name,omitempty"`
 	// Signal strength (RSSI) of the loudest AP in dBm
 	Rssi *int `json:"rssi,omitempty"`
@@ -54,10 +63,11 @@ type StatsAsset struct {
 	Rssizones []AssetRssiZone `json:"rssizones,omitempty"`
 	// List of all service data advertisements (maximum length of 10)
 	ServicePackets []StatsAssetServicePacket `json:"service_packets,omitempty"`
-	Temperature    *float64                  `json:"temperature,omitempty"`
-	// X in pixel
+	// Reported temperature value from the BLE asset
+	Temperature *float64 `json:"temperature,omitempty"`
+	// Map X coordinate of the asset location, in pixels
 	X *float64 `json:"x,omitempty"`
-	// Y in pixel
+	// Map Y coordinate of the asset location, in pixels
 	Y *float64 `json:"y,omitempty"`
 	// Only send this for individual asset stat
 	Zones                []AssetZone            `json:"zones,omitempty"`
@@ -68,8 +78,8 @@ type StatsAsset struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (s StatsAsset) String() string {
 	return fmt.Sprintf(
-		"StatsAsset[Ttl=%v, BatteryVoltage=%v, Beam=%v, By=%v, DeviceId=%v, DeviceName=%v, Duration=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Id=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, MfgCompanyId=%v, MfgData=%v, Name=%v, Rssi=%v, Rssizones=%v, ServicePackets=%v, Temperature=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
-		s.Ttl, s.BatteryVoltage, s.Beam, s.By, s.DeviceId, s.DeviceName, s.Duration, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlUrl, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.Id, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.MfgCompanyId, s.MfgData, s.Name, s.Rssi, s.Rssizones, s.ServicePackets, s.Temperature, s.X, s.Y, s.Zones, s.AdditionalProperties)
+		"StatsAsset[Ttl=%v, BatteryPercent=%v, BatteryVoltage=%v, Beam=%v, By=%v, DeviceId=%v, DeviceName=%v, Duration=%v, EddystoneUidInstance=%v, EddystoneUidNamespace=%v, EddystoneUrlUrl=%v, IbeaconMajor=%v, IbeaconMinor=%v, IbeaconUuid=%v, Id=%v, LastSeen=%v, Mac=%v, Manufacture=%v, MapId=%v, MfgCompanyId=%v, MfgData=%v, Name=%v, Rssi=%v, Rssizones=%v, ServicePackets=%v, Temperature=%v, X=%v, Y=%v, Zones=%v, AdditionalProperties=%v]",
+		s.Ttl, s.BatteryPercent, s.BatteryVoltage, s.Beam, s.By, s.DeviceId, s.DeviceName, s.Duration, s.EddystoneUidInstance, s.EddystoneUidNamespace, s.EddystoneUrlUrl, s.IbeaconMajor, s.IbeaconMinor, s.IbeaconUuid, s.Id, s.LastSeen, s.Mac, s.Manufacture, s.MapId, s.MfgCompanyId, s.MfgData, s.Name, s.Rssi, s.Rssizones, s.ServicePackets, s.Temperature, s.X, s.Y, s.Zones, s.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for StatsAsset.
@@ -78,7 +88,7 @@ func (s StatsAsset) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(s.AdditionalProperties,
-		"_ttl", "battery_voltage", "beam", "by", "device_id", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "last_seen", "mac", "manufacture", "map_id", "mfg_company_id", "mfg_data", "name", "rssi", "rssizones", "service_packets", "temperature", "x", "y", "zones"); err != nil {
+		"_ttl", "battery_percent", "battery_voltage", "beam", "by", "device_id", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "last_seen", "mac", "manufacture", "map_id", "mfg_company_id", "mfg_data", "name", "rssi", "rssizones", "service_packets", "temperature", "x", "y", "zones"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(s.toMap())
@@ -90,6 +100,9 @@ func (s StatsAsset) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, s.AdditionalProperties)
 	if s.Ttl != nil {
 		structMap["_ttl"] = s.Ttl
+	}
+	if s.BatteryPercent != nil {
+		structMap["battery_percent"] = s.BatteryPercent
 	}
 	if s.BatteryVoltage != nil {
 		structMap["battery_voltage"] = s.BatteryVoltage
@@ -201,13 +214,14 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "_ttl", "battery_voltage", "beam", "by", "device_id", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "last_seen", "mac", "manufacture", "map_id", "mfg_company_id", "mfg_data", "name", "rssi", "rssizones", "service_packets", "temperature", "x", "y", "zones")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "_ttl", "battery_percent", "battery_voltage", "beam", "by", "device_id", "device_name", "duration", "eddystone_uid_instance", "eddystone_uid_namespace", "eddystone_url_url", "ibeacon_major", "ibeacon_minor", "ibeacon_uuid", "id", "last_seen", "mac", "manufacture", "map_id", "mfg_company_id", "mfg_data", "name", "rssi", "rssizones", "service_packets", "temperature", "x", "y", "zones")
 	if err != nil {
 		return err
 	}
 	s.AdditionalProperties = additionalProperties
 
 	s.Ttl = temp.Ttl
+	s.BatteryPercent = temp.BatteryPercent
 	s.BatteryVoltage = temp.BatteryVoltage
 	s.Beam = temp.Beam
 	s.By = temp.By
@@ -241,6 +255,7 @@ func (s *StatsAsset) UnmarshalJSON(input []byte) error {
 // tempStatsAsset is a temporary struct used for validating the fields of StatsAsset.
 type tempStatsAsset struct {
 	Ttl                   *int                      `json:"_ttl,omitempty"`
+	BatteryPercent        *int                      `json:"battery_percent,omitempty"`
 	BatteryVoltage        *float64                  `json:"battery_voltage,omitempty"`
 	Beam                  *int                      `json:"beam,omitempty"`
 	By                    *string                   `json:"by,omitempty"`

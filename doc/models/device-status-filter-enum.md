@@ -14,3 +14,18 @@ Filter devices based on their status. enum: `connected`, `disconnected`
 | `connected` |
 | `disconnected` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceStatusFilter := models.DeviceStatusFilterEnum_CONNECTED
+
+}
+```
+

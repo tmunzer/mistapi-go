@@ -10,7 +10,9 @@ import (
 )
 
 // SdkInviteSms represents a SdkInviteSms struct.
+// Request body for sending an SDK invite by SMS
 type SdkInviteSms struct {
+	// Destination phone number for the SDK invite SMS
 	Number               string                 `json:"number"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

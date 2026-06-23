@@ -10,11 +10,17 @@ import (
 )
 
 // SleImpactSummaryDeviceTypeItem represents a SleImpactSummaryDeviceTypeItem struct.
+// SLE impact summary row for a client device type
 type SleImpactSummaryDeviceTypeItem struct {
-	Degraded             float64                `json:"degraded"`
-	DeviceType           string                 `json:"device_type"`
-	Duration             float64                `json:"duration"`
-	Name                 string                 `json:"name"`
+	// Portion of the SLE total that was degraded for this device type
+	Degraded float64 `json:"degraded"`
+	// Client device type represented by this impact row
+	DeviceType string `json:"device_type"`
+	// Observation time represented by this device-type impact row
+	Duration float64 `json:"duration"`
+	// Display name for the device-type impact row
+	Name string `json:"name"`
+	// Overall SLE total measured for this device-type impact row
 	Total                float64                `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

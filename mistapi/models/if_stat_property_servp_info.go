@@ -8,13 +8,21 @@ import (
 )
 
 // IfStatPropertyServpInfo represents a IfStatPropertyServpInfo struct.
+// Service-provider and geolocation details associated with an interface address
 type IfStatPropertyServpInfo struct {
-	Asn                  *string                `json:"asn,omitempty"`
-	City                 *string                `json:"city,omitempty"`
-	CountryCode          *string                `json:"country_code,omitempty"`
-	Latitude             *float64               `json:"latitude,omitempty"`
-	Longitude            *float64               `json:"longitude,omitempty"`
-	Org                  *string                `json:"org,omitempty"`
+	// Autonomous System Number associated with the service provider
+	Asn *string `json:"asn,omitempty"`
+	// Detected city for the service provider address
+	City *string `json:"city,omitempty"`
+	// ISO country code for the service provider address
+	CountryCode *string `json:"country_code,omitempty"`
+	// Geographic latitude for the service provider address
+	Latitude *float64 `json:"latitude,omitempty"`
+	// Geographic longitude for the service provider address
+	Longitude *float64 `json:"longitude,omitempty"`
+	// Service provider organization name
+	Org *string `json:"org,omitempty"`
+	// Administrative region code for the service provider address
 	RegionCode           *string                `json:"region_code,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

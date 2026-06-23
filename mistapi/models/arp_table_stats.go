@@ -8,8 +8,11 @@ import (
 )
 
 // ArpTableStats represents a ArpTableStats struct.
+// ARP table usage and capacity statistics
 type ArpTableStats struct {
-	ArpTableCount        *int                   `json:"arp_table_count,omitempty"`
+	// Number of ARP table entries currently present on the device
+	ArpTableCount *int `json:"arp_table_count,omitempty"`
+	// Supported ARP table capacity for the device
 	MaxEntriesSupported  *int                   `json:"max_entries_supported,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

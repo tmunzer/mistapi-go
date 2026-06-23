@@ -22,7 +22,16 @@ Optional if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `m
 
 ## Example
 
-```
-twilio
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanPortalSmsProvider := models.WlanPortalSmsProviderEnum_PUZZEL
+
+}
 ```
 

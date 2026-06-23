@@ -10,17 +10,19 @@ import (
 )
 
 // TunnelConfigAutoProvision represents a TunnelConfigAutoProvision struct.
-// Auto Provisioning configuration for the tunne. This takes precedence over the `primary` and `secondary` nodes.
+// Auto-provisioning configuration for the tunnel. This takes precedence over the `primary` and `secondary` nodes.
 type TunnelConfigAutoProvision struct {
 	// Enable auto provisioning for the tunnel. If enabled, the `primary` and `secondary` nodes will be ignored.
 	Enabled *bool `json:"enabled,omitempty"`
-	// API override for POP selection
-	Latlng  *TunnelConfigAutoProvisionLatLng `json:"latlng,omitempty"`
-	Primary *TunnelConfigAutoProvisionNode   `json:"primary,omitempty"`
-	// enum: `jse-ipsec`, `zscaler-ipsec`
+	// Geographic coordinate override for tunnel POP selection
+	Latlng *TunnelConfigAutoProvisionLatLng `json:"latlng,omitempty"`
+	// Auto-provisioned tunnel endpoint settings
+	Primary *TunnelConfigAutoProvisionNode `json:"primary,omitempty"`
+	// Tunnel provider used for automatic endpoint provisioning. enum: `jse-ipsec`, `zscaler-ipsec`
 	Provider TunnelConfigAutoProvisionProviderEnum `json:"provider"`
 	// API override for POP selection in the case user wants to override the auto discovery of remote network location and force the tunnel to use the specified peer location.
-	Region    *string                        `json:"region,omitempty"`
+	Region *string `json:"region,omitempty"`
+	// Auto-provisioned tunnel endpoint settings
 	Secondary *TunnelConfigAutoProvisionNode `json:"secondary,omitempty"`
 	// if `provider`==`prisma-ipsec`. By default, we'll use the location of the site to determine the optimal Remote Network location, optionally, service_connection can be considered, then we'll also consider this along with the site location. Define service_connection if the traffic is to be routed to a specific service connection. This field takes a service connection name that is configured in the Prisma cloud, Prisma Access Setup -> Service Connections.
 	ServiceConnection    *string                `json:"service_connection,omitempty"`

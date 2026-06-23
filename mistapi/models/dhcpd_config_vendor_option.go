@@ -8,9 +8,11 @@ import (
 )
 
 // DhcpdConfigVendorOption represents a DhcpdConfigVendorOption struct.
+// Vendor-encapsulated DHCP option value
 type DhcpdConfigVendorOption struct {
     // enum: `boolean`, `hex`, `int16`, `int32`, `ip`, `string`, `uint16`, `uint32`
     Type                 *DhcpdConfigVendorOptionTypeEnum `json:"type,omitempty"`
+    // Option value to send for this vendor option
     Value                *string                          `json:"value,omitempty"`
     AdditionalProperties map[string]interface{}           `json:"_"`
 }

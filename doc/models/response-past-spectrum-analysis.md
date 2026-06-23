@@ -1,6 +1,8 @@
 
 # Response Past Spectrum Analysis
 
+Paginated response for past site spectrum analysis records
+
 ## Structure
 
 `ResponsePastSpectrumAnalysis`
@@ -9,113 +11,63 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `End` | `*int` | Optional | End time of the spectrum analysis in epoch seconds |
-| `Limit` | `*int` | Optional | Limit of the number of results returned |
-| `Page` | `*int` | Optional | Page number of the results returned |
-| `Results` | [`[]models.ResponsePastSpectrumAnalysisResult`](../../doc/models/response-past-spectrum-analysis-result.md) | Optional | - |
-| `Start` | `*int` | Optional | Start time of the spectrum analysis in epoch seconds |
-| `Total` | `*int` | Optional | Total number of results available for the given time range |
+| `End` | `*int` | Optional | Epoch timestamp, in seconds, for the end of the spectrum analysis query window |
+| `Limit` | `*int` | Optional | Maximum number of spectrum analysis records returned in this page |
+| `Page` | `*int` | Optional | Current page number returned for the spectrum analysis results |
+| `Results` | [`[]models.ResponsePastSpectrumAnalysisResult`](../../doc/models/response-past-spectrum-analysis-result.md) | Optional | Past spectrum analysis records returned for the site |
+| `Start` | `*int` | Optional | Epoch timestamp, in seconds, for the start of the spectrum analysis query window |
+| `Total` | `*int` | Optional | Number of spectrum analysis records available for the given time range |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 216,
-  "limit": 210,
-  "page": 68,
-  "results": [
-    {
-      "band": "band8",
-      "channel_usage": [
-        {
-          "channel": 192,
-          "noise": 76.92,
-          "non_wifi": 164.5,
-          "wifi": 198.3
-        }
-      ],
-      "fft_samples": [
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responsePastSpectrumAnalysis := models.ResponsePastSpectrumAnalysis{
+        End:                  models.ToPointer(92),
+        Limit:                models.ToPointer(178),
+        Page:                 models.ToPointer(192),
+        Results:              []models.ResponsePastSpectrumAnalysisResult{
+            models.ResponsePastSpectrumAnalysisResult{
+                Band:                 models.ToPointer("band8"),
+                ChannelUsage:         []models.ResponsePastSpectrumAnalysisChannelUsage{
+                    models.ResponsePastSpectrumAnalysisChannelUsage{
+                        Channel:              models.ToPointer(192),
+                        Noise:                models.ToPointer(float64(76.92)),
+                        NonWifi:              models.ToPointer(float64(164.5)),
+                        Wifi:                 models.ToPointer(float64(198.3)),
+                    },
+                },
+                FftSamples:           []models.ResponsePastSpectrumAnalysisFftSample{
+                    models.ResponsePastSpectrumAnalysisFftSample{
+                        Frequency:            models.ToPointer(float64(91.6)),
+                        Rssi:                 models.ToPointer(float64(42.86)),
+                        Signal7:              models.ToPointer(float64(18.34)),
+                    },
+                    models.ResponsePastSpectrumAnalysisFftSample{
+                        Frequency:            models.ToPointer(float64(91.6)),
+                        Rssi:                 models.ToPointer(float64(42.86)),
+                        Signal7:              models.ToPointer(float64(18.34)),
+                    },
+                    models.ResponsePastSpectrumAnalysisFftSample{
+                        Frequency:            models.ToPointer(float64(91.6)),
+                        Rssi:                 models.ToPointer(float64(42.86)),
+                        Signal7:              models.ToPointer(float64(18.34)),
+                    },
+                },
+                Mac:                  models.ToPointer("mac0"),
+                OrgId:                models.ToPointer(uuid.MustParse("00002492-0000-0000-0000-000000000000")),
+            },
         },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        }
-      ],
-      "mac": "mac0",
-      "org_id": "00002492-0000-0000-0000-000000000000"
-    },
-    {
-      "band": "band8",
-      "channel_usage": [
-        {
-          "channel": 192,
-          "noise": 76.92,
-          "non_wifi": 164.5,
-          "wifi": 198.3
-        }
-      ],
-      "fft_samples": [
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        }
-      ],
-      "mac": "mac0",
-      "org_id": "00002492-0000-0000-0000-000000000000"
-    },
-    {
-      "band": "band8",
-      "channel_usage": [
-        {
-          "channel": 192,
-          "noise": 76.92,
-          "non_wifi": 164.5,
-          "wifi": 198.3
-        }
-      ],
-      "fft_samples": [
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        },
-        {
-          "frequency": 91.6,
-          "rssi": 42.86,
-          "signal7": 18.34
-        }
-      ],
-      "mac": "mac0",
-      "org_id": "00002492-0000-0000-0000-000000000000"
+        Start:                models.ToPointer(50),
     }
-  ],
-  "start": 174
+
 }
 ```
 

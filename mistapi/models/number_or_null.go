@@ -9,6 +9,7 @@ import (
 )
 
 // NumberOrNull represents a NumberOrNull struct.
+// Numeric value or null
 type NumberOrNull struct {
 	value       any
 	isPrecision bool
@@ -61,6 +62,7 @@ func (n *NumberOrNull) AsPrecision() (
 }
 
 // internalNumberOrNull represents a numberOrNull struct.
+// Numeric value or null
 type internalNumberOrNull struct{}
 
 var NumberOrNullContainer internalNumberOrNull

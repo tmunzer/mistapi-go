@@ -23,3 +23,18 @@ enum: `link_peermac`, `lldp_chassis_id`, `lldp_hardware_revision`, `lldp_manufac
 | `radius_usermac` |
 | `radius_username` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageDynamicRuleSrc := models.SwitchPortUsageDynamicRuleSrcEnum_LLDPMANUFACTURERNAME
+
+}
+```
+

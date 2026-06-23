@@ -27,7 +27,7 @@ func NewOrgsIntegrationZscaler(baseController baseController) *OrgsIntegrationZs
 // DeleteOrgZscalerIntegration takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// To delete Zscaler integration
+// Remove the Zscaler integration configuration from the organization.
 func (o *OrgsIntegrationZscaler) DeleteOrgZscalerIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsIntegrationZscaler) DeleteOrgZscalerIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -63,7 +59,7 @@ func (o *OrgsIntegrationZscaler) DeleteOrgZscalerIntegration(
 // GetOrgZscalerIntegration takes context, orgId as parameters and
 // returns an models.ApiResponse with models.AccountZscalerInfo data and
 // an error if there was an issue with the request or response.
-// To get Zscaler integration
+// Return the Zscaler integration configuration, including Zscaler Internet Access cloud name, partner key, and partner administrator username.
 func (o *OrgsIntegrationZscaler) GetOrgZscalerIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -74,19 +70,15 @@ func (o *OrgsIntegrationZscaler) GetOrgZscalerIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AccountZscalerInfo
@@ -102,7 +94,7 @@ func (o *OrgsIntegrationZscaler) GetOrgZscalerIntegration(
 // SetupOrgZscalerIntegration takes context, orgId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// To setup Zscaler integration
+// Configure the Zscaler integration with the Zscaler Internet Access cloud name, partner key, and partner administrator credentials used by Mist.
 func (o *OrgsIntegrationZscaler) SetupOrgZscalerIntegration(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -114,19 +106,15 @@ func (o *OrgsIntegrationZscaler) SetupOrgZscalerIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

@@ -11,9 +11,11 @@ import (
 )
 
 // SdkstatsWirelessClientVbeacon represents a SdkstatsWirelessClientVbeacon struct.
+// Virtual beacon currently associated with an SDK client
 type SdkstatsWirelessClientVbeacon struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
+	Id uuid.UUID `json:"id"`
+	// Time when the SDK client began matching the virtual beacon, in epoch seconds
 	Since                float64                `json:"since"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

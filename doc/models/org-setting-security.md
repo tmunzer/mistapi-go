@@ -1,6 +1,8 @@
 
 # Org Setting Security
 
+Organization security controls for local SSH and FIPS zeroize access
+
 ## Structure
 
 `OrgSettingSecurity`
@@ -13,13 +15,22 @@
 | `FipsZeroizePassword` | `*string` | Optional | password required to zeroize devices (FIPS) on site level |
 | `LimitSshAccess` | `*bool` | Optional | Whether to allow certain SSH keys to SSH into the AP (see Site:Setting)<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "fips_zeroize_password": "NUKETHESITE",
-  "limit_ssh_access": false,
-  "disable_local_ssh": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingSecurity := models.OrgSettingSecurity{
+        DisableLocalSsh:      models.ToPointer(false),
+        FipsZeroizePassword:  models.ToPointer("NUKETHESITE"),
+        LimitSshAccess:       models.ToPointer(false),
+    }
+
 }
 ```
 

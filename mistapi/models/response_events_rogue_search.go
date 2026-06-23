@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseEventsRogueSearch represents a ResponseEventsRogueSearch struct.
+// Paginated response for rogue AP event search results
 type ResponseEventsRogueSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsRogue          `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the rogue AP event search window
+	End int `json:"end"`
+	// Maximum number of rogue AP event records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of rogue AP event records
+	Next *string `json:"next,omitempty"`
+	// Rogue AP event records returned by a search response
+	Results []EventsRogue `json:"results"`
+	// Epoch timestamp for the start of the rogue AP event search window
+	Start int `json:"start"`
+	// Number of rogue AP event records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

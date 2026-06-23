@@ -8,7 +8,13 @@ import (
 )
 
 // IssuedClientCertificatesResults represents a IssuedClientCertificatesResults struct.
+// Issued client certificate search results wrapper
 type IssuedClientCertificatesResults struct {
+	// Maximum number of results requested
+	Limit *int `json:"limit,omitempty"`
+	// Current page number
+	Page *int `json:"page,omitempty"`
+	// Issued client certificates returned by a SCEP certificate query
 	Results              []IssuedClientCertificate `json:"results,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"_"`
 }
@@ -17,8 +23,8 @@ type IssuedClientCertificatesResults struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (i IssuedClientCertificatesResults) String() string {
 	return fmt.Sprintf(
-		"IssuedClientCertificatesResults[Results=%v, AdditionalProperties=%v]",
-		i.Results, i.AdditionalProperties)
+		"IssuedClientCertificatesResults[Limit=%v, Page=%v, Results=%v, AdditionalProperties=%v]",
+		i.Limit, i.Page, i.Results, i.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for IssuedClientCertificatesResults.
@@ -27,7 +33,7 @@ func (i IssuedClientCertificatesResults) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(i.AdditionalProperties,
-		"results"); err != nil {
+		"limit", "page", "results"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(i.toMap())
@@ -37,6 +43,12 @@ func (i IssuedClientCertificatesResults) MarshalJSON() (
 func (i IssuedClientCertificatesResults) toMap() map[string]any {
 	structMap := make(map[string]any)
 	MergeAdditionalProperties(structMap, i.AdditionalProperties)
+	if i.Limit != nil {
+		structMap["limit"] = i.Limit
+	}
+	if i.Page != nil {
+		structMap["page"] = i.Page
+	}
 	if i.Results != nil {
 		structMap["results"] = i.Results
 	}
@@ -51,17 +63,21 @@ func (i *IssuedClientCertificatesResults) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "results")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "limit", "page", "results")
 	if err != nil {
 		return err
 	}
 	i.AdditionalProperties = additionalProperties
 
+	i.Limit = temp.Limit
+	i.Page = temp.Page
 	i.Results = temp.Results
 	return nil
 }
 
 // tempIssuedClientCertificatesResults is a temporary struct used for validating the fields of IssuedClientCertificatesResults.
 type tempIssuedClientCertificatesResults struct {
+	Limit   *int                      `json:"limit,omitempty"`
+	Page    *int                      `json:"page,omitempty"`
 	Results []IssuedClientCertificate `json:"results,omitempty"`
 }

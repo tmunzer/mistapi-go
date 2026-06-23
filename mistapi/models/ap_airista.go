@@ -8,11 +8,13 @@ import (
 )
 
 // ApAirista represents a ApAirista struct.
+// Airista RTLS integration settings for an AP
 type ApAirista struct {
 	// Whether to enable Airista config
 	Enabled *bool `json:"enabled,omitempty"`
 	// Required if enabled, Airista server host
-	Host                 Optional[string]       `json:"host"`
+	Host Optional[string] `json:"host"`
+	// Optional if enabled, Airista server port. Defaults to 1144
 	Port                 Optional[int]          `json:"port"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

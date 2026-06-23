@@ -16,10 +16,12 @@ func TestOrgsNACTagsTestListOrgNacTags(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
+	mType := "match,vlan"
+	name := "name-a,name-b"
+	match := "ssid,idp_role"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsNacTags.ListOrgNacTags(ctx, orgId, nil, nil, nil, &limit, &page)
+	apiResponse, err := orgsNacTags.ListOrgNacTags(ctx, orgId, &mType, &name, &match, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -37,10 +39,12 @@ func TestOrgsNACTagsTestListOrgNacTags1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-
+	mType := "match,vlan"
+	name := "name-a,name-b"
+	match := "ssid,idp_role"
 	limit := int(100)
 	page := int(1)
-	apiResponse, err := orgsNacTags.ListOrgNacTags(ctx, orgId, nil, nil, nil, &limit, &page)
+	apiResponse, err := orgsNacTags.ListOrgNacTags(ctx, orgId, &mType, &name, &match, &limit, &page)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

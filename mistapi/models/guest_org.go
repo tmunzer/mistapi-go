@@ -11,44 +11,47 @@ import (
 )
 
 // GuestOrg represents a GuestOrg struct.
-// Guest
+// Guest authorization record at organization scope
 type GuestOrg struct {
 	// If `auth_method`==`email`, the email address where the authorization code has been sent to
 	AccessCodeEmail *string `json:"access_code_email,omitempty"`
 	// Based on the WLAN portal configuration (field `allow_wlan_id_roam`), if the user is also authorized on other Guest WLANs of the same Org without reauthentication
 	AllowWlanIdRoam *bool `json:"allow_wlan_id_roam,omitempty"`
-	// MAC Address of the AP the guest was connected to during the registration process
+	// MAC address of the AP used during guest registration
 	ApMac *string `json:"ap_mac,omitempty"`
-	// Type of guest authorization
+	// Guest authentication method used for the authorization
 	AuthMethod *string `json:"auth_method,omitempty"`
-	// Whether the guest is current authorized
+	// Whether the guest is currently authorized
 	Authorized *bool `json:"authorized,omitempty"`
-	// When the authorization would expire
+	// Unix timestamp when the guest authorization expires
 	AuthorizedExpiringTime *float64 `json:"authorized_expiring_time,omitempty"`
-	// When the guest was authorized
+	// Unix timestamp when the guest was authorized
 	AuthorizedTime *float64 `json:"authorized_time,omitempty"`
-	// Optional, the info provided by user
+	// Optional company name provided by the guest during registration
 	Company *string `json:"company,omitempty"`
 	// Based on the WLAN portal configuration (field `cross_site`), if the user is also authorized on other sites (same `wlan.ssid`) of the same Org without reauthentication
 	CrossSite *bool `json:"cross_site,omitempty"`
-	// Optional, the info provided by user
+	// Optional email address provided by the guest during registration
 	Email *string `json:"email,omitempty"`
-	// Optional, the info provided by user
+	// Optional custom field 1 value provided by the user during registration
 	Field1 *string `json:"field1,omitempty"`
+	// Optional custom field 2 value provided by the user during registration
 	Field2 *string `json:"field2,omitempty"`
+	// Optional custom field 3 value provided by the user during registration
 	Field3 *string `json:"field3,omitempty"`
+	// Optional custom field 4 value provided by the user during registration
 	Field4 *string `json:"field4,omitempty"`
-	// MAC
+	// Device MAC address captured during guest registration
 	Mac *string `json:"mac,omitempty"`
 	// Authorization duration, in minutes. Default is 1440 minutes (1 day), maximum is 259200 (180 days)
 	Minutes *int `json:"minutes,omitempty"`
-	// Optional, the info provided by user
+	// Optional name provided by the guest during registration
 	Name *string `json:"name,omitempty"`
-	// If the client is using a randomized MAC Address to connect the SSID
+	// Whether the guest device used a randomized MAC address to connect to the SSID
 	RandomMac *bool `json:"random_mac,omitempty"`
 	// Name of the SSID
 	Ssid *string `json:"ssid,omitempty"`
-	// ID of the WLAN
+	// Identifier of the WLAN used for the guest authorization
 	WlanId               uuid.UUID              `json:"wlan_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

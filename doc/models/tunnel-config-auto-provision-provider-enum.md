@@ -1,7 +1,7 @@
 
 # Tunnel Config Auto Provision Provider Enum
 
-enum: `jse-ipsec`, `zscaler-ipsec`
+Tunnel provider used for automatic endpoint provisioning. enum: `jse-ipsec`, `zscaler-ipsec`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `jse-ipsec`, `zscaler-ipsec`
 |  --- |
 | `jse-ipsec` |
 | `zscaler-ipsec` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    tunnelConfigAutoProvisionProvider := models.TunnelConfigAutoProvisionProviderEnum_JSEIPSEC
+
+}
+```
 

@@ -1,7 +1,7 @@
 
 # Hours
 
-Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat, sun)
+Day-of-week operating hour filters using hour ranges such as 09:00-17:00
 
 ## Structure
 
@@ -19,17 +19,26 @@ Days/Hours of operation filter, the available days (mon, tue, wed, thu, fri, sat
 | `Tue` | `*string` | Optional | Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59. |
 | `Wed` | `*string` | Optional | Hour range of the day (e.g. `09:00-17:00`). If the hour is not defined then it's treated as 00:00-23:59. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "fri": "09:00-17:00",
-  "mon": "09:00-17:00",
-  "sat": "09:00-17:00",
-  "sun": "09:00-17:00",
-  "thu": "09:00-17:00",
-  "tue": "09:00-17:00",
-  "wed": "09:00-17:00"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    hours := models.Hours{
+        Fri:                  models.ToPointer("09:00-17:00"),
+        Mon:                  models.ToPointer("09:00-17:00"),
+        Sat:                  models.ToPointer("09:00-17:00"),
+        Sun:                  models.ToPointer("09:00-17:00"),
+        Thu:                  models.ToPointer("09:00-17:00"),
+        Tue:                  models.ToPointer("09:00-17:00"),
+        Wed:                  models.ToPointer("09:00-17:00"),
+    }
+
 }
 ```
 

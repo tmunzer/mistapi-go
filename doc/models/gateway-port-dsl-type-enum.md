@@ -14,3 +14,18 @@ if `wan_type`==`dsl`. enum: `adsl`, `vdsl`
 | `adsl` |
 | `vdsl` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortDslType := models.GatewayPortDslTypeEnum_ADSL
+
+}
+```
+

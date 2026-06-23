@@ -15,3 +15,18 @@ Only if `mode`!=`dynamic` and `enable_mac_auth` ==`true`. This type is ignored i
 | `eap-peap` |
 | `pap` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageMacAuthProtocol := models.SwitchPortUsageMacAuthProtocolEnum_PAP
+
+}
+```
+

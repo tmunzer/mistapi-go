@@ -9,17 +9,22 @@ import (
 )
 
 // LicenseAmendment represents a LicenseAmendment struct.
+// Read-only change applied to a license subscription
 type LicenseAmendment struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	EndTime     *int     `json:"end_time,omitempty"`
+	// End time of the license amendment
+	EndTime *int `json:"end_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime   *float64 `json:"modified_time,omitempty"`
-	Quantity       *int     `json:"quantity,omitempty"`
-	StartTime      *int     `json:"start_time,omitempty"`
-	SubscriptionId *string  `json:"subscription_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// License quantity associated with this amendment
+	Quantity *int `json:"quantity,omitempty"`
+	// Start time of the license amendment
+	StartTime *int `json:"start_time,omitempty"`
+	// Subscription identifier associated with this amendment
+	SubscriptionId *string `json:"subscription_id,omitempty"`
 	// Type of license. The list of supported license type can be retrieve with the [List License Type]($e/Constants%20Definitions/listLicenseTypes) API request.
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

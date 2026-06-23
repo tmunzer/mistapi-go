@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSettingWanPma represents a OrgSettingWanPma struct.
+// PMA feature settings for WAN Assurance
 type OrgSettingWanPma struct {
+	// Whether PMA is enabled for WAN Assurance
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

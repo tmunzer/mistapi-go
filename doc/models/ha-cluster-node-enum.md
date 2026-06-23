@@ -1,7 +1,7 @@
 
 # Ha Cluster Node Enum
 
-only for HA. enum: `node0`, `node1`
+HA cluster node selector. enum: `node0`, `node1`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ only for HA. enum: `node0`, `node1`
 |  --- |
 | `node0` |
 | `node1` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    haClusterNodeEnum := models.HaClusterNodeEnum_NODE0
+
+}
+```
 

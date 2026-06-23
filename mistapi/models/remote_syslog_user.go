@@ -8,9 +8,13 @@ import (
 )
 
 // RemoteSyslogUser represents a RemoteSyslogUser struct.
+// User-specific syslog logging rule
 type RemoteSyslogUser struct {
-	Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
-	Match                *string                `json:"match,omitempty"`
+	// List of syslog content selectors
+	Contents []RemoteSyslogContent `json:"contents,omitempty"`
+	// Expression used to filter user log messages
+	Match *string `json:"match,omitempty"`
+	// Account name or wildcard matched by this syslog rule
 	User                 *string                `json:"user,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

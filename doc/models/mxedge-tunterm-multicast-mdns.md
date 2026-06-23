@@ -1,6 +1,8 @@
 
 # Mxedge Tunterm Multicast Mdns
 
+mDNS forwarding settings for tunnel termination
+
 ## Structure
 
 `MxedgeTuntermMulticastMdns`
@@ -9,18 +11,27 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
-| `VlanIds` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Enabled` | `*bool` | Optional | Whether mDNS forwarding is enabled for the configured VLANs |
+| `VlanIds` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "vlan_ids": [
-    "vlan_ids4",
-    "vlan_ids5"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermMulticastMdns := models.MxedgeTuntermMulticastMdns{
+        Enabled:              models.ToPointer(false),
+        VlanIds:              []string{
+            "vlan_ids2",
+            "vlan_ids3",
+        },
+    }
+
 }
 ```
 

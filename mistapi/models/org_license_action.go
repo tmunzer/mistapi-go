@@ -11,12 +11,13 @@ import (
 )
 
 // OrgLicenseAction represents a OrgLicenseAction struct.
+// Request to amend, annotate, delete, or unamend an organization license
 type OrgLicenseAction struct {
 	// If `op`==`unamend`, the ID of the operation to cancel
 	AmendmentId *uuid.UUID `json:"amendment_id,omitempty"`
 	// If `op`==`amend`, the id of the org where the license is moved
 	DstOrgId *uuid.UUID `json:"dst_org_id,omitempty"`
-	// If `op`==`annotate`
+	// If `op`==`annotate`, note text to attach to the license
 	Notes *string `json:"notes,omitempty"`
 	// to move a license, use the `amend` operation. enum: `amend`, `annotate`, `delete`, `unamend`
 	Op OrgLicenseActionOperationEnum `json:"op"`

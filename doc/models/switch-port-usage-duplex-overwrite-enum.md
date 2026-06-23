@@ -15,3 +15,18 @@ Link connection mode. enum: `auto`, `full`, `half`
 | `full` |
 | `half` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageDuplexOverwrite := models.SwitchPortUsageDuplexOverwriteEnum_FULL
+
+}
+```
+

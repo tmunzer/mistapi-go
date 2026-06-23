@@ -16,3 +16,18 @@ enum: `add`, `preprovision`, `remove`, `renumber`
 | `remove` |
 | `renumber` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    virtualChassisUpdateOp := models.VirtualChassisUpdateOpEnum_REMOVE
+
+}
+```
+

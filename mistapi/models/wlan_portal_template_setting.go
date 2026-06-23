@@ -10,12 +10,14 @@ import (
 )
 
 // WlanPortalTemplateSetting represents a WlanPortalTemplateSetting struct.
-// Portal template wlan settings
+// Portal template settings for the WLAN guest portal
 type WlanPortalTemplateSetting struct {
+	// Link text for using an alternate email address during access-code login
 	AccessCodeAlternateEmail *string `json:"accessCodeAlternateEmail,omitempty"`
 	// defines alignment on portal. enum: `center`, `left`, `right`
-	Alignment *PortalTemplateAlignmentEnum     `json:"alignment,omitempty"`
-	Ar        *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
+	Alignment *PortalTemplateAlignmentEnum `json:"alignment,omitempty"`
+	// Localized portal template strings for a specific language
+	Ar *WlanPortalTemplateSettingLocale `json:"ar,omitempty"`
 	// Label for Amazon auth button
 	AuthButtonAmazon *string `json:"authButtonAmazon,omitempty"`
 	// Label for Azure auth button
@@ -34,91 +36,120 @@ type WlanPortalTemplateSetting struct {
 	AuthButtonSms *string `json:"authButtonSms,omitempty"`
 	// Label for Sponsor auth button
 	AuthButtonSponsor *string `json:"authButtonSponsor,omitempty"`
-	AuthLabel         *string `json:"authLabel,omitempty"`
+	// Heading text displayed above portal authentication options
+	AuthLabel *string `json:"authLabel,omitempty"`
 	// Label of the link to go back to /logon
-	BackLink *string                          `json:"backLink,omitempty"`
-	CaES     *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
-	// Portal main color
-	Color      *string `json:"color,omitempty"`
-	ColorDark  *string `json:"colorDark,omitempty"`
+	BackLink *string `json:"backLink,omitempty"`
+	// Localized portal template strings for a specific language
+	CaES *WlanPortalTemplateSettingLocale `json:"ca-ES,omitempty"`
+	// Primary color used by the portal template
+	Color *string `json:"color,omitempty"`
+	// Darker accent color used by the portal template
+	ColorDark *string `json:"colorDark,omitempty"`
+	// Lighter accent color used by the portal template
 	ColorLight *string `json:"colorLight,omitempty"`
 	// Whether company field is required
 	Company *bool `json:"company,omitempty"`
 	// Error message when company not provided
 	CompanyError *string `json:"companyError,omitempty"`
-	// Label of company field
-	CompanyLabel *string                          `json:"companyLabel,omitempty"`
-	CsCZ         *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
-	DaDK         *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
-	DeDE         *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
-	ElGR         *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
+	// Label displayed for the company input field
+	CompanyLabel *string `json:"companyLabel,omitempty"`
+	// Localized portal template strings for a specific language
+	CsCZ *WlanPortalTemplateSettingLocale `json:"cs-CZ,omitempty"`
+	// Localized portal template strings for a specific language
+	DaDK *WlanPortalTemplateSettingLocale `json:"da-DK,omitempty"`
+	// Localized portal template strings for a specific language
+	DeDE *WlanPortalTemplateSettingLocale `json:"de-DE,omitempty"`
+	// Localized portal template strings for a specific language
+	ElGR *WlanPortalTemplateSettingLocale `json:"el-GR,omitempty"`
 	// Whether email field is required
 	Email *bool `json:"email,omitempty"`
 	// Error message when a user has valid social login but doesn't match specified email domains.
 	EmailAccessDomainError *string `json:"emailAccessDomainError,omitempty"`
 	// Label for cancel confirmation code submission using email auth
-	EmailCancel         *string `json:"emailCancel,omitempty"`
-	EmailCodeCancel     *string `json:"emailCodeCancel,omitempty"`
-	EmailCodeError      *string `json:"emailCodeError,omitempty"`
+	EmailCancel *string `json:"emailCancel,omitempty"`
+	// Link text for requesting help when the email access code was not received
+	EmailCodeCancel *string `json:"emailCodeCancel,omitempty"`
+	// Error message shown when the alternate email address for access-code delivery is invalid
+	EmailCodeError *string `json:"emailCodeError,omitempty"`
+	// Label for the email access-code input field
 	EmailCodeFieldLabel *string `json:"emailCodeFieldLabel,omitempty"`
-	EmailCodeMessage    *string `json:"emailCodeMessage,omitempty"`
-	EmailCodeSubmit     *string `json:"emailCodeSubmit,omitempty"`
-	EmailCodeTitle      *string `json:"emailCodeTitle,omitempty"`
+	// Instructional text shown before entering the email access code
+	EmailCodeMessage *string `json:"emailCodeMessage,omitempty"`
+	// Button label for submitting the email access code
+	EmailCodeSubmit *string `json:"emailCodeSubmit,omitempty"`
+	// Title shown on the email access-code entry page
+	EmailCodeTitle *string `json:"emailCodeTitle,omitempty"`
 	// Error message when email not provided
-	EmailError      *string `json:"emailError,omitempty"`
+	EmailError *string `json:"emailError,omitempty"`
+	// Label for the email address input field
 	EmailFieldLabel *string `json:"emailFieldLabel,omitempty"`
-	// Label of email field
-	EmailLabel   *string `json:"emailLabel,omitempty"`
+	// Label displayed for the email input field
+	EmailLabel *string `json:"emailLabel,omitempty"`
+	// Instructional text explaining email access-code delivery
 	EmailMessage *string `json:"emailMessage,omitempty"`
 	// Label for confirmation code submit button using email auth
 	EmailSubmit *string `json:"emailSubmit,omitempty"`
 	// Title for the Email registration
-	EmailTitle *string                          `json:"emailTitle,omitempty"`
-	EnGB       *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
-	EnUS       *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
-	EsES       *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
-	FiFI       *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
+	EmailTitle *string `json:"emailTitle,omitempty"`
+	// Localized portal template strings for a specific language
+	EnGB *WlanPortalTemplateSettingLocale `json:"en-GB,omitempty"`
+	// Localized portal template strings for a specific language
+	EnUS *WlanPortalTemplateSettingLocale `json:"en-US,omitempty"`
+	// Localized portal template strings for a specific language
+	EsES *WlanPortalTemplateSettingLocale `json:"es-ES,omitempty"`
+	// Localized portal template strings for a specific language
+	FiFI *WlanPortalTemplateSettingLocale `json:"fi-FI,omitempty"`
 	// Whether to ask field1
 	Field1 *bool `json:"field1,omitempty"`
 	// Error message when field1 not provided
 	Field1Error *string `json:"field1Error,omitempty"`
-	// Label of field1
+	// Label for custom field 1 input
 	Field1Label *string `json:"field1Label,omitempty"`
-	// Whether field1 is required field
+	// Whether custom field 1 must be provided when the field is shown
 	Field1Required *bool `json:"field1Required,omitempty"`
 	// Whether to ask field2
 	Field2 *bool `json:"field2,omitempty"`
 	// Error message when field2 not provided
 	Field2Error *string `json:"field2Error,omitempty"`
-	// Label of field2
+	// Label for custom field 2 input
 	Field2Label *string `json:"field2Label,omitempty"`
-	// Whether field2 is required field
+	// Whether custom field 2 must be provided when the field is shown
 	Field2Required *bool `json:"field2Required,omitempty"`
 	// Whether to ask field3
 	Field3 *bool `json:"field3,omitempty"`
 	// Error message when field3 not provided
 	Field3Error *string `json:"field3Error,omitempty"`
-	// Label of field3
+	// Label for custom field 3 input
 	Field3Label *string `json:"field3Label,omitempty"`
-	// Whether field3 is required field
+	// Whether custom field 3 must be provided when the field is shown
 	Field3Required *bool `json:"field3Required,omitempty"`
 	// Whether to ask field4
 	Field4 *bool `json:"field4,omitempty"`
 	// Error message when field4 not provided
 	Field4Error *string `json:"field4Error,omitempty"`
-	// Label of field4
+	// Label for custom field 4 input
 	Field4Label *string `json:"field4Label,omitempty"`
-	// Whether field4 is required field
-	Field4Required *bool                            `json:"field4Required,omitempty"`
-	FrFR           *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
-	HeIL           *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
-	HiIN           *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
-	HrHR           *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
-	HuHU           *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
-	IdID           *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
-	ItIT           *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
-	JaJP           *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
-	KoKR           *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
+	// Whether custom field 4 must be provided when the field is shown
+	Field4Required *bool `json:"field4Required,omitempty"`
+	// Localized portal template strings for a specific language
+	FrFR *WlanPortalTemplateSettingLocale `json:"fr-FR,omitempty"`
+	// Localized portal template strings for a specific language
+	HeIL *WlanPortalTemplateSettingLocale `json:"he-IL,omitempty"`
+	// Localized portal template strings for a specific language
+	HiIN *WlanPortalTemplateSettingLocale `json:"hi-IN,omitempty"`
+	// Localized portal template strings for a specific language
+	HrHR *WlanPortalTemplateSettingLocale `json:"hr-HR,omitempty"`
+	// Localized portal template strings for a specific language
+	HuHU *WlanPortalTemplateSettingLocale `json:"hu-HU,omitempty"`
+	// Localized portal template strings for a specific language
+	IdID *WlanPortalTemplateSettingLocale `json:"id-ID,omitempty"`
+	// Localized portal template strings for a specific language
+	ItIT *WlanPortalTemplateSettingLocale `json:"it-IT,omitempty"`
+	// Localized portal template strings for a specific language
+	JaJP *WlanPortalTemplateSettingLocale `json:"ja-JP,omitempty"`
+	// Localized portal template strings for a specific language
+	KoKR *WlanPortalTemplateSettingLocale `json:"ko-KR,omitempty"`
 	// Custom logo with `data:image/png;base64,` format, default null, uses Juniper Mist Logo. File size must be less than 100kB and image dimensions must be less than 500px x 200px (width x height).
 	Logo Optional[string] `json:"logo"`
 	// Height of the logo, in px
@@ -131,38 +162,46 @@ type WlanPortalTemplateSetting struct {
 	MarketingPolicyOptIn *bool `json:"marketingPolicyOptIn,omitempty"`
 	// label for marketing optin
 	MarketingPolicyOptInLabel *string `json:"marketingPolicyOptInLabel,omitempty"`
-	// marketing policy text
-	MarketingPolicyOptInText *string                          `json:"marketingPolicyOptInText,omitempty"`
-	Message                  *string                          `json:"message,omitempty"`
-	MsMY                     *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
-	MultiAuth                *bool                            `json:"multiAuth,omitempty"`
+	// Text of the marketing policy opt-in content
+	MarketingPolicyOptInText *string `json:"marketingPolicyOptInText,omitempty"`
+	// Main message displayed on the guest portal sign-in page
+	Message *string `json:"message,omitempty"`
+	// Localized portal template strings for a specific language
+	MsMY *WlanPortalTemplateSettingLocale `json:"ms-MY,omitempty"`
+	// Whether the portal presents multiple authentication methods
+	MultiAuth *bool `json:"multiAuth,omitempty"`
 	// Whether name field is required
 	Name *bool `json:"name,omitempty"`
 	// Error message when name not provided
 	NameError *string `json:"nameError,omitempty"`
-	// Label of name field
-	NameLabel *string                          `json:"nameLabel,omitempty"`
-	NbNO      *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
-	NlNL      *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
+	// Label displayed for the name input field
+	NameLabel *string `json:"nameLabel,omitempty"`
+	// Localized portal template strings for a specific language
+	NbNO *WlanPortalTemplateSettingLocale `json:"nb-NO,omitempty"`
+	// Localized portal template strings for a specific language
+	NlNL *WlanPortalTemplateSettingLocale `json:"nl-NL,omitempty"`
 	// Default value for the `Do not store` checkbox
 	OptOutDefault *bool `json:"optOutDefault,omitempty"`
 	// Whether to display Do Not Store My Personal Information
 	Optout *bool `json:"optout,omitempty"`
 	// Label for Do Not Store My Personal Information
 	OptoutLabel *string `json:"optoutLabel,omitempty"`
-	PageTitle   string  `json:"pageTitle"`
+	// Browser or page title shown for the guest portal
+	PageTitle string `json:"pageTitle"`
 	// Label for the Passphrase cancel button
 	PassphraseCancel *string `json:"passphraseCancel,omitempty"`
 	// Error message when invalid passphrase is provided
 	PassphraseError *string `json:"passphraseError,omitempty"`
-	// Passphrase
-	PassphraseLabel   *string `json:"passphraseLabel,omitempty"`
+	// Label for the passphrase input field
+	PassphraseLabel *string `json:"passphraseLabel,omitempty"`
+	// Instructional text shown on the passphrase sign-in page
 	PassphraseMessage *string `json:"passphraseMessage,omitempty"`
 	// Label for the Passphrase submit button
 	PassphraseSubmit *string `json:"passphraseSubmit,omitempty"`
 	// Title for passphrase details page
-	PassphraseTitle *string                          `json:"passphraseTitle,omitempty"`
-	PlPL            *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
+	PassphraseTitle *string `json:"passphraseTitle,omitempty"`
+	// Localized portal template strings for a specific language
+	PlPL *WlanPortalTemplateSettingLocale `json:"pl-PL,omitempty"`
 	// Whether to show \"Powered by Mist\"
 	PoweredBy *bool `json:"poweredBy,omitempty"`
 	// Whether to require the Privacy Term acceptance
@@ -174,55 +213,76 @@ type WlanPortalTemplateSetting struct {
 	// Label of the link to go to Privacy Policy
 	PrivacyPolicyLink *string `json:"privacyPolicyLink,omitempty"`
 	// Text of the Privacy Policy
-	PrivacyPolicyText *string                          `json:"privacyPolicyText,omitempty"`
-	PtBR              *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
-	PtPT              *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
-	// Label to denote required field
-	RequiredFieldLabel *string                          `json:"requiredFieldLabel,omitempty"`
-	ResponsiveLayout   *bool                            `json:"responsiveLayout,omitempty"`
-	RoRO               *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
-	RuRU               *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
+	PrivacyPolicyText *string `json:"privacyPolicyText,omitempty"`
+	// Localized portal template strings for a specific language
+	PtBR *WlanPortalTemplateSettingLocale `json:"pt-BR,omitempty"`
+	// Localized portal template strings for a specific language
+	PtPT *WlanPortalTemplateSettingLocale `json:"pt-PT,omitempty"`
+	// Text used to mark a form field as required
+	RequiredFieldLabel *string `json:"requiredFieldLabel,omitempty"`
+	// Whether the portal template uses a responsive layout
+	ResponsiveLayout *bool `json:"responsiveLayout,omitempty"`
+	// Localized portal template strings for a specific language
+	RoRO *WlanPortalTemplateSettingLocale `json:"ro-RO,omitempty"`
+	// Localized portal template strings for a specific language
+	RuRU *WlanPortalTemplateSettingLocale `json:"ru-RU,omitempty"`
 	// Label of the button to signin
-	SignInLabel       *string                          `json:"signInLabel,omitempty"`
-	SkSK              *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
-	SmsCarrierDefault *string                          `json:"smsCarrierDefault,omitempty"`
-	SmsCarrierError   *string                          `json:"smsCarrierError,omitempty"`
+	SignInLabel *string `json:"signInLabel,omitempty"`
+	// Localized portal template strings for a specific language
+	SkSK *WlanPortalTemplateSettingLocale `json:"sk-SK,omitempty"`
+	// Default option text shown in the SMS carrier selector
+	SmsCarrierDefault *string `json:"smsCarrierDefault,omitempty"`
+	// Error message shown when no mobile carrier is selected
+	SmsCarrierError *string `json:"smsCarrierError,omitempty"`
 	// Label for mobile carrier drop-down list
 	SmsCarrierFieldLabel *string `json:"smsCarrierFieldLabel,omitempty"`
 	// Label for cancel confirmation code submission
 	SmsCodeCancel *string `json:"smsCodeCancel,omitempty"`
 	// Error message when confirmation code is invalid
-	SmsCodeError      *string `json:"smsCodeError,omitempty"`
+	SmsCodeError *string `json:"smsCodeError,omitempty"`
+	// Label for the SMS confirmation-code input field
 	SmsCodeFieldLabel *string `json:"smsCodeFieldLabel,omitempty"`
-	SmsCodeMessage    *string `json:"smsCodeMessage,omitempty"`
+	// Instructional text shown before entering the SMS access code
+	SmsCodeMessage *string `json:"smsCodeMessage,omitempty"`
 	// Label for confirmation code submit button
-	SmsCodeSubmit        *string `json:"smsCodeSubmit,omitempty"`
-	SmsCodeTitle         *string `json:"smsCodeTitle,omitempty"`
+	SmsCodeSubmit *string `json:"smsCodeSubmit,omitempty"`
+	// Title shown on the SMS access-code entry page
+	SmsCodeTitle *string `json:"smsCodeTitle,omitempty"`
+	// Label for the SMS country-code input field
 	SmsCountryFieldLabel *string `json:"smsCountryFieldLabel,omitempty"`
-	SmsCountryFormat     *string `json:"smsCountryFormat,omitempty"`
+	// Example country code format shown for SMS authentication
+	SmsCountryFormat *string `json:"smsCountryFormat,omitempty"`
 	// Label for checkbox to specify that the user has access code
 	SmsHaveAccessCode *string `json:"smsHaveAccessCode,omitempty"`
-	SmsIsTwilio       *bool   `json:"smsIsTwilio,omitempty"`
+	// Whether the SMS portal flow uses Twilio-specific behavior
+	SmsIsTwilio *bool `json:"smsIsTwilio,omitempty"`
 	// Format of access code sms message. {{code}} and {{duration}} are placeholders and should be retained as is.
 	SmsMessageFormat *string `json:"smsMessageFormat,omitempty"`
 	// Label for canceling mobile details for SMS auth
 	SmsNumberCancel *string `json:"smsNumberCancel,omitempty"`
-	SmsNumberError  *string `json:"smsNumberError,omitempty"`
+	// Error message shown when the mobile number is invalid
+	SmsNumberError *string `json:"smsNumberError,omitempty"`
 	// Label for field to provide mobile number
 	SmsNumberFieldLabel *string `json:"smsNumberFieldLabel,omitempty"`
-	SmsNumberFormat     *string `json:"smsNumberFormat,omitempty"`
-	SmsNumberMessage    *string `json:"smsNumberMessage,omitempty"`
+	// Example mobile number format shown for SMS authentication
+	SmsNumberFormat *string `json:"smsNumberFormat,omitempty"`
+	// Instructional text explaining SMS access-code delivery
+	SmsNumberMessage *string `json:"smsNumberMessage,omitempty"`
 	// Label for submit button for code generation
 	SmsNumberSubmit *string `json:"smsNumberSubmit,omitempty"`
 	// Title for phone number details
-	SmsNumberTitle    *string `json:"smsNumberTitle,omitempty"`
+	SmsNumberTitle *string `json:"smsNumberTitle,omitempty"`
+	// Example username format shown for SMS authentication
 	SmsUsernameFormat *string `json:"smsUsernameFormat,omitempty"`
 	// How long confirmation code should be considered valid (in minutes)
-	SmsValidityDuration *int    `json:"smsValidityDuration,omitempty"`
-	SponsorBackLink     *string `json:"sponsorBackLink,omitempty"`
-	SponsorCancel       *string `json:"sponsorCancel,omitempty"`
+	SmsValidityDuration *int `json:"smsValidityDuration,omitempty"`
+	// Link text for returning to edit the sponsor request form
+	SponsorBackLink *string `json:"sponsorBackLink,omitempty"`
+	// Button label for canceling sponsor authentication
+	SponsorCancel *string `json:"sponsorCancel,omitempty"`
 	// Label for Sponsor Email
-	SponsorEmail      *string `json:"sponsorEmail,omitempty"`
+	SponsorEmail *string `json:"sponsorEmail,omitempty"`
+	// Error message shown when the sponsor email address is invalid
 	SponsorEmailError *string `json:"sponsorEmailError,omitempty"`
 	// HTML template to replace/override default sponsor email template
 	// Sponsor Email Template supports following template variables:
@@ -235,12 +295,17 @@ type WlanPortalTemplateSetting struct {
 	// * `sponsor_link_validity_duration`: Renders validity time of the request (i.e. Approve/Deny URL)
 	// * `auth_expire_minutes`: Renders Wlan-level configured Guest Authorization Expiration time period (in minutes), If not configured then default (1 day in minutes)
 	SponsorEmailTemplate *string `json:"sponsorEmailTemplate,omitempty"`
-	SponsorInfoApproved  *string `json:"sponsorInfoApproved,omitempty"`
-	SponsorInfoDenied    *string `json:"sponsorInfoDenied,omitempty"`
-	SponsorInfoPending   *string `json:"sponsorInfoPending,omitempty"`
+	// Status message prefix shown when a sponsor approves the request
+	SponsorInfoApproved *string `json:"sponsorInfoApproved,omitempty"`
+	// Status message prefix shown when a sponsor denies the request
+	SponsorInfoDenied *string `json:"sponsorInfoDenied,omitempty"`
+	// Status message prefix shown after a sponsor notification is sent
+	SponsorInfoPending *string `json:"sponsorInfoPending,omitempty"`
 	// Label for Sponsor Name
-	SponsorName        *string `json:"sponsorName,omitempty"`
-	SponsorNameError   *string `json:"sponsorNameError,omitempty"`
+	SponsorName *string `json:"sponsorName,omitempty"`
+	// Error message shown when the sponsor name is missing
+	SponsorNameError *string `json:"sponsorNameError,omitempty"`
+	// Additional status text shown while sponsor approval is pending
 	SponsorNotePending *string `json:"sponsorNotePending,omitempty"`
 	// Submit button label request Wifi Access and notify sponsor about guest request
 	SponsorRequestAccess *string `json:"sponsorRequestAccess,omitempty"`
@@ -251,12 +316,17 @@ type WlanPortalTemplateSetting struct {
 	// Text to display if request is still pending
 	SponsorStatusPending *string `json:"sponsorStatusPending,omitempty"`
 	// Submit button label to notify sponsor about guest request
-	SponsorSubmit      *string                          `json:"sponsorSubmit,omitempty"`
-	SponsorsError      *string                          `json:"sponsorsError,omitempty"`
-	SponsorsFieldLabel *string                          `json:"sponsorsFieldLabel,omitempty"`
-	SvSE               *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
-	ThTH               *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
-	Tos                *bool                            `json:"tos,omitempty"`
+	SponsorSubmit *string `json:"sponsorSubmit,omitempty"`
+	// Error message shown when no sponsor is selected
+	SponsorsError *string `json:"sponsorsError,omitempty"`
+	// Label for the sponsor selection field
+	SponsorsFieldLabel *string `json:"sponsorsFieldLabel,omitempty"`
+	// Localized portal template strings for a specific language
+	SvSE *WlanPortalTemplateSettingLocale `json:"sv-SE,omitempty"`
+	// Localized portal template strings for a specific language
+	ThTH *WlanPortalTemplateSettingLocale `json:"th-TH,omitempty"`
+	// Whether the portal requires Terms of Service acceptance
+	Tos *bool `json:"tos,omitempty"`
 	// Prefix of the label of the link to go to tos
 	TosAcceptLabel *string `json:"tosAcceptLabel,omitempty"`
 	// Error message when tos not accepted
@@ -264,11 +334,16 @@ type WlanPortalTemplateSetting struct {
 	// Label of the link to go to tos
 	TosLink *string `json:"tosLink,omitempty"`
 	// Text of the Terms of Service
-	TosText              *string                          `json:"tosText,omitempty"`
-	TrTR                 *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
-	UkUA                 *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
-	ViVN                 *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
-	ZhHans               *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
+	TosText *string `json:"tosText,omitempty"`
+	// Localized portal template strings for a specific language
+	TrTR *WlanPortalTemplateSettingLocale `json:"tr-TR,omitempty"`
+	// Localized portal template strings for a specific language
+	UkUA *WlanPortalTemplateSettingLocale `json:"uk-UA,omitempty"`
+	// Localized portal template strings for a specific language
+	ViVN *WlanPortalTemplateSettingLocale `json:"vi-VN,omitempty"`
+	// Localized portal template strings for a specific language
+	ZhHans *WlanPortalTemplateSettingLocale `json:"zh-Hans,omitempty"`
+	// Localized portal template strings for a specific language
 	ZhHant               *WlanPortalTemplateSettingLocale `json:"zh-Hant,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`
 }

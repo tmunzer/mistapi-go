@@ -10,8 +10,9 @@ import (
 // WebhookClientLatency represents a WebhookClientLatency struct.
 // Sample of the `client-latency` webhook payload.
 type WebhookClientLatency struct {
+	// Client latency summary events included in a webhook delivery
 	Events []WebhookClientLatencyEvent `json:"events,omitempty"`
-	// enum: `client-latency`
+	// Webhook topic name for client latency deliveries. enum: `client-latency`
 	Topic                *WebhookClientLatencyTopicEnum `json:"topic,omitempty"`
 	AdditionalProperties map[string]interface{}         `json:"_"`
 }

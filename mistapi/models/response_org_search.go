@@ -10,14 +10,21 @@ import (
 )
 
 // ResponseOrgSearch represents a ResponseOrgSearch struct.
+// Paginated response for MSP organization search results
 type ResponseOrgSearch struct {
-	End                  float64                 `json:"end"`
-	Limit                int                     `json:"limit"`
-	Next                 *string                 `json:"next,omitempty"`
-	Results              []ResponseOrgSearchItem `json:"results"`
-	Start                float64                 `json:"start"`
-	Total                int                     `json:"total"`
-	AdditionalProperties map[string]interface{}  `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the organization search window
+	End float64 `json:"end"`
+	// Maximum number of organization records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of organization search results
+	Next *string `json:"next,omitempty"`
+	// Organization records returned by MSP organization search
+	Results []ResponseOrgSearchItem `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the organization search window
+	Start float64 `json:"start"`
+	// Number of organization records matching the search filters across all pages
+	Total                int                    `json:"total"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseOrgSearch,

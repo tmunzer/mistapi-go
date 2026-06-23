@@ -21,3 +21,18 @@ The status of auto map assignment for a given site. enum:
 | `completed` |
 | `error` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoMapAssignmentInfoStatus := models.ResponseAutoMapAssignmentInfoStatusEnum_COMPLETED
+
+}
+```
+

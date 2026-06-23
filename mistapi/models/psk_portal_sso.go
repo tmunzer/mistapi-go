@@ -8,19 +8,23 @@ import (
 )
 
 // PskPortalSso represents a PskPortalSso struct.
-// If `auth`==`sso`
+// Single sign-on settings used when `auth`==`sso`
 type PskPortalSso struct {
-	// Allowed roles for accessing psk portal, if none, any role is permitted
+	// SSO roles allowed to access the PSK portal; if empty, any role is permitted
 	AllowedRoles []string `json:"allowed_roles,omitempty"`
-	IdpCert      *string  `json:"idp_cert,omitempty"`
+	// Identity provider signing certificate in PEM format
+	IdpCert *string `json:"idp_cert,omitempty"`
 	// Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`. enum: `sha1`, `sha256`, `sha384`, `sha512`
-	IdpSignAlgo  *PskPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
-	IdpSsoUrl    *string                      `json:"idp_sso_url,omitempty"`
-	Issuer       *string                      `json:"issuer,omitempty"`
-	NameidFormat *string                      `json:"nameid_format,omitempty"`
-	// Property key is the role name, property value is the SSO Attribute
+	IdpSignAlgo *PskPortalSsoIdpSignAlgoEnum `json:"idp_sign_algo,omitempty"`
+	// Identity provider SSO URL for SAML login
+	IdpSsoUrl *string `json:"idp_sso_url,omitempty"`
+	// SAML issuer value for the identity provider
+	Issuer *string `json:"issuer,omitempty"`
+	// SAML NameID format used for the portal login
+	NameidFormat *string `json:"nameid_format,omitempty"`
+	// Maps PSK portal role names to SSO attribute values
 	RoleMapping map[string]string `json:"role_mapping,omitempty"`
-	// If enabled, the `role` above will be ignored
+	// Whether to use SSO role mapping for the PSK role and ignore the portal-level `role` field
 	UseSsoRoleForPskRole *bool                  `json:"use_sso_role_for_psk_role,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

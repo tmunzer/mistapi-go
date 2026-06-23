@@ -1,6 +1,8 @@
 
 # Response Self Oauth Link Success
 
+OAuth2 account-linking success response
+
 ## Structure
 
 `ResponseSelfOauthLinkSuccess`
@@ -9,15 +11,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Action` | `string` | Required | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
+| `Action` | `string` | Required | Completed OAuth2 account-linking action |
+| `Id` | `uuid.UUID` | Required, Read-only | Unique ID of the object instance in the Mist Organization |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "action": "action8",
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseSelfOauthLinkSuccess := models.ResponseSelfOauthLinkSuccess{
+        Action:               "action6",
+        Id:                   uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
+    }
+
 }
 ```
 

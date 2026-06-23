@@ -8,9 +8,11 @@ import (
 )
 
 // LatlngBr represents a LatlngBr struct.
-// When type=google, latitude / longitude of the bottom-right corner
+// When `type`==`google`, latitude and longitude of the bottom-right corner
 type LatlngBr struct {
-	Lat                  *string                `json:"lat,omitempty"`
+	// Bottom-right latitude for the Google map bounds
+	Lat *string `json:"lat,omitempty"`
+	// Bottom-right longitude for the Google map bounds
 	Lng                  *string                `json:"lng,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

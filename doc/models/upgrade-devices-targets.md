@@ -1,6 +1,8 @@
 
 # Upgrade Devices Targets
 
+Read-only device target lists grouped by upgrade status
+
 ## Structure
 
 `UpgradeDevicesTargets`
@@ -9,41 +11,52 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `DownloadRequested` | `[]string` | Optional | List of devices MAC Addresses which cloud has requested to download firmware |
-| `Downloaded` | `[]string` | Optional | List of devices MAC Addresses which have the firmware downloaded |
-| `Downloading` | `[]string` | Optional | List of devices MAC Addresses which are currently downloading the firmware |
-| `Failed` | `[]string` | Optional | List of devices MAC Addresses which have failed to upgrade |
-| `RebootInProgress` | `[]string` | Optional | List of devices MAC Addresses which are rebooting |
-| `Rebooted` | `[]string` | Optional | List of devices MAC Addresses which have rebooted successfully |
-| `Scheduled` | `[]string` | Optional | List of devices MAC Addresses which cloud has scheduled an upgrade for |
-| `Skipped` | `[]string` | Optional | List of devices MAC Addresses which skipped upgrade since requested version was same as running version. Use force to always upgrade |
+| `DownloadRequested` | `[]string` | Optional | List of device MAC addresses that the cloud requested to download firmware |
+| `Downloaded` | `[]string` | Optional | List of device MAC addresses that have downloaded the firmware |
+| `Downloading` | `[]string` | Optional | List of device MAC addresses that are currently downloading the firmware |
+| `Failed` | `[]string` | Optional | List of device MAC addresses that failed to upgrade |
+| `RebootInProgress` | `[]string` | Optional | List of device MAC addresses for devices that are rebooting |
+| `Rebooted` | `[]string` | Optional | List of device MAC addresses that rebooted successfully |
+| `Scheduled` | `[]string` | Optional | List of device MAC addresses that the cloud scheduled an upgrade for |
+| `Skipped` | `[]string` | Optional | List of device MAC addresses that skipped upgrade because requested version was same as running version. Use force to always upgrade |
 | `Total` | `*int` | Optional | Count of devices part of this upgrade |
-| `Upgraded` | `[]string` | Optional | Count of devices which have upgraded successfully |
+| `Upgraded` | `[]string` | Optional | List of device MAC addresses that upgraded successfully |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "download_requested": [
-    "download_requested6",
-    "download_requested5"
-  ],
-  "downloaded": [
-    "downloaded0",
-    "downloaded1"
-  ],
-  "downloading": [
-    "downloading6",
-    "downloading7",
-    "downloading8"
-  ],
-  "failed": [
-    "failed6",
-    "failed5"
-  ],
-  "reboot_in_progress": [
-    "reboot_in_progress3"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeDevicesTargets := models.UpgradeDevicesTargets{
+        DownloadRequested:    []string{
+            "download_requested6",
+            "download_requested5",
+            "download_requested4",
+        },
+        Downloaded:           []string{
+            "downloaded0",
+        },
+        Downloading:          []string{
+            "downloading6",
+            "downloading7",
+        },
+        Failed:               []string{
+            "failed6",
+            "failed5",
+            "failed4",
+        },
+        RebootInProgress:     []string{
+            "reboot_in_progress3",
+            "reboot_in_progress4",
+            "reboot_in_progress5",
+        },
+    }
+
 }
 ```
 

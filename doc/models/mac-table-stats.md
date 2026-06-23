@@ -1,6 +1,8 @@
 
 # Mac Table Stats
 
+MAC table capacity and usage statistics
+
 ## Structure
 
 `MacTableStats`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MacTableCount` | `*int` | Optional | - |
-| `MaxMacEntriesSupported` | `*int` | Optional | - |
+| `MacTableCount` | `*int` | Optional | Number of learned MAC table entries currently present |
+| `MaxMacEntriesSupported` | `*int` | Optional | Maximum number of MAC table entries supported |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac_table_count": 26,
-  "max_mac_entries_supported": 170
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    macTableStats := models.MacTableStats{
+        MacTableCount:          models.ToPointer(78),
+        MaxMacEntriesSupported: models.ToPointer(222),
+    }
+
 }
 ```
 

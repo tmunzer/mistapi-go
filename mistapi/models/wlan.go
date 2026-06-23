@@ -15,11 +15,11 @@ import (
 type Wlan struct {
 	// Enable coa-immediate-update and address-change-immediate-update on the access profile.
 	AcctImmediateUpdate *bool `json:"acct_immediate_update,omitempty"`
-	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled
+	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from RADIUS Server). Very frequent messages can affect the performance of the RADIUS server, 600 and up is recommended when enabled
 	AcctInterimInterval *int `json:"acct_interim_interval,omitempty"`
 	// List of RADIUS accounting servers, optional, order matters where the first one is treated as primary
 	AcctServers []RadiusAcctServer `json:"acct_servers,omitempty"`
-	// Airwatch wlan settings
+	// AirWatch integration settings for the WLAN
 	Airwatch *WlanAirwatch `json:"airwatch,omitempty"`
 	// Only applicable when `limit_bcast`==`true`, which allows or disallows ipv6 Neighbor Discovery packets to go through
 	AllowIpv6Ndp *bool `json:"allow_ipv6_ndp,omitempty"`
@@ -37,7 +37,7 @@ type Wlan struct {
 	ApplyTo *WlanApplyToEnum `json:"apply_to,omitempty"`
 	// Whether to enable smart arp filter
 	ArpFilter *bool `json:"arp_filter,omitempty"`
-	// Authentication wlan settings
+	// WLAN client authentication settings
 	Auth *WlanAuth `json:"auth,omitempty"`
 	// When ordered, AP will prefer and go back to the first server if possible. enum: `ordered`, `unordered`
 	AuthServerSelection *WlanAuthServerSelectionEnum `json:"auth_server_selection,omitempty"`
@@ -47,11 +47,11 @@ type Wlan struct {
 	AuthServersNasId Optional[string] `json:"auth_servers_nas_id"`
 	// Optional, NAS-IP-ADDRESS to use
 	AuthServersNasIp Optional[string] `json:"auth_servers_nas_ip"`
-	// Radius auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’ are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
+	// RADIUS auth session retries. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘retries’ are set to value of auth_servers_retries. ‘max-requests’ is also set when setting auth_servers_retries and is set to default value to 3.
 	AuthServersRetries *int `json:"auth_servers_retries,omitempty"`
-	// Radius auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
+	// RADIUS auth session timeout. Following fast timers are set if "fast_dot1x_timers" knob is enabled. ‘quite-period’  and ‘transmit-period’ are set to half the value of auth_servers_timeout. ‘supplicant-timeout’ is also set when setting auth_servers_timeout and is set to default value of 10.
 	AuthServersTimeout *int `json:"auth_servers_timeout,omitempty"`
-	// `band` is deprecated and kept for backward compatibility. Use bands instead
+	// `band` is deprecated and kept for backward compatibility. Use `bands` instead
 	Band *string `json:"band,omitempty"` // Deprecated
 	// Whether to enable band_steering, this works only when band==both
 	BandSteer *bool `json:"band_steer,omitempty"`
@@ -96,13 +96,15 @@ type Wlan struct {
 	// * cannot obtain default gateway
 	// * cannot reach default gateway
 	DisableWhenGatewayUnreachable *bool `json:"disable_when_gateway_unreachable,omitempty"`
-	DisableWhenMxtunnelDown       *bool `json:"disable_when_mxtunnel_down,omitempty"`
+	// Whether to disable this WLAN when the configured Mist tunnel is down
+	DisableWhenMxtunnelDown *bool `json:"disable_when_mxtunnel_down,omitempty"`
 	// Whether to disable WMM
 	DisableWmm *bool `json:"disable_wmm,omitempty"`
 	// For radius_group-based DNS server (rewrite DNS request depending on the Group RADIUS server returns)
 	DnsServerRewrite Optional[WlanDnsServerRewrite] `json:"dns_server_rewrite"`
-	Dtim             *int                           `json:"dtim,omitempty"`
-	// For dynamic PSK where we get per_user PSK from Radius. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
+	// Delivery Traffic Indication Message interval for this WLAN
+	Dtim *int `json:"dtim,omitempty"`
+	// For dynamic PSK where we get per_user PSK from RADIUS. dynamic_psk allows PSK to be selected at runtime depending on context (wlan/site/user/...) thus following configurations are assumed (currently)
 	// * PSK will come from RADIUS server
 	// * AP sends client MAC as username and password (i.e. `enable_mac_auth` is assumed)
 	// * AP sends BSSID:SSID as Caller-Station-ID
@@ -112,8 +114,10 @@ type Wlan struct {
 	// * `multi_psk_only` and `psk` is ignored
 	// * `pairwise` can only be wpa2-ccmp (for now, wpa3 support on the roadmap)
 	DynamicPsk Optional[WlanDynamicPsk] `json:"dynamic_psk"`
-	// For 802.1x
+	// Dynamic VLAN assignment settings for 802.1X WLAN authentication
 	DynamicVlan Optional[WlanDynamicVlan] `json:"dynamic_vlan"`
+	// Enable FTM (Fine-Time Measurement, 802.11mc); configures the AP as an FTM Responder (target), allowing clients to perform ranging requests against it
+	EnableFtm *bool `json:"enable_ftm,omitempty"`
 	// Enable AP-AP keycaching via multicast
 	EnableLocalKeycaching *bool `json:"enable_local_keycaching,omitempty"`
 	// By default, we'd inspect all DHCP packets and drop those unrelated to the wireless client itself in the case where client is a wireless bridge (DHCP packets for other MACs will need to be forwarded), wireless_bridging can be enabled
@@ -124,15 +128,17 @@ type Wlan struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// If set to true, sets default fast-timers with values calculated from ‘auth_servers_timeout’ and ‘auth_server_retries’ .
 	FastDot1xTimers *bool `json:"fast_dot1x_timers,omitempty"`
-	ForSite         *bool `json:"for_site,omitempty"`
+	// Whether this WLAN record is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Whether to hide SSID in beacon
 	HideSsid *bool `json:"hide_ssid,omitempty"`
 	// Include hostname inside IE in AP beacons / probe responses
 	HostnameIe *bool `json:"hostname_ie,omitempty"`
-	// Hostspot 2.0 wlan settings
+	// Hotspot 2.0 WLAN settings
 	Hotspot20 *WlanHotspot20 `json:"hotspot20,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                 *uuid.UUID              `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// DHCP Option 82 injection settings for a WLAN
 	InjectDhcpOption82 *WlanInjectDhcpOption82 `json:"inject_dhcp_option_82,omitempty"`
 	// where this WLAN will be connected to. enum: `all`, `eth0`, `eth1`, `eth2`, `eth3`, `mxtunnel`, `site_mxedge`, `wxtunnel`
 	Interface *WlanInterfaceEnum `json:"interface,omitempty"`
@@ -149,11 +155,13 @@ type Wlan struct {
 	// Max idle time in seconds
 	MaxIdletime *int `json:"max_idletime,omitempty"`
 	// Maximum number of client connected to the SSID. `0` means unlimited
-	MaxNumClients *int         `json:"max_num_clients,omitempty"`
-	MistNac       *WlanMistNac `json:"mist_nac,omitempty"`
+	MaxNumClients *int `json:"max_num_clients,omitempty"`
+	// Mist NAC RADIUS settings for a WLAN
+	MistNac *WlanMistNac `json:"mist_nac,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	MspId        *uuid.UUID `json:"msp_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Managed service provider identifier
+	MspId *uuid.UUID `json:"msp_id,omitempty"`
 	// (deprecated, use mxtunnel_ids instead) when `interface`==`mxtunnel`, id of the Mist Tunnel
 	MxtunnelId *uuid.UUID `json:"mxtunnel_id,omitempty"` // Deprecated
 	// When `interface`=`mxtunnel`, id of the Mist Tunnel
@@ -163,13 +171,14 @@ type Wlan struct {
 	// Whether to only allow client to use DNS that we’ve learned from DHCP response
 	NoStaticDns *bool `json:"no_static_dns,omitempty"`
 	// Whether to only allow client that we’ve learned from DHCP exchange to talk
-	NoStaticIp *bool      `json:"no_static_ip,omitempty"`
-	OrgId      *uuid.UUID `json:"org_id,omitempty"`
-	// Portal wlan settings
+	NoStaticIp *bool `json:"no_static_ip,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Guest portal settings for the WLAN
 	Portal *WlanPortal `json:"portal,omitempty"`
 	// List of hostnames without http(s):// (matched by substring)
 	PortalAllowedHostnames []string `json:"portal_allowed_hostnames,omitempty"`
-	// List of CIDRs
+	// Guest portal CIDR subnets that clients may reach before authorization
 	PortalAllowedSubnets []string `json:"portal_allowed_subnets,omitempty"`
 	// API secret (auto-generated) that can be used to sign guest authorization requests, only generated when auth is set to `external`
 	PortalApiSecret Optional[string] `json:"portal_api_secret"`
@@ -181,8 +190,9 @@ type Wlan struct {
 	PortalSsoUrl Optional[string] `json:"portal_sso_url"`
 	// N.B portal_template will be forked out of wlan objects soon. To fetch portal_template, please query portal_template_url. To update portal_template, use Wlan Portal Template.
 	PortalTemplateUrl Optional[string] `json:"portal_template_url"`
-	Qos               *WlanQos         `json:"qos,omitempty"`
-	// RadSec settings
+	// QoS override settings for WLAN client traffic
+	Qos *WlanQos `json:"qos,omitempty"`
+	// RadSec settings for sending RADIUS traffic over TLS
 	Radsec *Radsec `json:"radsec,omitempty"`
 	// Property key is the RF band. enum: `24`, `5`, `6`
 	Rateset map[string]WlanDatarates `json:"rateset,omitempty"`
@@ -192,20 +202,24 @@ type Wlan struct {
 	RoamMode *WlanRoamModeEnum `json:"roam_mode,omitempty"`
 	// WLAN operating schedule, default is disabled
 	Schedule *WlanSchedule `json:"schedule,omitempty"`
-	SiteId   *uuid.UUID    `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Whether to exclude this WLAN from SLE metrics
 	SleExcluded *bool `json:"sle_excluded,omitempty"`
 	// Name of the SSID
-	Ssid       string              `json:"ssid"`
+	Ssid string `json:"ssid"`
+	// Identifier of the WLAN template associated with this WLAN
 	TemplateId Optional[uuid.UUID] `json:"template_id"`
 	// Url of portal background image thumbnail
 	Thumbnail Optional[string] `json:"thumbnail"`
 	// If `auth.type`==`eap` or `auth.type`==`psk`, should only be set for legacy client, such as pre-2004, 802.11b devices
 	UseEapolV1 *bool `json:"use_eapol_v1,omitempty"`
 	// If vlan tagging is enabled
-	VlanEnabled *bool                            `json:"vlan_enabled,omitempty"`
-	VlanId      Optional[WlanVlanIdWithVariable] `json:"vlan_id"`
-	VlanIds     *WlanVlanIds                     `json:"vlan_ids,omitempty"`
+	VlanEnabled *bool `json:"vlan_enabled,omitempty"`
+	// WLAN VLAN ID, either numeric, a variable string, or null
+	VlanId Optional[WlanVlanIdWithVariable] `json:"vlan_id"`
+	// WLAN VLAN pool IDs represented as either a comma-separated string or a list
+	VlanIds *WlanVlanIds `json:"vlan_ids,omitempty"`
 	// Requires `vlan_enabled`==`true` to be set to `true`. Vlan pooling allows AP to place client on different VLAN using a deterministic algorithm
 	VlanPooling *bool `json:"vlan_pooling,omitempty"`
 	// In kbps, value from 1 to 999000
@@ -216,7 +230,7 @@ type Wlan struct {
 	WlanLimitUp *WlanLimit `json:"wlan_limit_up,omitempty"`
 	// If uplink limiting for whole wlan is enabled
 	WlanLimitUpEnabled *bool `json:"wlan_limit_up_enabled,omitempty"`
-	// List of wxtag_ids
+	// Identifiers of WxLAN tags used when `apply_to`==`wxtags`
 	WxtagIds Optional[[]uuid.UUID] `json:"wxtag_ids"`
 	// When `interface`=`wxtunnel`, id of the WXLAN Tunnel
 	WxtunnelId Optional[string] `json:"wxtunnel_id"`
@@ -229,8 +243,8 @@ type Wlan struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (w Wlan) String() string {
 	return fmt.Sprintf(
-		"Wlan[AcctImmediateUpdate=%v, AcctInterimInterval=%v, AcctServers=%v, Airwatch=%v, AllowIpv6Ndp=%v, AllowMdns=%v, AllowSsdp=%v, ApIds=%v, AppLimit=%v, AppQos=%v, ApplyTo=%v, ArpFilter=%v, Auth=%v, AuthServerSelection=%v, AuthServers=%v, AuthServersNasId=%v, AuthServersNasIp=%v, AuthServersRetries=%v, AuthServersTimeout=%v, Band=%v, BandSteer=%v, BandSteerForceBand5=%v, Bands=%v, BlockBlacklistClients=%v, Bonjour=%v, CiscoCwa=%v, ClientLimitDown=%v, ClientLimitDownEnabled=%v, ClientLimitUp=%v, ClientLimitUpEnabled=%v, CoaServers=%v, CreatedTime=%v, Disable11ax=%v, Disable11be=%v, DisableHtVhtRates=%v, DisableMessageAuthenticatorCheck=%v, DisableUapsd=%v, DisableV1RoamNotify=%v, DisableV2RoamNotify=%v, DisableWhenGatewayUnreachable=%v, DisableWhenMxtunnelDown=%v, DisableWmm=%v, DnsServerRewrite=%v, Dtim=%v, DynamicPsk=%v, DynamicVlan=%v, EnableLocalKeycaching=%v, EnableWirelessBridging=%v, EnableWirelessBridgingDhcpTracking=%v, Enabled=%v, FastDot1xTimers=%v, ForSite=%v, HideSsid=%v, HostnameIe=%v, Hotspot20=%v, Id=%v, InjectDhcpOption82=%v, Interface=%v, Isolation=%v, L2Isolation=%v, LegacyOverds=%v, LimitBcast=%v, LimitProbeResponse=%v, MaxIdletime=%v, MaxNumClients=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxtunnelId=%v, MxtunnelIds=%v, MxtunnelName=%v, NoStaticDns=%v, NoStaticIp=%v, OrgId=%v, Portal=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalApiSecret=%v, PortalDeniedHostnames=%v, PortalImage=%v, PortalSsoUrl=%v, PortalTemplateUrl=%v, Qos=%v, Radsec=%v, Rateset=%v, ReconnectClientsWhenRoamingMxcluster=%v, RoamMode=%v, Schedule=%v, SiteId=%v, SleExcluded=%v, Ssid=%v, TemplateId=%v, Thumbnail=%v, UseEapolV1=%v, VlanEnabled=%v, VlanId=%v, VlanIds=%v, VlanPooling=%v, WlanLimitDown=%v, WlanLimitDownEnabled=%v, WlanLimitUp=%v, WlanLimitUpEnabled=%v, WxtagIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
-		w.AcctImmediateUpdate, w.AcctInterimInterval, w.AcctServers, w.Airwatch, w.AllowIpv6Ndp, w.AllowMdns, w.AllowSsdp, w.ApIds, w.AppLimit, w.AppQos, w.ApplyTo, w.ArpFilter, w.Auth, w.AuthServerSelection, w.AuthServers, w.AuthServersNasId, w.AuthServersNasIp, w.AuthServersRetries, w.AuthServersTimeout, w.Band, w.BandSteer, w.BandSteerForceBand5, w.Bands, w.BlockBlacklistClients, w.Bonjour, w.CiscoCwa, w.ClientLimitDown, w.ClientLimitDownEnabled, w.ClientLimitUp, w.ClientLimitUpEnabled, w.CoaServers, w.CreatedTime, w.Disable11ax, w.Disable11be, w.DisableHtVhtRates, w.DisableMessageAuthenticatorCheck, w.DisableUapsd, w.DisableV1RoamNotify, w.DisableV2RoamNotify, w.DisableWhenGatewayUnreachable, w.DisableWhenMxtunnelDown, w.DisableWmm, w.DnsServerRewrite, w.Dtim, w.DynamicPsk, w.DynamicVlan, w.EnableLocalKeycaching, w.EnableWirelessBridging, w.EnableWirelessBridgingDhcpTracking, w.Enabled, w.FastDot1xTimers, w.ForSite, w.HideSsid, w.HostnameIe, w.Hotspot20, w.Id, w.InjectDhcpOption82, w.Interface, w.Isolation, w.L2Isolation, w.LegacyOverds, w.LimitBcast, w.LimitProbeResponse, w.MaxIdletime, w.MaxNumClients, w.MistNac, w.ModifiedTime, w.MspId, w.MxtunnelId, w.MxtunnelIds, w.MxtunnelName, w.NoStaticDns, w.NoStaticIp, w.OrgId, w.Portal, w.PortalAllowedHostnames, w.PortalAllowedSubnets, w.PortalApiSecret, w.PortalDeniedHostnames, w.PortalImage, w.PortalSsoUrl, w.PortalTemplateUrl, w.Qos, w.Radsec, w.Rateset, w.ReconnectClientsWhenRoamingMxcluster, w.RoamMode, w.Schedule, w.SiteId, w.SleExcluded, w.Ssid, w.TemplateId, w.Thumbnail, w.UseEapolV1, w.VlanEnabled, w.VlanId, w.VlanIds, w.VlanPooling, w.WlanLimitDown, w.WlanLimitDownEnabled, w.WlanLimitUp, w.WlanLimitUpEnabled, w.WxtagIds, w.WxtunnelId, w.WxtunnelRemoteId, w.AdditionalProperties)
+		"Wlan[AcctImmediateUpdate=%v, AcctInterimInterval=%v, AcctServers=%v, Airwatch=%v, AllowIpv6Ndp=%v, AllowMdns=%v, AllowSsdp=%v, ApIds=%v, AppLimit=%v, AppQos=%v, ApplyTo=%v, ArpFilter=%v, Auth=%v, AuthServerSelection=%v, AuthServers=%v, AuthServersNasId=%v, AuthServersNasIp=%v, AuthServersRetries=%v, AuthServersTimeout=%v, Band=%v, BandSteer=%v, BandSteerForceBand5=%v, Bands=%v, BlockBlacklistClients=%v, Bonjour=%v, CiscoCwa=%v, ClientLimitDown=%v, ClientLimitDownEnabled=%v, ClientLimitUp=%v, ClientLimitUpEnabled=%v, CoaServers=%v, CreatedTime=%v, Disable11ax=%v, Disable11be=%v, DisableHtVhtRates=%v, DisableMessageAuthenticatorCheck=%v, DisableUapsd=%v, DisableV1RoamNotify=%v, DisableV2RoamNotify=%v, DisableWhenGatewayUnreachable=%v, DisableWhenMxtunnelDown=%v, DisableWmm=%v, DnsServerRewrite=%v, Dtim=%v, DynamicPsk=%v, DynamicVlan=%v, EnableFtm=%v, EnableLocalKeycaching=%v, EnableWirelessBridging=%v, EnableWirelessBridgingDhcpTracking=%v, Enabled=%v, FastDot1xTimers=%v, ForSite=%v, HideSsid=%v, HostnameIe=%v, Hotspot20=%v, Id=%v, InjectDhcpOption82=%v, Interface=%v, Isolation=%v, L2Isolation=%v, LegacyOverds=%v, LimitBcast=%v, LimitProbeResponse=%v, MaxIdletime=%v, MaxNumClients=%v, MistNac=%v, ModifiedTime=%v, MspId=%v, MxtunnelId=%v, MxtunnelIds=%v, MxtunnelName=%v, NoStaticDns=%v, NoStaticIp=%v, OrgId=%v, Portal=%v, PortalAllowedHostnames=%v, PortalAllowedSubnets=%v, PortalApiSecret=%v, PortalDeniedHostnames=%v, PortalImage=%v, PortalSsoUrl=%v, PortalTemplateUrl=%v, Qos=%v, Radsec=%v, Rateset=%v, ReconnectClientsWhenRoamingMxcluster=%v, RoamMode=%v, Schedule=%v, SiteId=%v, SleExcluded=%v, Ssid=%v, TemplateId=%v, Thumbnail=%v, UseEapolV1=%v, VlanEnabled=%v, VlanId=%v, VlanIds=%v, VlanPooling=%v, WlanLimitDown=%v, WlanLimitDownEnabled=%v, WlanLimitUp=%v, WlanLimitUpEnabled=%v, WxtagIds=%v, WxtunnelId=%v, WxtunnelRemoteId=%v, AdditionalProperties=%v]",
+		w.AcctImmediateUpdate, w.AcctInterimInterval, w.AcctServers, w.Airwatch, w.AllowIpv6Ndp, w.AllowMdns, w.AllowSsdp, w.ApIds, w.AppLimit, w.AppQos, w.ApplyTo, w.ArpFilter, w.Auth, w.AuthServerSelection, w.AuthServers, w.AuthServersNasId, w.AuthServersNasIp, w.AuthServersRetries, w.AuthServersTimeout, w.Band, w.BandSteer, w.BandSteerForceBand5, w.Bands, w.BlockBlacklistClients, w.Bonjour, w.CiscoCwa, w.ClientLimitDown, w.ClientLimitDownEnabled, w.ClientLimitUp, w.ClientLimitUpEnabled, w.CoaServers, w.CreatedTime, w.Disable11ax, w.Disable11be, w.DisableHtVhtRates, w.DisableMessageAuthenticatorCheck, w.DisableUapsd, w.DisableV1RoamNotify, w.DisableV2RoamNotify, w.DisableWhenGatewayUnreachable, w.DisableWhenMxtunnelDown, w.DisableWmm, w.DnsServerRewrite, w.Dtim, w.DynamicPsk, w.DynamicVlan, w.EnableFtm, w.EnableLocalKeycaching, w.EnableWirelessBridging, w.EnableWirelessBridgingDhcpTracking, w.Enabled, w.FastDot1xTimers, w.ForSite, w.HideSsid, w.HostnameIe, w.Hotspot20, w.Id, w.InjectDhcpOption82, w.Interface, w.Isolation, w.L2Isolation, w.LegacyOverds, w.LimitBcast, w.LimitProbeResponse, w.MaxIdletime, w.MaxNumClients, w.MistNac, w.ModifiedTime, w.MspId, w.MxtunnelId, w.MxtunnelIds, w.MxtunnelName, w.NoStaticDns, w.NoStaticIp, w.OrgId, w.Portal, w.PortalAllowedHostnames, w.PortalAllowedSubnets, w.PortalApiSecret, w.PortalDeniedHostnames, w.PortalImage, w.PortalSsoUrl, w.PortalTemplateUrl, w.Qos, w.Radsec, w.Rateset, w.ReconnectClientsWhenRoamingMxcluster, w.RoamMode, w.Schedule, w.SiteId, w.SleExcluded, w.Ssid, w.TemplateId, w.Thumbnail, w.UseEapolV1, w.VlanEnabled, w.VlanId, w.VlanIds, w.VlanPooling, w.WlanLimitDown, w.WlanLimitDownEnabled, w.WlanLimitUp, w.WlanLimitUpEnabled, w.WxtagIds, w.WxtunnelId, w.WxtunnelRemoteId, w.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for Wlan.
@@ -239,7 +253,7 @@ func (w Wlan) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(w.AdditionalProperties,
-		"acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_11be", "disable_ht_vht_rates", "disable_message_authenticator_check", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
+		"acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_11be", "disable_ht_vht_rates", "disable_message_authenticator_check", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_ftm", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(w.toMap())
@@ -410,6 +424,9 @@ func (w Wlan) toMap() map[string]any {
 		} else {
 			structMap["dynamic_vlan"] = nil
 		}
+	}
+	if w.EnableFtm != nil {
+		structMap["enable_ftm"] = w.EnableFtm
 	}
 	if w.EnableLocalKeycaching != nil {
 		structMap["enable_local_keycaching"] = w.EnableLocalKeycaching
@@ -641,7 +658,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_11be", "disable_ht_vht_rates", "disable_message_authenticator_check", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "acct_immediate_update", "acct_interim_interval", "acct_servers", "airwatch", "allow_ipv6_ndp", "allow_mdns", "allow_ssdp", "ap_ids", "app_limit", "app_qos", "apply_to", "arp_filter", "auth", "auth_server_selection", "auth_servers", "auth_servers_nas_id", "auth_servers_nas_ip", "auth_servers_retries", "auth_servers_timeout", "band", "band_steer", "band_steer_force_band5", "bands", "block_blacklist_clients", "bonjour", "cisco_cwa", "client_limit_down", "client_limit_down_enabled", "client_limit_up", "client_limit_up_enabled", "coa_servers", "created_time", "disable_11ax", "disable_11be", "disable_ht_vht_rates", "disable_message_authenticator_check", "disable_uapsd", "disable_v1_roam_notify", "disable_v2_roam_notify", "disable_when_gateway_unreachable", "disable_when_mxtunnel_down", "disable_wmm", "dns_server_rewrite", "dtim", "dynamic_psk", "dynamic_vlan", "enable_ftm", "enable_local_keycaching", "enable_wireless_bridging", "enable_wireless_bridging_dhcp_tracking", "enabled", "fast_dot1x_timers", "for_site", "hide_ssid", "hostname_ie", "hotspot20", "id", "inject_dhcp_option_82", "interface", "isolation", "l2_isolation", "legacy_overds", "limit_bcast", "limit_probe_response", "max_idletime", "max_num_clients", "mist_nac", "modified_time", "msp_id", "mxtunnel_id", "mxtunnel_ids", "mxtunnel_name", "no_static_dns", "no_static_ip", "org_id", "portal", "portal_allowed_hostnames", "portal_allowed_subnets", "portal_api_secret", "portal_denied_hostnames", "portal_image", "portal_sso_url", "portal_template_url", "qos", "radsec", "rateset", "reconnect_clients_when_roaming_mxcluster", "roam_mode", "schedule", "site_id", "sle_excluded", "ssid", "template_id", "thumbnail", "use_eapol_v1", "vlan_enabled", "vlan_id", "vlan_ids", "vlan_pooling", "wlan_limit_down", "wlan_limit_down_enabled", "wlan_limit_up", "wlan_limit_up_enabled", "wxtag_ids", "wxtunnel_id", "wxtunnel_remote_id")
 	if err != nil {
 		return err
 	}
@@ -693,6 +710,7 @@ func (w *Wlan) UnmarshalJSON(input []byte) error {
 	w.Dtim = temp.Dtim
 	w.DynamicPsk = temp.DynamicPsk
 	w.DynamicVlan = temp.DynamicVlan
+	w.EnableFtm = temp.EnableFtm
 	w.EnableLocalKeycaching = temp.EnableLocalKeycaching
 	w.EnableWirelessBridging = temp.EnableWirelessBridging
 	w.EnableWirelessBridgingDhcpTracking = temp.EnableWirelessBridgingDhcpTracking
@@ -803,6 +821,7 @@ type tempWlan struct {
 	Dtim                                 *int                             `json:"dtim,omitempty"`
 	DynamicPsk                           Optional[WlanDynamicPsk]         `json:"dynamic_psk"`
 	DynamicVlan                          Optional[WlanDynamicVlan]        `json:"dynamic_vlan"`
+	EnableFtm                            *bool                            `json:"enable_ftm,omitempty"`
 	EnableLocalKeycaching                *bool                            `json:"enable_local_keycaching,omitempty"`
 	EnableWirelessBridging               *bool                            `json:"enable_wireless_bridging,omitempty"`
 	EnableWirelessBridgingDhcpTracking   *bool                            `json:"enable_wireless_bridging_dhcp_tracking,omitempty"`

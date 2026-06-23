@@ -8,13 +8,19 @@ import (
 )
 
 // StatsClusterConfigFabricLinkInfo represents a StatsClusterConfigFabricLinkInfo struct.
+// Fabric link status details for a gateway cluster
 type StatsClusterConfigFabricLinkInfo struct {
-	DataPlaneNotifiedStatus *string                `json:"DataPlaneNotifiedStatus,omitempty"`
-	Interface               []string               `json:"Interface,omitempty"`
-	InternalStatus          *string                `json:"InternalStatus,omitempty"`
-	State                   *string                `json:"State,omitempty"`
-	Status                  *string                `json:"Status,omitempty"`
-	AdditionalProperties    map[string]interface{} `json:"_"`
+	// Fabric link data-plane notification status reported by the gateway
+	DataPlaneNotifiedStatus *string `json:"DataPlaneNotifiedStatus,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Interface []string `json:"Interface,omitempty"`
+	// Gateway-reported internal status for the fabric link
+	InternalStatus *string `json:"InternalStatus,omitempty"`
+	// Administrative state of the fabric link
+	State *string `json:"State,omitempty"`
+	// Operational status of the fabric link
+	Status               *string                `json:"Status,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for StatsClusterConfigFabricLinkInfo,

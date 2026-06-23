@@ -8,7 +8,9 @@ import (
 )
 
 // GatewayExtraRoute represents a GatewayExtraRoute struct.
+// Gateway IPv4 extra route next-hop settings
 type GatewayExtraRoute struct {
+	// Next-hop IPv4 address for the gateway extra route
 	Via                  *string                `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

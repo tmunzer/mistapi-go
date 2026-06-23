@@ -8,10 +8,13 @@ import (
 )
 
 // SiteSettingPaloaltoNetworks represents a SiteSettingPaloaltoNetworks struct.
+// Palo Alto Networks integration settings for the site
 type SiteSettingPaloaltoNetworks struct {
-	Gateways             []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
-	SendMistNacUserInfo  *bool                               `json:"send_mist_nac_user_info,omitempty"`
-	AdditionalProperties map[string]interface{}              `json:"_"`
+	// Palo Alto Networks gateways integrated with a site
+	Gateways []SiteSettingPaloaltoNetworkGateway `json:"gateways,omitempty"`
+	// Whether Mist NAC user information is sent to Palo Alto Networks gateways
+	SendMistNacUserInfo  *bool                  `json:"send_mist_nac_user_info,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SiteSettingPaloaltoNetworks,

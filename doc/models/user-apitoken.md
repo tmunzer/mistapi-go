@@ -1,7 +1,7 @@
 
 # User Apitoken
 
-User API Token
+User API token metadata
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,26 +13,35 @@ User API Token
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `Key` | `*string` | Optional | - |
-| `LastUsed` | `models.Optional[int]` | Optional | - |
-| `Name` | `*string` | Optional | Name of the token |
+| `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
+| `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
+| `Key` | `*string` | Optional, Read-only | Secret API token value returned for this token |
+| `LastUsed` | `models.Optional[int]` | Optional, Read-only | Time when this user API token was last used, in epoch seconds; null if never used |
+| `Name` | `*string` | Optional | Display label for this user API token |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "key": "1qkb...QQCL",
-  "last_used": 1690115110,
-  "name": "org_token_xyz",
-  "created_time": 116.44,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    userApitoken := models.UserApitoken{
+        CreatedTime:          models.ToPointer(float64(42.78)),
+        Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+        Key:                  models.ToPointer("1qkb...QQCL"),
+        LastUsed:             models.NewOptional(models.ToPointer(1690115110)),
+        Name:                 models.ToPointer("org_token_xyz"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

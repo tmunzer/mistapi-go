@@ -22,3 +22,18 @@ enum: `ap`, `auth_type`, `dryrun_nacrule_id`, `mac`, `nacrule_id`, `nas_vendor`,
 | `username` |
 | `vlan` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteNacClientEventsCountDistinct := models.SiteNacClientEventsCountDistinctEnum_NACRULEID
+
+}
+```
+

@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseSsoFailureSearch represents a ResponseSsoFailureSearch struct.
+// Response containing recent SSO authentication failure records
 type ResponseSsoFailureSearch struct {
+	// SSO authentication failure records returned by the request
 	Results              []ResponseSsoFailureSearchItem `json:"results"`
 	AdditionalProperties map[string]interface{}         `json:"_"`
 }

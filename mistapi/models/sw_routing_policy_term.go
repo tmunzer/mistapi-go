@@ -10,13 +10,15 @@ import (
 )
 
 // SwRoutingPolicyTerm represents a SwRoutingPolicyTerm struct.
+// Switch routing policy term with match criteria and actions
 type SwRoutingPolicyTerm struct {
-	// When used as import policy
+	// Actions applied to routes matched by a switch routing policy term
 	Actions *SwRoutingPolicyTermAction `json:"actions,omitempty"`
-	// zero or more criteria/filter can be specified to match the term, all criteria have to be met
-	Matching             *SwRoutingPolicyTermMatching `json:"matching,omitempty"`
-	Name                 string                       `json:"name"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	// Route match criteria for a switch routing policy term; all specified criteria must match
+	Matching *SwRoutingPolicyTermMatching `json:"matching,omitempty"`
+	// Display name of the switch routing policy term
+	Name                 string                 `json:"name"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwRoutingPolicyTerm,

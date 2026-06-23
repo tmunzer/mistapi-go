@@ -8,7 +8,9 @@ import (
 )
 
 // GatewayPortMirroring represents a GatewayPortMirroring struct.
+// Port mirroring settings for a gateway interface
 type GatewayPortMirroring struct {
+	// Gateway port mirroring rule
 	PortMirror           *GatewayPortMirroringPortMirror `json:"port_mirror,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"_"`
 }

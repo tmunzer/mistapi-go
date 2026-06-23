@@ -8,40 +8,73 @@ import (
 )
 
 // CallTroubleshootSummaryData represents a CallTroubleshootSummaryData struct.
+// Media-direction call troubleshooting metrics in a summary response
 type CallTroubleshootSummaryData struct {
-	ApNumClients           *float64               `json:"ap_num_clients,omitempty"`
-	ApRtt                  *float64               `json:"ap_rtt,omitempty"`
-	ClientCpu              *float64               `json:"client_cpu,omitempty"`
-	ClientNStreams         *float64               `json:"client_n_streams,omitempty"`
-	ClientRadioBand        *float64               `json:"client_radio_band,omitempty"`
-	ClientRssi             *float64               `json:"client_rssi,omitempty"`
-	ClientRxBytes          *float64               `json:"client_rx_bytes,omitempty"`
-	ClientRxRates          *float64               `json:"client_rx_rates,omitempty"`
-	ClientTxBytes          *float64               `json:"client_tx_bytes,omitempty"`
-	ClientTxRates          *float64               `json:"client_tx_rates,omitempty"`
-	ClientTxRetries        *float64               `json:"client_tx_retries,omitempty"`
-	ClientVpnDistance      *float64               `json:"client_vpn_distance,omitempty"`
-	ClientWifiVersion      *float64               `json:"client_wifi_version,omitempty"`
-	Expected               *float64               `json:"expected,omitempty"`
-	RadioBandwidth         *float64               `json:"radio_bandwidth,omitempty"`
-	RadioChannel           *float64               `json:"radio_channel,omitempty"`
-	RadioTxPower           *float64               `json:"radio_tx_power,omitempty"`
-	RadioUtil              *float64               `json:"radio_util,omitempty"`
-	RadioUtilInterference  *float64               `json:"radio_util_interference,omitempty"`
-	SiteNumClients         *float64               `json:"site_num_clients,omitempty"`
-	SiteWanAvgDownloadMbps *float64               `json:"site_wan_avg_download_mbps,omitempty"`
-	SiteWanAvgUploadMbps   *float64               `json:"site_wan_avg_upload_mbps,omitempty"`
-	SiteWanDownloadMbps    *float64               `json:"site_wan_download_mbps,omitempty"`
-	SiteWanJitter          *float64               `json:"site_wan_jitter,omitempty"`
-	SiteWanRtt             *float64               `json:"site_wan_rtt,omitempty"`
-	SiteWanUploadMbps      *float64               `json:"site_wan_upload_mbps,omitempty"`
-	WanAvgDownloadMbps     *float64               `json:"wan_avg_download_mbps,omitempty"`
-	WanAvgUploadMbps       *float64               `json:"wan_avg_upload_mbps,omitempty"`
-	WanJitter              *float64               `json:"wan_jitter,omitempty"`
-	WanMaxDownloadMbps     *float64               `json:"wan_max_download_mbps,omitempty"`
-	WanMaxUploadMbps       *float64               `json:"wan_max_upload_mbps,omitempty"`
-	WanRtt                 *float64               `json:"wan_rtt,omitempty"`
-	AdditionalProperties   map[string]interface{} `json:"_"`
+	// Media-direction metric value for AP client count
+	ApNumClients *float64 `json:"ap_num_clients,omitempty"`
+	// Media-direction metric value for AP round-trip time
+	ApRtt *float64 `json:"ap_rtt,omitempty"`
+	// Media-direction metric value for client CPU load
+	ClientCpu *float64 `json:"client_cpu,omitempty"`
+	// Media-direction metric value for the number of client spatial streams
+	ClientNStreams *float64 `json:"client_n_streams,omitempty"`
+	// Media-direction metric value for the client radio band
+	ClientRadioBand *float64 `json:"client_radio_band,omitempty"`
+	// Media-direction metric value for client RSSI
+	ClientRssi *float64 `json:"client_rssi,omitempty"`
+	// Media-direction metric value for bytes received by the client
+	ClientRxBytes *float64 `json:"client_rx_bytes,omitempty"`
+	// Media-direction metric value for client receive data rates
+	ClientRxRates *float64 `json:"client_rx_rates,omitempty"`
+	// Media-direction metric value for bytes transmitted by the client
+	ClientTxBytes *float64 `json:"client_tx_bytes,omitempty"`
+	// Media-direction metric value for client transmit data rates
+	ClientTxRates *float64 `json:"client_tx_rates,omitempty"`
+	// Media-direction metric value for client transmit retries
+	ClientTxRetries *float64 `json:"client_tx_retries,omitempty"`
+	// Media-direction metric value for client VPN distance
+	ClientVpnDistance *float64 `json:"client_vpn_distance,omitempty"`
+	// Media-direction metric value for the client Wi-Fi version
+	ClientWifiVersion *float64 `json:"client_wifi_version,omitempty"`
+	// Model baseline value expected for this media direction
+	Expected *float64 `json:"expected,omitempty"`
+	// Media-direction metric value for radio channel bandwidth
+	RadioBandwidth *float64 `json:"radio_bandwidth,omitempty"`
+	// Media-direction metric value for the radio channel
+	RadioChannel *float64 `json:"radio_channel,omitempty"`
+	// Media-direction metric value for radio transmit power
+	RadioTxPower *float64 `json:"radio_tx_power,omitempty"`
+	// Media-direction metric value for radio utilization
+	RadioUtil *float64 `json:"radio_util,omitempty"`
+	// Media-direction metric value for radio interference utilization
+	RadioUtilInterference *float64 `json:"radio_util_interference,omitempty"`
+	// Media-direction metric value for the number of clients at the site
+	SiteNumClients *float64 `json:"site_num_clients,omitempty"`
+	// Media-direction metric value for site WAN average download throughput
+	SiteWanAvgDownloadMbps *float64 `json:"site_wan_avg_download_mbps,omitempty"`
+	// Media-direction metric value for site WAN average upload throughput
+	SiteWanAvgUploadMbps *float64 `json:"site_wan_avg_upload_mbps,omitempty"`
+	// Media-direction metric value for site WAN download throughput
+	SiteWanDownloadMbps *float64 `json:"site_wan_download_mbps,omitempty"`
+	// Media-direction metric value for site WAN jitter
+	SiteWanJitter *float64 `json:"site_wan_jitter,omitempty"`
+	// Media-direction metric value for site WAN round-trip time
+	SiteWanRtt *float64 `json:"site_wan_rtt,omitempty"`
+	// Media-direction metric value for site WAN upload throughput
+	SiteWanUploadMbps *float64 `json:"site_wan_upload_mbps,omitempty"`
+	// Media-direction metric value for average WAN download throughput
+	WanAvgDownloadMbps *float64 `json:"wan_avg_download_mbps,omitempty"`
+	// Media-direction metric value for average WAN upload throughput
+	WanAvgUploadMbps *float64 `json:"wan_avg_upload_mbps,omitempty"`
+	// Media-direction metric value for WAN jitter
+	WanJitter *float64 `json:"wan_jitter,omitempty"`
+	// Media-direction metric value for maximum WAN download throughput
+	WanMaxDownloadMbps *float64 `json:"wan_max_download_mbps,omitempty"`
+	// Media-direction metric value for maximum WAN upload throughput
+	WanMaxUploadMbps *float64 `json:"wan_max_upload_mbps,omitempty"`
+	// Media-direction metric value for WAN round-trip time
+	WanRtt               *float64               `json:"wan_rtt,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for CallTroubleshootSummaryData,

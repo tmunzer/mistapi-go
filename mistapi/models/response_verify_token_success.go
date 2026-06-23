@@ -8,10 +8,15 @@ import (
 )
 
 // ResponseVerifyTokenSuccess represents a ResponseVerifyTokenSuccess struct.
+// Successful registration token verification response
 type ResponseVerifyTokenSuccess struct {
-	Detail               *string                `json:"detail,omitempty"`
-	InviteNotApplied     *bool                  `json:"invite_not_applied,omitempty"`
-	MinLength            *int                   `json:"min_length,omitempty"`
+	// Result message returned with the verification response
+	Detail *string `json:"detail,omitempty"`
+	// Whether the invitation was verified but not applied automatically
+	InviteNotApplied *bool `json:"invite_not_applied,omitempty"`
+	// Required minimum password length from the applicable password policy
+	MinLength *int `json:"min_length,omitempty"`
+	// URL to redirect the user to after successful registration verification
 	ReturnTo             *string                `json:"return_to,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

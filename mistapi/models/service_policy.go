@@ -9,31 +9,37 @@ import (
 )
 
 // ServicePolicy represents a ServicePolicy struct.
+// Site-level service policy that allows or denies traffic for tenants and services
 type ServicePolicy struct {
-	// enum: `allow`, `deny`
+	// Policy action value that either allows or denies matching traffic. enum: `allow`, `deny`
 	Action *AllowDenyEnum `json:"action,omitempty"`
-	// For SRX-only
+	// SRX antivirus inspection settings for a service policy
 	Antivirus *ServicePolicyAntivirus `json:"antivirus,omitempty"`
-	// SRX only
-	Appqoe *ServicePolicyAppqoe   `json:"appqoe,omitempty"`
-	Ewf    []ServicePolicyEwfRule `json:"ewf,omitempty"`
-	Idp    *IdpConfig             `json:"idp,omitempty"`
-	// access within the same VRF
-	LocalRouting *bool   `json:"local_routing,omitempty"`
-	Name         *string `json:"name,omitempty"`
+	// SRX application QoE settings for a service policy
+	Appqoe *ServicePolicyAppqoe `json:"appqoe,omitempty"`
+	// Enhanced web filtering rules applied by a service policy
+	Ewf []ServicePolicyEwfRule `json:"ewf,omitempty"`
+	// Intrusion detection and prevention settings for a service policy
+	Idp *IdpConfig `json:"idp,omitempty"`
+	// Whether the policy permits access within the same VRF
+	LocalRouting *bool `json:"local_routing,omitempty"`
+	// Display name of the service policy
+	Name *string `json:"name,omitempty"`
 	// By default, we derive all paths available and use them. Optionally, you can customize by using `path_preference`
 	PathPreference *string `json:"path_preference,omitempty"`
-	// SRX only
+	// SRX SecIntel settings for a service policy
 	Secintel *ServicePolicySecintel `json:"secintel,omitempty"`
-	// Used to link servicepolicy defined at org level and overwrite some attributes
+	// Organization-level service policy identifier used to link and override selected attributes
 	ServicepolicyId *uuid.UUID `json:"servicepolicy_id,omitempty"`
-	Services        []string   `json:"services,omitempty"`
-	// SRX only
+	// Unique string values returned or accepted by this schema
+	Services []string `json:"services,omitempty"`
+	// SRX Sky ATP threat inspection settings for a service policy
 	Skyatp *ServicePolicySkyatp `json:"skyatp,omitempty"`
-	// For SRX-only
+	// SRX SSL proxy inspection settings for a service policy
 	SslProxy *ServicePolicySslProxy `json:"ssl_proxy,omitempty"`
-	// Required for syslog logging
-	Syslog               *ServicePolicySyslog   `json:"syslog,omitempty"`
+	// Syslog logging settings for a service policy
+	Syslog *ServicePolicySyslog `json:"syslog,omitempty"`
+	// Unique string values returned or accepted by this schema
 	Tenants              []string               `json:"tenants,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

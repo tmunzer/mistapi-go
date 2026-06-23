@@ -16,14 +16,23 @@ Property key is the AP MAC address (e.g. "5c5b35000001"). All optionals, parent 
 | `TcpdumpExpression` | `*string` | Optional | tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist. |
 | `Width` | `*string` | Optional | Specify the bandwidth value with respect to the channel. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "band": "24",
-  "channel": "channel2",
-  "tcpdump_expression": "tcpdump_expression2",
-  "width": "width6"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    captureScanAps := models.CaptureScanAps{
+        Band:                 models.ToPointer(models.CaptureScanApsBandEnum_ENUM24),
+        Channel:              models.ToPointer("channel2"),
+        TcpdumpExpression:    models.ToPointer("tcpdump_expression2"),
+        Width:                models.ToPointer("width6"),
+    }
+
 }
 ```
 

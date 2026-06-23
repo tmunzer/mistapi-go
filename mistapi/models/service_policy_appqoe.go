@@ -8,8 +8,9 @@ import (
 )
 
 // ServicePolicyAppqoe represents a ServicePolicyAppqoe struct.
-// SRX only
+// SRX application QoE settings for a service policy
 type ServicePolicyAppqoe struct {
+	// Whether application QoE is enabled for the service policy
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

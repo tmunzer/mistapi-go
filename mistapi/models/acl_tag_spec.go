@@ -8,6 +8,7 @@ import (
 )
 
 // AclTagSpec represents a AclTagSpec struct.
+// Layer 4 protocol and destination-port match constraint for an ACL tag
 type AclTagSpec struct {
 	// Matched dst port, "0" means any
 	PortRange *string `json:"port_range,omitempty"`

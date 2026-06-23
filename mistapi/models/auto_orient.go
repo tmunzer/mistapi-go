@@ -8,6 +8,7 @@ import (
 )
 
 // AutoOrient represents a AutoOrient struct.
+// Request options for validating or starting AP auto-orientation
 type AutoOrient struct {
 	// Set to `true` to perform an invalid AP check and provide an estimated run time without enqueuing the run into the auto orient service.
 	Dryrun *bool `json:"dryrun,omitempty"`

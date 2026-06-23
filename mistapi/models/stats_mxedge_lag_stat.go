@@ -8,6 +8,7 @@ import (
 )
 
 // StatsMxedgeLagStat represents a StatsMxedgeLagStat struct.
+// Link aggregation group status for a Mist Edge
 type StatsMxedgeLagStat struct {
 	// List of ports active on the LAG defined by the LACP
 	ActivePorts          []string               `json:"active_ports,omitempty"`

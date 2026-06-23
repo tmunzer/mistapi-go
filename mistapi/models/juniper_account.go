@@ -8,8 +8,11 @@ import (
 )
 
 // JuniperAccount represents a JuniperAccount struct.
+// Linked Juniper account available to the organization
 type JuniperAccount struct {
-	LinkedBy             *string                `json:"linked_by,omitempty"`
+	// User who linked this Juniper account
+	LinkedBy *string `json:"linked_by,omitempty"`
+	// Display name of the linked Juniper account
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -9,19 +9,31 @@ import (
 )
 
 // ServicePathEvent represents a ServicePathEvent struct.
+// Event describing a service path state change reported by a gateway or SSR device
 type ServicePathEvent struct {
-	Mac    *string    `json:"mac,omitempty"`
-	Model  *string    `json:"model,omitempty"`
-	OrgId  *uuid.UUID `json:"org_id,omitempty"`
-	Policy *string    `json:"policy,omitempty"`
-	PortId *string    `json:"port_id,omitempty"`
+	// Device MAC address that reported the service path event
+	Mac *string `json:"mac,omitempty"`
+	// Device model that reported the service path event
+	Model *string `json:"model,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Service policy name associated with the path event
+	Policy *string `json:"policy,omitempty"`
+	// Network interface associated with the service path event
+	PortId *string `json:"port_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	Text   *string    `json:"text,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
-	Version              *string                `json:"version,omitempty"`
-	VpnName              *string                `json:"vpn_name,omitempty"`
+	// Human-readable message for the service path event
+	Text *string `json:"text,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Event type for the service path change
+	Type *string `json:"type,omitempty"`
+	// Device firmware version that reported the service path event
+	Version *string `json:"version,omitempty"`
+	// Peer name associated with the service path event
+	VpnName *string `json:"vpn_name,omitempty"`
+	// Peer path name associated with the service path event
 	VpnPath              *string                `json:"vpn_path,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

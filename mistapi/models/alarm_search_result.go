@@ -10,15 +10,23 @@ import (
 )
 
 // AlarmSearchResult represents a AlarmSearchResult struct.
+// Paginated response returned by an alarm search
 type AlarmSearchResult struct {
-	// Component of the alarm
-	Component            *string                `json:"component,omitempty"`
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Page                 *int                   `json:"page,omitempty"`
-	Results              []Alarm                `json:"results"`
-	Start                int                    `json:"start"`
+	// Alarm component matched by the search result
+	Component *string `json:"component,omitempty"`
+	// Upper bound of the alarm search window, in epoch seconds
+	End int `json:"end"`
+	// Maximum number of alarm results returned
+	Limit int `json:"limit"`
+	// URL for the next page of alarm search results
+	Next *string `json:"next,omitempty"`
+	// Current page number for paginated alarm search results
+	Page *int `json:"page,omitempty"`
+	// Alarm records returned by an alarm search response
+	Results []Alarm `json:"results"`
+	// Lower bound of the alarm search window, in epoch seconds
+	Start int `json:"start"`
+	// Number of alarm records matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

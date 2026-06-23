@@ -17,10 +17,7 @@ func TestOrgsLogsTestListOrgAuditLogsLegacy(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 	adminName := "John Doe"
 	message := "Created a new site"
 
@@ -47,10 +44,7 @@ func TestOrgsLogsTestListOrgAuditLogsLegacy1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 	adminName := "John Doe"
 	message := "Created a new site"
 
@@ -145,10 +139,7 @@ func TestOrgsLogsTestListOrgAuditLogs(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 	adminName := "John Doe"
 	message := "Created a new site"
 
@@ -175,10 +166,7 @@ func TestOrgsLogsTestListOrgAuditLogs1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	siteId, errUUID := uuid.Parse("4ac1dcf4-9d8b-7211-65c4-057819f0862b")
-	if errUUID != nil {
-		t.Error(errUUID)
-	}
+	siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
 	adminName := "John Doe"
 	message := "Created a new site"
 

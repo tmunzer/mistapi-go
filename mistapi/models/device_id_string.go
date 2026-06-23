@@ -11,7 +11,9 @@ import (
 )
 
 // DeviceIdString represents a DeviceIdString struct.
+// Request body containing a device identifier
 type DeviceIdString struct {
+	// Device identifier supplied by the request
 	DeviceId             uuid.UUID              `json:"device_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

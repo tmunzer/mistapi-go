@@ -8,8 +8,9 @@ import (
 )
 
 // HaClusterDelete represents a HaClusterDelete struct.
+// Request body identifying the HA cluster node to remove
 type HaClusterDelete struct {
-	// Node0 mac address
+	// Node0 MAC address identifying the HA cluster to delete
 	Mac                  *string                `json:"mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

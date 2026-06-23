@@ -8,7 +8,9 @@ import (
 )
 
 // StatsApAutoUpgrade represents a StatsApAutoUpgrade struct.
+// Auto-upgrade status for an AP
 type StatsApAutoUpgrade struct {
+	// Time when the AP last checked for auto-upgrade, in epoch seconds
 	Lastcheck            Optional[int64]        `json:"lastcheck"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

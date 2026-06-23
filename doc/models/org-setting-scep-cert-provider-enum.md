@@ -15,3 +15,18 @@ enum: `intune`, `jamf`, `byod`
 | `jamf` |
 | `byod` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgSettingScepCertProvider := models.OrgSettingScepCertProviderEnum_BYOD
+
+}
+```
+

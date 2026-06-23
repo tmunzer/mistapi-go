@@ -9,27 +9,42 @@ import (
 )
 
 // StatsApBle represents a StatsApBle struct.
+// BLE beacon and traffic statistics reported by an AP
 type StatsApBle struct {
-	BeaconEnabled         Optional[bool]   `json:"beacon_enabled"`
-	BeaconRate            Optional[int]    `json:"beacon_rate"`
-	EddystoneUidEnabled   Optional[bool]   `json:"eddystone_uid_enabled"`
-	EddystoneUidFreqMsec  Optional[int]    `json:"eddystone_uid_freq_msec"`
-	EddystoneUidInstance  Optional[string] `json:"eddystone_uid_instance"`
+	// Whether Mist BLE beacon transmission is enabled
+	BeaconEnabled Optional[bool] `json:"beacon_enabled"`
+	// Mist BLE beacon transmit rate, in beacons per second
+	BeaconRate Optional[int] `json:"beacon_rate"`
+	// Whether Eddystone-UID beacon transmission is enabled
+	EddystoneUidEnabled Optional[bool] `json:"eddystone_uid_enabled"`
+	// Interval for Eddystone-UID advertisements, in milliseconds
+	EddystoneUidFreqMsec Optional[int] `json:"eddystone_uid_freq_msec"`
+	// Eddystone-UID instance value broadcast by the AP
+	EddystoneUidInstance Optional[string] `json:"eddystone_uid_instance"`
+	// Eddystone-UID namespace value broadcast by the AP
 	EddystoneUidNamespace Optional[string] `json:"eddystone_uid_namespace"`
-	EddystoneUrlEnabled   Optional[bool]   `json:"eddystone_url_enabled"`
-	// Frequency (msec) of data emit by Eddystone-UID beacon
-	EddystoneUrlFreqMsec Optional[int]    `json:"eddystone_url_freq_msec"`
-	EddystoneUrlUrl      Optional[string] `json:"eddystone_url_url"`
-	IbeaconEnabled       Optional[bool]   `json:"ibeacon_enabled"`
-	IbeaconFreqMsec      Optional[int]    `json:"ibeacon_freq_msec"`
+	// Whether Eddystone-URL beacon transmission is enabled
+	EddystoneUrlEnabled Optional[bool] `json:"eddystone_url_enabled"`
+	// Interval for Eddystone-URL advertisements, in milliseconds
+	EddystoneUrlFreqMsec Optional[int] `json:"eddystone_url_freq_msec"`
+	// URL broadcast by the Eddystone-URL beacon
+	EddystoneUrlUrl Optional[string] `json:"eddystone_url_url"`
+	// Whether iBeacon transmission is enabled
+	IbeaconEnabled Optional[bool] `json:"ibeacon_enabled"`
+	// Interval for iBeacon advertisements, in milliseconds
+	IbeaconFreqMsec Optional[int] `json:"ibeacon_freq_msec"`
 	// Major number for iBeacon
 	IbeaconMajor Optional[int] `json:"ibeacon_major"`
 	// Minor number for iBeacon
-	IbeaconMinor Optional[int]       `json:"ibeacon_minor"`
-	IbeaconUuid  Optional[uuid.UUID] `json:"ibeacon_uuid"`
-	Major        Optional[int]       `json:"major"`
-	Minors       []int               `json:"minors,omitempty"`
-	Power        Optional[int]       `json:"power"`
+	IbeaconMinor Optional[int] `json:"ibeacon_minor"`
+	// iBeacon UUID value, or null when no iBeacon UUID is configured
+	IbeaconUuid Optional[uuid.UUID] `json:"ibeacon_uuid"`
+	// Reported iBeacon major value for BLE statistics
+	Major Optional[int] `json:"major"`
+	// List of integer values
+	Minors []int `json:"minors,omitempty"`
+	// BLE transmit power setting reported by the AP
+	Power Optional[int] `json:"power"`
 	// Amount of traffic received since connection
 	RxBytes Optional[int64] `json:"rx_bytes"`
 	// Amount of packets received since connection
@@ -39,7 +54,8 @@ type StatsApBle struct {
 	// Amount of packets sent since connection
 	TxPkts Optional[int64] `json:"tx_pkts"`
 	// Resets due to tx hung
-	TxResets             Optional[int]          `json:"tx_resets"`
+	TxResets Optional[int] `json:"tx_resets"`
+	// Beacon UUID reported by BLE statistics
 	Uuid                 Optional[uuid.UUID]    `json:"uuid"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

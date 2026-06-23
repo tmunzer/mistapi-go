@@ -10,7 +10,9 @@ import (
 )
 
 // SwitchBgpConfig represents a SwitchBgpConfig struct.
+// Switch BGP configuration for a routing instance
 type SwitchBgpConfig struct {
+	// Authentication key used for BGP neighbor sessions, when configured
 	AuthKey *string `json:"auth_key,omitempty"`
 	// Minimum interval in milliseconds for BFD hello packets. A neighbor is considered failed when the device stops receiving replies after the specified interval. Value must be between 1 and 255000.
 	BfdMinimumInterval *int `json:"bfd_minimum_interval,omitempty"`
@@ -22,11 +24,11 @@ type SwitchBgpConfig struct {
 	ImportPolicy *string `json:"import_policy,omitempty"`
 	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
 	LocalAs BgpAs `json:"local_as"`
-	// Property key is the BGP Neighbor IP Address.
+	// Switch BGP neighbor settings keyed by neighbor IP address
 	Neighbors map[string]SwitchBgpConfigNeighbor `json:"neighbors,omitempty"`
 	// List of network names for BGP configuration. When a network is specified, a BGP group will be added to the VRF that network is part of.
 	Networks []string `json:"networks,omitempty"`
-	// enum: `external`, `internal`
+	// BGP session type for this switch BGP configuration. enum: `external`, `internal`
 	Type                 SwitchBgpConfigTypeEnum `json:"type"`
 	AdditionalProperties map[string]interface{}  `json:"_"`
 }

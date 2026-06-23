@@ -9,6 +9,7 @@ import (
 )
 
 // StatsDevice represents a StatsDevice struct.
+// Device statistics record for an AP, switch, or gateway
 type StatsDevice struct {
 	value          any
 	isStatsAp      bool
@@ -87,6 +88,7 @@ func (s *StatsDevice) AsStatsGateway() (
 }
 
 // internalStatsDevice represents a statsDevice struct.
+// Device statistics record for an AP, switch, or gateway
 type internalStatsDevice struct{}
 
 var StatsDeviceContainer internalStatsDevice

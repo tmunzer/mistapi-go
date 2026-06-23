@@ -11,24 +11,29 @@ import (
 )
 
 // Rrm represents a Rrm struct.
-// RRM
+// Current RRM channel-planning state for a site
 type Rrm struct {
-	// proposal on band 2.4G, key is ap_id, value is the proposal
-	Band24       map[string]RrmBand `json:"band_24"`
-	Band24Metric RrmBandMetric      `json:"band_24_metric"`
-	// proposal on band 5G, key is ap_id, value is the proposal
-	Band5       map[string]RrmBand `json:"band_5"`
-	Band5Metric RrmBandMetric      `json:"band_5_metric"`
-	// proposal on band 6G, key is ap_id, value is the proposal
-	Band6       map[string]RrmBand `json:"band_6,omitempty"`
-	Band6Metric *RrmBandMetric     `json:"band_6_metric,omitempty"`
-	// RF Template
-	Rftemplate     RfTemplate `json:"rftemplate"`
-	RftemplateId   uuid.UUID  `json:"rftemplate_id"`
-	RftemplateName string     `json:"rftemplate_name"`
+	// RRM proposed channel, power, and usage settings for 2.4 GHz radios; property key is AP ID
+	Band24 map[string]RrmBand `json:"band_24"`
+	// Aggregate RRM metrics for a radio band
+	Band24Metric RrmBandMetric `json:"band_24_metric"`
+	// RRM proposed channel, power, and usage settings for 5 GHz radios; property key is AP ID
+	Band5 map[string]RrmBand `json:"band_5"`
+	// Aggregate RRM metrics for a radio band
+	Band5Metric RrmBandMetric `json:"band_5_metric"`
+	// RRM proposed channel, power, and usage settings for 6 GHz radios; property key is AP ID
+	Band6 map[string]RrmBand `json:"band_6,omitempty"`
+	// Aggregate RRM metrics for a radio band
+	Band6Metric *RrmBandMetric `json:"band_6_metric,omitempty"`
+	// RF template used by the current RRM calculation
+	Rftemplate RfTemplate `json:"rftemplate"`
+	// RF template identifier used by the current RRM calculation
+	RftemplateId uuid.UUID `json:"rftemplate_id"`
+	// RF template name used by the current RRM calculation
+	RftemplateName string `json:"rftemplate_name"`
 	// enum: `ready`, `unknown`, `updating`
 	Status RrmStatusEnum `json:"status"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

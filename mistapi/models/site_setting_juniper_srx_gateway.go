@@ -8,9 +8,13 @@ import (
 )
 
 // SiteSettingJuniperSrxGateway represents a SiteSettingJuniperSrxGateway struct.
+// Juniper SRX gateway API connection settings
 type SiteSettingJuniperSrxGateway struct {
-	ApiKey               *string                `json:"api_key,omitempty"`
-	ApiPassword          *string                `json:"api_password,omitempty"`
+	// Authentication key used to access the Juniper SRX gateway API
+	ApiKey *string `json:"api_key,omitempty"`
+	// Authentication password used to access the Juniper SRX gateway API
+	ApiPassword *string `json:"api_password,omitempty"`
+	// Base URL for the Juniper SRX gateway API
 	ApiUrl               *string                `json:"api_url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

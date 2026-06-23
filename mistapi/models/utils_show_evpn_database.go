@@ -8,14 +8,15 @@ import (
 )
 
 // UtilsShowEvpnDatabase represents a UtilsShowEvpnDatabase struct.
+// EVPN database lookup request for device command output
 type UtilsShowEvpnDatabase struct {
-	// Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+	// Refresh duration in seconds; set only when `interval` is nonzero
 	Duration *int `json:"duration,omitempty"`
-	// Rate at which output will refresh
+	// Refresh interval in seconds for repeated command output
 	Interval *int `json:"interval,omitempty"`
-	// Client mac filter
+	// Client MAC address filter for the EVPN database lookup
 	Mac *string `json:"mac,omitempty"`
-	// Interface name
+	// Interface identifier filter for the EVPN database lookup
 	PortId               *string                `json:"port_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

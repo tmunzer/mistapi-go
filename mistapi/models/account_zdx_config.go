@@ -18,7 +18,7 @@ type AccountZdxConfig struct {
 	KeyId string `json:"key_id"`
 	// Customer account API key Secret
 	KeySecret string `json:"key_secret"`
-	// ZDX organization id
+	// Organization identifier assigned to the ZDX account
 	ZdxOrgId             string                 `json:"zdx_org_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

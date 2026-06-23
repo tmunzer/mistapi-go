@@ -1,7 +1,7 @@
 
 # Memory Stat
 
-Memory usage stat (for virtual chassis, memory usage of master RE)
+Memory utilization statistics for a device; in a virtual chassis, this reports the master Routing Engine
 
 ## Structure
 
@@ -11,13 +11,22 @@ Memory usage stat (for virtual chassis, memory usage of master RE)
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Usage` | `float64` | Required | - |
+| `Usage` | `float64` | Required | Current memory utilization percentage for the device or master Routing Engine |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "usage": 57.54
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    memoryStat := models.MemoryStat{
+        Usage:                float64(93.62),
+    }
+
 }
 ```
 

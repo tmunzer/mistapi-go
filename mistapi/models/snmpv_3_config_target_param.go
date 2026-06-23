@@ -8,17 +8,19 @@ import (
 )
 
 // Snmpv3ConfigTargetParam represents a Snmpv3ConfigTargetParam struct.
+// SNMPv3 target parameter profile
 type Snmpv3ConfigTargetParam struct {
 	// enum: `v1`, `v2c`, `v3`
 	MessageProcessingModel *Snmpv3ConfigTargetParamMessProcessModelEnum `json:"message_processing_model,omitempty"`
-	Name                   *string                                      `json:"name,omitempty"`
-	// Refer to profile-name in notify_filter
+	// Target parameter profile name
+	Name *string `json:"name,omitempty"`
+	// Notification filter profile referenced by this target parameter profile
 	NotifyFilter *string `json:"notify_filter,omitempty"`
 	// enum: `authentication`, `none`, `privacy`
 	SecurityLevel *Snmpv3ConfigTargetParamSecurityLevelEnum `json:"security_level,omitempty"`
 	// enum: `usm`, `v1`, `v2c`
 	SecurityModel *Snmpv3ConfigTargetParamSecurityModelEnum `json:"security_model,omitempty"`
-	// Refer to security_name in usm
+	// USM security name referenced by this target parameter profile
 	SecurityName         *string                `json:"security_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

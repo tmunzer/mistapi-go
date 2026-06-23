@@ -8,19 +8,25 @@ import (
 )
 
 // GwRoutingPolicyTermMatching represents a GwRoutingPolicyTermMatching struct.
-// zero or more criteria/filter can be specified to match the term, all criteria have to be met
+// Route match criteria for a gateway routing policy term; all specified criteria must match
 type GwRoutingPolicyTermMatching struct {
-	AsPath    []BgpAs  `json:"as_path,omitempty"`
+	// BGP AS path values used as routing-policy match criteria
+	AsPath []BgpAs `json:"as_path,omitempty"`
+	// BGP community values used as routing-policy match criteria
 	Community []string `json:"community,omitempty"`
-	Network   []string `json:"network,omitempty"`
+	// Unique string values returned or accepted by this schema
+	Network []string `json:"network,omitempty"`
 	// zero or more criteria/filter can be specified to match the term, all criteria have to be met
-	Prefix      []string                                  `json:"prefix,omitempty"`
-	Protocol    []GwRoutingPolicyTermMatchingProtocolEnum `json:"protocol,omitempty"`
-	RouteExists *GwRoutingPolicyTermMatchingRouteExists   `json:"route_exists,omitempty"`
-	// overlay-facing criteria (used for bgp_config where via=vpn)
+	Prefix []string `json:"prefix,omitempty"`
+	// Routing protocols that can match a gateway routing policy term
+	Protocol []GwRoutingPolicyTermMatchingProtocolEnum `json:"protocol,omitempty"`
+	// Route-existence match condition for a gateway routing policy term
+	RouteExists *GwRoutingPolicyTermMatchingRouteExists `json:"route_exists,omitempty"`
+	// Overlay neighbor MAC addresses used for bgp_config where `via`==`vpn`
 	VpnNeighborMac []string `json:"vpn_neighbor_mac,omitempty"`
-	// overlay-facing criteria (used for bgp_config where via=vpn). ordered-
-	VpnPath              []string                               `json:"vpn_path,omitempty"`
+	// Overlay path names used for bgp_config where `via`==`vpn`; order is significant
+	VpnPath []string `json:"vpn_path,omitempty"`
+	// SLA thresholds used when matching VPN paths
 	VpnPathSla           *GwRoutingPolicyTermMatchingVpnPathSla `json:"vpn_path_sla,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"_"`
 }

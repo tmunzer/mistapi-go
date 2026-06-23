@@ -8,22 +8,23 @@ import (
 )
 
 // StatsApAutoPlacement represents a StatsApAutoPlacement struct.
+// Auto placement result and status for an AP
 type StatsApAutoPlacement struct {
-	// Additional information about auto placements AP data
+	// Additional diagnostics for AP auto placement
 	Info *StatsApAutoPlacementInfo `json:"info,omitempty"`
 	// Flag to represent if AP is recommended as an anchor by auto placement service
 	RecommendedAnchor *bool `json:"recommended_anchor,omitempty"`
-	// Basic Placement Status
+	// Current auto placement status for the AP
 	Status *string `json:"status,omitempty"`
 	// Additional info about placement status
 	StatusDetail *string `json:"status_detail,omitempty"`
-	// X Autoplaced Position in pixels
+	// Auto-placed X coordinate, in pixels
 	X *float64 `json:"x,omitempty"`
-	// X Autoplaced Position in meters
+	// Auto-placed X coordinate, in meters
 	XM *float64 `json:"x_m,omitempty"`
-	// Y Autoplaced Position in pixels
+	// Auto-placed Y coordinate, in pixels
 	Y *float64 `json:"y,omitempty"`
-	// X Autoplaced Position in meters
+	// Auto-placed Y coordinate, in meters
 	YM                   *float64               `json:"y_m,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,15 +8,19 @@ import (
 )
 
 // SynthetictestConfig represents a SynthetictestConfig struct.
+// Synthetic test configuration for Marvis Minis
 type SynthetictestConfig struct {
-	// enum: `auto`, `high`, `low`
+	// Aggressiveness level for a synthetic test. enum: `auto`, `high`, `med`, `low`
 	Aggressiveness *SynthetictestConfigAggressivenessEnum `json:"aggressiveness,omitempty"`
 	// Custom probes to be used for synthetic tests
 	CustomProbes map[string]SynthetictestConfigCustomProbe `json:"custom_probes,omitempty"`
-	Disabled     *bool                                     `json:"disabled,omitempty"`
+	// Whether synthetic tests are disabled
+	Disabled *bool `json:"disabled,omitempty"`
 	// List of networks to be used for synthetic tests
-	LanNetworks          []SynthetictestConfigLanNetwork  `json:"lan_networks,omitempty"`
-	Vlans                []SynthetictestConfigVlan        `json:"vlans,omitempty"` // Deprecated
+	LanNetworks []SynthetictestConfigLanNetwork `json:"lan_networks,omitempty"`
+	// Deprecated VLAN-based synthetic test configurations
+	Vlans []SynthetictestConfigVlan `json:"vlans,omitempty"` // Deprecated
+	// WAN speedtest scheduling settings for synthetic tests
 	WanSpeedtest         *SynthetictestConfigWanSpeedtest `json:"wan_speedtest,omitempty"`
 	AdditionalProperties map[string]interface{}           `json:"_"`
 }

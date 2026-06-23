@@ -9,18 +9,23 @@ import (
 )
 
 // WebhookLocationSdkEvent represents a WebhookLocationSdkEvent struct.
+// SDK client location update with map coordinates
 type WebhookLocationSdkEvent struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id     *uuid.UUID `json:"id,omitempty"`
-	MapId  *uuid.UUID `json:"map_id,omitempty"`
-	Name   *string    `json:"name,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Map where the SDK client location was calculated
+	MapId *uuid.UUID `json:"map_id,omitempty"`
+	// Display name of the SDK client when available
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	Type      *string  `json:"type,omitempty"`
-	// x, in meter
+	// Location object type for the SDK client event; defaults to `sdk`
+	Type *string `json:"type,omitempty"`
+	// Horizontal map coordinate of the SDK client, in meters
 	X *float64 `json:"x,omitempty"`
-	// y, in meter
+	// Vertical map coordinate of the SDK client, in meters
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

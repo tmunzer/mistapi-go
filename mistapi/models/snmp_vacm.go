@@ -8,8 +8,11 @@ import (
 )
 
 // SnmpVacm represents a SnmpVacm struct.
+// SNMPv3 View-based Access Control Model configuration
 type SnmpVacm struct {
-	Access               []SnmpVacmAccessItem     `json:"access,omitempty"`
+	// VACM access rules for SNMPv3
+	Access []SnmpVacmAccessItem `json:"access,omitempty"`
+	// VACM security-name to group mapping configuration
 	SecurityToGroup      *SnmpVacmSecurityToGroup `json:"security_to_group,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"_"`
 }

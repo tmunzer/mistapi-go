@@ -8,11 +8,17 @@ import (
 )
 
 // UtilsSendBleBeacon represents a UtilsSendBleBeacon struct.
+// Request to transmit an arbitrary BLE beacon frame from selected APs
 type UtilsSendBleBeacon struct {
-	BeaconFrame          *string                `json:"beacon_frame,omitempty"`
-	BeaconFreq           *int                   `json:"beacon_freq,omitempty"`
-	Duration             *int                   `json:"duration,omitempty"`
-	Macs                 []string               `json:"macs,omitempty"`
+	// Raw BLE beacon frame payload to transmit
+	BeaconFrame *string `json:"beacon_frame,omitempty"`
+	// Transmission interval for the arbitrary BLE beacon frame
+	BeaconFreq *int `json:"beacon_freq,omitempty"`
+	// Number of seconds to continue sending the BLE beacon frame
+	Duration *int `json:"duration,omitempty"`
+	// AP MAC addresses of devices that should transmit the BLE beacon
+	Macs []string `json:"macs,omitempty"`
+	// Map identifiers used to select APs that should transmit the BLE beacon
 	MapIds               []string               `json:"map_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

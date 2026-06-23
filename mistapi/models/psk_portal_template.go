@@ -8,7 +8,9 @@ import (
 )
 
 // PskPortalTemplate represents a PskPortalTemplate struct.
+// Portal UI customization payload
 type PskPortalTemplate struct {
+	// Custom UI settings for the PSK portal template
 	PortalTemplate       *PskPortalTemplateSetting `json:"portal_template,omitempty"`
 	AdditionalProperties map[string]interface{}    `json:"_"`
 }

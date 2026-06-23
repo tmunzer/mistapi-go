@@ -9,32 +9,35 @@ import (
 )
 
 // WebhookMinisReachabilityEvent represents a WebhookMinisReachabilityEvent struct.
+// Marvis Minis reachability synthetic test result
 type WebhookMinisReachabilityEvent struct {
 	// Average latency in milliseconds
 	AvgLatency *float64 `json:"avg_latency,omitempty"`
 	// MAC address of the device performing the test
 	DeviceMac *string `json:"device_mac,omitempty"`
-	// Packet loss percentage
+	// Percentage of packets lost during the reachability test
 	LossPercentage *float64 `json:"loss_percentage,omitempty"`
 	// Maximum latency in milliseconds
 	MaxLatency *float64 `json:"max_latency,omitempty"`
 	// Minimum latency in milliseconds
-	MinLatency *float64   `json:"min_latency,omitempty"`
-	OrgId      *uuid.UUID `json:"org_id,omitempty"`
+	MinLatency *float64 `json:"min_latency,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Name of the probe
 	ProbeName *string `json:"probe_name,omitempty"`
 	// Target host or IP for the probe
 	ProbeTarget *string `json:"probe_target,omitempty"`
-	// Type of probe
+	// Probe category used for the Minis reachability test
 	ProbeType *string `json:"probe_type,omitempty"`
-	// Protocol used for the test
-	Protocol *string    `json:"protocol,omitempty"`
-	SiteId   *uuid.UUID `json:"site_id,omitempty"`
+	// Network protocol used for the reachability test
+	Protocol *string `json:"protocol,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Type of test performed
 	TestType *string `json:"test_type,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
-	// VLAN ID used for the test
+	// Network VLAN ID used for the reachability test
 	Vlan                 *int                   `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,10 +8,11 @@ import (
 )
 
 // ResponseAutoOrientationInfo represents a ResponseAutoOrientationInfo struct.
+// Auto orientation status response
 type ResponseAutoOrientationInfo struct {
 	// Only when `status`==`inprogress`, estimate of the time to completion
 	EstTimeLeft *float64 `json:"est_time_left,omitempty"`
-	// time when auto orient process was last queued for this map
+	// Timestamp when auto orient process was last queued for this map
 	StartTime *float64 `json:"start_time,omitempty"`
 	// The status of auto orient for a given map. enum:
 	// * `pending`: Auto orient has not been requested for this map
@@ -19,7 +20,7 @@ type ResponseAutoOrientationInfo struct {
 	// * `done`: The auto orient process has completed
 	// * `error`: There was an error in the auto orient process
 	Status *ResponseAutoOrientationInfoStatusEnum `json:"status,omitempty"`
-	// time when auto orient completed or was manually stopped
+	// Timestamp when auto orient completed or was manually stopped
 	StopTime             *float64               `json:"stop_time,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

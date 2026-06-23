@@ -10,15 +10,21 @@ import (
 )
 
 // ResponseClaimLicense represents a ResponseClaimLicense struct.
+// Result of claiming licenses or activation codes
 type ResponseClaimLicense struct {
-	InventoryAdded      []ResponseClaimLicenseInventoryItem `json:"inventory_added"`
+	// Inventory devices added by the claim operation
+	InventoryAdded []ResponseClaimLicenseInventoryItem `json:"inventory_added"`
+	// Inventory devices already present during the claim operation
 	InventoryDuplicated []ResponseClaimLicenseInventoryItem `json:"inventory_duplicated"`
-	// for async claim
-	InventoryPending     []ResponseClaimLicenseInventoryPendingItem `json:"inventory_pending,omitempty"`
-	LicenseAdded         []ResponseClaimLicenseLicenseItem          `json:"license_added"`
-	LicenseDuplicated    []ResponseClaimLicenseLicenseItem          `json:"license_duplicated"`
-	LicenseError         []ResponseClaimLicenseLicenseErrorItem     `json:"license_error"`
-	AdditionalProperties map[string]interface{}                     `json:"_"`
+	// Inventory devices pending asynchronous claim processing
+	InventoryPending []ResponseClaimLicenseInventoryPendingItem `json:"inventory_pending,omitempty"`
+	// License entitlements added by the claim operation
+	LicenseAdded []ResponseClaimLicenseLicenseItem `json:"license_added"`
+	// License entitlements already present during the claim operation
+	LicenseDuplicated []ResponseClaimLicenseLicenseItem `json:"license_duplicated"`
+	// License claim errors returned by order number
+	LicenseError         []ResponseClaimLicenseLicenseErrorItem `json:"license_error"`
+	AdditionalProperties map[string]interface{}                 `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseClaimLicense,

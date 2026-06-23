@@ -26,7 +26,7 @@ func NewAdmins(baseController baseController) *Admins {
 // VerifyAdminInvite takes context, token as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// **Note**: another call to ```GET /api/v1/self``` is required to see the new set of privileges
+// Accept an administrator invite using the invite verification token from the invite email. This public endpoint does not require authentication. After a successful verification, call [Get Self]($e/Self%20Account/getSelf) to refresh the authenticated admin profile and retrieve the newly granted privileges.
 func (a *Admins) VerifyAdminInvite(
 	ctx context.Context,
 	token string) (
@@ -34,22 +34,12 @@ func (a *Admins) VerifyAdminInvite(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/invite/verify/%v")
 	req.AppendTemplateParams(token)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not Found", Unmarshaller: errors.NewResponseDetailString},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -62,42 +52,8 @@ func (a *Admins) VerifyAdminInvite(
 // RegisterNewAdmin takes context, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Register a new admin and his/her org
-// An email will also be sent to the user with a link to `/verify/register?token={token}`
-// ### reCAPTCHA
-// Google reCAPTCHA is the choice to prevent bot registration
-// It needs this
-// &lt;script src='https://www.google.com/recaptcha/api.js' &gt;&lt;/script&gt;
-// and this &lt;div&gt; in the desired place
-// ```html
-// <div class="g-recaptcha" data_sitekey="6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"></div>
-// ```
-// Use GET /api/v1/register/recaptcha to read the current setting.
-// Response example:
-// ```json
-// {
-// "flavor": "google",
-// "required": true,
-// "sitekey": "6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"
-// }
-// ```
-// ### hCaptcha
-// Alternative to reCAPTCHA is hCaptcha to prevent bot registration
-// It needs this script
-// &lt;script src='https://js.hcaptcha.com/1/api.js' async defer &gt;&lt;/script&gt;
-// and this &lt;div&gt; in the desired place
-// ```html
-// <div class="h-recaptcha" data_sitekey="6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"></div>
-// ```
-// Use GET /api/v1/register/recaptcha?recaptcha_flavor=hcaptcha to read the current setting for hcaptcha with reply.
-// Response example:
-// ```json
-// {
-// "flavor": "hcaptcha",
-// "required": true,
-// "sitekey": "6LdAewsTAAAAAE25XKQhPEQ2FiMTft-WrZXQ5NUd"
-// }"
-// ```
+// Register a new administrator account and initial organization. This public endpoint does not require authentication. Mist sends a verification email containing a link such as `/verify/register?token={token}`; use [Verify Registration]($e/Admins/verifyRegistration) to complete registration with that token.
+// Use [Get Registration Information]($e/Admins/getAdminRegistrationInfo) before submitting this request to determine whether CAPTCHA is required, which CAPTCHA provider to render, and which public site key to use. If CAPTCHA is required, include the provider response token in `recaptcha` and the provider name in `recaptcha_flavor`.
 func (a *Admins) RegisterNewAdmin(
 	ctx context.Context,
 	body *models.AdminInvite) (
@@ -105,22 +61,12 @@ func (a *Admins) RegisterNewAdmin(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/register")
 
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -136,7 +82,7 @@ func (a *Admins) RegisterNewAdmin(
 // GetAdminRegistrationInfo takes context, recaptchaFlavor as parameters and
 // returns an models.ApiResponse with models.Recaptcha data and
 // an error if there was an issue with the request or response.
-// Get Registration Information
+// Return the public CAPTCHA settings required for administrator registration. This public endpoint does not require authentication. Use the returned `flavor`, `required`, and `sitekey` values to render the correct CAPTCHA challenge before calling [Register New Admin]($e/Admins/registerNewAdmin).
 func (a *Admins) GetAdminRegistrationInfo(
 	ctx context.Context,
 	recaptchaFlavor *models.RecaptchaFlavorEnum) (
@@ -144,22 +90,12 @@ func (a *Admins) GetAdminRegistrationInfo(
 	error) {
 	req := a.prepareRequest(ctx, "GET", "/api/v1/register/recaptcha")
 
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if recaptchaFlavor != nil {
 		req.QueryParam("recaptcha_flavor", *recaptchaFlavor)
@@ -177,7 +113,7 @@ func (a *Admins) GetAdminRegistrationInfo(
 // VerifyRegistration takes context, token as parameters and
 // returns an models.ApiResponse with models.ResponseVerifyTokenSuccess data and
 // an error if there was an issue with the request or response.
-// Verify registration
+// Verify a new administrator registration using the token from the registration email. This public endpoint does not require authentication. A successful verification creates a login session and may also apply a pending invitation; the response indicates whether an invitation could not be applied automatically.
 func (a *Admins) VerifyRegistration(
 	ctx context.Context,
 	token string) (
@@ -185,22 +121,12 @@ func (a *Admins) VerifyRegistration(
 	error) {
 	req := a.prepareRequest(ctx, "POST", "/api/v1/register/verify/%v")
 	req.AppendTemplateParams(token)
-	req.Authenticate(
-		NewOrAuth(
-			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
-		),
-	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Response if verification expired or already registered", Unmarshaller: errors.NewResponseDetailString},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Response if secret is invalid", Unmarshaller: errors.NewResponseDetailString},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.ResponseVerifyTokenSuccess

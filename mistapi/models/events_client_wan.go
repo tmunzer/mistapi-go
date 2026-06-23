@@ -9,14 +9,23 @@ import (
 )
 
 // EventsClientWan represents a EventsClientWan struct.
+// WAN client event returned by WAN client event search APIs
 type EventsClientWan struct {
-	When                 *string                `json:"When,omitempty"`
-	EvType               *string                `json:"ev_type,omitempty"`
-	Metadata             *interface{}           `json:"metadata,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	RandomMac            *bool                  `json:"random_mac,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	Text                 *string                `json:"text,omitempty"`
+	// Event timestamp string reported by the WAN client event source
+	When *string `json:"When,omitempty"`
+	// WAN client event type identifier
+	EvType *string `json:"ev_type,omitempty"`
+	// Additional attributes provided with the WAN client event
+	Metadata *interface{} `json:"metadata,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Whether the WAN client used a randomized MAC address
+	RandomMac *bool `json:"random_mac,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Human-readable message for the WAN client event
+	Text *string `json:"text,omitempty"`
+	// WAN client identifier associated with the event
 	Wcid                 *uuid.UUID             `json:"wcid,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,11 +8,15 @@ import (
 )
 
 // ApPortConfigDynamicVlan represents a ApPortConfigDynamicVlan struct.
-// Optional dynamic vlan
+// Dynamic VLAN assignment settings for AP port authentication
 type ApPortConfigDynamicVlan struct {
-	DefaultVlanId        *int                   `json:"default_vlan_id,omitempty"`
-	Enabled              *bool                  `json:"enabled,omitempty"`
-	Type                 *string                `json:"type,omitempty"`
+	// Fallback VLAN ID used when RADIUS does not return a dynamic VLAN match
+	DefaultVlanId *int `json:"default_vlan_id,omitempty"`
+	// Whether dynamic VLAN assignment is enabled for this AP port
+	Enabled *bool `json:"enabled,omitempty"`
+	// Mapping mode for interpreting dynamic VLAN attributes returned by RADIUS.\ \ enum: `airespace-interface-name`, where the VLAN is determined by parsing\ \ the RADIUS attribute as an Airespace interface name (e.g. "guest"\ \ would map to VLAN 100), or `standard`, where the VLAN is determined by parsing\ \ the RADIUS attribute as a standard VLAN ID number
+	Type *ApPortConfigDynamicVlanTypeEnum `json:"type,omitempty"`
+	// Mapping entries for RADIUS-assigned VLAN values on this AP port. For `type`==`airespace-interface-name`, the property key is the Airespace interface name returned by RADIUS (e.g. "guest"), and the value is the corresponding VLAN ID (e.g. 100). For `type`==`standard`, the property key is the VLAN ID number returned by RADIUS, and the value is ignored.
 	Vlans                map[string]string      `json:"vlans,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -79,8 +83,8 @@ func (a *ApPortConfigDynamicVlan) UnmarshalJSON(input []byte) error {
 
 // tempApPortConfigDynamicVlan is a temporary struct used for validating the fields of ApPortConfigDynamicVlan.
 type tempApPortConfigDynamicVlan struct {
-	DefaultVlanId *int              `json:"default_vlan_id,omitempty"`
-	Enabled       *bool             `json:"enabled,omitempty"`
-	Type          *string           `json:"type,omitempty"`
-	Vlans         map[string]string `json:"vlans,omitempty"`
+	DefaultVlanId *int                             `json:"default_vlan_id,omitempty"`
+	Enabled       *bool                            `json:"enabled,omitempty"`
+	Type          *ApPortConfigDynamicVlanTypeEnum `json:"type,omitempty"`
+	Vlans         map[string]string                `json:"vlans,omitempty"`
 }

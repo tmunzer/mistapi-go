@@ -13,3 +13,18 @@ Device Type. enum: `gateway`
 |  --- |
 | `gateway` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceTypeGateway := models.DeviceTypeGatewayEnum_GATEWAY
+
+}
+```
+

@@ -1,6 +1,8 @@
 
 # Response Auto Orientation Info
 
+Auto orientation status response
+
 ## Structure
 
 `ResponseAutoOrientationInfo`
@@ -10,18 +12,27 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `EstTimeLeft` | `*float64` | Optional | Only when `status`==`inprogress`, estimate of the time to completion |
-| `StartTime` | `*float64` | Optional | time when auto orient process was last queued for this map |
+| `StartTime` | `*float64` | Optional | Timestamp when auto orient process was last queued for this map |
 | `Status` | [`*models.ResponseAutoOrientationInfoStatusEnum`](../../doc/models/response-auto-orientation-info-status-enum.md) | Optional | The status of auto orient for a given map. enum:<br><br>* `pending`: Auto orient has not been requested for this map<br>* `inprogress`: Auto orient is currently processing<br>* `done`: The auto orient process has completed<br>* `error`: There was an error in the auto orient process |
-| `StopTime` | `*float64` | Optional | time when auto orient completed or was manually stopped |
+| `StopTime` | `*float64` | Optional | Timestamp when auto orient completed or was manually stopped |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "est_time_left": 122.9,
-  "start_time": 151.7,
-  "status": "done",
-  "stop_time": 157.08
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoOrientationInfo := models.ResponseAutoOrientationInfo{
+        EstTimeLeft:          models.ToPointer(float64(3.56)),
+        StartTime:            models.ToPointer(float64(223.64)),
+        Status:               models.ToPointer(models.ResponseAutoOrientationInfoStatusEnum_PENDING),
+        StopTime:             models.ToPointer(float64(20.42)),
+    }
+
 }
 ```
 

@@ -9,36 +9,43 @@ import (
 )
 
 // SiteMxtunnel represents a SiteMxtunnel struct.
-// Site MxTunnel
+// Site Mist Tunnel configuration for tunneling AP user VLANs to Mist Edge tunnel peers
 type SiteMxtunnel struct {
+	// Additional named Mist Tunnel definitions keyed by tunnel name
 	AdditionalMxtunnels map[string]SiteMxtunnelAdditionalMxtunnel `json:"additional_mxtunnels,omitempty"`
 	// List of subnets where we allow AP to establish Mist Tunnels from
 	ApSubnets []string `json:"ap_subnets,omitempty"`
-	// Schedule to preempt ap’s which are not connected to preferred peer
+	// Schedule to preempt AP tunnels that are not connected to their preferred peer
 	AutoPreemption *AutoPreemption `json:"auto_preemption,omitempty"`
-	// For AP, how to connect to tunterm or RadSec Proxy
+	// Tunnel peer cluster definitions APs use for the site Mist Tunnel
 	Clusters []SiteMxtunnelCluster `json:"clusters,omitempty"`
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	Enabled     *bool    `json:"enabled,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether site Mist Tunnel tunneling is enabled
+	Enabled *bool `json:"enabled,omitempty"`
+	// Whether this Mist Tunnel configuration is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// In seconds, used as heartbeat to detect if a tunnel is alive. AP will try another peer after missing N hellos specified by hello_retries
 	HelloInterval *int `json:"hello_interval,omitempty"`
-	HelloRetries  *int `json:"hello_retries,omitempty"`
-	// Hostnames or IPs where a Mist Tunnel will use as the Peer (i.e. they are reachable from AP)
+	// Number of missed hello heartbeats before an AP tries another tunnel peer
+	HelloRetries *int `json:"hello_retries,omitempty"`
+	// Tunnel peer hostnames or IP addresses reachable from APs
 	Hosts []string `json:"hosts,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
 	// 0 to enable MTU, 552-1500 to start MTU with a lower MTU
-	Mtu   *int       `json:"mtu,omitempty"`
+	Mtu *int `json:"mtu,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
-	// enum: `ip`, `udp`
+	// Encapsulation protocol used for Mist Tunnel traffic. enum: `ip`, `udp`
 	Protocol *MxtunnelProtocolEnum `json:"protocol,omitempty"`
-	Radsec   *SiteMxtunnelRadsec   `json:"radsec,omitempty"`
-	SiteId   *uuid.UUID            `json:"site_id,omitempty"`
-	// List of vlan_ids that will be used
+	// RadSec proxy settings for a site Mist Tunnel
+	Radsec *SiteMxtunnelRadsec `json:"radsec,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// List of VLAN IDs carried by this Mist Tunnel
 	VlanIds              []int                  `json:"vlan_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

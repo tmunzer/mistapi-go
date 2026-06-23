@@ -8,12 +8,13 @@ import (
 )
 
 // SynthetictestConfigCustomProbe represents a SynthetictestConfigCustomProbe struct.
+// Custom probe definition for synthetic tests
 type SynthetictestConfigCustomProbe struct {
-	// enum: `auto`, `high`, `low`
+	// Aggressiveness level for a synthetic test. enum: `auto`, `high`, `med`, `low`
 	Aggressiveness *SynthetictestConfigAggressivenessEnum `json:"aggressiveness,omitempty"`
 	// Can be URL (e.g. http://x.com, https://x.com:8080/path/to/resource), IP address, or IP:port combination
 	Target *string `json:"target,omitempty"`
-	// In milliseconds
+	// Response-time threshold for this custom probe, in milliseconds
 	Threshold *int `json:"threshold,omitempty"`
 	// enum: `application`, `curl`, `icmp`, `reachability`, `tcp`
 	Type                 *SynthetictestConfigCustomProbeTypeEnum `json:"type,omitempty"`

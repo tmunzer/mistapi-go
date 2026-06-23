@@ -26,7 +26,7 @@ func NewSitesStatsPorts(baseController baseController) *SitesStatsPorts {
 // CountSiteSwOrGwPorts takes context, siteId, distinct, fullDuplex, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, portId, portMac, powerDraw, txPkts, rxPkts, rxBytes, txBps, rxBps, txMcastPkts, txBcastPkts, rxMcastPkts, rxBcastPkts, speed, stpState, stpRole, authState, up, start, end, duration, limit as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of Switch/Gateway Ports
+// Count switch and gateway port statistics for a site, optionally grouped by the `distinct` field and filtered by port, neighbor, PoE, STP, traffic, and time attributes. Use [Count Org Switch/Gateway Ports]($e/Orgs%20Stats%20-%20Ports/countOrgSwOrGwPorts) to count switch and gateway port statistics across the organization.
 func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -67,19 +67,15 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -185,10 +181,9 @@ func (s *SitesStatsPorts) CountSiteSwOrGwPorts(
 // SearchSiteSwOrGwPorts takes context, siteId, deviceType, authState, fullDuplex, lteImsi, lteIccid, lteImei, mac, neighborMac, neighborPortDesc, neighborSystemName, poeDisabled, poeMode, poeOn, poePriority, portId, portMac, speed, stpState, stpRole, up, xcvrPartNumber, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseSwitchPortSearch data and
 // an error if there was an issue with the request or response.
-// Search Switch / Gateway Ports Stats for a specific site.
-// Returns a list of switch/gateway ports stats that match the search criteria.
-// The response provide current/last port status and statistics within the hour.
-// Traffic information (Tx/Rx) are cumulative counters since the last device reboot.
+// Search switch and gateway port statistics for a site.
+// Returns ports that match the search criteria, including current or most recent port status and statistics within the hour.
+// Traffic information (Tx/Rx) is reported as cumulative counters since the last device reboot. Use [Search Org Switch/Gateway Ports]($e/Orgs%20Stats%20-%20Ports/searchOrgSwOrGwPorts) to search switch and gateway port statistics across the organization.
 func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -223,19 +218,15 @@ func (s *SitesStatsPorts) SearchSiteSwOrGwPorts(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if deviceType != nil {
 		req.QueryParam("device_type", *deviceType)

@@ -8,7 +8,9 @@ import (
 )
 
 // SiteSettingSrxApp represents a SiteSettingSrxApp struct.
+// Juniper SRX application visibility settings for the site
 type SiteSettingSrxApp struct {
+	// Whether Juniper SRX application visibility is enabled
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

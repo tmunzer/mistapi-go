@@ -12,8 +12,9 @@ import (
 // WebhookClientSessions represents a WebhookClientSessions struct.
 // Sample of the `client-sessions` webhook payload.
 type WebhookClientSessions struct {
+	// Client session events included in a webhook delivery
 	Events []WebhookClientSessionsEvent `json:"events"`
-	// enum: `client-sessions`
+	// Webhook topic name for client session deliveries. enum: `client-sessions`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

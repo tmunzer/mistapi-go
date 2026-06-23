@@ -1,6 +1,8 @@
 
 # Network Tenant
 
+Tenant address entry for a network
+
 ## Structure
 
 `NetworkTenant`
@@ -9,16 +11,25 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Addresses` | `[]string` | Optional | - |
+| `Addresses` | `[]string` | Optional | IP addresses or subnets assigned to a network tenant |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "addresses": [
-    "addresses6",
-    "addresses7"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkTenant := models.NetworkTenant{
+        Addresses:            []string{
+            "addresses0",
+            "addresses1",
+        },
+    }
+
 }
 ```
 

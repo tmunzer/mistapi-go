@@ -15,3 +15,18 @@ optional, where virtual-gateway should reside. enum: `core`, `distribution`, `ed
 | `distribution` |
 | `edge` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    evpnOptionsRoutedAt := models.EvpnOptionsRoutedAtEnum_CORE
+
+}
+```
+

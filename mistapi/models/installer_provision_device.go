@@ -11,21 +11,31 @@ import (
 )
 
 // InstallerProvisionDevice represents a InstallerProvisionDevice struct.
-// Provision Device
+// Installer payload for provisioning or replacing a device
 type InstallerProvisionDevice struct {
-	DeviceprofileName *string    `json:"deviceprofile_name,omitempty"`
-	ForSite           *bool      `json:"for_site,omitempty"`
-	Height            *float64   `json:"height,omitempty"`
-	MapId             *uuid.UUID `json:"map_id,omitempty"`
-	Name              string     `json:"name"`
-	Orientation       *int       `json:"orientation,omitempty"`
-	// Onlif this is to replace an existing device
+	// Profile name applied to the device during installer provisioning
+	DeviceprofileName *string `json:"deviceprofile_name,omitempty"`
+	// Whether this installer provisioning request is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
+	// Mounting height recorded for map placement
+	Height *float64 `json:"height,omitempty"`
+	// Identifier of the map where the device should be placed
+	MapId *uuid.UUID `json:"map_id,omitempty"`
+	// Device name to set during installer provisioning
+	Name string `json:"name"`
+	// Device orientation in degrees from 0 to 359, where 0 is up and 90 is right
+	Orientation *int `json:"orientation,omitempty"`
+	// Only if replacing an existing device; MAC address of the device being replaced
 	ReplacingMac *string `json:"replacing_mac,omitempty"`
 	// Optional role for switch / gateway
-	Role                 *string                `json:"role,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	SiteName             *string                `json:"site_name,omitempty"`
-	X                    *float64               `json:"x,omitempty"`
+	Role *string `json:"role,omitempty"`
+	// Identifier of the destination site for installer provisioning
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Destination site name for installer provisioning
+	SiteName *string `json:"site_name,omitempty"`
+	// Horizontal map position for the device, in pixels
+	X *float64 `json:"x,omitempty"`
+	// Vertical map position for the device, in pixels
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

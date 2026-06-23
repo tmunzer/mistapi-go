@@ -8,7 +8,9 @@ import (
 )
 
 // OrgSettingGatewayMgmtHostInPolicy represents a OrgSettingGatewayMgmtHostInPolicy struct.
+// Host-in access policy for a gateway management service
 type OrgSettingGatewayMgmtHostInPolicy struct {
+	// Unique string values returned or accepted by this schema
 	Tenants              []string               `json:"tenants,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

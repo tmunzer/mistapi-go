@@ -10,12 +10,19 @@ import (
 )
 
 // FingerprintSearchResult represents a FingerprintSearchResult struct.
+// Search response for client device fingerprint records
 type FingerprintSearchResult struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []Fingerprint          `json:"results"`
-	Start                int                    `json:"start"`
+	// Upper bound of the time range for the fingerprint search
+	End int `json:"end"`
+	// Maximum number of fingerprint records returned in the response
+	Limit int `json:"limit"`
+	// Pagination URL for the next page of fingerprint search results
+	Next *string `json:"next,omitempty"`
+	// Client device fingerprint records
+	Results []Fingerprint `json:"results"`
+	// Lower bound of the time range for the fingerprint search
+	Start int `json:"start"`
+	// Number of fingerprint records matching the search
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

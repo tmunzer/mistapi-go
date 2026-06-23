@@ -8,10 +8,15 @@ import (
 )
 
 // ConstGatewayApplicationsDefinition represents a ConstGatewayApplicationsDefinition struct.
+// Gateway application definition returned by the constants API
 type ConstGatewayApplicationsDefinition struct {
-	AppId                *bool                  `json:"app_id,omitempty"`
-	Key                  *string                `json:"key,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
+	// Whether an AppID is defined for this gateway application
+	AppId *bool `json:"app_id,omitempty"`
+	// Machine-readable key that identifies the gateway application
+	Key *string `json:"key,omitempty"`
+	// Display name of the gateway application
+	Name *string `json:"name,omitempty"`
+	// Whether an SSR AppID is defined for this gateway application
 	SsrAppId             *bool                  `json:"ssr_app_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

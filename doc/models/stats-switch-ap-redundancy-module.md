@@ -1,6 +1,8 @@
 
 # Stats Switch Ap Redundancy Module
 
+AP switch redundancy counts for one VC or stack member
+
 ## Structure
 
 `StatsSwitchApRedundancyModule`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumAps` | `*int` | Optional | - |
-| `NumApsWithSwitchRedundancy` | `*int` | Optional | - |
+| `NumAps` | `*int` | Optional | Total number of APs connected through this switch member |
+| `NumApsWithSwitchRedundancy` | `*int` | Optional | Number of APs on this switch member with switch redundancy coverage |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_aps": 15,
-  "num_aps_with_switch_redundancy": 8
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsSwitchApRedundancyModule := models.StatsSwitchApRedundancyModule{
+        NumAps:                     models.ToPointer(15),
+        NumApsWithSwitchRedundancy: models.ToPointer(8),
+    }
+
 }
 ```
 

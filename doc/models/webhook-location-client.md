@@ -11,25 +11,35 @@ Sample of the `location-client` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | List of events |
-| `Topic` | `string` | Required, Constant | enum: `location-client`<br><br>**Value**: `"location-client"` |
+| `Events` | [`[]models.WebhookLocationClientEvent`](../../doc/models/webhook-location-client-event.md) | Required | Connected client location events included in this webhook delivery |
+| `Topic` | `string` | Required, Constant | Webhook topic name for connected client location deliveries. enum: `location-client`<br><br>**Value**: `"location-client"` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "mac": "5684dae9ac8b",
-      "map_id": "845a23bf-bed9-e43c-4c86-6fa474be7ae5",
-      "site_id": "441a1214-6928-442a-8e92-e1d34b8ec6a6",
-      "type": "wifi",
-      "x": 13.5,
-      "y": 3.2,
-      "timestamp": 188.18
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    webhookLocationClient := models.WebhookLocationClient{
+        Events:               []models.WebhookLocationClientEvent{
+            models.WebhookLocationClientEvent{
+                Mac:                    models.ToPointer("5684dae9ac8b"),
+                MapId:                  models.ToPointer(uuid.MustParse("845a23bf-bed9-e43c-4c86-6fa474be7ae5")),
+                SiteId:                 models.ToPointer(uuid.MustParse("441a1214-6928-442a-8e92-e1d34b8ec6a6")),
+                Timestamp:              models.ToPointer(float64(188.18)),
+                Type:                   models.ToPointer("wifi"),
+                X:                      models.ToPointer(float64(13.5)),
+                Y:                      models.ToPointer(float64(3.2)),
+            },
+        },
+        Topic:                "location-client",
     }
-  ],
-  "topic": "location-client"
+
 }
 ```
 

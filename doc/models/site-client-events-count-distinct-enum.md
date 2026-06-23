@@ -18,3 +18,18 @@ enum: `band`, `channel`, `proto`, `ssid`, `type`, `wlan_id`
 | `type` |
 | `wlan_id` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteClientEventsCountDistinct := models.SiteClientEventsCountDistinctEnum_BAND
+
+}
+```
+

@@ -10,9 +10,11 @@ import (
 )
 
 // VirtualChassisPort represents a VirtualChassisPort struct.
+// Request to set or delete Virtual Chassis ports on members
 type VirtualChassisPort struct {
+	// Virtual Chassis member port selections for a port operation
 	Members []ConfigVcPortMember `json:"members"`
-	// enum: `delete`, `set`
+	// Action to perform on the specified Virtual Chassis ports. enum: `delete`, `set`
 	Op                   VirtualChassisPortOperationEnum `json:"op"`
 	AdditionalProperties map[string]interface{}          `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Webhook Rssizone Topic Enum
 
-enum: `rssizone`
+Webhook topic name for RSSI zone event deliveries. enum: `rssizone`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `rssizone`
 | Name |
 |  --- |
 | `rssizone` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookRssizoneTopic := models.WebhookRssizoneTopicEnum_RSSIZONE
+
+}
+```
 

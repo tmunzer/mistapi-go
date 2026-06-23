@@ -9,40 +9,43 @@ import (
 )
 
 // Vbeacon represents a Vbeacon struct.
-// vBeacon
+// Virtual beacon configuration for SDK proximity notifications
 type Vbeacon struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
-	ForSite     *bool    `json:"for_site,omitempty"`
+	// Whether this virtual beacon is defined at site scope
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// Bluetooth tag major
+	// Bluetooth beacon major value used for proximity matching
 	Major *int `json:"major,omitempty"`
-	// Map where the device belongs to
+	// Floorplan map identifier containing the virtual beacon
 	MapId *uuid.UUID `json:"map_id,omitempty"`
-	// Message that can be displayed when the sdkclient gets near the vbeacon
+	// Notification message displayed by the SDK application when a client is near the virtual beacon
 	Message *string `json:"message,omitempty"`
-	// Bluetooth tag minor
+	// Bluetooth beacon minor value used for proximity matching
 	Minor *int `json:"minor,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name / label of the device
-	Name  *string    `json:"name,omitempty"`
+	// Display name or label for the virtual beacon
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Required if `power_mode`==`custom`, -30 - 100, in dBm. For default power_mode, power = 4 dBm.
 	Power *int `json:"power,omitempty"`
-	// enum: `custom`, `default`
+	// Transmit power mode for BLE beacons; use `custom` to set explicit power. enum: `custom`, `default`
 	PowerMode *BleConfigPowerModeEnum `json:"power_mode,omitempty"`
-	SiteId    *uuid.UUID              `json:"site_id,omitempty"`
-	// URL to show, optional
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Destination URL shown by the SDK application when a client is near the virtual beacon
 	Url *string `json:"url,omitempty"`
-	// Bluetooth tag UUID
+	// Bluetooth beacon UUID used for proximity matching
 	Uuid *uuid.UUID `json:"uuid,omitempty"`
 	// Name to be used in wayfinding_path or wayfinding_grid blob
 	WayfindingNodename *string `json:"wayfinding_nodename,omitempty"`
-	// X in pixel
+	// Horizontal pixel coordinate of the virtual beacon on the map
 	X *float64 `json:"x,omitempty"`
-	// Y in pixel
+	// Vertical pixel coordinate of the virtual beacon on the map
 	Y                    *float64               `json:"y,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

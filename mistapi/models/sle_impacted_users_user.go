@@ -8,17 +8,29 @@ import (
 )
 
 // SleImpactedUsersUser represents a SleImpactedUsersUser struct.
+// SLE impact row for a user
 type SleImpactedUsersUser struct {
-	ApMac                *string                `json:"ap_mac,omitempty"`
-	ApName               *string                `json:"ap_name,omitempty"`
-	Degraded             *float64               `json:"degraded,omitempty"`
-	DeviceOs             *string                `json:"device_os,omitempty"`
-	DeviceType           *string                `json:"device_type,omitempty"`
-	Duration             *float64               `json:"duration,omitempty"`
-	Mac                  *string                `json:"mac,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	Ssid                 *string                `json:"ssid,omitempty"`
-	Total                *float64               `json:"total,omitempty"`
+	// MAC address of the AP associated with this impacted user
+	ApMac *string `json:"ap_mac,omitempty"`
+	// Display name of the AP associated with this impacted user
+	ApName *string `json:"ap_name,omitempty"`
+	// Portion of the SLE total that was degraded for this user
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Client device OS for this impacted user
+	DeviceOs *string `json:"device_os,omitempty"`
+	// Client device type for this impacted user
+	DeviceType *string `json:"device_type,omitempty"`
+	// Observation time represented by this user impact row
+	Duration *float64 `json:"duration,omitempty"`
+	// Client MAC address for this impacted user
+	Mac *string `json:"mac,omitempty"`
+	// Display name for the user impact row
+	Name *string `json:"name,omitempty"`
+	// Wireless network SSID used by this impacted user
+	Ssid *string `json:"ssid,omitempty"`
+	// Overall SLE total measured for this user impact row
+	Total *float64 `json:"total,omitempty"`
+	// Identifier of the WLAN used by this impacted user
 	WlanId               *string                `json:"wlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

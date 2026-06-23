@@ -10,7 +10,9 @@ import (
 )
 
 // ClearPolicyHitCount represents a ClearPolicyHitCount struct.
+// Request body for clearing hit counters on an application policy
 type ClearPolicyHitCount struct {
+	// Application policy name whose hit counters should be cleared
 	PolicyName           string                 `json:"policy_name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

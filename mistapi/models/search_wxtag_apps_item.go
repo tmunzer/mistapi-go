@@ -10,9 +10,13 @@ import (
 )
 
 // SearchWxtagAppsItem represents a SearchWxtagAppsItem struct.
+// Application metadata available for WxTag matching
 type SearchWxtagAppsItem struct {
-	Group                string                 `json:"group"`
-	Key                  string                 `json:"key"`
+	// Application category group containing this WxTag app
+	Group string `json:"group"`
+	// Stable application key used in WxTag configuration
+	Key string `json:"key"`
+	// Display name of the application
 	Name                 string                 `json:"name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

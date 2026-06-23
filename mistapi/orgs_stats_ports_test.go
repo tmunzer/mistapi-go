@@ -19,7 +19,7 @@ func TestOrgsStatsPortsTestCountOrgSwOrGwPorts(t *testing.T) {
 	}
 	distinct := models.SitePortsCountDistinctEnum("mac")
 	fullDuplex := bool(true)
-	mac := "5c5b350e0410"
+	mac := "5c5b53010101,5c5b53020202"
 	neighborMac := "5c5b350e0410"
 	neighborPortDesc := "ge-2/0/39"
 	neighborSystemName := "Kumar-Acc-SW.mist.local"
@@ -70,7 +70,7 @@ func TestOrgsStatsPortsTestCountOrgSwOrGwPorts1(t *testing.T) {
 	}
 	distinct := models.SitePortsCountDistinctEnum("mac")
 	fullDuplex := bool(true)
-	mac := "5c5b350e0410"
+	mac := "5c5b53010101,5c5b53020202"
 	neighborMac := "5c5b350e0410"
 	neighborPortDesc := "ge-2/0/39"
 	neighborSystemName := "Kumar-Acc-SW.mist.local"
@@ -119,17 +119,24 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
+	deviceType := "gateway,switch"
 
 	lteImsi := "310260000000001"
 	lteIccid := "89014103211118510720"
 	lteImei := "123456789012345"
+	mac := "5c5b53010101,5c5b53020202"
+	neighborMac := "5c5b53010101,5c5b53020202"
+	neighborPortDesc := "ge-0-2,ge-0-1"
+	neighborSystemName := "sdwan-newyork,toronto-srx-2_node1"
+
+	portId := "ge-0/0/1,ge-0/0/2"
+	portMac := "5c5b53010101,5c5b53020202"
 
 	xcvrPartNumber := "SFP-10G-SR"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, &mac, &neighborMac, &neighborPortDesc, &neighborSystemName, nil, nil, nil, nil, &portId, &portMac, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -147,17 +154,24 @@ func TestOrgsStatsPortsTestSearchOrgSwOrGwPorts1(t *testing.T) {
 	if errUUID != nil {
 		t.Error(errUUID)
 	}
-	deviceType := models.SearchOrgSwOrGwPortsTypeEnum("all")
+	deviceType := "gateway,switch"
 
 	lteImsi := "310260000000001"
 	lteIccid := "89014103211118510720"
 	lteImei := "123456789012345"
+	mac := "5c5b53010101,5c5b53020202"
+	neighborMac := "5c5b53010101,5c5b53020202"
+	neighborPortDesc := "ge-0-2,ge-0-1"
+	neighborSystemName := "sdwan-newyork,toronto-srx-2_node1"
+
+	portId := "ge-0/0/1,ge-0/0/2"
+	portMac := "5c5b53010101,5c5b53020202"
 
 	xcvrPartNumber := "SFP-10G-SR"
 	limit := int(100)
 	sort := "timestamp"
 
-	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
+	apiResponse, err := orgsStatsPorts.SearchOrgSwOrGwPorts(ctx, orgId, &deviceType, nil, nil, &lteImsi, &lteIccid, &lteImei, &mac, &neighborMac, &neighborPortDesc, &neighborSystemName, nil, nil, nil, nil, &portId, &portMac, nil, nil, nil, nil, &xcvrPartNumber, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

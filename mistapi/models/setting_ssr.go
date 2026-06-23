@@ -8,14 +8,15 @@ import (
 )
 
 // SettingSsr represents a SettingSsr struct.
+// SSR management settings for device onboarding and connectivity
 type SettingSsr struct {
-	// auto_upgrade device first time it is onboarded
+	// Automatic firmware upgrade settings applied when an SSR device is first onboarded
 	AutoUpgrade *SettingSsrAutoUpgrade `json:"auto_upgrade,omitempty"`
-	// List of Conductor IP Addresses or Hosts to be used by the SSR Devices
+	// Conductor IP addresses or hostnames used by SSR devices
 	ConductorHosts []string `json:"conductor_hosts,omitempty"`
-	// Token to be used by the SSR Devices to connect to the Conductor
+	// Registration token used by SSR devices to connect to the conductor
 	ConductorToken *string `json:"conductor_token,omitempty"`
-	// Disable stats collection on SSR devices
+	// Whether stats collection is disabled on SSR devices
 	DisableStats *bool `json:"disable_stats,omitempty"`
 	// SSR proxy configuration to talk to Mist
 	Proxy                *SsrProxy              `json:"proxy,omitempty"`

@@ -27,7 +27,7 @@ func NewOrgsLinkedApplications(baseController baseController) *OrgsLinkedApplica
 // GetOrgOauthAppLinkedStatus takes context, orgId, appName, forward as parameters and
 // returns an models.ApiResponse with models.AccountOauthInfo data and
 // an error if there was an issue with the request or response.
-// Get Org Level OAuth Application Linked Status
+// Return linked-account status for the specified organization OAuth application and the authorization URL used to start account linking.
 func (o *OrgsLinkedApplications) GetOrgOauthAppLinkedStatus(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -40,19 +40,15 @@ func (o *OrgsLinkedApplications) GetOrgOauthAppLinkedStatus(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.QueryParam("forward", forward)
 
@@ -69,7 +65,7 @@ func (o *OrgsLinkedApplications) GetOrgOauthAppLinkedStatus(
 // AddOrgOauthAppAccounts takes context, orgId, appName, body as parameters and
 // returns an models.ApiResponse with models.AccountOauthInfo data and
 // an error if there was an issue with the request or response.
-// Add Jamf, VMware Authorization With Mist Portal
+// Add a linked account for the specified OAuth application using the app-specific account configuration payload.
 func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -82,19 +78,15 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Unsuccessful"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {
@@ -114,7 +106,7 @@ func (o *OrgsLinkedApplications) AddOrgOauthAppAccounts(
 // DeleteOrgOauthAppAuthorization takes context, orgId, appName, accountId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete Org Level OAuth Application Authorization With Mist Portal
+// Remove a linked account authorization for the specified OAuth application and account ID.
 func (o *OrgsLinkedApplications) DeleteOrgOauthAppAuthorization(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -131,19 +123,15 @@ func (o *OrgsLinkedApplications) DeleteOrgOauthAppAuthorization(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Unsuccessful"},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -156,8 +144,7 @@ func (o *OrgsLinkedApplications) DeleteOrgOauthAppAuthorization(
 // UpdateOrgOauthAppAccount takes context, orgId, appName, accountId, body as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Update Zoom, Teams, Intune Authorization.
-// Request Payload, These Field And Values Will Be Specific To Each Of The Third Party Apps Accounts.
+// Update app-specific settings for a linked OAuth application account, such as Zoom or Teams guest redaction settings or a Zoom daily API request quota.
 func (o *OrgsLinkedApplications) UpdateOrgOauthAppAccount(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -175,19 +162,15 @@ func (o *OrgsLinkedApplications) UpdateOrgOauthAppAccount(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

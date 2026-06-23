@@ -11,10 +11,13 @@ import (
 )
 
 // ResponseSearchItem represents a ResponseSearchItem struct.
+// MSP search result entry
 type ResponseSearchItem struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   uuid.UUID              `json:"id"`
-	Text                 string                 `json:"text"`
+	Id uuid.UUID `json:"id"`
+	// Display text for the MSP search result
+	Text string `json:"text"`
+	// Category of MSP search result, such as `orgs`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

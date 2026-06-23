@@ -15,3 +15,18 @@ Only when `wan_type`==`broadband`. enum: `default`, `max`, `recommended`
 | `max` |
 | `recommended` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortWanArpPolicer := models.GatewayPortWanArpPolicerEnum_ENUMDEFAULT
+
+}
+```
+

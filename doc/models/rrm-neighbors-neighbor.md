@@ -1,6 +1,8 @@
 
 # Rrm Neighbors Neighbor
 
+Neighbor AP observed by RRM
+
 ## Structure
 
 `RrmNeighborsNeighbor`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | - |
-| `Rssi` | `*int` | Optional | - |
+| `Mac` | `*string` | Optional | Neighbor AP MAC address observed by RRM |
+| `Rssi` | `*int` | Optional | Observed RSSI for the neighbor AP, in dBm |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "5c5b35000311",
-  "rssi": -66
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    rrmNeighborsNeighbor := models.RrmNeighborsNeighbor{
+        Mac:                  models.ToPointer("5c5b35000311"),
+        Rssi:                 models.ToPointer(-66),
+    }
+
 }
 ```
 

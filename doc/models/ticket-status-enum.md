@@ -1,12 +1,7 @@
 
 # Ticket Status Enum
 
-Ticket status. enum:
-
-* open: ticket is open, Mist is working on it
-* pending: ticket is open and Requester attention is needed (e.g. Mist is asking for some more information)
-* solved: ticket is marked as solved / considered by Mist (requester can update it, causing it to re-open; or rate it)
-* closed: ticket is archived and cannot be changed.
+Ticket status. enum: `closed`, `open`, `pending`, `solved`. `open` means Mist is working on it, `pending` means requester attention is needed, `solved` means Mist considers it resolved but it can still be updated or rated, and `closed` means it is archived
 
 ## Enumeration
 
@@ -20,4 +15,19 @@ Ticket status. enum:
 | `open` |
 | `pending` |
 | `solved` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ticketStatus := models.TicketStatusEnum_CLOSED
+
+}
+```
 

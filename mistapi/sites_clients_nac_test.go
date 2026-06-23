@@ -21,7 +21,7 @@ func TestSitesClientsNACTestCountSiteNacClients(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesClientsNac.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesClientsNac.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -45,7 +45,7 @@ func TestSitesClientsNACTestCountSiteNacClients1(t *testing.T) {
 
 	duration := "1d"
 	limit := int(100)
-	apiResponse, err := sitesClientsNac.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
+	apiResponse, err := sitesClientsNac.CountSiteNacClients(ctx, siteId, &distinct, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -118,7 +118,7 @@ func TestSitesClientsNACTestSearchSiteNacClientEvents(t *testing.T) {
 	limit := int(100)
 	sort := "wxid"
 
-	apiResponse, err := sitesClientsNac.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := sitesClientsNac.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -145,7 +145,7 @@ func TestSitesClientsNACTestSearchSiteNacClientEvents1(t *testing.T) {
 	limit := int(100)
 	sort := "wxid"
 
-	apiResponse, err := sitesClientsNac.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &sort, nil)
+	apiResponse, err := sitesClientsNac.SearchSiteNacClientEvents(ctx, siteId, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, respAttrs, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &duration, &limit, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -182,7 +182,7 @@ func TestSitesClientsNACTestSearchSiteNacClients(t *testing.T) {
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := sitesClientsNac.SearchSiteNacClients(ctx, siteId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsNac.SearchSiteNacClients(ctx, siteId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -219,7 +219,7 @@ func TestSitesClientsNACTestSearchSiteNacClients1(t *testing.T) {
 	duration := "1d"
 	sort := "wxid"
 
-	apiResponse, err := sitesClientsNac.SearchSiteNacClients(ctx, siteId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesClientsNac.SearchSiteNacClients(ctx, siteId, nil, nil, &certExpiryDuration, nil, nil, nil, &family, &hostname, nil, &mac, nil, nil, nil, &mfg, nil, nil, nil, nil, nil, nil, nil, nil, nil, &status, nil, nil, nil, nil, nil, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

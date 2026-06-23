@@ -17,3 +17,18 @@ Specify IP address to connect to auth_servers and acct_servers. enum: `any`, `oo
 | `tunnel` |
 | `tunnel6` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxclusterRadsecSrcIpSource := models.MxclusterRadsecSrcIpSourceEnum_TUNNEL6
+
+}
+```
+

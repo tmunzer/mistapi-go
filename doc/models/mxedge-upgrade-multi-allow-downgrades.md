@@ -11,21 +11,30 @@ Whether downgrade is allowed when running version is higher than expected versio
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mxagent` | `*bool` | Optional | **Default**: `false` |
-| `Mxdas` | `*bool` | Optional | **Default**: `false` |
-| `Mxocproxy` | `*bool` | Optional | **Default**: `false` |
-| `Radsecproxy` | `*bool` | Optional | **Default**: `false` |
-| `Tunterm` | `*bool` | Optional | **Default**: `false` |
+| `Mxagent` | `*bool` | Optional | Whether downgrades are allowed for the mxagent service<br><br>**Default**: `false` |
+| `Mxdas` | `*bool` | Optional | Whether downgrades are allowed for the mxdas service<br><br>**Default**: `false` |
+| `Mxocproxy` | `*bool` | Optional | Whether downgrades are allowed for the mxocproxy service<br><br>**Default**: `false` |
+| `Radsecproxy` | `*bool` | Optional | Whether downgrades are allowed for the radsecproxy service<br><br>**Default**: `false` |
+| `Tunterm` | `*bool` | Optional | Whether downgrades are allowed for the tunterm service<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mxagent": false,
-  "mxdas": false,
-  "mxocproxy": false,
-  "radsecproxy": false,
-  "tunterm": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeUpgradeMultiAllowDowngrades := models.MxedgeUpgradeMultiAllowDowngrades{
+        Mxagent:              models.ToPointer(false),
+        Mxdas:                models.ToPointer(false),
+        Mxocproxy:            models.ToPointer(false),
+        Radsecproxy:          models.ToPointer(false),
+        Tunterm:              models.ToPointer(false),
+    }
+
 }
 ```
 

@@ -8,15 +8,13 @@ import (
 )
 
 // ResponseAutoZone represents a ResponseAutoZone struct.
+// Auto zones status and suggested zone response
 type ResponseAutoZone struct {
-	// The status for the auto zones service for a given map. enum:
-	// * not_started: The auto zones service has not been run on this map or the results were cleared by the user
-	// * in_progress: The auto zones service is currently in progress
-	// * awaiting_review: The auto zones service has completed and suggested location zones to be added to the map
-	// * error: There was an error with the auto zones service
-	Status               *ResponseAutoZoneStatusEnum `json:"status,omitempty"`
-	Zones                []ResponseAutoZoneZone      `json:"zones,omitempty"`
-	AdditionalProperties map[string]interface{}      `json:"_"`
+	// Status of auto-zone generation for a map. enum: `in_progress`, `awaiting_review`, `not_started`, `error`. `not_started` means the service has not run or results were cleared, `in_progress` means generation is active, `awaiting_review` means suggested zones are ready for review, and `error` means generation failed
+	Status *ResponseAutoZoneStatusEnum `json:"status,omitempty"`
+	// Suggested zones returned by the auto zones service
+	Zones                []ResponseAutoZoneZone `json:"zones,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseAutoZone,

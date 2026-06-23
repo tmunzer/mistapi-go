@@ -12,8 +12,9 @@ import (
 // WebhookClientJoin represents a WebhookClientJoin struct.
 // Sample of the `client-join` webhook payload.
 type WebhookClientJoin struct {
+	// Client join events included in a webhook delivery
 	Events []WebhookClientJoinEvent `json:"events"`
-	// enum: `client-join`
+	// Webhook topic name for client join deliveries. enum: `client-join`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

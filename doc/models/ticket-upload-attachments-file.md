@@ -1,6 +1,8 @@
 
 # Ticket Upload Attachments File
 
+Multipart upload payload containing a ticket attachment file
+
 ## Structure
 
 `TicketUploadAttachmentsFile`
@@ -11,11 +13,20 @@
 |  --- | --- | --- | --- |
 | `File` | `*[]byte` | Optional | Ekahau or ibwave file |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    ticketUploadAttachmentsFile := models.TicketUploadAttachmentsFile{
+        File:                 models.ToPointer(nil),
+    }
+
 }
 ```
 

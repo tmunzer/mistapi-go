@@ -8,8 +8,11 @@ import (
 )
 
 // ApTemplateMatching represents a ApTemplateMatching struct.
+// Rules that select which AP template port configuration applies
 type ApTemplateMatching struct {
-	Enabled              *bool                    `json:"enabled,omitempty"`
+	// Whether AP matching is enabled for this AP template
+	Enabled *bool `json:"enabled,omitempty"`
+	// Ordered AP template matching rules
 	Rules                []ApTemplateMatchingRule `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"_"`
 }

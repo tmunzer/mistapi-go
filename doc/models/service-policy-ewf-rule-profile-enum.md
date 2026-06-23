@@ -15,3 +15,18 @@ enum: `critical`, `standard`, `strict`
 | `standard` |
 | `strict` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicyEwfRuleProfile := models.ServicePolicyEwfRuleProfileEnum_STRICT
+
+}
+```
+

@@ -8,13 +8,17 @@ import (
 )
 
 // JseDevice represents a JseDevice struct.
+// JSE device reported for an organization
 type JseDevice struct {
-	// When available
+	// External IP address for the JSE device, when available
 	ExtIp *string `json:"ext_ip,omitempty"`
-	// Last seen timestamp
-	LastSeen             Optional[float64]      `json:"last_seen"`
-	Mac                  *string                `json:"mac,omitempty"`
-	Model                *string                `json:"model,omitempty"`
+	// Timestamp indicating when the entity was last seen
+	LastSeen Optional[float64] `json:"last_seen"`
+	// Device MAC address for the JSE device
+	Mac *string `json:"mac,omitempty"`
+	// Device model for the JSE device
+	Model *string `json:"model,omitempty"`
+	// Device serial number for the JSE device
 	Serial               *string                `json:"serial,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

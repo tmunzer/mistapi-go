@@ -15,3 +15,18 @@ Guest portal authentication type. enum: `external`, `multi`, `none`
 | `multi` |
 | `none` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacPortalGuestPortalAuth := models.NacPortalGuestPortalAuthEnum_NONE
+
+}
+```
+

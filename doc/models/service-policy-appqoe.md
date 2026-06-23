@@ -1,7 +1,7 @@
 
 # Service Policy Appqoe
 
-SRX only
+SRX application QoE settings for a service policy
 
 ## Structure
 
@@ -11,13 +11,22 @@ SRX only
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
+| `Enabled` | `*bool` | Optional | Whether application QoE is enabled for the service policy<br><br>**Default**: `false` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    servicePolicyAppqoe := models.ServicePolicyAppqoe{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

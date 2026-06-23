@@ -11,9 +11,11 @@ import (
 )
 
 // UtilsDevicesRestartMulti represents a UtilsDevicesRestartMulti struct.
+// Request to restart multiple devices
 type UtilsDevicesRestartMulti struct {
+	// List of device identifiers to restart
 	DeviceIds []uuid.UUID `json:"device_ids"`
-	// only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
+	// Only for SSR: if node is not present, both nodes are restarted. For other devices: node should not be present
 	Node                 *string                `json:"node,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

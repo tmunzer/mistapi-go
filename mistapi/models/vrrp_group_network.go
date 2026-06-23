@@ -8,7 +8,9 @@ import (
 )
 
 // VrrpGroupNetwork represents a VrrpGroupNetwork struct.
+// Virtual IP assignment for a VRRP network
 type VrrpGroupNetwork struct {
+	// Virtual IP address used by the VRRP group on this network
 	Ip                   *string                `json:"ip,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

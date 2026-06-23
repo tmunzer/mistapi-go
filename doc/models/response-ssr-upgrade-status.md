@@ -1,6 +1,8 @@
 
 # Response Ssr Upgrade Status
 
+Detailed status for an SSR firmware upgrade job
+
 ## Structure
 
 `ResponseSsrUpgradeStatus`
@@ -9,41 +11,48 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Channel` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `DeviceType` | `*string` | Optional | - |
-| `Id` | `uuid.UUID` | Required | Unique ID of the object instance in the Mist Organization |
-| `Status` | `string` | Required | **Constraints**: *Minimum Length*: `1` |
-| `Targets` | [`models.ResponseSsrUpgradeStatusTargets`](../../doc/models/response-ssr-upgrade-status-targets.md) | Required | - |
-| `Versions` | `interface{}` | Required | - |
+| `Channel` | `string` | Required | Firmware release channel used for the SSR upgrade<br><br>**Constraints**: *Minimum Length*: `1` |
+| `DeviceType` | `*string` | Optional | Type of devices targeted by the SSR upgrade |
+| `Id` | `uuid.UUID` | Required, Read-only | Unique ID of the object instance in the Mist Organization |
+| `Status` | `string` | Required | Current status of the SSR upgrade job<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Targets` | [`models.ResponseSsrUpgradeStatusTargets`](../../doc/models/response-ssr-upgrade-status-targets.md) | Required | SSR device IDs grouped by upgrade status |
+| `Versions` | `interface{}` | Required | SSR firmware versions included in the upgrade job |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "channel": "channel8",
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "status": "status8",
-  "targets": {
-    "failed": [
-      "failed6"
-    ],
-    "queued": [
-      "queued8"
-    ],
-    "success": [
-      "success2",
-      "success3",
-      "success4"
-    ],
-    "upgrading": [
-      "upgrading9"
-    ]
-  },
-  "versions": {
-    "key1": "val1",
-    "key2": "val2"
-  },
-  "device_type": "device_type4"
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    responseSsrUpgradeStatus := models.ResponseSsrUpgradeStatus{
+        Channel:              "channel2",
+        DeviceType:           models.ToPointer("device_type8"),
+        Id:                   uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f"),
+        Status:               "status4",
+        Targets:              models.ResponseSsrUpgradeStatusTargets{
+            Failed:               []string{
+                "failed6",
+            },
+            Queued:               []string{
+                "queued8",
+            },
+            Success:              []string{
+                "success2",
+                "success3",
+                "success4",
+            },
+            Upgrading:            []string{
+                "upgrading9",
+            },
+        },
+        Versions:             interface{}("[key1, val1][key2, val2]"),
+    }
+
 }
 ```
 

@@ -10,10 +10,11 @@ import (
 )
 
 // UtilsTuntermBouncePort represents a UtilsTuntermBouncePort struct.
+// Request to bounce Mist Edge TunTerm data ports
 type UtilsTuntermBouncePort struct {
 	// In milli seconds, hold time between multiple port bounces
 	HoldTime *int `json:"hold_time,omitempty"`
-	// List of ports to bounce
+	// TunTerm data port identifiers to bounce
 	Ports                []string               `json:"ports"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

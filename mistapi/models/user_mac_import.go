@@ -8,9 +8,15 @@ import (
 )
 
 // UserMacImport represents a UserMacImport struct.
+// Result of importing user MAC entries
 type UserMacImport struct {
-	Added                []string               `json:"added,omitempty"`
-	Errors               []string               `json:"errors,omitempty"`
+	// MAC addresses added during a user MAC import
+	Added []string `json:"added,omitempty"`
+	// Status message returned for asynchronous imports
+	Detail *string `json:"detail,omitempty"`
+	// Error messages returned during a user MAC import
+	Errors []string `json:"errors,omitempty"`
+	// MAC addresses updated during a user MAC import
 	Updated              []string               `json:"updated,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }
@@ -19,8 +25,8 @@ type UserMacImport struct {
 // providing a human-readable string representation useful for logging, debugging or displaying information.
 func (u UserMacImport) String() string {
 	return fmt.Sprintf(
-		"UserMacImport[Added=%v, Errors=%v, Updated=%v, AdditionalProperties=%v]",
-		u.Added, u.Errors, u.Updated, u.AdditionalProperties)
+		"UserMacImport[Added=%v, Detail=%v, Errors=%v, Updated=%v, AdditionalProperties=%v]",
+		u.Added, u.Detail, u.Errors, u.Updated, u.AdditionalProperties)
 }
 
 // MarshalJSON implements the json.Marshaler interface for UserMacImport.
@@ -29,7 +35,7 @@ func (u UserMacImport) MarshalJSON() (
 	[]byte,
 	error) {
 	if err := DetectConflictingProperties(u.AdditionalProperties,
-		"added", "errors", "updated"); err != nil {
+		"added", "detail", "errors", "updated"); err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(u.toMap())
@@ -41,6 +47,9 @@ func (u UserMacImport) toMap() map[string]any {
 	MergeAdditionalProperties(structMap, u.AdditionalProperties)
 	if u.Added != nil {
 		structMap["added"] = u.Added
+	}
+	if u.Detail != nil {
+		structMap["detail"] = u.Detail
 	}
 	if u.Errors != nil {
 		structMap["errors"] = u.Errors
@@ -59,13 +68,14 @@ func (u *UserMacImport) UnmarshalJSON(input []byte) error {
 	if err != nil {
 		return err
 	}
-	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "added", "errors", "updated")
+	additionalProperties, err := ExtractAdditionalProperties[interface{}](input, "added", "detail", "errors", "updated")
 	if err != nil {
 		return err
 	}
 	u.AdditionalProperties = additionalProperties
 
 	u.Added = temp.Added
+	u.Detail = temp.Detail
 	u.Errors = temp.Errors
 	u.Updated = temp.Updated
 	return nil
@@ -74,6 +84,7 @@ func (u *UserMacImport) UnmarshalJSON(input []byte) error {
 // tempUserMacImport is a temporary struct used for validating the fields of UserMacImport.
 type tempUserMacImport struct {
 	Added   []string `json:"added,omitempty"`
+	Detail  *string  `json:"detail,omitempty"`
 	Errors  []string `json:"errors,omitempty"`
 	Updated []string `json:"updated,omitempty"`
 }

@@ -18,8 +18,8 @@ This API renders some high-level device stats, pagination is assumed and returne
 ListOrgDevicesStats(
     ctx context.Context,
     orgId uuid.UUID,
-    mType *string,
-    status *models.DeviceStatusEnum,
+    mType *models.DeviceEnumWithAllEnum,
+    status *string,
     siteId *string,
     mac *string,
     evpntopoId *string,
@@ -34,25 +34,31 @@ ListOrgDevicesStats(
     error)
 ```
 
+## Authentication
+
+This endpoint requires [apiToken](../../doc/auth/custom-header-signature.md) **OR** [csrfToken](../../doc/auth/custom-header-signature-1.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `orgId` | `uuid.UUID` | Template, Required | - |
-| `mType` | `*string` | Query, Optional | **Default**: `"ap"` |
-| `status` | [`*models.DeviceStatusEnum`](../../doc/models/device-status-enum.md) | Query, Optional | **Default**: `"all"` |
-| `siteId` | `*string` | Query, Optional | - |
-| `mac` | `*string` | Query, Optional | - |
-| `evpntopoId` | `*string` | Query, Optional | EVPN Topology ID |
+| `mType` | [`*models.DeviceEnumWithAllEnum`](../../doc/models/device-enum-with-all-enum.md) | Query, Optional | Filter results by one device type. Use a single value; comma-separated values are not supported. enum: `all`, `ap`, `gateway`, `switch`<br><br>**Default**: `"ap"` |
+| `status` | `*string` | Query, Optional | Filter results by status. enum: `all`, `connected`, `disconnected`. Accepts multiple comma-separated values. |
+| `siteId` | `*string` | Query, Optional | Filter results by site identifier. Accepts multiple comma-separated values. |
+| `mac` | `*string` | Query, Optional | Filter results by MAC address. Accepts multiple comma-separated values. |
+| `evpntopoId` | `*string` | Query, Optional | Filter results by evpntopo id |
 | `evpnUnused` | `*string` | Query, Optional | If `evpn_unused`==`true`, find EVPN eligible switches which don’t belong to any EVPN Topology yet |
 | `fields` | `*string` | Query, Optional | List of additional fields requests, comma separated, or `fields=*` for all of them |
-| `start` | `*string` | Query, Optional | Start time (epoch timestamp in seconds, or relative string like "-1d", "-1w") |
-| `end` | `*string` | Query, Optional | End time (epoch timestamp in seconds, or relative string like "-1d", "-2h", "now") |
-| `duration` | `*string` | Query, Optional | Duration like 7d, 2w<br><br>**Default**: `"1d"` |
-| `limit` | `*int` | Query, Optional | **Default**: `100`<br><br>**Constraints**: `>= 0` |
-| `page` | `*int` | Query, Optional | **Default**: `1`<br><br>**Constraints**: `>= 1` |
+| `start` | `*string` | Query, Optional | Lower bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d` or `-1w` |
+| `end` | `*string` | Query, Optional | Upper bound of the time range, as an epoch timestamp in seconds or a relative value such as `-1d`, `-2h`, or `now` |
+| `duration` | `*string` | Query, Optional | Time range duration for the query, using relative units such as `10m`, `7d`, or `2w`<br><br>**Default**: `"1d"` |
+| `limit` | `*int` | Query, Optional | Maximum number of results to return per page<br><br>**Default**: `100`<br><br>**Constraints**: `>= 0` |
+| `page` | `*int` | Query, Optional | Select the page number to return when using page-based pagination; starts at `1`<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1` |
 
 ## Response Type
+
+**200**: OK
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type []models.StatsDevice.
 
@@ -63,9 +69,13 @@ ctx := context.Background()
 
 orgId := uuid.MustParse("000000ab-00ab-00ab-00ab-0000000000ab")
 
-mType := "ap"
+mType := models.DeviceEnumWithAllEnum_AP
 
-status := models.DeviceStatusEnum_ALL
+status := "disconnected,connected"
+
+siteId := "00000000-0000-0000-0000-000000000001,00000000-0000-0000-0000-000000000002"
+
+mac := "5c5b53010101,5c5b53020202"
 
 fields := "field1,field2"
 
@@ -75,19 +85,19 @@ limit := 100
 
 page := 1
 
-apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, nil, nil, nil, nil, &fields, nil, nil, &duration, &limit, &page)
+apiResponse, err := orgsStatsDevices.ListOrgDevicesStats(ctx, orgId, &mType, &status, &siteId, &mac, nil, nil, &fields, nil, nil, &duration, &limit, &page)
 if err != nil {
     switch typedErr := err.(type) {
         case *errors.ResponseHttp400:
             log.Fatalln("ResponseHttp400Exception: ", typedErr)
-        case *errors.ResponseHttp401Error:
-            log.Fatalln("ResponseHttp401ErrorException: ", typedErr)
-        case *errors.ResponseHttp403Error:
-            log.Fatalln("ResponseHttp403ErrorException: ", typedErr)
+        case *errors.ResponseHttp401:
+            log.Fatalln("ResponseHttp401Exception: ", typedErr)
+        case *errors.ResponseHttp403:
+            log.Fatalln("ResponseHttp403Exception: ", typedErr)
         case *errors.ResponseHttp404:
             log.Fatalln("ResponseHttp404Exception: ", typedErr)
-        case *errors.ResponseHttp429Error:
-            log.Fatalln("ResponseHttp429ErrorException: ", typedErr)
+        case *errors.ResponseHttp429:
+            log.Fatalln("ResponseHttp429Exception: ", typedErr)
         default:
             log.Fatalln(err)
     }
@@ -316,8 +326,8 @@ if err != nil {
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 400 | Bad Syntax | [`ResponseHttp400Exception`](../../doc/models/response-http-400-exception.md) |
-| 401 | Unauthorized | [`ResponseHttp401ErrorException`](../../doc/models/response-http-401-error-exception.md) |
-| 403 | Permission Denied | [`ResponseHttp403ErrorException`](../../doc/models/response-http-403-error-exception.md) |
+| 401 | Unauthorized | [`ResponseHttp401Exception`](../../doc/models/response-http-401-exception.md) |
+| 403 | Permission Denied | [`ResponseHttp403Exception`](../../doc/models/response-http-403-exception.md) |
 | 404 | Not found. The API endpoint doesn’t exist or resource doesn’ t exist | [`ResponseHttp404Exception`](../../doc/models/response-http-404-exception.md) |
-| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429ErrorException`](../../doc/models/response-http-429-error-exception.md) |
+| 429 | Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold | [`ResponseHttp429Exception`](../../doc/models/response-http-429-exception.md) |
 

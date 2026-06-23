@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseDiscoveredSwitches represents a ResponseDiscoveredSwitches struct.
+// Paginated response for discovered switch search results
 type ResponseDiscoveredSwitches struct {
-	End                  float64                `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []DiscoveredSwitch     `json:"results"`
-	Start                float64                `json:"start"`
+	// Epoch timestamp, in seconds, for the end of the discovered switch search window
+	End float64 `json:"end"`
+	// Maximum number of discovered switch records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of discovered switch records
+	Next *string `json:"next,omitempty"`
+	// Discovered switch records returned by a search response
+	Results []DiscoveredSwitch `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the discovered switch search window
+	Start float64 `json:"start"`
+	// Number of discovered switch records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

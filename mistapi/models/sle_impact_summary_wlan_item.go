@@ -10,11 +10,17 @@ import (
 )
 
 // SleImpactSummaryWlanItem represents a SleImpactSummaryWlanItem struct.
+// SLE impact summary row for a WLAN
 type SleImpactSummaryWlanItem struct {
-	Degraded             float64                `json:"degraded"`
-	Duration             float64                `json:"duration"`
-	Name                 string                 `json:"name"`
-	Total                float64                `json:"total"`
+	// Portion of the SLE total that was degraded for this WLAN
+	Degraded float64 `json:"degraded"`
+	// Observation time represented by this WLAN impact row
+	Duration float64 `json:"duration"`
+	// Display name for the WLAN impact row
+	Name string `json:"name"`
+	// Overall SLE total measured for this WLAN impact row
+	Total float64 `json:"total"`
+	// Identifier of the WLAN represented by this impact row
 	WlanId               string                 `json:"wlan_id"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

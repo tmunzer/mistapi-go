@@ -16,3 +16,18 @@ enum: `org`, `site`, `sitegroup`, `orgsites`
 | `sitegroup` |
 | `orgsites` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    privilegeOrgScope := models.PrivilegeOrgScopeEnum_SITEGROUP
+
+}
+```
+

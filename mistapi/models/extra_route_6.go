@@ -8,14 +8,19 @@ import (
 )
 
 // ExtraRoute6 represents a ExtraRoute6 struct.
+// IPv6 static route settings for a destination prefix
 type ExtraRoute6 struct {
-	// This takes precedence
-	Discard       *bool                                         `json:"discard,omitempty"`
-	Metric        Optional[int]                                 `json:"metric"`
+	// Whether to install a discard route; this takes precedence over next-hop settings
+	Discard *bool `json:"discard,omitempty"`
+	// Route metric for the IPv6 static route
+	Metric Optional[int] `json:"metric"`
+	// Qualified next-hop settings keyed by IPv6 next-hop address
 	NextQualified map[string]ExtraRoute6NextQualifiedProperties `json:"next_qualified,omitempty"`
-	NoResolve     *bool                                         `json:"no_resolve,omitempty"`
-	Preference    Optional[int]                                 `json:"preference"`
-	// Next-hop IP Address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
+	// Whether to prevent recursive next-hop resolution for the IPv6 static route
+	NoResolve *bool `json:"no_resolve,omitempty"`
+	// Route preference for the IPv6 static route
+	Preference Optional[int] `json:"preference"`
+	// Next-hop IP address. Can be a single IP address or an array of IP addresses for ECMP (Equal-Cost Multi-Path) load balancing across multiple next-hops.
 	Via                  *NextHopVia            `json:"via,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

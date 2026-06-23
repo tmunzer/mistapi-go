@@ -14,3 +14,18 @@ required when `type`==`oauth2`. enum: `client_credentials`, `password`
 | `client_credentials` |
 | `password` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookOauth2GrantType := models.WebhookOauth2GrantTypeEnum_CLIENTCREDENTIALS
+
+}
+```
+

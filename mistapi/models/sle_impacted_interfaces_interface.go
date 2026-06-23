@@ -8,12 +8,19 @@ import (
 )
 
 // SleImpactedInterfacesInterface represents a SleImpactedInterfacesInterface struct.
+// SLE impact row for a switch interface
 type SleImpactedInterfacesInterface struct {
-	Degraded             *float64               `json:"degraded,omitempty"`
-	Duration             *float64               `json:"duration,omitempty"`
-	InterfaceName        *string                `json:"interface_name,omitempty"`
-	SwitchMac            *string                `json:"switch_mac,omitempty"`
-	SwitchName           *string                `json:"switch_name,omitempty"`
+	// Portion of the SLE total that was degraded for this interface
+	Degraded *float64 `json:"degraded,omitempty"`
+	// Observation time represented by this interface impact row
+	Duration *float64 `json:"duration,omitempty"`
+	// Name of the switch interface represented by this impacted row
+	InterfaceName *string `json:"interface_name,omitempty"`
+	// MAC address of the switch associated with this interface
+	SwitchMac *string `json:"switch_mac,omitempty"`
+	// Display name of the switch associated with this interface
+	SwitchName *string `json:"switch_name,omitempty"`
+	// Overall SLE total measured for this interface impact row
 	Total                *float64               `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,8 +8,9 @@ import (
 )
 
 // MxedgeTuntermSwitchConfigs represents a MxedgeTuntermSwitchConfigs struct.
-// If custom vlan settings are desired
+// Custom VLAN settings for tunnel termination switch ports, if desired; property key is the port identifier
 type MxedgeTuntermSwitchConfigs struct {
+	// Whether custom tunnel termination switch VLAN settings are enabled
 	Enabled              *bool                                `json:"enabled,omitempty"`
 	AdditionalProperties map[string]MxedgeTuntermSwitchConfig `json:"_"`
 }

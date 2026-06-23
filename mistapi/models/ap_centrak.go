@@ -8,7 +8,9 @@ import (
 )
 
 // ApCentrak represents a ApCentrak struct.
+// CenTrak integration settings for an AP
 type ApCentrak struct {
+	// Whether to enable Centrak config
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

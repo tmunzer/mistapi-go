@@ -8,11 +8,13 @@ import (
 )
 
 // GatewayWanProbeOverride represents a GatewayWanProbeOverride struct.
-// Only if `usage`==`wan`
+// Only if `usage`==`wan`. WAN health probe override for this gateway port
 type GatewayWanProbeOverride struct {
+	// Unique string values returned or accepted by this schema
 	Ip6s []string `json:"ip6s,omitempty"`
-	Ips  []string `json:"ips,omitempty"`
-	// enum: `broadband`, `lte`
+	// Unique string values returned or accepted by this schema
+	Ips []string `json:"ips,omitempty"`
+	// WAN probe profile used for health checks on this port. enum: `broadband`, `lte`
 	ProbeProfile         *GatewayWanProbeOverrideProbeProfileEnum `json:"probe_profile,omitempty"`
 	AdditionalProperties map[string]interface{}                   `json:"_"`
 }

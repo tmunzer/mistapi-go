@@ -11,26 +11,39 @@ import (
 )
 
 // UiSettings represents a UiSettings struct.
-// UI Settings
+// Site UI settings databoard
 type UiSettings struct {
 	// When the object has been created, in epoch
-	CreatedTime      *float64                    `json:"created_time,omitempty"`
-	DefaultScopeId   *string                     `json:"defaultScopeId,omitempty"`
-	DefaultScopeType *string                     `json:"defaultScopeType,omitempty"`
+	CreatedTime *float64 `json:"created_time,omitempty"`
+	// Scope identifier used by default for this databoard
+	DefaultScopeId *string `json:"defaultScopeId,omitempty"`
+	// Scope type used by default for this databoard
+	DefaultScopeType *string `json:"defaultScopeType,omitempty"`
+	// Default time range applied to a site UI databoard
 	DefaultTimeRange *UiSettingsDefaultTimeRange `json:"defaultTimeRange,omitempty"`
-	Description      string                      `json:"description"`
-	ForSite          *bool                       `json:"for_site,omitempty"`
+	// Text describing the databoard
+	Description string `json:"description"`
+	// Whether this databoard is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
-	Id                *uuid.UUID `json:"id,omitempty"`
-	IsCustomDataboard *bool      `json:"isCustomDataboard,omitempty"`
-	IsScopeLinked     *bool      `json:"isScopeLinked,omitempty"`
-	IsTimeRangeLinked *bool      `json:"isTimeRangeLinked,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Whether this databoard is custom-created
+	IsCustomDataboard *bool `json:"isCustomDataboard,omitempty"`
+	// Whether tile scopes are linked to the databoard default scope
+	IsScopeLinked *bool `json:"isScopeLinked,omitempty"`
+	// Whether tile time ranges are linked to the databoard default time range
+	IsTimeRangeLinked *bool `json:"isTimeRangeLinked,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime         *float64               `json:"modified_time,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	Purpose              string                 `json:"purpose"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the databoard
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// UI surface or purpose for this databoard
+	Purpose string `json:"purpose"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// List of tiles in a site UI databoard
 	Tiles                []UiSettingsTile       `json:"tiles,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

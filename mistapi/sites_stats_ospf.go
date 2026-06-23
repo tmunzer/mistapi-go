@@ -26,7 +26,7 @@ func NewSitesStatsOspf(baseController baseController) *SitesStatsOspf {
 // CountSiteOspfStats takes context, siteId, distinct, start, end, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.ResponseCount data and
 // an error if there was an issue with the request or response.
-// Count by Distinct Attributes of OSPF peers stats
+// Count OSPF peer statistics for a site, optionally grouped by the `distinct` field and filtered by time range. Use [Count Org OSPF Stats]($e/Orgs%20Stats%20-%20Ospf/countOrgOspfStats) to count OSPF peer statistics across the organization.
 func (s *SitesStatsOspf) CountSiteOspfStats(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -43,19 +43,15 @@ func (s *SitesStatsOspf) CountSiteOspfStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if distinct != nil {
 		req.QueryParam("distinct", *distinct)
@@ -89,7 +85,7 @@ func (s *SitesStatsOspf) CountSiteOspfStats(
 // SearchSiteOspfStats takes context, siteId, mac, vrfName, peerIp, start, end, limit, sort, searchAfter as parameters and
 // returns an models.ApiResponse with models.OspfPeerStatsSearchResult data and
 // an error if there was an issue with the request or response.
-// Search OSPF Neighbor Stats
+// Search OSPF peer statistics for a site with filters for device, VRF, peer IP, and time range. Use [Search Org OSPF Stats]($e/Orgs%20Stats%20-%20Ospf/searchOrgOspfStats) to search OSPF peer statistics across the organization.
 func (s *SitesStatsOspf) SearchSiteOspfStats(
 	ctx context.Context,
 	siteId uuid.UUID,
@@ -108,19 +104,15 @@ func (s *SitesStatsOspf) SearchSiteOspfStats(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	if mac != nil {
 		req.QueryParam("mac", *mac)

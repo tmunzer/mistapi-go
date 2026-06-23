@@ -8,11 +8,13 @@ import (
 )
 
 // SwitchRadius represents a SwitchRadius struct.
-// By default, `radius_config` will be used. if a different one has to be used set `use_different_radius
+// Switch RADIUS override settings. By default, the switch `radius_config` is used; set `use_different_radius` to use alternate RADIUS settings.
 type SwitchRadius struct {
+	// Whether RADIUS is enabled for switch management authentication
 	Enabled *bool `json:"enabled,omitempty"`
-	// Junos Radius config
-	RadiusConfig         *SwitchRadiusConfig    `json:"radius_config,omitempty"`
+	// Switch RADIUS authentication and accounting configuration
+	RadiusConfig *SwitchRadiusConfig `json:"radius_config,omitempty"`
+	// Selector for alternate RADIUS settings instead of the default switch `radius_config`
 	UseDifferentRadius   *string                `json:"use_different_radius,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -17,7 +17,16 @@ enum: `critical`, `standard`, `strict`
 
 ## Example
 
-```
-strict
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    idpProfileBaseProfile := models.IdpProfileBaseProfileEnum_CRITICAL
+
+}
 ```
 

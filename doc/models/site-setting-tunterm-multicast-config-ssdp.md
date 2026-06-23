@@ -1,6 +1,8 @@
 
 # Site Setting Tunterm Multicast Config Ssdp
 
+SSDP multicast forwarding settings for tunneled VLANs
+
 ## Structure
 
 `SiteSettingTuntermMulticastConfigSsdp`
@@ -9,19 +11,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | **Default**: `false` |
-| `VlanIds` | `[]int` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether SSDP multicast forwarding is enabled<br><br>**Default**: `false` |
+| `VlanIds` | `[]int` | Optional | VLAN IDs where SSDP forwarding is enabled |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false,
-  "vlan_ids": [
-    2,
-    3,
-    5
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteSettingTuntermMulticastConfigSsdp := models.SiteSettingTuntermMulticastConfigSsdp{
+        Enabled:              models.ToPointer(false),
+        VlanIds:              []int{
+            2,
+            3,
+            5,
+        },
+    }
+
 }
 ```
 

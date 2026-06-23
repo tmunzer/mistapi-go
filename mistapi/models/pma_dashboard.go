@@ -8,14 +8,15 @@ import (
 )
 
 // PmaDashboard represents a PmaDashboard struct.
+// PMA dashboard metadata and redirect URL
 type PmaDashboard struct {
-	// Description of the dashboard
+	// Human-readable summary of the PMA dashboard
 	Description *string `json:"description,omitempty"`
-	// group label name
+	// Group label that categorizes the PMA dashboard
 	Label *string `json:"label,omitempty"`
-	// Name of the dashboard
+	// Display name of the PMA dashboard
 	Name *string `json:"name,omitempty"`
-	// url to access dashboard. Url will redirect the user to the dashboard
+	// Access URL that redirects the user to the PMA dashboard
 	Url                  *string                `json:"url,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

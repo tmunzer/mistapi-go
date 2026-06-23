@@ -8,10 +8,13 @@ import (
 )
 
 // GatewayMgmtHostOutPolicySyslogServer represents a GatewayMgmtHostOutPolicySyslogServer struct.
-// Allows to define the host_out_policy per Syslog Server. The Property key is the Syslog name
+// Per-syslog-server host-out path policy override
 type GatewayMgmtHostOutPolicySyslogServer struct {
-	Host                 *string                `json:"host,omitempty"`
-	PathPreference       *string                `json:"path_preference,omitempty"`
+	// Syslog server hostname or IP address
+	Host *string `json:"host,omitempty"`
+	// Preferred path name used for this syslog server
+	PathPreference *string `json:"path_preference,omitempty"`
+	// Remote syslog server name referenced by the policy
 	ServerName           *string                `json:"server_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Webhook Audits Topic Enum
 
-enum: `audits`
+Webhook topic name for audit event deliveries. enum: `audits`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `audits`
 | Name |
 |  --- |
 | `audits` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookAuditsTopic := models.WebhookAuditsTopicEnum_AUDITS
+
+}
+```
 

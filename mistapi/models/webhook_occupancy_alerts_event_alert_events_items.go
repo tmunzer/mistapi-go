@@ -11,18 +11,25 @@ import (
 )
 
 // WebhookOccupancyAlertsEventAlertEventsItems represents a WebhookOccupancyAlertsEventAlertEventsItems struct.
+// Occupancy compliance alert for a single zone
 type WebhookOccupancyAlertsEventAlertEventsItems struct {
-	CurrentOccupancy int       `json:"current_occupancy"`
-	MapId            uuid.UUID `json:"map_id"`
-	OccupancyLimit   int       `json:"occupancy_limit"`
-	OrgId            uuid.UUID `json:"org_id"`
-	// Epoch (seconds)
+	// Current number of occupants detected in the zone
+	CurrentOccupancy int `json:"current_occupancy"`
+	// Map associated with the occupancy zone
+	MapId uuid.UUID `json:"map_id"`
+	// Configured occupancy limit for the zone
+	OccupancyLimit int `json:"occupancy_limit"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
-	// enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
-	Type                 WebhookOccupancyAlertTypeEnum `json:"type"`
-	ZoneId               uuid.UUID                     `json:"zone_id"`
-	ZoneName             string                        `json:"zone_name"`
-	AdditionalProperties map[string]interface{}        `json:"_"`
+	// Occupancy compliance state reported for the zone. enum: `COMPLIANCE-OK`, `COMPLIANCE-VIOLATION`
+	Type WebhookOccupancyAlertTypeEnum `json:"type"`
+	// Zone identifier associated with the occupancy alert
+	ZoneId uuid.UUID `json:"zone_id"`
+	// Zone name associated with the occupancy alert
+	ZoneName             string                 `json:"zone_name"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookOccupancyAlertsEventAlertEventsItems,

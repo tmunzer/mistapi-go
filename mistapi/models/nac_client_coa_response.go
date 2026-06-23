@@ -8,8 +8,9 @@ import (
 )
 
 // NacClientCoaResponse represents a NacClientCoaResponse struct.
+// Response returned after sending a NAC client CoA command
 type NacClientCoaResponse struct {
-	// MAC address of the target device (AP or switch MAC)
+	// Target AP or switch MAC address for the CoA command
 	DeviceMac *string `json:"device_mac,omitempty"`
 	// enum: `ap`, `gateway`, `switch`
 	DeviceType           *DeviceTypeEnum        `json:"device_type,omitempty"`

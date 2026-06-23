@@ -1,6 +1,8 @@
 
 # Gateway Port Mirroring Port Mirror
 
+Gateway port mirroring rule
+
 ## Structure
 
 `GatewayPortMirroringPortMirror`
@@ -9,24 +11,32 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `FamilyType` | `*string` | Optional | - |
-| `IngressPortIds` | `[]string` | Optional | - |
-| `OutputPortId` | `*string` | Optional | - |
-| `Rate` | `*int` | Optional | - |
-| `RunLength` | `*int` | Optional | **Constraints**: `>= 0` |
+| `FamilyType` | `*string` | Optional | Packet family used for this port mirroring rule |
+| `IngressPortIds` | `[]string` | Optional | Gateway port IDs used as ingress sources for mirrored traffic |
+| `OutputPortId` | `*string` | Optional | Destination gateway port ID that receives mirrored traffic |
+| `Rate` | `*int` | Optional | Sampling rate applied to mirrored traffic |
+| `RunLength` | `*int` | Optional | Number of bytes copied from each mirrored packet<br><br>**Constraints**: `>= 0` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "output_port_id": "ge-0/0/5",
-  "family_type": "family_type4",
-  "ingress_port_ids": [
-    "ingress_port_ids6",
-    "ingress_port_ids5"
-  ],
-  "rate": 198,
-  "run_length": 166
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayPortMirroringPortMirror := models.GatewayPortMirroringPortMirror{
+        FamilyType:           models.ToPointer("family_type0"),
+        IngressPortIds:       []string{
+            "ingress_port_ids2",
+        },
+        OutputPortId:         models.ToPointer("ge-0/0/5"),
+        Rate:                 models.ToPointer(108),
+        RunLength:            models.ToPointer(0),
+    }
+
 }
 ```
 

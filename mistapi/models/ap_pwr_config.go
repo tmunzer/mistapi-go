@@ -8,7 +8,7 @@ import (
 )
 
 // ApPwrConfig represents a ApPwrConfig struct.
-// Power related configs
+// Power negotiation and peripheral power settings for an AP or AP profile
 type ApPwrConfig struct {
 	// Additional power to request during negotiating with PSE over PoE, in mW
 	Base *int `json:"base,omitempty"`

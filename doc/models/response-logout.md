@@ -1,6 +1,8 @@
 
 # Response Logout
 
+Logout response with optional SSO forwarding URL
+
 ## Structure
 
 `ResponseLogout`
@@ -11,11 +13,20 @@
 |  --- | --- | --- | --- |
 | `ForwardUrl` | `*string` | Optional | If configured in SSO as custom_logout_url |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "forward_url": "forward_url0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseLogout := models.ResponseLogout{
+        ForwardUrl:           models.ToPointer("forward_url6"),
+    }
+
 }
 ```
 

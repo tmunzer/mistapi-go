@@ -14,18 +14,19 @@ import (
 type CaptureSwitch struct {
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
-	// enum: `stream`
-	Format    *CaptureSwitchFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]            `json:"max_pkt_len"`
+	// Output format for the switch packet capture. enum: `stream`
+	Format *CaptureSwitchFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
 	// Property key is the port name. 6 ports max per switch supported, or 5 max with irb port auto-included into capture request
 	Ports map[string]CaptureSwitchPortsTcpdumpExpression `json:"ports,omitempty"`
-	// Property key is the switch mac
+	// Property key is the switch MAC address
 	Switches map[string]CaptureSwitchSwitches `json:"switches"`
 	// tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
 	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
-	// enum: `switch`
+	// Packet capture type discriminator for switch captures. enum: `switch`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

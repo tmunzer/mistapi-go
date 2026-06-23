@@ -23,27 +23,35 @@ Note:
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Macs` | `[]string` | Optional | A list of client macs to be released |
-| `Network` | `*string` | Optional | The network for the leases IPs to be released |
-| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | only for HA. enum: `node0`, `node1` |
-| `PortId` | `string` | Required | The network interface on which to release the current DHCP release<br><br>**Constraints**: *Minimum Length*: `1` |
+| `Macs` | `[]string` | Optional | Client MAC addresses whose DHCP leases should be released |
+| `Network` | `*string` | Optional | DHCP network containing the leases to release |
+| `Node` | [`*models.HaClusterNodeEnum`](../../doc/models/ha-cluster-node-enum.md) | Optional | HA cluster node selector. enum: `node0`, `node1` |
+| `PortId` | `string` | Required | Network interface containing the DHCP leases to release<br><br>**Constraints**: *Minimum Length*: `1` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "macs": [
-    "90ec77aabbcc",
-    "90ec77aabbdd"
-  ],
-  "network": "guest",
-  "port_id": "ge-0/0/1.10",
-  "node": "node0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsReleaseDhcpLeases := models.UtilsReleaseDhcpLeases{
+        Macs:                 []string{
+            "90ec77aabbcc",
+            "90ec77aabbdd",
+        },
+        Network:              models.ToPointer("guest"),
+        Node:                 models.ToPointer(models.HaClusterNodeEnum_NODE0),
+        PortId:               "ge-0/0/1.10",
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

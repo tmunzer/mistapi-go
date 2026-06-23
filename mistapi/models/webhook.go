@@ -9,6 +9,7 @@ import (
 )
 
 // Webhook represents a Webhook struct.
+// Webhook configuration for delivering selected Mist events to an external destination
 type Webhook struct {
 	// Only if `type`==`asset-raw-rssi`. List of ids to associated asset filters. These filters will be applied to messages routed to a filtered-asset-rssi webhook
 	AssetfilterIds []uuid.UUID `json:"assetfilter_ids,omitempty"`
@@ -16,6 +17,7 @@ type Webhook struct {
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Whether webhook is enabled
 	Enabled *bool `json:"enabled,omitempty"`
+	// Whether this webhook is scoped to a site rather than the organization
 	ForSite *bool `json:"for_site,omitempty"`
 	// If `type`=`http-post`, additional custom HTTP headers to add. The headers name and value must be string, total bytes of headers name and value must be less than 1000
 	Headers Optional[map[string]string] `json:"headers"`
@@ -23,38 +25,41 @@ type Webhook struct {
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name of the webhook
+	// Display name of the webhook
 	Name Optional[string] `json:"name"`
-	// Required when `oauth2_grant_type`==`client_credentials`
+	// Required when `oauth2_grant_type`==`client_credentials`; OAuth2 client identifier used to request an access token
 	Oauth2ClientId *string `json:"oauth2_client_id,omitempty"`
-	// Required when `oauth2_grant_type`==`client_credentials`
+	// Required when `oauth2_grant_type`==`client_credentials`; OAuth2 client secret used to request an access token
 	Oauth2ClientSecret *string `json:"oauth2_client_secret,omitempty"`
 	// required when `type`==`oauth2`. enum: `client_credentials`, `password`
 	Oauth2GrantType *WebhookOauth2GrantTypeEnum `json:"oauth2_grant_type,omitempty"`
-	// Required when `oauth2_grant_type`==`password`
+	// Required when `oauth2_grant_type`==`password`; password used for the OAuth2 token request
 	Oauth2Password *string `json:"oauth2_password,omitempty"`
 	// Required when `type`==`oauth2`, if provided, will be used in the token request
 	Oauth2Scopes []string `json:"oauth2_scopes,omitempty"`
-	// Required when `type`==`oauth2`
+	// Required when `type`==`oauth2`; token endpoint URL used to obtain the OAuth2 access token
 	Oauth2TokenUrl *string `json:"oauth2_token_url,omitempty"`
-	// Required when `oauth2_grant_type`==`password`
-	Oauth2Username *string    `json:"oauth2_username,omitempty"`
-	OrgId          *uuid.UUID `json:"org_id,omitempty"`
+	// Required when `oauth2_grant_type`==`password`; username used for the OAuth2 token request
+	Oauth2Username *string `json:"oauth2_username,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Only if `type`=`http-post`
 	// when `secret` is provided, two HTTP headers will be added:
 	// * X-Mist-Signature-v2: HMAC_SHA256(secret, body)
 	// * X-Mist-Signature: HMAC_SHA1(secret, body)
 	Secret Optional[string] `json:"secret"`
 	// Some solutions may not be able to parse multiple events from a single message (e.g. IBM Qradar, DSM). When set to `true`, only a single event will be sent per message. this feature is only available on certain topics (see [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics))
-	SingleEventPerMessage *bool      `json:"single_event_per_message,omitempty"`
-	SiteId                *uuid.UUID `json:"site_id,omitempty"`
+	SingleEventPerMessage *bool `json:"single_event_per_message,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Required if `type`=`splunk`. If splunk_token is not defined for a type Splunk webhook, it will not send, regardless if the webhook receiver is configured to accept it.
 	SplunkToken Optional[string] `json:"splunk_token"`
 	// List of supported webhook topics available with the API Call [List Webhook Topics]($e/Constants%20Definitions/listWebhookTopics)
 	Topics []string `json:"topics,omitempty"`
 	// enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
 	Type *WebhookTypeEnum `json:"type,omitempty"`
-	Url  *string          `json:"url,omitempty"`
+	// Destination URL that receives webhook deliveries
+	Url *string `json:"url,omitempty"`
 	// When url uses HTTPS, whether to verify the certificate
 	VerifyCert           *bool                  `json:"verify_cert,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

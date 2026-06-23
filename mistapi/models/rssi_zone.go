@@ -11,20 +11,23 @@ import (
 )
 
 // RssiZone represents a RssiZone struct.
-// RSSI Zone
+// RSSI-based zone configuration for a site
 type RssiZone struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// List of devices and the respective RSSI values to be considered in the zone
 	Devices []RssiZoneDevice `json:"devices"`
-	ForSite *bool            `json:"for_site,omitempty"`
+	// Whether the RSSI zone is scoped to a site
+	ForSite *bool `json:"for_site,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// The name of the zone
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
+	// Display name of the RSSI zone
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
 	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

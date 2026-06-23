@@ -8,10 +8,13 @@ import (
 )
 
 // SimpleAlertDhcpFailure represents a SimpleAlertDhcpFailure struct.
+// Thresholds for DHCP failure heuristic alerts
 type SimpleAlertDhcpFailure struct {
+	// Number of distinct clients that must encounter DHCP failures before alerting
 	ClientCount *int `json:"client_count,omitempty"`
-	// failing within minutes
-	Duration             *int                   `json:"duration,omitempty"`
+	// Time window in minutes for evaluating DHCP failures
+	Duration *int `json:"duration,omitempty"`
+	// Number of DHCP failure incidents required within the duration window
 	IncidentCount        *int                   `json:"incident_count,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

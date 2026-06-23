@@ -12,8 +12,9 @@ import (
 // WebhookMxedgeEvents represents a WebhookMxedgeEvents struct.
 // Sample of the `mxedge-events` webhook payload.
 type WebhookMxedgeEvents struct {
+	// Mist Edge event records
 	Events []MxedgeEvent `json:"events"`
-	// enum: `mxedge-events`
+	// Webhook topic name for Mist Edge event deliveries. enum: `mxedge-events`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

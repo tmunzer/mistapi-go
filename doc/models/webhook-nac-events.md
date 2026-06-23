@@ -11,30 +11,46 @@ Sample of the `nac-events` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.NacClientEvent`](../../doc/models/nac-client-event.md) | Optional | - |
-| `Topic` | [`*models.WebhookNacEventsTopicEnum`](../../doc/models/webhook-nac-events-topic-enum.md) | Optional | enum: `nac-events` |
+| `Events` | [`[]models.NacClientEvent`](../../doc/models/nac-client-event.md) | Optional | List of NAC authentication events |
+| `Topic` | [`*models.WebhookNacEventsTopicEnum`](../../doc/models/webhook-nac-events-topic-enum.md) | Optional | Webhook topic name for NAC event deliveries. enum: `nac-events` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "ap": "ap6",
-      "auth_type": "cert",
-      "bssid": "bssid4",
-      "client_type": "wired",
-      "device_mac": "device_mac4"
-    },
-    {
-      "ap": "ap6",
-      "auth_type": "cert",
-      "bssid": "bssid4",
-      "client_type": "wired",
-      "device_mac": "device_mac4"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookNacEvents := models.WebhookNacEvents{
+        Events:               []models.NacClientEvent{
+            models.NacClientEvent{
+                Ap:                   models.ToPointer("ap6"),
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_CERT),
+                Bssid:                models.ToPointer("bssid4"),
+                ClientType:           models.ToPointer(models.NacAccessTypeEnum_WIRED),
+                DeviceMac:            models.ToPointer("device_mac4"),
+            },
+            models.NacClientEvent{
+                Ap:                   models.ToPointer("ap6"),
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_CERT),
+                Bssid:                models.ToPointer("bssid4"),
+                ClientType:           models.ToPointer(models.NacAccessTypeEnum_WIRED),
+                DeviceMac:            models.ToPointer("device_mac4"),
+            },
+            models.NacClientEvent{
+                Ap:                   models.ToPointer("ap6"),
+                AuthType:             models.ToPointer(models.NacAuthTypeEnum_CERT),
+                Bssid:                models.ToPointer("bssid4"),
+                ClientType:           models.ToPointer(models.NacAccessTypeEnum_WIRED),
+                DeviceMac:            models.ToPointer("device_mac4"),
+            },
+        },
+        Topic:                models.ToPointer(models.WebhookNacEventsTopicEnum_NACEVENTS),
     }
-  ],
-  "topic": "nac-events"
+
 }
 ```
 

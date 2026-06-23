@@ -9,9 +9,11 @@ import (
 )
 
 // AssetZone represents a AssetZone struct.
+// Map zone membership for an individual asset statistic
 type AssetZone struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Timestamp when the asset entered this zone
 	Since                *float64               `json:"since,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

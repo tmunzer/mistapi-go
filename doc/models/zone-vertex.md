@@ -1,6 +1,8 @@
 
 # Zone Vertex
 
+Zone polygon vertex expressed in map pixels
+
 ## Structure
 
 `ZoneVertex`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `X` | `float64` | Required | X in pixel |
-| `Y` | `float64` | Required | Y in pixel |
+| `X` | `float64` | Required | Horizontal pixel coordinate of the zone vertex |
+| `Y` | `float64` | Required | Vertical pixel coordinate of the zone vertex |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "x": 202.28,
-  "y": 185.0
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    zoneVertex := models.ZoneVertex{
+        X:                    float64(48.32),
+        Y:                    float64(82.96),
+    }
+
 }
 ```
 

@@ -10,28 +10,31 @@ import (
 )
 
 // RrmEvent represents a RrmEvent struct.
+// RRM event record for radio setting changes or RF conditions
 type RrmEvent struct {
-	// AP MAC
+	// MAC address of the AP associated with the RRM event
 	Ap string `json:"ap"`
 	// enum: `24`, `5`, `5-dedicated`, `5-selectable`, `6`, `6-dedicated`, `6-selectable`
 	Band Dot11BandEnum `json:"band"`
 	// channel width for the band.enum: `0`(disabled, response only), `20`, `40`, `80` (only applicable for band_5 and band_6), `160` (only for band_6)
 	Bandwidth Dot11BandwidthEnum `json:"bandwidth"`
-	// Channel for the band from rrm
+	// RF channel after the RRM event
 	Channel int `json:"channel"`
 	// enum: `interference-ap-co-channel`, `interference-ap-non-wifi`, `neighbor-ap-down`, `neighbor-ap-recovered`, `radar-detected`, `rrm-radar`, `scheduled-site_rrm`, `triggered-site_rrm`
 	Event RrmEventTypeEnum `json:"event"`
-	// Tx power of the radio
+	// Transmit power after the RRM event
 	Power int `json:"power"`
 	// (previously) channel width for the band , 0 means no previously available. enum: `0`, `20`, `40`, `80`, `160`
 	PreBandwidth RrmEventPreBandwidthEnum `json:"pre_bandwidth"`
-	// (previously) channel for the band, 0 means no previously available
+	// RF channel before the RRM event; 0 means no previous value was available
 	PreChannel int `json:"pre_channel"`
-	// (previously) tx power of the radio, 0 means no previously available
+	// Transmit power before the RRM event; 0 means no previous value was available
 	PrePower float64 `json:"pre_power"`
-	PreUsage string  `json:"pre_usage"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
+	// Radio usage band before the RRM event
+	PreUsage string `json:"pre_usage"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Radio usage band after the RRM event
 	Usage                string                 `json:"usage"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

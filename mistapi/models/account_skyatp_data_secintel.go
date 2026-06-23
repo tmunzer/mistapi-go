@@ -14,6 +14,7 @@ import (
 // * url-based: threatfox_url, urlhaus, open_phish
 // * domain-based: threatfox_domains
 type AccountSkyatpDataSecintel struct {
+	// Unique string values returned or accepted by this schema
 	ThirdPartyThreatFeeds []string               `json:"third_party_threat_feeds,omitempty"`
 	AdditionalProperties  map[string]interface{} `json:"_"`
 }

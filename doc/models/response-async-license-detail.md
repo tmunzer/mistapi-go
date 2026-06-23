@@ -1,7 +1,7 @@
 
 # Response Async License Detail
 
-detail claim status per device
+Per-device asynchronous license claim status
 
 ## Structure
 
@@ -11,17 +11,26 @@ detail claim status per device
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | Device MAC Address |
-| `Status` | `*string` | Optional | - |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
+| `Mac` | `*string` | Optional | Device MAC address for this license claim detail |
+| `Status` | `*string` | Optional | Claim processing state for this device |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "mac0",
-  "status": "status8",
-  "timestamp": 238.64
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAsyncLicenseDetail := models.ResponseAsyncLicenseDetail{
+        Mac:                  models.ToPointer("mac6"),
+        Status:               models.ToPointer("status4"),
+        Timestamp:            models.ToPointer(float64(45.4)),
+    }
+
 }
 ```
 

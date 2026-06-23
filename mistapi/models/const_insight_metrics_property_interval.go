@@ -8,8 +8,11 @@ import (
 )
 
 // ConstInsightMetricsPropertyInterval represents a ConstInsightMetricsPropertyInterval struct.
+// Interval definition for an insight metric
 type ConstInsightMetricsPropertyInterval struct {
-	Interval             *int                   `json:"interval,omitempty"`
+	// Sampling interval length, in seconds
+	Interval *int `json:"interval,omitempty"`
+	// Maximum lookback age for this interval, in seconds
 	MaxAge               *int                   `json:"max_age,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

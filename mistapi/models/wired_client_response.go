@@ -9,25 +9,41 @@ import (
 )
 
 // WiredClientResponse represents a WiredClientResponse struct.
+// Wired client record returned by a wired client search
 type WiredClientResponse struct {
+	// Method used to authenticate the wired client
 	AuthMethod *string `json:"auth_method,omitempty"`
-	AuthState  *string `json:"auth_state,omitempty"`
-	// MAC Address of the switch the client is connected to
-	DeviceMac                 []string                               `json:"device_mac,omitempty"`
-	DeviceMacPort             []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
-	DhcpClientIdentifier      *string                                `json:"dhcp_client_identifier,omitempty"`
-	DhcpClientOptions         []DhcpClientOption                     `json:"dhcp_client_options,omitempty"`
-	DhcpFqdn                  *string                                `json:"dhcp_fqdn,omitempty"`
-	DhcpHostname              *string                                `json:"dhcp_hostname,omitempty"`
-	DhcpRequestParams         *string                                `json:"dhcp_request_params,omitempty"`
-	DhcpVendorClassIdentifier *string                                `json:"dhcp_vendor_class_identifier,omitempty"`
-	Ip                        []string                               `json:"ip,omitempty"`
-	Mac                       *string                                `json:"mac,omitempty"`
-	OrgId                     *uuid.UUID                             `json:"org_id,omitempty"`
-	PortId                    []string                               `json:"port_id,omitempty"`
-	SiteId                    *uuid.UUID                             `json:"site_id,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
+	// State reported for wired client authentication
+	AuthState *string `json:"auth_state,omitempty"`
+	// Switch or gateway MAC addresses where the wired client was observed
+	DeviceMac []string `json:"device_mac,omitempty"`
+	// Per-port switch or gateway observations for a wired client
+	DeviceMacPort []WiredClientResponseDeviceMacPortItem `json:"device_mac_port,omitempty"`
+	// Identifier value reported by the wired client in DHCP
+	DhcpClientIdentifier *string `json:"dhcp_client_identifier,omitempty"`
+	// DHCP options observed for a wired client
+	DhcpClientOptions []DhcpClientOption `json:"dhcp_client_options,omitempty"`
+	// Fully qualified domain name reported by the wired client through DHCP
+	DhcpFqdn *string `json:"dhcp_fqdn,omitempty"`
+	// Hostname reported by the wired client through DHCP
+	DhcpHostname *string `json:"dhcp_hostname,omitempty"`
+	// Parameter request list advertised by the wired client in DHCP
+	DhcpRequestParams *string `json:"dhcp_request_params,omitempty"`
+	// Vendor class identifier reported by the wired client in DHCP
+	DhcpVendorClassIdentifier *string `json:"dhcp_vendor_class_identifier,omitempty"`
+	// Client IP addresses observed for a wired client
+	Ip []string `json:"ip,omitempty"`
+	// Client MAC address for the wired client record
+	Mac *string `json:"mac,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Switch or gateway port identifiers where a wired client was observed
+	PortId []string `json:"port_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Client VLAN IDs observed for a wired client
 	Vlan                 []int                  `json:"vlan,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,12 +8,13 @@ import (
 )
 
 // UtilsShowDot1x represents a UtilsShowDot1x struct.
+// 802.1X table lookup request for device command output
 type UtilsShowDot1x struct {
-	// Duration in sec for which refresh is enabled. Should be set only if interval is configured to non-zero value.
+	// Refresh duration in seconds; set only when `interval` is nonzero
 	Duration *int `json:"duration,omitempty"`
-	// Rate at which output will refresh
+	// Refresh interval in seconds for repeated command output
 	Interval *int `json:"interval,omitempty"`
-	// Device Port ID
+	// Device port identifier filter for the 802.1X table lookup
 	PortId               *string                `json:"port_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

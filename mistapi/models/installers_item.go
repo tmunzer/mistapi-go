@@ -9,9 +9,11 @@ import (
 )
 
 // InstallersItem represents a InstallersItem struct.
+// Installer access entry with scope and role details
 type InstallersItem struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID             `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Display name of the installer access entry
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

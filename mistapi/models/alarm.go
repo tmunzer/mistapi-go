@@ -23,13 +23,13 @@ type Alarm struct {
 	AckedTime *int `json:"acked_time,omitempty"`
 	// additional information: List of MACs of the APs
 	Aps []string `json:"aps,omitempty"`
-	// List of BSSIDs
+	// Wireless BSSIDs related to this alarm
 	Bssids []string `json:"bssids,omitempty"`
 	// Number of incident within an alarm window
 	Count int `json:"count"`
 	// additional information: List of MACs of the gateways
 	Gateways []string `json:"gateways,omitempty"`
-	// Group of the alarm
+	// Category group for this alarm, such as certificate_expiry, infrastructure, marvis, or security
 	Group string `json:"group"`
 	// additional information: List of Hostnames of the devices (AP/Switch/Gateway)
 	Hostnames []string `json:"hostnames,omitempty"`
@@ -38,20 +38,22 @@ type Alarm struct {
 	// Epoch (seconds) of the last incident/alarm within an alarm window
 	LastSeen float64 `json:"last_seen"`
 	// Text describing the alarm
-	Note  *string    `json:"note,omitempty"`
+	Note *string `json:"note,omitempty"`
+	// Unique identifier of a Mist organization
 	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// Epoch (seconds) of the resolved_time for the alarm
 	ResolvedTime *int `json:"resolved_time,omitempty"`
-	// Severity of the alarm
-	Severity string     `json:"severity"`
-	SiteId   *uuid.UUID `json:"site_id,omitempty"`
-	// List of SSIDs
+	// Impact level assigned to this alarm, such as critical, warn, or info
+	Severity string `json:"severity"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Wireless SSIDs related to this alarm
 	Ssids []string `json:"ssids,omitempty"`
-	// enum: `open`, `resolved`
+	// Current lifecycle status of this alarm. enum: `open`, `resolved`
 	Status *AlarmStatusEnum `json:"status,omitempty"`
 	// additional information: List of MACs of the switches
 	Switches []string `json:"switches,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp float64 `json:"timestamp"`
 	// Key-name of the alarm type
 	Type                 string                 `json:"type"`

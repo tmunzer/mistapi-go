@@ -9,19 +9,27 @@ import (
 )
 
 // SearchMxedge represents a SearchMxedge struct.
+// Mist Edge record returned by search APIs
 type SearchMxedge struct {
-	Distro   *string  `json:"distro,omitempty"`
+	// Linux distribution codename running on the Mist Edge
+	Distro *string `json:"distro,omitempty"`
+	// Time when the Mist Edge was last observed, in epoch seconds
 	LastSeen *float64 `json:"last_seen,omitempty"`
-	Model    *string  `json:"model,omitempty"`
+	// Mist Edge hardware or VM model
+	Model *string `json:"model,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	MxclusterId *uuid.UUID `json:"mxcluster_id,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	MxedgeId *uuid.UUID `json:"mxedge_id,omitempty"`
-	// The name of the tunnel
-	Name                 *string                `json:"name,omitempty"`
-	OrgId                *uuid.UUID             `json:"org_id,omitempty"`
-	SiteId               *uuid.UUID             `json:"site_id,omitempty"`
-	TuntermVersion       *string                `json:"tunterm_version,omitempty"`
+	// Display name of the Mist Edge
+	Name *string `json:"name,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Tunnel termination service version running on the Mist Edge
+	TuntermVersion *string `json:"tunterm_version,omitempty"`
+	// Number of seconds the Mist Edge has been running since last boot
 	Uptime               *int                   `json:"uptime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

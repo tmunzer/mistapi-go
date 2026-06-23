@@ -8,14 +8,21 @@ import (
 )
 
 // RemoteSyslogFileConfig represents a RemoteSyslogFileConfig struct.
+// Generated syslog file output settings
 type RemoteSyslogFileConfig struct {
-	Archive  *RemoteSyslogArchive  `json:"archive,omitempty"`
+	// Syslog file archive retention settings
+	Archive *RemoteSyslogArchive `json:"archive,omitempty"`
+	// List of syslog content selectors
 	Contents []RemoteSyslogContent `json:"contents,omitempty"`
-	// Only if `protocol`==`tcp`
-	EnableTls            *bool                  `json:"enable_tls,omitempty"`
-	ExplicitPriority     *bool                  `json:"explicit_priority,omitempty"`
-	File                 *string                `json:"file,omitempty"`
-	Match                *string                `json:"match,omitempty"`
+	// Only if `protocol`==`tcp`, enable TLS for this syslog file destination
+	EnableTls *bool `json:"enable_tls,omitempty"`
+	// Whether to include explicit syslog priority values in file output
+	ExplicitPriority *bool `json:"explicit_priority,omitempty"`
+	// Generated syslog file name
+	File *string `json:"file,omitempty"`
+	// Expression used to filter log messages written to this file
+	Match *string `json:"match,omitempty"`
+	// Whether to include structured syslog data in file output
 	StructuredData       *bool                  `json:"structured_data,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

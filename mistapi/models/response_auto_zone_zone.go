@@ -8,11 +8,11 @@ import (
 )
 
 // ResponseAutoZoneZone represents a ResponseAutoZoneZone struct.
-// A list of suggested zones to review and accept for a given map
+// Suggested zone returned by the auto zones service
 type ResponseAutoZoneZone struct {
-	// The name of the suggested zone
+	// Human-readable name of the suggested zone
 	Name *string `json:"name,omitempty"`
-	// A list of of points comprising the zones map location in pixels
+	// List of points comprising the suggested zone polygon in map pixels
 	Vertices             []ResponseAutoZoneZoneVertex `json:"vertices,omitempty"`
 	AdditionalProperties map[string]interface{}       `json:"_"`
 }

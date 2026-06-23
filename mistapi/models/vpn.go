@@ -11,20 +11,23 @@ import (
 )
 
 // Vpn represents a Vpn struct.
+// Organization VPN overlay configuration
 type Vpn struct {
 	// When the object has been created, in epoch
 	CreatedTime *float64 `json:"created_time,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
 	// When the object has been modified for the last time, in epoch
-	ModifiedTime *float64   `json:"modified_time,omitempty"`
-	Name         string     `json:"name"`
-	OrgId        *uuid.UUID `json:"org_id,omitempty"`
-	// Only if `type`==`hub_spoke`
+	ModifiedTime *float64 `json:"modified_time,omitempty"`
+	// Display name of the VPN configuration
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Only if `type`==`hub_spoke`; path selection behavior for VPN paths
 	PathSelection *VpnPathSelection `json:"path_selection,omitempty"`
 	// For `type`==`hub_spoke`, Property key is the VPN name. For `type`==`mesh`, Property key is the Interface name
 	Paths map[string]VpnPath `json:"paths"`
-	// enum: `hub_spoke`, `mesh`
+	// VPN topology mode for this configuration. enum: `hub_spoke`, `mesh`
 	Type                 *VpnModeEnum           `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

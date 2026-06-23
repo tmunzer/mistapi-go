@@ -15,3 +15,18 @@ enum: `aps`, `site`, `wxtags`
 | `site` |
 | `wxtags` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanApplyTo := models.WlanApplyToEnum_WXTAGS
+
+}
+```
+

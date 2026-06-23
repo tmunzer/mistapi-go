@@ -1,6 +1,8 @@
 
 # Websocket Session with Url
 
+Response containing a WebSocket session handle and connection URL
+
 ## Structure
 
 `WebsocketSessionWithUrl`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Session` | `string` | Required | - |
-| `Url` | `string` | Required | - |
+| `Session` | `string` | Required | Identifier used to correlate output on the WebSocket stream |
+| `Url` | `string` | Required | WebSocket URL returned for connecting to this session |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "session": "19e73828-937f-05e6-f709-e29efdb0a82b",
-  "url": "wss://api-ws.mist.com/ssh?jwt=xxxx"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    websocketSessionWithUrl := models.WebsocketSessionWithUrl{
+        Session:              "19e73828-937f-05e6-f709-e29efdb0a82b",
+        Url:                  "wss://api-ws.mist.com/ssh?jwt=xxxx",
+    }
+
 }
 ```
 

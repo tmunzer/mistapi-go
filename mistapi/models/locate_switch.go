@@ -8,6 +8,7 @@ import (
 )
 
 // LocateSwitch represents a LocateSwitch struct.
+// Request body for locating a switch or virtual chassis member by MAC address for a limited duration
 type LocateSwitch struct {
 	// Minutes the leds should keep flashing
 	Duration *int `json:"duration,omitempty"`

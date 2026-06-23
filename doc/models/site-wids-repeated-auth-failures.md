@@ -1,6 +1,8 @@
 
 # Site Wids Repeated Auth Failures
 
+Detection settings for repeated authentication failures
+
 ## Structure
 
 `SiteWidsRepeatedAuthFailures`
@@ -12,12 +14,21 @@
 | `Duration` | `*int` | Optional | Window where a trigger will be detected and action to be taken (in seconds) |
 | `Threshold` | `*int` | Optional | Count of events to trigger |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "duration": 60,
-  "threshold": 80
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteWidsRepeatedAuthFailures := models.SiteWidsRepeatedAuthFailures{
+        Duration:             models.ToPointer(60),
+        Threshold:            models.ToPointer(192),
+    }
+
 }
 ```
 

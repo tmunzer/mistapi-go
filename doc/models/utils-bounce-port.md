@@ -1,6 +1,8 @@
 
 # Utils Bounce Port
 
+Request to bounce one or more device ports
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,21 +13,28 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Ports` | `[]string` | Optional | List of ports to bounce |
+| `Ports` | `[]string` | Optional | Device port identifiers to bounce |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "ports": [
-    "ports1",
-    "ports2"
-  ],
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsBouncePort := models.UtilsBouncePort{
+        Ports:                []string{
+            "ports7",
+        },
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

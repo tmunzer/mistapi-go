@@ -10,12 +10,17 @@ import (
 )
 
 // ResponseDswitchesMetrics represents a ResponseDswitchesMetrics struct.
+// Metrics summary returned for discovered switch compliance checks
 type ResponseDswitchesMetrics struct {
-	InactiveWiredVlans   DswitchesMetricsInactiveWiredVlans `json:"inactive_wired_vlans"`
-	PoeCompliance        DswitchesMetricsPoeCompliance      `json:"poe_compliance"`
-	SwitchApAffinity     DswitchesMetricsSwitchApAffinity   `json:"switch_ap_affinity"`
-	VersionCompliance    DswitchesMetricsVersionCompliance  `json:"version_compliance"`
-	AdditionalProperties map[string]interface{}             `json:"_"`
+	// Inactive wired VLAN metric for APs connected to discovered switches
+	InactiveWiredVlans DswitchesMetricsInactiveWiredVlans `json:"inactive_wired_vlans"`
+	// PoE compliance metric for APs connected to discovered switches
+	PoeCompliance DswitchesMetricsPoeCompliance `json:"poe_compliance"`
+	// Switch/AP affinity metric for discovered switches
+	SwitchApAffinity DswitchesMetricsSwitchApAffinity `json:"switch_ap_affinity"`
+	// Version compliance metric for discovered switches
+	VersionCompliance    DswitchesMetricsVersionCompliance `json:"version_compliance"`
+	AdditionalProperties map[string]interface{}            `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponseDswitchesMetrics,

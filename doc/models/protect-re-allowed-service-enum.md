@@ -1,7 +1,7 @@
 
 # Protect Re Allowed Service Enum
 
-enum: `icmp`, `ssh`
+Services allowed through protect-RE filters. enum: `icmp`, `ssh`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `icmp`, `ssh`
 |  --- |
 | `icmp` |
 | `ssh` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    protectReAllowedService := models.ProtectReAllowedServiceEnum_ICMP
+
+}
+```
 

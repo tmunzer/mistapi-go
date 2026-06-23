@@ -8,9 +8,13 @@ import (
 )
 
 // UtilsMacTable represents a UtilsMacTable struct.
+// MAC table lookup filters
 type UtilsMacTable struct {
-	MacAddress           *string                `json:"mac_address,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
+	// Client MAC address filter for the MAC table lookup
+	MacAddress *string `json:"mac_address,omitempty"`
+	// Interface identifier filter for the MAC table lookup
+	PortId *string `json:"port_id,omitempty"`
+	// VLAN identifier filter for the MAC table lookup
 	VlanId               *string                `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

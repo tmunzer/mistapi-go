@@ -14,7 +14,7 @@ import (
 type CaptureGateway struct {
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
-	// enum: `stream`
+	// Output format for the gateway packet capture. enum: `stream`
 	Format *CaptureGatewayFormatEnum `json:"format,omitempty"`
 	// List of SSRs. Property key is the SSR MAC
 	Gateways map[string]CaptureGatewayGateways `json:"gateways"`
@@ -24,7 +24,7 @@ type CaptureGateway struct {
 	NumPackets Optional[int] `json:"num_packets"`
 	// Property key is the port ID
 	Ports map[string]CaptureGatewayGatewaysPort `json:"ports,omitempty"`
-	// enum: `gateway`
+	// Packet capture type discriminator for gateway captures. enum: `gateway`
 	Type                 string                 `json:"type"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

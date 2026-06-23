@@ -14,3 +14,18 @@ Optional if `wlan_portal_auth`==`sso`. enum: `email`, `unspecified`
 | `email` |
 | `unspecified` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanPortalSsoNameidFormat := models.WlanPortalSsoNameidFormatEnum_EMAIL
+
+}
+```
+

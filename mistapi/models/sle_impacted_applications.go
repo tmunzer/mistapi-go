@@ -8,17 +8,27 @@ import (
 )
 
 // SleImpactedApplications represents a SleImpactedApplications struct.
+// Paginated list of applications impacted by an SLE metric
 type SleImpactedApplications struct {
-	Apps                 []SleImpactedApplicationsApp `json:"apps,omitempty"`
-	Classifier           *string                      `json:"classifier,omitempty"`
-	End                  *int                         `json:"end,omitempty"`
-	Failure              *string                      `json:"failure,omitempty"`
-	Limit                *string                      `json:"limit,omitempty"`
-	Metric               *string                      `json:"metric,omitempty"`
-	Page                 *int                         `json:"page,omitempty"`
-	Start                *int                         `json:"start,omitempty"`
-	TotalCount           *int                         `json:"total_count,omitempty"`
-	AdditionalProperties map[string]interface{}       `json:"_"`
+	// Impacted application rows returned for an SLE query
+	Apps []SleImpactedApplicationsApp `json:"apps,omitempty"`
+	// Requested SLE classifier filter applied to the query
+	Classifier *string `json:"classifier,omitempty"`
+	// Last timestamp in the impacted applications window
+	End *int `json:"end,omitempty"`
+	// Requested SLE failure filter applied to the query
+	Failure *string `json:"failure,omitempty"`
+	// Maximum number of impacted application rows returned per page
+	Limit *string `json:"limit,omitempty"`
+	// SLE metric name used for the impacted applications query
+	Metric *string `json:"metric,omitempty"`
+	// Current page number for impacted application results
+	Page *int `json:"page,omitempty"`
+	// First timestamp in the impacted applications window
+	Start *int `json:"start,omitempty"`
+	// Number of impacted application rows matching the query
+	TotalCount           *int                   `json:"total_count,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SleImpactedApplications,

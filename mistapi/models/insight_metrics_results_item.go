@@ -9,6 +9,7 @@ import (
 )
 
 // InsightMetricsResultsItem represents a InsightMetricsResultsItem struct.
+// Insight metric result item, returned either as a number or an object depending on the requested metric
 type InsightMetricsResultsItem struct {
 	value       any
 	isPrecision bool
@@ -74,6 +75,7 @@ func (i *InsightMetricsResultsItem) AsObject() (
 }
 
 // internalInsightMetricsResultsItem represents a insightMetricsResultsItem struct.
+// Insight metric result item, returned either as a number or an object depending on the requested metric
 type internalInsightMetricsResultsItem struct{}
 
 var InsightMetricsResultsItemContainer internalInsightMetricsResultsItem

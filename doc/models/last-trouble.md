@@ -1,7 +1,7 @@
 
 # Last Trouble
 
-Last trouble code of switch
+Last trouble indicator reported by a switch
 
 ## Structure
 
@@ -11,15 +11,24 @@ Last trouble code of switch
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Code` | `*string` | Optional | Code definitions list at [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition) |
-| `Timestamp` | `*float64` | Optional | Epoch (seconds) |
+| `Code` | `*string` | Optional | Trouble code; definitions are listed at [List Ap Led Definition](../../doc/controllers/constants-definitions.md#list-ap-led-definition) |
+| `Timestamp` | `*float64` | Optional, Read-only | Epoch timestamp, in seconds |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "code": "03",
-  "timestamp": 160.78
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    lastTrouble := models.LastTrouble{
+        Code:                 models.ToPointer("03"),
+        Timestamp:            models.ToPointer(float64(183.7)),
+    }
+
 }
 ```
 

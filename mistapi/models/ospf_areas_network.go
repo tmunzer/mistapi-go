@@ -15,15 +15,21 @@ type OspfAreasNetwork struct {
 	// Required if `auth_type`==`password`, the password, max length is 8
 	AuthPassword *string `json:"auth_password,omitempty"`
 	// auth type. enum: `md5`, `none`, `password`
-	AuthType           *OspfAreaNetworkAuthTypeEnum `json:"auth_type,omitempty"`
-	BfdMinimumInterval *int                         `json:"bfd_minimum_interval,omitempty"`
-	DeadInterval       *int                         `json:"dead_interval,omitempty"`
-	ExportPolicy       *string                      `json:"export_policy,omitempty"`
-	HelloInterval      *int                         `json:"hello_interval,omitempty"`
-	ImportPolicy       *string                      `json:"import_policy,omitempty"`
+	AuthType *OspfAreaNetworkAuthTypeEnum `json:"auth_type,omitempty"`
+	// Minimum BFD interval for this OSPF network, in milliseconds
+	BfdMinimumInterval *int `json:"bfd_minimum_interval,omitempty"`
+	// OSPF dead interval for this network, in seconds
+	DeadInterval *int `json:"dead_interval,omitempty"`
+	// Routing policy used to export routes from this OSPF network
+	ExportPolicy *string `json:"export_policy,omitempty"`
+	// OSPF hello interval for this network, in seconds
+	HelloInterval *int `json:"hello_interval,omitempty"`
+	// Routing policy used to import routes for this OSPF network
+	ImportPolicy *string `json:"import_policy,omitempty"`
 	// interface type (nbma = non-broadcast multi-access). enum: `broadcast`, `nbma`, `p2mp`, `p2p`
 	InterfaceType *OspfAreaNetworkInterfaceTypeEnum `json:"interface_type,omitempty"`
-	Metric        Optional[int]                     `json:"metric"`
+	// OSPF metric assigned to this network
+	Metric Optional[int] `json:"metric"`
 	// By default, we'll re-advertise all learned OSPF routes toward overlay
 	NoReadvertiseToOverlay *bool `json:"no_readvertise_to_overlay,omitempty"`
 	// Whether to send OSPF-Hello

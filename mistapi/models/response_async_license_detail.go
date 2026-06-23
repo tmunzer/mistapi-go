@@ -8,12 +8,13 @@ import (
 )
 
 // ResponseAsyncLicenseDetail represents a ResponseAsyncLicenseDetail struct.
-// detail claim status per device
+// Per-device asynchronous license claim status
 type ResponseAsyncLicenseDetail struct {
-	// Device MAC Address
-	Mac    *string `json:"mac,omitempty"`
+	// Device MAC address for this license claim detail
+	Mac *string `json:"mac,omitempty"`
+	// Claim processing state for this device
 	Status *string `json:"status,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

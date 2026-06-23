@@ -16,14 +16,23 @@ OAuth linked Jamf apps account details
 | `InstanceUrl` | `string` | Required | Customer account Jamf instance URL |
 | `SmartgroupName` | `string` | Required | Smart group membership for determining compliance status |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "client_id": "client_id0",
-  "client_secret": "client_secret6",
-  "instance_url": "junipertest.jamfcloud.com",
-  "smartgroup_name": "CompliantGroup1"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    accountJamfConfig := models.AccountJamfConfig{
+        ClientId:             "client_id4",
+        ClientSecret:         "client_secret0",
+        InstanceUrl:          "junipertest.jamfcloud.com",
+        SmartgroupName:       "CompliantGroup1",
+    }
+
 }
 ```
 

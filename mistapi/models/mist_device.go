@@ -9,6 +9,7 @@ import (
 )
 
 // MistDevice represents a MistDevice struct.
+// Mist-managed device object for an AP, switch, or gateway
 type MistDevice struct {
 	value           any
 	isDeviceAp      bool
@@ -87,6 +88,7 @@ func (m *MistDevice) AsDeviceGateway() (
 }
 
 // internalMistDevice represents a mistDevice struct.
+// Mist-managed device object for an AP, switch, or gateway
 type internalMistDevice struct{}
 
 var MistDeviceContainer internalMistDevice

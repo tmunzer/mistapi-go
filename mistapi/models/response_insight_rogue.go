@@ -10,12 +10,17 @@ import (
 )
 
 // ResponseInsightRogue represents a ResponseInsightRogue struct.
+// Paginated response for rogue or neighbor AP insight results
 type ResponseInsightRogue struct {
-	End   int `json:"end"`
+	// Epoch timestamp for the end of the rogue AP insight window
+	End int `json:"end"`
+	// Maximum number of rogue or neighbor AP observations returned in this page
 	Limit int `json:"limit"`
-	// Link to next set of results. If more results aren’t present, next is null.
-	Next                 *string                `json:"next,omitempty"`
-	Results              []InsightRogueAp       `json:"results"`
+	// Pagination cursor or URL for retrieving the next page of rogue or neighbor AP observations; null when no next page exists
+	Next *string `json:"next,omitempty"`
+	// Rogue or neighbor AP insight observations returned by a query
+	Results []InsightRogueAp `json:"results"`
+	// Epoch timestamp for the start of the rogue AP insight window
 	Start                int                    `json:"start"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

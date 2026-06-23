@@ -8,13 +8,14 @@ import (
 )
 
 // SettingSsrAutoUpgrade represents a SettingSsrAutoUpgrade struct.
-// auto_upgrade device first time it is onboarded
+// Automatic firmware upgrade settings applied when an SSR device is first onboarded
 type SettingSsrAutoUpgrade struct {
 	// upgrade channel to follow. enum: `alpha`, `beta`, `stable`
 	Channel *SsrUpgradeChannelEnum `json:"channel,omitempty"`
 	// Property key is the SSR model (e.g. "SSR130").
 	CustomVersions map[string]string `json:"custom_versions,omitempty"`
-	Enabled        *bool             `json:"enabled,omitempty"`
+	// Whether SSR auto-upgrade is enabled for newly onboarded devices
+	Enabled *bool `json:"enabled,omitempty"`
 	// Firmware version to deploy (e.g. 6.3.0-107.r1). Optional, used when custom_versions not specified
 	Version              *string                `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`

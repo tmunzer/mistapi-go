@@ -8,7 +8,9 @@ import (
 )
 
 // RemoteSyslogConsole represents a RemoteSyslogConsole struct.
+// Console log forwarding filters for remote syslog
 type RemoteSyslogConsole struct {
+	// List of syslog content selectors
 	Contents             []RemoteSyslogContent  `json:"contents,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

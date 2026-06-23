@@ -1,7 +1,7 @@
 
 # Sso Role Msp
 
-SSO Role response
+MSP SSO role definition
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,45 +13,54 @@ SSO Role response
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `CreatedTime` | `*float64` | Optional | When the object has been created, in epoch |
-| `ForSite` | `*bool` | Optional | - |
-| `Id` | `*uuid.UUID` | Optional | Unique ID of the object instance in the Mist Organization |
-| `ModifiedTime` | `*float64` | Optional | When the object has been modified for the last time, in epoch |
-| `MspId` | `*uuid.UUID` | Optional | - |
-| `Name` | `string` | Required | - |
-| `OrgId` | `*uuid.UUID` | Optional | - |
-| `Privileges` | [`[]models.PrivilegeMsp`](../../doc/models/privilege-msp.md) | Required | **Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
+| `CreatedTime` | `*float64` | Optional, Read-only | When the object has been created, in epoch |
+| `ForSite` | `*bool` | Optional, Read-only | Whether this MSP SSO role is scoped for site-level access |
+| `Id` | `*uuid.UUID` | Optional, Read-only | Unique ID of the object instance in the Mist Organization |
+| `ModifiedTime` | `*float64` | Optional, Read-only | When the object has been modified for the last time, in epoch |
+| `MspId` | `*uuid.UUID` | Optional, Read-only | Managed service provider identifier |
+| `Name` | `string` | Required | Display name of the MSP SSO role |
+| `OrgId` | `*uuid.UUID` | Optional, Read-only | Unique identifier of a Mist organization |
+| `Privileges` | [`[]models.PrivilegeMsp`](../../doc/models/privilege-msp.md) | Required | Access privileges granted by an MSP SSO role<br><br>**Constraints**: *Minimum Items*: `1`, *Unique Items Required* |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "53f10664-3ce8-4c27-b382-0ef66432349f",
-  "msp_id": "b9d42c2e-88ee-41f8-b798-f009ce7fe909",
-  "name": "name0",
-  "org_id": "a97c1b22-a4e9-411e-9bfd-d8695a0f9e61",
-  "privileges": [
-    {
-      "org_id": "00000cc8-0000-0000-0000-000000000000",
-      "org_name": "org_name6",
-      "orggroup_id": "000010e2-0000-0000-0000-000000000000",
-      "role": "admin",
-      "scope": "org",
-      "views": [
-        "location",
-        "lobby_admin",
-        "switch_admin"
-      ]
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    ssoRoleMsp := models.SsoRoleMsp{
+        CreatedTime:          models.ToPointer(float64(9.08)),
+        ForSite:              models.ToPointer(false),
+        Id:                   models.ToPointer(uuid.MustParse("53f10664-3ce8-4c27-b382-0ef66432349f")),
+        ModifiedTime:         models.ToPointer(float64(69.88)),
+        MspId:                models.ToPointer(uuid.MustParse("b9d42c2e-88ee-41f8-b798-f009ce7fe909")),
+        Name:                 "name8",
+        OrgId:                models.ToPointer(uuid.MustParse("a97c1b22-a4e9-411e-9bfd-d8695a0f9e61")),
+        Privileges:           []models.PrivilegeMsp{
+            models.PrivilegeMsp{
+                OrgId:                models.ToPointer(uuid.MustParse("00000cc8-0000-0000-0000-000000000000")),
+                OrgName:              models.ToPointer("org_name6"),
+                OrggroupId:           models.ToPointer(uuid.MustParse("000010e2-0000-0000-0000-000000000000")),
+                Role:                 models.PrivilegeMspRoleEnum_ADMIN,
+                Scope:                models.PrivilegeMspScopeEnum_ORG,
+                Views:                []models.AdminPrivilegeViewEnum{
+                    models.AdminPrivilegeViewEnum_LOCATION,
+                    models.AdminPrivilegeViewEnum_LOBBYADMIN,
+                    models.AdminPrivilegeViewEnum_SWITCHADMIN,
+                },
+            },
+        },
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
     }
-  ],
-  "created_time": 45.5,
-  "for_site": false,
-  "modified_time": 33.46,
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+
 }
 ```
 

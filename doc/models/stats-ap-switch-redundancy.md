@@ -1,6 +1,8 @@
 
 # Stats Ap Switch Redundancy
 
+Switch redundancy status reported by an AP
+
 ## Structure
 
 `StatsApSwitchRedundancy`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `NumRedundantAps` | `models.Optional[int]` | Optional | - |
+| `NumRedundantAps` | `models.Optional[int]` | Optional, Read-only | Number of redundant APs available for switch redundancy |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "num_redundant_aps": 1
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsApSwitchRedundancy := models.StatsApSwitchRedundancy{
+        NumRedundantAps:      models.NewOptional(models.ToPointer(1)),
+    }
+
 }
 ```
 

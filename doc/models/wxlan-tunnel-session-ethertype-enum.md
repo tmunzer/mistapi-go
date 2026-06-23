@@ -1,7 +1,7 @@
 
 # Wxlan Tunnel Session Ethertype Enum
 
-enum: `ethernet`, `vlan`
+Frame type carried by this tunnel session. enum: `ethernet`, `vlan`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `ethernet`, `vlan`
 |  --- |
 | `ethernet` |
 | `vlan` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wxlanTunnelSessionEthertype := models.WxlanTunnelSessionEthertypeEnum_ETHERNET
+
+}
+```
 

@@ -10,37 +10,43 @@ import (
 )
 
 // AdminInvite represents a AdminInvite struct.
+// Administrator invitation and initial registration payload
 type AdminInvite struct {
 	// Skip creating initial setup if true
 	AccountOnly *bool `json:"account_only,omitempty"`
 	// Whether to allow Mist to look at this org
 	AllowMist *bool `json:"allow_mist,omitempty"`
-	// City of registering user
+	// Registration city for the admin user
 	City *string `json:"city,omitempty"`
-	// Country/region name or ISO code of registering user
-	Country   *string `json:"country,omitempty"`
-	Email     string  `json:"email"`
-	FirstName string  `json:"first_name"`
-	// Required initially
+	// Registration country or region for the admin user, as a name or ISO code
+	Country *string `json:"country,omitempty"`
+	// Registration email address for the admin user
+	Email string `json:"email"`
+	// Given name for the registering admin user
+	FirstName string `json:"first_name"`
+	// Invite code used to authorize new admin registration
 	InviteCode *string `json:"invite_code,omitempty"`
-	LastName   string  `json:"last_name"`
-	OrgName    string  `json:"org_name"`
-	Password   string  `json:"password"`
-	// reCAPTCHA , see https://www.google.com/recaptcha/
+	// Family name for the registering admin user
+	LastName string `json:"last_name"`
+	// Organization name supplied during initial admin registration
+	OrgName string `json:"org_name"`
+	// Credential password for the registering admin account
+	Password string `json:"password"`
+	// CAPTCHA verification token submitted during admin registration
 	Recaptcha string `json:"recaptcha"`
-	// flavor of the captcha. enum: `google`, `hcaptcha`
+	// CAPTCHA provider flavor. enum: `google`, `hcaptcha`
 	RecaptchaFlavor *RecaptchaFlavorEnum `json:"recaptcha_flavor,omitempty"`
 	// Invite token to apply after account creation
 	RefererInviteToken *string `json:"referer_invite_token,omitempty"`
 	// URL the user should be redirected back to
 	ReturnTo *string `json:"return_to,omitempty"`
-	// State name or ISO code of registering user, optional (depends on country/region)
+	// Registration state or province for the admin user, optional depending on country or region
 	State *string `json:"state,omitempty"`
 	// Street address of registering user
 	StreetAddress *string `json:"street_address,omitempty"`
 	// Street address 2 of registering user
 	StreetAddress2 *string `json:"street_address 2,omitempty"`
-	// zipcode of registering user
+	// Postal code for the registering admin user
 	Zipcode              *string                `json:"zipcode,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

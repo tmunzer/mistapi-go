@@ -1,7 +1,7 @@
 
 # Radius Keywrap Format Enum
 
-enum: `ascii`, `hex`
+Encoding format for RADIUS keywrap KEK and MACK values. enum: `ascii`, `hex`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `ascii`, `hex`
 |  --- |
 | `ascii` |
 | `hex` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    radiusKeywrapFormat := models.RadiusKeywrapFormatEnum_ASCII
+
+}
+```
 

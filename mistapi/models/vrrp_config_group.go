@@ -8,9 +8,11 @@ import (
 )
 
 // VrrpConfigGroup represents a VrrpConfigGroup struct.
+// VRRP group behavior settings
 type VrrpConfigGroup struct {
 	// If `true`, allow preemption (a backup router can preempt a primary router)
-	Preempt              *bool                  `json:"preempt,omitempty"`
+	Preempt *bool `json:"preempt,omitempty"`
+	// VRRP priority for this router in the group
 	Priority             *int                   `json:"priority,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

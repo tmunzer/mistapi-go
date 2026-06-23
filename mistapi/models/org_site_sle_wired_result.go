@@ -11,12 +11,19 @@ import (
 )
 
 // OrgSiteSleWiredResult represents a OrgSiteSleWiredResult struct.
+// Wired SLE scores and counts for one site
 type OrgSiteSleWiredResult struct {
-	NumClients           *float64               `json:"num_clients,omitempty"`
-	NumSwitches          *float64               `json:"num_switches,omitempty"`
-	SiteId               uuid.UUID              `json:"site_id"`
-	SwitchBandwidth      *float64               `json:"switch-bandwidth,omitempty"`
-	SwitchHealth         float64                `json:"switch-health"`
+	// Number of wired clients included in this site result
+	NumClients *float64 `json:"num_clients,omitempty"`
+	// Number of switches included in this site result
+	NumSwitches *float64 `json:"num_switches,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId uuid.UUID `json:"site_id"`
+	// Switch bandwidth SLE score for this site
+	SwitchBandwidth *float64 `json:"switch-bandwidth,omitempty"`
+	// Switch health SLE score for this site
+	SwitchHealth float64 `json:"switch-health"`
+	// Switch throughput SLE score for this site
 	SwitchThroughput     *float64               `json:"switch-throughput,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

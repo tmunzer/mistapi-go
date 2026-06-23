@@ -8,8 +8,11 @@ import (
 )
 
 // GatewayMgmtHostOutPolicySyslog represents a GatewayMgmtHostOutPolicySyslog struct.
+// Host-out path policy for gateway syslog traffic
 type GatewayMgmtHostOutPolicySyslog struct {
-	PathPreference       *string                                `json:"path_preference,omitempty"`
+	// Preferred path name used by default for gateway syslog traffic
+	PathPreference *string `json:"path_preference,omitempty"`
+	// Per-server host-out path policies for gateway syslog traffic
 	Servers              []GatewayMgmtHostOutPolicySyslogServer `json:"servers,omitempty"`
 	AdditionalProperties map[string]interface{}                 `json:"_"`
 }

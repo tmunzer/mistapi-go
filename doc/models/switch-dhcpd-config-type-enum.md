@@ -15,3 +15,18 @@ enum: `none`, `relay` (DHCP Relay), `server` (DHCP Server)
 | `relay` |
 | `server` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchDhcpdConfigType := models.SwitchDhcpdConfigTypeEnum_SERVER
+
+}
+```
+

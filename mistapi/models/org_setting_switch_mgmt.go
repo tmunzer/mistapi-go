@@ -8,6 +8,7 @@ import (
 )
 
 // OrgSettingSwitchMgmt represents a OrgSettingSwitchMgmt struct.
+// Organization-level switch management settings
 type OrgSettingSwitchMgmt struct {
 	// If the field is set in both site/setting and org/setting, the value from site/setting will be used.
 	ApAffinityThreshold  *int                   `json:"ap_affinity_threshold,omitempty"`

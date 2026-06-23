@@ -10,10 +10,15 @@ import (
 )
 
 // ConstApLed represents a ConstApLed struct.
+// AP LED status and `last_trouble` code definition returned by the constants API
 type ConstApLed struct {
-	Code                 string                 `json:"code"`
-	Description          string                 `json:"description"`
-	Key                  string                 `json:"key"`
+	// Numeric LED status and `last_trouble` code reported by the AP
+	Code string `json:"code"`
+	// Human-readable explanation of the AP status
+	Description string `json:"description"`
+	// Machine-readable AP status key
+	Key string `json:"key"`
+	// Display name for the AP status
 	Name                 string                 `json:"name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

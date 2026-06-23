@@ -9,32 +9,39 @@ import (
 )
 
 // StatsGatewayVpnPeer represents a StatsGatewayVpnPeer struct.
+// VPN peer path statistics reported by a gateway
 type StatsGatewayVpnPeer struct {
-	// Redundancy status of the associated interface
+	// Whether this VPN peer path is the active redundant path
 	IsActive *bool `json:"is_active,omitempty"`
-	// Jitter in milliseconds
+	// Last sampled VPN peer jitter, in milliseconds
 	Jitter *float64 `json:"jitter,omitempty"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Latency in milliseconds
+	// Last sampled VPN peer latency, in milliseconds
 	Latency *float64 `json:"latency,omitempty"`
-	// Packet loss in percentage
+	// Packet loss observed for the VPN peer, as a percentage
 	Loss *float64 `json:"loss,omitempty"`
-	// Mean Opinion Score, a measure of the quality of the VPN link
+	// Mean Opinion Score for VPN link quality, from 0 to 5
 	Mos *float64 `json:"mos,omitempty"`
-	Mtu *int     `json:"mtu,omitempty"`
-	// Peer router mac address
+	// Maximum transmission unit for the VPN peer path, in bytes
+	Mtu *int `json:"mtu,omitempty"`
+	// Peer router MAC address for the VPN link
 	PeerMac *string `json:"peer_mac,omitempty"`
-	// Peer router device interface
-	PeerPortId     *string    `json:"peer_port_id,omitempty"`
-	PeerRouterName *string    `json:"peer_router_name,omitempty"`
-	PeerSiteId     *uuid.UUID `json:"peer_site_id,omitempty"`
-	// Router device interface
-	PortId     *string `json:"port_id,omitempty"`
+	// Peer router interface identifier for the VPN link
+	PeerPortId *string `json:"peer_port_id,omitempty"`
+	// Peer router name reported for the VPN link
+	PeerRouterName *string `json:"peer_router_name,omitempty"`
+	// Unique identifier of a Mist site
+	PeerSiteId *uuid.UUID `json:"peer_site_id,omitempty"`
+	// Local router interface identifier for the VPN link
+	PortId *string `json:"port_id,omitempty"`
+	// Local router name reported for the VPN link
 	RouterName *string `json:"router_name,omitempty"`
-	// `ipsec`for SRX, `svr` for 128T
-	Type                 *string                `json:"type,omitempty"`
-	Up                   *bool                  `json:"up,omitempty"`
+	// VPN implementation type for the peer, such as `ipsec` for SRX or `svr` for SSR
+	Type *string `json:"type,omitempty"`
+	// Whether the VPN peer is currently up
+	Up *bool `json:"up,omitempty"`
+	// Gateway-reported VPN peer uptime value, in seconds
 	Uptime               *int                   `json:"uptime,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

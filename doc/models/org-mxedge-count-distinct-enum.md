@@ -17,3 +17,18 @@ enum: `distro`, `model`, `mxcluster_id`, `site_id`, `tunterm_version`
 | `site_id` |
 | `tunterm_version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    orgMxedgeCountDistinct := models.OrgMxedgeCountDistinctEnum_DISTRO
+
+}
+```
+

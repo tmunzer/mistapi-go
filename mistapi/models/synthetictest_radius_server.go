@@ -10,6 +10,7 @@ import (
 )
 
 // SynthetictestRadiusServer represents a SynthetictestRadiusServer struct.
+// Request body for testing RADIUS server availability from a switch
 type SynthetictestRadiusServer struct {
 	// Specify the password associated with the username
 	Password string `json:"password"`

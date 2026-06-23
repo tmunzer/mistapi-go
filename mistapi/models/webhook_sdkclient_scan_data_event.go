@@ -11,24 +11,27 @@ import (
 )
 
 // WebhookSdkclientScanDataEvent represents a WebhookSdkclientScanDataEvent struct.
+// SDK client connection state and background Wi-Fi scan observations
 type WebhookSdkclientScanDataEvent struct {
 	// MAC address of the AP the client is connected to
 	ConnectionAp string `json:"connection_ap"`
 	// 5GHz or 2.4GHz band, of the BSSID the client is connected to
 	ConnectionBand string `json:"connection_band"`
-	// BSSID of the AP the client is connected to
+	// Connected AP BSSID for the SDK client
 	ConnectionBssid string `json:"connection_bssid"`
 	// Channel of the band the client is connected to
 	ConnectionChannel int `json:"connection_channel"`
 	// RSSI of the client’s connection to the AP/BSSID
 	ConnectionRssi float64 `json:"connection_rssi"`
-	// Last seen timestamp
+	// Timestamp indicating when the entity was last seen
 	LastSeen Optional[float64] `json:"last_seen"`
-	// Client's MAC Address
-	Mac                  string                                      `json:"mac"`
-	ScanData             []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
-	SiteId               uuid.UUID                                   `json:"site_id"`
-	AdditionalProperties map[string]interface{}                      `json:"_"`
+	// SDK client MAC address
+	Mac string `json:"mac"`
+	// Background Wi-Fi scan observations reported by an SDK client
+	ScanData []WebhookSdkclientScanDataEventScanDataItem `json:"scan_data,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId               uuid.UUID              `json:"site_id"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for WebhookSdkclientScanDataEvent,

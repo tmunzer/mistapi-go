@@ -9,6 +9,7 @@ import (
 )
 
 // ZigbeeJoinResponse represents a ZigbeeJoinResponse struct.
+// Response containing the session identifier for a Zigbee join operation
 type ZigbeeJoinResponse struct {
 	// Session ID for the Zigbee join operation
 	SessionId            *uuid.UUID             `json:"session_id,omitempty"`

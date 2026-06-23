@@ -11,6 +11,7 @@ import (
 )
 
 // RfDiagInfoItem represents a RfDiagInfoItem struct.
+// RF diagnostic recording metadata and output links
 type RfDiagInfoItem struct {
 	// If `type`==`asset`, id of the asset
 	AssetId *uuid.UUID `json:"asset_id,omitempty"`
@@ -26,10 +27,12 @@ type RfDiagInfoItem struct {
 	FrameCount int `json:"frame_count"`
 	// Unique ID of the object instance in the Mist Organization
 	Id *uuid.UUID `json:"id,omitempty"`
-	// If `type`==`client` or `asset`, mac of the device
-	Mac   *string   `json:"mac,omitempty"`
+	// If `type`==`client` or `asset`, MAC address of the recorded device
+	Mac *string `json:"mac,omitempty"`
+	// Map identifier associated with the recording
 	MapId uuid.UUID `json:"map_id"`
-	Name  string    `json:"name"`
+	// Recording name returned for the RF diagnostic recording
+	Name string `json:"name"`
 	// Optional. id of the next recoding if present. Only valid for site survey.
 	Next *string `json:"next,omitempty"`
 	// URL to a JSON file that contains array of raw location diag events
@@ -46,7 +49,7 @@ type RfDiagInfoItem struct {
 	StartTime int `json:"start_time"`
 	// enum: `asset`, `client`, `sdkclient`
 	Type RfClientTypeEnum `json:"type"`
-	// URL to a JSON file that contains an array of frames, each frame is the same format
+	// JSON file URL for frame data captured by the recording
 	Url                  string                 `json:"url"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

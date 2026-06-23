@@ -8,12 +8,13 @@ import (
 )
 
 // WxlanTagSpec represents a WxlanTagSpec struct.
+// Traffic match specification used by a WxLAN tag
 type WxlanTagSpec struct {
 	// Matched destination port, "0" means any
 	PortRange *string `json:"port_range,omitempty"`
 	// tcp / udp / icmp / gre / any / ":protocol_number", `protocol_number` is between 1-254
 	Protocol *string `json:"protocol,omitempty"`
-	// Matched destination subnets and/or IP Addresses
+	// Matched destination subnets and/or IP addresses
 	Subnets              []string               `json:"subnets,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

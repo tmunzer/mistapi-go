@@ -12,8 +12,9 @@ import (
 // WebhookOccupancyAlerts represents a WebhookOccupancyAlerts struct.
 // Sample of the `occupancy-alerts` webhook payload.
 type WebhookOccupancyAlerts struct {
+	// Occupancy alert batches included in a webhook delivery
 	Events []WebhookOccupancyAlertsEvent `json:"events"`
-	// enum: `occupeancy-alerts`
+	// Webhook topic name for occupancy alert deliveries. enum: `occupancy-alerts`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

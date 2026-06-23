@@ -10,6 +10,7 @@ import (
 )
 
 // SsoDeleteAdmins represents a SsoDeleteAdmins struct.
+// Request body listing SSO admin email addresses to delete
 type SsoDeleteAdmins struct {
 	// List of admin email addresses to delete
 	Emails               []string               `json:"emails"`

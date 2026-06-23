@@ -1,6 +1,8 @@
 
 # Network Vpn Access Static Nat Property
 
+VPN access static NAT rule target settings
+
 ## Structure
 
 `NetworkVpnAccessStaticNatProperty`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `InternalIp` | `*string` | Optional | The Static NAT destination IP Address. Must be an IP Address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}") |
-| `Name` | `*string` | Optional | - |
+| `InternalIp` | `*string` | Optional | The Static NAT destination IP address. Must be an IP address (i.e. "192.168.70.3") or a Variable (i.e. "{{myvar}}") |
+| `Name` | `*string` | Optional | Label for this VPN static NAT rule |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "internal_ip": "192.168.70.3",
-  "name": "pos_station-1"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    networkVpnAccessStaticNatProperty := models.NetworkVpnAccessStaticNatProperty{
+        InternalIp:           models.ToPointer("192.168.70.3"),
+        Name:                 models.ToPointer("pos_station-1"),
+    }
+
 }
 ```
 

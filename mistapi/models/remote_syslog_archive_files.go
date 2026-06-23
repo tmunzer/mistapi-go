@@ -9,6 +9,7 @@ import (
 )
 
 // RemoteSyslogArchiveFiles represents a RemoteSyslogArchiveFiles struct.
+// Number of archived syslog files to retain
 type RemoteSyslogArchiveFiles struct {
 	value    any
 	isString bool
@@ -74,6 +75,7 @@ func (r *RemoteSyslogArchiveFiles) AsNumber() (
 }
 
 // internalRemoteSyslogArchiveFiles represents a remoteSyslogArchiveFiles struct.
+// Number of archived syslog files to retain
 type internalRemoteSyslogArchiveFiles struct{}
 
 var RemoteSyslogArchiveFilesContainer internalRemoteSyslogArchiveFiles

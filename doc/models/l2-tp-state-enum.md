@@ -19,7 +19,16 @@ enum: `established`, `established_with_session`, `idle`, `wait-ctrl-conn`, `wait
 
 ## Example
 
-```
-established
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    l2tpState := models.L2tpStateEnum_ESTABLISHED
+
+}
 ```
 

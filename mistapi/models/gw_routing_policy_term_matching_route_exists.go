@@ -8,9 +8,11 @@ import (
 )
 
 // GwRoutingPolicyTermMatchingRouteExists represents a GwRoutingPolicyTermMatchingRouteExists struct.
+// Route-existence match condition for a gateway routing policy term
 type GwRoutingPolicyTermMatchingRouteExists struct {
+	// Prefix that must exist for this condition to match
 	Route *string `json:"route,omitempty"`
-	// Name of the vrf instance, it can also be the name of the VPN or wan if they
+	// Name of the VRF instance where the route is checked; can also be a VPN or WAN name when applicable
 	VrfName              *string                `json:"vrf_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

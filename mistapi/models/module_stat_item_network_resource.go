@@ -8,12 +8,13 @@ import (
 )
 
 // ModuleStatItemNetworkResource represents a ModuleStatItemNetworkResource struct.
+// Network resource usage counter reported by a device module
 type ModuleStatItemNetworkResource struct {
-	// current usage of the network resource
+	// Current utilization count for the network resource
 	Count *int `json:"count,omitempty"`
-	// maximum usage of the network resource
+	// Maximum supported count for the network resource
 	Limit *int `json:"limit,omitempty"`
-	// type of the network resource (e.g. FIB, FLOW, ...)
+	// Network resource category, such as FIB or FLOW
 	Type                 *string                `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

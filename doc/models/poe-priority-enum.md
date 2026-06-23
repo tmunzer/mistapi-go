@@ -14,3 +14,18 @@ PoE priority. enum: `low`, `high`
 | `low` |
 | `high` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    poePriority := models.PoePriorityEnum_LOW
+
+}
+```
+

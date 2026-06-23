@@ -15,3 +15,18 @@ Required if `op`==`add` or `op`==`preprovision`. enum: `backup`, `linecard`, `ma
 | `linecard` |
 | `master` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    virtualChassisMemberUpdateVcRole := models.VirtualChassisMemberUpdateVcRoleEnum_MASTER
+
+}
+```
+

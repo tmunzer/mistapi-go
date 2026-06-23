@@ -10,10 +10,15 @@ import (
 )
 
 // ResponseSsrUpgradeCounts represents a ResponseSsrUpgradeCounts struct.
+// Device counts grouped by SSR upgrade status
 type ResponseSsrUpgradeCounts struct {
-	Failed               int                    `json:"failed"`
-	Queued               int                    `json:"queued"`
-	Success              int                    `json:"success"`
+	// Number of SSR devices that failed the upgrade
+	Failed int `json:"failed"`
+	// Number of SSR devices queued for upgrade
+	Queued int `json:"queued"`
+	// Number of SSR devices successfully upgraded
+	Success int `json:"success"`
+	// Number of SSR devices currently upgrading
 	Upgrading            int                    `json:"upgrading"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

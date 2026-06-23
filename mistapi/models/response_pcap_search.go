@@ -10,14 +10,21 @@ import (
 )
 
 // ResponsePcapSearch represents a ResponsePcapSearch struct.
+// Paginated response for packet capture search results
 type ResponsePcapSearch struct {
-	End                  int                      `json:"end"`
-	Limit                int                      `json:"limit"`
-	Next                 *string                  `json:"next,omitempty"`
-	Results              []ResponsePcapSearchItem `json:"results"`
-	Start                int                      `json:"start"`
-	Total                *int                     `json:"total,omitempty"`
-	AdditionalProperties map[string]interface{}   `json:"_"`
+	// Epoch timestamp, in seconds, for the end of the packet capture search window
+	End int `json:"end"`
+	// Maximum number of packet capture records returned in this page
+	Limit int `json:"limit"`
+	// URL for retrieving the next page of packet capture search results
+	Next *string `json:"next,omitempty"`
+	// Packet capture records returned by search
+	Results []ResponsePcapSearchItem `json:"results"`
+	// Epoch timestamp, in seconds, for the start of the packet capture search window
+	Start int `json:"start"`
+	// Number of packet capture records matching the search filters across all pages
+	Total                *int                   `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for ResponsePcapSearch,

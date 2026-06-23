@@ -27,7 +27,16 @@ authentication scheme. enum: `amazon`, `azure`, `email`, `external`, `facebook`,
 
 ## Example
 
-```
-none
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanPortalAuth := models.WlanPortalAuthEnum_PASSWORD
+
+}
 ```
 

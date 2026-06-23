@@ -16,3 +16,18 @@ enum: `admin`, `helpdesk`, `none`, `read`
 | `none` |
 | `read` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    configSwitchLocalAccountsUserRole := models.ConfigSwitchLocalAccountsUserRoleEnum_ADMIN
+
+}
+```
+

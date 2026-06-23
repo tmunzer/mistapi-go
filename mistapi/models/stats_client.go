@@ -9,6 +9,7 @@ import (
 )
 
 // StatsClient represents a StatsClient struct.
+// Client statistics record for a wireless or wired client
 type StatsClient struct {
 	value                 any
 	isStatsWirelessClient bool
@@ -74,6 +75,7 @@ func (s *StatsClient) AsStatsWiredClient() (
 }
 
 // internalStatsClient represents a statsClient struct.
+// Client statistics record for a wireless or wired client
 type internalStatsClient struct{}
 
 var StatsClientContainer internalStatsClient

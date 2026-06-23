@@ -15,13 +15,14 @@ type BgpPeer struct {
 	// If this is created for overlay
 	ForOverlay *bool `json:"for_overlay,omitempty"`
 	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
-	LocalAs  *BgpAs  `json:"local_as,omitempty"`
+	LocalAs *BgpAs `json:"local_as,omitempty"`
+	// IP address of the BGP neighbor
 	Neighbor *string `json:"neighbor,omitempty"`
 	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
 	NeighborAs *BgpAs `json:"neighbor_as,omitempty"`
-	// If it's another device in the same org
+	// MAC address of the BGP neighbor when it is another device in the same organization
 	NeighborMac *string `json:"neighbor_mac,omitempty"`
-	// Node0/node1
+	// HA node reporting this BGP peer, such as node0 or node1
 	Node *string `json:"node,omitempty"`
 	// Amount of packets received since connection
 	RxPkts Optional[int64] `json:"rx_pkts"`
@@ -29,13 +30,17 @@ type BgpPeer struct {
 	RxRoutes *int `json:"rx_routes,omitempty"`
 	// enum: `active`, `connect`, `established`, `idle`, `open_config`, `open_sent`
 	State *BgpStatsStateEnum `json:"state,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp *float64 `json:"timestamp,omitempty"`
 	// Amount of packets sent since connection
-	TxPkts               Optional[int64]        `json:"tx_pkts"`
-	TxRoutes             *int                   `json:"tx_routes,omitempty"`
-	Up                   *bool                  `json:"up,omitempty"`
-	Uptime               *int                   `json:"uptime,omitempty"`
+	TxPkts Optional[int64] `json:"tx_pkts"`
+	// Number of routes advertised to this BGP neighbor
+	TxRoutes *int `json:"tx_routes,omitempty"`
+	// Whether the BGP session is currently up
+	Up *bool `json:"up,omitempty"`
+	// Number of seconds the BGP session has been up
+	Uptime *int `json:"uptime,omitempty"`
+	// VRF name associated with this BGP session
 	VrfName              *string                `json:"vrf_name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

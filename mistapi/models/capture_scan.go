@@ -12,7 +12,7 @@ import (
 // CaptureScan represents a CaptureScan struct.
 // Initiate a Scan Radio Packet Capture
 type CaptureScan struct {
-	// Filter by ap_mac
+	// AP MAC address used to filter the scan radio packet capture
 	ApMac Optional[string] `json:"ap_mac"`
 	// Dictionary key is AP mac and value is a dictionary which contains key "band", "bandwidth", "channel" and "tcpdump_expression". In case keys are missed we will take parent value if parent values are not set we will use default value
 	Aps map[string]CaptureScanAps `json:"aps,omitempty"`
@@ -22,18 +22,19 @@ type CaptureScan struct {
 	Bandwidth *Dot11BandwidthEnum `json:"bandwidth,omitempty"`
 	// Specify the channel value where scan PCAP has to be started, default value gets applied when user provides wrong values
 	Channel *int `json:"channel,omitempty"`
-	// Filter by client mac
+	// Client MAC address used to filter the scan radio packet capture
 	ClientMac Optional[string] `json:"client_mac"`
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
-	// enum: `pcap`, `stream`
-	Format    *CaptureScanFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]          `json:"max_pkt_len"`
+	// Output format for the scan radio packet capture. enum: `pcap`, `stream`
+	Format *CaptureScanFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
 	// tcpdump expression, port specific if specified under ports dict, otherwise applicable across ports if specified at top level of payload. Port specific value overrides top level value when both exist.
 	TcpdumpExpression *string `json:"tcpdump_expression,omitempty"`
-	// enum: `scan`
+	// Packet capture type discriminator for scan radio captures. enum: `scan`
 	Type string `json:"type"`
 	// Specify the bandwidth value with respect to the channel.
 	Width                *string                `json:"width,omitempty"`

@@ -9,9 +9,11 @@ import (
 )
 
 // UpgradeOrgDevicesItem represents a UpgradeOrgDevicesItem struct.
+// Organization device upgrade job returned by upgrade APIs
 type UpgradeOrgDevicesItem struct {
 	// Unique ID of the object instance in the Mist Organization
-	Id                   *uuid.UUID                         `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
+	// Site-level upgrade jobs created for an organization upgrade
 	SiteUpgrades         []UpgradeOrgDevicesItemSiteUpgrade `json:"site_upgrades,omitempty"`
 	AdditionalProperties map[string]interface{}             `json:"_"`
 }

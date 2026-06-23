@@ -8,10 +8,13 @@ import (
 )
 
 // OrgSettingGatewayMgmtHostOutPolicies represents a OrgSettingGatewayMgmtHostOutPolicies struct.
-// optional, for some of the host-out traffic, the path preference can be specified by default, ECMP will be used from all available route/path available services: dns/mist/ntp/pim
+// Optional path preferences for gateway-originated management traffic; ECMP is used across available paths when no preference is specified
 type OrgSettingGatewayMgmtHostOutPolicies struct {
-	Dns                  *GatewayMgmtHostOutPolicy       `json:"dns,omitempty"`
-	Ntp                  *GatewayMgmtHostOutPolicy       `json:"ntp,omitempty"`
+	// Host-out path policy for gateway-originated management traffic
+	Dns *GatewayMgmtHostOutPolicy `json:"dns,omitempty"`
+	// Host-out path policy for gateway-originated management traffic
+	Ntp *GatewayMgmtHostOutPolicy `json:"ntp,omitempty"`
+	// Host-out path policy for gateway syslog traffic
 	Syslog               *GatewayMgmtHostOutPolicySyslog `json:"syslog,omitempty"`
 	AdditionalProperties map[string]interface{}          `json:"_"`
 }

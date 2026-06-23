@@ -13,11 +13,20 @@ Map Stack filter or creation payload
 |  --- | --- | --- | --- |
 | `Name` | `*string` | Optional | The name of the map stack |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "Board Room"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapstack := models.Mapstack{
+        Name:                 models.ToPointer("Board Room"),
+    }
+
 }
 ```
 

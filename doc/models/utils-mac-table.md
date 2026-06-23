@@ -1,6 +1,8 @@
 
 # Utils Mac Table
 
+MAC table lookup filters
+
 *This model accepts additional fields of type interface{}.*
 
 ## Structure
@@ -11,22 +13,30 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MacAddress` | `*string` | Optional | - |
-| `PortId` | `*string` | Optional | - |
-| `VlanId` | `*string` | Optional | - |
+| `MacAddress` | `*string` | Optional | Client MAC address filter for the MAC table lookup |
+| `PortId` | `*string` | Optional | Interface identifier filter for the MAC table lookup |
+| `VlanId` | `*string` | Optional | VLAN identifier filter for the MAC table lookup |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac_address": "f8c1165c6400",
-  "port_id": "ge-0/0/0.0",
-  "vlan_id": "ge-0/0/0.0",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    utilsMacTable := models.UtilsMacTable{
+        MacAddress:           models.ToPointer("f8c1165c6400"),
+        PortId:               models.ToPointer("ge-0/0/0.0"),
+        VlanId:               models.ToPointer("ge-0/0/0.0"),
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 

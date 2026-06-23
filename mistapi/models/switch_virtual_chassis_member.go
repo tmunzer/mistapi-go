@@ -10,10 +10,12 @@ import (
 )
 
 // SwitchVirtualChassisMember represents a SwitchVirtualChassisMember struct.
+// Virtual Chassis member identified by MAC address and role
 type SwitchVirtualChassisMember struct {
-	// fpc0, same as the mac of device_id
-	Mac      string `json:"mac"`
-	MemberId int    `json:"member_id"`
+	// Virtual Chassis member MAC address; for FPC0 this matches the device ID MAC
+	Mac string `json:"mac"`
+	// Virtual Chassis member identifier
+	MemberId int `json:"member_id"`
 	// Both vc_role master and backup will be matched to routing-engine role in Junos preprovisioned VC config. enum: `backup`, `linecard`, `master`
 	VcRole               SwitchVirtualChassisMemberVcRoleEnum `json:"vc_role"`
 	AdditionalProperties map[string]interface{}               `json:"_"`

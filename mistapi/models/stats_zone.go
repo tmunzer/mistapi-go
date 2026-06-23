@@ -11,7 +11,7 @@ import (
 )
 
 // StatsZone represents a StatsZone struct.
-// Zone statistics
+// Zone statistics and occupancy counts for a site map zone
 type StatsZone struct {
 	// BLE asset wait time right now
 	AssetsWait *StatsZoneAssetsWaits `json:"assets_wait,omitempty"`
@@ -23,31 +23,35 @@ type StatsZone struct {
 	DiscoveredAssetsWait *StatsZoneDiscoveredAssetsWaits `json:"discovered_assets_wait,omitempty"`
 	// Unique ID of the object instance in the Mist Organization
 	Id uuid.UUID `json:"id"`
-	// Map_id of the zone
+	// Map identifier for the zone
 	MapId uuid.UUID `json:"map_id"`
 	// When the object has been modified for the last time, in epoch
 	ModifiedTime *float64 `json:"modified_time,omitempty"`
-	// Name of the zone
+	// Display name of the zone
 	Name string `json:"name"`
-	// Number of assets
+	// Number of BLE assets currently counted in the zone
 	NumAssets *int `json:"num_assets,omitempty"`
-	// Number of Wi-Fi clients (unconnected + connected)
+	// Number of Wi-Fi clients currently counted in the zone, including connected and unconnected clients
 	NumClients *int `json:"num_clients,omitempty"`
-	// Number of discoveredassets
+	// Number of discovered BLE assets currently counted in the zone
 	NumDiscoveredAssets *int `json:"num_discovered_assets,omitempty"`
-	// Number of sdk clients
+	// Number of SDK clients currently counted in the zone
 	NumSdkclients *int `json:"num_sdkclients,omitempty"`
-	// Number of unconnected Wi-Fi clients
-	NumUnconnectedClients *int       `json:"num_unconnected_clients,omitempty"`
-	OccupancyLimit        *int       `json:"occupancy_limit,omitempty"`
-	OrgId                 *uuid.UUID `json:"org_id,omitempty"`
+	// Number of unconnected Wi-Fi clients currently counted in the zone
+	NumUnconnectedClients *int `json:"num_unconnected_clients,omitempty"`
+	// Configured occupancy limit for the zone
+	OccupancyLimit *int `json:"occupancy_limit,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
 	// SDK client wait time right now
 	SdkclientsWait *StatsZoneSdkclientsWaits `json:"sdkclients_wait,omitempty"`
-	SiteId         *uuid.UUID                `json:"site_id,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
 	// Unconnected Wi-Fi client wait time right now
 	UnconnectedClientsWait *StatsZoneUnconnectedClientsWaits `json:"unconnected_clients_wait,omitempty"`
 	// Vertices used to define an area. It’s assumed that the last point connects to the first point and forms an closed area
-	Vertices             []ZoneVertex           `json:"vertices,omitempty"`
+	Vertices []ZoneVertex `json:"vertices,omitempty"`
+	// Vertices used to define a zone boundary, expressed in meters
 	VerticesM            []ZoneVertexM          `json:"vertices_m,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,7 +10,9 @@ import (
 )
 
 // ResponseDeviceConfigCmd represents a ResponseDeviceConfigCmd struct.
+// Device configuration command response
 type ResponseDeviceConfigCmd struct {
+	// Configuration command returned for the device
 	Cmd                  string                 `json:"cmd"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

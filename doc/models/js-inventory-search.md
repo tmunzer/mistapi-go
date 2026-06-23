@@ -1,6 +1,8 @@
 
 # Js Inventory Search
 
+Paginated JSI inventory search response
+
 ## Structure
 
 `JsInventorySearch`
@@ -11,28 +13,37 @@
 |  --- | --- | --- | --- |
 | `End` | `*int` | Optional | Offset to end at |
 | `Limit` | `*int` | Optional | Number of results to return |
-| `Next` | `*string` | Optional | - |
-| `Results` | [`[]models.JsInventoryItem`](../../doc/models/js-inventory-item.md) | Optional | - |
+| `Next` | `*string` | Optional | URL for the next page of JSI inventory results |
+| `Results` | [`[]models.JsInventoryItem`](../../doc/models/js-inventory-item.md) | Optional | JSI inventory items returned for an organization |
 | `Start` | `*int` | Optional | Offset to start from |
-| `Total` | `*int` | Optional | Total number of results |
+| `Total` | `*int` | Optional | Number of JSI inventory records matching the search |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "end": 82,
-  "limit": 88,
-  "next": "next0",
-  "results": [
-    {
-      "claimed": false,
-      "device_name": "device_name6",
-      "eol_psn": "eol_psn8",
-      "eol_time": 174,
-      "eos_time": 220
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    jsInventorySearch := models.JsInventorySearch{
+        End:                  models.ToPointer(66),
+        Limit:                models.ToPointer(104),
+        Next:                 models.ToPointer("next2"),
+        Results:              []models.JsInventoryItem{
+            models.JsInventoryItem{
+                Availability:         models.ToPointer("availability6"),
+                Claimed:              models.ToPointer(false),
+                ContractEndDate:      models.ToPointer("contract_end_date6"),
+                ContractReseller:     models.ToPointer("contract_reseller4"),
+                ContractStartDate:    models.ToPointer("contract_start_date2"),
+            },
+        },
+        Start:                models.ToPointer(24),
     }
-  ],
-  "start": 40
+
 }
 ```
 

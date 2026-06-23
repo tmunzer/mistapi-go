@@ -11,13 +11,22 @@ Note: some stats are not collected when it's not connected to Mist infrastructur
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Enabled` | `*bool` | Optional | - |
+| `Enabled` | `*bool` | Optional | Whether telemetry collection is enabled for Marvis Client |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "enabled": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    marvisClientTelemetry := models.MarvisClientTelemetry{
+        Enabled:              models.ToPointer(false),
+    }
+
 }
 ```
 

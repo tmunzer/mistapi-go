@@ -10,9 +10,9 @@ import (
 // ResponsePastSpectrumAnalysisChannelUsage represents a ResponsePastSpectrumAnalysisChannelUsage struct.
 // Channel usage data for a specific channel
 type ResponsePastSpectrumAnalysisChannelUsage struct {
-	// Channel number
+	// Radio channel measured by this channel usage sample
 	Channel *int `json:"channel,omitempty"`
-	// Noise level in dBm
+	// Measured noise floor, in dBm, for the channel
 	Noise *float64 `json:"noise,omitempty"`
 	// Percentage of channel usage by non-WiFi signals in the range [0, 1]
 	NonWifi *float64 `json:"non_wifi,omitempty"`

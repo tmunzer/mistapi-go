@@ -15,3 +15,18 @@ Both vc_role master and backup will be matched to routing-engine role in Junos p
 | `linecard` |
 | `master` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchVirtualChassisMemberVcRole := models.SwitchVirtualChassisMemberVcRoleEnum_MASTER
+
+}
+```
+

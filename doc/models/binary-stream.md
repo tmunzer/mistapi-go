@@ -1,6 +1,8 @@
 
 # Binary Stream
 
+Binary file upload payload
+
 ## Structure
 
 `BinaryStream`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `File` | `[]byte` | Required | File to upload |
+| `File` | `[]byte` | Required | Binary file payload to upload with this request |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "file": "data:text/plain;name=dummy_file;base64,"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    binaryStream := models.BinaryStream{
+        File:                 nil,
+    }
+
 }
 ```
 

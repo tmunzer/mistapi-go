@@ -12,10 +12,11 @@ import (
 type WlanCiscoCwa struct {
 	// List of hostnames without http(s):// (matched by substring)
 	AllowedHostnames []string `json:"allowed_hostnames,omitempty"`
-	// List of CIDRs
+	// CIDR subnets allowed for Cisco CWA client access before authorization
 	AllowedSubnets []string `json:"allowed_subnets,omitempty"`
 	// List of blocked CIDRs
-	BlockedSubnets       []string               `json:"blocked_subnets,omitempty"`
+	BlockedSubnets []string `json:"blocked_subnets,omitempty"`
+	// Whether Cisco CWA is enabled for this WLAN
 	Enabled              *bool                  `json:"enabled,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

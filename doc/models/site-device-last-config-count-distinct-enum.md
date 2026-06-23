@@ -16,3 +16,18 @@ enum: `mac`, `name`, `site_id`, `version`
 | `site_id` |
 | `version` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    siteDeviceLastConfigCountDistinct := models.SiteDeviceLastConfigCountDistinctEnum_MAC
+
+}
+```
+

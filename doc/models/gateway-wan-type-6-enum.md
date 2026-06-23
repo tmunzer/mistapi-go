@@ -15,3 +15,18 @@ enum: `autoconf`, `dhcp`, `static`
 | `dhcp` |
 | `static` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    gatewayWanType6 := models.GatewayWanType6Enum_STATIC
+
+}
+```
+

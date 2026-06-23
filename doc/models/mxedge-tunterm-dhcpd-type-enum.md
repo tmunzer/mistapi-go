@@ -1,7 +1,7 @@
 
 # Mxedge Tunterm Dhcpd Type Enum
 
-enum: `relay`
+DHCP handling mode for the global tunnel termination config. enum: `relay`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `relay`
 | Name |
 |  --- |
 | `relay` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeTuntermDhcpdType := models.MxedgeTuntermDhcpdTypeEnum_RELAY
+
+}
+```
 

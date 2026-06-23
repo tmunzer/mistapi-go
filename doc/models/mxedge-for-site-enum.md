@@ -15,3 +15,18 @@ enum: `any`, `false`, `true`
 | `false` |
 | `true` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeForSite := models.MxedgeForSiteEnum_ANY
+
+}
+```
+

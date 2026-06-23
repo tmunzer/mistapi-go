@@ -8,41 +8,75 @@ import (
 )
 
 // TroubleshootCallItem represents a TroubleshootCallItem struct.
+// Per-sample call troubleshooting metrics
 type TroubleshootCallItem struct {
-	ApNumClients           *float64              `json:"ap_num_clients,omitempty"`
-	ApRtt                  *float64              `json:"ap_rtt,omitempty"`
-	AudioIn                *CallTroubleshootData `json:"audio_in,omitempty"`
-	AudioOut               *CallTroubleshootData `json:"audio_out,omitempty"`
-	ClientCpu              *float64              `json:"client_cpu,omitempty"`
-	ClientNStreams         *float64              `json:"client_n_streams,omitempty"`
-	ClientRadioBand        *float64              `json:"client_radio_band,omitempty"`
-	ClientRssi             *float64              `json:"client_rssi,omitempty"`
-	ClientRxBytes          *float64              `json:"client_rx_bytes,omitempty"`
-	ClientRxRates          *float64              `json:"client_rx_rates,omitempty"`
-	ClientRxRetries        *float64              `json:"client_rx_retries,omitempty"`
-	ClientTxBytes          *float64              `json:"client_tx_bytes,omitempty"`
-	ClientTxRates          *float64              `json:"client_tx_rates,omitempty"`
-	ClientTxRetries        *float64              `json:"client_tx_retries,omitempty"`
-	ClientVpnDistance      *float64              `json:"client_vpn_distance,omitempty"`
-	ClientWifiVersion      *float64              `json:"client_wifi_version,omitempty"`
-	Expected               *float64              `json:"expected,omitempty"`
-	RadioApChange          *float64              `json:"radio_ap_change,omitempty"`
-	RadioBandwidth         *float64              `json:"radio_bandwidth,omitempty"`
-	RadioChannel           *float64              `json:"radio_channel,omitempty"`
-	RadioRxFailed          *float64              `json:"radio_rx_failed,omitempty"`
-	RadioTxPower           *float64              `json:"radio_tx_power,omitempty"`
-	RadioUtil              *float64              `json:"radio_util,omitempty"`
-	RadioUtilInterference  *float64              `json:"radio_util_interference,omitempty"`
-	SiteNumClients         *float64              `json:"site_num_clients,omitempty"`
-	SiteWanAvgDownloadMbps *float64              `json:"site_wan_avg_download_mbps,omitempty"`
-	SiteWanAvgUploadMbps   *float64              `json:"site_wan_avg_upload_mbps,omitempty"`
-	SiteWanDownloadMbps    *float64              `json:"site_wan_download_mbps,omitempty"`
-	SiteWanJitter          *float64              `json:"site_wan_jitter,omitempty"`
-	SiteWanRtt             *float64              `json:"site_wan_rtt,omitempty"`
-	SiteWanUploadMbps      *float64              `json:"site_wan_upload_mbps,omitempty"`
-	// Epoch (seconds)
-	Timestamp            *float64               `json:"timestamp,omitempty"`
-	VideoIn              *CallTroubleshootData  `json:"video_in,omitempty"`
+	// Troubleshooting metric value for AP client count
+	ApNumClients *float64 `json:"ap_num_clients,omitempty"`
+	// Troubleshooting metric value for AP round-trip time
+	ApRtt *float64 `json:"ap_rtt,omitempty"`
+	// Per-media call troubleshooting metric values
+	AudioIn *CallTroubleshootData `json:"audio_in,omitempty"`
+	// Per-media call troubleshooting metric values
+	AudioOut *CallTroubleshootData `json:"audio_out,omitempty"`
+	// Troubleshooting metric value for client CPU load
+	ClientCpu *float64 `json:"client_cpu,omitempty"`
+	// Troubleshooting metric value for the number of client spatial streams
+	ClientNStreams *float64 `json:"client_n_streams,omitempty"`
+	// Troubleshooting metric value for the client radio band
+	ClientRadioBand *float64 `json:"client_radio_band,omitempty"`
+	// Troubleshooting metric value for client RSSI
+	ClientRssi *float64 `json:"client_rssi,omitempty"`
+	// Troubleshooting metric value for bytes received by the client
+	ClientRxBytes *float64 `json:"client_rx_bytes,omitempty"`
+	// Troubleshooting metric value for client receive data rates
+	ClientRxRates *float64 `json:"client_rx_rates,omitempty"`
+	// Troubleshooting metric value for client receive retries
+	ClientRxRetries *float64 `json:"client_rx_retries,omitempty"`
+	// Troubleshooting metric value for bytes transmitted by the client
+	ClientTxBytes *float64 `json:"client_tx_bytes,omitempty"`
+	// Troubleshooting metric value for client transmit data rates
+	ClientTxRates *float64 `json:"client_tx_rates,omitempty"`
+	// Troubleshooting metric value for client transmit retries
+	ClientTxRetries *float64 `json:"client_tx_retries,omitempty"`
+	// Troubleshooting metric value for client VPN distance
+	ClientVpnDistance *float64 `json:"client_vpn_distance,omitempty"`
+	// Troubleshooting metric value for the client Wi-Fi version
+	ClientWifiVersion *float64 `json:"client_wifi_version,omitempty"`
+	// Model baseline value expected for this call sample
+	Expected *float64 `json:"expected,omitempty"`
+	// Troubleshooting metric value for AP changes on the radio path
+	RadioApChange *float64 `json:"radio_ap_change,omitempty"`
+	// Troubleshooting metric value for radio channel bandwidth
+	RadioBandwidth *float64 `json:"radio_bandwidth,omitempty"`
+	// Troubleshooting metric value for the radio channel
+	RadioChannel *float64 `json:"radio_channel,omitempty"`
+	// Troubleshooting metric value for failed radio receive attempts
+	RadioRxFailed *float64 `json:"radio_rx_failed,omitempty"`
+	// Troubleshooting metric value for radio transmit power
+	RadioTxPower *float64 `json:"radio_tx_power,omitempty"`
+	// Troubleshooting metric value for radio utilization
+	RadioUtil *float64 `json:"radio_util,omitempty"`
+	// Troubleshooting metric value for radio interference utilization
+	RadioUtilInterference *float64 `json:"radio_util_interference,omitempty"`
+	// Troubleshooting metric value for the number of clients at the site
+	SiteNumClients *float64 `json:"site_num_clients,omitempty"`
+	// Troubleshooting metric value for site WAN average download throughput
+	SiteWanAvgDownloadMbps *float64 `json:"site_wan_avg_download_mbps,omitempty"`
+	// Troubleshooting metric value for site WAN average upload throughput
+	SiteWanAvgUploadMbps *float64 `json:"site_wan_avg_upload_mbps,omitempty"`
+	// Troubleshooting metric value for site WAN download throughput
+	SiteWanDownloadMbps *float64 `json:"site_wan_download_mbps,omitempty"`
+	// Troubleshooting metric value for site WAN jitter
+	SiteWanJitter *float64 `json:"site_wan_jitter,omitempty"`
+	// Troubleshooting metric value for site WAN round-trip time
+	SiteWanRtt *float64 `json:"site_wan_rtt,omitempty"`
+	// Troubleshooting metric value for site WAN upload throughput
+	SiteWanUploadMbps *float64 `json:"site_wan_upload_mbps,omitempty"`
+	// Epoch timestamp, in seconds
+	Timestamp *float64 `json:"timestamp,omitempty"`
+	// Per-media call troubleshooting metric values
+	VideoIn *CallTroubleshootData `json:"video_in,omitempty"`
+	// Per-media call troubleshooting metric values
 	VideoOut             *CallTroubleshootData  `json:"video_out,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

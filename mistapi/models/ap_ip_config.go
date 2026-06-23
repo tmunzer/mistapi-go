@@ -8,27 +8,31 @@ import (
 )
 
 // ApIpConfig represents a ApIpConfig struct.
-// IP AP settings
+// Management IP addressing settings for an access point
 type ApIpConfig struct {
-	// If `type`==`static`
+	// If `type`==`static`. DNS server IP addresses for AP management traffic
 	Dns []string `json:"dns,omitempty"`
-	// Required if `type`==`static`
+	// Required if `type`==`static`; DNS search suffixes applied to AP management lookups
 	DnsSuffix []string `json:"dns_suffix,omitempty"`
-	// Required if `type`==`static`
-	Gateway  *string `json:"gateway,omitempty"`
+	// Required if `type`==`static`. IPv4 default gateway for AP management traffic
+	Gateway *string `json:"gateway,omitempty"`
+	// Required if `type6`==`static`. IPv6 default gateway for AP management traffic when static IPv6 addressing is used
 	Gateway6 *string `json:"gateway6,omitempty"`
-	// Required if `type`==`static`
-	Ip  *string `json:"ip,omitempty"`
+	// Required if `type`==`static`. Static IPv4 address for the AP management interface
+	Ip *string `json:"ip,omitempty"`
+	// Required if `type6`==`static`. Static IPv6 address for the AP management interface
 	Ip6 *string `json:"ip6,omitempty"`
-	Mtu *int    `json:"mtu,omitempty"`
-	// Required if `type`==`static`
-	Netmask  *string `json:"netmask,omitempty"`
+	// Maximum transmission unit for AP management traffic
+	Mtu *int `json:"mtu,omitempty"`
+	// Required if `type`==`static`. IPv4 netmask for the AP management interface
+	Netmask *string `json:"netmask,omitempty"`
+	// Required if `type6`==`static`. IPv6 prefix length for the AP management interface
 	Netmask6 *string `json:"netmask6,omitempty"`
-	// enum: `dhcp`, `static`
+	// IP address assignment mode, either DHCP or static. enum: `dhcp`, `static`
 	Type *IpTypeEnum `json:"type,omitempty"`
 	// enum: `autoconf`, `dhcp`, `disabled`, `static`
 	Type6 *IpType6Enum `json:"type6,omitempty"`
-	// Management VLAN id, default is 1 (untagged)
+	// Management VLAN ID, default is 1 (untagged)
 	VlanId               *int                   `json:"vlan_id,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

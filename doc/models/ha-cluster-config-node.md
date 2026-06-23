@@ -1,6 +1,8 @@
 
 # Ha Cluster Config Node
 
+HA cluster inventory node identified by MAC address
+
 ## Structure
 
 `HaClusterConfigNode`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Mac` | `*string` | Optional | Node mac, should be unassigned |
+| `Mac` | `*string` | Optional | Gateway node MAC address for an inventory node that is currently unassigned |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac": "aff827549235"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    haClusterConfigNode := models.HaClusterConfigNode{
+        Mac:                  models.ToPointer("aff827549235"),
+    }
+
 }
 ```
 

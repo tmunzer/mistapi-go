@@ -9,11 +9,12 @@ import (
 )
 
 // ServicePolicyAamw represents a ServicePolicyAamw struct.
-// SRX only
+// SRX advanced anti-malware settings for a service policy
 type ServicePolicyAamw struct {
-	// org-level Advanced Advance Anti Malware Profile (SkyAtp) Profile can be used, this takes precedence over 'profile'
+	// Organization-level advanced anti-malware profile ID; takes precedence over inline `profile` settings
 	AamwprofileId *uuid.UUID `json:"aamwprofile_id,omitempty"`
-	Enabled       *bool      `json:"enabled,omitempty"`
+	// Whether advanced anti-malware inspection is enabled for the service policy
+	Enabled *bool `json:"enabled,omitempty"`
 	// enum: `docsonly`, `executables`, `standard`
 	Profile              *ServicePolicyAamwProfileEnum `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{}        `json:"_"`

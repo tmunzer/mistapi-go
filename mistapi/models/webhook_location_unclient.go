@@ -12,9 +12,9 @@ import (
 // WebhookLocationUnclient represents a WebhookLocationUnclient struct.
 // Sample of the `location-unclient` webhook payload.
 type WebhookLocationUnclient struct {
-	// List of events
+	// Unconnected client location events included in this webhook delivery
 	Events []WebhookLocationUnclientEvent `json:"events"`
-	// enum: `location-unclient`
+	// Webhook topic name for unconnected client location deliveries. enum: `location-unclient`
 	Topic                string                 `json:"topic"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

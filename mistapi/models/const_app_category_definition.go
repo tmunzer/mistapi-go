@@ -10,13 +10,15 @@ import (
 )
 
 // ConstAppCategoryDefinition represents a ConstAppCategoryDefinition struct.
+// Application category definition returned by the constants API
 type ConstAppCategoryDefinition struct {
 	// Description of the app category
-	Display string                             `json:"display"`
+	Display string `json:"display"`
+	// Platform-specific application category filters
 	Filters *ConstAppCategoryDefinitionFilters `json:"filters,omitempty"`
 	// List of other App Categories contained by this one
 	Includes []string `json:"includes,omitempty"`
-	// Key name of the app category
+	// Machine-readable application category key
 	Key                  string                 `json:"key"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

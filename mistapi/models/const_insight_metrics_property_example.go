@@ -9,6 +9,7 @@ import (
 )
 
 // ConstInsightMetricsPropertyExample represents a ConstInsightMetricsPropertyExample struct.
+// Example value for an insight metric property
 type ConstInsightMetricsPropertyExample struct {
 	value       any
 	isNumber    bool
@@ -113,6 +114,7 @@ func (c *ConstInsightMetricsPropertyExample) AsObject() (
 }
 
 // internalConstInsightMetricsPropertyExample represents a constInsightMetricsPropertyExample struct.
+// Example value for an insight metric property
 type internalConstInsightMetricsPropertyExample struct{}
 
 var ConstInsightMetricsPropertyExampleContainer internalConstInsightMetricsPropertyExample

@@ -9,7 +9,9 @@ import (
 )
 
 // PskIdList represents a PskIdList struct.
+// PSK delete request payload
 type PskIdList struct {
+	// PSK identifiers included in a delete request
 	PskIds               []uuid.UUID            `json:"psk_ids,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

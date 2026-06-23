@@ -1,7 +1,7 @@
 
 # Site Setting Mxedge
 
-Site Mist Edges form a cluster of RadSec Proxy servers
+Service settings for the site Mist Edge cluster
 
 ## Structure
 
@@ -11,96 +11,106 @@ Site Mist Edges form a cluster of RadSec Proxy servers
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | Configure cloud-assisted dynamic authorization service on this cluster of mist edges |
-| `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | - |
-| `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | - |
-| `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | MxEdge RadSec Configuration |
+| `MistDas` | [`*models.MxedgeDas`](../../doc/models/mxedge-das.md) | Optional | Cloud-assisted Dynamic Authorization Service settings for a Mist Edge cluster |
+| `MistNac` | [`*models.MxclusterNac`](../../doc/models/mxcluster-nac.md) | Optional | Mist NAC RADIUS settings for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and the Mist NAC |
+| `MistNacedge` | [`*models.MistNacedge`](../../doc/models/mist-nacedge.md) | Optional | Mist NAC Site Survivability settings for the site |
+| `Radsec` | [`*models.MxclusterRadsec`](../../doc/models/mxcluster-radsec.md) | Optional | RadSec proxy configuration for a Mist Edge cluster. Used when the Mist Edge Cluster is used as a RADIUS Proxy between the local devices and external RADIUS Server. |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mist_das": {
-    "coa_servers": [
-      {
-        "disable_event_timestamp_check": false,
-        "enabled": false,
-        "host": "host8",
-        "port": 28,
-        "require_message_authenticator": false
-      },
-      {
-        "disable_event_timestamp_check": false,
-        "enabled": false,
-        "host": "host8",
-        "port": 28,
-        "require_message_authenticator": false
-      }
-    ],
-    "enabled": false
-  },
-  "mist_nac": {
-    "acct_server_port": 70,
-    "auth_server_port": 34,
-    "client_ips": {
-      "key0": {
-        "require_message_authenticator": false,
-        "secret": "secret4",
-        "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet"
-      },
-      "key1": {
-        "require_message_authenticator": false,
-        "secret": "secret4",
-        "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet"
-      },
-      "key2": {
-        "require_message_authenticator": false,
-        "secret": "secret4",
-        "site_id": "0000197c-0000-0000-0000-000000000000",
-        "vendor": "cisco-aironet"
-      }
-    },
-    "enabled": false,
-    "secret": "secret6"
-  },
-  "mist_nacedge": {
-    "auth_ttl": 110,
-    "default_dot1x_vlan": "default_dot1x_vlan4",
-    "default_vlan": "default_vlan6",
-    "enabled": false,
-    "mxedge_hosts": [
-      "mxedge_hosts7",
-      "mxedge_hosts8",
-      "mxedge_hosts9"
-    ]
-  },
-  "radsec": {
-    "acct_servers": [
-      {
-        "host": "host4",
-        "port": 254,
-        "secret": "secret0",
-        "ssids": [
-          "ssids5",
-          "ssids6"
-        ]
-      }
-    ],
-    "auth_servers": [
-      {
-        "host": "host0",
-        "inband_status_check": false,
-        "inband_status_interval": 160,
-        "keywrap_enabled": false,
-        "keywrap_format": "ascii"
-      }
-    ],
-    "enabled": false,
-    "match_ssid": false,
-    "nas_ip_source": "tunnel"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    siteSettingMxedge := models.SiteSettingMxedge{
+        MistDas:              models.ToPointer(models.MxedgeDas{
+            CoaServers:           []models.MxedgeDasCoaServer{
+                models.MxedgeDasCoaServer{
+                    DisableEventTimestampCheck:  models.ToPointer(false),
+                    Enabled:                     models.ToPointer(false),
+                    Host:                        models.ToPointer("host8"),
+                    Port:                        models.ToPointer(28),
+                    RequireMessageAuthenticator: models.ToPointer(false),
+                },
+                models.MxedgeDasCoaServer{
+                    DisableEventTimestampCheck:  models.ToPointer(false),
+                    Enabled:                     models.ToPointer(false),
+                    Host:                        models.ToPointer("host8"),
+                    Port:                        models.ToPointer(28),
+                    RequireMessageAuthenticator: models.ToPointer(false),
+                },
+            },
+            Enabled:              models.ToPointer(false),
+        }),
+        MistNac:              models.ToPointer(models.MxclusterNac{
+            AcctServerPort:       models.ToPointer(70),
+            AuthServerPort:       models.ToPointer(34),
+            ClientIps:            map[string]models.MxclusterNacClientIp{
+                "key0": models.MxclusterNacClientIp{
+                    RequireMessageAuthenticator: models.ToPointer(false),
+                    Secret:                      models.ToPointer("secret4"),
+                    SiteId:                      models.ToPointer(uuid.MustParse("0000197c-0000-0000-0000-000000000000")),
+                    Vendor:                      models.ToPointer(models.MxclusterNacClientVendorEnum_CISCOAIRONET),
+                },
+                "key1": models.MxclusterNacClientIp{
+                    RequireMessageAuthenticator: models.ToPointer(false),
+                    Secret:                      models.ToPointer("secret4"),
+                    SiteId:                      models.ToPointer(uuid.MustParse("0000197c-0000-0000-0000-000000000000")),
+                    Vendor:                      models.ToPointer(models.MxclusterNacClientVendorEnum_CISCOAIRONET),
+                },
+                "key2": models.MxclusterNacClientIp{
+                    RequireMessageAuthenticator: models.ToPointer(false),
+                    Secret:                      models.ToPointer("secret4"),
+                    SiteId:                      models.ToPointer(uuid.MustParse("0000197c-0000-0000-0000-000000000000")),
+                    Vendor:                      models.ToPointer(models.MxclusterNacClientVendorEnum_CISCOAIRONET),
+                },
+            },
+            Enabled:              models.ToPointer(false),
+            Secret:               models.ToPointer("secret6"),
+        }),
+        MistNacedge:          models.ToPointer(models.MistNacedge{
+            AuthTtl:              models.ToPointer(110),
+            CachingSiteIds:       []uuid.UUID{
+                uuid.MustParse("000023ff-0000-0000-0000-000000000000"),
+                uuid.MustParse("00002400-0000-0000-0000-000000000000"),
+                uuid.MustParse("00002401-0000-0000-0000-000000000000"),
+            },
+            DefaultDot1xVlan:     models.ToPointer("default_dot1x_vlan4"),
+            DefaultVlan:          models.ToPointer("default_vlan6"),
+            Enabled:              models.ToPointer(false),
+        }),
+        Radsec:               models.ToPointer(models.MxclusterRadsec{
+            AcctServers:          []models.MxclusterRadsecAcctServer{
+                models.MxclusterRadsecAcctServer{
+                    Host:                 models.ToPointer("host4"),
+                    Port:                 models.ToPointer(254),
+                    Secret:               models.ToPointer("secret0"),
+                    Ssids:                []string{
+                        "ssids5",
+                        "ssids6",
+                    },
+                },
+            },
+            AuthServers:          []models.MxclusterRadsecAuthServer{
+                models.MxclusterRadsecAuthServer{
+                    Host:                 models.ToPointer("host0"),
+                    InbandStatusCheck:    models.ToPointer(false),
+                    InbandStatusInterval: models.ToPointer(160),
+                    KeywrapEnabled:       models.ToPointer(false),
+                    KeywrapFormat:        models.NewOptional(models.ToPointer(models.MxclusterRadAuthServerKeywrapFormatEnum_ASCII)),
+                },
+            },
+            Enabled:              models.ToPointer(false),
+            MatchSsid:            models.ToPointer(false),
+            NasIpSource:          models.ToPointer(models.MxclusterRadsecNasIpSourceEnum_TUNNEL),
+        }),
+    }
+
 }
 ```
 

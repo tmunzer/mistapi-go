@@ -1,7 +1,7 @@
 
 # License
 
-License
+Organization license entitlement, subscription, and usage summary
 
 ## Structure
 
@@ -11,61 +11,71 @@ License
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Amendments` | [`[]models.LicenseAmendment`](../../doc/models/license-amendment.md) | Optional | **Constraints**: *Unique Items Required* |
-| `Entitled` | `map[string]int` | Optional | Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses entitled. |
-| `FullyLoaded` | `map[string]int` | Optional | Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN"). |
-| `Licenses` | [`[]models.LicenseSub`](../../doc/models/license-sub.md) | Optional | - |
-| `Summary` | `map[string]int` | Optional | Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN). |
-| `Usages` | `map[string]int` | Optional | Number of available licenes. Property key is the service name (e.g. "SUB-MAN"). name (e.g. "SUB-MAN") |
+| `Amendments` | [`[]models.LicenseAmendment`](../../doc/models/license-amendment.md) | Optional, Read-only | Read-only list of license amendments<br><br>**Constraints**: *Unique Items Required* |
+| `Entitled` | `map[string]int` | Optional, Read-only | Property key is license type (e.g. SUB-MAN) and Property value is the number of licenses entitled. |
+| `FullyLoaded` | `map[string]int` | Optional, Read-only | Maximum number of licenses that may be required if the service is enabled on all the Organization Devices. Property key is the service name (e.g. "SUB-MAN"). |
+| `Licenses` | [`[]models.LicenseSub`](../../doc/models/license-sub.md) | Optional | License subscriptions for the organization |
+| `Summary` | `map[string]int` | Optional, Read-only | Number of licenses currently consumed. Property key is license type (e.g. SUB-MAN). |
+| `Usages` | `map[string]int` | Optional, Read-only | Number of available licenses. Property key is the service name (e.g. "SUB-MAN"). |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amendments": [
-    {
-      "created_time": 132.88,
-      "end_time": 210,
-      "id": "00000292-0000-0000-0000-000000000000",
-      "modified_time": 202.08,
-      "quantity": 182
-    },
-    {
-      "created_time": 132.88,
-      "end_time": 210,
-      "id": "00000292-0000-0000-0000-000000000000",
-      "modified_time": 202.08,
-      "quantity": 182
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    license := models.License{
+        Amendments:           []models.LicenseAmendment{
+            models.LicenseAmendment{
+                CreatedTime:          models.ToPointer(float64(132.88)),
+                EndTime:              models.ToPointer(210),
+                Id:                   models.ToPointer(uuid.MustParse("00000292-0000-0000-0000-000000000000")),
+                ModifiedTime:         models.ToPointer(float64(202.08)),
+                Quantity:             models.ToPointer(182),
+            },
+            models.LicenseAmendment{
+                CreatedTime:          models.ToPointer(float64(132.88)),
+                EndTime:              models.ToPointer(210),
+                Id:                   models.ToPointer(uuid.MustParse("00000292-0000-0000-0000-000000000000")),
+                ModifiedTime:         models.ToPointer(float64(202.08)),
+                Quantity:             models.ToPointer(182),
+            },
+        },
+        Entitled:             map[string]int{
+            "key0": 120,
+            "key1": 119,
+        },
+        FullyLoaded:          map[string]int{
+            "key0": 214,
+            "key1": 215,
+            "key2": 216,
+        },
+        Licenses:             []models.LicenseSub{
+            models.LicenseSub{
+                CreatedTime:          models.ToPointer(float64(186.08)),
+                EndTime:              models.ToPointer(154),
+                Id:                   models.ToPointer(uuid.MustParse("0000017a-0000-0000-0000-000000000000")),
+                ModifiedTime:         models.ToPointer(float64(148.88)),
+                OrderId:              models.ToPointer("order_id2"),
+            },
+            models.LicenseSub{
+                CreatedTime:          models.ToPointer(float64(186.08)),
+                EndTime:              models.ToPointer(154),
+                Id:                   models.ToPointer(uuid.MustParse("0000017a-0000-0000-0000-000000000000")),
+                ModifiedTime:         models.ToPointer(float64(148.88)),
+                OrderId:              models.ToPointer("order_id2"),
+            },
+        },
+        Summary:              map[string]int{
+            "key0": 22,
+        },
     }
-  ],
-  "entitled": {
-    "key0": 120,
-    "key1": 119
-  },
-  "fully_loaded": {
-    "key0": 214,
-    "key1": 215,
-    "key2": 216
-  },
-  "licenses": [
-    {
-      "created_time": 186.08,
-      "end_time": 154,
-      "id": "0000017a-0000-0000-0000-000000000000",
-      "modified_time": 148.88,
-      "order_id": "order_id2"
-    },
-    {
-      "created_time": 186.08,
-      "end_time": 154,
-      "id": "0000017a-0000-0000-0000-000000000000",
-      "modified_time": 148.88,
-      "order_id": "order_id2"
-    }
-  ],
-  "summary": {
-    "key0": 22
-  }
+
 }
 ```
 

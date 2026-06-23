@@ -8,6 +8,7 @@ import (
 )
 
 // ApEslConfig represents a ApEslConfig struct.
+// Electronic shelf label integration settings for an AP
 type ApEslConfig struct {
 	// Only if `type`==`imagotag` or `type`==`native`
 	Cacert *string `json:"cacert,omitempty"`

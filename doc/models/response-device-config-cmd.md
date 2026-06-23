@@ -1,6 +1,8 @@
 
 # Response Device Config Cmd
 
+Device configuration command response
+
 ## Structure
 
 `ResponseDeviceConfigCmd`
@@ -9,13 +11,22 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Cmd` | `string` | Required | - |
+| `Cmd` | `string` | Required | Configuration command returned for the device |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cmd": "cmd8"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseDeviceConfigCmd := models.ResponseDeviceConfigCmd{
+        Cmd:                  "cmd0",
+    }
+
 }
 ```
 

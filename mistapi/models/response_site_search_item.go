@@ -11,20 +11,31 @@ import (
 )
 
 // ResponseSiteSearchItem represents a ResponseSiteSearchItem struct.
+// Site record returned by organization site search
 type ResponseSiteSearchItem struct {
-	AutoUpgradeEnabled bool             `json:"auto_upgrade_enabled"`
-	AutoUpgradeVersion string           `json:"auto_upgrade_version"`
-	CountryCode        Optional[string] `json:"country_code"`
-	HoneypotEnabled    bool             `json:"honeypot_enabled"`
+	// Whether automatic firmware upgrade is enabled for the site
+	AutoUpgradeEnabled bool `json:"auto_upgrade_enabled"`
+	// Desired automatic firmware upgrade version track for the site
+	AutoUpgradeVersion string `json:"auto_upgrade_version"`
+	// Country code configured for the site, or null if unset
+	CountryCode Optional[string] `json:"country_code"`
+	// Whether honeypot detection is enabled for the site
+	HoneypotEnabled bool `json:"honeypot_enabled"`
 	// Unique ID of the object instance in the Mist Organization
-	Id     uuid.UUID `json:"id"`
-	Name   string    `json:"name"`
-	OrgId  uuid.UUID `json:"org_id"`
+	Id uuid.UUID `json:"id"`
+	// Display name of the site
+	Name string `json:"name"`
+	// Unique identifier of a Mist organization
+	OrgId uuid.UUID `json:"org_id"`
+	// Unique identifier of a Mist site
 	SiteId uuid.UUID `json:"site_id"`
-	// Epoch (seconds)
-	Timestamp            float64                `json:"timestamp"`
-	Timezone             string                 `json:"timezone"`
-	VnaEnabled           bool                   `json:"vna_enabled"`
+	// Epoch timestamp, in seconds
+	Timestamp float64 `json:"timestamp"`
+	// Time zone configured for the site
+	Timezone string `json:"timezone"`
+	// Whether Virtual Network Assistant is enabled for the site
+	VnaEnabled bool `json:"vna_enabled"`
+	// Whether Wi-Fi service is enabled for the site
 	WifiEnabled          bool                   `json:"wifi_enabled"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

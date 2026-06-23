@@ -8,8 +8,9 @@ import (
 )
 
 // UtilsBouncePort represents a UtilsBouncePort struct.
+// Request to bounce one or more device ports
 type UtilsBouncePort struct {
-	// List of ports to bounce
+	// Device port identifiers to bounce
 	Ports                []string               `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

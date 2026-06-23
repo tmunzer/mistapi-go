@@ -11,23 +11,46 @@ Sample of the `guest-authorizations` webhook payload.
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Events` | [`[]models.WebhookGuestAuthorizationsEvent`](../../doc/models/webhook-guest-authorizations-event.md) | Optional | List of events |
-| `Topic` | [`*models.WebhookGuestAuthorizationsTopicEnum`](../../doc/models/webhook-guest-authorizations-topic-enum.md) | Optional | enum: `guest-authorizations` |
+| `Events` | [`[]models.WebhookGuestAuthorizationsEvent`](../../doc/models/webhook-guest-authorizations-event.md) | Optional | Guest authorization events included in this webhook delivery |
+| `Topic` | [`*models.WebhookGuestAuthorizationsTopicEnum`](../../doc/models/webhook-guest-authorizations-topic-enum.md) | Optional | Webhook topic name for guest authorization deliveries. enum: `guest-authorizations` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "events": [
-    {
-      "ap": "ap6",
-      "auth_method": "auth_method4",
-      "authorized_expiring_time": 42,
-      "authorized_time": 252,
-      "carrier": "carrier2"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookGuestAuthorizations := models.WebhookGuestAuthorizations{
+        Events:               []models.WebhookGuestAuthorizationsEvent{
+            models.WebhookGuestAuthorizationsEvent{
+                Ap:                     models.ToPointer("ap6"),
+                AuthMethod:             models.ToPointer("auth_method4"),
+                AuthorizedExpiringTime: models.ToPointer(42),
+                AuthorizedTime:         models.ToPointer(252),
+                Carrier:                models.ToPointer("carrier2"),
+            },
+            models.WebhookGuestAuthorizationsEvent{
+                Ap:                     models.ToPointer("ap6"),
+                AuthMethod:             models.ToPointer("auth_method4"),
+                AuthorizedExpiringTime: models.ToPointer(42),
+                AuthorizedTime:         models.ToPointer(252),
+                Carrier:                models.ToPointer("carrier2"),
+            },
+            models.WebhookGuestAuthorizationsEvent{
+                Ap:                     models.ToPointer("ap6"),
+                AuthMethod:             models.ToPointer("auth_method4"),
+                AuthorizedExpiringTime: models.ToPointer(42),
+                AuthorizedTime:         models.ToPointer(252),
+                Carrier:                models.ToPointer("carrier2"),
+            },
+        },
+        Topic:                models.ToPointer(models.WebhookGuestAuthorizationsTopicEnum_GUESTAUTHORIZATIONS),
     }
-  ],
-  "topic": "guest-authorizations"
+
 }
 ```
 

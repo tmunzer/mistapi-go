@@ -1,6 +1,8 @@
 
 # Device Search Radius Stat
 
+RADIUS authentication counters and server status for a device search result
+
 ## Structure
 
 `DeviceSearchRadiusStat`
@@ -11,17 +13,26 @@
 |  --- | --- | --- | --- |
 | `AuthAccepts` | `*int` | Optional | Number of accepted authentication requests |
 | `AuthRejects` | `*int` | Optional | Number of rejected authentication requests |
-| `AuthServerStatus` | [`*models.DeviceSearchRadiusFilterStatusEnum`](../../doc/models/device-search-radius-filter-status-enum.md) | Optional | Status of the device search radius filter. enum: `up`, `down`, `unreachable` |
+| `AuthServerStatus` | [`*models.DeviceSearchRadiusFilterStatusEnum`](../../doc/models/device-search-radius-filter-status-enum.md) | Optional | Status of the device search RADIUS filter. enum: `up`, `down`, `unreachable` |
 | `AuthTimeouts` | `*int` | Optional | Number of authentication timeouts |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auth_accepts": 114,
-  "auth_rejects": 84,
-  "auth_server_status": "down",
-  "auth_timeouts": 238
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceSearchRadiusStat := models.DeviceSearchRadiusStat{
+        AuthAccepts:          models.ToPointer(106),
+        AuthRejects:          models.ToPointer(92),
+        AuthServerStatus:     models.ToPointer(models.DeviceSearchRadiusFilterStatusEnum_UNREACHABLE),
+        AuthTimeouts:         models.ToPointer(230),
+    }
+
 }
 ```
 

@@ -8,7 +8,9 @@ import (
 )
 
 // TunnelProviderOptionsZscalerSubLocation represents a TunnelProviderOptionsZscalerSubLocation struct.
+// Zscaler sub-location settings for a specific network
 type TunnelProviderOptionsZscalerSubLocation struct {
+	// Whether this sub-location blocks internet access until the Acceptable Use Policy is accepted
 	AupBlockInternetUntilAccepted *bool `json:"aup_block_internet_until_accepted,omitempty"`
 	// Can only be `true` when `auth_required`==`false`, display Acceptable Use Policy (AUP)
 	AupEnabled *bool `json:"aup_enabled,omitempty"`

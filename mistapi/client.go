@@ -162,6 +162,7 @@ type ClientInterface interface {
 	SitesMapsAutoPlacement() *SitesMapsAutoPlacement
 	SitesMapsAutoZone() *SitesMapsAutoZone
 	SitesMapStacks() *SitesMapStacks
+	SitesMarvisConfigs() *SitesMarvisConfigs
 	SitesMxEdges() *SitesMxEdges
 	SitesNetworkTemplates() *SitesNetworkTemplates
 	SitesNetworks() *SitesNetworks
@@ -222,6 +223,7 @@ type ClientInterface interface {
 	UtilitiesLocation() *UtilitiesLocation
 	UtilitiesMxEdge() *UtilitiesMxEdge
 	UtilitiesUpgrade() *UtilitiesUpgrade
+	OrgsStatsMarvisClients() *OrgsStatsMarvisClients
 	UserAgent() *string
 }
 
@@ -379,6 +381,7 @@ type client struct {
 	sitesMapsAutoPlacement           SitesMapsAutoPlacement
 	sitesMapsAutoZone                SitesMapsAutoZone
 	sitesMapStacks                   SitesMapStacks
+	sitesMarvisConfigs               SitesMarvisConfigs
 	sitesMxEdges                     SitesMxEdges
 	sitesNetworkTemplates            SitesNetworkTemplates
 	sitesNetworks                    SitesNetworks
@@ -439,6 +442,7 @@ type client struct {
 	utilitiesLocation                UtilitiesLocation
 	utilitiesMxEdge                  UtilitiesMxEdge
 	utilitiesUpgrade                 UtilitiesUpgrade
+	orgsStatsMarvisClients           OrgsStatsMarvisClients
 }
 
 // NewClient is the constructor for creating a new client instance.
@@ -615,6 +619,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.sitesMapsAutoPlacement = *NewSitesMapsAutoPlacement(*baseController)
 	client.sitesMapsAutoZone = *NewSitesMapsAutoZone(*baseController)
 	client.sitesMapStacks = *NewSitesMapStacks(*baseController)
+	client.sitesMarvisConfigs = *NewSitesMarvisConfigs(*baseController)
 	client.sitesMxEdges = *NewSitesMxEdges(*baseController)
 	client.sitesNetworkTemplates = *NewSitesNetworkTemplates(*baseController)
 	client.sitesNetworks = *NewSitesNetworks(*baseController)
@@ -675,6 +680,7 @@ func NewClient(configuration Configuration) ClientInterface {
 	client.utilitiesLocation = *NewUtilitiesLocation(*baseController)
 	client.utilitiesMxEdge = *NewUtilitiesMxEdge(*baseController)
 	client.utilitiesUpgrade = *NewUtilitiesUpgrade(*baseController)
+	client.orgsStatsMarvisClients = *NewOrgsStatsMarvisClients(*baseController)
 	return client
 }
 
@@ -1433,6 +1439,11 @@ func (c *client) SitesMapStacks() *SitesMapStacks {
 	return &c.sitesMapStacks
 }
 
+// SitesMarvisConfigs returns the sitesMarvisConfigs instance of the client.
+func (c *client) SitesMarvisConfigs() *SitesMarvisConfigs {
+	return &c.sitesMarvisConfigs
+}
+
 // SitesMxEdges returns the sitesMxEdges instance of the client.
 func (c *client) SitesMxEdges() *SitesMxEdges {
 	return &c.sitesMxEdges
@@ -1731,6 +1742,11 @@ func (c *client) UtilitiesMxEdge() *UtilitiesMxEdge {
 // UtilitiesUpgrade returns the utilitiesUpgrade instance of the client.
 func (c *client) UtilitiesUpgrade() *UtilitiesUpgrade {
 	return &c.utilitiesUpgrade
+}
+
+// OrgsStatsMarvisClients returns the orgsStatsMarvisClients instance of the client.
+func (c *client) OrgsStatsMarvisClients() *OrgsStatsMarvisClients {
+	return &c.orgsStatsMarvisClients
 }
 
 // UserAgent returns the userAgent instance of the client.

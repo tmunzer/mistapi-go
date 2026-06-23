@@ -14,3 +14,18 @@ For APs only and if `strategy`==`rrm`. Whether to upgrade mesh AP’s parallelly
 | `parallel` |
 | `sequential` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    upgradeDeviceRrmMeshUpgrade := models.UpgradeDeviceRrmMeshUpgradeEnum_PARALLEL
+
+}
+```
+

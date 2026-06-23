@@ -10,9 +10,13 @@ import (
 )
 
 // ConstLanguage represents a ConstLanguage struct.
+// Language option returned by the constants API
 type ConstLanguage struct {
-	Display              string                 `json:"display"`
-	DisplayNative        string                 `json:"display_native"`
+	// Localized language display name in the API default locale
+	Display string `json:"display"`
+	// Language display name in its native locale
+	DisplayNative string `json:"display_native"`
+	// Locale key used to select this language
 	Key                  string                 `json:"key"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

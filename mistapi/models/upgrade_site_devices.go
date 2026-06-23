@@ -9,10 +9,11 @@ import (
 )
 
 // UpgradeSiteDevices represents a UpgradeSiteDevices struct.
+// Site device upgrade request
 type UpgradeSiteDevices struct {
 	// Only if `strategy`==`canary`. Phases for canary deployment. Each phase represents percentage of devices that need to be upgraded in that phase. default is [1, 10, 50, 100]
 	CanaryPhases []int `json:"canary_phases,omitempty"`
-	// id's of devices which will be selected for upgrade
+	// Device IDs selected for a site device upgrade
 	DeviceIds []uuid.UUID `json:"device_ids,omitempty"`
 	// For APs only. Whether to allow local AP-to-AP FW upgrade
 	EnableP2p *bool `json:"enable_p2p,omitempty"`

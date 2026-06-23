@@ -1,7 +1,7 @@
 
 # Webhook Asset Raw Rssi Topic Enum
 
-enum: `asset-raw-rssi`
+Webhook topic name for asset raw RSSI deliveries. enum: `asset-raw-rssi`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `asset-raw-rssi`
 | Name |
 |  --- |
 | `asset-raw-rssi` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookAssetRawRssiTopic := models.WebhookAssetRawRssiTopicEnum_ASSETRAWRSSI
+
+}
+```
 

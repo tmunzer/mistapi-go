@@ -10,6 +10,7 @@ import (
 )
 
 // SwitchBgpConfigNeighbor represents a SwitchBgpConfigNeighbor struct.
+// Per-neighbor switch BGP session settings
 type SwitchBgpConfigNeighbor struct {
 	// Export policy must match one of the policy names defined in the `routing_policies` property.
 	ExportPolicy *string `json:"export_policy,omitempty"`
@@ -17,10 +18,11 @@ type SwitchBgpConfigNeighbor struct {
 	HoldTime *int `json:"hold_time,omitempty"`
 	// Import policy must match one of the policy names defined in the `routing_policies` property.
 	ImportPolicy *string `json:"import_policy,omitempty"`
-	MultihopTtl  *int    `json:"multihop_ttl,omitempty"`
-	// Autonomous System (AS) number of the BGP neighbor. For internal BGP, this must match `local_as`. For external BGP, this must differ from `local_as`.
-	NeighborAs           SwitchBgpConfigNeighborNeighborAs `json:"neighbor_as"`
-	AdditionalProperties map[string]interface{}            `json:"_"`
+	// Time-to-live value for multihop BGP sessions to this neighbor
+	MultihopTtl *int `json:"multihop_ttl,omitempty"`
+	// BGP AS, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}` )
+	NeighborAs           BgpAs                  `json:"neighbor_as"`
+	AdditionalProperties map[string]interface{} `json:"_"`
 }
 
 // String implements the fmt.Stringer interface for SwitchBgpConfigNeighbor,
@@ -91,11 +93,11 @@ func (s *SwitchBgpConfigNeighbor) UnmarshalJSON(input []byte) error {
 
 // tempSwitchBgpConfigNeighbor is a temporary struct used for validating the fields of SwitchBgpConfigNeighbor.
 type tempSwitchBgpConfigNeighbor struct {
-	ExportPolicy *string                            `json:"export_policy,omitempty"`
-	HoldTime     *int                               `json:"hold_time,omitempty"`
-	ImportPolicy *string                            `json:"import_policy,omitempty"`
-	MultihopTtl  *int                               `json:"multihop_ttl,omitempty"`
-	NeighborAs   *SwitchBgpConfigNeighborNeighborAs `json:"neighbor_as"`
+	ExportPolicy *string `json:"export_policy,omitempty"`
+	HoldTime     *int    `json:"hold_time,omitempty"`
+	ImportPolicy *string `json:"import_policy,omitempty"`
+	MultihopTtl  *int    `json:"multihop_ttl,omitempty"`
+	NeighborAs   *BgpAs  `json:"neighbor_as"`
 }
 
 func (s *tempSwitchBgpConfigNeighbor) validate() error {

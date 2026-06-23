@@ -15,3 +15,18 @@ enum: `fail`, `none`, `success`
 | `none` |
 | `success` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    fastRoamResult := models.FastRoamResultEnum_NONE
+
+}
+```
+

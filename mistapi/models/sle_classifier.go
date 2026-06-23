@@ -10,12 +10,19 @@ import (
 )
 
 // SleClassifier represents a SleClassifier struct.
+// Time-series classifier detail for an SLE metric
 type SleClassifier struct {
-	Impact               SleClassifierImpact    `json:"impact"`
-	Interval             float64                `json:"interval"`
-	Name                 string                 `json:"name"`
-	Samples              *SleClassifierSamples  `json:"samples,omitempty"`
-	XLabel               string                 `json:"x_label"`
+	// AP and user impact counts for an SLE classifier
+	Impact SleClassifierImpact `json:"impact"`
+	// Sample interval in seconds for classifier time-series data
+	Interval float64 `json:"interval"`
+	// Classifier name for the SLE metric
+	Name string `json:"name"`
+	// Per-interval sample arrays for an SLE classifier
+	Samples *SleClassifierSamples `json:"samples,omitempty"`
+	// Label for the classifier sample x-axis
+	XLabel string `json:"x_label"`
+	// Label for the classifier sample y-axis
 	YLabel               string                 `json:"y_label"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

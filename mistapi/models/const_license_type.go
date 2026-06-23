@@ -8,10 +8,15 @@ import (
 )
 
 // ConstLicenseType represents a ConstLicenseType struct.
+// License type definition returned by the constants API
 type ConstLicenseType struct {
-	Description          *string                `json:"description,omitempty"`
-	Includes             []string               `json:"includes,omitempty"`
-	Key                  *string                `json:"key,omitempty"`
+	// Human-readable description of the license type
+	Description *string `json:"description,omitempty"`
+	// License SKU components included by a license type
+	Includes []string `json:"includes,omitempty"`
+	// Machine-readable license type key
+	Key *string `json:"key,omitempty"`
+	// Display name of the license type
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

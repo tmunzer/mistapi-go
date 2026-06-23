@@ -13,3 +13,18 @@ Only if `mode`!=`dynamic`. If dot1x is desired, set to dot1x. enum: `dot1x`
 |  --- |
 | `dot1x` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    switchPortUsageDot1x := models.SwitchPortUsageDot1xEnum_DOT1X
+
+}
+```
+

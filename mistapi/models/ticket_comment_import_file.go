@@ -8,8 +8,11 @@ import (
 )
 
 // TicketCommentImportFile represents a TicketCommentImportFile struct.
+// Multipart payload for adding a ticket comment with an attachment
 type TicketCommentImportFile struct {
-	Comment              *string                `json:"comment,omitempty"`
+	// Text body for the ticket comment submitted with the uploaded file
+	Comment *string `json:"comment,omitempty"`
+	// Binary file payload to attach to the ticket comment
 	File                 *[]byte                `json:"file,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -10,11 +10,14 @@ import (
 )
 
 // ConstCountry represents a ConstCountry struct.
+// Country definition returned by the constants API
 type ConstCountry struct {
 	// Country code, in two-character
-	Alpha2    string `json:"alpha2"`
-	Certified bool   `json:"certified"`
-	Name      string `json:"name"`
+	Alpha2 string `json:"alpha2"`
+	// Whether this country is certified for use in Mist APs
+	Certified bool `json:"certified"`
+	// Human-readable country name for display
+	Name string `json:"name"`
 	// Country code, ISO 3166-1 numeric
 	Numeric              float64                `json:"numeric"`
 	AdditionalProperties map[string]interface{} `json:"_"`

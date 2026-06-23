@@ -15,3 +15,18 @@ enum: `restart`, `start`, `stop`
 | `start` |
 | `stop` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mxedgeServiceAction := models.MxedgeServiceActionEnum_RESTART
+
+}
+```
+

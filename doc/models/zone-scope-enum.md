@@ -16,3 +16,18 @@ enum: `map`, `rssizone`, `site`, `zone`
 | `site` |
 | `zone` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    zoneScope := models.ZoneScopeEnum_ENUMMAP
+
+}
+```
+

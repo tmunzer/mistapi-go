@@ -27,7 +27,7 @@ func NewOrgsIntegrationJSE(baseController baseController) *OrgsIntegrationJSE {
 // GetOrgJseInfo takes context, orgId as parameters and
 // returns an models.ApiResponse with models.AccountJseInfo data and
 // an error if there was an issue with the request or response.
-// Retrieves the list of JSE orgs associated with the account.
+// Return the JSE organizations associated with the configured account. Use the returned organization names when selecting JSE provider options for secure edge tunnels.
 func (o *OrgsIntegrationJSE) GetOrgJseInfo(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -38,19 +38,15 @@ func (o *OrgsIntegrationJSE) GetOrgJseInfo(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AccountJseInfo
@@ -66,7 +62,7 @@ func (o *OrgsIntegrationJSE) GetOrgJseInfo(
 // DeleteOrgJseIntegration takes context, orgId as parameters and
 // returns an *Response and
 // an error if there was an issue with the request or response.
-// Delete JSE Integration
+// Remove the JSE integration configuration from the organization.
 func (o *OrgsIntegrationJSE) DeleteOrgJseIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -77,19 +73,15 @@ func (o *OrgsIntegrationJSE) DeleteOrgJseIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	httpCtx, err := req.Call()
@@ -102,7 +94,7 @@ func (o *OrgsIntegrationJSE) DeleteOrgJseIntegration(
 // GetOrgJseIntegration takes context, orgId as parameters and
 // returns an models.ApiResponse with models.AccountJseInfo data and
 // an error if there was an issue with the request or response.
-// Get Org JSE Integration
+// Return the JSE integration configuration, including the cloud hostname, integration username, and associated JSE organization names.
 func (o *OrgsIntegrationJSE) GetOrgJseIntegration(
 	ctx context.Context,
 	orgId uuid.UUID) (
@@ -113,19 +105,15 @@ func (o *OrgsIntegrationJSE) GetOrgJseIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 
 	var result models.AccountJseInfo
@@ -141,11 +129,7 @@ func (o *OrgsIntegrationJSE) GetOrgJseIntegration(
 // SetupOrgJseIntegration takes context, orgId, body as parameters and
 // returns an models.ApiResponse with models.AccountJseInfo data and
 // an error if there was an issue with the request or response.
-// In JSE UI:
-// 1. Create custom role with Read access to service_location and RW access to site and IPSec profile APIs.
-// 2. Create a user with the above custom role. - email: john@abc.com
-// 3. Activate the user in the JSE account.
-// 4. Create the service locations on the JSE account.
+// Configure the JSE integration with the JSE cloud hostname and integration-user credentials. In JSE, use a custom role with read access to `service_location` and read-write access to site and IPsec profile APIs, then create and activate the integration user and service locations.
 func (o *OrgsIntegrationJSE) SetupOrgJseIntegration(
 	ctx context.Context,
 	orgId uuid.UUID,
@@ -157,19 +141,15 @@ func (o *OrgsIntegrationJSE) SetupOrgJseIntegration(
 	req.Authenticate(
 		NewOrAuth(
 			NewAuth("apiToken"),
-			NewAuth("basicAuth"),
-			NewAndAuth(
-				NewAuth("basicAuth"),
-				NewAuth("csrfToken"),
-			),
+			NewAuth("csrfToken"),
 		),
 	)
 	req.AppendErrors(map[string]https.ErrorBuilder[error]{
 		"400": {Message: "Bad Syntax", Unmarshaller: errors.NewResponseHttp400},
-		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401Error},
-		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403Error},
+		"401": {Message: "Unauthorized", Unmarshaller: errors.NewResponseHttp401},
+		"403": {Message: "Permission Denied", Unmarshaller: errors.NewResponseHttp403},
 		"404": {Message: "Not found. The API endpoint doesn’t exist or resource doesn’ t exist", Unmarshaller: errors.NewResponseHttp404},
-		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429Error},
+		"429": {Message: "Too Many Request. The API Token used for the request reached the 5000 API Calls per hour threshold", Unmarshaller: errors.NewResponseHttp429},
 	})
 	req.Header("Content-Type", "application/json")
 	if body != nil {

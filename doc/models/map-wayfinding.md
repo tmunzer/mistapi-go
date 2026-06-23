@@ -11,19 +11,28 @@ Properties related to wayfinding
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Micello` | [`*models.MapWayfindingMicello`](../../doc/models/map-wayfinding-micello.md) | Optional | - |
-| `SnapToPath` | `*bool` | Optional | - |
+| `Micello` | [`*models.MapWayfindingMicello`](../../doc/models/map-wayfinding-micello.md) | Optional | Micello wayfinding integration settings |
+| `SnapToPath` | `*bool` | Optional | Whether wayfinding should snap routes to configured paths |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "micello": {
-    "account_key": "account_key8",
-    "default_level_id": 220,
-    "map_id": "map_id8"
-  },
-  "snap_to_path": false
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    mapWayfinding := models.MapWayfinding{
+        Micello:              models.ToPointer(models.MapWayfindingMicello{
+            AccountKey:           models.ToPointer("account_key8"),
+            DefaultLevelId:       models.ToPointer(220),
+            MapId:                models.ToPointer("map_id8"),
+        }),
+        SnapToPath:           models.ToPointer(false),
+    }
+
 }
 ```
 

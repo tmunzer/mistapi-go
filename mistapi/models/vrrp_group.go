@@ -8,13 +8,13 @@ import (
 )
 
 // VrrpGroup represents a VrrpGroup struct.
-// Junos VRRP group
+// Junos VRRP group authentication and network settings
 type VrrpGroup struct {
-	// If `auth_type`==`md5`
+	// If `auth_type`==`md5`, authentication key used by the VRRP group
 	AuthKey *string `json:"auth_key,omitempty"`
-	// If `auth_type`==`simple`
+	// If `auth_type`==`simple`, password used by the VRRP group
 	AuthPassword *string `json:"auth_password,omitempty"`
-	// enum: `md5`, `simple`
+	// Authentication method used by the VRRP group. enum: `md5`, `simple`
 	AuthType *VrrpGroupAuthTypeEnum `json:"auth_type,omitempty"`
 	// Property key is the network name
 	Networks             map[string]VrrpGroupNetwork `json:"networks,omitempty"`

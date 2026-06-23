@@ -16,3 +16,18 @@ when `traffic_type`==`custom`. enum: `best_effort`, `high`, `low`, `medium`
 | `low` |
 | `medium` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    serviceTrafficClass := models.ServiceTrafficClassEnum_LOW
+
+}
+```
+

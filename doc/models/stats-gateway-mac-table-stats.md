@@ -1,6 +1,8 @@
 
 # Stats Gateway Mac Table Stats
 
+Gateway MAC table utilization counters
+
 ## Structure
 
 `StatsGatewayMacTableStats`
@@ -9,15 +11,24 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `MacTableCount` | `*int` | Optional | - |
-| `MaxMacEntriesSupported` | `*int` | Optional | - |
+| `MacTableCount` | `*int` | Optional | Number of MAC table entries currently learned by the gateway |
+| `MaxMacEntriesSupported` | `*int` | Optional | Maximum MAC table entries supported by the gateway |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "mac_table_count": 50,
-  "max_mac_entries_supported": 94
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    statsGatewayMacTableStats := models.StatsGatewayMacTableStats{
+        MacTableCount:          models.ToPointer(34),
+        MaxMacEntriesSupported: models.ToPointer(178),
+    }
+
 }
 ```
 

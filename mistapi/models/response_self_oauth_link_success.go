@@ -11,7 +11,9 @@ import (
 )
 
 // ResponseSelfOauthLinkSuccess represents a ResponseSelfOauthLinkSuccess struct.
+// OAuth2 account-linking success response
 type ResponseSelfOauthLinkSuccess struct {
+	// Completed OAuth2 account-linking action
 	Action string `json:"action"`
 	// Unique ID of the object instance in the Mist Organization
 	Id                   uuid.UUID              `json:"id"`

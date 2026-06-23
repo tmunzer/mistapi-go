@@ -32,3 +32,18 @@ if `type`==`match`. enum: `cert_cn`, `cert_eku`, `cert_issuer`, `cert_san`, `cer
 | `user_name` |
 | `usermac_label` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    nacTagMatch := models.NacTagMatchEnum_CERTSERIAL
+
+}
+```
+

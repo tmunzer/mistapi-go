@@ -12,25 +12,29 @@ import (
 // CaptureRadiotapwired represents a CaptureRadiotapwired struct.
 // Initiate a Radiotap Packet Capture and Wired Packet Capture
 type CaptureRadiotapwired struct {
+	// AP MAC address used to target the combined radiotap and wired packet capture
 	ApMac Optional[string] `json:"ap_mac"`
 	// only used for radiotap. enum: `24`, `24,5,6`, `5`, `6`
-	Band      *CaptureRadiotapwiredBandEnum `json:"band,omitempty"`
-	ClientMac Optional[string]              `json:"client_mac"`
+	Band *CaptureRadiotapwiredBandEnum `json:"band,omitempty"`
+	// Client MAC address used to filter the combined packet capture
+	ClientMac Optional[string] `json:"client_mac"`
 	// Duration of the capture, in seconds
 	Duration Optional[int] `json:"duration"`
-	// enum: `pcap`, `stream`
-	Format    *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
-	MaxPktLen Optional[int]                   `json:"max_pkt_len"`
+	// Output format for the combined packet capture. enum: `pcap`, `stream`
+	Format *CaptureRadiotapwiredFormatEnum `json:"format,omitempty"`
+	// Maximum bytes captured from each packet, or null to use the default
+	MaxPktLen Optional[int] `json:"max_pkt_len"`
 	// number of packets to capture, 0 for unlimited, default is 1024, maximum is 10000
 	NumPackets Optional[int] `json:"num_packets"`
 	// tcpdump expression for radiotap interface (802.11 + radio headers)
-	RadiotapTcpdumpExpression *string          `json:"radiotap_tcpdump_expression,omitempty"`
-	Ssid                      Optional[string] `json:"ssid"`
-	// tcpdump expression
+	RadiotapTcpdumpExpression *string `json:"radiotap_tcpdump_expression,omitempty"`
+	// Wireless network SSID used to filter the radiotap portion
+	Ssid Optional[string] `json:"ssid"`
+	// tcpdump filter expression applied to packet capture traffic
 	TcpdumpExpression Optional[string] `json:"tcpdump_expression"`
-	// enum: `radiotap,wired`
+	// Packet capture type discriminator for combined radiotap and wired captures. enum: `radiotap,wired`
 	Type string `json:"type"`
-	// tcpdump expression
+	// tcpdump filter expression applied to packet capture traffic
 	WiredTcpdumpExpression Optional[string] `json:"wired_tcpdump_expression"`
 	// tcpdump expression for radiotap interface (802.11)
 	WirelessTcpdumpExpression *string `json:"wireless_tcpdump_expression,omitempty"`

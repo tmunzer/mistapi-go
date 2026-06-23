@@ -9,17 +9,27 @@ import (
 )
 
 // Fingerprint represents a Fingerprint struct.
+// Client device fingerprint record returned by NAC fingerprint insights
 type Fingerprint struct {
-	Family    *string    `json:"family,omitempty"`
-	Mac       *string    `json:"mac,omitempty"`
-	Mfg       *string    `json:"mfg,omitempty"`
-	Model     *string    `json:"model,omitempty"`
-	OrgId     *uuid.UUID `json:"org_id,omitempty"`
-	Os        *string    `json:"os,omitempty"`
-	OsType    *string    `json:"os_type,omitempty"`
-	RandomMac *bool      `json:"random_mac,omitempty"`
-	SiteId    *uuid.UUID `json:"site_id,omitempty"`
-	// Epoch (seconds)
+	// Device family or category inferred from client fingerprinting
+	Family *string `json:"family,omitempty"`
+	// Client device MAC address for the fingerprint record
+	Mac *string `json:"mac,omitempty"`
+	// Manufacturer name inferred from client fingerprinting
+	Mfg *string `json:"mfg,omitempty"`
+	// Device model inferred from client fingerprinting
+	Model *string `json:"model,omitempty"`
+	// Unique identifier of a Mist organization
+	OrgId *uuid.UUID `json:"org_id,omitempty"`
+	// Operating system name and version inferred from client fingerprinting
+	Os *string `json:"os,omitempty"`
+	// Operating system family inferred from client fingerprinting
+	OsType *string `json:"os_type,omitempty"`
+	// Whether the client device uses a randomized MAC address
+	RandomMac *bool `json:"random_mac,omitempty"`
+	// Unique identifier of a Mist site
+	SiteId *uuid.UUID `json:"site_id,omitempty"`
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

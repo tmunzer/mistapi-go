@@ -8,12 +8,13 @@ import (
 )
 
 // VirtualChassisUpdate represents a VirtualChassisUpdate struct.
-// Virtual Chassis
+// Virtual Chassis member update request
 type VirtualChassisUpdate struct {
-	// Only if `op`==`renumber`
-	Member  *int                         `json:"member,omitempty"`
+	// Only if `op`==`renumber`; existing member ID to renumber
+	Member *int `json:"member,omitempty"`
+	// Member updates for a Virtual Chassis operation
 	Members []VirtualChassisMemberUpdate `json:"members,omitempty"`
-	// Only if `op`==`renumber`
+	// Only if `op`==`renumber`; new member ID to assign
 	NewMember *int `json:"new-member,omitempty"`
 	// enum: `add`, `preprovision`, `remove`, `renumber`
 	Op *VirtualChassisUpdateOpEnum `json:"op,omitempty"`

@@ -8,7 +8,9 @@ import (
 )
 
 // StatsSwitchClientsStats represents a StatsSwitchClientsStats struct.
+// Aggregate switch client counts
 type StatsSwitchClientsStats struct {
+	// Total AP and wired-client counts for switch client statistics
 	Total                *StatsSwitchClientsStatsTotal `json:"total,omitempty"`
 	AdditionalProperties map[string]interface{}        `json:"_"`
 }

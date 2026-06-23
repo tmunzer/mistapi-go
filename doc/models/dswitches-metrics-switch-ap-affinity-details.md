@@ -1,6 +1,8 @@
 
 # Dswitches Metrics Switch Ap Affinity Details
 
+Detail values used by the switch/AP affinity metric
+
 ## Structure
 
 `DswitchesMetricsSwitchApAffinityDetails`
@@ -9,18 +11,26 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `SystemName` | `[]string` | Required | **Constraints**: *Unique Items Required* |
-| `Threshold` | `float64` | Required | - |
+| `SystemName` | `[]string` | Required | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
+| `Threshold` | `float64` | Required | APs-per-switch threshold used for the affinity metric |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "system_name": [
-    "system_name8",
-    "system_name9"
-  ],
-  "threshold": 195.06
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    dswitchesMetricsSwitchApAffinityDetails := models.DswitchesMetricsSwitchApAffinityDetails{
+        SystemName:           []string{
+            "system_name0",
+        },
+        Threshold:            float64(224.08),
+    }
+
 }
 ```
 

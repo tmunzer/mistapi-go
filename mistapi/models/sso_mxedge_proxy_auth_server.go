@@ -8,13 +8,17 @@ import (
 )
 
 // SsoMxedgeProxyAuthServer represents a SsoMxedgeProxyAuthServer struct.
+// RADIUS authentication server for the Mist Edge SSO proxy
 type SsoMxedgeProxyAuthServer struct {
+	// RADIUS authentication server hostname or IP address
 	Host *string `json:"host,omitempty"`
-	Port *int    `json:"port,omitempty"`
+	// UDP port for RADIUS authentication requests
+	Port *int `json:"port,omitempty"`
 	// Whether to require Message-Authenticator in requests
 	RequireMessageAuthenticator *bool `json:"require_message_authenticator,omitempty"`
-	// Authentication request retry
-	Retry  *int    `json:"retry,omitempty"`
+	// Number of retry attempts for RADIUS authentication requests
+	Retry *int `json:"retry,omitempty"`
+	// Shared secret used with the RADIUS authentication server
 	Secret *string `json:"secret,omitempty"`
 	// Authentication request timeout, in seconds
 	Timeout              *int                   `json:"timeout,omitempty"`

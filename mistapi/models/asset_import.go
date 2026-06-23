@@ -10,8 +10,11 @@ import (
 )
 
 // AssetImport represents a AssetImport struct.
+// Asset record supplied in a JSON import payload
 type AssetImport struct {
-	Mac                  string                 `json:"mac"`
+	// Bluetooth MAC address used to identify the imported BLE asset
+	Mac string `json:"mac"`
+	// Display name for the imported BLE asset
 	Name                 string                 `json:"name"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

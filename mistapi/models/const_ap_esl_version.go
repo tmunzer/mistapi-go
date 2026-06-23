@@ -8,8 +8,11 @@ import (
 )
 
 // ConstApEslVersion represents a ConstApEslVersion struct.
+// Supported Electronic Shelf Label (ESL) version for an AP model
 type ConstApEslVersion struct {
-	EslVersion           *string                `json:"esl_version,omitempty"`
+	// Electronic Shelf Label (ESL) package version supported by the AP model
+	EslVersion *string `json:"esl_version,omitempty"`
+	// AP model that supports the listed ESL version
 	Model                *string                `json:"model,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

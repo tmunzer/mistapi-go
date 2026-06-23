@@ -1,7 +1,7 @@
 
 # Wlan Portal
 
-Portal wlan settings
+Guest portal settings for the WLAN
 
 ## Structure
 
@@ -23,11 +23,11 @@ Portal wlan settings
 | `AzureEnabled` | `*bool` | Optional | Whether Azure Active Directory is enabled as a login method<br><br>**Default**: `false` |
 | `AzureExpire` | `models.Optional[int]` | Optional | Interval for which guest remains authorized using azure auth (in minutes), if not provided, uses expire` |
 | `AzureTenantId` | `models.Optional[string]` | Optional | Required if `azure_enabled`==`true`. Azure active directory tenant id. |
-| `BroadnetPassword` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
-| `BroadnetSid` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
-| `BroadnetUserId` | `*string` | Optional | Required if `sms_provider`==`broadnet` |
+| `BroadnetPassword` | `*string` | Optional | Required if `sms_provider`==`broadnet`. Password for the Broadnet SMS provider account |
+| `BroadnetSid` | `*string` | Optional | Required if `sms_provider`==`broadnet`. SID for the Broadnet SMS provider account |
+| `BroadnetUserId` | `*string` | Optional | Required if `sms_provider`==`broadnet`. User ID for the Broadnet SMS provider account |
 | `BypassWhenCloudDown` | `*bool` | Optional | Whether to bypass the guest portal when cloud not reachable (and apply the default policies)<br><br>**Default**: `false` |
-| `ClickatellApiKey` | `*string` | Optional | Required if `sms_provider`==`clickatell` |
+| `ClickatellApiKey` | `*string` | Optional | Required if `sms_provider`==`clickatell`. API key for the Clickatell SMS provider account |
 | `CrossSite` | `*bool` | Optional | Whether to allow guest to roam between WLANs (with same `WLAN.ssid`, regardless of variables) of different sites of same org without reauthentication (disable random_mac for seamless roaming)<br><br>**Default**: `false` |
 | `EmailEnabled` | `*bool` | Optional | Whether email (access code verification) is enabled as a login method<br><br>**Default**: `false` |
 | `Enabled` | `*bool` | Optional | Whether guest portal is enabled<br><br>**Default**: `false` |
@@ -45,8 +45,8 @@ Portal wlan settings
 | `GoogleEmailDomains` | `[]string` | Optional | Optional if `google_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
 | `GoogleEnabled` | `*bool` | Optional | Whether Google is enabled as login method<br><br>**Default**: `false` |
 | `GoogleExpire` | `models.Optional[int]` | Optional | Optional if `google_enabled`==`true`. Interval for which guest remains authorized using Google Auth (in minutes), if not provided, uses expire` |
-| `GupshupPassword` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
-| `GupshupUserid` | `*string` | Optional | Required if `sms_provider`==`gupshup` |
+| `GupshupPassword` | `*string` | Optional | Required if `sms_provider`==`gupshup`. Password for the Gupshup SMS provider account |
+| `GupshupUserid` | `*string` | Optional | Required if `sms_provider`==`gupshup`. User ID for the Gupshup SMS provider account |
 | `MicrosoftClientId` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client id. This is optional. If not provided, it will use a default one. |
 | `MicrosoftClientSecret` | `models.Optional[string]` | Optional | Optional if `microsoft_enabled`==`true`. Microsoft 365 OAuth2 client secret. If microsoft_client_id was provided, provide a corresponding value. Else leave blank. |
 | `MicrosoftEmailDomains` | `[]string` | Optional | Optional if `microsoft_enabled`==`true`. Matches authenticated user email against provided domains. If null or [], all authenticated emails will be allowed. |
@@ -54,19 +54,20 @@ Portal wlan settings
 | `MicrosoftExpire` | `models.Optional[int]` | Optional | Optional if `microsoft_enabled`==`true`. Interval for which guest remains authorized using microsoft auth (in minutes), if not provided, uses expire` |
 | `PassphraseEnabled` | `*bool` | Optional | Whether password is enabled<br><br>**Default**: `false` |
 | `PassphraseExpire` | `models.Optional[int]` | Optional | Optional if `passphrase_enabled`==`true`. Interval for which guest remains authorized using passphrase auth (in minutes), if not provided, uses `expire` |
-| `Password` | `models.Optional[string]` | Optional | Required if `passphrase_enabled`==`true`. |
+| `Password` | `models.Optional[string]` | Optional | Required if `passphrase_enabled`==`true`. Passphrase guests must enter when passphrase authentication is enabled |
 | `PredefinedSponsorsEnabled` | `*bool` | Optional | Whether to show list of sponsor emails mentioned in `sponsors` object as a dropdown. If both `sponsor_notify_all` and `predefined_sponsors_enabled` are false, behavior is acc to `sponsor_email_domains`<br><br>**Default**: `true` |
 | `PredefinedSponsorsHideEmail` | `*bool` | Optional | Whether to hide sponsor’s email from list of sponsors<br><br>**Default**: `false` |
-| `Privacy` | `*bool` | Optional | **Default**: `false` |
-| `PuzzelPassword` | `*string` | Optional | Required if `sms_provider`==`puzzel` |
-| `PuzzelServiceId` | `*string` | Optional | Required if `sms_provider`==`puzzel` |
-| `PuzzelUsername` | `*string` | Optional | Required if `sms_provider`==`puzzel` |
+| `Privacy` | `*bool` | Optional | Whether to show the privacy policy in the WLAN guest portal<br><br>**Default**: `false` |
+| `PuzzelPassword` | `*string` | Optional | Required if `sms_provider`==`puzzel`. Password for the Puzzel SMS provider account |
+| `PuzzelServiceId` | `*string` | Optional | Required if `sms_provider`==`puzzel`. Service ID for the Puzzel SMS provider account |
+| `PuzzelUsername` | `*string` | Optional | Required if `sms_provider`==`puzzel`. Username for the Puzzel SMS provider account |
 | `SmsMessageFormat` | `*string` | Optional | Optional if `sms_enabled`==`true`. SMS Message format<br><br>**Default**: `"Code {{code}} expires in {{duration}} minutes."` |
 | `SmsEnabled` | `*bool` | Optional | Whether sms is enabled as a login method<br><br>**Default**: `false` |
 | `SmsExpire` | `models.Optional[int]` | Optional | Optional if `sms_enabled`==`true`. Interval for which guest remains authorized using sms auth (in minutes), if not provided, uses expire` |
 | `SmsProvider` | [`*models.WlanPortalSmsProviderEnum`](../../doc/models/wlan-portal-sms-provider-enum.md) | Optional | Optional if `sms_enabled`==`true`. enum: `broadnet`, `clickatell`, `gupshup`, `manual`, `puzzel`, `smsglobal`, `telstra`, `twilio`<br><br>**Default**: `"manual"` |
 | `SmsglobalApiKey` | `*string` | Optional | Required if `sms_provider`==`smsglobal`, Client API Key |
 | `SmsglobalApiSecret` | `*string` | Optional | Required if `sms_provider`==`smsglobal`, Client secret |
+| `SmsglobalSender` | `*string` | Optional | Optional sender's number or sender ID for SMSGlobal. If not provided, uses the default number associated with the account |
 | `SponsorAutoApprove` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. Whether to automatically approve guest and allow sponsor to revoke guest access, needs predefined_sponsors_enabled enabled and sponsor_notify_all disabled<br><br>**Default**: `false` |
 | `SponsorEmailDomains` | `[]string` | Optional | List of domain allowed for sponsor email. Required if `sponsor_enabled` is `true` and `sponsors` is empty. |
 | `SponsorEnabled` | `*bool` | Optional | Whether sponsor is enabled<br><br>**Default**: `false` |
@@ -76,7 +77,7 @@ Portal wlan settings
 | `SponsorStatusNotify` | `*bool` | Optional | Optional if `sponsor_enabled`==`true`. If enabled, guest will get email about sponsor's action (approve/deny)<br><br>**Default**: `false` |
 | `Sponsors` | [`*models.WlanPortalSponsors`](../../doc/models/containers/wlan-portal-sponsors.md) | Optional | Object of allowed sponsors email with name. Required if `sponsor_enabled` is `true` and `sponsor_email_domains` is empty. Property key is the sponsor email, Property value is the sponsor name. List of email allowed for backward compatibility |
 | `SsoDefaultRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso`, default role to assign if there’s no match. By default, an assertion is treated as invalid when there’s no role matched |
-| `SsoForcedRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso` |
+| `SsoForcedRole` | `*string` | Optional | Optional if `wlan_portal_auth`==`sso`. Role assigned to authenticated users when guest SSO is used |
 | `SsoIdpCert` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`. IDP Cert (used to verify the signed response) |
 | `SsoIdpSignAlgo` | [`*models.WlanPortalIdpSignAlgoEnum`](../../doc/models/wlan-portal-idp-sign-algo-enum.md) | Optional | Optional if `wlan_portal_auth`==`sso`, Signing algorithm for SAML Assertion. enum: `sha1`, `sha256`, `sha384`, `sha512`<br><br>**Default**: `"sha1"` |
 | `SsoIdpSsoUrl` | `*string` | Optional | Required if `wlan_portal_auth`==`sso`, IDP Single-Sign-On URL |
@@ -88,57 +89,66 @@ Portal wlan settings
 | `TwilioPhoneNumber` | `models.Optional[string]` | Optional | Required if `sms_provider`==`twilio`, Twilio phone number associated with the account. See example for accepted format. |
 | `TwilioSid` | `models.Optional[string]` | Optional | Required if `sms_provider`==`twilio`, Account SID provided by Twilio |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "allow_wlan_id_roam": false,
-  "amazon_email_domains": null,
-  "amazon_enabled": false,
-  "auth": "none",
-  "azure_enabled": false,
-  "broadnet_password": "password",
-  "broadnet_sid": "MIST",
-  "broadnet_user_id": "juniper",
-  "bypass_when_cloud_down": false,
-  "cross_site": false,
-  "email_enabled": false,
-  "enabled": false,
-  "expire": 1440,
-  "facebook_email_domains": null,
-  "facebook_enabled": false,
-  "forward": false,
-  "forward_url": "https://abc.com/promotions",
-  "google_email_domains": [
-    "mydomain.edu",
-    "mydomain.org"
-  ],
-  "google_enabled": false,
-  "microsoft_email_domains": null,
-  "microsoft_enabled": false,
-  "passphrase_enabled": false,
-  "password": "let me in",
-  "predefined_sponsors_enabled": true,
-  "predefined_sponsors_hide_email": false,
-  "privacy": false,
-  "smsMessageFormat": "Code {{code}} expires in {{duration}} minutes.",
-  "sms_enabled": false,
-  "sms_provider": "twilio",
-  "sponsor_auto_approve": false,
-  "sponsor_email_domains": [
-    "reserved.net",
-    "reserved.org"
-  ],
-  "sponsor_enabled": false,
-  "sponsor_notify_all": false,
-  "sponsor_status_notify": false,
-  "sso_idp_sign_algo": "sha1",
-  "sso_nameid_format": "email",
-  "twilio_auth_token": "af9dac44c344a875ab5d31cb7abcdefg",
-  "twilio_phone_number": "+18548888888",
-  "twilio_sid": "af9dac44c344a875ab5d31cb7abcdefg",
-  "amazon_client_id": "amazon_client_id4",
-  "amazon_client_secret": "amazon_client_secret0"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    wlanPortal := models.WlanPortal{
+        AllowWlanIdRoam:             models.ToPointer(false),
+        AmazonClientId:              models.NewOptional(models.ToPointer("amazon_client_id8")),
+        AmazonClientSecret:          models.NewOptional(models.ToPointer("amazon_client_secret2")),
+        AmazonEmailDomains:          nil,
+        AmazonEnabled:               models.ToPointer(false),
+        Auth:                        models.ToPointer(models.WlanPortalAuthEnum_NONE),
+        AzureEnabled:                models.ToPointer(false),
+        BroadnetPassword:            models.ToPointer("password"),
+        BroadnetSid:                 models.ToPointer("MIST"),
+        BroadnetUserId:              models.ToPointer("juniper"),
+        BypassWhenCloudDown:         models.ToPointer(false),
+        CrossSite:                   models.ToPointer(false),
+        EmailEnabled:                models.ToPointer(false),
+        Enabled:                     models.ToPointer(false),
+        Expire:                      models.ToPointer(1440),
+        FacebookEmailDomains:        nil,
+        FacebookEnabled:             models.ToPointer(false),
+        Forward:                     models.ToPointer(false),
+        ForwardUrl:                  models.NewOptional(models.ToPointer("https://abc.com/promotions")),
+        GoogleEmailDomains:          []string{
+            "mydomain.edu",
+            "mydomain.org",
+        },
+        GoogleEnabled:               models.ToPointer(false),
+        MicrosoftEmailDomains:       nil,
+        MicrosoftEnabled:            models.ToPointer(false),
+        PassphraseEnabled:           models.ToPointer(false),
+        Password:                    models.NewOptional(models.ToPointer("let me in")),
+        PredefinedSponsorsEnabled:   models.ToPointer(true),
+        PredefinedSponsorsHideEmail: models.ToPointer(false),
+        Privacy:                     models.ToPointer(false),
+        SmsMessageFormat:            models.ToPointer("Code {{code}} expires in {{duration}} minutes."),
+        SmsEnabled:                  models.ToPointer(false),
+        SmsProvider:                 models.ToPointer(models.WlanPortalSmsProviderEnum_TWILIO),
+        SponsorAutoApprove:          models.ToPointer(false),
+        SponsorEmailDomains:         []string{
+            "reserved.net",
+            "reserved.org",
+        },
+        SponsorEnabled:              models.ToPointer(false),
+        SponsorNotifyAll:            models.ToPointer(false),
+        SponsorStatusNotify:         models.ToPointer(false),
+        SsoIdpSignAlgo:              models.ToPointer(models.WlanPortalIdpSignAlgoEnum_SHA1),
+        SsoNameidFormat:             models.ToPointer(models.WlanPortalSsoNameidFormatEnum_EMAIL),
+        TwilioAuthToken:             models.NewOptional(models.ToPointer("af9dac44c344a875ab5d31cb7abcdefg")),
+        TwilioPhoneNumber:           models.NewOptional(models.ToPointer("+18548888888")),
+        TwilioSid:                   models.NewOptional(models.ToPointer("af9dac44c344a875ab5d31cb7abcdefg")),
+    }
+
 }
 ```
 

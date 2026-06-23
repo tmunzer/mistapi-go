@@ -10,8 +10,11 @@ import (
 // MarvisSelfDriving represents a MarvisSelfDriving struct.
 // Self-driving network automation settings per domain
 type MarvisSelfDriving struct {
-	Wan                  *MarvisSelfDrivingDomain `json:"wan,omitempty"`
-	Wired                *MarvisSelfDrivingDomain `json:"wired,omitempty"`
+	// Self-driving automation settings for one Marvis domain
+	Wan *MarvisSelfDrivingDomain `json:"wan,omitempty"`
+	// Self-driving automation settings for one Marvis domain
+	Wired *MarvisSelfDrivingDomain `json:"wired,omitempty"`
+	// Self-driving automation settings for one Marvis domain
 	Wireless             *MarvisSelfDrivingDomain `json:"wireless,omitempty"`
 	AdditionalProperties map[string]interface{}   `json:"_"`
 }

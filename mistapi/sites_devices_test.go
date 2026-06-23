@@ -258,6 +258,8 @@ func TestSitesDevicesTestSearchSiteDeviceEvents(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	text := "Device connected"
+
 	lastBy := "port_id"
 	includes := "ext_tunnel"
 	limit := int(100)
@@ -265,7 +267,7 @@ func TestSitesDevicesTestSearchSiteDeviceEvents(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, &text, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}
@@ -286,6 +288,8 @@ func TestSitesDevicesTestSearchSiteDeviceEvents1(t *testing.T) {
 		t.Error(errUUID)
 	}
 
+	text := "Device connected"
+
 	lastBy := "port_id"
 	includes := "ext_tunnel"
 	limit := int(100)
@@ -293,7 +297,7 @@ func TestSitesDevicesTestSearchSiteDeviceEvents1(t *testing.T) {
 	duration := "1d"
 	sort := "timestamp"
 
-	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, nil, nil, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
+	apiResponse, err := sitesDevices.SearchSiteDeviceEvents(ctx, siteId, nil, nil, &text, nil, &lastBy, &includes, &limit, nil, nil, &duration, &sort, nil)
 	if err != nil {
 		t.Errorf("Endpoint call failed: %v", err)
 	}

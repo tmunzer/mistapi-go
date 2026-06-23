@@ -10,11 +10,13 @@ import (
 )
 
 // Recover represents a Recover struct.
+// Password recovery request submitted for an administrator account
 type Recover struct {
+	// Admin email address requesting password recovery
 	Email string `json:"email"`
-	// See https://www.google.com/recaptcha/
+	// CAPTCHA verification token submitted with the recovery request
 	Recaptcha *string `json:"recaptcha,omitempty"`
-	// flavor of the captcha. enum: `google`, `hcaptcha`
+	// CAPTCHA provider flavor. enum: `google`, `hcaptcha`
 	RecaptchaFlavor      *RecaptchaFlavorEnum   `json:"recaptcha_flavor,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -8,18 +8,21 @@ import (
 )
 
 // GwRoutingPolicyTermAction represents a GwRoutingPolicyTermAction struct.
-// When used as import policy
+// Actions applied to routes matched by a gateway routing policy term
 type GwRoutingPolicyTermAction struct {
-	Accept       *bool    `json:"accept,omitempty"`
+	// Whether to accept routes that match this term
+	Accept *bool `json:"accept,omitempty"`
+	// BGP communities added to routes matched by a gateway routing policy term
 	AddCommunity []string `json:"add_community,omitempty"`
-	// For SSR, hub decides how VRF routes are leaked on spoke
+	// For SSR, target VRFs used by a hub when leaking VRF routes to spokes
 	AddTargetVrfs []string `json:"add_target_vrfs,omitempty"`
 	// When used as export policy, optional
 	Community []string `json:"community,omitempty"`
-	// When used as export policy, optional. To exclude certain AS
-	ExcludeAsPath    []string `json:"exclude_as_path,omitempty"`
+	// Optional when used as an export policy. AS path values to exclude
+	ExcludeAsPath []string `json:"exclude_as_path,omitempty"`
+	// BGP communities excluded by a gateway routing policy term
 	ExcludeCommunity []string `json:"exclude_community,omitempty"`
-	// When used as export policy, optional
+	// Optional when used as an export policy. BGP communities that may be exported
 	ExportCommunities []string `json:"export_communities,omitempty"`
 	// Optional, for an import policy, local_preference can be changed, value in range 1-4294967294. Can be a Variable (e.g. `{{bgp_as}}`)
 	LocalPreference *RoutingPolicyLocalPreference `json:"local_preference,omitempty"`

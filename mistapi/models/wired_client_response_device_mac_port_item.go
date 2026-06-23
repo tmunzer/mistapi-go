@@ -8,13 +8,21 @@ import (
 )
 
 // WiredClientResponseDeviceMacPortItem represents a WiredClientResponseDeviceMacPortItem struct.
+// Switch or gateway port observation for a wired client
 type WiredClientResponseDeviceMacPortItem struct {
-	DeviceMac            *string                `json:"device_mac,omitempty"`
-	Ip                   *string                `json:"ip,omitempty"`
-	PortId               *string                `json:"port_id,omitempty"`
-	PortParent           *string                `json:"port_parent,omitempty"`
-	Start                *string                `json:"start,omitempty"`
-	Vlan                 *int                   `json:"vlan,omitempty"`
+	// Switch or gateway MAC address for this wired client observation
+	DeviceMac *string `json:"device_mac,omitempty"`
+	// Client IP address observed for this port entry
+	Ip *string `json:"ip,omitempty"`
+	// Interface identifier where the wired client was observed
+	PortId *string `json:"port_id,omitempty"`
+	// Parent interface or port group associated with this port entry
+	PortParent *string `json:"port_parent,omitempty"`
+	// Time when this wired client observation began
+	Start *string `json:"start,omitempty"`
+	// Client VLAN identifier observed for this port entry
+	Vlan *int `json:"vlan,omitempty"`
+	// Time when this wired client port entry was recorded
 	When                 *string                `json:"when,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

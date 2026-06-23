@@ -17,3 +17,18 @@ enum: `aws-sns`, `google-pubsub`, `http-post`, `oauth2`, `splunk`
 | `oauth2` |
 | `splunk` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookType := models.WebhookTypeEnum_GOOGLEPUBSUB
+
+}
+```
+

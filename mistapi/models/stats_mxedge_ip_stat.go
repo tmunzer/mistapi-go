@@ -8,15 +8,19 @@ import (
 )
 
 // StatsMxedgeIpStat represents a StatsMxedgeIpStat struct.
-// IP stats
+// IP address statistics reported by a Mist Edge
 type StatsMxedgeIpStat struct {
-	Ip  *string `json:"ip,omitempty"`
+	// Primary IPv4 address reported for the Mist Edge
+	Ip *string `json:"ip,omitempty"`
+	// Primary IPv6 address reported for the Mist Edge
 	Ip6 *string `json:"ip6,omitempty"`
-	// Property key is the interface name. IPs for each net interface
+	// Interface IP addresses keyed by interface name
 	Ips map[string]string `json:"ips,omitempty"`
-	// Property key is the interface name. MAC for each net interface
-	Macs                 map[string]string      `json:"macs,omitempty"`
-	Netmask              *string                `json:"netmask,omitempty"`
+	// Interface MAC addresses keyed by interface name
+	Macs map[string]string `json:"macs,omitempty"`
+	// IPv4 netmask reported for the primary Mist Edge address
+	Netmask *string `json:"netmask,omitempty"`
+	// IPv6 prefix length reported for the primary Mist Edge address
 	Netmask6             *string                `json:"netmask6,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

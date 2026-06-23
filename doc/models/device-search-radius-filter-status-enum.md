@@ -1,7 +1,7 @@
 
 # Device Search Radius Filter Status Enum
 
-Status of the device search radius filter. enum: `up`, `down`, `unreachable`
+Status of the device search RADIUS filter. enum: `up`, `down`, `unreachable`
 
 ## Enumeration
 
@@ -14,4 +14,19 @@ Status of the device search radius filter. enum: `up`, `down`, `unreachable`
 | `up` |
 | `down` |
 | `unreachable` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    deviceSearchRadiusFilterStatus := models.DeviceSearchRadiusFilterStatusEnum_UP
+
+}
+```
 

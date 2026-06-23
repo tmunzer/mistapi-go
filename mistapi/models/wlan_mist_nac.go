@@ -8,12 +8,13 @@ import (
 )
 
 // WlanMistNac represents a WlanMistNac struct.
+// Mist NAC RADIUS settings for a WLAN
 type WlanMistNac struct {
-	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from Server). Very frequent messages can affect the performance of the radius server, 600 and up is recommended when enabled.
+	// How frequently should interim accounting be reported, 60-65535. default is 0 (use one specified in Access-Accept request from Server). Very frequent messages can affect the performance of the RADIUS server, 600 and up is recommended when enabled.
 	AcctInterimInterval *int `json:"acct_interim_interval,omitempty"`
-	// Radius auth session retries. Following fast timers are set if `fast_dot1x_timers` knob is enabled. "retries" are set to value of `auth_servers_timeout`. "max-requests" is also set when setting `auth_servers_retries` is set to default value to 3.
+	// RADIUS auth session retries. Following fast timers are set if `fast_dot1x_timers` knob is enabled. "retries" are set to value of `auth_servers_timeout`. "max-requests" is also set when setting `auth_servers_retries` is set to default value to 3.
 	AuthServersRetries *int `json:"auth_servers_retries,omitempty"`
-	// Radius auth session timeout. Following fast timers are set if `fast_dot1x_timers` knob is enabled. "quite-period" and "transmit-period" are set to half the value of `auth_servers_timeout`. "supplicant-timeout" is also set when setting `auth_servers_timeout` is set to default value of 10.
+	// RADIUS auth session timeout. Following fast timers are set if `fast_dot1x_timers` knob is enabled. "quite-period" and "transmit-period" are set to half the value of `auth_servers_timeout`. "supplicant-timeout" is also set when setting `auth_servers_timeout` is set to default value of 10.
 	AuthServersTimeout *int `json:"auth_servers_timeout,omitempty"`
 	// Allows a RADIUS server to dynamically modify the authorization status of a user session.
 	CoaEnabled *bool `json:"coa_enabled,omitempty"`

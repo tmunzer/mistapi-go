@@ -10,7 +10,9 @@ import (
 // MapWayfinding represents a MapWayfinding struct.
 // Properties related to wayfinding
 type MapWayfinding struct {
-	Micello              *MapWayfindingMicello  `json:"micello,omitempty"`
+	// Micello wayfinding integration settings
+	Micello *MapWayfindingMicello `json:"micello,omitempty"`
+	// Whether wayfinding should snap routes to configured paths
 	SnapToPath           *bool                  `json:"snap_to_path,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

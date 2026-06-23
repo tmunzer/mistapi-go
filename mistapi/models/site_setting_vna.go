@@ -8,6 +8,7 @@ import (
 )
 
 // SiteSettingVna represents a SiteSettingVna struct.
+// Virtual Network Assistant settings for AP, switch, and gateway experiences at a site
 type SiteSettingVna struct {
 	// Enable Virtual Network Assistant (using SUB-VNA license). This applied to AP / Switch / Gateway
 	Enabled              *bool                  `json:"enabled,omitempty"`

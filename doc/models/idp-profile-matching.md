@@ -1,6 +1,8 @@
 
 # Idp Profile Matching
 
+Criteria that select IDP signatures for an overwrite rule
+
 ## Structure
 
 `IdpProfileMatching`
@@ -9,25 +11,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `AttackName` | `[]string` | Optional | - |
-| `DstSubnet` | `[]string` | Optional | - |
-| `Severity` | [`[]models.IdpProfileMatchingSeverityValueEnum`](../../doc/models/idp-profile-matching-severity-value-enum.md) | Optional | - |
+| `AttackName` | `[]string` | Optional | IDP attack signature names matched by an overwrite rule |
+| `DstSubnet` | `[]string` | Optional | Destination CIDR subnets matched by an IDP profile overwrite |
+| `Severity` | [`[]models.IdpProfileMatchingSeverityValueEnum`](../../doc/models/idp-profile-matching-severity-value-enum.md) | Optional | Severity levels matched by an IDP profile overwrite |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "attack_name": [
-    "attack_name7",
-    "attack_name8"
-  ],
-  "dst_subnet": [
-    "dst_subnet9",
-    "dst_subnet0"
-  ],
-  "severity": [
-    "major"
-  ]
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    idpProfileMatching := models.IdpProfileMatching{
+        AttackName:           []string{
+            "attack_name3",
+            "attack_name4",
+        },
+        DstSubnet:            []string{
+            "dst_subnet5",
+            "dst_subnet4",
+        },
+        Severity:             []models.IdpProfileMatchingSeverityValueEnum{
+            models.IdpProfileMatchingSeverityValueEnum_CRITICAL,
+        },
+    }
+
 }
 ```
 

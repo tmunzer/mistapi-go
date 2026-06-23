@@ -10,10 +10,13 @@ import (
 )
 
 // ResponseSsoFailureSearchItem represents a ResponseSsoFailureSearchItem struct.
+// SSO authentication failure record
 type ResponseSsoFailureSearchItem struct {
-	Detail           string `json:"detail"`
+	// Failure details reported for the SSO authentication attempt
+	Detail string `json:"detail"`
+	// SAML assertion XML captured for the failed SSO authentication attempt
 	SamlAssertionXml string `json:"saml_assertion_xml"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            float64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -21,3 +21,18 @@ The status of auto orient for a given map. enum:
 | `done` |
 | `error` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    responseAutoOrientationInfoStatus := models.ResponseAutoOrientationInfoStatusEnum_DONE
+
+}
+```
+

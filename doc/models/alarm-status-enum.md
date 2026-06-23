@@ -1,7 +1,7 @@
 
 # Alarm Status Enum
 
-enum: `open`, `resolved`
+Current lifecycle status of this alarm. enum: `open`, `resolved`
 
 ## Enumeration
 
@@ -13,4 +13,19 @@ enum: `open`, `resolved`
 |  --- |
 | `open` |
 | `resolved` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    alarmStatus := models.AlarmStatusEnum_OPEN
+
+}
+```
 

@@ -15,3 +15,18 @@ enum: `medium`, `strong`, `weak`
 | `strong` |
 | `weak` |
 
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    sslProxyCiphersCategory := models.SslProxyCiphersCategoryEnum_STRONG
+
+}
+```
+

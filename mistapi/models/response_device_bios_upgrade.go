@@ -8,9 +8,11 @@ import (
 )
 
 // ResponseDeviceBiosUpgrade represents a ResponseDeviceBiosUpgrade struct.
+// Device BIOS upgrade status response
 type ResponseDeviceBiosUpgrade struct {
+	// Current BIOS upgrade status for the device
 	Status *string `json:"status,omitempty"`
-	// Epoch (seconds)
+	// Epoch timestamp, in seconds
 	Timestamp            *float64               `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

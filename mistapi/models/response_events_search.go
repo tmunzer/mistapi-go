@@ -10,12 +10,19 @@ import (
 )
 
 // ResponseEventsSearch represents a ResponseEventsSearch struct.
+// Paginated response for wireless client event search results
 type ResponseEventsSearch struct {
-	End                  int                    `json:"end"`
-	Limit                int                    `json:"limit"`
-	Next                 *string                `json:"next,omitempty"`
-	Results              []EventsClient         `json:"results"`
-	Start                int                    `json:"start"`
+	// Epoch timestamp for the end of the wireless client event search window
+	End int `json:"end"`
+	// Maximum number of wireless client event records returned in this page
+	Limit int `json:"limit"`
+	// Pagination cursor or URL for retrieving the next page of wireless client event records
+	Next *string `json:"next,omitempty"`
+	// Wireless client event records returned by a search response
+	Results []EventsClient `json:"results"`
+	// Epoch timestamp for the start of the wireless client event search window
+	Start int `json:"start"`
+	// Number of wireless client event records matching the search filters across all pages
 	Total                int                    `json:"total"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

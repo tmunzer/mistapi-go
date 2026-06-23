@@ -1,7 +1,7 @@
 
 # Webhook Device Updowns Topic Enum
 
-enum: `device-updowns`
+Webhook topic name for device up/down deliveries. enum: `device-updowns`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `device-updowns`
 | Name |
 |  --- |
 | `device-updowns` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookDeviceUpdownsTopic := models.WebhookDeviceUpdownsTopicEnum_DEVICEUPDOWNS
+
+}
+```
 

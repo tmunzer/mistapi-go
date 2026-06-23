@@ -8,31 +8,31 @@ import (
 )
 
 // JsiSirtItem represents a JsiSirtItem struct.
-// SIRT advisory item
+// Juniper Security Intelligence SIRT advisory item
 type JsiSirtItem struct {
-	// CVSS score
+	// Common Vulnerability Scoring System score for the SIRT advisory
 	CvssScore *float64 `json:"cvss_score,omitempty"`
-	// ID of the SIRT
+	// Unique SIRT or JSA advisory identifier from Juniper Support Insights
 	Id *string `json:"id,omitempty"`
-	// OS models affected
+	// Device models affected by the SIRT advisory
 	Models []string `json:"models,omitempty"`
-	// Problem description
+	// Issue details described by the SIRT advisory
 	Problem *string `json:"problem,omitempty"`
 	// Release date of the SIRT issue
 	PublishedDate *int `json:"published_date,omitempty"`
 	// Release notes if any
 	ReleaseNotes *string `json:"release_notes,omitempty"`
-	// Severity of the issue
+	// Security severity assigned to the SIRT advisory
 	Severity *string `json:"severity,omitempty"`
-	// Solution for the security issue
+	// Recommended fix or remediation for the security issue
 	Solution *string `json:"solution,omitempty"`
-	// Title of the SIRT
+	// Summary title for the SIRT advisory
 	Title *string `json:"title,omitempty"`
-	// JSA updated timestamp
+	// Time when the JSA advisory was last updated
 	UpdatedDate *int `json:"updated_date,omitempty"`
-	// OS versions affected
+	// Software versions affected by the SIRT advisory
 	Versions []string `json:"versions,omitempty"`
-	// Workaround provided
+	// Mitigation or workaround guidance for the SIRT advisory
 	Workaround           *string                `json:"workaround,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

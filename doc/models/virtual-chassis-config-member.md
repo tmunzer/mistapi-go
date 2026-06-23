@@ -1,6 +1,8 @@
 
 # Virtual Chassis Config Member
 
+Virtual Chassis member configuration
+
 ## Structure
 
 `VirtualChassisConfigMember`
@@ -9,23 +11,34 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Locating` | `*bool` | Optional | - |
-| `Mac` | `string` | Required | fpc0, same as the mac of device_id |
-| `MemberId` | `*int` | Optional | For preprovisionned virtual chassis |
-| `VcPorts` | `[]string` | Optional | **Constraints**: *Unique Items Required* |
+| `Locating` | `*bool` | Optional, Read-only | Whether this Virtual Chassis member is currently in locate mode |
+| `Mac` | `string` | Required | Member MAC address; for FPC0 this matches the device MAC address |
+| `MemberId` | `*int` | Optional | Member ID used for a pre-provisioned Virtual Chassis |
+| `VcPorts` | `[]string` | Optional | Unique string values returned or accepted by this schema<br><br>**Constraints**: *Unique Items Required* |
 | `VcRole` | [`models.VirtualChassisConfigMemberVcRoleEnum`](../../doc/models/virtual-chassis-config-member-vc-role-enum.md) | Required | enum: `backup`, `linecard`, `master` |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "locating": false,
-  "mac": "mac2",
-  "member_id": 216,
-  "vc_ports": [
-    "vc_ports2"
-  ],
-  "vc_role": "master"
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    virtualChassisConfigMember := models.VirtualChassisConfigMember{
+        Locating:             models.ToPointer(false),
+        Mac:                  "mac8",
+        MemberId:             models.ToPointer(180),
+        VcPorts:              []string{
+            "vc_ports8",
+            "vc_ports9",
+            "vc_ports0",
+        },
+        VcRole:               models.VirtualChassisConfigMemberVcRoleEnum_LINECARD,
+    }
+
 }
 ```
 

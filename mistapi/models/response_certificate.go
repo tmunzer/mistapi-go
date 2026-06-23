@@ -12,8 +12,11 @@ import (
 // ResponseCertificate represents a ResponseCertificate struct.
 // If the current Org CA certificate is set to expire within 30 days, a pending certificate will be returned along with the expected auto-renewal timestamp.
 type ResponseCertificate struct {
-	Cert                 string                 `json:"cert"`
-	PendingCert          *string                `json:"pending_cert,omitempty"`
+	// Current organization CA certificate in PEM format
+	Cert string `json:"cert"`
+	// Pending auto-renewed organization CA certificate returned when the current certificate nears expiry
+	PendingCert *string `json:"pending_cert,omitempty"`
+	// Epoch timestamp when the pending certificate is expected to replace the current certificate
 	PendingCertExpiry    *int                   `json:"pending_cert_expiry,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

@@ -1,7 +1,7 @@
 
 # Webhook Minis Application Topic Enum
 
-enum: `minis-application`
+Webhook topic name for Minis application test deliveries. enum: `minis-application`
 
 ## Enumeration
 
@@ -12,4 +12,19 @@ enum: `minis-application`
 | Name |
 |  --- |
 | `minis-application` |
+
+## Example
+
+```go
+package main
+
+import (
+    "mistapi/models"
+)
+
+func main() {
+    webhookMinisApplicationTopic := models.WebhookMinisApplicationTopicEnum_MINISAPPLICATION
+
+}
+```
 

@@ -8,7 +8,9 @@ import (
 )
 
 // ResponseClaimLicenseInventoryPendingItem represents a ResponseClaimLicenseInventoryPendingItem struct.
+// Inventory device pending asynchronous claim processing
 type ResponseClaimLicenseInventoryPendingItem struct {
+	// Device MAC address pending asynchronous inventory claim
 	Mac                  *string                `json:"mac,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"_"`
 }

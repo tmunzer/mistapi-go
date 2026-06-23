@@ -1,7 +1,7 @@
 
 # Rf Diag
 
-RF Diag
+RF diagnostic recording request
 
 *This model accepts additional fields of type interface{}.*
 
@@ -13,26 +13,35 @@ RF Diag
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `Duration` | `*int` | Optional | recording length in seconds, max is 180. Default value is also 180.<br><br>**Default**: `180`<br><br>**Constraints**: `<= 180` |
-| `Mac` | `*string` | Optional | If `type`==`client` or `asset`, mac of the device |
-| `Name` | `string` | Required | Name of the recording, the name of the sdk client would be a good default choice |
-| `SdkclientId` | `*uuid.UUID` | Optional | If `type`==`sdkclient`, sdkclient_id of this recording |
+| `Duration` | `*int` | Optional | Recording length, in seconds; maximum and default are 180<br><br>**Default**: `180`<br><br>**Constraints**: `<= 180` |
+| `Mac` | `*string` | Optional | If `type`==`client` or `asset`, MAC address of the device being recorded |
+| `Name` | `string` | Required | Recording name; the SDK client name is a good default for SDK-client recordings |
+| `SdkclientId` | `*uuid.UUID` | Optional | If `type`==`sdkclient`, SDK client identifier for this recording |
 | `Type` | [`models.RfClientTypeEnum`](../../doc/models/rf-client-type-enum.md) | Required | enum: `asset`, `client`, `sdkclient` |
 | `AdditionalProperties` | `map[string]interface{}` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "duration": 180,
-  "name": "name6",
-  "type": "sdkclient",
-  "mac": "mac0",
-  "sdkclient_id": "00000a0e-0000-0000-0000-000000000000",
-  "exampleAdditionalProperty": {
-    "key1": "val1",
-    "key2": "val2"
-  }
+```go
+package main
+
+import (
+    "mistapi/models"
+    "github.com/google/uuid"
+)
+
+func main() {
+    rfDiag := models.RfDiag{
+        Duration:             models.ToPointer(180),
+        Mac:                  models.ToPointer("mac0"),
+        Name:                 "name6",
+        SdkclientId:          models.ToPointer(uuid.MustParse("00000928-0000-0000-0000-000000000000")),
+        Type:                 models.RfClientTypeEnum_CLIENT,
+        AdditionalProperties: map[string]interface{}{
+            "exampleAdditionalProperty": interface{}("[key1, val1][key2, val2]"),
+        },
+    }
+
 }
 ```
 
